@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -38,15 +38,15 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-exponential-family",
     "display_title": "Place GLM responses in the exponential family",
-    "mission_purpose": "Today's Mission exists to place binomial, Poisson, exponential, gamma and normal as exponential-family responses \u2014 absorbing EA-006 structure entry into Campaign membership \u2014 so GLM starts from distributional honesty, not software habit.",
+    "mission_purpose": "Today's Mission exists to place binomial, Poisson, exponential, gamma and normal as exponential-family responses (absorbing EA-006 structure entry into Campaign membership) so GLM starts from distributional honesty, not software habit.",
     "tutor_intent": "Today I will force exponential-family placement for named responses and refuse 'GLM means linear regression in a package'.",
     "educational_intent": "Produce family placement as the first GLM structure hinge (EA-006 absorb day 1/3).",
     "learning_objective": "Recognise binomial, Poisson, exponential, gamma and normal distributions as members of an exponential family in the GLM setting.",
-    "concept_focus": "Named response distributions \u2192 exponential-family membership in the GLM setting \u2192 refuse package-name GLM.",
-    "prior_bridge": "CD-R1 retrieved classical LM. Today opens 4.2 at exponential family \u2014 lawful absorb of orphan structure geography.",
+    "concept_focus": "Named response distributions → exponential-family membership in the GLM setting → refuse package-name GLM.",
+    "prior_bridge": "CD-R1 retrieved classical LM. Today opens 4.2 at exponential family. Lawful absorb of orphan structure geography.",
     "why_now": "GLM begins by placing binomial, Poisson, exponential, gamma, and normal as exponential-family responses.",
     "expected_benefit": "You will be able to recognise binomial, Poisson, exponential, gamma and Normal as exponential-family GLM responses.",
-    "explainability": "Campaign Delta Day 6 / absorb block day 1 \u2014 EP-001 Wave 2 Trust Front.",
+    "explainability": "Campaign Delta Day 6 / absorb block day 1. EP-001 Wave 2 Trust Front.",
     "success_criteria": [
       "Closed-book, name three exponential-family responses used in GLMs.",
       "State why Normal is the special case, not the whole definition.",
@@ -64,14 +64,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-exponential-family",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.1 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.1. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.1; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Place GLM responses in the exponential family. Study Progress for LO 4.2.1 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.1 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Place GLM responses in the exponential family. Study Progress for LO 4.2.1. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.1 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.1 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -86,7 +86,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.1 exponential family responses",
+    "open_point": "CMP · Syllabus 4.2.1 exponential family responses",
     "stop_condition": "Through CMP 4.2.1 (stop before mean/variance primary 4.2.2)",
     "out_of_scope_today": [
       "Mean/variance primary (4.2.2)",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.1 exponential family responses. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.1 (stop before mean/variance primary 4.2.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.1 exponential family responses. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.1 (stop before mean/variance primary 4.2.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -135,7 +135,7 @@
         "exponential family"
       ],
       "explanation": "Active recall for 4.2.1.",
-      "model_answer": "Binomial, Poisson, exponential, gamma, normal \u2014 Normal is the special case inside the family list, not the definition of GLM.",
+      "model_answer": "Binomial, Poisson, exponential, gamma, normal. Normal is the special case inside the family list, not the definition of GLM.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -162,7 +162,7 @@
         "glm"
       ],
       "explanation": "Checkpoint for 4.2.1.",
-      "model_answer": "(1) e.g. Poisson (counts with E[Y]=Var[Y]=\u03bc); binomial (bounded proportion/count responses); Normal (continuous responses with constant variance) \u2014 each has an exponential-family density form usable as a GLM response. (2) Refuse: package name \u2260 GLM; a GLM response sits in an exponential family (with later \u03b7 and link). Normal+identity is a special case, not the definition.",
+      "model_answer": "(1) e.g. Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion/count responses); Normal (continuous responses with constant variance). Each has an exponential-family density form usable as a GLM response. (2) Refuse: package name ≠ GLM; a GLM response sits in an exponential family (with later η and link). Normal+identity is a special case, not the definition.",
       "common_mistake": "Treating GLM as a software synonym for ordinary linear regression.",
       "success_criteria": [
         "Refusal present.",
@@ -171,7 +171,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest family-placement wobble \u2014 structure absorb continues tomorrow.",
+    "framing": "Harvest family-placement wobble: structure absorb continues tomorrow.",
     "prompt": "Which part of today's 4.2.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.1 is stickiest and why?",
@@ -183,8 +183,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Mean, variance, variance function and scale (4.2.2)",
     "continuity_line": "Today you placed exponential-family responses; tomorrow continues at mean/variance/scale language for those families.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: mean, variance, variance function and scale for GLM families (4.2.2). Optional light prep: skim 4.2.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.2. Titles only tonight",
+    "student_facing": "Tomorrow: mean, variance, variance function and scale for GLM families (4.2.2). Optional light prep: skim 4.2.2 headings. Titles only tonight."
   },
   "absorption_note": "EA-006 structure absorb day 1/3",
   "published_at": "2026-08-01"

@@ -1,7 +1,7 @@
 {
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "campaign_version": "cs1013-1.0.0",
-  "display_title": "Campaign Nu — Linear regression models (4.1) · Continuity Front join",
+  "display_title": "Campaign Nu: Linear regression models (4.1) · Continuity Front join",
   "subject_id": "CS1",
   "package_version_pin": "IFoA CS1 2026",
   "scope_class": "Pilot Arc",
@@ -39,5 +39,5 @@
     "CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION",
     "CS1-EP001-PKG-REV-LINEAR-REGRESSION-NU"
   ],
-  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Nu package IDs are CN-prefixed Continuity Front join LIVE inventory — Published Coverage unchanged (4.1 already counted)."
+  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Nu package IDs are CN-prefixed Continuity Front join LIVE inventory. Published Coverage unchanged (4.1 already counted)."
 }

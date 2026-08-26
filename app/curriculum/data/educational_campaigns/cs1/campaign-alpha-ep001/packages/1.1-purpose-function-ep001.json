@@ -1,8 +1,8 @@
 {
   "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
   "package_version": "ep001-campaign-alpha-1.0.0",
-  "publication_version": "ep001-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "ep001-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
   "campaign_day": "CA-D1",
   "subject_id": "CS1",
@@ -26,18 +26,18 @@
     "EC001_CMP_PARTNERSHIP_AUDIT.md"
   ],
   "author_id": "ep001-educational-author",
-  "published_at": null,
+  "published_at": "2026-08-01",
   "mission": {
     "mission_id": "msn-ep001-cs1-1.1-purpose-function",
     "display_title": "Name why actuarial data analysis exists",
-    "mission_purpose": "Today's Mission exists to give you a professional purpose map for data analysis — aims, stages, sources, and reproducibility — so every later EDA and modelling day answers a named aim rather than wandering in tables.",
-    "tutor_intent": "Today I will force the candidate to distinguish descriptive, inferential, and predictive aims before opening deep CMP pages, and to name one reproducibility element they will protect — so Day 1 sets Study Sensei habits, not a syllabus skim.",
+    "mission_purpose": "Today's Mission exists to give you a professional purpose map for data analysis (aims, stages, sources, and reproducibility) so every later EDA and modelling day answers a named aim rather than wandering in tables.",
+    "tutor_intent": "Today I will force the candidate to distinguish descriptive, inferential, and predictive aims before opening deep CMP pages, and to name one reproducibility element they will protect. So Day 1 sets Study Sensei habits, not a syllabus skim.",
     "educational_intent": "Produce a cognitive move from 'CS1 starts with data' to 'I can state the aim of an analysis, the stage I am in, the source limitations I inherit, and what makes the work reproducible.'",
     "learning_objective": "Explain the aims of a data analysis and outline the stages and reproducibility elements needed to conduct one for a real-world actuarial problem.",
     "concept_focus": "Aims (descriptive / inferential / predictive) → analysis stages → data sources → reproducibility.",
-    "prior_bridge": "Cold start on the CS1 first-pass spine. You are opening Campaign Alpha — there is no prior Campaign day. Bring only willingness to treat data analysis as professional work with an aim, not as plotting for its own sake.",
+    "prior_bridge": "Cold start on the CS1 first-pass spine. You are opening Campaign Alpha. There is no prior Campaign day. Bring only willingness to treat data analysis as professional work with an aim, not as plotting for its own sake.",
     "why_now": "1.1 is the lawful first Learning Mode node on the CS1 2026 spine; examiners and workplace briefs expect you to state the aim of an analysis before choosing tools; without this map, exploratory work in 1.2 becomes undirected chart-making.",
-    "expected_benefit": "A four-part purpose map you can defend closed-book — Study Progress for today's Session, not mastery of all data-analysis tooling.",
+    "expected_benefit": "A four-part purpose map you can defend closed-book. Study Progress for today's Session, not mastery of all data-analysis tooling.",
     "explainability": "Assigned as Campaign Alpha Day 1 because the official spine begins at 1.1; the educational gap is purpose and function, not jumping into correlation formulae.",
     "success_criteria": [
       "Closed-book, name the three primary aims of data analysis (descriptive, inferential, predictive) with one actuarial-flavoured example each.",
@@ -56,17 +56,17 @@
   },
   "session": {
     "session_id": "ssn-ep001-cs1-1.1-purpose-function",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test a closed-book purpose map for data analysis using selective CMP reading and retrieval — not to survey every tool in the subject.",
-    "session_tutor_purpose": "In this hour I will set focus questions on aims, stages, sources, and reproducibility, exit while the candidate works the CMP alone, then force a closed-book purpose-map retrieval — so Day 1 success criteria are stress-tested, not merely claimed.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test a closed-book purpose map for data analysis using selective CMP reading and retrieval. Not to survey every tool in the subject.",
+    "session_tutor_purpose": "In this hour I will set focus questions on aims, stages, sources, and reproducibility, exit while the candidate works the CMP alone, then force a closed-book purpose-map retrieval. So Day 1 success criteria are stress-tested, not merely claimed.",
     "duration_budget_minutes": {
       "min": 45,
       "max": 65
     },
-    "wrap_up": "Session complete for Name why actuarial data analysis exists. You practised selective CMP reading on Syllabus 1.1 and stress-tested the aims → stages → sources → reproducibility map. This is Study Progress for today's block — not Topic Complete for all of 1.1, and not mastery of EDA techniques (that begins tomorrow).",
+    "wrap_up": "Session complete for Name why actuarial data analysis exists. You practised selective CMP reading on Syllabus 1.1 and stress-tested the aims → stages → sources → reproducibility map. This is Study Progress for today's block. Not Topic Complete for all of 1.1, and not mastery of EDA techniques (that begins tomorrow).",
     "confidence_prompt": "How confident are you that you could explain the three aims and one reproducibility element closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP (not this screen) to build a professional purpose map — aims, stages, sources, and reproducibility — so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition.",
+    "lead_line": "Purpose of this reading: use the CMP (not this screen) to build a professional purpose map (aims, stages, sources, and reproducibility) so later EDA days answer a named aim. Extract that frame from the CMP, then stop after the purpose-and-function block is complete in your edition.",
     "focus_questions": [
       "Where does the CMP distinguish descriptive, inferential, and predictive aims? Write one phrase for each in your own words.",
       "What stages does the CMP list for conducting a data analysis, and which stage is exploratory work?",
@@ -88,17 +88,17 @@
     ],
     "annotation_task": "Before deep reading: sketch Aims / Stages / Sources / Reproducibility as four boxes in notes",
     "attempt_before_reveal": "When the CMP states an example aim or stage list, cover any worked framing and write your own ordering first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.1 — purpose and function of data analysis (1.1.1–1.1.4 centre). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation sketch. Ignore detailed EDA recipes, correlation/PCA, coding marathons, and distribution catalogues today. Stop when you finish the aims–stages–sources–reproducibility block. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.1: purpose and function of data analysis (1.1.1–1.1.4 centre). Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation sketch. Ignore detailed EDA recipes, correlation/PCA, coding marathons, and distribution catalogues today. Stop when you finish the aims–stages–sources–reproducibility block. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP aims–stages–sources–reproducibility block for Syllabus 1.1 is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write one actuarial example for each of descriptive, inferential, and predictive.",
+        "cue": "Pause (write one actuarial example for each of descriptive, inferential, and predictive)",
         "student_action": "Annotate"
       },
       {
         "id": "PP2",
-        "cue": "Pause — name one reproducibility element you will protect in your own notes workflow.",
+        "cue": "Pause. Name one reproducibility element you will protect in your own notes workflow.",
         "student_action": "Annotate"
       }
     ],
@@ -115,7 +115,7 @@
       "body": "CMP closed. Distinguish descriptive vs inferential vs predictive with concrete examples.",
       "hints": [
         "Descriptive summarises what is in the data; inferential generalises to a population; predictive forecasts unseen outcomes.",
-        "Think claims, pricing, and reserving contexts for examples — keep them short."
+        "Think claims, pricing, and reserving contexts for examples. Keep them short."
       ],
       "accepted_keywords": [
         "descriptive",
@@ -142,11 +142,11 @@
       "title": "Checkpoint: stages, sources, reproducibility",
       "prompt": "Closed-book. (1) List the main stages of a data analysis in a sensible order and mark which stage exploratory work sits in. (2) Name two source characteristics that change how you trust results. (3) Name one element required to keep an analysis reproducible.",
       "response_type": "short_structured",
-      "body": "Connect stages to sources and reproducibility — not tool names alone.",
+      "body": "Connect stages to sources and reproducibility. Not tool names alone.",
       "hints": [
         "Stages typically run from problem framing through data acquisition, cleaning/EDA, modelling/inference, and communication.",
         "Source cues: sampling frame, bias, granularity, volume/velocity for large sets.",
-        "Reproducibility: code, data version, documentation, seed, environment — name at least one clearly."
+        "Reproducibility: code, data version, documentation, seed, environment. Name at least one clearly."
       ],
       "accepted_keywords": [
         "stage",
@@ -172,9 +172,9 @@
   ],
   "reflection": {
     "framing": "Do not summarise the whole of 1.1. Harvest what still wobbles in the purpose map.",
-    "prompt": "Which part of the purpose map is stickiest right now — aims, stages, sources, or reproducibility — and why? Quote or paraphrase the single CMP sentence still unclear. If you had five minutes tomorrow before EDA tools, what one purpose-map move would you rework?",
+    "prompt": "Which part of the purpose map is stickiest right now (aims, stages, sources, or reproducibility) and why? Quote or paraphrase the single CMP sentence still unclear. If you had five minutes tomorrow before EDA tools, what one purpose-map move would you rework?",
     "prompts": [
-      "Which part of the purpose map is stickiest right now — aims, stages, sources, or reproducibility — and why?",
+      "Which part of the purpose map is stickiest right now (aims, stages, sources, or reproducibility) and why?",
       "Quote or paraphrase the single CMP sentence still unclear (your words; no long extract).",
       "If you had five minutes tomorrow before EDA tools, what one purpose-map move would you rework?"
     ]
@@ -182,8 +182,8 @@
   "tomorrow_preview": {
     "next_topic_code": "1.2",
     "next_topic_title": "Complete exploratory data analysis",
-    "continuity_line": "Today you named the aim and stage of analysis; tomorrow you enter the exploratory stage with summary statistics and visualisations chosen for a stated aim — not charts for their own sake.",
-    "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.1 summary statistics and exploratory visualisations — titles only, no deep study tonight",
-    "student_facing": "Tomorrow: exploratory data analysis — summaries and visualisations (1.2). Today's purpose map tells you which aim you serve; tomorrow you choose exploratory tools inside that aim. Optional light prep: skim CMP headings for 1.2.1 — titles only tonight."
+    "continuity_line": "Today you named the aim and stage of analysis; tomorrow you enter the exploratory stage with summary statistics and visualisations chosen for a stated aim. Not charts for their own sake.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.1 summary statistics and exploratory visualisations (titles only, no deep study tonight)",
+    "student_facing": "Tomorrow: exploratory data analysis (summaries and visualisations (1.2). Today's purpose map tells you which aim you serve; tomorrow you choose exploratory tools inside that aim. Optional light prep: skim CMP headings for 1.2.1) titles only tonight."
   }
 }

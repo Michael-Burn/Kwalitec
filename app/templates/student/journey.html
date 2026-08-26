@@ -117,7 +117,7 @@
     {% if journey.needs_attention and journey.needs_attention|length > 0 %}
     <article class="ds-panel" aria-labelledby="needs-attention-title" data-weak-topic-centre="true">
       <h2 class="ds-section__title" id="needs-attention-title">Needs Attention</h2>
-      <p class="ds-list__meta">Topics to strengthen — based on recent practice and Revision guidance.</p>
+      <p class="ds-list__meta">Topics to strengthen. Based on recent practice and Revision guidance.</p>
       <ul class="ds-list">
         {% for topic in journey.needs_attention[:5] %}
         <li class="ds-list__row">

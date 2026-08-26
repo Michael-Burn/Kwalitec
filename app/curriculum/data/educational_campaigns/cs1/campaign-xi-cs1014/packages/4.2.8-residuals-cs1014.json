@@ -1,7 +1,7 @@
 {
   "package_version": "cs1014-campaign-xi-1.0.0",
-  "publication_version": "cs1014-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1014-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
@@ -35,7 +35,7 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-residuals",
     "display_title": "Use Pearson and deviance residuals",
-    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and their use — without pretending χ² / LRT acceptability tests (4.2.9) are finished.",
+    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and their use. Without pretending χ² / LRT acceptability tests (4.2.9) are finished.",
     "tutor_intent": "Today I will force Pearson vs deviance residual discrimination and refuse treating formal acceptability tests as today's LO.",
     "educational_intent": "Produce a cognitive move from selected model to lawful residual diagnostics under CMP.",
     "learning_objective": "Explain Pearson and deviance residuals and their use.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1014-cs1-4.2-residuals",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.8 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.8. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.2.8, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Use Pearson and deviance residuals. You practised selective CMP reading on Syllabus 4.2.8. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Use Pearson and deviance residuals. You practised selective CMP reading on Syllabus 4.2.8. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.8 — use pearson and deviance residuals. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.8: use pearson and deviance residuals. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.2.8?",
       "What warrant separates today's skill from yesterday's?",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.8.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT acceptability tests 4.2.9). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.8.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT acceptability tests 4.2.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -158,7 +158,7 @@
         "likelihood-ratio"
       ],
       "explanation": "Checkpoint for 4.2.8.",
-      "model_answer": "(1) Pearson residual: (y − μ̂)/√Var̂(Y) — a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers and patterns. (2) Refuse: an LRT is a formal acceptability/model-comparison test — different from defining and using residual diagnostics.",
+      "model_answer": "(1) Pearson residual: (y − μ̂)/√Var̂(Y) (a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers and patterns. (2) Refuse: an LRT is a formal acceptability/model-comparison test) different from defining and using residual diagnostics.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -167,7 +167,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest residual-type wobble — keep χ²/LRT out of tonight's claim.",
+    "framing": "Harvest residual-type wobble. Keep χ²/LRT out of tonight's claim.",
     "prompt": "Which part of today's 4.2.8 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.8 is stickiest and why?",
@@ -179,12 +179,13 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Acceptability tests for a fitted GLM (4.2.9)",
     "continuity_line": "Today you established Pearson and deviance residuals; tomorrow continues 4.2 at formal acceptability tests.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.9 — titles only tonight",
-    "student_facing": "Tomorrow: Pearson χ² and likelihood-ratio acceptability tests (4.2.9). Optional light prep: skim 4.2.9 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.9. Titles only tonight",
+    "student_facing": "Tomorrow: Pearson χ² and likelihood-ratio acceptability tests (4.2.9). Optional light prep: skim 4.2.9 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.8 is a CX-R1 return target after Learning span closes."
-  }
+  },
+  "published_at": "2026-08-03"
 }

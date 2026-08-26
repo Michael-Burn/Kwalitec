@@ -37,12 +37,12 @@
   "mission": {
     "mission_id": "msn-cs1011-cs1-3.2-ci-two-sample",
     "display_title": "Construct confidence intervals for two-sample situations",
-    "mission_purpose": "Today's Mission exists to construct confidence intervals for two-sample situations involving the Normal distribution and the binomial and Poisson distributions using the Normal approximation — so two-sample interval literacy is usable — without pretending paired-means CI (3.2.7) is finished.",
+    "mission_purpose": "Today's Mission exists to construct confidence intervals for two-sample situations involving the Normal distribution and the binomial and Poisson distributions using the Normal approximation (so two-sample interval literacy is usable) without pretending paired-means CI (3.2.7) is finished.",
     "tutor_intent": "Today I will force two-sample CI construction across Normal / binomial / Poisson (Normal approx) settings and refuse treating paired data as today's LO.",
     "educational_intent": "Produce cognitive moves for two-sample confidence intervals under Normal, binomial, and Poisson (Normal approximation) settings.",
     "learning_objective": "Confidence intervals for two-sample situations involving the normal distribution and the binomial and Poisson distributions using the normal approximation.",
     "concept_focus": "Two independent samples → difference / contrast CI → refuse paired-as-done.",
-    "prior_bridge": "Yesterday you formed binomial and Poisson single-sample CIs (3.2.5). Today continues topic 3.2 at LO 3.2.6 — two-sample situations.",
+    "prior_bridge": "Yesterday you formed binomial and Poisson single-sample CIs (3.2.5). Today continues topic 3.2 at LO 3.2.6: two-sample situations.",
     "why_now": "3.2.6 is contiguous after single-sample discrete CIs. Closing it prevents a cliff at two-sample intervals while keeping paired means as day seven.",
     "expected_benefit": "You will be able to construct independent two-sample CIs and refuse misapplying them to paired data.",
     "explainability": "Assigned as Campaign Lambda Day 6 because Continuity Front membership places two-sample CIs after binomial/Poisson single-sample work.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1011-cs1-3.2-ci-two-sample",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.6 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.6. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.2.6, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct confidence intervals for two-sample situations. You practised selective CMP reading on Syllabus 3.2.6. This is Study Progress for today's block — not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Construct confidence intervals for two-sample situations. You practised selective CMP reading on Syllabus 3.2.6. This is Study Progress for today's block. Not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.2.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.6 — construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.6: construct confidence intervals for two-sample situations. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.2.6?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.6 two-sample confidence intervals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.6 (stop before paired-means CI 3.2.7). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.6 two-sample confidence intervals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.6 (stop before paired-means CI 3.2.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -163,7 +163,7 @@
         "Normal"
       ],
       "explanation": "Two-sample CIs assume independent samples; pairing is a different design.",
-      "model_answer": "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson with Normal approx), under independent samples from the two groups. (2) Refuse: paired data shares observational units; equal sample sizes do not make paired rows an independent two-sample problem — use the paired-difference construction instead.",
+      "model_answer": "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson with Normal approx), under independent samples from the two groups. (2) Refuse: paired data shares observational units; equal sample sizes do not make paired rows an independent two-sample problem. Use the paired-difference construction instead.",
       "common_mistake": "Applying the independent two-sample CI to paired observations because n₁ = n₂.",
       "success_criteria": [
         "Names the contrast and independence assumption.",
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest two-sample contrast wobble — keep paired out of tonight's claim.",
+    "framing": "Harvest two-sample contrast wobble. Keep paired out of tonight's claim.",
     "prompt": "Which part of today's 3.2.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.6 is stickiest and why?",
@@ -184,8 +184,8 @@
     "next_topic_code": "3.2",
     "next_topic_title": "Paired-data mean-difference confidence interval (3.2.7)",
     "continuity_line": "Today you formed two-sample CIs; tomorrow continues 3.2 at paired-data mean-difference intervals.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.7 — titles only tonight",
-    "student_facing": "Tomorrow: paired mean-difference CI (3.2.7). Optional light prep: skim 3.2.7 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.7. Titles only tonight",
+    "student_facing": "Tomorrow: paired mean-difference CI (3.2.7). Optional light prep: skim 3.2.7 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

@@ -1,7 +1,7 @@
 {
   "package_version": "cs1014-campaign-xi-1.0.0",
-  "publication_version": "cs1014-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1014-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
@@ -36,7 +36,7 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-linear-predictor",
     "display_title": "Write the linear predictor for simple GLM forms",
-    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models, including polynomial models and models involving factors — without pretending deviance/estimation (4.2.6) are finished.",
+    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models, including polynomial models and models involving factors. Without pretending deviance/estimation (4.2.6) are finished.",
     "tutor_intent": "Today I will force η-form writing for simple GLM structures and refuse treating deviance as today's LO.",
     "educational_intent": "Produce a cognitive move from covariate structure to lawful linear predictor forms under CMP.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1014-cs1-4.2-linear-predictor",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.5 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.5. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.2.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. You practised selective CMP reading on Syllabus 4.2.5. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. You practised selective CMP reading on Syllabus 4.2.5. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.5 — write the linear predictor for simple glm forms. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.5: write the linear predictor for simple glm forms. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.2.5?",
       "What warrant separates today's skill from yesterday's?",
@@ -94,13 +94,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.5.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.5.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -169,7 +169,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest η-form wobble — keep deviance out of tonight's claim.",
+    "framing": "Harvest η-form wobble. Keep deviance out of tonight's claim.",
     "prompt": "Which part of today's 4.2.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.5 is stickiest and why?",
@@ -181,12 +181,13 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Deviance and GLM parameter estimation (4.2.6)",
     "continuity_line": "Today you established linear predictor forms; tomorrow continues 4.2 at deviance and estimation.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.6 — titles only tonight",
-    "student_facing": "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.6. Titles only tonight",
+    "student_facing": "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.5 is a CX-R1 return target after Learning span closes."
-  }
+  },
+  "published_at": "2026-08-03"
 }

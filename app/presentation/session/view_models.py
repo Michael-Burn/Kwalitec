@@ -246,7 +246,7 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
     else:
         # Honest general purpose — do not invent a decorative percentage.
         improvement = (
-            "This Session is meant to strengthen readiness on today's topic — "
+            "This Session is meant to strengthen readiness on today's topic. "
             "how much depends on your practice."
         )
     begin = snap.begin_action

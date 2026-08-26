@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,17 +35,17 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-goodness-tests",
     "display_title": "Test acceptability of a fitted GLM",
-    "mission_purpose": "Today's Mission exists to use Pearson's chi-square test and the likelihood-ratio test to judge acceptability of a fitted GLM \u2014 so tests are named and purposeful.",
-    "tutor_intent": "Today I will force naming both tests and when each is used \u2014 refuse p-value theatre without hypothesis.",
+    "mission_purpose": "Today's Mission exists to use Pearson's chi-square test and the likelihood-ratio test to judge acceptability of a fitted GLM. So tests are named and purposeful.",
+    "tutor_intent": "Today I will force naming both tests and when each is used. Refuse p-value theatre without hypothesis.",
     "educational_intent": "Produce goodness-of-fit / model-test literacy.",
     "learning_objective": "Apply statistical tests to determine the acceptability of a fitted model: Pearson's chi-square test and the likelihood-ratio test.",
-    "concept_focus": "Fitted GLM \u2192 Pearson \u03c7\u00b2 acceptability test \u2192 likelihood-ratio test.",
+    "concept_focus": "Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
     "prior_bridge": "Yesterday residual types (4.2.8). Today formal tests.",
     "why_now": "4.2.9 precedes integrated software fit/interpret (4.2.10).",
-    "expected_benefit": "You will be able to apply Pearson's \u03c7\u00b2 and likelihood-ratio tests to judge acceptability of a fitted GLM.",
+    "expected_benefit": "You will be able to apply Pearson's χ² and likelihood-ratio tests to judge acceptability of a fitted GLM.",
     "explainability": "Campaign Delta Day 14 focuses LO 4.2.9.",
     "success_criteria": [
-      "Closed-book, name Pearson \u03c7\u00b2 and likelihood-ratio tests in GLM context.",
+      "Closed-book, name Pearson χ² and likelihood-ratio tests in GLM context.",
       "State what 'acceptability' means for a fitted model at a high level.",
       "Refuse reporting a p-value without stating the comparison."
     ],
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-goodness-tests",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.9 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.9. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.9; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Test acceptability of a fitted GLM. Study Progress for LO 4.2.9 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.9 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Test acceptability of a fitted GLM. Study Progress for LO 4.2.9. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.9 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.9 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,7 +83,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.9 Pearson \u03c7\u00b2 and likelihood-ratio tests",
+    "open_point": "CMP · Syllabus 4.2.9 Pearson χ² and likelihood-ratio tests",
     "stop_condition": "Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10)",
     "out_of_scope_today": [
       "Fit-interpret primary (4.2.10)",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.9 Pearson \u03c7\u00b2 and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.9 Pearson χ² and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -130,7 +130,7 @@
         "fit"
       ],
       "explanation": "Active recall for 4.2.9.",
-      "model_answer": "Pearson \u03c7\u00b2: assess fit/acceptability of fitted model. LRT: compare models / nested hypotheses about parameters (as CMP frames).",
+      "model_answer": "Pearson χ²: assess fit/acceptability of fitted model. LRT: compare models / nested hypotheses about parameters (as CMP frames).",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.9-cp-01",
       "title": "Checkpoint: 4.2.9",
-      "prompt": "Closed-book. You have a fitted GLM and want to judge acceptability. (1) State what Pearson's \u03c7\u00b2 test and the likelihood-ratio test each compare (in outline), and what you must state before quoting a p-value. (2) Refuse: 'Interpreting every coefficient in the software output finishes applying acceptability tests.'",
+      "prompt": "Closed-book. You have a fitted GLM and want to judge acceptability. (1) State what Pearson's χ² test and the likelihood-ratio test each compare (in outline), and what you must state before quoting a p-value. (2) Refuse: 'Interpreting every coefficient in the software output finishes applying acceptability tests.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.9.",
       "hints": [
@@ -158,7 +158,7 @@
         "not p alone"
       ],
       "explanation": "Checkpoint for 4.2.9.",
-      "model_answer": "(1) Pearson \u03c7\u00b2: aggregate squared Pearson residuals against a \u03c7\u00b2 reference (adequacy of fit). LRT: compares likelihood/deviance of the fitted model to a relevant nested or saturated alternative. Before quoting a p-value, state the hypotheses / what is being compared and the reference distribution. (2) Refuse: coefficient interpretation is a different LO; today requires applying the formal acceptability tests.",
+      "model_answer": "(1) Pearson χ²: aggregate squared Pearson residuals against a χ² reference (adequacy of fit). LRT: compares likelihood/deviance of the fitted model to a relevant nested or saturated alternative. Before quoting a p-value, state the hypotheses / what is being compared and the reference distribution. (2) Refuse: coefficient interpretation is a different LO; today requires applying the formal acceptability tests.",
       "common_mistake": "Quoting p-values without stating the comparison, or substituting coefficient tourism for GOF tests.",
       "success_criteria": [
         "Refusal present.",
@@ -167,7 +167,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest test wobble \u2014 integrated fit tomorrow closes 4.2 Learning.",
+    "framing": "Harvest test wobble: integrated fit tomorrow closes 4.2 Learning.",
     "prompt": "Which part of today's 4.2.9 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.9 is stickiest and why?",
@@ -179,8 +179,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Fit a GLM and interpret output (4.2.10)",
     "continuity_line": "Today you practised acceptability tests; tomorrow continues at fitting a GLM to data and interpreting the output end-to-end.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.10 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim 4.2.10 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.10. Titles only tonight",
+    "student_facing": "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim 4.2.10 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

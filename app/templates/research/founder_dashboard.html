@@ -38,7 +38,7 @@
                 <div class="command-card-body">
                     <span class="command-metric-label">Participation Rate</span>
                     <span class="command-metric-value">
-                        {% if context.summary.participation_rate_pct is not none %}{{ context.summary.participation_rate_pct }}%{% else %}—{% endif %}
+                        {% if context.summary.participation_rate_pct is not none %}{{ context.summary.participation_rate_pct }}%{% else %}–{% endif %}
                     </span>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="command-card-body">
                     <span class="command-metric-label">Avg Product Experience</span>
                     <span class="command-metric-value">
-                        {% if context.summary.avg_product_experience is not none %}{{ context.summary.avg_product_experience }}/5{% else %}—{% endif %}
+                        {% if context.summary.avg_product_experience is not none %}{{ context.summary.avg_product_experience }}/5{% else %}–{% endif %}
                     </span>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="command-card-body">
                     <span class="command-metric-label">Would Open Tomorrow</span>
                     <span class="command-metric-value">
-                        {% if context.summary.would_open_tomorrow_pct is not none %}{{ context.summary.would_open_tomorrow_pct }}%{% else %}—{% endif %}
+                        {% if context.summary.would_open_tomorrow_pct is not none %}{{ context.summary.would_open_tomorrow_pct }}%{% else %}–{% endif %}
                     </span>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="command-card-body">
                     <span class="command-metric-label">Avg Confidence</span>
                     <span class="command-metric-value">
-                        {% if context.summary.avg_confidence is not none %}{{ context.summary.avg_confidence }}/5{% else %}—{% endif %}
+                        {% if context.summary.avg_confidence is not none %}{{ context.summary.avg_confidence }}/5{% else %}–{% endif %}
                     </span>
                 </div>
             </div>
@@ -110,9 +110,9 @@
             <p class="mb-1"><strong>New submissions:</strong> {{ context.changes.new_submissions }}</p>
             <p class="mb-1">
                 <strong>Avg experience:</strong>
-                {% if context.changes.avg_experience_yesterday is not none %}{{ context.changes.avg_experience_yesterday }}/5{% else %}—{% endif %}
+                {% if context.changes.avg_experience_yesterday is not none %}{{ context.changes.avg_experience_yesterday }}/5{% else %}–{% endif %}
                 (prior day:
-                {% if context.changes.avg_experience_prior_day is not none %}{{ context.changes.avg_experience_prior_day }}/5{% else %}—{% endif %})
+                {% if context.changes.avg_experience_prior_day is not none %}{{ context.changes.avg_experience_prior_day }}/5{% else %}–{% endif %})
             </p>
             <p class="mb-0"><strong>New friction mentions:</strong> {{ context.changes.new_friction_mentions }}</p>
         </div>
@@ -127,7 +127,7 @@
             <div class="command-card h-100">
                 <div class="command-card-body">
                     <span class="command-metric-label">Most Loved Feature</span>
-                    <span class="command-metric-value">{{ context.product_health.most_loved_feature or '—' }}</span>
+                    <span class="command-metric-value">{{ context.product_health.most_loved_feature or '–' }}</span>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
             <div class="command-card h-100">
                 <div class="command-card-body">
                     <span class="command-metric-label">Most Confusing Feature</span>
-                    <span class="command-metric-value">{{ context.product_health.most_confusing_feature or '—' }}</span>
+                    <span class="command-metric-value">{{ context.product_health.most_confusing_feature or '–' }}</span>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
             <div class="command-card h-100">
                 <div class="command-card-body">
                     <span class="command-metric-label">Most Mentioned Friction</span>
-                    <span class="command-metric-value">{{ context.product_health.most_mentioned_friction or '—' }}</span>
+                    <span class="command-metric-value">{{ context.product_health.most_mentioned_friction or '–' }}</span>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
             <div class="command-card h-100">
                 <div class="command-card-body">
                     <span class="command-metric-label">Fastest Growing Concern</span>
-                    <span class="command-metric-value">{{ context.product_health.fastest_growing_concern or '—' }}</span>
+                    <span class="command-metric-value">{{ context.product_health.fastest_growing_concern or '–' }}</span>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
                     <span class="command-metric-value">
                         {% if context.product_health.recently_improved_areas %}
                             {{ context.product_health.recently_improved_areas | join(', ') }}
-                        {% else %}—{% endif %}
+                        {% else %}–{% endif %}
                     </span>
                 </div>
             </div>
@@ -208,7 +208,7 @@
     <p class="small text-muted mb-3">
         Window: {{ context.insight_engine.time_window_label }} ·
         {{ context.insight_engine.insights | length }} insight(s) generated.
-        Insights describe patterns — they never prescribe decisions.
+        Insights describe patterns. They never prescribe decisions.
     </p>
 
     <div class="row g-3 mb-3">
@@ -229,7 +229,7 @@
                                 {{ insight.comparison.label }}:
                                 {{ insight.comparison.current_value }}
                                 vs {{ insight.comparison.previous_value }}
-                                ({{ insight.comparison.delta | default('—') }})
+                                ({{ insight.comparison.delta | default('–') }})
                             </p>
                             {% endif %}
                         </div>
@@ -252,7 +252,7 @@
                             <strong>{{ insight.title }}</strong>
                             <span class="badge text-bg-warning ms-1">{{ insight.suggested_review_priority }}</span>
                             <p class="small mb-0 mt-1">{{ insight.summary }}</p>
-                            <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '—' }}</p>
+                            <p class="small text-muted mb-0">{{ insight.supporting_observation_count }} observation(s) · {{ insight.affected_feature or '–' }}</p>
                         </div>
                         {% endfor %}
                     {% else %}
@@ -345,9 +345,9 @@
     {# Legacy summary row #}
     <div class="command-card">
         <div class="command-card-body">
-            <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '—' }}</p>
-            <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '—' }}</p>
-            <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '—' }}</p>
+            <p class="mb-1"><strong>Most common feature:</strong> {{ context.insights.most_common_feature or '–' }}</p>
+            <p class="mb-1"><strong>Most common friction:</strong> {{ context.insights.most_common_friction or '–' }}</p>
+            <p class="mb-1"><strong>Most common suggestion category:</strong> {{ context.insights.most_common_suggestion_category or '–' }}</p>
             <p class="mb-1"><strong>7-day participation:</strong>
                 {% for day, count in context.insights.participation_trend %}
                     {{ day }} ({{ count }}){% if not loop.last %}, {% endif %}
@@ -439,8 +439,8 @@
                 <div class="command-card-body">
                     <p class="mb-1"><strong>Student:</strong> {{ detail.student.email }}</p>
                     <p class="mb-1"><strong>Version:</strong> {{ sub.product_version }}</p>
-                    <p class="mb-1"><strong>Mission:</strong> {{ sub.mission_id or '—' }}</p>
-                    <p class="mb-1"><strong>Study Plan:</strong> {{ sub.study_plan_id or '—' }}</p>
+                    <p class="mb-1"><strong>Mission:</strong> {{ sub.mission_id or '–' }}</p>
+                    <p class="mb-1"><strong>Study Plan:</strong> {{ sub.study_plan_id or '–' }}</p>
                     <p class="mb-1"><strong>Source:</strong> {{ sub.submission_source }}</p>
                     <p class="mb-1"><strong>Experience:</strong> {{ sub.experience_rating }}</p>
                     <p class="mb-1"><strong>Feature helped:</strong> {{ sub.feature_helped_most }}</p>
@@ -449,7 +449,7 @@
                     <p class="mb-1"><strong>Return intent:</strong> {{ sub.return_intent }}</p>
                     {% if sub.free_text %}
                     <p class="mb-1"><strong>Free text:</strong> {{ sub.free_text }}</p>
-                    <p class="mb-1"><strong>Classification:</strong> {{ sub.classification or '—' }}</p>
+                    <p class="mb-1"><strong>Classification:</strong> {{ sub.classification or '–' }}</p>
                     {% endif %}
                     <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(sub.workflow_status, sub.workflow_status) }}</p>
 
@@ -480,7 +480,7 @@
                         <ul class="small mb-0">
                             {% for t in detail.status_history %}
                             <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
-                                {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
+                                {{ workflow_labels.get(t.from_status, t.from_status or '–') }}
                                 → {{ workflow_labels.get(t.to_status, t.to_status) }}
                                 {% if t.rationale %}({{ t.rationale }}){% endif %}
                             </li>

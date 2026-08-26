@@ -68,7 +68,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1017-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Publication Front Mission for Syllabus {lo} — LO-per-day "
+                f"Execute today's Publication Front Mission for Syllabus {lo}: LO-per-day "
                 "Wave 0 residual catalogue under EP Production Era, not Approver clearance."
             ),
             "session_tutor_purpose": (
@@ -79,7 +79,7 @@ def learning_pkg(d: dict) -> dict:
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
                 f"Syllabus {lo} under Publication Front discipline. This is Study Progress for "
-                "today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty "
+                "today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty "
                 "clearance."
             ),
             "confidence_prompt": (
@@ -89,8 +89,8 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to study Syllabus {lo} — "
-                f"{d['title'].lower()} — under Publication Front / Wave 0 residual discipline. "
+                f"Purpose of this reading: use the CMP to study Syllabus {lo}–"
+                f"{d['title'].lower()}: under Publication Front / Wave 0 residual discipline. "
                 "Stop before out-of-scope later LOs as primary."
             ),
             "focus_questions": [
@@ -109,14 +109,14 @@ def learning_pkg(d: dict) -> dict:
             ),
             "worked_examples_cue": (
                 "Worked-example re-entry (CMP closed): attempt the LO step before uncovering "
-                f"the solution — stay inside {lo}."
+                f"the solution: stay inside {lo}."
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -128,7 +128,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core LO move in one sentence.",
+                    "cue": "Pause. Write today's core LO move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -215,7 +215,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Rho revision — Publication Front Wave 0 residual",
+        "topic_title": "Campaign Rho revision: Publication Front Wave 0 residual",
         "return_targets": [
             "1.1.1",
             "1.1.2",
@@ -241,8 +241,8 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1017-cs1-cr-r1-publication-front",
             "display_title": "Retrieve Publication Front Wave 0 residual chain",
             "mission_purpose": (
-                "Today's Mission exists to protect memory across Campaign Rho — retrieving "
-                "1.1.1 through 2.1.2 — so Publication Front catalogue completion does not "
+                "Today's Mission exists to protect memory across Campaign Rho. Retrieving "
+                "1.1.1 through 2.1.2. So Publication Front catalogue completion does not "
                 "evaporate into until-exam theatre or Approver clearance claims."
             ),
             "tutor_intent": (
@@ -289,7 +289,7 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1017-cs1-cr-r1-publication-front",
             "session_educational_purpose": (
-                "Execute Campaign Rho Revision — retrieve Publication Front chain without "
+                "Execute Campaign Rho Revision: retrieve Publication Front chain without "
                 "Approver clearance theatre."
             ),
             "session_tutor_purpose": (
@@ -298,7 +298,7 @@ def revision_pkg() -> dict:
             "duration_budget_minutes": {"min": 55, "max": 80},
             "wrap_up": (
                 "Session complete for Publication Front Revision. You retrieved the CR chain "
-                "under Wave 0 residual discipline. This is Study Progress for Revision — not "
+                "under Wave 0 residual discipline. This is Study Progress for Revision. Not "
                 "Approver honesty clearance, first-pass spine PASS, or until-exam trust."
             ),
             "confidence_prompt": (
@@ -309,7 +309,7 @@ def revision_pkg() -> dict:
         "reading_guidance": {
             "lead_line": (
                 "Purpose of this reading: Revision is retrieval-first. Open the CMP only at a "
-                "failed locus on the Publication Front chain — not as a re-teach of all of "
+                "failed locus on the Publication Front chain. Not as a re-teach of all of "
                 "Chapter 1–2.1."
             ),
             "focus_questions": [
@@ -324,7 +324,7 @@ def revision_pkg() -> dict:
             ],
             "open_point": "CMP · only at failed Publication Front locus",
             "stop_condition": (
-                "After closed-book retrieval of CR chain and targeted CMP reopen at failures — "
+                "After closed-book retrieval of CR chain and targeted CMP reopen at failures. "
                 "stop before claiming Approver clearance, until-exam trust, or spine PASS"
             ),
             "out_of_scope_today": [
@@ -338,13 +338,13 @@ def revision_pkg() -> dict:
             "annotation_task": "List stickiest CR LO before any CMP reopen",
             "attempt_before_reveal": "Attempt closed-book retrieval before any CMP reopen",
             "worked_examples_cue": (
-                "If a locus fails, reopen CMP only there — attempt the failed step before "
+                "If a locus fails, reopen CMP only there. Attempt the failed step before "
                 "uncovering."
             ),
             "exit_line": (
                 "Keep CMP closed for first-pass retrieval. Reopen only at failed loci. "
                 "Kwalitec is the guide; the CMP is authoritative. Stop when retrieval + "
-                "targeted reopen are done — refuse Approver clearance, spine PASS, and "
+                "targeted reopen are done: refuse Approver clearance, spine PASS, and "
                 "until-exam claims."
             ),
             "return_cue": (
@@ -354,7 +354,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — name the stickiest Publication Front LO before reopen.",
+                    "cue": "Pause. Name the stickiest Publication Front LO before reopen.",
                     "student_action": "Annotate",
                 },
                 {
@@ -423,11 +423,11 @@ def revision_pkg() -> dict:
             },
         ],
         "reflection": {
-            "framing": "Harvest Publication Front wobble — Approver residual remains open.",
+            "framing": "Harvest Publication Front wobble: Approver residual remains open.",
             "prompt": (
-                "Which link retrieved least cleanly today — analysis aims, reproducibility, "
+                "Which link retrieved least cleanly today. Analysis aims, reproducibility, "
                 "EDA summaries/association, PCA limits, discrete families, or continuous "
-                "placement — and why? What one concrete rework will you schedule? Do not "
+                "placement. And why? What one concrete rework will you schedule? Do not "
                 "claim probability/quantile evaluation or later chapters are finished."
             ),
             "prompts": [
@@ -441,10 +441,10 @@ def revision_pkg() -> dict:
             "next_topic_title": "Honest stop / Publication Approver residual (not cleared)",
             "continuity_line": (
                 "Today you closed Campaign Rho Revision; next is an honest stop with "
-                "Publication Approver ownership still required — not until-exam trust."
+                "Publication Approver ownership still required. Not until-exam trust."
             ),
             "light_prep_cue": (
-                "No new LO tonight — rest or jot the stickiest Publication Front LO"
+                "No new LO tonight: rest or jot the stickiest Publication Front LO"
             ),
             "student_facing": (
                 "Honest next: stop / Publication Approver residual. Do not claim first-pass "
@@ -472,7 +472,7 @@ LEARNING = [
         title="Aims of a data analysis (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.1.1 aims of data analysis under "
-            "Publication Front / Wave 0 residual discipline after Memory Front LIVE — without "
+            "Publication Front / Wave 0 residual discipline after Memory Front LIVE. Without "
             "pretending stages/tools (1.1.2) are finished or Approver honesty is cleared."
         ),
         tutor=(
@@ -498,7 +498,7 @@ LEARNING = [
             """You will be able to classify actuarial analysis aims as descriptive, inferential, or predictive and refuse EDA-as-everything."""
         ),
         explain=(
-            "Day 1 opens the analysis arc at aims — the natural start for opening syllabus work."
+            "Day 1 opens the analysis arc at aims. The natural start for opening syllabus work."
         ),
         criteria=[
             "Closed-book, distinguish descriptive, inferential, and predictive aims in one "
@@ -514,10 +514,10 @@ LEARNING = [
         next_code="1.1",
         next_title="Stages and tools (1.1.2)",
         cont="Today you studied 1.1.1; tomorrow continues Publication Front at 1.1.2.",
-        prep="Optional: glance at CMP headings for Syllabus 1.1.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.1.2. Titles only tonight",
         student=(
             "Tomorrow: stages and tools Publication Front day (1.1.2). Optional light prep: "
-            "skim 1.1.2 headings — titles only tonight."
+            "skim 1.1.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.1.1 aims of a data analysis",
         stop="Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2)",
@@ -546,9 +546,9 @@ LEARNING = [
         ),
         cp_kw=["descriptive", "inferential", "predictive", "aims", "refuse", "EDA"],
         cp_model=(
-            """(1) A descriptive (summarise observed severities); B inferential (generalise from sample evidence to a parameter); C predictive (forecast future severity). (2) Refuse: EDA is exploratory summarising — it does not replace naming distinct descriptive, inferential, and predictive aims."""
+            """(1) A descriptive (summarise observed severities); B inferential (generalise from sample evidence to a parameter); C predictive (forecast future severity). (2) Refuse: EDA is exploratory summarising. It does not replace naming distinct descriptive, inferential, and predictive aims."""
         ),
-        reflect="Harvest aims wobble — stages/tools continue Publication Front tomorrow.",
+        reflect="Harvest aims wobble: stages/tools continue Publication Front tomorrow.",
     ),
     dict(
         day="CR-D2",
@@ -562,7 +562,7 @@ LEARNING = [
         title="Stages and tools for data analysis (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.1.2 stages and tools under Publication "
-            "Front discipline — without pretending data sources (1.1.3) are finished."
+            "Front discipline. Without pretending data sources (1.1.3) are finished."
         ),
         tutor=(
             "Today I will force stages/tools warrant and refuse 'Publication Front finished "
@@ -596,10 +596,10 @@ LEARNING = [
         next_code="1.1",
         next_title="Data sources (1.1.3)",
         cont="Today you studied 1.1.2; tomorrow continues Publication Front at 1.1.3.",
-        prep="Optional: glance at CMP headings for Syllabus 1.1.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.1.3. Titles only tonight",
         student=(
             "Tomorrow: data sources Publication Front day (1.1.3). Optional light prep: skim "
-            "1.1.3 headings — titles only tonight."
+            "1.1.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.1.2 stages and suitable tools",
         stop="Through the CMP treatment of Syllabus 1.1.2 (stop before data sources primary 1.1.3)",
@@ -629,7 +629,7 @@ LEARNING = [
         cp_model=(
             """(1) Define aim → obtain data → clean/explore → analyse (infer or predict) → communicate; EDA sits in clean/explore. (2) Clean/explore pairs with summary statistics and exploratory visualisations (or data-wrangling scripts). (3) Refuse: opening tools is not completing the staged analysis path."""
         ),
-        reflect="Harvest stages/tools wobble — data sources continue Publication Front tomorrow.",
+        reflect="Harvest stages/tools wobble: data sources continue Publication Front tomorrow.",
     ),
     dict(
         day="CR-D3",
@@ -643,7 +643,7 @@ LEARNING = [
         title="Data sources and large data sets (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.1.3 data sources under Publication "
-            "Front discipline — without pretending reproducible research (1.1.4) is finished."
+            "Front discipline. Without pretending reproducible research (1.1.4) is finished."
         ),
         tutor=(
             "Today I will force source characteristics warrant and refuse 'Publication Front "
@@ -676,10 +676,10 @@ LEARNING = [
         next_code="1.1",
         next_title="Reproducible research (1.1.4)",
         cont="Today you studied 1.1.3; tomorrow continues Publication Front at 1.1.4.",
-        prep="Optional: glance at CMP headings for Syllabus 1.1.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.1.4. Titles only tonight",
         student=(
             "Tomorrow: reproducible research Publication Front day (1.1.4). Optional light "
-            "prep: skim 1.1.4 headings — titles only tonight."
+            "prep: skim 1.1.4 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.1.3 sources of data and large data sets",
         stop=(
@@ -714,7 +714,7 @@ LEARNING = [
             """(1) Examples: selection/response bias (voluntary survey vs administrative coverage); granularity or completeness of fields; measurement error. (2) Scale constraints: storage/compute limits, need for sampling or distributed tooling, or quality issues that volume does not fix. (3) Refuse: volume alone does not imply representativeness or fitness for the analysis aim."""
         ),
         reflect=(
-            "Harvest sources wobble — reproducible research continues Publication Front tomorrow."
+            "Harvest sources wobble: reproducible research continues Publication Front tomorrow."
         ),
     ),
     dict(
@@ -729,7 +729,7 @@ LEARNING = [
         title="Reproducible research (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.1.4 reproducible research under "
-            "Publication Front discipline — without pretending EDA summaries (1.2.1) are finished."
+            "Publication Front discipline. Without pretending EDA summaries (1.2.1) are finished."
         ),
         tutor=(
             "Today I will force reproducibility elements warrant and refuse 'Publication "
@@ -749,7 +749,7 @@ LEARNING = [
             """You will be able to state what reproducible research means and name elements required to keep a data analysis reproducible."""
         ),
         explain=(
-            "Day 4 focuses the named learning objective — closes Topic 1.1 at "
+            "Day 4 focuses the named learning objective. Closes Topic 1.1 at "
             "reproducibility before EDA."
         ),
         criteria=[
@@ -765,10 +765,10 @@ LEARNING = [
         next_code="1.2",
         next_title="EDA summaries and visuals (1.2.1)",
         cont="Today you studied 1.1.4; tomorrow continues Publication Front at 1.2.1.",
-        prep="Optional: glance at CMP headings for Syllabus 1.2.1 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.2.1. Titles only tonight",
         student=(
             "Tomorrow: EDA summaries Publication Front day (1.2.1). Optional light prep: skim "
-            "1.2.1 headings — titles only tonight."
+            "1.2.1 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.1.4 reproducible research",
         stop="Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1)",
@@ -799,7 +799,7 @@ LEARNING = [
         cp_model=(
             """(1) Others (or a future you) can reconstruct the same analysis results from the stated inputs and steps. (2) Examples: versioned data (or clear extract identity); scripted code path; documented environment/parameters and decisions. (3) Refuse: a one-off local re-run without shared data, code, and documentation is not reproducibility."""
         ),
-        reflect="Harvest reproducibility wobble — EDA continues Publication Front tomorrow.",
+        reflect="Harvest reproducibility wobble. EDA continues Publication Front tomorrow.",
     ),
     dict(
         day="CR-D5",
@@ -813,7 +813,7 @@ LEARNING = [
         title="EDA summaries and visualisations (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.2.1 EDA summaries/visuals under "
-            "Publication Front discipline — without pretending correlation (1.2.2) is finished."
+            "Publication Front discipline. Without pretending correlation (1.2.2) is finished."
         ),
         tutor=(
             "Today I will force summary/visual tool warrant and refuse 'Publication Front "
@@ -849,10 +849,10 @@ LEARNING = [
         next_code="1.2",
         next_title="Correlation measures (1.2.2)",
         cont="Today you studied 1.2.1; tomorrow continues Publication Front at 1.2.2.",
-        prep="Optional: glance at CMP headings for Syllabus 1.2.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.2.2. Titles only tonight",
         student=(
             "Tomorrow: correlation Publication Front day (1.2.2). Optional light prep: skim "
-            "1.2.2 headings — titles only tonight."
+            "1.2.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations",
         stop="Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2)",
@@ -883,7 +883,7 @@ LEARNING = [
         cp_model=(
             """(1) A bar/histogram of counts (or a zero-aware frequency plot) to reveal the mass at zero and the right tail. (2) Refuse a pie chart of policies or a mean-only table that hides zero-inflation and the tail."""
         ),
-        reflect="Harvest EDA wobble — correlation continues Publication Front tomorrow.",
+        reflect="Harvest EDA wobble: correlation continues Publication Front tomorrow.",
     ),
     dict(
         day="CR-D6",
@@ -897,7 +897,7 @@ LEARNING = [
         title="Correlation measures (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.2.2 correlation measures under "
-            "Publication Front discipline — without pretending PCA (1.2.3) is finished."
+            "Publication Front discipline. Without pretending PCA (1.2.3) is finished."
         ),
         tutor=(
             "Today I will force Pearson/Spearman/Kendall warrant and refuse 'Publication "
@@ -933,10 +933,10 @@ LEARNING = [
         next_code="1.2",
         next_title="Principal component analysis (1.2.3)",
         cont="Today you studied 1.2.2; tomorrow continues Publication Front at 1.2.3.",
-        prep="Optional: glance at CMP headings for Syllabus 1.2.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 1.2.3. Titles only tonight",
         student=(
             "Tomorrow: PCA Publication Front day (1.2.3). Optional light prep: skim 1.2.3 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.2.2 correlation measures for bivariate data",
         stop="Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3)",
@@ -966,7 +966,7 @@ LEARNING = [
         cp_model=(
             """(1) Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. (2) A large coefficient still does not prove that changing years licensed causes frequency to change."""
         ),
-        reflect="Harvest correlation wobble — PCA continues Publication Front tomorrow.",
+        reflect="Harvest correlation wobble. PCA continues Publication Front tomorrow.",
     ),
     dict(
         day="CR-D7",
@@ -980,7 +980,7 @@ LEARNING = [
         title="Principal component analysis (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 1.2.3 PCA under Publication Front "
-            "discipline — without pretending discrete distributions (2.1.1) are finished."
+            "discipline. Without pretending discrete distributions (2.1.1) are finished."
         ),
         tutor=(
             "Today I will force PCA dimensionality-reduction warrant and refuse 'Publication "
@@ -997,7 +997,7 @@ LEARNING = [
             """You will be able to state a lawful exploratory use of PCA and refuse treating a principal component as a proven causal factor."""
         ),
         explain=(
-            "Day 7 focuses the named learning objective — closes Topic 1.2 at PCA "
+            "Day 7 focuses the named learning objective. Closes Topic 1.2 at PCA "
             "before discrete distributions."
         ),
         criteria=[
@@ -1013,10 +1013,10 @@ LEARNING = [
         next_code="2.1",
         next_title="Discrete distributions (2.1.1)",
         cont="Today you studied 1.2.3; tomorrow continues Publication Front at 2.1.1.",
-        prep="Optional: glance at CMP headings for Syllabus 2.1.1 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.1.1. Titles only tonight",
         student=(
             "Tomorrow: discrete distributions Publication Front day (2.1.1). Optional light "
-            "prep: skim 2.1.1 headings — titles only tonight."
+            "prep: skim 2.1.1 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 1.2.3 principal component analysis",
         stop=(
@@ -1051,7 +1051,7 @@ LEARNING = [
             """(1) PC1 may usefully summarise major shared variation among correlated rating factors for exploration or visualisation. (2) It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants."""
         ),
         reflect=(
-            "Harvest PCA wobble — discrete distributions continue Publication Front tomorrow."
+            "Harvest PCA wobble: discrete distributions continue Publication Front tomorrow."
         ),
     ),
     dict(
@@ -1069,7 +1069,7 @@ LEARNING = [
         title="Discrete distributions (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 2.1.1 discrete distributions under "
-            "Publication Front discipline — without pretending continuous distributions "
+            "Publication Front discipline. Without pretending continuous distributions "
             "(2.1.2) are finished."
         ),
         tutor=(
@@ -1106,10 +1106,10 @@ LEARNING = [
         next_code="2.1",
         next_title="Continuous distributions (2.1.2)",
         cont="Today you studied 2.1.1; tomorrow continues Publication Front at 2.1.2.",
-        prep="Optional: glance at CMP headings for Syllabus 2.1.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.1.2. Titles only tonight",
         student=(
             "Tomorrow: continuous distributions Publication Front day (2.1.2). Optional light "
-            "prep: skim 2.1.2 headings — titles only tonight."
+            "prep: skim 2.1.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.1.1 discrete distributions",
         stop=(
@@ -1138,14 +1138,14 @@ LEARNING = [
             "Continuous families open tomorrow."
         ),
         cp_prompt=(
-            """Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments — which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence."""
+            """Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments. Which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence."""
         ),
         cp_kw=["Poisson", "discrete", "count", "rate", "refuse", "family"],
         cp_model=(
-            """(1) Poisson — counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population."""
+            """(1) Poisson: counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population."""
         ),
         reflect=(
-            "Harvest discrete wobble — continuous distributions continue Publication Front "
+            "Harvest discrete wobble: continuous distributions continue Publication Front "
             "tomorrow."
         ),
     ),
@@ -1164,7 +1164,7 @@ LEARNING = [
         title="Continuous distributions (Publication Front)",
         purpose=(
             "Today's Mission exists to study Syllabus 2.1.2 continuous distributions under "
-            "Publication Front discipline — without pretending Approver clearance, first-pass "
+            "Publication Front discipline. Without pretending Approver clearance, first-pass "
             "spine PASS, or until-exam trust."
         ),
         tutor=(
@@ -1185,14 +1185,14 @@ LEARNING = [
             "Front Learning."
         ),
         why=(
-            "Place continuous families to close this opening stretch — then revise the "
+            "Place continuous families to close this opening stretch. Then revise the "
             "analysis-to-distributions chain."
         ),
         benefit=(
             """You will be able to place a continuous family from support and shape and refuse Normal-by-default for a mismatched quantity."""
         ),
         explain=(
-            "Day 9 closes the opening stretch at continuous families — then revise the chain."
+            "Day 9 closes the opening stretch at continuous families. Then revise the chain."
         ),
         criteria=[
             "Closed-book, name continuous families in scope.",
@@ -1205,17 +1205,17 @@ LEARNING = [
             "Closed-book Knowledge Checks: families + refuse Approver swallow.",
         ],
         next_code="CR-R1",
-        next_title="Campaign Rho Revision — retrieve Publication Front chain",
+        next_title="Campaign Rho Revision: retrieve Publication Front chain",
         cont=(
             "Today you closed Publication Front Learning at continuous distributions; tomorrow "
             "is Campaign Rho Revision returning to the CR chain."
         ),
         prep=(
-            "No new LO tonight — rest or jot the stickiest Publication Front LO for Revision"
+            "No new LO tonight: rest or jot the stickiest Publication Front LO for Revision"
         ),
         student=(
             "Tomorrow: CR-R1 Revision of Publication Front LOs. Optional: note your weakest "
-            "LO — titles only tonight."
+            "LO. Titles only tonight."
         ),
         open="CMP · Syllabus 2.1.2 continuous distributions",
         stop=(
@@ -1251,10 +1251,10 @@ LEARNING = [
         ),
         cp_kw=["exponential", "continuous", "waiting", "Normal", "refuse", "support"],
         cp_model=(
-            """(1) Exponential — positive support and memoryless waiting times under a constant hazard. (2) Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times."""
+            """(1) Exponential: positive support and memoryless waiting times under a constant hazard. (2) Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times."""
         ),
         reflect=(
-            "Harvest continuous-family wobble — Revision protects the Publication Front chain "
+            "Harvest continuous-family wobble. Revision protects the Publication Front chain "
             "tomorrow."
         ),
     ),
@@ -1283,7 +1283,7 @@ def main() -> None:
         "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
         "campaign_version": "cs1017-1.0.0",
         "display_title": (
-            "Campaign Rho — Publication Front Wave 0 residual after Memory Front LIVE"
+            "Campaign Rho. Publication Front Wave 0 residual after Memory Front LIVE"
         ),
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
@@ -1315,7 +1315,7 @@ def main() -> None:
         ),
         "memory_front_note": (
             "CS1-016 / Campaign Pi remains independent Memory Front LIVE inventory. Rho "
-            "package IDs are CR-prefixed Publication Front catalogue — not LIVE this cycle; "
+            "package IDs are CR-prefixed Publication Front catalogue. Not LIVE this cycle; "
             "Published Coverage unchanged until Approver seals."
         ),
         "trust_front_note": (

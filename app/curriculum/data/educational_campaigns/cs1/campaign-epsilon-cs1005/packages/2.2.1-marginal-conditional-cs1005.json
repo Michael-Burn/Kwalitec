@@ -1,7 +1,7 @@
 {
   "package_version": "cs1005-campaign-epsilon-1.0.0",
-  "publication_version": "cs1005-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1005-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
   "volume_id": "CS1-005",
   "subject_id": "CS1",
@@ -36,12 +36,12 @@
   "mission": {
     "mission_id": "msn-cs1005-cs1-2.2-marginal-conditional",
     "display_title": "Form marginal and conditional distributions from a joint",
-    "mission_purpose": "Today's Mission exists to turn a joint distribution into marginal and conditional distributions — so you can obtain the probability/density function for one variable alone and for one given the other — without pretending independence or covariance LOs are finished.",
-    "tutor_intent": "Today I will force the candidate to obtain a marginal and a conditional from a stated joint — and refuse treating 'I wrote a joint table' as having the marginal or conditional.",
+    "mission_purpose": "Today's Mission exists to turn a joint distribution into marginal and conditional distributions (so you can obtain the probability/density function for one variable alone and for one given the other) without pretending independence or covariance LOs are finished.",
+    "tutor_intent": "Today I will force the candidate to obtain a marginal and a conditional from a stated joint. And refuse treating 'I wrote a joint table' as having the marginal or conditional.",
     "educational_intent": "Produce a cognitive move from joint statement to lawful marginal and conditional distributions.",
     "learning_objective": "Obtain the probability function or density function for marginal and conditional distributions of jointly distributed random variables.",
     "concept_focus": "Joint → marginal (sum/integrate) → conditional (normalise by marginal) → refuse joint-as-margins-done.",
-    "prior_bridge": "Campaign Gamma closed univariate evaluation and generation (2.1) with Revision. Today opens topic 2.2 at LO 2.2.1 — the named Continuity Front after CS1-004.",
+    "prior_bridge": "Campaign Gamma closed univariate evaluation and generation (2.1) with Revision. Today opens topic 2.2 at LO 2.2.1. The named Continuity Front after CS1-004.",
     "why_now": "Joint distributions start here: pull marginals and conditionals from a joint so independence and dependence work have a base.",
     "expected_benefit": "You will be able to extract a named marginal and conditional from a joint table by actual computation, not recognition alone.",
     "explainability": "Assigned as Campaign Epsilon Day 1 because CE-001 / EP-001 Continuity Front names 2.2 as the handoff from Gamma.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1005-cs1-2.2-marginal-conditional",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.2.1 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.2.1. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.2.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Form marginal and conditional distributions from a joint. You practised selective CMP reading on Syllabus 2.2.1. This is Study Progress for today's block — not Topic Complete for later 2.2 LOs or Chapter 2.",
+    "wrap_up": "Session complete for Form marginal and conditional distributions from a joint. You practised selective CMP reading on Syllabus 2.2.1. This is Study Progress for today's block. Not Topic Complete for later 2.2 LOs or Chapter 2.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.2.1 — form marginal and conditional distributions from a joint. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.2.1: form marginal and conditional distributions from a joint. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.2.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.2.1 marginal and conditional distributions. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.2.1 (stop before independence 2.2.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.2.1 marginal and conditional distributions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.2.1 (stop before independence 2.2.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -164,7 +164,7 @@
         "sum"
       ],
       "explanation": "Checkpoint for 2.2.1.",
-      "model_answer": "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ 0.571. (3) Refuse: the joint is not the same as its margins or conditionals — you must sum for the marginal and divide by that marginal for the conditional.",
+      "model_answer": "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ 0.571. (3) Refuse: the joint is not the same as its margins or conditionals. You must sum for the marginal and divide by that marginal for the conditional.",
       "common_mistake": "Treating the joint table as already supplying margins/conditionals without summing and normalising.",
       "success_criteria": [
         "Refusal present.",
@@ -173,7 +173,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest wobble on marginal vs conditional extraction — independence comes tomorrow.",
+    "framing": "Harvest wobble on marginal vs conditional extraction. Independence comes tomorrow.",
     "prompt": "Which part of today's 2.2.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.2.1 is stickiest and why?",
@@ -184,8 +184,9 @@
   "tomorrow_preview": {
     "next_topic_code": "2.2",
     "next_topic_title": "Independence conditions (2.2.2)",
-    "continuity_line": "Today you formed marginal and conditional distributions from a joint; tomorrow continues 2.2 at independence conditions — not covariance yet.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.2.2 — titles only tonight",
-    "student_facing": "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional light prep: skim 2.2.2 headings — titles only tonight."
-  }
+    "continuity_line": "Today you formed marginal and conditional distributions from a joint; tomorrow continues 2.2 at independence conditions. Not covariance yet.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.2.2. Titles only tonight",
+    "student_facing": "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional light prep: skim 2.2.2 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-01"
 }

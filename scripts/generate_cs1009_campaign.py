@@ -67,7 +67,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1009-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -75,7 +75,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust."
             ),
             "confidence_prompt": (
@@ -85,7 +85,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -104,10 +104,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -119,7 +119,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -196,7 +196,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Iota revision — random sampling and sampling distributions",
+        "topic_title": "Campaign Iota revision: random sampling and sampling distributions",
         "return_targets": ["2.6.1", "2.6.2", "2.6.3", "2.6.4", "2.6.5", "2.6.6"],
         "topic_aliases": [day, "campaign-iota-revision"],
         "topic_title_keywords": [
@@ -216,13 +216,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1009-cs1-ci-r1-sampling-distributions",
             "display_title": "Retrieve sampling-distribution hinges (2.6)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Iota — retrieving random "
+                "Today's Mission exists to protect memory of Campaign Iota. Retrieving random "
                 "samples, sampling distributions of statistics, mean/variance of sample mean "
                 "and mean of sample variance, Normal-sample mean/variance laws, the t-statistic, "
-                "and the F ratio — so 2.6 does not evaporate before Chapter 3 inference."
+                "and the F ratio. So 2.6 does not evaporate before Chapter 3 inference."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Iota's Learning hinges — "
+                "Today I will run closed-book retrieval across Iota's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 3.1 estimators lesson."
             ),
             "educational_intent": (
@@ -242,7 +242,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished the F distribution for a variance ratio (2.6.6). "
-                "Today is Revision mode: return to 2.6.1–2.6.6 under closed-book retrieval — "
+                "Today is Revision mode: return to 2.6.1–2.6.6 under closed-book retrieval. "
                 "no new first-pass LO."
             ),
             "why_now": (
@@ -250,7 +250,7 @@ def revision_pkg() -> dict:
                 "protects it before 3.1 work."
             ),
             "expected_benefit": (
-                "Evidence that the 2.6 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 2.6 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 2 / Chapter 3 / the exam journey is complete."
             ),
             "explainability": (
@@ -272,15 +272,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1009-cs1-ci-r1-sampling-distributions",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Iota skills — not to teach 3.1."
+                "Retrieve and connect Campaign Iota skills. Not to teach 3.1."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 45, "max": 60},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 2.6.1–2.6.6 return targets. "
-                "This is revision Study Progress — not Topic Complete for Chapter 3, and not "
+                "This is revision Study Progress. Not Topic Complete for Chapter 3, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -309,7 +309,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 3.1 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 3.1 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass estimators / inference (3.1)",
@@ -331,7 +331,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -399,9 +399,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. F degrees of freedom — five-minute rework. (2) Refuse Chapter 2 "
+                    "(1) e.g. F degrees of freedom. Five-minute rework. (2) Refuse Chapter 2 "
                     "complete / spine / until-exam. (3) Honest next is 3.1 (successor Volume) "
-                    "or declared stop — not claimed finished here."
+                    "or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 2 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -422,16 +422,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "3.1",
             "next_topic_title": (
-                "Honest next — estimators and properties (3.1) under a successor Volume "
+                "Honest next: estimators and properties (3.1) under a successor Volume "
                 "(or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Iota / Volume CS1-009 completes after this Revision. Honest stop: "
-                "2.6 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not "
+                "2.6 Pilot Arc closed. Not Chapter 2 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 3.1 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Iota / CS1-009 complete after today (pending human Approver + LIVE). "
@@ -452,13 +452,13 @@ LEARNING = [
         keywords=["random", "sample", "population", "iid", "sampling"],
         title="Describe random samples from a population",
         purpose=(
-            "Today's Mission exists to describe random samples from a population — so the "
-            "sampling model is usable — without pretending the sampling distribution of a "
+            "Today's Mission exists to describe random samples from a population. So the "
+            "sampling model is usable. Without pretending the sampling distribution of a "
             "statistic (2.6.2) is finished."
         ),
         tutor=(
             "Today I will force the candidate to state what a random sample means under CMP "
-            "language — and refuse treating 'I drew some numbers' as having the LO."
+            "language. And refuse treating 'I drew some numbers' as having the LO."
         ),
         edu=(
             "Produce a cognitive move from population concept to a random sample as "
@@ -471,7 +471,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Theta closed the central limit theorem (2.5) with Revision. Today opens "
-            "topic 2.6 at LO 2.6.1 — the named Continuity Front after CS1-008."
+            "topic 2.6 at LO 2.6.1. The named Continuity Front after CS1-008."
         ),
         why=(
             "2.6.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -482,7 +482,7 @@ LEARNING = [
             "treating a convenience set of observations as one."
         ),
         explain=(
-            "Day 1 opens 2.6 at the named learning objective — "
+            "Day 1 opens 2.6 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -501,10 +501,10 @@ LEARNING = [
             "Today you described random samples from a population; tomorrow continues 2.6 "
             "at the sampling distribution of a statistic."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.6.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.6.2. Titles only tonight",
         student=(
             "Tomorrow: sampling distribution of a statistic (2.6.2). Optional light prep: "
-            "skim 2.6.2 headings — titles only tonight."
+            "skim 2.6.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.1 random samples from a population",
         stop=(
@@ -554,14 +554,14 @@ LEARNING = [
         cp_kw=["random sample", "population", "iid", "refuse", "observations", "convenience"],
         cp_model=(
             "(1) Consecutive claims from one client are clustered and not an iid ",
-            "draw from the whole book — dependence and selection bias break the ",
+            "draw from the whole book. Dependence and selection bias break the ",
             "portfolio sampling warrant. (2) A random sample is drawn so that each ",
             "observation follows the population distribution under CMP/iid (or ",
             "stated sampling) conditions. (3) Refuse: having observations is not the ",
             "same as a random sample with a lawful sampling warrant."
         ),
         reflect=(
-            "Harvest wobble on population vs sample language — sampling distribution of a "
+            "Harvest wobble on population vs sample language. Sampling distribution of a "
             "statistic comes tomorrow."
         ),
     ),
@@ -574,13 +574,13 @@ LEARNING = [
         keywords=["sampling", "distribution", "statistic", "sample", "repeated"],
         title="Describe the sampling distribution of a statistic",
         purpose=(
-            "Today's Mission exists to describe the sampling distribution of a statistic — "
-            "so the repeated-sample behaviour of a statistic is usable — without claiming "
+            "Today's Mission exists to describe the sampling distribution of a statistic. "
+            "so the repeated-sample behaviour of a statistic is usable. Without claiming "
             "mean/variance formulas (2.6.3) finished."
         ),
         tutor=(
             "Today I will force the candidate through sampling-distribution language for a "
-            "statistic — refuse treating yesterday's random-sample definition as finishing "
+            "statistic: refuse treating yesterday's random-sample definition as finishing "
             "2.6.2."
         ),
         edu=(
@@ -600,7 +600,7 @@ LEARNING = [
             "2.6.2 continues after random samples; mean/variance "
             "results wait for day three."
         ),
-        benefit="Study Progress for sampling distribution of a statistic — not 2.6.3.",
+        benefit="Study Progress for sampling distribution of a statistic. Not 2.6.3.",
         explain="Campaign Iota Day 2 focuses LO 2.6.2.",
         criteria=[
             "Closed-book, define the sampling distribution of a statistic.",
@@ -618,10 +618,10 @@ LEARNING = [
             "Today you described the sampling distribution of a statistic; tomorrow continues "
             "2.6 at mean/variance results for sample mean and mean of sample variance."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.6.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.6.3. Titles only tonight",
         student=(
             "Tomorrow: mean/variance of sample mean and mean of sample variance (2.6.3). "
-            "Optional light prep: skim 2.6.3 headings — titles only tonight."
+            "Optional light prep: skim 2.6.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.2 sampling distribution of a statistic",
         stop="Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3)",
@@ -664,7 +664,7 @@ LEARNING = [
             "Refuse: a realised statistic is not its sampling distribution. Today's skill is "
             "describing the distribution of the statistic over repeated samples."
         ),
-        reflect="Harvest statistic-vs-distribution wobble — mean/variance formulas tomorrow.",
+        reflect="Harvest statistic-vs-distribution wobble: mean/variance formulas tomorrow.",
     ),
     dict(
         day="CI-D3",
@@ -677,10 +677,10 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to express the mean and variance of a sample mean and "
             "the mean of a sample variance in terms of population mean, variance and sample "
-            "size — without claiming Normal-sample distributional laws (2.6.4) finished."
+            "size. Without claiming Normal-sample distributional laws (2.6.4) finished."
         ),
         tutor=(
-            "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants — "
+            "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants. "
             "refuse treating sampling-distribution vocabulary alone as having the formulas."
         ),
         edu=(
@@ -720,10 +720,10 @@ LEARNING = [
             "Today you related sample-mean and sample-variance moments to the population; "
             "tomorrow continues 2.6 at basic sampling distributions under Normal samples."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.6.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.6.4. Titles only tonight",
         student=(
             "Tomorrow: basic Normal sampling distributions for mean and variance (2.6.4). "
-            "Optional light prep: skim 2.6.4 headings — titles only tonight."
+            "Optional light prep: skim 2.6.4 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance",
         stop="Through CMP 2.6.3 (stop before Normal sampling laws 2.6.4)",
@@ -759,10 +759,10 @@ LEARNING = [
         cp_model=(
             "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP ",
             "form). (2) Refuse: these are moment identities for the sample ",
-            "mean/variance — Normal sampling distributions (2.6.4) and the ",
+            "mean/variance. Normal sampling distributions (2.6.4) and the ",
             "t-statistic (2.6.5) are separate LOs."
         ),
-        reflect="Harvest /n and E[S²] wobble — Normal sampling laws tomorrow.",
+        reflect="Harvest /n and E[S²] wobble. Normal sampling laws tomorrow.",
     ),
     dict(
         day="CI-D4",
@@ -774,11 +774,11 @@ LEARNING = [
         title="State basic Normal sampling distributions for mean and variance",
         purpose=(
             "Today's Mission exists to state basic sampling distributions for the sample mean "
-            "and variance for random samples from a Normal distribution — without claiming "
+            "and variance for random samples from a Normal distribution. Without claiming "
             "the t-statistic (2.6.5) finished."
         ),
         tutor=(
-            "Today I will force Normal-sample laws for X̄ and S² (χ² form as CMP) — refuse "
+            "Today I will force Normal-sample laws for X̄ and S² (χ² form as CMP). Refuse "
             "treating moment results alone as the distributional laws."
         ),
         edu=(
@@ -821,10 +821,10 @@ LEARNING = [
             "Today you stated basic Normal sampling distributions for mean and variance; "
             "tomorrow continues 2.6 at the t-statistic."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.6.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.6.5. Titles only tonight",
         student=(
             "Tomorrow: t-statistic for random samples from a Normal (2.6.5). Optional light "
-            "prep: skim 2.6.5 headings — titles only tonight."
+            "prep: skim 2.6.5 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.4 Normal sampling distributions for mean and variance",
         stop="Through CMP 2.6.4 (stop before t-statistic 2.6.5)",
@@ -860,9 +860,9 @@ LEARNING = [
         cp_model=(
             "(1) X̄ ~ N(μ, σ²/n); (n−1)S²/σ² ~ χ²_{n−1} (independent of X̄ under ",
             "Normal samples, as CMP). (2) Refuse: these are the Normal/χ² laws for ",
-            "X̄ and S² — the t-statistic replaces σ by S and is a separate LO."
+            "X̄ and S². The t-statistic replaces σ by S and is a separate LO."
         ),
-        reflect="Harvest Normal X̄ vs S² wobble — t-statistic tomorrow.",
+        reflect="Harvest Normal X̄ vs S² wobble. T-statistic tomorrow.",
     ),
     dict(
         day="CI-D5",
@@ -874,11 +874,11 @@ LEARNING = [
         title="Describe the distribution of the t-statistic for Normal samples",
         purpose=(
             "Today's Mission exists to describe the distribution of the t-statistic for "
-            "random samples from a Normal distribution — without claiming the F distribution "
+            "random samples from a Normal distribution. Without claiming the F distribution "
             "(2.6.6) finished."
         ),
         tutor=(
-            "Today I will force the candidate through the t construction (unknown σ) — refuse "
+            "Today I will force the candidate through the t construction (unknown σ). Refuse "
             "treating Normal X̄ laws with known σ as having finished t."
         ),
         edu=(
@@ -918,10 +918,10 @@ LEARNING = [
             "Today you described the t-statistic for Normal samples; tomorrow continues 2.6 "
             "at the F distribution for a ratio of sample variances."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.6.6 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.6.6. Titles only tonight",
         student=(
             "Tomorrow: F distribution for the ratio of two sample variances (2.6.6). "
-            "Optional light prep: skim 2.6.6 headings — titles only tonight."
+            "Optional light prep: skim 2.6.6 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.5 t-statistic for Normal samples",
         stop="Through CMP 2.6.5 (stop before F distribution 2.6.6)",
@@ -954,10 +954,10 @@ LEARNING = [
         cp_kw=["t-statistic", "S/\u221an", "t_{n\u22121}", "refuse", "z", "F"],
         cp_model=(
             "(1) t=(X̄−μ)/(S/√n) ~ t_{n−1}. (2) Refuse: replacing σ by S in a ",
-            "Normal/z pivot yields a t (not z) law — you must name t and its df; the ",
+            "Normal/z pivot yields a t (not z) law. You must name t and its df; the ",
             "F variance-ratio LO and Chapter 3 inference are separate."
         ),
-        reflect="Harvest t-vs-z / df wobble — F ratio tomorrow.",
+        reflect="Harvest t-vs-z / df wobble. F ratio tomorrow.",
     ),
     dict(
         day="CI-D6",
@@ -969,11 +969,11 @@ LEARNING = [
         title="Describe the F distribution for a ratio of sample variances",
         purpose=(
             "Today's Mission exists to describe the F distribution for the ratio of two "
-            "sample variances from independent Normal samples — without claiming Chapter 2 "
+            "sample variances from independent Normal samples. Without claiming Chapter 2 "
             "complete, Chapter 3 inference, or until-exam trust."
         ),
         tutor=(
-            "Today I will force the F variance-ratio construction — refuse treating t as "
+            "Today I will force the F variance-ratio construction. Refuse treating t as "
             "having finished 2.6.6, and refuse Chapter-2-complete claims."
         ),
         edu=(
@@ -999,7 +999,7 @@ LEARNING = [
             "You will be able to state the F law for a ratio of sample variances ",
             "from independent Normal samples and refuse using t for that comparison."
         ),
-        explain="Campaign Iota Day 6 focuses LO 2.6.6 — terminal Learning day of CS1-009.",
+        explain="Campaign Iota Day 6 focuses LO 2.6.6: terminal Learning day of CS1-009.",
         criteria=[
             "Closed-book, state the F construction for a ratio of sample variances (CMP).",
             "Name independence / Normal-sample conditions and df warrants as CMP states.",
@@ -1011,15 +1011,15 @@ LEARNING = [
             "Knowledge Checks: F ratio + refuse Ch2-complete.",
         ],
         next_code="CI-R1",
-        next_title="Campaign Iota Revision — retrieve 2.6.1–2.6.6",
+        next_title="Campaign Iota Revision: retrieve 2.6.1–2.6.6",
         cont=(
             "Today you finished the F distribution for a variance ratio; tomorrow is "
-            "Revision mode — retrieve the 2.6 chain closed-book before any 3.1 first-pass work."
+            "Revision mode: retrieve the 2.6 chain closed-book before any 3.1 first-pass work."
         ),
-        prep="Optional: list the six 2.6 LO hinges from memory — titles only tonight",
+        prep="Optional: list the six 2.6 LO hinges from memory. Titles only tonight",
         student=(
             "Tomorrow: Campaign Iota Revision (retrieve 2.6.1–2.6.6). Optional light prep: "
-            "list the six hinges from memory — titles only tonight."
+            "list the six hinges from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 2.6.6 F distribution for a ratio of sample variances",
         stop="Through CMP 2.6.6 (stop before estimators / inference 3.1)",
@@ -1065,10 +1065,10 @@ LEARNING = [
         cp_model=(
             "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for ",
             "independent Normal samples). (2) Refuse: t compares means (unknown σ) ",
-            "for Normal samples; a variance ratio uses F — t does not finish this LO."
+            "for Normal samples; a variance ratio uses F. T does not finish this LO."
         ),
         reflect=(
-            "Harvest F / df wobble — Revision protects the 2.6 chain tomorrow."
+            "Harvest F / df wobble. Revision protects the 2.6 chain tomorrow."
         ),
     ),
 ]
@@ -1095,7 +1095,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
         "campaign_version": "cs1009-1.0.0",
-        "display_title": "Campaign Iota — Random sampling and sampling distributions (2.6)",
+        "display_title": "Campaign Iota: Random sampling and sampling distributions (2.6)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

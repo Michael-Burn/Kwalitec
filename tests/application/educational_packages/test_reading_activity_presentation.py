@@ -13,8 +13,8 @@ from app.presentation.session.content_sections import (
 )
 
 _AUTHOR_VOICE = (
-    "Kwalitec is the guide; the CMP is the authoritative material — "
-    "do not treat this activity body as a substitute textbook"
+    "Kwalitec is the guide; the CMP is the authoritative material. "
+    "Do not treat this activity body as a substitute textbook"
 )
 
 

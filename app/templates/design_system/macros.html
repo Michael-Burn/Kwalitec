@@ -105,7 +105,7 @@
           {% elif row.lifecycle_note %}
           <span class="ds-list__meta">{{ row.lifecycle_note }}</span>
           {% else %}
-          <span class="ds-list__meta">—</span>
+          <span class="ds-list__meta">. </span>
           {% endif %}
         </td>
       </tr>
@@ -408,20 +408,39 @@
 {%- endmacro %}
 
 {% macro ds_stage_indicator(stages, current_index=0, progress_label='') -%}
-{# PX-003: Step X of Y + done/current/future strip — presentation only. #}
+{# PX-003: calm learning-journey indicator — presentation only. #}
 {% set total = stages|length %}
 {% set step_no = current_index + 1 if current_index >= 0 else 1 %}
 <nav class="ds-stage-indicator" aria-label="{{ progress_label or ('Step ' ~ step_no ~ ' of ' ~ total) }}">
   {% if total > 0 %}
-  <p class="ds-list__meta ds-stage-indicator__progress">{{ progress_label or ('Step ' ~ step_no ~ ' of ' ~ total) }}</p>
+  <p class="ds-list__meta ds-stage-indicator__progress visually-hidden">{{ progress_label or ('Step ' ~ step_no ~ ' of ' ~ total) }}</p>
   {% endif %}
+  <ol class="ds-stage-indicator__list">
   {% for stage in stages %}
-  <span class="ds-stage-indicator__item{% if loop.index0 < current_index %} ds-stage-indicator__item--done{% elif loop.index0 == current_index %} ds-stage-indicator__item--current{% endif %}"{% if loop.index0 == current_index %} aria-current="step"{% endif %}>
-    <span class="ds-stage-indicator__dot" aria-hidden="true">{% if loop.index0 < current_index %}●{% elif loop.index0 == current_index %}●{% else %}○{% endif %}</span>
+  {% if loop.index0 < current_index %}
+    {% set state = 'done' %}
+  {% elif loop.index0 == current_index %}
+    {% set state = 'current' %}
+  {% else %}
+    {% set state = 'upcoming' %}
+  {% endif %}
+  <li
+    class="ds-stage-indicator__item ds-stage-indicator__item--{{ state }}{% if not loop.last %} ds-stage-indicator__item--has-rule{% endif %}{% if loop.index0 < current_index %} ds-stage-indicator__item--rule-done{% endif %}"
+    {% if state == 'current' %}aria-current="step"{% endif %}
+  >
+    <span class="ds-stage-indicator__marker" aria-hidden="true">
+      {% if state == 'done' %}
+      <svg class="ds-stage-indicator__check" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      {% else %}
+      <span class="ds-stage-indicator__num">{{ loop.index }}</span>
+      {% endif %}
+    </span>
     <span class="ds-stage-indicator__label">{{ stage }}</span>
-  </span>
-  {% if not loop.last %}<span class="ds-stage-indicator__rule" aria-hidden="true"></span>{% endif %}
+  </li>
   {% endfor %}
+  </ol>
 </nav>
 {%- endmacro %}
 

@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1012-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam "
                 "trust."
             ),
@@ -83,7 +83,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -102,10 +102,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -117,7 +117,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -194,7 +194,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Mu revision — hypothesis testing and goodness of fit",
+        "topic_title": "Campaign Mu revision: hypothesis testing and goodness of fit",
         "return_targets": [
             "3.3.1",
             "3.3.2",
@@ -221,13 +221,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1012-cs1-cm-r1-hypothesis",
             "display_title": "Retrieve hypothesis-testing hinges (3.3)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Mu — retrieving HT "
+                "Today's Mission exists to protect memory of Campaign Mu. Retrieving HT "
                 "concepts, basic one-/two-sample and paired tests, permutation tests, "
-                "chi-square goodness of fit, and contingency independence — so 3.3 does not "
+                "chi-square goodness of fit, and contingency independence. So 3.3 does not "
                 "evaporate before an honest stop or remainder-spine successor."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Mu's Learning hinges — "
+                "Today I will run closed-book retrieval across Mu's Learning hinges. "
                 "not a passive CMP re-read and not a Chapter 3 trophy or until-exam claim."
             ),
             "educational_intent": (
@@ -246,14 +246,14 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished contingency independence (3.3.5). Today is Revision "
-                "mode: return to 3.3.1–3.3.5 under closed-book retrieval — no new first-pass LO."
+                "mode: return to 3.3.1–3.3.5 under closed-book retrieval. No new first-pass LO."
             ),
             "why_now": (
                 "You've just finished hypothesis testing; spaced retrieval now protects that chain "
                 "before you stop."
             ),
             "expected_benefit": (
-                "Evidence that the 3.3 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 3.3 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 3 / the exam journey is complete."
             ),
             "explainability": (
@@ -275,15 +275,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1012-cs1-cm-r1-hypothesis",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Mu skills — not to claim Chapter 3 complete."
+                "Retrieve and connect Campaign Mu skills. Not to claim Chapter 3 complete."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 45, "max": 65},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 3.3.1–3.3.5 return targets. "
-                "This is revision Study Progress — not Topic Complete for Chapter 3, and not "
+                "This is revision Study Progress. Not Topic Complete for Chapter 3, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -312,7 +312,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not claim Chapter 3 complete, "
+                "After revision checks and Reflection. Do not claim Chapter 3 complete, "
                 "spine PASS, or until-exam trust in this sitting"
             ),
             "out_of_scope_today": [
@@ -334,7 +334,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -369,7 +369,7 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "Revision retrieves the 3.3 arc.",
                 "model_answer": (
-                    "Example: (1) HT vocabulary — null/alternative, type I/II, critical "
+                    "Example: (1) HT vocabulary: null/alternative, type I/II, critical "
                     "region, p-value, power; (2) basic Normal/binomial/Poisson and paired "
                     "tests; (3) permutation approach; (4) chi-square GOF incl. unknown "
                     "parameters; (5) contingency table independence test."
@@ -386,7 +386,7 @@ def revision_pkg() -> dict:
                     "Closed-book. (1) Name today's weakest hypothesis-testing link and one "
                     "concrete rework. (2) Refuse: 'A small p-value proves the alternative, so "
                     "Chapter 3 is done.' (3) Name whether you stop here or what syllabus "
-                    "topic honestly comes next — not 'exam ready.'"
+                    "topic honestly comes next. Not 'exam ready.'"
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -403,9 +403,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. permutation test construction — five-minute rework. (2) Refuse "
+                    "(1) e.g. permutation test construction. Five-minute rework. (2) Refuse "
                     "Chapter 3 complete / spine / until-exam. (3) Honest next is declared stop "
-                    "or remainder-spine successor Volume — not claimed finished here."
+                    "or remainder-spine successor Volume. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 3 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -426,17 +426,17 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "stop",
             "next_topic_title": (
-                "Honest next — declared stop / remainder-spine successor (or Wave 0 honesty) "
-                "— not Chapter 3 trophy"
+                "Honest next: declared stop / remainder-spine successor (or Wave 0 honesty) "
+                ". Not Chapter 3 trophy"
             ),
             "continuity_line": (
                 "Campaign Mu / Volume CS1-012 completes after this Revision. Honest stop: "
-                "3.3 Pilot Arc closed — not Chapter 3 complete; not first-pass spine; not "
+                "3.3 Pilot Arc closed. Not Chapter 3 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is remainder / spine re-audit under a "
                 "later commission (or declared stop)."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Mu / CS1-012 complete after today (pending human Approver + LIVE). "
@@ -467,9 +467,9 @@ LEARNING = [
         title="Understand hypothesis-testing concepts (null/alternative, errors, p-value, power)",
         purpose=(
             "Today's Mission exists to establish the conceptual toolkit of hypothesis testing "
-            "— null and alternative hypotheses, simple and composite forms, type I and type II "
+            ": null and alternative hypotheses, simple and composite forms, type I and type II "
             "errors, sensitivity and specificity, test statistic, likelihood ratio, critical "
-            "region, significance level, p-value, and power — without pretending basic applied "
+            "region, significance level, p-value, and power. Without pretending basic applied "
             "tests (3.3.2) are finished."
         ),
         tutor=(
@@ -492,7 +492,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Lambda closed confidence and prediction intervals (3.2) with Revision. "
-            "Today opens topic 3.3 at LO 3.3.1 — the named Continuity Front after CS1-011."
+            "Today opens topic 3.3 at LO 3.3.1. The named Continuity Front after CS1-011."
         ),
         why=(
             "3.3.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -503,7 +503,7 @@ LEARNING = [
             "region) correctly on a concrete vignette."
         ),
         explain=(
-            "Day 1 opens 3.3 at the named learning objective — "
+            "Day 1 opens 3.3 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -522,9 +522,9 @@ LEARNING = [
             "Today you established hypothesis-testing concepts; tomorrow continues 3.3 at "
             "basic applied tests."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.3.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.3.2. Titles only tonight",
         student=(
-            "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings — "
+            "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.3.1 hypothesis-testing concepts",
@@ -575,14 +575,14 @@ LEARNING = [
         ),
         cp_kw=["Type I", "Type II", "p-value", "power", "null", "refuse", "critical"],
         cp_model=(
-            "(1) Type I: false positive — declare disease when healthy (reject H₀ "
-            "wrongly). Type II: false negative — miss disease when present (fail to "
+            "(1) Type I: false positive. Declare disease when healthy (reject H₀ "
+            "wrongly). Type II: false negative. Miss disease when present (fail to "
             "reject H₀ wrongly). (2) p-value: under H₀, the probability of a result "
             "at least as extreme as observed. Power: P(reject H₀ | H₁ true) = 1 − β. "
             "(3) Refuse: running a cookbook test is not the same as mastering HT "
             "vocabulary (errors, critical region, p-value, power)."
         ),
-        reflect="Harvest HT vocabulary wobble — keep applied tests out of tonight's claim.",
+        reflect="Harvest HT vocabulary wobble. Keep applied tests out of tonight's claim.",
     ),
     dict(
         day="CM-D2",
@@ -603,7 +603,7 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to apply basic hypothesis tests for one-sample and "
             "two-sample situations involving the Normal, binomial, and Poisson distributions, "
-            "and basic tests for paired data — without pretending permutation tests (3.3.3) "
+            "and basic tests for paired data. Without pretending permutation tests (3.3.3) "
             "are finished."
         ),
         tutor=(
@@ -625,7 +625,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you established HT concepts (3.3.1). Today continues topic 3.3 at "
-            "LO 3.3.2 — basic applied tests."
+            "LO 3.3.2: basic applied tests."
         ),
         why=(
             "3.3.2 is the contiguous next LO after concepts. Closing it builds usable test "
@@ -636,7 +636,7 @@ LEARNING = [
             "or paired test for a stated setting."
         ),
         explain=(
-            "Day 2 focuses the named learning objective — contiguity inside topic 3.3."
+            "Day 2 focuses the named learning objective. Contiguity inside topic 3.3."
         ),
         criteria=[
             "Closed-book, name when one-sample vs two-sample vs paired applies.",
@@ -654,9 +654,9 @@ LEARNING = [
             "Today you applied basic one-/two-sample and paired tests; tomorrow continues "
             "3.3 at permutation tests."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.3.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.3.3. Titles only tonight",
         student=(
-            "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings — "
+            "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.3.2 basic hypothesis tests",
@@ -710,7 +710,7 @@ LEARNING = [
             "t/z). (2) Refuse: permutation tests are a different LO; today is basic "
             "parametric tests for Normal / binomial / Poisson / paired settings."
         ),
-        reflect="Harvest basic-test selection wobble — keep permutation out of tonight's claim.",
+        reflect="Harvest basic-test selection wobble. Keep permutation out of tonight's claim.",
     ),
     dict(
         day="CM-D3",
@@ -722,8 +722,8 @@ LEARNING = [
         title="Apply the permutation approach to non-parametric hypothesis tests",
         purpose=(
             "Today's Mission exists to apply the permutation approach to non-parametric "
-            "hypothesis tests — so exchangeability under the null becomes a usable test "
-            "construction — without pretending chi-square goodness of fit (3.3.4) is finished."
+            "hypothesis tests. So exchangeability under the null becomes a usable test "
+            "construction. Without pretending chi-square goodness of fit (3.3.4) is finished."
         ),
         tutor=(
             "Today I will force the candidate to state the permutation null mechanism and "
@@ -740,7 +740,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you applied basic parametric / paired tests (3.3.2). Today continues "
-            "topic 3.3 at LO 3.3.3 — permutation."
+            "topic 3.3 at LO 3.3.3: permutation."
         ),
         why=(
             "3.3.3 is the contiguous next LO after basic tests. Closing it adds the "
@@ -751,7 +751,7 @@ LEARNING = [
             "under H₀ to a reference distribution."
         ),
         explain=(
-            "Day 3 focuses the named learning objective — contiguity inside topic 3.3."
+            "Day 3 focuses the named learning objective. Contiguity inside topic 3.3."
         ),
         criteria=[
             "Closed-book, state what is permuted under the null and why.",
@@ -769,9 +769,9 @@ LEARNING = [
             "Today you applied permutation non-parametric tests; tomorrow continues 3.3 at "
             "chi-square goodness of fit."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.3.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.3.4. Titles only tonight",
         student=(
-            "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings — "
+            "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.3.3 permutation hypothesis tests",
@@ -823,7 +823,7 @@ LEARNING = [
             "permutation builds a null reference from exchangeability, not from a "
             "parametric Normal cookbook; chi-square GOF is a different LO."
         ),
-        reflect="Harvest permutation-mechanism wobble — keep GOF out of tonight's claim.",
+        reflect="Harvest permutation-mechanism wobble. Keep GOF out of tonight's claim.",
     ),
     dict(
         day="CM-D4",
@@ -841,7 +841,7 @@ LEARNING = [
         title="Perform a chi-square goodness-of-fit test (including unknown parameters)",
         purpose=(
             "Today's Mission exists to perform a chi-square test that a random sample is from "
-            "a particular distribution, including cases where parameters are unknown — without "
+            "a particular distribution, including cases where parameters are unknown. Without "
             "pretending contingency independence (3.3.5) is finished."
         ),
         tutor=(
@@ -863,7 +863,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you applied permutation tests (3.3.3). Today continues topic 3.3 at "
-            "LO 3.3.4 — chi-square GOF."
+            "LO 3.3.4: chi-square GOF."
         ),
         why=(
             "3.3.4 is the contiguous next LO after permutation. Closing it adds distributional "
@@ -874,7 +874,7 @@ LEARNING = [
             "when parameters are estimated."
         ),
         explain=(
-            "Day 4 focuses the named learning objective — contiguity inside topic 3.3."
+            "Day 4 focuses the named learning objective. Contiguity inside topic 3.3."
         ),
         criteria=[
             "Closed-book, state the GOF hypothesis and how expected counts arise.",
@@ -892,10 +892,10 @@ LEARNING = [
             "Today you performed chi-square goodness of fit; tomorrow continues 3.3 at "
             "contingency independence."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.3.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.3.5. Titles only tonight",
         student=(
             "Tomorrow: contingency independence (3.3.5). Optional light prep: skim 3.3.5 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.3.4 chi-square goodness of fit",
         stop=(
@@ -947,7 +947,7 @@ LEARNING = [
             "1 for λ̂. (2) Refuse: independence in a contingency table is a "
             "different LO from one-sample GOF to a named distribution."
         ),
-        reflect="Harvest GOF / DF wobble — keep contingency out of tonight's claim.",
+        reflect="Harvest GOF / DF wobble. Keep contingency out of tonight's claim.",
     ),
     dict(
         day="CM-D5",
@@ -965,8 +965,8 @@ LEARNING = [
         title="Use contingency tables and chi-square tests of independence",
         purpose=(
             "Today's Mission exists to use a contingency (two-way) table and a chi-square "
-            "test of independence for two classification criteria — completing the 3.3 "
-            "Learning span — without pretending Chapter 3 / spine / until-exam trust are done."
+            "test of independence for two classification criteria. Completing the 3.3 "
+            "Learning span. Without pretending Chapter 3 / spine / until-exam trust are done."
         ),
         tutor=(
             "Today I will force the candidate to form a two-way table and test independence, "
@@ -986,17 +986,17 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you performed chi-square GOF (3.3.4). Today completes topic 3.3 "
-            "Learning at LO 3.3.5 — contingency independence."
+            "Learning at LO 3.3.5: contingency independence."
         ),
         why=(
-            "Finish topic 3.3 with contingency tables and chi-square independence tests — then revise the hypothesis-testing chain."
+            "Finish topic 3.3 with contingency tables and chi-square independence tests. Then revise the hypothesis-testing chain."
         ),
         benefit=(
             "You'll be able to read a contingency table and run a chi-square test of "
             "independence with the right hypotheses."
         ),
         explain=(
-            "Day 5 focuses the named learning objective — finishes 3.3 "
+            "Day 5 focuses the named learning objective. Finishes 3.3 "
             "Learning LOs before Revision."
         ),
         criteria=[
@@ -1010,15 +1010,15 @@ LEARNING = [
             "Closed-book Knowledge Checks: independence + refuse Chapter 3 / spine swallow.",
         ],
         next_code="CM-R1",
-        next_title="Campaign Mu Revision — retrieve 3.3 hinges",
+        next_title="Campaign Mu Revision: retrieve 3.3 hinges",
         cont=(
-            "Today you used contingency independence tests; tomorrow is Revision — retrieve "
+            "Today you used contingency independence tests; tomorrow is Revision. Retrieve "
             "the 3.3 chain closed-book (not Chapter 3 trophy)."
         ),
-        prep="Optional: list the five 3.3 LO codes from memory — titles only tonight",
+        prep="Optional: list the five 3.3 LO codes from memory. Titles only tonight",
         student=(
             "Tomorrow: CM-R1 Revision (retrieve 3.3.1–3.3.5). Optional light prep: list the "
-            "five LO codes from memory — titles only tonight."
+            "five LO codes from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 3.3.5 contingency tables and independence",
         stop=(
@@ -1069,7 +1069,7 @@ LEARNING = [
             "two classification criteria in a two-way table."
         ),
         reflect=(
-            "Harvest independence / expected-count wobble — Revision protects the 3.3 chain "
+            "Harvest independence / expected-count wobble. Revision protects the 3.3 chain "
             "tomorrow."
         ),
     ),
@@ -1097,7 +1097,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-MU",
         "campaign_version": "cs1012-1.0.0",
-        "display_title": "Campaign Mu — Hypothesis testing and goodness of fit (3.3)",
+        "display_title": "Campaign Mu: Hypothesis testing and goodness of fit (3.3)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

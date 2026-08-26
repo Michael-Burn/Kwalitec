@@ -1,11 +1,11 @@
 {
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "campaign_version": "cs1017-1.0.0",
-  "display_title": "Campaign Rho \u2014 Publication Front Wave 0 residual after Memory Front LIVE",
+  "display_title": "Campaign Rho. Publication Front Wave 0 residual after Memory Front LIVE",
   "subject_id": "CS1",
   "package_version_pin": "IFoA CS1 2026",
   "scope_class": "Pilot Arc",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "status": "released",
   "volume_id": "CS1-017",
   "prior_volume_id": "CS1-016",
@@ -50,6 +50,6 @@
     "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO"
   ],
   "wave0_note": "Publication Front / Wave 0 Approver honesty gap remains open until human Publication Approver seals. Rho catalogue prepares LO-per-day Approver-path inventory; it must not claim clearance. Existing Alpha/Beta packages remain untouched honesty-gap loader inventory.",
-  "memory_front_note": "CS1-016 / Campaign Pi remains independent Memory Front LIVE inventory. Rho package IDs are CR-prefixed Publication Front catalogue \u2014 not LIVE this cycle; Published Coverage unchanged until Approver seals.",
-  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1\u20135.1. Rho does not absorb whole-Delta credit."
+  "memory_front_note": "CS1-016 / Campaign Pi remains independent Memory Front LIVE inventory. Rho package IDs are CR-prefixed Publication Front catalogue. Not LIVE this cycle; Published Coverage unchanged until Approver seals.",
+  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Rho does not absorb whole-Delta credit."
 }

@@ -58,7 +58,7 @@ def guidance_for(
         )
     if label == ForecastLabel.BUILDING_MOMENTUM:
         return (
-            "Your recent sittings show building momentum — keep the pattern "
+            "Your recent sittings show building momentum. Keep the pattern "
             "steady and readiness should continue to strengthen."
         )
     if label == ForecastLabel.NEEDS_GREATER_CONSISTENCY:
@@ -68,17 +68,17 @@ def guidance_for(
         )
     if label == ForecastLabel.RECOVERY_REQUIRED:
         return (
-            "Evidence points to recovery work first — rebuild understanding "
+            "Evidence points to recovery work first. Rebuild understanding "
             "before expecting readiness to climb."
         )
     if label == ForecastLabel.BELOW_TARGET_PACE:
         return (
             "At the current pace, readiness may land below "
-            f"{TARGET_READINESS_STAGE} by your {sitting} — a steadier or "
+            f"{TARGET_READINESS_STAGE} by your {sitting}. A steadier or "
             "slightly denser study rhythm would help."
         )
     return scrub(
-        "Continue studying steadily — trajectory updates as evidence grows."
+        "Continue studying steadily: trajectory updates as evidence grows."
     )
 
 
@@ -99,7 +99,7 @@ def explanation_for(
         f"Current trend: {trend}. Today looks like {current}; "
         f"if the pattern continues, projection points toward {projected}. "
         f"Most influential factors: {factors}. "
-        f"Confidence: {confidence} — this is a directional estimate, "
+        f"Confidence: {confidence}. This is a directional estimate, "
         "not a guarantee."
     )
     if label == ForecastLabel.INSUFFICIENT_EVIDENCE:

@@ -40,14 +40,14 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-cd-r1",
     "display_title": "Retrieve classical linear models (4.1)",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Delta's 4.1 Learning span — roles, forms, OLS, software chain, selection — before GLM opens.",
-    "tutor_intent": "Today I will run closed-book retrieval across 4.1.1–4.1.5 — not a passive CMP re-read and not GLM.",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Delta's 4.1 Learning span (roles, forms, OLS, software chain, selection) before GLM opens.",
+    "tutor_intent": "Today I will run closed-book retrieval across 4.1.1–4.1.5. Not a passive CMP re-read and not GLM.",
     "educational_intent": "Produce retrieval strength on classical LM before 4.2 absorb.",
     "learning_objective": "Retrieve and connect response/explanatory roles, simple/multiple forms, OLS, software fit/inference/residuals, and variable selection.",
     "concept_focus": "4.1 chain retrieval: roles → forms → OLS → software → selection.",
     "prior_bridge": "Yesterday you finished variable selection (4.1.5). Today is Revision mode.",
     "why_now": "You've just finished classical linear models; spaced retrieval now protects 4.1 before GLM.",
-    "expected_benefit": "Revision Study Progress — not GLM; not spine.",
+    "expected_benefit": "Revision Study Progress. Not GLM; not spine.",
     "explainability": "Assigned as Campaign Delta CD-R1.",
     "success_criteria": [
       "Closed-book, name response vs explanatory.",
@@ -68,13 +68,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-cd-r1",
-    "session_educational_purpose": "Retrieve and connect Campaign return targets — not a new first-pass LO.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign return targets. Not a new first-pass LO.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link. Gate RV substance.",
     "duration_budget_minutes": {
       "min": 40,
       "max": 55
     },
-    "wrap_up": "Revision Session complete (CD-R1). Revision Study Progress — not spine PASS; not until-exam trust.",
+    "wrap_up": "Revision Session complete (CD-R1). Revision Study Progress. Not spine PASS; not until-exam trust.",
     "confidence_prompt": "How confident are you that today's return targets will still retrieve in three days? Rate 1–5 and name the weakest link."
   },
   "reading_guidance": {
@@ -91,7 +91,7 @@
       "Watch for Isolated Golden Day / until-exam trust claims."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection — do not begin out-of-scope first-pass LOs",
+    "stop_condition": "After revision checks and Reflection. Do not begin out-of-scope first-pass LOs",
     "out_of_scope_today": [
       "First-pass GLM Learning as Revision",
       "Bayesian 5.1",
@@ -105,7 +105,7 @@
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — mark the weakest link before checks.",
+        "cue": "Pause. Mark the weakest link before checks.",
         "student_action": "Annotate"
       }
     ],
@@ -161,7 +161,7 @@
         "out of scope"
       ],
       "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. residual checks — five-minute rework. (2) GLM out of scope; tomorrow 4.2.1 exponential family.",
+      "model_answer": "(1) e.g. residual checks: five-minute rework. (2) GLM out of scope; tomorrow 4.2.1 exponential family.",
       "common_mistake": "Spine / until-exam claim.",
       "success_criteria": [
         "Rework named.",
@@ -171,7 +171,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which classical linear-model link retrieved least cleanly today — response/explanatory roles, simple vs multiple forms, least squares, software fit/inference, or variable selection — and what one concrete rework will you schedule? Do not claim GLM (4.2) is finished.",
+    "prompt": "Which classical linear-model link retrieved least cleanly today (response/explanatory roles, simple vs multiple forms, least squares, software fit/inference, or variable selection) and what one concrete rework will you schedule? Do not claim GLM (4.2) is finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",
@@ -181,9 +181,9 @@
   "tomorrow_preview": {
     "next_topic_code": "4.2",
     "next_topic_title": "Exponential family responses for GLMs (4.2.1)",
-    "continuity_line": "Today you retrieved classical LM; tomorrow opens GLM at exponential-family responses (4.2.1) — absorbing EA-006 structure into Campaign membership.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.1 — titles only tonight",
-    "student_facing": "Tomorrow: GLM exponential-family responses (4.2.1). Optional light prep: skim 4.2.1 headings — titles only tonight."
+    "continuity_line": "Today you retrieved classical LM; tomorrow opens GLM at exponential-family responses (4.2.1). Absorbing EA-006 structure into Campaign membership.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.1. Titles only tonight",
+    "student_facing": "Tomorrow: GLM exponential-family responses (4.2.1). Optional light prep: skim 4.2.1 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

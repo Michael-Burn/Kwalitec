@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 FLASH_SUCCESS = {
-    "started": "Your learning check is ready — take your time.",
+    "started": "Your learning check is ready. Take your time.",
     "begun": "Let's begin. Your answers help keep today's support accurate.",
     "saved": "Progress saved.",
     "paused": "Paused. Your progress is saved.",
-    "resumed": "Welcome back — picking up where you left off.",
-    "completed": "Check complete. Thanks — that helps Kwalitec support you.",
+    "resumed": "Welcome back: picking up where you left off.",
+    "completed": "Check complete. Thanks. That helps Kwalitec support you.",
     "cancelled": "Check closed. You can start another whenever you're ready.",
-    "hint": "Hint revealed — using a hint is allowed.",
+    "hint": "Hint revealed (using a hint is allowed)",
 }
 
 FLASH_WARNING = {

@@ -5,13 +5,13 @@
     <section class="session-card" aria-labelledby="assessment-entry-title">
         <h1 id="assessment-entry-title" class="session-page-title">Learning Check</h1>
         <p class="session-page-description">
-            A short guided check — not an exam. Your answers help Study Sensei
+            A short guided check. Not an exam. Your answers help Study Sensei
             understand how to support you. No grades. No pass or fail.
         </p>
         <ul class="assessment-promise-list">
             <li>You can pause and resume if life interrupts.</li>
             <li>Hints are allowed when offered.</li>
-            <li>After you finish, we use what you shared to support learning — not to rank you.</li>
+            <li>After you finish, we use what you shared to support learning. Not to rank you.</li>
         </ul>
         <form method="post" action="{{ url_for('assessment.start') }}" class="session-primary-action">
             {{ form.hidden_tag() }}

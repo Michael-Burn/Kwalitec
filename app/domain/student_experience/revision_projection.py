@@ -75,7 +75,7 @@ class RevisionProjection:
         if primary is None and not alts:
             msg = (empty_message or "").strip() or (
                 "No revision support is ready right now. Follow today's "
-                "Mission on Home — Revision will appear when there is "
+                "Mission on Home: Revision will appear when there is "
                 "something worth strengthening."
             )
         else:

@@ -8,9 +8,9 @@
     {% endwith %}
 
   Variants:
-    compact (default) — sidebar / topnav / login: "Internal Alpha"
-    full — short expanded: "Internal Alpha · Founding Cohort"
-    footer — full chrome line including build: "… · Build RC2"
+    compact (default): sidebar / topnav / login: "Internal Alpha"
+    full: short expanded: "Internal Alpha · Founding Cohort"
+    footer: full chrome line including build: "… · Build RC2"
 #}
 {% set _variant = alpha_badge_variant|default('compact') %}
 {% if _variant == 'footer' %}

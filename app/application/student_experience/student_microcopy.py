@@ -25,7 +25,7 @@ SESSION_FEEDBACK_TITLE = "What happened today"
 REFLECTION_VALUE_TITLE = "A moment to reflect"
 REFLECTION_VALUE_FRAMING = (
     "Reflection helps separate what feels solid from what still needs practice. "
-    "A short note is enough — skipping does not penalise you."
+    "A short note is enough. Skipping does not penalise you."
 )
 REFLECTION_ACTIVITY_LABEL = "Session reflection"
 REFLECTION_EXPECTED_LABEL = "Capture what mattered in this sitting"
@@ -38,7 +38,7 @@ STUDENT_SUPPORT_TEAM = "the Kwalitec team"
 # ── PX-B-042 — Help Centre ──────────────────────────────────────────────────
 HELP_CENTRE_EYEBROW = "Help"
 HELP_CENTRE_DESCRIPTION = (
-    "How Kwalitec and Study Sensei work together on your educational journey — "
+    "How Kwalitec and Study Sensei work together on your educational journey. "
     "and how to get support when you need it."
 )
 HELP_FEEDBACK_CTA = "Send product feedback"
@@ -46,7 +46,7 @@ HELP_FEEDBACK_CTA = "Send product feedback"
 # ── PX-007 / WS-11 — Feedback identity (student-visible; close PX7-001/002) ──
 FEEDBACK_RELEASE_EYEBROW = STUDENT_RELEASE_LABEL  # Private Beta — not Closed Beta
 FEEDBACK_THANKS_FLASH = (
-    "Thank you — your feedback helps improve Kwalitec during Private Beta."
+    "Thank you. Your feedback helps improve Kwalitec during Private Beta."
 )
 FEEDBACK_SUGGEST_DESCRIPTION = (
     "Share one concrete idea that would make Kwalitec better for studying."
@@ -59,13 +59,13 @@ FEEDBACK_QUICK_DESCRIPTION = (
 HELP_FAQ_EXAM_CHANGE = (
     "How do I change my exam date or sitting?",
     "Open Study Plan from the main navigation and update your exam date. "
-    "Your next Session updates from the revised plan — you do not need to "
+    "Your next Session updates from the revised plan. You do not need to "
     "rebuild your journey from scratch.",
 )
 HELP_FAQ_DEFERRAL = (
     "What if I need to pause or defer my studies?",
     "Take the break you need. When you return, open Home and follow today's "
-    "authorised Session — Kwalitec does not invent catch-up work or penalise "
+    "authorised Session: Kwalitec does not invent catch-up work or penalise "
     "gaps. If your exam sitting changes, update Study Plan so guidance stays "
     "honest.",
 )
@@ -73,23 +73,23 @@ HELP_FAQ_DEFERRAL = (
 # ── PX-B-043 — Diagnostic disclosure ────────────────────────────────────────
 DIAGNOSTIC_SUMMARY = "Build information for support"
 DIAGNOSTIC_SUPPORT_HINT = (
-    "Share these details only if support asks — they are not part of studying."
+    "Share these details only if support asks. They are not part of studying."
 )
 
 # ── PX-B-008 — Continue Session contention ──────────────────────────────────
 CONTINUE_CONTENTION_MESSAGE = (
-    "Your session is still open. Wait a moment, then try Continue again — "
+    "Your session is still open. Wait a moment, then try Continue again. "
     "this is a temporary hiccup, not a study failure."
 )
 CONTINUE_RETRY_MESSAGE = (
-    "We couldn't open your session just now. Your progress is safe — "
+    "We couldn't open your session just now. Your progress is safe. "
     "return to Home and tap Continue when you're ready."
 )
 
 # ── PX-B-009 — Honest wait / preparing ──────────────────────────────────────
 PREPARING_MISSION_LABEL = "Preparing today's session…"
 PREPARING_MISSION_SUPPORT = (
-    "Your plan is being set up. This usually takes a moment — "
+    "Your plan is being set up. This usually takes a moment. "
     "stay on this page or refresh shortly."
 )
 
@@ -101,13 +101,13 @@ SKELETON_NAV_LABEL = "Loading…"
 # ── PX-006 / WS-10 — Error Reference ID (PX-B-020) ──────────────────────────
 ERROR_REFERENCE_LABEL = "Reference ID"
 ERROR_REFERENCE_GUIDANCE = (
-    "Copy this ID if you contact support or use Report a problem — "
+    "Copy this ID if you contact support or use Report a problem. "
     "it helps us find what went wrong."
 )
 
 # ── PX-006 / WS-10 — Session-complete celebration (PX-B-022) ─────────────────
 SESSION_COMPLETE_SUPPORT = (
-    "Well done for finishing today's sitting. Your progress is saved — "
+    "Well done for finishing today's sitting. Your progress is saved. "
     "return tomorrow for the next authorised step."
 )
 SESSION_COMPLETE_HISTORY_LINK = "Your session is saved in History"
@@ -125,20 +125,20 @@ PREFERENCE_SAVED_LIVE = "Appearance saved"
 
 # ── PX-006 / WS-10 — Continuity Front milestones (PX-B-046) ─────────────────
 CF_MILESTONE_ACK_CONTINUITY = (
-    "Continuity Front sitting complete — a steady step on your certified arc. "
+    "Continuity Front sitting complete. A steady step on your certified arc. "
     "Follow tomorrow's authorised session when you're ready."
 )
 CF_MILESTONE_ACK_MEMORY = (
-    "Memory Front sitting complete — retrieval practice locked in. "
+    "Memory Front sitting complete: retrieval practice locked in. "
     "Tomorrow's authorised session continues the arc."
 )
 CF_MILESTONE_ACK_PUBLICATION = (
-    "Publication Front sitting complete — another certified day behind you. "
+    "Publication Front sitting complete: another certified day behind you. "
     "Stay with tomorrow's authorised session."
 )
 CF_MILESTONE_ACK_GENERIC = (
     "Today's certified sitting is complete. "
-    "Return tomorrow for the next authorised step — no pass promises, just progress."
+    "Return tomorrow for the next authorised step (no pass promises, just progress)"
 )
 
 # ── PX-006 / WS-10 — Diligence without punishment (PX-B-047) ────────────────
@@ -167,7 +167,7 @@ def return_after_gap_copy(
     if in_progress:
         return ReturnAfterGapCopy(
             greeting=hello,
-            support_line="You left a sitting open — continue when you're ready.",
+            support_line="You left a sitting open. Continue when you're ready.",
         )
     if days_since_last is None or days_since_last <= 0:
         return ReturnAfterGapCopy(greeting=hello)
@@ -180,14 +180,14 @@ def return_after_gap_copy(
         return ReturnAfterGapCopy(
             greeting=hello,
             support_line=(
-                "Good to see you again. Today's session is ready — "
+                "Good to see you again. Today's session is ready. "
                 "no catch-up invented, just the next honest step."
             ),
         )
     return ReturnAfterGapCopy(
         greeting=hello,
         support_line=(
-            "Welcome back whenever you are. Follow today's authorised session — "
+            "Welcome back whenever you are. Follow today's authorised session. "
             "gaps are normal; we do not invent catch-up work."
         ),
     )
@@ -214,7 +214,7 @@ def exam_horizon_copy(days_to_exam: int | None) -> ExamHorizonCopy | None:
         return ExamHorizonCopy(
             tier="today",
             support_line=(
-                "Exam day — keep today's session calm and focused. "
+                "Exam day. Keep today's session calm and focused. "
                 "Follow the authorised next step only."
             ),
         )
@@ -222,7 +222,7 @@ def exam_horizon_copy(days_to_exam: int | None) -> ExamHorizonCopy | None:
         return ExamHorizonCopy(
             tier="imminent",
             support_line=(
-                "One day to go. Stay with today's authorised session — "
+                "One day to go. Stay with today's authorised session. "
                 "steady beats frantic."
             ),
         )
@@ -230,7 +230,7 @@ def exam_horizon_copy(days_to_exam: int | None) -> ExamHorizonCopy | None:
         return ExamHorizonCopy(
             tier="week",
             support_line=(
-                "Exam week. Keep to today's authorised session — "
+                "Exam week. Keep to today's authorised session. "
                 "calm consistency over last-minute overload."
             ),
         )
@@ -238,7 +238,7 @@ def exam_horizon_copy(days_to_exam: int | None) -> ExamHorizonCopy | None:
         return ExamHorizonCopy(
             tier="approach",
             support_line=(
-                "Exam approaching. Today's authorised session is enough — "
+                "Exam approaching. Today's authorised session is enough. "
                 "trust the plan."
             ),
         )
@@ -285,7 +285,7 @@ def diligence_reinforcement_copy(
     if streak_days is not None and streak_days <= 0:
         return DiligenceCopy(
             support_line=(
-                "Showing up for today's authorised session is enough — "
+                "Showing up for today's authorised session is enough. "
                 "rhythm builds without pressure."
             ),
             streak_empty_label=DILIGENCE_EMPTY_STREAK,
@@ -293,12 +293,12 @@ def diligence_reinforcement_copy(
     if days_since_last is not None and days_since_last >= 3:
         return DiligenceCopy(
             support_line=(
-                "Consistency returns one sitting at a time — "
+                "Consistency returns one sitting at a time. "
                 "today's authorised session is the next honest step."
             ),
         )
     if days_since_last is not None and 0 < days_since_last <= 2:
         return DiligenceCopy(
-            support_line="Steady sittings compound — keep today's session calm.",
+            support_line="Steady sittings compound. Keep today's session calm.",
         )
     return DiligenceCopy()

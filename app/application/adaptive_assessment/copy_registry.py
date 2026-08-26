@@ -62,36 +62,36 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     ),
     AdaptiveAssessmentCopy(
         key="session.quick_check.frame",
-        default="Quick check — helps keep today's plan accurate.",
+        default="Quick check. Helps keep today's plan accurate.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.deep_check.frame",
-        default="Careful check on this topic — no grades, clearer next steps.",
+        default="Careful check on this topic. No grades, clearer next steps.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.recovery_check.frame",
-        default="Gentle check to restart accurately — take your time.",
+        default="Gentle check to restart accurately. Take your time.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.confidence_check.frame",
         default=(
-            "Confidence check — helps align how sure you feel with what "
+            "Confidence check. Helps align how sure you feel with what "
             "the evidence shows."
         ),
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.revision_check.frame",
-        default="Revision check — see what still feels solid.",
+        default="Revision check. See what still feels solid.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.readiness_check.frame",
         default=(
-            "Readiness check — guides what to study next; it does not "
+            "Readiness check. Guides what to study next; it does not "
             "predict your result."
         ),
         description="Entry frame before first item",
@@ -130,7 +130,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         key="explain.why_body",
         default=(
             "This check helps keep today's plan accurate. "
-            "Your answers inform what to study next — they are not a grade."
+            "Your answers inform what to study next, they are not a grade."
         ),
         description="Default why-framing body",
     ),
@@ -216,7 +216,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="quick_check.progress.making",
         default="Making progress",
-        description="Calm progress label — no question numbering",
+        description="Calm progress label: no question numbering",
     ),
     AdaptiveAssessmentCopy(
         key="quick_check.progress.almost",
@@ -251,7 +251,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="quick_check.paused.body",
         default=(
-            "Your Quick Check is paused. Resume when you are ready — "
+            "Your Quick Check is paused. Resume when you are ready. "
             "there is no rush."
         ),
         description="Pause surface body",
@@ -290,7 +290,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="quick_check.completion.uncertain",
         default=(
-            "Some parts may still feel uncertain — that is expected and "
+            "Some parts may still feel uncertain, that is expected and "
             "helps guide practice."
         ),
         description="What remains uncertain",
@@ -440,7 +440,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.context.benefit",
         default=(
-            "A clearer signal means more supportive next steps — not a grade."
+            "A clearer signal means more supportive next steps, not a grade."
         ),
         description="Context Card expected benefit",
     ),
@@ -454,7 +454,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         default=(
             "You are seeing this check because today's Mission focus on "
             "{focus} benefits from a short formative signal. Answers guide "
-            "practice — they are not a grade."
+            "practice. They are not a grade."
         ),
         description="Expanded why-am-I-seeing-this on Context Card",
     ),
@@ -525,7 +525,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.recommendation.reason.emerging",
         default=(
-            "Early signals suggest continuing with {focus} is useful — "
+            "Early signals suggest continuing with {focus} is useful. "
             "still provisional."
         ),
         description="Reason when emerging",
@@ -559,7 +559,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         key="framing.recommendation.why_body",
         default=(
             "The suggestion follows from today's Mission focus on {focus} "
-            "and the evidence gathered in this check. It is guidance only — "
+            "and the evidence gathered in this check. It is guidance only. "
             "you remain responsible for significant learning decisions."
         ),
         description="Expanded educational reasoning (no algorithms)",
@@ -582,27 +582,27 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.confidence.insufficient",
         default="Not enough yet",
-        description="Confidence label — insufficient",
+        description="Confidence label: insufficient",
     ),
     AdaptiveAssessmentCopy(
         key="framing.confidence.observation_only",
         default="Still gathering",
-        description="Confidence label — observation only",
+        description="Confidence label: observation only",
     ),
     AdaptiveAssessmentCopy(
         key="framing.confidence.emerging",
         default="Emerging",
-        description="Confidence label — emerging",
+        description="Confidence label: emerging",
     ),
     AdaptiveAssessmentCopy(
         key="framing.confidence.reliable",
         default="Reliable",
-        description="Confidence label — reliable",
+        description="Confidence label: reliable",
     ),
     AdaptiveAssessmentCopy(
         key="framing.confidence.high",
         default="Strong",
-        description="Confidence label — high (never certainty)",
+        description="Confidence label: high (never certainty)",
     ),
     AdaptiveAssessmentCopy(
         key="framing.uncertainty.insufficient",
@@ -662,24 +662,24 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.reflection.student_choice",
         default=(
-            "You choose what to do next — recommendations are guidance only."
+            "You choose what to do next. Recommendations are guidance only."
         ),
         description="Reflection student choice prompt",
     ),
     AdaptiveAssessmentCopy(
         key="framing.reflection.choice_accept",
         default="Accept suggestion",
-        description="Reflection choice — accept",
+        description="Reflection choice: accept",
     ),
     AdaptiveAssessmentCopy(
         key="framing.reflection.choice_defer",
         default="Decide later",
-        description="Reflection choice — defer",
+        description="Reflection choice: defer",
     ),
     AdaptiveAssessmentCopy(
         key="framing.reflection.choice_own",
         default="Continue in my own way",
-        description="Reflection choice — own path",
+        description="Reflection choice: own path",
     ),
     AdaptiveAssessmentCopy(
         key="a11y.framing.why_recommendation",

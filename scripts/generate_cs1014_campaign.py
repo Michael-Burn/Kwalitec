@@ -70,7 +70,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1014-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -78,7 +78,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or "
                 "until-exam trust."
             ),
@@ -89,7 +89,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -108,14 +108,14 @@ def learning_pkg(d: dict) -> dict:
             ),
             "worked_examples_cue": (
                 "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering "
-                f"the solution — stay inside {lo}."
+                f"the solution: stay inside {lo}."
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -127,7 +127,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -209,7 +209,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Xi revision — generalised linear models",
+        "topic_title": "Campaign Xi revision: generalised linear models",
         "return_targets": [
             "4.2.1",
             "4.2.2",
@@ -238,12 +238,12 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1014-cs1-cx-r1-glm",
             "display_title": "Retrieve GLM hinges (4.2)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Xi — retrieving "
-                "exponential-family placement through fit/interpret — so 4.2 does not evaporate "
+                "Today's Mission exists to protect memory of Campaign Xi. Retrieving "
+                "exponential-family placement through fit/interpret. So 4.2 does not evaporate "
                 "before an honest stop / Wave 0 honesty / spine re-audit / Topic 5.1 successor."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Xi's Learning hinges — "
+                "Today I will run closed-book retrieval across Xi's Learning hinges. "
                 "not a passive CMP re-read and not a Trust Front 5.1 absorb or until-exam claim."
             ),
             "educational_intent": (
@@ -264,14 +264,14 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished fit and interpret (4.2.10). Today is Revision mode: "
-                "return to 4.2.1–4.2.10 under closed-book retrieval — no new first-pass LO."
+                "return to 4.2.1–4.2.10 under closed-book retrieval. No new first-pass LO."
             ),
             "why_now": (
                 "You've just finished classical GLM; spaced retrieval now protects that chain "
                 "before Bayesian work."
             ),
             "expected_benefit": (
-                "You'll confirm the GLM chain still retrieves — family through fit and interpret."
+                "You'll confirm the GLM chain still retrieves. Family through fit and interpret."
             ),
             "explainability": (
                 "Revision day: closed-book retrieval of this topic's chain before moving on."
@@ -292,15 +292,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1014-cs1-cx-r1-glm",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Xi skills — not to claim Trust Front absorb."
+                "Retrieve and connect Campaign Xi skills. Not to claim Trust Front absorb."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 50, "max": 75},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 4.2.1–4.2.10 return targets. "
-                "This is revision Study Progress — not Topic Complete for 5.1, and not "
+                "This is revision Study Progress. Not Topic Complete for 5.1, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -329,7 +329,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not claim Trust Front absorb, "
+                "After revision checks and Reflection. Do not claim Trust Front absorb, "
                 "spine PASS, or until-exam trust in this sitting"
             ),
             "out_of_scope_today": [
@@ -356,7 +356,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -421,7 +421,7 @@ def revision_pkg() -> dict:
                 "model_answer": (
                     "(1) Name weakest hinge + five-minute rework. (2) Refuse 5.1 absorb / "
                     "spine / until-exam. (3) Honest next is declared stop or Wave 0 honesty / "
-                    "spine re-audit / Topic 5.1 successor Volume — not claimed finished here."
+                    "spine re-audit / Topic 5.1 successor Volume. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -443,18 +443,18 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "stop",
             "next_topic_title": (
-                "Honest next — declared stop / Wave 0 honesty / spine re-audit / Topic 5.1 "
-                "successor — not Trust Front 5.1 absorb"
+                "Honest next: declared stop / Wave 0 honesty / spine re-audit / Topic 5.1 "
+                "successor. Not Trust Front 5.1 absorb"
             ),
             "continuity_line": (
                 "Campaign Xi / Volume CS1-014 completes after this Revision. Honest stop: "
-                "4.2 Continuity Front join Pilot Arc closed — not Trust Front 5.1 absorb; "
+                "4.2 Continuity Front join Pilot Arc closed. Not Trust Front 5.1 absorb; "
                 "not first-pass spine; not until-exam trust. Successor geography is Wave 0 "
                 "honesty / spine re-audit / Topic 5.1 under a later commission (or declared "
                 "stop). CS1-003 Delta remains independent Trust Front LIVE inventory."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Xi / CS1-014 complete after today (pending human Approver + LIVE). "
@@ -492,7 +492,7 @@ LEARNING = [
         title="Place GLM responses in the exponential family",
         purpose=(
             "Today's Mission exists to place binomial, Poisson, exponential, gamma and "
-            "normal as exponential-family responses — so GLM starts from distributional "
+            "normal as exponential-family responses. So GLM starts from distributional "
             "honesty, without pretending mean/variance/scale (4.2.2) are finished."
         ),
         tutor=(
@@ -513,7 +513,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Nu closed linear regression (4.1) with Revision. Today opens Continuity "
-            "Front join at Topic 4.2 LO 4.2.1 — the next official syllabus topic after 4.1. "
+            "Front join at Topic 4.2 LO 4.2.1. The next official syllabus topic after 4.1. "
             "Trust Front CS1-003 already holds LIVE 4.2 inventory independently; Xi is the "
             "Continuity Front native Pilot Arc."
         ),
@@ -526,7 +526,7 @@ LEARNING = [
             "and Normal as exponential-family GLM responses."
         ),
         explain=(
-            "Day 1 opens GLM by placing exponential-family responses — "
+            "Day 1 opens GLM by placing exponential-family responses. "
             "the natural next step after classical linear models."
         ),
         criteria=[
@@ -545,10 +545,10 @@ LEARNING = [
             "Today you placed GLM responses in the exponential family; tomorrow continues "
             "4.2 at mean, variance, variance function and scale."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.2. Titles only tonight",
         student=(
             "Tomorrow: mean, variance, variance function and scale (4.2.2). Optional light "
-            "prep: skim 4.2.2 headings — titles only tonight."
+            "prep: skim 4.2.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.1 exponential family responses for GLMs",
         stop=(
@@ -573,7 +573,7 @@ LEARNING = [
         ),
         ar_kw=["binomial", "Poisson", "exponential", "gamma", "normal", "family"],
         ar_model=(
-            "Binomial, Poisson, exponential, gamma, normal — Normal is the special case "
+            "Binomial, Poisson, exponential, gamma, normal. Normal is the special case "
             "inside the family list, not the definition of GLM. Mean/variance is tomorrow."
         ),
         cp_prompt=(
@@ -586,12 +586,12 @@ LEARNING = [
         cp_model=(
             "(1) e.g. Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded "
             "proportion/count responses); Normal (continuous responses with "
-            "constant variance) — each has an exponential-family density form "
+            "constant variance): each has an exponential-family density form "
             "usable as a GLM response. (2) Refuse: package name ≠ GLM; a GLM "
             "response sits in an exponential family (with later η and link). "
             "Normal+identity is a special case, not the definition."
         ),
-        reflect="Harvest family-placement wobble — keep mean/variance out of tonight's claim.",
+        reflect="Harvest family-placement wobble. Keep mean/variance out of tonight's claim.",
     ),
     dict(
         day="CX-D2",
@@ -603,7 +603,7 @@ LEARNING = [
         title="Evaluate mean, variance, variance function and scale",
         purpose=(
             "Today's Mission exists to state and evaluate mean, variance, variance function "
-            "and scale for GLM binomial, Poisson, exponential, gamma and normal — without "
+            "and scale for GLM binomial, Poisson, exponential, gamma and normal. Without "
             "pretending link/canonical link (4.2.3) are finished."
         ),
         tutor=(
@@ -621,7 +621,7 @@ LEARNING = [
         focus="Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
         prior=(
             "Yesterday you placed responses in the exponential family (4.2.1). Today "
-            "continues Topic 4.2 at moments and scale — still Continuity Front join."
+            "continues Topic 4.2 at moments and scale. Still Continuity Front join."
         ),
         why=(
             "4.2.2 is contiguous after family placement. Without moments/scale, link and "
@@ -632,7 +632,7 @@ LEARNING = [
             "scale for the standard GLM families."
         ),
         explain=(
-            "Day 2 focuses the named learning objective — link functions as tomorrow."
+            "Day 2 focuses the named learning objective. Link functions as tomorrow."
         ),
         criteria=[
             "Closed-book, for one named family state mean and variance (or variance function).",
@@ -650,10 +650,10 @@ LEARNING = [
             "Today you established mean/variance/scale for GLM families; tomorrow continues "
             "4.2 at link and canonical link."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.3. Titles only tonight",
         student=(
             "Tomorrow: link and canonical link (4.2.3). Optional light prep: skim 4.2.3 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.2 mean, variance, variance function and scale",
         stop=(
@@ -694,7 +694,7 @@ LEARNING = [
             "to η; today requires the mean/variance/scale structure of the "
             "response family."
         ),
-        reflect="Harvest moments/scale wobble — keep link choice out of tonight's claim.",
+        reflect="Harvest moments/scale wobble. Keep link choice out of tonight's claim.",
     ),
     dict(
         day="CX-D3",
@@ -706,7 +706,7 @@ LEARNING = [
         title="Choose link and canonical link with warrant",
         purpose=(
             "Today's Mission exists to explain the link function and the canonical link "
-            "for the distributions in 4.2.1 — without pretending factors/interactions "
+            "for the distributions in 4.2.1. Without pretending factors/interactions "
             "(4.2.4) are finished."
         ),
         tutor=(
@@ -738,7 +738,7 @@ LEARNING = [
             "families and refuse software-default myths."
         ),
         explain=(
-            "Day 3 focuses the named learning objective — factors/ interactions as tomorrow."
+            "Day 3 focuses the named learning objective. Factors/ interactions as tomorrow."
         ),
         criteria=[
             "Closed-book, state what a link function maps.",
@@ -756,10 +756,10 @@ LEARNING = [
             "Today you established link and canonical link; tomorrow continues 4.2 at "
             "variables, factors and interactions."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.4. Titles only tonight",
         student=(
             "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: "
-            "skim 4.2.4 headings — titles only tonight."
+            "skim 4.2.4 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.3 link function and canonical link",
         stop=(
@@ -795,14 +795,14 @@ LEARNING = [
         ),
         cp_kw=["logit", "binomial", "gamma", "canonical", "refuse", "default"],
         cp_model=(
-            "(1) Binomial: logit — μ ∈ (0,1) and logit maps to ℝ for η. Gamma: "
-            "reciprocal (negative-reciprocal canonical form as in CMP) — μ > 0, "
+            "(1) Binomial: logit: μ ∈ (0,1) and logit maps to ℝ for η. Gamma: "
+            "reciprocal (negative-reciprocal canonical form as in CMP). Μ > 0, "
             "mapping the positive mean onto the η scale for the gamma "
             "exponential-family form. (2) Refuse: a software default needs a "
             "warrant; canonical means the link that equates η with the natural "
             "parameter, not whatever the GUI chose."
         ),
-        reflect="Harvest link/canonical wobble — keep factors out of tonight's claim.",
+        reflect="Harvest link/canonical wobble. Keep factors out of tonight's claim.",
     ),
     dict(
         day="CX-D4",
@@ -814,7 +814,7 @@ LEARNING = [
         title="Use variables, factors and interactions in GLMs",
         purpose=(
             "Today's Mission exists to explain variables, factors taking categorical values, "
-            "and interaction terms in the GLM setting — without pretending linear-predictor "
+            "and interaction terms in the GLM setting. Without pretending linear-predictor "
             "writing (4.2.5) is finished."
         ),
         tutor=(
@@ -845,7 +845,7 @@ LEARNING = [
             "in a GLM linear predictor."
         ),
         explain=(
-            "Day 4 focuses the named learning objective — linear predictor forms as tomorrow."
+            "Day 4 focuses the named learning objective. Linear predictor forms as tomorrow."
         ),
         criteria=[
             "Closed-book, distinguish a continuous variable from a categorical factor.",
@@ -863,10 +863,10 @@ LEARNING = [
             "Today you established variables, factors and interactions; tomorrow continues "
             "4.2 at linear predictor forms."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.5. Titles only tonight",
         student=(
             "Tomorrow: linear predictor forms (4.2.5). Optional light prep: skim 4.2.5 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.4 variables, factors and interactions",
         stop=(
@@ -906,10 +906,10 @@ LEARNING = [
         cp_model=(
             "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) "
             "Refuse: factors encode categorical levels; an interaction changes "
-            "the age slope by region — it is not merely another additive main "
+            "the age slope by region. It is not merely another additive main "
             "effect."
         ),
-        reflect="Harvest factor/interaction wobble — keep η-form writing out of tonight's claim.",
+        reflect="Harvest factor/interaction wobble. Keep η-form writing out of tonight's claim.",
     ),
     dict(
         day="CX-D5",
@@ -921,7 +921,7 @@ LEARNING = [
         title="Write the linear predictor for simple GLM forms",
         purpose=(
             "Today's Mission exists to define the linear predictor and write its form for "
-            "simple models, including polynomial models and models involving factors — "
+            "simple models, including polynomial models and models involving factors. "
             "without pretending deviance/estimation (4.2.6) are finished."
         ),
         tutor=(
@@ -953,7 +953,7 @@ LEARNING = [
             "for polynomial and factor models."
         ),
         explain=(
-            "Day 5 focuses the named learning objective — deviance/ estimation as tomorrow."
+            "Day 5 focuses the named learning objective. Deviance/ estimation as tomorrow."
         ),
         criteria=[
             "Closed-book, define the linear predictor η.",
@@ -971,10 +971,10 @@ LEARNING = [
             "Today you established linear predictor forms; tomorrow continues 4.2 at "
             "deviance and estimation."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.6 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.6. Titles only tonight",
         student=(
             "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: "
-            "skim 4.2.6 headings — titles only tonight."
+            "skim 4.2.6 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.5 linear predictor forms",
         stop=(
@@ -1014,7 +1014,7 @@ LEARNING = [
             "η = Xβ is the linear predictor; the link g maps mean μ to η (e.g. "
             "log(μ)=η for Poisson log)."
         ),
-        reflect="Harvest η-form wobble — keep deviance out of tonight's claim.",
+        reflect="Harvest η-form wobble. Keep deviance out of tonight's claim.",
     ),
     dict(
         day="CX-D6",
@@ -1026,7 +1026,7 @@ LEARNING = [
         title="Use deviance and estimate GLM parameters",
         purpose=(
             "Today's Mission exists to explain deviance, scaled deviance, and estimation of "
-            "GLM parameters — without pretending analysis-of-deviance model choice (4.2.7) "
+            "GLM parameters. Without pretending analysis-of-deviance model choice (4.2.7) "
             "is finished."
         ),
         tutor=(
@@ -1058,7 +1058,7 @@ LEARNING = [
             "parameters are estimated."
         ),
         explain=(
-            "Day 6 focuses the named learning objective — analysis of deviance model choice as tomorrow."
+            "Day 6 focuses the named learning objective. Analysis of deviance model choice as tomorrow."
         ),
         criteria=[
             "Closed-book, state what deviance compares.",
@@ -1076,10 +1076,10 @@ LEARNING = [
             "Today you established deviance and estimation; tomorrow continues 4.2 at "
             "analysis-of-deviance model choice."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.7 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.7. Titles only tonight",
         student=(
             "Tomorrow: model choice via analysis of deviance (4.2.7). Optional light prep: "
-            "skim 4.2.7 headings — titles only tonight."
+            "skim 4.2.7 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.6 deviance, scaled deviance and estimation",
         stop=(
@@ -1122,7 +1122,7 @@ LEARNING = [
             "p-value chopping is model-choice behaviour, not the definition or "
             "estimation of deviance."
         ),
-        reflect="Harvest deviance/estimation wobble — keep model-choice theatre out of tonight.",
+        reflect="Harvest deviance/estimation wobble. Keep model-choice theatre out of tonight.",
     ),
     dict(
         day="CX-D7",
@@ -1134,7 +1134,7 @@ LEARNING = [
         title="Choose a GLM using analysis of deviance",
         purpose=(
             "Today's Mission exists to choose a suitable model using analysis of deviance "
-            "and examination of parameter significance — without pretending Pearson/"
+            "and examination of parameter significance. Without pretending Pearson/"
             "deviance residuals (4.2.8) are finished."
         ),
         tutor=(
@@ -1166,7 +1166,7 @@ LEARNING = [
             "examination of parameter significance."
         ),
         explain=(
-            "Day 7 focuses the named learning objective — residuals as tomorrow."
+            "Day 7 focuses the named learning objective. Residuals as tomorrow."
         ),
         criteria=[
             "Closed-book, state what analysis of deviance compares.",
@@ -1184,10 +1184,10 @@ LEARNING = [
             "Today you practised analysis-of-deviance model choice; tomorrow continues 4.2 "
             "at Pearson and deviance residuals."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.8 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.8. Titles only tonight",
         student=(
             "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim "
-            "4.2.8 headings — titles only tonight."
+            "4.2.8 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.7 analysis of deviance and model choice",
         stop=(
@@ -1230,7 +1230,7 @@ LEARNING = [
             "choosing a model via analysis of deviance and parameter "
             "significance."
         ),
-        reflect="Harvest model-choice wobble — keep residual diagnostics out of tonight.",
+        reflect="Harvest model-choice wobble. Keep residual diagnostics out of tonight.",
     ),
     dict(
         day="CX-D8",
@@ -1242,7 +1242,7 @@ LEARNING = [
         title="Use Pearson and deviance residuals",
         purpose=(
             "Today's Mission exists to explain Pearson and deviance residuals and their "
-            "use — without pretending χ² / LRT acceptability tests (4.2.9) are finished."
+            "use. Without pretending χ² / LRT acceptability tests (4.2.9) are finished."
         ),
         tutor=(
             "Today I will force Pearson vs deviance residual discrimination and refuse "
@@ -1270,7 +1270,7 @@ LEARNING = [
             "they are used diagnostically."
         ),
         explain=(
-            "Day 8 focuses the named learning objective — formal acceptability tests as tomorrow."
+            "Day 8 focuses the named learning objective. Formal acceptability tests as tomorrow."
         ),
         criteria=[
             "Closed-book, state what a Pearson residual uses.",
@@ -1288,10 +1288,10 @@ LEARNING = [
             "Today you established Pearson and deviance residuals; tomorrow continues 4.2 "
             "at formal acceptability tests."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.9 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.9. Titles only tonight",
         student=(
             "Tomorrow: Pearson χ² and likelihood-ratio acceptability tests (4.2.9). "
-            "Optional light prep: skim 4.2.9 headings — titles only tonight."
+            "Optional light prep: skim 4.2.9 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.8 Pearson and deviance residuals",
         stop=(
@@ -1327,14 +1327,14 @@ LEARNING = [
         ),
         cp_kw=["Pearson", "deviance residual", "standardised", "refuse", "likelihood-ratio"],
         cp_model=(
-            "(1) Pearson residual: (y − μ̂)/√Var̂(Y) — a standardised "
+            "(1) Pearson residual: (y − μ̂)/√Var̂(Y). A standardised "
             "discrepancy. Deviance residual: the signed contribution of "
             "observation i to the deviance. Both help check fit, outliers and "
             "patterns. (2) Refuse: an LRT is a formal "
-            "acceptability/model-comparison test — different from defining and "
+            "acceptability/model-comparison test: different from defining and "
             "using residual diagnostics."
         ),
-        reflect="Harvest residual-type wobble — keep χ²/LRT out of tonight's claim.",
+        reflect="Harvest residual-type wobble. Keep χ²/LRT out of tonight's claim.",
     ),
     dict(
         day="CX-D9",
@@ -1346,7 +1346,7 @@ LEARNING = [
         title="Test acceptability of a fitted GLM",
         purpose=(
             "Today's Mission exists to apply statistical tests to determine acceptability "
-            "of a fitted model — Pearson's chi-square test and the likelihood-ratio test — "
+            "of a fitted model (Pearson's chi-square test and the likelihood-ratio test)"
             "without pretending software fit/interpret (4.2.10) is finished."
         ),
         tutor=(
@@ -1375,7 +1375,7 @@ LEARNING = [
             "judge acceptability of a fitted GLM."
         ),
         explain=(
-            "Day 9 focuses the named learning objective — fit/ interpret as tomorrow."
+            "Day 9 focuses the named learning objective. Fit/ interpret as tomorrow."
         ),
         criteria=[
             "Closed-book, name the two acceptability tests in 4.2.9.",
@@ -1393,10 +1393,10 @@ LEARNING = [
             "Today you established formal acceptability tests; tomorrow continues 4.2 at "
             "fitting and interpreting a GLM."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.2.10 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.2.10. Titles only tonight",
         student=(
             "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim "
-            "4.2.10 headings — titles only tonight."
+            "4.2.10 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.2.9 Pearson chi-square and likelihood-ratio tests",
         stop=(
@@ -1437,7 +1437,7 @@ LEARNING = [
             "Refuse: coefficient interpretation is a different LO; today requires "
             "applying the formal acceptability tests."
         ),
-        reflect="Harvest test-choice wobble — keep full software interpretation out of tonight.",
+        reflect="Harvest test-choice wobble. Keep full software interpretation out of tonight.",
     ),
     dict(
         day="CX-D10",
@@ -1449,7 +1449,7 @@ LEARNING = [
         title="Fit a GLM and interpret the output",
         purpose=(
             "Today's Mission exists to fit a generalised linear model to a data set and "
-            "interpret the output — completing Topic 4.2 Learning before Revision — without "
+            "interpret the output (completing Topic 4.2 Learning before Revision) without "
             "opening Bayesian Topic 5.1 or claiming spine / until-exam trust."
         ),
         tutor=(
@@ -1470,14 +1470,14 @@ LEARNING = [
             "4.2 Learning at fit and interpret."
         ),
         why=(
-            "After goodness-of-fit tests, fit a GLM and interpret the output — then revise the GLM chain."
+            "After goodness-of-fit tests, fit a GLM and interpret the output. Then revise the GLM chain."
         ),
         benefit=(
             "You will be able to fit a GLM and interpret coefficients and fit "
             "output in exam-style language."
         ),
         explain=(
-            "Day 10 closes Topic 4.2 at fit and interpret — then revise; Bayesian work comes later."
+            "Day 10 closes Topic 4.2 at fit and interpret. Then revise; Bayesian work comes later."
         ),
         criteria=[
             "Closed-book, name at least three output elements you must interpret after a GLM fit.",
@@ -1490,14 +1490,14 @@ LEARNING = [
             "Closed-book Knowledge Checks: interpret + refuse 5.1/spine swallow.",
         ],
         next_code="CX-R1",
-        next_title="Campaign Xi Revision — retrieve GLM hinges (4.2)",
+        next_title="Campaign Xi Revision: retrieve GLM hinges (4.2)",
         cont=(
             "Today you closed Topic 4.2 Learning at fit/interpret; tomorrow is Campaign Xi "
             "Revision returning to 4.2.1–4.2.10."
         ),
-        prep="No new LO tonight — rest or jot the stickiest 4.2 hinge for Revision",
+        prep="No new LO tonight: rest or jot the stickiest 4.2 hinge for Revision",
         student=(
-            "Tomorrow: CX-R1 Revision of 4.2. Optional: note your weakest 4.2 link — "
+            "Tomorrow: CX-R1 Revision of 4.2. Optional: note your weakest 4.2 link. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 4.2.10 fit a GLM and interpret the output",
@@ -1524,7 +1524,7 @@ LEARNING = [
         ),
         ar_kw=["fit", "interpret", "coefficient", "deviance", "residual", "output"],
         ar_model=(
-            "Fit and interpret — coefficients, fit measures, residuals/diagnostics as "
+            "Fit and interpret: coefficients, fit measures, residuals/diagnostics as "
             "warranted. Topic 5.1 Bayesian and first-pass spine PASS are out of scope."
         ),
         cp_prompt=(
@@ -1543,7 +1543,7 @@ LEARNING = [
             "different topic."
         ),
         reflect=(
-            "Harvest fit/interpret wobble — Revision protects the 4.2 chain tomorrow."
+            "Harvest fit/interpret wobble. Revision protects the 4.2 chain tomorrow."
         ),
     ),
 ]
@@ -1569,7 +1569,7 @@ def main() -> None:
         "campaign_id": "CS1-EP001-CAMPAIGN-XI",
         "campaign_version": "cs1014-1.0.0",
         "display_title": (
-            "Campaign Xi — Generalised linear models (4.2) · Continuity Front join"
+            "Campaign Xi. Generalised linear models (4.2) · Continuity Front join"
         ),
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
@@ -1593,7 +1593,7 @@ def main() -> None:
         "inventory": inventory,
         "trust_front_note": (
             "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for "
-            "4.1–5.1. Xi package IDs are CX-prefixed Continuity Front join catalogue — "
+            "4.1–5.1. Xi package IDs are CX-prefixed Continuity Front join catalogue. "
             "not LIVE this cycle; Published Coverage unchanged (4.2 already counted)."
         ),
     }

@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1002-cs1-2.1-discrete",
     "display_title": "Name the discrete distribution family by situation",
-    "mission_purpose": "Today's Mission exists to open the distributional spine lawfully — so you can recognise basic discrete univariate distributions by the situations they model, not by formula memorisation alone.",
-    "tutor_intent": "Today I will force the candidate to match counting situations to geometric, binomial, negative binomial, hypergeometric, Poisson, and discrete uniform families — and to refuse treating every count as Poisson by habit.",
+    "mission_purpose": "Today's Mission exists to open the distributional spine lawfully. So you can recognise basic discrete univariate distributions by the situations they model, not by formula memorisation alone.",
+    "tutor_intent": "Today I will force the candidate to match counting situations to geometric, binomial, negative binomial, hypergeometric, Poisson, and discrete uniform families. And to refuse treating every count as Poisson by habit.",
     "educational_intent": "Produce a cognitive move from 'distributions are formula lists' to 'I can name which discrete family fits a counting / selection situation and why.'",
     "learning_objective": "Describe the characteristics of geometric, binomial, negative binomial, hypergeometric, Poisson, and uniform discrete distributions on a finite set, and match each to a recognisable data-generating situation.",
     "concept_focus": "Counting / selection situation → discrete family name → one defining characteristic (support / parameter story).",
     "prior_bridge": "Yesterday you closed PCA (1.2.3) as exploratory reduction with honest limits. Today those explored variables meet modelling vocabulary: Chapter 2 opens at 2.1.1 with discrete univariate distributions.",
     "why_now": "2.1.1 is the lawful first LO of the distributional chapter-family after Alpha's handoff and Beta's PCA closure; examiners expect situation-to-family recognition before deep probability calculation (2.1.3).",
-    "expected_benefit": "A situation→family map for the syllabus discrete set — Study Progress for today's Session, not mastery of all probability evaluations.",
+    "expected_benefit": "A situation→family map for the syllabus discrete set. Study Progress for today's Session, not mastery of all probability evaluations.",
     "explainability": "Assigned as Campaign Beta Day 2 because Volume CS1-002's educational transformation requires lawful entry to 2.1 after PCA placement.",
     "success_criteria": [
       "Closed-book, name the six syllabus discrete families in LO 2.1.1.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1002-cs1-2.1-discrete",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test situation→family recognition for discrete univariate distributions — not to evaluate all probabilities/quantiles or begin continuous families.",
-    "session_tutor_purpose": "In this hour I will set focus questions on discrete family characteristics, exit for CMP work on 2.1.1, then retrieve match–warrant–refuse-mismatch — so Chapter 2 opens as judgement, not formula theatre.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test situation→family recognition for discrete univariate distributions. Not to evaluate all probabilities/quantiles or begin continuous families.",
+    "session_tutor_purpose": "In this hour I will set focus questions on discrete family characteristics, exit for CMP work on 2.1.1, then retrieve match–warrant–refuse-mismatch. So Chapter 2 opens as judgement, not formula theatre.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Name the discrete distribution family by situation. You practised selective CMP reading on Syllabus 2.1.1 and stress-tested discrete family matching. This is Study Progress for today's block — not Topic Complete for continuous distributions (2.1.2) or probability evaluation (2.1.3).",
+    "wrap_up": "Session complete for Name the discrete distribution family by situation. You practised selective CMP reading on Syllabus 2.1.1 and stress-tested discrete family matching. This is Study Progress for today's block. Not Topic Complete for continuous distributions (2.1.2) or probability evaluation (2.1.3).",
     "confidence_prompt": "How confident are you that you could match three counting situations to discrete families closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1 — so distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions.",
+    "lead_line": "Purpose of this reading: use the CMP to extract the defining situation and one characteristic for each discrete family in Syllabus 2.1.1. So distribution choice is situation-led. Extract that catalogue frame from the CMP, then stop before continuous distributions.",
     "focus_questions": [
       "What counting or selection story does each of geometric, binomial, negative binomial, hypergeometric, Poisson, and discrete uniform tell?",
       "Which families involve replacement / independent trials versus without-replacement sampling?",
@@ -93,14 +93,14 @@
       "Random-variable generation methods (2.1.5–2.1.6)",
       "CS1B coding marathon"
     ],
-    "annotation_task": "Before deep reading: six-box map — family name + one situation cue",
+    "annotation_task": "Before deep reading: six-box map. Family name + one situation cue",
     "attempt_before_reveal": "At the first worked situation-match example, cover the answer and choose the family first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.1 — discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation deep-dives beyond today's stop, and coding marathons today. Stop when the 2.1.1 discrete block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.1: discrete univariate distributions. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore continuous families, probability/quantile evaluation deep-dives beyond today's stop, and coding marathons today. Stop when the 2.1.1 discrete block is complete. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP 2.1.1 discrete block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write one line: binomial vs hypergeometric differs because…",
+        "cue": "Pause. Write one line: binomial vs hypergeometric differs because…",
         "student_action": "Annotate"
       },
       {
@@ -163,7 +163,7 @@
         "not"
       ],
       "explanation": "Situation discipline prevents treating every count as binomial or Poisson.",
-      "model_answer": "Hypergeometric — successes counted in a without-replacement sample from a finite population. Refuse binomial here if trials are not independent with constant success probability (depletion matters), or refuse Poisson-by-habit without a rate process warrant.",
+      "model_answer": "Hypergeometric: successes counted in a without-replacement sample from a finite population. Refuse binomial here if trials are not independent with constant success probability (depletion matters), or refuse Poisson-by-habit without a rate process warrant.",
       "common_mistake": "Default binomial or Poisson without noticing without-replacement structure.",
       "success_criteria": [
         "Hypergeometric with without-replacement warrant.",
@@ -173,9 +173,9 @@
   ],
   "reflection": {
     "framing": "Do not summarise all of Chapter 2. Harvest what still wobbles in discrete family judgement.",
-    "prompt": "Which part is stickiest right now — recalling the six-family roster, matching without-replacement vs independent-trial stories, or refusing Poisson-by-habit — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one discrete-family move would you rework?",
+    "prompt": "Which part is stickiest right now (recalling the six-family roster, matching without-replacement vs independent-trial stories, or refusing Poisson-by-habit) and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one discrete-family move would you rework?",
     "prompts": [
-      "Which part is stickiest right now — roster, without-replacement vs independent trials, or refusing Poisson-by-habit — and why?",
+      "Which part is stickiest right now (roster, without-replacement vs independent trials, or refusing Poisson-by-habit) and why?",
       "Quote or paraphrase the single CMP cue still unclear.",
       "If you had five minutes on the revision day, what one discrete-family move would you rework?"
     ]
@@ -183,8 +183,8 @@
   "tomorrow_preview": {
     "next_topic_code": "2.1",
     "next_topic_title": "Continuous univariate distributions (2.1.2)",
-    "continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 — characteristics of basic continuous univariate distributions — so discrete and continuous vocabularies sit side by side before deeper calculation days.",
-    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.2 continuous family names — titles only, no deep study tonight",
-    "student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc — now continuous families. Optional light prep: skim 2.1.2 headings — titles only tonight."
+    "continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 (characteristics of basic continuous univariate distributions) so discrete and continuous vocabularies sit side by side before deeper calculation days.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.2 continuous family names (titles only, no deep study tonight)",
+    "student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc (now continuous families. Optional light prep: skim 2.1.2 headings) titles only tonight."
   }
 }

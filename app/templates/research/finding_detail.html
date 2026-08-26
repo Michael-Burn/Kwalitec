@@ -14,7 +14,7 @@
             <p class="mb-1"><strong>Severity:</strong> {{ detail.finding.severity }}</p>
             <p class="mb-1"><strong>Feature area:</strong> {{ detail.finding.feature_area }}</p>
             <p class="mb-1"><strong>Status:</strong> {{ workflow_labels.get(detail.finding.status, detail.finding.status) }}</p>
-            <p class="mb-1"><strong>Target release:</strong> {{ detail.finding.target_release or '—' }}</p>
+            <p class="mb-1"><strong>Target release:</strong> {{ detail.finding.target_release or '–' }}</p>
             {% if detail.finding.notes %}
             <p class="mb-1"><strong>Notes:</strong> {{ detail.finding.notes }}</p>
             {% endif %}
@@ -49,7 +49,7 @@
     <ul class="small">
         {% for t in detail.status_history %}
         <li>{{ t.transitioned_at.strftime('%Y-%m-%d %H:%M') }}:
-            {{ workflow_labels.get(t.from_status, t.from_status or '—') }}
+            {{ workflow_labels.get(t.from_status, t.from_status or '–') }}
             → {{ workflow_labels.get(t.to_status, t.to_status) }}
             {% if t.rationale %}({{ t.rationale }}){% endif %}
         </li>

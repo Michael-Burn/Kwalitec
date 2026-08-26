@@ -58,7 +58,7 @@ NARRATIVE_DAYS = 14
 # Plan continuity copy bank (UI_SPEC §9).
 CONTINUITY_COMMIT = "This is part of your continuous study plan."
 CONTINUITY_DEFER = (
-    "Your study plan continues — we'll meet you when you're ready."
+    "Your study plan continues: we'll meet you when you're ready."
 )
 CONTINUITY_REFLECTION = (
     "Tomorrow's Mission will reflect tonight's work as part of the same plan."

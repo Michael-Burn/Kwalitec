@@ -13,7 +13,7 @@
 {% set s = study %}
 
 <article
-  class="ds-page ds-container ds-container--content ds-session-page"
+  class="ds-page ds-container ds-container--content ds-session-page ds-session-page--{{ s.surface }} page-enter"
   aria-labelledby="session-page-title"
   data-ux="study-session"
   data-session-id="{{ s.session_id }}"
@@ -26,6 +26,13 @@
   {% from "partials/skeleton.html" import skeleton_mission_hero %}
   {{ skeleton_mission_hero(label=px_microcopy.SKELETON_MISSION_LABEL if px_microcopy else "Opening today's session") }}
   {% endif %}
+
+  {% if s.surface == 'overview' %}
+  {# Streamlined Overview: H1 kept for a11y; visual hierarchy lives in the card. #}
+  <header class="ds-page-header ds-session-page__header ds-session-page__header--overview">
+    <h1 id="session-page-title" class="ds-page-header__title visually-hidden">{{ s.page_title }}</h1>
+  </header>
+  {% else %}
   <header class="ds-page-header ds-session-page__header">
     {% if s.page_eyebrow %}
     <p class="ds-list__meta">{{ s.page_eyebrow }}</p>
@@ -33,10 +40,6 @@
     <h1 id="session-page-title" class="ds-page-header__title">{{ s.page_title }}</h1>
     <div class="ds-session-toolbar" role="toolbar" aria-label="Session controls">
       <p class="ds-session-timer">
-        {% if s.surface == 'overview' and s.estimated_time_label %}
-        <span class="ds-list__meta">Estimated time</span>
-        <span>{{ s.estimated_time_label }}</span>
-        {% else %}
         <span class="ds-list__meta">Timer</span>
         <span data-session-timer aria-hidden="true">{{ s.context.elapsed_label or '00:00' }}</span>
         {# PX-B-024: polite minute-boundary announces — not every-second spam #}
@@ -46,16 +49,16 @@
           role="status"
           aria-live="polite"
         >Elapsed 0 minutes</span>
-        {% endif %}
       </p>
     </div>
   </header>
+  {% endif %}
 
   {% if s.workflow_steps %}
   {{ ds_stage_indicator(s.workflow_steps, current_index=s.workflow_step_index) }}
   {% endif %}
 
-  {% if s.context.session_progress %}
+  {% if s.context.session_progress and s.surface != 'overview' %}
   <div
     class="ds-session-reading-progress"
     role="progressbar"
@@ -73,6 +76,130 @@
   </div>
   {% endif %}
 
+  {# ——— Overview: establish objective & context (streamlined card) ——— #}
+  {% if s.surface == 'overview' %}
+  <section class="ds-session-stage ds-session-stage--overview" aria-label="Session overview">
+    <div class="ds-session-card-glow" aria-hidden="true"></div>
+    <div class="ds-session-card ds-session-card--overview">
+      {% if s.context_eyebrow %}
+      <p class="ds-session-card__eyebrow">{{ s.context_eyebrow }}</p>
+      {% endif %}
+      <p class="ds-session-card__title">{{ s.topic_display or s.page_title }}</p>
+      {% if s.meta_duration or s.meta_mode %}
+      <p class="ds-session-card__meta">
+        {% if s.meta_duration %}
+        <span class="ds-session-card__meta-value">{{ s.meta_duration }}</span>
+        {% endif %}
+        {% if s.meta_duration and s.meta_mode %}
+        <span class="ds-session-card__meta-sep" aria-hidden="true">·</span>
+        {% endif %}
+        {% if s.meta_mode %}
+        <span class="ds-session-card__meta-value">{{ s.meta_mode }}</span>
+        {% endif %}
+      </p>
+      {% endif %}
+
+      {% if s.primary_kind == 'begin_form' and form %}
+      <div class="ds-primary-strip ds-session-card__cta" role="group" aria-label="Primary actions">
+        <form method="post" action="{{ url_for('session.begin', session_id=s.session_id) }}">
+          {{ form.hidden_tag() }}
+          {{ form.session_id() }}
+          {{ form.mission_id() }}
+          <button
+            class="ds-btn ds-btn--primary ds-btn--with-arrow"
+            type="submit"
+            data-session-cta="primary"
+            {% if not s.primary_enabled %}disabled{% endif %}
+          >{{ s.primary_label }}<span class="ds-btn__arrow" aria-hidden="true">→</span></button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+
+    {% set has_briefing = s.why_today or s.learning_objectives or s.concept_focus
+      or s.session_stages or s.educational_flow_label or s.expected_outcome
+      or s.checkpoint_preview or s.reflection_preview %}
+    {% if has_briefing %}
+    <details
+      class="ds-session-briefing"
+      data-ux="session-briefing"
+    >
+      <summary id="session-briefing-title" class="ds-section__title">Session details</summary>
+
+      {% if s.why_today %}
+      <div class="ds-session-briefing__block" data-briefing="why-today">
+        <p class="ds-session-briefing__label">Why today's topic</p>
+        <p class="ds-session-briefing__body">{{ s.why_today }}</p>
+      </div>
+      {% endif %}
+
+      {% if s.learning_objectives %}
+      <div class="ds-session-briefing__block" data-briefing="learning-objectives">
+        <p class="ds-session-briefing__label">Learning objectives</p>
+        <ul class="ds-list" aria-label="Learning objectives">
+          {% for objective in s.learning_objectives %}
+          <li>{{ objective }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if s.concept_focus %}
+      <div class="ds-session-briefing__block" data-briefing="concept-focus">
+        <p class="ds-session-briefing__label">Concept focus</p>
+        <ol class="ds-os-workspace__concepts">
+          {% for concept in s.concept_focus %}
+          <li>{{ concept }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endif %}
+
+      {% if s.session_stages or s.educational_flow_label %}
+      <div class="ds-session-briefing__block" data-briefing="session-stages">
+        <p class="ds-session-briefing__label">Session stages</p>
+        {% if s.session_stages %}
+        <p class="ds-session-briefing__body">{{ s.session_stages|join(' · ') }}</p>
+        {% else %}
+        <p class="ds-session-briefing__body">{{ s.educational_flow_label }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if s.expected_outcome %}
+      <div class="ds-session-briefing__block" data-briefing="expected-outcome">
+        <p class="ds-session-briefing__label">Expected outcome</p>
+        <p class="ds-session-briefing__body">{{ s.expected_outcome }}</p>
+      </div>
+      {% endif %}
+
+      {% if s.checkpoint_preview %}
+      <div class="ds-session-briefing__block" data-briefing="checkpoint">
+        <p class="ds-session-briefing__label">Checkpoint</p>
+        <p class="ds-session-briefing__body">{{ s.checkpoint_preview }}</p>
+      </div>
+      {% endif %}
+
+      {% if s.reflection_preview %}
+      <div class="ds-session-briefing__block" data-briefing="reflection">
+        <p class="ds-session-briefing__label">Reflection</p>
+        <p class="ds-session-briefing__body">{{ s.reflection_preview }}</p>
+      </div>
+      {% endif %}
+    </details>
+    {% endif %}
+
+    {% if s.explanation and s.explanation.has_content %}
+    {% from "student/components/explanation_card.html" import explanation_card %}
+    <details class="ds-disclosure" data-ux="session-explanation">
+      <summary>Why this topic</summary>
+      {{ explanation_card(s.explanation) }}
+    </details>
+    {% endif %}
+  </section>
+
+  {% else %}
+  {# ——— Non-overview surfaces ——— #}
   {{ ds_session_context(
     s.context.subject,
     chapter=s.context.chapter,
@@ -82,98 +209,47 @@
     elapsed_label=''
   ) }}
 
-  {{ ds_learning_task(
-    s.task.activity,
-    expected_outcome=s.task.expected_outcome,
-    estimated_duration=s.task.estimated_duration,
-    next_milestone=s.task.next_milestone,
-    instruction=s.task.instruction
-  ) }}
-
-  {# ——— UX-001 Overview briefing (educational detail lives here, not Home) ——— #}
-  {% if s.surface == 'overview' %}
-  {% set has_briefing = s.why_today or s.learning_objectives or s.concept_focus
-    or s.session_stages or s.educational_flow_label or s.expected_outcome
-    or s.checkpoint_preview or s.reflection_preview %}
-  {% if has_briefing %}
-  <details
-    class="ds-session-briefing"
-    data-ux="session-briefing"
-    open
-  >
-    <summary id="session-briefing-title" class="ds-section__title">Session details</summary>
-
-    {% if s.why_today %}
-    <div class="ds-session-briefing__block" data-briefing="why-today">
-      <p class="ds-session-briefing__label">Why today's topic</p>
-      <p class="ds-session-briefing__body">{{ s.why_today }}</p>
-    </div>
-    {% endif %}
-
-    {% if s.learning_objectives %}
-    <div class="ds-session-briefing__block" data-briefing="learning-objectives">
-      <p class="ds-session-briefing__label">Learning objectives</p>
-      <ul class="ds-list" aria-label="Learning objectives">
-        {% for objective in s.learning_objectives %}
-        <li>{{ objective }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-
-    {% if s.concept_focus %}
-    <div class="ds-session-briefing__block" data-briefing="concept-focus">
-      <p class="ds-session-briefing__label">Concept focus</p>
-      <ol class="ds-os-workspace__concepts">
-        {% for concept in s.concept_focus %}
-        <li>{{ concept }}</li>
-        {% endfor %}
-      </ol>
-    </div>
-    {% endif %}
-
-    {% if s.session_stages or s.educational_flow_label %}
-    <div class="ds-session-briefing__block" data-briefing="session-stages">
-      <p class="ds-session-briefing__label">Session stages</p>
-      {% if s.session_stages %}
-      <p class="ds-session-briefing__body">{{ s.session_stages|join(' · ') }}</p>
-      {% else %}
-      <p class="ds-session-briefing__body">{{ s.educational_flow_label }}</p>
-      {% endif %}
-    </div>
-    {% endif %}
-
-    {% if s.expected_outcome %}
-    <div class="ds-session-briefing__block" data-briefing="expected-outcome">
-      <p class="ds-session-briefing__label">Expected outcome</p>
-      <p class="ds-session-briefing__body">{{ s.expected_outcome }}</p>
-    </div>
-    {% endif %}
-
-    {% if s.checkpoint_preview %}
-    <div class="ds-session-briefing__block" data-briefing="checkpoint">
-      <p class="ds-session-briefing__label">Checkpoint</p>
-      <p class="ds-session-briefing__body">{{ s.checkpoint_preview }}</p>
-    </div>
-    {% endif %}
-
-    {% if s.reflection_preview %}
-    <div class="ds-session-briefing__block" data-briefing="reflection">
-      <p class="ds-session-briefing__label">Reflection</p>
-      <p class="ds-session-briefing__body">{{ s.reflection_preview }}</p>
-    </div>
-    {% endif %}
-  </details>
-  {% endif %}
-
-  {# Adaptive MES — sibling disclosure to Session details (Revision pattern). #}
-  {% if s.explanation and s.explanation.has_content %}
-  {% from "student/components/explanation_card.html" import explanation_card %}
-  <details class="ds-disclosure" data-ux="session-explanation">
-    <summary>Why this topic</summary>
-    {{ explanation_card(s.explanation) }}
-  </details>
-  {% endif %}
+  {% if s.surface == 'activity' %}
+  {# Activity: task chrome is secondary; L1 content carries weight below. #}
+  <div class="ds-session-stage ds-session-stage--activity">
+    {{ ds_learning_task(
+      s.task.activity,
+      expected_outcome=s.task.expected_outcome,
+      estimated_duration=s.task.estimated_duration,
+      next_milestone=s.task.next_milestone,
+      instruction=s.task.instruction,
+      section_title='Current task'
+    ) }}
+  {% elif s.surface == 'reflection' %}
+  <div class="ds-session-stage ds-session-stage--reflection">
+    {{ ds_learning_task(
+      s.task.activity,
+      expected_outcome='',
+      estimated_duration='',
+      next_milestone='',
+      instruction='',
+      section_title='Reflection'
+    ) }}
+  {% elif s.surface in ['summary', 'complete'] %}
+  <div class="ds-session-stage ds-session-stage--summary">
+    <div class="ds-session-card-glow ds-session-card-glow--summary" aria-hidden="true"></div>
+    <div class="ds-session-card ds-session-card--summary">
+    {{ ds_learning_task(
+      s.task.activity,
+      expected_outcome=s.task.expected_outcome,
+      estimated_duration=s.task.estimated_duration,
+      next_milestone=s.task.next_milestone,
+      instruction=s.task.instruction
+    ) }}
+  {% else %}
+  <div class="ds-session-stage">
+    {{ ds_learning_task(
+      s.task.activity,
+      expected_outcome=s.task.expected_outcome,
+      estimated_duration=s.task.estimated_duration,
+      next_milestone=s.task.next_milestone,
+      instruction=s.task.instruction
+    ) }}
   {% endif %}
 
   {# ——— L1 Learning Content ——— #}
@@ -406,18 +482,6 @@
     {% endif %}
     {% endif %}
 
-    {% if s.surface == 'overview' and s.learning_objectives and not s.why_today and not s.concept_focus and not s.session_stages and not s.expected_outcome and not s.checkpoint_preview and not s.reflection_preview %}
-    <ul class="ds-list" aria-label="Learning objectives">
-      {% for objective in s.learning_objectives %}
-      <li>{{ objective }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    {% if s.educational_flow_label and s.surface == 'overview' and not s.session_stages %}
-    <p class="ds-list__meta">{{ s.educational_flow_label }}</p>
-    {% endif %}
-
     {% if s.stage_label and s.surface == 'activity' and s.stage_label != s.content_title %}
     <p class="ds-list__meta" data-session-stage="{{ s.activity_type }}">
       {{ s.stage_label }}
@@ -434,22 +498,7 @@
   <p class="ds-session-blocking" role="status">{{ s.blocking_issue }}</p>
   {% endif %}
 
-  {% if s.primary_kind == 'begin_form' and form %}
-  <div class="ds-primary-strip" role="group" aria-label="Primary actions">
-    <form method="post" action="{{ url_for('session.begin', session_id=s.session_id) }}">
-      {{ form.hidden_tag() }}
-      {{ form.session_id() }}
-      {{ form.mission_id() }}
-      <button
-        class="ds-btn ds-btn--primary"
-        type="submit"
-        data-session-cta="primary"
-        {% if not s.primary_enabled %}disabled{% endif %}
-      >{{ s.primary_label }}</button>
-    </form>
-  </div>
-
-  {% elif s.primary_kind == 'answer_form' and answer_form and s.show_answer_input %}
+  {% if s.primary_kind == 'answer_form' and answer_form and s.show_answer_input %}
   <form
     method="post"
     action="{{ url_for('session.answer', session_id=s.session_id) }}"
@@ -486,22 +535,27 @@
   </div>
 
   {% elif s.primary_kind == 'reflection_form' and form %}
-  <div class="ds-primary-strip ds-session-reflection-form" role="group" aria-label="Primary actions">
-    <form method="post" action="{{ url_for('session.reflection_continue', session_id=s.session_id) }}">
+  <div class="ds-session-reflection" role="group" aria-label="Reflection">
+    <form method="post" action="{{ url_for('session.reflection_continue', session_id=s.session_id) }}" class="ds-session-reflection__form">
       {{ form.hidden_tag() }}
       {{ form.session_id() }}
-      <label class="ds-session-answer__label" for="{{ form.reflection_note.id }}" id="session-reflection-label">
+      <label class="ds-session-reflection__prompt" for="{{ form.reflection_note.id }}" id="session-reflection-label">
         {{ s.answer_prompt or 'Your reflection' }}
       </label>
+      <p class="ds-session-reflection__invite ds-list__meta">
+        Note what feels clear, what is still uncertain, and any mistakes worth revisiting.
+      </p>
       {{ form.reflection_note(
-        class_="ds-textarea",
-        rows="4",
+        class_="ds-textarea ds-session-reflection__input",
+        rows="6",
         autocomplete="off",
         **{"aria-labelledby": "session-reflection-label"}
       ) }}
-      <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
-        {{ s.primary_label }}
-      </button>
+      <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+        <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
+          {{ s.primary_label }}
+        </button>
+      </div>
     </form>
   </div>
 
@@ -578,6 +632,12 @@
     {{ ds_button(s.primary_label, href=url_for('student.home'), variant='primary') }}
   </div>
   {% endif %}
+
+  {% if s.surface in ['summary', 'complete'] %}
+    </div>{# /.ds-session-card--summary #}
+  {% endif %}
+  </div>{# /.ds-session-stage #}
+  {% endif %}{# overview vs other #}
 
   {% if s.show_pause %}
   <div class="ds-session-pause">

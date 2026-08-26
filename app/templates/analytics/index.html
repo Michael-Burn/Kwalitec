@@ -22,7 +22,7 @@
             <div class="stat-value text-primary">{{ readiness_narrative.percentage|int }}%</div>
             <div class="stat-label">{{ readiness_narrative.label }}</div>
             {% elif readiness_narrative %}
-            <div class="stat-value text-muted">—</div>
+            <div class="stat-value text-muted">. </div>
             <div class="stat-label">{{ readiness_narrative.label }}</div>
             {% else %}
             <div class="stat-value text-primary">{{ readiness.score|int }}%</div>
@@ -34,7 +34,7 @@
         <div class="stat-card">
             <div class="stat-value text-success">{{ curriculum_coverage.coverage_percentage|int }}%</div>
             <div class="stat-label">Syllabus coverage</div>
-            <div class="stat-basis small text-muted">Study Progress — completed topics on your plan</div>
+            <div class="stat-basis small text-muted">Study Progress. Completed topics on your plan</div>
         </div>
     </div>
     <div class="col-6 col-md-3">
@@ -63,7 +63,7 @@
 </p>
 {% else %}
 <p class="small text-muted mb-4" data-px004="analytics-day-zero" role="status">
-  No practice history yet — these figures will fill in as you complete Sessions. Nothing here is a failure.
+  No practice history yet: these figures will fill in as you complete Sessions. Nothing here is a failure.
 </p>
 {% endif %}
 
@@ -110,7 +110,7 @@
             <div class="card-body">
                 <h2 class="card-section-header mb-3">
                     Estimated Readiness Over Time
-                    {{ help_tip('Estimated readiness depends on practice results you recorded — not independently verified exam performance.', 'Estimated readiness help') }}
+                    {{ help_tip('Estimated readiness depends on practice results you recorded, not independently verified exam performance.', 'Estimated readiness help') }}
                 </h2>
                 <div class="chart-container">
                     <canvas id="readinessChart"></canvas>
@@ -140,7 +140,7 @@
             <div class="card-body">
                 <h2 class="card-section-header mb-3">
                     Accuracy Trend
-                    {{ help_tip('Accuracy is calculated from practice results you recorded — not a verified exam score.', 'Accuracy help') }}
+                    {{ help_tip('Accuracy is calculated from practice results you recorded, not a verified exam score.', 'Accuracy help') }}
                 </h2>
                 <div class="chart-container">
                     <canvas id="accuracyChart"></canvas>
@@ -255,7 +255,7 @@
 {# ── Weekly Report ───────────────────────────────────────────────────── #}
 <section class="card border-0 mb-4">
     <div class="card-body">
-        <h2 class="card-section-header mb-3">Weekly Report — {{ weekly_report.week_label }}</h2>
+        <h2 class="card-section-header mb-3">Weekly Report. {{ weekly_report.week_label }}</h2>
         <div class="row g-3 mb-3">
             <div class="col-6 col-md-3">
                 <div class="metric-pill">
@@ -327,7 +327,7 @@
         {% if weekly_report.areas_for_improvement %}
         <div>
             {# PX-002A T2-3: a brand-new account gets a neutral heading and
-               icon here — there's no history yet to call a "weak area". #}
+               icon here: there's no history yet to call a "weak area". #}
             <h3 class="h6 fw-semibold mb-2">{{ "Get started" if weekly_report.is_new_account else "Areas for Improvement" }}</h3>
             <ul class="list-unstyled mb-0">
                 {% for area in weekly_report.areas_for_improvement %}

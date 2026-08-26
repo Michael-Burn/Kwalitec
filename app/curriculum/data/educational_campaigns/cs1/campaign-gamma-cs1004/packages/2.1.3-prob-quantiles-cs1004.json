@@ -1,7 +1,7 @@
 {
   "package_version": "cs1004-campaign-gamma-1.0.0",
-  "publication_version": "cs1004-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1004-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
   "volume_id": "CS1-004",
   "subject_id": "CS1",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1004-cs1-2.1-prob-quantiles",
     "display_title": "Evaluate probabilities and quantiles for placed families",
-    "mission_purpose": "Today's Mission exists to turn Beta's family placement into probability and quantile evaluation — so you can compute or obtain P and quantile answers for the univariate families you already recognise, without pretending Poisson-process or generation LOs are finished.",
-    "tutor_intent": "Today I will force the candidate to evaluate probabilities and quantiles for named univariate families using calculation or software as appropriate — and to refuse treating family recognition alone as evaluation skill.",
+    "mission_purpose": "Today's Mission exists to turn Beta's family placement into probability and quantile evaluation. So you can compute or obtain P and quantile answers for the univariate families you already recognise, without pretending Poisson-process or generation LOs are finished.",
+    "tutor_intent": "Today I will force the candidate to evaluate probabilities and quantiles for named univariate families using calculation or software as appropriate. And to refuse treating family recognition alone as evaluation skill.",
     "educational_intent": "Produce a cognitive move from 'I can place the family' to 'I can evaluate a probability or quantile for that family with an honest method warrant.'",
     "learning_objective": "Evaluate probabilities and quantiles associated with the basic univariate distributions already placed (by calculation or using statistical software as appropriate).",
     "concept_focus": "Named family → probability or quantile question → method (tables/software/calculation) → refuse recognition-as-evaluation theatre.",
-    "prior_bridge": "Campaign Beta ended after continuous family placement (2.1.2) and Revision. Today continues topic 2.1 at LO 2.1.3 — evaluation — not a new chapter leap.",
-    "why_now": "With families placed, evaluate probabilities and quantiles next \u2014 by hand or software \u2014 before Poisson processes and generation.",
-    "expected_benefit": "Study Progress for probability/quantile evaluation — not Topic Complete for 2.1.4–2.1.6.",
+    "prior_bridge": "Campaign Beta ended after continuous family placement (2.1.2) and Revision. Today continues topic 2.1 at LO 2.1.3 (evaluation) not a new chapter leap.",
+    "why_now": "With families placed, evaluate probabilities and quantiles next (by hand or software) before Poisson processes and generation.",
+    "expected_benefit": "Study Progress for probability/quantile evaluation. Not Topic Complete for 2.1.4–2.1.6.",
     "explainability": "Assigned as Campaign Gamma Day 1 because CE-001 / EP-001 Continuity Front names 2.1.3 as the handoff from Beta.",
     "success_criteria": [
       "Closed-book, state what a probability evaluation vs a quantile evaluation asks for a named continuous or discrete family.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1004-cs1-2.1-prob-quantiles",
-    "session_educational_purpose": "Execute today's Mission: probability and quantile evaluation for placed families — not Poisson process or generation methods.",
+    "session_educational_purpose": "Execute today's Mission: probability and quantile evaluation for placed families. Not Poisson process or generation methods.",
     "session_tutor_purpose": "Set focus on evaluation prompts, exit to CMP 2.1.3, retrieve evaluate–warrant–refuse-recognition-theatre.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Evaluate probabilities and quantiles. You practised selective CMP reading on Syllabus 2.1.3. This is Study Progress for today's block — not Topic Complete for Poisson process (2.1.4) or generation (2.1.5–2.1.6).",
+    "wrap_up": "Session complete for Evaluate probabilities and quantiles. You practised selective CMP reading on Syllabus 2.1.3. This is Study Progress for today's block. Not Topic Complete for Poisson process (2.1.4) or generation (2.1.5–2.1.6).",
     "confidence_prompt": "How confident are you that you could evaluate one probability and one quantile for a named family closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map — calculation or software as appropriate. Stop before Poisson process and generation methods.",
+    "lead_line": "Purpose of this reading: use the CMP to extract how to evaluate probabilities and quantiles for the univariate families already on your map (calculation or software as appropriate. Stop before Poisson process and generation methods)",
     "focus_questions": [
       "What does a probability evaluation ask versus a quantile evaluation?",
       "When does the CMP point you to software versus hand calculation?",
@@ -94,12 +94,12 @@
     ],
     "annotation_task": "Before deep reading: write one P-prompt and one quantile-prompt for a family you already placed",
     "attempt_before_reveal": "At the first worked evaluation, cover the answer and choose method first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.3 — probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions today. Stop when the 2.1.3 block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.3: probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Poisson process, generation methods, and joint distributions today. Stop when the 2.1.3 block is complete. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP 2.1.3 block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write one line: A quantile asks for…",
+        "cue": "Pause. Write one line: A quantile asks for…",
         "student_action": "Annotate"
       },
       {
@@ -135,7 +135,7 @@
         "cdf"
       ],
       "explanation": "Evaluation skill starts by discriminating the question type and method class.",
-      "model_answer": "Example: Probability — find P(X ≤ 2) for X ~ Exp(λ). Quantile — find x such that P(X ≤ x) = 0.95. Method — software CDF/quantile functions or calculation/tables as the CMP allows.",
+      "model_answer": "Example: Probability: find P(X ≤ 2) for X ~ Exp(λ). Quantile. Find x such that P(X ≤ x) = 0.95. Method (software CDF/quantile functions or calculation/tables as the CMP allows)",
       "common_mistake": "Restating the family name without posing an evaluation question.",
       "success_criteria": [
         "Distinct probability and quantile prompts stated.",
@@ -176,10 +176,10 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest evaluation wobble — distinct from family placement stems.",
-    "prompt": "Which part is stickiest — posing P vs quantile questions, choosing method, or refusing recognition theatre — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one evaluation move would you rework?",
+    "framing": "Harvest evaluation wobble. Distinct from family placement stems.",
+    "prompt": "Which part is stickiest (posing P vs quantile questions, choosing method, or refusing recognition theatre) and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one evaluation move would you rework?",
     "prompts": [
-      "Which part is stickiest — P vs quantile posing, method choice, or refusing recognition theatre — and why?",
+      "Which part is stickiest (P vs quantile posing, method choice, or refusing recognition theatre) and why?",
       "Quote or paraphrase the single CMP cue still unclear.",
       "If you had five minutes tomorrow, what one evaluation move would you rework?"
     ]
@@ -187,8 +187,9 @@
   "tomorrow_preview": {
     "next_topic_code": "2.1",
     "next_topic_title": "Poisson process and the Poisson distribution (2.1.4)",
-    "continuity_line": "Today you evaluated probabilities and quantiles for placed families; tomorrow continues 2.1 at the Poisson process and its link to the Poisson distribution — not generation methods yet.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.4 — titles only tonight",
-    "student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings — titles only tonight."
-  }
+    "continuity_line": "Today you evaluated probabilities and quantiles for placed families; tomorrow continues 2.1 at the Poisson process and its link to the Poisson distribution. Not generation methods yet.",
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.4. Titles only tonight",
+    "student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-01"
 }

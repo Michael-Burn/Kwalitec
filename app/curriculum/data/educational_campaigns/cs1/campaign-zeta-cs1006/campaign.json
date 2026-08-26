@@ -1,11 +1,11 @@
 {
   "campaign_id": "CS1-EP001-CAMPAIGN-ZETA",
   "campaign_version": "cs1006-1.0.0",
-  "display_title": "Campaign Zeta \u2014 Expectations and conditional expectations (2.3)",
+  "display_title": "Campaign Zeta: Expectations and conditional expectations (2.3)",
   "subject_id": "CS1",
   "package_version_pin": "IFoA CS1 2026",
   "scope_class": "Pilot Arc",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "status": "released",
   "volume_id": "CS1-006",
   "prior_volume_id": "CS1-005",

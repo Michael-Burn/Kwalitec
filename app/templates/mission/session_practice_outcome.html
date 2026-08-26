@@ -97,7 +97,7 @@
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="skip_practice" value="1">
                 <button type="submit" class="btn btn-outline-secondary w-100">
-                    I didn't practise today — close session without practice results
+                    I didn't practise today: close session without practice results
                 </button>
             </form>
             <a class="btn btn-outline-secondary w-100" href="{{ url_for('mission.study_session', mission_id=mission.id) }}">

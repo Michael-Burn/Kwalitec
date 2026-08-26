@@ -78,23 +78,23 @@
                         </div>
                     </div>
                     {# PX-002A T2 trust: build/environment/commit/user-id metadata
-                       moved behind a disclosure — students should never feel
+                       moved behind a disclosure: students should never feel
                        they are using developer software by default. #}
                     <details class="settings-diagnostics mt-3">
                         <summary class="text-muted small">Build information for support</summary>
-                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks — they are not part of studying.</p>
+                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks. They are not part of studying.</p>
                         <div class="row g-3 mt-2">
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Build date</label>
-                                <span class="fw-medium">{{ release_info.build_date if release_info else '—' }}</span>
+                                <span class="fw-medium">{{ release_info.build_date if release_info else '–' }}</span>
                             </div>
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Environment</label>
-                                <span class="fw-medium">{{ release_info.environment if release_info else '—' }}</span>
+                                <span class="fw-medium">{{ release_info.environment if release_info else '–' }}</span>
                             </div>
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Build number</label>
-                                <span class="fw-medium">{{ release_info.build_number if release_info else '—' }}</span>
+                                <span class="fw-medium">{{ release_info.build_number if release_info else '–' }}</span>
                             </div>
                             {% if release_info and release_info.commit %}
                             <div class="col-sm-6">
@@ -149,7 +149,7 @@
                 <div class="settings-section" style="margin-bottom: 0;">
                     <h2 class="settings-section-title student-panel-title">Research Journey</h2>
                     <p class="text-muted small mb-3">
-                        Personal progress for helping improve Kwalitec — not a competition.
+                        Personal progress for helping improve Kwalitec. Not a competition.
                     </p>
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -338,7 +338,7 @@
         <div class="student-panel student-panel--quiet">
                 <div class="settings-section" style="margin-bottom: 0;">
                     <h2 class="settings-section-title student-panel-title">Account Status</h2>
-                    <p class="text-muted small mb-3">Informational only — these values do not change your study recommendations.</p>
+                    <p class="text-muted small mb-3">Informational only. These values do not change your study recommendations.</p>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label class="text-muted small d-block">Current curriculum</label>
@@ -350,7 +350,7 @@
                         </div>
                         <div class="col-sm-6">
                             {# B10 (PX-003): "Learning profile status" named an internal
-                               engine-state field directly — renamed to the
+                               engine-state field directly: renamed to the
                                student-meaningful concept it actually reflects. #}
                             <label class="text-muted small d-block">Personalised recommendations</label>
                             <span class="fw-medium">{{ alpha_status.twin_status }}</span>
@@ -358,12 +358,12 @@
                     </div>
                     {# PX-002A T2 trust: raw build/version metadata behind a disclosure.
                        B10 (PX-003): the internal build-track fields ("Internal Alpha
-                       version" / "enablement") joined this disclosure too — they name
+                       version" / "enablement") joined this disclosure too. They name
                        an internal rollout mechanism, not a student concept, and were
                        previously left outside it on this tab alone. #}
                     <details class="settings-diagnostics mt-3">
                         <summary class="text-muted small">Build information for support</summary>
-                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks — they are not part of studying.</p>
+                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks. They are not part of studying.</p>
                         <div class="row g-3 mt-2">
                             <div class="col-sm-6">
                                 <label class="text-muted small d-block">Build number</label>

@@ -265,7 +265,7 @@ def _personalise_row(row: dict[str, Any], attributes: dict[str, Any]) -> None:
             minutes_i = 0
         if minutes_i > 0:
             guidance = (
-                f"Aim for about {minutes_i} minutes — your declared preferred "
+                f"Aim for about {minutes_i} minutes. Your declared preferred "
                 f"session length."
             )
             row["session_sizing_guidance"] = guidance
@@ -333,7 +333,7 @@ def _apply_cadence(
         effect="cadence_reduce_secondary_tips",
         detail=(
             "Frequent tip dismissals reduce how many secondary tips are shown "
-            "(preference history — not a mastery judgement)."
+            "(preference history. Not a mastery judgement)."
         ),
     )
     omit_strength = _factor(
@@ -342,7 +342,7 @@ def _apply_cadence(
         effect="cadence_omit_motivation_tip",
         detail=(
             "Frequent tip dismissals reduce secondary motivation tips "
-            "(preference history — not a mastery judgement)."
+            "(preference history. Not a mastery judgement)."
         ),
     )
 

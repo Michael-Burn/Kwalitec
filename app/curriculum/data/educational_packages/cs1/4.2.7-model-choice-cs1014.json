@@ -36,7 +36,7 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-model-choice",
     "display_title": "Choose a GLM using analysis of deviance",
-    "mission_purpose": "Today's Mission exists to choose a suitable model using analysis of deviance and examination of parameter significance — without pretending Pearson/deviance residuals (4.2.8) are finished.",
+    "mission_purpose": "Today's Mission exists to choose a suitable model using analysis of deviance and examination of parameter significance. Without pretending Pearson/deviance residuals (4.2.8) are finished.",
     "tutor_intent": "Today I will force nested comparison via analysis of deviance and refuse treating residual plots as today's LO.",
     "educational_intent": "Produce a cognitive move from deviance definition to lawful model-choice practice under CMP.",
     "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1014-cs1-4.2-model-choice",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.7 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.7. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.2.7, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Choose a GLM using analysis of deviance. You practised selective CMP reading on Syllabus 4.2.7. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Choose a GLM using analysis of deviance. You practised selective CMP reading on Syllabus 4.2.7. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.7 — choose a glm using analysis of deviance. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.7: choose a glm using analysis of deviance. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.2.7?",
       "What warrant separates today's skill from yesterday's?",
@@ -94,13 +94,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.7.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.7.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -169,7 +169,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest model-choice wobble — keep residual diagnostics out of tonight.",
+    "framing": "Harvest model-choice wobble. Keep residual diagnostics out of tonight.",
     "prompt": "Which part of today's 4.2.7 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.7 is stickiest and why?",
@@ -181,8 +181,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Pearson and deviance residuals (4.2.8)",
     "continuity_line": "Today you practised analysis-of-deviance model choice; tomorrow continues 4.2 at Pearson and deviance residuals.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.8 — titles only tonight",
-    "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.8. Titles only tonight",
+    "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",

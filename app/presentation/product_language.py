@@ -81,7 +81,7 @@ HOME_SENSEI_NAMING_POLICY: str = (
 
 # EGC-R09 / OQ-05 — Revision supports Mission; never a second Mission.
 REVISION_MISSION_PRIMACY_SENTENCE: str = (
-    "Revision supports today's Mission — it is not a second Mission. "
+    "Revision supports today's Mission; it is not a second Mission. "
     "Use it to strengthen what Mission asked you to practice."
 )
 
@@ -102,7 +102,7 @@ REFLECTION_FAMILY_MAP_SENTENCE: str = (
     "Optional reflection in the Decision Journal helps the Study Sensei "
     "learn whether guidance was useful. "
     "The Educational Timeline asks deeper questions about your learning story. "
-    "Product Check-in is feedback for the product team — not educational reflection."
+    "Product Check-in is feedback for the product team, not educational reflection."
 )
 
 # DG-001.2-D06 / EGC-R06 — one coherent educational memory model.
@@ -110,7 +110,7 @@ EDUCATIONAL_MEMORY_MODEL_SENTENCE: str = (
     "The Decision Journal is Study Sensei’s durable educational memory of "
     "significant guidance, your choices, and what followed. "
     "The Educational Timeline is the chronological learning story drawn from "
-    "that Journal — not a second memory store and not a scoreboard. "
+    "that Journal, not a second memory store and not a scoreboard. "
     "History keeps practice archives and progress stats as context; "
     "educational meaning lives in the Journal and Timeline. "
     "After a Reflection, Session notes stay with the Session; optional Sensei "
@@ -118,8 +118,8 @@ EDUCATIONAL_MEMORY_MODEL_SENTENCE: str = (
 )
 
 HISTORY_EPISTEMOLOGY_BRIDGE: str = (
-    "History shows what you practiced — completed Sessions, study time, and "
-    "readiness trends. Those numbers orient you; they are not Study Sensei’s "
+    "History shows what you practiced (completed Sessions, study time, and "
+    "readiness trends). Those numbers orient you; they are not Study Sensei’s "
     "mentor narrative. What happened educationally, why it mattered, what was "
     "learned, and how that shapes future guidance live in the Decision Journal "
     "and Educational Timeline."

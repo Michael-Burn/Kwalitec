@@ -38,15 +38,15 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-link-canonical",
     "display_title": "Choose link and canonical link with warrant",
-    "mission_purpose": "Today's Mission exists to explain the link and canonical link for exponential-family responses — completing EA-006 structure absorb into Campaign membership — so Family → η → link is Campaign-certified, not Isolated Golden Day.",
-    "tutor_intent": "Today I will force link vs η discrimination and one canonical pairing with mean-range warrant — refuse software-default links.",
+    "mission_purpose": "Today's Mission exists to explain the link and canonical link for exponential-family responses (completing EA-006 structure absorb into Campaign membership) so Family → η → link is Campaign-certified, not Isolated Golden Day.",
+    "tutor_intent": "Today I will force link vs η discrimination and one canonical pairing with mean-range warrant. Refuse software-default links.",
     "educational_intent": "Complete GLM structure chain under Gate CG membership (absorb day 3/3).",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
     "concept_focus": "g(μ)=η → canonical pairing → refuse default-without-warrant.",
-    "prior_bridge": "Yesterday mean/variance (4.2.2). Today closes structure: link/canonical — absorbs EA-006 excellence into Delta.",
+    "prior_bridge": "Yesterday mean/variance (4.2.2). Today closes structure: link/canonical. Absorbs EA-006 excellence into Delta.",
     "why_now": "With family and moments in place, choose the link and canonical link that map the mean correctly.",
-    "expected_benefit": "Study Progress for link literacy — not full deviance/model choice yet.",
-    "explainability": "Campaign Delta Day 8 / absorb block day 3 — grandfather structure lands in Campaign.",
+    "expected_benefit": "Study Progress for link literacy. Not full deviance/model choice yet.",
+    "explainability": "Campaign Delta Day 8 / absorb block day 3. Grandfather structure lands in Campaign.",
     "success_criteria": [
       "Closed-book, distinguish link from linear predictor.",
       "Name one non-Normal family with canonical (or justified) link and mean-range warrant.",
@@ -64,13 +64,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-link-canonical",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.3 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.3. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.3; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Choose link and canonical link with warrant. Study Progress for LO 4.2.3 — not Topic Complete for later LOs in this Volume.",
+    "wrap_up": "Session complete for Choose link and canonical link with warrant. Study Progress for LO 4.2.3. Not Topic Complete for later LOs in this Volume.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.3 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1–4.2.2). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through first structural worked example with non-identity link / CMP 4.2.3 block. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.3 link and canonical link (structure centre with 4.2.1–4.2.2). Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through first structural worked example with non-identity link / CMP 4.2.3 block. Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.3-cp-01",
       "title": "Checkpoint: 4.2.3",
-      "prompt": "Name one non-Normal family and its canonical link. Justify from mean range — not software default.",
+      "prompt": "Name one non-Normal family and its canonical link. Justify from mean range. Not software default.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.3.",
       "hints": [
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest link/η wobble — structure absorb complete; factors next.",
+    "framing": "Harvest link/η wobble: structure absorb complete; factors next.",
     "prompt": "Which part of today's 4.2.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.3 is stickiest and why?",
@@ -184,9 +184,9 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Variables, factors and interaction terms (4.2.4)",
     "continuity_line": "Today you closed GLM structure (family → η → link); tomorrow continues at factors and interactions inside the linear predictor.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.4 — titles only tonight",
-    "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.4. Titles only tonight",
+    "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings. Titles only tonight."
   },
-  "absorption_note": "EA-006 structure absorb day 3/3 — grandfather excellence now Campaign member",
+  "absorption_note": "EA-006 structure absorb day 3/3. Grandfather excellence now Campaign member",
   "published_at": "2026-08-01"
 }

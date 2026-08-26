@@ -63,7 +63,7 @@ def compose_timeliness_line(
     cat = translate_to_student_language(category)
     if cat and exam_countdown_days is not None and exam_countdown_days >= 0:
         if exam_countdown_days == 0:
-            return f"{cat} priority — exam day."
+            return f"{cat} priority. Exam day."
         if exam_countdown_days == 1:
             return f"{cat} priority with 1 day to exam."
         return f"{cat} priority with {exam_countdown_days} days to exam."

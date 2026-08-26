@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -50,8 +50,8 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-cd-r2",
     "display_title": "Retrieve regression through GLM (4.1–4.2)",
-    "mission_purpose": "Today's Mission exists to protect memory of classical LM and the full GLM Learning span — including absorbed structure — before Bayesian foundations.",
-    "tutor_intent": "Today I will run closed-book retrieval across 4.1 and 4.2 hinges — not Bayes; not spine.",
+    "mission_purpose": "Today's Mission exists to protect memory of classical LM and the full GLM Learning span (including absorbed structure) before Bayesian foundations.",
+    "tutor_intent": "Today I will run closed-book retrieval across 4.1 and 4.2 hinges. Not Bayes; not spine.",
     "educational_intent": "Produce retrieval strength across Trust Front regression→GLM before 5.1.",
     "learning_objective": "Retrieve and connect 4.1 classical LM skills with GLM structure through fit/interpret (4.2.1–4.2.10).",
     "concept_focus": "LM → Family/η/link → deviance/choice/residuals/tests → fit/interpret.",
@@ -78,13 +78,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-cd-r2",
-    "session_educational_purpose": "Retrieve and connect Campaign return targets — not a new first-pass LO.",
-    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link — Gate RV substance.",
+    "session_educational_purpose": "Retrieve and connect Campaign return targets. Not a new first-pass LO.",
+    "session_tutor_purpose": "Keep CMP closed for checks; harvest weakest link. Gate RV substance.",
     "duration_budget_minutes": {
       "min": 40,
       "max": 55
     },
-    "wrap_up": "Revision Session complete (CD-R2). Revision Study Progress — not spine PASS; not until-exam trust.",
+    "wrap_up": "Revision Session complete (CD-R2). Revision Study Progress. Not spine PASS; not until-exam trust.",
     "confidence_prompt": "How confident are you that today's return targets will still retrieve in three days? Rate 1–5 and name the weakest link."
   },
   "reading_guidance": {
@@ -101,7 +101,7 @@
       "Watch for Isolated Golden Day / until-exam trust claims."
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval on the failed LO block.",
-    "stop_condition": "After revision checks and Reflection — do not begin out-of-scope first-pass LOs",
+    "stop_condition": "After revision checks and Reflection. Do not begin out-of-scope first-pass LOs",
     "out_of_scope_today": [
       "First-pass Bayesian Learning as Revision",
       "Spine PASS",
@@ -115,7 +115,7 @@
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — mark the weakest link before checks.",
+        "cue": "Pause. Mark the weakest link before checks.",
         "student_action": "Annotate"
       }
     ],
@@ -173,7 +173,7 @@
         "bayes"
       ],
       "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. canonical link warrant — rework. (2) Refuse Isolated Golden Day / spine. (3) Tomorrow 5.1.1.",
+      "model_answer": "(1) e.g. canonical link warrant. Rework. (2) Refuse Isolated Golden Day / spine. (3) Tomorrow 5.1.1.",
       "common_mistake": "Spine / until-exam claim.",
       "success_criteria": [
         "Rework named.",
@@ -183,7 +183,7 @@
   ],
   "reflection": {
     "framing": "Revision Reflection names the weakest Campaign link for spaced return.",
-    "prompt": "Which link retrieved least cleanly today — classical LM roles/forms/OLS/selection, or GLM family/link/fit/interpret — and what one concrete rework will you schedule? Do not claim Bayesian Topic 5.1 is finished.",
+    "prompt": "Which link retrieved least cleanly today (classical LM roles/forms/OLS/selection, or GLM family/link/fit/interpret) and what one concrete rework will you schedule? Do not claim Bayesian Topic 5.1 is finished.",
     "prompts": [
       "Which return target retrieved least cleanly?",
       "What one concrete rework will you schedule?",
@@ -194,7 +194,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Bayes' theorem and simple conditional probabilities (5.1.1)",
     "continuity_line": "Today you retrieved LM→GLM; tomorrow opens Bayesian foundations at Bayes' theorem (5.1.1).",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.1 — titles only tonight",
-    "student_facing": "Tomorrow: Bayes' theorem (5.1.1). Optional light prep: skim 5.1.1 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.1. Titles only tonight",
+    "student_facing": "Tomorrow: Bayes' theorem (5.1.1). Optional light prep: skim 5.1.1 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-01"
 }

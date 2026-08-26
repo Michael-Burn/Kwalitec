@@ -1,7 +1,7 @@
 {
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "campaign_version": "cs1003-1.0.0",
-  "display_title": "Campaign Delta — Mid-spine absorption (4.1 → 4.2 → 5.1)",
+  "display_title": "Campaign Delta: Mid-spine absorption (4.1 → 4.2 → 5.1)",
   "subject_id": "CS1",
   "package_version_pin": "IFoA CS1 2026",
   "scope_class": "Pilot Arc",
@@ -54,7 +54,7 @@
       "CD-D7",
       "CD-D8"
     ],
-    "policy": "EA-008 §7 — clear Missing* only after Gate CG + Approver + LIVE supersession"
+    "policy": "EA-008 §7: clear Missing* only after Gate CG + Approver + LIVE supersession"
   },
   "inventory": [
     "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",

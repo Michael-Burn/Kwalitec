@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -35,7 +35,7 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-bayes-vs-eb",
     "display_title": "Contrast Bayesian and Empirical Bayes assumptions",
-    "mission_purpose": "Today's Mission exists to understand differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each — closing 5.1 Learning before terminal Revision — without claiming first-pass spine or until-exam trust.",
+    "mission_purpose": "Today's Mission exists to understand differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each (closing 5.1 Learning before terminal Revision) without claiming first-pass spine or until-exam trust.",
     "tutor_intent": "Today I will force a two-column contrast of assumptions and refuse spine/exam claims.",
     "educational_intent": "Produce honest contrast competence; close Trust Front Learning.",
     "learning_objective": "Explain differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
@@ -61,13 +61,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-bayes-vs-eb",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.9 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.9. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.9; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Contrast Bayesian and Empirical Bayes assumptions. Study Progress for LO 5.1.9 — not Topic Complete for later LOs in this Volume.",
+    "wrap_up": "Session complete for Contrast Bayesian and Empirical Bayes assumptions. Study Progress for LO 5.1.9. Not Topic Complete for later LOs in this Volume.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
@@ -93,12 +93,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.9 (stop before terminal Revision as Learning; no spine claim). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.9 (stop before terminal Revision as Learning; no spine claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -159,7 +159,7 @@
         "assumptions"
       ],
       "explanation": "Checkpoint for 5.1.9.",
-      "model_answer": "(1) Bayesian treats structural/prior parameters as specified within a prior model (belief/structure you bring); Empirical Bayes estimates those structural parameters from the observed collective data — so EB claims about structure are data-estimated, not prior-specified. (2) Refuse: they differ in how structural knowledge enters; a contrast does not make foundations exam-ready or replace the separate calculation LOs across Topic 5.1.",
+      "model_answer": "(1) Bayesian treats structural/prior parameters as specified within a prior model (belief/structure you bring); Empirical Bayes estimates those structural parameters from the observed collective data. So EB claims about structure are data-estimated, not prior-specified. (2) Refuse: they differ in how structural knowledge enters; a contrast does not make foundations exam-ready or replace the separate calculation LOs across Topic 5.1.",
       "common_mistake": "Equating Bayes and EB as the same method, or treating a contrast as exam-ready mastery of Topic 5.1.",
       "success_criteria": [
         "Refusal present.",
@@ -168,7 +168,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest contrast wobble — CD-R3 tomorrow protects mid-spine memory.",
+    "framing": "Harvest contrast wobble: CD-R3 tomorrow protects mid-spine memory.",
     "prompt": "Which part of today's 5.1.9 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.9 is stickiest and why?",
@@ -178,9 +178,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CD-R3",
-    "next_topic_title": "Revision — retrieve mid-spine 4.1→4.2→5.1",
-    "continuity_line": "Today you closed Bayes vs EB contrast; tomorrow is terminal Revision returning to 4.1–5.1 under closed-book retrieval — honest stop after, not spine declaration.",
-    "light_prep_cue": "Optional: note weakest mid-spine link (4.1 / 4.2 / 5.1) — titles only",
-    "student_facing": "Tomorrow: Campaign Delta Revision CD-R3 — retrieve mid-spine 4.1→4.2→5.1. Optional: note your weakest mid-spine link tonight."
-  }
+    "next_topic_title": "Revision: retrieve mid-spine 4.1→4.2→5.1",
+    "continuity_line": "Today you closed Bayes vs EB contrast; tomorrow is terminal Revision returning to 4.1–5.1 under closed-book retrieval. Honest stop after, not spine declaration.",
+    "light_prep_cue": "Optional: note weakest mid-spine link (4.1 / 4.2 / 5.1). Titles only",
+    "student_facing": "Tomorrow: Campaign Delta Revision CD-R3. Retrieve mid-spine 4.1→4.2→5.1. Optional: note your weakest mid-spine link tonight."
+  },
+  "published_at": "2026-08-01"
 }

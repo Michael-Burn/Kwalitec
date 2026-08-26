@@ -155,7 +155,7 @@ def page_from_delivery(delivery: AssessmentDeliveryDTO) -> AssessmentPageViewMod
         purpose_explanation=delivery.purpose_explanation,
         after_completion=(
             "After you finish, Kwalitec uses what you shared to support "
-            "your learning — not to grade you."
+            "your learning. Not to grade you."
         ),
         question=question_vm,
         observation_count=delivery.observation_count,

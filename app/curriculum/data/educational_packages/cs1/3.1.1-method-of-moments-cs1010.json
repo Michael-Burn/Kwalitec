@@ -37,13 +37,13 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-method-of-moments",
     "display_title": "Construct estimators by the method of moments",
-    "mission_purpose": "Today's Mission exists to construct estimators of population parameters by the method of moments — so the MoM move is usable — without pretending maximum likelihood (3.1.2) is finished.",
-    "tutor_intent": "Today I will force the candidate to equate sample moments to population moments and solve for the parameter — and refuse treating 'I wrote an estimator' as having the MoM LO.",
+    "mission_purpose": "Today's Mission exists to construct estimators of population parameters by the method of moments (so the MoM move is usable) without pretending maximum likelihood (3.1.2) is finished.",
+    "tutor_intent": "Today I will force the candidate to equate sample moments to population moments and solve for the parameter. And refuse treating 'I wrote an estimator' as having the MoM LO.",
     "educational_intent": "Produce a cognitive move from population moments to a method-of-moments estimator under CMP language.",
     "learning_objective": "Method of moments for constructing estimators of population parameters.",
     "concept_focus": "Population moments → sample moments → solve for parameter → refuse MLE-as-done.",
-    "prior_bridge": "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens topic 3.1 at LO 3.1.1 — the named Continuity Front after CS1-009.",
-    "why_now": "Estimators start with method of moments — match sample moments to population ones before maximum likelihood.",
+    "prior_bridge": "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens topic 3.1 at LO 3.1.1. The named Continuity Front after CS1-009.",
+    "why_now": "Estimators start with method of moments. Match sample moments to population ones before maximum likelihood.",
     "expected_benefit": "You will be able to construct a method-of-moments estimator by equating sample moments to population moments and solving.",
     "explainability": "Assigned as Campaign Kappa Day 1 because CE-001 / EP-001 Continuity Front names 3.1 as the handoff from Iota.",
     "success_criteria": [
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-method-of-moments",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.1 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.1. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct estimators by the method of moments. You practised selective CMP reading on Syllabus 3.1.1. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Construct estimators by the method of moments. You practised selective CMP reading on Syllabus 3.1.1. This is Study Progress for today's block. Not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.1 — construct estimators by the method of moments. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.1: construct estimators by the method of moments. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.1 method of moments. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.1 method of moments. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before maximum likelihood 3.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -175,7 +175,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest MoM algebra wobble — keep MLE out of tonight's claim.",
+    "framing": "Harvest MoM algebra wobble. Keep MLE out of tonight's claim.",
     "prompt": "Which part of today's 3.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.1 is stickiest and why?",
@@ -187,8 +187,8 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Maximum likelihood estimators (3.1.2)",
     "continuity_line": "Today you constructed estimators by method of moments; tomorrow continues 3.1 at maximum likelihood.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.2 — titles only tonight",
-    "student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.2. Titles only tonight",
+    "student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

@@ -1,14 +1,14 @@
 {
   "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
   "package_version": "cs1002-campaign-beta-1.0.0",
-  "publication_version": "cs1002-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1002-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
   "campaign_day": "CB-R1",
   "volume_id": "CS1-002",
   "subject_id": "CS1",
   "topic_code": "CB-R1",
-  "topic_title": "Campaign Beta revision — PCA to distributional entry",
+  "topic_title": "Campaign Beta revision: PCA to distributional entry",
   "return_targets": [
     "1.2.2",
     "1.2.3",
@@ -35,18 +35,18 @@
     "EC001_CMP_PARTNERSHIP_AUDIT.md"
   ],
   "author_id": "cs1002-educational-author",
-  "published_at": null,
+  "published_at": "2026-08-01",
   "mission": {
     "mission_id": "msn-cs1002-cs1-cb-r1-pca-distributions",
     "display_title": "Retrieve PCA and distributional entry",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Beta — retrieving PCA purpose and limits, discrete situation→family matching, continuous placement with Normal refusal — and one Alpha association hinge — so the opening-spine continuation does not evaporate before deeper 2.1 work.",
-    "tutor_intent": "Today I will run closed-book retrieval across Beta's three Learning hinges plus one Alpha association return, not a re-read of CMP chapters — so revision is assessable return, not empty 'review yesterday' theatre.",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Beta. Retrieving PCA purpose and limits, discrete situation→family matching, continuous placement with Normal refusal. And one Alpha association hinge. So the opening-spine continuation does not evaporate before deeper 2.1 work.",
+    "tutor_intent": "Today I will run closed-book retrieval across Beta's three Learning hinges plus one Alpha association return, not a re-read of CMP chapters. So revision is assessable return, not empty 'review yesterday' theatre.",
     "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: PCA closure → discrete entry → continuous entry, with continuity to Alpha's association honesty.",
     "learning_objective": "Retrieve and connect (1) PCA purpose with one non-claim, (2) a discrete situation→family match, (3) a continuous placement with Normal refusal, and (4) one Alpha association measure choice with one non-claim.",
     "concept_focus": "Campaign chain retrieval: PCA limits → discrete families → continuous families; Alpha hinge: association honesty.",
-    "prior_bridge": "Yesterday you finished continuous family placement under 2.1.2. Today is Revision mode: return to Days 1–3 skills plus one Alpha 1.2.2 hinge under closed-book retrieval — no new first-pass LO.",
+    "prior_bridge": "Yesterday you finished continuous family placement under 2.1.2. Today is Revision mode: return to Days 1–3 skills plus one Alpha 1.2.2 hinge under closed-book retrieval. No new first-pass LO.",
     "why_now": "After PCA and distributional entry, spaced retrieval now protects that opening chain before more of Topic 2.1.",
-    "expected_benefit": "Evidence that Beta's chain and the Alpha association hinge still retrieve — revision Study Progress, not a claim that all of 2.1 is complete.",
+    "expected_benefit": "Evidence that Beta's chain and the Alpha association hinge still retrieve. Revision Study Progress, not a claim that all of 2.1 is complete.",
     "explainability": "Assigned as Campaign Beta Revision because Architecture §9.2 requires memory return inside the Pilot Arc; return targets include prior Volume hinge 1.2.2 for series continuity.",
     "success_criteria": [
       "Closed-book, restate PCA purpose and one refused overclaim.",
@@ -66,13 +66,13 @@
   },
   "session": {
     "session_id": "ssn-cs1002-cs1-cb-r1-pca-distributions",
-    "session_educational_purpose": "This Revision Session exists to retrieve and connect Campaign Beta skills (and one Alpha hinge) under closed-book conditions — not to teach 2.1.3 probability evaluation or open joint distributions.",
-    "session_tutor_purpose": "In this sitting I will keep the CMP closed for checks, run retrieval across PCA / discrete / continuous / Alpha association, and harvest the weakest link — Gate RV substance, not chrome.",
+    "session_educational_purpose": "This Revision Session exists to retrieve and connect Campaign Beta skills (and one Alpha hinge) under closed-book conditions. Not to teach 2.1.3 probability evaluation or open joint distributions.",
+    "session_tutor_purpose": "In this sitting I will keep the CMP closed for checks, run retrieval across PCA / discrete / continuous / Alpha association, and harvest the weakest link. Gate RV substance, not chrome.",
     "duration_budget_minutes": {
       "min": 40,
       "max": 55
     },
-    "wrap_up": "Revision Session complete for Retrieve PCA and distributional entry. You stress-tested Campaign Beta return targets (1.2.3 PCA, 2.1.1 discrete, 2.1.2 continuous) plus Alpha hinge 1.2.2. This is revision Study Progress — not Topic Complete for 2.1.3–2.1.6, and not mid-spine absorption of 4.2.",
+    "wrap_up": "Revision Session complete for Retrieve PCA and distributional entry. You stress-tested Campaign Beta return targets (1.2.3 PCA, 2.1.1 discrete, 2.1.2 continuous) plus Alpha hinge 1.2.2. This is revision Study Progress. Not Topic Complete for 2.1.3–2.1.6, and not mid-spine absorption of 4.2.",
     "confidence_prompt": "How confident are you that the PCA → discrete → continuous chain (plus association honesty) will still retrieve in three days? Rate 1–5 and name the weakest link as your warrant."
   },
   "reading_guidance": {
@@ -89,7 +89,7 @@
       "Watch for dropping the Alpha association hinge because 'that was last Volume.'"
     ],
     "open_point": "No new CMP open required to begin. Targeted re-open only after failed retrieval: Day 1 PCA block, Day 2 2.1.1 block, Day 3 2.1.2 block, or Alpha 1.2.2 association block as needed.",
-    "stop_condition": "After the revision checks and Reflection — do not begin Syllabus 2.1.3 or 2.2 in this sitting",
+    "stop_condition": "After the revision checks and Reflection. Do not begin Syllabus 2.1.3 or 2.2 in this sitting",
     "out_of_scope_today": [
       "First-pass probability/quantile evaluation (2.1.3)",
       "Poisson process / generation methods (2.1.4–2.1.6)",
@@ -99,10 +99,10 @@
     ],
     "annotation_task": "Before checks: sketch PCA → discrete → continuous (+ association hinge) from memory",
     "attempt_before_reveal": "All revision checks are attempt-first; CMP re-open only after a failed item",
-    "exit_line": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval — not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 PCA / Day 2 2.1.1 / Day 3 2.1.2 locus for that item, then close again. Do not begin Syllabus 2.1.3 or 2.2 in this sitting. Immediate next activity after this guidance: revision Knowledge Checks (retrieval).",
+    "exit_line": "Keep the CMP closed to begin. Kwalitec directs revision; the CMP is reopened only as a targeted instrument after a failed retrieval. Not as a fresh chapter read and not as a substitute for the checks. Sketch the Campaign chain from memory, then begin the revision Knowledge Checks. If a check fails, reopen only Day 1 PCA / Day 2 2.1.1 / Day 3 2.1.2 locus for that item, then close again. Do not begin Syllabus 2.1.3 or 2.2 in this sitting. Immediate next activity after this guidance: revision Knowledge Checks (retrieval).",
     "return_cue": "You are finished with the reading-guidance stage when you have kept the CMP closed and are ready to start revision checks. Immediate next activity: revision Knowledge Checks. Return to the CMP only if a specific check fails, at that item's locus only.",
     "pause_points": [],
-    "reentry_line": "If you reopened the CMP for one failed item, close it again. Immediate next activity: continue revision Knowledge Checks — do not restart Chapters 1–2."
+    "reentry_line": "If you reopened the CMP for one failed item, close it again. Immediate next activity: continue revision Knowledge Checks. Do not restart Chapters 1–2."
   },
   "knowledge_checks": [
     {
@@ -156,7 +156,7 @@
         "poisson"
       ],
       "explanation": "Revision must reconnect situation to discrete family.",
-      "model_answer": "Binomial — fixed number of independent trials with constant success probability. Mis-match: hypergeometric if sampling were without replacement from a finite lot.",
+      "model_answer": "Binomial: fixed number of independent trials with constant success probability. Mis-match: hypergeometric if sampling were without replacement from a finite lot.",
       "common_mistake": "Poisson-by-habit for fixed-trial binary outcomes.",
       "success_criteria": [
         "Binomial with warrant.",
@@ -185,7 +185,7 @@
         "positive"
       ],
       "explanation": "Revision must keep continuous placement honest.",
-      "model_answer": "Exponential — continuous waiting time with memoryless/constant hazard story. Refuse Normal-by-default because waiting times are positive and the Normal support/shape story mismatches.",
+      "model_answer": "Exponential: continuous waiting time with memoryless/constant hazard story. Refuse Normal-by-default because waiting times are positive and the Normal support/shape story mismatches.",
       "common_mistake": "Normal default; gamma without warrant when exponential is the direct story.",
       "success_criteria": [
         "Exponential with waiting warrant.",
@@ -199,7 +199,7 @@
       "title": "Revision Checkpoint: Alpha association hinge",
       "prompt": "Closed-book (prior Volume hinge). Skewed variables, outliers, monotone but nonlinear scatter. Choose Pearson, Spearman, or Kendall and justify. State one claim the coefficient does not support.",
       "response_type": "short_structured",
-      "body": "Return target: CS1-001 / Alpha Day 3 (1.2.2) — series continuity.",
+      "body": "Return target: CS1-001 / Alpha Day 3 (1.2.2). Series continuity.",
       "hints": [
         "Prefer rank-based; refuse causation."
       ],
@@ -222,19 +222,19 @@
     }
   ],
   "reflection": {
-    "framing": "Revision Reflection names the weakest Campaign / series link for future spaced return — not a chapter summary.",
-    "prompt": "Which link retrieved least cleanly today — PCA limits, discrete matching, continuous placement, or Alpha association honesty — and what one concrete rework will you schedule? Do not claim 2.1.3–2.1.6 complete.",
+    "framing": "Revision Reflection names the weakest Campaign / series link for future spaced return. Not a chapter summary.",
+    "prompt": "Which link retrieved least cleanly today (PCA limits, discrete matching, continuous placement, or Alpha association honesty) and what one concrete rework will you schedule? Do not claim 2.1.3–2.1.6 complete.",
     "prompts": [
-      "Which link retrieved least cleanly — PCA limits, discrete matching, continuous placement, or Alpha association honesty?",
+      "Which link retrieved least cleanly (PCA limits, discrete matching, continuous placement, or Alpha association honesty?)",
       "What one concrete rework will you schedule for that link?",
       "Confirm: 2.1.3–2.1.6 and joint distributions were out of scope today."
     ]
   },
   "tomorrow_preview": {
     "next_topic_code": "2.1",
-    "next_topic_title": "Evaluation of probabilities and quantiles (2.1.3) — successor Volume",
-    "continuity_line": "Campaign Beta / Volume CS1-002 completes after this Revision. The honest handoff is to a successor Volume continuing 2.1 at probability and quantile evaluation (2.1.3) and later generation LOs — not silently complete. Mid-spine 4.2 absorption remains CS1-003 work.",
-    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.3 probability and quantile evaluation — titles only, no deep study tonight",
-    "student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantile evaluation (2.1.3). Optional light prep: skim 2.1.3 headings — titles only tonight."
+    "next_topic_title": "Evaluation of probabilities and quantiles (2.1.3). Successor Volume",
+    "continuity_line": "Campaign Beta / Volume CS1-002 completes after this Revision. The honest handoff is to a successor Volume continuing 2.1 at probability and quantile evaluation (2.1.3) and later generation LOs. Not silently complete. Mid-spine 4.2 absorption remains CS1-003 work.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.3 probability and quantile evaluation (titles only, no deep study tonight)",
+    "student_facing": "Campaign Beta / CS1-002 complete after today. Next journey continues univariate distributions at probability and quantile evaluation (2.1.3). Optional light prep: skim 2.1.3 headings. Titles only tonight."
   }
 }

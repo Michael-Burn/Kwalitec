@@ -175,7 +175,7 @@ def compose_daily_mission(
     after = _first_nonempty(
         inp.completion_loop_line,
         inp.review_point,
-        "Mission complete — today's practice updates what we suggest next.",
+        "Mission complete: today's practice updates what we suggest next.",
     )
     confidence = _first_nonempty(
         inp.confidence_label,
@@ -184,7 +184,7 @@ def compose_daily_mission(
     uncertainty = _first_nonempty(
         inp.uncertainty,
         inp.confidence_basis if _looks_uncertain(inp.confidence_basis) else "",
-        "Some uncertainty remains — guidance stays provisional.",
+        "Some uncertainty remains: guidance stays provisional.",
     )
     explanation = _compose_explanation(
         purpose=purpose,
@@ -195,7 +195,7 @@ def compose_daily_mission(
     )
     skip = _first_nonempty(
         _skip_line(inp),
-        "If you skip today, the same educational need may remain — "
+        "If you skip today, the same educational need may remain. "
         "the Study Sensei will meet you when you return.",
     )
     reflection = _reflection_prompt(inp)
@@ -301,7 +301,7 @@ def _why_not_something_else(inp: DailyMissionEvidenceInput) -> str:
             "what we know today."
         )
     return (
-        "Other syllabus work can wait — this Mission is the clearest "
+        "Other syllabus work can wait. This Mission is the clearest "
         "educational priority for today."
     )
 
@@ -329,7 +329,7 @@ def _compose_explanation(
 def _skip_line(inp: DailyMissionEvidenceInput) -> str:
     if inp.prior_deferral_note.strip():
         return (
-            "You deferred related guidance before. Skipping again is honest — "
+            "You deferred related guidance before. Skipping again is honest. "
             "the educational need may still be waiting when you return."
         )
     return ""
@@ -338,10 +338,10 @@ def _skip_line(inp: DailyMissionEvidenceInput) -> str:
 def _reflection_prompt(inp: DailyMissionEvidenceInput) -> str:
     if inp.prior_deferral_note.strip():
         return (
-            "Was today's Mission appropriate — and should tomorrow be different?"
+            "Was today's Mission appropriate. And should tomorrow be different?"
         )
     return (
-        "Was this Mission the right focus today? What changed — "
+        "Was this Mission the right focus today? What changed. "
         "and should tomorrow be different?"
     )
 

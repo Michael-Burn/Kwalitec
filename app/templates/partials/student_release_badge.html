@@ -8,8 +8,8 @@
     {% endwith %}
 
   Variants:
-    compact (default) — "Private Beta"
-    full — "Private Beta · v{app_version}"
+    compact (default). "Private Beta"
+    full. "Private Beta · v{app_version}"
 #}
 {% set _variant = release_badge_variant|default('compact') %}
 {% set _label = student_release_label|default('Private Beta') %}

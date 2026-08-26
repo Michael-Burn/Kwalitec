@@ -28,7 +28,7 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
         "title": "What Kwalitec is",
         "body": (
             "Kwalitec helps you prepare for demanding exams with a clear "
-            "Study Plan, focused daily study, and progress you can trust — "
+            "Study Plan, focused daily study, and progress you can trust. "
             "built from verified curriculum and your recorded practice."
         ),
     },
@@ -45,7 +45,7 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
         "id": "focus",
         "title": "Today's Focus",
         "body": (
-            "Each day, Home shows Today's Focus — what to study now and why. "
+            "Each day, Home shows Today's Focus. What to study now and why. "
             "Start today's Session to practice, then see what changed and "
             "what comes next."
         ),
@@ -55,7 +55,7 @@ ONBOARDING_STEPS: tuple[dict[str, str], ...] = (
         "title": "Guidance you can understand",
         "body": (
             "Recommendations come from your syllabus structure, available time, "
-            "and study history — not a black box. When you expand “why”, you "
+            "and study history. Not a black box. When you expand “why”, you "
             "see the reasons behind the guidance."
         ),
     },

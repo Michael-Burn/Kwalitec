@@ -1,7 +1,7 @@
 {
   "package_version": "cs1004-campaign-gamma-1.0.0",
-  "publication_version": "cs1004-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1004-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
   "volume_id": "CS1-004",
   "subject_id": "CS1",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1004-cs1-2.1-inverse-transform",
     "display_title": "Generate RVs with the inverse transform method",
-    "mission_purpose": "Today's Mission exists to generate basic discrete and continuous random variables using the inverse transform method — so simulation rests on the Uniform→CDF inverse idea, without treating software black-box sampling as the whole LO.",
-    "tutor_intent": "Today I will force the candidate to state and apply inverse transform for at least one continuous and one discrete case at syllabus depth — and to refuse 'the software just samples' as a substitute for the method.",
+    "mission_purpose": "Today's Mission exists to generate basic discrete and continuous random variables using the inverse transform method. So simulation rests on the Uniform→CDF inverse idea, without treating software black-box sampling as the whole LO.",
+    "tutor_intent": "Today I will force the candidate to state and apply inverse transform for at least one continuous and one discrete case at syllabus depth. And to refuse 'the software just samples' as a substitute for the method.",
     "educational_intent": "Produce a cognitive move from 'distributions exist' to 'I can generate draws via inverse transform with a Uniform source.'",
     "learning_objective": "Generate basic discrete and continuous random variables using the inverse transform method.",
     "concept_focus": "U~Uniform(0,1) → invert CDF / use discrete inverse → generated draw; refuse black-box theatre.",
-    "prior_bridge": "Yesterday's Poisson process connection used families you already evaluate. Today applies generation method 2.1.5 — still topic 2.1.",
+    "prior_bridge": "Yesterday's Poisson process connection used families you already evaluate. Today applies generation method 2.1.5. Still topic 2.1.",
     "why_now": "Inverse transform is the syllabus method LO before software-generation practice (2.1.6).",
-    "expected_benefit": "Study Progress for inverse transform — not Topic Complete for 2.1.6 or 2.2.",
+    "expected_benefit": "Study Progress for inverse transform. Not Topic Complete for 2.1.6 or 2.2.",
     "explainability": "Assigned as Campaign Gamma Day 3 because 2.1.5 precedes software generation 2.1.6 in syllabus order.",
     "success_criteria": [
       "Closed-book, state the inverse transform idea with Uniform source.",
@@ -61,13 +61,13 @@
   },
   "session": {
     "session_id": "ssn-cs1004-cs1-2.1-inverse-transform",
-    "session_educational_purpose": "Execute today's Mission: inverse transform generation — not the software-generation LO as primary and not joint distributions.",
+    "session_educational_purpose": "Execute today's Mission: inverse transform generation. Not the software-generation LO as primary and not joint distributions.",
     "session_tutor_purpose": "Set focus on Uniform→inverse CDF, exit to CMP 2.1.5, retrieve steps–apply–refuse-black-box.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 80
     },
-    "wrap_up": "Session complete for Generate RVs with the inverse transform method. Study Progress for 2.1.5 — not Topic Complete for software generation (2.1.6) or joint distributions (2.2).",
+    "wrap_up": "Session complete for Generate RVs with the inverse transform method. Study Progress for 2.1.5. Not Topic Complete for software generation (2.1.6) or joint distributions (2.2).",
     "confidence_prompt": "How confident are you that you could outline inverse transform for one continuous and one discrete case tomorrow? Rate 1–5 with warrant."
   },
   "reading_guidance": {
@@ -93,12 +93,12 @@
     ],
     "annotation_task": "Before deep reading: write U ~ U(0,1) → X = F^{-1}(U) in your own words",
     "attempt_before_reveal": "At the first worked generation, cover the answer and list steps first",
-    "exit_line": "Open your CMP at Syllabus 2.1.5 — inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks.",
+    "exit_line": "Open your CMP at Syllabus 2.1.5: inverse transform generation. Kwalitec guides; CMP is authoritative. Hunt with focus questions. Stop when the 2.1.5 block is complete. Return for Worked-example re-entry, then Knowledge Checks.",
     "return_cue": "Finished Guided Reading when 2.1.5 block is complete and focus questions are answerable from notes. Close CMP; return for re-entry then Knowledge Checks.",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write the continuous inverse step in one line.",
+        "cue": "Pause. Write the continuous inverse step in one line.",
         "student_action": "Annotate"
       },
       {
@@ -160,7 +160,7 @@
         "method"
       ],
       "explanation": "2.1.5 is method competence; software alone does not satisfy the LO.",
-      "model_answer": "(1) Draw U~U(0,1); assign the discrete value whose CDF first exceeds U (inverse CDF / threshold rule). (2) Refuse: software sampling can implement the draw, but the LO requires understanding inverse transform — not only calling a black box.",
+      "model_answer": "(1) Draw U~U(0,1); assign the discrete value whose CDF first exceeds U (inverse CDF / threshold rule). (2) Refuse: software sampling can implement the draw, but the LO requires understanding inverse transform. Not only calling a black box.",
       "common_mistake": "Only saying 'use rbinom' without inverse idea.",
       "success_criteria": [
         "Discrete outline present.",
@@ -170,9 +170,9 @@
   ],
   "reflection": {
     "framing": "Harvest generation-method wobble.",
-    "prompt": "Which part is stickiest — Uniform source, continuous inverse, discrete inverse, or refusing black-box theatre? What CMP cue is unclear? What five-minute rework would help?",
+    "prompt": "Which part is stickiest. Uniform source, continuous inverse, discrete inverse, or refusing black-box theatre? What CMP cue is unclear? What five-minute rework would help?",
     "prompts": [
-      "Which part is stickiest — Uniform, continuous inverse, discrete inverse, or black-box refusal?",
+      "Which part is stickiest: Uniform, continuous inverse, discrete inverse, or black-box refusal?",
       "What CMP cue is unclear?",
       "What five-minute rework would help?"
     ]
@@ -180,8 +180,9 @@
   "tomorrow_preview": {
     "next_topic_code": "2.1",
     "next_topic_title": "Generation using statistical software (2.1.6)",
-    "continuity_line": "Today you practised inverse transform; tomorrow applies generation using statistical software for discrete and continuous RVs — still finishing 2.1, not opening 2.2.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.1.6 — titles only tonight",
-    "student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: skim 2.1.6 headings — titles only tonight."
-  }
+    "continuity_line": "Today you practised inverse transform; tomorrow applies generation using statistical software for discrete and continuous RVs. Still finishing 2.1, not opening 2.2.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.1.6. Titles only tonight",
+    "student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: skim 2.1.6 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-01"
 }

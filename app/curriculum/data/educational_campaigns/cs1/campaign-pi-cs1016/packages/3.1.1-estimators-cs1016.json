@@ -35,7 +35,7 @@
   "mission": {
     "mission_id": "msn-cs1016-cs1-3.1-estimators",
     "display_title": "Retrieve method-of-moments estimators (Memory Front)",
-    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.1.1 method-of-moments estimators under Memory Front discipline — without pretending CI-from-sample (3.2.1) is finished.",
+    "mission_purpose": "Today's Mission exists to retrieve Syllabus 3.1.1 method-of-moments estimators under Memory Front discipline. Without pretending CI-from-sample (3.2.1) is finished.",
     "tutor_intent": "Today I will force estimator retrieval and refuse 'Memory Front finished CIs / spine PASS'.",
     "educational_intent": "Produce Memory Front retrieval of method-of-moments estimators as inference entry.",
     "learning_objective": "Use the method of moments for constructing estimators of population parameters.",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1016-cs1-3.1-estimators",
-    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.1.1 — retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
+    "session_educational_purpose": "Execute today's Memory Front Mission for Syllabus 3.1.1: retrieval under spine re-audit discipline, not a new first-pass LO discovery claim.",
     "session_tutor_purpose": "Set focus on 3.1.1 retrieval, exit to CMP, retrieve today's hinge, refuse spine PASS / until-exam / Wave 0 clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Retrieve method-of-moments estimators (Memory Front). You practised selective CMP reading on Syllabus 3.1.1 under Memory Front discipline. This is Study Progress for today's hinge — not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
+    "wrap_up": "Session complete for Retrieve method-of-moments estimators (Memory Front). You practised selective CMP reading on Syllabus 3.1.1 under Memory Front discipline. This is Study Progress for today's hinge. Not first-pass spine PASS, until-exam trust, or Wave 0 Approver honesty clearance.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.1.1 — retrieve method-of-moments estimators (memory front) — under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.1.1 (retrieve method-of-moments estimators (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 3.1.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 3.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.1 method of moments estimators. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before CI-from-sample primary 3.2.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 3.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.1 method of moments estimators. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.1 (stop before CI-from-sample primary 3.2.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core retrieval move in one sentence.",
+        "cue": "Pause. Write today's core retrieval move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -159,7 +159,7 @@
         "estimator"
       ],
       "explanation": "Memory retrieval of MoM: equate moments and solve; keep MLE and CIs distinct.",
-      "model_answer": "(1) Equate E[X]=θ to x̄, so θ̂_MoM = x̄ = 5. (2) Refuse: MLE maximises the likelihood — different construction from MoM. An estimator is a point estimate of a parameter; a CI is an interval procedure for a parameter.",
+      "model_answer": "(1) Equate E[X]=θ to x̄, so θ̂_MoM = x̄ = 5. (2) Refuse: MLE maximises the likelihood. Different construction from MoM. An estimator is a point estimate of a parameter; a CI is an interval procedure for a parameter.",
       "common_mistake": "Collapsing MoM with MLE, or treating a point estimator as a confidence interval.",
       "success_criteria": [
         "States MoM estimator for the vignette.",
@@ -168,7 +168,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest estimator wobble — CI-from-sample continues Memory Front tomorrow.",
+    "framing": "Harvest estimator wobble: CI-from-sample continues Memory Front tomorrow.",
     "prompt": "Which part of today's 3.1.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.1 retrieval is stickiest and why?",
@@ -180,8 +180,8 @@
     "next_topic_code": "3.2",
     "next_topic_title": "Confidence interval from a random sample (3.2.1)",
     "continuity_line": "Today you retrieved 3.1.1; tomorrow continues Memory Front at 3.2.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.1 — titles only tonight",
-    "student_facing": "Tomorrow: CI-from-sample Memory Front hinge (3.2.1). Optional light prep: skim 3.2.1 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.1. Titles only tonight",
+    "student_facing": "Tomorrow: CI-from-sample Memory Front hinge (3.2.1). Optional light prep: skim 3.2.1 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CP-R1",

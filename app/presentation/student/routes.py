@@ -499,7 +499,7 @@ def decision_journal_reflect(entry_id: str):
             free_text=form.free_text.data or "",
         )
         flash(
-            "Reflection saved. Thank you — this helps us improve how we "
+            "Reflection saved. Thank you. This helps us improve how we "
             "guide your study.",
             "success",
         )
@@ -699,7 +699,7 @@ def complete_runtime_mission():
         )
     except MissionAlreadyCompleted:
         flash(
-            "That mission is already complete. Your progress is saved — "
+            "That mission is already complete. Your progress is saved. "
             "return tomorrow for the next topic, or open Journey to review.",
             "info",
         )
@@ -855,7 +855,7 @@ def start_session():
             flash(
                 "This topic does not yet have certified CMP guidance. "
                 "No session was started. Continue with your CMP for "
-                "unpublished material — your progress is saved.",
+                "unpublished material. Your progress is saved.",
                 "warning",
             )
         else:
@@ -884,14 +884,14 @@ def start_session():
     target_session_id = handle.session_id or session_id
     if target_session_id:
         flash(
-            f"Session ready — {topic}. Review today's objective, then begin.",
+            f"Session ready. {topic}. Review today's objective, then begin.",
             "success",
         )
         return redirect(
             url_for("session.overview", session_id=target_session_id)
         )
     flash(
-        f"Session started — {topic}. Continue from Home when you're ready.",
+        f"Session started. {topic}. Continue from Home when you're ready.",
         "success",
     )
     return redirect(url_for("student.home"))
@@ -941,7 +941,7 @@ def defer_commitment():
     except Exception:  # noqa: BLE001 — deferral preference must not hard-fail
         logger.exception("runtime_c_mission_defer_failed")
     flash(
-        "Your study plan continues — we'll meet you when you're ready.",
+        "Your study plan continues: we'll meet you when you're ready.",
         "info",
     )
     return redirect(url_for("student.home"))
@@ -1028,11 +1028,11 @@ def begin_revision():
     target_session_id = handle.session_id or session_id
     if target_session_id:
         flash(
-            f"Revision ready — {topic}. Review today's objective, then begin.",
+            f"Revision ready. {topic}. Review today's objective, then begin.",
             "success",
         )
         return redirect(
             url_for("session.overview", session_id=target_session_id)
         )
-    flash(f"Revision started — {topic}. Continue when you're ready.", "success")
+    flash(f"Revision started. {topic}. Continue when you're ready.", "success")
     return redirect(url_for("student.home"))

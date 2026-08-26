@@ -7,15 +7,15 @@ Aligned with knowledge/version2/PRODUCT_LANGUAGE_GUIDE.md.
 from __future__ import annotations
 
 FLASH_SUCCESS = {
-    "resumed": "Welcome back — continuing where you left off.",
-    "begun": "Session started. Stay focused — one activity at a time.",
+    "resumed": "Welcome back: continuing where you left off.",
+    "begun": "Session started. Stay focused. One activity at a time.",
     "paused": "Session paused. You can resume from Home whenever you're ready.",
     "answer_recorded": "Answer recorded. Review the feedback, then continue.",
     "activities_complete": (
-        "Activities complete — a short reflection closes today's practice."
+        "Activities complete. A short reflection closes today's practice."
     ),
     "ready_to_finish": (
-        "Ready to finish — tell us honestly how today's planned study went."
+        "Ready to finish: tell us honestly how today's planned study went."
     ),
     "reflection_recorded": (
         "Reflection saved. Confirm how today's planned study went."
@@ -41,11 +41,11 @@ FLASH_WARNING = {
     "pause_failed": "We couldn't pause this session. Please try again.",
     "resume_failed": "We couldn't resume this session. Please try again.",
     "continue_contention": (
-        "Your session is still open. Wait a moment, then try Continue again — "
+        "Your session is still open. Wait a moment, then try Continue again. "
         "this is a temporary hiccup, not a study failure."
     ),
     "continue_retry": (
-        "We couldn't open your session just now. Your progress is safe — "
+        "We couldn't open your session just now. Your progress is safe. "
         "return to Home and tap Continue when you're ready."
     ),
     "answer_required": "Please enter an answer before continuing.",

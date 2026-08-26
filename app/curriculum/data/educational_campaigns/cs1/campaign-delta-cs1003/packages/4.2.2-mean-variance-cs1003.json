@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -37,11 +37,11 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-mean-variance",
     "display_title": "Evaluate mean, variance, variance function and scale",
-    "mission_purpose": "Today's Mission exists to evaluate mean, variance, variance function and scale parameter language for GLM exponential-family responses \u2014 continuing EA-006 absorb \u2014 so variance structure is distributional, not decorative.",
+    "mission_purpose": "Today's Mission exists to evaluate mean, variance, variance function and scale parameter language for GLM exponential-family responses (continuing EA-006 absorb) so variance structure is distributional, not decorative.",
     "tutor_intent": "Today I will force mean/variance/scale statements for at least two families and refuse variance-as-optional.",
     "educational_intent": "Produce variance-function literacy for GLM families.",
     "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
-    "concept_focus": "Family \u2192 E(Y) \u2192 Var(Y) \u2192 variance function V(\u03bc) \u2192 scale parameter.",
+    "concept_focus": "Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
     "prior_bridge": "Yesterday you placed exponential-family responses (4.2.1). Today evaluates mean/variance language.",
     "why_now": "4.2.2 is contiguous absorb day 2/3 before link (4.2.3).",
     "expected_benefit": "You will be able to state mean, variance, variance function and scale for the standard GLM families.",
@@ -63,14 +63,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-mean-variance",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.2 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.2. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.2; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Evaluate mean, variance, variance function and scale. Study Progress for LO 4.2.2 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.2 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Evaluate mean, variance, variance function and scale. Study Progress for LO 4.2.2. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.2 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.2 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -85,7 +85,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function, scale",
+    "open_point": "CMP · Syllabus 4.2.2 mean, variance, variance function, scale",
     "stop_condition": "Through CMP 4.2.2 (stop before link primary 4.2.3)",
     "out_of_scope_today": [
       "Link primary (4.2.3)",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function, scale. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.2 (stop before link primary 4.2.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.2 mean, variance, variance function, scale. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.2 (stop before link primary 4.2.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -131,10 +131,10 @@
         "variance",
         "scale",
         "mu",
-        "\u03bb"
+        "λ"
       ],
       "explanation": "Active recall for 4.2.2.",
-      "model_answer": "Poisson: mean \u03bc, variance \u03bc (scale often 1). Normal: mean \u03bc, variance \u03c3\u00b2 (scale/dispersion).",
+      "model_answer": "Poisson: mean μ, variance μ (scale often 1). Normal: mean μ, variance σ² (scale/dispersion).",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.2-cp-01",
       "title": "Checkpoint: 4.2.2",
-      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(\u03bc) for each. (2) Refuse: 'Variance does not matter once I pick a family' and 'choosing the logit link finishes stating mean, variance, variance function and scale.'",
+      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(μ) for each. (2) Refuse: 'Variance does not matter once I pick a family' and 'choosing the logit link finishes stating mean, variance, variance function and scale.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.2.",
       "hints": [
@@ -162,7 +162,7 @@
         "not optional"
       ],
       "explanation": "Checkpoint for 4.2.2.",
-      "model_answer": "(1) Poisson: E[Y]=\u03bc, Var[Y]=\u03bc, V(\u03bc)=\u03bc (scale typically 1). Normal: E[Y]=\u03bc, Var[Y]=\u03c3\u00b2, V(\u03bc)=1 with scale \u03c3\u00b2. (2) Refuse: the mean\u2013variance relationship is part of the GLM family definition; the link maps \u03bc to \u03b7 \u2014 today requires the mean/variance/scale structure of the response family.",
+      "model_answer": "(1) Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². (2) Refuse: the mean–variance relationship is part of the GLM family definition; the link maps μ to η. Today requires the mean/variance/scale structure of the response family.",
       "common_mistake": "Treating variance structure as optional once the family (or link) is named.",
       "success_criteria": [
         "Refusal present.",
@@ -171,7 +171,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest mean/variance wobble \u2014 link absorb tomorrow.",
+    "framing": "Harvest mean/variance wobble: link absorb tomorrow.",
     "prompt": "Which part of today's 4.2.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.2 is stickiest and why?",
@@ -182,9 +182,9 @@
   "tomorrow_preview": {
     "next_topic_code": "4.2",
     "next_topic_title": "Link function and canonical link (4.2.3)",
-    "continuity_line": "Today you practised mean/variance/scale; tomorrow continues at link and canonical link \u2014 completing the EA-006 structure chain.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.3 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: link function and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings \u2014 titles only tonight."
+    "continuity_line": "Today you practised mean/variance/scale; tomorrow continues at link and canonical link. Completing the EA-006 structure chain.",
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.3. Titles only tonight",
+    "student_facing": "Tomorrow: link function and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings. Titles only tonight."
   },
   "absorption_note": "EA-006 structure absorb day 2/3",
   "published_at": "2026-08-01"

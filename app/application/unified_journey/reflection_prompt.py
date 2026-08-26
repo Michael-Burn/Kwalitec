@@ -85,7 +85,7 @@ def default_reflection_prompts() -> tuple[ReflectionPrompt, ...]:
             prompt="Would you like to add a note?",
             response_type=RESPONSE_TYPE_NOTE,
             available_options=(),
-            optional_note_placeholder="Optional — a short note for yourself",
+            optional_note_placeholder="Optional. A short note for yourself",
             metadata=(("key", "optional_note"),),
         ),
     )

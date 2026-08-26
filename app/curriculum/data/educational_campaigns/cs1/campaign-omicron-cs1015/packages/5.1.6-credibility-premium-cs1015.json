@@ -1,7 +1,7 @@
 {
   "package_version": "cs1015-campaign-omicron-1.0.0",
-  "publication_version": "cs1015-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1015-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
@@ -34,7 +34,7 @@
   "mission": {
     "mission_id": "msn-cs1015-cs1-5.1-credibility-premium",
     "display_title": "Use the credibility premium formula and factor",
-    "mission_purpose": "Today's Mission exists to use the credibility premium formula and credibility factor — without pretending Bayesian credibility approach (5.1.7) is finished.",
+    "mission_purpose": "Today's Mission exists to use the credibility premium formula and credibility factor. Without pretending Bayesian credibility approach (5.1.7) is finished.",
     "tutor_intent": "Today I will force premium = Z·mean + (1−Z)·collateral structure and refuse 'Z finished Bayesian credibility theory'.",
     "educational_intent": "Produce credibility premium/factor as the entry to credibility theory after Bayesian estimation objects.",
     "learning_objective": "Use the credibility premium formula and explain the role of the credibility factor.",
@@ -60,17 +60,17 @@
   },
   "session": {
     "session_id": "ssn-cs1015-cs1-5.1-credibility-premium",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.6 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.6. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 5.1.6, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Use the credibility premium formula and factor. You practised selective CMP reading on Syllabus 5.1.6. This is Study Progress for today's block — not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Use the credibility premium formula and factor. You practised selective CMP reading on Syllabus 5.1.6. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.6 — use the credibility premium formula and factor. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.6: use the credibility premium formula and factor. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 5.1.6?",
       "What warrant separates today's skill from yesterday's?",
@@ -92,13 +92,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 5.1.6.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and credibility factor. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.6.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and credibility factor. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest premium/factor wobble — Bayesian credibility opens tomorrow.",
+    "framing": "Harvest premium/factor wobble: Bayesian credibility opens tomorrow.",
     "prompt": "Which part of today's 5.1.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.6 is stickiest and why?",
@@ -178,12 +178,13 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Bayesian approach to credibility (5.1.7)",
     "continuity_line": "Today you used the credibility premium and factor; tomorrow continues 5.1 at Bayesian credibility.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.7 — titles only tonight",
-    "student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.7. Titles only tonight",
+    "student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CO-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.6 is a CO-R1 return target after Learning span closes."
-  }
+  },
+  "published_at": "2026-08-03"
 }

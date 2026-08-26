@@ -30,6 +30,14 @@ from app.presentation.session.view_models import SessionPageViewModel
 
 _PAGE_TITLE = "Session"
 _SYLLABUS_CODE_IN_TEXT = re.compile(r"Syllabus\s+(\d+(?:\.\d+)*)", re.IGNORECASE)
+# Concise journey labels for the stage indicator (SURFACE_LABELS stay product-long).
+_STAGE_INDICATOR_LABELS = {
+    "Session Overview": "Overview",
+    "Learning Activity": "Activity",
+    "Reflection": "Reflection",
+    "Session Summary": "Summary",
+    "Sitting Report": "Summary",
+}
 
 
 class StudySessionService:
@@ -192,7 +200,10 @@ class StudySessionService:
         page_eyebrow = (page.shell.page_eyebrow or "").strip()
         estimated_time_label = ""
         if page.shell.steps:
-            workflow_steps = tuple(step.label for step in page.shell.steps)
+            workflow_steps = tuple(
+                _STAGE_INDICATOR_LABELS.get(step.label, step.label)
+                for step in page.shell.steps
+            )
             active = next((s for s in page.shell.steps if s.is_active), None)
             if active:
                 workflow_step_index = max(0, active.step_number - 1)
@@ -202,6 +213,24 @@ class StudySessionService:
             estimated_time_label = (
                 page.overview.estimated_duration_label or ""
             ).strip()
+
+        topic_display = (page.shell.topic_title or "").strip()
+        if not topic_display and page.overview and page.overview.topics:
+            topic_display = (page.overview.topics[0] or "").strip()
+        if (
+            not topic_display
+            and surface is SessionSurface.COMPLETE
+            and page.completion
+        ):
+            topic_display = (page.completion.primary_topic or "").strip()
+        if topic_display.lower().startswith("today:"):
+            topic_display = topic_display.split(":", 1)[1].strip()
+        subject_code = ""
+        if page.overview:
+            subject_code = (page.overview.subject_code or "").strip()
+        context_eyebrow = _context_eyebrow(subject_code, topic_display)
+        meta_duration = _compact_duration_label(estimated_time_label)
+        meta_mode = _meta_mode_label(surface, page)
 
         return StudySessionPage(
             page_title=page_title,
@@ -286,6 +315,10 @@ class StudySessionService:
             workflow_step_index=workflow_step_index,
             page_eyebrow=page_eyebrow,
             estimated_time_label=estimated_time_label,
+            context_eyebrow=context_eyebrow,
+            topic_display=topic_display,
+            meta_duration=meta_duration,
+            meta_mode=meta_mode,
         )
 
     @staticmethod
@@ -563,9 +596,10 @@ class StudySessionService:
         product: bool = False,
     ) -> tuple[str, str, bool, str]:
         if surface is SessionSurface.OVERVIEW and page.overview:
-            label = page.overview.begin_label or "Begin Session"
-            if label.strip().lower() in {"start session", "start"}:
-                label = "Begin Session"
+            # Approved Session UI: keep "Start Session" on Overview CTA.
+            label = (page.overview.begin_label or "Start Session").strip()
+            if label.lower() in {"start", "begin", "begin session"}:
+                label = "Start Session"
             return label, "begin_form", page.overview.begin_enabled, ""
 
         if surface is SessionSurface.ACTIVITY and page.activity:
@@ -992,3 +1026,47 @@ def _activity_content_title(activity: object) -> str:
     if topic and len(topic) <= 48:
         return f"{stage_label}: {topic}"
     return stage_label
+
+
+def _context_eyebrow(subject_code: str, topic: str) -> str:
+    """One muted eyebrow line: ``CS1 · Topic`` (omit empty parts)."""
+    code = (subject_code or "").strip()
+    title = (topic or "").strip()
+    if code and title and title.lower() != code.lower():
+        return f"{code} · {title}"
+    return code or title
+
+
+def _compact_duration_label(label: str) -> str:
+    """Compact duration for Overview meta line, e.g. ``30 min``."""
+    text = (label or "").strip()
+    if not text:
+        return ""
+    if text.lower().startswith("about "):
+        text = text[6:].strip()
+    text = (
+        text.replace(" minutes", " min")
+        .replace(" minute", " min")
+        .replace("Minutes", "min")
+        .replace("Minute", "min")
+    )
+    return text
+
+
+def _meta_mode_label(surface: SessionSurface, page: SessionPageViewModel) -> str:
+    """Second essential meta fact — mode / stage, not a third chip."""
+    if surface is SessionSurface.OVERVIEW:
+        return "Learning"
+    if surface is SessionSurface.ACTIVITY and page.activity:
+        stage = (page.activity.stage_label or page.activity.activity_type or "").strip()
+        if stage:
+            # Title-case short stage names; keep existing casing if already phrased.
+            if stage.islower() or "_" in stage:
+                return stage.replace("_", " ").title()
+            return stage
+        return "Learning"
+    if surface is SessionSurface.REFLECTION:
+        return "Reflection"
+    if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
+        return "Summary"
+    return "Learning"

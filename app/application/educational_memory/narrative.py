@@ -171,7 +171,7 @@ def _story_paragraphs(
         latest = recovered[-1]
         paragraphs.append(
             f"You recovered understanding of {latest.topic_title} after "
-            "it needed attention — growth that only shows across time."
+            "it needed attention: growth that only shows across time."
         )
 
     if patterns:
@@ -190,7 +190,7 @@ def _story_paragraphs(
     if len(paragraphs) == 1 and len(packages) >= 2:
         paragraphs.append(
             f"Across {len(packages)} sittings, your educational story is "
-            "taking shape from honest practice — not from scores."
+            "taking shape from honest practice. Not from scores."
         )
 
     return tuple(paragraphs[:5])

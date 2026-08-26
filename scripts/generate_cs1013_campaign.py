@@ -70,7 +70,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1013-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -78,7 +78,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or "
                 "until-exam trust."
             ),
@@ -89,7 +89,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -108,10 +108,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -123,7 +123,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -200,7 +200,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Nu revision — linear regression models",
+        "topic_title": "Campaign Nu revision: linear regression models",
         "return_targets": [
             "4.1.1",
             "4.1.2",
@@ -224,13 +224,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1013-cs1-cn-r1-linear-regression",
             "display_title": "Retrieve linear-regression hinges (4.1)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Nu — retrieving response "
+                "Today's Mission exists to protect memory of Campaign Nu. Retrieving response "
                 "vs explanatory roles, simple vs multiple models, least squares, software fit "
-                "and inference, and variable-selection fit measures — so 4.1 does not evaporate "
+                "and inference, and variable-selection fit measures. So 4.1 does not evaporate "
                 "before an honest stop / Wave 0 honesty / spine re-audit successor."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Nu's Learning hinges — "
+                "Today I will run closed-book retrieval across Nu's Learning hinges. "
                 "not a passive CMP re-read and not a Trust Front 4.2/5.1 absorb or until-exam claim."
             ),
             "educational_intent": (
@@ -250,14 +250,14 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished variable selection (4.1.5). Today is Revision mode: "
-                "return to 4.1.1–4.1.5 under closed-book retrieval — no new first-pass LO."
+                "return to 4.1.1–4.1.5 under closed-book retrieval. No new first-pass LO."
             ),
             "why_now": (
                 "You've just finished linear regression; spaced retrieval now protects that chain "
                 "before you stop."
             ),
             "expected_benefit": (
-                "You'll confirm the linear-regression chain still retrieves — roles through variable selection."
+                "You'll confirm the linear-regression chain still retrieves. Roles through variable selection."
             ),
             "explainability": (
                 "Revision day: closed-book retrieval of this topic's chain before moving on."
@@ -278,15 +278,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1013-cs1-cn-r1-linear-regression",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Nu skills — not to claim Trust Front absorb."
+                "Retrieve and connect Campaign Nu skills. Not to claim Trust Front absorb."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 45, "max": 65},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 4.1.1–4.1.5 return targets. "
-                "This is revision Study Progress — not Topic Complete for 4.2/5.1, and not "
+                "This is revision Study Progress. Not Topic Complete for 4.2/5.1, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -315,7 +315,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not claim Trust Front absorb, "
+                "After revision checks and Reflection. Do not claim Trust Front absorb, "
                 "spine PASS, or until-exam trust in this sitting"
             ),
             "out_of_scope_today": [
@@ -339,7 +339,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -386,7 +386,7 @@ def revision_pkg() -> dict:
                     "Closed-book. (1) Name today's weakest linear-regression link and one "
                     "concrete rework. (2) Refuse: 'Variable selection finished GLM and "
                     "Bayesian modelling.' (3) Name whether you stop here or what syllabus "
-                    "topic honestly comes next — not 'exam ready.'"
+                    "topic honestly comes next. Not 'exam ready.'"
                 ),
                 "response_type": "short_structured",
                 "body": "Weakest link + honest next.",
@@ -403,9 +403,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. residual diagnostics — five-minute rework. (2) Refuse 4.2/5.1 "
+                    "(1) e.g. residual diagnostics: five-minute rework. (2) Refuse 4.2/5.1 "
                     "absorb / spine / until-exam. (3) Honest next is declared stop or Wave 0 "
-                    "honesty / spine re-audit successor Volume — not claimed finished here."
+                    "honesty / spine re-audit successor Volume. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -427,18 +427,18 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "stop",
             "next_topic_title": (
-                "Honest next — declared stop / Wave 0 honesty / spine re-audit successor "
-                "— not Trust Front 4.2 absorb"
+                "Honest next: declared stop / Wave 0 honesty / spine re-audit successor "
+                ". Not Trust Front 4.2 absorb"
             ),
             "continuity_line": (
                 "Campaign Nu / Volume CS1-013 completes after this Revision. Honest stop: "
-                "4.1 Continuity Front join Pilot Arc closed — not Trust Front 4.2/5.1 absorb; "
+                "4.1 Continuity Front join Pilot Arc closed. Not Trust Front 4.2/5.1 absorb; "
                 "not first-pass spine; not until-exam trust. Successor geography is Wave 0 "
                 "honesty / spine re-audit under a later commission (or declared stop). "
                 "CS1-003 Delta remains independent Trust Front LIVE inventory."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Nu / CS1-013 complete after today (pending human Approver + LIVE). "
@@ -467,7 +467,7 @@ LEARNING = [
         title="Name response and explanatory variables with modelling intent",
         purpose=(
             "Today's Mission exists to make response vs explanatory naming a deliberate "
-            "modelling move — so you enter linear regression with a clear outcome variable "
+            "modelling move. So you enter linear regression with a clear outcome variable "
             "and predictors, without pretending simple/multiple model forms (4.1.2) are finished."
         ),
         tutor=(
@@ -486,7 +486,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. "
-            "Today opens Continuity Front join at Topic 4.1 LO 4.1.1 — the next official "
+            "Today opens Continuity Front join at Topic 4.1 LO 4.1.1. The next official "
             "syllabus topic after 3.3. Trust Front CS1-003 already holds LIVE 4.1 inventory "
             "independently; Nu is the Continuity Front native Pilot Arc."
         ),
@@ -499,7 +499,7 @@ LEARNING = [
             "modelling warrants for a stated actuarial sketch."
         ),
         explain=(
-            "Day 1 opens linear regression at response vs explanatory roles — "
+            "Day 1 opens linear regression at response vs explanatory roles. "
             "the natural next step after hypothesis testing."
         ),
         criteria=[
@@ -519,10 +519,10 @@ LEARNING = [
             "Today you established response and explanatory roles; tomorrow continues 4.1 at "
             "simple vs multiple linear models."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.1.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.1.2. Titles only tonight",
         student=(
             "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light "
-            "prep: skim 4.1.2 headings — titles only tonight."
+            "prep: skim 4.1.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.1.1 response and explanatory variables",
         stop=(
@@ -567,18 +567,18 @@ LEARNING = [
             "include age, sum insured, claim amount, NCD discount, and claim "
             "count. (1) Name the response and two explanatory variables with a "
             "one-sentence warrant each. (2) Refuse: 'Put every numeric column on "
-            "the right-hand side — that finishes variable-role modelling.'"
+            "the right-hand side. That finishes variable-role modelling.'"
         ),
         cp_kw=["response", "explanatory", "severity", "claim amount", "refuse", "column"],
         cp_model=(
-            "(1) Response Y = claim amount (severity — the outcome to "
+            "(1) Response Y = claim amount (severity. The outcome to "
             "explain/predict). Explanatory examples: age and sum insured "
             "(predictors of severity). Claim count is a frequency outcome, not "
             "automatically an X for severity. (2) Refuse: column-soup is not "
-            "modelling — choose Y for the modelling question, then choose X's "
+            "modelling: choose Y for the modelling question, then choose X's "
             "with warrants."
         ),
-        reflect="Harvest role-naming wobble — keep simple/multiple forms out of tonight's claim.",
+        reflect="Harvest role-naming wobble. Keep simple/multiple forms out of tonight's claim.",
     ),
     dict(
         day="CN-D2",
@@ -598,7 +598,7 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to distinguish the simple regression model (one "
             "explanatory variable) from the multiple linear regression model (several "
-            "explanatory variables) — without pretending least squares estimation (4.1.3) "
+            "explanatory variables). Without pretending least squares estimation (4.1.3) "
             "is finished."
         ),
         tutor=(
@@ -619,7 +619,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you named response and explanatory variables (4.1.1). Today continues "
-            "Topic 4.1 at model forms — still Continuity Front join, still refuse 4.2/5.1."
+            "Topic 4.1 at model forms. Still Continuity Front join, still refuse 4.2/5.1."
         ),
         why=(
             "4.1.2 is contiguous after roles. Without model forms, least squares and "
@@ -630,7 +630,7 @@ LEARNING = [
             "model forms and distinguish them from OLS estimation."
         ),
         explain=(
-            "Day 2 focuses the named learning objective — estimation as tomorrow."
+            "Day 2 focuses the named learning objective. Estimation as tomorrow."
         ),
         criteria=[
             "Closed-book, write or state the simple linear model form.",
@@ -648,10 +648,10 @@ LEARNING = [
             "Today you established simple vs multiple linear models; tomorrow continues 4.1 "
             "at least squares estimation."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.1.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.1.3. Titles only tonight",
         student=(
             "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: "
-            "skim 4.1.3 headings — titles only tonight."
+            "skim 4.1.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.1.2 simple and multiple linear regression models",
         stop=(
@@ -702,7 +702,7 @@ LEARNING = [
             "criterion; today is stating the simple vs multiple linear model "
             "forms."
         ),
-        reflect="Harvest form-statement wobble — keep least squares out of tonight's claim.",
+        reflect="Harvest form-statement wobble. Keep least squares out of tonight's claim.",
     ),
     dict(
         day="CN-D3",
@@ -721,7 +721,7 @@ LEARNING = [
         title="Obtain least squares estimates of slope and intercept",
         purpose=(
             "Today's Mission exists to obtain least squares estimates of the slope and "
-            "intercept parameters in a simple linear regression model — without pretending "
+            "intercept parameters in a simple linear regression model. Without pretending "
             "software fit and inference (4.1.4) are finished."
         ),
         tutor=(
@@ -753,7 +753,7 @@ LEARNING = [
             "slope and intercept for simple linear regression."
         ),
         explain=(
-            "Day 3 focuses the named learning objective — software interpretation as tomorrow."
+            "Day 3 focuses the named learning objective. Software interpretation as tomorrow."
         ),
         criteria=[
             "Closed-book, state what least squares minimises.",
@@ -771,10 +771,10 @@ LEARNING = [
             "Today you established least squares for the simple linear model; tomorrow "
             "continues 4.1 at software fit and interpretation."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.1.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.1.4. Titles only tonight",
         student=(
             "Tomorrow: software fit, inference, prediction, residuals (4.1.4). Optional "
-            "light prep: skim 4.1.4 headings — titles only tonight."
+            "light prep: skim 4.1.4 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.1.3 least squares estimates (simple linear regression)",
         stop=(
@@ -824,7 +824,7 @@ LEARNING = [
             "Corr(X,Y) is dimensionless association, not the OLS slope (which "
             "scales by SD_Y/SD_X)."
         ),
-        reflect="Harvest least-squares criterion wobble — keep software day out of tonight's claim.",
+        reflect="Harvest least-squares criterion wobble. Keep software day out of tonight's claim.",
     ),
     dict(
         day="CN-D4",
@@ -845,12 +845,12 @@ LEARNING = [
             "Today's Mission exists to use appropriate software to fit a linear regression "
             "model and interpret the output: inference on the slope, measures of goodness "
             "of fit, prediction of mean or individual response with confidence limits, and "
-            "residual checks of suitability — without pretending variable selection (4.1.5) "
+            "residual checks of suitability. Without pretending variable selection (4.1.5) "
             "is finished."
         ),
         tutor=(
-            "Today I will force the candidate to read software output as evidence — slope "
-            "inference, GOF, prediction limits, residual checks — and refuse treating "
+            "Today I will force the candidate to read software output as evidence. Slope "
+            "inference, GOF, prediction limits, residual checks. And refuse treating "
             "variable-selection shopping as today's LO."
         ),
         edu=(
@@ -875,14 +875,14 @@ LEARNING = [
         ),
         why=(
             "4.1.4 is contiguous after least squares. Examiners expect software output "
-            "literacy — not GUI tourism and not jumping to selection theatre."
+            "literacy. Not GUI tourism and not jumping to selection theatre."
         ),
         benefit=(
             "You will be able to interpret a fitted linear regression: slope "
             "inference, GOF, prediction limits, and residual checks."
         ),
         explain=(
-            "Day 4 focuses the named learning objective — variable selection as the final Learning day."
+            "Day 4 focuses the named learning objective. Variable selection as the final Learning day."
         ),
         criteria=[
             "Closed-book, name the four interpretation moves in 4.1.4 (inference, GOF, "
@@ -901,10 +901,10 @@ LEARNING = [
             "Today you practised software fit and interpretation; tomorrow continues 4.1 at "
             "variable selection using measures of model fit."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 4.1.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 4.1.5. Titles only tonight",
         student=(
             "Tomorrow: variable selection via fit measures (4.1.5). Optional light prep: "
-            "skim 4.1.5 headings — titles only tonight."
+            "skim 4.1.5 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 4.1.4 software fit and interpretation of linear regression",
         stop=(
@@ -949,7 +949,7 @@ LEARNING = [
             "Closed-book. After fitting Y = β₀ + β₁x in software you see β̂₁, "
             "SE(β̂₁), R², and residual plots. (1) For a new x*, distinguish "
             "predicting the mean response E[Y|x*] from predicting an individual "
-            "Y_new — which interval is typically wider? (2) Refuse: 'Running "
+            "Y_new: which interval is typically wider? (2) Refuse: 'Running "
             "best-subset selection finishes software fit/inference' and "
             "'residuals are optional after a significant slope.'"
         ),
@@ -962,7 +962,7 @@ LEARNING = [
             "required after a fit."
         ),
         reflect=(
-            "Harvest prediction-limit or residual-check wobble — keep selection out of "
+            "Harvest prediction-limit or residual-check wobble. Keep selection out of "
             "tonight's claim."
         ),
     ),
@@ -982,7 +982,7 @@ LEARNING = [
         title="Select explanatory variables using measures of model fit",
         purpose=(
             "Today's Mission exists to use measures of model fit to select an appropriate "
-            "set of explanatory variables — without pretending GLM (4.2) or Bayesian (5.1) "
+            "set of explanatory variables. Without pretending GLM (4.2) or Bayesian (5.1) "
             "are finished, and without claiming first-pass spine PASS."
         ),
         tutor=(
@@ -1006,14 +1006,14 @@ LEARNING = [
             "checks (4.1.4). Today closes Topic 4.1 Learning at variable selection."
         ),
         why=(
-            "Finish Topic 4.1 by selecting variables using fit measures — then revise before moving into GLM."
+            "Finish Topic 4.1 by selecting variables using fit measures. Then revise before moving into GLM."
         ),
         benefit=(
             "You will be able to use measures of model fit to select an "
             "appropriate set of explanatory variables."
         ),
         explain=(
-            "Day 5 closes Topic 4.1 at variable selection — GLM and Bayesian work come later."
+            "Day 5 closes Topic 4.1 at variable selection. GLM and Bayesian work come later."
         ),
         criteria=[
             "Closed-book, name what 'selecting explanatory variables using measures of "
@@ -1027,14 +1027,14 @@ LEARNING = [
             "Closed-book Knowledge Checks: selection hinge + refuse 4.2/spine swallow.",
         ],
         next_code="CN-R1",
-        next_title="Campaign Nu Revision — retrieve 4.1 hinges",
+        next_title="Campaign Nu Revision: retrieve 4.1 hinges",
         cont=(
             "Today you closed Topic 4.1 Learning at variable selection; tomorrow is "
             "Campaign Nu Revision returning to 4.1.1–4.1.5."
         ),
-        prep="No new LO tonight — rest or jot the stickiest 4.1 hinge for Revision",
+        prep="No new LO tonight: rest or jot the stickiest 4.1 hinge for Revision",
         student=(
-            "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link — "
+            "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 4.1.5 measures of model fit for variable selection",
@@ -1087,12 +1087,12 @@ LEARNING = [
             "(1) e.g. adjusted R² (rewards fit while adjusting for unused "
             "complexity vs raw R²); AIC/BIC (likelihood fit with a "
             "parameter-count penalty). (2) Refuse: mechanical p-value chopping is "
-            "not a complete selection warrant; GLM is a different topic — today "
+            "not a complete selection warrant; GLM is a different topic. Today "
             "is selecting explanatory variables for linear models via fit "
             "measures."
         ),
         reflect=(
-            "Harvest selection / fit-measure wobble — Revision protects the 4.1 chain tomorrow."
+            "Harvest selection / fit-measure wobble. Revision protects the 4.1 chain tomorrow."
         ),
     ),
 ]
@@ -1120,7 +1120,7 @@ def main() -> None:
         "campaign_id": "CS1-EP001-CAMPAIGN-NU",
         "campaign_version": "cs1013-1.0.0",
         "display_title": (
-            "Campaign Nu — Linear regression models (4.1) · Continuity Front join"
+            "Campaign Nu. Linear regression models (4.1) · Continuity Front join"
         ),
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
@@ -1145,7 +1145,7 @@ def main() -> None:
         "inventory": inventory,
         "trust_front_note": (
             "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for "
-            "4.1–5.1. Nu package IDs are CN-prefixed Continuity Front join catalogue — "
+            "4.1–5.1. Nu package IDs are CN-prefixed Continuity Front join catalogue. "
             "not LIVE this cycle; Published Coverage unchanged (4.1 already counted)."
         ),
     }

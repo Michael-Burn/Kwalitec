@@ -71,7 +71,7 @@ SESSION_TYPES: dict[str, SessionTypeDefinition] = {
         identifier=SessionTypeId.DEEP_CHECK,
         display_name="Deep Check",
         short_description=(
-            "A careful confirmation of understanding — still formative."
+            "A careful confirmation of understanding, still formative."
         ),
         icon_token="aa.icon.deep_check",
         colour_token="aa.colour.steady_blue",
@@ -91,7 +91,7 @@ SESSION_TYPES: dict[str, SessionTypeDefinition] = {
         icon_token="aa.icon.recovery_check",
         colour_token="aa.colour.warm_amber",
         expected_duration_minutes=8,
-        expected_duration_label="Short to moderate — take your time",
+        expected_duration_label="Short to moderate. Take your time",
         educational_intent="gentle_reorientation",
         student_facing_copy_key="session.recovery_check.frame",
         mission_compatible=True,
@@ -129,12 +129,12 @@ SESSION_TYPES: dict[str, SessionTypeDefinition] = {
         identifier=SessionTypeId.READINESS_CHECK,
         display_name="Readiness Check",
         short_description=(
-            "An honest sample to guide remaining study — not a predicted result."
+            "An honest sample to guide remaining study, not a predicted result."
         ),
         icon_token="aa.icon.readiness_check",
         colour_token="aa.colour.slate",
         expected_duration_minutes=15,
-        expected_duration_label="Moderate — within your time budget",
+        expected_duration_label="Moderate: within your time budget",
         educational_intent="bounded_readiness_honesty",
         student_facing_copy_key="session.readiness_check.frame",
         mission_compatible=True,

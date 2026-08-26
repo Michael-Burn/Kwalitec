@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-bayes-theorem",
     "display_title": "Apply Bayes' theorem to simple conditional probabilities",
-    "mission_purpose": "Today's Mission exists to use Bayes' theorem for simple conditional probabilities — opening Bayesian foundations after GLM Revision — without claiming conjugate/posterior mastery yet.",
+    "mission_purpose": "Today's Mission exists to use Bayes' theorem for simple conditional probabilities (opening Bayesian foundations after GLM Revision) without claiming conjugate/posterior mastery yet.",
     "tutor_intent": "Today I will force Bayes update arithmetic on a simple table and refuse confusing P(A|B) with P(B|A).",
     "educational_intent": "Produce Bayes' theorem competence as 5.1 entry.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
     "concept_focus": "Prior odds/likelihood → posterior → refuse inverse-probability confusion.",
     "prior_bridge": "CD-R2 retrieved 4.1–4.2. Today opens Section 5 at 5.1.1.",
     "why_now": "5.1.1 is the lawful Bayesian entry after mid-spine regression/GLM.",
-    "expected_benefit": "Study Progress for Bayes theorem — not conjugate priors as primary.",
+    "expected_benefit": "Study Progress for Bayes theorem. Not conjugate priors as primary.",
     "explainability": "Campaign Delta Day 16 opens 5.1 Learning.",
     "success_criteria": [
       "Closed-book, state Bayes' theorem in words or symbols.",
@@ -61,13 +61,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-bayes-theorem",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.1 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.1. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.1; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply Bayes' theorem to simple conditional probabilities. Study Progress for LO 5.1.1 — not Topic Complete for later LOs in this Volume.",
+    "wrap_up": "Session complete for Apply Bayes' theorem to simple conditional probabilities. Study Progress for LO 5.1.1. Not Topic Complete for later LOs in this Volume.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.1 (stop before prior/posterior primary 5.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.1 (stop before prior/posterior primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Bayes-arithmetic wobble — prior/posterior language tomorrow.",
+    "framing": "Harvest Bayes-arithmetic wobble: prior/posterior language tomorrow.",
     "prompt": "Which part of today's 5.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.1 is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Prior, posterior and conjugate prior (5.1.2)",
     "continuity_line": "Today you practised Bayes' theorem; tomorrow continues at prior, posterior and conjugate prior language.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.2 — titles only tonight",
-    "student_facing": "Tomorrow: prior, posterior and conjugate prior (5.1.2). Optional light prep: skim 5.1.2 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.2. Titles only tonight",
+    "student_facing": "Tomorrow: prior, posterior and conjugate prior (5.1.2). Optional light prep: skim 5.1.2 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

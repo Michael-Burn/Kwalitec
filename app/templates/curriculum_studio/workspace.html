@@ -125,9 +125,9 @@
         {% if document_status.cta_state == 'uploaded' %}
         Required sources · {{ ds_badge('Documents uploaded', tone='success') }}
         {% elif document_status.cta_state == 'replace' %}
-        Required sources — replace documents if needed
+        Required sources: replace documents if needed
         {% else %}
-        Required sources — Upload documents
+        Required sources: Upload documents
         {% endif %}
       </p>
       <div class="ds-workspace-upload-grid" data-doc-upload-slots>
@@ -295,7 +295,7 @@
     <p class="ds-list__meta">{{ page.review_summary }}{% if page.version_label and page.version_label != 'Draft' %} · Version {{ page.version_label }}{% endif %}</p>
     {% endif %}
     {% if page.status_label == 'Ready to publish' %}
-    <p class="ds-list__meta" role="status">Everything looks good — ready to publish.</p>
+    <p class="ds-list__meta" role="status">Everything looks good. Ready to publish.</p>
     {% endif %}
     {% if page.primary_key != 'publish' and page.primary_key != 'version' %}
     <form method="post" action="{{ url_for('curriculum_studio.publish', workspace_id=page.workspace_id) }}" class="ds-workspace-primary-form">
@@ -346,7 +346,7 @@
     <summary>Technical details</summary>
     <dl class="ds-workspace-tech">
       <div><dt>Workspace</dt><dd>{{ page.workspace_id }}</dd></div>
-      <div><dt>Subject code</dt><dd>{{ page.subject_code or '—' }}</dd></div>
+      <div><dt>Subject code</dt><dd>{{ page.subject_code or '–' }}</dd></div>
       <div><dt>Publication step</dt><dd>{{ page.stage_label }}</dd></div>
       <div><dt>Status</dt><dd>{{ page.status_label }}</dd></div>
     </dl>

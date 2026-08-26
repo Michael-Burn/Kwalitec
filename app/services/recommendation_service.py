@@ -1068,7 +1068,7 @@ class RecommendationService:
                 )
             else:
                 title = (
-                    f"Explore new topics — {coverage['topics_not_started']} remaining"
+                    f"Explore new topics. {coverage['topics_not_started']} remaining"
                 )
                 reason = (
                     f"You have only covered {coverage['coverage_percentage']:.0f}% "
@@ -1080,7 +1080,7 @@ class RecommendationService:
                 "priority": PRIORITY_HIGH,
                 "reason": reason,
                 "expected_benefit": (
-                    "Increase syllabus coverage — Study Progress, not Estimated Knowledge."
+                    "Increase syllabus coverage. Study Progress, not Estimated Knowledge."
                 ),
                 "generated_at": _generation_timestamp(),
             })
@@ -1176,7 +1176,7 @@ class RecommendationService:
                 "reason": (
                     f"Estimated readiness is about {readiness['score']:.0f}% with "
                     f"{readiness['coverage_pct']:.0f}% syllabus coverage. "
-                    "Mock exams can help reveal remaining gaps — estimates are not "
+                    "Mock exams can help reveal remaining gaps. Estimates are not "
                     "exam outcome guarantees."
                 ),
                 "expected_benefit": (
@@ -1208,7 +1208,7 @@ class RecommendationService:
 
         if burnout["risk_level"] == "high":
             recs.append({
-                "title": "Take a rest day — study pattern notice",
+                "title": "Take a rest day. Study pattern notice",
                 "category": CATEGORY_REST,
                 "priority": PRIORITY_CRITICAL,
                 "reason": f"{burnout['explanation']} Taking a rest day now prevents longer forced breaks later.",
@@ -1242,7 +1242,7 @@ class RecommendationService:
 
         if days_remaining <= 30 and days_remaining > 0 and coverage >= 50:
             recs.append({
-                "title": f"Enter revision phase — {days_remaining} days until exam",
+                "title": f"Enter revision phase. {days_remaining} days until exam",
                 "category": CATEGORY_REVISION,
                 "priority": PRIORITY_HIGH if days_remaining <= 14 else PRIORITY_MEDIUM,
                 "reason": (

@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1007-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 2.4 LOs, Chapter 2, or the central limit theorem."
             ),
             "confidence_prompt": (
@@ -82,7 +82,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -101,10 +101,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -116,7 +116,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -193,7 +193,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Eta revision — generating functions",
+        "topic_title": "Campaign Eta revision: generating functions",
         "return_targets": ["2.4.1", "2.4.2"],
         "topic_aliases": [day, "campaign-eta-revision"],
         "topic_title_keywords": [
@@ -212,12 +212,12 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1007-cs1-ch-r1-generating-functions",
             "display_title": "Retrieve generating-function hinges (2.4)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Eta — retrieving moment "
+                "Today's Mission exists to protect memory of Campaign Eta. Retrieving moment "
                 "and cumulant generating functions, and moment calculation via series or "
-                "differentiation — so 2.4 does not evaporate before the central limit theorem (2.5)."
+                "differentiation. So 2.4 does not evaporate before the central limit theorem (2.5)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Eta's Learning hinges — "
+                "Today I will run closed-book retrieval across Eta's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 2.5 lesson."
             ),
             "educational_intent": (
@@ -234,7 +234,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished moment calculation via generating functions (2.4.2). "
-                "Today is Revision mode: return to 2.4.1–2.4.2 under closed-book retrieval — "
+                "Today is Revision mode: return to 2.4.1–2.4.2 under closed-book retrieval. "
                 "no new first-pass LO."
             ),
             "why_now": (
@@ -242,7 +242,7 @@ def revision_pkg() -> dict:
                 "protects it before 2.5 work."
             ),
             "expected_benefit": (
-                "Evidence that the 2.4 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 2.4 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 2 or the exam journey is complete."
             ),
             "explainability": (
@@ -263,15 +263,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1007-cs1-ch-r1-generating-functions",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Eta skills — not to teach 2.5."
+                "Retrieve and connect Campaign Eta skills. Not to teach 2.5."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 40, "max": 55},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 2.4.1–2.4.2 return targets. "
-                "This is revision Study Progress — not Topic Complete for 2.5, and not "
+                "This is revision Study Progress. Not Topic Complete for 2.5, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -300,7 +300,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 2.5 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 2.5 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass central limit theorem (2.5)",
@@ -322,7 +322,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -388,9 +388,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. CGF vs MGF — five-minute rework. (2) Refuse Chapter 2 complete / "
+                    "(1) e.g. CGF vs MGF. Five-minute rework. (2) Refuse Chapter 2 complete / "
                     "spine / until-exam. (3) Honest next is 2.5 (successor Volume) or declared "
-                    "stop — not claimed finished here."
+                    "stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 2 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -411,16 +411,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "2.5",
             "next_topic_title": (
-                "Honest next — central limit theorem (2.5) under a successor Volume "
+                "Honest next: central limit theorem (2.5) under a successor Volume "
                 "(or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Eta / Volume CS1-007 completes after this Revision. Honest stop: "
-                "2.4 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not "
+                "2.4 Pilot Arc closed. Not Chapter 2 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 2.5 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Eta / CS1-007 complete after today (pending human Approver + LIVE). "
@@ -442,11 +442,11 @@ LEARNING = [
         title="Form the moment and cumulant generating functions of an RV",
         purpose=(
             "Today's Mission exists to obtain the moment and cumulant generating functions of "
-            "a random variable — so M_X(t) and K_X(t) (or CMP equivalents) are usable objects — "
+            "a random variable (so M_X(t) and K_X(t) (or CMP equivalents) are usable objects)"
             "without pretending moment-via-GF calculation is finished."
         ),
         tutor=(
-            "Today I will force the candidate to define or interpret the MGF and CGF — and "
+            "Today I will force the candidate to define or interpret the MGF and CGF. And "
             "refuse treating 'I can compute ordinary moments by hand' as having generating "
             "functions."
         ),
@@ -461,7 +461,7 @@ LEARNING = [
         focus="Named family → M_X(t)=E[e^{tX}] → CGF C_X(t)=log M_X(t) → refuse mean/var-as-MGF.",
         prior=(
             "Campaign Zeta closed expectations and conditional expectations (2.3) with "
-            "Revision. Today opens topic 2.4 at LO 2.4.1 — the named Continuity Front after "
+            "Revision. Today opens topic 2.4 at LO 2.4.1. The named Continuity Front after "
             "CS1-006."
         ),
         why=(
@@ -474,7 +474,7 @@ LEARNING = [
             "function."
         ),
         explain=(
-            "Day 1 opens 2.4 at the named learning objective — "
+            "Day 1 opens 2.4 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -493,10 +493,10 @@ LEARNING = [
             "Today you formed moment and cumulant generating functions; tomorrow continues "
             "2.4 at moment calculation via series expansion or differentiation of a GF."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.4.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.4.2. Titles only tonight",
         student=(
             "Tomorrow: moment calculation via generating functions (2.4.2). Optional light "
-            "prep: skim 2.4.2 headings — titles only tonight."
+            "prep: skim 2.4.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.4.1 moment and cumulant generating functions",
         stop=(
@@ -550,7 +550,7 @@ LEARNING = [
             "functions themselves."
         ),
         reflect=(
-            "Harvest wobble on MGF vs CGF vs raw moments — moment-via-GF calculation comes tomorrow."
+            "Harvest wobble on MGF vs CGF vs raw moments. Moment-via-GF calculation comes tomorrow."
         ),
     ),
     dict(
@@ -563,11 +563,11 @@ LEARNING = [
         title="Obtain moments via series expansion or differentiation of a GF",
         purpose=(
             "Today's Mission exists to obtain moments via series expansion or differentiation "
-            "of a generating function — so the GF → moment pipeline is usable — without "
+            "of a generating function (so the GF → moment pipeline is usable) without "
             "claiming Chapter 2 or the central limit theorem complete."
         ),
         tutor=(
-            "Today I will force the candidate through moment extraction from a GF — refuse "
+            "Today I will force the candidate through moment extraction from a GF. Refuse "
             "treating yesterday's MGF/CGF definitions as having finished moment calculation, "
             "and refuse Chapter-2-complete claims."
         ),
@@ -594,7 +594,7 @@ LEARNING = [
             "You will be able to extract a moment by differentiating (or expanding) ",
             "an MGF/CGF, not merely by restating the definition."
         ),
-        explain="Campaign Eta Day 2 focuses LO 2.4.2 — terminal Learning day of CS1-007.",
+        explain="Campaign Eta Day 2 focuses LO 2.4.2: terminal Learning day of CS1-007.",
         criteria=[
             "Closed-book, outline how a moment arises from series coefficients of an MGF.",
             "Outline how differentiation of an MGF (or related GF) yields moments (CMP form).",
@@ -606,15 +606,15 @@ LEARNING = [
             "Knowledge Checks: moment-via-GF + refuse Ch2-complete.",
         ],
         next_code="CH-R1",
-        next_title="Campaign Eta Revision — retrieve 2.4.1–2.4.2",
+        next_title="Campaign Eta Revision: retrieve 2.4.1–2.4.2",
         cont=(
             "Today you finished moment calculation via generating functions; tomorrow is "
-            "Revision mode — retrieve the 2.4 chain closed-book before any 2.5 first-pass work."
+            "Revision mode: retrieve the 2.4 chain closed-book before any 2.5 first-pass work."
         ),
-        prep="Optional: list the two 2.4 LO hinges from memory — titles only tonight",
+        prep="Optional: list the two 2.4 LO hinges from memory. Titles only tonight",
         student=(
             "Tomorrow: Campaign Eta Revision (retrieve 2.4.1–2.4.2). Optional light prep: "
-            "list the two hinges from memory — titles only tonight."
+            "list the two hinges from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 2.4.2 moment calculation via generating functions",
         stop="Through CMP 2.4.2 (stop before central limit theorem 2.5)",
@@ -663,7 +663,7 @@ LEARNING = [
             "obtaining moments by differentiating or series-expanding the generating ",
             "function."
         ),
-        reflect="Harvest moment-via-GF wobble — Revision protects the 2.4 chain tomorrow.",
+        reflect="Harvest moment-via-GF wobble. Revision protects the 2.4 chain tomorrow.",
     ),
 ]
 
@@ -689,7 +689,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
         "campaign_version": "cs1007-1.0.0",
-        "display_title": "Campaign Eta — Generating functions (2.4)",
+        "display_title": "Campaign Eta: Generating functions (2.4)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

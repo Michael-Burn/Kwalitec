@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1008-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 2.5 LOs, Chapter 2, sampling distributions, or until-exam trust."
             ),
             "confidence_prompt": (
@@ -82,7 +82,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -101,10 +101,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -116,7 +116,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -193,7 +193,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Theta revision — central limit theorem",
+        "topic_title": "Campaign Theta revision: central limit theorem",
         "return_targets": ["2.5.1", "2.5.2"],
         "topic_aliases": [day, "campaign-theta-revision"],
         "topic_title_keywords": [
@@ -212,12 +212,12 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1008-cs1-ct-r1-central-limit-theorem",
             "display_title": "Retrieve central-limit hinges (2.5)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Theta — retrieving the "
+                "Today's Mission exists to protect memory of Campaign Theta. Retrieving the "
                 "central limit theorem for iid sequences, and comparison of simulated samples "
-                "with the Normal — so 2.5 does not evaporate before sampling distributions (2.6)."
+                "with the Normal. So 2.5 does not evaporate before sampling distributions (2.6)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Theta's Learning hinges — "
+                "Today I will run closed-book retrieval across Theta's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 2.6 lesson."
             ),
             "educational_intent": (
@@ -234,7 +234,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished simulated-sample comparison with the Normal (2.5.2). "
-                "Today is Revision mode: return to 2.5.1–2.5.2 under closed-book retrieval — "
+                "Today is Revision mode: return to 2.5.1–2.5.2 under closed-book retrieval. "
                 "no new first-pass LO."
             ),
             "why_now": (
@@ -242,7 +242,7 @@ def revision_pkg() -> dict:
                 "protects it before 2.6 work."
             ),
             "expected_benefit": (
-                "Evidence that the 2.5 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 2.5 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 2 or the exam journey is complete."
             ),
             "explainability": (
@@ -263,15 +263,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1008-cs1-ct-r1-central-limit-theorem",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Theta skills — not to teach 2.6."
+                "Retrieve and connect Campaign Theta skills. Not to teach 2.6."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 40, "max": 55},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 2.5.1–2.5.2 return targets. "
-                "This is revision Study Progress — not Topic Complete for 2.6, and not "
+                "This is revision Study Progress. Not Topic Complete for 2.6, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -300,7 +300,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 2.6 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 2.6 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass sampling distributions (2.6)",
@@ -321,7 +321,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -388,9 +388,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. rate of Normal approximation — five-minute rework. (2) Refuse "
+                    "(1) e.g. rate of Normal approximation. Five-minute rework. (2) Refuse "
                     "Chapter 2 complete / spine / until-exam. (3) Honest next is 2.6 (successor "
-                    "Volume) or declared stop — not claimed finished here."
+                    "Volume) or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 2 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -411,16 +411,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "2.6",
             "next_topic_title": (
-                "Honest next — sampling distributions (2.6) under a successor Volume "
+                "Honest next: sampling distributions (2.6) under a successor Volume "
                 "(or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Theta / Volume CS1-008 completes after this Revision. Honest stop: "
-                "2.5 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not "
+                "2.5 Pilot Arc closed. Not Chapter 2 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 2.6 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Theta / CS1-008 complete after today (pending human Approver + LIVE). "
@@ -442,13 +442,13 @@ LEARNING = [
         title="State and apply the CLT for an iid sequence",
         purpose=(
             "Today's Mission exists to state and apply the central limit theorem for a "
-            "sequence of independent, identically distributed random variables — so the "
-            "standardised-mean → Normal conclusion is usable — without pretending simulated "
+            "sequence of independent, identically distributed random variables. So the "
+            "standardised-mean → Normal conclusion is usable. Without pretending simulated "
             "sample comparison (2.5.2) is finished."
         ),
         tutor=(
             "Today I will force the candidate to state CLT conditions and conclusion for iid "
-            "sequences — and refuse treating 'the Normal is everywhere' as having the theorem."
+            "sequences. And refuse treating 'the Normal is everywhere' as having the theorem."
         ),
         edu=(
             "Produce a cognitive move from iid sum/mean behaviour to the lawful CLT statement "
@@ -464,7 +464,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Eta closed generating functions (2.4) with Revision. Today opens topic "
-            "2.5 at LO 2.5.1 — the named Continuity Front after CS1-007."
+            "2.5 at LO 2.5.1. The named Continuity Front after CS1-007."
         ),
         why=(
             "2.5.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -475,7 +475,7 @@ LEARNING = [
             "probability for an iid sample mean."
         ),
         explain=(
-            "Day 1 opens 2.5 at the named learning objective — "
+            "Day 1 opens 2.5 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -495,10 +495,10 @@ LEARNING = [
             "Today you stated and applied the CLT for iid sequences; tomorrow continues 2.5 "
             "at comparison of simulated samples with the Normal distribution."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.5.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.5.2. Titles only tonight",
         student=(
             "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light "
-            "prep: skim 2.5.2 headings — titles only tonight."
+            "prep: skim 2.5.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.5.1 central limit theorem (iid)",
         stop=(
@@ -551,11 +551,11 @@ LEARNING = [
         cp_model=(
             "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z=(540−500)/20=2; ",
             "P(X̄>540)≈1−Φ(2)≈0.023. (3) Refuse: casual Normal habit is not the CLT ",
-            "— today's skill is stating and applying the theorem for iid sequences ",
+            ": today's skill is stating and applying the theorem for iid sequences ",
             "under the stated conditions."
         ),
         reflect=(
-            "Harvest wobble on conditions vs conclusion — simulated-sample comparison comes "
+            "Harvest wobble on conditions vs conclusion. Simulated-sample comparison comes "
             "tomorrow."
         ),
     ),
@@ -569,11 +569,11 @@ LEARNING = [
         title="Compare simulated samples with the Normal distribution",
         purpose=(
             "Today's Mission exists to compare simulated samples from a given distribution "
-            "with the Normal distribution — so the simulation check on CLT intuition is "
-            "usable — without claiming Chapter 2 or sampling distributions (2.6) complete."
+            "with the Normal distribution. So the simulation check on CLT intuition is "
+            "usable. Without claiming Chapter 2 or sampling distributions (2.6) complete."
         ),
         tutor=(
-            "Today I will force the candidate through simulated-sample vs Normal comparison — "
+            "Today I will force the candidate through simulated-sample vs Normal comparison. "
             "refuse treating yesterday's CLT statement as having finished 2.5.2, and refuse "
             "Chapter-2-complete claims."
         ),
@@ -599,7 +599,7 @@ LEARNING = [
             "You will be able to say what a simulation-vs-Normal comparison would ",
             "show for a skewed parent and when the Normal approximation is poor."
         ),
-        explain="Campaign Theta Day 2 focuses LO 2.5.2 — terminal Learning day of CS1-008.",
+        explain="Campaign Theta Day 2 focuses LO 2.5.2: terminal Learning day of CS1-008.",
         criteria=[
             "Closed-book, outline how to simulate samples from a given distribution for this LO.",
             "State what you compare against the Normal (and what a mismatch might mean).",
@@ -611,15 +611,15 @@ LEARNING = [
             "Knowledge Checks: simulated-vs-Normal + refuse Ch2-complete.",
         ],
         next_code="CT-R1",
-        next_title="Campaign Theta Revision — retrieve 2.5.1–2.5.2",
+        next_title="Campaign Theta Revision: retrieve 2.5.1–2.5.2",
         cont=(
             "Today you finished simulated-sample comparison with the Normal; tomorrow is "
-            "Revision mode — retrieve the 2.5 chain closed-book before any 2.6 first-pass work."
+            "Revision mode: retrieve the 2.5 chain closed-book before any 2.6 first-pass work."
         ),
-        prep="Optional: list the two 2.5 LO hinges from memory — titles only tonight",
+        prep="Optional: list the two 2.5 LO hinges from memory. Titles only tonight",
         student=(
             "Tomorrow: Campaign Theta Revision (retrieve 2.5.1–2.5.2). Optional light prep: "
-            "list the two hinges from memory — titles only tonight."
+            "list the two hinges from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 2.5.2 simulated samples compared with the Normal",
         stop="Through CMP 2.5.2 (stop before sampling distributions 2.6)",
@@ -674,7 +674,7 @@ LEARNING = [
             "conditions."
         ),
         reflect=(
-            "Harvest simulated-vs-Normal wobble — Revision protects the 2.5 chain tomorrow."
+            "Harvest simulated-vs-Normal wobble. Revision protects the 2.5 chain tomorrow."
         ),
     ),
 ]
@@ -701,7 +701,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-THETA",
         "campaign_version": "cs1008-1.0.0",
-        "display_title": "Campaign Theta — Central limit theorem (2.5)",
+        "display_title": "Campaign Theta: Central limit theorem (2.5)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

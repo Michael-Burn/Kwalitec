@@ -492,7 +492,7 @@ def _achievement_line(*, history: HistoryPageViewModel | None) -> str:
         title = (getattr(a, "title", "") or "").strip()
         if title:
             desc = (getattr(a, "description", "") or "").strip()
-            return f"{title}." if not desc else f"{title} — {desc}"[:140]
+            return f"{title}." if not desc else f"{title}–{desc}"[:140]
     if history.mastered_topics:
         sample = ", ".join(history.mastered_topics[:2])
         return f"Strengthened {sample}."
@@ -515,7 +515,7 @@ def _next_action_line(
         home=home, revision=revision, journey=journey
     )
     if focus:
-        return f"Study {focus}." if not detail else f"Study {focus} — {detail}"
+        return f"Study {focus}." if not detail else f"Study {focus}–{detail}"
     return ""
 
 

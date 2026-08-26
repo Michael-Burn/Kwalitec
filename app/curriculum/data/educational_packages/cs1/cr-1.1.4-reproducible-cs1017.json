@@ -35,7 +35,7 @@
   "mission": {
     "mission_id": "msn-cs1017-cs1-1.1-reproducible",
     "display_title": "Reproducible research (Publication Front)",
-    "mission_purpose": "Today's Mission exists to study Syllabus 1.1.4 reproducible research under Publication Front discipline — without pretending EDA summaries (1.2.1) are finished.",
+    "mission_purpose": "Today's Mission exists to study Syllabus 1.1.4 reproducible research under Publication Front discipline. Without pretending EDA summaries (1.2.1) are finished.",
     "tutor_intent": "Today I will force reproducibility elements warrant and refuse 'Publication Front finished EDA / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of reproducibility elements.",
     "learning_objective": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1017-cs1-1.1-reproducible",
-    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.1.4 — LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
+    "session_educational_purpose": "Execute today's Publication Front Mission for Syllabus 1.1.4: LO-per-day Wave 0 residual catalogue under EP Production Era, not Approver clearance.",
     "session_tutor_purpose": "Set focus on 1.1.4, exit to CMP, practise today's LO, refuse spine PASS / until-exam / Approver clearance swallow.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Reproducible research (Publication Front). You practised selective CMP reading on Syllabus 1.1.4 under Publication Front discipline. This is Study Progress for today's LO — not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
+    "wrap_up": "Session complete for Reproducible research (Publication Front). You practised selective CMP reading on Syllabus 1.1.4 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
     "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4 — reproducible research (publication front) — under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4 (reproducible research (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.4?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -93,13 +93,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution — stay inside 1.1.4.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.1.4.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core LO move in one sentence.",
+        "cue": "Pause. Write today's core LO move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest reproducibility wobble — EDA continues Publication Front tomorrow.",
+    "framing": "Harvest reproducibility wobble: EDA continues Publication Front tomorrow.",
     "prompt": "Which part of today's 1.1.4 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.1.4 work is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "1.2",
     "next_topic_title": "EDA summaries and visuals (1.2.1)",
     "continuity_line": "Today you studied 1.1.4; tomorrow continues Publication Front at 1.2.1.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.1 — titles only tonight",
-    "student_facing": "Tomorrow: EDA summaries Publication Front day (1.2.1). Optional light prep: skim 1.2.1 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 1.2.1. Titles only tonight",
+    "student_facing": "Tomorrow: EDA summaries Publication Front day (1.2.1). Optional light prep: skim 1.2.1 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CR-R1",

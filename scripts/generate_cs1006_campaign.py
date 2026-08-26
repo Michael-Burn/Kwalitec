@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1006-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 2.3 LOs, Chapter 2, or generating functions."
             ),
             "confidence_prompt": (
@@ -82,7 +82,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -101,10 +101,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -116,7 +116,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -193,7 +193,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Zeta revision — expectations and conditional expectations",
+        "topic_title": "Campaign Zeta revision: expectations and conditional expectations",
         "return_targets": ["2.3.1", "2.3.2"],
         "topic_aliases": [day, "campaign-zeta-revision"],
         "topic_title_keywords": [
@@ -210,12 +210,12 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1006-cs1-cz-r1-conditional-expectations",
             "display_title": "Retrieve conditional-expectation hinges (2.3)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Zeta — retrieving "
+                "Today's Mission exists to protect memory of Campaign Zeta. Retrieving "
                 "conditional expectation of one RV given another, and mean/variance via "
-                "conditioning — so 2.3 does not evaporate before generating functions (2.4)."
+                "conditioning. So 2.3 does not evaporate before generating functions (2.4)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Zeta's Learning hinges — "
+                "Today I will run closed-book retrieval across Zeta's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 2.4 lesson."
             ),
             "educational_intent": (
@@ -232,7 +232,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished mean and variance via conditioning (2.3.2). "
-                "Today is Revision mode: return to 2.3.1–2.3.2 under closed-book retrieval — "
+                "Today is Revision mode: return to 2.3.1–2.3.2 under closed-book retrieval. "
                 "no new first-pass LO."
             ),
             "why_now": (
@@ -240,7 +240,7 @@ def revision_pkg() -> dict:
                 "protects it before 2.4 work."
             ),
             "expected_benefit": (
-                "Evidence that the 2.3 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 2.3 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 2 or the exam journey is complete."
             ),
             "explainability": (
@@ -262,15 +262,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1006-cs1-cz-r1-conditional-expectations",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Zeta skills — not to teach 2.4."
+                "Retrieve and connect Campaign Zeta skills. Not to teach 2.4."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 40, "max": 55},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 2.3.1–2.3.2 return targets. "
-                "This is revision Study Progress — not Topic Complete for 2.4, and not "
+                "This is revision Study Progress. Not Topic Complete for 2.4, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -300,7 +300,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 2.4 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 2.4 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass generating functions (2.4)",
@@ -322,7 +322,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -388,9 +388,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. Var via conditioning — five-minute rework. (2) Refuse Chapter 2 "
+                    "(1) e.g. Var via conditioning. Five-minute rework. (2) Refuse Chapter 2 "
                     "complete / spine / until-exam. (3) Honest next is 2.4 (successor Volume) "
-                    "or declared stop — not claimed finished here."
+                    "or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 2 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -411,16 +411,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "2.4",
             "next_topic_title": (
-                "Honest next — generating functions (2.4) under a successor Volume "
+                "Honest next: generating functions (2.4) under a successor Volume "
                 "(or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Zeta / Volume CS1-006 completes after this Revision. Honest stop: "
-                "2.3 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not "
+                "2.3 Pilot Arc closed. Not Chapter 2 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 2.4 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Zeta / CS1-006 complete after today (pending human Approver + LIVE). "
@@ -442,12 +442,12 @@ LEARNING = [
         title="Form the conditional expectation of one RV given another",
         purpose=(
             "Today's Mission exists to obtain the conditional expectation of one random "
-            "variable given the value of another — so E[Y|X=x] (or equivalent) is a usable "
-            "object — without pretending the tower / total-expectation mean-variance LO is finished."
+            "variable given the value of another. So E[Y|X=x] (or equivalent) is a usable "
+            "object. Without pretending the tower / total-expectation mean-variance LO is finished."
         ),
         tutor=(
             "Today I will force the candidate to form or interpret E[Y|X=x] from a joint or "
-            "conditional setup — and refuse treating 'I can compute an ordinary expectation' "
+            "conditional setup. And refuse treating 'I can compute an ordinary expectation' "
             "as having conditional expectation."
         ),
         edu=(
@@ -461,7 +461,7 @@ LEARNING = [
         focus="Joint/conditional → E[Y|X=x] as a function of x → refuse equating E[Y] with E[Y|X].",
         prior=(
             "Campaign Epsilon closed joint distributions through linear combinations (2.2) "
-            "with Revision. Today opens topic 2.3 at LO 2.3.1 — the named Continuity Front "
+            "with Revision. Today opens topic 2.3 at LO 2.3.1. The named Continuity Front "
             "after CS1-005."
         ),
         why=(
@@ -473,7 +473,7 @@ LEARNING = [
             "function of x, distinct from the unconditional mean."
         ),
         explain=(
-            "Day 1 opens 2.3 at the named learning objective — "
+            "Day 1 opens 2.3 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -492,10 +492,10 @@ LEARNING = [
             "Today you formed conditional expectation of one RV given another; tomorrow "
             "continues 2.3 at mean and variance as expectations of conditional expected values."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.3.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.3.2. Titles only tonight",
         student=(
             "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: "
-            "skim 2.3.2 headings — titles only tonight."
+            "skim 2.3.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.3.1 conditional expectation",
         stop=(
@@ -529,7 +529,7 @@ LEARNING = [
             "average",
         ],
         ar_model=(
-            "E[Y|X=x] is the expected value of Y when X is fixed at x — a function of x. "
+            "E[Y|X=x] is the expected value of Y when X is fixed at x. A function of x. "
             "It is not the same as the unconditional E[Y]. Obtain it from the conditional "
             "distribution of Y|X=x (or equivalent joint setup in the CMP)."
         ),
@@ -543,11 +543,11 @@ LEARNING = [
         cp_model=(
             "(1) P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0·P(Y=0|X=1)+1·P(Y=1|X=1)≈0. ",
             "571. (2) Refuse: E[Y] is a single number; E[Y|X=x] is a function of x ",
-            "obtained from the conditional distribution — knowing the unconditional ",
+            "obtained from the conditional distribution. Knowing the unconditional ",
             "mean does not give the conditional expectation."
         ),
         reflect=(
-            "Harvest wobble on E[Y|X=x] vs E[Y] — mean/variance via conditioning comes tomorrow."
+            "Harvest wobble on E[Y|X=x] vs E[Y]. Mean/variance via conditioning comes tomorrow."
         ),
     ),
     dict(
@@ -560,12 +560,12 @@ LEARNING = [
         title="Obtain mean and variance via conditioning",
         purpose=(
             "Today's Mission exists to obtain the mean and variance of a random variable as "
-            "expectations of conditional expected values — so the tower / law of total "
-            "expectation (and related variance decomposition) is usable — without claiming "
+            "expectations of conditional expected values. So the tower / law of total "
+            "expectation (and related variance decomposition) is usable. Without claiming "
             "Chapter 2 or generating functions complete."
         ),
         tutor=(
-            "Today I will force the candidate through mean (and variance) via conditioning — "
+            "Today I will force the candidate through mean (and variance) via conditioning. "
             "refuse treating yesterday's E[Y|X] as having finished the tower, and refuse "
             "Chapter-2-complete claims."
         ),
@@ -591,7 +591,7 @@ LEARNING = [
             "You will be able to recover an unconditional mean (and outline ",
             "variance) via conditioning using the tower / law of total variance."
         ),
-        explain="Campaign Zeta Day 2 focuses LO 2.3.2 — terminal Learning day of CS1-006.",
+        explain="Campaign Zeta Day 2 focuses LO 2.3.2: terminal Learning day of CS1-006.",
         criteria=[
             "Closed-book, state how E[Y] arises from E[E[Y|X]] (or equivalent).",
             "Outline how variance uses conditioning (CMP form).",
@@ -603,15 +603,15 @@ LEARNING = [
             "Knowledge Checks: mean/variance via conditioning + refuse Ch2-complete.",
         ],
         next_code="CZ-R1",
-        next_title="Campaign Zeta Revision — retrieve 2.3.1–2.3.2",
+        next_title="Campaign Zeta Revision: retrieve 2.3.1–2.3.2",
         cont=(
             "Today you finished mean and variance via conditioning; tomorrow is Revision "
-            "mode — retrieve the 2.3 chain closed-book before any 2.4 first-pass work."
+            "mode: retrieve the 2.3 chain closed-book before any 2.4 first-pass work."
         ),
-        prep="Optional: list the two 2.3 LO hinges from memory — titles only tonight",
+        prep="Optional: list the two 2.3 LO hinges from memory. Titles only tonight",
         student=(
             "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1–2.3.2). Optional light prep: "
-            "list the two hinges from memory — titles only tonight."
+            "list the two hinges from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 2.3.2 mean and variance via conditioning",
         stop="Through CMP 2.3.2 (stop before generating functions 2.4)",
@@ -655,12 +655,12 @@ LEARNING = [
         cp_kw=["tower", "14", "E[E[Y|X]]", "refuse", "conditioning", "variance"],
         cp_model=(
             "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an ",
-            "intermediate object — today's LO applies the tower (and variance ",
+            "intermediate object: today's LO applies the tower (and variance ",
             "decomposition) to recover unconditional mean/variance; you must take ",
             "the outer expectation, and E[Y]=E[Y|X] is not a free equality without ",
             "that step."
         ),
-        reflect="Harvest conditioning-mean/variance wobble — Revision protects the 2.3 chain tomorrow.",
+        reflect="Harvest conditioning-mean/variance wobble. Revision protects the 2.3 chain tomorrow.",
     ),
 ]
 
@@ -686,7 +686,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-ZETA",
         "campaign_version": "cs1006-1.0.0",
-        "display_title": "Campaign Zeta — Expectations and conditional expectations (2.3)",
+        "display_title": "Campaign Zeta: Expectations and conditional expectations (2.3)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

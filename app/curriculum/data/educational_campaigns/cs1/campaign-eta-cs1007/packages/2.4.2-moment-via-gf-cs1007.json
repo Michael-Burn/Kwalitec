@@ -1,7 +1,7 @@
 {
   "package_version": "cs1007-campaign-eta-1.0.0",
-  "publication_version": "cs1007-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1007-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
   "volume_id": "CS1-007",
   "subject_id": "CS1",
@@ -37,15 +37,15 @@
   "mission": {
     "mission_id": "msn-cs1007-cs1-2.4-moment-via-gf",
     "display_title": "Obtain moments via series expansion or differentiation of a GF",
-    "mission_purpose": "Today's Mission exists to obtain moments via series expansion or differentiation of a generating function — so the GF → moment pipeline is usable — without claiming Chapter 2 or the central limit theorem complete.",
-    "tutor_intent": "Today I will force the candidate through moment extraction from a GF — refuse treating yesterday's MGF/CGF definitions as having finished moment calculation, and refuse Chapter-2-complete claims.",
+    "mission_purpose": "Today's Mission exists to obtain moments via series expansion or differentiation of a generating function (so the GF → moment pipeline is usable) without claiming Chapter 2 or the central limit theorem complete.",
+    "tutor_intent": "Today I will force the candidate through moment extraction from a GF. Refuse treating yesterday's MGF/CGF definitions as having finished moment calculation, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for moments obtained via series expansion or differentiation of a generating function.",
     "learning_objective": "Obtain moments of a random variable via series expansion or differentiation of a generating function.",
     "concept_focus": "MGF/CGF → differentiate or Taylor-expand → extract moments → refuse definition-as-extraction.",
     "prior_bridge": "Yesterday you formed moment and cumulant generating functions (2.4.1). Today uses those objects to recover moments.",
     "why_now": "2.4.2 completes topic 2.4 Learning; Revision follows before any 2.5 commission.",
     "expected_benefit": "You will be able to extract a moment by differentiating (or expanding) an MGF/CGF, not merely by restating the definition.",
-    "explainability": "Campaign Eta Day 2 focuses LO 2.4.2 — terminal Learning day of CS1-007.",
+    "explainability": "Campaign Eta Day 2 focuses LO 2.4.2: terminal Learning day of CS1-007.",
     "success_criteria": [
       "Closed-book, outline how a moment arises from series coefficients of an MGF.",
       "Outline how differentiation of an MGF (or related GF) yields moments (CMP form).",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1007-cs1-2.4-moment-via-gf",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.4.2 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.4.2. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.4.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Obtain moments via series expansion or differentiation of a GF. You practised selective CMP reading on Syllabus 2.4.2. This is Study Progress for today's block — not Topic Complete for later 2.4 LOs, Chapter 2, or the central limit theorem.",
+    "wrap_up": "Session complete for Obtain moments via series expansion or differentiation of a GF. You practised selective CMP reading on Syllabus 2.4.2. This is Study Progress for today's block. Not Topic Complete for later 2.4 LOs, Chapter 2, or the central limit theorem.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.4.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.4.2 — obtain moments via series expansion or differentiation of a gf. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.4.2: obtain moments via series expansion or differentiation of a gf. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.4.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.4.2 moment calculation via generating functions. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.4.2 (stop before central limit theorem 2.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.4.2 moment calculation via generating functions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.4.2 (stop before central limit theorem 2.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.4.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -174,7 +174,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest moment-via-GF wobble — Revision protects the 2.4 chain tomorrow.",
+    "framing": "Harvest moment-via-GF wobble: Revision protects the 2.4 chain tomorrow.",
     "prompt": "Which part of today's 2.4.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.4.2 is stickiest and why?",
@@ -184,9 +184,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CH-R1",
-    "next_topic_title": "Campaign Eta Revision — retrieve 2.4.1–2.4.2",
-    "continuity_line": "Today you finished moment calculation via generating functions; tomorrow is Revision mode — retrieve the 2.4 chain closed-book before any 2.5 first-pass work.",
-    "light_prep_cue": "Optional: list the two 2.4 LO hinges from memory — titles only tonight",
-    "student_facing": "Tomorrow: Campaign Eta Revision (retrieve 2.4.1–2.4.2). Optional light prep: list the two hinges from memory — titles only tonight."
-  }
+    "next_topic_title": "Campaign Eta Revision: retrieve 2.4.1–2.4.2",
+    "continuity_line": "Today you finished moment calculation via generating functions; tomorrow is Revision mode. Retrieve the 2.4 chain closed-book before any 2.5 first-pass work.",
+    "light_prep_cue": "Optional: list the two 2.4 LO hinges from memory. Titles only tonight",
+    "student_facing": "Tomorrow: Campaign Eta Revision (retrieve 2.4.1–2.4.2). Optional light prep: list the two hinges from memory. Titles only tonight."
+  },
+  "published_at": "2026-08-01"
 }

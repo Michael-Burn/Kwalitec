@@ -35,8 +35,8 @@
   "mission": {
     "mission_id": "msn-cs1004-cs1-2.1-software-generation",
     "display_title": "Generate RVs with statistical software",
-    "mission_purpose": "Today's Mission exists to generate discrete and continuous random variables using statistical software — so software sampling is deliberate and checkable against the families and methods you already hold, without opening joint distributions.",
-    "tutor_intent": "Today I will force the candidate to generate draws in software for basic discrete and continuous families and to sanity-check output — refusing both GUI theatre and silent claim that Chapter 2 is finished.",
+    "mission_purpose": "Today's Mission exists to generate discrete and continuous random variables using statistical software. So software sampling is deliberate and checkable against the families and methods you already hold, without opening joint distributions.",
+    "tutor_intent": "Today I will force the candidate to generate draws in software for basic discrete and continuous families and to sanity-check output (refusing both GUI theatre and silent claim that Chapter 2 is finished)",
     "educational_intent": "Produce a cognitive move from 'I know inverse transform' to 'I can obtain software-generated samples and check them honestly.'",
     "learning_objective": "Generate discrete and continuous random variables using statistical software.",
     "concept_focus": "Named family → software sampler → generate sample → sanity check against support/moments → refuse generation-without-check.",
@@ -61,13 +61,13 @@
   },
   "session": {
     "session_id": "ssn-cs1004-cs1-2.1-software-generation",
-    "session_educational_purpose": "Execute today's Mission: software generation for univariate RVs — not joint distributions (2.2).",
+    "session_educational_purpose": "Execute today's Mission: software generation for univariate RVs. Not joint distributions (2.2).",
     "session_tutor_purpose": "Set focus on generate–check–refuse-overclaim, exit to CMP/software practice for 2.1.6.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 80
     },
-    "wrap_up": "Session complete for Generate RVs with statistical software. Learning days for 2.1.3–2.1.6 are done after today; tomorrow is Revision — not a silent jump into 2.2.",
+    "wrap_up": "Session complete for Generate RVs with statistical software. Learning days for 2.1.3–2.1.6 are done after today; tomorrow is Revision. Not a silent jump into 2.2.",
     "confidence_prompt": "How confident are you that you could generate and sanity-check one discrete and one continuous sample tomorrow? Rate 1–5 with warrant."
   },
   "reading_guidance": {
@@ -93,12 +93,12 @@
     ],
     "annotation_task": "Before practice: name one discrete and one continuous target family and one sanity check",
     "attempt_before_reveal": "Generate first; then compare to the worked check",
-    "exit_line": "Open your CMP at Syllabus 2.1.6 — software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks.",
+    "exit_line": "Open your CMP at Syllabus 2.1.6: software generation. Use statistical software as the CMP directs. Stop before 2.2. Return for Worked-example re-entry, then Knowledge Checks.",
     "return_cue": "Finished Guided Reading/practice when 2.1.6 block is complete and focus questions are answerable. Close CMP; return for re-entry then Knowledge Checks.",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write your sanity check before looking at solutions.",
+        "cue": "Pause. Write your sanity check before looking at solutions.",
         "student_action": "Annotate"
       },
       {
@@ -134,7 +134,7 @@
         "support"
       ],
       "explanation": "Software LO is deliberate generate + check, not menu tourism.",
-      "model_answer": "Example: Discrete — generate Poisson(λ) counts; check non-negative integers and sample mean near λ. Continuous — generate Exp(λ); check positive support and mean near 1/λ.",
+      "model_answer": "Example: Discrete (generate Poisson(λ) counts; check non-negative integers and sample mean near λ. Continuous) generate Exp(λ); check positive support and mean near 1/λ.",
       "common_mistake": "Naming software without a check.",
       "success_criteria": [
         "Discrete and continuous targets.",
@@ -163,7 +163,7 @@
         "generate"
       ],
       "explanation": "Honest stop: 2.1 completion ≠ Chapter 2 completion.",
-      "model_answer": "(1) Poisson(3): generate non-negative integer counts; check integers ≥0 and sample mean near 3. Exponential(mean 2): generate positive reals (rate 1/2); check support >0 and sample mean near 2. (2) Refuse: a sampler is not a substitute for knowing how inverse-transform sampling works; generating alone is not a sanity check — you must verify support and moments against the named family.",
+      "model_answer": "(1) Poisson(3): generate non-negative integer counts; check integers ≥0 and sample mean near 3. Exponential(mean 2): generate positive reals (rate 1/2); check support >0 and sample mean near 2. (2) Refuse: a sampler is not a substitute for knowing how inverse-transform sampling works; generating alone is not a sanity check. You must verify support and moments against the named family.",
       "common_mistake": "Treating a software sampler as finished without a support/moment sanity check, or equating generation with inverse-transform understanding.",
       "success_criteria": [
         "Clear refusal.",
@@ -173,19 +173,19 @@
   ],
   "reflection": {
     "framing": "Harvest software-generation wobble before Revision.",
-    "prompt": "Which part is stickiest — choosing samplers, sanity checks, or refusing Chapter-2-complete theatre? What cue is unclear? What will Revision need to retrieve?",
+    "prompt": "Which part is stickiest: choosing samplers, sanity checks, or refusing Chapter-2-complete theatre? What cue is unclear? What will Revision need to retrieve?",
     "prompts": [
-      "Which part is stickiest — samplers, sanity checks, or refusing overclaim?",
+      "Which part is stickiest: samplers, sanity checks, or refusing overclaim?",
       "What cue is unclear?",
       "What will Revision need to retrieve from 2.1.3–2.1.6?"
     ]
   },
   "tomorrow_preview": {
     "next_topic_code": "CG-R1",
-    "next_topic_title": "Campaign Gamma revision — distributions through generation",
-    "continuity_line": "Today you closed software generation; tomorrow is Revision across 2.1.1–2.1.6 (and Beta hinges as needed) — not a first-pass jump into 2.2.",
-    "light_prep_cue": "Optional: list sticky titles from 2.1.3–2.1.6 Reflections — titles only tonight",
-    "student_facing": "Tomorrow: Campaign Gamma Revision day — retrieve evaluation, Poisson process, inverse transform, and software generation. Optional light prep: sticky titles only tonight."
+    "next_topic_title": "Campaign Gamma revision: distributions through generation",
+    "continuity_line": "Today you closed software generation; tomorrow is Revision across 2.1.1–2.1.6 (and Beta hinges as needed). Not a first-pass jump into 2.2.",
+    "light_prep_cue": "Optional: list sticky titles from 2.1.3–2.1.6 Reflections. Titles only tonight",
+    "student_facing": "Tomorrow: Campaign Gamma Revision day (retrieve evaluation, Poisson process, inverse transform, and software generation). Optional light prep: sticky titles only tonight."
   },
   "published_at": "2026-08-01"
 }

@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1009-cs1-2.6-sampling-distribution-statistic",
     "display_title": "Describe the sampling distribution of a statistic",
-    "mission_purpose": "Today's Mission exists to describe the sampling distribution of a statistic — so the repeated-sample behaviour of a statistic is usable — without claiming mean/variance formulas (2.6.3) finished.",
-    "tutor_intent": "Today I will force the candidate through sampling-distribution language for a statistic — refuse treating yesterday's random-sample definition as finishing 2.6.2.",
+    "mission_purpose": "Today's Mission exists to describe the sampling distribution of a statistic (so the repeated-sample behaviour of a statistic is usable) without claiming mean/variance formulas (2.6.3) finished.",
+    "tutor_intent": "Today I will force the candidate through sampling-distribution language for a statistic. Refuse treating yesterday's random-sample definition as finishing 2.6.2.",
     "educational_intent": "Produce executable warrants for the sampling distribution of a statistic over repeated random samples.",
     "learning_objective": "Describe the sampling distribution of a statistic.",
     "concept_focus": "Statistic as function of sample → distribution over repeated samples → refuse single-sample-as-distribution.",
     "prior_bridge": "Yesterday you described random samples from a population (2.6.1). Today names the sampling distribution of a statistic.",
-    "why_now": "After random samples, describe the sampling distribution of a statistic \u2014 mean/variance formulas wait for next session.",
-    "expected_benefit": "Study Progress for sampling distribution of a statistic — not 2.6.3.",
+    "why_now": "After random samples, describe the sampling distribution of a statistic. Mean/variance formulas wait for next session.",
+    "expected_benefit": "Study Progress for sampling distribution of a statistic. Not 2.6.3.",
     "explainability": "Campaign Iota Day 2 focuses LO 2.6.2.",
     "success_criteria": [
       "Closed-book, define the sampling distribution of a statistic.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1009-cs1-2.6-sampling-distribution-statistic",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.2 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.2. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.6.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Describe the sampling distribution of a statistic. You practised selective CMP reading on Syllabus 2.6.2. This is Study Progress for today's block — not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "wrap_up": "Session complete for Describe the sampling distribution of a statistic. You practised selective CMP reading on Syllabus 2.6.2. This is Study Progress for today's block. Not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.6.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.2 — describe the sampling distribution of a statistic. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.2: describe the sampling distribution of a statistic. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.6.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.2 sampling distribution of a statistic. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.2 sampling distribution of a statistic. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.6.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -171,7 +171,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest statistic-vs-distribution wobble — mean/variance formulas tomorrow.",
+    "framing": "Harvest statistic-vs-distribution wobble: mean/variance formulas tomorrow.",
     "prompt": "Which part of today's 2.6.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.6.2 is stickiest and why?",
@@ -183,8 +183,8 @@
     "next_topic_code": "2.6",
     "next_topic_title": "Mean and variance of sample mean / mean of sample variance (2.6.3)",
     "continuity_line": "Today you described the sampling distribution of a statistic; tomorrow continues 2.6 at mean/variance results for sample mean and mean of sample variance.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.3 — titles only tonight",
-    "student_facing": "Tomorrow: mean/variance of sample mean and mean of sample variance (2.6.3). Optional light prep: skim 2.6.3 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.3. Titles only tonight",
+    "student_facing": "Tomorrow: mean/variance of sample mean and mean of sample variance (2.6.3). Optional light prep: skim 2.6.3 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

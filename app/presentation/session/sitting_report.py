@@ -467,7 +467,7 @@ def _what_studied(
     stage_text = ", ".join(stages) if stages else "today's study flow"
     if objectives:
         lead = objectives[0]
-        return f"You studied {topic} — focusing on {lead} — through {stage_text}."
+        return f"You studied {topic}: focusing on {lead}: through {stage_text}."
     return f"You studied {topic} through {stage_text}."
 
 
@@ -646,17 +646,17 @@ def _progress_explanation(
         )
     if "partial" in finish_label.lower() or disposition == "accepted_with_restrictions":
         return (
-            "Progress stayed where it was — honest finish reviews that are "
+            "Progress stayed where it was. Honest finish reviews that are "
             "partial do not claim Journey movement."
         )
     if finish_label and "not complete" in finish_label.lower():
         return (
-            "Progress stayed where it was — you recorded that planned study "
+            "Progress stayed where it was. You recorded that planned study "
             "was not complete, so no Journey advance was claimed."
         )
     if disposition == "rejected":
         return (
-            "Progress did not change — today's Session did not meet the bar "
+            "Progress did not change: today's Session did not meet the bar "
             "for Journey movement. You can continue when ready."
         )
     if correct or incorrect:
@@ -686,7 +686,7 @@ def _learning_insights(
     elif counts["correct"] and counts["incorrect"]:
         lines.append(
             f"You got {counts['correct']} practice items right on {topic}, "
-            f"and missed {counts['incorrect']} — worth a short revisit."
+            f"and missed {counts['incorrect']}: worth a short revisit."
         )
     elif counts["incorrect"] and not counts["correct"]:
         lines.append(f"You struggled with {lead} practice today.")
@@ -703,7 +703,7 @@ def _learning_insights(
         lines.append(f'You wrote: "{preview}"')
     elif _REFLECTION in _type_ids(opaque):
         lines.append(
-            "You left a reflection — that helps shape tomorrow's Session."
+            "You left a reflection. That helps shape tomorrow's Session."
         )
     recent = twin_insights.get("recent_insights") or twin_insights.get("insights") or ()
     if isinstance(recent, str) and recent.strip():

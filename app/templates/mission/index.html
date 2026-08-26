@@ -71,7 +71,7 @@
                     <span class="mission-hero-metric-label">Estimated Time</span>
                     <span class="mission-hero-metric-value">
                         {# B3 (PX-003): single canonical duration, resolved once in
-                           the route via the shared resolver — never a template-local
+                           the route via the shared resolver. Never a template-local
                            fallback chain that can disagree with Home/Session. #}
                         {% if estimated_minutes is not none %}
                             {{ estimated_minutes|format_minutes }}
@@ -140,11 +140,11 @@
                 {% call learn_more("How today's session is chosen") %}
                 <p class="mb-0">
                     {% if is_revision|default(false) %}
-                    In Revision Mode, today's session consolidates the completed syllabus —
-                    practice, mixed review, and examination readiness — not new Topic 1 coverage.
+                    In Revision Mode, today's session consolidates the completed syllabus. 
+                    practice, mixed review, and examination readiness. Not new Topic 1 coverage.
                     {% else %}
                     In Learning Mode, today's study session follows your Current Learning Topic
-                    in this study plan — the next syllabus topic you have not yet completed studying.
+                    in this study plan. The next syllabus topic you have not yet completed studying.
                     {% endif %}
                 </p>
                 {% endcall %}
@@ -166,7 +166,7 @@
                 <li class="small text-secondary mb-1">□ {{ activity }}</li>
                 {% endfor %}
             </ul>
-            {{ help_tip('These are study prompts — not scored practice. Question results can be added in a later step.', 'Activity guidance') }}
+            {{ help_tip('These are study prompts, not scored practice. Question results can be added in a later step.', 'Activity guidance') }}
         </div>
         {% endif %}
 

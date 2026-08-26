@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-linear-predictor",
     "display_title": "Write the linear predictor for simple GLM forms",
-    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models including polynomials and factors — so η is concrete.",
-    "tutor_intent": "Today I will force η = Xβ writing for a factor model and a polynomial term — refuse η/link conflation.",
+    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models including polynomials and factors. So η is concrete.",
+    "tutor_intent": "Today I will force η = Xβ writing for a factor model and a polynomial term. Refuse η/link conflation.",
     "educational_intent": "Produce concrete η literacy.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
     "concept_focus": "η = Xβ → polynomial / factor forms → refuse η=link conflation.",
     "prior_bridge": "Yesterday factors/interactions (4.2.4). Today writes η forms.",
     "why_now": "4.2.5 concretes the middle of the GLM chain before deviance.",
-    "expected_benefit": "Study Progress for η forms — not deviance estimation as primary.",
+    "expected_benefit": "Study Progress for η forms. Not deviance estimation as primary.",
     "explainability": "Campaign Delta Day 10 focuses LO 4.2.5.",
     "success_criteria": [
       "Closed-book, write η for a simple continuous model and a factor model.",
@@ -61,13 +61,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-linear-predictor",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.5 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.5. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.5; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. Study Progress for LO 4.2.5 — not Topic Complete for later LOs in this Volume.",
+    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. Study Progress for LO 4.2.5. Not Topic Complete for later LOs in this Volume.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.5 (stop before deviance primary 4.2.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.5 (stop before deviance primary 4.2.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -167,7 +167,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest η-form wobble — deviance next.",
+    "framing": "Harvest η-form wobble: deviance next.",
     "prompt": "Which part of today's 4.2.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.5 is stickiest and why?",
@@ -179,8 +179,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Deviance, scaled deviance and estimation (4.2.6)",
     "continuity_line": "Today you wrote linear predictor forms; tomorrow continues at deviance, scaled deviance and parameter estimation.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.6 — titles only tonight",
-    "student_facing": "Tomorrow: deviance, scaled deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.6. Titles only tonight",
+    "student_facing": "Tomorrow: deviance, scaled deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

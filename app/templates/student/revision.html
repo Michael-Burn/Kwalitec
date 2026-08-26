@@ -116,11 +116,11 @@
 
 {% else %}
   {{ ds_empty_operational(
-    'Finish today’s Session first — Revision will suggest follow-up after practice.',
+    'Finish today’s Session first: Revision will suggest follow-up after practice.',
     "Return to today's Mission",
     url_for('student.home'),
     title='Nothing to revise yet',
-    explanation='Finish today’s Session first — Revision will suggest follow-up after practice.'
+    explanation='Finish today’s Session first: Revision will suggest follow-up after practice.'
   ) }}
 {% endif %}
 {% else %}

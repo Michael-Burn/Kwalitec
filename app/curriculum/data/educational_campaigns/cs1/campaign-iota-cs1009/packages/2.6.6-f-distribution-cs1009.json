@@ -1,7 +1,7 @@
 {
   "package_version": "cs1009-campaign-iota-1.0.0",
-  "publication_version": "cs1009-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1009-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
   "volume_id": "CS1-009",
   "subject_id": "CS1",
@@ -37,15 +37,15 @@
   "mission": {
     "mission_id": "msn-cs1009-cs1-2.6-f-distribution",
     "display_title": "Describe the F distribution for a ratio of sample variances",
-    "mission_purpose": "Today's Mission exists to describe the F distribution for the ratio of two sample variances from independent Normal samples — without claiming Chapter 2 complete, Chapter 3 inference, or until-exam trust.",
-    "tutor_intent": "Today I will force the F variance-ratio construction — refuse treating t as having finished 2.6.6, and refuse Chapter-2-complete claims.",
+    "mission_purpose": "Today's Mission exists to describe the F distribution for the ratio of two sample variances from independent Normal samples. Without claiming Chapter 2 complete, Chapter 3 inference, or until-exam trust.",
+    "tutor_intent": "Today I will force the F variance-ratio construction (refuse treating t as having finished 2.6.6, and refuse Chapter-2-complete claims)",
     "educational_intent": "Produce executable warrants for an F ratio of independent sample variances from Normal populations (CMP).",
     "learning_objective": "Describe the F distribution for the ratio of two sample variances from independent samples taken from normal distributions.",
     "concept_focus": "Two independent Normal samples → variance ratio → F(df₁, df₂) → refuse using t for that job.",
     "prior_bridge": "Yesterday you described the t-statistic (2.6.5). Today closes topic 2.6 Learning with the F distribution for a variance ratio.",
     "why_now": "2.6.6 completes topic 2.6 Learning; Revision follows before any 3.1 commission.",
     "expected_benefit": "You will be able to state the F law for a ratio of sample variances from independent Normal samples and refuse using t for that comparison.",
-    "explainability": "Campaign Iota Day 6 focuses LO 2.6.6 — terminal Learning day of CS1-009.",
+    "explainability": "Campaign Iota Day 6 focuses LO 2.6.6: terminal Learning day of CS1-009.",
     "success_criteria": [
       "Closed-book, state the F construction for a ratio of sample variances (CMP).",
       "Name independence / Normal-sample conditions and df warrants as CMP states.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1009-cs1-2.6-f-distribution",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.6 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.6. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.6.6, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Describe the F distribution for a ratio of sample variances. You practised selective CMP reading on Syllabus 2.6.6. This is Study Progress for today's block — not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "wrap_up": "Session complete for Describe the F distribution for a ratio of sample variances. You practised selective CMP reading on Syllabus 2.6.6. This is Study Progress for today's block. Not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.6.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.6 — describe the f distribution for a ratio of sample variances. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.6: describe the f distribution for a ratio of sample variances. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.6.6?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.6 F distribution for a ratio of sample variances. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.6 (stop before estimators / inference 3.1). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.6 F distribution for a ratio of sample variances. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.6 (stop before estimators / inference 3.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.6.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -163,7 +163,7 @@
         "t"
       ],
       "explanation": "Checkpoint for 2.6.6.",
-      "model_answer": "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for independent Normal samples). (2) Refuse: t compares means (unknown σ) for Normal samples; a variance ratio uses F — t does not finish this LO.",
+      "model_answer": "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for independent Normal samples). (2) Refuse: t compares means (unknown σ) for Normal samples; a variance ratio uses F. T does not finish this LO.",
       "common_mistake": "Using the t-statistic for a variance-ratio comparison, or treating t as finishing F.",
       "success_criteria": [
         "Refusal present.",
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest F / df wobble — Revision protects the 2.6 chain tomorrow.",
+    "framing": "Harvest F / df wobble. Revision protects the 2.6 chain tomorrow.",
     "prompt": "Which part of today's 2.6.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.6.6 is stickiest and why?",
@@ -182,9 +182,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CI-R1",
-    "next_topic_title": "Campaign Iota Revision — retrieve 2.6.1–2.6.6",
-    "continuity_line": "Today you finished the F distribution for a variance ratio; tomorrow is Revision mode — retrieve the 2.6 chain closed-book before any 3.1 first-pass work.",
-    "light_prep_cue": "Optional: list the six 2.6 LO hinges from memory — titles only tonight",
-    "student_facing": "Tomorrow: Campaign Iota Revision (retrieve 2.6.1–2.6.6). Optional light prep: list the six hinges from memory — titles only tonight."
-  }
+    "next_topic_title": "Campaign Iota Revision: retrieve 2.6.1–2.6.6",
+    "continuity_line": "Today you finished the F distribution for a variance ratio; tomorrow is Revision mode. Retrieve the 2.6 chain closed-book before any 3.1 first-pass work.",
+    "light_prep_cue": "Optional: list the six 2.6 LO hinges from memory. Titles only tonight",
+    "student_facing": "Tomorrow: Campaign Iota Revision (retrieve 2.6.1–2.6.6). Optional light prep: list the six hinges from memory. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

@@ -1,7 +1,7 @@
 {
   "package_version": "cs1010-campaign-kappa-1.0.0",
-  "publication_version": "cs1010-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1010-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
   "volume_id": "CS1-010",
   "subject_id": "CS1",
@@ -36,12 +36,12 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-asymptotic-mle",
     "display_title": "Discuss the asymptotic distribution of MLEs",
-    "mission_purpose": "Today's Mission exists to discuss the asymptotic distribution of maximum likelihood estimators — so large-sample MLE behaviour is usable — without pretending bootstrap (3.1.6) is finished.",
-    "tutor_intent": "Today I will force the candidate to state asymptotic Normal (or CMP-equivalent) behaviour of MLEs under regularity — and refuse treating finite-sample MSE comparison as finishing asymptotics.",
+    "mission_purpose": "Today's Mission exists to discuss the asymptotic distribution of maximum likelihood estimators (so large-sample MLE behaviour is usable) without pretending bootstrap (3.1.6) is finished.",
+    "tutor_intent": "Today I will force the candidate to state asymptotic Normal (or CMP-equivalent) behaviour of MLEs under regularity. And refuse treating finite-sample MSE comparison as finishing asymptotics.",
     "educational_intent": "Produce a cognitive move from finite-sample properties to asymptotic MLE distribution under CMP language.",
     "learning_objective": "Asymptotic distribution of maximum likelihood estimators.",
     "concept_focus": "Large-sample MLE behaviour → asymptotic distribution → refuse bootstrap-as-done.",
-    "prior_bridge": "Yesterday you compared estimators via MSE and bias (3.1.4). Today continues topic 3.1 at LO 3.1.5 — asymptotic distribution of MLEs.",
+    "prior_bridge": "Yesterday you compared estimators via MSE and bias (3.1.4). Today continues topic 3.1 at LO 3.1.5: asymptotic distribution of MLEs.",
     "why_now": "3.1.5 is contiguous after comparison. Closing it prevents a cliff at asymptotic MLE while keeping bootstrap as day six.",
     "expected_benefit": "You will be able to state the asymptotic Normal claim for MLEs and use it for large-sample inference.",
     "explainability": "Assigned as Campaign Kappa Day 5 because Continuity Front membership places asymptotics after comparison.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-asymptotic-mle",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.5 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.5. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Discuss the asymptotic distribution of MLEs. You practised selective CMP reading on Syllabus 3.1.5. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Discuss the asymptotic distribution of MLEs. You practised selective CMP reading on Syllabus 3.1.5. This is Study Progress for today's block. Not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.5 — discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.5: discuss the asymptotic distribution of mles. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.5?",
       "What warrant separates today's skill from yesterday's?",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.5 asymptotic distribution of MLEs. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.5 (stop before bootstrap 3.1.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.5 asymptotic distribution of MLEs. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.5 (stop before bootstrap 3.1.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -173,7 +173,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest asymptotic variance / regularity wobble — keep bootstrap for tomorrow.",
+    "framing": "Harvest asymptotic variance / regularity wobble. Keep bootstrap for tomorrow.",
     "prompt": "Which part of today's 3.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.5 is stickiest and why?",
@@ -185,7 +185,8 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Bootstrap for estimator properties (3.1.6)",
     "continuity_line": "Today you discussed asymptotic MLE behaviour; tomorrow continues 3.1 at bootstrap methods for estimator properties.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.6 — titles only tonight",
-    "student_facing": "Tomorrow: bootstrap for estimator properties (3.1.6). Optional light prep: skim 3.1.6 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.6. Titles only tonight",
+    "student_facing": "Tomorrow: bootstrap for estimator properties (3.1.6). Optional light prep: skim 3.1.6 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

@@ -37,12 +37,12 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-efficiency-bias-consistency-mse",
     "display_title": "Discuss efficiency, bias, consistency and MSE of an estimator",
-    "mission_purpose": "Today's Mission exists to discuss efficiency, bias, consistency and mean square error of an estimator — so property language is usable — without pretending comparison of estimators (3.1.4) is finished.",
-    "tutor_intent": "Today I will force the candidate to define bias, MSE, efficiency and consistency with CMP warrants — and refuse treating 'I can write an MLE' as finishing properties.",
+    "mission_purpose": "Today's Mission exists to discuss efficiency, bias, consistency and mean square error of an estimator (so property language is usable) without pretending comparison of estimators (3.1.4) is finished.",
+    "tutor_intent": "Today I will force the candidate to define bias, MSE, efficiency and consistency with CMP warrants. And refuse treating 'I can write an MLE' as finishing properties.",
     "educational_intent": "Produce a cognitive move from an estimator to its key properties under CMP language.",
     "learning_objective": "Efficiency, bias, consistency and mean square error of an estimator.",
-    "concept_focus": "Bias · variance · MSE · efficiency · consistency — refuse comparison-as-done.",
-    "prior_bridge": "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3 — estimator properties.",
+    "concept_focus": "Bias · variance · MSE · efficiency · consistency. Refuse comparison-as-done.",
+    "prior_bridge": "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3: estimator properties.",
     "why_now": "3.1.3 is contiguous after construction methods. Closing it prevents a cliff at property language while keeping comparison as day four.",
     "expected_benefit": "You will be able to distinguish bias, MSE, efficiency, and consistency on a concrete estimator claim.",
     "explainability": "Assigned as Campaign Kappa Day 3 because Continuity Front membership places properties after construction.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-efficiency-bias-consistency-mse",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.3 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.3. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Discuss efficiency, bias, consistency and MSE of an estimator. You practised selective CMP reading on Syllabus 3.1.3. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Discuss efficiency, bias, consistency and MSE of an estimator. You practised selective CMP reading on Syllabus 3.1.3. This is Study Progress for today's block. Not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.3 — discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.3: discuss efficiency, bias, consistency and mse of an estimator. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.3?",
       "What warrant separates today's skill from yesterday's?",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.3 efficiency, bias, consistency and MSE. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.3 (stop before estimator comparison 3.1.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.3 efficiency, bias, consistency and MSE. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.3 (stop before estimator comparison 3.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -173,7 +173,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest bias/MSE definition wobble — keep comparison for tomorrow.",
+    "framing": "Harvest bias/MSE definition wobble. Keep comparison for tomorrow.",
     "prompt": "Which part of today's 3.1.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.3 is stickiest and why?",
@@ -185,8 +185,8 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Comparison of estimators via MSE and bias (3.1.4)",
     "continuity_line": "Today you discussed estimator properties; tomorrow continues 3.1 at comparing estimators using MSE and bias.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.4 — titles only tonight",
-    "student_facing": "Tomorrow: comparison of estimators (3.1.4). Optional light prep: skim 3.1.4 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.4. Titles only tonight",
+    "student_facing": "Tomorrow: comparison of estimators (3.1.4). Optional light prep: skim 3.1.4 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

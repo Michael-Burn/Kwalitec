@@ -13,12 +13,12 @@ from datetime import date
 _STUDY_TIPS: tuple[str, ...] = (
     "Find a quiet environment before you begin.",
     "Turn off notifications for the length of this session.",
-    "Aim for adequate sleep — tired study rarely sticks.",
+    "Aim for adequate sleep: tired study rarely sticks.",
     "Keep water nearby and take regular breaks on long sessions.",
     "Practice questions improve retention more than re-reading alone.",
     "Clear your desk of unrelated tabs and materials.",
     "Decide your stop time before you start, then honour it.",
-    "Start with one clear topic — avoid multitasking.",
+    "Start with one clear topic. Avoid multitasking.",
     "If focus slips, stand up for two minutes, then return.",
 )
 

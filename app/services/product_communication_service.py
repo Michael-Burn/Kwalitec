@@ -38,8 +38,8 @@ class ProductCommunicationService:
     ESTIMATED_KNOWLEDGE_BASIS = "Based on your recorded practice outcomes."
     ESTIMATED_KNOWLEDGE_BADGE_TITLE = ESTIMATED_KNOWLEDGE_BASIS
     ESTIMATED_KNOWLEDGE_EMPTY = (
-        "Estimated knowledge appears here after practice results are recorded — "
-        "completing a topic alone is not understanding."
+        "Estimated knowledge appears here after practice results are recorded. "
+        "Completing a topic alone is not understanding."
     )
     ESTIMATED_KNOWLEDGE_EMPTY_STRONG = (
         "Strong estimated knowledge appears here as practice results accumulate."
@@ -55,15 +55,15 @@ class ProductCommunicationService:
         "Estimated Knowledge from recorded practice, and recent review habits."
     )
     STUDY_PROGRESS_COVERAGE_BASIS = (
-        "Syllabus coverage is Study Progress — completed topics on your active "
-        "plan — not Estimated Knowledge."
+        "Syllabus coverage is Study Progress: completed topics on your active "
+        "plan, not Estimated Knowledge."
     )
     TOPIC_STATUS_PRACTISED_BASIS = (
         "You have recorded practice on this topic, so Estimated Knowledge can "
         "appear before Study Progress marks the topic completed."
     )
     ESTIMATED_READINESS_SELF_REPORT = (
-        "Estimated readiness depends on practice results you recorded — "
+        "Estimated readiness depends on practice results you recorded, "
         "not independently verified exam performance."
     )
 
@@ -75,7 +75,7 @@ class ProductCommunicationService:
         "This is not Estimated Knowledge."
     )
     ACCURACY_BASIS = (
-        "Accuracy is calculated from practice results you recorded — "
+        "Accuracy is calculated from practice results you recorded, "
         "not a verified exam score."
     )
     ACCURACY_EMPTY = (

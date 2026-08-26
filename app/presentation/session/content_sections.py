@@ -10,6 +10,12 @@ from dataclasses import dataclass
 
 # Phrases authored for internal CMP-authority reminders — never show to students.
 _AUTHOR_VOICE_PHRASES: tuple[str, ...] = (
+    # Current punctuation (no em dash)
+    "Kwalitec is the guide; the CMP is the authoritative material. "
+    "Do not treat this activity body as a substitute textbook. ",
+    "Kwalitec is the guide; the CMP is the authoritative material. "
+    "Do not treat this activity body as a substitute textbook.",
+    # Legacy em-dash form (still strip if present in older assembled bodies)
     "Kwalitec is the guide; the CMP is the authoritative material — "
     "do not treat this activity body as a substitute textbook. ",
     "Kwalitec is the guide; the CMP is the authoritative material — "
@@ -17,7 +23,7 @@ _AUTHOR_VOICE_PHRASES: tuple[str, ...] = (
     "Kwalitec is the guide; the CMP is authoritative. ",
     "Kwalitec is the guide; the CMP is authoritative.",
     "Kwalitec directs revision; the CMP is reopened only as a targeted "
-    "instrument after a failed retrieval — not as a fresh chapter read "
+    "instrument after a failed retrieval. Not as a fresh chapter read "
     "and not as a substitute for the checks. ",
 )
 
@@ -45,7 +51,7 @@ _READING_PRIMARY_LABELS: frozenset[str] = frozenset(
     {
         "Open the CMP",
         "Focus questions",
-        "Revision focus — retrieve, do not re-learn",
+        "Revision focus: retrieve, do not re-learn",
         "Retrieval questions (answer closed-book first)",
     }
 )

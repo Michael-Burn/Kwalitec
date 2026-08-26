@@ -690,7 +690,7 @@ class StudentHomeService:
                 subject_name=subject or "Current subject",
                 objective=objective or "Continue your open session",
                 status_label=self._status_line("In progress", duration),
-                why_now=why_now or "Open session — continue where you left off",
+                why_now=why_now or "Open session: continue where you left off",
                 after_completion=after,
                 primary_label=resume_label,
                 primary_kind="link",
@@ -713,7 +713,7 @@ class StudentHomeService:
                 subject_name=subject or "Current subject",
                 objective=objective or "Wrap up your open session",
                 status_label=self._status_line("In progress", duration),
-                why_now=why_now or "Open session — finish and record progress",
+                why_now=why_now or "Open session: finish and record progress",
                 after_completion=after,
                 primary_label="Continue",
                 primary_kind="link",
@@ -1123,7 +1123,7 @@ class StudentHomeService:
         if home.day_complete:
             return HomeStudyHealth(
                 status_label="Day complete",
-                detail="Rest — return tomorrow for the next Session.",
+                detail="Rest. Return tomorrow for the next Session.",
                 tone="positive",
             )
         if self._has_study_plan_signal(home):
@@ -1388,7 +1388,7 @@ class StudentHomeService:
             pass
         candidates: list[str] = []
         if home.session_control == "resume":
-            candidates.append("Open session — continue where you left off")
+            candidates.append("Open session: continue where you left off")
         if home.explanation and home.explanation.why_recommended:
             candidates.append(home.explanation.why_recommended.strip())
         if home.explanation and home.explanation.timeliness_line:

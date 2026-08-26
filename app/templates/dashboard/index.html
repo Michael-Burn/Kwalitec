@@ -57,7 +57,7 @@
 {% endif %}
 
 {# ══════════════════════════════════════════════════════════════════════
-   1. PRIMARY — Today's Study Session
+   1. PRIMARY: Today's Study Session
    ══════════════════════════════════════════════════════════════════════ #}
 <section class="mb-4" aria-label="Today's Study Session" data-ptp004-slot="primary-session">
     <div class="command-card">
@@ -149,10 +149,10 @@
                 </div>
                 <ul class="list-unstyled small mt-3 mb-0" style="color: var(--color-text-secondary);">
                     <li class="mb-1">Topics Completed · {{ lifecycle.revision_metrics.topics_completed }} of {{ lifecycle.revision_metrics.topics_total }}</li>
-                    <li class="mb-1">Revision Sessions · {% if lifecycle.revision_metrics.revision_sessions is not none %}{{ lifecycle.revision_metrics.revision_sessions }}{% else %}—{% endif %}</li>
-                    <li class="mb-1">Practice Questions Completed · {% if lifecycle.revision_metrics.practice_questions_completed is not none %}{{ lifecycle.revision_metrics.practice_questions_completed }}{% else %}—{% endif %}</li>
-                    <li class="mb-1">Revision Streak · {% if lifecycle.revision_metrics.revision_streak is not none %}{{ lifecycle.revision_metrics.revision_streak }} day{{ 's' if lifecycle.revision_metrics.revision_streak != 1 else '' }}{% else %}—{% endif %}</li>
-                    <li class="mb-0">Mixed Quiz Attempts · {% if lifecycle.revision_metrics.mixed_quiz_attempts is not none %}{{ lifecycle.revision_metrics.mixed_quiz_attempts }}{% else %}—{% endif %}</li>
+                    <li class="mb-1">Revision Sessions · {% if lifecycle.revision_metrics.revision_sessions is not none %}{{ lifecycle.revision_metrics.revision_sessions }}{% else %}–{% endif %}</li>
+                    <li class="mb-1">Practice Questions Completed · {% if lifecycle.revision_metrics.practice_questions_completed is not none %}{{ lifecycle.revision_metrics.practice_questions_completed }}{% else %}–{% endif %}</li>
+                    <li class="mb-1">Revision Streak · {% if lifecycle.revision_metrics.revision_streak is not none %}{{ lifecycle.revision_metrics.revision_streak }} day{{ 's' if lifecycle.revision_metrics.revision_streak != 1 else '' }}{% else %}–{% endif %}</li>
+                    <li class="mb-0">Mixed Quiz Attempts · {% if lifecycle.revision_metrics.mixed_quiz_attempts is not none %}{{ lifecycle.revision_metrics.mixed_quiz_attempts }}{% else %}–{% endif %}</li>
                 </ul>
                 {{ help_tip('Metrics show observed revision activity only. Em dashes mean no recorded activity yet.', 'Revision metrics help') }}
             </div>
@@ -189,7 +189,7 @@
                 <p class="small mt-3 mb-1" style="color: var(--color-text-secondary);">
                     {{ curriculum_summary.completed_topics }} of {{ curriculum_summary.total_topics }} topics completed studying
                 </p>
-                {{ help_tip('Study Progress from completed topics — not Estimated Knowledge.', 'Progress vs knowledge') }}
+                {{ help_tip('Study Progress from completed topics, not Estimated Knowledge.', 'Progress vs knowledge') }}
             </div>
             {% else %}
             <div class="command-card-body">
@@ -266,7 +266,7 @@
             <div>
                 <h2 class="h6 fw-semibold mb-1">
                     {% if burnout_status.risk_level == 'high' %}Study Pattern Notice{% else %}Study Load Notice{% endif %}
-                    {{ help_tip('Based on recent study activity patterns — not a prediction of burnout or exam outcome.', 'Study pattern notice') }}
+                    {{ help_tip('Based on recent study activity patterns, not a prediction of burnout or exam outcome.', 'Study pattern notice') }}
                 </h2>
                 <p class="mb-2 small">{{ burnout_status.explanation }}</p>
                 {% if burnout_status.indicators %}
@@ -404,7 +404,7 @@
 </section>
 
 {# ══════════════════════════════════════════════════════════════════════
-   5. Secondary exploration — Exam + schedule only (calm KPI row)
+   5. Secondary exploration. Exam + schedule only (calm KPI row)
    ══════════════════════════════════════════════════════════════════════ #}
 <section class="row g-4 mb-4" aria-label="Secondary exploration" data-ptp004-slot="secondary">
 

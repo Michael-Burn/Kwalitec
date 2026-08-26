@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.1-least-squares",
     "display_title": "Obtain least squares slope and intercept",
-    "mission_purpose": "Today's Mission exists to turn the simple LM into least-squares estimates of slope and intercept \u2014 so estimation is a method, not a software button myth.",
-    "tutor_intent": "Today I will force the candidate to state what least squares minimises and how slope/intercept estimates arise \u2014 refuse button-only OLS.",
+    "mission_purpose": "Today's Mission exists to turn the simple LM into least-squares estimates of slope and intercept. So estimation is a method, not a software button myth.",
+    "tutor_intent": "Today I will force the candidate to state what least squares minimises and how slope/intercept estimates arise. Refuse button-only OLS.",
     "educational_intent": "Produce method warrant for OLS slope and intercept in the simple case.",
     "learning_objective": "Obtain and interpret least squares estimates of the slope and intercept parameters in a simple linear regression model.",
-    "concept_focus": "Residual \u2192 sum of squared residuals \u2192 least-squares slope and intercept formulae.",
+    "concept_focus": "Residual → sum of squared residuals → least-squares slope and intercept formulae.",
     "prior_bridge": "Yesterday you stated simple/multiple forms (4.1.2). Today estimates the simple case.",
     "why_now": "4.1.3 is the estimation hinge before software-heavy 4.1.4.",
     "expected_benefit": "You will be able to state the OLS criterion and the closed-form slope and intercept for simple linear regression.",
@@ -50,7 +50,7 @@
       "Refuse: 'OLS is whatever the software prints without a criterion'."
     ],
     "task_descriptions": [
-      "Sketch residual \u2192 squared \u2192 minimise before CMP.",
+      "Sketch residual → squared → minimise before CMP.",
       "Guided Reading through CMP 4.1.3.",
       "Knowledge Checks: minimise + interpret + refuse button-myth."
     ],
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.1-least-squares",
-    "session_educational_purpose": "Execute today's Mission for LO 4.1.3 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.1.3. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.1.3; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Obtain least squares slope and intercept. Study Progress for LO 4.1.3 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.3 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Obtain least squares slope and intercept. Study Progress for LO 4.1.3. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.3 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.3 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,7 +83,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.1.3 least squares slope and intercept",
+    "open_point": "CMP · Syllabus 4.1.3 least squares slope and intercept",
     "stop_condition": "Through CMP 4.1.3 (stop before software-fit primary 4.1.4)",
     "out_of_scope_today": [
       "Software fit as primary LO (4.1.4)",
@@ -93,12 +93,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.3 least squares slope and intercept. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.3 (stop before software-fit primary 4.1.4). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.3 least squares slope and intercept. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.3 (stop before software-fit primary 4.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -143,7 +143,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.3-cp-01",
       "title": "Checkpoint: 4.1.3",
-      "prompt": "Closed-book. Simple linear model Y = \u03b2\u2080 + \u03b2\u2081x + \u03b5 with data pairs (x\u1d62, y\u1d62). (1) State the least-squares criterion and the closed-form slope (in terms of sums or covariance). (2) Refuse: 'Least squares is just clicking Fit' and 'the OLS slope equals Corr(X,Y).'",
+      "prompt": "Closed-book. Simple linear model Y = β₀ + β₁x + ε with data pairs (xᵢ, yᵢ). (1) State the least-squares criterion and the closed-form slope (in terms of sums or covariance). (2) Refuse: 'Least squares is just clicking Fit' and 'the OLS slope equals Corr(X,Y).'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.3.",
       "hints": [
@@ -159,7 +159,7 @@
         "not click"
       ],
       "explanation": "Checkpoint for 4.1.3.",
-      "model_answer": "(1) Choose \u03b2\u2080, \u03b2\u2081 to minimise \u03a3(y\u1d62 \u2212 \u03b2\u2080 \u2212 \u03b2\u2081x\u1d62)\u00b2. Slope \u03b2\u0302\u2081 = \u03a3(x\u1d62\u2212x\u0304)(y\u1d62\u2212\u0233)/\u03a3(x\u1d62\u2212x\u0304)\u00b2 = Cov\u0302(X,Y)/Var\u0302(X); intercept \u03b2\u0302\u2080 = \u0233 \u2212 \u03b2\u0302\u2081 x\u0304. (2) Refuse: Fit implements OLS but is not the criterion; Corr(X,Y) is dimensionless association, not the OLS slope (which scales by SD_Y/SD_X).",
+      "model_answer": "(1) Choose β₀, β₁ to minimise Σ(yᵢ − β₀ − β₁xᵢ)². Slope β̂₁ = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² = Cov̂(X,Y)/Var̂(X); intercept β̂₀ = ȳ − β̂₁ x̄. (2) Refuse: Fit implements OLS but is not the criterion; Corr(X,Y) is dimensionless association, not the OLS slope (which scales by SD_Y/SD_X).",
       "common_mistake": "Equating OLS with a software button, or confusing the slope with the correlation.",
       "success_criteria": [
         "Refusal present.",
@@ -168,7 +168,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest OLS method wobble \u2014 software fit comes tomorrow.",
+    "framing": "Harvest OLS method wobble: software fit comes tomorrow.",
     "prompt": "Which part of today's 4.1.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.1.3 is stickiest and why?",
@@ -180,8 +180,8 @@
     "next_topic_code": "4.1",
     "next_topic_title": "Fit LM with software; inference; prediction; residuals (4.1.4)",
     "continuity_line": "Today you practised OLS slope/intercept; tomorrow continues at software fit, inference, prediction, and residual checks for linear models.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.4 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: fit linear regression with software and interpret output (4.1.4). Optional light prep: skim 4.1.4 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.4. Titles only tonight",
+    "student_facing": "Tomorrow: fit linear regression with software and interpret output (4.1.4). Optional light prep: skim 4.1.4 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

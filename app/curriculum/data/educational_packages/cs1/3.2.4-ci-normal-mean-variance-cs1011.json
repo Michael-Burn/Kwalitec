@@ -38,12 +38,12 @@
   "mission": {
     "mission_id": "msn-cs1011-cs1-3.2-ci-normal-mean-variance",
     "display_title": "Construct confidence intervals for the mean and variance of a Normal distribution",
-    "mission_purpose": "Today's Mission exists to construct confidence intervals for the mean and the variance of a Normal distribution — so both Normal interval recipes are usable — without pretending binomial/Poisson CIs (3.2.5) are finished.",
+    "mission_purpose": "Today's Mission exists to construct confidence intervals for the mean and the variance of a Normal distribution (so both Normal interval recipes are usable) without pretending binomial/Poisson CIs (3.2.5) are finished.",
     "tutor_intent": "Today I will force the candidate to form Normal mean and variance CIs and refuse treating binomial/Poisson approximation as today's LO.",
     "educational_intent": "Produce cognitive moves for Normal mean and Normal variance confidence intervals under CMP language.",
     "learning_objective": "Confidence intervals for the mean and the variance of a normal distribution.",
     "concept_focus": "Normal sample → mean CI → variance CI → refuse binomial/Poisson-as-done.",
-    "prior_bridge": "Yesterday you formed a CI from a given sampling distribution (3.2.3). Today continues topic 3.2 at LO 3.2.4 — Normal mean and variance intervals.",
+    "prior_bridge": "Yesterday you formed a CI from a given sampling distribution (3.2.3). Today continues topic 3.2 at LO 3.2.4: Normal mean and variance intervals.",
     "why_now": "3.2.4 is contiguous after the given-distribution method. Closing it prevents a cliff at Normal recipes while keeping binomial/Poisson as day five.",
     "expected_benefit": "You will be able to construct confidence intervals for both the mean and the variance of a Normal sample.",
     "explainability": "Assigned as Campaign Lambda Day 4 because Continuity Front membership places Normal mean/variance CIs after given-sampling-distribution CI.",
@@ -64,17 +64,17 @@
   },
   "session": {
     "session_id": "ssn-cs1011-cs1-3.2-ci-normal-mean-variance",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.4 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.4. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.2.4, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct confidence intervals for the mean and variance of a Normal distribution. You practised selective CMP reading on Syllabus 3.2.4. This is Study Progress for today's block — not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Construct confidence intervals for the mean and variance of a Normal distribution. You practised selective CMP reading on Syllabus 3.2.4. This is Study Progress for today's block. Not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.2.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.4 — construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.4: construct confidence intervals for the mean and variance of a normal distribution. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.2.4?",
       "What warrant separates today's skill from yesterday's?",
@@ -98,12 +98,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.4 Normal mean and variance confidence intervals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.4 (stop before binomial/Poisson CIs 3.2.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.4 Normal mean and variance confidence intervals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.4 (stop before binomial/Poisson CIs 3.2.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -149,7 +149,7 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.4-cp-01",
       "title": "Checkpoint: 3.2.4",
-      "prompt": "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) State the form of a CI for μ and the form of a CI for σ². (2) Refuse: 'The mean CI alone finishes today — variance can wait, and binomial is the same LO.'",
+      "prompt": "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) State the form of a CI for μ and the form of a CI for σ². (2) Refuse: 'The mean CI alone finishes today. Variance can wait, and binomial is the same LO.'",
       "response_type": "short_structured",
       "body": "Both Normal mean and variance CI forms; refuse mean-only.",
       "hints": [
@@ -175,7 +175,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest mean-vs-variance CI wobble — keep binomial out of tonight's claim.",
+    "framing": "Harvest mean-vs-variance CI wobble. Keep binomial out of tonight's claim.",
     "prompt": "Which part of today's 3.2.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.4 is stickiest and why?",
@@ -187,8 +187,8 @@
     "next_topic_code": "3.2",
     "next_topic_title": "Binomial and Poisson confidence intervals (3.2.5)",
     "continuity_line": "Today you formed Normal mean and variance CIs; tomorrow continues 3.2 at binomial and Poisson intervals (including Normal approximation).",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.5 — titles only tonight",
-    "student_facing": "Tomorrow: binomial/Poisson CIs (3.2.5). Optional light prep: skim 3.2.5 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.5. Titles only tonight",
+    "student_facing": "Tomorrow: binomial/Poisson CIs (3.2.5). Optional light prep: skim 3.2.5 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

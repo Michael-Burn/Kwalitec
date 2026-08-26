@@ -37,7 +37,7 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-link-canonical",
     "display_title": "Choose link and canonical link with warrant",
-    "mission_purpose": "Today's Mission exists to explain the link function and the canonical link for the distributions in 4.2.1 — without pretending factors/interactions (4.2.4) are finished.",
+    "mission_purpose": "Today's Mission exists to explain the link function and the canonical link for the distributions in 4.2.1. Without pretending factors/interactions (4.2.4) are finished.",
     "tutor_intent": "Today I will force link vs canonical-link discrimination and refuse treating factor coding as today's LO.",
     "educational_intent": "Produce a cognitive move from moments/scale to lawful link and canonical link under CMP.",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1014-cs1-4.2-link-canonical",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.3 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.3. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.2.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Choose link and canonical link with warrant. You practised selective CMP reading on Syllabus 4.2.3. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Choose link and canonical link with warrant. You practised selective CMP reading on Syllabus 4.2.3. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 4.2.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.3 — choose link and canonical link with warrant. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.3: choose link and canonical link with warrant. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.2.3?",
       "What warrant separates today's skill from yesterday's?",
@@ -95,13 +95,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.3 link function and canonical link. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.3 (stop before factors / interactions 4.2.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.3 link function and canonical link. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.3 (stop before factors / interactions 4.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -162,7 +162,7 @@
         "default"
       ],
       "explanation": "Checkpoint for 4.2.3.",
-      "model_answer": "(1) Binomial: logit — μ ∈ (0,1) and logit maps to ℝ for η. Gamma: reciprocal (negative-reciprocal canonical form as in CMP) — μ > 0, mapping the positive mean onto the η scale for the gamma exponential-family form. (2) Refuse: a software default needs a warrant; canonical means the link that equates η with the natural parameter, not whatever the GUI chose.",
+      "model_answer": "(1) Binomial: logit (μ ∈ (0,1) and logit maps to ℝ for η. Gamma: reciprocal (negative-reciprocal canonical form as in CMP)) μ > 0, mapping the positive mean onto the η scale for the gamma exponential-family form. (2) Refuse: a software default needs a warrant; canonical means the link that equates η with the natural parameter, not whatever the GUI chose.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -171,7 +171,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest link/canonical wobble — keep factors out of tonight's claim.",
+    "framing": "Harvest link/canonical wobble. Keep factors out of tonight's claim.",
     "prompt": "Which part of today's 4.2.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.3 is stickiest and why?",
@@ -183,8 +183,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Variables, factors and interactions (4.2.4)",
     "continuity_line": "Today you established link and canonical link; tomorrow continues 4.2 at variables, factors and interactions.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.4 — titles only tonight",
-    "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.4. Titles only tonight",
+    "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",

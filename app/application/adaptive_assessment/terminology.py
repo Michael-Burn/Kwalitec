@@ -33,7 +33,7 @@ APPROVED_REPLACEMENTS: dict[str, str] = {
     "weak": "needs reinforcement / thin evidence",
     "strong student": "solid evidence / well-supported understanding",
     "poor performance": "thin evidence / needs more practice",
-    "low intelligence": "(never use — no identity language)",
+    "low intelligence": "(never use: no identity language)",
 }
 
 

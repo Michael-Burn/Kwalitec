@@ -1,7 +1,7 @@
 {
   "package_version": "cs1012-campaign-mu-1.0.0",
-  "publication_version": "cs1012-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1012-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-MU",
   "volume_id": "CS1-012",
   "subject_id": "CS1",
@@ -37,12 +37,12 @@
   "mission": {
     "mission_id": "msn-cs1012-cs1-3.3-permutation-tests",
     "display_title": "Apply the permutation approach to non-parametric hypothesis tests",
-    "mission_purpose": "Today's Mission exists to apply the permutation approach to non-parametric hypothesis tests — so exchangeability under the null becomes a usable test construction — without pretending chi-square goodness of fit (3.3.4) is finished.",
+    "mission_purpose": "Today's Mission exists to apply the permutation approach to non-parametric hypothesis tests (so exchangeability under the null becomes a usable test construction) without pretending chi-square goodness of fit (3.3.4) is finished.",
     "tutor_intent": "Today I will force the candidate to state the permutation null mechanism and refuse treating yesterday's parametric cookbook as finishing today's LO.",
     "educational_intent": "Produce a cognitive move from parametric basic tests to permutation non-parametric hypothesis testing under CMP language.",
     "learning_objective": "The permutation approach to non-parametric hypothesis tests.",
     "concept_focus": "Exchangeability under null → permute / reshuffle → reference distribution → refuse GOF-as-done.",
-    "prior_bridge": "Yesterday you applied basic parametric / paired tests (3.3.2). Today continues topic 3.3 at LO 3.3.3 — permutation.",
+    "prior_bridge": "Yesterday you applied basic parametric / paired tests (3.3.2). Today continues topic 3.3 at LO 3.3.3: permutation.",
     "why_now": "3.3.3 is the contiguous next LO after basic tests. Closing it adds the non-parametric permutation hinge before chi-square GOF.",
     "expected_benefit": "You will be able to outline a permutation test from exchangeability under H₀ to a reference distribution.",
     "explainability": "Assigned as Campaign Mu Day 3 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1012-cs1-3.3-permutation-tests",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.3 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.3. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.3.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply the permutation approach to non-parametric hypothesis tests. You practised selective CMP reading on Syllabus 3.3.3. This is Study Progress for today's block — not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Apply the permutation approach to non-parametric hypothesis tests. You practised selective CMP reading on Syllabus 3.3.3. This is Study Progress for today's block. Not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.3.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.3 — apply the permutation approach to non-parametric hypothesis tests. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.3: apply the permutation approach to non-parametric hypothesis tests. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.3.3?",
       "What warrant separates today's skill from yesterday's?",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.3 permutation hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.3 (stop before chi-square GOF 3.3.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.3 permutation hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.3 (stop before chi-square GOF 3.3.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.3.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -173,7 +173,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest permutation-mechanism wobble — keep GOF out of tonight's claim.",
+    "framing": "Harvest permutation-mechanism wobble. Keep GOF out of tonight's claim.",
     "prompt": "Which part of today's 3.3.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.3.3 is stickiest and why?",
@@ -185,7 +185,8 @@
     "next_topic_code": "3.3",
     "next_topic_title": "Chi-square goodness-of-fit test (3.3.4)",
     "continuity_line": "Today you applied permutation non-parametric tests; tomorrow continues 3.3 at chi-square goodness of fit.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.4 — titles only tonight",
-    "student_facing": "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.4. Titles only tonight",
+    "student_facing": "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

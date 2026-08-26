@@ -37,15 +37,15 @@
   "mission": {
     "mission_id": "msn-cs1006-cs1-2.3-mean-variance-conditioning",
     "display_title": "Obtain mean and variance via conditioning",
-    "mission_purpose": "Today's Mission exists to obtain the mean and variance of a random variable as expectations of conditional expected values — so the tower / law of total expectation (and related variance decomposition) is usable — without claiming Chapter 2 or generating functions complete.",
-    "tutor_intent": "Today I will force the candidate through mean (and variance) via conditioning — refuse treating yesterday's E[Y|X] as having finished the tower, and refuse Chapter-2-complete claims.",
+    "mission_purpose": "Today's Mission exists to obtain the mean and variance of a random variable as expectations of conditional expected values (so the tower / law of total expectation (and related variance decomposition) is usable) without claiming Chapter 2 or generating functions complete.",
+    "tutor_intent": "Today I will force the candidate through mean (and variance) via conditioning. Refuse treating yesterday's E[Y|X] as having finished the tower, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for mean and variance obtained via conditioning.",
     "learning_objective": "Obtain the mean and variance of a random variable as an expectation of conditional expected values.",
     "concept_focus": "Tower law E[Y]=E[E[Y|X]] → Var(Y)=E[Var(Y|X)]+Var(E[Y|X]) → refuse stopping at E[Y|X] alone.",
     "prior_bridge": "Yesterday you formed conditional expectation of one RV given another (2.3.1). Today uses that object to recover mean and variance.",
     "why_now": "2.3.2 completes topic 2.3 Learning; Revision follows before any 2.4 commission.",
     "expected_benefit": "You will be able to recover an unconditional mean (and outline variance) via conditioning using the tower / law of total variance.",
-    "explainability": "Campaign Zeta Day 2 focuses LO 2.3.2 — terminal Learning day of CS1-006.",
+    "explainability": "Campaign Zeta Day 2 focuses LO 2.3.2: terminal Learning day of CS1-006.",
     "success_criteria": [
       "Closed-book, state how E[Y] arises from E[E[Y|X]] (or equivalent).",
       "Outline how variance uses conditioning (CMP form).",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1006-cs1-2.3-mean-variance-conditioning",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.3.2 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.3.2. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.3.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Obtain mean and variance via conditioning. You practised selective CMP reading on Syllabus 2.3.2. This is Study Progress for today's block — not Topic Complete for later 2.3 LOs, Chapter 2, or generating functions.",
+    "wrap_up": "Session complete for Obtain mean and variance via conditioning. You practised selective CMP reading on Syllabus 2.3.2. This is Study Progress for today's block. Not Topic Complete for later 2.3 LOs, Chapter 2, or generating functions.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.3.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.3.2 — obtain mean and variance via conditioning. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.3.2: obtain mean and variance via conditioning. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.3.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.3.2 mean and variance via conditioning. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.3.2 (stop before generating functions 2.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.3.2 mean and variance via conditioning. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.3.2 (stop before generating functions 2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.3.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -164,7 +164,7 @@
         "variance"
       ],
       "explanation": "Checkpoint for 2.3.2.",
-      "model_answer": "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an intermediate object — today's LO applies the tower (and variance decomposition) to recover unconditional mean/variance; you must take the outer expectation, and E[Y]=E[Y|X] is not a free equality without that step.",
+      "model_answer": "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an intermediate object. Today's LO applies the tower (and variance decomposition) to recover unconditional mean/variance; you must take the outer expectation, and E[Y]=E[Y|X] is not a free equality without that step.",
       "common_mistake": "Stopping after forming E[Y|X] without applying the tower / total-variance law.",
       "success_criteria": [
         "Refusal present.",
@@ -173,7 +173,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest conditioning-mean/variance wobble — Revision protects the 2.3 chain tomorrow.",
+    "framing": "Harvest conditioning-mean/variance wobble: Revision protects the 2.3 chain tomorrow.",
     "prompt": "Which part of today's 2.3.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.3.2 is stickiest and why?",
@@ -183,10 +183,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "CZ-R1",
-    "next_topic_title": "Campaign Zeta Revision — retrieve 2.3.1–2.3.2",
-    "continuity_line": "Today you finished mean and variance via conditioning; tomorrow is Revision mode — retrieve the 2.3 chain closed-book before any 2.4 first-pass work.",
-    "light_prep_cue": "Optional: list the two 2.3 LO hinges from memory — titles only tonight",
-    "student_facing": "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1–2.3.2). Optional light prep: list the two hinges from memory — titles only tonight."
+    "next_topic_title": "Campaign Zeta Revision: retrieve 2.3.1–2.3.2",
+    "continuity_line": "Today you finished mean and variance via conditioning; tomorrow is Revision mode. Retrieve the 2.3 chain closed-book before any 2.4 first-pass work.",
+    "light_prep_cue": "Optional: list the two 2.3 LO hinges from memory. Titles only tonight",
+    "student_facing": "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1–2.3.2). Optional light prep: list the two hinges from memory. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

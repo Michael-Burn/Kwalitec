@@ -1,7 +1,7 @@
 {
   "package_version": "cs1012-campaign-mu-1.0.0",
-  "publication_version": "cs1012-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1012-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-MU",
   "volume_id": "CS1-012",
   "subject_id": "CS1",
@@ -38,12 +38,12 @@
   "mission": {
     "mission_id": "msn-cs1012-cs1-3.3-basic-tests",
     "display_title": "Apply basic one-sample, two-sample, and paired hypothesis tests",
-    "mission_purpose": "Today's Mission exists to apply basic hypothesis tests for one-sample and two-sample situations involving the Normal, binomial, and Poisson distributions, and basic tests for paired data — without pretending permutation tests (3.3.3) are finished.",
+    "mission_purpose": "Today's Mission exists to apply basic hypothesis tests for one-sample and two-sample situations involving the Normal, binomial, and Poisson distributions, and basic tests for paired data. Without pretending permutation tests (3.3.3) are finished.",
     "tutor_intent": "Today I will force the candidate to select and apply a basic parametric test setting and refuse collapsing today's LO into yesterday's vocabulary-only day or tomorrow's permutation approach.",
     "educational_intent": "Produce a cognitive move from HT concepts to executable one-/two-sample and paired tests under CMP procedures.",
     "learning_objective": "Use of basic tests for the one-sample and two-sample situations involving the normal, binomial and Poisson distributions, and apply basic tests for paired data.",
     "concept_focus": "Choose setting → apply basic Normal/binomial/Poisson or paired test → refuse permutation-as-done.",
-    "prior_bridge": "Yesterday you established HT concepts (3.3.1). Today continues topic 3.3 at LO 3.3.2 — basic applied tests.",
+    "prior_bridge": "Yesterday you established HT concepts (3.3.1). Today continues topic 3.3 at LO 3.3.2: basic applied tests.",
     "why_now": "3.3.2 is the contiguous next LO after concepts. Closing it builds usable test skill before non-parametric permutation methods.",
     "expected_benefit": "You will be able to choose and apply a basic Normal, binomial, Poisson, or paired test for a stated setting.",
     "explainability": "Assigned as Campaign Mu Day 2 because Continuity Front law keeps LO-per-day contiguity inside topic 3.3.",
@@ -64,17 +64,17 @@
   },
   "session": {
     "session_id": "ssn-cs1012-cs1-3.3-basic-tests",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.2 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.3.2. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.3.2, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply basic one-sample, two-sample, and paired hypothesis tests. You practised selective CMP reading on Syllabus 3.3.2. This is Study Progress for today's block — not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Apply basic one-sample, two-sample, and paired hypothesis tests. You practised selective CMP reading on Syllabus 3.3.2. This is Study Progress for today's block. Not Topic Complete for later 3.3 LOs, Chapter 3 trophy, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.3.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.2 — apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.3.2: apply basic one-sample, two-sample, and paired hypothesis tests. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.3.2?",
       "What warrant separates today's skill from yesterday's?",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.2 basic hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.2 (stop before permutation tests 3.3.3). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.2 basic hypothesis tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.2 (stop before permutation tests 3.3.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.3.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -175,7 +175,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest basic-test selection wobble — keep permutation out of tonight's claim.",
+    "framing": "Harvest basic-test selection wobble. Keep permutation out of tonight's claim.",
     "prompt": "Which part of today's 3.3.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.3.2 is stickiest and why?",
@@ -187,7 +187,8 @@
     "next_topic_code": "3.3",
     "next_topic_title": "Permutation approach to non-parametric hypothesis tests (3.3.3)",
     "continuity_line": "Today you applied basic one-/two-sample and paired tests; tomorrow continues 3.3 at permutation tests.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.3 — titles only tonight",
-    "student_facing": "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.3. Titles only tonight",
+    "student_facing": "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

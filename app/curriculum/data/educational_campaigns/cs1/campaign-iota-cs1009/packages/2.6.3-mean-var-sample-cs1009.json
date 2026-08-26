@@ -1,7 +1,7 @@
 {
   "package_version": "cs1009-campaign-iota-1.0.0",
-  "publication_version": "cs1009-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1009-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
   "volume_id": "CS1-009",
   "subject_id": "CS1",
@@ -37,8 +37,8 @@
   "mission": {
     "mission_id": "msn-cs1009-cs1-2.6-mean-var-sample",
     "display_title": "Relate sample-mean and sample-variance moments to the population",
-    "mission_purpose": "Today's Mission exists to express the mean and variance of a sample mean and the mean of a sample variance in terms of population mean, variance and sample size — without claiming Normal-sample distributional laws (2.6.4) finished.",
-    "tutor_intent": "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants — refuse treating sampling-distribution vocabulary alone as having the formulas.",
+    "mission_purpose": "Today's Mission exists to express the mean and variance of a sample mean and the mean of a sample variance in terms of population mean, variance and sample size. Without claiming Normal-sample distributional laws (2.6.4) finished.",
+    "tutor_intent": "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants. Refuse treating sampling-distribution vocabulary alone as having the formulas.",
     "educational_intent": "Produce executable population-parameter expressions for E/Var of the sample mean and E of the sample variance.",
     "learning_objective": "Express the mean and variance of a sample mean and the mean of a sample variance in terms of the population mean, variance and sample size.",
     "concept_focus": "Population μ, σ², n → E[X̄]=μ → Var(X̄)=σ²/n → E[S²]=σ² → refuse jumping to Normal laws or t.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1009-cs1-2.6-mean-var-sample",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.3 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.3. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.6.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Relate sample-mean and sample-variance moments to the population. You practised selective CMP reading on Syllabus 2.6.3. This is Study Progress for today's block — not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "wrap_up": "Session complete for Relate sample-mean and sample-variance moments to the population. You practised selective CMP reading on Syllabus 2.6.3. This is Study Progress for today's block. Not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 2.6.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.3 — relate sample-mean and sample-variance moments to the population. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.3: relate sample-mean and sample-variance moments to the population. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.6.3?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.3 (stop before Normal sampling laws 2.6.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.3 (stop before Normal sampling laws 2.6.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.6.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -165,7 +165,7 @@
         "μ"
       ],
       "explanation": "Checkpoint for 2.6.3.",
-      "model_answer": "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP form). (2) Refuse: these are moment identities for the sample mean/variance — Normal sampling distributions (2.6.4) and the t-statistic (2.6.5) are separate LOs.",
+      "model_answer": "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP form). (2) Refuse: these are moment identities for the sample mean/variance. Normal sampling distributions (2.6.4) and the t-statistic (2.6.5) are separate LOs.",
       "common_mistake": "Jumping from Var(X̄)=σ²/n to Normal/t sampling laws before stating today's moment identities.",
       "success_criteria": [
         "Refusal present.",
@@ -174,7 +174,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest /n and E[S²] wobble — Normal sampling laws tomorrow.",
+    "framing": "Harvest /n and E[S²] wobble. Normal sampling laws tomorrow.",
     "prompt": "Which part of today's 2.6.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.6.3 is stickiest and why?",
@@ -186,7 +186,8 @@
     "next_topic_code": "2.6",
     "next_topic_title": "Normal sampling distributions for mean and variance (2.6.4)",
     "continuity_line": "Today you related sample-mean and sample-variance moments to the population; tomorrow continues 2.6 at basic sampling distributions under Normal samples.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.4 — titles only tonight",
-    "student_facing": "Tomorrow: basic Normal sampling distributions for mean and variance (2.6.4). Optional light prep: skim 2.6.4 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.4. Titles only tonight",
+    "student_facing": "Tomorrow: basic Normal sampling distributions for mean and variance (2.6.4). Optional light prep: skim 2.6.4 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

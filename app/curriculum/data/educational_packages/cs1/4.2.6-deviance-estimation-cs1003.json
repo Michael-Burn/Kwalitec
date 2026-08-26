@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,12 +35,12 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-deviance-estimation",
     "display_title": "Use deviance and estimate GLM parameters",
-    "mission_purpose": "Today's Mission exists to explain deviance and scaled deviance and how GLM parameters are estimated \u2014 so fit is likelihood-shaped, not OLS-copied blindly.",
-    "tutor_intent": "Today I will force deviance meaning + estimation outline \u2014 refuse OLS-copy into GLM without warrant.",
+    "mission_purpose": "Today's Mission exists to explain deviance and scaled deviance and how GLM parameters are estimated. So fit is likelihood-shaped, not OLS-copied blindly.",
+    "tutor_intent": "Today I will force deviance meaning + estimation outline. Refuse OLS-copy into GLM without warrant.",
     "educational_intent": "Produce deviance/estimation literacy.",
     "learning_objective": "Explain deviance, scaled deviance, and estimation of the parameters of a generalised linear model.",
-    "concept_focus": "Log-likelihood \u2192 deviance \u2192 scaled deviance \u2192 maximum-likelihood / IWLS parameter estimates.",
-    "prior_bridge": "Yesterday \u03b7 forms (4.2.5). Today estimation/deviance language.",
+    "concept_focus": "Log-likelihood → deviance → scaled deviance → maximum-likelihood / IWLS parameter estimates.",
+    "prior_bridge": "Yesterday η forms (4.2.5). Today estimation/deviance language.",
     "why_now": "4.2.6 precedes model choice via analysis of deviance (4.2.7).",
     "expected_benefit": "You will be able to explain deviance, scaled deviance, and how GLM parameters are estimated.",
     "explainability": "Campaign Delta Day 11 focuses LO 4.2.6.",
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-deviance-estimation",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.6 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.6. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.6; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Use deviance and estimate GLM parameters. Study Progress for LO 4.2.6 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.6 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Use deviance and estimate GLM parameters. Study Progress for LO 4.2.6. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.6 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.6 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,7 +83,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance, estimation",
+    "open_point": "CMP · Syllabus 4.2.6 deviance, scaled deviance, estimation",
     "stop_condition": "Through CMP 4.2.6 (stop before model-choice primary 4.2.7)",
     "out_of_scope_today": [
       "Model choice primary (4.2.7)",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance, estimation. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.6 (stop before model-choice primary 4.2.7). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.6 deviance, scaled deviance, estimation. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.6 (stop before model-choice primary 4.2.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -157,7 +157,7 @@
         "link"
       ],
       "explanation": "Checkpoint for 4.2.6.",
-      "model_answer": "(1) Deviance compares the fitted model's log-likelihood to a saturated model (2{\u2113_sat \u2212 \u2113_model}); scaled deviance divides by the dispersion/scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS) \u2014 not ordinary least squares. (2) Refuse: OLS is the linear-model special case; mechanical p-value chopping is model-choice behaviour, not the definition or estimation of deviance.",
+      "model_answer": "(1) Deviance compares the fitted model's log-likelihood to a saturated model (2{ℓ_sat − ℓ_model}); scaled deviance divides by the dispersion/scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Not ordinary least squares. (2) Refuse: OLS is the linear-model special case; mechanical p-value chopping is model-choice behaviour, not the definition or estimation of deviance.",
       "common_mistake": "Equating GLM estimation with OLS, or confusing deviance with p-value chopping.",
       "success_criteria": [
         "Refusal present.",
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest deviance wobble \u2014 model choice tomorrow.",
+    "framing": "Harvest deviance wobble: model choice tomorrow.",
     "prompt": "Which part of today's 4.2.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.6 is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Model choice via analysis of deviance (4.2.7)",
     "continuity_line": "Today you practised deviance and estimation; tomorrow continues at choosing a suitable model using analysis of deviance and parameter significance.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.7 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.7. Titles only tonight",
+    "student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

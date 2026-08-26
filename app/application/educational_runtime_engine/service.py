@@ -2013,7 +2013,7 @@ class EducationalRuntimeEngineService:
                 if tid:
                     return tid
             title = str(topic.get("title") or topic.get("text") or "")
-            if title.startswith(code + " ") or title.startswith(code + "—"):
+            if title.startswith(code + " ") or title.startswith(code + "–"):
                 tid = str(topic.get("topic_id") or "").strip()
                 if tid:
                     return tid

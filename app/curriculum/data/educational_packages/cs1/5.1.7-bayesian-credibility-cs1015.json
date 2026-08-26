@@ -34,7 +34,7 @@
   "mission": {
     "mission_id": "msn-cs1015-cs1-5.1-bayesian-credibility",
     "display_title": "Apply Bayesian credibility in simple cases",
-    "mission_purpose": "Today's Mission exists to apply the Bayesian approach to credibility in simple cases — without pretending Empirical Bayes (5.1.8) is finished.",
+    "mission_purpose": "Today's Mission exists to apply the Bayesian approach to credibility in simple cases. Without pretending Empirical Bayes (5.1.8) is finished.",
     "tutor_intent": "Today I will force Bayesian credibility premiums in simple cases and refuse 'Bayesian credibility finished Empirical Bayes'.",
     "educational_intent": "Produce Bayesian credibility as contiguous after the premium formula.",
     "learning_objective": "Apply the Bayesian approach to credibility theory and calculate credibility premiums in simple cases.",
@@ -60,17 +60,17 @@
   },
   "session": {
     "session_id": "ssn-cs1015-cs1-5.1-bayesian-credibility",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.7 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.7. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 5.1.7, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply Bayesian credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.7. This is Study Progress for today's block — not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Apply Bayesian credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.7. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.7 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.7 — apply bayesian credibility in simple cases. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.7: apply bayesian credibility in simple cases. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 5.1.7?",
       "What warrant separates today's skill from yesterday's?",
@@ -92,13 +92,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 5.1.7.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.7 Bayesian approach to credibility theory. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.7.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.7 Bayesian approach to credibility theory. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -157,7 +157,7 @@
         "Empirical Bayes"
       ],
       "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse: Empirical Bayes estimates those structural parameters from data — a different approach from treating them as known in the Bayesian calculation.",
+      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse: Empirical Bayes estimates those structural parameters from data. A different approach from treating them as known in the Bayesian calculation.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Bayesian-credibility wobble — EB opens tomorrow.",
+    "framing": "Harvest Bayesian-credibility wobble: EB opens tomorrow.",
     "prompt": "Which part of today's 5.1.7 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.7 is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Empirical Bayes credibility (5.1.8)",
     "continuity_line": "Today you applied Bayesian credibility; tomorrow continues 5.1 at Empirical Bayes.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.8 — titles only tonight",
-    "student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.8. Titles only tonight",
+    "student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CO-R1",

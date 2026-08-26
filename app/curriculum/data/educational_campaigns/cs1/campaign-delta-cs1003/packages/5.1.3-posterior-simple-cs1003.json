@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-posterior-simple",
     "display_title": "Obtain posteriors in simple cases",
-    "mission_purpose": "Today's Mission exists to obtain the posterior distribution for a parameter in simple cases \u2014 so update is computational, not slogan.",
-    "tutor_intent": "Today I will force one simple conjugate update end-to-end \u2014 refuse slogan-Bayes without a posterior.",
+    "mission_purpose": "Today's Mission exists to obtain the posterior distribution for a parameter in simple cases. So update is computational, not slogan.",
+    "tutor_intent": "Today I will force one simple conjugate update end-to-end. Refuse slogan-Bayes without a posterior.",
     "educational_intent": "Produce simple posterior calculation skill.",
     "learning_objective": "Derive or state the posterior distribution for a parameter in simple cases.",
-    "concept_focus": "Prior + data \u2192 posterior distribution in a simple conjugate case.",
+    "concept_focus": "Prior + data → posterior distribution in a simple conjugate case.",
     "prior_bridge": "Yesterday prior/posterior/conjugate (5.1.2). Today computes.",
     "why_now": "5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
     "expected_benefit": "You will be able to obtain the posterior distribution for a parameter in a simple conjugate case.",
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-posterior-simple",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.3 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.3. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.3; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Obtain posteriors in simple cases. Study Progress for LO 5.1.3 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Obtain posteriors in simple cases. Study Progress for LO 5.1.3. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.3 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,7 +83,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.3 posterior in simple cases",
+    "open_point": "CMP · Syllabus 5.1.3 posterior in simple cases",
     "stop_condition": "Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4)",
     "out_of_scope_today": [
       "Loss primary (5.1.4)",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.3 posterior in simple cases. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.3 posterior in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -130,7 +130,7 @@
         "likelihood"
       ],
       "explanation": "Active recall for 5.1.3.",
-      "model_answer": "Multiply prior \u00d7 likelihood (or use conjugate update formulae); renormalise; read updated parameters of the same family.",
+      "model_answer": "Multiply prior × likelihood (or use conjugate update formulae); renormalise; read updated parameters of the same family.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -157,7 +157,7 @@
         "parameter"
       ],
       "explanation": "Checkpoint for 5.1.3.",
-      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse slogan-Bayes \u2014 produce an actual posterior distribution (or its parameters). The posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
+      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse slogan-Bayes. Produce an actual posterior distribution (or its parameters). The posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
       "common_mistake": "Slogan-Bayes without a posterior, or jumping to a point estimator as if it were the posterior.",
       "success_criteria": [
         "Refusal present.",
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest posterior-calculation wobble \u2014 loss/estimators tomorrow.",
+    "framing": "Harvest posterior-calculation wobble: loss/estimators tomorrow.",
     "prompt": "Which part of today's 5.1.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.3 is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Loss functions and Bayesian estimators (5.1.4)",
     "continuity_line": "Today you obtained simple posteriors; tomorrow continues at loss functions to derive Bayesian estimators.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.4 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.4. Titles only tonight",
+    "student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

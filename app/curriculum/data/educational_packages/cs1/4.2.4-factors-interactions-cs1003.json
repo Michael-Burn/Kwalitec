@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,13 +35,13 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-factors-interactions",
     "display_title": "Use variables, factors and interactions in GLMs",
-    "mission_purpose": "Today's Mission exists to place continuous variables, categorical factors, and interaction terms inside GLM modelling language \u2014 after structure is secure.",
-    "tutor_intent": "Today I will force factor vs continuous discrimination and one interaction warrant \u2014 refuse interaction-as-decoration.",
+    "mission_purpose": "Today's Mission exists to place continuous variables, categorical factors, and interaction terms inside GLM modelling language. After structure is secure.",
+    "tutor_intent": "Today I will force factor vs continuous discrimination and one interaction warrant. Refuse interaction-as-decoration.",
     "educational_intent": "Produce factor/interaction literacy for GLM predictors.",
     "learning_objective": "Explain variables, factors taking categorical values, and interaction terms in the GLM setting.",
-    "concept_focus": "Continuous variable \u2192 categorical factor coding \u2192 interaction term changing a slope by level.",
-    "prior_bridge": "Yesterday closed Family \u2192 \u03b7 \u2192 link (4.2.3). Today builds predictor structure.",
-    "why_now": "4.2.4 is contiguous after structure before \u03b7 form detail (4.2.5).",
+    "concept_focus": "Continuous variable → categorical factor coding → interaction term changing a slope by level.",
+    "prior_bridge": "Yesterday closed Family → η → link (4.2.3). Today builds predictor structure.",
+    "why_now": "4.2.4 is contiguous after structure before η form detail (4.2.5).",
     "expected_benefit": "You will be able to explain variables, factors and interaction terms in a GLM linear predictor.",
     "explainability": "Campaign Delta Day 9 focuses LO 4.2.4.",
     "success_criteria": [
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-factors-interactions",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.4 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.4. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.4; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Use variables, factors and interactions in GLMs. Study Progress for LO 4.2.4 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.4 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Use variables, factors and interactions in GLMs. Study Progress for LO 4.2.4. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.4 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.4 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,21 +83,21 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.4 variables, factors, interactions",
+    "open_point": "CMP · Syllabus 4.2.4 variables, factors, interactions",
     "stop_condition": "Through CMP 4.2.4 (stop before linear-predictor form primary 4.2.5)",
     "out_of_scope_today": [
-      "\u03b7 form primary (4.2.5)",
+      "η form primary (4.2.5)",
       "Deviance primary",
       "Bayes"
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.4 variables, factors, interactions. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.4 (stop before linear-predictor form primary 4.2.5). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.4 variables, factors, interactions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.4 (stop before linear-predictor form primary 4.2.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.4-cp-01",
       "title": "Checkpoint: 4.2.4",
-      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age\u00d7region interaction. (2) Refuse: 'Add all interactions by default' and 'an interaction is just another main-effect slope.'",
+      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age×region interaction. (2) Refuse: 'Add all interactions by default' and 'an interaction is just another main-effect slope.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.4.",
       "hints": [
@@ -156,7 +156,7 @@
         "not default"
       ],
       "explanation": "Checkpoint for 4.2.4.",
-      "model_answer": "(1) \u03b7 = \u03b2\u2080 + \u03b2\u2081x + \u03b2\u2082 I_South + \u03b2\u2083 x\u00b7I_South (North baseline). (2) Refuse: include an interaction when theory or evidence says the effect of X depends on another factor \u2014 an interaction changes the age slope by region; it is not merely another additive main effect, and defaults are not a warrant.",
+      "model_answer": "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) Refuse: include an interaction when theory or evidence says the effect of X depends on another factor. An interaction changes the age slope by region; it is not merely another additive main effect, and defaults are not a warrant.",
       "common_mistake": "Adding every interaction by default, or treating an interaction as just another main effect.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest factor/interaction wobble \u2014 \u03b7 form tomorrow.",
+    "framing": "Harvest factor/interaction wobble: η form tomorrow.",
     "prompt": "Which part of today's 4.2.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.4 is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Linear predictor form (4.2.5)",
     "continuity_line": "Today you practised factors and interactions; tomorrow continues at the form of the linear predictor including polynomials and factors.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.5 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: definition and form of the linear predictor (4.2.5). Optional light prep: skim 4.2.5 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.5. Titles only tonight",
+    "student_facing": "Tomorrow: definition and form of the linear predictor (4.2.5). Optional light prep: skim 4.2.5 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

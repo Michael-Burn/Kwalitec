@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1005-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 2.2 LOs or Chapter 2."
             ),
             "confidence_prompt": (
@@ -82,7 +82,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -101,10 +101,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -116,7 +116,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -193,7 +193,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Epsilon revision — jointly distributed random variables",
+        "topic_title": "Campaign Epsilon revision: jointly distributed random variables",
         "return_targets": ["2.2.1", "2.2.2", "2.2.3", "2.2.4"],
         "topic_aliases": [day, "campaign-epsilon-revision"],
         "topic_title_keywords": [
@@ -210,13 +210,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1005-cs1-ce-r1-joint-distributions",
             "display_title": "Retrieve joint-distribution hinges (2.2)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Epsilon — retrieving "
+                "Today's Mission exists to protect memory of Campaign Epsilon. Retrieving "
                 "marginal/conditional distributions, independence conditions, covariance/"
-                "correlation/E[g(X,Y)], and mean/variance of linear combinations — so 2.2 does "
+                "correlation/E[g(X,Y)], and mean/variance of linear combinations. So 2.2 does "
                 "not evaporate before conditional expectation (2.3)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Epsilon's Learning hinges — "
+                "Today I will run closed-book retrieval across Epsilon's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 2.3 lesson."
             ),
             "educational_intent": (
@@ -234,7 +234,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished mean and variance of linear combinations (2.2.4). "
-                "Today is Revision mode: return to 2.2.1–2.2.4 under closed-book retrieval — "
+                "Today is Revision mode: return to 2.2.1–2.2.4 under closed-book retrieval. "
                 "no new first-pass LO."
             ),
             "why_now": (
@@ -242,7 +242,7 @@ def revision_pkg() -> dict:
                 "protects it before 2.3 work."
             ),
             "expected_benefit": (
-                "Evidence that the 2.2 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 2.2 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 2 or the exam journey is complete."
             ),
             "explainability": (
@@ -266,15 +266,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1005-cs1-ce-r1-joint-distributions",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Epsilon skills — not to teach 2.3."
+                "Retrieve and connect Campaign Epsilon skills. Not to teach 2.3."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 40, "max": 55},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 2.2.1–2.2.4 return targets. "
-                "This is revision Study Progress — not Topic Complete for 2.3, and not "
+                "This is revision Study Progress. Not Topic Complete for 2.3, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -306,7 +306,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 2.3 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 2.3 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass conditional expectation (2.3)",
@@ -328,7 +328,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -396,9 +396,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. conditional from joint — five-minute rework. (2) Refuse Chapter 2 "
+                    "(1) e.g. conditional from joint. Five-minute rework. (2) Refuse Chapter 2 "
                     "complete / spine / until-exam. (3) Honest next is 2.3 (successor Volume) "
-                    "or declared stop — not claimed finished here."
+                    "or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 2 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -419,16 +419,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "2.3",
             "next_topic_title": (
-                "Honest next — conditional expectations (2.3) under a successor Volume "
+                "Honest next: conditional expectations (2.3) under a successor Volume "
                 "(or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Epsilon / Volume CS1-005 completes after this Revision. Honest stop: "
-                "2.2 Pilot Arc closed — not Chapter 2 complete; not first-pass spine; not "
+                "2.2 Pilot Arc closed. Not Chapter 2 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 2.3 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Epsilon / CS1-005 complete after today (pending human Approver + LIVE). "
@@ -450,13 +450,13 @@ LEARNING = [
         title="Form marginal and conditional distributions from a joint",
         purpose=(
             "Today's Mission exists to turn a joint distribution into marginal and conditional "
-            "distributions — so you can obtain the probability/density function for one variable "
-            "alone and for one given the other — without pretending independence or covariance "
+            "distributions. So you can obtain the probability/density function for one variable "
+            "alone and for one given the other. Without pretending independence or covariance "
             "LOs are finished."
         ),
         tutor=(
             "Today I will force the candidate to obtain a marginal and a conditional from a "
-            "stated joint — and refuse treating 'I wrote a joint table' as having the marginal "
+            "stated joint. And refuse treating 'I wrote a joint table' as having the marginal "
             "or conditional."
         ),
         edu=(
@@ -473,7 +473,7 @@ LEARNING = [
         ),
         prior=(
             "Campaign Gamma closed univariate evaluation and generation (2.1) with Revision. "
-            "Today opens topic 2.2 at LO 2.2.1 — the named Continuity Front after CS1-004."
+            "Today opens topic 2.2 at LO 2.2.1. The named Continuity Front after CS1-004."
         ),
         why=(
             "2.2.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -484,7 +484,7 @@ LEARNING = [
             "joint table by actual computation, not recognition alone."
         ),
         explain=(
-            "Day 1 opens 2.2 at the named learning objective — "
+            "Day 1 opens 2.2 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -501,12 +501,12 @@ LEARNING = [
         next_title="Independence conditions (2.2.2)",
         cont=(
             "Today you formed marginal and conditional distributions from a joint; tomorrow "
-            "continues 2.2 at independence conditions — not covariance yet."
+            "continues 2.2 at independence conditions. Not covariance yet."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 2.2.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 2.2.2. Titles only tonight",
         student=(
             "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional "
-            "light prep: skim 2.2.2 headings — titles only tonight."
+            "light prep: skim 2.2.2 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.2.1 marginal and conditional distributions",
         stop="Through the CMP treatment of Syllabus 2.2.1 (stop before independence 2.2.2)",
@@ -552,10 +552,10 @@ LEARNING = [
         cp_model=(
             "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ ",
             "0.571. (3) Refuse: the joint is not the same as its margins or ",
-            "conditionals — you must sum for the marginal and divide by that ",
+            "conditionals. You must sum for the marginal and divide by that ",
             "marginal for the conditional."
         ),
-        reflect="Harvest wobble on marginal vs conditional extraction — independence comes tomorrow.",
+        reflect="Harvest wobble on marginal vs conditional extraction. Independence comes tomorrow.",
     ),
     dict(
         day="CE-D2",
@@ -567,7 +567,7 @@ LEARNING = [
         title="State conditions under which random variables are independent",
         purpose=(
             "Today's Mission exists to make independence a testable condition on jointly "
-            "distributed variables — so you can recognise when the joint factors and refuse "
+            "distributed variables. So you can recognise when the joint factors and refuse "
             "treating 'uncorrelated' or 'looks separate' as independence without a warrant."
         ),
         tutor=(
@@ -582,7 +582,7 @@ LEARNING = [
             "tests when variables are independent."
         ),
         why="2.2.2 is contiguous after marginals/conditionals; dependence measures (2.2.3) need this hinge.",
-        benefit="Study Progress for independence conditions — not covariance mastery.",
+        benefit="Study Progress for independence conditions. Not covariance mastery.",
         explain="Day 2 continues joint distributions at independence (LO 2.2.2).",
         criteria=[
             "Closed-book, state one independence condition in joint/marginal language.",
@@ -600,10 +600,10 @@ LEARNING = [
             "Today you practised independence conditions; tomorrow continues at covariance, "
             "correlation, and expected values of functions of two variables."
         ),
-        prep="Optional: skim CMP headings for Syllabus 2.2.3 — titles only tonight",
+        prep="Optional: skim CMP headings for Syllabus 2.2.3. Titles only tonight",
         student=(
             "Tomorrow: covariance, correlation, and E[g(X,Y)] (2.2.3). Optional light prep: "
-            "skim 2.2.3 headings — titles only tonight."
+            "skim 2.2.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.2.2 independence conditions",
         stop="Through CMP 2.2.2 (stop before covariance/correlation primary 2.2.3)",
@@ -634,7 +634,7 @@ LEARNING = [
         ],
         ar_model=(
             "X and Y are independent if the joint equals the product of the marginals "
-            "(for all x,y in the support) — or an equivalent CMP statement (e.g. conditional "
+            "(for all x,y in the support). Or an equivalent CMP statement (e.g. conditional "
             "equals marginal)."
         ),
         cp_prompt=(
@@ -644,10 +644,10 @@ LEARNING = [
         cp_kw=["refuse", "uncorrelated", "independent", "not same", "joint", "factor"],
         cp_model=(
             "Refuse: zero correlation is not independence. Independence requires the joint "
-            "factorisation (or equivalent) — uncorrelated is weaker and can fail for "
+            "factorisation (or equivalent): uncorrelated is weaker and can fail for "
             "non-linear dependence."
         ),
-        reflect="Harvest independence-condition wobble — covariance comes tomorrow.",
+        reflect="Harvest independence-condition wobble: covariance comes tomorrow.",
     ),
     dict(
         day="CE-D3",
@@ -660,10 +660,10 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to place covariance and correlation as dependence measures "
             "and to evaluate (or set up) the expected value of a function of two jointly "
-            "distributed variables — without leaping to linear-combination variance formulas as primary."
+            "distributed variables. Without leaping to linear-combination variance formulas as primary."
         ),
         tutor=(
-            "Today I will force the candidate through Cov → Corr → E[g(X,Y)] setup — refuse "
+            "Today I will force the candidate through Cov → Corr → E[g(X,Y)] setup. Refuse "
             "treating independence day as having finished dependence measures."
         ),
         edu="Produce method warrant for Cov/Corr and expectation of a function of two RVs.",
@@ -701,10 +701,10 @@ LEARNING = [
             "Today you practised Cov/Corr and E[g(X,Y)]; tomorrow continues at mean and "
             "variance of linear combinations of random variables."
         ),
-        prep="Optional: skim CMP headings for Syllabus 2.2.4 — titles only tonight",
+        prep="Optional: skim CMP headings for Syllabus 2.2.4. Titles only tonight",
         student=(
             "Tomorrow: mean and variance of linear combinations (2.2.4). Optional light prep: "
-            "skim 2.2.4 headings — titles only tonight."
+            "skim 2.2.4 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]",
         stop="Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4)",
@@ -748,10 +748,10 @@ LEARNING = [
             "(1) E[X]=0·(0.2+0.3)+1·(0.1+0.4)=0.5; E[Y]=0·(0.2+0.1)+1·(0.3+0.4)=0.7; ",
             "E[XY]=1·1·0.4=0.4; Cov(X,Y)=0.4−0.5·0.7=0.05. (2) Refuse: zero ",
             "correlation does not imply independence (non-linear dependence can ",
-            "remain); independence is a different LO — today requires Cov/Corr and ",
+            "remain); independence is a different LO. Today requires Cov/Corr and ",
             "E[g] algebra from the joint."
         ),
-        reflect="Harvest Cov/Corr/E[g] wobble — linear combinations come tomorrow.",
+        reflect="Harvest Cov/Corr/E[g] wobble: linear combinations come tomorrow.",
     ),
     dict(
         day="CE-D4",
@@ -763,12 +763,12 @@ LEARNING = [
         title="Obtain mean and variance of linear combinations",
         purpose=(
             "Today's Mission exists to obtain the mean and variance of linear combinations of "
-            "random variables — including the covariance term when variables are dependent — "
+            "random variables (including the covariance term when variables are dependent)"
             "without claiming Chapter 2 or 2.3 complete."
         ),
         tutor=(
             "Today I will force the candidate through E[aX+bY] and Var(aX+bY) with an explicit "
-            "dependence note — refuse ignoring Cov and refuse Chapter-2-complete claims."
+            "dependence note: refuse ignoring Cov and refuse Chapter-2-complete claims."
         ),
         edu="Produce executable mean/variance warrants for linear combinations of RVs.",
         lo_text="Obtain the mean and variance of linear combinations of random variables.",
@@ -785,7 +785,7 @@ LEARNING = [
             "You will be able to compute mean and variance of a linear combination, ",
             "including the 2ab Cov term when X and Y are dependent."
         ),
-        explain="Campaign Epsilon Day 4 focuses LO 2.2.4 — terminal Learning day of CS1-005.",
+        explain="Campaign Epsilon Day 4 focuses LO 2.2.4: terminal Learning day of CS1-005.",
         criteria=[
             "Closed-book, state E[aX+bY] in terms of E[X], E[Y].",
             "State Var(aX+bY) including the covariance term when needed.",
@@ -797,15 +797,15 @@ LEARNING = [
             "Knowledge Checks: formulas + refuse Ch2-complete / Cov-ignore.",
         ],
         next_code="CE-R1",
-        next_title="Campaign Epsilon Revision — retrieve 2.2.1–2.2.4",
+        next_title="Campaign Epsilon Revision: retrieve 2.2.1–2.2.4",
         cont=(
-            "Today you finished linear-combination mean/variance; tomorrow is Revision mode — "
+            "Today you finished linear-combination mean/variance; tomorrow is Revision mode. "
             "retrieve the 2.2 chain closed-book before any 2.3 first-pass work."
         ),
-        prep="Optional: list the four 2.2 LO hinges from memory — titles only tonight",
+        prep="Optional: list the four 2.2 LO hinges from memory. Titles only tonight",
         student=(
             "Tomorrow: Campaign Epsilon Revision (retrieve 2.2.1–2.2.4). Optional light prep: "
-            "list the four hinges from memory — titles only tonight."
+            "list the four hinges from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 2.2.4 mean and variance of linear combinations",
         stop="Through CMP 2.2.4 (stop before conditional expectation 2.3)",
@@ -850,7 +850,7 @@ LEARNING = [
             "Refuse: when X and Y may be dependent you must keep the 2ab Cov term; ",
             "dropping Cov is lawful only under independence (Cov=0), not by habit."
         ),
-        reflect="Harvest linear-combination wobble — Revision protects the 2.2 chain tomorrow.",
+        reflect="Harvest linear-combination wobble. Revision protects the 2.2 chain tomorrow.",
     ),
 ]
 
@@ -876,7 +876,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
         "campaign_version": "cs1005-1.0.0",
-        "display_title": "Campaign Epsilon — Joint distributions entry (2.2)",
+        "display_title": "Campaign Epsilon: Joint distributions entry (2.2)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -34,11 +34,11 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-prior-posterior",
     "display_title": "Explain prior, posterior and conjugate priors",
-    "mission_purpose": "Today's Mission exists to explain prior, posterior and conjugate prior distributions \u2014 so Bayesian updating has named objects.",
-    "tutor_intent": "Today I will force prior vs posterior discrimination and one conjugate pair example \u2014 refuse prior-as-data myth.",
+    "mission_purpose": "Today's Mission exists to explain prior, posterior and conjugate prior distributions. So Bayesian updating has named objects.",
+    "tutor_intent": "Today I will force prior vs posterior discrimination and one conjugate pair example. Refuse prior-as-data myth.",
     "educational_intent": "Produce prior/posterior/conjugate vocabulary with one worked pairing intent.",
     "learning_objective": "Explain prior distribution, posterior distribution and conjugate prior distribution.",
-    "concept_focus": "Prior \u2192 likelihood \u2192 posterior; conjugate pairs keep the posterior in the same family.",
+    "concept_focus": "Prior → likelihood → posterior; conjugate pairs keep the posterior in the same family.",
     "prior_bridge": "Yesterday Bayes' theorem (5.1.1). Today names the distributional objects.",
     "why_now": "5.1.2 unlocks simple posterior calculations (5.1.3).",
     "expected_benefit": "You will be able to explain prior, posterior and conjugate prior distributions with a concrete pair.",
@@ -60,14 +60,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-prior-posterior",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.2 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.2. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.2; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Explain prior, posterior and conjugate priors. Study Progress for LO 5.1.2 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Explain prior, posterior and conjugate priors. Study Progress for LO 5.1.2. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.2 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -82,7 +82,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior",
+    "open_point": "CMP · Syllabus 5.1.2 prior, posterior, conjugate prior",
     "stop_condition": "Through CMP 5.1.2 (stop before simple posterior calculation primary 5.1.3)",
     "out_of_scope_today": [
       "Posterior calculation primary (5.1.3)",
@@ -91,12 +91,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -113,7 +113,7 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.2-ar-01",
       "title": "Active Recall: 5.1.2",
-      "prompt": "Closed-book. Define prior and posterior. Give one example of a conjugate prior\u2013likelihood pair named in the CMP world (e.g. Beta\u2013Binomial).",
+      "prompt": "Closed-book. Define prior and posterior. Give one example of a conjugate prior–likelihood pair named in the CMP world (e.g. Beta–Binomial).",
       "response_type": "short_structured",
       "body": "Retrieve 5.1.2 closed-book.",
       "hints": [
@@ -156,7 +156,7 @@
         "prior"
       ],
       "explanation": "Checkpoint for 5.1.2.",
-      "model_answer": "(1) Prior: belief about \u03b8 before data. Posterior: updated belief after data. Conjugate: a prior family closed under updating so the posterior stays in the same family. Example: Beta\u2013Binomial or Gamma\u2013Poisson. (2) Refuse: the prior is not the sample itself; conjugate language structures the update \u2014 you still must obtain the actual posterior (parameters/distribution) from prior + data.",
+      "model_answer": "(1) Prior: belief about θ before data. Posterior: updated belief after data. Conjugate: a prior family closed under updating so the posterior stays in the same family. Example: Beta–Binomial or Gamma–Poisson. (2) Refuse: the prior is not the sample itself; conjugate language structures the update. You still must obtain the actual posterior (parameters/distribution) from prior + data.",
       "common_mistake": "Treating the prior as the sample, or stopping at conjugate names without a posterior.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest prior/posterior wobble \u2014 simple posteriors tomorrow.",
+    "framing": "Harvest prior/posterior wobble: simple posteriors tomorrow.",
     "prompt": "Which part of today's 5.1.2 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.2 is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Posterior distribution in simple cases (5.1.3)",
     "continuity_line": "Today you named prior/posterior/conjugate; tomorrow continues at computing posteriors in simple cases.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.3 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: posterior distribution for a parameter in simple cases (5.1.3). Optional light prep: skim 5.1.3 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.3. Titles only tonight",
+    "student_facing": "Tomorrow: posterior distribution for a parameter in simple cases (5.1.3). Optional light prep: skim 5.1.3 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

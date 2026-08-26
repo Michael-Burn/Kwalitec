@@ -1456,7 +1456,7 @@ def _needs_attention_topics(
                     topic_id=f"hist-{len(items)}",
                     title=title,
                     status_label="Recent practice",
-                    prerequisite_note="From your recent Sessions — worth reinforcing.",
+                    prerequisite_note="From your recent Sessions: worth reinforcing.",
                 )
             )
     return tuple(items[:5])
@@ -1508,7 +1508,7 @@ def revision_vm(snap: RevisionSnapshot) -> RevisionPageViewModel:
         empty_message=snap.empty_message
         or (
             "No revision support is ready yet. Follow today's Mission on "
-            "Home — Revision will appear when there is something worth "
+            "Home: Revision will appear when there is something worth "
             "strengthening."
         ),
         has_revision=snap.has_revision,
@@ -1542,7 +1542,7 @@ def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
         if has_request_context():
             journey_href = url_for("student.learning_journey")
             journey_teaser = (
-                "See how your understanding has developed across sittings — "
+                "See how your understanding has developed across sittings. "
                 "My Learning Journey."
             )
     except Exception:  # noqa: BLE001 — presentation must stay resilient
@@ -2029,7 +2029,7 @@ def _session_vm(session: CompletedSessionSnapshot) -> HistorySessionViewModel:
         ),
         sitting_report_href=href,
         why_next_line=(
-            "This sitting is part of your authorised path — "
+            "This sitting is part of your authorised path. "
             "continue from Home when ready."
         ),
     )

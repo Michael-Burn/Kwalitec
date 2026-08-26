@@ -110,11 +110,11 @@ def _consolidation_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Consolidation on {topic} helped a little — keep reinforcing "
+            f"Consolidation on {topic} helped a little. Keep reinforcing "
             "the parts that still feel unsettled."
         )
     return (
-        f"Extra consolidation on {topic} has not settled yet — another "
+        f"Extra consolidation on {topic} has not settled yet: another "
         "focused pass is worth trying before moving on."
     )
 
@@ -127,11 +127,11 @@ def _reinforcement_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Reinforcement on {topic} reduced some mistakes — a little "
+            f"Reinforcement on {topic} reduced some mistakes. A little "
             "more practice should lock it in."
         )
     return (
-        f"Mistakes on {topic} are still showing up after reinforcement — "
+        f"Mistakes on {topic} are still showing up after reinforcement. "
         "slow down and revisit the core steps."
     )
 
@@ -144,11 +144,11 @@ def _reduce_length_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Keeping {topic} Sessions shorter is helping somewhat — "
+            f"Keeping {topic} Sessions shorter is helping somewhat. "
             "stay with focused, shorter passes for now."
         )
     return (
-        f"Shorter Sessions alone have not eased the load on {topic} yet — "
+        f"Shorter Sessions alone have not eased the load on {topic} yet. "
         "pair them with closer reinforcement."
     )
 
@@ -161,11 +161,11 @@ def _increase_spacing_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Spacing on {topic} looks workable so far — keep watching "
+            f"Spacing on {topic} looks workable so far. Keep watching "
             "how well it holds after the gap."
         )
     return (
-        f"Wider spacing on {topic} did not hold — return sooner next time."
+        f"Wider spacing on {topic} did not hold. Return sooner next time."
     )
 
 
@@ -177,11 +177,11 @@ def _decrease_spacing_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Closer practice on {topic} is helping a little — keep the "
+            f"Closer practice on {topic} is helping a little. Keep the "
             "gap short for now."
         )
     return (
-        f"Closer revisits on {topic} have not cleared the difficulty yet — "
+        f"Closer revisits on {topic} have not cleared the difficulty yet. "
         "focus on the steps that still slip."
     )
 
@@ -189,16 +189,16 @@ def _decrease_spacing_copy(verdict: EffectivenessVerdict, topic: str) -> str:
 def _challenge_copy(verdict: EffectivenessVerdict, topic: str) -> str:
     if verdict is EffectivenessVerdict.EFFECTIVE:
         return (
-            f"Taking on a tougher pass of {topic} went well — your "
+            f"Taking on a tougher pass of {topic} went well. Your "
             "performance held under more challenge."
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"The harder pass on {topic} was partly successful — stretch "
+            f"The harder pass on {topic} was partly successful: stretch "
             "gently on the next Session."
         )
     return (
-        f"The harder pass on {topic} was a stretch too far for now — "
+        f"The harder pass on {topic} was a stretch too far for now. "
         "return to a steadier level before challenging again."
     )
 
@@ -206,16 +206,16 @@ def _challenge_copy(verdict: EffectivenessVerdict, topic: str) -> str:
 def _recovery_copy(verdict: EffectivenessVerdict, topic: str) -> str:
     if verdict is EffectivenessVerdict.EFFECTIVE:
         return (
-            f"Returning to {topic} rebuilt momentum — you are back on "
+            f"Returning to {topic} rebuilt momentum. You are back on "
             "firmer ground."
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"You re-engaged with {topic} — keep the recovery Sessions "
+            f"You re-engaged with {topic}. Keep the recovery Sessions "
             "steady until it feels solid again."
         )
     return (
-        f"Recovery on {topic} still needs attention — start with a short, "
+        f"Recovery on {topic} still needs attention: start with a short, "
         "honest practice pass."
     )
 
@@ -228,11 +228,11 @@ def _slow_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"A slower pace on {topic} is helping somewhat — finish one "
+            f"A slower pace on {topic} is helping somewhat: finish one "
             "clear block before starting another."
         )
     return (
-        f"Slowing down has not stabilised {topic} yet — shorten the next "
+        f"Slowing down has not stabilised {topic} yet: shorten the next "
         "Session and finish what you start."
     )
 
@@ -245,11 +245,11 @@ def _advance_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Progress from {topic} is underway — confirm the foundations "
+            f"Progress from {topic} is underway: confirm the foundations "
             "once more if anything still feels soft."
         )
     return (
-        f"Advancing from {topic} looks early — reinforce it before taking "
+        f"Advancing from {topic} looks early: reinforce it before taking "
         "the next step."
     )
 
@@ -261,9 +261,9 @@ def _maintain_copy(verdict: EffectivenessVerdict, topic: str) -> str:
         )
     if verdict is EffectivenessVerdict.PARTIALLY_EFFECTIVE:
         return (
-            f"Your current pace on {topic} is holding — stay consistent."
+            f"Your current pace on {topic} is holding: stay consistent."
         )
     return (
-        f"The current pace on {topic} is slipping — adjust with closer "
+        f"The current pace on {topic} is slipping: adjust with closer "
         "reinforcement or a shorter Session."
     )

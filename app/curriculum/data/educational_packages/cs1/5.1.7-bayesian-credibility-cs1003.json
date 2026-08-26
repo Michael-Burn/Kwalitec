@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-bayesian-credibility",
     "display_title": "Apply Bayesian credibility in simple cases",
-    "mission_purpose": "Today's Mission exists to use the Bayesian approach to credibility theory for calculating credibility premiums in simple cases \u2014 so the premium has a Bayesian warrant.",
-    "tutor_intent": "Today I will force linking posterior means / Bayesian updates to a credibility premium in a simple case \u2014 refuse formula-without-Bayes.",
+    "mission_purpose": "Today's Mission exists to use the Bayesian approach to credibility theory for calculating credibility premiums in simple cases. So the premium has a Bayesian warrant.",
+    "tutor_intent": "Today I will force linking posterior means / Bayesian updates to a credibility premium in a simple case. Refuse formula-without-Bayes.",
     "educational_intent": "Produce Bayesian credibility application skill.",
     "learning_objective": "Use the Bayesian approach to credibility theory to calculate credibility premiums in simple cases.",
-    "concept_focus": "Bayesian credibility with known structural/prior parameters \u2192 Z and \u03bc \u2192 credibility premium.",
+    "concept_focus": "Bayesian credibility with known structural/prior parameters → Z and μ → credibility premium.",
     "prior_bridge": "Yesterday premium formula/Z (5.1.6). Today Bayesian approach.",
     "why_now": "5.1.7 precedes Empirical Bayes (5.1.8) contrast.",
     "expected_benefit": "You will be able to apply the Bayesian approach to credibility and compute a premium in a simple case.",
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-bayesian-credibility",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.7 \u2014 not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.7. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.7; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply Bayesian credibility in simple cases. Study Progress for LO 5.1.7 \u2014 not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.7 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Apply Bayesian credibility in simple cases. Study Progress for LO 5.1.7. Not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.7 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.7 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,7 +83,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility",
+    "open_point": "CMP · Syllabus 5.1.7 Bayesian approach to credibility",
     "stop_condition": "Through CMP 5.1.7 (stop before Empirical Bayes primary 5.1.8)",
     "out_of_scope_today": [
       "Empirical Bayes primary (5.1.8)",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.7 Bayesian approach to credibility. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z\u00b7X\u0304 + (1\u2212Z)\u00b7\u03bc. (1) What do the prior/structural assumptions supply that lets you compute Z and \u03bc? (2) Refuse: writing Z\u00b7X\u0304+(1\u2212Z)\u00b7\u03bc with no Bayesian story, and 'applying Bayesian credibility finishes the Empirical Bayes approach.'",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z·X̄ + (1−Z)·μ. (1) What do the prior/structural assumptions supply that lets you compute Z and μ? (2) Refuse: writing Z·X̄+(1−Z)·μ with no Bayesian story, and 'applying Bayesian credibility finishes the Empirical Bayes approach.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.7.",
       "hints": [
@@ -157,7 +157,7 @@
         "meaning"
       ],
       "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so \u03bc and Z are determined theoretically, then combined with observed X\u0304. (2) Refuse empty formula \u2014 Bayesian credibility requires a prior-to-posterior story that justifies the blend. Empirical Bayes estimates those structural parameters from data \u2014 a different approach from treating them as known.",
+      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse empty formula (Bayesian credibility requires a prior-to-posterior story that justifies the blend. Empirical Bayes estimates those structural parameters from data) a different approach from treating them as known.",
       "common_mistake": "Writing the blend formula without a Bayesian warrant, or treating EB as finished.",
       "success_criteria": [
         "Refusal present.",
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Bayesian-credibility wobble \u2014 EB tomorrow.",
+    "framing": "Harvest Bayesian-credibility wobble: EB tomorrow.",
     "prompt": "Which part of today's 5.1.7 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.7 is stickiest and why?",
@@ -178,8 +178,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Empirical Bayes credibility (5.1.8)",
     "continuity_line": "Today you practised Bayesian credibility; tomorrow continues at the Empirical Bayes approach to credibility premiums.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.8 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.8. Titles only tonight",
+    "student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

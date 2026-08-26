@@ -34,14 +34,14 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-5.1-credible-intervals",
     "display_title": "Construct credible intervals in simple cases",
-    "mission_purpose": "Today's Mission exists to form credible intervals in simple cases — so posterior probability statements about parameters are honest and distinct from frequentist confidence slogans.",
+    "mission_purpose": "Today's Mission exists to form credible intervals in simple cases. So posterior probability statements about parameters are honest and distinct from frequentist confidence slogans.",
     "tutor_intent": "Today I will force a credible-interval probability reading and refuse confidence-interval slogan copy.",
     "educational_intent": "Produce credible-interval literacy.",
     "learning_objective": "Construct and interpret credible intervals in simple cases.",
     "concept_focus": "Posterior probability interval → interpret → refuse CI-slogan copy.",
     "prior_bridge": "Yesterday loss-based estimators (5.1.4). Today interval summaries.",
     "why_now": "5.1.5 completes core Bayesian estimation objects before credibility theory.",
-    "expected_benefit": "Study Progress for credible intervals — not credibility premium yet.",
+    "expected_benefit": "Study Progress for credible intervals. Not credibility premium yet.",
     "explainability": "Campaign Delta Day 20 focuses LO 5.1.5.",
     "success_criteria": [
       "Closed-book, state what a credible interval claims in probability language.",
@@ -60,13 +60,13 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-5.1-credible-intervals",
-    "session_educational_purpose": "Execute today's Mission for LO 5.1.5 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 5.1.5. Not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 5.1.5; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct credible intervals in simple cases. Study Progress for LO 5.1.5 — not Topic Complete for later LOs in this Volume.",
+    "wrap_up": "Session complete for Construct credible intervals in simple cases. Study Progress for LO 5.1.5. Not Topic Complete for later LOs in this Volume.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.5 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
@@ -91,12 +91,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.5 credible intervals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.5 (stop before credibility premium primary 5.1.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.5 credible intervals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.5 (stop before credibility premium primary 5.1.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -165,7 +165,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest interval wobble — credibility premium next.",
+    "framing": "Harvest interval wobble: credibility premium next.",
     "prompt": "Which part of today's 5.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.5 is stickiest and why?",
@@ -177,8 +177,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Credibility premium formula and credibility factor (5.1.6)",
     "continuity_line": "Today you practised credible intervals; tomorrow continues at the credibility premium formula and the credibility factor.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.6 — titles only tonight",
-    "student_facing": "Tomorrow: credibility premium formula and credibility factor (5.1.6). Optional light prep: skim 5.1.6 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.6. Titles only tonight",
+    "student_facing": "Tomorrow: credibility premium formula and credibility factor (5.1.6). Optional light prep: skim 5.1.6 headings. Titles only tonight."
   },
   "published_at": "2026-08-01"
 }

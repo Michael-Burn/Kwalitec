@@ -110,7 +110,7 @@ class StudentTutorPresentationService:
 
         return StudentTutorPage(
             page_title="Tutor",
-            page_question="Why this mission — and what should I understand?",
+            page_question="Why this mission, and what should I understand?",
             topic_title=topic or "Today's topic",
             learning_objective=objective or "Complete today's learning objective",
             certified_source=certified_source,

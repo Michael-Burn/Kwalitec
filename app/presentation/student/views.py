@@ -190,7 +190,7 @@ def start_todays_session(
 
         raise EducationalPrerequisiteMissing(
             "Your learning session could not start in the Educational Runtime. "
-            "Please return to Home and try again — study will not continue on "
+            "Please return to Home and try again. Study will not continue on "
             "the legacy path.",
             missing_prerequisite="educational_runtime_session",
         )

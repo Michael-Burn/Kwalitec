@@ -1,7 +1,7 @@
 {
   "package_version": "cs1015-campaign-omicron-1.0.0",
-  "publication_version": "cs1015-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1015-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
@@ -35,13 +35,13 @@
   "mission": {
     "mission_id": "msn-cs1015-cs1-5.1-bayes-theorem",
     "display_title": "Apply Bayes' theorem to simple conditionals",
-    "mission_purpose": "Today's Mission exists to apply Bayes' theorem to simple conditional probabilities — so Bayesian entry starts from theorem honesty, without pretending prior/posterior/conjugate (5.1.2) are finished.",
+    "mission_purpose": "Today's Mission exists to apply Bayes' theorem to simple conditional probabilities. So Bayesian entry starts from theorem honesty, without pretending prior/posterior/conjugate (5.1.2) are finished.",
     "tutor_intent": "Today I will force Bayes' theorem on simple conditionals and refuse 'Bayesian means credibility premium on day one'.",
     "educational_intent": "Produce Bayes' theorem application as the Continuity Front join hinge from Xi GLM into Topic 5.1.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
     "concept_focus": "Prior / base rate → likelihood of data → Bayes update → posterior probability → refuse inverse-probability confusion.",
-    "prior_bridge": "Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1 — the next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
-    "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals — prior/posterior language comes next.",
+    "prior_bridge": "Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1. The next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
+    "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals. Prior/posterior language comes next.",
     "expected_benefit": "You will be able to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors.",
     "explainability": "Assigned as Campaign Omicron Day 1 because CE-001 / EP-001 Continuity Front names 5.1 as the handoff from Xi after Topic 4.2 CF join closes.",
     "success_criteria": [
@@ -61,17 +61,17 @@
   },
   "session": {
     "session_id": "ssn-cs1015-cs1-5.1-bayes-theorem",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.1 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.1. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 5.1.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply Bayes' theorem to simple conditionals. You practised selective CMP reading on Syllabus 5.1.1. This is Study Progress for today's block — not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
+    "wrap_up": "Session complete for Apply Bayes' theorem to simple conditionals. You practised selective CMP reading on Syllabus 5.1.1. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.1 — apply bayes' theorem to simple conditionals. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.1: apply bayes' theorem to simple conditionals. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 5.1.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -94,13 +94,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 5.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -132,7 +132,7 @@
         "likelihood"
       ],
       "explanation": "Active recall for 5.1.1.",
-      "model_answer": "Bayes' theorem updates P(A|B) from P(B|A), P(A), P(B). Today is theorem/conditionals — prior/posterior/conjugate are tomorrow.",
+      "model_answer": "Bayes' theorem updates P(A|B) from P(B|A), P(A), P(B). Today is theorem/conditionals. Prior/posterior/conjugate are tomorrow.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -160,7 +160,7 @@
         "likelihood"
       ],
       "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "(1) P(flag)=0.90·0.02 + 0.05·0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 ≈ 0.269. (2) Refuse: that equates posterior with likelihood and ignores the base rate — Bayes multiplies prior × likelihood and normalises.",
+      "model_answer": "(1) P(flag)=0.90·0.02 + 0.05·0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 ≈ 0.269. (2) Refuse: that equates posterior with likelihood and ignores the base rate. Bayes multiplies prior × likelihood and normalises.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -169,7 +169,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest Bayes' theorem wobble — prior/posterior opens tomorrow.",
+    "framing": "Harvest Bayes' theorem wobble: prior/posterior opens tomorrow.",
     "prompt": "Which part of today's 5.1.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.1 is stickiest and why?",
@@ -181,12 +181,13 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Prior, posterior and conjugate priors (5.1.2)",
     "continuity_line": "Today you applied Bayes' theorem to simple conditionals; tomorrow continues 5.1 at prior, posterior and conjugate priors.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.2 — titles only tonight",
-    "student_facing": "Tomorrow: prior, posterior and conjugate priors (5.1.2). Optional light prep: skim 5.1.2 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.2. Titles only tonight",
+    "student_facing": "Tomorrow: prior, posterior and conjugate priors (5.1.2). Optional light prep: skim 5.1.2 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CO-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.1 is a CO-R1 return target after Learning span closes."
-  }
+  },
+  "published_at": "2026-08-03"
 }

@@ -1,7 +1,7 @@
 {
   "package_version": "cs1010-campaign-kappa-1.0.0",
-  "publication_version": "cs1010-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1010-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
   "volume_id": "CS1-010",
   "subject_id": "CS1",
@@ -36,12 +36,12 @@
   "mission": {
     "mission_id": "msn-cs1010-cs1-3.1-comparison-mse",
     "display_title": "Compare estimators using MSE and bias",
-    "mission_purpose": "Today's Mission exists to compare estimators using mean square error and bias or unbiasedness — so comparison is usable — without pretending asymptotic MLE laws (3.1.5) are finished.",
-    "tutor_intent": "Today I will force the candidate to compare two estimators with MSE / bias warrants — and refuse treating property definitions alone as finishing comparison.",
+    "mission_purpose": "Today's Mission exists to compare estimators using mean square error and bias or unbiasedness (so comparison is usable) without pretending asymptotic MLE laws (3.1.5) are finished.",
+    "tutor_intent": "Today I will force the candidate to compare two estimators with MSE / bias warrants. And refuse treating property definitions alone as finishing comparison.",
     "educational_intent": "Produce a cognitive move from property definitions to an explicit estimator comparison under CMP language.",
     "learning_objective": "Comparison of estimators using their mean square error and bias or unbiasedness.",
     "concept_focus": "Two estimators → MSE / bias comparison → refuse asymptotics-as-done.",
-    "prior_bridge": "Yesterday you discussed efficiency, bias, consistency and MSE (3.1.3). Today continues topic 3.1 at LO 3.1.4 — comparison.",
+    "prior_bridge": "Yesterday you discussed efficiency, bias, consistency and MSE (3.1.3). Today continues topic 3.1 at LO 3.1.4: comparison.",
     "why_now": "3.1.4 is contiguous after property language. Closing it prevents a cliff at comparison while keeping asymptotic MLE as day five.",
     "expected_benefit": "You will be able to compare two estimators explicitly via MSE (and bias), not just recall the definitions.",
     "explainability": "Assigned as Campaign Kappa Day 4 because Continuity Front membership places comparison after property definitions.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1010-cs1-3.1-comparison-mse",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.4 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.1.4. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.1.4, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Compare estimators using MSE and bias. You practised selective CMP reading on Syllabus 3.1.4. This is Study Progress for today's block — not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Compare estimators using MSE and bias. You practised selective CMP reading on Syllabus 3.1.4. This is Study Progress for today's block. Not Topic Complete for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.1.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.4 — compare estimators using mse and bias. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.1.4: compare estimators using mse and bias. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.1.4?",
       "What warrant separates today's skill from yesterday's?",
@@ -96,12 +96,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.4 comparison of estimators using MSE and bias. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.4 (stop before asymptotic MLE 3.1.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.1.4 comparison of estimators using MSE and bias. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.1.4 (stop before asymptotic MLE 3.1.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -134,7 +134,7 @@
         "estimator"
       ],
       "explanation": "Active recall for 3.1.4.",
-      "model_answer": "Prefer the estimator with smaller MSE (CMP examples). A biased estimator can have smaller MSE than an unbiased one if variance reduction outweighs squared bias. Asymptotic MLE laws are tomorrow — not today's LO.",
+      "model_answer": "Prefer the estimator with smaller MSE (CMP examples). A biased estimator can have smaller MSE than an unbiased one if variance reduction outweighs squared bias. Asymptotic MLE laws are tomorrow. Not today's LO.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.4-cp-01",
       "title": "Checkpoint: 3.1.4",
-      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE — which do you prefer for large n? (2) Refuse: 'Bias and MSE are defined, so comparison is automatic without computing either estimator's MSE.'",
+      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE. Which do you prefer for large n? (2) Refuse: 'Bias and MSE are defined, so comparison is automatic without computing either estimator's MSE.'",
       "response_type": "short_structured",
       "body": "Explicit MSE comparison of two estimators; refuse definition-as-comparison.",
       "hints": [
@@ -162,7 +162,7 @@
         "refuse"
       ],
       "explanation": "Estimator comparison under this LO is an explicit MSE/bias calculation, not property-definition recall.",
-      "model_answer": "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit MSE (or bias) comparison of the named estimators — definitions alone are not a comparison.",
+      "model_answer": "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit MSE (or bias) comparison of the named estimators. Definitions alone are not a comparison.",
       "common_mistake": "Stopping at property definitions without comparing the two estimators numerically.",
       "success_criteria": [
         "Computes both MSEs and states a preference.",
@@ -171,7 +171,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest comparison warrant wobble — keep asymptotics for tomorrow.",
+    "framing": "Harvest comparison warrant wobble. Keep asymptotics for tomorrow.",
     "prompt": "Which part of today's 3.1.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.1.4 is stickiest and why?",
@@ -183,7 +183,8 @@
     "next_topic_code": "3.1",
     "next_topic_title": "Asymptotic distribution of MLEs (3.1.5)",
     "continuity_line": "Today you compared estimators via MSE and bias; tomorrow continues 3.1 at the asymptotic distribution of MLEs.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.5 — titles only tonight",
-    "student_facing": "Tomorrow: asymptotic distribution of MLEs (3.1.5). Optional light prep: skim 3.1.5 headings — titles only tonight."
-  }
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.5. Titles only tonight",
+    "student_facing": "Tomorrow: asymptotic distribution of MLEs (3.1.5). Optional light prep: skim 3.1.5 headings. Titles only tonight."
+  },
+  "published_at": "2026-08-02"
 }

@@ -144,3 +144,8 @@ class StudySessionPage:
     workflow_step_index: int = 0
     page_eyebrow: str = ""
     estimated_time_label: str = ""
+    # Session UI refinement — Overview card hierarchy (presentation only)
+    context_eyebrow: str = ""
+    topic_display: str = ""
+    meta_duration: str = ""
+    meta_mode: str = ""

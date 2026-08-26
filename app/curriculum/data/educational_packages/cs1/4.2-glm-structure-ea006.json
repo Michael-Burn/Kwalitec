@@ -29,13 +29,13 @@
   "mission": {
     "mission_id": "msn-ea005-cs1-4.2-glm-structure",
     "display_title": "Extend linear models into GLM structure",
-    "mission_purpose": "Today's Mission exists to extend yesterday's linear-model fluency into GLM structure so you can choose a response family and link with intent — not by software habit.",
+    "mission_purpose": "Today's Mission exists to extend yesterday's linear-model fluency into GLM structure so you can choose a response family and link with intent. Not by software habit.",
     "learning_objective": "Explain how a GLM joins an exponential-family response, a linear predictor, and a link for a non-Normal outcome.",
     "concept_focus": "Exponential family → linear predictor → link (GLM structure chain).",
-    "prior_bridge": "Yesterday you finished classical linear models (4.1) — response, explanatory variables, and the linear predictor in the Normal world. Today that same linear machinery expands to responses that are not Normal.",
-    "why_now": "4.1 is complete enough to extend; 4.2 is the next lawful Learning Mode node; examiners frequently ask you to choose and justify a link for a non-Normal response — structure first, software second.",
-    "expected_benefit": "A usable mental map of GLM structure and one justified link choice you can defend — Study Progress evidence for today's Session, not mastery of all of 4.2.",
-    "explainability": "Assigned because you finished classical linear models (4.1); the exam skill gap now is extending the linear predictor to exponential-family responses via a link — not re-reading least squares.",
+    "prior_bridge": "Yesterday you finished classical linear models (4.1) (response, explanatory variables, and the linear predictor in the Normal world). Today that same linear machinery expands to responses that are not Normal.",
+    "why_now": "4.1 is complete enough to extend; 4.2 is the next lawful Learning Mode node; examiners frequently ask you to choose and justify a link for a non-Normal response (structure first, software second)",
+    "expected_benefit": "A usable mental map of GLM structure and one justified link choice you can defend. Study Progress evidence for today's Session, not mastery of all of 4.2.",
+    "explainability": "Assigned because you finished classical linear models (4.1); the exam skill gap now is extending the linear predictor to exponential-family responses via a link. Not re-reading least squares.",
     "success_criteria": [
       "Closed-book, explain the GLM chain (exponential-family response → linear predictor → link) in your own words.",
       "Name one non-Normal response family and its canonical (or clearly justified) link.",
@@ -50,20 +50,20 @@
       "min": 50,
       "max": 70
     },
-    "student_brief": "Mission: Extend linear models into GLM structure. Topic 4.2 — Understand and use generalised linear models. Objective: Explain how a GLM joins an exponential-family response, a linear predictor, and a link for a non-Normal outcome. Bridge: Yesterday you finished classical linear models (4.1). Today that same linear machinery expands to responses that are not Normal. Focus: Exponential family → linear predictor → link. Success today: Closed-book, name the GLM chain; give one non-Normal family with its canonical (or justified) link; note where it sits in the CMP example. Materials: CMP for Syllabus 4.2 (GLM setup) through the first worked structural example. Not today: full deviance diagnostics or Bayesian material."
+    "student_brief": "Mission: Extend linear models into GLM structure. Topic 4.2: Understand and use generalised linear models. Objective: Explain how a GLM joins an exponential-family response, a linear predictor, and a link for a non-Normal outcome. Bridge: Yesterday you finished classical linear models (4.1). Today that same linear machinery expands to responses that are not Normal. Focus: Exponential family → linear predictor → link. Success today: Closed-book, name the GLM chain; give one non-Normal family with its canonical (or justified) link; note where it sits in the CMP example. Materials: CMP for Syllabus 4.2 (GLM setup) through the first worked structural example. Not today: full deviance diagnostics or Bayesian material."
   },
   "session": {
     "session_id": "ssn-ea005-cs1-4.2-glm-structure",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test a closed-book GLM structure chain using selective CMP reading and retrieval — not to survey the whole of 4.2.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test a closed-book GLM structure chain using selective CMP reading and retrieval. Not to survey the whole of 4.2.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 70
     },
-    "wrap_up": "Session complete for Extend linear models into GLM structure. You practiced selective CMP reading on Syllabus 4.2 setup and stress-tested the family → η → link chain. This is Study Progress for today's block — not mastery of all of 4.2, and not Topic Complete by itself.",
+    "wrap_up": "Session complete for Extend linear models into GLM structure. You practiced selective CMP reading on Syllabus 4.2 setup and stress-tested the family → η → link chain. This is Study Progress for today's block. Not mastery of all of 4.2, and not Topic Complete by itself.",
     "confidence_prompt": "How confident are you that you could explain the GLM chain closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link — so link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example.",
+    "lead_line": "Purpose of this reading: use the CMP to extract how a GLM joins an exponential-family response, a linear predictor, and a link. So link choice is structural, not software habit. Extract that chain from the CMP, then stop after the first structural worked example.",
     "focus_questions": [
       "Where is the linear predictor η defined for a GLM? Write it in your own words.",
       "Which distributions in today's reading sit in the exponential family, and what mean/variance language does the CMP use?",
@@ -86,12 +86,12 @@
     ],
     "annotation_task": "Before deep reading: sketch Family / η / Link as three boxes in notes",
     "attempt_before_reveal": "At the first worked example, cover the solution and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 4.2 GLM setup (4.2.1–4.2.3 centre). Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; sketch Family / η / Link before deep reading; attempt the middle step of the first worked example before revealing the solution. Ignore full deviance diagnostics, exhaustive factor design, multi-model theatre, coding marathons, and Bayesian material (5.1) today. Stop at the end of the first structural worked example with a non-identity link. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 4.2 GLM setup (4.2.1–4.2.3 centre). Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; sketch Family / η / Link before deep reading; attempt the middle step of the first worked example before revealing the solution. Ignore full deviance diagnostics, exhaustive factor design, multi-model theatre, coding marathons, and Bayesian material (5.1) today. Stop at the end of the first structural worked example with a non-identity link. Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when you have completed the first structural worked example and can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write η in your own words (one sentence).",
+        "cue": "Pause. Write η in your own words (one sentence).",
         "student_action": "Annotate"
       },
       {
@@ -126,7 +126,7 @@
         "response"
       ],
       "explanation": "A GLM joins an exponential-family response, a linear predictor η = Xβ, and a link g(μ) = η. The link is not the same object as the linear predictor; Normal + identity is the special case, not the definition.",
-      "model_answer": "A GLM specifies an exponential-family response, forms a linear predictor η = Xβ, and connects the mean to η through a link function g(μ) = η — so non-Normal outcomes stay inside a linear modelling frame.",
+      "model_answer": "A GLM specifies an exponential-family response, forms a linear predictor η = Xβ, and connects the mean to η through a link function g(μ) = η. So non-Normal outcomes stay inside a linear modelling frame.",
       "common_mistake": "Treating GLM as 'linear regression with software' or conflating the link with the linear predictor.",
       "success_criteria": [
         "All three parts named in a coherent order.",
@@ -141,7 +141,7 @@
       "title": "Checkpoint: canonical link",
       "prompt": "Name one non-Normal response family used in GLMs (e.g. Poisson or binomial). State its canonical link (or a clearly justified link). In one sentence, why is that link a sensible default for that family?",
       "response_type": "short_structured",
-      "body": "Justify from support / mean range — not from software defaults.",
+      "body": "Justify from support / mean range. Not from software defaults.",
       "hints": [
         "Poisson → log; binomial → logit are the usual canonical pairings.",
         "Mention that the link maps the mean into an unrestricted linear predictor."
@@ -158,7 +158,7 @@
         "positive",
         "probability"
       ],
-      "explanation": "Canonical links (e.g. Poisson–log, binomial–logit) map the mean into an unrestricted linear predictor while respecting the response support — that is distributional justification, not a software habit.",
+      "explanation": "Canonical links (e.g. Poisson–log, binomial–logit) map the mean into an unrestricted linear predictor while respecting the response support. That is distributional justification, not a software habit.",
       "model_answer": "Poisson with log link (canonical): the mean must stay positive, and log maps (0, ∞) onto the real line for η.",
       "common_mistake": "Saying 'because R / glm() defaults to it' without mean-range reasoning.",
       "success_criteria": [
@@ -170,9 +170,9 @@
   ],
   "reflection": {
     "framing": "Do not summarise the whole chapter. Harvest what still wobbles in the GLM chain.",
-    "prompt": "Which part of the GLM chain is stickiest right now — family, linear predictor η, or link — and why? Quote or paraphrase the single CMP sentence or example step that is still unclear. If you had five minutes tomorrow before Bayesian work, what one GLM structure move would you rework?",
+    "prompt": "Which part of the GLM chain is stickiest right now (family, linear predictor η, or link) and why? Quote or paraphrase the single CMP sentence or example step that is still unclear. If you had five minutes tomorrow before Bayesian work, what one GLM structure move would you rework?",
     "prompts": [
-      "Which part of the chain is stickiest right now — family, linear predictor η, or link — and why?",
+      "Which part of the chain is stickiest right now (family, linear predictor η, or link) and why?",
       "Quote or paraphrase the single CMP sentence or example step that is still unclear (your words; no need for a long extract).",
       "If you had five minutes tomorrow before Bayesian work, what one GLM structure move would you rework?"
     ]
@@ -181,10 +181,10 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
     "continuity_line": "Today you practised thinking in distributions and likelihood-shaped structure; tomorrow that thinking opens Bayesian priors and posteriors.",
-    "light_prep_cue": "Optional skim: CMP heading for Bayes' theorem / prior–posterior (Syllabus 5.1.1–5.1.2) — titles only, no deep study tonight",
-    "student_facing": "Tomorrow: Bayesian foundations (5.1). Today's GLM work trained distribution-and-likelihood thinking; tomorrow that carries into priors and posteriors. Optional light prep: skim the CMP headings for Bayes' theorem and prior–posterior — titles only tonight."
+    "light_prep_cue": "Optional skim: CMP heading for Bayes' theorem / prior–posterior (Syllabus 5.1.1–5.1.2) (titles only, no deep study tonight)",
+    "student_facing": "Tomorrow: Bayesian foundations (5.1). Today's GLM work trained distribution-and-likelihood thinking; tomorrow that carries into priors and posteriors. Optional light prep: skim the CMP headings for Bayes' theorem and prior–posterior. Titles only tonight."
   },
   "superseded_by": "CS1-EP001-CAMPAIGN-DELTA",
   "superseded_at": "2026-08-01",
-  "supersession_note": "RO-002 / HR-002 — absorbed into CD-D6…CD-D8; not publication_approved"
+  "supersession_note": "RO-002 / HR-002: absorbed into CD-D6…CD-D8; not publication_approved"
 }

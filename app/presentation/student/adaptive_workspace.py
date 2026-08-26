@@ -362,7 +362,7 @@ def _today_line(
     home_vm: HomePageViewModel,
 ) -> str:
     if home_vm.day_complete:
-        return "Today's session is complete — return tomorrow to continue."
+        return "Today's session is complete. Return tomorrow to continue."
     if mission is None:
         return "Today's session will appear when your focus is ready."
     if mission.primary_kind == "link":
@@ -504,7 +504,7 @@ def _mission_composition(
         if not composition.has_composition:
             return _quiet_mission_composition(
                 "Today's learning episode is not ready yet. "
-                "Your mission focus is still available above — "
+                "Your mission focus is still available above. "
                 "begin the Session when ready."
             )
         return _project_mission_composition(composition)
@@ -512,7 +512,7 @@ def _mission_composition(
         logger.warning("mission_composition_failed", exc_info=True)
         return _quiet_mission_composition(
             "Today's learning episode could not be prepared. "
-            "Your mission focus is still available above — "
+            "Your mission focus is still available above. "
             "begin the Session when ready, or return after a short break."
         )
 
@@ -728,9 +728,9 @@ def _session_plan(
         authored_duration = (composition.total_duration_label or "").strip()
         if composition.tomorrow_preview and composition.tomorrow_preview.has_preview:
             after = (
-                f"Next: {composition.tomorrow_preview.topic_title} — "
+                f"Next: {composition.tomorrow_preview.topic_title}–"
                 f"{composition.tomorrow_preview.continuity_line}"
-            ).strip(" —")
+            ).strip("–")
 
     if mission is None and not authored_objective:
         return None

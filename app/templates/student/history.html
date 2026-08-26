@@ -19,12 +19,12 @@
 {% set history = page.history %}
   <header class="ds-page-header">
     <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">Your practice record — every completed Session is saved here.</p>
+    <p class="ds-page-header__support">Your practice record: every completed Session is saved here.</p>
     {% if history.sessions and history.sessions|length > 0 %}
     {% set latest = history.sessions[0] %}
     <p class="ds-list__meta" data-px004="history-continuity" role="status">
       Last sitting{% if latest.completed_at %}: {{ latest.completed_at }}{% endif %}
-      — {{ latest.topic_title }}{% if latest.duration_label %} ({{ latest.duration_label }}){% endif %}.
+–{{ latest.topic_title }}{% if latest.duration_label %} ({{ latest.duration_label }}){% endif %}.
     </p>
     {% endif %}
   </header>
@@ -146,7 +146,7 @@
 {% else %}
   <header class="ds-page-header">
     <h1 id="student-history-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">Your practice record — every completed Session is saved here.</p>
+    <p class="ds-page-header__support">Your practice record: every completed Session is saved here.</p>
   </header>
   {{ ds_empty_operational(
     'Complete your first Session to start your practice record.',

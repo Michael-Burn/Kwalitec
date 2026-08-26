@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1010-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 3.1 LOs, Chapter 3 trophy, intervals (3.2), hypothesis testing (3.3), "
                 "or until-exam trust."
             ),
@@ -83,7 +83,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -102,10 +102,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -117,7 +117,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -194,7 +194,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Kappa revision — estimators and their properties",
+        "topic_title": "Campaign Kappa revision: estimators and their properties",
         "return_targets": ["3.1.1", "3.1.2", "3.1.3", "3.1.4", "3.1.5", "3.1.6"],
         "topic_aliases": [day, "campaign-kappa-revision"],
         "topic_title_keywords": [
@@ -215,13 +215,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1010-cs1-ck-r1-estimators",
             "display_title": "Retrieve estimator hinges (3.1)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Kappa — retrieving "
+                "Today's Mission exists to protect memory of Campaign Kappa. Retrieving "
                 "method of moments, maximum likelihood, efficiency/bias/consistency/MSE, "
-                "estimator comparison, asymptotic MLE behaviour, and bootstrap — so 3.1 does "
+                "estimator comparison, asymptotic MLE behaviour, and bootstrap. So 3.1 does "
                 "not evaporate before intervals (3.2)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Kappa's Learning hinges — "
+                "Today I will run closed-book retrieval across Kappa's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 3.2 intervals lesson."
             ),
             "educational_intent": (
@@ -239,7 +239,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished bootstrap for estimator properties (3.1.6). Today is "
-                "Revision mode: return to 3.1.1–3.1.6 under closed-book retrieval — no new "
+                "Revision mode: return to 3.1.1–3.1.6 under closed-book retrieval. No new "
                 "first-pass LO."
             ),
             "why_now": (
@@ -247,7 +247,7 @@ def revision_pkg() -> dict:
                 "protects it before 3.2 work."
             ),
             "expected_benefit": (
-                "Evidence that the 3.1 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 3.1 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 3 / the exam journey is complete."
             ),
             "explainability": (
@@ -269,15 +269,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1010-cs1-ck-r1-estimators",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Kappa skills — not to teach 3.2."
+                "Retrieve and connect Campaign Kappa skills. Not to teach 3.2."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 45, "max": 60},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 3.1.1–3.1.6 return targets. "
-                "This is revision Study Progress — not Topic Complete for 3.2, and not "
+                "This is revision Study Progress. Not Topic Complete for 3.2, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -306,7 +306,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 3.2 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 3.2 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass confidence / prediction intervals (3.2)",
@@ -328,7 +328,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -397,9 +397,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. asymptotic MLE variance — five-minute rework. (2) Refuse "
+                    "(1) e.g. asymptotic MLE variance. Five-minute rework. (2) Refuse "
                     "Chapter 3 complete / spine / until-exam. (3) Honest next is 3.2 "
-                    "(successor Volume) or declared stop — not claimed finished here."
+                    "(successor Volume) or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 3 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -420,16 +420,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "3.2",
             "next_topic_title": (
-                "Honest next — confidence and prediction intervals (3.2) under a successor "
+                "Honest next: confidence and prediction intervals (3.2) under a successor "
                 "Volume (or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Kappa / Volume CS1-010 completes after this Revision. Honest stop: "
-                "3.1 Pilot Arc closed — not Chapter 3 complete; not first-pass spine; not "
+                "3.1 Pilot Arc closed. Not Chapter 3 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 3.2 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Kappa / CS1-010 complete after today (pending human Approver + LIVE). "
@@ -451,12 +451,12 @@ LEARNING = [
         title="Construct estimators by the method of moments",
         purpose=(
             "Today's Mission exists to construct estimators of population parameters by the "
-            "method of moments — so the MoM move is usable — without pretending maximum "
+            "method of moments (so the MoM move is usable) without pretending maximum "
             "likelihood (3.1.2) is finished."
         ),
         tutor=(
             "Today I will force the candidate to equate sample moments to population moments "
-            "and solve for the parameter — and refuse treating 'I wrote an estimator' as "
+            "and solve for the parameter. And refuse treating 'I wrote an estimator' as "
             "having the MoM LO."
         ),
         edu=(
@@ -469,7 +469,7 @@ LEARNING = [
         focus="Population moments → sample moments → solve for parameter → refuse MLE-as-done.",
         prior=(
             "Campaign Iota closed sampling distributions (2.6) with Revision. Today opens "
-            "topic 3.1 at LO 3.1.1 — the named Continuity Front after CS1-009."
+            "topic 3.1 at LO 3.1.1. The named Continuity Front after CS1-009."
         ),
         why=(
             "3.1.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -480,7 +480,7 @@ LEARNING = [
             "sample moments to population moments and solving."
         ),
         explain=(
-            "Day 1 opens 3.1 at the named learning objective — "
+            "Day 1 opens 3.1 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -499,9 +499,9 @@ LEARNING = [
             "Today you constructed estimators by method of moments; tomorrow continues 3.1 "
             "at maximum likelihood."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.1.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.1.2. Titles only tonight",
         student=(
-            "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings — "
+            "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.1.1 method of moments",
@@ -552,7 +552,7 @@ LEARNING = [
             "the likelihood is MLE, not MoM. MoM equates sample moments to "
             "population moments and solves."
         ),
-        reflect="Harvest MoM algebra wobble — keep MLE out of tonight's claim.",
+        reflect="Harvest MoM algebra wobble. Keep MLE out of tonight's claim.",
     ),
     dict(
         day="CK-D2",
@@ -563,12 +563,12 @@ LEARNING = [
         keywords=["likelihood", "maximum", "MLE", "log-likelihood", "estimator"],
         title="Construct estimators by maximum likelihood",
         purpose=(
-            "Today's Mission exists to construct estimators by maximum likelihood — so the "
-            "MLE move is usable — without pretending efficiency/bias/MSE (3.1.3) is finished."
+            "Today's Mission exists to construct estimators by maximum likelihood. So the "
+            "MLE move is usable. Without pretending efficiency/bias/MSE (3.1.3) is finished."
         ),
         tutor=(
             "Today I will force the candidate to form the likelihood / log-likelihood and "
-            "maximise for the parameter — and refuse treating yesterday's MoM as finishing MLE."
+            "maximise for the parameter. And refuse treating yesterday's MoM as finishing MLE."
         ),
         edu=(
             "Produce a cognitive move from a parametric model to an MLE under CMP language."
@@ -579,7 +579,7 @@ LEARNING = [
         focus="Likelihood / log-likelihood → maximise → MLE → refuse properties-as-done.",
         prior=(
             "Yesterday you constructed method-of-moments estimators (3.1.1). Today continues "
-            "topic 3.1 at LO 3.1.2 — maximum likelihood."
+            "topic 3.1 at LO 3.1.2: maximum likelihood."
         ),
         why=(
             "3.1.2 is contiguous after MoM. Closing it prevents a cliff at MLE while keeping "
@@ -590,7 +590,7 @@ LEARNING = [
             "to obtain an MLE for a simple parametric model."
         ),
         explain=(
-            "Day 2 continues at the named learning objective — MLE immediately after MoM."
+            "Day 2 continues at the named learning objective. MLE immediately after MoM."
         ),
         criteria=[
             "Closed-book, state the maximum-likelihood construction move.",
@@ -608,10 +608,10 @@ LEARNING = [
             "Today you constructed MLEs; tomorrow continues 3.1 at efficiency, bias, "
             "consistency and mean square error."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.1.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.1.3. Titles only tonight",
         student=(
             "Tomorrow: efficiency / bias / consistency / MSE (3.1.3). Optional light prep: "
-            "skim 3.1.3 headings — titles only tonight."
+            "skim 3.1.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.1.2 maximum likelihood",
         stop=(
@@ -659,9 +659,9 @@ LEARNING = [
         cp_model=(
             "(1) ℓ(λ) = n ln λ − λ Σ xᵢ; MLE λ̂ = n/Σ xᵢ = 1/x̄. (2) Refuse: MoM "
             "matches moments; MLE maximises the likelihood (or log-likelihood). "
-            "Different construction — even when numerical answers coincide."
+            "Different construction: even when numerical answers coincide."
         ),
-        reflect="Harvest likelihood / score algebra wobble — keep properties out of tonight.",
+        reflect="Harvest likelihood / score algebra wobble. Keep properties out of tonight.",
     ),
     dict(
         day="CK-D3",
@@ -680,12 +680,12 @@ LEARNING = [
         title="Discuss efficiency, bias, consistency and MSE of an estimator",
         purpose=(
             "Today's Mission exists to discuss efficiency, bias, consistency and mean square "
-            "error of an estimator — so property language is usable — without pretending "
+            "error of an estimator (so property language is usable) without pretending "
             "comparison of estimators (3.1.4) is finished."
         ),
         tutor=(
             "Today I will force the candidate to define bias, MSE, efficiency and consistency "
-            "with CMP warrants — and refuse treating 'I can write an MLE' as finishing properties."
+            "with CMP warrants. And refuse treating 'I can write an MLE' as finishing properties."
         ),
         edu=(
             "Produce a cognitive move from an estimator to its key properties under CMP "
@@ -694,9 +694,9 @@ LEARNING = [
         lo_text=(
             "Efficiency, bias, consistency and mean square error of an estimator."
         ),
-        focus="Bias · variance · MSE · efficiency · consistency — refuse comparison-as-done.",
+        focus="Bias · variance · MSE · efficiency · consistency. Refuse comparison-as-done.",
         prior=(
-            "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3 — "
+            "Yesterday you constructed MLEs (3.1.2). Today continues topic 3.1 at LO 3.1.3. "
             "estimator properties."
         ),
         why=(
@@ -708,7 +708,7 @@ LEARNING = [
             "on a concrete estimator claim."
         ),
         explain=(
-            "Day 3 continues at the named learning objective — properties after construction."
+            "Day 3 continues at the named learning objective. Properties after construction."
         ),
         criteria=[
             "Closed-book, define bias and MSE of an estimator.",
@@ -726,10 +726,10 @@ LEARNING = [
             "Today you discussed estimator properties; tomorrow continues 3.1 at comparing "
             "estimators using MSE and bias."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.1.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.1.4. Titles only tonight",
         student=(
             "Tomorrow: comparison of estimators (3.1.4). Optional light prep: skim 3.1.4 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.1.3 efficiency, bias, consistency and MSE",
         stop=(
@@ -779,7 +779,7 @@ LEARNING = [
             "unbiasedness is not MSE optimality; consistency is large-sample "
             "concentration on the true value, not the same as unbiasedness."
         ),
-        reflect="Harvest bias/MSE definition wobble — keep comparison for tomorrow.",
+        reflect="Harvest bias/MSE definition wobble. Keep comparison for tomorrow.",
     ),
     dict(
         day="CK-D4",
@@ -791,12 +791,12 @@ LEARNING = [
         title="Compare estimators using MSE and bias",
         purpose=(
             "Today's Mission exists to compare estimators using mean square error and bias "
-            "or unbiasedness — so comparison is usable — without pretending asymptotic MLE "
+            "or unbiasedness (so comparison is usable) without pretending asymptotic MLE "
             "laws (3.1.5) are finished."
         ),
         tutor=(
             "Today I will force the candidate to compare two estimators with MSE / bias "
-            "warrants — and refuse treating property definitions alone as finishing comparison."
+            "warrants. And refuse treating property definitions alone as finishing comparison."
         ),
         edu=(
             "Produce a cognitive move from property definitions to an explicit estimator "
@@ -808,7 +808,7 @@ LEARNING = [
         focus="Two estimators → MSE / bias comparison → refuse asymptotics-as-done.",
         prior=(
             "Yesterday you discussed efficiency, bias, consistency and MSE (3.1.3). Today "
-            "continues topic 3.1 at LO 3.1.4 — comparison."
+            "continues topic 3.1 at LO 3.1.4: comparison."
         ),
         why=(
             "3.1.4 is contiguous after property language. Closing it prevents a cliff at "
@@ -819,7 +819,7 @@ LEARNING = [
             "bias), not just recall the definitions."
         ),
         explain=(
-            "Day 4 continues at the named learning objective — comparison after property definitions."
+            "Day 4 continues at the named learning objective. Comparison after property definitions."
         ),
         criteria=[
             "Closed-book, compare two estimators using MSE and/or bias.",
@@ -837,10 +837,10 @@ LEARNING = [
             "Today you compared estimators via MSE and bias; tomorrow continues 3.1 at the "
             "asymptotic distribution of MLEs."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.1.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.1.5. Titles only tonight",
         student=(
             "Tomorrow: asymptotic distribution of MLEs (3.1.5). Optional light prep: skim "
-            "3.1.5 headings — titles only tonight."
+            "3.1.5 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.1.4 comparison of estimators using MSE and bias",
         stop=(
@@ -869,11 +869,11 @@ LEARNING = [
         ar_model=(
             "Prefer the estimator with smaller MSE (CMP examples). A biased estimator can "
             "have smaller MSE than an unbiased one if variance reduction outweighs squared "
-            "bias. Asymptotic MLE laws are tomorrow — not today's LO."
+            "bias. Asymptotic MLE laws are tomorrow. Not today's LO."
         ),
         cp_prompt=(
             "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has "
-            "Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE — which do you "
+            "Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE. Which do you "
             "prefer for large n? (2) Refuse: 'Bias and MSE are defined, so "
             "comparison is automatic without computing either estimator's MSE.'"
         ),
@@ -881,10 +881,10 @@ LEARNING = [
         cp_model=(
             "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer "
             "θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit "
-            "MSE (or bias) comparison of the named estimators — definitions alone "
+            "MSE (or bias) comparison of the named estimators. Definitions alone "
             "are not a comparison."
         ),
-        reflect="Harvest comparison warrant wobble — keep asymptotics for tomorrow.",
+        reflect="Harvest comparison warrant wobble. Keep asymptotics for tomorrow.",
     ),
     dict(
         day="CK-D5",
@@ -896,12 +896,12 @@ LEARNING = [
         title="Discuss the asymptotic distribution of MLEs",
         purpose=(
             "Today's Mission exists to discuss the asymptotic distribution of maximum "
-            "likelihood estimators — so large-sample MLE behaviour is usable — without "
+            "likelihood estimators (so large-sample MLE behaviour is usable) without "
             "pretending bootstrap (3.1.6) is finished."
         ),
         tutor=(
             "Today I will force the candidate to state asymptotic Normal (or CMP-equivalent) "
-            "behaviour of MLEs under regularity — and refuse treating finite-sample MSE "
+            "behaviour of MLEs under regularity. And refuse treating finite-sample MSE "
             "comparison as finishing asymptotics."
         ),
         edu=(
@@ -912,7 +912,7 @@ LEARNING = [
         focus="Large-sample MLE behaviour → asymptotic distribution → refuse bootstrap-as-done.",
         prior=(
             "Yesterday you compared estimators via MSE and bias (3.1.4). Today continues "
-            "topic 3.1 at LO 3.1.5 — asymptotic distribution of MLEs."
+            "topic 3.1 at LO 3.1.5: asymptotic distribution of MLEs."
         ),
         why=(
             "3.1.5 is contiguous after comparison. Closing it prevents a cliff at asymptotic "
@@ -923,7 +923,7 @@ LEARNING = [
             "it for large-sample inference."
         ),
         explain=(
-            "Day 5 continues at the named learning objective — asymptotics after comparison."
+            "Day 5 continues at the named learning objective. Asymptotics after comparison."
         ),
         criteria=[
             "Closed-book, state the asymptotic distribution claim for MLEs (CMP form).",
@@ -941,10 +941,10 @@ LEARNING = [
             "Today you discussed asymptotic MLE behaviour; tomorrow continues 3.1 at "
             "bootstrap methods for estimator properties."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.1.6 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.1.6. Titles only tonight",
         student=(
             "Tomorrow: bootstrap for estimator properties (3.1.6). Optional light prep: skim "
-            "3.1.6 headings — titles only tonight."
+            "3.1.6 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.1.5 asymptotic distribution of MLEs",
         stop=(
@@ -996,7 +996,7 @@ LEARNING = [
             "resampling; it does not replace stating the asymptotic distribution of "
             "the MLE."
         ),
-        reflect="Harvest asymptotic variance / regularity wobble — keep bootstrap for tomorrow.",
+        reflect="Harvest asymptotic variance / regularity wobble. Keep bootstrap for tomorrow.",
     ),
     dict(
         day="CK-D6",
@@ -1008,12 +1008,12 @@ LEARNING = [
         title="Use bootstrap to estimate properties of an estimator",
         purpose=(
             "Today's Mission exists to use the bootstrap method for estimating properties of "
-            "an estimator — so resampling is usable — without pretending intervals (3.2) or "
+            "an estimator (so resampling is usable) without pretending intervals (3.2) or "
             "Chapter 3 complete are finished."
         ),
         tutor=(
             "Today I will force the candidate to describe bootstrap resampling for estimator "
-            "properties — and refuse treating asymptotic MLE laws as finishing bootstrap, and "
+            "properties. And refuse treating asymptotic MLE laws as finishing bootstrap, and "
             "refuse Chapter 3 trophy claims."
         ),
         edu=(
@@ -1027,7 +1027,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you discussed asymptotic MLE behaviour (3.1.5). Today continues topic "
-            "3.1 at LO 3.1.6 — bootstrap — completing the Learning span."
+            "3.1 at LO 3.1.6 (bootstrap) completing the Learning span."
         ),
         why=(
             "3.1.6 completes topic 3.1 Learning. Closing it prevents a cliff before Revision "
@@ -1038,7 +1038,7 @@ LEARNING = [
             "an estimator (such as its standard error)."
         ),
         explain=(
-            "Day 6 closes this stretch at the named learning objective — 3.1 Learning at bootstrap before Revision."
+            "Day 6 closes this stretch at the named learning objective. 3.1 Learning at bootstrap before Revision."
         ),
         criteria=[
             "Closed-book, describe the bootstrap move for estimating estimator properties.",
@@ -1051,14 +1051,14 @@ LEARNING = [
             "Closed-book Knowledge Checks: bootstrap + refuse Ch3 / 3.2 swallow.",
         ],
         next_code="CK-R1",
-        next_title="Campaign Kappa revision — retrieve 3.1 hinges",
+        next_title="Campaign Kappa revision: retrieve 3.1 hinges",
         cont=(
-            "Today you used bootstrap for estimator properties; tomorrow is Revision — "
+            "Today you used bootstrap for estimator properties; tomorrow is Revision. "
             "retrieve 3.1.1–3.1.6 closed-book (not first-pass 3.2)."
         ),
-        prep="Optional: list the six 3.1 LO titles from memory — no new reading tonight",
+        prep="Optional: list the six 3.1 LO titles from memory. No new reading tonight",
         student=(
-            "Tomorrow: Revision (CK-R1) — retrieve estimator hinges. Optional: list 3.1.1–"
+            "Tomorrow: Revision (CK-R1): retrieve estimator hinges. Optional: list 3.1.1–"
             "3.1.6 titles from memory tonight."
         ),
         open="CMP · Syllabus 3.1.6 bootstrap for estimator properties",
@@ -1094,7 +1094,7 @@ LEARNING = [
         ],
         ar_model=(
             "Bootstrap resamples from the observed sample (CMP procedure) to approximate "
-            "sampling behaviour of an estimator — e.g. SE or bias. Completing 3.1.6 closes "
+            "sampling behaviour of an estimator. E.g. SE or bias. Completing 3.1.6 closes "
             "topic 3.1 Learning, not Chapter 3 or intervals."
         ),
         cp_prompt=(
@@ -1113,7 +1113,7 @@ LEARNING = [
             "LO (interval construction, not property estimation)."
         ),
         reflect=(
-            "Harvest bootstrap procedure wobble — Revision protects the 3.1 chain tomorrow."
+            "Harvest bootstrap procedure wobble. Revision protects the 3.1 chain tomorrow."
         ),
     ),
 ]
@@ -1140,7 +1140,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
         "campaign_version": "cs1010-1.0.0",
-        "display_title": "Campaign Kappa — Estimators and their properties (3.1)",
+        "display_title": "Campaign Kappa: Estimators and their properties (3.1)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

@@ -34,14 +34,14 @@
   "mission": {
     "mission_id": "msn-cs1002-cs1-1.2-pca",
     "display_title": "Reduce dimensions without losing the story",
-    "mission_purpose": "Today's Mission exists to close the deferred EDA skill from Campaign Alpha — principal component analysis — so you can reduce a complex data set's dimensionality while stating what is preserved, what is lost, and what PCA does not invent.",
-    "tutor_intent": "Today I will force the candidate to state the purpose of PCA in one professional sentence, name what the first components capture versus discard, and refuse treating a principal component as a causal factor — so dimensionality reduction stays exploratory craft, not magic renaming.",
+    "mission_purpose": "Today's Mission exists to close the deferred EDA skill from Campaign Alpha (principal component analysis) so you can reduce a complex data set's dimensionality while stating what is preserved, what is lost, and what PCA does not invent.",
+    "tutor_intent": "Today I will force the candidate to state the purpose of PCA in one professional sentence, name what the first components capture versus discard, and refuse treating a principal component as a causal factor. So dimensionality reduction stays exploratory craft, not magic renaming.",
     "educational_intent": "Produce a cognitive move from 'many correlated variables are hard to see' to 'I can explain PCA as an exploratory reduction tool with honest limits on interpretation.'",
     "learning_objective": "Explain principal component analysis as a method to reduce the dimensionality of a complex data set, and state what the components do and do not justify.",
     "concept_focus": "Why reduce dimensions → what PCs capture → interpretation limits (not new causal variables).",
     "prior_bridge": "Campaign Alpha closed association measures (1.2.2) under honest non-claims and deferred PCA (1.2.3). Today Volume CS1-002 opens by placing that deferred LO: exploratory judgement extends from bivariate association into multi-variable reduction.",
     "why_now": "1.2.3 is the lawful next LO after Alpha's association day; Alpha terminals named this deferral; without PCA placed now, Chapter 1 coverage remains an honest gap that recreates a syllabus cliff before distributions.",
-    "expected_benefit": "One closed-book PCA purpose statement plus one honest limit — Study Progress for today's Session, not Topic Complete for all of Chapter 2.",
+    "expected_benefit": "One closed-book PCA purpose statement plus one honest limit. Study Progress for today's Session, not Topic Complete for all of Chapter 2.",
     "explainability": "Assigned as Campaign Beta Day 1 because CS1-001 deferred 1.2.3; continuity law requires the successor Volume to close that named handoff before opening 2.1.",
     "success_criteria": [
       "Closed-book, state the purpose of PCA for a complex data set in one professional sentence.",
@@ -60,17 +60,17 @@
   },
   "session": {
     "session_id": "ssn-cs1002-cs1-1.2-pca",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book understanding of PCA purpose and limits — not to open univariate distributions or run a coding marathon.",
-    "session_tutor_purpose": "In this hour I will set focus questions on reduction purpose and interpretation limits, exit for CMP work on 1.2.3, then retrieve purpose–capture–refuse-overclaim — so PCA is tested as exploratory judgement.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book understanding of PCA purpose and limits. Not to open univariate distributions or run a coding marathon.",
+    "session_tutor_purpose": "In this hour I will set focus questions on reduction purpose and interpretation limits, exit for CMP work on 1.2.3, then retrieve purpose–capture–refuse-overclaim. So PCA is tested as exploratory judgement.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 70
     },
-    "wrap_up": "Session complete for Reduce dimensions without losing the story. You practised selective CMP reading on Syllabus 1.2.3 and stress-tested PCA purpose with honest limits. This is Study Progress for today's block — not Topic Complete for distributions (2.1), which opens tomorrow.",
+    "wrap_up": "Session complete for Reduce dimensions without losing the story. You practised selective CMP reading on Syllabus 1.2.3 and stress-tested PCA purpose with honest limits. This is Study Progress for today's block. Not Topic Complete for distributions (2.1), which opens tomorrow.",
     "confidence_prompt": "How confident are you that you could explain PCA purpose and refuse one overclaim closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to understand why PCA reduces dimensionality, what early components typically capture, and which interpretation claims are unsafe — so dimensionality reduction stays accountable. Extract that from the CMP, then stop after the 1.2.3 PCA block.",
+    "lead_line": "Purpose of this reading: use the CMP to understand why PCA reduces dimensionality, what early components typically capture, and which interpretation claims are unsafe. So dimensionality reduction stays accountable. Extract that from the CMP, then stop after the 1.2.3 PCA block.",
     "focus_questions": [
       "How does the CMP state the purpose of principal component analysis?",
       "What do the first few components typically summarise in a correlated data set?",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch many variables → fewer components → interpret with limits",
     "attempt_before_reveal": "At the first worked PCA interpretation example, cover the solution and write your purpose sentence first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.2.3 — principal component analysis. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Chapter 2 / univariate distributions and coding marathons today. Stop when the 1.2.3 PCA block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.2.3: principal component analysis. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore Chapter 2 / univariate distributions and coding marathons today. Stop when the 1.2.3 PCA block is complete. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP 1.2.3 PCA block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write one sentence: PCA reduces dimensionality so that…",
+        "cue": "Pause. Write one sentence: PCA reduces dimensionality so that…",
         "student_action": "Annotate"
       },
       {
@@ -173,9 +173,9 @@
   ],
   "reflection": {
     "framing": "Do not summarise all of Chapter 1. Harvest what still wobbles in PCA judgement.",
-    "prompt": "Which part is stickiest right now — stating PCA purpose, distinguishing early vs later components, or refusing overclaims — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one PCA move would you rework?",
+    "prompt": "Which part is stickiest right now (stating PCA purpose, distinguishing early vs later components, or refusing overclaims) and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one PCA move would you rework?",
     "prompts": [
-      "Which part is stickiest right now — stating PCA purpose, distinguishing early vs later components, or refusing overclaims — and why?",
+      "Which part is stickiest right now (stating PCA purpose, distinguishing early vs later components, or refusing overclaims) and why?",
       "Quote or paraphrase the single CMP cue still unclear.",
       "If you had five minutes on the revision day, what one PCA move would you rework?"
     ]
@@ -183,8 +183,8 @@
   "tomorrow_preview": {
     "next_topic_code": "2.1",
     "next_topic_title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
-    "continuity_line": "Today you placed PCA as exploratory dimensionality reduction with honest limits; tomorrow opens the distributional spine at Syllabus 2.1.1 — characteristics of basic discrete univariate distributions — so the variables you explored gain a modelling vocabulary.",
-    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.1 discrete distribution family names — titles only, no deep study tonight",
-    "student_facing": "Tomorrow: basic discrete univariate distributions (2.1.1). We open Chapter 2 after closing PCA. Optional light prep: skim 2.1.1 headings — titles only tonight."
+    "continuity_line": "Today you placed PCA as exploratory dimensionality reduction with honest limits; tomorrow opens the distributional spine at Syllabus 2.1.1 (characteristics of basic discrete univariate distributions) so the variables you explored gain a modelling vocabulary.",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.1 discrete distribution family names (titles only, no deep study tonight)",
+    "student_facing": "Tomorrow: basic discrete univariate distributions (2.1.1). We open Chapter 2 after closing PCA. Optional light prep: skim 2.1.1 headings. Titles only tonight."
   }
 }

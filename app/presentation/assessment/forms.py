@@ -88,11 +88,11 @@ class ConfidenceSelectForm(FlaskForm):
 
     confidence = SelectField(
         choices=[
-            ("1", "1 — Not sure"),
+            ("1", "1: Not sure"),
             ("2", "2"),
             ("3", "3"),
             ("4", "4"),
-            ("5", "5 — Very sure"),
+            ("5", "5: Very sure"),
         ],
         validators=[Optional()],
     )

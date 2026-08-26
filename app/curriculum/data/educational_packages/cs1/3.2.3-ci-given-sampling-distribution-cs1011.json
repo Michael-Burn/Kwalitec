@@ -37,12 +37,12 @@
   "mission": {
     "mission_id": "msn-cs1011-cs1-3.2-ci-given-sampling-distribution",
     "display_title": "Construct a confidence interval using a given sampling distribution",
-    "mission_purpose": "Today's Mission exists to construct a confidence interval for an unknown parameter using a given sampling distribution — so the given-distribution route is usable — without pretending Normal mean/variance recipes (3.2.4) are finished.",
+    "mission_purpose": "Today's Mission exists to construct a confidence interval for an unknown parameter using a given sampling distribution (so the given-distribution route is usable) without pretending Normal mean/variance recipes (3.2.4) are finished.",
     "tutor_intent": "Today I will force the candidate to use a stated sampling distribution to form a CI and refuse treating Normal mean/variance cookbook as today's LO.",
     "educational_intent": "Produce a cognitive move from a given sampling distribution to a parameter confidence interval under CMP language.",
     "learning_objective": "Confidence interval for an unknown parameter using a given sampling distribution.",
     "concept_focus": "Given sampling distribution → invert / pivot → CI → refuse Normal cookbook-as-done.",
-    "prior_bridge": "Yesterday you constructed a prediction interval (3.2.2). Today continues topic 3.2 at LO 3.2.3 — CI using a given sampling distribution.",
+    "prior_bridge": "Yesterday you constructed a prediction interval (3.2.2). Today continues topic 3.2 at LO 3.2.3: CI using a given sampling distribution.",
     "why_now": "3.2.3 is contiguous after prediction. Closing it prevents a cliff at the given-distribution method while keeping Normal mean/variance CIs as day four.",
     "expected_benefit": "You will be able to form a CI by inverting a given sampling distribution, not only by recalling Normal-mean formulae.",
     "explainability": "Assigned as Campaign Lambda Day 3 because Continuity Front membership places given-sampling-distribution CI after prediction.",
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1011-cs1-3.2-ci-given-sampling-distribution",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.3 — not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 3.2.3. Not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 3.2.3, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Construct a confidence interval using a given sampling distribution. You practised selective CMP reading on Syllabus 3.2.3. This is Study Progress for today's block — not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
+    "wrap_up": "Session complete for Construct a confidence interval using a given sampling distribution. You practised selective CMP reading on Syllabus 3.2.3. This is Study Progress for today's block. Not Topic Complete for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam trust.",
     "confidence_prompt": "How confident are you that you could retrieve today's 3.2.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.3 — construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 3.2.3: construct a confidence interval using a given sampling distribution. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 3.2.3?",
       "What warrant separates today's skill from yesterday's?",
@@ -97,12 +97,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.3 CI using a given sampling distribution. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.3 (stop before Normal mean/variance CIs 3.2.4). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.3 CI using a given sampling distribution. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.3 (stop before Normal mean/variance CIs 3.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause. Write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest given-distribution inversion wobble — keep Normal cookbook out of tonight's claim.",
+    "framing": "Harvest given-distribution inversion wobble. Keep Normal cookbook out of tonight's claim.",
     "prompt": "Which part of today's 3.2.3 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 3.2.3 is stickiest and why?",
@@ -184,8 +184,8 @@
     "next_topic_code": "3.2",
     "next_topic_title": "Normal mean and variance confidence intervals (3.2.4)",
     "continuity_line": "Today you formed a CI from a given sampling distribution; tomorrow continues 3.2 at Normal mean and variance intervals.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.4 — titles only tonight",
-    "student_facing": "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 headings — titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.4. Titles only tonight",
+    "student_facing": "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 headings. Titles only tonight."
   },
   "published_at": "2026-08-02"
 }

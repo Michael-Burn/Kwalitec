@@ -34,14 +34,14 @@
   "mission": {
     "mission_id": "msn-ep001-cs1-1.2-eda-summaries",
     "display_title": "Choose summaries and plots for a stated aim",
-    "mission_purpose": "Today's Mission exists to turn yesterday's purpose map into exploratory craft — choosing summary statistics and visualisations that serve a named aim inside the exploratory stage.",
-    "tutor_intent": "Today I will refuse chart-surfing: the candidate must name the aim first, then justify one summary and one visualisation for that aim, before reading deep — so EDA becomes judgement, not decoration.",
+    "mission_purpose": "Today's Mission exists to turn yesterday's purpose map into exploratory craft (choosing summary statistics and visualisations that serve a named aim inside the exploratory stage)",
+    "tutor_intent": "Today I will refuse chart-surfing: the candidate must name the aim first, then justify one summary and one visualisation for that aim, before reading deep. So EDA becomes judgement, not decoration.",
     "educational_intent": "Produce a cognitive move from 'EDA means looking at data' to 'I select summaries and visualisations that match variable type and analysis aim, and I can defend that choice closed-book.'",
     "learning_objective": "Select and justify appropriate summary statistics and exploratory visualisations for a stated analysis aim and variable type.",
     "concept_focus": "Variable type → suitable summary → suitable visualisation → aim alignment.",
-    "prior_bridge": "Yesterday you built the purpose map for data analysis (1.1) — aims, stages, sources, reproducibility. Today you work inside the exploratory stage: summaries and visualisations chosen for a stated aim.",
+    "prior_bridge": "Yesterday you built the purpose map for data analysis (1.1) (aims, stages, sources, reproducibility). Today you work inside the exploratory stage: summaries and visualisations chosen for a stated aim.",
     "why_now": "1.2.1 is the next lawful LO after purpose; examiners ask which summary or plot is appropriate; without aim-linked tool choice, correlation work tomorrow has nothing trustworthy to associate.",
-    "expected_benefit": "One defended summary-and-plot pair for a named aim — Study Progress for today's Session, not completion of all of 1.2.",
+    "expected_benefit": "One defended summary-and-plot pair for a named aim. Study Progress for today's Session, not completion of all of 1.2.",
     "explainability": "Assigned as Campaign Alpha Day 2 because Day 1 established aim and stage; the skill gap now is exploratory tool judgement under LO 1.2.1.",
     "success_criteria": [
       "Closed-book, for a named variable type and aim, state one suitable summary statistic and why it fits.",
@@ -60,17 +60,17 @@
   },
   "session": {
     "session_id": "ssn-ep001-cs1-1.2-eda-summaries",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book judgement on summaries and visualisations under a stated aim — not to catalogue every plot type in the CMP.",
-    "session_tutor_purpose": "In this hour I will set focus questions that force aim-first tool choice, exit for CMP work on 1.2.1, then retrieve a defended summary-and-plot pair — so exploratory craft is tested, not page count.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test closed-book judgement on summaries and visualisations under a stated aim. Not to catalogue every plot type in the CMP.",
+    "session_tutor_purpose": "In this hour I will set focus questions that force aim-first tool choice, exit for CMP work on 1.2.1, then retrieve a defended summary-and-plot pair. So exploratory craft is tested, not page count.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 70
     },
-    "wrap_up": "Session complete for Choose summaries and plots for a stated aim. You practised selective CMP reading on Syllabus 1.2.1 and stress-tested aim-linked summary and visualisation choice. This is Study Progress for today's block — not Topic Complete for all of 1.2, and not yet association measures (tomorrow).",
+    "wrap_up": "Session complete for Choose summaries and plots for a stated aim. You practised selective CMP reading on Syllabus 1.2.1 and stress-tested aim-linked summary and visualisation choice. This is Study Progress for today's block. Not Topic Complete for all of 1.2, and not yet association measures (tomorrow).",
     "confidence_prompt": "How confident are you that you could defend one summary-and-plot pair for a stated aim closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type — so exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block.",
+    "lead_line": "Purpose of this reading: use the CMP to learn how to choose summary statistics and exploratory visualisations for a stated aim and variable type. So exploratory work stays aim-led. Extract that method from the CMP, then stop after the 1.2.1 summaries-and-visualisations block.",
     "focus_questions": [
       "Which summaries does the CMP pair with which variable types, and what aim does each summary serve?",
       "Which exploratory visualisations are recommended, and what pattern is each meant to reveal?",
@@ -92,12 +92,12 @@
     ],
     "annotation_task": "Before deep reading: sketch Aim / Variable type / Summary / Plot as four linked boxes",
     "attempt_before_reveal": "At the first worked choice of summary or plot, cover the solution and write your choice first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.2.1 — summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore correlation measures, PCA, coding marathons, and distribution catalogues today. Stop when the 1.2.1 summaries-and-visualisations block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 1.2.1: summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore correlation measures, PCA, coding marathons, and distribution catalogues today. Stop when the 1.2.1 summaries-and-visualisations block is complete. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP 1.2.1 summaries-and-visualisations block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — for one numeric variable, write which summary you would lead with and why.",
+        "cue": "Pause. For one numeric variable, write which summary you would lead with and why.",
         "student_action": "Annotate"
       },
       {
@@ -116,7 +116,7 @@
       "title": "Active Recall: aim-linked summary",
       "prompt": "Closed-book. Suppose your aim is descriptive and your variable is a right-skewed claim size. Which summary statistic would you lead with, and why is it preferable to a naive mean-only report?",
       "response_type": "short_structured",
-      "body": "Justify from distribution shape and aim — not from software defaults.",
+      "body": "Justify from distribution shape and aim. Not from software defaults.",
       "hints": [
         "Skewed positive data often needs median/IQR or careful mean-with-shape warning.",
         "Say what the mean alone hides."
@@ -174,9 +174,9 @@
   ],
   "reflection": {
     "framing": "Do not summarise all of EDA. Harvest what still wobbles in tool judgement.",
-    "prompt": "Which link is stickiest right now — aim → variable type, variable type → summary, or summary → visualisation — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow before correlation, what one tool-judgement move would you rework?",
+    "prompt": "Which link is stickiest right now (aim → variable type, variable type → summary, or summary → visualisation) and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow before correlation, what one tool-judgement move would you rework?",
     "prompts": [
-      "Which link is stickiest right now — aim → variable type, variable type → summary, or summary → visualisation — and why?",
+      "Which link is stickiest right now (aim → variable type, variable type → summary, or summary → visualisation) and why?",
       "Quote or paraphrase the single CMP cue still unclear.",
       "If you had five minutes tomorrow before correlation, what one tool-judgement move would you rework?"
     ]
@@ -184,8 +184,8 @@
   "tomorrow_preview": {
     "next_topic_code": "1.2",
     "next_topic_title": "Complete exploratory data analysis",
-    "continuity_line": "Today you chose summaries and plots for a stated aim; tomorrow those exploratory descriptions become association — interpreting Pearson, Spearman, and Kendall with discipline.",
-    "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.2 correlation measures — titles only, no deep study tonight",
-    "student_facing": "Tomorrow: association measures for bivariate data (still 1.2). Today's summaries and plots prepare the variables; tomorrow you interpret correlation with the same aim discipline. Optional light prep: skim CMP headings for 1.2.2 — titles only tonight."
+    "continuity_line": "Today you chose summaries and plots for a stated aim; tomorrow those exploratory descriptions become association (interpreting Pearson, Spearman, and Kendall with discipline)",
+    "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.2 correlation measures (titles only, no deep study tonight)",
+    "student_facing": "Tomorrow: association measures for bivariate data (still 1.2). Today's summaries and plots prepare the variables; tomorrow you interpret correlation with the same aim discipline. Optional light prep: skim CMP headings for 1.2.2. Titles only tonight."
   }
 }

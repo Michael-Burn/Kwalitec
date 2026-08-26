@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1002-cs1-2.1-continuous",
     "display_title": "Place continuous families beside discrete ones",
-    "mission_purpose": "Today's Mission exists to extend yesterday's discrete recognition into continuous univariate families — so you can characterise Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and continuous uniform by support and typical use, without pretending probability evaluation is finished.",
-    "tutor_intent": "Today I will force the candidate to discriminate continuous families by support and modelling role, and to refuse treating 'everything is Normal' as a default without warrant — so continuous entry matches the same Sensei standard as discrete entry.",
+    "mission_purpose": "Today's Mission exists to extend yesterday's discrete recognition into continuous univariate families. So you can characterise Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and continuous uniform by support and typical use, without pretending probability evaluation is finished.",
+    "tutor_intent": "Today I will force the candidate to discriminate continuous families by support and modelling role, and to refuse treating 'everything is Normal' as a default without warrant. So continuous entry matches the same Sensei standard as discrete entry.",
     "educational_intent": "Produce a cognitive move from 'continuous = Normal only' to 'I can place the syllabus continuous families by support and typical actuarial/statistical role, with one honest non-default.'",
     "learning_objective": "Describe the characteristics of Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and uniform continuous distributions on an interval, and match key members to recognisable modelling situations.",
     "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default theatre.",
-    "prior_bridge": "Yesterday you matched discrete counting situations to 2.1.1 families. Today the same 2.1 topic continues at 2.1.2: continuous univariate characteristics sit beside the discrete map — not a new chapter leap.",
+    "prior_bridge": "Yesterday you matched discrete counting situations to 2.1.1 families. Today the same 2.1 topic continues at 2.1.2: continuous univariate characteristics sit beside the discrete map. Not a new chapter leap.",
     "why_now": "You've placed discrete families; today place continuous ones beside them so you don't default every continuous problem to Normal.",
-    "expected_benefit": "A continuous-family placement map with one refused Normal default — Study Progress for today's Session, not Topic Complete for 2.1.3–2.1.6.",
+    "expected_benefit": "A continuous-family placement map with one refused Normal default. Study Progress for today's Session, not Topic Complete for 2.1.3–2.1.6.",
     "explainability": "Assigned as Campaign Beta Day 3 because contiguous 2.1.1→2.1.2 completes lawful distributional entry without swallowing probability evaluation and generation LOs.",
     "success_criteria": [
       "Closed-book, name the syllabus continuous families in LO 2.1.2.",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1002-cs1-2.1-continuous",
-    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test continuous family placement — not to complete 2.1.3 probability/quantile drills or random-variable generation.",
-    "session_tutor_purpose": "In this hour I will set focus questions on continuous family characteristics, exit for CMP work on 2.1.2, then retrieve place–warrant–refuse-Normal-default — so continuous entry stays judgement.",
+    "session_educational_purpose": "This Session exists to execute today's Mission: build and stress-test continuous family placement. Not to complete 2.1.3 probability/quantile drills or random-variable generation.",
+    "session_tutor_purpose": "In this hour I will set focus questions on continuous family characteristics, exit for CMP work on 2.1.2, then retrieve place–warrant–refuse-Normal-default. So continuous entry stays judgement.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Place continuous families beside discrete ones. You practised selective CMP reading on Syllabus 2.1.2 and stress-tested continuous family placement. This is Study Progress for today's block — not Topic Complete for probability evaluation (2.1.3), Poisson process (2.1.4), or generation methods (2.1.5–2.1.6). Tomorrow is Revision mode.",
+    "wrap_up": "Session complete for Place continuous families beside discrete ones. You practised selective CMP reading on Syllabus 2.1.2 and stress-tested continuous family placement. This is Study Progress for today's block. Not Topic Complete for probability evaluation (2.1.3), Poisson process (2.1.4), or generation methods (2.1.5–2.1.6). Tomorrow is Revision mode.",
     "confidence_prompt": "How confident are you that you could place three continuous families and refuse a Normal default closed-book tomorrow morning? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2 — so continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today's block.",
+    "lead_line": "Purpose of this reading: use the CMP to extract support and typical modelling role for each continuous family in Syllabus 2.1.2. So continuous choice is support-led. Extract that catalogue frame from the CMP, then stop before probability/quantile evaluation beyond today's block.",
     "focus_questions": [
       "What support does each continuous family typically live on?",
       "When is lognormal or gamma a better claim-size story than Normal?",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: group continuous families by support / role cues",
     "attempt_before_reveal": "At the first worked placement example, cover the answer and choose the family first",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.2 — continuous distributions. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation beyond today's stop, and coding marathons today. Stop when the 2.1.2 continuous block is complete. Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at Syllabus 2.1.2: continuous distributions. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list; complete the annotation task. Ignore discrete re-cataloguing, deep probability/quantile evaluation beyond today's stop, and coding marathons today. Stop when the 2.1.2 continuous block is complete. Then close the CMP and return here (next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks)",
     "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 continuous block is complete and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write one line: I refuse Normal-by-default when…",
+        "cue": "Pause. Write one line: I refuse Normal-by-default when…",
         "student_action": "Annotate"
       },
       {
@@ -137,7 +137,7 @@
         "uniform"
       ],
       "explanation": "Continuous entry requires roster and core placement cues before calculation days.",
-      "model_answer": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta, continuous uniform. Example cues: Normal — symmetric continuous approximation; lognormal — positive skewed magnitudes; exponential — waiting/memoryless; gamma — flexible positive continuous shapes.",
+      "model_answer": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta, continuous uniform. Example cues: Normal (symmetric continuous approximation; lognormal) positive skewed magnitudes; exponential (waiting/memoryless; gamma) flexible positive continuous shapes.",
       "common_mistake": "Naming only Normal, or dumping formulae without placement cues.",
       "success_criteria": [
         "Syllabus continuous families named.",
@@ -176,19 +176,19 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest continuous placement wobble — distinct from yesterday's discrete roster stem.",
-    "prompt": "Which part is stickiest right now — recalling continuous roster, placing positive-skew families, or refusing Normal-by-default — and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one continuous-family move would you rework?",
+    "framing": "Harvest continuous placement wobble. Distinct from yesterday's discrete roster stem.",
+    "prompt": "Which part is stickiest right now (recalling continuous roster, placing positive-skew families, or refusing Normal-by-default) and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes on the revision day, what one continuous-family move would you rework?",
     "prompts": [
-      "Which part is stickiest right now — continuous roster, positive-skew placement, or refusing Normal-by-default — and why?",
+      "Which part is stickiest right now (continuous roster, positive-skew placement, or refusing Normal-by-default) and why?",
       "Quote or paraphrase the single CMP cue still unclear.",
       "If you had five minutes on the revision day, what one continuous-family move would you rework?"
     ]
   },
   "tomorrow_preview": {
     "next_topic_code": "CB-R1",
-    "next_topic_title": "Campaign Beta revision — PCA to distributional entry",
-    "continuity_line": "Today you placed continuous families beside discrete ones; tomorrow is a Revision day that returns to PCA limits, discrete matching, continuous placement — and one Alpha association hinge — not a new first-pass LO such as 2.1.3.",
-    "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 — titles of sticky points only, no new CMP chapter tonight",
-    "student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA → discrete families → continuous placement, plus one Alpha association hinge. Optional light prep: skim your own Reflection residuals — sticky titles only tonight."
+    "next_topic_title": "Campaign Beta revision: PCA to distributional entry",
+    "continuity_line": "Today you placed continuous families beside discrete ones; tomorrow is a Revision day that returns to PCA limits, discrete matching, continuous placement (and one Alpha association hinge) not a new first-pass LO such as 2.1.3.",
+    "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 (titles of sticky points only, no new CMP chapter tonight)",
+    "student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA → discrete families → continuous placement, plus one Alpha association hinge. Optional light prep: skim your own Reflection residuals. Sticky titles only tonight."
   }
 }

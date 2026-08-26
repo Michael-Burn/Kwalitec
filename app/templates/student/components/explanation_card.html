@@ -1,7 +1,7 @@
 {# EP-006.2 — MES progressive disclosure for recommendations.
    Level 1 summary stays in the parent surface; this card is Level 2.
-   Pass-through only — does not invent educational meaning.
-   EP-008.1 — alternatives + review/completion loop in disclosure.
+   Pass-through only. Does not invent educational meaning.
+   EP-008.1: alternatives + review/completion loop in disclosure.
 #}
 {% macro explanation_card(explanation, alternatives=None, show_l1_benefit_again=True, eyebrow='Why this guidance?') %}
 {% if explanation and explanation.has_content %}
@@ -28,7 +28,7 @@
     </ol>
     {% endif %}
     {% if explanation.confidence_label %}
-    <p class="student-muted mb-0" data-mes-field="confidence_level"><span class="student-label">Confidence</span> {{ explanation.confidence_label }}{% if explanation.confidence_basis %} — {{ explanation.confidence_basis }}{% endif %}</p>
+    <p class="student-muted mb-0" data-mes-field="confidence_level"><span class="student-label">Confidence</span> {{ explanation.confidence_label }}{% if explanation.confidence_basis %}–{{ explanation.confidence_basis }}{% endif %}</p>
     {% endif %}
     {% if show_l1_benefit_again and explanation.expected_benefit %}
     <p class="student-muted mb-0" data-mes-field="expected_benefit" data-mes-level="2"><span class="student-label">Expected benefit</span> {{ explanation.expected_benefit }}</p>
@@ -43,7 +43,7 @@
             {% for alt in alts %}
             <li>
                 <strong>{{ alt.title }}</strong>
-                {% if alt.why_recommended %} — {{ alt.why_recommended }}{% endif %}
+                {% if alt.why_recommended %}–{{ alt.why_recommended }}{% endif %}
                 {% if alt.expected_benefit %} <span class="student-muted">({{ alt.expected_benefit }})</span>{% endif %}
             </li>
             {% endfor %}

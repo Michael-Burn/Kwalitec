@@ -57,7 +57,7 @@ QUICK_CHECK_SELECTED: SelectedLearningCheck = SelectedLearningCheck(
                 "on in today's Mission?"
             ),
             hint=(
-                "A short sentence is enough — this helps us understand "
+                "A short sentence is enough, this helps us understand "
                 "what feels clear."
             ),
         ),
@@ -71,7 +71,7 @@ QUICK_CHECK_SELECTED: SelectedLearningCheck = SelectedLearningCheck(
                 "The core idea",
                 "How to apply it",
                 "How it connects to earlier work",
-                "Nothing specific — I just want to confirm",
+                "Nothing specific: I just want to confirm",
             ),
             hint="Choose the closest option; honesty is more useful than polish.",
         ),
@@ -82,7 +82,7 @@ QUICK_CHECK_SELECTED: SelectedLearningCheck = SelectedLearningCheck(
                 "stays useful?"
             ),
             hint=(
-                "Think of one small next step — a concept to revisit or "
+                "Think of one small next step. A concept to revisit or "
                 "a short practice focus."
             ),
         ),

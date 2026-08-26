@@ -64,7 +64,7 @@ def learning_pkg(d: dict) -> dict:
         "session": {
             "session_id": f"ssn-cs1011-cs1-{d['slug']}",
             "session_educational_purpose": (
-                f"Execute today's Mission for Syllabus {lo} — not the next LO as primary."
+                f"Execute today's Mission for Syllabus {lo}. Not the next LO as primary."
             ),
             "session_tutor_purpose": (
                 f"Set focus on {lo}, exit to CMP, retrieve today's hinge, refuse swallowed next LO."
@@ -72,7 +72,7 @@ def learning_pkg(d: dict) -> dict:
             "duration_budget_minutes": {"min": 55, "max": 75},
             "wrap_up": (
                 f"Session complete for {d['title']}. You practised selective CMP reading on "
-                f"Syllabus {lo}. This is Study Progress for today's block — not Topic Complete "
+                f"Syllabus {lo}. This is Study Progress for today's block. Not Topic Complete "
                 f"for later 3.2 LOs, Chapter 3 trophy, hypothesis testing (3.3), or until-exam "
                 "trust."
             ),
@@ -83,7 +83,7 @@ def learning_pkg(d: dict) -> dict:
         },
         "reading_guidance": {
             "lead_line": (
-                f"Purpose of this reading: use the CMP to extract Syllabus {lo} — "
+                f"Purpose of this reading: use the CMP to extract Syllabus {lo}–"
                 f"{d['title'].lower()}. Stop before out-of-scope later LOs."
             ),
             "focus_questions": [
@@ -102,10 +102,10 @@ def learning_pkg(d: dict) -> dict:
             ),
             "exit_line": (
                 f"Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
-                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material — "
+                f"{d['open']}. Kwalitec is the guide; the CMP is the authoritative material. "
                 "do not treat this activity body as a substitute textbook. Hunt with the focus "
                 "questions; watch the misconception list. Ignore items in out_of_scope_today. "
-                f"Stop when: {d['stop']}. Then close the CMP and return here — next in-app "
+                f"Stop when: {d['stop']}. Then close the CMP and return here. Next in-app "
                 "activity: Worked-example re-entry (CMP closed), then Knowledge Checks."
             ),
             "return_cue": (
@@ -117,7 +117,7 @@ def learning_pkg(d: dict) -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — write today's core move in one sentence.",
+                    "cue": "Pause. Write today's core move in one sentence.",
                     "student_action": "Annotate",
                 },
                 {
@@ -194,7 +194,7 @@ def revision_pkg() -> dict:
         "package_id": pid,
         "campaign_day": day,
         "topic_code": day,
-        "topic_title": "Campaign Lambda revision — confidence and prediction intervals",
+        "topic_title": "Campaign Lambda revision: confidence and prediction intervals",
         "return_targets": [
             "3.2.1",
             "3.2.2",
@@ -224,13 +224,13 @@ def revision_pkg() -> dict:
             "mission_id": "msn-cs1011-cs1-cl-r1-intervals",
             "display_title": "Retrieve interval hinges (3.2)",
             "mission_purpose": (
-                "Today's Mission exists to protect memory of Campaign Lambda — retrieving "
+                "Today's Mission exists to protect memory of Campaign Lambda. Retrieving "
                 "parameter CI, prediction interval, given-sampling-distribution CI, Normal "
                 "mean/variance CIs, binomial/Poisson CIs, two-sample CIs, paired-mean CI, and "
-                "bootstrap CIs — so 3.2 does not evaporate before hypothesis testing (3.3)."
+                "bootstrap CIs. So 3.2 does not evaporate before hypothesis testing (3.3)."
             ),
             "tutor_intent": (
-                "Today I will run closed-book retrieval across Lambda's Learning hinges — "
+                "Today I will run closed-book retrieval across Lambda's Learning hinges. "
                 "not a passive CMP re-read and not a first-pass 3.3 hypothesis-testing lesson."
             ),
             "educational_intent": (
@@ -250,7 +250,7 @@ def revision_pkg() -> dict:
             ),
             "prior_bridge": (
                 "Yesterday you finished bootstrap confidence intervals (3.2.8). Today is "
-                "Revision mode: return to 3.2.1–3.2.8 under closed-book retrieval — no new "
+                "Revision mode: return to 3.2.1–3.2.8 under closed-book retrieval. No new "
                 "first-pass LO."
             ),
             "why_now": (
@@ -258,7 +258,7 @@ def revision_pkg() -> dict:
                 "protects it before 3.3 work."
             ),
             "expected_benefit": (
-                "Evidence that the 3.2 chain retrieves — revision Study Progress, not a claim "
+                "Evidence that the 3.2 chain retrieves. Revision Study Progress, not a claim "
                 "that Chapter 3 / the exam journey is complete."
             ),
             "explainability": (
@@ -281,15 +281,15 @@ def revision_pkg() -> dict:
         "session": {
             "session_id": "ssn-cs1011-cs1-cl-r1-intervals",
             "session_educational_purpose": (
-                "Retrieve and connect Campaign Lambda skills — not to teach 3.3."
+                "Retrieve and connect Campaign Lambda skills. Not to teach 3.3."
             ),
             "session_tutor_purpose": (
-                "Keep CMP closed for checks; harvest weakest link — Gate RV substance."
+                "Keep CMP closed for checks; harvest weakest link. Gate RV substance."
             ),
             "duration_budget_minutes": {"min": 45, "max": 65},
             "wrap_up": (
                 "Revision Session complete. You stress-tested 3.2.1–3.2.8 return targets. "
-                "This is revision Study Progress — not Topic Complete for 3.3, and not "
+                "This is revision Study Progress. Not Topic Complete for 3.3, and not "
                 "first-pass spine PASS."
             ),
             "confidence_prompt": (
@@ -318,7 +318,7 @@ def revision_pkg() -> dict:
                 "retrieval on the failed LO block."
             ),
             "stop_condition": (
-                "After revision checks and Reflection — do not begin Syllabus 3.3 in this sitting"
+                "After revision checks and Reflection. Do not begin Syllabus 3.3 in this sitting"
             ),
             "out_of_scope_today": [
                 "First-pass hypothesis testing / goodness of fit (3.3)",
@@ -339,7 +339,7 @@ def revision_pkg() -> dict:
             "pause_points": [
                 {
                     "id": "PP1",
-                    "cue": "Pause — mark the weakest link before checks.",
+                    "cue": "Pause. Mark the weakest link before checks.",
                     "student_action": "Annotate",
                 }
             ],
@@ -410,9 +410,9 @@ def revision_pkg() -> dict:
                 ],
                 "explanation": "RV harvests memory debt and honest next.",
                 "model_answer": (
-                    "(1) e.g. two-sample Normal-approx CI — five-minute rework. (2) Refuse "
+                    "(1) e.g. two-sample Normal-approx CI. Five-minute rework. (2) Refuse "
                     "Chapter 3 complete / spine / until-exam. (3) Honest next is 3.3 "
-                    "(successor Volume) or declared stop — not claimed finished here."
+                    "(successor Volume) or declared stop. Not claimed finished here."
                 ),
                 "common_mistake": "Spine / Chapter 3 / until-exam claim.",
                 "success_criteria": ["Rework named.", "Forbidden claim refused."],
@@ -433,16 +433,16 @@ def revision_pkg() -> dict:
         "tomorrow_preview": {
             "next_topic_code": "3.3",
             "next_topic_title": (
-                "Honest next — hypothesis testing and goodness of fit (3.3) under a successor "
+                "Honest next: hypothesis testing and goodness of fit (3.3) under a successor "
                 "Volume (or declared stop)"
             ),
             "continuity_line": (
                 "Campaign Lambda / Volume CS1-011 completes after this Revision. Honest stop: "
-                "3.2 Pilot Arc closed — not Chapter 3 complete; not first-pass spine; not "
+                "3.2 Pilot Arc closed. Not Chapter 3 complete; not first-pass spine; not "
                 "until-exam trust. Successor geography is 3.3 under a later commission."
             ),
             "light_prep_cue": (
-                "No new first-pass LO tonight — rest or schedule weakest-link rework only"
+                "No new first-pass LO tonight: rest or schedule weakest-link rework only"
             ),
             "student_facing": (
                 "Campaign Lambda / CS1-011 complete after today (pending human Approver + LIVE). "
@@ -464,8 +464,8 @@ LEARNING = [
         title="Construct a confidence interval for an unknown parameter from a random sample",
         purpose=(
             "Today's Mission exists to construct a confidence interval for an unknown "
-            "parameter of a distribution based on a random sample — so the CI coverage "
-            "reading is usable — without pretending prediction intervals (3.2.2) are finished."
+            "parameter of a distribution based on a random sample. So the CI coverage "
+            "reading is usable. Without pretending prediction intervals (3.2.2) are finished."
         ),
         tutor=(
             "Today I will force the candidate to state a CI for a parameter from sample "
@@ -482,7 +482,7 @@ LEARNING = [
         focus="Random sample → estimator / pivotal idea → parameter CI → refuse prediction-as-done.",
         prior=(
             "Campaign Kappa closed estimators (3.1) with Revision. Today opens topic 3.2 at "
-            "LO 3.2.1 — the named Continuity Front after CS1-010."
+            "LO 3.2.1. The named Continuity Front after CS1-010."
         ),
         why=(
             "3.2.1 opens this stretch at the natural next learning objective. Close it to avoid "
@@ -490,11 +490,11 @@ LEARNING = [
         ),
         benefit=(
             "You will be able to construct and correctly interpret a confidence "
-            "interval for an unknown parameter — and refuse prediction-interval "
+            "interval for an unknown parameter. And refuse prediction-interval "
             "readings."
         ),
         explain=(
-            "Day 1 opens 3.2 at the named learning objective — "
+            "Day 1 opens 3.2 at the named learning objective. "
             "the natural next step after the previous topic."
         ),
         criteria=[
@@ -513,9 +513,9 @@ LEARNING = [
             "Today you constructed a parameter confidence interval from a random sample; "
             "tomorrow continues 3.2 at prediction intervals."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.2 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.2. Titles only tonight",
         student=(
-            "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings — "
+            "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.2.1 confidence interval for a parameter",
@@ -552,7 +552,7 @@ LEARNING = [
         ar_model=(
             "A confidence interval uses random-sample evidence to give an interval for an "
             "unknown parameter with a stated frequentist coverage reading. A prediction "
-            "interval targets a future observation — that is tomorrow's LO, not today's."
+            "interval targets a future observation. That is tomorrow's LO, not today's."
         ),
         cp_prompt=(
             "Closed-book. From a large sample you obtain a 95% CI for mean claim "
@@ -567,7 +567,7 @@ LEARNING = [
             "(2) Refuse: that reading is a prediction claim about a future "
             "observation, not a confidence interval for a parameter."
         ),
-        reflect="Harvest CI coverage-reading wobble — keep prediction out of tonight's claim.",
+        reflect="Harvest CI coverage-reading wobble. Keep prediction out of tonight's claim.",
     ),
     dict(
         day="CL-D2",
@@ -579,8 +579,8 @@ LEARNING = [
         title="Construct a prediction interval for a future observation",
         purpose=(
             "Today's Mission exists to construct a prediction interval for a future "
-            "observation based on a model fitted to a random sample — so prediction is "
-            "distinct from parameter CI — without pretending given-sampling-distribution "
+            "observation based on a model fitted to a random sample. So prediction is "
+            "distinct from parameter CI. Without pretending given-sampling-distribution "
             "CIs (3.2.3) are finished."
         ),
         tutor=(
@@ -601,7 +601,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you constructed a parameter confidence interval (3.2.1). Today "
-            "continues topic 3.2 at LO 3.2.2 — prediction intervals."
+            "continues topic 3.2 at LO 3.2.2: prediction intervals."
         ),
         why=(
             "3.2.2 is contiguous after parameter CI. Closing it prevents a cliff at "
@@ -612,7 +612,7 @@ LEARNING = [
             "observation and distinguish it from a parameter CI."
         ),
         explain=(
-            "Day 2 continues at the named learning objective — prediction immediately after parameter CI."
+            "Day 2 continues at the named learning objective. Prediction immediately after parameter CI."
         ),
         criteria=[
             "Closed-book, state what a prediction interval targets.",
@@ -630,10 +630,10 @@ LEARNING = [
             "Today you constructed a prediction interval; tomorrow continues 3.2 at "
             "confidence intervals that use a given sampling distribution."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.3 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.3. Titles only tonight",
         student=(
             "Tomorrow: CI given a sampling distribution (3.2.3). Optional light prep: skim "
-            "3.2.3 headings — titles only tonight."
+            "3.2.3 headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.2.2 prediction interval",
         stop=(
@@ -669,7 +669,7 @@ LEARNING = [
         ar_model=(
             "A prediction interval targets a future observation (not the parameter itself), "
             "using a model fitted to a random sample. A parameter CI targets the unknown "
-            "parameter — different object."
+            "parameter: different object."
         ),
         cp_prompt=(
             "Closed-book. You fit a model to historical annual losses and need an "
@@ -683,10 +683,10 @@ LEARNING = [
             "(1) A prediction interval aims to cover a future observation Y_new "
             "(parameter uncertainty plus process/residual variation); a parameter CI "
             "covers only a fixed unknown parameter such as E[Y]. (2) Refuse: a "
-            "parameter CI is not a prediction interval — different target, typically "
+            "parameter CI is not a prediction interval. Different target, typically "
             "wider for prediction."
         ),
-        reflect="Harvest prediction-vs-CI wobble — keep given-distribution CI out of tonight's claim.",
+        reflect="Harvest prediction-vs-CI wobble. Keep given-distribution CI out of tonight's claim.",
     ),
     dict(
         day="CL-D3",
@@ -698,8 +698,8 @@ LEARNING = [
         title="Construct a confidence interval using a given sampling distribution",
         purpose=(
             "Today's Mission exists to construct a confidence interval for an unknown "
-            "parameter using a given sampling distribution — so the given-distribution "
-            "route is usable — without pretending Normal mean/variance recipes (3.2.4) "
+            "parameter using a given sampling distribution. So the given-distribution "
+            "route is usable. Without pretending Normal mean/variance recipes (3.2.4) "
             "are finished."
         ),
         tutor=(
@@ -716,7 +716,7 @@ LEARNING = [
         focus="Given sampling distribution → invert / pivot → CI → refuse Normal cookbook-as-done.",
         prior=(
             "Yesterday you constructed a prediction interval (3.2.2). Today continues topic "
-            "3.2 at LO 3.2.3 — CI using a given sampling distribution."
+            "3.2 at LO 3.2.3: CI using a given sampling distribution."
         ),
         why=(
             "3.2.3 is contiguous after prediction. Closing it prevents a cliff at the "
@@ -727,7 +727,7 @@ LEARNING = [
             "distribution, not only by recalling Normal-mean formulae."
         ),
         explain=(
-            "Day 3 continues at the named learning objective — given-sampling-distribution CI after prediction."
+            "Day 3 continues at the named learning objective. Given-sampling-distribution CI after prediction."
         ),
         criteria=[
             "Closed-book, state how a given sampling distribution yields a CI.",
@@ -745,10 +745,10 @@ LEARNING = [
             "Today you formed a CI from a given sampling distribution; tomorrow continues "
             "3.2 at Normal mean and variance intervals."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.4 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.4. Titles only tonight",
         student=(
             "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.2.3 CI using a given sampling distribution",
         stop=(
@@ -799,7 +799,7 @@ LEARNING = [
             "Refuse: cookbook Normal-mean formulae do not replace inverting the "
             "given sampling distribution for this model."
         ),
-        reflect="Harvest given-distribution inversion wobble — keep Normal cookbook out of tonight's claim.",
+        reflect="Harvest given-distribution inversion wobble. Keep Normal cookbook out of tonight's claim.",
     ),
     dict(
         day="CL-D4",
@@ -811,8 +811,8 @@ LEARNING = [
         title="Construct confidence intervals for the mean and variance of a Normal distribution",
         purpose=(
             "Today's Mission exists to construct confidence intervals for the mean and the "
-            "variance of a Normal distribution — so both Normal interval recipes are usable "
-            "— without pretending binomial/Poisson CIs (3.2.5) are finished."
+            "variance of a Normal distribution. So both Normal interval recipes are usable "
+            ". Without pretending binomial/Poisson CIs (3.2.5) are finished."
         ),
         tutor=(
             "Today I will force the candidate to form Normal mean and variance CIs and refuse "
@@ -828,7 +828,7 @@ LEARNING = [
         focus="Normal sample → mean CI → variance CI → refuse binomial/Poisson-as-done.",
         prior=(
             "Yesterday you formed a CI from a given sampling distribution (3.2.3). Today "
-            "continues topic 3.2 at LO 3.2.4 — Normal mean and variance intervals."
+            "continues topic 3.2 at LO 3.2.4: Normal mean and variance intervals."
         ),
         why=(
             "3.2.4 is contiguous after the given-distribution method. Closing it prevents a "
@@ -839,7 +839,7 @@ LEARNING = [
             "and the variance of a Normal sample."
         ),
         explain=(
-            "Day 4 continues at the named learning objective — Normal mean/variance CIs after given-sampling-distribution CI."
+            "Day 4 continues at the named learning objective. Normal mean/variance CIs after given-sampling-distribution CI."
         ),
         criteria=[
             "Closed-book, state the Normal mean CI hinge.",
@@ -857,10 +857,10 @@ LEARNING = [
             "Today you formed Normal mean and variance CIs; tomorrow continues 3.2 at "
             "binomial and Poisson intervals (including Normal approximation)."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.5 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.5. Titles only tonight",
         student=(
             "Tomorrow: binomial/Poisson CIs (3.2.5). Optional light prep: skim 3.2.5 headings "
-            "— titles only tonight."
+            ". Titles only tonight."
         ),
         open="CMP · Syllabus 3.2.4 Normal mean and variance confidence intervals",
         stop=(
@@ -895,7 +895,7 @@ LEARNING = [
         cp_prompt=(
             "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) "
             "State the form of a CI for μ and the form of a CI for σ². (2) Refuse: "
-            "'The mean CI alone finishes today — variance can wait, and binomial is "
+            "'The mean CI alone finishes today. Variance can wait, and binomial is "
             "the same LO.'"
         ),
         cp_kw=["Normal", "mean", "variance", "t", "chi-square", "refuse", "both"],
@@ -905,7 +905,7 @@ LEARNING = [
             "Normal variance CIs are required; binomial/Poisson intervals are a "
             "different LO."
         ),
-        reflect="Harvest mean-vs-variance CI wobble — keep binomial out of tonight's claim.",
+        reflect="Harvest mean-vs-variance CI wobble. Keep binomial out of tonight's claim.",
     ),
     dict(
         day="CL-D5",
@@ -918,7 +918,7 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to construct confidence intervals for a binomial "
             "probability and a Poisson mean, including Normal approximation in both cases "
-            "— so discrete-parameter CIs are usable — without pretending two-sample CIs "
+            " (so discrete-parameter CIs are usable) without pretending two-sample CIs "
             "(3.2.6) are finished."
         ),
         tutor=(
@@ -937,7 +937,7 @@ LEARNING = [
         focus="Binomial p CI → Poisson mean CI → Normal approx → refuse two-sample-as-done.",
         prior=(
             "Yesterday you formed Normal mean and variance CIs (3.2.4). Today continues "
-            "topic 3.2 at LO 3.2.5 — binomial and Poisson intervals."
+            "topic 3.2 at LO 3.2.5: binomial and Poisson intervals."
         ),
         why=(
             "3.2.5 is contiguous after Normal recipes. Closing it prevents a cliff at "
@@ -948,7 +948,7 @@ LEARNING = [
             "both a binomial probability and a Poisson mean."
         ),
         explain=(
-            "Day 5 continues at the named learning objective — binomial/Poisson CIs after Normal mean/variance."
+            "Day 5 continues at the named learning objective. Binomial/Poisson CIs after Normal mean/variance."
         ),
         criteria=[
             "Closed-book, state the binomial-probability CI hinge (incl. Normal approx).",
@@ -966,9 +966,9 @@ LEARNING = [
             "Today you formed binomial and Poisson CIs; tomorrow continues 3.2 at "
             "two-sample situations."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.6 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.6. Titles only tonight",
         student=(
-            "Tomorrow: two-sample CIs (3.2.6). Optional light prep: skim 3.2.6 headings — "
+            "Tomorrow: two-sample CIs (3.2.6). Optional light prep: skim 3.2.6 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.2.5 binomial and Poisson confidence intervals",
@@ -1011,7 +1011,7 @@ LEARNING = [
         cp_prompt=(
             "Closed-book. (1) State a Normal-approximation CI form for a binomial "
             "probability p and for a Poisson mean λ (single sample). (2) Refuse: 'A "
-            "binomial CI alone finishes the LO — Poisson is the same formula with a "
+            "binomial CI alone finishes the LO. Poisson is the same formula with a "
             "different letter.'"
         ),
         cp_kw=["binomial", "Poisson", "Normal", "approximation", "refuse", "both"],
@@ -1019,9 +1019,9 @@ LEARNING = [
             "(1) Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} "
             "√(λ̂/n) (or equivalent for a total count with matching variance). (2) "
             "Refuse: both binomial-p and Poisson-mean CIs with Normal approximation "
-            "are required — one does not stand in for the other."
+            "are required. One does not stand in for the other."
         ),
-        reflect="Harvest discrete-parameter CI wobble — keep two-sample out of tonight's claim.",
+        reflect="Harvest discrete-parameter CI wobble. Keep two-sample out of tonight's claim.",
     ),
     dict(
         day="CL-D6",
@@ -1034,8 +1034,8 @@ LEARNING = [
         purpose=(
             "Today's Mission exists to construct confidence intervals for two-sample "
             "situations involving the Normal distribution and the binomial and Poisson "
-            "distributions using the Normal approximation — so two-sample interval literacy "
-            "is usable — without pretending paired-means CI (3.2.7) is finished."
+            "distributions using the Normal approximation. So two-sample interval literacy "
+            "is usable. Without pretending paired-means CI (3.2.7) is finished."
         ),
         tutor=(
             "Today I will force two-sample CI construction across Normal / binomial / "
@@ -1053,7 +1053,7 @@ LEARNING = [
         focus="Two independent samples → difference / contrast CI → refuse paired-as-done.",
         prior=(
             "Yesterday you formed binomial and Poisson single-sample CIs (3.2.5). Today "
-            "continues topic 3.2 at LO 3.2.6 — two-sample situations."
+            "continues topic 3.2 at LO 3.2.6: two-sample situations."
         ),
         why=(
             "3.2.6 is contiguous after single-sample discrete CIs. Closing it prevents a "
@@ -1064,7 +1064,7 @@ LEARNING = [
             "misapplying them to paired data."
         ),
         explain=(
-            "Day 6 continues at the named learning objective — two-sample CIs after binomial/Poisson single-sample work."
+            "Day 6 continues at the named learning objective. Two-sample CIs after binomial/Poisson single-sample work."
         ),
         criteria=[
             "Closed-book, state the two-sample CI hinge for a Normal setting.",
@@ -1082,10 +1082,10 @@ LEARNING = [
             "Today you formed two-sample CIs; tomorrow continues 3.2 at paired-data "
             "mean-difference intervals."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.7 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.7. Titles only tonight",
         student=(
             "Tomorrow: paired mean-difference CI (3.2.7). Optional light prep: skim 3.2.7 "
-            "headings — titles only tonight."
+            "headings. Titles only tonight."
         ),
         open="CMP · Syllabus 3.2.6 two-sample confidence intervals",
         stop=(
@@ -1135,10 +1135,10 @@ LEARNING = [
             "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson "
             "with Normal approx), under independent samples from the two groups. (2) "
             "Refuse: paired data shares observational units; equal sample sizes do "
-            "not make paired rows an independent two-sample problem — use the "
+            "not make paired rows an independent two-sample problem. Use the "
             "paired-difference construction instead."
         ),
-        reflect="Harvest two-sample contrast wobble — keep paired out of tonight's claim.",
+        reflect="Harvest two-sample contrast wobble. Keep paired out of tonight's claim.",
     ),
     dict(
         day="CL-D7",
@@ -1150,8 +1150,8 @@ LEARNING = [
         title="Construct a confidence interval for a difference between two means from paired data",
         purpose=(
             "Today's Mission exists to construct a confidence interval for a difference "
-            "between two means from paired data — so paired-difference literacy is usable "
-            "— without pretending bootstrap CIs (3.2.8) are finished."
+            "between two means from paired data. So paired-difference literacy is usable "
+            ". Without pretending bootstrap CIs (3.2.8) are finished."
         ),
         tutor=(
             "Today I will force a paired mean-difference CI and refuse treating independent "
@@ -1167,7 +1167,7 @@ LEARNING = [
         focus="Paired observations → differences → mean-difference CI → refuse bootstrap-as-done.",
         prior=(
             "Yesterday you formed two-sample CIs (3.2.6). Today continues topic 3.2 at LO "
-            "3.2.7 — paired mean-difference intervals."
+            "3.2.7: paired mean-difference intervals."
         ),
         why=(
             "3.2.7 is contiguous after independent two-sample work. Closing it prevents a "
@@ -1178,7 +1178,7 @@ LEARNING = [
             "within-pair differences."
         ),
         explain=(
-            "Day 7 continues at the named learning objective — paired-means CI after two-sample situations."
+            "Day 7 continues at the named learning objective. Paired-means CI after two-sample situations."
         ),
         criteria=[
             "Closed-book, state the paired mean-difference CI hinge.",
@@ -1196,9 +1196,9 @@ LEARNING = [
             "Today you formed a paired mean-difference CI; tomorrow continues 3.2 at "
             "bootstrap confidence intervals."
         ),
-        prep="Optional: glance at CMP headings for Syllabus 3.2.8 — titles only tonight",
+        prep="Optional: glance at CMP headings for Syllabus 3.2.8. Titles only tonight",
         student=(
-            "Tomorrow: bootstrap CIs (3.2.8). Optional light prep: skim 3.2.8 headings — "
+            "Tomorrow: bootstrap CIs (3.2.8). Optional light prep: skim 3.2.8 headings. "
             "titles only tonight."
         ),
         open="CMP · Syllabus 3.2.7 paired mean-difference confidence interval",
@@ -1226,7 +1226,7 @@ LEARNING = [
         ar_kw=["paired", "difference", "means", "confidence", "interval", "bootstrap"],
         ar_model=(
             "Form differences within pairs and construct a CI for the mean difference. "
-            "Pairing exploits dependence — not the same as independent two-sample. Bootstrap "
+            "Pairing exploits dependence. Not the same as independent two-sample. Bootstrap "
             "CI is tomorrow."
         ),
         cp_prompt=(
@@ -1241,7 +1241,7 @@ LEARNING = [
             "one-sample CI for μ_D. (2) Refuse: the independent two-sample formula "
             "ignores pairing and uses the wrong variance structure for matched pairs."
         ),
-        reflect="Harvest pairing wobble — keep bootstrap out of tonight's claim.",
+        reflect="Harvest pairing wobble. Keep bootstrap out of tonight's claim.",
     ),
     dict(
         day="CL-D8",
@@ -1253,7 +1253,7 @@ LEARNING = [
         title="Obtain confidence intervals by the bootstrap method",
         purpose=(
             "Today's Mission exists to obtain confidence intervals by the bootstrap method "
-            "— so bootstrap interval construction is usable — without pretending hypothesis "
+            " (so bootstrap interval construction is usable) without pretending hypothesis "
             "testing (3.3) or Chapter 3 complete are finished."
         ),
         tutor=(
@@ -1271,7 +1271,7 @@ LEARNING = [
         ),
         prior=(
             "Yesterday you formed a paired mean-difference CI (3.2.7). Today completes the "
-            "3.2 Learning span at LO 3.2.8 — bootstrap confidence intervals."
+            "3.2 Learning span at LO 3.2.8: bootstrap confidence intervals."
         ),
         why=(
             "3.2.8 completes topic 3.2 Learning. Closing it prevents a cliff at bootstrap "
@@ -1282,7 +1282,7 @@ LEARNING = [
             "method and distinguish it from bootstrap SE estimation."
         ),
         explain=(
-            "Day 8 continues at the named learning objective — bootstrap CI as the terminal Learning day of 3.2."
+            "Day 8 continues at the named learning objective. Bootstrap CI as the terminal Learning day of 3.2."
         ),
         criteria=[
             "Closed-book, state the bootstrap CI construction move.",
@@ -1295,15 +1295,15 @@ LEARNING = [
             "Closed-book Knowledge Checks: bootstrap CI + refuse 3.3 / Chapter 3 swallow.",
         ],
         next_code="CL-R1",
-        next_title="Campaign Lambda Revision — retrieve 3.2 hinges",
+        next_title="Campaign Lambda Revision: retrieve 3.2 hinges",
         cont=(
-            "Today you obtained bootstrap confidence intervals; tomorrow is Revision — "
+            "Today you obtained bootstrap confidence intervals; tomorrow is Revision. "
             "retrieve the 3.2 chain closed-book (not first-pass 3.3)."
         ),
-        prep="Optional: list the eight 3.2 LO codes from memory — titles only tonight",
+        prep="Optional: list the eight 3.2 LO codes from memory. Titles only tonight",
         student=(
             "Tomorrow: CL-R1 Revision (retrieve 3.2.1–3.2.8). Optional light prep: list the "
-            "eight LO codes from memory — titles only tonight."
+            "eight LO codes from memory. Titles only tonight."
         ),
         open="CMP · Syllabus 3.2.8 bootstrap confidence intervals",
         stop=(
@@ -1338,7 +1338,7 @@ LEARNING = [
         ar_model=(
             "Resample from the sample (or an appropriate bootstrap mechanism under CMP), "
             "form the interval statistic on replicates, and obtain a bootstrap confidence "
-            "interval. Hypothesis testing is topic 3.3 — not today's LO."
+            "interval. Hypothesis testing is topic 3.3. Not today's LO."
         ),
         cp_prompt=(
             "Closed-book. (1) Outline the bootstrap move to obtain a confidence "
@@ -1356,7 +1356,7 @@ LEARNING = [
             "the same as constructing a CI; hypothesis testing is a different LO."
         ),
         reflect=(
-            "Harvest bootstrap CI procedure wobble — Revision protects the 3.2 chain tomorrow."
+            "Harvest bootstrap CI procedure wobble. Revision protects the 3.2 chain tomorrow."
         ),
     ),
 ]
@@ -1383,7 +1383,7 @@ def main() -> None:
     campaign = {
         "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
         "campaign_version": "cs1011-1.0.0",
-        "display_title": "Campaign Lambda — Confidence and prediction intervals (3.2)",
+        "display_title": "Campaign Lambda: Confidence and prediction intervals (3.2)",
         "subject_id": "CS1",
         "package_version_pin": "IFoA CS1 2026",
         "scope_class": "Pilot Arc",

@@ -108,7 +108,7 @@
                     <div class="settings-row settings-row--stack">
                         <div class="settings-row-copy">
                             <p class="settings-row-label" id="appearance-settings-label">Theme</p>
-                            <p class="settings-row-desc">Light, Dark, or System — saved in this browser.</p>
+                            <p class="settings-row-desc">Light, Dark, or System. Saved in this browser.</p>
                         </div>
                         <div class="settings-appearance">
                             {{ appearance_switcher(group_aria_label='Appearance preference') }}
@@ -161,7 +161,7 @@
                         <div class="settings-info-card-icon" aria-hidden="true">{{ icon('mail', size=18) }}</div>
                         <div class="settings-info-card-body">
                             <h3 class="settings-info-card-title">Email</h3>
-                            <p class="settings-info-card-value">{{ account.email or '—' }}</p>
+                            <p class="settings-info-card-value">{{ account.email or '–' }}</p>
                             <p class="settings-info-card-desc">Used for sign-in. Cannot be changed here.</p>
                         </div>
                         <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">View</a>
