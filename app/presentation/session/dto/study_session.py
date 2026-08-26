@@ -130,18 +130,15 @@ class StudySessionPage:
     strategy_body: str = ""
     strategy_explanation: str = ""
     strategy_spacing_guidance: str = ""
-    strategy_momentum_guidance: str = ""
     strategy_confidence_guidance: str = ""
     # KWP-008 Learning Diagnostics (guidance; never category labels)
     diagnostic_guidance: str = ""
     diagnostic_explanation: str = ""
     # KWP-009 Learning Difficulty (guidance; never band labels)
-    difficulty_title: str = ""
     difficulty_guidance: str = ""
     difficulty_explanation: str = ""
     # KWP-010 Intervention Effectiveness (natural feedback; never verdict labels)
     effectiveness_feedback: str = ""
-    effectiveness_explanation: str = ""
     # PX-003 — visible session journey chrome (presentation only)
     workflow_steps: tuple[str, ...] = ()
     workflow_step_index: int = 0

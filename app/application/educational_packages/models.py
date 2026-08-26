@@ -107,12 +107,12 @@ class CertifiedEducationalPackage:
 
     @property
     def mission_narrative(self) -> str:
-        parts = [
-            self.prior_bridge,
-            self.why_now,
-            f"Focus: {self.concept_focus}" if self.concept_focus else "",
-        ]
-        return " ".join(p for p in parts if p).strip()
+        # Student-facing fallback when student_brief is empty.
+        # Omit prior_bridge: campaign/LO continuity prose often leaks
+        # authoring jargon onto Session Overview why_today. why_now alone
+        # is the certified student-safe rationale; concept_focus is projected
+        # separately on the episode.
+        return (self.why_now or "").strip()
 
     @property
     def educational_rationale(self) -> str:

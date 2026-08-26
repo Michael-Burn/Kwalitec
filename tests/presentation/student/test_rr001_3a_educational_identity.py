@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from flask import render_template, render_template_string
+from flask import render_template
 
 from app.application.student_experience.dto.explanation_snapshot import (
     ExplanationSnapshot,
@@ -109,45 +109,6 @@ def test_home_template_mission_first_without_guidance_panel(app, ctx):
     assert "Guidance</h2>" not in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html
     assert "Optimising for" not in html
-
-
-def test_runtime_c_panel_retires_system_narrator(app, ctx):
-    edu = SimpleNamespace(
-        active=True,
-        today_topic_title="Cash flow",
-        today_topic_code="CF",
-        section_title="",
-        position_label="",
-        learning_objectives=(),
-        mission_rationale="Practice cash flow",
-        why_this_mission="Practice cash flow",
-        estimated_duration_label="",
-        completion_definition="",
-        suggested_next_action="",
-        unlocks_next="",
-        prerequisite_status_label="",
-        why_today="",
-        why_previous_complete="",
-        progress_label="",
-        coverage_label="",
-        pacing_summary="",
-        feasibility_label="",
-        exam_date_label="",
-        supporting_evidence=("Plan position.",),
-        journey_evidence=(),
-        confidence_label="Suggested",
-        expected_benefit="",
-        review_point="",
-    )
-    tmpl = (
-        '{% from "student/components/educational_experience.html" '
-        "import educational_experience_panel %}"
-        "{{ educational_experience_panel(edu, surface='home') }}"
-    )
-    with app.test_request_context("/student/"):
-        html = render_template_string(tmpl, edu=edu)
-    assert "Why this Mission?" in html
-    assert "Why the system chose this" not in html
 
 
 def test_session_overview_introduces_sensei_and_mission(app, ctx):

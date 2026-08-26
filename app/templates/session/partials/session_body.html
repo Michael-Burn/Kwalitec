@@ -294,8 +294,14 @@
       {% if s.diagnostic_guidance %}
       <p class="ds-list__meta" data-diagnostic-guidance="true">Focus · {{ s.diagnostic_guidance }}</p>
       {% endif %}
+      {% if s.diagnostic_explanation %}
+      <p class="ds-list__meta" data-diagnostic-why="true">Why · {{ s.diagnostic_explanation }}</p>
+      {% endif %}
       {% if s.difficulty_guidance %}
       <p class="ds-list__meta" data-difficulty-guidance="true">Pace · {{ s.difficulty_guidance }}</p>
+      {% endif %}
+      {% if s.difficulty_explanation %}
+      <p class="ds-list__meta" data-difficulty-why="true">Why · {{ s.difficulty_explanation }}</p>
       {% endif %}
       {% if s.effectiveness_feedback %}
       <p class="ds-list__meta" data-effectiveness-feedback="true">Progress · {{ s.effectiveness_feedback }}</p>

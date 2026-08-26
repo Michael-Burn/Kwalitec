@@ -125,15 +125,12 @@ class StudySessionService:
         strategy_body = ""
         strategy_explanation = ""
         strategy_spacing_guidance = ""
-        strategy_momentum_guidance = ""
         strategy_confidence_guidance = ""
         diagnostic_guidance = ""
         diagnostic_explanation = ""
-        difficulty_title = ""
         difficulty_guidance = ""
         difficulty_explanation = ""
         effectiveness_feedback = ""
-        effectiveness_explanation = ""
         if completion is not None:
             journey_update = completion.journey_update_label or ""
             finish_outcome = completion.finish_outcome_label or ""
@@ -158,21 +155,14 @@ class StudySessionService:
             strategy_spacing_guidance = (
                 completion.strategy_spacing_guidance or ""
             )
-            strategy_momentum_guidance = (
-                completion.strategy_momentum_guidance or ""
-            )
             strategy_confidence_guidance = (
                 completion.strategy_confidence_guidance or ""
             )
             diagnostic_guidance = completion.diagnostic_guidance or ""
             diagnostic_explanation = completion.diagnostic_explanation or ""
-            difficulty_title = completion.difficulty_title or ""
             difficulty_guidance = completion.difficulty_guidance or ""
             difficulty_explanation = completion.difficulty_explanation or ""
             effectiveness_feedback = completion.effectiveness_feedback or ""
-            effectiveness_explanation = (
-                completion.effectiveness_explanation or ""
-            )
             if completion.learning_objectives and not learning_objectives:
                 learning_objectives = completion.learning_objectives
 
@@ -286,15 +276,12 @@ class StudySessionService:
             strategy_body=strategy_body,
             strategy_explanation=strategy_explanation,
             strategy_spacing_guidance=strategy_spacing_guidance,
-            strategy_momentum_guidance=strategy_momentum_guidance,
             strategy_confidence_guidance=strategy_confidence_guidance,
             diagnostic_guidance=diagnostic_guidance,
             diagnostic_explanation=diagnostic_explanation,
-            difficulty_title=difficulty_title,
             difficulty_guidance=difficulty_guidance,
             difficulty_explanation=difficulty_explanation,
             effectiveness_feedback=effectiveness_feedback,
-            effectiveness_explanation=effectiveness_explanation,
             workflow_steps=workflow_steps,
             workflow_step_index=workflow_step_index,
             page_eyebrow=page_eyebrow,

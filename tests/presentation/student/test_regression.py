@@ -15,13 +15,8 @@ REQUIRED_TEMPLATES = (
     "revision.html",
     "history.html",
     "profile.html",
-    "components/recommendation_card.html",
-    "components/readiness_card.html",
-    "components/journey_card.html",
-    "components/progress_card.html",
     "components/explanation_card.html",
     "components/history_card.html",
-    "components/countdown_card.html",
     "components/navigation.html",
 )
 

@@ -165,18 +165,15 @@ class CompletionViewModel:
     strategy_body: str = ""
     strategy_explanation: str = ""
     strategy_spacing_guidance: str = ""
-    strategy_momentum_guidance: str = ""
     strategy_confidence_guidance: str = ""
     # KWP-008 — Learning Diagnostics guidance (no labels)
     diagnostic_guidance: str = ""
     diagnostic_explanation: str = ""
     # KWP-009 — Learning Difficulty / load guidance (no band labels)
-    difficulty_title: str = ""
     difficulty_guidance: str = ""
     difficulty_explanation: str = ""
     # KWP-010 — Intervention Effectiveness (natural feedback; no verdict labels)
     effectiveness_feedback: str = ""
-    effectiveness_explanation: str = ""
 
 
 @dataclass(frozen=True)
@@ -433,15 +430,12 @@ def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
         strategy_body=sitting.strategy_body,
         strategy_explanation=sitting.strategy_explanation,
         strategy_spacing_guidance=sitting.strategy_spacing_guidance,
-        strategy_momentum_guidance=sitting.strategy_momentum_guidance,
         strategy_confidence_guidance=sitting.strategy_confidence_guidance,
         diagnostic_guidance=sitting.diagnostic_guidance,
         diagnostic_explanation=sitting.diagnostic_explanation,
-        difficulty_title=sitting.difficulty_title,
         difficulty_guidance=sitting.difficulty_guidance,
         difficulty_explanation=sitting.difficulty_explanation,
         effectiveness_feedback=sitting.effectiveness_feedback,
-        effectiveness_explanation=sitting.effectiveness_explanation,
     )
 
 

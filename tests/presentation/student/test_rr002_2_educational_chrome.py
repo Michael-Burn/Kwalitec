@@ -11,16 +11,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 
 
-def test_ncr005_recommendation_card_uses_guidance_eyebrow():
-    """NCR-005 / RP002-NCR-005 — latent card not Today's Recommendation hero."""
-    src = (
-        ROOT / "app/templates/student/components/recommendation_card.html"
-    ).read_text(encoding="utf-8")
-    assert 'class="student-card-eyebrow">Guidance</p>' in src
-    assert 'class="student-card-eyebrow">Today\'s Recommendation</p>' not in src
-    assert "No guidance yet" in src
-    assert "today's Mission" in src
-    assert "A Session will be ready when guidance is available." in src
+def test_ncr005_latent_recommendation_card_macro_removed():
+    """NCR-005 / RP002-NCR-005 — orphan recommendation_card macro deleted."""
+    path = ROOT / "app/templates/student/components/recommendation_card.html"
+    assert not path.exists()
 
 
 def test_ncr006_session_feedback_reattributes_authority():
