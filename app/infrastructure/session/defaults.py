@@ -26,7 +26,9 @@ def default_session_overview(
         "estimated_minutes": 30,
         "activity_count": 3,
         "topics": ("Today's topic",),
-        "expected_readiness_improvement": 0.03,
+        # No fabricated readiness delta — live overview omits this field unless a
+        # real estimate is wired (ROIEstimator needs Twin inputs not available here).
+        "expected_readiness_improvement": None,
         "status": "overview",
         "authority": "learning_session_runtime",
     }

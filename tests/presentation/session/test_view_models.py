@@ -43,7 +43,7 @@ def test_overview_vm_labels():
             objective="Strengthen equity method",
             estimated_minutes=30,
             activity_count=3,
-            expected_readiness_improvement=0.03,
+            expected_readiness_improvement=0.12,
             can_begin=True,
             begin_action=BeginSessionActionSnapshot(
                 can_begin=True, session_id="sess-1"
@@ -53,6 +53,29 @@ def test_overview_vm_labels():
     assert "30" in vm.estimated_duration_label
     assert "3" in vm.activity_count_label
     assert vm.begin_enabled
+    assert "about 12%" in vm.expected_improvement_label
+
+
+def test_overview_vm_honest_general_when_no_readiness_estimate():
+    """Without a real estimate, copy must not invent a decorative percentage."""
+    vm = overview_vm(
+        OverviewSnapshot(
+            experience_session_id="es-1",
+            student_id="stu-1",
+            session_id="sess-1",
+            objective="Strengthen equity method",
+            estimated_minutes=30,
+            activity_count=3,
+            expected_readiness_improvement=None,
+            can_begin=True,
+            begin_action=BeginSessionActionSnapshot(
+                can_begin=True, session_id="sess-1"
+            ),
+        )
+    )
+    assert "strengthen readiness" in vm.expected_improvement_label.lower()
+    assert "%" not in vm.expected_improvement_label
+    assert "3%" not in vm.expected_improvement_label
 
 
 def test_activity_vm_position():

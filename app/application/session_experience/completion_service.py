@@ -231,6 +231,9 @@ class CompletionService:
         # KWP-005 — carry opaque sitting facts for presentation Sitting Report.
         if opaque.get("topic_title"):
             metadata.append(("topic_title", str(opaque.get("topic_title"))))
+        note = str(opaque.get("reflection_note") or "").strip()
+        if note:
+            metadata.append(("reflection_note", note))
         if opaque.get("educational_package_id"):
             metadata.append(
                 (

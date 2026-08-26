@@ -934,6 +934,7 @@ class LearningSessionRuntimeEngine:
                 "topic_title": topic,
                 "learning_objectives": objectives,
                 "skip_available": True,
+                "student_note": str(record.get("reflection_note") or ""),
                 "authority": "learning_session_runtime",
                 "substance": "educational_package" if pack_prompt else "package",
                 "twin_updated": False,
@@ -944,6 +945,7 @@ class LearningSessionRuntimeEngine:
             "suggested_improvement": "",
             "reflection_prompt": f"What felt clear about {topic}?",
             "topic_title": topic,
+            "student_note": str(record.get("reflection_note") or ""),
             "authority": "learning_session_runtime",
             "substance": "incomplete",
             "twin_updated": False,
@@ -1022,6 +1024,7 @@ class LearningSessionRuntimeEngine:
             "learning_insights": tuple(insights),
             "exam_readiness_change": 0.0,
             "topic_title": topic,
+            "reflection_note": str(record.get("reflection_note") or ""),
             "authority": "learning_session_runtime",
             "progress_advanced": progress_advanced,
             "mission_completed": mission_completed,
@@ -1095,6 +1098,10 @@ class LearningSessionRuntimeEngine:
     ) -> dict[str, Any]:
         record = self._persistence.load(session_id=session_id) or {}
         text = (note or "").strip()
+        # Durable free-text on the session handle (not length-only evidence).
+        self._persistence.save_reflection_note(
+            session_id=session_id, note=text, student_id=student_id
+        )
         if text:
             self._emit_candidate(
                 RuntimeEvidenceType.REFLECTION_SUBMITTED,
@@ -1102,7 +1109,7 @@ class LearningSessionRuntimeEngine:
                 session_id=session_id,
                 record=record,
                 stage="reflection",
-                payload={"note_length": len(text)},
+                payload={"note_length": len(text), "has_note": True},
             )
         else:
             self._emit_candidate(
@@ -1116,6 +1123,7 @@ class LearningSessionRuntimeEngine:
             "recorded": True,
             "student_id": student_id,
             "session_id": session_id,
+            "student_note": text,
             "authority": "learning_session_runtime",
             # Structured note stays on the session record — Journal is REF-001.
             "journal_written": False,

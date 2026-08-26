@@ -295,6 +295,26 @@ class LearningSessionPersistenceAdapter:
         self._store.save(NS_HANDLE, session_id.strip(), updated)
         return deepcopy(updated)
 
+    def save_reflection_note(
+        self, *, session_id: str, note: str, student_id: str = ""
+    ) -> dict[str, Any] | None:
+        """Persist free-text session reflection onto the handle document.
+
+        Queryable via ``load`` / completion summary. Does not score or interpret
+        the note. Empty notes clear any prior stored text. When ``student_id``
+        is provided, ownership must match.
+        """
+        doc = self.load(session_id=session_id)
+        if doc is None:
+            return None
+        sid = (student_id or "").strip()
+        if sid and str(doc.get("student_id") or "") != sid:
+            return None
+        cleaned = (note or "").strip()
+        updated = {**doc, "reflection_note": cleaned}
+        self._store.save(NS_HANDLE, session_id.strip(), updated)
+        return deepcopy(updated)
+
     # ------------------------------------------------------------------
     # EV-001B — candidate observations + accepted evidence packages
     # ------------------------------------------------------------------

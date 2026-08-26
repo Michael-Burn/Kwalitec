@@ -104,6 +104,23 @@ class TestSittingReportProjection:
         assert report.needs_reinforcement
         assert any("struggled" in i.lower() for i in report.learning_insights)
 
+    def test_reflection_note_surfaces_in_learning_insights(self):
+        note = "I still find deferred tax tricky."
+        report = build_sitting_report(
+            topic_title="Deferred tax",
+            opaque_summary={
+                "reflection_note": note,
+                "observations": [
+                    {"type_id": RuntimeEvidenceType.REFLECTION_SUBMITTED.value},
+                ],
+                "finish_review": {"verdict": "yes"},
+                "substance": "package",
+            },
+        )
+        joined = " ".join(report.learning_insights)
+        assert note in joined
+        assert 'You wrote:' in joined
+
     def test_partial_finish_explains_no_progress(self):
         report = build_sitting_report(
             topic_title="Equity method",

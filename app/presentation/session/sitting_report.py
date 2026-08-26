@@ -695,8 +695,16 @@ def _learning_insights(
             f"You put practice time into {topic}. Checkable answers will "
             "sharpen what comes next."
         )
-    if _REFLECTION in _type_ids(opaque):
-        lines.append("You left a reflection — that helps shape tomorrow's Session.")
+    note = str(
+        opaque.get("reflection_note") or opaque.get("student_note") or ""
+    ).strip()
+    if note:
+        preview = note if len(note) <= 120 else f"{note[:117]}…"
+        lines.append(f'You wrote: "{preview}"')
+    elif _REFLECTION in _type_ids(opaque):
+        lines.append(
+            "You left a reflection — that helps shape tomorrow's Session."
+        )
     recent = twin_insights.get("recent_insights") or twin_insights.get("insights") or ()
     if isinstance(recent, str) and recent.strip():
         lines.append(recent.strip())

@@ -407,7 +407,8 @@ class SessionRuntimeAdapter:
         Stored under the same reflection document namespace (``NS_REFLECTION``)
         used by ``get_reflection`` — durable via ``SessionDocumentStore`` when
         ``ENABLE_DURABLE_STORE`` is on (production), process-local memory
-        otherwise. Never scores or interprets the note.
+        otherwise. Live engine path also writes ``reflection_note`` onto the
+        Learning Session handle document. Never scores or interprets the note.
         """
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
@@ -420,6 +421,23 @@ class SessionRuntimeAdapter:
                 sid, session_id=sess, note=cleaned
             )
             if isinstance(recorded, dict):
+                # Keep NS_REFLECTION aligned with engine handle persistence.
+                overview = self.get_session_overview(sid, session_id=sess) or {}
+                existing = (
+                    self.get_reflection(sid, session_id=sess)
+                    or default_reflection(
+                        sid,
+                        session_id=sess,
+                        topic_title=_topic_from_overview(overview),
+                    )
+                )
+                note_text = str(
+                    recorded.get("student_note")
+                    if recorded.get("student_note") is not None
+                    else cleaned
+                )
+                updated = {**existing, "student_note": note_text}
+                self._store.save(self.NS_REFLECTION, self._key(sid, sess), updated)
                 return dict(recorded)
         overview = self.get_session_overview(sid, session_id=sess) or {}
         existing = self.get_reflection(sid, session_id=sess) or default_reflection(

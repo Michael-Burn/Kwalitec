@@ -363,6 +363,48 @@ class TestNoTwinFromReflection:
         assert complete["mission_completed"] is False
         assert complete["progress_advanced"] is False
 
+    def test_reflection_note_text_round_trips_on_live_engine_path(self, monkeypatch):
+        """Live engine must persist the actual note text (not only note_length)."""
+        monkeypatch.setenv("SR_SESSION_SUBSTANCE", "1")
+        store = SessionDocumentStore()
+        persistence = LearningSessionPersistenceAdapter(store=store)
+        from app.application.learning_session.runtime import LearningSessionRuntime
+
+        lsr = LearningSessionRuntime()
+        journey = make_journey()
+        handle = lsr.create_session(journey, session_id="lsr-ref-rt")
+        handle = lsr.prepare_session(handle)
+        handle = lsr.start_session(handle)
+        persistence.save_binding(
+            student_id="stu-ref-rt",
+            mission_instance_id="m-ref-rt",
+            handle=handle,
+            topic_title="Deferred tax",
+            topic_id="topic-tax",
+        )
+        engine = LearningSessionRuntimeEngine(persistence=persistence)
+        text = "I still find deferred tax tricky — need another pass."
+        recorded = engine.record_reflection_note_opaque(
+            "stu-ref-rt", session_id="lsr-ref-rt", note=text
+        )
+        assert recorded["student_note"] == text
+
+        loaded = persistence.load(session_id="lsr-ref-rt")
+        assert loaded is not None
+        assert loaded["reflection_note"] == text
+
+        reflection = engine.get_reflection_opaque(
+            "stu-ref-rt", session_id="lsr-ref-rt"
+        )
+        assert reflection is not None
+        assert reflection["student_note"] == text
+
+        summary = engine.get_completion_summary_opaque(
+            "stu-ref-rt", session_id="lsr-ref-rt"
+        )
+        assert summary is not None
+        assert summary["reflection_note"] == text
+
 
 # ---------------------------------------------------------------------------
 # Acceptance — published CS1 path has no Core methods (when substance ON)

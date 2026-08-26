@@ -239,13 +239,19 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
     improvement = ""
     if snap.expected_readiness_improvement is not None:
         pct = abs(int(round(snap.expected_readiness_improvement * 100)))
-        if snap.expected_readiness_improvement >= 0:
+        if snap.expected_readiness_improvement >= 0 and pct > 0:
             improvement = (
                 f"Possible readiness movement · about {pct}% "
                 "(estimate, not a guarantee)"
             )
         else:
             improvement = "Possible readiness change noted (estimate only)"
+    else:
+        # Honest general purpose — do not invent a decorative percentage.
+        improvement = (
+            "This Session is meant to strengthen readiness on today's topic — "
+            "how much depends on your practice."
+        )
     begin = snap.begin_action
     return OverviewViewModel(
         objective=snap.objective or "Today's learning objective",
@@ -467,6 +473,7 @@ def _sitting_opaque_from_metadata_pairs(
     ]
     return {
         "topic_title": meta.get("topic_title") or "",
+        "reflection_note": meta.get("reflection_note") or "",
         "learning_objectives": objectives,
         "activities": activities,
         "observations": observations,
