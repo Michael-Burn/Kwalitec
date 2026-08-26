@@ -195,6 +195,41 @@
   {# ——— 3–5. Secondary chrome: progressive disclosure (PX-B-010 / PX-B-048) ——— #}
   {% set open_secondary = density == 'established' %}
 
+  {# Selective Adaptive Workspace — Home-safe disclosures only (UX-001 subset).
+     Episodes / checkpoint / reflection / plan chrome / full forecast / journey
+     cards stay Session Overview / Journey exclusive. #}
+  {% if ws and ws.current_focus and ws.current_focus.curriculum_why %}
+  <details
+    class="ds-disclosure ds-os-home__why-matters"
+    data-workspace-section="why-this-matters"
+    data-px004="secondary-curriculum-why"
+    {% if open_secondary %}open{% endif %}
+  >
+    <summary class="ds-section__title">Why this topic matters</summary>
+    <div class="ds-disclosure__body">
+      <p class="ds-list__meta">{{ ws.current_focus.curriculum_why }}</p>
+    </div>
+  </details>
+  {% endif %}
+
+  {% if ws and ws.progress_narrative and ws.progress_narrative.has_narrative
+        and ws.progress_narrative.home_worthy and ws.progress_narrative.body %}
+  <details
+    class="ds-disclosure ds-os-home__recent-progress"
+    data-workspace-section="recent-progress"
+    data-px004="secondary-recent-progress"
+    {% if open_secondary %}open{% endif %}
+  >
+    <summary class="ds-section__title">Recent progress</summary>
+    <div class="ds-disclosure__body">
+      {% if ws.progress_narrative.headline %}
+      <p class="ds-list__meta"><strong>{{ ws.progress_narrative.headline }}</strong></p>
+      {% endif %}
+      <p class="ds-list__meta">{{ ws.progress_narrative.body }}</p>
+    </div>
+  </details>
+  {% endif %}
+
   {% if home.signals %}
   <details
     class="ds-disclosure ds-os-home__progress"

@@ -250,6 +250,66 @@ def test_progress_narrative_prefers_memory_recovery(app, monkeypatch):
         assert ws.progress_narrative is not None
         assert "recovered" in ws.progress_narrative.body.lower()
         assert "probability distributions" in ws.progress_narrative.body.lower()
+        assert ws.progress_narrative.home_worthy is True
+
+
+def test_progress_narrative_study_health_fallback_not_home_worthy(app, monkeypatch):
+    """Study-health-only progress stays computable but must not surface on Home."""
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._journey_narrative",
+        lambda **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._readiness_forecast",
+        lambda **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._store_and_student",
+        lambda: (None, "1"),
+    )
+    with app.test_request_context("/"):
+        page = _page(_start_home())
+        home = _home_page()
+        ws = compose_adaptive_workspace(page, home)
+        assert ws.progress_narrative is not None
+        assert ws.progress_narrative.has_narrative is True
+        assert "steady gains" in ws.progress_narrative.body.lower()
+        assert ws.progress_narrative.home_worthy is False
+
+
+def test_home_continuity_prefers_yesterday_over_momentum():
+    from app.presentation.student.adaptive_workspace import home_continuity_line
+    from app.presentation.student.dto.adaptive_workspace import (
+        WorkspaceMorningBrief,
+    )
+
+    brief = WorkspaceMorningBrief(
+        greeting="Good morning.",
+        momentum_line="You are recovering well from earlier difficulties.",
+        yesterday_line="Yesterday's session strengthened Discount Factors.",
+        today_line="Today's session continues that momentum with Annuities.",
+        has_brief=True,
+    )
+    assert home_continuity_line(brief) == (
+        "Yesterday's session strengthened Discount Factors."
+    )
+    # Never invent filler when brief has only generic momentum.
+    generic = WorkspaceMorningBrief(
+        greeting="Good morning.",
+        momentum_line="You are building exam readiness step by step.",
+        has_brief=True,
+    )
+    assert home_continuity_line(generic, fallback="") == ""
+    assert home_continuity_line(generic, fallback="You left off on Annuities.") == (
+        "You left off on Annuities."
+    )
+    # Memory-backed momentum is allowed when yesterday is empty.
+    memory = WorkspaceMorningBrief(
+        greeting="Good morning.",
+        momentum_line="Your recent sittings show meaningful educational growth.",
+        has_brief=True,
+    )
+    assert "educational growth" in home_continuity_line(memory).lower()
 
 
 def test_forecast_reuses_kwp012_guidance(app, monkeypatch):
@@ -424,22 +484,222 @@ def test_home_template_has_workspace_layout_markers():
         'data-kwp="013"',
         'data-workspace-section="greeting"',
         'data-workspace-section="todays-mission"',
+        'data-workspace-section="why-this-matters"',
+        'data-workspace-section="recent-progress"',
         'data-workspace-section="study-signals"',
         'data-workspace-section="tomorrow-preview"',
         'data-workspace-section="quick-actions"',
+        'data-px004="continuity"',
+        "Why this topic matters",
+        "Recent progress",
     ):
         assert marker in text
-    # UX-001: educational overload moved off Home.
+    # UX-001: Session/Journey-exclusive overload stays off Home default view.
     for removed in (
         'data-workspace-section="morning-brief"',
         'data-workspace-section="session-plan"',
         'data-workspace-section="current-focus"',
-        'data-workspace-section="recent-progress"',
         'data-workspace-section="forecast"',
         'data-workspace-section="learning-journey"',
         "015-learning-episode",
+        "checkpoint_prompt",
+        "reflection_prompt",
     ):
         assert removed not in text
+
+
+def test_home_html_shows_continuity_and_disclosures_when_supported(app, monkeypatch):
+    """Returning student with history: continuity + two disclosures appear."""
+    from dataclasses import replace
+
+    from flask import render_template
+
+    from app.presentation.student.dto.adaptive_workspace import (
+        AdaptiveStudyWorkspace,
+        WorkspaceCurrentFocus,
+        WorkspaceMorningBrief,
+        WorkspaceProgressNarrative,
+    )
+
+    narrative = LearningJourneyNarrative(
+        headline="My Learning Journey",
+        story_paragraphs=("You recovered well.",),
+        patterns=(
+            LongitudinalPattern(
+                kind=PatternKind.REPEATED_SUCCESSFUL_RECOVERIES,
+                title=PATTERN_TITLES[
+                    PatternKind.REPEATED_SUCCESSFUL_RECOVERIES
+                ],
+                narrative=(
+                    "You have recovered from your previous difficulties "
+                    "with probability distributions."
+                ),
+                topics=("Probability Distributions",),
+                occurrence_count=2,
+            ),
+        ),
+        milestones=(),
+        sitting_archives=(),
+        sitting_count=3,
+        topic_count=2,
+        has_memory=True,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._journey_narrative",
+        lambda **_kwargs: narrative,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._readiness_forecast",
+        lambda **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._store_and_student",
+        lambda: (None, "1"),
+    )
+    history = HistoryPageViewModel(
+        sessions=(
+            HistorySessionViewModel(
+                session_id="sess-y",
+                topic_title="Discount Factors",
+            ),
+        ),
+        session_count=1,
+    )
+    with app.test_request_context("/student/"):
+        page = _page(_start_home(), history=history)
+        built = StudentHomeService().build_home(page)
+        # Inject curriculum_why (engine-dependent) while keeping real continuity
+        # and memory-backed progress from composition.
+        assert built.workspace is not None
+        focus = built.workspace.current_focus or WorkspaceCurrentFocus(
+            topic_title="Annuities",
+            has_focus=True,
+        )
+        focus = replace(
+            focus,
+            curriculum_why=(
+                "Annuities relies heavily on Discount Factors. "
+                "Strengthening Discount Factors is expected to improve "
+                "your understanding of Annuities."
+            ),
+        )
+        ws = replace(
+            built.workspace,
+            current_focus=focus,
+            morning_brief=WorkspaceMorningBrief(
+                greeting="Good morning.",
+                yesterday_line="Yesterday's session strengthened Discount Factors.",
+                momentum_line="You are recovering well from earlier difficulties.",
+                today_line="Today's session continues that momentum with Annuities.",
+                has_brief=True,
+            ),
+            progress_narrative=WorkspaceProgressNarrative(
+                headline="Recovery in progress",
+                body=(
+                    "You have recovered from your previous difficulties "
+                    "with probability distributions."
+                ),
+                has_narrative=True,
+                home_worthy=True,
+            ),
+        )
+        home = replace(
+            built,
+            workspace=ws,
+            continuity_line="Yesterday's session strengthened Discount Factors.",
+        )
+        html = render_template("student/home.html", page=page, home=home, form=None)
+
+    assert 'data-px004="continuity"' in html
+    assert "Yesterday" in html and "Discount Factors" in html
+    assert "Yesterday&#39;s session strengthened Discount Factors." in html
+    assert 'data-workspace-section="why-this-matters"' in html
+    assert "Why this topic matters" in html
+    assert "Annuities relies heavily on Discount Factors" in html
+    assert 'data-workspace-section="recent-progress"' in html
+    assert "probability distributions" in html.lower()
+    # Session-exclusive fields remain absent from Home HTML.
+    assert 'data-workspace-section="session-plan"' not in html
+    assert 'data-workspace-section="forecast"' not in html
+    assert 'data-workspace-section="learning-journey"' not in html
+    assert "015-learning-episode" not in html
+    assert "checkpoint_prompt" not in html
+    assert "reflection_prompt" not in html
+    assert 'data-workspace-section="morning-brief"' not in html
+    assert 'data-workspace-section="current-focus"' not in html
+
+
+def test_home_html_omits_empty_disclosures_and_generic_continuity(app, monkeypatch):
+    """Fresh / day-zero student: no empty disclosure chrome, no filler continuity."""
+    from dataclasses import replace
+
+    from flask import render_template
+
+    from app.presentation.student.dto.adaptive_workspace import (
+        AdaptiveStudyWorkspace,
+        WorkspaceCurrentFocus,
+        WorkspaceMorningBrief,
+        WorkspaceProgressNarrative,
+    )
+
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._journey_narrative",
+        lambda **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._readiness_forecast",
+        lambda **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.adaptive_workspace._store_and_student",
+        lambda: (None, "1"),
+    )
+    with app.test_request_context("/student/"):
+        page = _page(_start_home())
+        built = StudentHomeService().build_home(page)
+        assert built.workspace is not None
+        # Explicit empty curriculum_why + non-home-worthy progress + generic momentum.
+        focus = WorkspaceCurrentFocus(
+            topic_title="Annuities",
+            guidance="Practice steadily.",
+            curriculum_why="",
+            has_focus=True,
+        )
+        ws = replace(
+            built.workspace or AdaptiveStudyWorkspace(enabled=True),
+            current_focus=focus,
+            morning_brief=WorkspaceMorningBrief(
+                greeting="Good morning.",
+                momentum_line="You are building exam readiness step by step.",
+                yesterday_line="",
+                has_brief=True,
+            ),
+            progress_narrative=WorkspaceProgressNarrative(
+                headline="Strengthening",
+                body="Steady gains this week",
+                has_narrative=True,
+                home_worthy=False,
+            ),
+            mission_composition=None,
+        )
+        home = replace(
+            built,
+            workspace=ws,
+            continuity_line="",
+            density_mode="day_zero",
+            show_progress_strip=False,
+            show_tomorrow_preview=False,
+        )
+        html = render_template("student/home.html", page=page, home=home, form=None)
+
+    assert 'data-workspace-section="why-this-matters"' not in html
+    assert "Why this topic matters" not in html
+    assert 'data-workspace-section="recent-progress"' not in html
+    # No continuity paragraph when line is empty (greeting support fallback may
+    # still show mission-ready copy — that is not the educational continuity line).
+    assert 'data-px004="continuity"' not in html
+    assert "You are building exam readiness step by step." not in html
+    assert "Steady gains this week" not in html
 
 
 def test_founder_workspace_metrics_and_template():

@@ -10,7 +10,10 @@ from __future__ import annotations
 
 from flask import url_for
 
-from app.presentation.student.adaptive_workspace import compose_adaptive_workspace
+from app.presentation.student.adaptive_workspace import (
+    compose_adaptive_workspace,
+    home_continuity_line,
+)
 from app.presentation.student.dto.student_home import (
     HomeBriefingSection,
     HomeDeadline,
@@ -498,15 +501,21 @@ class StudentHomeService:
             workspace.page_question if workspace.enabled else home.page_question
         )
         greeting = home.greeting
+        continuity = home.continuity_line
         if workspace.enabled and workspace.morning_brief:
             brief_greeting = (workspace.morning_brief.greeting or "").strip()
             if brief_greeting:
                 greeting = brief_greeting
+            continuity = home_continuity_line(
+                workspace.morning_brief,
+                fallback=home.continuity_line,
+            )
         return replace(
             home,
             workspace=workspace,
             page_question=page_question,
             greeting=greeting,
+            continuity_line=continuity,
         )
 
     @staticmethod

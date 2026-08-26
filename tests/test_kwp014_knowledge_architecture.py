@@ -315,8 +315,11 @@ def test_templates_wire_curriculum_map_and_founder() -> None:
     assert "Curriculum Map" in kg or "curriculum-map" in kg
     assert "why_current_matters" in kg or "014-why" in kg
     home = HOME_TMPL.read_text(encoding="utf-8")
-    # UX-001: curriculum-why moved off Home; Curriculum Map remains a Quick Action.
+    # Selective Home: curriculum_why may appear behind "Why this topic matters";
+    # Curriculum Map remains a Quick Action. Full current-focus card stays off Home.
+    assert "why-this-matters" in home or "Why this topic matters" in home
     assert "Curriculum Map" in home or "knowledge_graph" in home or "quick-actions" in home
+    assert 'data-workspace-section="current-focus"' not in home
     session_body = (
         Path("app/templates/session/partials/session_body.html")
     ).read_text(encoding="utf-8")

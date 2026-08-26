@@ -49,11 +49,16 @@ class WorkspaceCurrentFocus:
 
 @dataclass(frozen=True)
 class WorkspaceProgressNarrative:
-    """Educational progress story — not isolated metrics."""
+    """Educational progress story — not isolated metrics.
+
+    ``home_worthy`` is False for study-health-only fallbacks that have nothing
+    genuinely specific to say on Home (omit the disclosure entirely).
+    """
 
     headline: str = ""
     body: str = ""
     has_narrative: bool = False
+    home_worthy: bool = True
 
 
 @dataclass(frozen=True)

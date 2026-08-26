@@ -1126,10 +1126,12 @@ def _progress_narrative(
             )
 
     if home.study_health and home.study_health.detail:
+        # Kept for Session/Journey consumers; Home omits via home_worthy=False.
         return WorkspaceProgressNarrative(
             headline=home.study_health.status_label or "Study Health",
             body=_scrub(home.study_health.detail[:220]),
             has_narrative=True,
+            home_worthy=False,
         )
 
     achievement = ""
@@ -1148,8 +1150,50 @@ def _progress_narrative(
             headline="Recent progress",
             body=_scrub(achievement[:220]),
             has_narrative=True,
+            home_worthy=True,
         )
     return None
+
+
+# Health-path momentum fillers — calm but not history/memory continuity.
+_GENERIC_MOMENTUM_LINES = frozenset(
+    {
+        "your study path is ready when you are.",
+        "a steadier rhythm will strengthen today's session.",
+        "you are building exam readiness step by step.",
+        "you are maintaining steady progress.",
+    }
+)
+
+
+def _is_generic_momentum_line(text: str) -> bool:
+    lowered = (text or "").strip().lower()
+    if not lowered:
+        return True
+    if lowered in _GENERIC_MOMENTUM_LINES:
+        return True
+    return lowered.startswith("you are currently ")
+
+
+def home_continuity_line(
+    brief: WorkspaceMorningBrief | None,
+    *,
+    fallback: str = "",
+) -> str:
+    """One Home continuity line from morning brief (never yesterday + momentum + today).
+
+    Prefers ``yesterday_line`` when present; otherwise a non-generic
+    ``momentum_line`` (memory/tutor voice). Omits filler when no history/memory
+    exists. Falls back to density/gap continuity when brief has nothing specific.
+    """
+    if brief is not None:
+        yesterday = (brief.yesterday_line or "").strip()
+        if yesterday:
+            return yesterday
+        momentum = (brief.momentum_line or "").strip()
+        if momentum and not _is_generic_momentum_line(momentum):
+            return momentum
+    return (fallback or "").strip()
 
 
 def _forecast_summary(forecast) -> WorkspaceForecastSummary | None:

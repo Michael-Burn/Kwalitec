@@ -49,6 +49,8 @@ def test_home_template_is_decision_only():
     assert "ds_mission_hero" in text
     assert 'data-workspace-section="greeting"' in text
     assert 'data-workspace-section="todays-mission"' in text
+    assert 'data-workspace-section="why-this-matters"' in text
+    assert 'data-workspace-section="recent-progress"' in text
     assert 'data-workspace-section="study-signals"' in text
     assert 'data-workspace-section="tomorrow-preview"' in text
     assert 'data-workspace-section="quick-actions"' in text
@@ -58,9 +60,13 @@ def test_home_template_is_decision_only():
         "015-learning-episode",
         "Why this Session?",
         "Learning Episode",
-        "Session Plan",
         "Current Focus",
         "Morning Brief",
+        'data-workspace-section="session-plan"',
+        'data-workspace-section="forecast"',
+        'data-workspace-section="learning-journey"',
+        'data-workspace-section="morning-brief"',
+        'data-workspace-section="current-focus"',
     ):
         assert removed not in text
 
