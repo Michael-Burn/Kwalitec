@@ -508,8 +508,8 @@ LEARNING = [
             "members of an exponential family in the GLM setting."
         ),
         focus=(
-            "Named response → exponential family membership → refuse package-name GLM → "
-            "refuse mean/variance swallow."
+            "Named response distributions → exponential-family membership in the "
+            "GLM setting → refuse package-name GLM."
         ),
         prior=(
             "Campaign Nu closed linear regression (4.1) with Revision. Today opens Continuity "
@@ -521,7 +521,10 @@ LEARNING = [
             "4.2.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at GLM structure, keeping moments for the following session."
         ),
-        benefit="Study Progress for family placement — not Topic Complete for 4.2.2.",
+        benefit=(
+            "You will be able to recognise binomial, Poisson, exponential, gamma "
+            "and Normal as exponential-family GLM responses."
+        ),
         explain=(
             "Day 1 opens GLM by placing exponential-family responses — "
             "the natural next step after classical linear models."
@@ -574,13 +577,19 @@ LEARNING = [
             "inside the family list, not the definition of GLM. Mean/variance is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. Refuse: 'GLM is just linear regression with a package name.' "
-            "Restate what must be true of the response family."
+            "Closed-book. (1) Name three of binomial, Poisson, exponential, "
+            "gamma, Normal and state in one line why each belongs in the "
+            "exponential family for GLM. (2) Refuse: 'GLM is just ordinary linear "
+            "regression with a different software package name.'"
         ),
-        cp_kw=["refuse", "package", "exponential", "family", "not linear", "today"],
+        cp_kw=["exponential family", "Poisson", "binomial", "Normal", "refuse", "package"],
         cp_model=(
-            "Refuse: package name ≠ GLM. A GLM response sits in an exponential family "
-            "(with later η and link) — Normal+identity is special, not definitional."
+            "(1) e.g. Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded "
+            "proportion/count responses); Normal (continuous responses with "
+            "constant variance) — each has an exponential-family density form "
+            "usable as a GLM response. (2) Refuse: package name ≠ GLM; a GLM "
+            "response sits in an exponential family (with later η and link). "
+            "Normal+identity is a special case, not the definition."
         ),
         reflect="Harvest family-placement wobble — keep mean/variance out of tonight's claim.",
     ),
@@ -609,9 +618,7 @@ LEARNING = [
             "State and evaluate mean, variance, variance function and scale parameter for "
             "GLM binomial, Poisson, exponential, gamma and normal distributions."
         ),
-        focus=(
-            "Family → E(Y) → Var(Y) → variance function → scale → refuse link swallow."
-        ),
+        focus="Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
         prior=(
             "Yesterday you placed responses in the exponential family (4.2.1). Today "
             "continues Topic 4.2 at moments and scale — still Continuity Front join."
@@ -620,7 +627,10 @@ LEARNING = [
             "4.2.2 is contiguous after family placement. Without moments/scale, link and "
             "deviance lack distributional warrant."
         ),
-        benefit="Study Progress for moments/scale — not Topic Complete for 4.2.3.",
+        benefit=(
+            "You will be able to state mean, variance, variance function and "
+            "scale for the standard GLM families."
+        ),
         explain=(
             "Day 2 focuses the named learning objective — link functions as tomorrow."
         ),
@@ -672,13 +682,17 @@ LEARNING = [
             "variance=λ (scale often 1). Link/canonical is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I picked logit, so I finished today's LO.' "
-            "Refuse and restate what 4.2.2 requires."
+            "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], "
+            "Var[Y], and the variance function V(μ) for each. (2) Refuse: "
+            "'Choosing the logit link finishes stating mean, variance, variance "
+            "function and scale.'"
         ),
-        cp_kw=["refuse", "mean", "variance", "scale", "not link", "today"],
+        cp_kw=["Poisson", "Normal", "variance function", "scale", "refuse", "link"],
         cp_model=(
-            "Refuse: link is tomorrow. Today requires mean, variance, variance function "
-            "and scale for the GLM families."
+            "(1) Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: "
+            "E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². (2) Refuse: the link maps μ "
+            "to η; today requires the mean/variance/scale structure of the "
+            "response family."
         ),
         reflect="Harvest moments/scale wobble — keep link choice out of tonight's claim.",
     ),
@@ -708,7 +722,8 @@ LEARNING = [
             "in 4.2.1."
         ),
         focus=(
-            "g(μ)=η → link role → canonical special case per family → refuse factors swallow."
+            "g(μ)=η → link role → canonical link as natural-parameter pairing per "
+            "family."
         ),
         prior=(
             "Yesterday you evaluated mean/variance/scale (4.2.2). Today continues Topic 4.2 "
@@ -718,7 +733,10 @@ LEARNING = [
             "4.2.3 is contiguous after moments. Without link, the linear predictor has no "
             "mean map."
         ),
-        benefit="Study Progress for link/canonical — not Topic Complete for 4.2.4.",
+        benefit=(
+            "You will be able to explain the link and canonical link for GLM "
+            "families and refuse software-default myths."
+        ),
         explain=(
             "Day 3 focuses the named learning objective — factors/ interactions as tomorrow."
         ),
@@ -770,13 +788,19 @@ LEARNING = [
             "(e.g. logit for binomial; log for Poisson). Factors/interactions are tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I dummy-coded factors, so I finished today's LO.' "
-            "Refuse and restate what 4.2.3 requires."
+            "Closed-book. (1) For binomial and gamma responses, name the "
+            "canonical link and justify each from the mean's natural range. (2) "
+            "Refuse: 'Whatever link the software defaults to is automatically the "
+            "canonical link.'"
         ),
-        cp_kw=["refuse", "link", "canonical", "not factors", "today"],
+        cp_kw=["logit", "binomial", "gamma", "canonical", "refuse", "default"],
         cp_model=(
-            "Refuse: factors are tomorrow. Today requires explaining link and canonical "
-            "link for the 4.2.1 families."
+            "(1) Binomial: logit — μ ∈ (0,1) and logit maps to ℝ for η. Gamma: "
+            "reciprocal (negative-reciprocal canonical form as in CMP) — μ > 0, "
+            "mapping the positive mean onto the η scale for the gamma "
+            "exponential-family form. (2) Refuse: a software default needs a "
+            "warrant; canonical means the link that equates η with the natural "
+            "parameter, not whatever the GUI chose."
         ),
         reflect="Harvest link/canonical wobble — keep factors out of tonight's claim.",
     ),
@@ -805,8 +829,8 @@ LEARNING = [
             "the GLM setting."
         ),
         focus=(
-            "Continuous variable → categorical factor → interaction term → refuse η-form "
-            "swallow."
+            "Continuous variable → categorical factor coding → interaction term "
+            "changing a slope by level."
         ),
         prior=(
             "Yesterday you explained link and canonical link (4.2.3). Today continues Topic "
@@ -816,7 +840,10 @@ LEARNING = [
             "4.2.4 is contiguous after link. Without factors/interactions, η forms lack "
             "actuarial covariate honesty."
         ),
-        benefit="Study Progress for factors/interactions — not Topic Complete for 4.2.5.",
+        benefit=(
+            "You will be able to explain variables, factors and interaction terms "
+            "in a GLM linear predictor."
+        ),
         explain=(
             "Day 4 focuses the named learning objective — linear predictor forms as tomorrow."
         ),
@@ -868,13 +895,19 @@ LEARNING = [
             "beyond main effects. Full η-form writing is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I wrote η = β0 + β1x, so I finished today's LO.' "
-            "Refuse and restate what 4.2.4 requires."
+            "Closed-book. Rating: continuous age x and factor region (levels "
+            "North/South). (1) Write a linear predictor that includes region as a "
+            "factor (baseline North) and an age×region interaction. (2) Refuse: "
+            "'Writing η = β₀ + β₁x with no factors finishes explaining factors "
+            "and interactions' and 'an interaction is just another main-effect "
+            "slope.'"
         ),
-        cp_kw=["refuse", "factor", "interaction", "not predictor", "today"],
+        cp_kw=["factor", "interaction", "I_South", "η", "refuse", "main effect"],
         cp_model=(
-            "Refuse: η-form writing is tomorrow. Today requires explaining variables, "
-            "factors and interactions."
+            "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) "
+            "Refuse: factors encode categorical levels; an interaction changes "
+            "the age slope by region — it is not merely another additive main "
+            "effect."
         ),
         reflect="Harvest factor/interaction wobble — keep η-form writing out of tonight's claim.",
     ),
@@ -904,7 +937,8 @@ LEARNING = [
             "polynomial models and models involving factors."
         ),
         focus=(
-            "η definition → simple form → polynomial / factor forms → refuse deviance swallow."
+            "η = Xβ definition → polynomial and factor forms → refuse conflating "
+            "η with the link function."
         ),
         prior=(
             "Yesterday you explained variables, factors and interactions (4.2.4). Today "
@@ -914,7 +948,10 @@ LEARNING = [
             "4.2.5 is contiguous after factors. Without η forms, deviance and software fit "
             "lack structure."
         ),
-        benefit="Study Progress for linear predictor — not Topic Complete for 4.2.6.",
+        benefit=(
+            "You will be able to define the linear predictor and write its form "
+            "for polynomial and factor models."
+        ),
         explain=(
             "Day 5 focuses the named learning objective — deviance/ estimation as tomorrow."
         ),
@@ -966,13 +1003,16 @@ LEARNING = [
             "indicators / polynomial powers. Deviance/estimation is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I computed the deviance, so I finished today's LO.' "
-            "Refuse and restate what 4.2.5 requires."
+            "Closed-book. Poisson claim counts with log link, continuous exposure "
+            "score x and two-level factor cover (Standard/Plus). (1) Write η for "
+            "a model with x, a quadratic term in x, and cover. (2) Refuse: 'The "
+            "link function is the linear predictor.'"
         ),
-        cp_kw=["refuse", "eta", "predictor", "not deviance", "today"],
+        cp_kw=["η", "quadratic", "factor", "link", "refuse", "linear predictor"],
         cp_model=(
-            "Refuse: deviance is tomorrow. Today requires defining and writing linear "
-            "predictor forms for simple GLM models."
+            "(1) η = β₀ + β₁x + β₂x² + β₃ I_Plus (Standard baseline). (2) Refuse: "
+            "η = Xβ is the linear predictor; the link g maps mean μ to η (e.g. "
+            "log(μ)=η for Poisson log)."
         ),
         reflect="Harvest η-form wobble — keep deviance out of tonight's claim.",
     ),
@@ -1002,8 +1042,8 @@ LEARNING = [
             "generalised linear model."
         ),
         focus=(
-            "Likelihood → deviance → scaled deviance → parameter estimates → refuse "
-            "model-choice swallow."
+            "Log-likelihood → deviance → scaled deviance → maximum-likelihood / "
+            "IWLS parameter estimates."
         ),
         prior=(
             "Yesterday you wrote linear predictor forms (4.2.5). Today continues Topic 4.2 "
@@ -1013,7 +1053,10 @@ LEARNING = [
             "4.2.6 is contiguous after η. Without deviance/estimation, model choice and "
             "diagnostics lack a criterion."
         ),
-        benefit="Study Progress for deviance/estimation — not Topic Complete for 4.2.7.",
+        benefit=(
+            "You will be able to explain deviance, scaled deviance, and how GLM "
+            "parameters are estimated."
+        ),
         explain=(
             "Day 6 focuses the named learning objective — analysis of deviance model choice as tomorrow."
         ),
@@ -1065,13 +1108,19 @@ LEARNING = [
             "scale. Parameters of the GLM are estimated. Nested model choice is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I deleted insignificant terms until the p-values "
-            "looked nice, so I finished today's LO.' Refuse and restate what 4.2.6 requires."
+            "Closed-book. (1) In one sentence each, what are deviance and scaled "
+            "deviance, and what estimation principle is typically used for GLM "
+            "parameters? (2) Refuse: 'Deleting insignificant terms until p-values "
+            "look nice finishes explaining deviance and GLM estimation.'"
         ),
-        cp_kw=["refuse", "deviance", "estimation", "not choice", "today"],
+        cp_kw=["deviance", "scaled", "likelihood", "IWLS", "refuse", "p-value"],
         cp_model=(
-            "Refuse: model choice is tomorrow. Today requires explaining deviance, scaled "
-            "deviance, and GLM parameter estimation."
+            "(1) Deviance compares the fitted model's log-likelihood to a "
+            "saturated model (2{ℓ_sat − ℓ_model}); scaled deviance divides by the "
+            "dispersion/scale when relevant. Parameters are typically estimated "
+            "by maximum likelihood (often via IWLS). (2) Refuse: mechanical "
+            "p-value chopping is model-choice behaviour, not the definition or "
+            "estimation of deviance."
         ),
         reflect="Harvest deviance/estimation wobble — keep model-choice theatre out of tonight.",
     ),
@@ -1101,8 +1150,8 @@ LEARNING = [
             "significance of the parameters."
         ),
         focus=(
-            "Nested models → analysis of deviance → parameter significance → refuse "
-            "residuals swallow."
+            "Nested models → analysis of deviance / likelihood-ratio comparison → "
+            "parameter significance."
         ),
         prior=(
             "Yesterday you explained deviance and estimation (4.2.6). Today continues "
@@ -1112,7 +1161,10 @@ LEARNING = [
             "4.2.7 is contiguous after deviance. Without model choice, residual diagnostics "
             "have no selected structure to check."
         ),
-        benefit="Study Progress for model choice — not Topic Complete for 4.2.8.",
+        benefit=(
+            "You will be able to choose a GLM using analysis of deviance and "
+            "examination of parameter significance."
+        ),
         explain=(
             "Day 7 focuses the named learning objective — residuals as tomorrow."
         ),
@@ -1163,13 +1215,20 @@ LEARNING = [
             "parameter significance supports inclusion. Residuals are tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I plotted Pearson residuals, so I finished "
-            "today's LO.' Refuse and restate what 4.2.7 requires."
+            "Closed-book. Nested GLMs M_reduced ⊂ M_full. (1) Outline how an "
+            "analysis of deviance (likelihood-ratio / deviance difference) plus "
+            "parameter significance guides choosing between them. (2) Refuse: "
+            "'Plotting Pearson residuals finishes model choice via analysis of "
+            "deviance.'"
         ),
-        cp_kw=["refuse", "analysis of deviance", "choice", "not residuals", "today"],
+        cp_kw=["analysis of deviance", "nested", "χ²", "significance", "refuse", "residuals"],
         cp_model=(
-            "Refuse: residuals are tomorrow. Today requires choosing a model via analysis "
-            "of deviance and parameter significance."
+            "(1) Compare deviance (or −2Δℓ) between nested models against a χ² "
+            "reference on the degrees-of-freedom difference; also inspect whether "
+            "added parameters are statistically and scientifically warranted. (2) "
+            "Refuse: residual plots are diagnostics (a different LO); today is "
+            "choosing a model via analysis of deviance and parameter "
+            "significance."
         ),
         reflect="Harvest model-choice wobble — keep residual diagnostics out of tonight.",
     ),
@@ -1195,7 +1254,8 @@ LEARNING = [
         ),
         lo_text="Explain Pearson and deviance residuals and their use.",
         focus=(
-            "Pearson residual → deviance residual → diagnostic use → refuse test swallow."
+            "Pearson residual → deviance residual → diagnostic use for fit, "
+            "outliers and patterns."
         ),
         prior=(
             "Yesterday you chose a model via analysis of deviance (4.2.7). Today continues "
@@ -1205,7 +1265,10 @@ LEARNING = [
             "4.2.8 is contiguous after model choice. Without residual literacy, "
             "acceptability tests lack diagnostic context."
         ),
-        benefit="Study Progress for residuals — not Topic Complete for 4.2.9.",
+        benefit=(
+            "You will be able to explain Pearson and deviance residuals and how "
+            "they are used diagnostically."
+        ),
         explain=(
             "Day 8 focuses the named learning objective — formal acceptability tests as tomorrow."
         ),
@@ -1257,13 +1320,19 @@ LEARNING = [
             "residuals come from deviance contributions. Formal χ²/LRT tests are tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I ran the likelihood-ratio test, so I finished "
-            "today's LO.' Refuse and restate what 4.2.8 requires."
+            "Closed-book. (1) State the idea of a Pearson residual and a deviance "
+            "residual for a GLM observation. (2) Refuse: 'Running a "
+            "likelihood-ratio test finishes explaining Pearson and deviance "
+            "residuals.'"
         ),
-        cp_kw=["refuse", "Pearson", "deviance residual", "not LRT", "today"],
+        cp_kw=["Pearson", "deviance residual", "standardised", "refuse", "likelihood-ratio"],
         cp_model=(
-            "Refuse: formal acceptability tests are tomorrow. Today requires explaining "
-            "Pearson and deviance residuals and their use."
+            "(1) Pearson residual: (y − μ̂)/√Var̂(Y) — a standardised "
+            "discrepancy. Deviance residual: the signed contribution of "
+            "observation i to the deviance. Both help check fit, outliers and "
+            "patterns. (2) Refuse: an LRT is a formal "
+            "acceptability/model-comparison test — different from defining and "
+            "using residual diagnostics."
         ),
         reflect="Harvest residual-type wobble — keep χ²/LRT out of tonight's claim.",
     ),
@@ -1292,10 +1361,7 @@ LEARNING = [
             "Apply statistical tests to determine the acceptability of a fitted model: "
             "Pearson's chi-square test and the likelihood-ratio test."
         ),
-        focus=(
-            "Fitted model → Pearson χ² test → likelihood-ratio test → refuse fit/"
-            "interpret swallow."
-        ),
+        focus="Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
         prior=(
             "Yesterday you explained Pearson and deviance residuals (4.2.8). Today "
             "continues Topic 4.2 at formal acceptability tests."
@@ -1304,7 +1370,10 @@ LEARNING = [
             "4.2.9 is contiguous after residuals. Without formal tests, fit/interpret "
             "lacks acceptability warrant."
         ),
-        benefit="Study Progress for acceptability tests — not Topic Complete for 4.2.10.",
+        benefit=(
+            "You will be able to apply Pearson's χ² and likelihood-ratio tests to "
+            "judge acceptability of a fitted GLM."
+        ),
         explain=(
             "Day 9 focuses the named learning objective — fit/ interpret as tomorrow."
         ),
@@ -1355,13 +1424,18 @@ LEARNING = [
             "acceptability. Full software fit/interpret is tomorrow."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I interpreted every coefficient in software, so "
-            "I finished today's LO.' Refuse and restate what 4.2.9 requires."
+            "Closed-book. You have a fitted GLM and want to judge acceptability. "
+            "(1) State what Pearson's χ² test and the likelihood-ratio test each "
+            "compare (in outline). (2) Refuse: 'Interpreting every coefficient in "
+            "the software output finishes applying acceptability tests.'"
         ),
-        cp_kw=["refuse", "chi-square", "likelihood-ratio", "not interpret", "today"],
+        cp_kw=["Pearson", "chi-square", "likelihood-ratio", "acceptability", "refuse", "interpret"],
         cp_model=(
-            "Refuse: full fit/interpret is tomorrow. Today requires applying Pearson χ² "
-            "and LRT acceptability tests."
+            "(1) Pearson χ²: aggregate squared Pearson residuals against a χ² "
+            "reference (adequacy of fit). LRT: compares likelihood/deviance of "
+            "the fitted model to a relevant nested or saturated alternative. (2) "
+            "Refuse: coefficient interpretation is a different LO; today requires "
+            "applying the formal acceptability tests."
         ),
         reflect="Harvest test-choice wobble — keep full software interpretation out of tonight.",
     ),
@@ -1388,8 +1462,8 @@ LEARNING = [
         ),
         lo_text="Fit a generalised linear model to a data set and interpret the output.",
         focus=(
-            "Data → fit GLM → interpret coefficients / fit / diagnostics → refuse "
-            "treating a fitted GLM as Bayesian work finished."
+            "Choose family/link → fit GLM → interpret coefficients on the mean "
+            "scale → check fit/diagnostics."
         ),
         prior=(
             "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic "
@@ -1399,7 +1473,8 @@ LEARNING = [
             "After goodness-of-fit tests, fit a GLM and interpret the output — then revise the GLM chain."
         ),
         benefit=(
-            "You'll be able to fit a GLM and interpret the output in exam-style language."
+            "You will be able to fit a GLM and interpret coefficients and fit "
+            "output in exam-style language."
         ),
         explain=(
             "Day 10 closes Topic 4.2 at fit and interpret — then revise; Bayesian work comes later."
@@ -1453,13 +1528,19 @@ LEARNING = [
             "warranted. Topic 5.1 Bayesian and first-pass spine PASS are out of scope."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Fitting the GLM finished Bayesian and the exam "
-            "journey.' Refuse in one sentence and name tomorrow's honest next (Revision)."
+            "Closed-book. You fit a Poisson log-link GLM for claim counts with "
+            "factor rating class. (1) Interpret a coefficient of 0.20 on class "
+            "High vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit "
+            "finishes interpretation and diagnostics' and 'fitting a GLM finishes "
+            "Bayesian credibility work.'"
         ),
-        cp_kw=["refuse", "5.1", "spine", "revision", "fit", "until-exam"],
+        cp_kw=["Poisson", "log link", "e^{0.20}", "interpret", "refuse", "Fit"],
         cp_model=(
-            "Refuse: Bayesian / spine / until-exam are not finished. Today is fit/interpret "
-            "for GLM; tomorrow is CX-R1 Revision of 4.2 — not a trophy claim."
+            "(1) Under log link, β̂ = 0.20 means the fitted mean for High is "
+            "e^{0.20} ≈ 1.22 times the baseline class mean (multiplicative "
+            "effect), other terms held fixed. (2) Refuse: fit without "
+            "interpretation/diagnostics is incomplete; Bayesian modelling is a "
+            "different topic."
         ),
         reflect=(
             "Harvest fit/interpret wobble — Revision protects the 4.2 chain tomorrow."

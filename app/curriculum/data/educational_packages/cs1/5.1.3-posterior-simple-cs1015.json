@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force a simple posterior calculation path and refuse 'posterior means point estimate under loss'.",
     "educational_intent": "Produce simple posterior calculation as contiguous after prior/conjugate language.",
     "learning_objective": "Obtain the posterior distribution for a parameter in simple cases.",
-    "concept_focus": "Prior + data → posterior distribution → refuse loss/estimator swallow.",
+    "concept_focus": "Prior + data → posterior distribution in a simple conjugate case.",
     "prior_bridge": "Yesterday you explained prior/posterior/conjugate (5.1.2). Today calculates a simple posterior.",
     "why_now": "5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
-    "expected_benefit": "Study Progress for simple posterior — not Topic Complete for 5.1.4.",
+    "expected_benefit": "You will be able to obtain the posterior distribution for a parameter in a simple conjugate case.",
     "explainability": "Assigned as Campaign Omicron Day 3 because CF join keeps calculation after vocabulary.",
     "success_criteria": [
       "Closed-book, outline steps to obtain a simple posterior.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.3-cp-01",
       "title": "Checkpoint: 5.1.3",
-      "prompt": "Closed-book. A colleague says 'Getting the posterior finished the Bayesian estimator under squared error.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. (1) State the posterior distribution (parameters). (2) Refuse: 'Having the posterior distribution finishes choosing the Bayesian point estimator under squared-error loss.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.3.",
       "hints": [
@@ -150,14 +150,14 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Beta(5,9)",
+        "posterior",
         "refuse",
-        "loss",
-        "estimator",
-        "5.1.4",
-        "posterior"
+        "squared-error",
+        "estimator"
       ],
       "explanation": "Checkpoint for 5.1.3.",
-      "model_answer": "Refuse: posterior distribution ≠ loss-based estimator. Tomorrow is 5.1.4.",
+      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse: the posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

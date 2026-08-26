@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate to read software output as evidence — slope inference, GOF, prediction limits, residual checks — and refuse treating variable-selection shopping as today's LO.",
     "educational_intent": "Produce a cognitive move from hand least squares to software-mediated fit, inference, prediction, and residual diagnostics under CMP.",
     "learning_objective": "Use of appropriate software to fit a linear regression model to a data set and interpret the output: Perform statistical inference on the slope parameter; Describe the use of measures of goodness of fit of a linear regression model; Use a fitted linear relationship to predict a mean response or an individual response with confidence limits; Use residuals to check the suitability and validity of a linear regression model",
-    "concept_focus": "Fit → slope inference → GOF measures → mean vs individual prediction limits → residual checks → refuse variable-selection swallow.",
+    "concept_focus": "Software fit → slope inference → GOF measures → mean vs individual prediction limits → residual checks.",
     "prior_bridge": "Yesterday you obtained least squares estimates for the simple linear model (4.1.3). Today practises software fit and interpretation of that fitted relationship.",
     "why_now": "4.1.4 is contiguous after least squares. Examiners expect software output literacy — not GUI tourism and not jumping to selection theatre.",
-    "expected_benefit": "Study Progress for software fit/interpretation — not Topic Complete for 4.1.5.",
+    "expected_benefit": "You will be able to interpret a fitted linear regression: slope inference, GOF, prediction limits, and residual checks.",
     "explainability": "Assigned as Campaign Nu Day 4 because Continuity Front law keeps variable selection as the final Learning day.",
     "success_criteria": [
       "Closed-book, name the four interpretation moves in 4.1.4 (inference, GOF, prediction limits, residual checks).",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. A colleague says 'I ran best-subset selection, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. After fitting Y = β₀ + β₁x in software you see β̂₁, SE(β̂₁), R², and residual plots. (1) For a new x*, distinguish predicting the mean response E[Y|x*] from predicting an individual Y_new — which interval is typically wider? (2) Refuse: 'Running best-subset selection finishes software fit/inference' and 'residuals are optional after a significant slope.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.4.",
       "hints": [
@@ -155,15 +155,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "software",
-        "inference",
+        "mean response",
+        "prediction",
+        "wider",
         "residuals",
-        "not selection",
-        "today"
+        "refuse",
+        "selection"
       ],
       "explanation": "Checkpoint for 4.1.4.",
-      "model_answer": "Refuse: variable selection is tomorrow. Today requires software fit with slope inference, GOF, prediction limits, and residual checks.",
+      "model_answer": "(1) A mean-response interval covers E[Y|x*]; a prediction interval covers a new observation and is typically wider (adds residual variance). (2) Refuse: variable selection is a different LO; slope inference, GOF, prediction limits, and residual checks are all required after a fit.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

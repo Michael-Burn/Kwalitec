@@ -492,10 +492,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force Bayes' theorem on simple conditionals and refuse 'Bayesian means credibility premium on day one'.",
         edu="Produce Bayes' theorem application as the Continuity Front join hinge from Xi GLM into Topic 5.1.",
         lo_text="Use Bayes' theorem to calculate simple conditional probabilities.",
-        focus="Data/event → Bayes' theorem → posterior odds warrant → refuse prior/conjugate swallow.",
+        focus=(
+            "Prior / base rate → likelihood of data → Bayes update → posterior "
+            "probability → refuse inverse-probability confusion."
+        ),
         prior="Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1 — the next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
         why="5.1.1 opens this stretch at the natural next learning objective. Close it to avoid a cliff at Bayesian entry, keeping prior/posterior for the following session.",
-        benefit="Study Progress for Bayes' theorem — not Topic Complete for 5.1.2.",
+        benefit=(
+            "You will be able to apply Bayes' theorem to compute a simple "
+            "posterior probability and refuse inverse-probability errors."
+        ),
         explain="Day 1 opens Bayesian foundations at Bayes' theorem — the natural next step after classical GLM.",
         criteria=["Closed-book, state Bayes' theorem in probability form for a simple case.", "Compute or outline one simple conditional update.", "Refuse one 'Bayesian starts at credibility premium' claim."],
         tasks=["Sketch Bayes' theorem before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.1.", "Closed-book Knowledge Checks: theorem + refuse prior swallow."],
@@ -511,9 +517,18 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) State Bayes' theorem for events A and B. (2) What one simple conditional does 5.1.1 require you to update? (3) Name one reason this does not finish prior/posterior (5.1.2).",
         ar_kw=["Bayes", "conditional", "probability", "prior", "likelihood"],
         ar_model="Bayes' theorem updates P(A|B) from P(B|A), P(A), P(B). Today is theorem/conditionals — prior/posterior/conjugate are tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Bayes' theorem day finished conjugate priors and the exam journey.' Refuse in one sentence and name tomorrow's honest next.",
-        cp_kw=["refuse", "conjugate", "prior", "5.1.2", "spine", "until-exam"],
-        cp_model="Refuse: conjugate priors and until-exam are not finished. Today is 5.1.1 theorem; tomorrow is 5.1.2 prior/posterior/conjugate.",
+        cp_prompt=(
+            "Closed-book. Fraud screen: P(fraud)=0.02, P(flag|fraud)=0.90, "
+            "P(flag|genuine)=0.05. A claim is flagged. (1) Compute P(fraud|flag) "
+            "via Bayes. (2) Refuse: 'P(fraud|flag) equals P(flag|fraud)=0.90.'"
+        ),
+        cp_kw=["Bayes", "0.269", "base rate", "posterior", "refuse", "likelihood"],
+        cp_model=(
+            "(1) P(flag)=0.90·0.02 + 0.05·0.98 = 0.018 + 0.049 = 0.067. "
+            "P(fraud|flag)=0.018/0.067 ≈ 0.269. (2) Refuse: that equates "
+            "posterior with likelihood and ignores the base rate — Bayes "
+            "multiplies prior × likelihood and normalises."
+        ),
         reflect="Harvest Bayes' theorem wobble — prior/posterior opens tomorrow.",
     ),
     dict(
@@ -528,10 +543,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force prior/posterior/conjugate vocabulary with warrants and refuse 'conjugate means I already calculated the posterior'.",
         edu="Produce prior/posterior/conjugate as the contiguous hinge after Bayes' theorem.",
         lo_text="Explain prior distribution, posterior distribution and conjugate prior distribution.",
-        focus="Prior → likelihood → posterior; conjugate pairs → refuse calculation swallow.",
+        focus=(
+            "Prior → likelihood → posterior; conjugate pairs keep the posterior "
+            "in the same family."
+        ),
         prior="Yesterday you applied Bayes' theorem (5.1.1). Today continues Topic 5.1 at prior, posterior and conjugate.",
         why="5.1.2 unlocks lawful language before simple posterior calculations (5.1.3).",
-        benefit="Study Progress for prior/posterior/conjugate — not Topic Complete for 5.1.3.",
+        benefit=(
+            "You will be able to explain prior, posterior and conjugate prior "
+            "distributions with a concrete pair."
+        ),
         explain="Day 2 focuses the named learning objective — join keeps after theorem entry.",
         criteria=["Closed-book, define prior, posterior and conjugate prior.", "Name one conjugate pair example from CMP.", "Refuse one 'I already finished the posterior calculation' claim."],
         tasks=["Sketch prior → posterior chain before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.2.", "Closed-book Knowledge Checks: definitions + refuse calc swallow."],
@@ -547,9 +568,21 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) Define prior and posterior. (2) What makes a prior conjugate? (3) Why does naming conjugate not finish 5.1.3?",
         ar_kw=["prior", "posterior", "conjugate", "likelihood"],
         ar_model="Prior encodes belief before data; posterior after. Conjugate priors keep posterior in the same family. Calculation of a simple posterior is tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Conjugate prior finished the posterior calculation.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "conjugate", "posterior", "5.1.3"],
-        cp_model="Refuse: conjugate language ≠ finished simple posterior calc. Tomorrow is 5.1.3.",
+        cp_prompt=(
+            "Closed-book. (1) In one sentence each, define prior, posterior, and "
+            "conjugate prior. Name one conjugate pair used in actuarial "
+            "modelling. (2) Refuse: 'Naming a conjugate pair finishes obtaining "
+            "the numerical posterior for a parameter.'"
+        ),
+        cp_kw=["prior", "posterior", "conjugate", "Beta", "Binomial", "refuse"],
+        cp_model=(
+            "(1) Prior: belief about θ before data. Posterior: updated belief "
+            "after data. Conjugate: a prior family closed under updating so the "
+            "posterior stays in the same family. Example: Beta–Binomial or "
+            "Gamma–Poisson. (2) Refuse: conjugate language structures the update; "
+            "you still must obtain the actual posterior (parameters/distribution) "
+            "from prior + data."
+        ),
         reflect="Harvest prior/posterior wobble — simple posterior calc opens tomorrow.",
     ),
     dict(
@@ -564,10 +597,13 @@ LEARNING = LEARNING = [
         tutor="Today I will force a simple posterior calculation path and refuse 'posterior means point estimate under loss'.",
         edu="Produce simple posterior calculation as contiguous after prior/conjugate language.",
         lo_text="Obtain the posterior distribution for a parameter in simple cases.",
-        focus="Prior + data → posterior distribution → refuse loss/estimator swallow.",
+        focus="Prior + data → posterior distribution in a simple conjugate case.",
         prior="Yesterday you explained prior/posterior/conjugate (5.1.2). Today calculates a simple posterior.",
         why="5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
-        benefit="Study Progress for simple posterior — not Topic Complete for 5.1.4.",
+        benefit=(
+            "You will be able to obtain the posterior distribution for a "
+            "parameter in a simple conjugate case."
+        ),
         explain="Day 3 continues Bayesian foundations — calculation after vocabulary.",
         criteria=["Closed-book, outline steps to obtain a simple posterior.", "Name the object obtained (distribution, not yet loss estimate).", "Refuse one loss-function swallow."],
         tasks=["Sketch posterior update before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.3.", "Closed-book Knowledge Checks: posterior steps + refuse loss swallow."],
@@ -583,9 +619,18 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) What inputs yield a simple posterior? (2) What object do you obtain? (3) Why is a loss-based point estimate not today's primary?",
         ar_kw=["posterior", "prior", "likelihood", "parameter", "distribution"],
         ar_model="Prior and likelihood yield a posterior distribution for the parameter. Loss-based estimators are tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Getting the posterior finished the Bayesian estimator under squared error.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "loss", "estimator", "5.1.4", "posterior"],
-        cp_model="Refuse: posterior distribution ≠ loss-based estimator. Tomorrow is 5.1.4.",
+        cp_prompt=(
+            "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. "
+            "(1) State the posterior distribution (parameters). (2) Refuse: "
+            "'Having the posterior distribution finishes choosing the Bayesian "
+            "point estimator under squared-error loss.'"
+        ),
+        cp_kw=["Beta(5,9)", "posterior", "refuse", "squared-error", "estimator"],
+        cp_model=(
+            "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse: the posterior "
+            "is the full distribution; a loss-based point estimator (e.g. "
+            "posterior mean under squared-error loss) is a further step."
+        ),
         reflect="Harvest posterior-calc wobble — loss/estimators open tomorrow.",
     ),
     dict(
@@ -600,10 +645,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force loss → estimator mapping and refuse 'estimator equals credible interval'.",
         edu="Produce loss-based Bayesian estimators as contiguous after simple posterior.",
         lo_text="Use simple loss functions to derive Bayesian estimates of parameters.",
-        focus="Loss function → Bayesian estimator → refuse credible-interval swallow.",
+        focus=(
+            "Loss function → Bayesian point estimator (mean / median) → refuse "
+            "conflating with credible intervals."
+        ),
         prior="Yesterday you obtained a simple posterior (5.1.3). Today derives estimators under simple loss.",
         why="5.1.4 precedes credible intervals (5.1.5).",
-        benefit="Study Progress for loss/estimators — not Topic Complete for 5.1.5.",
+        benefit=(
+            "You will be able to derive Bayesian point estimators from simple "
+            "loss functions."
+        ),
         explain="Day 4 continues Bayesian foundations — estimator after posterior.",
         criteria=["Closed-book, name at least two simple loss functions and their estimator link.", "State that today's object is a point estimate under loss.", "Refuse one credible-interval swallow."],
         tasks=["Sketch loss → estimator before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.4.", "Closed-book Knowledge Checks: loss/estimator + refuse interval swallow."],
@@ -619,9 +670,19 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) Name two simple loss functions. (2) What estimator does each typically justify? (3) Why are credible intervals not today's primary?",
         ar_kw=["loss", "squared", "absolute", "estimator", "posterior"],
         ar_model="Squared/absolute (and similar) loss map to posterior mean/median-type estimators as taught. Credible intervals are tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'The Bayesian estimator finished the credible interval.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "credible", "interval", "5.1.5", "estimator"],
-        cp_model="Refuse: point estimator under loss ≠ credible interval. Tomorrow is 5.1.5.",
+        cp_prompt=(
+            "Closed-book. Posterior for θ is available. (1) Under squared-error "
+            "loss, what Bayesian point estimator do you use, and under "
+            "absolute-error loss? (2) Refuse: 'The Bayesian point estimator under "
+            "loss is the same object as a credible interval.'"
+        ),
+        cp_kw=["posterior mean", "median", "squared-error", "refuse", "credible"],
+        cp_model=(
+            "(1) Squared-error loss → posterior mean; absolute-error loss → "
+            "posterior median. (2) Refuse: a point estimator summarises the "
+            "posterior under a loss; a credible interval is a posterior "
+            "probability set for θ — different objects."
+        ),
         reflect="Harvest loss/estimator wobble — credible intervals open tomorrow.",
     ),
     dict(
@@ -636,10 +697,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force credible-interval construction from the posterior and refuse 'credible equals confidence interval under frequentist law'.",
         edu="Produce credible intervals as contiguous after loss-based estimators.",
         lo_text="Construct credible intervals in simple cases.",
-        focus="Posterior → credible interval → refuse credibility-premium swallow.",
+        focus=(
+            "Posterior → credible interval construction → refuse copying "
+            "frequentist CI coverage slogans."
+        ),
         prior="Yesterday you derived loss-based estimators (5.1.4). Today constructs credible intervals.",
         why="5.1.5 completes core Bayesian estimation objects before credibility theory.",
-        benefit="Study Progress for credible intervals — not Topic Complete for 5.1.6.",
+        benefit=(
+            "You will be able to construct a credible interval in a simple case "
+            "and interpret it as a posterior probability statement."
+        ),
         explain="Day 5 continues Bayesian foundations — intervals after estimators.",
         criteria=["Closed-book, state what a credible interval asserts about the parameter.", "Outline construction in a simple case.", "Refuse one credibility-premium swallow."],
         tasks=["Sketch credible-interval idea before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.5.", "Closed-book Knowledge Checks: interval + refuse premium swallow."],
@@ -655,9 +722,20 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) What does a credible interval say? (2) What posterior object do you use? (3) Why is credibility premium not today's primary?",
         ar_kw=["credible", "interval", "posterior", "probability"],
         ar_model="A credible interval is a posterior probability statement for the parameter. Credibility premium formula is tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Credible intervals finished credibility premiums.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "credibility", "premium", "5.1.6", "credible"],
-        cp_model="Refuse: credible intervals ≠ credibility premium. Tomorrow is 5.1.6.",
+        cp_prompt=(
+            "Closed-book. Posterior for a risk parameter θ is Normal(0.10, "
+            "0.02²). (1) Construct an approximate 95% equal-tailed credible "
+            "interval for θ. (2) Refuse: 'A 95% credible interval means that in "
+            "repeated samples the random interval covers θ 95% of the time' "
+            "without noting the Bayesian reading."
+        ),
+        cp_kw=["0.0608", "0.1392", "credible", "posterior", "refuse", "confidence"],
+        cp_model=(
+            "(1) ≈ 0.10 ± 1.96·0.02 → about (0.0608, 0.1392). (2) Refuse: that is "
+            "the frequentist coverage slogan for a confidence interval; a "
+            "credible interval is a posterior probability statement about θ given "
+            "the data."
+        ),
         reflect="Harvest credible-interval wobble — credibility premium opens tomorrow.",
     ),
     dict(
@@ -672,10 +750,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force premium = Z·mean + (1−Z)·collateral structure and refuse 'Z finished Bayesian credibility theory'.",
         edu="Produce credibility premium/factor as the entry to credibility theory after Bayesian estimation objects.",
         lo_text="Use the credibility premium formula and explain the role of the credibility factor.",
-        focus="Individual + collateral → Z → credibility premium → refuse Bayesian-credibility swallow.",
+        focus=(
+            "Individual experience + collateral mean → credibility factor Z → "
+            "credibility premium."
+        ),
         prior="Yesterday you constructed credible intervals (5.1.5). Today opens credibility theory at the premium formula.",
         why="5.1.6 opens credibility theory before Bayesian vs EB approaches.",
-        benefit="Study Progress for premium/factor — not Topic Complete for 5.1.7.",
+        benefit=(
+            "You will be able to compute a credibility premium and explain the "
+            "role of the credibility factor Z."
+        ),
         explain="Day 6 continues Bayesian foundations — premium formula before approach LO.",
         criteria=["Closed-book, write the credibility premium formula with Z.", "State what Z balances.", "Refuse one 'Bayesian credibility finished today' claim."],
         tasks=["Sketch premium formula before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.6.", "Closed-book Knowledge Checks: formula + refuse 5.1.7 swallow."],
@@ -691,9 +775,19 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) Write the credibility premium with Z. (2) What does Z weight? (3) Why is Bayesian credibility approach not today's primary?",
         ar_kw=["credibility", "premium", "Z", "factor", "collateral"],
         ar_model="Premium mixes individual experience and collateral mean via Z. Bayesian approach to credibility is tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Writing Z finished Bayesian credibility theory.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "Bayesian", "credibility", "5.1.7", "Z"],
-        cp_model="Refuse: premium/factor ≠ Bayesian credibility approach. Tomorrow is 5.1.7.",
+        cp_prompt=(
+            "Closed-book. Individual mean claim X̄ = 1200, collateral/manual mean "
+            "μ = 1000, credibility factor Z = 0.4. (1) Compute the credibility "
+            "premium and state what Z represents. (2) Refuse: 'Always use full "
+            "credibility Z = 1.'"
+        ),
+        cp_kw=["1080", "Z", "credibility", "refuse", "full credibility"],
+        cp_model=(
+            "(1) Premium = Z·X̄ + (1−Z)·μ = 0.4·1200 + 0.6·1000 = 480 + 600 = "
+            "1080. Z is the weight on the individual experience (versus the "
+            "collateral mean). (2) Refuse: with limited or noisy data, Z < 1 "
+            "shrinks toward the collateral/manual mean."
+        ),
         reflect="Harvest premium/factor wobble — Bayesian credibility opens tomorrow.",
     ),
     dict(
@@ -708,10 +802,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force Bayesian credibility premiums in simple cases and refuse 'Bayesian credibility finished Empirical Bayes'.",
         edu="Produce Bayesian credibility as contiguous after the premium formula.",
         lo_text="Apply the Bayesian approach to credibility theory and calculate credibility premiums in simple cases.",
-        focus="Bayesian credibility setup → premium in simple case → refuse EB swallow.",
+        focus=(
+            "Bayesian credibility with known structural/prior parameters → Z and "
+            "μ → credibility premium."
+        ),
         prior="Yesterday you used the credibility premium formula (5.1.6). Today applies the Bayesian approach.",
         why="5.1.7 precedes Empirical Bayes (5.1.8) contrast.",
-        benefit="Study Progress for Bayesian credibility — not Topic Complete for 5.1.8.",
+        benefit=(
+            "You will be able to apply the Bayesian approach to credibility and "
+            "compute a premium in a simple case."
+        ),
         explain="Day 7 continues Bayesian foundations — Bayesian approach before EB.",
         criteria=["Closed-book, outline Bayesian credibility inputs in a simple case.", "State how today's approach uses prior structure.", "Refuse one Empirical Bayes swallow."],
         tasks=["Sketch Bayesian credibility path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.7.", "Closed-book Knowledge Checks: Bayesian credibility + refuse EB swallow."],
@@ -727,9 +827,21 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) What distinguishes the Bayesian credibility approach in simple cases? (2) What premium object do you calculate? (3) Why is EB not today's primary?",
         ar_kw=["Bayesian", "credibility", "prior", "premium"],
         ar_model="Bayesian credibility uses an explicit prior structure for risk parameters. Empirical Bayes is tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'Bayesian credibility finished Empirical Bayes.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "Empirical", "Bayes", "5.1.8"],
-        cp_model="Refuse: Bayesian credibility ≠ Empirical Bayes. Tomorrow is 5.1.8.",
+        cp_prompt=(
+            "Closed-book. In a simple Bayesian credibility setup with known "
+            "structural parameters, the credibility premium takes the form Z·X̄ + "
+            "(1−Z)·μ. (1) What do the prior/structural assumptions supply that "
+            "lets you compute Z and μ? (2) Refuse: 'Applying Bayesian credibility "
+            "finishes the Empirical Bayes approach.'"
+        ),
+        cp_kw=["structural", "prior", "Z", "μ", "refuse", "Empirical Bayes"],
+        cp_model=(
+            "(1) The prior (or known structural distribution) supplies the "
+            "overall mean and variance components so μ and Z are determined "
+            "theoretically, then combined with observed X̄. (2) Refuse: Empirical "
+            "Bayes estimates those structural parameters from data — a different "
+            "approach from treating them as known in the Bayesian calculation."
+        ),
         reflect="Harvest Bayesian-credibility wobble — EB opens tomorrow.",
     ),
     dict(
@@ -744,10 +856,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force EB credibility premiums in simple cases and refuse 'EB finished the contrast LO'.",
         edu="Produce Empirical Bayes credibility as contiguous after Bayesian credibility.",
         lo_text="Apply the Empirical Bayes approach to credibility theory and derive credibility premiums in simple cases.",
-        focus="EB estimation of structural parameters → premium → refuse contrast swallow.",
+        focus=(
+            "Estimate structural parameters from collective data → plug into "
+            "credibility formula → EB premium."
+        ),
         prior="Yesterday you applied Bayesian credibility (5.1.7). Today applies Empirical Bayes.",
         why="5.1.8 sets up the contrast LO 5.1.9.",
-        benefit="Study Progress for EB credibility — not Topic Complete for 5.1.9.",
+        benefit=(
+            "You will be able to apply Empirical Bayes to estimate structural "
+            "parameters and form a credibility premium."
+        ),
         explain="Day 8 continues Bayesian foundations — EB before contrast.",
         criteria=["Closed-book, outline how EB uses data for structural parameters.", "State one EB premium move in a simple case.", "Refuse one contrast-finished claim."],
         tasks=["Sketch EB path before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.8.", "Closed-book Knowledge Checks: EB + refuse contrast swallow."],
@@ -763,9 +881,20 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) How does EB obtain structural parameters differently from a fully specified Bayesian prior? (2) What premium do you derive? (3) Why is contrast not today's primary?",
         ar_kw=["Empirical", "Bayes", "credibility", "structural", "data"],
         ar_model="EB estimates structural parameters from data rather than a fully specified prior alone. Contrast LO is tomorrow.",
-        cp_prompt="Closed-book. A colleague says 'EB finished the Bayes vs EB contrast.' Refuse and name tomorrow.",
-        cp_kw=["refuse", "contrast", "5.1.9", "Empirical"],
-        cp_model="Refuse: applying EB ≠ finished contrast. Tomorrow is 5.1.9.",
+        cp_prompt=(
+            "Closed-book. (1) Outline the Empirical Bayes move to obtain a "
+            "credibility premium when structural parameters are unknown. (2) "
+            "Refuse: 'Computing one EB premium finishes explaining how Bayesian "
+            "and Empirical Bayes differ in assumptions.'"
+        ),
+        cp_kw=["Empirical Bayes", "structural", "estimate", "Ẑ", "refuse", "contrast"],
+        cp_model=(
+            "(1) Estimate structural parameters (e.g. overall mean and "
+            "process/variance components) from the collective data, plug them "
+            "into the credibility formula to get Ẑ and μ̂, then form Ẑ·X̄ + "
+            "(1−Ẑ)·μ̂ for the risk. (2) Refuse: applying EB is not the same LO "
+            "as contrasting the assumption sets of Bayes vs EB."
+        ),
         reflect="Harvest EB wobble — contrast opens tomorrow.",
     ),
     dict(
@@ -780,10 +909,16 @@ LEARNING = LEARNING = [
         tutor="Today I will force Bayes vs EB assumption contrast and refuse 'Topic 5.1 finished the exam journey / first-pass spine'.",
         edu="Produce Bayes vs EB contrast as the Topic 5.1 Learning close before Revision.",
         lo_text="Understand the differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-        focus="Bayes assumptions ↔ EB assumptions → refuse equating the contrast with Topic 5.1 mastery.",
+        focus=(
+            "Bayesian assumptions (prior/structural known in model) ↔ EB "
+            "assumptions (structural parameters estimated from data)."
+        ),
         prior="Yesterday you applied Empirical Bayes (5.1.8). Today closes Topic 5.1 Learning at the contrast.",
         why="Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
-        benefit="You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
+        benefit=(
+            "You will be able to state how Bayesian and Empirical Bayes differ in "
+            "assumptions and what each is entitled to claim."
+        ),
         explain="Day 9 focuses the named learning objective — join closes Topic 5.1 Learning before Revision — not spine trophy.",
         criteria=["Closed-book, name at least two assumption differences between Bayes and EB.", "State one warrant why approaches can diverge.", "Refuse one spine / until-exam / Wave 0 clearance claim."],
         tasks=["Sketch contrast table before CMP.", "Complete Guided Reading through CMP treatment of Syllabus 5.1.9.", "Closed-book Knowledge Checks: contrast + refuse spine swallow."],
@@ -799,9 +934,20 @@ LEARNING = LEARNING = [
         ar_prompt="Closed-book. (1) Name two assumption differences Bayes vs EB. (2) Why might premiums differ? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
         ar_kw=["Bayes", "Empirical", "assumption", "prior", "data"],
         ar_model="Bayes uses a specified prior structure; EB estimates structural parameters from data — assumptions differ. Spine PASS and until-exam remain out of scope.",
-        cp_prompt="Closed-book. A colleague says 'Finishing Bayes vs EB means Topic 5.1 is exam-ready and Bayesian work can stop.' Refuse and name tomorrow's honest next (Revision of the Bayesian chain).",
-        cp_kw=["refuse", "spine", "until-exam", "revision", "Wave 0"],
-        cp_model="Refuse: spine / until-exam are not finished. Today is contrast; tomorrow is CO-R1 Revision of 5.1 — not a trophy claim.",
+        cp_prompt=(
+            "Closed-book. (1) State one key assumption difference between a fully "
+            "Bayesian credibility approach and Empirical Bayes. (2) Refuse: "
+            "'Bayesian and Empirical Bayes are the same method with different "
+            "names' and 'contrasting them means all of Topic 5.1 is finished.'"
+        ),
+        cp_kw=["Bayesian", "Empirical Bayes", "structural", "estimate", "refuse", "assumptions"],
+        cp_model=(
+            "(1) Bayesian treats structural/prior parameters as specified within "
+            "a prior model; Empirical Bayes estimates those structural parameters "
+            "from the observed collective data. (2) Refuse: they differ in how "
+            "structural knowledge enters; a contrast does not replace the "
+            "separate calculation LOs across Topic 5.1."
+        ),
         reflect="Harvest contrast wobble — Revision protects the 5.1 chain tomorrow.",
     ),
 ]

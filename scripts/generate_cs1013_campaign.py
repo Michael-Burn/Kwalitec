@@ -481,8 +481,8 @@ LEARNING = [
         ),
         lo_text="Response and explanatory variables",
         focus=(
-            "Data sketch → name Y → name X's → refuse column-soup modelling → refuse "
-            "simple/multiple swallow."
+            "Data sketch → name response Y → name explanatory X's with warrants → "
+            "refuse column-soup modelling."
         ),
         prior=(
             "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. "
@@ -494,7 +494,10 @@ LEARNING = [
             "4.1.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at regression roles, keeping simple/multiple models for the following session."
         ),
-        benefit="Study Progress for variable roles — not Topic Complete for 4.1.2.",
+        benefit=(
+            "You will be able to name response and explanatory variables with "
+            "modelling warrants for a stated actuarial sketch."
+        ),
         explain=(
             "Day 1 opens linear regression at response vs explanatory roles — "
             "the natural next step after hypothesis testing."
@@ -560,13 +563,20 @@ LEARNING = [
             "model forms are tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I listed every column as a predictor, so I "
-            "finished today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Motor book: you want to model claim severity. Columns "
+            "include age, sum insured, claim amount, NCD discount, and claim "
+            "count. (1) Name the response and two explanatory variables with a "
+            "one-sentence warrant each. (2) Refuse: 'Put every numeric column on "
+            "the right-hand side — that finishes variable-role modelling.'"
         ),
-        cp_kw=["refuse", "response", "explanatory", "not every", "column", "today"],
+        cp_kw=["response", "explanatory", "severity", "claim amount", "refuse", "column"],
         cp_model=(
-            "Refuse: column-soup is not modelling. Today requires deliberate response vs "
-            "explanatory naming with justification."
+            "(1) Response Y = claim amount (severity — the outcome to "
+            "explain/predict). Explanatory examples: age and sum insured "
+            "(predictors of severity). Claim count is a frequency outcome, not "
+            "automatically an X for severity. (2) Refuse: column-soup is not "
+            "modelling — choose Y for the modelling question, then choose X's "
+            "with warrants."
         ),
         reflect="Harvest role-naming wobble — keep simple/multiple forms out of tonight's claim.",
     ),
@@ -604,8 +614,8 @@ LEARNING = [
             "linear regression model (with several explanatory variables)"
         ),
         focus=(
-            "One X → simple linear form → several X's → multiple linear form → refuse "
-            "least-squares swallow."
+            "One explanatory variable → simple linear form → several explanatory "
+            "variables → multiple linear form."
         ),
         prior=(
             "Yesterday you named response and explanatory variables (4.1.1). Today continues "
@@ -615,7 +625,10 @@ LEARNING = [
             "4.1.2 is contiguous after roles. Without model forms, least squares and "
             "software fit have no structure to estimate."
         ),
-        benefit="Study Progress for model forms — not Topic Complete for 4.1.3.",
+        benefit=(
+            "You will be able to write simple and multiple linear regression "
+            "model forms and distinguish them from OLS estimation."
+        ),
         explain=(
             "Day 2 focuses the named learning objective — estimation as tomorrow."
         ),
@@ -676,13 +689,18 @@ LEARNING = [
             "additional predictors jointly. Least squares estimation is tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I wrote the least-squares formulae, so I finished "
-            "today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Claim severity Y with predictors age (x₁) and sum "
+            "insured (x₂). (1) Write the simple linear model using only age, and "
+            "the multiple linear model using both predictors. (2) Refuse: "
+            "'Writing the least-squares formulae for β̂ finishes stating the "
+            "model forms.'"
         ),
-        cp_kw=["refuse", "simple", "multiple", "form", "not least squares", "today"],
+        cp_kw=["simple", "multiple", "β₀", "age", "refuse", "least squares"],
         cp_model=(
-            "Refuse: least squares is tomorrow. Today requires stating simple vs multiple "
-            "linear model forms."
+            "(1) Simple: Y = β₀ + β₁ age + ε. Multiple: Y = β₀ + β₁ age + β₂ "
+            "sum_insured + ε. (2) Refuse: least squares is the estimation "
+            "criterion; today is stating the simple vs multiple linear model "
+            "forms."
         ),
         reflect="Harvest form-statement wobble — keep least squares out of tonight's claim.",
     ),
@@ -719,8 +737,8 @@ LEARNING = [
             "linear regression model"
         ),
         focus=(
-            "Residual → sum of squares → least-squares slope & intercept → refuse "
-            "software-fit swallow."
+            "Residual → sum of squared residuals → least-squares slope and "
+            "intercept formulae."
         ),
         prior=(
             "Yesterday you distinguished simple and multiple linear models (4.1.2). Today "
@@ -730,7 +748,10 @@ LEARNING = [
             "4.1.3 is contiguous after model forms. Without least squares, software fit "
             "is black-box theatre."
         ),
-        benefit="Study Progress for least squares — not Topic Complete for 4.1.4.",
+        benefit=(
+            "You will be able to state the OLS criterion and the closed-form "
+            "slope and intercept for simple linear regression."
+        ),
         explain=(
             "Day 3 focuses the named learning objective — software interpretation as tomorrow."
         ),
@@ -790,13 +811,18 @@ LEARNING = [
             "tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I fitted the model in software, so I finished "
-            "today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. Simple linear model Y = β₀ + β₁x + ε with data pairs "
+            "(xᵢ, yᵢ). (1) State the least-squares criterion and the closed-form "
+            "slope (in terms of sums or covariance). (2) Refuse: 'Least squares "
+            "is just clicking Fit' and 'the OLS slope equals Corr(X,Y).'"
         ),
-        cp_kw=["refuse", "least squares", "slope", "intercept", "not software", "today"],
+        cp_kw=["least squares", "minimise", "slope", "intercept", "refuse", "correlation"],
         cp_model=(
-            "Refuse: software fit is tomorrow. Today requires least squares estimates of "
-            "slope and intercept in the simple linear model."
+            "(1) Choose β₀, β₁ to minimise Σ(yᵢ − β₀ − β₁xᵢ)². Slope β̂₁ = "
+            "Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² = Cov̂(X,Y)/Var̂(X); intercept β̂₀ = ȳ − "
+            "β̂₁ x̄. (2) Refuse: Fit implements OLS but is not the criterion; "
+            "Corr(X,Y) is dimensionless association, not the OLS slope (which "
+            "scales by SD_Y/SD_X)."
         ),
         reflect="Harvest least-squares criterion wobble — keep software day out of tonight's claim.",
     ),
@@ -840,8 +866,8 @@ LEARNING = [
             "validity of a linear regression model"
         ),
         focus=(
-            "Fit → slope inference → GOF measures → mean vs individual prediction limits → "
-            "residual checks → refuse variable-selection swallow."
+            "Software fit → slope inference → GOF measures → mean vs individual "
+            "prediction limits → residual checks."
         ),
         prior=(
             "Yesterday you obtained least squares estimates for the simple linear model "
@@ -851,7 +877,10 @@ LEARNING = [
             "4.1.4 is contiguous after least squares. Examiners expect software output "
             "literacy — not GUI tourism and not jumping to selection theatre."
         ),
-        benefit="Study Progress for software fit/interpretation — not Topic Complete for 4.1.5.",
+        benefit=(
+            "You will be able to interpret a fitted linear regression: slope "
+            "inference, GOF, prediction limits, and residual checks."
+        ),
         explain=(
             "Day 4 focuses the named learning objective — variable selection as the final Learning day."
         ),
@@ -917,13 +946,20 @@ LEARNING = [
             "suitability/validity. Variable selection is tomorrow's LO."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I ran best-subset selection, so I finished "
-            "today's LO.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. After fitting Y = β₀ + β₁x in software you see β̂₁, "
+            "SE(β̂₁), R², and residual plots. (1) For a new x*, distinguish "
+            "predicting the mean response E[Y|x*] from predicting an individual "
+            "Y_new — which interval is typically wider? (2) Refuse: 'Running "
+            "best-subset selection finishes software fit/inference' and "
+            "'residuals are optional after a significant slope.'"
         ),
-        cp_kw=["refuse", "software", "inference", "residuals", "not selection", "today"],
+        cp_kw=["mean response", "prediction", "wider", "residuals", "refuse", "selection"],
         cp_model=(
-            "Refuse: variable selection is tomorrow. Today requires software fit with "
-            "slope inference, GOF, prediction limits, and residual checks."
+            "(1) A mean-response interval covers E[Y|x*]; a prediction interval "
+            "covers a new observation and is typically wider (adds residual "
+            "variance). (2) Refuse: variable selection is a different LO; slope "
+            "inference, GOF, prediction limits, and residual checks are all "
+            "required after a fit."
         ),
         reflect=(
             "Harvest prediction-limit or residual-check wobble — keep selection out of "
@@ -962,8 +998,8 @@ LEARNING = [
             "Measures of model fit to select an appropriate set of explanatory variables"
         ),
         focus=(
-            "Candidate sets → fit measures → select appropriate explanatory set → refuse "
-            "treating selection as GLM or Bayes finished."
+            "Candidate explanatory sets → fit measures (e.g. adjusted R², "
+            "AIC/BIC) → select an appropriate set."
         ),
         prior=(
             "Yesterday you practised software fit, inference, prediction, and residual "
@@ -972,7 +1008,10 @@ LEARNING = [
         why=(
             "Finish Topic 4.1 by selecting variables using fit measures — then revise before moving into GLM."
         ),
-        benefit="Study Progress for variable selection — not Topic Complete for 4.2.",
+        benefit=(
+            "You will be able to use measures of model fit to select an "
+            "appropriate set of explanatory variables."
+        ),
         explain=(
             "Day 5 closes Topic 4.1 at variable selection — GLM and Bayesian work come later."
         ),
@@ -1037,13 +1076,20 @@ LEARNING = [
             "spine PASS are out of scope."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'Variable selection finished GLM and the exam "
-            "journey.' Refuse in one sentence and name tomorrow's honest next (Revision)."
+            "Closed-book. Two nested linear models for claim severity: M1 uses "
+            "age only; M2 adds sum insured and NCD. (1) Name two fit measures you "
+            "could use to choose between candidate explanatory sets and what each "
+            "rewards or penalises. (2) Refuse: 'Keep every term with p<0.05 and "
+            "selection is done' and 'variable selection finishes GLM modelling.'"
         ),
-        cp_kw=["refuse", "4.2", "spine", "revision", "selection", "until-exam"],
+        cp_kw=["adjusted R²", "AIC", "BIC", "selection", "refuse", "p-value"],
         cp_model=(
-            "Refuse: GLM / spine / until-exam are not finished. Today is variable selection "
-            "for linear models; tomorrow is CN-R1 Revision of 4.1 — not a trophy claim."
+            "(1) e.g. adjusted R² (rewards fit while adjusting for unused "
+            "complexity vs raw R²); AIC/BIC (likelihood fit with a "
+            "parameter-count penalty). (2) Refuse: mechanical p-value chopping is "
+            "not a complete selection warrant; GLM is a different topic — today "
+            "is selecting explanatory variables for linear models via fit "
+            "measures."
         ),
         reflect=(
             "Harvest selection / fit-measure wobble — Revision protects the 4.1 chain tomorrow."

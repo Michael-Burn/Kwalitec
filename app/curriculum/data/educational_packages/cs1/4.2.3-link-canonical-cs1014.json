@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force link vs canonical-link discrimination and refuse treating factor coding as today's LO.",
     "educational_intent": "Produce a cognitive move from moments/scale to lawful link and canonical link under CMP.",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
-    "concept_focus": "g(μ)=η → link role → canonical special case per family → refuse factors swallow.",
+    "concept_focus": "g(μ)=η → link role → canonical link as natural-parameter pairing per family.",
     "prior_bridge": "Yesterday you evaluated mean/variance/scale (4.2.2). Today continues Topic 4.2 at link functions.",
     "why_now": "4.2.3 is contiguous after moments. Without link, the linear predictor has no mean map.",
-    "expected_benefit": "Study Progress for link/canonical — not Topic Complete for 4.2.4.",
+    "expected_benefit": "You will be able to explain the link and canonical link for GLM families and refuse software-default myths.",
     "explainability": "Assigned as Campaign Xi Day 3 because Continuity Front law keeps factors/interactions as tomorrow.",
     "success_criteria": [
       "Closed-book, state what a link function maps.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.3-cp-01",
       "title": "Checkpoint: 4.2.3",
-      "prompt": "Closed-book. A colleague says 'I dummy-coded factors, so I finished today's LO.' Refuse and restate what 4.2.3 requires.",
+      "prompt": "Closed-book. (1) For binomial and gamma responses, name the canonical link and justify each from the mean's natural range. (2) Refuse: 'Whatever link the software defaults to is automatically the canonical link.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.3.",
       "hints": [
@@ -154,14 +154,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "link",
+        "logit",
+        "binomial",
+        "gamma",
         "canonical",
-        "not factors",
-        "today"
+        "refuse",
+        "default"
       ],
       "explanation": "Checkpoint for 4.2.3.",
-      "model_answer": "Refuse: factors are tomorrow. Today requires explaining link and canonical link for the 4.2.1 families.",
+      "model_answer": "(1) Binomial: logit — μ ∈ (0,1) and logit maps to ℝ for η. Gamma: reciprocal (negative-reciprocal canonical form as in CMP) — μ > 0, mapping the positive mean onto the η scale for the gamma exponential-family form. (2) Refuse: a software default needs a warrant; canonical means the link that equates η with the natural parameter, not whatever the GUI chose.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force mean/variance/variance-function/scale statements per family and refuse treating link choice as today's LO.",
     "educational_intent": "Produce a cognitive move from family membership to lawful moment and scale structure under CMP.",
     "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
-    "concept_focus": "Family → E(Y) → Var(Y) → variance function → scale → refuse link swallow.",
+    "concept_focus": "Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
     "prior_bridge": "Yesterday you placed responses in the exponential family (4.2.1). Today continues Topic 4.2 at moments and scale — still Continuity Front join.",
     "why_now": "4.2.2 is contiguous after family placement. Without moments/scale, link and deviance lack distributional warrant.",
-    "expected_benefit": "Study Progress for moments/scale — not Topic Complete for 4.2.3.",
+    "expected_benefit": "You will be able to state mean, variance, variance function and scale for the standard GLM families.",
     "explainability": "Assigned as Campaign Xi Day 2 because LO-per-day Continuity Front law keeps link functions as tomorrow.",
     "success_criteria": [
       "Closed-book, for one named family state mean and variance (or variance function).",
@@ -145,7 +145,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.2-cp-01",
       "title": "Checkpoint: 4.2.2",
-      "prompt": "Closed-book. A colleague says 'I picked logit, so I finished today's LO.' Refuse and restate what 4.2.2 requires.",
+      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(μ) for each. (2) Refuse: 'Choosing the logit link finishes stating mean, variance, variance function and scale.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.2.",
       "hints": [
@@ -153,15 +153,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "mean",
-        "variance",
+        "Poisson",
+        "Normal",
+        "variance function",
         "scale",
-        "not link",
-        "today"
+        "refuse",
+        "link"
       ],
       "explanation": "Checkpoint for 4.2.2.",
-      "model_answer": "Refuse: link is tomorrow. Today requires mean, variance, variance function and scale for the GLM families.",
+      "model_answer": "(1) Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². (2) Refuse: the link maps μ to η; today requires the mean/variance/scale structure of the response family.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

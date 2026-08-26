@@ -98,9 +98,12 @@ def test_overview_briefing_keeps_real_topic_fields() -> None:
     assert briefing["learning_objectives"]
     assert any("exponential" in o.lower() for o in briefing["learning_objectives"])
     concepts = tuple(c.lower() for c in briefing["concept_focus"])
-    assert any("named response" in c for c in concepts)
-    assert any("exponential family" in c for c in concepts)
-    assert any("package-name glm" in c or "refuse" in c for c in concepts)
+    # Hyphen and space are equivalent for topic phrases (e.g. "exponential-family"
+    # vs "exponential family") — do not freeze one orthography as a content contract.
+    concepts_norm = tuple(c.replace("-", " ") for c in concepts)
+    assert any("named response" in c for c in concepts_norm)
+    assert any("exponential family" in c for c in concepts_norm)
+    assert any("package name glm" in c or "refuse" in c for c in concepts_norm)
     checkpoint = str(briefing["checkpoint_preview"])
     reflection = str(briefing["reflection_preview"])
     assert "Closed-book" in checkpoint

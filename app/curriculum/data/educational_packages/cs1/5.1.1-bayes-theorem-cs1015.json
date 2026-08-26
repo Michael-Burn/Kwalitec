@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force Bayes' theorem on simple conditionals and refuse 'Bayesian means credibility premium on day one'.",
     "educational_intent": "Produce Bayes' theorem application as the Continuity Front join hinge from Xi GLM into Topic 5.1.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
-    "concept_focus": "Data/event → Bayes' theorem → posterior odds warrant → refuse prior/conjugate swallow.",
+    "concept_focus": "Prior / base rate → likelihood of data → Bayes update → posterior probability → refuse inverse-probability confusion.",
     "prior_bridge": "Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1 — the next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
-    "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals \u2014 prior/posterior language comes next.",
-    "expected_benefit": "Study Progress for Bayes' theorem — not Topic Complete for 5.1.2.",
+    "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals — prior/posterior language comes next.",
+    "expected_benefit": "You will be able to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors.",
     "explainability": "Assigned as Campaign Omicron Day 1 because CE-001 / EP-001 Continuity Front names 5.1 as the handoff from Xi after Topic 4.2 CF join closes.",
     "success_criteria": [
       "Closed-book, state Bayes' theorem in probability form for a simple case.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. A colleague says 'Bayes' theorem day finished conjugate priors and the exam journey.' Refuse in one sentence and name tomorrow's honest next.",
+      "prompt": "Closed-book. Fraud screen: P(fraud)=0.02, P(flag|fraud)=0.90, P(flag|genuine)=0.05. A claim is flagged. (1) Compute P(fraud|flag) via Bayes. (2) Refuse: 'P(fraud|flag) equals P(flag|fraud)=0.90.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.1.",
       "hints": [
@@ -152,15 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Bayes",
+        "0.269",
+        "base rate",
+        "posterior",
         "refuse",
-        "conjugate",
-        "prior",
-        "5.1.2",
-        "spine",
-        "until-exam"
+        "likelihood"
       ],
       "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "Refuse: conjugate priors and until-exam are not finished. Today is 5.1.1 theorem; tomorrow is 5.1.2 prior/posterior/conjugate.",
+      "model_answer": "(1) P(flag)=0.90·0.02 + 0.05·0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 ≈ 0.269. (2) Refuse: that equates posterior with likelihood and ignores the base rate — Bayes multiplies prior × likelihood and normalises.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

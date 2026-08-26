@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force premium = Z·mean + (1−Z)·collateral structure and refuse 'Z finished Bayesian credibility theory'.",
     "educational_intent": "Produce credibility premium/factor as the entry to credibility theory after Bayesian estimation objects.",
     "learning_objective": "Use the credibility premium formula and explain the role of the credibility factor.",
-    "concept_focus": "Individual + collateral → Z → credibility premium → refuse Bayesian-credibility swallow.",
+    "concept_focus": "Individual experience + collateral mean → credibility factor Z → credibility premium.",
     "prior_bridge": "Yesterday you constructed credible intervals (5.1.5). Today opens credibility theory at the premium formula.",
     "why_now": "5.1.6 opens credibility theory before Bayesian vs EB approaches.",
-    "expected_benefit": "Study Progress for premium/factor — not Topic Complete for 5.1.7.",
+    "expected_benefit": "You will be able to compute a credibility premium and explain the role of the credibility factor Z.",
     "explainability": "Assigned as Campaign Omicron Day 6 because CF join keeps premium formula before approach LO.",
     "success_criteria": [
       "Closed-book, write the credibility premium formula with Z.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.6-cp-01",
       "title": "Checkpoint: 5.1.6",
-      "prompt": "Closed-book. A colleague says 'Writing Z finished Bayesian credibility theory.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral/manual mean μ = 1000, credibility factor Z = 0.4. (1) Compute the credibility premium and state what Z represents. (2) Refuse: 'Always use full credibility Z = 1.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.6.",
       "hints": [
@@ -150,14 +150,14 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "Bayesian",
+        "1080",
+        "Z",
         "credibility",
-        "5.1.7",
-        "Z"
+        "refuse",
+        "full credibility"
       ],
       "explanation": "Checkpoint for 5.1.6.",
-      "model_answer": "Refuse: premium/factor ≠ Bayesian credibility approach. Tomorrow is 5.1.7.",
+      "model_answer": "(1) Premium = Z·X̄ + (1−Z)·μ = 0.4·1200 + 0.6·1000 = 480 + 600 = 1080. Z is the weight on the individual experience (versus the collateral mean). (2) Refuse: with limited or noisy data, Z < 1 shrinks toward the collateral/manual mean.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

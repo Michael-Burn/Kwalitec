@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
     "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
-    "concept_focus": "Candidate sets → fit measures → select appropriate explanatory set → refuse treating selection as GLM or Bayes finished.",
+    "concept_focus": "Candidate explanatory sets → fit measures (e.g. adjusted R², AIC/BIC) → select an appropriate set.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
     "why_now": "Finish Topic 4.1 by selecting variables using fit measures — then revise before moving into GLM.",
-    "expected_benefit": "Study Progress for variable selection — not Topic Complete for 4.2.",
+    "expected_benefit": "You will be able to use measures of model fit to select an appropriate set of explanatory variables.",
     "explainability": "Assigned as Campaign Nu Day 5 because Continuity Front law closes Topic 4.1 only; GLM and Bayesian remain Trust Front / later geography.",
     "success_criteria": [
       "Closed-book, name what 'selecting explanatory variables using measures of model fit' means in CMP-usable form.",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.5-cp-01",
       "title": "Checkpoint: 4.1.5",
-      "prompt": "Closed-book. A colleague says 'Variable selection finished GLM and the exam journey.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. (1) Name two fit measures you could use to choose between candidate explanatory sets and what each rewards or penalises. (2) Refuse: 'Keep every term with p<0.05 and selection is done' and 'variable selection finishes GLM modelling.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.5.",
       "hints": [
@@ -155,15 +155,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "4.2",
-        "spine",
-        "revision",
+        "adjusted R²",
+        "AIC",
+        "BIC",
         "selection",
-        "until-exam"
+        "refuse",
+        "p-value"
       ],
       "explanation": "Checkpoint for 4.1.5.",
-      "model_answer": "Refuse: GLM / spine / until-exam are not finished. Today is variable selection for linear models; tomorrow is CN-R1 Revision of 4.1 — not a trophy claim.",
+      "model_answer": "(1) e.g. adjusted R² (rewards fit while adjusting for unused complexity vs raw R²); AIC/BIC (likelihood fit with a parameter-count penalty). (2) Refuse: mechanical p-value chopping is not a complete selection warrant; GLM is a different topic — today is selecting explanatory variables for linear models via fit measures.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

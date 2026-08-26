@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force exponential-family placement for named responses and refuse 'GLM means linear regression in a package'.",
     "educational_intent": "Produce family placement as the Continuity Front join hinge from Nu linear regression into Topic 4.2 structure.",
     "learning_objective": "Recognise binomial, Poisson, exponential, gamma and normal distributions as members of an exponential family in the GLM setting.",
-    "concept_focus": "Named response → exponential family membership → refuse package-name GLM → refuse mean/variance swallow.",
+    "concept_focus": "Named response distributions → exponential-family membership in the GLM setting → refuse package-name GLM.",
     "prior_bridge": "Campaign Nu closed linear regression (4.1) with Revision. Today opens Continuity Front join at Topic 4.2 LO 4.2.1 — the next official syllabus topic after 4.1. Trust Front CS1-003 already holds LIVE 4.2 inventory independently; Xi is the Continuity Front native Pilot Arc.",
-    "why_now": "Open GLM structure by placing responses in the exponential family \u2014 moments and scale come next.",
-    "expected_benefit": "Study Progress for family placement — not Topic Complete for 4.2.2.",
+    "why_now": "Open GLM structure by placing responses in the exponential family — moments and scale come next.",
+    "expected_benefit": "You will be able to recognise binomial, Poisson, exponential, gamma and Normal as exponential-family GLM responses.",
     "explainability": "Assigned as Campaign Xi Day 1 because CE-001 / EP-001 Continuity Front names 4.2 as the handoff from Nu after Topic 4.1 CF join closes.",
     "success_criteria": [
       "Closed-book, name five exponential-family GLM responses from 4.2.1.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.1-cp-01",
       "title": "Checkpoint: 4.2.1",
-      "prompt": "Closed-book. Refuse: 'GLM is just linear regression with a package name.' Restate what must be true of the response family.",
+      "prompt": "Closed-book. (1) Name three of binomial, Poisson, exponential, gamma, Normal and state in one line why each belongs in the exponential family for GLM. (2) Refuse: 'GLM is just ordinary linear regression with a different software package name.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.1.",
       "hints": [
@@ -154,15 +154,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "exponential family",
+        "Poisson",
+        "binomial",
+        "Normal",
         "refuse",
-        "package",
-        "exponential",
-        "family",
-        "not linear",
-        "today"
+        "package"
       ],
       "explanation": "Checkpoint for 4.2.1.",
-      "model_answer": "Refuse: package name ≠ GLM. A GLM response sits in an exponential family (with later η and link) — Normal+identity is special, not definitional.",
+      "model_answer": "(1) e.g. Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion/count responses); Normal (continuous responses with constant variance) — each has an exponential-family density form usable as a GLM response. (2) Refuse: package name ≠ GLM; a GLM response sits in an exponential family (with later η and link). Normal+identity is a special case, not the definition.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

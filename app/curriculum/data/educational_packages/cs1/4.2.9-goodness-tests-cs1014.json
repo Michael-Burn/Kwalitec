@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force χ² vs LRT acceptability discrimination and refuse treating full software interpretation as today's LO.",
     "educational_intent": "Produce a cognitive move from residual literacy to lawful formal acceptability tests under CMP.",
     "learning_objective": "Apply statistical tests to determine the acceptability of a fitted model: Pearson's chi-square test and the likelihood-ratio test.",
-    "concept_focus": "Fitted model → Pearson χ² test → likelihood-ratio test → refuse fit/interpret swallow.",
+    "concept_focus": "Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
     "prior_bridge": "Yesterday you explained Pearson and deviance residuals (4.2.8). Today continues Topic 4.2 at formal acceptability tests.",
     "why_now": "4.2.9 is contiguous after residuals. Without formal tests, fit/interpret lacks acceptability warrant.",
-    "expected_benefit": "Study Progress for acceptability tests — not Topic Complete for 4.2.10.",
+    "expected_benefit": "You will be able to apply Pearson's χ² and likelihood-ratio tests to judge acceptability of a fitted GLM.",
     "explainability": "Assigned as Campaign Xi Day 9 because Continuity Front law keeps fit/interpret as tomorrow.",
     "success_criteria": [
       "Closed-book, name the two acceptability tests in 4.2.9.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.9-cp-01",
       "title": "Checkpoint: 4.2.9",
-      "prompt": "Closed-book. A colleague says 'I interpreted every coefficient in software, so I finished today's LO.' Refuse and restate what 4.2.9 requires.",
+      "prompt": "Closed-book. You have a fitted GLM and want to judge acceptability. (1) State what Pearson's χ² test and the likelihood-ratio test each compare (in outline). (2) Refuse: 'Interpreting every coefficient in the software output finishes applying acceptability tests.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.9.",
       "hints": [
@@ -152,14 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
+        "Pearson",
         "chi-square",
         "likelihood-ratio",
-        "not interpret",
-        "today"
+        "acceptability",
+        "refuse",
+        "interpret"
       ],
       "explanation": "Checkpoint for 4.2.9.",
-      "model_answer": "Refuse: full fit/interpret is tomorrow. Today requires applying Pearson χ² and LRT acceptability tests.",
+      "model_answer": "(1) Pearson χ²: aggregate squared Pearson residuals against a χ² reference (adequacy of fit). LRT: compares likelihood/deviance of the fitted model to a relevant nested or saturated alternative. (2) Refuse: coefficient interpretation is a different LO; today requires applying the formal acceptability tests.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

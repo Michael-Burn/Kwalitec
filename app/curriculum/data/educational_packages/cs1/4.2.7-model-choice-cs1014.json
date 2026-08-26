@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force nested comparison via analysis of deviance and refuse treating residual plots as today's LO.",
     "educational_intent": "Produce a cognitive move from deviance definition to lawful model-choice practice under CMP.",
     "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
-    "concept_focus": "Nested models → analysis of deviance → parameter significance → refuse residuals swallow.",
+    "concept_focus": "Nested models → analysis of deviance / likelihood-ratio comparison → parameter significance.",
     "prior_bridge": "Yesterday you explained deviance and estimation (4.2.6). Today continues Topic 4.2 at model choice.",
     "why_now": "4.2.7 is contiguous after deviance. Without model choice, residual diagnostics have no selected structure to check.",
-    "expected_benefit": "Study Progress for model choice — not Topic Complete for 4.2.8.",
+    "expected_benefit": "You will be able to choose a GLM using analysis of deviance and examination of parameter significance.",
     "explainability": "Assigned as Campaign Xi Day 7 because Continuity Front law keeps residuals as tomorrow.",
     "success_criteria": [
       "Closed-book, state what analysis of deviance compares.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.7-cp-01",
       "title": "Checkpoint: 4.2.7",
-      "prompt": "Closed-book. A colleague says 'I plotted Pearson residuals, so I finished today's LO.' Refuse and restate what 4.2.7 requires.",
+      "prompt": "Closed-book. Nested GLMs M_reduced ⊂ M_full. (1) Outline how an analysis of deviance (likelihood-ratio / deviance difference) plus parameter significance guides choosing between them. (2) Refuse: 'Plotting Pearson residuals finishes model choice via analysis of deviance.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.7.",
       "hints": [
@@ -152,14 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "analysis of deviance",
-        "choice",
-        "not residuals",
-        "today"
+        "nested",
+        "χ²",
+        "significance",
+        "refuse",
+        "residuals"
       ],
       "explanation": "Checkpoint for 4.2.7.",
-      "model_answer": "Refuse: residuals are tomorrow. Today requires choosing a model via analysis of deviance and parameter significance.",
+      "model_answer": "(1) Compare deviance (or −2Δℓ) between nested models against a χ² reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. (2) Refuse: residual plots are diagnostics (a different LO); today is choosing a model via analysis of deviance and parameter significance.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

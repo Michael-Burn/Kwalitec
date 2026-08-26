@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -34,14 +34,14 @@
   "mission": {
     "mission_id": "msn-cs1015-cs1-5.1-empirical-bayes",
     "display_title": "Apply Empirical Bayes credibility in simple cases",
-    "mission_purpose": "Today's Mission exists to apply Empirical Bayes credibility in simple cases \u2014 without pretending the Bayes vs EB contrast (5.1.9) is finished.",
+    "mission_purpose": "Today's Mission exists to apply Empirical Bayes credibility in simple cases — without pretending the Bayes vs EB contrast (5.1.9) is finished.",
     "tutor_intent": "Today I will force EB credibility premiums in simple cases and refuse 'EB finished the contrast LO'.",
     "educational_intent": "Produce Empirical Bayes credibility as contiguous after Bayesian credibility.",
     "learning_objective": "Apply the Empirical Bayes approach to credibility theory and derive credibility premiums in simple cases.",
-    "concept_focus": "EB estimation of structural parameters \u2192 premium \u2192 refuse contrast swallow.",
+    "concept_focus": "Estimate structural parameters from collective data → plug into credibility formula → EB premium.",
     "prior_bridge": "Yesterday you applied Bayesian credibility (5.1.7). Today applies Empirical Bayes.",
     "why_now": "5.1.8 sets up the contrast LO 5.1.9.",
-    "expected_benefit": "Study Progress for EB credibility \u2014 not Topic Complete for 5.1.9.",
+    "expected_benefit": "You will be able to apply Empirical Bayes to estimate structural parameters and form a credibility premium.",
     "explainability": "Assigned as Campaign Omicron Day 8 because CF join keeps EB before contrast.",
     "success_criteria": [
       "Closed-book, outline how EB uses data for structural parameters.",
@@ -60,17 +60,17 @@
   },
   "session": {
     "session_id": "ssn-cs1015-cs1-5.1-empirical-bayes",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.8 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 5.1.8 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 5.1.8, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Apply Empirical Bayes credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.8. This is Study Progress for today's block \u2014 not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Apply Empirical Bayes credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.8. This is Study Progress for today's block — not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.8 \u2014 apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.8 — apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 5.1.8?",
       "What warrant separates today's skill from yesterday's?",
@@ -82,7 +82,7 @@
       "Watch for finishing contrast today.",
       "Watch for swallowing 5.1.9."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility",
+    "open_point": "CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9)",
     "out_of_scope_today": [
       "Bayes vs EB contrast as primary",
@@ -92,13 +92,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 5.1.8.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 5.1.8.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. A colleague says 'EB finished the Bayes vs EB contrast.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. (1) Outline the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown. (2) Refuse: 'Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.8.",
       "hints": [
@@ -150,13 +150,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Empirical Bayes",
+        "structural",
+        "estimate",
+        "Ẑ",
         "refuse",
-        "contrast",
-        "5.1.9",
-        "Empirical"
+        "contrast"
       ],
       "explanation": "Checkpoint for 5.1.8.",
-      "model_answer": "Refuse: applying EB \u2260 finished contrast. Tomorrow is 5.1.9.",
+      "model_answer": "(1) Estimate structural parameters (e.g. overall mean and process/variance components) from the collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ·X̄ + (1−Ẑ)·μ̂ for the risk. (2) Refuse: applying EB is not the same LO as contrasting the assumption sets of Bayes vs EB.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -165,7 +167,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest EB wobble \u2014 contrast opens tomorrow.",
+    "framing": "Harvest EB wobble — contrast opens tomorrow.",
     "prompt": "Which part of today's 5.1.8 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.8 is stickiest and why?",
@@ -177,8 +179,8 @@
     "next_topic_code": "5.1",
     "next_topic_title": "Bayes vs Empirical Bayes differences (5.1.9)",
     "continuity_line": "Today you applied Empirical Bayes credibility; tomorrow continues 5.1 at Bayes vs EB differences.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.9 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: differences between Bayesian and Empirical Bayes approaches (5.1.9). Optional light prep: skim 5.1.9 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 5.1.9 — titles only tonight",
+    "student_facing": "Tomorrow: differences between Bayesian and Empirical Bayes approaches (5.1.9). Optional light prep: skim 5.1.9 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CO-R1",

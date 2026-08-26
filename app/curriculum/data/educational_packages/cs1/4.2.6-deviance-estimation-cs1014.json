@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force deviance vs scaled deviance and estimation hinges and refuse treating model-choice theatre as today's LO.",
     "educational_intent": "Produce a cognitive move from η forms to lawful deviance and parameter estimation under CMP.",
     "learning_objective": "Explain deviance, scaled deviance, and estimation of the parameters of a generalised linear model.",
-    "concept_focus": "Likelihood → deviance → scaled deviance → parameter estimates → refuse model-choice swallow.",
+    "concept_focus": "Log-likelihood → deviance → scaled deviance → maximum-likelihood / IWLS parameter estimates.",
     "prior_bridge": "Yesterday you wrote linear predictor forms (4.2.5). Today continues Topic 4.2 at deviance and estimation.",
     "why_now": "4.2.6 is contiguous after η. Without deviance/estimation, model choice and diagnostics lack a criterion.",
-    "expected_benefit": "Study Progress for deviance/estimation — not Topic Complete for 4.2.7.",
+    "expected_benefit": "You will be able to explain deviance, scaled deviance, and how GLM parameters are estimated.",
     "explainability": "Assigned as Campaign Xi Day 6 because Continuity Front law keeps analysis of deviance model choice as tomorrow.",
     "success_criteria": [
       "Closed-book, state what deviance compares.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.6-cp-01",
       "title": "Checkpoint: 4.2.6",
-      "prompt": "Closed-book. A colleague says 'I deleted insignificant terms until the p-values looked nice, so I finished today's LO.' Refuse and restate what 4.2.6 requires.",
+      "prompt": "Closed-book. (1) In one sentence each, what are deviance and scaled deviance, and what estimation principle is typically used for GLM parameters? (2) Refuse: 'Deleting insignificant terms until p-values look nice finishes explaining deviance and GLM estimation.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.6.",
       "hints": [
@@ -152,14 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "deviance",
-        "estimation",
-        "not choice",
-        "today"
+        "scaled",
+        "likelihood",
+        "IWLS",
+        "refuse",
+        "p-value"
       ],
       "explanation": "Checkpoint for 4.2.6.",
-      "model_answer": "Refuse: model choice is tomorrow. Today requires explaining deviance, scaled deviance, and GLM parameter estimation.",
+      "model_answer": "(1) Deviance compares the fitted model's log-likelihood to a saturated model (2{ℓ_sat − ℓ_model}); scaled deviance divides by the dispersion/scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). (2) Refuse: mechanical p-value chopping is model-choice behaviour, not the definition or estimation of deviance.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

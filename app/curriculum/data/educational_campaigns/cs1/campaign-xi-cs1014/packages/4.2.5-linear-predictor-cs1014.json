@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -36,24 +36,24 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-linear-predictor",
     "display_title": "Write the linear predictor for simple GLM forms",
-    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models, including polynomial models and models involving factors \u2014 without pretending deviance/estimation (4.2.6) are finished.",
-    "tutor_intent": "Today I will force \u03b7-form writing for simple GLM structures and refuse treating deviance as today's LO.",
+    "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models, including polynomial models and models involving factors — without pretending deviance/estimation (4.2.6) are finished.",
+    "tutor_intent": "Today I will force η-form writing for simple GLM structures and refuse treating deviance as today's LO.",
     "educational_intent": "Produce a cognitive move from covariate structure to lawful linear predictor forms under CMP.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
-    "concept_focus": "\u03b7 definition \u2192 simple form \u2192 polynomial / factor forms \u2192 refuse deviance swallow.",
+    "concept_focus": "η = Xβ definition → polynomial and factor forms → refuse conflating η with the link function.",
     "prior_bridge": "Yesterday you explained variables, factors and interactions (4.2.4). Today writes the linear predictor forms.",
-    "why_now": "4.2.5 is contiguous after factors. Without \u03b7 forms, deviance and software fit lack structure.",
-    "expected_benefit": "Study Progress for linear predictor \u2014 not Topic Complete for 4.2.6.",
+    "why_now": "4.2.5 is contiguous after factors. Without η forms, deviance and software fit lack structure.",
+    "expected_benefit": "You will be able to define the linear predictor and write its form for polynomial and factor models.",
     "explainability": "Assigned as Campaign Xi Day 5 because Continuity Front law keeps deviance/estimation as tomorrow.",
     "success_criteria": [
-      "Closed-book, define the linear predictor \u03b7.",
+      "Closed-book, define the linear predictor η.",
       "Write or state one simple form and one form involving a factor or polynomial.",
       "Refuse one 'I computed deviance, so I finished today's LO' claim."
     ],
     "task_descriptions": [
-      "Sketch \u03b7 forms before CMP.",
+      "Sketch η forms before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.5.",
-      "Closed-book Knowledge Checks: \u03b7 forms + refuse deviance swallow."
+      "Closed-book Knowledge Checks: η forms + refuse deviance swallow."
     ],
     "estimated_study_time_minutes": {
       "min": 55,
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1014-cs1-4.2-linear-predictor",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.5 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 4.2.5 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 4.2.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. You practised selective CMP reading on Syllabus 4.2.5. This is Study Progress for today's block \u2014 not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. You practised selective CMP reading on Syllabus 4.2.5. This is Study Progress for today's block — not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.5 \u2014 write the linear predictor for simple glm forms. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.5 — write the linear predictor for simple glm forms. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 4.2.5?",
       "What warrant separates today's skill from yesterday's?",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating \u03b7 with \u03bc without the link.",
+      "Watch for equating η with μ without the link.",
       "Watch for jumping into deviance calculation (4.2.6) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.5 linear predictor forms",
+    "open_point": "CMP · Syllabus 4.2.5 linear predictor forms",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6)",
     "out_of_scope_today": [
       "Deviance / scaled deviance / estimation as primary (4.2.6)",
@@ -94,13 +94,13 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution \u2014 stay inside 4.2.5.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution — stay inside 4.2.5.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -117,7 +117,7 @@
       "kind": "active_recall",
       "item_id": "cs1014-4.2.5-ar-01",
       "title": "Active Recall: 4.2.5",
-      "prompt": "Closed-book. (1) Define the linear predictor. (2) Give one simple \u03b7 form. (3) Give one form involving a factor or polynomial term. (4) Name one reason deviance is not today's LO.",
+      "prompt": "Closed-book. (1) Define the linear predictor. (2) Give one simple η form. (3) Give one form involving a factor or polynomial term. (4) Name one reason deviance is not today's LO.",
       "response_type": "short_structured",
       "body": "Retrieve 4.2.5 closed-book.",
       "hints": [
@@ -132,7 +132,7 @@
         "factor"
       ],
       "explanation": "Active recall for 4.2.5.",
-      "model_answer": "\u03b7 is the linear predictor (typically X\u03b2). Example: \u03b7=\u03b20+\u03b21x; or with factor indicators / polynomial powers. Deviance/estimation is tomorrow.",
+      "model_answer": "η is the linear predictor (typically Xβ). Example: η=β0+β1x; or with factor indicators / polynomial powers. Deviance/estimation is tomorrow.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.5-cp-01",
       "title": "Checkpoint: 4.2.5",
-      "prompt": "Closed-book. A colleague says 'I computed the deviance, so I finished today's LO.' Refuse and restate what 4.2.5 requires.",
+      "prompt": "Closed-book. Poisson claim counts with log link, continuous exposure score x and two-level factor cover (Standard/Plus). (1) Write η for a model with x, a quadratic term in x, and cover. (2) Refuse: 'The link function is the linear predictor.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.5.",
       "hints": [
@@ -152,14 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "η",
+        "quadratic",
+        "factor",
+        "link",
         "refuse",
-        "eta",
-        "predictor",
-        "not deviance",
-        "today"
+        "linear predictor"
       ],
       "explanation": "Checkpoint for 4.2.5.",
-      "model_answer": "Refuse: deviance is tomorrow. Today requires defining and writing linear predictor forms for simple GLM models.",
+      "model_answer": "(1) η = β₀ + β₁x + β₂x² + β₃ I_Plus (Standard baseline). (2) Refuse: η = Xβ is the linear predictor; the link g maps mean μ to η (e.g. log(μ)=η for Poisson log).",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
@@ -168,7 +169,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest \u03b7-form wobble \u2014 keep deviance out of tonight's claim.",
+    "framing": "Harvest η-form wobble — keep deviance out of tonight's claim.",
     "prompt": "Which part of today's 4.2.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.5 is stickiest and why?",
@@ -180,8 +181,8 @@
     "next_topic_code": "4.2",
     "next_topic_title": "Deviance and GLM parameter estimation (4.2.6)",
     "continuity_line": "Today you established linear predictor forms; tomorrow continues 4.2 at deviance and estimation.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.6 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.6 — titles only tonight",
+    "student_facing": "Tomorrow: deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings — titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",

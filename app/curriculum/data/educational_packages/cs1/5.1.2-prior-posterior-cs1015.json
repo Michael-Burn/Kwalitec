@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force prior/posterior/conjugate vocabulary with warrants and refuse 'conjugate means I already calculated the posterior'.",
     "educational_intent": "Produce prior/posterior/conjugate as the contiguous hinge after Bayes' theorem.",
     "learning_objective": "Explain prior distribution, posterior distribution and conjugate prior distribution.",
-    "concept_focus": "Prior → likelihood → posterior; conjugate pairs → refuse calculation swallow.",
+    "concept_focus": "Prior → likelihood → posterior; conjugate pairs keep the posterior in the same family.",
     "prior_bridge": "Yesterday you applied Bayes' theorem (5.1.1). Today continues Topic 5.1 at prior, posterior and conjugate.",
     "why_now": "5.1.2 unlocks lawful language before simple posterior calculations (5.1.3).",
-    "expected_benefit": "Study Progress for prior/posterior/conjugate — not Topic Complete for 5.1.3.",
+    "expected_benefit": "You will be able to explain prior, posterior and conjugate prior distributions with a concrete pair.",
     "explainability": "Assigned as Campaign Omicron Day 2 because Continuity Front join keeps LO-per-day after theorem entry.",
     "success_criteria": [
       "Closed-book, define prior, posterior and conjugate prior.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.2-cp-01",
       "title": "Checkpoint: 5.1.2",
-      "prompt": "Closed-book. A colleague says 'Conjugate prior finished the posterior calculation.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. (1) In one sentence each, define prior, posterior, and conjugate prior. Name one conjugate pair used in actuarial modelling. (2) Refuse: 'Naming a conjugate pair finishes obtaining the numerical posterior for a parameter.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.2.",
       "hints": [
@@ -149,13 +149,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "conjugate",
+        "prior",
         "posterior",
-        "5.1.3"
+        "conjugate",
+        "Beta",
+        "Binomial",
+        "refuse"
       ],
       "explanation": "Checkpoint for 5.1.2.",
-      "model_answer": "Refuse: conjugate language ≠ finished simple posterior calc. Tomorrow is 5.1.3.",
+      "model_answer": "(1) Prior: belief about θ before data. Posterior: updated belief after data. Conjugate: a prior family closed under updating so the posterior stays in the same family. Example: Beta–Binomial or Gamma–Poisson. (2) Refuse: conjugate language structures the update; you still must obtain the actual posterior (parameters/distribution) from prior + data.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

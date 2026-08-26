@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate to discriminate response from explanatory variables on an actuarial data sketch and refuse treating 'all columns are predictors' as modelling.",
     "educational_intent": "Produce a cognitive move from hypothesis-testing closure (3.3) to lawful response/explanatory roles at the Continuity Front join into Section 4.",
     "learning_objective": "Response and explanatory variables",
-    "concept_focus": "Data sketch → name Y → name X's → refuse column-soup modelling → refuse simple/multiple swallow.",
+    "concept_focus": "Data sketch → name response Y → name explanatory X's with warrants → refuse column-soup modelling.",
     "prior_bridge": "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. Today opens Continuity Front join at Topic 4.1 LO 4.1.1 — the next official syllabus topic after 3.3. Trust Front CS1-003 already holds LIVE 4.1 inventory independently; Nu is the Continuity Front native Pilot Arc.",
-    "why_now": "Regression starts by naming response vs explanatory variables with modelling intent \u2014 model forms come next.",
-    "expected_benefit": "Study Progress for variable roles — not Topic Complete for 4.1.2.",
+    "why_now": "Regression starts by naming response vs explanatory variables with modelling intent — model forms come next.",
+    "expected_benefit": "You will be able to name response and explanatory variables with modelling warrants for a stated actuarial sketch.",
     "explainability": "Assigned as Campaign Nu Day 1 because CE-001 / EP-001 Continuity Front names 4.1 as the handoff from Mu after Chapter 3 CF Missing closes.",
     "success_criteria": [
       "Closed-book, name one response and at least one explanatory variable for a stated scenario.",
@@ -149,7 +149,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.1-cp-01",
       "title": "Checkpoint: 4.1.1",
-      "prompt": "Closed-book. A colleague says 'I listed every column as a predictor, so I finished today's LO.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. Motor book: you want to model claim severity. Columns include age, sum insured, claim amount, NCD discount, and claim count. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side — that finishes variable-role modelling.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.1.",
       "hints": [
@@ -157,15 +157,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "response",
         "explanatory",
-        "not every",
-        "column",
-        "today"
+        "severity",
+        "claim amount",
+        "refuse",
+        "column"
       ],
       "explanation": "Checkpoint for 4.1.1.",
-      "model_answer": "Refuse: column-soup is not modelling. Today requires deliberate response vs explanatory naming with justification.",
+      "model_answer": "(1) Response Y = claim amount (severity — the outcome to explain/predict). Explanatory examples: age and sum insured (predictors of severity). Claim count is a frequency outcome, not automatically an X for severity. (2) Refuse: column-soup is not modelling — choose Y for the modelling question, then choose X's with warrants.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

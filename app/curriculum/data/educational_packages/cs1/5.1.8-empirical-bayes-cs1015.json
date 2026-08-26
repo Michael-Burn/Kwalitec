@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force EB credibility premiums in simple cases and refuse 'EB finished the contrast LO'.",
     "educational_intent": "Produce Empirical Bayes credibility as contiguous after Bayesian credibility.",
     "learning_objective": "Apply the Empirical Bayes approach to credibility theory and derive credibility premiums in simple cases.",
-    "concept_focus": "EB estimation of structural parameters → premium → refuse contrast swallow.",
+    "concept_focus": "Estimate structural parameters from collective data → plug into credibility formula → EB premium.",
     "prior_bridge": "Yesterday you applied Bayesian credibility (5.1.7). Today applies Empirical Bayes.",
     "why_now": "5.1.8 sets up the contrast LO 5.1.9.",
-    "expected_benefit": "Study Progress for EB credibility — not Topic Complete for 5.1.9.",
+    "expected_benefit": "You will be able to apply Empirical Bayes to estimate structural parameters and form a credibility premium.",
     "explainability": "Assigned as Campaign Omicron Day 8 because CF join keeps EB before contrast.",
     "success_criteria": [
       "Closed-book, outline how EB uses data for structural parameters.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. A colleague says 'EB finished the Bayes vs EB contrast.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. (1) Outline the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown. (2) Refuse: 'Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.8.",
       "hints": [
@@ -150,13 +150,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Empirical Bayes",
+        "structural",
+        "estimate",
+        "Ẑ",
         "refuse",
-        "contrast",
-        "5.1.9",
-        "Empirical"
+        "contrast"
       ],
       "explanation": "Checkpoint for 5.1.8.",
-      "model_answer": "Refuse: applying EB ≠ finished contrast. Tomorrow is 5.1.9.",
+      "model_answer": "(1) Estimate structural parameters (e.g. overall mean and process/variance components) from the collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ·X̄ + (1−Ẑ)·μ̂ for the risk. (2) Refuse: applying EB is not the same LO as contrasting the assumption sets of Bayes vs EB.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

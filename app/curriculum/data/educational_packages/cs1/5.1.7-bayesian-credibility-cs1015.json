@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force Bayesian credibility premiums in simple cases and refuse 'Bayesian credibility finished Empirical Bayes'.",
     "educational_intent": "Produce Bayesian credibility as contiguous after the premium formula.",
     "learning_objective": "Apply the Bayesian approach to credibility theory and calculate credibility premiums in simple cases.",
-    "concept_focus": "Bayesian credibility setup → premium in simple case → refuse EB swallow.",
+    "concept_focus": "Bayesian credibility with known structural/prior parameters → Z and μ → credibility premium.",
     "prior_bridge": "Yesterday you used the credibility premium formula (5.1.6). Today applies the Bayesian approach.",
     "why_now": "5.1.7 precedes Empirical Bayes (5.1.8) contrast.",
-    "expected_benefit": "Study Progress for Bayesian credibility — not Topic Complete for 5.1.8.",
+    "expected_benefit": "You will be able to apply the Bayesian approach to credibility and compute a premium in a simple case.",
     "explainability": "Assigned as Campaign Omicron Day 7 because CF join keeps Bayesian approach before EB.",
     "success_criteria": [
       "Closed-book, outline Bayesian credibility inputs in a simple case.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. A colleague says 'Bayesian credibility finished Empirical Bayes.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z·X̄ + (1−Z)·μ. (1) What do the prior/structural assumptions supply that lets you compute Z and μ? (2) Refuse: 'Applying Bayesian credibility finishes the Empirical Bayes approach.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.7.",
       "hints": [
@@ -149,13 +149,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "structural",
+        "prior",
+        "Z",
+        "μ",
         "refuse",
-        "Empirical",
-        "Bayes",
-        "5.1.8"
+        "Empirical Bayes"
       ],
       "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "Refuse: Bayesian credibility ≠ Empirical Bayes. Tomorrow is 5.1.8.",
+      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse: Empirical Bayes estimates those structural parameters from data — a different approach from treating them as known in the Bayesian calculation.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

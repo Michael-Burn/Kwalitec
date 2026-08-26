@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force credible-interval construction from the posterior and refuse 'credible equals confidence interval under frequentist law'.",
     "educational_intent": "Produce credible intervals as contiguous after loss-based estimators.",
     "learning_objective": "Construct credible intervals in simple cases.",
-    "concept_focus": "Posterior → credible interval → refuse credibility-premium swallow.",
+    "concept_focus": "Posterior → credible interval construction → refuse copying frequentist CI coverage slogans.",
     "prior_bridge": "Yesterday you derived loss-based estimators (5.1.4). Today constructs credible intervals.",
     "why_now": "5.1.5 completes core Bayesian estimation objects before credibility theory.",
-    "expected_benefit": "Study Progress for credible intervals — not Topic Complete for 5.1.6.",
+    "expected_benefit": "You will be able to construct a credible interval in a simple case and interpret it as a posterior probability statement.",
     "explainability": "Assigned as Campaign Omicron Day 5 because CF join keeps intervals after estimators.",
     "success_criteria": [
       "Closed-book, state what a credible interval asserts about the parameter.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.5-cp-01",
       "title": "Checkpoint: 5.1.5",
-      "prompt": "Closed-book. A colleague says 'Credible intervals finished credibility premiums.' Refuse and name tomorrow.",
+      "prompt": "Closed-book. Posterior for a risk parameter θ is Normal(0.10, 0.02²). (1) Construct an approximate 95% equal-tailed credible interval for θ. (2) Refuse: 'A 95% credible interval means that in repeated samples the random interval covers θ 95% of the time' without noting the Bayesian reading.",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.5.",
       "hints": [
@@ -149,14 +149,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "0.0608",
+        "0.1392",
+        "credible",
+        "posterior",
         "refuse",
-        "credibility",
-        "premium",
-        "5.1.6",
-        "credible"
+        "confidence"
       ],
       "explanation": "Checkpoint for 5.1.5.",
-      "model_answer": "Refuse: credible intervals ≠ credibility premium. Tomorrow is 5.1.6.",
+      "model_answer": "(1) ≈ 0.10 ± 1.96·0.02 → about (0.0608, 0.1392). (2) Refuse: that is the frequentist coverage slogan for a confidence interval; a credible interval is a posterior probability statement about θ given the data.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

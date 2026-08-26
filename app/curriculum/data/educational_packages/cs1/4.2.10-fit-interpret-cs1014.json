@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force fit-and-interpret literacy and refuse treating Bayesian / spine / until-exam as finished.",
     "educational_intent": "Produce a cognitive move from acceptability tests to lawful software fit and interpretation, closing 4.2 Learning under Continuity Front join.",
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
-    "concept_focus": "Data → fit GLM → interpret coefficients / fit / diagnostics → refuse treating a fitted GLM as Bayesian work finished.",
+    "concept_focus": "Choose family/link → fit GLM → interpret coefficients on the mean scale → check fit/diagnostics.",
     "prior_bridge": "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic 4.2 Learning at fit and interpret.",
     "why_now": "After goodness-of-fit tests, fit a GLM and interpret the output — then revise the GLM chain.",
-    "expected_benefit": "You'll be able to fit a GLM and interpret the output in exam-style language.",
+    "expected_benefit": "You will be able to fit a GLM and interpret coefficients and fit output in exam-style language.",
     "explainability": "Assigned as Campaign Xi Day 10 because Continuity Front join closes Topic 4.2 Learning before Revision — not Trust Front 5.1 absorb.",
     "success_criteria": [
       "Closed-book, name at least three output elements you must interpret after a GLM fit.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.10-cp-01",
       "title": "Checkpoint: 4.2.10",
-      "prompt": "Closed-book. A colleague says 'Fitting the GLM finished Bayesian and the exam journey.' Refuse in one sentence and name tomorrow's honest next (Revision).",
+      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. (1) Interpret a coefficient of 0.20 on class High vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit finishes interpretation and diagnostics' and 'fitting a GLM finishes Bayesian credibility work.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.10.",
       "hints": [
@@ -154,15 +154,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Poisson",
+        "log link",
+        "e^{0.20}",
+        "interpret",
         "refuse",
-        "5.1",
-        "spine",
-        "revision",
-        "fit",
-        "until-exam"
+        "Fit"
       ],
       "explanation": "Checkpoint for 4.2.10.",
-      "model_answer": "Refuse: Bayesian / spine / until-exam are not finished. Today is fit/interpret for GLM; tomorrow is CX-R1 Revision of 4.2 — not a trophy claim.",
+      "model_answer": "(1) Under log link, β̂ = 0.20 means the fitted mean for High is e^{0.20} ≈ 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. (2) Refuse: fit without interpretation/diagnostics is incomplete; Bayesian modelling is a different topic.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",

@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force variable/factor/interaction discrimination and refuse treating η-form writing as today's LO.",
     "educational_intent": "Produce a cognitive move from link to lawful GLM covariate structure under CMP.",
     "learning_objective": "Explain variables, factors taking categorical values, and interaction terms in the GLM setting.",
-    "concept_focus": "Continuous variable → categorical factor → interaction term → refuse η-form swallow.",
+    "concept_focus": "Continuous variable → categorical factor coding → interaction term changing a slope by level.",
     "prior_bridge": "Yesterday you explained link and canonical link (4.2.3). Today continues Topic 4.2 at variables, factors and interactions.",
     "why_now": "4.2.4 is contiguous after link. Without factors/interactions, η forms lack actuarial covariate honesty.",
-    "expected_benefit": "Study Progress for factors/interactions — not Topic Complete for 4.2.5.",
+    "expected_benefit": "You will be able to explain variables, factors and interaction terms in a GLM linear predictor.",
     "explainability": "Assigned as Campaign Xi Day 4 because Continuity Front law keeps linear predictor forms as tomorrow.",
     "success_criteria": [
       "Closed-book, distinguish a continuous variable from a categorical factor.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.4-cp-01",
       "title": "Checkpoint: 4.2.4",
-      "prompt": "Closed-book. A colleague says 'I wrote η = β0 + β1x, so I finished today's LO.' Refuse and restate what 4.2.4 requires.",
+      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age×region interaction. (2) Refuse: 'Writing η = β₀ + β₁x with no factors finishes explaining factors and interactions' and 'an interaction is just another main-effect slope.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.4.",
       "hints": [
@@ -152,14 +152,15 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "factor",
         "interaction",
-        "not predictor",
-        "today"
+        "I_South",
+        "η",
+        "refuse",
+        "main effect"
       ],
       "explanation": "Checkpoint for 4.2.4.",
-      "model_answer": "Refuse: η-form writing is tomorrow. Today requires explaining variables, factors and interactions.",
+      "model_answer": "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) Refuse: factors encode categorical levels; an interaction changes the age slope by region — it is not merely another additive main effect.",
       "common_mistake": "Accepting the forbidden claim.",
       "success_criteria": [
         "Refusal present.",
