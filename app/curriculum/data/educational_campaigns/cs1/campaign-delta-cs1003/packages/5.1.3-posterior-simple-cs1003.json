@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force one simple conjugate update end-to-end \u2014 refuse slogan-Bayes without a posterior.",
     "educational_intent": "Produce simple posterior calculation skill.",
     "learning_objective": "Derive or state the posterior distribution for a parameter in simple cases.",
-    "concept_focus": "Prior + data \u2192 posterior form/parameters \u2192 refuse slogan-Bayes.",
+    "concept_focus": "Prior + data \u2192 posterior distribution in a simple conjugate case.",
     "prior_bridge": "Yesterday prior/posterior/conjugate (5.1.2). Today computes.",
     "why_now": "5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
-    "expected_benefit": "Study Progress for simple posteriors \u2014 not loss functions as primary.",
+    "expected_benefit": "You will be able to obtain the posterior distribution for a parameter in a simple conjugate case.",
     "explainability": "Campaign Delta Day 18 focuses LO 5.1.3.",
     "success_criteria": [
       "Closed-book, outline steps to get a posterior in a simple conjugate case.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.3-cp-01",
       "title": "Checkpoint: 5.1.3",
-      "prompt": "Refuse: 'Bayesian means I believe in Bayes' without a posterior. What must you produce today?",
+      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. (1) State the posterior distribution (parameters). (2) Refuse: 'Bayesian means I believe in Bayes' without a posterior, and 'having the posterior distribution finishes choosing the Bayesian point estimator under squared-error loss.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.3.",
       "hints": [
@@ -157,8 +157,8 @@
         "parameter"
       ],
       "explanation": "Checkpoint for 5.1.3.",
-      "model_answer": "Refuse slogan-Bayes. Produce an actual posterior distribution (or its parameters) for the parameter of interest.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse slogan-Bayes \u2014 produce an actual posterior distribution (or its parameters). The posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
+      "common_mistake": "Slogan-Bayes without a posterior, or jumping to a point estimator as if it were the posterior.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -180,5 +180,6 @@
     "continuity_line": "Today you obtained simple posteriors; tomorrow continues at loss functions to derive Bayesian estimators.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.4 \u2014 titles only tonight",
     "student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

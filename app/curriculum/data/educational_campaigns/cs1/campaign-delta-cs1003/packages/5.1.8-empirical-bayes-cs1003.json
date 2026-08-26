@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force naming what EB estimates from data vs full Bayes priors \u2014 refuse calling EB 'the same as Bayes'.",
     "educational_intent": "Produce Empirical Bayes credibility skill.",
     "learning_objective": "Use the Empirical Bayes approach to credibility theory to derive credibility premiums in simple cases.",
-    "concept_focus": "Estimate prior pieces from data \u2192 credibility premium \u2192 refuse EB=Bayes identity.",
+    "concept_focus": "Estimate structural parameters from collective data \u2192 plug into credibility formula \u2192 EB premium.",
     "prior_bridge": "Yesterday Bayesian credibility (5.1.7). Today EB approach.",
     "why_now": "5.1.8 sets up the contrast LO 5.1.9.",
-    "expected_benefit": "Study Progress for EB credibility \u2014 contrast completes tomorrow.",
+    "expected_benefit": "You will be able to apply Empirical Bayes to estimate structural parameters and form a credibility premium.",
     "explainability": "Campaign Delta Day 23 focuses LO 5.1.8.",
     "success_criteria": [
       "Closed-book, state what Empirical Bayes estimates from data.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Refuse: 'Empirical Bayes is just another name for Bayesian.' What differs?",
+      "prompt": "Closed-book. (1) Outline the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown. (2) Refuse: 'Empirical Bayes is just another name for Bayesian' and 'computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.8.",
       "hints": [
@@ -156,8 +156,8 @@
         "assumption"
       ],
       "explanation": "Checkpoint for 5.1.8.",
-      "model_answer": "Refuse identity. EB estimates prior pieces from data; full Bayes treats prior as given belief \u2014 assumptions differ.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Estimate structural parameters (e.g. overall mean and process/variance components) from the collective data, plug them into the credibility formula to get Z\u0302 and \u03bc\u0302, then form Z\u0302\u00b7X\u0304 + (1\u2212Z\u0302)\u00b7\u03bc\u0302 for the risk. (2) Refuse identity: EB estimates prior pieces from data; full Bayes treats the prior as given belief \u2014 assumptions differ. Applying EB is not the same LO as contrasting those assumption sets.",
+      "common_mistake": "Equating EB with full Bayes, or stopping at one premium without noting the assumption difference.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -179,5 +179,6 @@
     "continuity_line": "Today you practised Empirical Bayes credibility; tomorrow continues at differences and assumptions between Bayesian and Empirical Bayes approaches.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.9 \u2014 titles only tonight",
     "student_facing": "Tomorrow: differences between Bayesian and Empirical Bayes approaches (5.1.9). Optional light prep: skim 5.1.9 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -38,10 +38,10 @@
     "tutor_intent": "Today I will force nested comparison via deviance change + significance reading \u2014 refuse largest-model theatre.",
     "educational_intent": "Produce analysis-of-deviance model choice skill.",
     "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
-    "concept_focus": "Nested compare \u2192 \u0394 deviance \u2192 parameter significance \u2192 refuse kitchen-sink GLM.",
+    "concept_focus": "Nested models \u2192 analysis of deviance / likelihood-ratio comparison \u2192 parameter significance.",
     "prior_bridge": "Yesterday deviance/estimation (4.2.6). Today chooses among models.",
     "why_now": "4.2.7 is the choice hinge before residual types (4.2.8).",
-    "expected_benefit": "Study Progress for model choice \u2014 not residual taxonomy as primary.",
+    "expected_benefit": "You will be able to choose a GLM using analysis of deviance and examination of parameter significance.",
     "explainability": "Campaign Delta Day 12 focuses LO 4.2.7.",
     "success_criteria": [
       "Closed-book, outline analysis of deviance for nested models.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.7-cp-01",
       "title": "Checkpoint: 4.2.7",
-      "prompt": "Refuse: 'always fit the biggest GLM.' Give an analysis-of-deviance warrant for a smaller model.",
+      "prompt": "Closed-book. Nested GLMs M_reduced \u2282 M_full. (1) Outline how an analysis of deviance (likelihood-ratio / deviance difference) plus parameter significance guides choosing between them. (2) Refuse: 'Always fit the biggest GLM' and 'plotting Pearson residuals finishes model choice via analysis of deviance.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.7.",
       "hints": [
@@ -156,8 +156,8 @@
         "parsimony"
       ],
       "explanation": "Checkpoint for 4.2.7.",
-      "model_answer": "Refuse kitchen-sink. If \u0394 deviance and parameter significance do not support extra terms, prefer the smaller suitable model.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Compare deviance (or \u22122\u0394\u2113) between nested models against a \u03c7\u00b2 reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. (2) Refuse: biggest is not a warrant \u2014 a smaller nested model can be preferred when the deviance difference does not justify the extra parameters; residual plots are diagnostics (a different LO).",
+      "common_mistake": "Defaulting to the fullest model, or treating residual plots as analysis of deviance.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -179,5 +179,6 @@
     "continuity_line": "Today you practised model choice via deviance; tomorrow continues at Pearson and deviance residuals and their use.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.8 \u2014 titles only tonight",
     "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force mean/variance/scale statements for at least two families and refuse variance-as-optional.",
     "educational_intent": "Produce variance-function literacy for GLM families.",
     "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
-    "concept_focus": "Family \u2192 E(Y) \u2192 Var(Y) / V(\u03bc) \u2192 scale \u2192 refuse optional-variance myth.",
+    "concept_focus": "Family \u2192 E(Y) \u2192 Var(Y) \u2192 variance function V(\u03bc) \u2192 scale parameter.",
     "prior_bridge": "Yesterday you placed exponential-family responses (4.2.1). Today evaluates mean/variance language.",
     "why_now": "4.2.2 is contiguous absorb day 2/3 before link (4.2.3).",
-    "expected_benefit": "Study Progress for mean/variance structure \u2014 not link choice yet as primary.",
+    "expected_benefit": "You will be able to state mean, variance, variance function and scale for the standard GLM families.",
     "explainability": "Campaign Delta Day 7 / absorb block day 2.",
     "success_criteria": [
       "Closed-book, for two families state mean and how variance relates to mean.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.2-cp-01",
       "title": "Checkpoint: 4.2.2",
-      "prompt": "Closed-book. Refuse: 'variance does not matter once I pick a family.' Why does 4.2.2 force variance-function awareness?",
+      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(\u03bc) for each. (2) Refuse: 'Variance does not matter once I pick a family' and 'choosing the logit link finishes stating mean, variance, variance function and scale.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.2.",
       "hints": [
@@ -162,8 +162,8 @@
         "not optional"
       ],
       "explanation": "Checkpoint for 4.2.2.",
-      "model_answer": "Refuse: variance structure is part of the GLM family definition; mean\u2013variance relationship shapes modelling and later deviance/residuals.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Poisson: E[Y]=\u03bc, Var[Y]=\u03bc, V(\u03bc)=\u03bc (scale typically 1). Normal: E[Y]=\u03bc, Var[Y]=\u03c3\u00b2, V(\u03bc)=1 with scale \u03c3\u00b2. (2) Refuse: the mean\u2013variance relationship is part of the GLM family definition; the link maps \u03bc to \u03b7 \u2014 today requires the mean/variance/scale structure of the response family.",
+      "common_mistake": "Treating variance structure as optional once the family (or link) is named.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -186,5 +186,6 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.3 \u2014 titles only tonight",
     "student_facing": "Tomorrow: link function and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings \u2014 titles only tonight."
   },
-  "absorption_note": "EA-006 structure absorb day 2/3"
+  "absorption_note": "EA-006 structure absorb day 2/3",
+  "published_at": "2026-08-01"
 }

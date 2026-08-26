@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -42,10 +42,10 @@
     "tutor_intent": "Today I will force exponential-family placement for named responses and refuse 'GLM means linear regression in a package'.",
     "educational_intent": "Produce family placement as the first GLM structure hinge (EA-006 absorb day 1/3).",
     "learning_objective": "Recognise binomial, Poisson, exponential, gamma and normal distributions as members of an exponential family in the GLM setting.",
-    "concept_focus": "Named response \u2192 exponential family membership \u2192 refuse package-name GLM.",
+    "concept_focus": "Named response distributions \u2192 exponential-family membership in the GLM setting \u2192 refuse package-name GLM.",
     "prior_bridge": "CD-R1 retrieved classical LM. Today opens 4.2 at exponential family \u2014 lawful absorb of orphan structure geography.",
     "why_now": "GLM begins by placing binomial, Poisson, exponential, gamma, and normal as exponential-family responses.",
-    "expected_benefit": "Study Progress for family placement \u2014 not full link/deviance mastery today.",
+    "expected_benefit": "You will be able to recognise binomial, Poisson, exponential, gamma and Normal as exponential-family GLM responses.",
     "explainability": "Campaign Delta Day 6 / absorb block day 1 \u2014 EP-001 Wave 2 Trust Front.",
     "success_criteria": [
       "Closed-book, name three exponential-family responses used in GLMs.",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.1-cp-01",
       "title": "Checkpoint: 4.2.1",
-      "prompt": "Closed-book. Refuse: 'GLM is just linear regression with a package name.' Restate what must be true of the response family.",
+      "prompt": "Closed-book. (1) Name three of binomial, Poisson, exponential, gamma, Normal and state in one line why each belongs in the exponential family for GLM. (2) Refuse: 'GLM is just ordinary linear regression with a different software package name.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.1.",
       "hints": [
@@ -162,8 +162,8 @@
         "glm"
       ],
       "explanation": "Checkpoint for 4.2.1.",
-      "model_answer": "Refuse: package name \u2260 GLM. A GLM response sits in an exponential family (with later \u03b7 and link) \u2014 Normal+identity is special, not definitional.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) e.g. Poisson (counts with E[Y]=Var[Y]=\u03bc); binomial (bounded proportion/count responses); Normal (continuous responses with constant variance) \u2014 each has an exponential-family density form usable as a GLM response. (2) Refuse: package name \u2260 GLM; a GLM response sits in an exponential family (with later \u03b7 and link). Normal+identity is a special case, not the definition.",
+      "common_mistake": "Treating GLM as a software synonym for ordinary linear regression.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -186,5 +186,6 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.2 \u2014 titles only tonight",
     "student_facing": "Tomorrow: mean, variance, variance function and scale for GLM families (4.2.2). Optional light prep: skim 4.2.2 headings \u2014 titles only tonight."
   },
-  "absorption_note": "EA-006 structure absorb day 1/3"
+  "absorption_note": "EA-006 structure absorb day 1/3",
+  "published_at": "2026-08-01"
 }

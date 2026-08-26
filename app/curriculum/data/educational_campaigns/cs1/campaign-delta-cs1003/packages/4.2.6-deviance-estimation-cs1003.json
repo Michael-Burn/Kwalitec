@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force deviance meaning + estimation outline \u2014 refuse OLS-copy into GLM without warrant.",
     "educational_intent": "Produce deviance/estimation literacy.",
     "learning_objective": "Explain deviance, scaled deviance, and estimation of the parameters of a generalised linear model.",
-    "concept_focus": "Deviance \u2192 scaled deviance \u2192 estimate parameters \u2192 refuse OLS-copy myth.",
+    "concept_focus": "Log-likelihood \u2192 deviance \u2192 scaled deviance \u2192 maximum-likelihood / IWLS parameter estimates.",
     "prior_bridge": "Yesterday \u03b7 forms (4.2.5). Today estimation/deviance language.",
     "why_now": "4.2.6 precedes model choice via analysis of deviance (4.2.7).",
-    "expected_benefit": "Study Progress for deviance/estimation \u2014 not full model-choice theatre yet.",
+    "expected_benefit": "You will be able to explain deviance, scaled deviance, and how GLM parameters are estimated.",
     "explainability": "Campaign Delta Day 11 focuses LO 4.2.6.",
     "success_criteria": [
       "Closed-book, state what deviance compares in one sentence.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.6-cp-01",
       "title": "Checkpoint: 4.2.6",
-      "prompt": "Refuse: 'GLM estimation is just OLS.' What changes?",
+      "prompt": "Closed-book. (1) In one sentence each, what are deviance and scaled deviance, and what estimation principle is typically used for GLM parameters? (2) Refuse: 'GLM estimation is just OLS' and 'deleting insignificant terms until p-values look nice finishes explaining deviance and GLM estimation.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.6.",
       "hints": [
@@ -157,8 +157,8 @@
         "link"
       ],
       "explanation": "Checkpoint for 4.2.6.",
-      "model_answer": "Refuse OLS-copy. GLM estimation uses likelihood for the exponential-family response with a link \u2014 Normal+identity recovers OLS as special case.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Deviance compares the fitted model's log-likelihood to a saturated model (2{\u2113_sat \u2212 \u2113_model}); scaled deviance divides by the dispersion/scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS) \u2014 not ordinary least squares. (2) Refuse: OLS is the linear-model special case; mechanical p-value chopping is model-choice behaviour, not the definition or estimation of deviance.",
+      "common_mistake": "Equating GLM estimation with OLS, or confusing deviance with p-value chopping.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -180,5 +180,6 @@
     "continuity_line": "Today you practised deviance and estimation; tomorrow continues at choosing a suitable model using analysis of deviance and parameter significance.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.7 \u2014 titles only tonight",
     "student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

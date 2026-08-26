@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -36,17 +36,17 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.1-software-inference",
     "display_title": "Fit, infer, predict, and check residuals with software",
-    "mission_purpose": "Today's Mission exists to use appropriate software to fit a linear regression, interpret inference and fit measures, predict with limits, and use residuals to check suitability — without claiming variable-selection LO complete.",
-    "tutor_intent": "Today I will force the candidate through fit → infer slope → predict with limits → residual check — refuse menu tourism.",
+    "mission_purpose": "Today's Mission exists to use appropriate software to fit a linear regression, interpret inference and fit measures, predict with limits, and use residuals to check suitability \u2014 without claiming variable-selection LO complete.",
+    "tutor_intent": "Today I will force the candidate through fit \u2192 infer slope \u2192 predict with limits \u2192 residual check \u2014 refuse menu tourism.",
     "educational_intent": "Produce an executable software-literacy chain for simple/multiple LM output.",
     "learning_objective": "Use appropriate software to fit a linear regression model and interpret output: inference on slope; goodness of fit; prediction with confidence limits; residual checks.",
-    "concept_focus": "Fit → infer → predict → residual check → refuse tourism.",
+    "concept_focus": "Software fit \u2192 slope inference \u2192 GOF measures \u2192 mean vs individual prediction limits \u2192 residual checks.",
     "prior_bridge": "Yesterday you earned OLS method warrant (4.1.3). Today executes software literacy.",
     "why_now": "4.1.4 is the software-and-diagnostics LO before selection (4.1.5).",
-    "expected_benefit": "Study Progress for software LM chain — not full 4.1.5 selection theatre.",
+    "expected_benefit": "You will be able to interpret a fitted linear regression: slope inference, GOF, prediction limits, and residual checks.",
     "explainability": "Campaign Delta Day 4 focuses LO 4.1.4.",
     "success_criteria": [
-      "Closed-book, outline fit → slope inference → prediction with limits → residual check.",
+      "Closed-book, outline fit \u2192 slope inference \u2192 prediction with limits \u2192 residual check.",
       "Interpret one software output cue from notes.",
       "Refuse menu tourism without residual check."
     ],
@@ -62,14 +62,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.1-software-inference",
-    "session_educational_purpose": "Execute today's Mission for LO 4.1.4 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.1.4 \u2014 not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.1.4; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Fit, infer, predict, and check residuals with software. Study Progress for LO 4.1.4 — not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "wrap_up": "Session complete for Fit, infer, predict, and check residuals with software. Study Progress for LO 4.1.4 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.4 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -84,7 +84,7 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP · Syllabus 4.1.4 software fit, inference, prediction, residuals",
+    "open_point": "CMP \u00b7 Syllabus 4.1.4 software fit, inference, prediction, residuals",
     "stop_condition": "Through CMP 4.1.4 (stop before variable-selection primary 4.1.5)",
     "out_of_scope_today": [
       "Variable selection as primary (4.1.5)",
@@ -94,12 +94,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.4 software fit, inference, prediction, residuals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.4 (stop before variable-selection primary 4.1.5). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.4 software fit, inference, prediction, residuals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.4 (stop before variable-selection primary 4.1.5). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -133,7 +133,7 @@
         "suitability"
       ],
       "explanation": "Active recall for 4.1.4.",
-      "model_answer": "Fit → slope inference (estimate/se/test or CI) → prediction with limits → residuals to check suitability/validity.",
+      "model_answer": "Fit \u2192 slope inference (estimate/se/test or CI) \u2192 prediction with limits \u2192 residuals to check suitability/validity.",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -145,7 +145,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. Refuse: 'I fitted the model so I am done.' Name the missing check that 4.1.4 requires before trust.",
+      "prompt": "Closed-book. After fitting Y = \u03b2\u2080 + \u03b2\u2081x in software you see \u03b2\u0302\u2081, SE(\u03b2\u0302\u2081), R\u00b2, and residual plots. (1) For a new x*, distinguish predicting the mean response E[Y|x*] from predicting an individual Y_new \u2014 which interval is typically wider? (2) Refuse: 'I fitted the model so I am done' and 'residuals are optional after a significant slope.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.4.",
       "hints": [
@@ -161,8 +161,8 @@
         "validity"
       ],
       "explanation": "Checkpoint for 4.1.4.",
-      "model_answer": "Refuse: fit alone is not enough. Use residuals to check suitability/validity (and honour inference/prediction requirements).",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) A mean-response (confidence) interval covers E[Y|x*]; a prediction interval covers a new observation and is typically wider (adds residual variance). (2) Refuse: fit alone is not enough \u2014 slope inference, GOF, prediction limits, and residual checks are all required before trusting the fit.",
+      "common_mistake": "Stopping at fitted coefficients without prediction-limit or residual checks.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -170,7 +170,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest software-chain wobble — selection LO tomorrow.",
+    "framing": "Harvest software-chain wobble \u2014 selection LO tomorrow.",
     "prompt": "Which part of today's 4.1.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.1.4 is stickiest and why?",
@@ -182,8 +182,8 @@
     "next_topic_code": "4.1",
     "next_topic_title": "Model-fit measures and variable selection (4.1.5)",
     "continuity_line": "Today you practised software fit/inference/prediction/residuals; tomorrow continues at model-fit measures to select explanatory variables.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.5 — titles only tonight",
-    "student_facing": "Tomorrow: measures of model fit for variable selection (4.1.5). Optional light prep: skim 4.1.5 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.5 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: measures of model fit for variable selection (4.1.5). Optional light prep: skim 4.1.5 headings \u2014 titles only tonight."
   },
   "published_at": "2026-08-01"
 }

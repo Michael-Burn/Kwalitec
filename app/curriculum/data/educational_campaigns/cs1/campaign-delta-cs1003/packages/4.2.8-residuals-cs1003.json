@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force naming both residual types and one diagnostic use \u2014 refuse residual-optional myth.",
     "educational_intent": "Produce residual-type literacy for GLMs.",
     "learning_objective": "Explain Pearson and deviance residuals and their use.",
-    "concept_focus": "Pearson residual \u2192 deviance residual \u2192 diagnostic use \u2192 refuse optional myth.",
+    "concept_focus": "Pearson residual \u2192 deviance residual \u2192 diagnostic use for fit, outliers and patterns.",
     "prior_bridge": "Yesterday model choice (4.2.7). Today residual diagnostics.",
     "why_now": "4.2.8 precedes formal goodness-of-fit tests (4.2.9).",
-    "expected_benefit": "Study Progress for residual use \u2014 not \u03c7\u00b2/LRT as primary yet.",
+    "expected_benefit": "You will be able to explain Pearson and deviance residuals and how they are used diagnostically.",
     "explainability": "Campaign Delta Day 13 focuses LO 4.2.8.",
     "success_criteria": [
       "Closed-book, name Pearson and deviance residuals.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.8-cp-01",
       "title": "Checkpoint: 4.2.8",
-      "prompt": "Refuse: 'residuals are optional after a significant model.' Why does 4.2.8 require them?",
+      "prompt": "Closed-book. (1) State the idea of a Pearson residual and a deviance residual for a GLM observation. (2) Refuse: 'Residuals are optional after a significant model' and 'running a likelihood-ratio test finishes explaining Pearson and deviance residuals.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.8.",
       "hints": [
@@ -157,8 +157,8 @@
         "not optional"
       ],
       "explanation": "Checkpoint for 4.2.8.",
-      "model_answer": "Refuse optional myth. Residuals check whether the fitted GLM is suitable \u2014 significance alone is not enough.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Pearson residual: (y \u2212 \u03bc\u0302)/\u221aVar\u0302(Y) \u2014 a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers and patterns. (2) Refuse: significance alone does not validate fit \u2014 residual diagnostics are required; an LRT is a formal acceptability/model-comparison test, different from defining and using residual diagnostics.",
+      "common_mistake": "Treating residuals as optional after a significant model, or confusing them with an LRT.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -180,5 +180,6 @@
     "continuity_line": "Today you practised residual types; tomorrow continues at statistical tests for acceptability of a fitted GLM.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.9 \u2014 titles only tonight",
     "student_facing": "Tomorrow: Pearson's chi-square and likelihood-ratio tests for fitted GLMs (4.2.9). Optional light prep: skim 4.2.9 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

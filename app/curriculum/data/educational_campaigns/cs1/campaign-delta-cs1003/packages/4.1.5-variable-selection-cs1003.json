@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force the candidate to use a fit measure to justify adding/dropping an X and refuse kitchen-sink models.",
     "educational_intent": "Produce selection discipline via fit measures, not habit.",
     "learning_objective": "Use measures of model fit to select an appropriate set of explanatory variables.",
-    "concept_focus": "Fit measure \u2192 compare models \u2192 select set \u2192 refuse kitchen-sink.",
+    "concept_focus": "Candidate explanatory sets \u2192 fit measures (e.g. adjusted R\u00b2, AIC/BIC) \u2192 select an appropriate set.",
     "prior_bridge": "Yesterday you completed software fit/inference/residuals (4.1.4). Today selects the X set.",
     "why_now": "Close classical linear models by selecting explanatory variables with fit measures \u2014 GLM structure comes after.",
-    "expected_benefit": "Study Progress for selection \u2014 not GLM structure; not Topic Complete for 4.2.",
+    "expected_benefit": "You will be able to use measures of model fit to select an appropriate set of explanatory variables.",
     "explainability": "Campaign Delta Day 5 closes 4.1 Learning span.",
     "success_criteria": [
       "Closed-book, name one model-fit measure used for selection.",
@@ -145,7 +145,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.5-cp-01",
       "title": "Checkpoint: 4.1.5",
-      "prompt": "Closed-book. Refuse kitchen-sink regression. Give one selection warrant using a fit measure.",
+      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. (1) Name two fit measures you could use to choose between candidate explanatory sets and what each rewards or penalises. (2) Refuse: 'Keep every term with p<0.05 and selection is done' and 'kitchen-sink regression (include every column) is a selection warrant.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.5.",
       "hints": [
@@ -161,8 +161,8 @@
         "not all"
       ],
       "explanation": "Checkpoint for 4.1.5.",
-      "model_answer": "Refuse: including every column is not selection. Use a fit measure (and theory) to justify the explanatory set.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) e.g. adjusted R\u00b2 (rewards fit while adjusting for unused complexity vs raw R\u00b2); AIC/BIC (likelihood fit with a parameter-count penalty). (2) Refuse: mechanical p-value chopping is not a complete selection warrant; including every column is not selection \u2014 use a fit measure (and theory) to justify the explanatory set. GLM structure is a different topic.",
+      "common_mistake": "Treating p-value chopping or column-soup as a complete selection warrant.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -184,5 +184,6 @@
     "continuity_line": "Today you practised variable selection with fit measures; tomorrow is Revision mode returning to 4.1.1\u20134.1.5 under closed-book retrieval \u2014 not GLM yet.",
     "light_prep_cue": "Optional: list your weakest 4.1 link from memory \u2014 titles only",
     "student_facing": "Tomorrow: Campaign Delta Revision CD-R1 \u2014 retrieve classical linear models (4.1). Optional: note your weakest 4.1 link tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

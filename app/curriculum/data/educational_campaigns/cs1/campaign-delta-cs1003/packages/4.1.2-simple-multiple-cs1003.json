@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force the candidate to write \u03b7 forms for simple and multiple LM and refuse treating 'multiple' as automatic excellence.",
     "educational_intent": "Produce discrimination between single-X and multi-X linear model statements.",
     "learning_objective": "State the simple regression model (single explanatory variable) and the multiple linear regression model (several explanatory variables).",
-    "concept_focus": "One X \u2192 several X \u2192 write model \u2192 refuse multiple-as-better theatre.",
+    "concept_focus": "One explanatory variable \u2192 simple linear form \u2192 several explanatory variables \u2192 multiple linear form.",
     "prior_bridge": "Yesterday you named response and explanatory roles (4.1.1). Today forms the model statement.",
     "why_now": "4.1.2 is contiguous after roles; estimation (4.1.3) needs a stated model.",
-    "expected_benefit": "Study Progress for model forms \u2014 not least squares mastery.",
+    "expected_benefit": "You will be able to write simple and multiple linear regression model forms and distinguish them from OLS estimation.",
     "explainability": "Campaign Delta Day 2 continues Trust Front at LO 4.1.2.",
     "success_criteria": [
       "Closed-book, write the simple LM equation with one X.",
@@ -145,7 +145,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.2-cp-01",
       "title": "Checkpoint: 4.1.2",
-      "prompt": "Closed-book. Why is 'always use multiple regression' not a modelling warrant? Give one honest criterion that would justify adding a second X.",
+      "prompt": "Closed-book. Claim severity Y with predictors age (x\u2081) and sum insured (x\u2082). (1) Write the simple linear model using only age, and the multiple linear model using both predictors. (2) Refuse: 'Writing the least-squares formulae for \u03b2\u0302 finishes stating the model forms' and 'always use multiple regression \u2014 more predictors is always better.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.1.2.",
       "hints": [
@@ -162,8 +162,8 @@
         "refuse"
       ],
       "explanation": "Checkpoint for 4.1.2.",
-      "model_answer": "Multiple is not automatically better. Add X2 when theory or evidence shows incremental explanatory value (and you will later check fit/residuals) \u2014 not by habit.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Simple: Y = \u03b2\u2080 + \u03b2\u2081 age + \u03b5. Multiple: Y = \u03b2\u2080 + \u03b2\u2081 age + \u03b2\u2082 sum_insured + \u03b5. (2) Refuse: least squares is the estimation criterion (a later LO); today is stating the simple vs multiple linear model forms. Multiple is not automatically better \u2014 add a second X when theory or evidence shows incremental explanatory value.",
+      "common_mistake": "Treating 'more predictors' or writing OLS formulae as finishing the model-form LO.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -185,5 +185,6 @@
     "continuity_line": "Today you stated simple and multiple LM forms; tomorrow continues at least squares estimates for slope and intercept in the simple case.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.3 \u2014 titles only tonight",
     "student_facing": "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: skim 4.1.3 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

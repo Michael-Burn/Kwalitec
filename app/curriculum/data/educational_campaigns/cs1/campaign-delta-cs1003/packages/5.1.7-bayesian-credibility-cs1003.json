@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force linking posterior means / Bayesian updates to a credibility premium in a simple case \u2014 refuse formula-without-Bayes.",
     "educational_intent": "Produce Bayesian credibility application skill.",
     "learning_objective": "Use the Bayesian approach to credibility theory to calculate credibility premiums in simple cases.",
-    "concept_focus": "Bayesian update \u2192 credibility premium \u2192 refuse formula-without-Bayes.",
+    "concept_focus": "Bayesian credibility with known structural/prior parameters \u2192 Z and \u03bc \u2192 credibility premium.",
     "prior_bridge": "Yesterday premium formula/Z (5.1.6). Today Bayesian approach.",
     "why_now": "5.1.7 precedes Empirical Bayes (5.1.8) contrast.",
-    "expected_benefit": "Study Progress for Bayesian credibility \u2014 not EB as primary.",
+    "expected_benefit": "You will be able to apply the Bayesian approach to credibility and compute a premium in a simple case.",
     "explainability": "Campaign Delta Day 22 focuses LO 5.1.7.",
     "success_criteria": [
       "Closed-book, outline how a Bayesian update yields a credibility premium in a simple case.",
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Refuse: writing Z\u00b7X\u0304+(1\u2212Z)\u00b7\u03bc with no Bayesian story. What is missing?",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z\u00b7X\u0304 + (1\u2212Z)\u00b7\u03bc. (1) What do the prior/structural assumptions supply that lets you compute Z and \u03bc? (2) Refuse: writing Z\u00b7X\u0304+(1\u2212Z)\u00b7\u03bc with no Bayesian story, and 'applying Bayesian credibility finishes the Empirical Bayes approach.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.7.",
       "hints": [
@@ -157,8 +157,8 @@
         "meaning"
       ],
       "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "Refuse empty formula. Bayesian credibility requires a prior-to-posterior story that justifies the blend.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so \u03bc and Z are determined theoretically, then combined with observed X\u0304. (2) Refuse empty formula \u2014 Bayesian credibility requires a prior-to-posterior story that justifies the blend. Empirical Bayes estimates those structural parameters from data \u2014 a different approach from treating them as known.",
+      "common_mistake": "Writing the blend formula without a Bayesian warrant, or treating EB as finished.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -180,5 +180,6 @@
     "continuity_line": "Today you practised Bayesian credibility; tomorrow continues at the Empirical Bayes approach to credibility premiums.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.8 \u2014 titles only tonight",
     "student_facing": "Tomorrow: Empirical Bayes approach to credibility (5.1.8). Optional light prep: skim 5.1.8 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }

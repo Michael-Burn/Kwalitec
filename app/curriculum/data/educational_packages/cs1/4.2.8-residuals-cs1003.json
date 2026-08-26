@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1003_EDUCATIONAL_VOLUME.md",
     "CS1003_CERTIFICATION_REPORT.md",
@@ -35,14 +35,14 @@
   "mission": {
     "mission_id": "msn-cs1003-cs1-4.2-residuals",
     "display_title": "Use Pearson and deviance residuals",
-    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and use them to check GLM fit — so diagnostics are named, not vague.",
-    "tutor_intent": "Today I will force naming both residual types and one diagnostic use — refuse residual-optional myth.",
+    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and use them to check GLM fit \u2014 so diagnostics are named, not vague.",
+    "tutor_intent": "Today I will force naming both residual types and one diagnostic use \u2014 refuse residual-optional myth.",
     "educational_intent": "Produce residual-type literacy for GLMs.",
     "learning_objective": "Explain Pearson and deviance residuals and their use.",
-    "concept_focus": "Pearson residual → deviance residual → diagnostic use → refuse optional myth.",
+    "concept_focus": "Pearson residual \u2192 deviance residual \u2192 diagnostic use for fit, outliers and patterns.",
     "prior_bridge": "Yesterday model choice (4.2.7). Today residual diagnostics.",
     "why_now": "4.2.8 precedes formal goodness-of-fit tests (4.2.9).",
-    "expected_benefit": "Study Progress for residual use — not χ²/LRT as primary yet.",
+    "expected_benefit": "You will be able to explain Pearson and deviance residuals and how they are used diagnostically.",
     "explainability": "Campaign Delta Day 13 focuses LO 4.2.8.",
     "success_criteria": [
       "Closed-book, name Pearson and deviance residuals.",
@@ -61,14 +61,14 @@
   },
   "session": {
     "session_id": "ssn-cs1003-cs1-4.2-residuals",
-    "session_educational_purpose": "Execute today's Mission for LO 4.2.8 — not neighbouring LOs listed out of scope.",
+    "session_educational_purpose": "Execute today's Mission for LO 4.2.8 \u2014 not neighbouring LOs listed out of scope.",
     "session_tutor_purpose": "Set focus on 4.2.8; exit to CMP; retrieve closed-book checks.",
     "duration_budget_minutes": {
       "min": 50,
       "max": 75
     },
-    "wrap_up": "Session complete for Use Pearson and deviance residuals. Study Progress for LO 4.2.8 — not Topic Complete for later LOs in this Volume.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.8 move closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "wrap_up": "Session complete for Use Pearson and deviance residuals. Study Progress for LO 4.2.8 \u2014 not Topic Complete for later LOs in this Volume.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.8 move closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.8 skill. Stop at the stop condition; do not swallow the next LO.",
@@ -83,21 +83,21 @@
       "Watch for software/menu tourism without method warrant.",
       "Watch for Isolated Golden Day / spine claims."
     ],
-    "open_point": "CMP · Syllabus 4.2.8 Pearson and deviance residuals",
+    "open_point": "CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals",
     "stop_condition": "Through CMP 4.2.8 (stop before goodness tests primary 4.2.9)",
     "out_of_scope_today": [
-      "χ²/LRT primary (4.2.9)",
+      "\u03c7\u00b2/LRT primary (4.2.9)",
       "Software fit interpret primary (4.2.10)",
       "Bayes"
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.8 (stop before goodness tests primary 4.2.9). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.8 (stop before goodness tests primary 4.2.9). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause — write today's core move in one sentence.",
+        "cue": "Pause \u2014 write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -142,7 +142,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.8-cp-01",
       "title": "Checkpoint: 4.2.8",
-      "prompt": "Refuse: 'residuals are optional after a significant model.' Why does 4.2.8 require them?",
+      "prompt": "Closed-book. (1) State the idea of a Pearson residual and a deviance residual for a GLM observation. (2) Refuse: 'Residuals are optional after a significant model' and 'running a likelihood-ratio test finishes explaining Pearson and deviance residuals.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.8.",
       "hints": [
@@ -157,8 +157,8 @@
         "not optional"
       ],
       "explanation": "Checkpoint for 4.2.8.",
-      "model_answer": "Refuse optional myth. Residuals check whether the fitted GLM is suitable — significance alone is not enough.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Pearson residual: (y \u2212 \u03bc\u0302)/\u221aVar\u0302(Y) \u2014 a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers and patterns. (2) Refuse: significance alone does not validate fit \u2014 residual diagnostics are required; an LRT is a formal acceptability/model-comparison test, different from defining and using residual diagnostics.",
+      "common_mistake": "Treating residuals as optional after a significant model, or confusing them with an LRT.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -166,7 +166,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest residual wobble — formal tests tomorrow.",
+    "framing": "Harvest residual wobble \u2014 formal tests tomorrow.",
     "prompt": "Which part of today's 4.2.8 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.8 is stickiest and why?",
@@ -176,10 +176,10 @@
   },
   "tomorrow_preview": {
     "next_topic_code": "4.2",
-    "next_topic_title": "Pearson χ² and likelihood-ratio tests (4.2.9)",
+    "next_topic_title": "Pearson \u03c7\u00b2 and likelihood-ratio tests (4.2.9)",
     "continuity_line": "Today you practised residual types; tomorrow continues at statistical tests for acceptability of a fitted GLM.",
-    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.9 — titles only tonight",
-    "student_facing": "Tomorrow: Pearson's chi-square and likelihood-ratio tests for fitted GLMs (4.2.9). Optional light prep: skim 4.2.9 headings — titles only tonight."
+    "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.9 \u2014 titles only tonight",
+    "student_facing": "Tomorrow: Pearson's chi-square and likelihood-ratio tests for fitted GLMs (4.2.9). Optional light prep: skim 4.2.9 headings \u2014 titles only tonight."
   },
   "published_at": "2026-08-01"
 }

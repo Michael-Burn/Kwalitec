@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-catalogue-1.0.0",
-  "status": "campaign_member_certified",
+  "publication_version": "cs1003-live-1.0.0",
+  "status": "publication_approved",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force factor vs continuous discrimination and one interaction warrant \u2014 refuse interaction-as-decoration.",
     "educational_intent": "Produce factor/interaction literacy for GLM predictors.",
     "learning_objective": "Explain variables, factors taking categorical values, and interaction terms in the GLM setting.",
-    "concept_focus": "Continuous vs factor \u2192 interaction \u2192 refuse decoration myth.",
+    "concept_focus": "Continuous variable \u2192 categorical factor coding \u2192 interaction term changing a slope by level.",
     "prior_bridge": "Yesterday closed Family \u2192 \u03b7 \u2192 link (4.2.3). Today builds predictor structure.",
     "why_now": "4.2.4 is contiguous after structure before \u03b7 form detail (4.2.5).",
-    "expected_benefit": "Study Progress for factors/interactions \u2014 not full \u03b7 polynomial forms as primary.",
+    "expected_benefit": "You will be able to explain variables, factors and interaction terms in a GLM linear predictor.",
     "explainability": "Campaign Delta Day 9 focuses LO 4.2.4.",
     "success_criteria": [
       "Closed-book, contrast a continuous variable with a categorical factor.",
@@ -141,7 +141,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.4-cp-01",
       "title": "Checkpoint: 4.2.4",
-      "prompt": "Refuse: 'add all interactions by default.' Give one warrant for including an interaction.",
+      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age\u00d7region interaction. (2) Refuse: 'Add all interactions by default' and 'an interaction is just another main-effect slope.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.4.",
       "hints": [
@@ -156,8 +156,8 @@
         "not default"
       ],
       "explanation": "Checkpoint for 4.2.4.",
-      "model_answer": "Refuse defaults. Include an interaction when theory or evidence says the effect of X depends on another factor/variable \u2014 then check later with deviance/tests.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) \u03b7 = \u03b2\u2080 + \u03b2\u2081x + \u03b2\u2082 I_South + \u03b2\u2083 x\u00b7I_South (North baseline). (2) Refuse: include an interaction when theory or evidence says the effect of X depends on another factor \u2014 an interaction changes the age slope by region; it is not merely another additive main effect, and defaults are not a warrant.",
+      "common_mistake": "Adding every interaction by default, or treating an interaction as just another main effect.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -179,5 +179,6 @@
     "continuity_line": "Today you practised factors and interactions; tomorrow continues at the form of the linear predictor including polynomials and factors.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.5 \u2014 titles only tonight",
     "student_facing": "Tomorrow: definition and form of the linear predictor (4.2.5). Optional light prep: skim 4.2.5 headings \u2014 titles only tonight."
-  }
+  },
+  "published_at": "2026-08-01"
 }
