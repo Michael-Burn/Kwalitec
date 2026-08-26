@@ -89,7 +89,7 @@ CONTINUE_RETRY_MESSAGE = (
 # ── PX-B-009 — Honest wait / preparing ──────────────────────────────────────
 PREPARING_MISSION_LABEL = "Preparing today's session…"
 PREPARING_MISSION_SUPPORT = (
-    "Your campaign journey is settling. This usually takes a moment — "
+    "Your plan is being set up. This usually takes a moment — "
     "stay on this page or refresh shortly."
 )
 

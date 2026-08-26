@@ -8,6 +8,7 @@ from app.application.student_experience.dto.home_snapshot import (
     HomeSnapshot,
     StartSessionActionSnapshot,
 )
+from app.extensions import db
 from app.presentation.student.services.student_home_service import (
     StudentHomeService,
 )
@@ -188,7 +189,11 @@ def test_template_mission_first_no_legacy_chrome(app, ctx):
             home=home,
             form=None,
         )
-    assert "Today&#39;s Mission" in html or "Continue Session" in html or ">Continue<" in html
+    assert (
+        "Today&#39;s Mission" in html
+        or "Continue Session" in html
+        or ">Continue<" in html
+    )
     assert "Continue" in html
     assert html.count("ds-btn--primary") == 1
     assert "student-hero-greeting" not in html
@@ -293,6 +298,190 @@ def test_plan_signal_without_ready_mission_is_quiet(app, ctx):
     assert page.state == "quiet"
     assert "No exam selected" not in page.empty_reason
     assert "session will be ready" in page.empty_reason.lower()
+
+
+def test_known_mission_title_without_cta_is_mission_not_quiet(app, ctx):
+    """Real mission chrome with CTA off must still show the hero (not preparing)."""
+    home = home_vm(
+        HomeSnapshot(
+            student_id="1",
+            examination_label="IFoA CM1",
+            has_recommendation=True,
+            recommendation_title="Study CM1 Leaf",
+            can_start_session=False,
+        ),
+        unified_journey=False,
+    )
+    home = replace(
+        home,
+        primary_cta_enabled=False,
+        primary_mission_title="Study CM1 Leaf",
+        mission_id="42",
+        completion_status_label="Ready to study",
+    )
+    with app.test_request_context("/student/"):
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "mission"
+    assert page.mission is not None
+    assert "CM1 Leaf" in page.mission.title
+    assert page.preparing_mission is False
+
+
+def test_stage_a_ready_mission_surfaces_on_home(app, ctx, user):
+    """Stage A MissionService row must win over quiet/preparing when VM is empty."""
+    from datetime import date, timedelta
+
+    from flask_login import login_user
+
+    from app.models.curriculum import Curriculum, Topic
+    from app.models.study_plan import StudyPlan, WeekPlan
+    from app.services.planning_service import PlanningService
+
+    curriculum = Curriculum(exam_name="IFoA CM1", version="2025", active=True)
+    db.session.add(curriculum)
+    db.session.flush()
+    db.session.add(
+        Topic(
+            name="CM1 Leaf",
+            curriculum_id=curriculum.id,
+            order=1,
+            recommended_minutes=60,
+            active=True,
+        )
+    )
+    plan = StudyPlan(
+        user_id=user.id,
+        curriculum_id=curriculum.id,
+        curriculum_version=curriculum.version,
+        exam_name="IFoA CM1",
+        exam_sitting="April 2027",
+        exam_date=date.today() + timedelta(days=180),
+        weekday_study_minutes=120,
+        weekend_study_minutes=180,
+        current_stage="Chapter 1",
+        study_preference="Mixed",
+        target_grade="A",
+        preferred_session_minutes=60,
+        active=True,
+    )
+    db.session.add(plan)
+    db.session.flush()
+    db.session.add(
+        WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+    )
+    db.session.commit()
+    stage_a = PlanningService.generate_today_mission(user.id)
+    assert stage_a is not None
+    assert "CM1 Leaf" in stage_a.title
+
+    # Experience chrome empty / CTA off — the historical quiet/preparing bug.
+    home = home_vm(
+        HomeSnapshot(
+            student_id=str(user.id),
+            examination_label="IFoA CM1",
+            has_recommendation=False,
+            recommendation_title="",
+            can_start_session=False,
+        ),
+        unified_journey=False,
+    )
+    with app.test_request_context("/student/"):
+        login_user(user)
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "mission"
+    assert page.mission is not None
+    assert "CM1 Leaf" in page.mission.title
+    assert page.mission.primary_kind == "start_form"
+    assert page.preparing_mission is False
+
+
+def test_stage_a_title_wins_over_polluted_experience_chrome(app, ctx, user):
+    """Stale Experience title must not hide Stage A's ready mission title."""
+    from datetime import date, timedelta
+
+    from flask_login import login_user
+
+    from app.models.curriculum import Curriculum, Topic
+    from app.models.study_plan import StudyPlan, WeekPlan
+    from app.services.planning_service import PlanningService
+
+    curriculum = Curriculum(exam_name="IFoA CM1", version="2025", active=True)
+    db.session.add(curriculum)
+    db.session.flush()
+    db.session.add(
+        Topic(
+            name="CM1 Leaf",
+            curriculum_id=curriculum.id,
+            order=1,
+            recommended_minutes=60,
+            active=True,
+        )
+    )
+    plan = StudyPlan(
+        user_id=user.id,
+        curriculum_id=curriculum.id,
+        curriculum_version=curriculum.version,
+        exam_name="IFoA CM1",
+        exam_sitting="April 2027",
+        exam_date=date.today() + timedelta(days=180),
+        weekday_study_minutes=120,
+        weekend_study_minutes=180,
+        current_stage="Chapter 1",
+        study_preference="Mixed",
+        target_grade="A",
+        preferred_session_minutes=60,
+        active=True,
+    )
+    db.session.add(plan)
+    db.session.flush()
+    db.session.add(
+        WeekPlan(
+            study_plan_id=plan.id,
+            week_number=1,
+            start_date=date.today() - timedelta(days=2),
+            end_date=date.today() + timedelta(days=4),
+        )
+    )
+    db.session.commit()
+    stage_a = PlanningService.generate_today_mission(user.id)
+    assert stage_a is not None
+
+    home = home_vm(
+        HomeSnapshot(
+            student_id=str(user.id),
+            examination_label="IFoA CM1",
+            has_recommendation=True,
+            recommendation_title="Stale CS1 Topic From Store",
+            can_start_session=True,
+            start_session=StartSessionActionSnapshot(
+                label="Start Session",
+                enabled=True,
+                can_start=True,
+                mission_id="stale-demo",
+                topic_title="Stale CS1 Topic From Store",
+            ),
+        ),
+        unified_journey=False,
+    )
+    home = replace(
+        home,
+        primary_cta_enabled=True,
+        primary_mission_title="Stale CS1 Topic From Store",
+        mission_id="stale-demo",
+    )
+    with app.test_request_context("/student/"):
+        login_user(user)
+        page = StudentHomeService().build_home(_page(home))
+    assert page.state == "mission"
+    assert page.mission is not None
+    assert "CM1 Leaf" in page.mission.title
+    assert "Stale CS1" not in page.mission.title
+    assert page.mission.mission_id == str(stage_a.id)
 
 
 def test_runtime_c_complete_control_is_actionable_mission(app, ctx):

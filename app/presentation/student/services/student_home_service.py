@@ -752,11 +752,41 @@ class StudentHomeService:
             )
 
         # 2–3. Mission ready → Start Session (POST preserves commitment path).
-        if home.primary_cta_enabled and (
+        # Prefer Stage A title/id when Experience chrome is empty or weak
+        # (common after plan switch / with Mission Read Bridge off / store pollution).
+        stage_a = self._peek_stage_a_ready_mission(home)
+        if stage_a is not None:
+            stage_a_title = (stage_a.title or "").strip()
+            edu_owns = bool(
+                home.educational and getattr(home.educational, "active", False)
+            )
+            # Stage A owns today's SQL mission for non–Runtime C Home. Prefer
+            # its title/id so polluted Experience chrome (session-scoped store,
+            # empty unified journey placeholders, stale package resolve) cannot
+            # hide a real ready mission behind quiet/preparing or a wrong hero.
+            if stage_a_title and not edu_owns:
+                title = stage_a_title
+                mission_id = str(stage_a.id)
+            elif stage_a_title and (
+                not (title or "").strip()
+                or (title or "").strip().casefold()
+                in {
+                    "today's mission",
+                    "today's session",
+                    "today's study focus",
+                    "current subject",
+                }
+            ):
+                title = stage_a_title
+                if not mission_id:
+                    mission_id = str(stage_a.id)
+
+        stage_a_ready = stage_a is not None and bool((title or "").strip())
+        if (home.primary_cta_enabled or stage_a_ready) and (
             home.session_control in ("start", "resume", "") or not home.session_control
         ):
             label = self._start_primary_label(home)
-            if not subject and not objective:
+            if not subject and not objective and not (title or "").strip():
                 return None
             return HomeMission(
                 subject_name=subject or "Current subject",
@@ -778,7 +808,79 @@ class StudentHomeService:
                 learning_objective=objective or "Today's study focus",
             )
 
+        # 4. Experience / Runtime C chrome has a real title but CTA not yet
+        # enabled — still show the hero. Never replace a known mission with
+        # the quiet/preparing skeleton.
+        display_title = (title or objective or "").strip()
+        if display_title and (
+            mission_id
+            or (home.primary_mission_title or "").strip()
+            or (
+                home.recommendation
+                and (home.recommendation.title or "").strip()
+            )
+            or stage_a is not None
+        ):
+            return HomeMission(
+                subject_name=subject or "Current subject",
+                objective=objective or "Today's study focus",
+                status_label=self._status_line(
+                    home.completion_status_label or home.session_status or "Ready",
+                    duration,
+                ),
+                why_now=why_now,
+                after_completion=after,
+                primary_label="",
+                primary_kind="none",
+                duration_label=duration,
+                mission_id=mission_id,
+                session_id=session_id,
+                recommendation_key=rec_key,
+                title=display_title,
+                difficulty_label=difficulty,
+                learning_objective=objective or "Today's study focus",
+            )
+
         return None
+
+    def _peek_stage_a_ready_mission(self, home: HomePageViewModel):
+        """Return today's Stage A SQL Mission when it is ready to surface.
+
+        Skips deliberate Runtime C holds (coverage gap / syllabus complete)
+        and completed Stage A missions (day_complete path owns those).
+        """
+        edu = home.educational
+        if edu and getattr(edu, "active", False):
+            status_label = (home.completion_status_label or "").strip().lower()
+            if status_label in {
+                "waiting for certified guidance",
+                "syllabus complete",
+            }:
+                return None
+
+        try:
+            from flask_login import current_user
+
+            from app.services.mission_service import MissionService
+        except Exception:  # noqa: BLE001 — presentation fail-open
+            return None
+
+        user_id = getattr(current_user, "id", None) if current_user else None
+        if user_id is None:
+            return None
+        try:
+            mission = MissionService.get_today_mission(int(user_id))
+        except Exception:  # noqa: BLE001 — presentation fail-open
+            return None
+        if mission is None:
+            return None
+
+        status = (mission.status or "").strip().lower()
+        if status == "completed":
+            return None
+        if not (mission.title or "").strip():
+            return None
+        return mission
 
     def _study_signals(
         self,

@@ -180,16 +180,24 @@ class TestStudyPlanStateSynchronization:
         assert cm1_mission is not None
         assert cm1_mission.study_plan_id == plan_cm1.id
         assert cm1_mission.id != cs1_mission.id
-        # Home may render a day-zero / preparing shell that does not embed the
-        # Stage A Mission.title string; subject chrome still proves the switch.
         assert "CM1 Leaf" in cm1_mission.title
         assert "IFoA CM1" in body
+        # Home must surface the real Stage A mission title — not quiet/preparing.
+        # Prefer the switch landing body; fall back to a fresh Home GET in case
+        # the redirect response raced a session-scoped Experience projection.
+        home_body = body
+        if "CM1 Leaf" not in home_body:
+            home_reload = logged_in_client.get("/student/", follow_redirects=True)
+            assert home_reload.status_code == 200
+            home_body = home_reload.get_data(as_text=True)
+        assert "CM1 Leaf" in home_body
+        assert "campaign journey" not in home_body.lower()
+        assert 'data-student-state="quiet"' not in home_body
+        assert 'data-px005="preparing"' not in home_body
 
         mission_page = logged_in_client.get("/missions/", follow_redirects=True)
         assert mission_page.status_code == 200
         mission_body = mission_page.get_data(as_text=True)
-        # Prefer missions surface when it still lists Stage A titles; otherwise
-        # subject chrome on Home + MissionService binding is the sync proof.
         if "CM1 Leaf" in mission_body or cm1_mission.title in mission_body:
             assert "IFoA CM1" in mission_body or "CM1" in mission_body
 
@@ -225,8 +233,16 @@ class TestStudyPlanStateSynchronization:
         _assert_landed_on_student_home(response)
         body = response.get_data(as_text=True)
         assert "IFoA CS1" in body
-        # Home day-zero shell may omit Stage A Mission.title; subject proves switch.
         assert "sampling distributions" in cs1_mission.title.lower()
+        # Restored Stage A mission title must appear on Home (not preparing shell).
+        home_body = body
+        if "sampling distributions" not in home_body.lower():
+            home_reload = logged_in_client.get("/student/", follow_redirects=True)
+            assert home_reload.status_code == 200
+            home_body = home_reload.get_data(as_text=True)
+        assert "sampling distributions" in home_body.lower()
+        assert "campaign journey" not in home_body.lower()
+        assert 'data-student-state="quiet"' not in home_body
 
         restored = MissionService.get_today_mission(user.id)
         assert restored is not None
@@ -243,7 +259,10 @@ class TestStudyPlanStateSynchronization:
         mission_page = logged_in_client.get("/missions/", follow_redirects=True)
         assert mission_page.status_code == 200
         mission_body = mission_page.get_data(as_text=True)
-        if "sampling distributions" in mission_body.lower() or cs1_mission.title in mission_body:
+        if (
+            "sampling distributions" in mission_body.lower()
+            or cs1_mission.title in mission_body
+        ):
             assert "IFoA CS1" in mission_body or "CS1" in mission_body
 
     def test_reload_keeps_synchronized_state(self, db, user, logged_in_client):
