@@ -5,6 +5,7 @@ Events do not mutate educational state. Soak outputs are measured only.
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
 from app.infrastructure.diagnostics.correlation import CorrelationContext
@@ -21,6 +22,8 @@ from app.infrastructure.events.types import (
     ADAPTIVE_SOAK_REQUESTED,
     ADAPTIVE_SOAK_ROLLBACK_VERIFIED,
 )
+
+logger = logging.getLogger(__name__)
 
 ADAPTIVE_SOAK_EVENT_TYPES: tuple[str, ...] = (
     ADAPTIVE_SOAK_REQUESTED,
@@ -126,14 +129,35 @@ def emit_compare(
     *,
     student_id: str,
     comparison: dict[str, Any],
+    explainability_passed: bool | None = None,
 ) -> tuple[IntegrationEvent, IntegrationEvent]:
-    """Emit soak compare + architecture ADAPTIVE_ENGINE_SHADOW_COMPARE."""
+    """Emit soak compare + architecture ADAPTIVE_ENGINE_SHADOW_COMPARE.
+
+    Also emits one greppable INFO log for Render/ops log viewers. Logging is
+    observational only — same fail-open path as the event publish.
+    """
+    cmp = dict(comparison)
     payload = {
         "student_id": student_id,
         "adapter_id": _SOURCE,
         "phase": "a6_shadow_soak",
-        **dict(comparison),
+        **cmp,
     }
+    # Prefer explicit kwarg; fall back if already present on the comparison dict.
+    expl = explainability_passed
+    if expl is None and "explainability_passed" in cmp:
+        expl = cmp.get("explainability_passed")
+    logger.info(
+        "ADAPTIVE_SHADOW_COMPARE student_id=%s agreed=%s "
+        "baseline_topic_code=%s adaptive_topic_code=%s divergence_reason=%s "
+        "explainability_passed=%s",
+        student_id,
+        cmp.get("agreed"),
+        cmp.get("baseline_topic_code") or "",
+        cmp.get("adaptive_topic_code") or "",
+        cmp.get("divergence_reason") or "",
+        expl,
+    )
     soak = emit_adaptive_soak_event(events, ADAPTIVE_SOAK_COMPARE, payload)
     legacy = emit_adaptive_soak_event(
         events, ADAPTIVE_ENGINE_SHADOW_COMPARE, payload

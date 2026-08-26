@@ -342,6 +342,7 @@ class ShadowSoakOrchestrator:
                 self._events,
                 student_id=sid,
                 comparison=comparison.to_canonical_dict(),
+                explainability_passed=explainability_passed,
             )
             if drift_signals:
                 telemetry.emit_drift(
