@@ -2,9 +2,9 @@
 
 Pipeline (observational only):
 
-  RecommendationService → Baseline Recommendation
+  Today Mission (when present) or RecommendationService → Baseline
   Adaptive Engine (shadow) → Adaptive Recommendation
-  Compare → Measure → Record
+  Delivery mission-alignment → Compare → Measure → Record
   Never influence the student
 
 Uses existing adaptive flags only (Engine / Shadow). No new authority.
@@ -26,6 +26,12 @@ from app.infrastructure.adapters.adaptive_engine.contracts import (
     AdaptiveDecisionResult,
     AdaptiveInputBundle,
     AdaptiveOutputBundle,
+)
+from app.infrastructure.adapters.adaptive_engine.mission_alignment import (
+    apply_mission_alignment_to_output,
+    mission_baseline_dict,
+    resolve_mission_for_alignment,
+    resolve_today_as_of,
 )
 from app.infrastructure.adapters.adaptive_engine.shadow import (
     AdaptiveShadowOrchestrator,
@@ -122,6 +128,7 @@ class ShadowSoakOrchestrator:
         drift_monitor: DriftDetectionMonitor | None = None,
         recommendation_service: Any | None = None,
         emit_health_on_complete: bool = True,
+        mission_service: Any | None = None,
     ) -> None:
         self._shadow = shadow
         self._events = events or EventRegistry()
@@ -131,6 +138,7 @@ class ShadowSoakOrchestrator:
         self._determinism = determinism_monitor or DeterminismMonitor()
         self._drift = drift_monitor or DriftDetectionMonitor()
         self._recommendation_service = recommendation_service
+        self._mission_service = mission_service
         self._emit_health_on_complete = bool(emit_health_on_complete)
         self._last_observation: SoakObservation | None = None
         self._last_adaptive_topic_by_student: dict[str, str] = {}
@@ -214,11 +222,14 @@ class ShadowSoakOrchestrator:
             self._last_observation = observation
             return observation
 
+        # Paths that claim "today" must pass as_of so mission.today is populated.
+        resolved_as_of = (as_of or "").strip() or resolve_today_as_of()
+
         correlation_id = resolve_correlation_id(None)
         with CorrelationContext.bind(correlation_id=correlation_id):
             return self._execute_soak_bound(
                 sid,
-                as_of=as_of,
+                as_of=resolved_as_of,
                 inputs=inputs,
                 prior_adaptive_topic_code=prior_adaptive_topic_code,
                 run_determinism_replay=run_determinism_replay,
@@ -269,7 +280,12 @@ class ShadowSoakOrchestrator:
         message = ""
 
         try:
-            baseline = self._fetch_baseline(sid)
+            mission = resolve_mission_for_alignment(
+                sid,
+                as_of=as_of,
+                inputs=inputs,
+                mission_service=self._mission_service,
+            )
             adaptive_result = self._shadow.execute_shadow(
                 sid, as_of=as_of, inputs=inputs
             )
@@ -279,7 +295,31 @@ class ShadowSoakOrchestrator:
                 and isinstance(adaptive_result.value, AdaptiveOutputBundle)
                 else None
             )
-            comparison = self._comparison.compare(baseline, adaptive_output)
+
+            # When soak did not receive inputs, re-read assembled bundle so
+            # mission.today (now populated via as_of) can become the baseline.
+            if mission is None and adaptive_output is not None and inputs is None:
+                assembler = getattr(self._shadow, "_assembler", None)
+                if assembler is not None:
+                    try:
+                        assembled = assembler.assemble(sid, as_of=as_of)
+                    except Exception:  # noqa: BLE001 — observational
+                        assembled = None
+                    if isinstance(assembled, AdaptiveInputBundle):
+                        mission = resolve_mission_for_alignment(
+                            sid,
+                            as_of=as_of,
+                            inputs=assembled,
+                            mission_service=self._mission_service,
+                        )
+
+            baseline = self._fetch_baseline(sid, mission=mission)
+            # Delivery policy: compare post-alignment Adaptive vs mission (or
+            # RecommendationService) baseline — not raw independent Engine pick.
+            aligned_output = apply_mission_alignment_to_output(
+                adaptive_output, mission
+            )
+            comparison = self._comparison.compare(baseline, aligned_output)
 
             bundle_for_replay = inputs
             if bundle_for_replay is None and adaptive_output is not None:
@@ -439,8 +479,19 @@ class ShadowSoakOrchestrator:
         self._last_observation = observation
         return observation
 
-    def _fetch_baseline(self, student_id: str) -> dict[str, Any] | None:
-        """Read RecommendationService primary recommendation (observational)."""
+    def _fetch_baseline(
+        self,
+        student_id: str,
+        *,
+        mission: Any | None = None,
+    ) -> dict[str, Any] | None:
+        """Observational baseline: today mission identity when present.
+
+        Falls back to RecommendationService primary when no today mission.
+        """
+        mission_baseline = mission_baseline_dict(mission)
+        if mission_baseline is not None:
+            return mission_baseline
         try:
             user_id = int(student_id)
         except (TypeError, ValueError):

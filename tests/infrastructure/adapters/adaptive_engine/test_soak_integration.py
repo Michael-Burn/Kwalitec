@@ -192,9 +192,8 @@ def test_long_running_shadow_replay_stable(learner):
 def test_soak_adaptive_path_does_not_mutate_runtime_a(learner):
     """Adaptive soak path must not write educational state.
 
-    Baseline RecommendationService is stubbed so incidental plan-binding side
-    effects of RecommendationService itself are out of scope — A6 forbids
-    Adaptive Engine / soak writes, not RecommendationService read behaviour.
+    Baseline may be today's mission identity (preferred) or RecommendationService;
+    neither Adaptive Engine nor soak may mutate Runtime A educational rows.
     """
     from app.extensions import db
     from app.models.learning import StudyAttempt
@@ -220,7 +219,10 @@ def test_soak_adaptive_path_does_not_mutate_runtime_a(learner):
     assert StudyAttempt.query.filter_by(user_id=uid).count() == before_attempts
     assert TopicProgress.query.filter_by(user_id=uid).count() == before_progress
     assert db.session.get(Mission, learner["mission"].id).status == before_status
-    stub.generate_recommendations.assert_called()
+    # Learner fixture has a today mission → mission baseline; RecService unused.
+    assert observation.baseline is not None
+    assert observation.baseline.get("baseline_kind") == "mission"
+    stub.generate_recommendations.assert_not_called()
 
 
 def test_soak_does_not_change_experience_authority(learner, app, ctx):
@@ -252,9 +254,36 @@ def test_soak_does_not_change_experience_authority(learner, app, ctx):
         assert authority != "adaptive_engine"
 
 
-def test_soak_calls_recommendation_service_for_baseline_only(learner):
-    """Soak may read RecommendationService for baseline; Experience unchanged."""
+def test_soak_baseline_prefers_mission_over_recommendation_service(learner):
+    """When a today mission exists, soak baseline is mission identity."""
     uid = learner["user"].id
+    with mock.patch.object(
+        RecommendationService,
+        "generate_recommendations",
+        wraps=RecommendationService.generate_recommendations,
+    ) as wrapped:
+        soak = _build_soak()
+        observation = soak.execute_soak(str(uid), as_of=date.today().isoformat())
+        assert observation.ok is True
+        assert observation.baseline is not None
+        assert observation.baseline.get("baseline_kind") == "mission"
+        assert observation.baseline["title"] == learner["mission"].title
+        wrapped.assert_not_called()
+        assert observation.comparison is not None
+        assert observation.comparison.agreed is True
+
+
+def test_soak_uses_recommendation_service_when_no_mission(learner):
+    """Without a today mission, soak falls back to RecommendationService baseline."""
+    from datetime import timedelta
+
+    from app.extensions import db
+
+    uid = learner["user"].id
+    # Move mission off "today" without deleting FK-linked rows.
+    learner["mission"].mission_date = date.today() - timedelta(days=1)
+    db.session.commit()
+
     with mock.patch.object(
         RecommendationService,
         "generate_recommendations",
@@ -265,7 +294,7 @@ def test_soak_calls_recommendation_service_for_baseline_only(learner):
         assert observation.ok is True
         wrapped.assert_called()
         assert observation.baseline is not None or wrapped.call_count >= 1
-
+        assert (observation.baseline or {}).get("baseline_kind") != "mission"
 
 def test_rollback_verification_emits_telemetry_and_restores_authority():
     events = EventRegistry()

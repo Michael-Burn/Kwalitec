@@ -6,6 +6,9 @@ import logging
 from copy import deepcopy
 from typing import Any
 
+from app.infrastructure.adapters.adaptive_engine.mission_alignment import (
+    resolve_today_as_of,
+)
 from app.infrastructure.adapters.student_experience.defaults import (
     default_adaptive_document,
 )
@@ -133,6 +136,7 @@ class ExperienceAdaptiveAdapter:
             # with run_determinism_replay=True via composition.adaptive_soak.
             soak.execute_soak(
                 student_id.strip(),
+                as_of=resolve_today_as_of(),
                 run_determinism_replay=False,
             )
         except Exception:  # noqa: BLE001 — observation must never affect UX

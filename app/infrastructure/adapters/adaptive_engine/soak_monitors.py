@@ -143,7 +143,17 @@ class RecommendationComparisonMonitor:
         adapt_code = (adaptive.recommendation.topic_code or "").strip()
         adapt_kind = (adaptive.recommendation.decision_kind or "").strip()
 
-        if base_code and adapt_code:
+        # Mission baselines: identity is title (and topic_code when present).
+        # Prefer label match so Adaptive's empty/mismatched topic_code after
+        # mission alignment does not create false topic_code_mismatch noise.
+        mission_baseline = (
+            str(baseline.get("baseline_kind") or "").strip().lower() == "mission"
+            or bool(baseline.get("mission_aligned"))
+        )
+        if mission_baseline and base_label and adapt_label:
+            agreed = _norm(base_label) == _norm(adapt_label)
+            reason = "" if agreed else "label_mismatch"
+        elif base_code and adapt_code:
             agreed = _norm(base_code) == _norm(adapt_code)
             reason = "" if agreed else "topic_code_mismatch"
         elif base_label and adapt_label:

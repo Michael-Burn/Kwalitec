@@ -68,6 +68,13 @@ from .gate import (
     ExplainabilityGateResult,
     build_explainability_gate,
 )
+from .mission_alignment import (
+    apply_mission_alignment_to_output,
+    apply_mission_alignment_to_projection,
+    mission_baseline_dict,
+    resolve_mission_for_alignment,
+    resolve_today_as_of,
+)
 from .port_cutover import (
     AdaptiveExperiencePortRouter,
     adaptive_experience_cutover_active,
@@ -284,6 +291,8 @@ __all__ = [
     "TwinAdaptiveInputAttachment",
     "TwinInputAdapter",
     "adaptive_experience_cutover_active",
+    "apply_mission_alignment_to_output",
+    "apply_mission_alignment_to_projection",
     "available_provenance",
     "build_adaptive_engine_adapter",
     "build_adaptive_engine_executor",
@@ -304,9 +313,12 @@ __all__ = [
     "explanation_is_complete",
     "input_bundle_ref",
     "map_adaptive_output_to_recommendation",
+    "mission_baseline_dict",
     "new_correlation_id",
     "output_bundle_ref",
     "resolve_correlation_id",
+    "resolve_mission_for_alignment",
+    "resolve_today_as_of",
     "runtime_a_snapshot_id",
     "serialize_canonical",
     "twin_attachment_is_available",

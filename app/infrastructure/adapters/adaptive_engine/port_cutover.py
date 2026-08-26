@@ -20,9 +20,15 @@ from app.infrastructure.adapters.adaptive_engine import (
 )
 from app.infrastructure.adapters.adaptive_engine.contracts import (
     AUTHORITY_ADAPTIVE_ENGINE,
+    AdaptiveInputBundle,
     AdaptiveOutputBundle,
 )
 from app.infrastructure.adapters.adaptive_engine.gate import ExplainabilityGateResult
+from app.infrastructure.adapters.adaptive_engine.mission_alignment import (
+    apply_mission_alignment_to_projection,
+    resolve_mission_for_alignment,
+    resolve_today_as_of,
+)
 from app.infrastructure.events.registry import EventRegistry
 
 logger = logging.getLogger(__name__)
@@ -42,11 +48,16 @@ def map_adaptive_output_to_recommendation(
     output: AdaptiveOutputBundle,
     *,
     student_id: str,
+    mission: Any | None = None,
 ) -> dict[str, Any] | None:
     """Project AdaptiveOutputBundle into Experience recommendation OpaqueDict.
 
     Compatible with Recommendation Bridge Home fields. Returns None when the
     bundle cannot form a student-facing recommendation label.
+
+    When ``mission`` is provided (today's SQL mission), applies MS-001 hard
+    override so the primary identity equals the mission regardless of the
+    Engine's independent pick (Learning and Revision alike).
     """
     if not isinstance(output, AdaptiveOutputBundle):
         raise TypeError("output must be an AdaptiveOutputBundle")
@@ -117,7 +128,7 @@ def map_adaptive_output_to_recommendation(
         ],
     }
 
-    return {
+    projected = {
         "student_id": sid,
         "decision_id": output.decision_id or "",
         "recommendation_label": label,
@@ -145,6 +156,7 @@ def map_adaptive_output_to_recommendation(
         "rule_or_model_ids": rule_or_model_ids,
         "decision_kind": (rec.decision_kind or "").strip(),
     }
+    return apply_mission_alignment_to_projection(projected, mission)
 
 
 class AdaptiveExperiencePortRouter:
@@ -285,8 +297,11 @@ class AdaptiveExperiencePortRouter:
         started = time.perf_counter()
         inputs = None
         output: AdaptiveOutputBundle | None = None
+        as_of = resolve_today_as_of()
         try:
-            inputs = self._assembler.assemble(sid)
+            # Pass today's as_of so MissionCollector can populate mission.today
+            # and RULE_MISSION_ALIGNED can fire (Authority previously omitted it).
+            inputs = self._assembler.assemble(sid, as_of=as_of)
             decide = self._engine.decide(
                 sid, inputs=inputs, include_explanation=True
             )
@@ -346,7 +361,14 @@ class AdaptiveExperiencePortRouter:
                 )
                 return None
 
-            projected = map_adaptive_output_to_recommendation(output, student_id=sid)
+            mission = resolve_mission_for_alignment(
+                sid,
+                as_of=as_of,
+                inputs=inputs if isinstance(inputs, AdaptiveInputBundle) else None,
+            )
+            projected = map_adaptive_output_to_recommendation(
+                output, student_id=sid, mission=mission
+            )
             if projected is None:
                 self.last_fallback_reason = "projection_empty"
                 telemetry.emit_fallback(

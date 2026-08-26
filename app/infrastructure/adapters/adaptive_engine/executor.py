@@ -43,7 +43,8 @@ DECISION_NEXT_FOCUS = "NEXT_FOCUS"
 DECISION_REVISION_SET = "REVISION_SET"
 DECISION_COMPOSITE = "COMPOSITE"
 
-LIFECYCLE_REVISION = "Revision"
+# Assembler normalizes lifecycle to lowercase ("revision"); accept any case.
+LIFECYCLE_REVISION = "revision"
 
 
 class AdaptiveEngineExecutor:
@@ -242,7 +243,7 @@ def _select_recommendation(
                 "Tonight's session follows your mission; adaptive advice agrees.",
             )
 
-    stage = (inputs.lifecycle_stage or "").strip()
+    stage = (inputs.lifecycle_stage or "").strip().lower()
     if stage == LIFECYCLE_REVISION:
         weak = _weakest_topic(inputs)
         if weak:
