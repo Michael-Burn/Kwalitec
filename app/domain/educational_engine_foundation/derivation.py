@@ -360,7 +360,9 @@ def _derive_objectives(
                 topic_id=_text(raw.get("topic_ref"), "objective topic_ref"),
                 number=str(raw.get("number") or index).strip(),
                 display_order=_int(raw.get("order_index"), default=index),
-                estimated_minutes=_int(raw.get("estimated_minutes"), default=20),
+                # Missing estimates → 0 (unknown). Do not invent a sitting
+                # duration; a former default of 20 made every LO look identical.
+                estimated_minutes=_int(raw.get("estimated_minutes"), default=0),
                 learning_type=(
                     str(raw.get("learning_type") or "concept").strip()
                     or "concept"

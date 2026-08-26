@@ -843,6 +843,9 @@ class CurriculumStudioFoundationService:
             }
             for t in (norm.topics or ())
         ]
+        # Omit estimated_minutes: ingestion has no authored sitting duration.
+        # Stamping a uniform placeholder (formerly 20) made Curriculum Map
+        # claim the same duration for every objective — false precision.
         objectives = [
             {
                 "objective_id": o.objective_id,
@@ -851,7 +854,6 @@ class CurriculumStudioFoundationService:
                 "topic_ref": o.topic_id,
                 "number": o.number,
                 "order_index": o.order_index + 1,
-                "estimated_minutes": 20,
                 "learning_type": "concept",
                 "cognitive_level": "understand",
                 "source_ids": list(o.source_ids),

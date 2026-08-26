@@ -174,10 +174,14 @@ def test_forbidden_terms_absent_from_session(student_client):
 
 
 def test_progress_chrome_lists_linear_steps(student_client):
-    """DX-005C: progress is orientation in persistent context, not destination nav."""
+    """DX-005C: progress is a calm journey indicator, not destination nav."""
     html = student_client.get("/session/sess-steps/overview").get_data(as_text=True)
     assert "Session" in html
-    assert "Session step" in html
-    assert "Current Learning Task" in html
+    assert "ds-stage-indicator" in html
+    assert "Overview" in html
+    assert "Activity" in html
+    assert "Reflection" in html
+    assert "Summary" in html
+    assert "ds-session-card--overview" in html
     assert "ds-btn--primary" in html
     assert "session-flow" not in html

@@ -720,34 +720,116 @@ a.ds-list__row:hover {
 
 .ds-stage-indicator {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2) var(--space-3);
-  font-size: var(--font-caption);
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
 }
 
 .ds-stage-indicator__progress {
-  flex: 1 0 100%;
-  margin: 0 0 var(--space-1);
+  margin: 0;
   color: var(--text-secondary);
   font-weight: var(--font-weight-medium);
 }
 
+.ds-stage-indicator__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+}
+
 .ds-stage-indicator__item {
-  display: inline-flex;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--space-1);
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.ds-stage-indicator__item--has-rule::after {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: calc(50% + 0.85rem);
+  width: calc(100% - 1.7rem);
+  height: 1px;
+  background: color-mix(in srgb, var(--border-subtle) 80%, transparent);
+  pointer-events: none;
+}
+
+.ds-stage-indicator__item--rule-done::after {
+  background: color-mix(in srgb, var(--primary) 28%, var(--border-subtle));
+}
+
+.ds-stage-indicator__marker {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: var(--radius-full);
+  border: 1px solid color-mix(in srgb, var(--text-muted) 45%, transparent);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  z-index: 1;
+}
+
+.ds-stage-indicator__num {
+  font-variant-numeric: tabular-nums;
+}
+
+.ds-stage-indicator__check {
+  display: block;
+}
+
+.ds-stage-indicator__label {
+  font-size: var(--font-caption);
+  line-height: 1.25;
+  max-width: 6.5rem;
 }
 
 .ds-stage-indicator__item--current {
   color: var(--text-primary);
+  opacity: 1;
+}
+
+.ds-stage-indicator__item--current .ds-stage-indicator__marker {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--on-primary);
   font-weight: var(--font-weight-semibold);
+}
+
+.ds-stage-indicator__item--current .ds-stage-indicator__label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
 }
 
 .ds-stage-indicator__item--done {
   color: var(--text-secondary);
+  opacity: 0.92;
+}
+
+.ds-stage-indicator__item--done .ds-stage-indicator__marker {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.ds-stage-indicator__item--upcoming .ds-stage-indicator__marker {
+  background: transparent;
 }
 
 .ds-stage-indicator__dot {
@@ -755,10 +837,7 @@ a.ds-list__row:hover {
 }
 
 .ds-stage-indicator__rule {
-  display: inline-block;
-  width: 1.25rem;
-  height: 1px;
-  background: var(--border-subtle);
+  display: none;
 }
 
 .ds-workspace-l0 {
@@ -1766,6 +1845,12 @@ a.ds-list__row:hover {
   gap: var(--space-3);
 }
 
+.ds-session-page__header--overview {
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+}
+
 .ds-session-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -1781,6 +1866,268 @@ a.ds-list__row:hover {
   gap: var(--space-1);
   font-variant-numeric: tabular-nums;
   font-weight: var(--font-weight-semibold);
+}
+
+/* Session stage compositions + Overview / Summary card platform */
+.ds-session-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.ds-session-stage--overview {
+  align-items: stretch;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+}
+
+.ds-session-card-glow {
+  position: absolute;
+  inset: -12% 8% auto;
+  height: 14rem;
+  max-width: 36rem;
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+    transparent 70%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ds-session-card-glow--summary {
+  inset: auto 10% -8%;
+  height: 10rem;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--primary) 8%, transparent) 0%,
+    transparent 72%
+  );
+}
+
+.ds-session-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.ds-session-card--overview {
+  align-items: flex-start;
+  max-width: 36rem;
+  margin-inline: auto;
+  width: 100%;
+  padding: var(--space-4) var(--space-4) var(--space-5);
+  gap: var(--space-2);
+}
+
+.ds-session-card--summary {
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.ds-session-card__eyebrow {
+  margin: 0;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--primary) 72%, var(--text-muted));
+}
+
+.ds-session-card__title {
+  margin: 0;
+  font-size: 1.25rem; /* ~20px — medium, not page-dominant */
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+.ds-session-card__meta {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-support);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.ds-session-card__meta-value {
+  color: var(--text-secondary);
+}
+
+.ds-session-card__meta-sep {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.ds-session-card__cta {
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+.ds-session-card__cta .ds-btn--primary {
+  min-height: 2.85rem;
+  padding-inline: var(--space-4);
+}
+
+/* Primary CTA arrow micro-interaction (Session only) */
+.ds-session-page .ds-btn--with-arrow {
+  gap: var(--space-2);
+}
+
+.ds-session-page .ds-btn__arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.ds-session-page .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow {
+  transform: translateX(3px);
+}
+
+.ds-session-page .ds-btn--with-arrow:active:not(:disabled):not([aria-disabled="true"]) {
+  filter: brightness(0.9);
+}
+
+/* Activity: content primary, task chrome secondary */
+.ds-session-stage--activity .ds-learning-task {
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-2);
+  opacity: 0.88;
+}
+
+.ds-session-stage--activity .ds-learning-task__activity {
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-medium);
+}
+
+.ds-session-stage--activity .ds-session-content__title {
+  font-size: var(--font-section);
+}
+
+.ds-session-stage--activity .ds-session-content__body[data-content-structured="true"] {
+  gap: var(--space-4);
+}
+
+.ds-session-stage--activity .ds-session-content__support {
+  margin-top: var(--space-2);
+}
+
+/* Reflection: invitation, not a perfunctory form field */
+.ds-session-stage--reflection .ds-learning-task {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: var(--space-2);
+}
+
+.ds-session-reflection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--surface) 94%, var(--primary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.ds-session-reflection__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.ds-session-reflection__prompt {
+  margin: 0;
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+.ds-session-reflection__invite {
+  margin: 0;
+}
+
+.ds-session-reflection__input {
+  min-height: 9rem;
+  padding: var(--space-3);
+  background: var(--surface);
+  border-color: color-mix(in srgb, var(--primary) 22%, var(--border));
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ds-session-reflection__input:hover {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+}
+
+.ds-session-reflection-form form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* Summary / Sitting Report: elevated closure platform */
+.ds-session-stage--summary {
+  padding-block: var(--space-2);
+}
+
+.ds-session-stage--summary .ds-session-card--summary .ds-learning-task {
+  border-bottom-color: color-mix(in srgb, var(--primary) 18%, var(--border-subtle));
+}
+
+.ds-session-stage--summary .ds-success-line {
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Session micro-interactions — inputs, disclosures, secondary */
+.ds-session-page .ds-textarea,
+.ds-session-page .ds-input,
+.ds-session-page .ds-select {
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ds-session-page .ds-btn {
+  transition: background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    filter var(--transition-press);
+}
+
+.ds-session-page .ds-disclosure summary,
+.ds-session-page .ds-session-briefing > summary {
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.ds-session-page .ds-disclosure summary:hover,
+.ds-session-page .ds-session-briefing > summary:hover {
+  color: var(--text-primary);
+}
+
+.ds-session-page .ds-disclosure summary:focus-visible,
+.ds-session-page .ds-session-briefing > summary:focus-visible,
+.ds-session-page .ds-btn:focus-visible,
+.ds-session-page .ds-textarea:focus-visible,
+.ds-session-page .ds-input:focus-visible,
+.ds-session-page .ds-session-finish-review__option input:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .ds-session-reading-progress {
@@ -1974,6 +2321,34 @@ body.ds-focus-mode .student-main {
   .ds-os-signals__grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .ds-stage-indicator__list {
+    gap: 0;
+  }
+
+  .ds-stage-indicator__label {
+    max-width: 4.75rem;
+    font-size: 0.6875rem;
+  }
+
+  .ds-stage-indicator__item--has-rule::after {
+    left: calc(50% + 0.7rem);
+    width: calc(100% - 1.4rem);
+  }
+
+  .ds-session-card--overview {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .ds-session-card__title {
+    font-size: 1.125rem;
+  }
+
+  .ds-session-card-glow {
+    inset: -8% 4% auto;
+    height: 10rem;
+    filter: blur(22px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1982,5 +2357,19 @@ body.ds-focus-mode .student-main {
   .ds-flash {
     transition: none;
     animation: none;
+  }
+
+  .ds-session-page .ds-btn__arrow,
+  .ds-session-page .ds-btn,
+  .ds-session-page .ds-textarea,
+  .ds-session-page .ds-input,
+  .ds-session-page .ds-select,
+  .ds-session-page .ds-disclosure summary,
+  .ds-session-page .ds-session-briefing > summary {
+    transition: none;
+  }
+
+  .ds-session-page .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow {
+    transform: none;
   }
 }

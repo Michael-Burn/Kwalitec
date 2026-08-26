@@ -112,7 +112,7 @@ def test_home_template_mission_first_without_guidance_panel(app, ctx):
 
 
 def test_session_overview_introduces_sensei_and_mission(app, ctx):
-    """DX-005C: overview is a calm learning task — no Sensei chrome theatre."""
+    """Overview is a calm card — no Sensei chrome theatre."""
     from app.presentation.session.dto.study_session import (
         LearningTask,
         SessionPersistentContext,
@@ -155,6 +155,11 @@ def test_session_overview_introduces_sensei_and_mission(app, ctx):
         session_id="sess-1",
         activity_id="",
         mission_id="m1",
+        why_today="Soft recall needs deliberate practice.",
+        topic_display="Cash flow statements",
+        context_eyebrow="CS1 · Cash flow statements",
+        meta_duration="25 min",
+        meta_mode="Learning",
     )
     form = SimpleNamespace(
         hidden_tag=lambda: "",
@@ -172,5 +177,6 @@ def test_session_overview_introduces_sensei_and_mission(app, ctx):
         )
     assert "Soft recall needs deliberate practice." in html
     assert "Start Session" in html
+    assert "ds-session-card--overview" in html
     assert "Study Sensei" not in html
     assert 'data-narrator="study-sensei"' not in html

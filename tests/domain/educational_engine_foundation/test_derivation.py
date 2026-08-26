@@ -102,3 +102,9 @@ def test_deriver_builds_all_required_artefacts():
 
     assert bundle.progress_model.topic_ids == ("law1-t1", "law1-t2")
     assert bundle.progress_model.objective_ids == ("law1-o1", "law1-o2")
+
+
+def test_deriver_does_not_invent_objective_estimated_minutes():
+    """Missing LO minutes stay unknown (0) — never a decorative default like 20."""
+    bundle = EducationalArtefactDeriver().derive(_published_package())
+    assert all(objective.estimated_minutes == 0 for objective in bundle.objectives)

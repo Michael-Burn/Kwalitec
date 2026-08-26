@@ -113,7 +113,7 @@ def test_welcome_modal_uses_eos_primary_button():
 
 
 def test_session_overview_why_uses_dedicated_label(app, ctx):
-    """DX-005C: why-copy becomes one instructional sentence on the learning task."""
+    """Overview card carries context; Session details hosts why-copy (not Home MES)."""
     from app.presentation.session.dto.study_session import (
         LearningTask,
         SessionPersistentContext,
@@ -156,17 +156,27 @@ def test_session_overview_why_uses_dedicated_label(app, ctx):
         session_id="sess-1",
         activity_id="",
         mission_id="m1",
+        why_today="Soft recall needs deliberate practice.",
+        context_eyebrow="CS1 · Cash flows",
+        topic_display="Cash flows",
+        meta_duration="30 min",
+        meta_mode="Learning",
     )
     with app.test_request_context("/session/sess-1/overview"):
+        from app.presentation.session.forms import BeginSessionForm
+
+        form = BeginSessionForm()
+        form.session_id.data = "sess-1"
         html = render_template(
             "session/overview.html",
             page=None,
             study=study,
-            form=None,
+            form=form,
             quick_check_embed=None,
         )
     assert "Soft recall needs deliberate practice." in html
-    assert "Current Learning Task" in html
+    assert "ds-session-card--overview" in html
+    assert "Why today's topic" in html
     assert "Why this Session" not in html
     assert "session-why-label" not in html
     assert "Study Sensei" not in html

@@ -190,6 +190,11 @@ def test_overview_intro_echoes_topic(app, ctx):
         session_id="sess-1",
         activity_id="",
         mission_id="m1",
+        why_today="Strengthen Cash flows",
+        topic_display="Cash flows",
+        context_eyebrow="CS1 · Cash flows",
+        meta_duration="25 min",
+        meta_mode="Learning",
     )
     with app.test_request_context("/session/sess-1/overview"):
         html = render_template(

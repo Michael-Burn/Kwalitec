@@ -13,7 +13,11 @@
         {{ node.kind }}
         {% if node.progress_label %} · {{ node.progress_label }}{% endif %}
         {% if node.difficulty %} · {{ node.difficulty }}{% endif %}
-        {% if node.estimated_minutes %} · {{ node.estimated_minutes }} min{% endif %}
+        {# Do not show estimated_minutes here: published packages stamp a
+           uniform placeholder (often 20) on every learning objective, and
+           syllabus-scale hours are not wired as honest sitting estimates.
+           Prefer no duration claim over false precision (same posture as
+           readiness % honesty). #}
       </span>
     </summary>
     {% if node.prerequisite_ids %}

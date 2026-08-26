@@ -241,7 +241,8 @@ class StructurePreparationService:
                     "topic_ref": topic_ref,
                     "number": str(idx + 1),
                     "order_index": idx + 1,
-                    "estimated_minutes": 20,
+                    # No fabricated per-objective minutes — CIP structure prep has no
+                    # real time-on-task source. Omit rather than mint a decorative 20.
                     "learning_type": "concept",
                     "cognitive_level": "understand",
                     "source_ids": [],

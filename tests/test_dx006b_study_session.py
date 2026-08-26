@@ -336,14 +336,14 @@ def test_overview_template_structure(app, client, ctx, user):
     login_student(client)
     html = client.get("/session/sess-dx6/overview").get_data(as_text=True)
     assert 'id="session-page-title"' in html
-    assert "Today:" in html or ">Session<" in html
-    assert "Current Learning Task" in html
+    assert "Today:" in html or ">Session<" in html or "ds-session-card__title" in html
+    # Streamlined Overview card (approved Session UI) — not the old learning-task stack.
+    assert "ds-session-card--overview" in html
+    assert "ds-session-card__eyebrow" in html or "ds-session-card__title" in html
     assert "data-session-cta=\"primary\"" in html
     assert html.count("ds-btn--primary") == 1 or "ds-btn--primary" in html
     assert "design_system.css" in html or "ds-page" in html
     assert "Study Sensei" not in html
     assert "Readiness estimate" not in html
-    # Session shell intentionally exposes a reading-progress indicator (a11y).
-    assert 'role="progressbar"' in html
-    assert "data-session-reading-progress" in html
+    assert "ds-stage-indicator" in html
     assert "study session" not in html.lower()

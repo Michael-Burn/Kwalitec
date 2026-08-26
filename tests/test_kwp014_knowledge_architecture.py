@@ -329,6 +329,20 @@ def test_templates_wire_curriculum_map_and_founder() -> None:
     assert "curriculum_map_opens" in founder or "Curriculum Map opens" in founder
 
 
+def test_curriculum_map_node_omits_placeholder_duration_claims() -> None:
+    """Curriculum Map must not render decorative uniform minutes (e.g. '20 min').
+
+    Published packages historically stamped estimated_minutes=20 on every LO.
+    Prefer no duration label over false precision until honest per-node data is wired.
+    """
+    node = Path(
+        "app/templates/student/components/knowledge_graph_node.html"
+    ).read_text(encoding="utf-8")
+    assert "estimated_minutes" not in node or "Do not show estimated_minutes" in node
+    assert " min{% endif %}" not in node
+    assert "{{ node.estimated_minutes }}" not in node
+
+
 def test_engine_singleton_reset() -> None:
     reset_knowledge_architecture_engine()
     a = get_knowledge_architecture_engine()

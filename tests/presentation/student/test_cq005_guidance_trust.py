@@ -115,7 +115,7 @@ def test_activity_adapter_threads_overview_why_into_context():
 
 
 def test_overview_labels_why_this_session(app, ctx):
-    """DX-005C: why-copy is one instructional sentence on the learning task."""
+    """Overview card + Session details host why-copy (not Home MES theatre)."""
     from app.presentation.session.dto.study_session import (
         LearningTask,
         SessionPersistentContext,
@@ -158,6 +158,11 @@ def test_overview_labels_why_this_session(app, ctx):
         session_id="sess-1",
         activity_id="",
         mission_id="m1",
+        why_today="Soft recall needs deliberate practice.",
+        topic_display="Cash flows",
+        context_eyebrow="CS1 · Cash flows",
+        meta_duration="30 min",
+        meta_mode="Learning",
     )
     with app.test_request_context("/session/sess-1/overview"):
         html = render_template(
@@ -168,7 +173,8 @@ def test_overview_labels_why_this_session(app, ctx):
             quick_check_embed=None,
         )
     assert "Soft recall needs deliberate practice." in html
-    assert "Current Learning Task" in html
+    assert "ds-session-card--overview" in html
+    assert "Why today's topic" in html
     assert "Why this Session" not in html
 
 
