@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate through Cov → Corr → E[g(X,Y)] setup — refuse treating independence day as having finished dependence measures.",
     "educational_intent": "Produce method warrant for Cov/Corr and expectation of a function of two RVs.",
     "learning_objective": "Define and use covariance and correlation; evaluate (or set up) the expected value of a function of two jointly distributed random variables.",
-    "concept_focus": "Cov → Corr → E[g(X,Y)] via joint → refuse independence-as-done theatre.",
+    "concept_focus": "Joint moments → Cov(X,Y)=E[XY]−E[X]E[Y] → Corr=Cov/(σ_X σ_Y) → E[g(X,Y)] via the joint → refuse Corr=0⇒independence.",
     "prior_bridge": "Yesterday you stated independence conditions (2.2.2). Today measures dependence and expectations of functions of the pair.",
     "why_now": "2.2.3 is the dependence-measure hinge before linear-combination mean/variance (2.2.4).",
-    "expected_benefit": "Study Progress for Cov/Corr/E[g] — not full 2.2.4 linear-combination mastery.",
+    "expected_benefit": "You will be able to set up Cov, Corr, and E[g(X,Y)] from a joint and refuse equating zero correlation with independence.",
     "explainability": "Campaign Epsilon Day 3 focuses LO 2.2.3.",
     "success_criteria": [
       "Closed-book, state what covariance measures and how correlation relates.",
@@ -145,7 +145,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.3-cp-01",
       "title": "Checkpoint: 2.2.3",
-      "prompt": "Closed-book. A student says 'we already did independence, so Cov/Corr are optional.' Refuse and restate what today's LO adds.",
+      "prompt": "Closed-book. Discrete joint: P(X=0,Y=0)=0.2, P(0,1)=0.3, P(1,0)=0.1, P(1,1)=0.4. (1) Compute E[X], E[Y], E[XY], and Cov(X,Y). (2) Refuse: 'Cov=0 (or Corr=0) always means X and Y are independent' and 'independence already finished Cov/Corr/E[g].'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.2.3.",
       "hints": [
@@ -153,16 +153,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "covariance",
+        "Cov",
+        "E[XY]",
+        "0.05",
         "correlation",
-        "expectation",
-        "not optional",
-        "dependence"
+        "refuse",
+        "independence"
       ],
       "explanation": "Checkpoint for 2.2.3.",
-      "model_answer": "Refuse: independence is a special case; Cov/Corr and E[g] are the working dependence and function-expectation tools for general joints — today's LO.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) E[X]=0·(0.2+0.3)+1·(0.1+0.4)=0.5; E[Y]=0·(0.2+0.1)+1·(0.3+0.4)=0.7; E[XY]=1·1·0.4=0.4; Cov(X,Y)=0.4−0.5·0.7=0.05. (2) Refuse: zero correlation does not imply independence (non-linear dependence can remain); independence is a different LO — today requires Cov/Corr and E[g] algebra from the joint.",
+      "common_mistake": "Skipping the Cov algebra, or treating Corr=0 as independence / independence as finishing Cov.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

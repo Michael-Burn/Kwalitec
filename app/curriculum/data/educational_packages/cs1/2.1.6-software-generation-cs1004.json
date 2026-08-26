@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force the candidate to generate draws in software for basic discrete and continuous families and to sanity-check output — refusing both GUI theatre and silent claim that Chapter 2 is finished.",
     "educational_intent": "Produce a cognitive move from 'I know inverse transform' to 'I can obtain software-generated samples and check them honestly.'",
     "learning_objective": "Generate discrete and continuous random variables using statistical software.",
-    "concept_focus": "Software sampler for named family → generate → sanity check; refuse chapter-complete theatre.",
+    "concept_focus": "Named family → software sampler → generate sample → sanity check against support/moments → refuse generation-without-check.",
     "prior_bridge": "Yesterday's inverse transform is the method spine; today is Syllabus 2.1.6 software generation for the same univariate families.",
     "why_now": "2.1.6 completes the univariate generation pair after inverse transform; Revision follows before 2.2.",
-    "expected_benefit": "Study Progress completing 2.1 Learning LOs — not Topic Complete for 2.2.",
+    "expected_benefit": "You will be able to generate a discrete and a continuous sample in software and run a sanity check that matches the family's support and mean.",
     "explainability": "Assigned as Campaign Gamma Day 4 because it is the final Learning LO in 2.1 before Revision.",
     "success_criteria": [
       "Generate samples for at least one discrete and one continuous family in software.",
@@ -146,7 +146,7 @@
       "kind": "checkpoint",
       "item_id": "cs1004-2.1f-cp-01",
       "title": "Checkpoint: refuse Chapter 2 complete",
-      "prompt": "Closed-book. A peer says finishing software generation means Chapter 2 / joint distributions are done. Refuse in two sentences; name what remains (at least 2.2).",
+      "prompt": "Closed-book. (1) For Poisson(λ=3) and Exponential(mean=2), state what you ask software to generate and one numeric sanity check for each (support and/or sample mean). (2) Refuse: 'Software generation replaces understanding the inverse-transform method' and 'finishing software generation means I already sanity-checked the sample.'",
       "response_type": "short_structured",
       "body": "Refuse overclaim; name 2.2+ remainder.",
       "hints": [
@@ -154,16 +154,17 @@
         "2.2 joint distributions still Missing."
       ],
       "accepted_keywords": [
+        "Poisson",
+        "Exponential",
+        "sanity",
+        "mean",
+        "support",
         "refuse",
-        "2.2",
-        "joint",
-        "not",
-        "complete",
-        "chapter"
+        "generate"
       ],
       "explanation": "Honest stop: 2.1 completion ≠ Chapter 2 completion.",
-      "model_answer": "Refuse: software generation finishes the 2.1 generation LO, not Chapter 2. Joint distributions (2.2) and later Section 2 topics remain unpublished / not claimed by this Volume.",
-      "common_mistake": "Agreeing Chapter 2 is finished.",
+      "model_answer": "(1) Poisson(3): generate non-negative integer counts; check integers ≥0 and sample mean near 3. Exponential(mean 2): generate positive reals (rate 1/2); check support >0 and sample mean near 2. (2) Refuse: a sampler is not a substitute for knowing how inverse-transform sampling works; generating alone is not a sanity check — you must verify support and moments against the named family.",
+      "common_mistake": "Treating a software sampler as finished without a support/moment sanity check, or equating generation with inverse-transform understanding.",
       "success_criteria": [
         "Clear refusal.",
         "Names 2.2 or later remainder."

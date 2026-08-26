@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate to obtain a marginal and a conditional from a stated joint — and refuse treating 'I wrote a joint table' as having the marginal or conditional.",
     "educational_intent": "Produce a cognitive move from joint statement to lawful marginal and conditional distributions.",
     "learning_objective": "Obtain the probability function or density function for marginal and conditional distributions of jointly distributed random variables.",
-    "concept_focus": "Joint → marginal (sum/integrate) → conditional (divide) → refuse joint-as-done theatre.",
+    "concept_focus": "Joint → marginal (sum/integrate) → conditional (normalise by marginal) → refuse joint-as-margins-done.",
     "prior_bridge": "Campaign Gamma closed univariate evaluation and generation (2.1) with Revision. Today opens topic 2.2 at LO 2.2.1 — the named Continuity Front after CS1-004.",
     "why_now": "Joint distributions start here: pull marginals and conditionals from a joint so independence and dependence work have a base.",
-    "expected_benefit": "Study Progress for marginal/conditional — not Topic Complete for 2.2.2–2.2.4.",
+    "expected_benefit": "You will be able to extract a named marginal and conditional from a joint table by actual computation, not recognition alone.",
     "explainability": "Assigned as Campaign Epsilon Day 1 because CE-001 / EP-001 Continuity Front names 2.2 as the handoff from Gamma.",
     "success_criteria": [
       "Closed-book, outline how to obtain a marginal from a joint (discrete or continuous).",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.1-cp-01",
       "title": "Checkpoint: 2.2.1",
-      "prompt": "Closed-book. A colleague says 'we have the joint table, so marginals and conditionals are optional decoration.' Refuse in one sentence and restate why marginal/conditional extraction is a distinct skill.",
+      "prompt": "Closed-book. Joint PMF of (X, Y):\n  P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40.\n(1) Compute the marginal P(X=1). (2) Compute P(Y=1 | X=1). (3) Refuse: 'We have the joint table, so marginals and conditionals are optional decoration.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.2.1.",
       "hints": [
@@ -155,16 +155,17 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "marginal",
         "conditional",
+        "0.70",
+        "0.40",
         "joint",
-        "not optional",
-        "extract"
+        "refuse",
+        "sum"
       ],
       "explanation": "Checkpoint for 2.2.1.",
-      "model_answer": "Refuse: the joint is not the same as its margins or conditionals. You must sum/integrate (marginal) and normalise by the marginal (conditional) — that is today's skill.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ 0.571. (3) Refuse: the joint is not the same as its margins or conditionals — you must sum for the marginal and divide by that marginal for the conditional.",
+      "common_mistake": "Treating the joint table as already supplying margins/conditionals without summing and normalising.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

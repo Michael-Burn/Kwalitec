@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate through simulated-sample vs Normal comparison — refuse treating yesterday's CLT statement as having finished 2.5.2, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for comparing simulated samples from a stated distribution with the Normal (CMP method).",
     "learning_objective": "Compare simulated samples from a given distribution with the Normal distribution.",
-    "concept_focus": "Stated distribution → simulate samples → compare to Normal → refuse statement-as-done / Ch2-done.",
+    "concept_focus": "Stated (possibly skewed) parent → simulate samples of size n → compare to Normal → judge when Normal approx is poor.",
     "prior_bridge": "Yesterday you stated and applied the CLT for iid sequences (2.5.1). Today uses simulation to compare sample behaviour with the Normal.",
     "why_now": "2.5.2 completes topic 2.5 Learning; Revision follows before any 2.6 commission.",
-    "expected_benefit": "Study Progress for simulated-vs-Normal — not 2.6; not Chapter 2 trophy.",
+    "expected_benefit": "You will be able to say what a simulation-vs-Normal comparison would show for a skewed parent and when the Normal approximation is poor.",
     "explainability": "Campaign Theta Day 2 focuses LO 2.5.2 — terminal Learning day of CS1-008.",
     "success_criteria": [
       "Closed-book, outline how to simulate samples from a given distribution for this LO.",
@@ -148,7 +148,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.2-cp-01",
       "title": "Checkpoint: 2.5.2",
-      "prompt": "Closed-book. (1) Refuse 'Yesterday's CLT statement already finished comparing simulated samples with the Normal.' (2) Refuse 'Finishing 2.5.2 means all of Chapter 2 is done.' Name what still sits ahead before sampling distributions.",
+      "prompt": "Closed-book. Parent distribution: Exp(mean=1), heavily right-skewed. You simulate many samples of size n=5 and of size n=100, each time plotting the histogram of the sample mean against a Normal with matching mean/variance. (1) What qualitative difference do you expect between n=5 and n=100, and why (CLT intuition)? (2) Refuse: 'Stating the CLT already finished comparing simulated samples with the Normal' and 'a skewed parent means the sample mean is never approximately Normal.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.5.2.",
       "hints": [
@@ -156,18 +156,17 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "simulate",
+        "skewed",
+        "n=5",
+        "n=100",
         "Normal",
-        "chapter",
-        "complete",
-        "2.6",
-        "revision",
-        "stop"
+        "refuse",
+        "CLT"
       ],
       "explanation": "Checkpoint for 2.5.2.",
-      "model_answer": "(1) Refuse: stating the CLT is not the same as comparing simulated samples with the Normal. (2) Refuse: 2.5.2 closes topic 2.5 Learning, not Chapter 2; next is Revision then honest 2.6 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) At n=5 the histogram of X̄ should still look skewed (poor Normal match); at n=100 it should be much closer to Normal as the CLT kicks in for the mean. (2) Refuse: stating the theorem is not the same as checking simulated samples against Normal; skewness of the parent does not forbid approximate Normality of the mean for large n under CLT conditions.",
+      "common_mistake": "Treating the CLT statement as a simulation comparison, or claiming skewed parents never yield approximately Normal means.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

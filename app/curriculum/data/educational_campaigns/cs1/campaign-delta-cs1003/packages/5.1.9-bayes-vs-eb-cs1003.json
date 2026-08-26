@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force a two-column contrast of assumptions and refuse spine/exam claims.",
     "educational_intent": "Produce honest contrast competence; close Trust Front Learning.",
     "learning_objective": "Explain differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-    "concept_focus": "Contrast assumptions → name differences → refuse equating Bayes and EB as the same method.",
+    "concept_focus": "Same credibility problem → Bayesian prior-as-specified ↔ EB structural parameters estimated from data → refuse equating the methods.",
     "prior_bridge": "Yesterday EB credibility (5.1.8). Today contrasts and closes 5.1 Learning.",
     "why_now": "Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
-    "expected_benefit": "You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
+    "expected_benefit": "You will be able to contrast Bayesian and Empirical Bayes assumptions on the same credibility problem and state what each is entitled to claim.",
     "explainability": "Campaign Delta Day 24 closes 5.1 Learning.",
     "success_criteria": [
       "Closed-book, state two differences between Bayes and EB approaches.",
@@ -143,7 +143,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.9-cp-01",
       "title": "Checkpoint: 5.1.9",
-      "prompt": "Refuse: 'Contrasting Bayes and Empirical Bayes means Bayesian foundations are exam-ready.' What is the honest claim after today's contrast?",
+      "prompt": "Closed-book. Same portfolio credibility problem: you need a premium blending risk data with a collective structure. (1) State one key assumption difference between a fully Bayesian approach and Empirical Bayes on this problem, and what each is entitled to claim about the structural parameters. (2) Refuse: 'Bayesian and Empirical Bayes are the same method with different names' and 'contrasting them means Bayesian foundations are exam-ready.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 5.1.9.",
       "hints": [
@@ -151,15 +151,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Bayesian",
+        "Empirical Bayes",
+        "structural",
+        "estimate",
         "refuse",
-        "pilot arc",
-        "not spine",
-        "not until-exam",
-        "trust front"
+        "assumptions"
       ],
       "explanation": "Checkpoint for 5.1.9.",
-      "model_answer": "Refuse. CS1-003 is a Pilot Arc Trust Front absorption — not spine PASS and not until-exam trust.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Bayesian treats structural/prior parameters as specified within a prior model (belief/structure you bring); Empirical Bayes estimates those structural parameters from the observed collective data — so EB claims about structure are data-estimated, not prior-specified. (2) Refuse: they differ in how structural knowledge enters; a contrast does not make foundations exam-ready or replace the separate calculation LOs across Topic 5.1.",
+      "common_mistake": "Equating Bayes and EB as the same method, or treating a contrast as exam-ready mastery of Topic 5.1.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

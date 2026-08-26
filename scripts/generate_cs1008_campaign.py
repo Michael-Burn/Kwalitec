@@ -459,8 +459,8 @@ LEARNING = [
             "identically distributed random variables."
         ),
         focus=(
-            "iid sequence → mean/variance conditions (CMP) → standardised sample mean → "
-            "Normal limit → refuse Normal-everywhere theatre."
+            "IID with finite mean/variance → standardised sample mean → Normal limit ",
+            "under CLT → refuse Normal-everywhere-without-CLT."
         ),
         prior=(
             "Campaign Eta closed generating functions (2.4) with Revision. Today opens topic "
@@ -470,7 +470,10 @@ LEARNING = [
             "2.5.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at the CLT, keeping simulated-sample comparison for the following session."
         ),
-        benefit="Study Progress for CLT (iid) — not Topic Complete for 2.5.2.",
+        benefit=(
+            "You will be able to state and apply the CLT to approximate a ",
+            "probability for an iid sample mean."
+        ),
         explain=(
             "Day 1 opens 2.5 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -538,13 +541,18 @@ LEARNING = [
             "the Normal shape is not the same as stating this limit theorem for iid sequences."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'we already use the Normal all the time, so the "
-            "CLT is just common sense.' Refuse in one sentence and restate what today's LO adds."
+            "Closed-book. Claim sizes are iid with mean μ=500 and sd σ=200; n=100. ",
+            "Using the CLT, approximate P(X̄>540). (1) State the approximate ",
+            "distribution of X̄. (2) Compute the standardised z and the approximate ",
+            "probability (use Φ(2)≈0.977). (3) Refuse: 'We already use the Normal ",
+            "all the time, so the CLT is just common sense and needs no statement.'"
         ),
-        cp_kw=["refuse", "CLT", "iid", "Normal", "theorem", "not same", "mean", "limit"],
+        cp_kw=["CLT", "iid", "z=2", "0.023", "Normal", "refuse"],
         cp_model=(
-            "Refuse: casual Normal use is not the CLT. Today's skill is stating and applying "
-            "the theorem for iid sequences under CMP conditions (standardised means → Normal)."
+            "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z=(540−500)/20=2; ",
+            "P(X̄>540)≈1−Φ(2)≈0.023. (3) Refuse: casual Normal habit is not the CLT ",
+            "— today's skill is stating and applying the theorem for iid sequences ",
+            "under the stated conditions."
         ),
         reflect=(
             "Harvest wobble on conditions vs conclusion — simulated-sample comparison comes "
@@ -577,8 +585,8 @@ LEARNING = [
             "Compare simulated samples from a given distribution with the Normal distribution."
         ),
         focus=(
-            "Stated distribution → simulate samples → compare to Normal → refuse "
-            "statement-as-done / Ch2-done."
+            "Stated (possibly skewed) parent → simulate samples of size n → compare ",
+            "to Normal → judge when Normal approx is poor."
         ),
         prior=(
             "Yesterday you stated and applied the CLT for iid sequences (2.5.1). Today uses "
@@ -588,7 +596,8 @@ LEARNING = [
             "2.5.2 completes topic 2.5 Learning; Revision follows before any 2.6 commission."
         ),
         benefit=(
-            "Study Progress for simulated-vs-Normal — not 2.6; not Chapter 2 trophy."
+            "You will be able to say what a simulation-vs-Normal comparison would ",
+            "show for a skewed parent and when the Normal approximation is poor."
         ),
         explain="Campaign Theta Day 2 focuses LO 2.5.2 — terminal Learning day of CS1-008.",
         criteria=[
@@ -646,24 +655,23 @@ LEARNING = [
             "stress-tests when Normal approximation looks reasonable versus when it does not."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'Yesterday's CLT statement already finished comparing "
-            "simulated samples with the Normal.' (2) Refuse 'Finishing 2.5.2 means all of "
-            "Chapter 2 is done.' Name what still sits ahead before sampling distributions."
+            "Closed-book. Parent distribution: Exp(mean=1), heavily right-skewed. ",
+            "You simulate many samples of size n=5 and of size n=100, each time ",
+            "plotting the histogram of the sample mean against a Normal with ",
+            "matching mean/variance. (1) What qualitative difference do you expect ",
+            "between n=5 and n=100, and why (CLT intuition)? (2) Refuse: 'Stating ",
+            "the CLT already finished comparing simulated samples with the Normal' ",
+            "and 'a skewed parent means the sample mean is never approximately ",
+            "Normal.'"
         ),
-        cp_kw=[
-            "refuse",
-            "simulate",
-            "Normal",
-            "chapter",
-            "complete",
-            "2.6",
-            "revision",
-            "stop",
-        ],
+        cp_kw=["simulate", "skewed", "n=5", "n=100", "Normal", "refuse", "CLT"],
         cp_model=(
-            "(1) Refuse: stating the CLT is not the same as comparing simulated samples with "
-            "the Normal. (2) Refuse: 2.5.2 closes topic 2.5 Learning, not Chapter 2; next is "
-            "Revision then honest 2.6 successor — not spine/until-exam claims."
+            "(1) At n=5 the histogram of X̄ should still look skewed (poor Normal ",
+            "match); at n=100 it should be much closer to Normal as the CLT kicks in ",
+            "for the mean. (2) Refuse: stating the theorem is not the same as ",
+            "checking simulated samples against Normal; skewness of the parent does ",
+            "not forbid approximate Normality of the mean for large n under CLT ",
+            "conditions."
         ),
         reflect=(
             "Harvest simulated-vs-Normal wobble — Revision protects the 2.5 chain tomorrow."

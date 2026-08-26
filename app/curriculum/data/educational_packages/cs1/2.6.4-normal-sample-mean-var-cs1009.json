@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force Normal-sample laws for X̄ and S² (χ² form as CMP) — refuse treating moment results alone as the distributional laws.",
     "educational_intent": "Produce distributional warrants for sample mean and sample variance under Normal random samples.",
     "learning_objective": "State basic sampling distributions for the sample mean and variance for random samples from a normal distribution.",
-    "concept_focus": "Normal population sample → X̄ Normal · S² related χ² (CMP) → refuse t as today.",
+    "concept_focus": "Iid Normal sample → X̄ ~ Normal(μ, σ²/n) → (n−1)S²/σ² ~ χ²_{n−1} → refuse treating this as the t-statistic.",
     "prior_bridge": "Yesterday you expressed E/Var of the sample mean and E of sample variance (2.6.3). Today specialises to Normal-sample distributional laws.",
     "why_now": "2.6.4 is the distributional hinge before student-t when σ is unknown.",
-    "expected_benefit": "Study Progress for Normal sampling laws — not t; not F.",
+    "expected_benefit": "You will be able to state the Normal and χ² sampling laws for X̄ and S² under Normal samples, without jumping to t.",
     "explainability": "Campaign Iota Day 4 focuses LO 2.6.4.",
     "success_criteria": [
       "Closed-book, state the sampling distribution of X̄ for Normal samples (CMP form).",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.4-cp-01",
       "title": "Checkpoint: 2.6.4",
-      "prompt": "Closed-book. Refuse 'Normal sampling laws for mean and variance already finished the t-statistic when σ is unknown.' Name what still sits ahead before introducing the t-statistic.",
+      "prompt": "Closed-book. X₁,…,Xₙ iid N(μ,σ²). (1) State the sampling distribution of X̄ and of (n−1)S²/σ². (2) Refuse: 'Normal sampling laws for mean and variance already finished the t-statistic when σ is unknown.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.4.",
       "hints": [
@@ -155,16 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "t",
         "Normal",
-        "stop",
-        "2.6.4",
-        "2.6.5"
+        "χ²",
+        "X̄",
+        "S²",
+        "refuse",
+        "t-statistic"
       ],
       "explanation": "Checkpoint for 2.6.4.",
-      "model_answer": "Refuse: Normal X̄/S² laws are not the t-statistic. Stop after 2.6.4; t is tomorrow.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) X̄ ~ N(μ, σ²/n); (n−1)S²/σ² ~ χ²_{n−1} (independent of X̄ under Normal samples, as CMP). (2) Refuse: these are the Normal/χ² laws for X̄ and S² — the t-statistic replaces σ by S and is a separate LO.",
+      "common_mistake": "Jumping from Normal X̄/S² laws to the t-statistic before stating today's sampling distributions.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate through mean (and variance) via conditioning — refuse treating yesterday's E[Y|X] as having finished the tower, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for mean and variance obtained via conditioning.",
     "learning_objective": "Obtain the mean and variance of a random variable as an expectation of conditional expected values.",
-    "concept_focus": "E[Y]=E[E[Y|X]] → variance via conditioning → refuse E[Y|X]-as-done / Ch2-done.",
+    "concept_focus": "Tower law E[Y]=E[E[Y|X]] → Var(Y)=E[Var(Y|X)]+Var(E[Y|X]) → refuse stopping at E[Y|X] alone.",
     "prior_bridge": "Yesterday you formed conditional expectation of one RV given another (2.3.1). Today uses that object to recover mean and variance.",
     "why_now": "2.3.2 completes topic 2.3 Learning; Revision follows before any 2.4 commission.",
-    "expected_benefit": "Study Progress for mean/variance via conditioning — not 2.4; not Chapter 2 trophy.",
+    "expected_benefit": "You will be able to recover an unconditional mean (and outline variance) via conditioning using the tower / law of total variance.",
     "explainability": "Campaign Zeta Day 2 focuses LO 2.3.2 — terminal Learning day of CS1-006.",
     "success_criteria": [
       "Closed-book, state how E[Y] arises from E[E[Y|X]] (or equivalent).",
@@ -148,7 +148,7 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.2-cp-01",
       "title": "Checkpoint: 2.3.2",
-      "prompt": "Closed-book. (1) Refuse 'Yesterday's E[Y|X] already finished mean/variance via conditioning.' (2) Refuse 'Finishing 2.3.2 means all of Chapter 2 is done.' Name what still sits ahead before generating functions.",
+      "prompt": "Closed-book. Given X∈{0,1} with P(X=1)=0.4, and E[Y|X=0]=10, E[Y|X=1]=20. (1) Compute E[Y] using the law of total expectation. (2) Refuse: 'Computing E[Y|X=x] already finished obtaining mean and variance via conditioning' and 'E[Y]=E[Y|X] as equality of random objects without taking E[·].'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.3.2.",
       "hints": [
@@ -156,18 +156,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "tower",
-        "variance",
-        "chapter",
-        "complete",
-        "2.4",
-        "revision",
-        "stop"
+        "14",
+        "E[E[Y|X]]",
+        "refuse",
+        "conditioning",
+        "variance"
       ],
       "explanation": "Checkpoint for 2.3.2.",
-      "model_answer": "(1) Refuse: forming E[Y|X] is not the same as recovering mean/variance via conditioning. (2) Refuse: 2.3.2 closes topic 2.3 Learning, not Chapter 2; next is Revision then honest 2.4 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an intermediate object — today's LO applies the tower (and variance decomposition) to recover unconditional mean/variance; you must take the outer expectation, and E[Y]=E[Y|X] is not a free equality without that step.",
+      "common_mistake": "Stopping after forming E[Y|X] without applying the tower / total-variance law.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

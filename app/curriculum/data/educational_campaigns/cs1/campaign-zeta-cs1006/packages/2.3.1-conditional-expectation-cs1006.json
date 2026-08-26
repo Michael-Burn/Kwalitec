@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-ZETA",
   "volume_id": "CS1-006",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1006_EDUCATIONAL_VOLUME.md",
     "CS1006_CERTIFICATION_REPORT.md",
@@ -36,14 +36,14 @@
   "mission": {
     "mission_id": "msn-cs1006-cs1-2.3-conditional-expectation",
     "display_title": "Form the conditional expectation of one RV given another",
-    "mission_purpose": "Today's Mission exists to obtain the conditional expectation of one random variable given the value of another \u2014 so E[Y|X=x] (or equivalent) is a usable object \u2014 without pretending the tower / total-expectation mean-variance LO is finished.",
-    "tutor_intent": "Today I will force the candidate to form or interpret E[Y|X=x] from a joint or conditional setup \u2014 and refuse treating 'I can compute an ordinary expectation' as having conditional expectation.",
+    "mission_purpose": "Today's Mission exists to obtain the conditional expectation of one random variable given the value of another — so E[Y|X=x] (or equivalent) is a usable object — without pretending the tower / total-expectation mean-variance LO is finished.",
+    "tutor_intent": "Today I will force the candidate to form or interpret E[Y|X=x] from a joint or conditional setup — and refuse treating 'I can compute an ordinary expectation' as having conditional expectation.",
     "educational_intent": "Produce a cognitive move from joint/conditional structure to lawful conditional expectation of one RV given another.",
     "learning_objective": "Obtain and interpret the conditional expectation of one random variable given the value of another random variable.",
-    "concept_focus": "Joint/conditional \u2192 E[Y|X=x] as a function of x \u2192 refuse ordinary-E-as-conditional.",
-    "prior_bridge": "Campaign Epsilon closed joint distributions through linear combinations (2.2) with Revision. Today opens topic 2.3 at LO 2.3.1 \u2014 the named Continuity Front after CS1-005.",
-    "why_now": "After joints, form E[Y|X] carefully \u2014 mean and variance via conditioning build on this next.",
-    "expected_benefit": "Study Progress for conditional expectation \u2014 not Topic Complete for 2.3.2.",
+    "concept_focus": "Joint/conditional → E[Y|X=x] as a function of x → refuse equating E[Y] with E[Y|X].",
+    "prior_bridge": "Campaign Epsilon closed joint distributions through linear combinations (2.2) with Revision. Today opens topic 2.3 at LO 2.3.1 — the named Continuity Front after CS1-005.",
+    "why_now": "After joints, form E[Y|X] carefully — mean and variance via conditioning build on this next.",
+    "expected_benefit": "You will be able to compute E[Y|X=x] from a joint and interpret it as a function of x, distinct from the unconditional mean.",
     "explainability": "Assigned as Campaign Zeta Day 1 because CE-001 / EP-001 Continuity Front names 2.3 as the handoff from Epsilon.",
     "success_criteria": [
       "Closed-book, outline what E[Y|X=x] means (or equivalent CMP form).",
@@ -62,17 +62,17 @@
   },
   "session": {
     "session_id": "ssn-cs1006-cs1-2.3-conditional-expectation",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.3.1 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.3.1 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.3.1, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Form the conditional expectation of one RV given another. You practised selective CMP reading on Syllabus 2.3.1. This is Study Progress for today's block \u2014 not Topic Complete for later 2.3 LOs, Chapter 2, or generating functions.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.3.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Form the conditional expectation of one RV given another. You practised selective CMP reading on Syllabus 2.3.1. This is Study Progress for today's block — not Topic Complete for later 2.3 LOs, Chapter 2, or generating functions.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.3.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.3.1 \u2014 form the conditional expectation of one rv given another. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.3.1 — form the conditional expectation of one rv given another. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.3.1?",
       "What warrant separates today's skill from yesterday's?",
@@ -84,23 +84,23 @@
       "Watch for starting tower/total-expectation drills (2.3.2) inside this sitting.",
       "Watch for MGF work (2.4) today."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.3.1 conditional expectation",
+    "open_point": "CMP · Syllabus 2.3.1 conditional expectation",
     "stop_condition": "Through the CMP treatment of Syllabus 2.3.1 (stop before mean/variance via conditioning 2.3.2)",
     "out_of_scope_today": [
       "Mean and variance via conditioning as primary (2.3.2)",
       "Generating functions (2.4)",
-      "CLT / sampling (2.5\u20132.6)",
+      "CLT / sampling (2.5–2.6)",
       "Inference Chapter 3",
       "CS1B coding marathon"
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.3.1 conditional expectation. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.3.1 (stop before mean/variance via conditioning 2.3.2). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.3.1 conditional expectation. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.3.1 (stop before mean/variance via conditioning 2.3.2). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -135,7 +135,7 @@
         "average"
       ],
       "explanation": "Active recall for 2.3.1.",
-      "model_answer": "E[Y|X=x] is the expected value of Y when X is fixed at x \u2014 a function of x. It is not the same as the unconditional E[Y]. Obtain it from the conditional distribution of Y|X=x (or equivalent joint setup in the CMP).",
+      "model_answer": "E[Y|X=x] is the expected value of Y when X is fixed at x — a function of x. It is not the same as the unconditional E[Y]. Obtain it from the conditional distribution of Y|X=x (or equivalent joint setup in the CMP).",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.1-cp-01",
       "title": "Checkpoint: 2.3.1",
-      "prompt": "Closed-book. A colleague says 'we already know how to take expectations, so conditional expectation is just the same skill.' Refuse in one sentence and restate what today's LO adds.",
+      "prompt": "Closed-book. Same joint as a 2×2 table: P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40 (X row, Y column values 0/1). (1) Compute E[Y|X=1]. (2) Refuse: 'E[Y|X] is just the same skill as computing E[Y]' and 'once I know E[Y], I already have E[Y|X=x].'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.3.1.",
       "hints": [
@@ -155,16 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
+        "E[Y|X",
+        "0.571",
         "conditional",
-        "expectation",
-        "given",
-        "not same",
-        "function"
+        "refuse",
+        "function",
+        "unconditional"
       ],
       "explanation": "Checkpoint for 2.3.1.",
-      "model_answer": "Refuse: ordinary expectation is not conditional expectation. Today's skill is E[Y|X=x] (or equivalent) \u2014 expectation under the conditioned world, as a function of the conditioning value.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0·P(Y=0|X=1)+1·P(Y=1|X=1)≈0.571. (2) Refuse: E[Y] is a single number; E[Y|X=x] is a function of x obtained from the conditional distribution — knowing the unconditional mean does not give the conditional expectation.",
+      "common_mistake": "Equating unconditional E[Y] with the conditional expectation function E[Y|X=x].",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -172,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest wobble on E[Y|X=x] vs E[Y] \u2014 mean/variance via conditioning comes tomorrow.",
+    "framing": "Harvest wobble on E[Y|X=x] vs E[Y] — mean/variance via conditioning comes tomorrow.",
     "prompt": "Which part of today's 2.3.1 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.3.1 is stickiest and why?",
@@ -184,7 +184,7 @@
     "next_topic_code": "2.3",
     "next_topic_title": "Mean and variance via conditioning (2.3.2)",
     "continuity_line": "Today you formed conditional expectation of one RV given another; tomorrow continues 2.3 at mean and variance as expectations of conditional expected values.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.3.2 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.3.2 — titles only tonight",
+    "student_facing": "Tomorrow: mean and variance via conditioning (2.3.2). Optional light prep: skim 2.3.2 headings — titles only tonight."
   }
 }

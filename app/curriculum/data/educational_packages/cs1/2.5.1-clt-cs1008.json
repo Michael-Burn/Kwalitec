@@ -42,10 +42,10 @@
     "tutor_intent": "Today I will force the candidate to state CLT conditions and conclusion for iid sequences — and refuse treating 'the Normal is everywhere' as having the theorem.",
     "educational_intent": "Produce a cognitive move from iid sum/mean behaviour to the lawful CLT statement under CMP conditions.",
     "learning_objective": "State and apply the central limit theorem for a sequence of independent, identically distributed random variables.",
-    "concept_focus": "iid sequence → mean/variance conditions (CMP) → standardised sample mean → Normal limit → refuse Normal-everywhere theatre.",
+    "concept_focus": "IID with finite mean/variance → standardised sample mean → Normal limit under CLT → refuse Normal-everywhere-without-CLT.",
     "prior_bridge": "Campaign Eta closed generating functions (2.4) with Revision. Today opens topic 2.5 at LO 2.5.1 — the named Continuity Front after CS1-007.",
     "why_now": "State and apply the CLT for iid sequences now; simulated-sample comparison builds on this next.",
-    "expected_benefit": "Study Progress for CLT (iid) — not Topic Complete for 2.5.2.",
+    "expected_benefit": "You will be able to state and apply the CLT to approximate a probability for an iid sample mean.",
     "explainability": "Assigned as Campaign Theta Day 1 because CE-001 / EP-001 Continuity Front names 2.5 as the handoff from Eta.",
     "success_criteria": [
       "Closed-book, state the CLT conclusion for iid sample means (CMP form).",
@@ -151,7 +151,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.1-cp-01",
       "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. A colleague says 'we already use the Normal all the time, so the CLT is just common sense.' Refuse in one sentence and restate what today's LO adds.",
+      "prompt": "Closed-book. Claim sizes are iid with mean μ=500 and sd σ=200; n=100. Using the CLT, approximate P(X̄>540). (1) State the approximate distribution of X̄. (2) Compute the standardised z and the approximate probability (use Φ(2)≈0.977). (3) Refuse: 'We already use the Normal all the time, so the CLT is just common sense and needs no statement.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.5.1.",
       "hints": [
@@ -159,18 +159,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "CLT",
         "iid",
+        "z=2",
+        "0.023",
         "Normal",
-        "theorem",
-        "not same",
-        "mean",
-        "limit"
+        "refuse"
       ],
       "explanation": "Checkpoint for 2.5.1.",
-      "model_answer": "Refuse: casual Normal use is not the CLT. Today's skill is stating and applying the theorem for iid sequences under CMP conditions (standardised means → Normal).",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z=(540−500)/20=2; P(X̄>540)≈1−Φ(2)≈0.023. (3) Refuse: casual Normal habit is not the CLT — today's skill is stating and applying the theorem for iid sequences under the stated conditions.",
+      "common_mistake": "Invoking Normal by habit without stating/applying CLT conditions for the iid mean.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

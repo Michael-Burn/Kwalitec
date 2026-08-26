@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants — refuse treating sampling-distribution vocabulary alone as having the formulas.",
     "educational_intent": "Produce executable population-parameter expressions for E/Var of the sample mean and E of the sample variance.",
     "learning_objective": "Express the mean and variance of a sample mean and the mean of a sample variance in terms of the population mean, variance and sample size.",
-    "concept_focus": "Population μ, σ², n → E[X̄], Var(X̄), E[S²] → refuse Normal-law / t jump today.",
+    "concept_focus": "Population μ, σ², n → E[X̄]=μ → Var(X̄)=σ²/n → E[S²]=σ² → refuse jumping to Normal laws or t.",
     "prior_bridge": "Yesterday you described the sampling distribution of a statistic (2.6.2). Today gives the key moment results for sample mean and sample variance.",
     "why_now": "2.6.3 supplies the moment hinge before Normal-sample distributional results.",
-    "expected_benefit": "Study Progress for sample-mean/variance moments — not 2.6.4.",
+    "expected_benefit": "You will be able to write E[X̄], Var(X̄), and E[S²] correctly in terms of μ, σ², and n.",
     "explainability": "Campaign Iota Day 3 focuses LO 2.6.3.",
     "success_criteria": [
       "Closed-book, state E[X̄] and Var(X̄) in population terms (CMP form).",
@@ -149,7 +149,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.3-cp-01",
       "title": "Checkpoint: 2.6.3",
-      "prompt": "Closed-book. Refuse 'I know Var(X̄)=σ²/n so Normal sampling laws and t are done today.' Restate today's stop.",
+      "prompt": "Closed-book. Random sample of size n from a population with mean μ and variance σ². (1) Write E[X̄], Var(X̄), and E[S²]. (2) Refuse: 'Knowing Var(X̄)=σ²/n finishes Normal sampling laws and the t-statistic today.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.3.",
       "hints": [
@@ -157,17 +157,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "E[X̄]",
+        "σ²/n",
+        "E[S²]",
         "refuse",
         "moment",
-        "Normal",
-        "t",
-        "stop",
-        "2.6.3",
-        "2.6.4"
+        "μ"
       ],
       "explanation": "Checkpoint for 2.6.3.",
-      "model_answer": "Refuse: moment results are not the Normal sampling laws or t/F. Today's stop is 2.6.3; distributional laws under Normal samples come next.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP form). (2) Refuse: these are moment identities for the sample mean/variance — Normal sampling distributions (2.6.4) and the t-statistic (2.6.5) are separate LOs.",
+      "common_mistake": "Jumping from Var(X̄)=σ²/n to Normal/t sampling laws before stating today's moment identities.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

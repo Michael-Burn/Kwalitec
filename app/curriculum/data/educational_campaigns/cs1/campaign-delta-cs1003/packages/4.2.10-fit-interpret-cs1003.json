@@ -39,10 +39,10 @@
     "tutor_intent": "Today I will force an end-to-end interpret chain (family, link, coefficients, fit/diagnostics cues) — refuse button-fit without interpretation.",
     "educational_intent": "Integrate 4.2 skills into software fit + interpret.",
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
-    "concept_focus": "Choose family/link → fit → interpret coefficients/fit cues → refuse button-only.",
+    "concept_focus": "Choose family/link → fit GLM → interpret coefficients on the mean scale → check fit/diagnostics.",
     "prior_bridge": "Yesterday formal tests (4.2.9). Today integrates fit/interpret.",
     "why_now": "Fit a GLM to a dataset and interpret the output — this closes classical GLM before Bayesian work.",
-    "expected_benefit": "You'll be able to fit a GLM and interpret coefficients, fitted means, and basic output without treating software as a black box.",
+    "expected_benefit": "You will be able to interpret a fitted GLM coefficient on the mean scale and refuse treating Fit as finishing interpretation and diagnostics.",
     "explainability": "Campaign Delta Day 15 closes 4.2 Learning span.",
     "success_criteria": [
       "Closed-book, outline family/link choice → fit → interpret key output.",
@@ -144,7 +144,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.10-cp-01",
       "title": "Checkpoint: 4.2.10",
-      "prompt": "Refuse: 'I clicked Fit, so interpretation and diagnostics are optional and Topic 4.2 is done.' What still needs an honest warrant after a software fit?",
+      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. (1) Interpret a coefficient of 0.20 on class High vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit finishes interpretation and diagnostics' and 'fitting a GLM finishes Bayesian credibility work.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 4.2.10.",
       "hints": [
@@ -152,15 +152,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
+        "Poisson",
+        "log link",
+        "e^{0.20}",
         "interpret",
-        "not spine",
-        "revision",
-        "bayes later"
+        "refuse",
+        "Fit"
       ],
       "explanation": "Checkpoint for 4.2.10.",
-      "model_answer": "Refuse. Fit without interpret is incomplete; Pilot Arc still needs Revision and later 5.1 — not first-pass spine.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Under log link, β̂=0.20 means the fitted mean for High is e^{0.20}≈1.22 times the baseline class mean (multiplicative effect), other terms held fixed. (2) Refuse: fit without interpretation/diagnostics is incomplete; Bayesian modelling is a different topic.",
+      "common_mistake": "Stopping at Fit without interpreting coefficients on the mean scale or checking diagnostics.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

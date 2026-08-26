@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate to state what a random sample means under CMP language — and refuse treating 'I drew some numbers' as having the LO.",
     "educational_intent": "Produce a cognitive move from population concept to a random sample as iid (or CMP-equivalent) draws.",
     "learning_objective": "Describe random samples from a population.",
-    "concept_focus": "Population → random sample (iid / CMP conditions) → refuse convenience-sample as-done.",
+    "concept_focus": "Population → random sample under iid/CMP sampling warrant → refuse n-observations-as-random-sample.",
     "prior_bridge": "Campaign Theta closed the central limit theorem (2.5) with Revision. Today opens topic 2.6 at LO 2.6.1 — the named Continuity Front after CS1-008.",
     "why_now": "Inference needs sampling language first: describe random samples from a population before sampling distributions.",
-    "expected_benefit": "Study Progress for random samples — not Topic Complete for 2.6.2.",
+    "expected_benefit": "You will be able to state what a random sample requires and refuse treating a convenience set of observations as one.",
     "explainability": "Assigned as Campaign Iota Day 1 because CE-001 / EP-001 Continuity Front names 2.6 as the handoff from Theta.",
     "success_criteria": [
       "Closed-book, define a random sample from a population in CMP-usable form.",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.1-cp-01",
       "title": "Checkpoint: 2.6.1",
-      "prompt": "Closed-book. A colleague says 'I have twenty observations, so I have a random sample.' Refuse in one sentence and restate what today's LO requires.",
+      "prompt": "Closed-book. An analyst takes the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book. (1) In one sentence, why this may fail as a random sample of the portfolio population. (2) State what a random sample from a population requires. (3) Refuse: 'I have n=40 observations, so I already have a random sample.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.1.",
       "hints": [
@@ -155,17 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
-        "random",
-        "sample",
+        "random sample",
         "population",
         "iid",
-        "not same",
-        "conditions"
+        "refuse",
+        "observations",
+        "convenience"
       ],
       "explanation": "Checkpoint for 2.6.1.",
-      "model_answer": "Refuse: having observations is not the same as a random sample under CMP conditions. Today's skill is describing a random sample from a population with the lawful sampling warrant.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Consecutive claims from one client are clustered and not an iid draw from the whole book — dependence and selection bias break the portfolio sampling warrant. (2) A random sample is drawn so that each observation follows the population distribution under CMP/iid (or stated sampling) conditions. (3) Refuse: having observations is not the same as a random sample with a lawful sampling warrant.",
+      "common_mistake": "Equating any set of n observations with a random sample from the stated population.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

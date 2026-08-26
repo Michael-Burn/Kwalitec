@@ -696,10 +696,17 @@ LEARNING = [
         tutor="Today I will force an end-to-end interpret chain (family, link, coefficients, fit/diagnostics cues) — refuse button-fit without interpretation.",
         edu="Integrate 4.2 skills into software fit + interpret.",
         lo_text="Fit a generalised linear model to a data set and interpret the output.",
-        focus="Choose family/link → fit → interpret coefficients/fit cues → refuse button-only.",
+        focus=(
+            "Choose family/link → fit GLM → interpret coefficients on the mean scale ",
+            "→ check fit/diagnostics."
+        ),
         prior="Yesterday formal tests (4.2.9). Today integrates fit/interpret.",
         why="Fit a GLM to a dataset and interpret the output — this closes classical GLM before Bayesian work.",
-        benefit="You'll be able to fit a GLM and interpret coefficients, fitted means, and basic output without treating software as a black box.",
+        benefit=(
+            "You will be able to interpret a fitted GLM coefficient on the mean ",
+            "scale and refuse treating Fit as finishing interpretation and ",
+            "diagnostics."
+        ),
         explain="Campaign Delta Day 15 closes 4.2 Learning span.",
         criteria=[
             "Closed-book, outline family/link choice → fit → interpret key output.",
@@ -722,9 +729,21 @@ LEARNING = [
         ar_prompt="Closed-book. Outline steps: choose family and link → fit in software → list three output elements you must interpret.",
         ar_kw=["family", "link", "coefficient", "deviance", "residual", "fit", "interpret"],
         ar_model="Choose family/link; fit; interpret coefficients (direction/scale via link), fit/deviance cues, and residual/test signals as relevant.",
-        cp_prompt="Refuse: 'I clicked Fit, so interpretation and diagnostics are optional and Topic 4.2 is done.' What still needs an honest warrant after a software fit?",
-        cp_kw=["refuse", "interpret", "not spine", "revision", "bayes later"],
-        cp_model="Refuse. Fit without interpret is incomplete; Pilot Arc still needs Revision and later 5.1 — not first-pass spine.",
+        cp_prompt=(
+            "Closed-book. You fit a Poisson log-link GLM for claim counts with ",
+            "factor rating class. (1) Interpret a coefficient of 0.20 on class High ",
+            "vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit finishes ",
+            "interpretation and diagnostics' and 'fitting a GLM finishes Bayesian ",
+            "credibility work.'"
+        ),
+        cp_kw=["Poisson", "log link", "e^{0.20}", "interpret", "refuse", "Fit"],
+        cp_model=(
+            "(1) Under log link, β̂=0.20 means the fitted mean for High is ",
+            "e^{0.20}≈1.22 times the baseline class mean (multiplicative effect), ",
+            "other terms held fixed. (2) Refuse: fit without ",
+            "interpretation/diagnostics is incomplete; Bayesian modelling is a ",
+            "different topic."
+        ),
         reflect="Harvest fit/interpret wobble — CD-R2 tomorrow protects 4.1–4.2 memory.",
     ),
     # ---- 5.1 ----
@@ -1111,10 +1130,17 @@ LEARNING = [
         tutor="Today I will force a two-column contrast of assumptions and refuse spine/exam claims.",
         edu="Produce honest contrast competence; close Trust Front Learning.",
         lo_text="Explain differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-        focus="Contrast assumptions → name differences → refuse equating Bayes and EB as the same method.",
+        focus=(
+            "Same credibility problem → Bayesian prior-as-specified ↔ EB structural ",
+            "parameters estimated from data → refuse equating the methods."
+        ),
         prior="Yesterday EB credibility (5.1.8). Today contrasts and closes 5.1 Learning.",
         why="Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
-        benefit="You'll be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
+        benefit=(
+            "You will be able to contrast Bayesian and Empirical Bayes assumptions ",
+            "on the same credibility problem and state what each is entitled to ",
+            "claim."
+        ),
         explain="Campaign Delta Day 24 closes 5.1 Learning.",
         criteria=[
             "Closed-book, state two differences between Bayes and EB approaches.",
@@ -1137,9 +1163,25 @@ LEARNING = [
         ar_prompt="Closed-book. Give two differences between Bayesian and Empirical Bayes credibility approaches. Name one assumption for each.",
         ar_kw=["prior", "estimate", "assumption", "bayesian", "empirical", "difference"],
         ar_model="Bayes: prior specified as belief. EB: estimates prior pieces from data. Assumptions: Bayes needs a credible prior; EB needs enough collateral structure to estimate hyperparameters.",
-        cp_prompt="Refuse: 'Contrasting Bayes and Empirical Bayes means Bayesian foundations are exam-ready.' What is the honest claim after today's contrast?",
-        cp_kw=["refuse", "pilot arc", "not spine", "not until-exam", "trust front"],
-        cp_model="Refuse. CS1-003 is a Pilot Arc Trust Front absorption — not spine PASS and not until-exam trust.",
+        cp_prompt=(
+            "Closed-book. Same portfolio credibility problem: you need a premium ",
+            "blending risk data with a collective structure. (1) State one key ",
+            "assumption difference between a fully Bayesian approach and Empirical ",
+            "Bayes on this problem, and what each is entitled to claim about the ",
+            "structural parameters. (2) Refuse: 'Bayesian and Empirical Bayes are ",
+            "the same method with different names' and 'contrasting them means ",
+            "Bayesian foundations are exam-ready.'"
+        ),
+        cp_kw=["Bayesian", "Empirical Bayes", "structural", "estimate", "refuse", "assumptions"],
+        cp_model=(
+            "(1) Bayesian treats structural/prior parameters as specified within a ",
+            "prior model (belief/structure you bring); Empirical Bayes estimates ",
+            "those structural parameters from the observed collective data — so EB ",
+            "claims about structure are data-estimated, not prior-specified. (2) ",
+            "Refuse: they differ in how structural knowledge enters; a contrast does ",
+            "not make foundations exam-ready or replace the separate calculation LOs ",
+            "across Topic 5.1."
+        ),
         reflect="Harvest contrast wobble — CD-R3 tomorrow protects mid-spine memory.",
     ),
 ]

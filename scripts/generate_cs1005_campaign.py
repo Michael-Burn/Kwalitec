@@ -467,7 +467,10 @@ LEARNING = [
             "Obtain the probability function or density function for marginal and conditional "
             "distributions of jointly distributed random variables."
         ),
-        focus="Joint → marginal (sum/integrate) → conditional (divide) → refuse joint-as-done theatre.",
+        focus=(
+            "Joint → marginal (sum/integrate) → conditional (normalise by marginal) ",
+            "→ refuse joint-as-margins-done."
+        ),
         prior=(
             "Campaign Gamma closed univariate evaluation and generation (2.1) with Revision. "
             "Today opens topic 2.2 at LO 2.2.1 — the named Continuity Front after CS1-004."
@@ -476,7 +479,10 @@ LEARNING = [
             "2.2.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at joint distributions, keeping independence and dependence measures for later sessions."
         ),
-        benefit="Study Progress for marginal/conditional — not Topic Complete for 2.2.2–2.2.4.",
+        benefit=(
+            "You will be able to extract a named marginal and conditional from a ",
+            "joint table by actual computation, not recognition alone."
+        ),
         explain=(
             "Day 1 opens 2.2 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -536,15 +542,18 @@ LEARNING = [
             "joint divided by the marginal of X at x (where defined)."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'we have the joint table, so marginals and "
-            "conditionals are optional decoration.' Refuse in one sentence and restate why "
-            "marginal/conditional extraction is a distinct skill."
+            "Closed-book. Joint PMF of (X, Y): "
+            "P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40. "
+            "(1) Compute the marginal P(X=1). (2) Compute P(Y=1 | X=1). "
+            "(3) Refuse: 'We have the joint table, so marginals and "
+            "conditionals are optional decoration.'"
         ),
-        cp_kw=["refuse", "marginal", "conditional", "joint", "not optional", "extract"],
+        cp_kw=["marginal", "conditional", "0.70", "0.40", "joint", "refuse", "sum"],
         cp_model=(
-            "Refuse: the joint is not the same as its margins or conditionals. You must "
-            "sum/integrate (marginal) and normalise by the marginal (conditional) — that is "
-            "today's skill."
+            "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ ",
+            "0.571. (3) Refuse: the joint is not the same as its margins or ",
+            "conditionals — you must sum for the marginal and divide by that ",
+            "marginal for the conditional."
         ),
         reflect="Harvest wobble on marginal vs conditional extraction — independence comes tomorrow.",
     ),
@@ -662,13 +671,19 @@ LEARNING = [
             "Define and use covariance and correlation; evaluate (or set up) the expected value "
             "of a function of two jointly distributed random variables."
         ),
-        focus="Cov → Corr → E[g(X,Y)] via joint → refuse independence-as-done theatre.",
+        focus=(
+            "Joint moments → Cov(X,Y)=E[XY]−E[X]E[Y] → Corr=Cov/(σ_X σ_Y) → ",
+            "E[g(X,Y)] via the joint → refuse Corr=0⇒independence."
+        ),
         prior=(
             "Yesterday you stated independence conditions (2.2.2). Today measures dependence "
             "and expectations of functions of the pair."
         ),
         why="2.2.3 is the dependence-measure hinge before linear-combination mean/variance (2.2.4).",
-        benefit="Study Progress for Cov/Corr/E[g] — not full 2.2.4 linear-combination mastery.",
+        benefit=(
+            "You will be able to set up Cov, Corr, and E[g(X,Y)] from a joint and ",
+            "refuse equating zero correlation with independence."
+        ),
         explain="Campaign Epsilon Day 3 focuses LO 2.2.3.",
         criteria=[
             "Closed-book, state what covariance measures and how correlation relates.",
@@ -723,13 +738,18 @@ LEARNING = [
             "double sum/integral of g(x,y) times the joint."
         ),
         cp_prompt=(
-            "Closed-book. A student says 'we already did independence, so Cov/Corr are "
-            "optional.' Refuse and restate what today's LO adds."
+            "Closed-book. Discrete joint: P(X=0,Y=0)=0.2, P(0,1)=0.3, P(1,0)=0.1, ",
+            "P(1,1)=0.4. (1) Compute E[X], E[Y], E[XY], and Cov(X,Y). (2) Refuse: ",
+            "'Cov=0 (or Corr=0) always means X and Y are independent' and ",
+            "'independence already finished Cov/Corr/E[g].'"
         ),
-        cp_kw=["refuse", "covariance", "correlation", "expectation", "not optional", "dependence"],
+        cp_kw=["Cov", "E[XY]", "0.05", "correlation", "refuse", "independence"],
         cp_model=(
-            "Refuse: independence is a special case; Cov/Corr and E[g] are the working "
-            "dependence and function-expectation tools for general joints — today's LO."
+            "(1) E[X]=0·(0.2+0.3)+1·(0.1+0.4)=0.5; E[Y]=0·(0.2+0.1)+1·(0.3+0.4)=0.7; ",
+            "E[XY]=1·1·0.4=0.4; Cov(X,Y)=0.4−0.5·0.7=0.05. (2) Refuse: zero ",
+            "correlation does not imply independence (non-linear dependence can ",
+            "remain); independence is a different LO — today requires Cov/Corr and ",
+            "E[g] algebra from the joint."
         ),
         reflect="Harvest Cov/Corr/E[g] wobble — linear combinations come tomorrow.",
     ),
@@ -752,13 +772,19 @@ LEARNING = [
         ),
         edu="Produce executable mean/variance warrants for linear combinations of RVs.",
         lo_text="Obtain the mean and variance of linear combinations of random variables.",
-        focus="E[aX+bY] → Var with 2ab Cov when dependent → refuse independence-always / Ch2-done.",
+        focus=(
+            "E[aX+bY]=aE[X]+bE[Y] → Var(aX+bY)=a²Var(X)+b²Var(Y)+2ab Cov(X,Y) → ",
+            "refuse dropping Cov when dependent."
+        ),
         prior=(
             "Yesterday you placed Cov/Corr and E[g(X,Y)] (2.2.3). Today applies linear "
             "combination mean and variance."
         ),
         why="2.2.4 completes topic 2.2 Learning; Revision follows before any 2.3 commission.",
-        benefit="Study Progress for linear-combination mean/variance — not 2.3; not Chapter 2 trophy.",
+        benefit=(
+            "You will be able to compute mean and variance of a linear combination, ",
+            "including the 2ab Cov term when X and Y are dependent."
+        ),
         explain="Campaign Epsilon Day 4 focuses LO 2.2.4 — terminal Learning day of CS1-005.",
         criteria=[
             "Closed-book, state E[aX+bY] in terms of E[X], E[Y].",
@@ -814,15 +840,15 @@ LEARNING = [
             "Var(aX+bY) = a² Var(X) + b² Var(Y) + 2ab Cov(X,Y) (Cov term vanishes if independent)."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'I can always drop Cov when variables may be dependent.' "
-            "(2) Refuse 'Finishing linear combinations means all of Chapter 2 is done.' Name "
-            "what still sits ahead before conditional expectation."
+            "Closed-book. X and Y have Var(X)=4, Var(Y)=9, Cov(X,Y)=2. (1) Compute ",
+            "Var(2X−Y). (2) Refuse: 'I can always drop the Cov term when variables ",
+            "may be dependent' and 'Var(aX+bY)=a²Var(X)+b²Var(Y) is always enough.'"
         ),
-        cp_kw=["refuse", "covariance", "chapter", "complete", "2.3", "revision", "stop"],
+        cp_kw=["Var", "17", "Cov", "2ab", "refuse", "dependent"],
         cp_model=(
-            "(1) Refuse: Cov stays when variables are dependent. (2) Refuse: 2.2.4 closes "
-            "topic 2.2 Learning, not Chapter 2; next is Revision then honest 2.3 successor — "
-            "not spine/until-exam claims."
+            "(1) Var(2X−Y)=4·Var(X)+1·Var(Y)+2·2·(−1)·Cov(X,Y)=16+9−8=17. (2) ",
+            "Refuse: when X and Y may be dependent you must keep the 2ab Cov term; ",
+            "dropping Cov is lawful only under independence (Cov=0), not by habit."
         ),
         reflect="Harvest linear-combination wobble — Revision protects the 2.2 chain tomorrow.",
     ),

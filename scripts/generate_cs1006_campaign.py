@@ -458,9 +458,7 @@ LEARNING = [
             "Obtain and interpret the conditional expectation of one random variable given "
             "the value of another random variable."
         ),
-        focus=(
-            "Joint/conditional → E[Y|X=x] as a function of x → refuse ordinary-E-as-conditional."
-        ),
+        focus="Joint/conditional → E[Y|X=x] as a function of x → refuse equating E[Y] with E[Y|X].",
         prior=(
             "Campaign Epsilon closed joint distributions through linear combinations (2.2) "
             "with Revision. Today opens topic 2.3 at LO 2.3.1 — the named Continuity Front "
@@ -470,7 +468,10 @@ LEARNING = [
             "2.3.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at conditional expectation, keeping mean/variance-via-conditioning for the following session."
         ),
-        benefit="Study Progress for conditional expectation — not Topic Complete for 2.3.2.",
+        benefit=(
+            "You will be able to compute E[Y|X=x] from a joint and interpret it as a ",
+            "function of x, distinct from the unconditional mean."
+        ),
         explain=(
             "Day 1 opens 2.3 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -533,15 +534,17 @@ LEARNING = [
             "distribution of Y|X=x (or equivalent joint setup in the CMP)."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'we already know how to take expectations, so "
-            "conditional expectation is just the same skill.' Refuse in one sentence and "
-            "restate what today's LO adds."
+            "Closed-book. Same joint as a 2×2 table: P(0,0)=0.10, P(0,1)=0.20, ",
+            "P(1,0)=0.30, P(1,1)=0.40 (X row, Y column values 0/1). (1) Compute ",
+            "E[Y|X=1]. (2) Refuse: 'E[Y|X] is just the same skill as computing E[Y]' ",
+            "and 'once I know E[Y], I already have E[Y|X=x].'"
         ),
-        cp_kw=["refuse", "conditional", "expectation", "given", "not same", "function"],
+        cp_kw=["E[Y|X", "0.571", "conditional", "refuse", "function", "unconditional"],
         cp_model=(
-            "Refuse: ordinary expectation is not conditional expectation. Today's skill is "
-            "E[Y|X=x] (or equivalent) — expectation under the conditioned world, as a "
-            "function of the conditioning value."
+            "(1) P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0·P(Y=0|X=1)+1·P(Y=1|X=1)≈0. ",
+            "571. (2) Refuse: E[Y] is a single number; E[Y|X=x] is a function of x ",
+            "obtained from the conditional distribution — knowing the unconditional ",
+            "mean does not give the conditional expectation."
         ),
         reflect=(
             "Harvest wobble on E[Y|X=x] vs E[Y] — mean/variance via conditioning comes tomorrow."
@@ -574,7 +577,8 @@ LEARNING = [
             "conditional expected values."
         ),
         focus=(
-            "E[Y]=E[E[Y|X]] → variance via conditioning → refuse E[Y|X]-as-done / Ch2-done."
+            "Tower law E[Y]=E[E[Y|X]] → Var(Y)=E[Var(Y|X)]+Var(E[Y|X]) → refuse ",
+            "stopping at E[Y|X] alone."
         ),
         prior=(
             "Yesterday you formed conditional expectation of one RV given another (2.3.1). "
@@ -584,7 +588,8 @@ LEARNING = [
             "2.3.2 completes topic 2.3 Learning; Revision follows before any 2.4 commission."
         ),
         benefit=(
-            "Study Progress for mean/variance via conditioning — not 2.4; not Chapter 2 trophy."
+            "You will be able to recover an unconditional mean (and outline ",
+            "variance) via conditioning using the tower / law of total variance."
         ),
         explain="Campaign Zeta Day 2 focuses LO 2.3.2 — terminal Learning day of CS1-006.",
         criteria=[
@@ -641,15 +646,19 @@ LEARNING = [
             "via conditioning (e.g. law of total variance / related CMP decomposition)."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'Yesterday's E[Y|X] already finished mean/variance via "
-            "conditioning.' (2) Refuse 'Finishing 2.3.2 means all of Chapter 2 is done.' Name "
-            "what still sits ahead before generating functions."
+            "Closed-book. Given X∈{0,1} with P(X=1)=0.4, and E[Y|X=0]=10, ",
+            "E[Y|X=1]=20. (1) Compute E[Y] using the law of total expectation. (2) ",
+            "Refuse: 'Computing E[Y|X=x] already finished obtaining mean and ",
+            "variance via conditioning' and 'E[Y]=E[Y|X] as equality of random ",
+            "objects without taking E[·].'"
         ),
-        cp_kw=["refuse", "tower", "variance", "chapter", "complete", "2.4", "revision", "stop"],
+        cp_kw=["tower", "14", "E[E[Y|X]]", "refuse", "conditioning", "variance"],
         cp_model=(
-            "(1) Refuse: forming E[Y|X] is not the same as recovering mean/variance via "
-            "conditioning. (2) Refuse: 2.3.2 closes topic 2.3 Learning, not Chapter 2; next "
-            "is Revision then honest 2.4 successor — not spine/until-exam claims."
+            "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an ",
+            "intermediate object — today's LO applies the tower (and variance ",
+            "decomposition) to recover unconditional mean/variance; you must take ",
+            "the outer expectation, and E[Y]=E[Y|X] is not a free equality without ",
+            "that step."
         ),
         reflect="Harvest conditioning-mean/variance wobble — Revision protects the 2.3 chain tomorrow.",
     ),

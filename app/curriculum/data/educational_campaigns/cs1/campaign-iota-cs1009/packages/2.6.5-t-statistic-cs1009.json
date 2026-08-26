@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
   "volume_id": "CS1-009",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1009_EDUCATIONAL_VOLUME.md",
     "CS1009_CERTIFICATION_REPORT.md",
@@ -37,14 +37,14 @@
   "mission": {
     "mission_id": "msn-cs1009-cs1-2.6-t-statistic",
     "display_title": "Describe the distribution of the t-statistic for Normal samples",
-    "mission_purpose": "Today's Mission exists to describe the distribution of the t-statistic for random samples from a Normal distribution \u2014 without claiming the F distribution (2.6.6) finished.",
-    "tutor_intent": "Today I will force the candidate through the t construction (unknown \u03c3) \u2014 refuse treating Normal X\u0304 laws with known \u03c3 as having finished t.",
-    "educational_intent": "Produce the cognitive move from Normal sample with unknown \u03c3 to the t-statistic and its sampling distribution (CMP).",
+    "mission_purpose": "Today's Mission exists to describe the distribution of the t-statistic for random samples from a Normal distribution — without claiming the F distribution (2.6.6) finished.",
+    "tutor_intent": "Today I will force the candidate through the t construction (unknown σ) — refuse treating Normal X̄ laws with known σ as having finished t.",
+    "educational_intent": "Produce the cognitive move from Normal sample with unknown σ to the t-statistic and its sampling distribution (CMP).",
     "learning_objective": "Describe the distribution of the t-statistic for random samples from a normal distribution.",
-    "concept_focus": "Normal sample \u00b7 unknown \u03c3 \u2192 t = (X\u0304\u2212\u03bc)/(S/\u221an) \u2192 t distribution (df) \u2192 refuse F.",
-    "prior_bridge": "Yesterday you stated Normal sampling distributions for mean and variance (2.6.4). Today forms the t-statistic when \u03c3 is unknown.",
+    "concept_focus": "Normal sample · unknown σ → t=(X̄−μ)/(S/√n) → t_{n−1} → refuse z-with-S and F swallow.",
+    "prior_bridge": "Yesterday you stated Normal sampling distributions for mean and variance (2.6.4). Today forms the t-statistic when σ is unknown.",
     "why_now": "2.6.5 is contiguous after Normal laws; F for variance ratios waits for day six.",
-    "expected_benefit": "Study Progress for t-statistic \u2014 not F; not CI construction as primary.",
+    "expected_benefit": "You will be able to form the t-statistic with its degrees of freedom when σ is unknown, and refuse using a Normal/z form with S.",
     "explainability": "Campaign Iota Day 5 focuses LO 2.6.5.",
     "success_criteria": [
       "Closed-book, write the t-statistic for Normal samples (CMP form).",
@@ -52,7 +52,7 @@
       "Refuse treating this as finishing F / Chapter 3 intervals."
     ],
     "task_descriptions": [
-      "Sketch unknown-\u03c3 \u2192 t before CMP.",
+      "Sketch unknown-σ → t before CMP.",
       "Guided Reading through CMP 2.6.5.",
       "Knowledge Checks: t construction + refuse F / CI swallow."
     ],
@@ -63,17 +63,17 @@
   },
   "session": {
     "session_id": "ssn-cs1009-cs1-2.6-t-statistic",
-    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.5 \u2014 not the next LO as primary.",
+    "session_educational_purpose": "Execute today's Mission for Syllabus 2.6.5 — not the next LO as primary.",
     "session_tutor_purpose": "Set focus on 2.6.5, exit to CMP, retrieve today's hinge, refuse swallowed next LO.",
     "duration_budget_minutes": {
       "min": 55,
       "max": 75
     },
-    "wrap_up": "Session complete for Describe the distribution of the t-statistic for Normal samples. You practised selective CMP reading on Syllabus 2.6.5. This is Study Progress for today's block \u2014 not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.6.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "wrap_up": "Session complete for Describe the distribution of the t-statistic for Normal samples. You practised selective CMP reading on Syllabus 2.6.5. This is Study Progress for today's block — not Topic Complete for later 2.6 LOs, Chapter 2 trophy, Chapter 3 inference, or until-exam trust.",
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.6.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.5 \u2014 describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
+    "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 2.6.5 — describe the distribution of the t-statistic for normal samples. Stop before out-of-scope later LOs.",
     "focus_questions": [
       "What is the core move of Syllabus 2.6.5?",
       "What warrant separates today's skill from yesterday's?",
@@ -81,11 +81,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for using z when S replaces \u03c3 without naming t.",
+      "Watch for using z when S replaces σ without naming t.",
       "Watch for wrong df.",
       "Watch for jumping to F or CI construction as today's primary."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples",
+    "open_point": "CMP · Syllabus 2.6.5 t-statistic for Normal samples",
     "stop_condition": "Through CMP 2.6.5 (stop before F distribution 2.6.6)",
     "out_of_scope_today": [
       "F distribution as primary (2.6.6)",
@@ -95,12 +95,12 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.6.5 t-statistic for Normal samples. Kwalitec is the guide; the CMP is the authoritative material \u2014 do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.5 (stop before F distribution 2.6.6). Then close the CMP and return here \u2014 next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.6.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.5 t-statistic for Normal samples. Kwalitec is the guide; the CMP is the authoritative material — do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.6.5 (stop before F distribution 2.6.6). Then close the CMP and return here — next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.6.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
-        "cue": "Pause \u2014 write today's core move in one sentence.",
+        "cue": "Pause — write today's core move in one sentence.",
         "student_action": "Annotate"
       },
       {
@@ -135,7 +135,7 @@
         "mean"
       ],
       "explanation": "Active recall for 2.6.5.",
-      "model_answer": "t=(X\u0304\u2212\u03bc)/(S/\u221an) for Normal samples (CMP). Use t when \u03c3 is unknown and estimated by S. Degrees of freedom follow CMP (typically n\u22121 for one-sample).",
+      "model_answer": "t=(X̄−μ)/(S/√n) for Normal samples (CMP). Use t when σ is unknown and estimated by S. Degrees of freedom follow CMP (typically n−1 for one-sample).",
       "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
       "success_criteria": [
         "Addresses the prompt structure.",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.5-cp-01",
       "title": "Checkpoint: 2.6.5",
-      "prompt": "Closed-book. Refuse 'The t-statistic finished the F variance-ratio LO and Chapter 3.' State today's stop.",
+      "prompt": "Closed-book. Iid Normal sample of size n; μ known in the null form, σ unknown. (1) Write the t-statistic and name its distribution (df). (2) Refuse: 'Using z=(X̄−μ)/(S/√n) is fine because S estimates σ' and 'The t-statistic finished the F variance-ratio LO and Chapter 3.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.5.",
       "hints": [
@@ -155,17 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "t-statistic",
+        "S/√n",
+        "t_{n−1}",
         "refuse",
-        "F",
-        "t",
-        "stop",
-        "2.6.5",
-        "3.1",
-        "chapter"
+        "z",
+        "F"
       ],
       "explanation": "Checkpoint for 2.6.5.",
-      "model_answer": "Refuse: t is not F and not Chapter 3. Stop after 2.6.5; F is tomorrow; inference Volumes come later.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) t=(X̄−μ)/(S/√n) ~ t_{n−1}. (2) Refuse: replacing σ by S in a Normal/z pivot yields a t (not z) law — you must name t and its df; the F variance-ratio LO and Chapter 3 inference are separate.",
+      "common_mistake": "Using a Normal/z pivot with S in place of σ without naming the t distribution, or swallowing F/Chapter 3.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."
@@ -173,7 +172,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest t-vs-z / df wobble \u2014 F ratio tomorrow.",
+    "framing": "Harvest t-vs-z / df wobble — F ratio tomorrow.",
     "prompt": "Which part of today's 2.6.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.6.5 is stickiest and why?",
@@ -185,7 +184,7 @@
     "next_topic_code": "2.6",
     "next_topic_title": "F distribution for a variance ratio (2.6.6)",
     "continuity_line": "Today you described the t-statistic for Normal samples; tomorrow continues 2.6 at the F distribution for a ratio of sample variances.",
-    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.6 \u2014 titles only tonight",
-    "student_facing": "Tomorrow: F distribution for the ratio of two sample variances (2.6.6). Optional light prep: skim 2.6.6 headings \u2014 titles only tonight."
+    "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.6 — titles only tonight",
+    "student_facing": "Tomorrow: F distribution for the ratio of two sample variances (2.6.6). Optional light prep: skim 2.6.6 headings — titles only tonight."
   }
 }

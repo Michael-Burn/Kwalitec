@@ -40,10 +40,10 @@
     "tutor_intent": "Today I will force the candidate through E[aX+bY] and Var(aX+bY) with an explicit dependence note — refuse ignoring Cov and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable mean/variance warrants for linear combinations of RVs.",
     "learning_objective": "Obtain the mean and variance of linear combinations of random variables.",
-    "concept_focus": "E[aX+bY] → Var with 2ab Cov when dependent → refuse independence-always / Ch2-done.",
+    "concept_focus": "E[aX+bY]=aE[X]+bE[Y] → Var(aX+bY)=a²Var(X)+b²Var(Y)+2ab Cov(X,Y) → refuse dropping Cov when dependent.",
     "prior_bridge": "Yesterday you placed Cov/Corr and E[g(X,Y)] (2.2.3). Today applies linear combination mean and variance.",
     "why_now": "2.2.4 completes topic 2.2 Learning; Revision follows before any 2.3 commission.",
-    "expected_benefit": "Study Progress for linear-combination mean/variance — not 2.3; not Chapter 2 trophy.",
+    "expected_benefit": "You will be able to compute mean and variance of a linear combination, including the 2ab Cov term when X and Y are dependent.",
     "explainability": "Campaign Epsilon Day 4 focuses LO 2.2.4 — terminal Learning day of CS1-005.",
     "success_criteria": [
       "Closed-book, state E[aX+bY] in terms of E[X], E[Y].",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.4-cp-01",
       "title": "Checkpoint: 2.2.4",
-      "prompt": "Closed-book. (1) Refuse 'I can always drop Cov when variables may be dependent.' (2) Refuse 'Finishing linear combinations means all of Chapter 2 is done.' Name what still sits ahead before conditional expectation.",
+      "prompt": "Closed-book. X and Y have Var(X)=4, Var(Y)=9, Cov(X,Y)=2. (1) Compute Var(2X−Y). (2) Refuse: 'I can always drop the Cov term when variables may be dependent' and 'Var(aX+bY)=a²Var(X)+b²Var(Y) is always enough.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.2.4.",
       "hints": [
@@ -155,17 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "Var",
+        "17",
+        "Cov",
+        "2ab",
         "refuse",
-        "covariance",
-        "chapter",
-        "complete",
-        "2.3",
-        "revision",
-        "stop"
+        "dependent"
       ],
       "explanation": "Checkpoint for 2.2.4.",
-      "model_answer": "(1) Refuse: Cov stays when variables are dependent. (2) Refuse: 2.2.4 closes topic 2.2 Learning, not Chapter 2; next is Revision then honest 2.3 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Var(2X−Y)=4·Var(X)+1·Var(Y)+2·2·(−1)·Cov(X,Y)=16+9−8=17. (2) Refuse: when X and Y may be dependent you must keep the 2ab Cov term; dropping Cov is lawful only under independence (Cov=0), not by habit.",
+      "common_mistake": "Dropping the 2ab Cov term for dependent variables, or treating independence as automatic.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

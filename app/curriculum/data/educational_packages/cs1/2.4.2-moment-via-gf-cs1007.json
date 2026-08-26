@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the candidate through moment extraction from a GF — refuse treating yesterday's MGF/CGF definitions as having finished moment calculation, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for moments obtained via series expansion or differentiation of a generating function.",
     "learning_objective": "Obtain moments of a random variable via series expansion or differentiation of a generating function.",
-    "concept_focus": "MGF/CGF → Taylor / derivatives → moments → refuse definition-as-done / Ch2-done.",
+    "concept_focus": "MGF/CGF → differentiate or Taylor-expand → extract moments → refuse definition-as-extraction.",
     "prior_bridge": "Yesterday you formed moment and cumulant generating functions (2.4.1). Today uses those objects to recover moments.",
     "why_now": "2.4.2 completes topic 2.4 Learning; Revision follows before any 2.5 commission.",
-    "expected_benefit": "Study Progress for moment-via-GF — not 2.5; not Chapter 2 trophy.",
+    "expected_benefit": "You will be able to extract a moment by differentiating (or expanding) an MGF/CGF, not merely by restating the definition.",
     "explainability": "Campaign Eta Day 2 focuses LO 2.4.2 — terminal Learning day of CS1-007.",
     "success_criteria": [
       "Closed-book, outline how a moment arises from series coefficients of an MGF.",
@@ -149,7 +149,7 @@
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.2-cp-01",
       "title": "Checkpoint: 2.4.2",
-      "prompt": "Closed-book. (1) Refuse 'Yesterday's MGF/CGF definition already finished extracting moments via expansion or differentiation.' (2) Refuse 'Finishing 2.4.2 means all of Chapter 2 is done.' Name what still sits ahead before the CLT.",
+      "prompt": "Closed-book. Suppose M_X(t)=exp(λ(e^t−1)) (Poisson(λ)). (1) Compute E[X] by differentiating the MGF and evaluating at t=0. (2) Refuse: 'Writing down the MGF definition already finished extracting moments via differentiation/expansion.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.4.2.",
       "hints": [
@@ -157,18 +157,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
+        "differentiate",
+        "M'(0)",
+        "λ",
+        "moment",
         "refuse",
-        "series",
-        "derivative",
-        "chapter",
-        "complete",
-        "2.5",
-        "revision",
-        "stop"
+        "MGF"
       ],
       "explanation": "Checkpoint for 2.4.2.",
-      "model_answer": "(1) Refuse: defining MGF/CGF is not the same as extracting moments via series or differentiation. (2) Refuse: 2.4.2 closes topic 2.4 Learning, not Chapter 2; next is Revision then honest 2.5 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) M'_X(t)=exp(λ(e^t−1))·λ e^t; M'_X(0)=λ, so E[X]=λ. (2) Refuse: stating M_X(t)=E[e^{tX}] is the definition LO; today's skill is obtaining moments by differentiating or series-expanding the generating function.",
+      "common_mistake": "Stopping at the MGF definition without differentiating/expanding to extract a moment.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

@@ -41,10 +41,10 @@
     "tutor_intent": "Today I will force the F variance-ratio construction — refuse treating t as having finished 2.6.6, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for an F ratio of independent sample variances from Normal populations (CMP).",
     "learning_objective": "Describe the F distribution for the ratio of two sample variances from independent samples taken from normal distributions.",
-    "concept_focus": "Two independent Normal samples → variance ratio → F (df1, df2) → refuse Ch2-done / 3.1-done.",
+    "concept_focus": "Two independent Normal samples → variance ratio → F(df₁, df₂) → refuse using t for that job.",
     "prior_bridge": "Yesterday you described the t-statistic (2.6.5). Today closes topic 2.6 Learning with the F distribution for a variance ratio.",
     "why_now": "2.6.6 completes topic 2.6 Learning; Revision follows before any 3.1 commission.",
-    "expected_benefit": "Study Progress for F variance ratio — not 3.1; not Chapter 2 trophy.",
+    "expected_benefit": "You will be able to state the F law for a ratio of sample variances from independent Normal samples and refuse using t for that comparison.",
     "explainability": "Campaign Iota Day 6 focuses LO 2.6.6 — terminal Learning day of CS1-009.",
     "success_criteria": [
       "Closed-book, state the F construction for a ratio of sample variances (CMP).",
@@ -147,7 +147,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.6-cp-01",
       "title": "Checkpoint: 2.6.6",
-      "prompt": "Closed-book. (1) Refuse 'Yesterday's t-statistic already finished the F ratio of sample variances.' (2) Refuse 'Finishing 2.6.6 means all of Chapter 2 is done.' Name what still sits ahead before estimators.",
+      "prompt": "Closed-book. Independent samples: n₁ observations from N(μ₁,σ₁²) and n₂ from N(μ₂,σ₂²). (1) Write the variance-ratio statistic that has an F distribution under σ₁²=σ₂², and state F(df₁, df₂). (2) Refuse: 'Yesterday's t-statistic already finished comparing two sample variances' and 'use t for a variance ratio.'",
       "response_type": "short_structured",
       "body": "Checkpoint refuse/warrant for 2.6.6.",
       "hints": [
@@ -155,18 +155,16 @@
         "Give a positive warrant."
       ],
       "accepted_keywords": [
-        "refuse",
         "F",
-        "t",
-        "chapter",
-        "complete",
-        "3.1",
-        "revision",
-        "stop"
+        "S₁²/S₂²",
+        "df",
+        "variance ratio",
+        "refuse",
+        "t"
       ],
       "explanation": "Checkpoint for 2.6.6.",
-      "model_answer": "(1) Refuse: t is not the F variance-ratio LO. (2) Refuse: 2.6.6 closes topic 2.6 Learning, not Chapter 2; next is Revision then honest 3.1 successor — not spine/until-exam claims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "model_answer": "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for independent Normal samples). (2) Refuse: t compares means (unknown σ) for Normal samples; a variance ratio uses F — t does not finish this LO.",
+      "common_mistake": "Using the t-statistic for a variance-ratio comparison, or treating t as finishing F.",
       "success_criteria": [
         "Refusal present.",
         "Positive warrant present."

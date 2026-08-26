@@ -458,10 +458,7 @@ LEARNING = [
             "Obtain and interpret the moment and cumulant generating functions of a random "
             "variable."
         ),
-        focus=(
-            "Distribution → MGF M_X(t)=E[e^{tX}] → CGF (log M or CMP form) → refuse "
-            "ordinary-moments-as-GF."
-        ),
+        focus="Named family → M_X(t)=E[e^{tX}] → CGF C_X(t)=log M_X(t) → refuse mean/var-as-MGF.",
         prior=(
             "Campaign Zeta closed expectations and conditional expectations (2.3) with "
             "Revision. Today opens topic 2.4 at LO 2.4.1 — the named Continuity Front after "
@@ -471,7 +468,11 @@ LEARNING = [
             "2.4.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at generating functions, keeping moment-via-GF for the following session."
         ),
-        benefit="Study Progress for MGF/CGF — not Topic Complete for 2.4.2.",
+        benefit=(
+            "You will be able to write the MGF (and CGF) for a named family and ",
+            "refuse treating ordinary moments as a substitute for the generating ",
+            "function."
+        ),
         explain=(
             "Day 1 opens 2.4 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -536,14 +537,17 @@ LEARNING = [
             "generating-function object that encodes the moment sequence."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'we already know how to get means and variances, "
-            "so generating functions are just the same skill.' Refuse in one sentence and "
-            "restate what today's LO adds."
+            "Closed-book. Let X ~ Poisson(λ). (1) Write M_X(t)=E[e^{tX}] and ",
+            "simplify to the closed form for this family; then write C_X(t). (2) ",
+            "Refuse: 'I already know E[X] and Var(X), so I have the MGF' and 'mean ",
+            "and variance finish the generating-function LO.'"
         ),
-        cp_kw=["refuse", "MGF", "CGF", "generating", "not same", "function", "moments"],
+        cp_kw=["MGF", "Poisson", "exp(\u03bb(e^t\u22121))", "CGF", "refuse", "moments"],
         cp_model=(
-            "Refuse: raw moments are not the MGF/CGF. Today's skill is forming and interpreting "
-            "the generating-function objects (MGF and CGF) for a random variable."
+            "(1) M_X(t)=E[e^{tX}]=exp(λ(e^t−1)); C_X(t)=log M_X(t)=λ(e^t−1). (2) ",
+            "Refuse: knowing mean and variance gives two moments, not the MGF as a ",
+            "function of t; today's LO is obtaining and interpreting the generating ",
+            "functions themselves."
         ),
         reflect=(
             "Harvest wobble on MGF vs CGF vs raw moments — moment-via-GF calculation comes tomorrow."
@@ -576,7 +580,8 @@ LEARNING = [
             "a generating function."
         ),
         focus=(
-            "MGF/CGF → Taylor / derivatives → moments → refuse definition-as-done / Ch2-done."
+            "MGF/CGF → differentiate or Taylor-expand → extract moments → refuse ",
+            "definition-as-extraction."
         ),
         prior=(
             "Yesterday you formed moment and cumulant generating functions (2.4.1). Today uses "
@@ -586,7 +591,8 @@ LEARNING = [
             "2.4.2 completes topic 2.4 Learning; Revision follows before any 2.5 commission."
         ),
         benefit=(
-            "Study Progress for moment-via-GF — not 2.5; not Chapter 2 trophy."
+            "You will be able to extract a moment by differentiating (or expanding) ",
+            "an MGF/CGF, not merely by restating the definition."
         ),
         explain="Campaign Eta Day 2 focuses LO 2.4.2 — terminal Learning day of CS1-007.",
         criteria=[
@@ -645,15 +651,17 @@ LEARNING = [
             "recovers moments."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'Yesterday's MGF/CGF definition already finished extracting "
-            "moments via expansion or differentiation.' (2) Refuse 'Finishing 2.4.2 means all "
-            "of Chapter 2 is done.' Name what still sits ahead before the CLT."
+            "Closed-book. Suppose M_X(t)=exp(λ(e^t−1)) (Poisson(λ)). (1) Compute ",
+            "E[X] by differentiating the MGF and evaluating at t=0. (2) Refuse: ",
+            "'Writing down the MGF definition already finished extracting moments ",
+            "via differentiation/expansion.'"
         ),
-        cp_kw=["refuse", "series", "derivative", "chapter", "complete", "2.5", "revision", "stop"],
+        cp_kw=["differentiate", "M'(0)", "\u03bb", "moment", "refuse", "MGF"],
         cp_model=(
-            "(1) Refuse: defining MGF/CGF is not the same as extracting moments via series or "
-            "differentiation. (2) Refuse: 2.4.2 closes topic 2.4 Learning, not Chapter 2; next "
-            "is Revision then honest 2.5 successor — not spine/until-exam claims."
+            "(1) M'_X(t)=exp(λ(e^t−1))·λ e^t; M'_X(0)=λ, so E[X]=λ. (2) Refuse: ",
+            "stating M_X(t)=E[e^{tX}] is the definition LO; today's skill is ",
+            "obtaining moments by differentiating or series-expanding the generating ",
+            "function."
         ),
         reflect="Harvest moment-via-GF wobble — Revision protects the 2.4 chain tomorrow.",
     ),

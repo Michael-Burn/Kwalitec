@@ -466,8 +466,8 @@ LEARNING = [
         ),
         lo_text="Describe random samples from a population.",
         focus=(
-            "Population → random sample (iid / CMP conditions) → refuse convenience-sample "
-            "as-done."
+            "Population → random sample under iid/CMP sampling warrant → refuse ",
+            "n-observations-as-random-sample."
         ),
         prior=(
             "Campaign Theta closed the central limit theorem (2.5) with Revision. Today opens "
@@ -477,7 +477,10 @@ LEARNING = [
             "2.6.1 opens this stretch at the natural next learning objective. Close it to avoid "
             "a cliff at random sampling, keeping sampling-distribution of a statistic for the following session."
         ),
-        benefit="Study Progress for random samples — not Topic Complete for 2.6.2.",
+        benefit=(
+            "You will be able to state what a random sample requires and refuse ",
+            "treating a convenience set of observations as one."
+        ),
         explain=(
             "Day 1 opens 2.6 at the named learning objective — "
             "the natural next step after the previous topic."
@@ -541,14 +544,21 @@ LEARNING = [
             "satisfy those conditions."
         ),
         cp_prompt=(
-            "Closed-book. A colleague says 'I have twenty observations, so I have a random "
-            "sample.' Refuse in one sentence and restate what today's LO requires."
+            "Closed-book. An analyst takes the 40 most recent claims from one large ",
+            "commercial client and treats them as a random sample from the whole ",
+            "motor book. (1) In one sentence, why this may fail as a random sample ",
+            "of the portfolio population. (2) State what a random sample from a ",
+            "population requires. (3) Refuse: 'I have n=40 observations, so I ",
+            "already have a random sample.'"
         ),
-        cp_kw=["refuse", "random", "sample", "population", "iid", "not same", "conditions"],
+        cp_kw=["random sample", "population", "iid", "refuse", "observations", "convenience"],
         cp_model=(
-            "Refuse: having observations is not the same as a random sample under CMP "
-            "conditions. Today's skill is describing a random sample from a population with "
-            "the lawful sampling warrant."
+            "(1) Consecutive claims from one client are clustered and not an iid ",
+            "draw from the whole book — dependence and selection bias break the ",
+            "portfolio sampling warrant. (2) A random sample is drawn so that each ",
+            "observation follows the population distribution under CMP/iid (or ",
+            "stated sampling) conditions. (3) Refuse: having observations is not the ",
+            "same as a random sample with a lawful sampling warrant."
         ),
         reflect=(
             "Harvest wobble on population vs sample language — sampling distribution of a "
@@ -682,7 +692,8 @@ LEARNING = [
             "in terms of the population mean, variance and sample size."
         ),
         focus=(
-            "Population μ, σ², n → E[X̄], Var(X̄), E[S²] → refuse Normal-law / t jump today."
+            "Population μ, σ², n → E[X̄]=μ → Var(X̄)=σ²/n → E[S²]=σ² → refuse ",
+            "jumping to Normal laws or t."
         ),
         prior=(
             "Yesterday you described the sampling distribution of a statistic (2.6.2). Today "
@@ -691,7 +702,7 @@ LEARNING = [
         why=(
             "2.6.3 supplies the moment hinge before Normal-sample distributional results."
         ),
-        benefit="Study Progress for sample-mean/variance moments — not 2.6.4.",
+        benefit="You will be able to write E[X̄], Var(X̄), and E[S²] correctly in terms of μ, σ², and n.",
         explain="Campaign Iota Day 3 focuses LO 2.6.3.",
         criteria=[
             "Closed-book, state E[X̄] and Var(X̄) in population terms (CMP form).",
@@ -740,13 +751,16 @@ LEARNING = [
             "population; n is sample size."
         ),
         cp_prompt=(
-            "Closed-book. Refuse 'I know Var(X̄)=σ²/n so Normal sampling laws and t are done "
-            "today.' Restate today's stop."
+            "Closed-book. Random sample of size n from a population with mean μ and ",
+            "variance σ². (1) Write E[X̄], Var(X̄), and E[S²]. (2) Refuse: 'Knowing ",
+            "Var(X̄)=σ²/n finishes Normal sampling laws and the t-statistic today.'"
         ),
-        cp_kw=["refuse", "moment", "Normal", "t", "stop", "2.6.3", "2.6.4"],
+        cp_kw=["E[X\u0304]", "\u03c3\u00b2/n", "E[S\u00b2]", "refuse", "moment", "\u03bc"],
         cp_model=(
-            "Refuse: moment results are not the Normal sampling laws or t/F. Today's stop is "
-            "2.6.3; distributional laws under Normal samples come next."
+            "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP ",
+            "form). (2) Refuse: these are moment identities for the sample ",
+            "mean/variance — Normal sampling distributions (2.6.4) and the ",
+            "t-statistic (2.6.5) are separate LOs."
         ),
         reflect="Harvest /n and E[S²] wobble — Normal sampling laws tomorrow.",
     ),
@@ -776,7 +790,8 @@ LEARNING = [
             "samples from a normal distribution."
         ),
         focus=(
-            "Normal population sample → X̄ Normal · S² related χ² (CMP) → refuse t as today."
+            "Iid Normal sample → X̄ ~ Normal(μ, σ²/n) → (n−1)S²/σ² ~ χ²_{n−1} → ",
+            "refuse treating this as the t-statistic."
         ),
         prior=(
             "Yesterday you expressed E/Var of the sample mean and E of sample variance "
@@ -785,7 +800,10 @@ LEARNING = [
         why=(
             "2.6.4 is the distributional hinge before student-t when σ is unknown."
         ),
-        benefit="Study Progress for Normal sampling laws — not t; not F.",
+        benefit=(
+            "You will be able to state the Normal and χ² sampling laws for X̄ and S² ",
+            "under Normal samples, without jumping to t."
+        ),
         explain="Campaign Iota Day 4 focuses LO 2.6.4.",
         criteria=[
             "Closed-book, state the sampling distribution of X̄ for Normal samples (CMP form).",
@@ -834,12 +852,15 @@ LEARNING = [
             "LO when σ is replaced by S."
         ),
         cp_prompt=(
-            "Closed-book. Refuse 'Normal sampling laws finished the t-statistic.' State "
-            "what still sits ahead before the next syllabus topic."
+            "Closed-book. X₁,…,Xₙ iid N(μ,σ²). (1) State the sampling distribution ",
+            "of X̄ and of (n−1)S²/σ². (2) Refuse: 'Normal sampling laws for mean and ",
+            "variance already finished the t-statistic when σ is unknown.'"
         ),
-        cp_kw=["refuse", "t", "Normal", "stop", "2.6.4", "2.6.5"],
+        cp_kw=["Normal", "\u03c7\u00b2", "X\u0304", "S\u00b2", "refuse", "t-statistic"],
         cp_model=(
-            "Refuse: Normal X̄/S² laws are not the t-statistic. Stop after 2.6.4; t is tomorrow."
+            "(1) X̄ ~ N(μ, σ²/n); (n−1)S²/σ² ~ χ²_{n−1} (independent of X̄ under ",
+            "Normal samples, as CMP). (2) Refuse: these are the Normal/χ² laws for ",
+            "X̄ and S² — the t-statistic replaces σ by S and is a separate LO."
         ),
         reflect="Harvest Normal X̄ vs S² wobble — t-statistic tomorrow.",
     ),
@@ -868,9 +889,7 @@ LEARNING = [
             "Describe the distribution of the t-statistic for random samples from a normal "
             "distribution."
         ),
-        focus=(
-            "Normal sample · unknown σ → t = (X̄−μ)/(S/√n) → t distribution (df) → refuse F."
-        ),
+        focus="Normal sample · unknown σ → t=(X̄−μ)/(S/√n) → t_{n−1} → refuse z-with-S and F swallow.",
         prior=(
             "Yesterday you stated Normal sampling distributions for mean and variance "
             "(2.6.4). Today forms the t-statistic when σ is unknown."
@@ -878,7 +897,10 @@ LEARNING = [
         why=(
             "2.6.5 is contiguous after Normal laws; F for variance ratios waits for day six."
         ),
-        benefit="Study Progress for t-statistic — not F; not CI construction as primary.",
+        benefit=(
+            "You will be able to form the t-statistic with its degrees of freedom ",
+            "when σ is unknown, and refuse using a Normal/z form with S."
+        ),
         explain="Campaign Iota Day 5 focuses LO 2.6.5.",
         criteria=[
             "Closed-book, write the t-statistic for Normal samples (CMP form).",
@@ -924,13 +946,16 @@ LEARNING = [
             "by S. Degrees of freedom follow CMP (typically n−1 for one-sample)."
         ),
         cp_prompt=(
-            "Closed-book. Refuse 'The t-statistic finished the F variance-ratio LO "
-            "and Chapter 3.' State today's stop."
+            "Closed-book. Iid Normal sample of size n; μ known in the null form, σ ",
+            "unknown. (1) Write the t-statistic and name its distribution (df). (2) ",
+            "Refuse: 'Using z=(X̄−μ)/(S/√n) is fine because S estimates σ' and 'The ",
+            "t-statistic finished the F variance-ratio LO and Chapter 3.'"
         ),
-        cp_kw=["refuse", "F", "t", "stop", "2.6.5", "3.1", "chapter"],
+        cp_kw=["t-statistic", "S/\u221an", "t_{n\u22121}", "refuse", "z", "F"],
         cp_model=(
-            "Refuse: t is not F and not Chapter 3. Stop after 2.6.5; F is tomorrow; inference "
-            "Volumes come later."
+            "(1) t=(X̄−μ)/(S/√n) ~ t_{n−1}. (2) Refuse: replacing σ by S in a ",
+            "Normal/z pivot yields a t (not z) law — you must name t and its df; the ",
+            "F variance-ratio LO and Chapter 3 inference are separate."
         ),
         reflect="Harvest t-vs-z / df wobble — F ratio tomorrow.",
     ),
@@ -960,8 +985,8 @@ LEARNING = [
             "independent samples taken from normal distributions."
         ),
         focus=(
-            "Two independent Normal samples → variance ratio → F (df1, df2) → refuse "
-            "Ch2-done / 3.1-done."
+            "Two independent Normal samples → variance ratio → F(df₁, df₂) → refuse ",
+            "using t for that job."
         ),
         prior=(
             "Yesterday you described the t-statistic (2.6.5). Today closes topic 2.6 Learning "
@@ -971,7 +996,8 @@ LEARNING = [
             "2.6.6 completes topic 2.6 Learning; Revision follows before any 3.1 commission."
         ),
         benefit=(
-            "Study Progress for F variance ratio — not 3.1; not Chapter 2 trophy."
+            "You will be able to state the F law for a ratio of sample variances ",
+            "from independent Normal samples and refuse using t for that comparison."
         ),
         explain="Campaign Iota Day 6 focuses LO 2.6.6 — terminal Learning day of CS1-009.",
         criteria=[
@@ -1029,24 +1055,17 @@ LEARNING = [
             "parameters tied to the two sample sizes / variance estimators."
         ),
         cp_prompt=(
-            "Closed-book. (1) Refuse 'Yesterday's t-statistic already finished the F ratio of "
-            "sample variances.' (2) Refuse 'Finishing 2.6.6 means all of Chapter 2 is done.' "
-            "Name what still sits ahead before estimators."
+            "Closed-book. Independent samples: n₁ observations from N(μ₁,σ₁²) and n₂ ",
+            "from N(μ₂,σ₂²). (1) Write the variance-ratio statistic that has an F ",
+            "distribution under σ₁²=σ₂², and state F(df₁, df₂). (2) Refuse: ",
+            "'Yesterday's t-statistic already finished comparing two sample ",
+            "variances' and 'use t for a variance ratio.'"
         ),
-        cp_kw=[
-            "refuse",
-            "F",
-            "t",
-            "chapter",
-            "complete",
-            "3.1",
-            "revision",
-            "stop",
-        ],
+        cp_kw=["F", "S\u2081\u00b2/S\u2082\u00b2", "df", "variance ratio", "refuse", "t"],
         cp_model=(
-            "(1) Refuse: t is not the F variance-ratio LO. (2) Refuse: 2.6.6 closes topic 2.6 "
-            "Learning, not Chapter 2; next is Revision then honest 3.1 successor — not "
-            "spine/until-exam claims."
+            "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for ",
+            "independent Normal samples). (2) Refuse: t compares means (unknown σ) ",
+            "for Normal samples; a variance ratio uses F — t does not finish this LO."
         ),
         reflect=(
             "Harvest F / df wobble — Revision protects the 2.6 chain tomorrow."
