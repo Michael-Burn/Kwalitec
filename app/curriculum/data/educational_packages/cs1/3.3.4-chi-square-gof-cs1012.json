@@ -116,58 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-3.3.4-ar-01",
       "title": "Active Recall: 3.3.4",
-      "prompt": "Closed-book. (1) What hypothesis does a chi-square GOF test? (2) How do expected frequencies arise? (3) What changes when parameters are unknown? (4) Name one reason contingency independence is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.4 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes a chi-square goodness-of-fit test, including unknown parameters?",
+      "response_type": "mcq",
+      "body": "Select the GOF hypothesis, expected counts, and DF adjustment.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "chi-square",
-        "goodness",
-        "fit",
-        "expected",
-        "parameters",
-        "degrees",
-        "contingency"
-      ],
-      "explanation": "Active recall for 3.3.4.",
-      "model_answer": "GOF tests whether a sample is consistent with a stated distribution. Expected counts come from the hypothesised probabilities (and sample size). Unknown parameters are estimated and DF adjusted under CMP rules. Independence is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "GOF compares observed counts to expectations under a named distribution. Estimating parameters reduces DF. Independence in a contingency table is a different test.",
+      "model_answer": "Test fit to a stated distribution; expected counts from hypothesised probabilities; reduce DF when parameters are estimated.",
+      "common_mistake": "Equating GOF with independence, or adjusting DF in the wrong direction.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "GOF tests whether a sample is consistent with a stated distribution. Expected counts come from the hypothesised probabilities and the sample size. If parameters are estimated from the same sample, degrees of freedom are reduced under CMP rules.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "GOF is identical to a two-way test of independence; expected counts always use row and column totals only.",
+          "misconception_tag": "independence_as_gof"
+        },
+        {
+          "id": "c",
+          "label": "When parameters are estimated, degrees of freedom increase by the number of estimated parameters.",
+          "misconception_tag": "df_increases"
+        },
+        {
+          "id": "d",
+          "label": "Expected frequencies are always set equal to the observed frequencies, so the chi-square statistic is automatically zero.",
+          "misconception_tag": "e_equals_o"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-3.3.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.4-cp-01",
       "title": "Checkpoint: 3.3.4",
-      "prompt": "Closed-book. You test whether claim counts follow a Poisson distribution; λ is estimated from the same sample. (1) How are expected frequencies formed, and what happens to degrees of freedom when λ is estimated? (2) Refuse: 'A chi-square test of independence in a two-way table finishes GOF.'",
-      "response_type": "short_structured",
-      "body": "Chi-square GOF with DF adjust if parameters estimated; refuse independence-as-GOF.",
+      "prompt": "Closed-book. You test whether claim counts follow a Poisson distribution; λ is estimated from the same sample. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Expected counts and DF adjust; refuse independence-as-GOF.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "GOF",
-        "expected",
-        "degrees of freedom",
-        "estimated",
-        "Poisson",
-        "refuse",
-        "independence"
-      ],
-      "explanation": "GOF compares observed to expected under a hypothesised distribution; estimating parameters reduces DF; independence is separate.",
-      "model_answer": "(1) Expected frequencies = n × fitted Poisson probabilities using λ̂; DF = (number of bins − 1 − number of estimated parameters), so subtract 1 for λ̂. (2) Refuse: independence in a contingency table is a different LO from one-sample GOF to a named distribution.",
-      "common_mistake": "Forgetting to reduce DF when parameters are estimated, or treating independence as GOF.",
+      "accepted_keywords": [],
+      "explanation": "Fit Poisson probabilities with λ̂, form expected counts, and reduce DF by one for λ̂. Independence testing is not GOF to a named distribution.",
+      "model_answer": "E = n × Poisson probabilities at λ̂; DF = bins − 1 − 1; independence ≠ GOF.",
+      "common_mistake": "Forgetting the DF reduction for λ̂, or treating independence as GOF.",
       "success_criteria": [
-        "States expected frequencies from the fitted distribution and DF adjustment for estimated parameters.",
-        "Refuses equating GOF with two-way independence."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Expected frequencies are n times fitted Poisson probabilities using λ̂. Degrees of freedom are (number of bins − 1 − number of estimated parameters), so subtract 1 for λ̂. A chi-square test of independence in a two-way table is a different procedure.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Expected frequencies use λ̂, but degrees of freedom stay at (bins − 1) with no reduction for estimating λ.",
+          "misconception_tag": "forget_df_adjust"
+        },
+        {
+          "id": "c",
+          "label": "Because λ is estimated, replace GOF by a two-way independence test on a contingency table of counts.",
+          "misconception_tag": "independence_as_gof"
+        },
+        {
+          "id": "d",
+          "label": "Expected frequencies are n/λ̂ in every bin, regardless of the Poisson probabilities for those bins.",
+          "misconception_tag": "flat_expected"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

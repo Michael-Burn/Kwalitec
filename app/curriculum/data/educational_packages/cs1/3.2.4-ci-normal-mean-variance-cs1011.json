@@ -120,58 +120,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.4-ar-01",
       "title": "Active Recall: 3.2.4",
-      "prompt": "Closed-book. (1) State the hinge for a CI for a Normal mean. (2) State the hinge for a CI for a Normal variance. (3) Name one reason binomial/Poisson intervals are not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.4 closed-book.",
+      "prompt": "Closed-book. For an IID Normal sample, which statement correctly describes confidence intervals for the mean and for the variance?",
+      "response_type": "mcq",
+      "body": "Select the statement that covers both Normal mean and variance CIs.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "normal",
-        "mean",
-        "variance",
-        "confidence",
-        "interval",
-        "t",
-        "chi"
-      ],
-      "explanation": "Active recall for 3.2.4.",
-      "model_answer": "For a Normal sample, form a CI for the mean (typically via Normal/t pivotal structure under CMP conditions) and a CI for the variance (typically via chi-square structure under CMP conditions). Binomial/Poisson intervals are tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Normal mean and Normal variance intervals use different pivots (t/z versus chi-square). One does not stand in for the other, and binomial recipes are a different setting.",
+      "model_answer": "Mean CI via Normal/t pivot; variance CI via chi-square pivot on s².",
+      "common_mistake": "Treating the mean CI as enough, or reusing the mean formula for σ².",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A CI for the mean typically uses a Normal or t pivotal structure (as appropriate when σ is known or unknown). A CI for the variance typically uses a chi-square structure based on the sample variance.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A CI for the mean finishes the requirement; the variance interval uses the same t formula with s² in place of s.",
+          "misconception_tag": "mean_only_same_formula"
+        },
+        {
+          "id": "c",
+          "label": "Both the mean and the variance use the same binomial Normal approximation interval because Normal data are approximately binomial for large n.",
+          "misconception_tag": "binomial_swap"
+        },
+        {
+          "id": "d",
+          "label": "A CI for σ² is formed as x̄ ± z s/√n, the same centre as the mean interval.",
+          "misconception_tag": "mean_formula_for_variance"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.4-cp-01",
       "title": "Checkpoint: 3.2.4",
-      "prompt": "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). (1) State the form of a CI for μ and the form of a CI for σ². (2) Refuse: 'The mean CI alone finishes today. Variance can wait, and binomial is the same LO.'",
-      "response_type": "short_structured",
-      "body": "Both Normal mean and variance CI forms; refuse mean-only.",
+      "prompt": "Closed-book. IID Normal sample, n=16, x̄=10, s²=4 (σ unknown). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Both mean and variance CI forms; refuse mean-only / binomial conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Normal",
-        "mean",
-        "variance",
-        "t",
-        "chi-square",
-        "refuse",
-        "both"
-      ],
-      "explanation": "Syllabus 3.2.4 requires interval recipes for both the Normal mean and the Normal variance.",
-      "model_answer": "(1) For μ: x̄ ± t_{n−1, 1−α/2} · s/√n. For σ²: ((n−1)s² / χ²_{n−1, 1−α/2}, (n−1)s² / χ²_{n−1, α/2}). (2) Refuse: both Normal mean and Normal variance CIs are required; binomial/Poisson intervals are a different LO.",
-      "common_mistake": "Covering only the mean CI and treating variance (or binomial) as optional/same.",
+      "accepted_keywords": [],
+      "explanation": "With σ unknown, the mean CI uses t_{n−1}. The variance CI inverts the chi-square pivot for (n−1)s²/σ². Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
+      "model_answer": "t interval for μ; chi-square interval for σ²; both required.",
+      "common_mistake": "Using z with unknown σ, skipping the variance CI, or forcing a Normal-mean SE onto σ².",
       "success_criteria": [
-        "States both the t-based mean CI and the χ²-based variance CI forms.",
-        "Refuses mean-only as completing the requirement."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For μ use x̄ ± t_{15, 1−α/2} · s/√n. For σ² use ((n−1)s² / χ²_{15, 1−α/2}, (n−1)s² / χ²_{15, α/2}). Both forms are required; a binomial interval is a different setting.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "For μ use x̄ ± z_{1−α/2} · s/√n with z even though σ is unknown; the variance CI can be skipped once the mean CI is written.",
+          "misconception_tag": "z_not_t_and_skip_var"
+        },
+        {
+          "id": "c",
+          "label": "For μ use x̄ ± t_{15, 1−α/2} · s/√n, and for σ² reuse that same numerical interval because variance intervals share the mean endpoints.",
+          "misconception_tag": "same_interval"
+        },
+        {
+          "id": "d",
+          "label": "For σ² use (s² − z s/√n, s² + z s/√n), centred at s² with Normal mean SE.",
+          "misconception_tag": "normal_se_for_variance"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

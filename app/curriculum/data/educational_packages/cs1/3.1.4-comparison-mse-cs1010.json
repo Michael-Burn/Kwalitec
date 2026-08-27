@@ -118,56 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.4-ar-01",
       "title": "Active Recall: 3.1.4",
-      "prompt": "Closed-book. (1) How do you compare two estimators using MSE? (2) When can an unbiased estimator lose to a biased one on MSE? (3) What claim must you refuse about asymptotics today?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.4 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes comparing two estimators using mean square error?",
+      "response_type": "mcq",
+      "body": "Select the statement that names how MSE comparison works.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "MSE",
-        "bias",
-        "unbiased",
-        "compare",
-        "variance",
-        "estimator"
-      ],
-      "explanation": "Active recall for 3.1.4.",
-      "model_answer": "Prefer the estimator with smaller MSE (CMP examples). A biased estimator can have smaller MSE than an unbiased one if variance reduction outweighs squared bias. Asymptotic MLE laws are tomorrow. Not today's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "MSE comparison prefers the smaller MSE. Bias can be acceptable when variance drops enough. Unbiasedness alone does not settle the comparison, and asymptotic Normality is a different criterion.",
+      "model_answer": "Prefer smaller MSE; a biased estimator can win if variance reduction outweighs squared bias.",
+      "common_mistake": "Stopping at unbiasedness or asymptotic Normality instead of comparing MSE.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prefer the estimator with smaller MSE. A biased estimator can beat an unbiased one on MSE if the variance reduction outweighs squared bias.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Prefer the unbiased estimator whenever one exists; MSE comparison is unnecessary once unbiasedness is known.",
+          "misconception_tag": "unbiased_skips_mse"
+        },
+        {
+          "id": "c",
+          "label": "Prefer the estimator with larger bias, because larger bias always implies smaller variance and therefore smaller MSE.",
+          "misconception_tag": "larger_bias_better"
+        },
+        {
+          "id": "d",
+          "label": "Two estimators are compared by checking whether either is asymptotically Normal; that check replaces computing MSE.",
+          "misconception_tag": "asymptotics_as_comparison"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.4-cp-01",
       "title": "Checkpoint: 3.1.4",
-      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. (1) Compare them using MSE. Which do you prefer for large n? (2) Refuse: 'Bias and MSE are defined, so comparison is automatic without computing either estimator's MSE.'",
-      "response_type": "short_structured",
-      "body": "Explicit MSE comparison of two estimators; refuse definition-as-comparison.",
+      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute MSE for both and refuse definition-as-comparison.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "MSE",
-        "bias",
-        "compare",
-        "variance",
-        "prefer",
-        "refuse"
-      ],
-      "explanation": "Estimator comparison under this LO is an explicit MSE/bias calculation, not property-definition recall.",
-      "model_answer": "(1) MSE₁=2/n; MSE₂=(0.5/√n)² + 0.5/n = 0.25/n + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE (0.75/n < 2/n). (2) Refuse: comparison requires an explicit MSE (or bias) comparison of the named estimators. Definitions alone are not a comparison.",
-      "common_mistake": "Stopping at property definitions without comparing the two estimators numerically.",
+      "accepted_keywords": [],
+      "explanation": "MSE₁=2/n. Bias² for θ̂₂ is (0.5/√n)²=0.25/n, so MSE₂=0.75/n < 2/n. Prefer θ̂₂. Squaring 0.5/√n incorrectly as 0.25/√n is algebraically wrong. Unbiasedness does not override a worse MSE.",
+      "model_answer": "MSE₁=2/n; MSE₂=0.75/n; prefer θ̂₂. Definitions alone are not a comparison.",
+      "common_mistake": "Dropping the bias² term, preferring unbiasedness over MSE, or mishandling (0.5/√n)².",
       "success_criteria": [
-        "Computes both MSEs and states a preference.",
-        "Refuses treating definitions as an automatic comparison."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "MSE₁=2/n and MSE₂=(0.5/√n)² + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE. Naming the definitions of bias and MSE is not itself a comparison of these two estimators.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "MSE₁=2/n and MSE₂=0.5/n (ignore squared bias). Prefer θ̂₂, and because θ̂₁ is unbiased the comparison is optional.",
+          "misconception_tag": "drop_bias_term"
+        },
+        {
+          "id": "c",
+          "label": "MSE₁=2/n and MSE₂=0.25/n + 0.5/n = 0.75/n, but prefer θ̂₁ because any unbiased estimator beats any biased one on MSE.",
+          "misconception_tag": "unbiased_always_wins"
+        },
+        {
+          "id": "d",
+          "label": "MSE₂=(0.5/√n)² + 0.5/n = 0.25/√n + 0.5/n. Prefer θ̂₁ because 0.25/√n dominates 2/n for large n.",
+          "misconception_tag": "bias_square_error"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

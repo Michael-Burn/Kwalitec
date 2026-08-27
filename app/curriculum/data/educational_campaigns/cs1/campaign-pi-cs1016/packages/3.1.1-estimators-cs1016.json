@@ -116,55 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-3.1.1-ar-01",
       "title": "Active Recall: 3.1.1",
-      "prompt": "Closed-book. (1) What is the method-of-moments move? (2) What object do you construct? (3) Why is 3.2.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly describes the method-of-moments move for constructing an estimator?",
+      "response_type": "mcq",
+      "body": "Select the MoM construction (estimator, not interval).",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "moments",
-        "estimator",
-        "parameter",
-        "population"
-      ],
-      "explanation": "Active recall for 3.1.1.",
-      "model_answer": "Match sample moments to population moments to construct estimators. CIs open tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "MoM equates moments and solves for a point estimator. MLE is a different construction, and a confidence interval is not an estimator in the MoM sense.",
+      "model_answer": "Equate sample moments to population moments and solve for the parameter.",
+      "common_mistake": "Collapsing MoM with MLE, or treating a CI as the MoM estimator.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Match sample moments to population moments (as functions of parameters) and solve to construct a point estimator of the parameter.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Maximise the likelihood; the maximiser is called the method-of-moments estimator by definition.",
+          "misconception_tag": "mle_as_mom"
+        },
+        {
+          "id": "c",
+          "label": "Construct a confidence interval for the parameter; the interval itself is the method-of-moments estimator.",
+          "misconception_tag": "ci_as_estimator"
+        },
+        {
+          "id": "d",
+          "label": "Choose any convenient formula for θ̂; method of moments means having a closed form, regardless of how it was derived.",
+          "misconception_tag": "any_formula"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-3.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-3.1.1-cp-01",
       "title": "Checkpoint: 3.1.1",
-      "prompt": "Closed-book. Exponential claim sizes with mean θ; sample mean x̄ = 5. (1) Write the method-of-moments estimator for θ. (2) Refuse: 'I maximised the likelihood, so I already have the MoM estimator' and 'an estimator is the same object as a confidence interval.'",
-      "response_type": "short_structured",
-      "body": "Retrieve MoM construction; refuse MLE-as-MoM and estimator-as-CI.",
+      "prompt": "Closed-book. Exponential claim sizes with mean θ; sample mean x̄ = 5. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "MoM for Exponential mean; refuse MLE-as-MoM and estimator-as-CI.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "moments",
-        "equate",
-        "mean",
-        "refuse",
-        "likelihood",
-        "confidence",
-        "estimator"
-      ],
-      "explanation": "Memory retrieval of MoM: equate moments and solve; keep MLE and CIs distinct.",
-      "model_answer": "(1) Equate E[X]=θ to x̄, so θ̂_MoM = x̄ = 5. (2) Refuse: MLE maximises the likelihood. Different construction from MoM. An estimator is a point estimate of a parameter; a CI is an interval procedure for a parameter.",
-      "common_mistake": "Collapsing MoM with MLE, or treating a point estimator as a confidence interval.",
+      "accepted_keywords": [],
+      "explanation": "For mean-θ Exponential, MoM gives θ̂ = x̄ = 5. MLE coincidence does not rewrite the construction, and a point estimator is not a CI.",
+      "model_answer": "θ̂_MoM = x̄ = 5; refuse MLE-as-MoM and estimator-as-CI.",
+      "common_mistake": "Swapping mean/rate, collapsing MoM with MLE, or treating the point estimate as an interval.",
       "success_criteria": [
-        "States MoM estimator for the vignette.",
-        "Refuses MLE-as-MoM and estimator/CI conflation."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Equate E[X]=θ to x̄, so θ̂_MoM = 5. Maximising the likelihood is MLE, a different construction. An estimator is a point estimate; a confidence interval is an interval procedure for a parameter.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "θ̂_MoM = 1/5 because the Exponential mean-θ model uses E[X]=1/θ.",
+          "misconception_tag": "rate_mean_swap"
+        },
+        {
+          "id": "c",
+          "label": "Because the MLE equals x̄ here, maximising the likelihood is already the method-of-moments construction.",
+          "misconception_tag": "mle_as_mom"
+        },
+        {
+          "id": "d",
+          "label": "θ̂_MoM = 5 means the 95% confidence interval for θ is the singleton {5}.",
+          "misconception_tag": "estimator_as_ci"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

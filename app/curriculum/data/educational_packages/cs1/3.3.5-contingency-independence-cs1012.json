@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-3.3.5-ar-01",
       "title": "Active Recall: 3.3.5",
-      "prompt": "Closed-book. (1) What does a contingency table classify? (2) What is the independence null? (3) How do expected cell counts arise? (4) Name one reason this does not finish Chapter 3 or the first-pass spine.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes a chi-square test of independence in a contingency table?",
+      "response_type": "mcq",
+      "body": "Select the two-way independence claim.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "contingency",
-        "two-way",
-        "independence",
-        "chi-square",
-        "expected",
-        "classification",
-        "chapter"
-      ],
-      "explanation": "Active recall for 3.3.5.",
-      "model_answer": "A two-way table cross-classifies two criteria. Independence says row and column factors do not associate; expected counts use marginal structure under CMP. One LO does not finish Chapter 3 or first-pass spine PASS.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Independence uses E_{ij} = (row total × column total)/n in a two-way table. That is not one-sample distributional GOF.",
+      "model_answer": "Two-way cross-classification; independence null; E_{ij}=(row total×column total)/n.",
+      "common_mistake": "Treating GOF and two-way independence as the same chi-square procedure.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A two-way table cross-classifies two criteria. The independence null says the row and column factors do not associate; expected cell counts use the product of marginal totals divided by n.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Independence testing is the same as one-sample goodness-of-fit to a named distribution such as Poisson.",
+          "misconception_tag": "gof_as_independence"
+        },
+        {
+          "id": "c",
+          "label": "Expected cell counts are always n divided by the number of cells, ignoring the observed margins.",
+          "misconception_tag": "flat_expected"
+        },
+        {
+          "id": "d",
+          "label": "A contingency table classifies only one factor; the second dimension is reserved for expected counts under a continuous Normal model.",
+          "misconception_tag": "one_factor_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-3.3.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.5-cp-01",
       "title": "Checkpoint: 3.3.5",
-      "prompt": "Closed-book. Two-way table: rating class × claim/no-claim. (1) State the independence null and how expected cell counts are formed. (2) Refuse: 'This is the same as a chi-square GOF to a named distribution.'",
-      "response_type": "short_structured",
-      "body": "Chi-square independence in a two-way table; refuse GOF conflation.",
+      "prompt": "Closed-book. Two-way table: rating class × claim/no-claim. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Independence null and expected counts; refuse GOF conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "independence",
-        "contingency",
-        "expected",
-        "row",
-        "column",
-        "refuse",
-        "GOF"
-      ],
-      "explanation": "Independence uses product-of-margins expected counts in a contingency table; that is not one-sample distributional GOF.",
-      "model_answer": "(1) H₀: row and column classifications are independent; E_{ij} = (row i total × column j total) / n. (2) Refuse: GOF tests whether one sample follows a named distribution; independence tests association between two classification criteria in a two-way table.",
-      "common_mistake": "Treating GOF and two-way independence as the same chi-square procedure.",
+      "accepted_keywords": [],
+      "explanation": "Independence expected counts are products of margins over n. GOF to a named distribution is a different hypothesis and different expected count construction.",
+      "model_answer": "Independence null; E_{ij}=(row total×column total)/n; refuse GOF conflation.",
+      "common_mistake": "Using GOF-style expected counts, or mangling the margin product formula.",
       "success_criteria": [
-        "States independence null and margin-based expected counts.",
-        "Refuses equating independence with GOF."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "H₀: row and column classifications are independent; E_{ij} = (row i total × column j total) / n. This is not the same as a chi-square GOF testing whether one sample follows a named distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "H₀: the counts follow a Poisson distribution with mean estimated from the table total; expected counts are that fitted Poisson pmf times n.",
+          "misconception_tag": "gof_as_independence"
+        },
+        {
+          "id": "c",
+          "label": "H₀: independence; expected counts equal the observed counts in every cell.",
+          "misconception_tag": "e_equals_o"
+        },
+        {
+          "id": "d",
+          "label": "H₀: independence; E_{ij} = row i total + column j total, without dividing by n.",
+          "misconception_tag": "sum_not_product"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

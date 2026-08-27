@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.6-ar-01",
       "title": "Active Recall: 3.1.6",
-      "prompt": "Closed-book. (1) What is the bootstrap move for estimating properties of an estimator? (2) What property might you estimate (CMP examples)? (3) What must you refuse about Chapter 3 / 3.2 today?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the bootstrap move for estimating properties of an estimator?",
+      "response_type": "mcq",
+      "body": "Select the resampling-for-properties statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bootstrap",
-        "resample",
-        "estimator",
-        "standard",
-        "error",
-        "bias",
-        "property"
-      ],
-      "explanation": "Active recall for 3.1.6.",
-      "model_answer": "Bootstrap resamples from the observed sample (CMP procedure) to approximate sampling behaviour of an estimator. E.g. SE or bias. Completing 3.1.6 closes topic 3.1 Learning, not Chapter 3 or intervals.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bootstrap for estimator properties resamples, recomputes the estimator many times, and summarises the replicates. Asymptotic Normal laws and bootstrap confidence intervals are related but distinct ideas; one replicate is not a property estimate.",
+      "model_answer": "Resample, recompute the estimator, summarise replicates (e.g. SE or bias).",
+      "common_mistake": "Equating bootstrap property estimation with asymptotics or with bootstrap CI construction.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Resample from the observed sample (with replacement, under the usual nonparametric bootstrap), recompute the estimator on each resample, and summarise the replicate distribution (for example to estimate standard error or bias).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Replace the estimator by its asymptotic Normal approximation; that replacement is what 'bootstrap' means for estimator properties.",
+          "misconception_tag": "asymptotics_as_bootstrap"
+        },
+        {
+          "id": "c",
+          "label": "Form a confidence interval from bootstrap percentiles; estimating an estimator's standard error is the same learning objective as building that interval.",
+          "misconception_tag": "bootstrap_ci_as_properties"
+        },
+        {
+          "id": "d",
+          "label": "Bootstrap means drawing a single new sample from the fitted parametric model and reporting that one replicate as the property estimate.",
+          "misconception_tag": "single_replicate"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.6-cp-01",
       "title": "Checkpoint: 3.1.6",
-      "prompt": "Closed-book. You have an estimator θ̂ computed from a sample of size n. (1) Describe the bootstrap move to estimate the standard error of θ̂. (2) Refuse: 'The asymptotic Normal law for the MLE already finished bootstrap estimation of estimator properties' and 'a bootstrap confidence interval is the same LO.'",
-      "response_type": "short_structured",
-      "body": "Bootstrap to estimate estimator properties; refuse asymptotics-as-bootstrap and CI-as-same.",
+      "prompt": "Closed-book. You have an estimator θ̂ from a sample of size n. Which statement correctly describes using the bootstrap to estimate the standard error of θ̂?",
+      "response_type": "mcq",
+      "body": "Bootstrap SE procedure; refuse asymptotics-as-bootstrap and CI-as-same.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bootstrap",
-        "resample",
-        "standard error",
-        "properties",
-        "refuse",
-        "asymptotic",
-        "confidence"
-      ],
-      "explanation": "Bootstrap for estimator properties resamples and summarises the replicate distribution of the estimator; that is not asymptotic MLE theory and not bootstrap CI construction.",
-      "model_answer": "(1) Draw resamples with replacement from the original sample, recompute θ̂* on each resample, and use the empirical SD (or other summary) of the θ̂* values as the SE estimate. (2) Refuse: asymptotics ≠ bootstrap resampling for properties; constructing a bootstrap CI is a different LO (interval construction, not property estimation).",
-      "common_mistake": "Equating asymptotic MLE behaviour or bootstrap CIs with bootstrap estimation of estimator properties.",
+      "accepted_keywords": [],
+      "explanation": "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
+      "model_answer": "With-replacement resamples → θ̂* replicates → empirical SD as SE; distinct from asymptotics and from bootstrap CIs.",
+      "common_mistake": "Calling an asymptotic plug-in or a CI half-width 'the bootstrap SE'.",
       "success_criteria": [
-        "Describes resampling and summarising replicate estimates for an SE (or similar property).",
-        "Refuses conflating asymptotics or bootstrap CIs with this LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Draw many resamples with replacement from the original sample, recompute θ̂* on each resample, and use the empirical standard deviation of the θ̂* values as the SE estimate. That is not the same as quoting an asymptotic Normal law, and not the same as constructing a bootstrap confidence interval.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute the asymptotic variance 1/(n I(θ̂)) once; that single plug-in is the bootstrap standard error by definition.",
+          "misconception_tag": "asymptotics_as_bootstrap"
+        },
+        {
+          "id": "c",
+          "label": "Form the percentile bootstrap confidence interval and report half its width as the only legitimate bootstrap standard error.",
+          "misconception_tag": "ci_halfwidth_as_se"
+        },
+        {
+          "id": "d",
+          "label": "Resample without replacement until the resample has size n/2, compute one θ̂*, and take |θ̂* − θ̂| as the standard error.",
+          "misconception_tag": "wrong_resample_rule"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

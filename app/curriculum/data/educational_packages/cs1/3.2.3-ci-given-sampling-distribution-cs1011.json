@@ -119,56 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.3-ar-01",
       "title": "Active Recall: 3.2.3",
-      "prompt": "Closed-book. (1) What is the given-sampling-distribution CI move? (2) What is inverted or pivoted? (3) Name one reason Normal mean/variance recipes are not automatically today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes forming a confidence interval from a given sampling distribution?",
+      "response_type": "mcq",
+      "body": "Select the invert/pivot move.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "sampling",
-        "distribution",
-        "confidence",
-        "interval",
-        "pivot",
-        "invert"
-      ],
-      "explanation": "Active recall for 3.2.3.",
-      "model_answer": "Given a sampling distribution for an estimator or pivotal quantity, invert that distribution to obtain a confidence interval for the parameter. Specific Normal mean/variance recipes are tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The move is to invert a known sampling/pivotal relationship. Memorised Normal-mean recipes do not replace using the distribution you were actually given.",
+      "model_answer": "Invert the given sampling distribution / pivot to isolate the parameter.",
+      "common_mistake": "Jumping to a Normal-mean template instead of inverting the given law.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Given a sampling distribution for an estimator or pivotal quantity, invert that distributional relationship to isolate the parameter and obtain a confidence interval.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Always use the Normal-mean cookbook formula x̄ ± z s/√n, regardless of the sampling distribution you are given.",
+          "misconception_tag": "normal_cookbook_always"
+        },
+        {
+          "id": "c",
+          "label": "A given sampling distribution is used only to simulate data; the interval endpoints are chosen by eye from a histogram.",
+          "misconception_tag": "eye_histogram"
+        },
+        {
+          "id": "d",
+          "label": "If a sampling distribution is given, the confidence interval is the support of that distribution with no inversion step.",
+          "misconception_tag": "support_as_ci"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.3-cp-01",
       "title": "Checkpoint: 3.2.3",
-      "prompt": "Closed-book. For an Exponential mean-θ model you are told that 2n X̄ / θ ~ χ²_{2n}. (1) Outline how you invert this sampling distribution to form a CI for θ. (2) Refuse: 'I memorised the Normal-mean CI cookbook, so any sampling-distribution CI is done.'",
-      "response_type": "short_structured",
-      "body": "Invert a given sampling distribution to form a CI; refuse Normal-cookbook-as-done.",
+      "prompt": "Closed-book. For an Exponential mean-θ model you are told that 2n X̄ / θ ~ χ²_{2n}. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Invert the given chi-square pivot; refuse Normal-cookbook-as-done.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "invert",
-        "sampling distribution",
-        "pivot",
-        "chi-square",
-        "refuse",
-        "Normal"
-      ],
-      "explanation": "Given-distribution CIs rearrange a known pivotal/sampling relationship; memorised Normal-mean recipes are not a substitute.",
-      "model_answer": "(1) Choose χ² critical values so P(χ²_L < 2n X̄ / θ < χ²_U) = 1−α, then rearrange the inequality to isolate θ (bounds involve 2n X̄ / χ²). (2) Refuse: cookbook Normal-mean formulae do not replace inverting the given sampling distribution for this model.",
-      "common_mistake": "Jumping to a Normal-mean CI template without using the given sampling distribution.",
+      "accepted_keywords": [],
+      "explanation": "From χ²_L < 2n X̄ / θ < χ²_U, taking reciprocals (and reversing inequalities) yields bounds 2n X̄ / χ²_U and 2n X̄ / χ²_L. The given pivot must be used; Normal-mean cookbooks are not a substitute.",
+      "model_answer": "Invert P(χ²_L < 2n X̄ / θ < χ²_U)=1−α to bounds in 2n X̄ / χ²; refuse Normal-mean template.",
+      "common_mistake": "Ignoring the given χ² pivot or inverting the inequality incorrectly.",
       "success_criteria": [
-        "Outlines inversion/rearrangement of the given χ² relationship for θ.",
-        "Refuses treating Normal-mean cookbook as finishing this LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Choose χ² critical values so P(χ²_L < 2n X̄ / θ < χ²_U) = 1−α, then rearrange to isolate θ (bounds involve 2n X̄ / χ²). A memorised Normal-mean CI formula does not replace that inversion for this model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Because X̄ is approximately Normal for large n, ignore the given χ² relationship and always use x̄ ± z s/√n for θ.",
+          "misconception_tag": "normal_cookbook"
+        },
+        {
+          "id": "c",
+          "label": "The interval for θ is (χ²_L, χ²_U) with no dependence on X̄, because the pivot already contains all information.",
+          "misconception_tag": "drop_xbar"
+        },
+        {
+          "id": "d",
+          "label": "Rearrange to θ ∈ (2n X̄ · χ²_L, 2n X̄ · χ²_U), multiplying by the critical values instead of dividing.",
+          "misconception_tag": "invert_algebra_error"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

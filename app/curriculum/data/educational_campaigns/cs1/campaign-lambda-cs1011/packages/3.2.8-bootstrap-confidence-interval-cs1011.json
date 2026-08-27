@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.8-ar-01",
       "title": "Active Recall: 3.2.8",
-      "prompt": "Closed-book. (1) What is the bootstrap method move for obtaining a confidence interval? (2) What is resampled? (3) Name one reason this is not the same as finishing hypothesis testing (3.3).",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.8 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the bootstrap method for obtaining a confidence interval?",
+      "response_type": "mcq",
+      "body": "Select the resample-to-interval move.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bootstrap",
-        "resample",
-        "confidence",
-        "interval",
-        "percentile",
-        "hypothesis"
-      ],
-      "explanation": "Active recall for 3.2.8.",
-      "model_answer": "Resample from the sample (or an appropriate bootstrap mechanism under CMP), form the interval statistic on replicates, and obtain a bootstrap confidence interval. Hypothesis testing is topic 3.3. Not today's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bootstrap CIs use the replicate distribution of the statistic to form endpoints. Estimating an SE alone is not yet an interval method of the same kind, and hypothesis testing is a different task.",
+      "model_answer": "Resample, recompute the statistic, form endpoints from the bootstrap distribution (e.g. percentiles).",
+      "common_mistake": "Equating bootstrap SE estimation or hypothesis testing with bootstrap CI construction.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Resample from the sample, recompute the statistic on each replicate, and form interval endpoints from that bootstrap distribution (for example a percentile interval).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Estimate only the standard error of an estimator by bootstrap; that SE estimate is already a confidence interval.",
+          "misconception_tag": "se_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "Bootstrap confidence intervals are the same procedure as a hypothesis test: both decide whether to reject a null.",
+          "misconception_tag": "ht_as_bootstrap_ci"
+        },
+        {
+          "id": "d",
+          "label": "A bootstrap CI is formed by taking the Normal-mean cookbook interval and replacing s with a single bootstrap draw.",
+          "misconception_tag": "one_draw_plug_in"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.8-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.8-cp-01",
       "title": "Checkpoint: 3.2.8",
-      "prompt": "Closed-book. (1) Outline the bootstrap move to obtain a confidence interval for a parameter (percentile idea is enough). (2) Refuse: 'Bootstrap for an estimator standard error is the same as a bootstrap confidence interval' and 'finishing a bootstrap CI finishes hypothesis testing.'",
-      "response_type": "short_structured",
-      "body": "Bootstrap CI procedure; refuse properties-bootstrap-as-CI and HT-as-done.",
+      "prompt": "Closed-book. Which statement correctly outlines a percentile bootstrap confidence interval and keeps related ideas distinct?",
+      "response_type": "mcq",
+      "body": "Percentile bootstrap CI; refuse SE-only and HT conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bootstrap",
-        "resample",
-        "percentile",
-        "confidence",
-        "interval",
-        "refuse",
-        "hypothesis"
-      ],
-      "explanation": "Bootstrap CIs use the replicate distribution to form interval endpoints; that differs from SE-only bootstrap and from HT.",
-      "model_answer": "(1) Resample with replacement, recompute the statistic on each resample, then form an interval from the bootstrap distribution of that statistic (e.g. percentile interval from the α/2 and 1−α/2 quantiles of the replicates). (2) Refuse: estimating an estimator property is not the same as constructing a CI; hypothesis testing is a different LO.",
-      "common_mistake": "Equating bootstrap estimator-property estimation with bootstrap CI construction, or claiming HT is finished.",
+      "accepted_keywords": [],
+      "explanation": "Percentile intervals use replicate quantiles. SE-only summaries and hypothesis-test decisions are different objects.",
+      "model_answer": "Percentile endpoints from bootstrap replicates; distinct from SE-only bootstrap and from HT.",
+      "common_mistake": "Treating bootstrap SE estimation or a reject/retain decision as the bootstrap CI.",
       "success_criteria": [
-        "Outlines resample → replicate statistic → interval from bootstrap distribution.",
-        "Refuses conflating with bootstrap SE estimation or hypothesis testing."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Resample with replacement, recompute the statistic on each resample, then take the α/2 and 1−α/2 quantiles of those replicates as interval endpoints. Estimating a bootstrap standard error alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute a bootstrap SE and report (θ̂ − SE, θ̂ + SE) only; quantile endpoints from replicates are never used.",
+          "misconception_tag": "se_only_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "A bootstrap CI is completed by rejecting H₀ whenever θ̂ falls outside a fixed null value, without forming interval endpoints.",
+          "misconception_tag": "ht_as_ci"
+        },
+        {
+          "id": "d",
+          "label": "Draw one bootstrap resample, compute θ̂*, and report the singleton interval [θ̂*, θ̂*].",
+          "misconception_tag": "singleton_interval"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

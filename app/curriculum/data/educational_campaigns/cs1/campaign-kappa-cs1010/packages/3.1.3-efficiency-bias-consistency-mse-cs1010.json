@@ -119,57 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.3-ar-01",
       "title": "Active Recall: 3.1.3",
-      "prompt": "Closed-book. (1) Define bias of an estimator. (2) How does MSE relate to bias and variance? (3) In one sentence each, what do efficiency and consistency mean?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly relates bias, MSE, efficiency, and consistency for an estimator?",
+      "response_type": "mcq",
+      "body": "Select the statement that gets the property definitions right.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bias",
-        "MSE",
-        "variance",
-        "efficiency",
-        "consistency",
-        "estimator"
-      ],
-      "explanation": "Active recall for 3.1.3.",
-      "model_answer": "Bias is E[θ̂] − θ (CMP form). MSE = Var(θ̂) + (bias)² under standard decomposition. Efficiency compares variance (or MSE) relative to a benchmark; consistency concerns convergence in probability as sample size grows.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bias is E[θ̂] − θ and MSE = variance + squared bias. Consistency is large-sample concentration on the truth, not the same as finite-sample unbiasedness. Efficiency is a comparative variance/MSE idea, not a synonym for unbiasedness.",
+      "model_answer": "Bias = E[θ̂] − θ; MSE = Var + bias²; efficiency compares variance/MSE; consistency is convergence in probability.",
+      "common_mistake": "Equating consistency with unbiasedness, or mangling the MSE decomposition.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bias is E[θ̂] − θ. Under the usual decomposition, MSE = Var(θ̂) + (bias)². Efficiency compares variance or MSE to a benchmark; consistency concerns convergence in probability to the true value as sample size grows.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Bias is Var(θ̂). MSE equals the absolute bias, and consistency means the estimator is unbiased for every finite n.",
+          "misconception_tag": "bias_var_swap_consistency"
+        },
+        {
+          "id": "c",
+          "label": "MSE = Var(θ̂) − (bias)², so a larger bias always reduces MSE.",
+          "misconception_tag": "mse_minus_bias"
+        },
+        {
+          "id": "d",
+          "label": "Efficiency and consistency are synonyms for unbiasedness; an unbiased estimator is automatically efficient and consistent.",
+          "misconception_tag": "unbiased_implies_all"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.3-cp-01",
       "title": "Checkpoint: 3.1.3",
-      "prompt": "Closed-book. Estimator A is unbiased with Var(A)=4/n. Estimator B has Bias(B)=1/n and Var(B)=1/n. (1) Give MSE(A) and MSE(B). (2) For large n, which has smaller MSE? (3) Refuse: 'Unbiased always beats biased' and 'consistency means the estimator is unbiased.'",
-      "response_type": "short_structured",
-      "body": "Distinguish bias, MSE, consistency on a concrete claim.",
+      "prompt": "Closed-book. Estimator A is unbiased with Var(A)=4/n. Estimator B has Bias(B)=1/n and Var(B)=1/n. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compare MSE and refuse 'unbiased always wins' / consistency-as-unbiased.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "bias",
-        "MSE",
-        "variance",
-        "consistency",
-        "efficiency",
-        "unbiased",
-        "refuse"
-      ],
-      "explanation": "MSE = bias² + variance; consistency ≠ unbiasedness; a biased estimator can have smaller MSE.",
-      "model_answer": "(1) MSE(A)=4/n; MSE(B)=(1/n)² + 1/n = 1/n² + 1/n. (2) For large n, MSE(B)≈1/n < 4/n = MSE(A), so B is preferred on MSE. (3) Refuse: unbiasedness is not MSE optimality; consistency is large-sample concentration on the true value, not the same as unbiasedness.",
-      "common_mistake": "Treating unbiasedness as automatically best, or equating consistency with unbiasedness.",
+      "accepted_keywords": [],
+      "explanation": "MSE(A)=4/n. MSE(B)=bias² + var = 1/n² + 1/n, which is about 1/n for large n and beats 4/n. A biased estimator can win on MSE. Consistency is large-sample concentration, not finite-sample unbiasedness.",
+      "model_answer": "MSE(A)=4/n; MSE(B)=1/n²+1/n; prefer B for large n on MSE; refuse unbiased-always-best and consistency=unbiasedness.",
+      "common_mistake": "Assuming unbiased estimators always dominate on MSE, or equating consistency with unbiasedness.",
       "success_criteria": [
-        "Computes both MSEs and compares them for large n.",
-        "Refuses conflating unbiasedness with MSE optimality and with consistency."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "MSE(A)=4/n and MSE(B)=1/n² + 1/n. For large n, MSE(B)≈1/n < 4/n, so B has smaller MSE. Unbiasedness is not MSE optimality, and consistency is not the same as unbiasedness.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "MSE(A)=4/n and MSE(B)=1/n. Because A is unbiased it always has smaller MSE than B.",
+          "misconception_tag": "unbiased_always_wins"
+        },
+        {
+          "id": "c",
+          "label": "MSE(A)=4/n and MSE(B)=(1/n)² = 1/n² only (variance is ignored when bias is present), so B is preferred for all n.",
+          "misconception_tag": "drop_variance"
+        },
+        {
+          "id": "d",
+          "label": "Consistency means Bias(B)=0 for every n, so B cannot be consistent and must have larger MSE than A for large n.",
+          "misconception_tag": "consistency_as_unbiased"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

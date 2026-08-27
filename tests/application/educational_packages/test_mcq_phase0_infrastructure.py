@@ -1,8 +1,8 @@
 """Phase 0 — MCQ infrastructure for checkpoint Knowledge Checks.
 
 Proves package JSON → loader → substance → scoring → UI branch wiring.
-Does not rewrite live short_structured content. Active Recall remains
-short_structured in the synthetic fixture (separate later scoping pass).
+Batch 1 Section 3 packages (see _BATCH1_MCQ_PACKAGE_STEMS) are live MCQ content;
+all other live inventory packages remain short_structured until later batches.
 """
 
 from __future__ import annotations
@@ -158,20 +158,61 @@ def test_session_body_branches_on_mcq() -> None:
     assert "answer_form.choice.name" in text
 
 
-def test_live_short_structured_packages_untouched() -> None:
-    """All live inventory packages remain short_structured; no choices authored."""
+# Batch 1 MCQ content conversion (Section 3 / checkpoint Batch A file set).
+# Inventory stems under educational_packages/cs1/ - keep in sync with
+# scripts/_mcq_batch1_section3_payload.py CONVERSIONS keys.
+_BATCH1_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "3.1.1-method-of-moments-cs1010",
+        "3.1.2-maximum-likelihood-cs1010",
+        "3.1.3-efficiency-bias-consistency-mse-cs1010",
+        "3.1.4-comparison-mse-cs1010",
+        "3.1.5-asymptotic-mle-cs1010",
+        "3.1.6-bootstrap-estimator-cs1010",
+        "3.2.1-confidence-interval-parameter-cs1011",
+        "3.2.2-prediction-interval-cs1011",
+        "3.2.3-ci-given-sampling-distribution-cs1011",
+        "3.2.4-ci-normal-mean-variance-cs1011",
+        "3.2.5-ci-binomial-poisson-cs1011",
+        "3.2.6-ci-two-sample-cs1011",
+        "3.2.7-ci-paired-means-cs1011",
+        "3.2.8-bootstrap-confidence-interval-cs1011",
+        "3.3.1-hypothesis-concepts-cs1012",
+        "3.3.2-basic-tests-cs1012",
+        "3.3.3-permutation-tests-cs1012",
+        "3.3.4-chi-square-gof-cs1012",
+        "3.3.5-contingency-independence-cs1012",
+        "cp-3.1.1-estimators-cs1016",
+        "cp-3.2.1-ci-sample-cs1016",
+        "cp-3.3.1-hypothesis-testing-cs1016",
+    }
+)
+
+
+def test_live_packages_outside_batch1_remain_short_structured() -> None:
+    """Live inventory outside Batch 1 MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
+    batch1_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
+        stem = Path(pack.source_path).stem if pack.source_path else ""
+        is_batch1 = stem in _BATCH1_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
+            if is_batch1 and check.kind in {"active_recall", "checkpoint"}:
+                batch1_seen += 1
+                assert check.response_type == "mcq"
+                assert len(check.choices) == 4
+                assert check.correct_choice_id in {c.id for c in check.choices}
+                continue
             assert check.response_type == "short_structured"
             assert check.choices == ()
             assert check.correct_choice_id == ""
             assert check.accepted_keywords  # existing keyword scoring still present
+    assert batch1_seen == 44  # 22 packages × AR + CP
 
-    # Spot-check a known live package still resolves and scores as before.
+    # Spot-check a known non-Batch-1 live package still resolves and scores as before.
     live = find_educational_package(topic_code="2.5", subject_id="CS1")
     assert live is not None
     substance = substance_from_package(

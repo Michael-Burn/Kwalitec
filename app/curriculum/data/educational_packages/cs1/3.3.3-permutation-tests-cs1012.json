@@ -117,59 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-3.3.3-ar-01",
       "title": "Active Recall: 3.3.3",
-      "prompt": "Closed-book. (1) What is reshuffled or reassigned under a permutation null? (2) How does the permutation reference distribution enter the decision? (3) Name one reason chi-square GOF is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes a permutation hypothesis test?",
+      "response_type": "mcq",
+      "body": "Select the exchangeability → reference distribution move.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "permutation",
-        "shuffle",
-        "null",
-        "reference",
-        "non-parametric",
-        "exchangeability",
-        "chi-square"
-      ],
-      "explanation": "Active recall for 3.3.3.",
-      "model_answer": "Under an exchangeability null, labels or assignments are permuted to build a reference distribution for the test statistic; the observed statistic is compared to that distribution. Chi-square GOF is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Permutation HT uses reshuffling under an exchangeable null. It is not a Normal cookbook z-test, not bootstrap CI construction, and not chi-square GOF.",
+      "model_answer": "Permute labels under exchangeability; compare the observed statistic to the permutation reference distribution.",
+      "common_mistake": "Equating permutation with Normal z-tests, bootstrap CIs, or GOF.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Under an exchangeability null, labels or assignments are permuted to build a reference distribution for the test statistic; the observed statistic is compared with that distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A permutation test is identical to a Normal two-sample z-test; only the name changes.",
+          "misconception_tag": "z_as_permutation"
+        },
+        {
+          "id": "c",
+          "label": "Permutation tests estimate a confidence interval by resampling with replacement, the same way a bootstrap CI does.",
+          "misconception_tag": "bootstrap_as_permutation"
+        },
+        {
+          "id": "d",
+          "label": "Permutation tests are chi-square goodness-of-fit procedures that compare observed frequencies to a named distribution.",
+          "misconception_tag": "gof_as_permutation"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-3.3.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.3-cp-01",
       "title": "Checkpoint: 3.3.3",
-      "prompt": "Closed-book. Under H₀ of no treatment effect, treatment labels are exchangeable across units. (1) Outline the permutation test move from that exchangeability to a decision. (2) Refuse: 'This is just a Normal two-sample z-test' and 'a chi-square GOF finishes permutation.'",
-      "response_type": "short_structured",
-      "body": "Exchangeability → permute → reference distribution; refuse parametric-cookbook and GOF conflation.",
+      "prompt": "Closed-book. Under H₀ of no treatment effect, treatment labels are exchangeable across units. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Permutation move; refuse Normal-cookbook and GOF conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "permutation",
-        "exchangeability",
-        "shuffle",
-        "reference",
-        "null",
-        "refuse",
-        "Normal",
-        "GOF"
-      ],
-      "explanation": "Permutation tests use reshuffling under an exchangeable null; they are not Normal cookbook tests or GOF.",
-      "model_answer": "(1) Shuffle/reassign labels under H₀, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution (tail probability / critical value). (2) Refuse: permutation builds a null reference from exchangeability, not from a parametric Normal cookbook; chi-square GOF is a different LO.",
-      "common_mistake": "Treating permutation as optional flavour of a Normal z-test, or swapping in GOF.",
+      "accepted_keywords": [],
+      "explanation": "Permutation builds a null reference from exchangeability. Parametric Normal tests, GOF, and bootstrap CIs are different tools.",
+      "model_answer": "Exchangeability → permute → reference distribution; refuse Normal-cookbook and GOF conflation.",
+      "common_mistake": "Treating permutation as optional flavour of a z-test, or swapping in GOF/bootstrap CI.",
       "success_criteria": [
-        "Outlines permute/recompute/compare-to-reference.",
-        "Refuses equating to parametric z-test or chi-square GOF."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Shuffle or reassign labels under H₀, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution. That is not a Normal two-sample z-test by another name, and not a chi-square GOF to a named distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute a Normal two-sample z statistic once; permutation is only an optional label for that same parametric test.",
+          "misconception_tag": "z_as_permutation"
+        },
+        {
+          "id": "c",
+          "label": "Compare observed frequencies to Poisson expected counts with a chi-square GOF; that finishes the permutation requirement.",
+          "misconception_tag": "gof_as_permutation"
+        },
+        {
+          "id": "d",
+          "label": "Resample with replacement to form a percentile confidence interval; reject H₀ if zero is outside that interval, and call the procedure a permutation test.",
+          "misconception_tag": "bootstrap_ci_as_permutation"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

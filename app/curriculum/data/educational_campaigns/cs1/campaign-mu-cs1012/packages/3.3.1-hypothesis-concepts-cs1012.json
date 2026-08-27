@@ -121,59 +121,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-3.3.1-ar-01",
       "title": "Active Recall: 3.3.1",
-      "prompt": "Closed-book. (1) What is a null hypothesis vs an alternative? (2) What is a type I error vs a type II error? (3) What does a p-value measure, and what is power? (4) Name one reason a basic applied test is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines null vs alternative, Type I vs Type II error, p-value, and power?",
+      "response_type": "mcq",
+      "body": "Select the HT vocabulary statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "null",
-        "alternative",
-        "type I",
-        "type II",
-        "p-value",
-        "power",
-        "critical",
-        "significance"
-      ],
-      "explanation": "Active recall for 3.3.1.",
-      "model_answer": "Null is the statement under test; alternative is the competing claim. Type I is rejecting a true null; type II is failing to reject a false null. A p-value is the probability, under the null, of a result at least as extreme as observed; power is the probability of rejecting a false null. Applied cookbook tests are tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Keep Type I/II in the reject-true-null / fail-to-reject-false-null directions. A p-value is a tail probability under H₀, not P(H₀|data) and not P(H₁). Power is P(reject H₀ | H₁ true).",
+      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; p-value = extreme-tail probability under H₀; power = P(reject | H₁).",
+      "common_mistake": "Swapping Type I/II, or reading the p-value as P(H₀|data) or P(H₁).",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The null is the statement under test; the alternative is the competing claim. Type I error is rejecting a true null; Type II error is failing to reject a false null. A p-value is the probability, under the null, of a result at least as extreme as observed; power is the probability of rejecting a false null.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Type I error is failing to reject a false null; Type II error is rejecting a true null. A p-value is the probability that the alternative is true.",
+          "misconception_tag": "errors_swapped_pvalue"
+        },
+        {
+          "id": "c",
+          "label": "A p-value is the probability that the null is true given the data, and power is one minus the p-value.",
+          "misconception_tag": "pvalue_as_null_prob"
+        },
+        {
+          "id": "d",
+          "label": "Null and alternative are interchangeable labels; only the test statistic formula matters, not which hypothesis is labelled null.",
+          "misconception_tag": "labels_interchangeable"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-3.3.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. Disease screening: H₀ = no disease, H₁ = disease present. (1) Define Type I and Type II errors in this vignette. (2) What does a p-value measure, and what is power? (3) Refuse: 'I ran a one-sample Normal mean test in software, so the concepts LO is done.'",
-      "response_type": "short_structured",
+      "prompt": "Closed-book. Disease screening: H₀ = no disease, H₁ = disease present. Which statement is correct?",
+      "response_type": "mcq",
       "body": "HT vocabulary on a vignette; refuse cookbook-test-as-concepts.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Type I",
-        "Type II",
-        "p-value",
-        "power",
-        "null",
-        "refuse",
-        "critical"
-      ],
-      "explanation": "3.3.1 is conceptual toolkit (errors, p-value, power) not yet the applied cookbook tests.",
-      "model_answer": "(1) Type I: false positive (declare disease when healthy (reject H₀ wrongly). Type II: false negative) miss disease when present (fail to reject H₀ wrongly). (2) p-value: under H₀, the probability of a result at least as extreme as observed. Power: P(reject H₀ | H₁ true) = 1 − β. (3) Refuse: running a cookbook test is not the same as mastering HT vocabulary (errors, critical region, p-value, power).",
-      "common_mistake": "Skipping vocabulary for a cookbook z-test, or swapping Type I and Type II.",
+      "accepted_keywords": [],
+      "explanation": "In this framing, false positive = Type I and false negative = Type II. p-value and power keep their usual frequentist meanings. Software theatre does not replace the concepts.",
+      "model_answer": "Type I = false positive; Type II = false negative; p-value under H₀; power = 1−β; concepts ≠ cookbook click.",
+      "common_mistake": "Swapping Type I/II, or treating a software z-test as the concepts.",
       "success_criteria": [
-        "Defines Type I/II correctly on the vignette and states p-value and power.",
-        "Refuses treating an applied software test as finishing concepts."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Type I error is a false positive (declare disease when healthy). Type II error is a false negative (miss disease when present). A p-value is the probability under H₀ of a result at least as extreme as observed; power is P(reject H₀ | H₁ true). Running a software z-test does not by itself replace this vocabulary.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Type I error is missing disease when it is present; Type II error is declaring disease when healthy.",
+          "misconception_tag": "errors_swapped"
+        },
+        {
+          "id": "c",
+          "label": "A p-value is the probability of having the disease, and power is the probability of not having the disease.",
+          "misconception_tag": "pvalue_as_disease_prob"
+        },
+        {
+          "id": "d",
+          "label": "Because a one-sample Normal mean test can be clicked in software, Type I/II, p-value, and power definitions are unnecessary.",
+          "misconception_tag": "cookbook_as_concepts"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

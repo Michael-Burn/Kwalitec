@@ -116,54 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-3.2.1-ar-01",
       "title": "Active Recall: 3.2.1",
-      "prompt": "Closed-book. (1) What inputs enter a CI from a random sample? (2) What claim does the interval support? (3) Why is 3.3.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly describes a confidence interval for an unknown parameter from a random sample?",
+      "response_type": "mcq",
+      "body": "Select the parameter-CI claim.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "confidence",
-        "interval",
-        "sample",
-        "parameter"
-      ],
-      "explanation": "Active recall for 3.2.1.",
-      "model_answer": "A CI uses sample information to construct an interval for an unknown parameter under stated assumptions. HT opens tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Parameter CIs target a parameter with coverage. They are not prediction intervals for the next observation, and not identical to hypothesis tests.",
+      "model_answer": "Sample-based interval for an unknown parameter with stated coverage.",
+      "common_mistake": "Reading a CI as a prediction claim or as a hypothesis test.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A CI uses sample information to construct an interval for an unknown parameter under stated assumptions, with a frequentist coverage reading for that parameter.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A CI is a probability statement that the next observation falls inside the numerical interval.",
+          "misconception_tag": "prediction_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "A CI is the same decision procedure as a hypothesis test: both only accept or reject a null.",
+          "misconception_tag": "ht_as_ci"
+        },
+        {
+          "id": "d",
+          "label": "After seeing the data, a 95% CI means the parameter equals the interval midpoint with probability 95%.",
+          "misconception_tag": "midpoint_probability"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-3.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-3.2.1-cp-01",
       "title": "Checkpoint: 3.2.1",
-      "prompt": "Closed-book. A 95% CI for mean claim size μ is (80, 100). (1) What does this interval claim about μ? (2) Refuse: 'There is a 95% chance the next claim falls in (80, 100)' and 'a CI is the same as a hypothesis test.'",
-      "response_type": "short_structured",
-      "body": "Retrieve parameter CI reading; refuse prediction and HT conflation.",
+      "prompt": "Closed-book. A 95% CI for mean claim size μ is (80, 100). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Coverage reading; refuse prediction and HT conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "coverage",
-        "parameter",
-        "refuse",
-        "prediction",
-        "hypothesis",
-        "confidence"
-      ],
-      "explanation": "CI-from-sample targets a parameter with coverage; it is not a prediction interval or a hypothesis test.",
-      "model_answer": "(1) The interval comes from a procedure with 95% coverage for the unknown parameter μ under repeated sampling. (2) Refuse: that is a prediction reading of a future observation, not a parameter CI. A CI estimates a parameter with coverage; a hypothesis test decides between hypotheses.",
-      "common_mistake": "Reading a CI as a probability for the next observation, or equating CIs with hypothesis tests.",
+      "accepted_keywords": [],
+      "explanation": "Coverage is about μ and the procedure. Prediction readings and 'midpoint probability' misstate frequentist CIs; HT is a related but distinct task.",
+      "model_answer": "95% coverage for μ; refuse prediction reading and CI=HT collapse.",
+      "common_mistake": "Reading the CI as a probability for the next claim, or equating CIs with hypothesis tests.",
       "success_criteria": [
-        "States a correct parameter/coverage reading.",
-        "Refuses prediction-interval and HT conflations."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The interval comes from a procedure with 95% coverage for the unknown parameter μ under repeated sampling. It is not a 95% probability that the next claim falls in (80, 100), and it is not the same object as a hypothesis test.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "There is a 95% chance the next claim falls in (80, 100).",
+          "misconception_tag": "prediction_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "The interval is a hypothesis test that automatically rejects every null outside (80, 100) without further structure.",
+          "misconception_tag": "ht_as_ci"
+        },
+        {
+          "id": "d",
+          "label": "μ equals 90 with probability 95%, because 90 is the midpoint.",
+          "misconception_tag": "midpoint_probability"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

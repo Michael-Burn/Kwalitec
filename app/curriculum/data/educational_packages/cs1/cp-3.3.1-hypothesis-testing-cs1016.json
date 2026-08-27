@@ -116,56 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-3.3.1-ar-01",
       "title": "Active Recall: 3.3.1",
-      "prompt": "Closed-book. (1) Distinguish null and alternative. (2) Distinguish type I and type II. (3) Why is 4.1.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly distinguishes null vs alternative and Type I vs Type II error at foundation level?",
+      "response_type": "mcq",
+      "body": "Select the HT foundation statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "null",
-        "alternative",
-        "type I",
-        "type II",
-        "power"
-      ],
-      "explanation": "Active recall for 3.3.1.",
-      "model_answer": "Null vs alternative frame the test; type I/II name error directions; power is related. Regression opens tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Keep null/alternative and Type I/II in their standard directions. Regression fitting is a different topic; Type I and Type II are not the same event.",
+      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; power = P(reject | H₁).",
+      "common_mistake": "Swapping Type I/II, or displacing HT vocabulary into regression.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The null and alternative frame the hypotheses under test. Type I error is rejecting a true null; Type II error is failing to reject a false null. Power is the probability of rejecting a false null.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Type I error is failing to reject a false null; Type II error is rejecting a true null.",
+          "misconception_tag": "errors_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Null and alternative matter only for linear regression fitting; they are not used in hypothesis testing vocabulary.",
+          "misconception_tag": "regression_swap"
+        },
+        {
+          "id": "d",
+          "label": "Type I and Type II errors are the same event whenever the p-value is below 5%.",
+          "misconception_tag": "errors_collapsed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-3.3.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. Fraud flag: H₀ = genuine claim, H₁ = fraudulent. (1) Define Type I and Type II errors here. (2) In one sentence each, what are a p-value and power? (3) Refuse: 'I clicked a software z-test, so HT concepts are done' and 'HT foundations are the same skill as fitting a linear regression.'",
-      "response_type": "short_structured",
-      "body": "Retrieve HT concepts on a vignette; refuse cookbook-as-concepts and regression conflation.",
+      "prompt": "Closed-book. Fraud flag: H₀ = genuine claim, H₁ = fraudulent. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Type I/II, p-value, power; refuse cookbook-as-concepts and regression.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Type I",
-        "Type II",
-        "p-value",
-        "power",
-        "refuse",
-        "regression",
-        "null"
-      ],
-      "explanation": "HT foundations are error types, p-value, and power. Not software theatre or regression.",
-      "model_answer": "(1) Type I: flag fraud when the claim is genuine. Type II: miss fraud when it is present. (2) p-value: probability under H₀ of data at least as extreme as observed. Power: probability of rejecting H₀ when H₁ is true. (3) Refuse: a cookbook software test does not replace HT vocabulary; linear regression is a different topic.",
-      "common_mistake": "Swapping Type I/II, or treating a software z-test or regression fit as HT concepts.",
+      "accepted_keywords": [],
+      "explanation": "False fraud flag = Type I; missed fraud = Type II. Keep p-value and power in frequentist form. Neither software theatre nor regression fitting substitutes for the concepts.",
+      "model_answer": "Type I = false fraud flag; Type II = missed fraud; p-value under H₀; power = 1−β; refuse cookbook-as-concepts and regression conflation.",
+      "common_mistake": "Swapping Type I/II, or treating a z-test click / regression fit as HT concepts.",
       "success_criteria": [
-        "Defines Type I/II, p-value, and power on the vignette.",
-        "Refuses cookbook-as-concepts and regression conflation."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Type I: flag fraud when the claim is genuine. Type II: miss fraud when it is present. A p-value is the probability under H₀ of data at least as extreme as observed; power is P(reject H₀ | H₁ true). A software z-test click does not replace this vocabulary, and linear regression is a different topic.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Type I: miss fraud when present; Type II: flag fraud when genuine.",
+          "misconception_tag": "errors_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Because a software z-test can be run, Type I/II, p-value, and power definitions are optional.",
+          "misconception_tag": "cookbook_as_concepts"
+        },
+        {
+          "id": "d",
+          "label": "HT foundations are the same skill as fitting a linear regression of loss on covariates.",
+          "misconception_tag": "regression_as_ht"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

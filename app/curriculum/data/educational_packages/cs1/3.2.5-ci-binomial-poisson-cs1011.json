@@ -120,57 +120,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.5-ar-01",
       "title": "Active Recall: 3.2.5",
-      "prompt": "Closed-book. (1) State the hinge for a CI for a binomial probability, noting Normal approximation. (2) State the hinge for a CI for a Poisson mean, noting Normal approximation. (3) Name one reason two-sample CIs are not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes Normal-approximation confidence intervals for a binomial probability and a Poisson mean?",
+      "response_type": "mcq",
+      "body": "Select the dual binomial-p and Poisson-mean claim.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "binomial",
-        "Poisson",
-        "probability",
-        "mean",
-        "normal",
-        "approximation",
-        "confidence"
-      ],
-      "explanation": "Active recall for 3.2.5.",
-      "model_answer": "Form a CI for a binomial probability and for a Poisson mean, using Normal approximation under CMP conditions where appropriate. Two-sample intervals are tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Both single-sample binomial-p and Poisson-mean intervals appear, with Normal approximation where appropriate. They are not the same formula, and two-sample contrasts are a different setting.",
+      "model_answer": "Binomial-p and Poisson-mean CIs, with Normal approximation when appropriate.",
+      "common_mistake": "Covering only one discrete model, or swapping in two-sample formulas.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Form a CI for a binomial probability p and a CI for a Poisson mean λ, using a Normal approximation (with the appropriate variance function) when that approximation is justified.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A binomial CI for p is enough; the Poisson mean uses the identical formula after renaming p as λ, including the p(1−p) variance.",
+          "misconception_tag": "binomial_stands_for_poisson"
+        },
+        {
+          "id": "c",
+          "label": "Normal approximation is never used for discrete data; only exact binomial or Poisson intervals are allowed.",
+          "misconception_tag": "forbid_normal_approx"
+        },
+        {
+          "id": "d",
+          "label": "Two-sample difference intervals replace single-sample binomial and Poisson intervals in this setting.",
+          "misconception_tag": "two_sample_swap"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.5-cp-01",
       "title": "Checkpoint: 3.2.5",
-      "prompt": "Closed-book. (1) State a Normal-approximation CI form for a binomial probability p and for a Poisson mean λ (single sample). (2) Refuse: 'A binomial CI alone finishes the LO. Poisson is the same formula with a different letter.'",
-      "response_type": "short_structured",
-      "body": "Binomial-p and Poisson-mean CIs with Normal approx; refuse one-as-both.",
+      "prompt": "Closed-book. Which statement correctly gives Normal-approximation CI forms for a binomial probability and a Poisson mean (single sample)?",
+      "response_type": "mcq",
+      "body": "Both forms; refuse one-as-both.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "binomial",
-        "Poisson",
-        "Normal",
-        "approximation",
-        "refuse",
-        "both"
-      ],
-      "explanation": "Both discrete single-sample CI settings are required, including Normal approximation where used.",
-      "model_answer": "(1) Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂/n) (or equivalent for a total count with matching variance). (2) Refuse: both binomial-p and Poisson-mean CIs with Normal approximation are required. One does not stand in for the other.",
-      "common_mistake": "Covering only binomial (or only Poisson) and calling the dual requirement done.",
+      "accepted_keywords": [],
+      "explanation": "Bernoulli variance is p(1−p)/n; Poisson mean variance is λ/n (per observation in the usual sample-mean form). Swapping those variance functions, or dropping Poisson entirely, is wrong.",
+      "model_answer": "p̂ ± z√(p̂(1−p̂)/n) and λ̂ ± z√(λ̂/n); both required.",
+      "common_mistake": "Reusing Bernoulli variance for Poisson, or treating one discrete CI as enough.",
       "success_criteria": [
-        "States Normal-approx CI forms for both binomial p and Poisson mean.",
-        "Refuses treating one as finishing both."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂/n) (or an equivalent total-count form with matching variance). Both are required; one does not replace the other.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). The Poisson interval is the same expression with λ̂ written in place of p̂ and with variance p̂(1−p̂)/n kept unchanged.",
+          "misconception_tag": "reuse_bern_variance"
+        },
+        {
+          "id": "c",
+          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂(1−λ̂)/n).",
+          "misconception_tag": "variances_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Only the binomial form is required; Poisson means are handled by transforming to a Normal mean interval for x̄ with variance s²/n from continuous data.",
+          "misconception_tag": "binomial_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

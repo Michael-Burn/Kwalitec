@@ -119,57 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.2-ar-01",
       "title": "Active Recall: 3.2.2",
-      "prompt": "Closed-book. (1) What does a prediction interval claim about a future observation? (2) What role does a model fitted to a random sample play? (3) Name one difference from a parameter confidence interval.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly distinguishes a prediction interval from a parameter confidence interval?",
+      "response_type": "mcq",
+      "body": "Select the future-observation vs parameter contrast.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prediction",
-        "future",
-        "observation",
-        "model",
-        "sample",
-        "parameter"
-      ],
-      "explanation": "Active recall for 3.2.2.",
-      "model_answer": "A prediction interval targets a future observation (not the parameter itself), using a model fitted to a random sample. A parameter CI targets the unknown parameter. Different object.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Prediction intervals cover future data; parameter CIs cover parameters. Prediction intervals are typically wider because they include process/residual variation as well as parameter uncertainty.",
+      "model_answer": "Prediction interval → future observation; parameter CI → unknown parameter.",
+      "common_mistake": "Treating the two interval types as interchangeable, or claiming prediction intervals are narrower.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A prediction interval targets a future observation using a model fitted to a random sample. A parameter confidence interval targets an unknown parameter, not the future observation itself.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A prediction interval and a parameter confidence interval always cover the same numerical object; only the name changes.",
+          "misconception_tag": "interchangeable"
+        },
+        {
+          "id": "c",
+          "label": "A prediction interval is always narrower than the corresponding parameter CI because a single future observation has less uncertainty than a mean.",
+          "misconception_tag": "narrower_wrong"
+        },
+        {
+          "id": "d",
+          "label": "A prediction interval estimates only the sampling variance of an estimator and never involves residual or process variation.",
+          "misconception_tag": "se_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.2-cp-01",
       "title": "Checkpoint: 3.2.2",
-      "prompt": "Closed-book. You fit a model to historical annual losses and need an interval for next year's loss Y_new. (1) What does a prediction interval cover that a parameter CI for E[Y] does not? (2) Refuse: 'My confidence interval for the mean loss already finished the prediction-interval LO.'",
-      "response_type": "short_structured",
-      "body": "Prediction interval for a future observation; refuse parameter-CI conflation.",
+      "prompt": "Closed-book. You fit a model to historical annual losses and need an interval for next year's loss Y_new. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Prediction vs parameter CI; refuse mean-CI-as-prediction.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prediction",
-        "future",
-        "observation",
-        "parameter",
-        "refuse",
-        "mean",
-        "wider"
-      ],
-      "explanation": "Prediction intervals cover future data; parameter CIs cover parameters.",
-      "model_answer": "(1) A prediction interval aims to cover a future observation Y_new (parameter uncertainty plus process/residual variation); a parameter CI covers only a fixed unknown parameter such as E[Y]. (2) Refuse: a parameter CI is not a prediction interval (different target, typically wider for prediction)",
-      "common_mistake": "Treating a CI for the mean as interchangeable with a prediction interval for a new observation.",
+      "accepted_keywords": [],
+      "explanation": "Prediction targets Y_new; a CI for E[Y] targets the mean. Proper prediction intervals account for both parameter uncertainty and process variation.",
+      "model_answer": "Prediction interval covers Y_new; a CI for E[Y] does not substitute.",
+      "common_mistake": "Using a mean CI as if it covered the next observation.",
       "success_criteria": [
-        "States that prediction covers a future observation (beyond a mean parameter).",
-        "Refuses treating a parameter CI as finishing prediction."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A prediction interval aims to cover the future observation Y_new (parameter uncertainty plus process/residual variation). A confidence interval for E[Y] covers only that mean parameter and does not finish the prediction-interval task.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A confidence interval for mean loss already covers Y_new with the same coverage probability, so no separate prediction interval is needed.",
+          "misconception_tag": "mean_ci_as_prediction"
+        },
+        {
+          "id": "c",
+          "label": "A prediction interval covers E[Y] only; covering Y_new would require a parameter confidence interval instead.",
+          "misconception_tag": "targets_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Prediction intervals ignore parameter uncertainty and use only the residual variance from a fitted model with parameters treated as known exactly.",
+          "misconception_tag": "ignore_parameter_uncertainty"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

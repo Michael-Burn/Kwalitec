@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.6-ar-01",
       "title": "Active Recall: 3.2.6",
-      "prompt": "Closed-book. (1) What is the two-sample CI move for a Normal setting? (2) How do binomial/Poisson two-sample CIs use Normal approximation? (3) Name one reason paired data is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes two-sample confidence intervals in the Normal / binomial / Poisson settings?",
+      "response_type": "mcq",
+      "body": "Select the independent two-sample contrast claim.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "two-sample",
-        "difference",
-        "normal",
-        "binomial",
-        "Poisson",
-        "approximation",
-        "paired"
-      ],
-      "explanation": "Active recall for 3.2.6.",
-      "model_answer": "Form CIs for contrasts between two independent samples (Normal; binomial/Poisson via Normal approximation under CMP conditions). Paired mean-difference is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Two-sample CIs target contrasts under independent sampling. Equal n does not create pairing, and pooling into one sample erases the contrast.",
+      "model_answer": "CI for a contrast between two independent samples (Normal or Normal-approx discrete).",
+      "common_mistake": "Treating equal-n independent samples as paired, or pooling away the contrast.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Form a CI for a contrast between two independent samples (for example a difference of means or of probabilities/means), using Normal models or Normal approximations as appropriate.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "If two samples have equal size, they may be analysed as paired data even when observations are not matched.",
+          "misconception_tag": "equal_n_as_paired"
+        },
+        {
+          "id": "c",
+          "label": "Two-sample intervals always pool the observations into one sample and then use a one-sample CI for the grand mean.",
+          "misconception_tag": "pool_to_one_sample"
+        },
+        {
+          "id": "d",
+          "label": "Two-sample CIs require dependent observations within pairs; independent groups are handled only by prediction intervals.",
+          "misconception_tag": "require_pairing"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.6-cp-01",
       "title": "Checkpoint: 3.2.6",
-      "prompt": "Closed-book. Independent samples of claim amounts from portfolio A and portfolio B (Normal model). (1) What parameter contrast does a two-sample CI target, and what independence assumption is required? (2) Refuse: 'Paired before/after rows with equal n are just two-sample with n₁ = n₂.'",
-      "response_type": "short_structured",
-      "body": "Independent two-sample CI; refuse paired-as-equal-n two-sample.",
+      "prompt": "Closed-book. Independent samples of claim amounts from portfolio A and portfolio B (Normal model). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Independent contrast; refuse paired-as-equal-n two-sample.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "two-sample",
-        "independent",
-        "difference",
-        "paired",
-        "refuse",
-        "Normal"
-      ],
-      "explanation": "Two-sample CIs assume independent samples; pairing is a different design.",
-      "model_answer": "(1) Typically μ_A − μ_B (or an analogous contrast for binomial/Poisson with Normal approx), under independent samples from the two groups. (2) Refuse: paired data shares observational units; equal sample sizes do not make paired rows an independent two-sample problem. Use the paired-difference construction instead.",
-      "common_mistake": "Applying the independent two-sample CI to paired observations because n₁ = n₂.",
+      "accepted_keywords": [],
+      "explanation": "Independent two-sample CIs need independent groups and usually target a difference of means. Pairing is a different design; equal n is not enough to justify paired analysis.",
+      "model_answer": "Target μ_A − μ_B under independent samples; refuse paired-as-equal-n.",
+      "common_mistake": "Applying independent two-sample formulas to paired rows (or the reverse) because n₁=n₂.",
       "success_criteria": [
-        "Names the contrast and independence assumption.",
-        "Refuses treating paired equal-n data as independent two-sample."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A two-sample CI typically targets μ_A − μ_B under independent samples from the two groups. Paired before/after rows are not the same design: equal sample sizes do not turn matched pairs into an independent two-sample problem.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "If n_A = n_B, analyse the data as paired differences even when there is no natural matching between A and B units.",
+          "misconception_tag": "equal_n_as_paired"
+        },
+        {
+          "id": "c",
+          "label": "Independence between samples is optional; the two-sample mean difference CI is valid for any dependence structure.",
+          "misconception_tag": "ignore_independence"
+        },
+        {
+          "id": "d",
+          "label": "The two-sample CI targets μ_A / μ_B only, never a difference, when the model is Normal.",
+          "misconception_tag": "ratio_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

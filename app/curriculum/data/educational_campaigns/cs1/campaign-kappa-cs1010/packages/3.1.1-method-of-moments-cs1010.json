@@ -119,59 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.1-ar-01",
       "title": "Active Recall: 3.1.1",
-      "prompt": "Closed-book. (1) What is the method-of-moments construction move? (2) What replaces population moments in the equations? (3) Name one reason 'I have a formula for θ̂' is not automatically MoM.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the method-of-moments construction of an estimator?",
+      "response_type": "mcq",
+      "body": "Select the statement that names the MoM move and what is equated.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "moments",
-        "sample",
-        "population",
-        "equate",
-        "estimator",
-        "parameter"
-      ],
-      "explanation": "Active recall for 3.1.1.",
-      "model_answer": "Method of moments equates sample moments to the corresponding population moments (as functions of parameters) and solves for the parameter(s). Having any estimator formula is not the same as using that moment-matching move.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Method of moments equates sample moments to population moments and solves for the parameter(s). Maximising a likelihood is MLE, not MoM. Having some estimator formula, or building an interval, does not by itself make the construction method of moments.",
+      "model_answer": "Equate sample moments to the corresponding population moments (as functions of parameters) and solve for the parameter(s).",
+      "common_mistake": "Treating any estimator formula, an MLE, or an interval midpoint as automatically method of moments.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Equate sample moments to the corresponding population moments (written as functions of the unknown parameter) and solve for the parameter.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Any closed-form formula for an estimator θ̂ is automatically a method-of-moments estimator.",
+          "misconception_tag": "any_formula_is_mom"
+        },
+        {
+          "id": "c",
+          "label": "Maximise the likelihood (or log-likelihood) with respect to the parameter; the maximising value is the method-of-moments estimator.",
+          "misconception_tag": "mle_as_mom"
+        },
+        {
+          "id": "d",
+          "label": "Construct an interval for the parameter from the sample; the interval midpoint is the method-of-moments estimator.",
+          "misconception_tag": "interval_as_mom"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.1-cp-01",
       "title": "Checkpoint: 3.1.1",
-      "prompt": "Closed-book. Claim sizes are modelled as Exponential with mean θ. A sample has mean x̄ = 4. (1) Write the population first-moment equation and the method-of-moments estimator for θ. (2) Refuse: 'I maximised the likelihood, so I already have the method-of-moments estimator.'",
-      "response_type": "short_structured",
-      "body": "Equate moments and solve; refuse MLE-as-MoM.",
+      "prompt": "Closed-book. Claim sizes are modelled as Exponential with mean θ. A sample has mean x̄ = 4. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Apply MoM to the Exponential mean and refuse MLE-as-MoM.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "moments",
-        "equate",
-        "sample",
-        "population",
-        "mean",
-        "refuse",
-        "likelihood",
-        "MLE",
-        "MoM"
-      ],
-      "explanation": "Method of moments matches sample moments to population moments; likelihood maximisation is a different construction.",
-      "model_answer": "(1) E[X] = θ; equate x̄ = θ, so θ̂_MoM = x̄ = 4. (2) Refuse: maximising the likelihood is MLE, not MoM. MoM equates sample moments to population moments and solves.",
-      "common_mistake": "Treating any estimator formula (especially MLE) as automatically method of moments.",
+      "accepted_keywords": [],
+      "explanation": "For Exponential with mean θ, E[X] = θ, so MoM equates x̄ = θ and gives θ̂_MoM = 4. Coincidence that the MLE equals x̄ does not make likelihood maximisation into MoM. Using the wrong population moment (or treating variance as equal to the sample mean by fiat) is incorrect.",
+      "model_answer": "E[X] = θ; equate x̄ = θ, so θ̂_MoM = 4. Likelihood maximisation is MLE, not MoM.",
+      "common_mistake": "Swapping mean/rate parametrisation, treating MLE coincidence as MoM, or matching the wrong moment.",
       "success_criteria": [
-        "Writes the moment equation and MoM estimator for the vignette.",
-        "Refuses equating MLE with MoM."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The population first-moment equation is E[X] = θ. Equating the sample mean gives θ̂_MoM = x̄ = 4. Maximising the likelihood is a different construction (MLE), not method of moments.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The population first-moment equation is E[X] = 1/θ. Equating the sample mean gives θ̂_MoM = 1/4.",
+          "misconception_tag": "rate_mean_swap"
+        },
+        {
+          "id": "c",
+          "label": "Because maximising the Exponential likelihood yields θ̂ = x̄, that procedure is already the method-of-moments construction.",
+          "misconception_tag": "mle_as_mom"
+        },
+        {
+          "id": "d",
+          "label": "Method of moments for this model sets Var(X) = x̄ and solves, so θ̂_MoM = 4 because Var(X) = θ for the Exponential mean-θ parametrisation.",
+          "misconception_tag": "wrong_moment"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

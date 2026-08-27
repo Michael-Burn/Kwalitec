@@ -119,56 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.1-ar-01",
       "title": "Active Recall: 3.2.1",
-      "prompt": "Closed-book. (1) What does a confidence interval claim about an unknown parameter? (2) What sample ingredient enters the construction? (3) Name one reason a prediction interval is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes a confidence interval for an unknown parameter based on a random sample?",
+      "response_type": "mcq",
+      "body": "Select the parameter-CI reading (not a prediction claim).",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "confidence",
-        "parameter",
-        "sample",
-        "interval",
-        "coverage",
-        "prediction"
-      ],
-      "explanation": "Active recall for 3.2.1.",
-      "model_answer": "A confidence interval uses random-sample evidence to give an interval for an unknown parameter with a stated frequentist coverage reading. A prediction interval targets a future observation. That is tomorrow's LO, not today's.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "A parameter CI targets an unknown parameter with frequentist coverage. Covering a future observation is a prediction interval. A naive post-data probability-on-the-parameter reading is not the frequentist coverage claim.",
+      "model_answer": "Interval for an unknown parameter from sample evidence, with stated frequentist coverage.",
+      "common_mistake": "Reading a parameter CI as a prediction interval or as a post-data probability on the parameter.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A confidence interval uses random-sample evidence to give an interval for an unknown parameter, with a stated frequentist coverage interpretation under repeated sampling.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A confidence interval is an interval that contains the next future observation with the stated probability.",
+          "misconception_tag": "prediction_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "After the data are observed, a 95% confidence interval means there is a 95% probability that the fixed unknown parameter lies in that specific numerical interval, in the Bayesian posterior sense.",
+          "misconception_tag": "bayesian_reading"
+        },
+        {
+          "id": "d",
+          "label": "A confidence interval is simply any interval estimate of a future loss, whether or not a parameter is targeted.",
+          "misconception_tag": "any_interval"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.1-cp-01",
       "title": "Checkpoint: 3.2.1",
-      "prompt": "Closed-book. From a large sample you obtain a 95% CI for mean claim size μ as (120, 140). (1) What does this interval claim about the unknown parameter μ? (2) Refuse: 'There is a 95% probability that the next claim falls between 120 and 140.'",
-      "response_type": "short_structured",
-      "body": "Interpret a parameter CI; refuse prediction-interval reading.",
+      "prompt": "Closed-book. From a large sample you obtain a 95% CI for mean claim size μ as (120, 140). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Interpret the parameter CI; refuse prediction reading.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "parameter",
-        "coverage",
-        "confidence",
-        "refuse",
-        "prediction",
-        "future"
-      ],
-      "explanation": "A parameter CI targets an unknown parameter with stated coverage; a prediction interval targets a future observation.",
-      "model_answer": "(1) The interval was produced by a procedure that covers the unknown parameter μ in 95% of repeated samples (frequentist coverage for μ). (2) Refuse: that reading is a prediction claim about a future observation, not a confidence interval for a parameter.",
-      "common_mistake": "Reading a parameter CI as if it were a probability statement about a future observation.",
+      "accepted_keywords": [],
+      "explanation": "Frequentist coverage is about the procedure and the parameter μ, not about the next observation. Treating μ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
+      "model_answer": "95% coverage for μ under repeated sampling; not a prediction interval for the next claim.",
+      "common_mistake": "Reading the CI as a 95% probability for the next observation.",
       "success_criteria": [
-        "States a correct parameter/coverage reading of the CI.",
-        "Refuses reading it as a prediction interval for the next claim."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The interval comes from a procedure that covers the unknown parameter μ in 95% of repeated samples. It is not a claim that the next claim amount falls between 120 and 140 with probability 95%.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "There is a 95% probability that the next claim amount falls between 120 and 140.",
+          "misconception_tag": "prediction_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "μ is a random variable that equals 130 with probability 95%, and the interval endpoints are fixed constants only.",
+          "misconception_tag": "parameter_as_random"
+        },
+        {
+          "id": "d",
+          "label": "Because the interval is narrow, coverage must be exactly 100% for this particular sample.",
+          "misconception_tag": "narrow_implies_certainty"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

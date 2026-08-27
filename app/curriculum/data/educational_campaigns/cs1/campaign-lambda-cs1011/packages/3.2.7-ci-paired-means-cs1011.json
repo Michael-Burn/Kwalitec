@@ -118,56 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-3.2.7-ar-01",
       "title": "Active Recall: 3.2.7",
-      "prompt": "Closed-book. (1) What is the paired mean-difference CI move? (2) Why is pairing not the same as independent two-sample? (3) Name one reason bootstrap CI is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.2.7 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes a confidence interval for a mean difference from paired data?",
+      "response_type": "mcq",
+      "body": "Select the paired-difference move.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "paired",
-        "difference",
-        "means",
-        "confidence",
-        "interval",
-        "bootstrap"
-      ],
-      "explanation": "Active recall for 3.2.7.",
-      "model_answer": "Form differences within pairs and construct a CI for the mean difference. Pairing exploits dependence. Not the same as independent two-sample. Bootstrap CI is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Paired analysis works on differences within pairs. Independent two-sample formulas ignore the dependence that pairing creates. Bootstrap CI construction is a different method.",
+      "model_answer": "Analyse paired differences with a one-sample CI for the mean difference.",
+      "common_mistake": "Running an independent two-sample CI on paired columns.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Form within-pair differences and construct a one-sample CI for the mean of those differences. Pairing exploits dependence between matched observations and is not the same as an independent two-sample analysis.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Apply the independent two-sample mean-difference CI to the before column and the after column, because pairing only affects the labels.",
+          "misconception_tag": "two_sample_on_paired"
+        },
+        {
+          "id": "c",
+          "label": "Ignore the pairing and average all before values against all after values with a pooled variance that assumes independence.",
+          "misconception_tag": "ignore_pairing"
+        },
+        {
+          "id": "d",
+          "label": "Paired mean-difference CIs are identical to bootstrap confidence intervals; resampling replaces forming differences.",
+          "misconception_tag": "bootstrap_as_paired"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-3.2.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.7-cp-01",
       "title": "Checkpoint: 3.2.7",
-      "prompt": "Closed-book. Each policyholder has a before/after loss pair (Xᵢ, Yᵢ). (1) What do you analyse to form a CI for the mean difference? (2) Refuse: 'Apply the independent two-sample CI to the before column and the after column.'",
-      "response_type": "short_structured",
-      "body": "Paired-difference CI; refuse independent two-sample on paired rows.",
+      "prompt": "Closed-book. Each policyholder has a before/after loss pair (Xᵢ, Yᵢ). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Paired differences; refuse independent two-sample on paired rows.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "paired",
-        "difference",
-        "one-sample",
-        "refuse",
-        "independent",
-        "two-sample"
-      ],
-      "explanation": "Paired means are handled via differences within pairs, not as two independent samples.",
-      "model_answer": "(1) Form paired differences Dᵢ = Yᵢ − Xᵢ (or Xᵢ − Yᵢ), then build a one-sample CI for μ_D. (2) Refuse: the independent two-sample formula ignores pairing and uses the wrong variance structure for matched pairs.",
-      "common_mistake": "Analysing paired columns with the independent two-sample interval formula.",
+      "accepted_keywords": [],
+      "explanation": "Matched pairs → differences → one-sample CI for the mean difference. Equal column lengths do not justify an independent two-sample analysis of paired rows.",
+      "model_answer": "Analyse Dᵢ = Yᵢ − Xᵢ with a one-sample CI for μ_D; refuse independent two-sample on paired columns.",
+      "common_mistake": "Using the independent two-sample interval on paired before/after columns.",
       "success_criteria": [
-        "States the differences-then-one-sample CI move.",
-        "Refuses applying independent two-sample CI to paired columns."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Form Dᵢ = Yᵢ − Xᵢ (or Xᵢ − Yᵢ) and build a one-sample CI for μ_D. Applying the independent two-sample formula to the before and after columns ignores pairing and uses the wrong variance structure.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute x̄ and ȳ separately and use a two-sample CI for μ_Y − μ_X that assumes independent samples, because each column has the same length.",
+          "misconception_tag": "two_sample_on_paired"
+        },
+        {
+          "id": "c",
+          "label": "The paired CI is formed for μ_X and μ_Y separately; no difference parameter is involved.",
+          "misconception_tag": "separate_means_only"
+        },
+        {
+          "id": "d",
+          "label": "Pairing means you must discard half the data at random so that the remaining before and after values are independent.",
+          "misconception_tag": "discard_to_independence"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

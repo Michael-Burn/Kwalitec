@@ -119,59 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-3.3.2-ar-01",
       "title": "Active Recall: 3.3.2",
-      "prompt": "Closed-book. (1) When do you use a one-sample vs two-sample vs paired test? (2) Name one Normal and one discrete (binomial or Poisson) basic-test setting. (3) Name one reason a permutation test is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.3.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly matches basic hypothesis-test settings to designs and models?",
+      "response_type": "mcq",
+      "body": "Select one-sample / two-sample / paired and Normal vs discrete.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "one-sample",
-        "two-sample",
-        "paired",
-        "normal",
-        "binomial",
-        "Poisson",
-        "test",
-        "permutation"
-      ],
-      "explanation": "Active recall for 3.3.2.",
-      "model_answer": "One-sample tests a single population parameter; two-sample compares independent groups; paired uses matched differences. Normal mean tests and binomial/Poisson tests appear under CMP basic procedures. Permutation is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Match design (one-sample, two-sample, paired) and model (Normal, binomial, Poisson). Permutation tests are a different approach; equal n does not erase pairing.",
+      "model_answer": "One-sample / two-sample / paired designs; Normal and binomial/Poisson basic tests.",
+      "common_mistake": "Using permutation as the basic parametric test, or mishandling paired vs independent designs.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "One-sample tests a single population parameter; two-sample compares independent groups; paired uses matched differences. Basic procedures include Normal mean tests and binomial/Poisson tests under CMP conditions.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Paired data should be analysed with the independent two-sample test whenever n₁ = n₂.",
+          "misconception_tag": "paired_as_two_sample"
+        },
+        {
+          "id": "c",
+          "label": "Permutation reshuffling of labels is the basic parametric test for Normal means in this learning objective.",
+          "misconception_tag": "permutation_as_basic"
+        },
+        {
+          "id": "d",
+          "label": "Binomial and Poisson data never use basic tests; only continuous Normal means appear.",
+          "misconception_tag": "discrete_excluded"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-3.3.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.2-cp-01",
       "title": "Checkpoint: 3.3.2",
-      "prompt": "Closed-book. (1) For each setting, name the appropriate basic test family: (a) one Normal mean with σ known; (b) two independent binomial proportions; (c) paired Normal differences. (2) Refuse: 'Shuffling labels for a permutation test finishes the applied basic-tests requirement.'",
-      "response_type": "short_structured",
-      "body": "Choose and name basic tests by setting; refuse permutation-as-basic.",
+      "prompt": "Closed-book. Which statement correctly names the basic test family for each setting and keeps permutation distinct?",
+      "response_type": "mcq",
+      "body": "Match settings to basic tests; refuse permutation-as-basic.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "z-test",
-        "proportion",
-        "paired",
-        "Normal",
-        "binomial",
-        "refuse",
-        "permutation"
-      ],
-      "explanation": "Basic tests match the sampling model and design (one-sample, two-sample, paired); permutation is separate.",
-      "model_answer": "(1) (a) one-sample Normal/z-test for a mean; (b) two-sample proportion test with Normal approximation; (c) paired test on differences (paired t/z). (2) Refuse: permutation tests are a different LO; today is basic parametric tests for Normal / binomial / Poisson / paired settings.",
-      "common_mistake": "Using a permutation shuffle or the wrong design (paired vs independent) for a basic-test setting.",
+      "accepted_keywords": [],
+      "explanation": "Basic tests follow the sampling model and design. Permutation is separate. Scrambling designs (paired vs independent, one-sample vs two-sample) produces the wrong procedure.",
+      "model_answer": "z-test for one Normal mean (σ known); two-sample proportion test; paired test on differences; permutation ≠ basic parametric.",
+      "common_mistake": "Calling a permutation shuffle the basic-test requirement, or mismatching design to procedure.",
       "success_criteria": [
-        "Matches each setting to a basic Normal/binomial/paired test.",
-        "Refuses treating permutation as the basic-tests requirement."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "(a) one Normal mean with σ known → one-sample Normal/z-test; (b) two independent binomial proportions → two-sample proportion test with Normal approximation; (c) paired Normal differences → paired test on differences. Permutation tests are a different approach, not a substitute for these basic parametric tests.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "(a) chi-square GOF; (b) paired t on raw unpaired columns; (c) independent two-sample z on matched pairs.",
+          "misconception_tag": "wrong_families"
+        },
+        {
+          "id": "c",
+          "label": "All three settings are handled by shuffling treatment labels under a permutation null; parametric Normal/binomial tests are optional flavour.",
+          "misconception_tag": "permutation_as_basic"
+        },
+        {
+          "id": "d",
+          "label": "(a) two-sample z for one mean; (b) one-sample Poisson test for two proportions; (c) binomial test for paired Normal differences.",
+          "misconception_tag": "designs_scrambled"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

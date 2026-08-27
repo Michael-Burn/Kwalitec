@@ -118,58 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.2-ar-01",
       "title": "Active Recall: 3.1.2",
-      "prompt": "Closed-book. (1) What is the maximum-likelihood construction move? (2) Why is the log-likelihood often maximised instead? (3) How does this differ from method of moments?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes maximum-likelihood estimation and how it differs from method of moments?",
+      "response_type": "mcq",
+      "body": "Select the statement that names the MLE move and contrasts it with MoM.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "likelihood",
-        "log-likelihood",
-        "maximise",
-        "MLE",
-        "parameter",
-        "moments"
-      ],
-      "explanation": "Active recall for 3.1.2.",
-      "model_answer": "Maximum likelihood chooses the parameter value that maximises the likelihood (equivalently the log-likelihood under regularity). MoM matches moments; MLE maximises the model likelihood.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "MLE maximises the model likelihood (or log-likelihood). MoM matches moments. The two constructions are different even when numerical answers sometimes coincide. MSE comparison is a property criterion, not the MLE definition.",
+      "model_answer": "Maximise the likelihood (or log-likelihood); MoM matches moments instead.",
+      "common_mistake": "Collapsing MoM into MLE, or defining MLE as an MSE-optimality rule.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Choose the parameter value that maximises the likelihood (equivalently the log-likelihood under regularity). Method of moments instead equates sample moments to population moments.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Maximum likelihood always equates the first sample moment to the first population moment; that is what 'likelihood' means here.",
+          "misconception_tag": "mom_as_mle"
+        },
+        {
+          "id": "c",
+          "label": "Once a method-of-moments estimator exists, the maximum-likelihood estimator is the same object by definition.",
+          "misconception_tag": "mom_finishes_mle"
+        },
+        {
+          "id": "d",
+          "label": "Maximum likelihood means choosing the parameter that minimises mean square error among all unbiased estimators.",
+          "misconception_tag": "mse_as_mle"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.2-cp-01",
       "title": "Checkpoint: 3.1.2",
-      "prompt": "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ e^{−λx} for x>0). (1) Write the log-likelihood for λ and state the MLE. (2) Refuse: 'Yesterday's method-of-moments estimator is the same skill as maximum likelihood.'",
-      "response_type": "short_structured",
-      "body": "Form and maximise likelihood; refuse MoM-as-MLE.",
+      "prompt": "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ e^{−λx} for x>0). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Form the MLE for the Exponential rate and refuse MoM-as-MLE.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "likelihood",
-        "log-likelihood",
-        "maximise",
-        "MLE",
-        "rate",
-        "refuse",
-        "moments",
-        "MoM"
-      ],
-      "explanation": "MLE is defined by maximising the likelihood; moment matching is a different estimator construction.",
-      "model_answer": "(1) ℓ(λ) = n ln λ − λ Σ xᵢ; MLE λ̂ = n/Σ xᵢ = 1/x̄. (2) Refuse: MoM matches moments; MLE maximises the likelihood (or log-likelihood). Different construction. Even when numerical answers coincide.",
-      "common_mistake": "Collapsing MoM and MLE because they sometimes give the same number.",
+      "accepted_keywords": [],
+      "explanation": "For Exponential rate λ, ℓ(λ) = n ln λ − λ Σ xᵢ and λ̂ = 1/x̄. MoM can give the same number here, but MoM is still moment matching, not likelihood maximisation. The MLE is 1/x̄, not x̄, for the rate parametrisation.",
+      "model_answer": "ℓ(λ) = n ln λ − λ Σ xᵢ; λ̂ = 1/x̄. MoM ≠ MLE as constructions.",
+      "common_mistake": "Taking λ̂ = x̄ for the rate, or treating MoM coincidence as MLE.",
       "success_criteria": [
-        "Forms log-likelihood and states the MLE for the Exponential rate.",
-        "Refuses treating MoM as the same skill as MLE."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The log-likelihood is ℓ(λ) = n ln λ − λ Σ xᵢ, and the MLE is λ̂ = n/Σ xᵢ = 1/x̄. Matching moments is a different construction from maximising the likelihood, even if numbers sometimes agree.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The log-likelihood is ℓ(λ) = n ln λ − λ Σ xᵢ, and the MLE is λ̂ = x̄ because the sample mean is always the MLE for a rate.",
+          "misconception_tag": "mle_equals_mean_rate"
+        },
+        {
+          "id": "c",
+          "label": "Because the method-of-moments estimator for this model equals 1/x̄, that moment-matching procedure is already maximum likelihood.",
+          "misconception_tag": "mom_as_mle"
+        },
+        {
+          "id": "d",
+          "label": "The MLE maximises Σ xᵢ − n/λ, so λ̂ = n/Σ xᵢ comes from minimising the sum of observations.",
+          "misconception_tag": "wrong_likelihood"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

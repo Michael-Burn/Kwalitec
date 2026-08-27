@@ -117,59 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-3.1.5-ar-01",
       "title": "Active Recall: 3.1.5",
-      "prompt": "Closed-book. (1) What asymptotic distribution claim does the CMP make for MLEs (in outline)? (2) What regularity / large-sample cue matters? (3) Why is bootstrap not today's LO?",
-      "response_type": "short_structured",
-      "body": "Retrieve 3.1.5 closed-book.",
+      "prompt": "Closed-book. Under standard regularity conditions, which statement correctly describes the asymptotic behaviour of an MLE?",
+      "response_type": "mcq",
+      "body": "Select the asymptotic Normal / information claim for MLEs.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "asymptotic",
-        "Normal",
-        "MLE",
-        "large",
-        "sample",
-        "variance",
-        "regularity"
-      ],
-      "explanation": "Active recall for 3.1.5.",
-      "model_answer": "Under CMP regularity conditions, MLEs are asymptotically Normal with variance tied to information / large-sample results in the CMP. Bootstrap is a separate resampling LO (3.1.6).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Under regularity, MLEs are asymptotically Normal with information-based variance. That is not MoM identity, not a chi-square-with-n law, and not the same tool as bootstrap resampling.",
+      "model_answer": "Asymptotically Normal about the true parameter with variance tied to Fisher information / CMP large-sample results.",
+      "common_mistake": "Confusing asymptotic MLE laws with MoM coincidence, chi-square recipes, or bootstrap resampling.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For large samples the MLE is approximately Normal about the true parameter, with variance governed by Fisher information (or the CMP large-sample information result).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "For large samples the MLE is exactly equal to the method-of-moments estimator, so no distributional result is needed.",
+          "misconception_tag": "mle_equals_mom_asymp"
+        },
+        {
+          "id": "c",
+          "label": "The asymptotic distribution of an MLE is always chi-square with degrees of freedom equal to the sample size.",
+          "misconception_tag": "chi_square_as_mle_law"
+        },
+        {
+          "id": "d",
+          "label": "Asymptotic MLE theory is the same procedure as bootstrap resampling: both estimate the sampling distribution by redrawing the observed sample.",
+          "misconception_tag": "bootstrap_as_asymptotics"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-3.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.5-cp-01",
       "title": "Checkpoint: 3.1.5",
-      "prompt": "Closed-book. Under regularity conditions, an MLE θ̂ₙ satisfies √n (θ̂ₙ − θ) →ᵈ N(0, 1/I(θ)). (1) What does this asymptotic Normal claim give you for large-sample inference about θ? (2) Refuse: 'I'll bootstrap the sampling distribution, so I do not need the asymptotic MLE result.'",
-      "response_type": "short_structured",
-      "body": "State asymptotic Normal MLE claim; refuse bootstrap-as-asymptotics.",
+      "prompt": "Closed-book. Under regularity, an MLE θ̂ₙ satisfies √n (θ̂ₙ − θ) →ᵈ N(0, 1/I(θ)). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Interpret the asymptotic Normal claim; refuse bootstrap-as-substitute.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "asymptotic",
-        "Normal",
-        "MLE",
-        "Fisher",
-        "information",
-        "large-sample",
-        "bootstrap",
-        "refuse"
-      ],
-      "explanation": "Asymptotic MLE theory gives a Normal large-sample law via information; bootstrap is a different tool.",
-      "model_answer": "(1) For large n, θ̂ₙ is approximately Normal about θ with variance ≈ 1/(n I(θ)), supporting large-sample SEs and Wald-type intervals/tests from Fisher information. (2) Refuse: bootstrap estimates properties by resampling; it does not replace stating the asymptotic distribution of the MLE.",
-      "common_mistake": "Treating bootstrap resampling as if it were the asymptotic MLE distribution result.",
+      "accepted_keywords": [],
+      "explanation": "The √n-scaled error is asymptotically N(0, 1/I(θ)), so θ̂ₙ is approx Normal with variance 1/(n I(θ)). Bootstrap is a different tool and does not erase the asymptotic claim. Dropping √n misstates the limit.",
+      "model_answer": "Large-sample Normal law with variance ≈ 1/(n I(θ)); bootstrap ≠ asymptotic MLE theory.",
+      "common_mistake": "Treating the information variance as exact for finite n, dropping √n, or replacing asymptotics with bootstrap.",
       "success_criteria": [
-        "States the large-sample Normal/MLE inference consequence.",
-        "Refuses substituting bootstrap for the asymptotic claim."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For large n, θ̂ₙ is approximately Normal about θ with variance ≈ 1/(n I(θ)), which supports large-sample standard errors and Wald-type intervals or tests. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The result says Var(θ̂ₙ) = I(θ) exactly for every finite n, so no large-sample approximation is involved.",
+          "misconception_tag": "finite_exact_info"
+        },
+        {
+          "id": "c",
+          "label": "Because bootstrap can estimate a sampling distribution, the asymptotic Normal MLE result is unnecessary whenever bootstrap is available.",
+          "misconception_tag": "bootstrap_replaces_asymptotics"
+        },
+        {
+          "id": "d",
+          "label": "The result implies θ̂ₙ →ᵈ N(0, 1/I(θ)) without the √n scaling, so the variance of θ̂ₙ itself tends to 1/I(θ).",
+          "misconception_tag": "drop_sqrt_n"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
