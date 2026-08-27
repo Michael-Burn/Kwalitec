@@ -1,25 +1,23 @@
-{# History Card — session summary, duration, outcome #}
+{# History Card — session summary, duration, outcome (History-scoped ds-*) #}
+{% from "design_system/macros.html" import ds_button %}
 {% macro history_card(session) %}
-<article class="student-card student-card--history" aria-label="Completed session" data-sitting-history="true">
-    <h3 class="student-card-title student-card-title--sm">{{ session.topic_title }}</h3>
-    <dl class="student-meta-row">
+<article class="ds-panel ds-os-history__card" aria-label="Completed session" data-sitting-history="true">
+    <h3 class="ds-os-history__card-title">{{ session.topic_title }}</h3>
+    <p class="ds-os-history__card-meta">
         {% if session.completed_at %}
-        <div>
-            <dt>Completed</dt>
-            <dd>{{ session.completed_at }}</dd>
-        </div>
+        <span class="ds-os-history__card-meta-value">{{ session.completed_at }}</span>
+        {% endif %}
+        {% if session.completed_at and session.duration_label %}
+        <span class="ds-os-history__card-meta-sep" aria-hidden="true">·</span>
         {% endif %}
         {% if session.duration_label %}
-        <div>
-            <dt>Duration</dt>
-            <dd>{{ session.duration_label }}</dd>
-        </div>
+        <span class="ds-os-history__card-meta-value">{{ session.duration_label }}</span>
         {% endif %}
-        <div>
-            <dt>Outcome</dt>
-            <dd>{{ session.outcome_label }}</dd>
-        </div>
-    </dl>
+        {% if session.completed_at or session.duration_label %}
+        <span class="ds-os-history__card-meta-sep" aria-hidden="true">·</span>
+        {% endif %}
+        <span class="ds-os-history__card-meta-value">{{ session.outcome_label }}</span>
+    </p>
     {% if session.insight_line %}
     <p class="ds-list__meta">{{ session.insight_line }}</p>
     {% endif %}
@@ -30,11 +28,14 @@
     <p class="ds-list__meta" data-px004="history-why-next">{{ session.why_next_line }}</p>
     {% endif %}
     {% if session.sitting_report_href %}
-    <p class="ds-list__meta">
-      <a href="{{ session.sitting_report_href }}" data-sitting-report-archive="true">
-        Open Sitting Report
-      </a>
-    </p>
+    <div class="ds-os-history__card-cta">
+      {{ ds_button(
+        'Open Sitting Report',
+        href=session.sitting_report_href,
+        variant='ghost',
+        attrs='data-sitting-report-archive="true"'
+      ) }}
+    </div>
     {% endif %}
 </article>
 {% endmacro %}

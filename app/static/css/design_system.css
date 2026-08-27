@@ -1752,6 +1752,44 @@ a.ds-list__row:hover {
   gap: var(--space-2);
 }
 
+/* History Batch 3 — list cards off .student-card; scoped to .ds-os-history (no glow on rows) */
+.ds-os-history__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-os-history__card-title {
+  margin: 0;
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+}
+
+.ds-os-history__card-meta {
+  margin: 0;
+  font-size: var(--font-support);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.ds-os-history__card-meta-value {
+  color: var(--text-secondary);
+}
+
+.ds-os-history__card-meta-sep {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.ds-os-history__card-cta {
+  margin-top: var(--space-1);
+}
+
 .ds-os-actions--quiet {
   opacity: 0.92;
   border-style: dashed;
