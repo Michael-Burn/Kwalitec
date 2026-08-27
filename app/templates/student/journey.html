@@ -92,26 +92,29 @@
   <section class="ds-os-mastery-insight" aria-label="Journey focus">
     {% set up_next = journey.up_next or (journey.upcoming[0] if journey.upcoming and journey.upcoming|length > 0 else none) %}
     {% if up_next %}
-    <article class="ds-panel" aria-labelledby="up-next-title" data-px004="journey-up-next">
-      <h2 class="ds-section__title" id="up-next-title">Up Next</h2>
-      <p class="ds-os-path__title">{{ up_next.title }}</p>
-      {% if up_next.prerequisite_note %}
-      <p class="ds-list__meta">{{ up_next.prerequisite_note }}</p>
-      {% endif %}
-      {% if edu and edu.estimated_duration_label %}
-      <p class="ds-list__meta" data-px004="why-next-duration">About {{ edu.estimated_duration_label }}</p>
-      {% endif %}
-      {% if edu and edu.why_this_mission %}
-      <p class="ds-list__meta" data-px004="why-next">{{ edu.why_this_mission }}</p>
-      {% elif edu and edu.suggested_next_action %}
-      <p class="ds-list__meta" data-px004="why-next">{{ edu.suggested_next_action }}</p>
-      {% elif up_next.status_label %}
-      <p class="ds-list__meta">Next authorised step on your syllabus path.</p>
-      {% endif %}
-      {% if up_next.status_label %}
-      {{ ds_badge(up_next.status_label, tone='primary') }}
-      {% endif %}
-    </article>
+    <div class="ds-os-journey__up-next-stage">
+      <div class="ds-session-card-glow" aria-hidden="true"></div>
+      <article class="ds-panel ds-os-journey__up-next" aria-labelledby="up-next-title" data-px004="journey-up-next">
+        <p class="ds-session-card__eyebrow">Up Next</p>
+        <h2 class="ds-os-path__title" id="up-next-title">{{ up_next.title }}</h2>
+        {% if up_next.prerequisite_note %}
+        <p class="ds-list__meta">{{ up_next.prerequisite_note }}</p>
+        {% endif %}
+        {% if edu and edu.estimated_duration_label %}
+        <p class="ds-list__meta" data-px004="why-next-duration">About {{ edu.estimated_duration_label }}</p>
+        {% endif %}
+        {% if edu and edu.why_this_mission %}
+        <p class="ds-list__meta" data-px004="why-next">{{ edu.why_this_mission }}</p>
+        {% elif edu and edu.suggested_next_action %}
+        <p class="ds-list__meta" data-px004="why-next">{{ edu.suggested_next_action }}</p>
+        {% elif up_next.status_label %}
+        <p class="ds-list__meta">Next authorised step on your syllabus path.</p>
+        {% endif %}
+        {% if up_next.status_label %}
+        {{ ds_badge(up_next.status_label, tone='primary') }}
+        {% endif %}
+      </article>
+    </div>
     {% endif %}
 
     {% if journey.needs_attention and journey.needs_attention|length > 0 %}
