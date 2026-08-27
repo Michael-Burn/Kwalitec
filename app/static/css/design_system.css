@@ -1680,6 +1680,40 @@ a.ds-list__row:hover {
   padding: var(--space-3) var(--space-5, 1.5rem);
 }
 
+/* Home Batch 1 polish — scoped to .ds-os-home (glow reuses .ds-session-card-glow) */
+.ds-os-home__mission-hero-stage {
+  position: relative;
+}
+
+.ds-os-home .ds-mission-hero {
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-sm);
+}
+
+.ds-os-home .ds-mission-hero__title {
+  font-size: var(--font-section);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
+
+.ds-os-home .ds-btn--with-arrow {
+  gap: var(--space-2);
+}
+
+.ds-os-home .ds-btn__arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.ds-os-home .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow {
+  transform: translateX(3px);
+}
+
+.ds-os-home .ds-btn--with-arrow:active:not(:disabled):not([aria-disabled="true"]) {
+  filter: brightness(0.9);
+}
+
 .ds-os-home__progress .ds-os-signals {
   border: 0;
   background: transparent;
@@ -2365,11 +2399,14 @@ body.ds-focus-mode .student-main {
   .ds-session-page .ds-input,
   .ds-session-page .ds-select,
   .ds-session-page .ds-disclosure summary,
-  .ds-session-page .ds-session-briefing > summary {
+  .ds-session-page .ds-session-briefing > summary,
+  .ds-os-home .ds-btn__arrow,
+  .ds-os-home .ds-btn {
     transition: none;
   }
 
-  .ds-session-page .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow {
+  .ds-session-page .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow,
+  .ds-os-home .ds-btn--with-arrow:hover:not(:disabled):not([aria-disabled="true"]) .ds-btn__arrow {
     transform: none;
   }
 }

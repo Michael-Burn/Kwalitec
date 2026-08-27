@@ -87,14 +87,17 @@
   {% elif home.state == 'day_complete' and home.mission %}
   {% set m = home.mission %}
   <div data-workspace-section="todays-mission">
-  {{ ds_mission_hero(
-    m.subject_name,
-    objective='',
-    section_title=home.mission_section_title,
-    title=m.title or 'Complete for today',
-    duration_label=m.duration_label,
-    status_label=m.status_label
-  ) }}
+  <div class="ds-os-home__mission-hero-stage">
+    <div class="ds-session-card-glow" aria-hidden="true"></div>
+    {{ ds_mission_hero(
+      m.subject_name,
+      objective='',
+      section_title=home.mission_section_title,
+      title=m.title or 'Complete for today',
+      duration_label=m.duration_label,
+      status_label=m.status_label
+    ) }}
+  </div>
   <p class="ds-list__meta ds-success-line success-reward kw-motion-success" role="status" data-day-complete="true" data-px006="day-complete">{{ home.day_complete_message }}</p>
   {% if home.milestone_acknowledgement %}
   <p class="ds-list__meta" role="status" data-px006="cf-milestone">{{ home.milestone_acknowledgement }}</p>
@@ -105,16 +108,19 @@
   {% elif home.mission %}
   {% set m = home.mission %}
   <div data-workspace-section="todays-mission" class="ds-os-home__mission">
-  {{ ds_mission_hero(
-    m.subject_name,
-    objective=m.objective,
-    section_title=home.mission_section_title,
-    title=m.title,
-    duration_label=m.duration_label,
-    status_label='',
-    why_now=m.why_now,
-    after_completion=m.after_completion
-  ) }}
+  <div class="ds-os-home__mission-hero-stage">
+    <div class="ds-session-card-glow" aria-hidden="true"></div>
+    {{ ds_mission_hero(
+      m.subject_name,
+      objective=m.objective,
+      section_title=home.mission_section_title,
+      title=m.title,
+      duration_label=m.duration_label,
+      status_label='',
+      why_now=m.why_now,
+      after_completion=m.after_completion
+    ) }}
+  </div>
 
   {% if m.primary_kind == 'link' and m.primary_href %}
   <div
@@ -126,13 +132,13 @@
     data-sop-section="continue-session"
   >
     <a
-      class="ds-btn ds-btn--primary"
+      class="ds-btn ds-btn--primary ds-btn--with-arrow"
       href="{{ m.primary_href }}"
       data-student-cta="primary"
       data-session-control="resume"
       data-session-resume="true"
       data-habit="resume-cta"
-    >{{ m.primary_label }}</a>
+    >{{ m.primary_label }}<span class="ds-btn__arrow" aria-hidden="true">→</span></a>
   </div>
   {% elif m.primary_kind == 'start_form' and form %}
   <div class="ds-primary-strip" role="group" aria-label="Primary actions" data-sop-section="todays-session">
@@ -143,12 +149,12 @@
       {% if form.recommendation_key is defined %}{{ form.recommendation_key() }}{% endif %}
       {% if form.record_commitment is defined %}{{ form.record_commitment() }}{% endif %}
       <button
-        class="ds-btn ds-btn--primary"
+        class="ds-btn ds-btn--primary ds-btn--with-arrow"
         type="submit"
         data-student-cta="primary"
         data-session-control="{{ page.home.session_control if page and page.home and page.home.session_control else 'start' }}"
         data-workspace-action="begin-session"
-      >{{ m.primary_label }}</button>
+      >{{ m.primary_label }}<span class="ds-btn__arrow" aria-hidden="true">→</span></button>
     </form>
   </div>
   {% elif m.primary_kind == 'complete_runtime_c' and complete_form %}
