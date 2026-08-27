@@ -1790,6 +1790,294 @@ a.ds-list__row:hover {
   margin-top: var(--space-1);
 }
 
+/* Profile / Settings hub — list layout (no glow); scoped to .ds-os-settings-hub */
+.ds-os-settings-hub {
+  max-width: 64rem;
+}
+
+.ds-os-settings-hub__columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 800px) {
+  .ds-os-settings-hub__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-6);
+  }
+}
+
+.ds-os-settings-hub__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.ds-os-settings-hub__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-os-settings-hub__group-title {
+  margin: 0;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.ds-os-settings-hub__panel {
+  padding: 0;
+  overflow: hidden;
+}
+
+.ds-os-settings-hub__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ds-os-settings-hub__row:last-child {
+  border-bottom: 0;
+}
+
+.ds-os-settings-hub__row--stack {
+  align-items: flex-start;
+}
+
+.ds-os-settings-hub__row-copy {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.ds-os-settings-hub__row-label {
+  margin: 0;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.ds-os-settings-hub__row-desc {
+  margin: 0.15rem 0 0;
+  font-size: var(--font-support);
+  color: var(--text-muted);
+  line-height: var(--line-height-normal);
+}
+
+.ds-os-settings-hub__inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.ds-os-settings-hub__select {
+  min-width: 5.5rem;
+  max-width: 8rem;
+  width: auto;
+}
+
+.ds-os-settings-hub__appearance {
+  width: 100%;
+  max-width: 22rem;
+}
+
+.ds-os-settings-hub__card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-os-settings-hub__card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-3) var(--space-4);
+}
+
+.ds-os-settings-hub__card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent-soft, var(--accent)) 8%, transparent);
+  color: var(--accent-soft, var(--accent));
+  flex-shrink: 0;
+}
+
+.ds-os-settings-hub__card-body {
+  min-width: 0;
+}
+
+.ds-os-settings-hub__card-title {
+  margin: 0;
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.ds-os-settings-hub__card-value {
+  margin: 0.2rem 0 0;
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+  overflow-wrap: anywhere;
+}
+
+.ds-os-settings-hub__card-desc {
+  margin: 0.2rem 0 0;
+  font-size: var(--font-caption);
+  color: var(--text-muted);
+  line-height: var(--line-height-normal);
+}
+
+.ds-os-settings-hub__card-action {
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-semibold);
+  color: var(--accent-soft, var(--accent));
+  text-decoration: none;
+  padding: 0.25rem 0;
+  white-space: nowrap;
+}
+
+.ds-os-settings-hub__card-action:hover {
+  text-decoration: underline;
+}
+
+.ds-os-settings-hub__card-action:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 479.98px) {
+  .ds-os-settings-hub__card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .ds-os-settings-hub__card-action {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* Settings drill-down shell — scoped to .ds-os-settings */
+.ds-os-settings__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .ds-os-settings__layout {
+    grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.ds-os-settings__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@media (min-width: 768px) {
+  .ds-os-settings__nav {
+    border-bottom: 0;
+    border-right: 1px solid var(--border-subtle);
+    padding-right: var(--space-4);
+    padding-bottom: 0;
+  }
+}
+
+.ds-os-settings__nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.ds-os-settings__nav-link:hover {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.ds-os-settings__nav-link.is-active {
+  background: color-mix(in srgb, var(--accent-soft, var(--accent)) 12%, transparent);
+  color: var(--text-primary);
+}
+
+.ds-os-settings__nav-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.ds-os-settings__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-os-settings__meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 480px) {
+  .ds-os-settings__meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ds-os-settings__meta-value {
+  margin: 0.15rem 0 0;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.ds-os-settings__diagnostics {
+  margin-top: var(--space-2);
+}
+
+.ds-os-settings__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-os-settings__progress-wrap {
+  grid-column: 1 / -1;
+}
+
+.ds-os-settings__danger-cta {
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
 .ds-os-actions--quiet {
   opacity: 0.92;
   border-style: dashed;

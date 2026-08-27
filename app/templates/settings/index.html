@@ -1,187 +1,181 @@
 {% extends "layouts/base.html" %}
 {% from "partials/icons.html" import icon %}
 {% from "partials/appearance_switcher.html" import appearance_switcher %}
+{% from "design_system/macros.html" import ds_button %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-{% set current_section = section or 'general' %}
+{% set current_section = section or 'profile' %}
+{% set goal_raw = current_user.daily_goal_hours if current_user.daily_goal_hours is not none else 2 %}
+{% set current_goal = ('%g' % goal_raw)|string %}
 
-{# RR-001.2 / XR-01 — EOS page header on Settings. #}
-<header class="student-page-header">
-    <p class="student-eyebrow">System</p>
-    <h1 class="student-page-title">Settings</h1>
-    <p class="student-page-description">Profile, preferences, and account status.</p>
+<article class="ds-page ds-container ds-container--content ds-os-settings" aria-label="Settings">
+
+<header class="ds-page-header">
+    <p class="ds-list__meta">System</p>
+    <h1 class="ds-page-header__title student-page-title">Settings</h1>
+    <p class="ds-page-header__support">Profile, preferences, and account status.</p>
 </header>
 
-<div class="row g-4">
-    {# Sidebar Navigation #}
-    <div class="col-md-4 col-lg-3">
-        <div class="settings-sidebar">
-            <a class="settings-nav-link{% if current_section == 'general' %} active{% endif %}"
-               href="{{ url_for('settings.index') }}">
-                {{ icon('settings-gear', class='me-2') }}
-                General
-            </a>
-            <a class="settings-nav-link{% if current_section == 'profile' %} active{% endif %}"
-               href="{{ url_for('settings.profile') }}">
-                {{ icon('profile', class='me-2') }}
-                Profile
-            </a>
-            <a class="settings-nav-link{% if current_section == 'password' %} active{% endif %}"
-               href="{{ url_for('settings.change_password') }}">
-                {{ icon('shield', class='me-2') }}
-                Password
-            </a>
-            <a class="settings-nav-link{% if current_section == 'preferences' %} active{% endif %}"
-               href="{{ url_for('settings.preferences') }}">
-                {{ icon('preferences', class='me-2') }}
-                Preferences
-            </a>
-            <a class="settings-nav-link{% if current_section == 'data' %} active{% endif %}"
-               href="{{ url_for('settings.data') }}">
-                {{ icon('data', class='me-2') }}
-                Data
-            </a>
-            <a class="settings-nav-link{% if current_section == 'internal-alpha' %} active{% endif %}"
-               href="{{ url_for('settings.internal_alpha') }}">
-                {{ icon('internal-alpha', class='me-2') }}
-                Account Status
-            </a>
-            <a class="settings-nav-link{% if current_section == 'share-feedback' %} active{% endif %}"
-               href="{{ url_for('settings.share_feedback') }}">
-                {{ icon('feedback', class='me-2') }}
-                Product Check-in
-            </a>
-        </div>
-    </div>
+<div class="ds-os-settings__layout">
+    {# Sidebar Navigation — General tab removed (unreachable under sole runtime). #}
+    <nav class="ds-os-settings__nav" aria-label="Settings sections">
+        <a class="ds-os-settings__nav-link{% if current_section == 'profile' %} is-active{% endif %}"
+           href="{{ url_for('settings.profile') }}">
+            {{ icon('profile', class='me-2') }}
+            Profile
+        </a>
+        <a class="ds-os-settings__nav-link{% if current_section == 'password' %} is-active{% endif %}"
+           href="{{ url_for('settings.change_password') }}">
+            {{ icon('shield', class='me-2') }}
+            Password
+        </a>
+        <a class="ds-os-settings__nav-link{% if current_section == 'preferences' %} is-active{% endif %}"
+           href="{{ url_for('settings.preferences') }}">
+            {{ icon('preferences', class='me-2') }}
+            Preferences
+        </a>
+        <a class="ds-os-settings__nav-link{% if current_section == 'data' %} is-active{% endif %}"
+           href="{{ url_for('settings.data') }}">
+            {{ icon('data', class='me-2') }}
+            Data
+        </a>
+        <a class="ds-os-settings__nav-link{% if current_section == 'internal-alpha' %} is-active{% endif %}"
+           href="{{ url_for('settings.internal_alpha') }}">
+            {{ icon('internal-alpha', class='me-2') }}
+            Account Status
+        </a>
+        <a class="ds-os-settings__nav-link{% if current_section == 'share-feedback' %} is-active{% endif %}"
+           href="{{ url_for('settings.share_feedback') }}">
+            {{ icon('feedback', class='me-2') }}
+            Product Check-in
+        </a>
+    </nav>
 
-    {# Content Panel #}
-    <div class="col-md-8 col-lg-9">
-        {# General Section #}
+    <div class="ds-os-settings__main ds-stack ds-stack--lg">
+        {# General Section (reachable only when sole runtime is off via /settings/) #}
         {% if current_section == 'general' %}
-        <div class="student-panel student-panel--quiet">
-                <div class="settings-section">
-                    <h2 class="settings-section-title student-panel-title">Application Information</h2>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Version</label>
-                            <span class="fw-medium">{{ release_info.app_version if release_info else app_version }}</span>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Application Information</h2>
+                    <div class="ds-os-settings__meta-grid">
+                        <div>
+                            <p class="ds-list__meta">Version</p>
+                            <p class="ds-os-settings__meta-value">{{ release_info.app_version if release_info else app_version }}</p>
                         </div>
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Support contact</label>
-                            <span class="fw-medium">
+                        <div>
+                            <p class="ds-list__meta">Support contact</p>
+                            <p class="ds-os-settings__meta-value">
                                 <a href="mailto:{{ support_contact }}">{{ support_contact }}</a>
-                            </span>
+                            </p>
                         </div>
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Account</label>
-                            <span class="fw-medium">{{ current_user.email }}</span>
+                        <div>
+                            <p class="ds-list__meta">Account</p>
+                            <p class="ds-os-settings__meta-value">{{ current_user.email }}</p>
                         </div>
                     </div>
-                    {# PX-002A T2 trust: build/environment/commit/user-id metadata
-                       moved behind a disclosure: students should never feel
-                       they are using developer software by default. #}
-                    <details class="settings-diagnostics mt-3">
-                        <summary class="text-muted small">Build information for support</summary>
-                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks. They are not part of studying.</p>
-                        <div class="row g-3 mt-2">
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Build date</label>
-                                <span class="fw-medium">{{ release_info.build_date if release_info else '–' }}</span>
+                    <details class="ds-disclosure ds-os-settings__diagnostics">
+                        <summary>Build information for support</summary>
+                        <div class="ds-disclosure__body">
+                        <p class="ds-list__meta">Share these details only if support asks. They are not part of studying.</p>
+                        <div class="ds-os-settings__meta-grid">
+                            <div>
+                                <p class="ds-list__meta">Build date</p>
+                                <p class="ds-os-settings__meta-value">{{ release_info.build_date if release_info else '–' }}</p>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Environment</label>
-                                <span class="fw-medium">{{ release_info.environment if release_info else '–' }}</span>
+                            <div>
+                                <p class="ds-list__meta">Environment</p>
+                                <p class="ds-os-settings__meta-value">{{ release_info.environment if release_info else '–' }}</p>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Build number</label>
-                                <span class="fw-medium">{{ release_info.build_number if release_info else '–' }}</span>
+                            <div>
+                                <p class="ds-list__meta">Build number</p>
+                                <p class="ds-os-settings__meta-value">{{ release_info.build_number if release_info else '–' }}</p>
                             </div>
                             {% if release_info and release_info.commit %}
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Commit</label>
-                                <span class="fw-medium"><code>{{ release_info.commit }}</code></span>
+                            <div>
+                                <p class="ds-list__meta">Commit</p>
+                                <p class="ds-os-settings__meta-value"><code>{{ release_info.commit }}</code></p>
                             </div>
                             {% endif %}
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">User ID</label>
-                                <span class="fw-medium">{{ current_user.id }}</span>
+                            <div>
+                                <p class="ds-list__meta">User ID</p>
+                                <p class="ds-os-settings__meta-value">{{ current_user.id }}</p>
                             </div>
                         </div>
+                        </div>
                     </details>
-                    <p class="mt-3 mb-0">
+                    <p class="ds-list__meta">
                         <a href="{{ url_for('alpha.help_centre') }}">Open Help &amp; Support</a>
                         ·
                         <a href="{{ url_for('alpha.onboarding') }}">Product onboarding</a>
                     </p>
                 </div>
 
-                <div class="settings-section">
-                    <h2 class="settings-section-title student-panel-title">About Kwalitec</h2>
-                    <p class="student-muted small mb-1">{{ product_descriptor }}</p>
-                    <p class="student-muted small mb-0">{{ product_value_proposition }}</p>
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">About Kwalitec</h2>
+                    <p class="ds-list__meta">{{ product_descriptor }}</p>
+                    <p class="ds-list__meta">{{ product_value_proposition }}</p>
                 </div>
         </div>
         {% endif %}
 
-        {# Profile Section #}
+        {# Profile Section — read-only (no fake Save) #}
         {% if current_section == 'profile' %}
-        <div class="student-panel student-panel--quiet mb-4">
-                <form method="post" action="{{ url_for('settings.update_profile') }}">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <div class="settings-section">
-                        <h2 class="settings-section-title student-panel-title">Profile Details</h2>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" value="{{ current_user.email }}" disabled readonly>
-                            <div class="form-text text-muted">Your email is used for login and cannot be changed here.</div>
-                        </div>
-                        <p class="small text-muted mb-3">
-                            To choose a familiar password,
-                            <a href="{{ url_for('settings.change_password') }}">update your password</a>.
-                        </p>
-                        <button type="submit" class="btn student-btn-primary">Save Profile</button>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Profile Details</h2>
+                    <div class="ds-field">
+                        <label class="ds-field-label" for="settings-profile-email">Email</label>
+                        <input id="settings-profile-email" type="email" class="ds-input" value="{{ current_user.email }}" disabled readonly>
+                        <p class="ds-list__meta">Your email is used for login and cannot be changed here.</p>
                     </div>
-                </form>
+                    <p class="ds-list__meta">
+                        To choose a familiar password,
+                        <a href="{{ url_for('settings.change_password') }}">update your password</a>.
+                    </p>
+                </div>
         </div>
 
         {% if research_journey %}
-        <div class="student-panel student-panel--quiet" data-rip002-profile="1">
-                <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title student-panel-title">Research Journey</h2>
-                    <p class="text-muted small mb-3">
+        <div class="ds-panel" data-rip002-profile="1">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Research Journey</h2>
+                    <p class="ds-list__meta">
                         Personal progress for helping improve Kwalitec. Not a competition.
                     </p>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Contributions</label>
-                            <span class="fw-medium">{{ research_journey.contribution_count }} check-ins</span>
+                    <div class="ds-os-settings__meta-grid">
+                        <div>
+                            <p class="ds-list__meta">Contributions</p>
+                            <p class="ds-os-settings__meta-value">{{ research_journey.contribution_count }} check-ins</p>
                         </div>
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Current badge</label>
+                        <div>
+                            <p class="ds-list__meta">Current badge</p>
                             {% if research_journey.current_badge %}
-                            <span class="badge rounded-pill bg-light text-secondary border">
-                                {{ research_journey.current_badge.label }}
-                            </span>
+                            <p class="ds-os-settings__meta-value">{{ research_journey.current_badge.label }}</p>
                             {% else %}
-                            <span class="fw-medium text-muted">Not yet started</span>
+                            <p class="ds-os-settings__meta-value ds-list__meta">Not yet started</p>
                             {% endif %}
                         </div>
                         {% if research_journey.next_badge %}
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Next badge</label>
-                            <span class="fw-medium">{{ research_journey.next_badge.label }}</span>
+                        <div>
+                            <p class="ds-list__meta">Next badge</p>
+                            <p class="ds-os-settings__meta-value">{{ research_journey.next_badge.label }}</p>
                         </div>
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Progress</label>
-                            <span class="fw-medium">{{ research_journey.progress_label }}</span>
+                        <div>
+                            <p class="ds-list__meta">Progress</p>
+                            <p class="ds-os-settings__meta-value">{{ research_journey.progress_label }}</p>
                         </div>
                         {% if research_journey.progress_target %}
-                        <div class="col-12">
-                            <div class="progress progress-thin" role="progressbar"
+                        <div class="ds-os-settings__progress-wrap">
+                            <div class="ds-os-progress__track"
+                                 role="progressbar"
                                  aria-valuenow="{{ research_journey.progress_current }}"
                                  aria-valuemin="0"
                                  aria-valuemax="{{ research_journey.progress_target }}">
-                                <div class="progress-bar bg-success"
+                                <div class="ds-os-progress__fill"
                                      style="width: {{ (research_journey.progress_current / research_journey.progress_target * 100) | round(0) }}%">
                                 </div>
                             </div>
@@ -189,47 +183,45 @@
                         {% endif %}
                         {% endif %}
                     </div>
-                    <p class="text-muted small mt-3 mb-0">{{ research_journey.appreciation_message }}</p>
-                    <a class="btn student-btn-secondary btn-sm mt-3" href="{{ url_for('settings.share_feedback') }}">
-                        Product Check-in
-                    </a>
+                    <p class="ds-list__meta">{{ research_journey.appreciation_message }}</p>
+                    {{ ds_button('Product Check-in', href=url_for('settings.share_feedback'), variant='secondary') }}
                 </div>
         </div>
         {% endif %}
 
         {# Password Section #}
         {% elif current_section == 'password' %}
-        <div class="student-panel student-panel--quiet mb-4" id="change-password">
-                <form method="post" action="{{ url_for('settings.change_password') }}" autocomplete="off">
+        <div class="ds-panel" id="change-password">
+                <form method="post" action="{{ url_for('settings.change_password') }}" autocomplete="off" class="ds-form">
                     {{ password_form.hidden_tag() }}
-                    <div class="settings-section">
-                        <h2 class="settings-section-title student-panel-title">Change password</h2>
-                        <p class="text-muted small mb-3">
+                    <div class="ds-os-settings__section">
+                        <h2 class="ds-section__title">Change password</h2>
+                        <p class="ds-list__meta">
                             Set a password you will remember. You will stay signed in after updating.
                         </p>
-                        <div class="mb-3">
-                            {{ password_form.current_password.label(class="form-label") }}
-                            {{ password_form.current_password(class="form-control", autocomplete="current-password") }}
+                        <div class="ds-field">
+                            {{ password_form.current_password.label(class="ds-field-label") }}
+                            {{ password_form.current_password(class="ds-input", autocomplete="current-password") }}
                             {% for error in password_form.current_password.errors %}
-                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            <p class="ds-field-error">{{ error }}</p>
                             {% endfor %}
                         </div>
-                        <div class="mb-3">
-                            {{ password_form.new_password.label(class="form-label") }}
-                            {{ password_form.new_password(class="form-control", autocomplete="new-password") }}
-                            <div class="form-text text-muted">At least 8 characters.</div>
+                        <div class="ds-field">
+                            {{ password_form.new_password.label(class="ds-field-label") }}
+                            {{ password_form.new_password(class="ds-input", autocomplete="new-password") }}
+                            <p class="ds-list__meta">At least 8 characters.</p>
                             {% for error in password_form.new_password.errors %}
-                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            <p class="ds-field-error">{{ error }}</p>
                             {% endfor %}
                         </div>
-                        <div class="mb-3">
-                            {{ password_form.confirm_password.label(class="form-label") }}
-                            {{ password_form.confirm_password(class="form-control", autocomplete="new-password") }}
+                        <div class="ds-field">
+                            {{ password_form.confirm_password.label(class="ds-field-label") }}
+                            {{ password_form.confirm_password(class="ds-input", autocomplete="new-password") }}
                             {% for error in password_form.confirm_password.errors %}
-                            <div class="invalid-feedback d-block">{{ error }}</div>
+                            <p class="ds-field-error">{{ error }}</p>
                             {% endfor %}
                         </div>
-                        {{ password_form.submit(class="btn student-btn-primary") }}
+                        {{ password_form.submit(class="ds-btn ds-btn--primary") }}
                     </div>
                 </form>
         </div>
@@ -237,28 +229,29 @@
 
         {# Preferences Section #}
         {% if current_section == 'preferences' %}
-        <div class="student-panel student-panel--quiet mb-4">
-                <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title student-panel-title">Appearance</h2>
-                    <p class="text-muted small" data-px006="pref-appearance">{{ px_microcopy.PREFERENCE_APPEARANCE_STICKY }}</p>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Appearance</h2>
+                    <p class="ds-list__meta" data-px006="pref-appearance">{{ px_microcopy.PREFERENCE_APPEARANCE_STICKY }}</p>
                     {{ appearance_switcher(show_select=true) }}
                     <p class="visually-hidden" id="appearance-saved-live" aria-live="polite" data-px006="pref-saved"></p>
                 </div>
         </div>
-        <div class="student-panel student-panel--quiet">
-                <form method="post" action="{{ url_for('settings.update_preferences') }}">
+        <div class="ds-panel">
+                <form method="post" action="{{ url_for('settings.update_preferences') }}" class="ds-form">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <div class="settings-section">
-                        <h2 class="settings-section-title student-panel-title">Study Preferences</h2>
-                        <div class="mb-3">
-                            <label for="daily_goal_hours" class="form-label">Daily Study Goal (hours)</label>
-                            <input type="number" class="form-control" id="daily_goal_hours" name="daily_goal_hours"
-                                   value="{{ session.get('daily_goal_hours', '2') }}" min="0.5" max="12" step="0.5">
-                            <div class="form-text text-muted" data-px006="pref-study">
+                    <input type="hidden" name="next" value="{{ url_for('settings.preferences') }}">
+                    <div class="ds-os-settings__section">
+                        <h2 class="ds-section__title">Study Preferences</h2>
+                        <div class="ds-field">
+                            <label for="daily_goal_hours" class="ds-field-label">Daily Study Goal (hours)</label>
+                            <input type="number" class="ds-input" id="daily_goal_hours" name="daily_goal_hours"
+                                   value="{{ current_goal }}" min="0.5" max="12" step="0.5">
+                            <p class="ds-list__meta" data-px006="pref-study">
                                 {{ px_microcopy.PREFERENCE_STUDY_SESSION_SCOPE }}
-                            </div>
+                            </p>
                         </div>
-                        <button type="submit" class="btn student-btn-primary">Save Preferences</button>
+                        {{ ds_button('Save Preferences', type='submit', variant='primary') }}
                     </div>
                 </form>
         </div>
@@ -266,59 +259,49 @@
 
         {# Data Section #}
         {% if current_section == 'data' %}
-        {# Weekly Report Export #}
-        <div class="student-panel student-panel--quiet mb-4">
-                <div class="settings-section">
-                    <h2 class="settings-section-title student-panel-title">Weekly Report</h2>
-                    <p class="text-muted small">Download your current weekly report as a structured text file covering your study activity, accuracy, highlights, and areas for improvement.</p>
-                    <a href="{{ url_for('settings.export_weekly_pdf') }}" class="btn student-btn-primary">
-                        {{ icon('download', class='me-1') }}
-                        Export Weekly Report
-                    </a>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Weekly Report</h2>
+                    <p class="ds-list__meta">Download your current weekly report as a structured text file covering your study activity, accuracy, highlights, and areas for improvement.</p>
+                    {{ ds_button('Export Weekly Report', href=url_for('settings.export_weekly_pdf'), variant='primary') }}
                 </div>
         </div>
 
-        {# JSON Backup #}
-        <div class="student-panel student-panel--quiet mb-4">
-                <div class="settings-section">
-                    <h2 class="settings-section-title student-panel-title">Backup Data</h2>
-                    <p class="text-muted small">Download all your learning data as a JSON file. This includes study plans, study sessions, study attempts, topic progress, and decision history.</p>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Backup Data</h2>
+                    <p class="ds-list__meta">Download all your learning data as a JSON file. This includes study plans, study sessions, study attempts, topic progress, and decision history.</p>
                     {% if model_stats %}
-                    <div class="mb-3">
-                        <small class="text-muted d-block mb-2">Data summary:</small>
-                        <div class="d-flex flex-wrap gap-2">
+                    <div class="ds-os-settings__stats">
+                        <p class="ds-list__meta">Data summary:</p>
+                        <div class="ds-inline">
                             {% for label, count in model_stats.items() %}
-                            <span class="badge rounded-pill bg-light text-secondary border">{{ label | replace('_', ' ') | title }}: {{ count }}</span>
+                            <span class="ds-badge ds-badge--neutral">{{ label | replace('_', ' ') | title }}: {{ count }}</span>
                             {% endfor %}
                         </div>
                     </div>
                     {% endif %}
-                    <a href="{{ url_for('settings.export_backup') }}" class="btn student-btn-secondary">
-                        {{ icon('download', class='me-1') }}
-                        Download Backup (JSON)
-                    </a>
+                    {{ ds_button('Download Backup (JSON)', href=url_for('settings.export_backup'), variant='secondary') }}
                 </div>
         </div>
 
-        {# JSON Restore #}
-        <div class="student-panel student-panel--quiet mb-4">
-                <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title student-panel-title">Restore from Backup</h2>
-                    <p class="text-muted small">Upload a previously exported JSON backup file to restore your data. <strong>This will replace all existing data.</strong> Use with caution.</p>
-                    <form method="post" action="{{ url_for('settings.import_restore') }}" enctype="multipart/form-data">
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Restore from Backup</h2>
+                    <p class="ds-list__meta">Upload a previously exported JSON backup file to restore your data. <strong>This will replace all existing data.</strong> Use with caution.</p>
+                    <form method="post" action="{{ url_for('settings.import_restore') }}" enctype="multipart/form-data" class="ds-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <div class="mb-3">
-                            <label for="backup_file" class="form-label">Backup File</label>
-                            <input type="file" class="form-control" id="backup_file" name="backup_file" accept=".json">
+                        <div class="ds-field">
+                            <label for="backup_file" class="ds-field-label">Backup File</label>
+                            <input type="file" class="ds-input" id="backup_file" name="backup_file" accept=".json">
                         </div>
-                        {# PX-002A T2-4: styled confirmation modal, not a native confirm(). #}
-                        <button type="button" class="btn student-btn-secondary" style="border-color: var(--color-warning); color: var(--color-warning);"
+                        {# PX-002A T2-4: confirm-modal JS/markup unchanged — only button classes restyled. #}
+                        <button type="button" class="ds-btn ds-btn--secondary ds-os-settings__danger-cta"
                                 data-confirm-trigger
                                 data-confirm-title="Restore from backup?"
                                 data-confirm-body="This will replace all existing data with the backup. This cannot be undone."
                                 data-confirm-label="Restore backup"
                                 data-confirm-variant="danger">
-                            {{ icon('upload', class='me-1') }}
                             Restore from Backup
                         </button>
                     </form>
@@ -328,59 +311,53 @@
 
         {# Internal Alpha Section #}
         {% if current_section == 'internal-alpha' and alpha_status %}
-        <div class="student-panel student-panel--quiet mb-4">
-                <div class="settings-section">
-                    <h2 class="settings-section-title student-panel-title">Appearance</h2>
-                    <p class="text-muted small">Choose Light, Dark, or System. System follows your device preference.</p>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Appearance</h2>
+                    <p class="ds-list__meta">Choose Light, Dark, or System. System follows your device preference.</p>
                     {{ appearance_switcher() }}
                 </div>
         </div>
-        <div class="student-panel student-panel--quiet">
-                <div class="settings-section" style="margin-bottom: 0;">
-                    <h2 class="settings-section-title student-panel-title">Account Status</h2>
-                    <p class="text-muted small mb-3">Informational only. These values do not change your study recommendations.</p>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Current curriculum</label>
-                            <span class="fw-medium">{{ alpha_status.curriculum_label }}</span>
+        <div class="ds-panel">
+                <div class="ds-os-settings__section">
+                    <h2 class="ds-section__title">Account Status</h2>
+                    <p class="ds-list__meta">Informational only. These values do not change your study recommendations.</p>
+                    <div class="ds-os-settings__meta-grid">
+                        <div>
+                            <p class="ds-list__meta">Current curriculum</p>
+                            <p class="ds-os-settings__meta-value">{{ alpha_status.curriculum_label }}</p>
                         </div>
-                        <div class="col-sm-6">
-                            <label class="text-muted small d-block">Current study plan</label>
-                            <span class="fw-medium">{{ alpha_status.study_plan_label }}</span>
+                        <div>
+                            <p class="ds-list__meta">Current study plan</p>
+                            <p class="ds-os-settings__meta-value">{{ alpha_status.study_plan_label }}</p>
                         </div>
-                        <div class="col-sm-6">
-                            {# B10 (PX-003): "Learning profile status" named an internal
-                               engine-state field directly: renamed to the
-                               student-meaningful concept it actually reflects. #}
-                            <label class="text-muted small d-block">Personalised recommendations</label>
-                            <span class="fw-medium">{{ alpha_status.twin_status }}</span>
+                        <div>
+                            <p class="ds-list__meta">Personalised recommendations</p>
+                            <p class="ds-os-settings__meta-value">{{ alpha_status.twin_status }}</p>
                         </div>
                     </div>
-                    {# PX-002A T2 trust: raw build/version metadata behind a disclosure.
-                       B10 (PX-003): the internal build-track fields ("Internal Alpha
-                       version" / "enablement") joined this disclosure too. They name
-                       an internal rollout mechanism, not a student concept, and were
-                       previously left outside it on this tab alone. #}
-                    <details class="settings-diagnostics mt-3">
-                        <summary class="text-muted small">Build information for support</summary>
-                        <p class="text-muted small mt-2 mb-0">Share these details only if support asks. They are not part of studying.</p>
-                        <div class="row g-3 mt-2">
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Build number</label>
-                                <span class="fw-medium">{{ alpha_status.build_number }}</span>
+                    <details class="ds-disclosure ds-os-settings__diagnostics">
+                        <summary>Build information for support</summary>
+                        <div class="ds-disclosure__body">
+                        <p class="ds-list__meta">Share these details only if support asks. They are not part of studying.</p>
+                        <div class="ds-os-settings__meta-grid">
+                            <div>
+                                <p class="ds-list__meta">Build number</p>
+                                <p class="ds-os-settings__meta-value">{{ alpha_status.build_number }}</p>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Application version</label>
-                                <span class="fw-medium">{{ alpha_status.app_version }}</span>
+                            <div>
+                                <p class="ds-list__meta">Application version</p>
+                                <p class="ds-os-settings__meta-value">{{ alpha_status.app_version }}</p>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Release channel</label>
-                                <span class="fw-medium">{{ alpha_status.internal_alpha_version }}</span>
+                            <div>
+                                <p class="ds-list__meta">Release channel</p>
+                                <p class="ds-os-settings__meta-value">{{ alpha_status.internal_alpha_version }}</p>
                             </div>
-                            <div class="col-sm-6">
-                                <label class="text-muted small d-block">Release channel enabled</label>
-                                <span class="fw-medium">{% if alpha_status.internal_alpha_enabled %}Enabled{% else %}Disabled{% endif %}</span>
+                            <div>
+                                <p class="ds-list__meta">Release channel enabled</p>
+                                <p class="ds-os-settings__meta-value">{% if alpha_status.internal_alpha_enabled %}Enabled{% else %}Disabled{% endif %}</p>
                             </div>
+                        </div>
                         </div>
                     </details>
                 </div>
@@ -388,4 +365,5 @@
         {% endif %}
     </div>
 </div>
+</article>
 {% endblock %}

@@ -1,10 +1,15 @@
 {% extends "student/base.html" %}
 {% from "partials/icons.html" import icon %}
 {% from "partials/appearance_switcher.html" import appearance_switcher %}
+{% from "design_system/macros.html" import ds_button %}
 {% set title = page.shell.page_title %}
 
 {# UX-003 / UX-006: Settings needs workspace width for the two-column hub. #}
 {% block student_main_modifier %}student-main--workspace{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
 
 {# PX-004: single Settings heading — suppress shell page_header duplicate. #}
 {% block page_header %}{% endblock %}
@@ -12,105 +17,94 @@
 {% block content %}
 {% if page.profile %}
 {% set profile = page.profile %}
-{% set prefs = profile.preferences %}
 {% set account = profile.account %}
+{% set goal_raw = current_user.daily_goal_hours if current_user.daily_goal_hours is not none else 2 %}
+{% set current_goal = ('%g' % goal_raw)|string %}
 
-<section class="settings-hub" aria-label="Settings">
+<article
+  class="ds-page ds-container ds-container--content ds-os-settings-hub"
+  aria-label="Settings"
+>
 
-    {# UX-006: configuration, not performance — metrics live on History. #}
-    <header class="settings-intro">
-        <h1 class="settings-intro-title student-page-title">Settings</h1>
-        <p class="settings-intro-copy">
-            Preferences, notifications, and account details.
+    <header class="ds-page-header">
+        <h1 class="ds-page-header__title student-page-title">Settings</h1>
+        <p class="ds-page-header__support">
+            Preferences and account details.
         </p>
     </header>
 
-    <div class="settings-columns">
+    <div class="ds-os-settings-hub__columns">
 
         {# ── Left column: Profile + Learning + Appearance ─────────────── #}
-        <div class="settings-column">
+        <div class="ds-os-settings-hub__column">
 
-            <section class="settings-group" aria-labelledby="settings-profile-title">
-                <h2 id="settings-profile-title" class="settings-group-title">Profile</h2>
-                <div class="settings-card-list">
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('profile', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Display name</h3>
-                            <p class="settings-info-card-value">{{ profile.display_name or 'Student' }}</p>
-                            <p class="settings-info-card-desc">How you appear across the Student Experience.</p>
+            <section class="ds-os-settings-hub__group" aria-labelledby="settings-profile-title">
+                <h2 id="settings-profile-title" class="ds-os-settings-hub__group-title">Profile</h2>
+                <div class="ds-os-settings-hub__card-list">
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('profile', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Display name</h3>
+                            <p class="ds-os-settings-hub__card-value">{{ profile.display_name or 'Student' }}</p>
+                            <p class="ds-os-settings-hub__card-desc">How you appear across the Student Experience.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">Edit</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.profile') }}">View</a>
                     </article>
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('exam', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Examination</h3>
-                            <p class="settings-info-card-value">{% if profile.examination_label %}{{ profile.examination_label }}{% else %}<span class="text-muted">Choose an exam in your study plan</span>{% endif %}</p>
-                            <p class="settings-info-card-desc">Active exam from your study plan.</p>
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('exam', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Examination</h3>
+                            <p class="ds-os-settings-hub__card-value">{% if profile.examination_label %}{{ profile.examination_label }}{% else %}<span class="ds-list__meta">Choose an exam in your study plan</span>{% endif %}</p>
+                            <p class="ds-os-settings-hub__card-desc">Active exam from your study plan.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('study_plan.index') }}">Manage</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('study_plan.index') }}">Manage</a>
                     </article>
                 </div>
             </section>
 
-            <section class="settings-group" aria-labelledby="settings-learning-title">
-                <h2 id="settings-learning-title" class="settings-group-title">Learning</h2>
-                <div class="settings-panel">
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <label class="settings-row-label" for="daily_goal_hours">Daily study goal</label>
-                            <p class="settings-row-desc">Target hours used for progress tracking.</p>
+            <section class="ds-os-settings-hub__group" aria-labelledby="settings-learning-title">
+                <h2 id="settings-learning-title" class="ds-os-settings-hub__group-title">Learning</h2>
+                <div class="ds-panel ds-os-settings-hub__panel">
+                    <div class="ds-os-settings-hub__row">
+                        <div class="ds-os-settings-hub__row-copy">
+                            <label class="ds-os-settings-hub__row-label" for="daily_goal_hours">Daily study goal</label>
+                            <p class="ds-os-settings-hub__row-desc">Preferred hours you aim to study each day.</p>
                         </div>
-                        <form method="post" action="{{ url_for('settings.update_preferences') }}" class="settings-row-control settings-inline-form">
+                        <form method="post" action="{{ url_for('settings.update_preferences') }}" class="ds-os-settings-hub__inline-form">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <select id="daily_goal_hours" name="daily_goal_hours" class="settings-select" aria-label="Daily study goal in hours">
-                                {% set current_goal = session.get('daily_goal_hours', '2')|string %}
+                            <input type="hidden" name="next" value="{{ url_for('student.profile') }}">
+                            <select id="daily_goal_hours" name="daily_goal_hours" class="ds-select ds-os-settings-hub__select" aria-label="Daily study goal in hours">
                                 {% for hours in ['0.5', '1', '1.5', '2', '2.5', '3', '4', '5', '6', '8', '10', '12'] %}
                                 <option value="{{ hours }}"{% if current_goal == hours %} selected{% endif %}>{{ hours }} h</option>
                                 {% endfor %}
                             </select>
-                            <button type="submit" class="btn student-btn-secondary settings-row-btn">Save</button>
+                            {{ ds_button('Save', type='submit', variant='secondary') }}
                         </form>
                     </div>
 
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label">Preferred session length</p>
-                            <p class="settings-row-desc">{{ profile.session_length_label }}</p>
+                    <div class="ds-os-settings-hub__row">
+                        <div class="ds-os-settings-hub__row-copy">
+                            <p class="ds-os-settings-hub__row-label">Preferred session length</p>
+                            <p class="ds-os-settings-hub__row-desc">{{ profile.session_length_label }}</p>
                         </div>
-                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
+                        {% if profile.active_study_plan_id %}
+                        {{ ds_button('Adjust', href=url_for('study_plan.edit_plan', study_plan_id=profile.active_study_plan_id), variant='secondary') }}
+                        {% else %}
+                        {{ ds_button('Adjust', href=url_for('study_plan.index'), variant='secondary') }}
+                        {% endif %}
                     </div>
-
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label">Study days</p>
-                            <p class="settings-row-desc">{{ profile.preferences_days_label or 'Not set' }}</p>
-                        </div>
-                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
-                    </div>
-
-                    {% if prefs.quiet_hours_label %}
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label">Quiet hours</p>
-                            <p class="settings-row-desc">{{ prefs.quiet_hours_label }}</p>
-                        </div>
-                        <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">Adjust</a>
-                    </div>
-                    {% endif %}
                 </div>
             </section>
 
-            <section class="settings-group" aria-labelledby="settings-appearance-title">
-                <h2 id="settings-appearance-title" class="settings-group-title">Appearance</h2>
-                <div class="settings-panel">
-                    <div class="settings-row settings-row--stack">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label" id="appearance-settings-label">Theme</p>
-                            <p class="settings-row-desc">Light, Dark, or System. Saved in this browser.</p>
+            <section class="ds-os-settings-hub__group" aria-labelledby="settings-appearance-title">
+                <h2 id="settings-appearance-title" class="ds-os-settings-hub__group-title">Appearance</h2>
+                <div class="ds-panel ds-os-settings-hub__panel">
+                    <div class="ds-os-settings-hub__row ds-os-settings-hub__row--stack">
+                        <div class="ds-os-settings-hub__row-copy">
+                            <p class="ds-os-settings-hub__row-label" id="appearance-settings-label">Theme</p>
+                            <p class="ds-os-settings-hub__row-desc">Light, Dark, or System. Saved in this browser.</p>
                         </div>
-                        <div class="settings-appearance">
+                        <div class="ds-os-settings-hub__appearance">
                             {{ appearance_switcher(group_aria_label='Appearance preference') }}
                         </div>
                     </div>
@@ -119,109 +113,77 @@
 
         </div>
 
-        {# ── Right column: Notifications + Account + Security ─────────── #}
-        <div class="settings-column">
+        {# ── Right column: Account + Security ─────────────────────────── #}
+        <div class="ds-os-settings-hub__column">
 
-            <section class="settings-group" aria-labelledby="settings-notifications-title">
-                <h2 id="settings-notifications-title" class="settings-group-title">Notifications</h2>
-                <div class="settings-panel">
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label">Study reminders</p>
-                            <p class="settings-row-desc">Prompt when it is time to study.</p>
+            <section class="ds-os-settings-hub__group" aria-labelledby="settings-account-title">
+                <h2 id="settings-account-title" class="ds-os-settings-hub__group-title">Account</h2>
+                <div class="ds-os-settings-hub__card-list">
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('mail', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Email</h3>
+                            <p class="ds-os-settings-hub__card-value">{{ account.email or '–' }}</p>
+                            <p class="ds-os-settings-hub__card-desc">Used for sign-in. Cannot be changed here.</p>
                         </div>
-                        <div class="settings-toggle-wrap">
-                            <span class="settings-toggle-state" aria-hidden="true">{{ profile.reminders_label }}</span>
-                            <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for('settings.preferences') }}">
-                                {{ 'Turn off' if prefs.reminder_enabled else 'Turn on' }}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="settings-row">
-                        <div class="settings-row-copy">
-                            <p class="settings-row-label">Account notifications</p>
-                            <p class="settings-row-desc">Product updates and account messages.</p>
-                        </div>
-                        <div class="settings-toggle-wrap">
-                            <span class="settings-toggle-state{% if account.notifications_enabled %} is-on{% endif %}"
-                                  role="status"
-                                  aria-label="Account notifications {{ profile.notifications_label|lower }}">
-                                {{ profile.notifications_label }}
-                            </span>
-                            <a class="btn student-btn-secondary settings-row-btn" href="{{ url_for(profile.primary_cta_endpoint) }}">Manage</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="settings-group" aria-labelledby="settings-account-title">
-                <h2 id="settings-account-title" class="settings-group-title">Account</h2>
-                <div class="settings-card-list">
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('mail', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Email</h3>
-                            <p class="settings-info-card-value">{{ account.email or '–' }}</p>
-                            <p class="settings-info-card-desc">Used for sign-in. Cannot be changed here.</p>
-                        </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">View</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.profile') }}">View</a>
                     </article>
                     {% if account.locale or account.timezone %}
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('sessions', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Locale &amp; timezone</h3>
-                            <p class="settings-info-card-value">
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('sessions', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Locale &amp; timezone</h3>
+                            <p class="ds-os-settings-hub__card-value">
                                 {% if account.locale %}{{ account.locale }}{% endif %}
                                 {% if account.locale and account.timezone %} · {% endif %}
                                 {% if account.timezone %}{{ account.timezone }}{% endif %}
                             </p>
-                            <p class="settings-info-card-desc">Regional formatting for dates and times.</p>
+                            <p class="ds-os-settings-hub__card-desc">Regional formatting for dates and times.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.profile') }}">View</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.profile') }}">View</a>
                     </article>
                     {% endif %}
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('data', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Data &amp; privacy</h3>
-                            <p class="settings-info-card-value">Export, backup, restore</p>
-                            <p class="settings-info-card-desc">Download reports or restore a backup.</p>
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('data', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Data &amp; privacy</h3>
+                            <p class="ds-os-settings-hub__card-value">Export, backup, restore</p>
+                            <p class="ds-os-settings-hub__card-desc">Download reports or restore a backup.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.data') }}">Open</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.data') }}">Open</a>
                     </article>
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('feedback', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Product Check-in</h3>
-                            <p class="settings-info-card-value">Share feedback</p>
-                            <p class="settings-info-card-desc">Help improve Kwalitec with a short check-in.</p>
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('feedback', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Product Check-in</h3>
+                            <p class="ds-os-settings-hub__card-value">Share feedback</p>
+                            <p class="ds-os-settings-hub__card-desc">Help improve Kwalitec with a short check-in.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.share_feedback') }}">Open</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.share_feedback') }}">Open</a>
                     </article>
                 </div>
             </section>
 
-            <section class="settings-group" aria-labelledby="settings-security-title">
-                <h2 id="settings-security-title" class="settings-group-title">Security</h2>
-                <div class="settings-card-list">
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Account status</h3>
-                            <p class="settings-info-card-value">System posture</p>
-                            <p class="settings-info-card-desc">Curriculum binding, personalisation, and diagnostics.</p>
+            <section class="ds-os-settings-hub__group" aria-labelledby="settings-security-title">
+                <h2 id="settings-security-title" class="ds-os-settings-hub__group-title">Security</h2>
+                <div class="ds-os-settings-hub__card-list">
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Account status</h3>
+                            <p class="ds-os-settings-hub__card-value">System posture</p>
+                            <p class="ds-os-settings-hub__card-desc">Curriculum binding, personalisation, and diagnostics.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.internal_alpha') }}">Review</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.internal_alpha') }}">Review</a>
                     </article>
-                    <article class="settings-info-card">
-                        <div class="settings-info-card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
-                        <div class="settings-info-card-body">
-                            <h3 class="settings-info-card-title">Password</h3>
-                            <p class="settings-info-card-value">Change your sign-in password</p>
-                            <p class="settings-info-card-desc">Choose a familiar password so signing in stays easy.</p>
+                    <article class="ds-panel ds-os-settings-hub__card">
+                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('shield', size=18) }}</div>
+                        <div class="ds-os-settings-hub__card-body">
+                            <h3 class="ds-os-settings-hub__card-title">Password</h3>
+                            <p class="ds-os-settings-hub__card-value">Change your sign-in password</p>
+                            <p class="ds-os-settings-hub__card-desc">Choose a familiar password so signing in stays easy.</p>
                         </div>
-                        <a class="settings-info-card-action" href="{{ url_for('settings.change_password') }}">Change</a>
+                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.change_password') }}">Change</a>
                     </article>
                 </div>
             </section>
@@ -229,12 +191,12 @@
         </div>
     </div>
 
-</section>
+</article>
 
 {% else %}
-<section class="student-card">
-    <h2 class="student-card-title">Settings</h2>
-    <p class="student-card-body">Your settings will appear when your account is ready.</p>
+<section class="ds-panel">
+    <h2 class="ds-section__title">Settings</h2>
+    <p class="ds-list__meta">Your settings will appear when your account is ready.</p>
 </section>
 {% endif %}
 {% endblock %}

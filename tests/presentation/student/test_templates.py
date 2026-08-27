@@ -93,7 +93,7 @@ def test_history_focuses_on_progress_not_logs(student_client):
 def test_profile_has_settings_cta(student_client):
     html = student_client.get("/student/profile").get_data(as_text=True)
     assert "Settings" in html
-    assert "settings-hub" in html
+    assert "ds-os-settings-hub" in html
     assert "How Kwalitec works for you" not in html
     assert "settings-kpi-grid" not in html
 
@@ -104,17 +104,22 @@ def test_settings_hub_groups_present(student_client):
         "Profile",
         "Learning",
         "Appearance",
-        "Notifications",
         "Account",
         "Security",
     ):
         assert group in html
+    assert "Notifications" not in html  # removed — no real backend for reminders/notifs
     assert "History" in html  # progress relocated
     assert "Study Time" not in html
     assert "Topics Mastered" not in html
     assert 'id="daily_goal_hours"' in html
     assert "appearance-switcher" in html or "data-appearance-option" in html
     assert "Open account settings" not in html  # replaced by compact card actions
+    assert "Save Profile" not in html
+    assert "Study days" not in html
+    assert "Quiet hours" not in html
+    assert "Study reminders" not in html
+    assert "design_system.css" in html
 
 
 def test_skip_link_present(student_client):

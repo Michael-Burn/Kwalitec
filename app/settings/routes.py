@@ -121,15 +121,6 @@ def profile():
     )
 
 
-@settings_bp.post("/profile")
-@login_required
-def update_profile():
-    """Update user profile settings."""
-    # Profile fields like display_name can be added to User model in future
-    flash("Profile settings saved successfully.", "success")
-    return redirect(url_for("settings.profile"))
-
-
 @settings_bp.route("/password", methods=["GET", "POST"])
 @login_required
 def change_password():
@@ -195,22 +186,42 @@ def internal_alpha():
     )
 
 
+def _safe_local_redirect(candidate: str | None, fallback_endpoint: str):
+    """Redirect to a same-origin relative path, else *fallback_endpoint*."""
+    target = (candidate or "").strip()
+    if target.startswith("/") and not target.startswith("//"):
+        return redirect(target)
+    return redirect(url_for(fallback_endpoint))
+
+
 @settings_bp.post("/preferences")
 @login_required
 def update_preferences():
-    """Update user preferences."""
+    """Persist study preferences on the User model.
+
+    Currently persists ``daily_goal_hours`` only. Persistence is intentional
+    and complete for this field — it is not wired into progress-tracking math.
+    """
     daily_goal_hours = request.form.get("daily_goal_hours", "").strip()
     if daily_goal_hours:
         try:
             hours = float(daily_goal_hours)
-            # Preference stored in session for now; future: persist to User model
-            from flask import session
-            session["daily_goal_hours"] = hours
-            flash("Preferences updated successfully.", "success")
+            if hours < 0.5 or hours > 12:
+                flash(
+                    "Daily study goal must be between 0.5 and 12 hours.",
+                    "danger",
+                )
+            else:
+                current_user.daily_goal_hours = hours
+                db.session.commit()
+                flash("Preferences updated successfully.", "success")
         except ValueError:
             flash("Please enter a valid number for daily study goal hours.", "danger")
 
-    return redirect(url_for("settings.preferences"))
+    return _safe_local_redirect(
+        request.form.get("next"),
+        "settings.preferences",
+    )
 
 
 @settings_bp.get("/data")

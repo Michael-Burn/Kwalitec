@@ -189,8 +189,8 @@ def test_workspace_pages_use_eos_page_header(app, client, ctx, user):
     assert "student-page-header" in onboarding_html
     assert "student-btn-primary" in onboarding_html
 
-    assert "student-page-header" in settings_html
-    assert "student-panel" in settings_html
+    assert "student-page-header" in settings_html or "ds-page-header" in settings_html
+    assert "student-panel" in settings_html or "ds-panel" in settings_html
 
     assert "ds-page-header" in wizard_html or "student-page-header" in wizard_html
     assert "ds-btn--primary" in wizard_html or "student-btn-primary" in wizard_html

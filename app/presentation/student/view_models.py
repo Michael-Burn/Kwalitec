@@ -321,6 +321,7 @@ class ProfilePageViewModel:
     session_length_label: str = ""
     reminders_label: str = ""
     notifications_label: str = ""
+    active_study_plan_id: int | None = None
     primary_cta_label: str = "Update Study Preferences"
     primary_cta_enabled: bool = True
     primary_cta_endpoint: str = "settings.preferences"
@@ -1799,6 +1800,17 @@ def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
     days = ", ".join(prefs.preferred_study_days) if prefs.preferred_study_days else ""
     session_minutes = prefs.preferred_session_minutes
     session_length = format_minutes(session_minutes) if session_minutes else "Not set"
+    active_plan_id: int | None = None
+    try:
+        uid = int(snap.student_id)
+    except (TypeError, ValueError):
+        uid = None
+    if uid is not None:
+        from app.services.study_plan_service import StudyPlanService
+
+        plan = StudyPlanService.read_active_study_plan(uid)
+        if plan is not None:
+            active_plan_id = plan.id
     return ProfilePageViewModel(
         display_name=snap.display_name,
         examination_label=(
@@ -1820,6 +1832,7 @@ def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
         notifications_label=(
             "Enabled" if snap.account.notifications_enabled else "Disabled"
         ),
+        active_study_plan_id=active_plan_id,
         primary_cta_label="Open account settings",
         primary_cta_enabled=True,
         # B9 (PX-003): "settings.index" (bare `/settings/`) now redirects to

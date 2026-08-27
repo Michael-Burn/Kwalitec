@@ -161,7 +161,8 @@ class TestStaticAssetsOptimised:
         # growth — not silently loosened to force green. V1SP-003 post-minify
         # baseline was ~63514 CSS / ~20592 JS with ceilings 70000 / 22000.
         # Raised again for History Batch 3 (session list cards → ds-os-history__*).
-        assert css_bytes < 136_500
+        # Raised again for Profile/Settings hub + drill-down shell (ds-os-settings*).
+        assert css_bytes < 145_000
         assert js_bytes < 45_000
 
     def test_performance_indexes_declared(self) -> None:

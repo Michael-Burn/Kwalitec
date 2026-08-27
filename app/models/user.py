@@ -37,6 +37,15 @@ class User(UserMixin, db.Model):
     alpha_onboarding_skipped: bool = db.Column(
         db.Boolean, default=False, nullable=False
     )
+    # Preferred daily study goal (hours). Persistence only — not wired into
+    # progress-tracking / mastery math.
+    daily_goal_hours: float = db.Column(
+        db.Float,
+        nullable=False,
+        default=2.0,
+        server_default="2",
+        comment="Preferred daily study goal in hours (persisted preference only)",
+    )
 
     # Relationships — explicit back_populates matching child-side declarations
     subjects = db.relationship("Subject", back_populates="user", lazy=True)
