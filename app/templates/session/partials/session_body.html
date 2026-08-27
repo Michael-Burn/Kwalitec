@@ -118,7 +118,7 @@
 
     {% set has_briefing = s.why_today or s.learning_objectives or s.concept_focus
       or s.session_stages or s.educational_flow_label or s.expected_outcome
-      or s.checkpoint_preview or s.reflection_preview %}
+      or s.checkpoint_preview or s.reflection_preview or s.prior_reflection_excerpt %}
     {% if has_briefing %}
     <details
       class="ds-session-briefing"
@@ -130,6 +130,13 @@
       <div class="ds-session-briefing__block" data-briefing="why-today">
         <p class="ds-session-briefing__label">Why today's topic</p>
         <p class="ds-session-briefing__body">{{ s.why_today }}</p>
+      </div>
+      {% endif %}
+
+      {% if s.prior_reflection_excerpt %}
+      <div class="ds-session-briefing__block" data-briefing="prior-reflection">
+        <p class="ds-session-briefing__label">Last time</p>
+        <p class="ds-session-briefing__body">You wrote: "{{ s.prior_reflection_excerpt }}"</p>
       </div>
       {% endif %}
 

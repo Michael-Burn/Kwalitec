@@ -180,6 +180,7 @@ class StudySessionService:
         expected_outcome = ""
         checkpoint_preview = ""
         reflection_preview = ""
+        prior_reflection_excerpt = ""
         explanation = None
         if surface is SessionSurface.OVERVIEW:
             briefing = self._overview_briefing(page, flow_label=flow_label)
@@ -194,6 +195,9 @@ class StudySessionService:
             learning_objectives = tuple(briefing["learning_objectives"] or ())
             if page.overview is not None:
                 explanation = page.overview.explanation
+            prior_reflection_excerpt = _prior_reflection_excerpt_for_overview(
+                page
+            )
 
         workflow_steps: tuple[str, ...] = ()
         workflow_step_index = 0
@@ -283,6 +287,7 @@ class StudySessionService:
             expected_outcome=expected_outcome,
             checkpoint_preview=checkpoint_preview,
             reflection_preview=reflection_preview,
+            prior_reflection_excerpt=prior_reflection_excerpt,
             explanation=explanation,
             journey_update_label=journey_update,
             finish_outcome_label=finish_outcome,
@@ -1070,3 +1075,60 @@ def _meta_mode_label(surface: SessionSurface, page: SessionPageViewModel) -> str
     if surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
         return "Summary"
     return "Learning"
+
+
+def _prior_reflection_excerpt_for_overview(page: SessionPageViewModel) -> str:
+    """Resurface the student's own prior note for this topic (Tier A).
+
+    Best-effort: failures never break Overview. Truncates like Sitting Report
+    (120 chars). Does not overwrite authored ``reflection_preview``.
+    """
+    try:
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+        from app.presentation.session.factory import (
+            get_session_experience_composition,
+        )
+
+        composition = get_session_experience_composition()
+        store = composition.store if composition is not None else None
+        persistence = LearningSessionPersistenceAdapter(store=store)
+        session_id = (page.shell.session_id or "").strip()
+        student_id = (page.shell.student_id or "").strip()
+        if not session_id or not student_id:
+            return ""
+
+        handle = persistence.load(session_id=session_id) or {}
+        topic_id = str(handle.get("topic_id") or "").strip()
+        mission_instance_id = str(
+            handle.get("mission_instance_id") or ""
+        ).strip()
+        if not topic_id and mission_instance_id:
+            try:
+                from app.models.educational_runtime_engine import (
+                    RuntimeMissionInstance,
+                )
+
+                row = RuntimeMissionInstance.query.filter_by(
+                    mission_instance_id=mission_instance_id
+                ).first()
+                if row is not None:
+                    topic_id = str(row.topic_id or "").strip()
+            except Exception:  # noqa: BLE001 — optional topic resolution
+                topic_id = ""
+        if not topic_id:
+            return ""
+
+        note = persistence.find_prior_reflection_note(
+            student_id=student_id,
+            topic_id=topic_id,
+            exclude_session_id=session_id,
+        )
+        if not note:
+            return ""
+        if len(note) <= 120:
+            return note
+        return f"{note[:117]}…"
+    except Exception:  # noqa: BLE001 — briefing enrichment is best-effort
+        return ""

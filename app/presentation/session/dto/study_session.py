@@ -100,6 +100,8 @@ class StudySessionPage:
     expected_outcome: str = ""
     checkpoint_preview: str = ""
     reflection_preview: str = ""
+    # Tier A — student's own prior reflection on this topic (resurfaced only).
+    prior_reflection_excerpt: str = ""
     # Adaptive MES for this session's recommendation (data only; render later).
     explanation: ExplanationViewModel | None = None
     # KWP-002 completion moment

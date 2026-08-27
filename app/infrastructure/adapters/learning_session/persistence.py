@@ -11,6 +11,7 @@ progress survives browser refresh and navigation.
 from __future__ import annotations
 
 from copy import deepcopy
+from datetime import date
 from typing import Any
 
 from app.application.learning_session.dto.finish_review import FinishReview
@@ -30,6 +31,24 @@ NS_MISSION = "lsr.mission"
 NS_PROGRESS = "lsr.progress"
 NS_CANDIDATES = "lsr.evidence_candidates"
 NS_EVIDENCE_PACKAGE = "lsr.evidence_package"
+
+# Tier A resurfacing — substantive notes only (no sentiment/keyword analysis).
+_PRIOR_REFLECTION_MIN_LEN = 12
+_TRIVIAL_REFLECTION_NOTES = frozenset(
+    {
+        "ok",
+        "okay",
+        "fine",
+        "good",
+        "yes",
+        "no",
+        "n/a",
+        "na",
+        "none",
+        "idk",
+        "meh",
+    }
+)
 
 DEFAULT_CHECKLIST: tuple[dict[str, Any], ...] = (
     {"id": "read", "label": "Read today's topic", "done": False},
@@ -315,6 +334,65 @@ class LearningSessionPersistenceAdapter:
         self._store.save(NS_HANDLE, session_id.strip(), updated)
         return deepcopy(updated)
 
+    def find_prior_reflection_note(
+        self,
+        *,
+        student_id: str,
+        topic_id: str,
+        exclude_session_id: str,
+    ) -> str | None:
+        """Return the student's most recent substantive past reflection for a topic.
+
+        Lightweight scan of ``lsr.handle`` documents. Resurfaces the student's
+        own words only — does not interpret, score, or gate on Consolidation.
+        Excludes ``exclude_session_id`` so the current session's note is never
+        treated as a prior one.
+
+        Recency: ``RuntimeMissionInstance.mission_date`` via
+        ``mission_instance_id`` when available; else document ``_version``;
+        else ``session_id`` lexicographic tiebreak.
+        """
+        sid = (student_id or "").strip()
+        tid = (topic_id or "").strip()
+        exclude = (exclude_session_id or "").strip()
+        if not sid or not tid:
+            return None
+
+        candidates: list[tuple[date | None, int, str, str]] = []
+        for doc in self._store.list_documents(NS_HANDLE):
+            if not isinstance(doc, dict):
+                continue
+            if str(doc.get("student_id") or "").strip() != sid:
+                continue
+            session_key = str(doc.get("session_id") or "").strip()
+            if not session_key or session_key == exclude:
+                continue
+            if str(doc.get("topic_id") or "").strip() != tid:
+                continue
+            note = str(doc.get("reflection_note") or "").strip()
+            if not is_substantive_reflection_note(note):
+                continue
+            mid = str(doc.get("mission_instance_id") or "").strip()
+            mission_date = _mission_date_for_instance(mid) if mid else None
+            try:
+                version = int(doc.get("_version") or 0)
+            except (TypeError, ValueError):
+                version = 0
+            candidates.append((mission_date, version, session_key, note))
+
+        if not candidates:
+            return None
+
+        # Prefer dated missions (None sorts last via key); then higher version;
+        # then session_id for determinism.
+        def _rank(item: tuple[date | None, int, str, str]) -> tuple:
+            mission_date, version, session_key, _note = item
+            has_date = 1 if mission_date is not None else 0
+            return (has_date, mission_date or date.min, version, session_key)
+
+        winners = sorted(candidates, key=_rank, reverse=True)
+        return winners[0][3]
+
     # ------------------------------------------------------------------
     # EV-001B — candidate observations + accepted evidence packages
     # ------------------------------------------------------------------
@@ -370,6 +448,40 @@ class LearningSessionPersistenceAdapter:
     def load_evidence_package(self, *, session_id: str) -> dict[str, Any] | None:
         doc = self._store.get(NS_EVIDENCE_PACKAGE, session_id.strip())
         return None if doc is None else deepcopy(doc)
+
+
+def is_substantive_reflection_note(note: str) -> bool:
+    """True when a reflection is long enough and not a trivial token.
+
+    Used for Tier A resurfacing only — never for sentiment or confusion
+    detection. Minimum length filters empty/whitespace and short replies
+    like ``ok`` / ``fine`` / ``good``; the trivial set is belt-and-braces.
+    """
+    cleaned = (note or "").strip()
+    if len(cleaned) < _PRIOR_REFLECTION_MIN_LEN:
+        return False
+    normalized = cleaned.lower().rstrip(".!")
+    if normalized in _TRIVIAL_REFLECTION_NOTES:
+        return False
+    return True
+
+
+def _mission_date_for_instance(mission_instance_id: str) -> date | None:
+    """Best-effort ``mission_date`` lookup; None when unavailable."""
+    mid = (mission_instance_id or "").strip()
+    if not mid:
+        return None
+    try:
+        from app.models.educational_runtime_engine import RuntimeMissionInstance
+
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=mid
+        ).first()
+        if row is None:
+            return None
+        return row.mission_date
+    except Exception:  # noqa: BLE001 — optional ranking signal only
+        return None
 
 
 def _serialize_handle(handle: SessionHandle) -> dict[str, Any]:
