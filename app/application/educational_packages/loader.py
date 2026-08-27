@@ -11,6 +11,7 @@ from typing import Any
 from app.application.educational_packages.models import (
     CertifiedEducationalPackage,
     KnowledgeCheck,
+    KnowledgeCheckChoice,
     ReadingGuidance,
     TomorrowPreviewPack,
 )
@@ -213,6 +214,23 @@ def _parse_package(
     for item in checks_raw:
         if not isinstance(item, dict):
             continue
+        choices: list[KnowledgeCheckChoice] = []
+        for raw_choice in item.get("choices") or ():
+            if not isinstance(raw_choice, dict):
+                continue
+            cid = str(raw_choice.get("id") or "").strip()
+            label = str(raw_choice.get("label") or "").strip()
+            if not cid or not label:
+                continue
+            choices.append(
+                KnowledgeCheckChoice(
+                    id=cid,
+                    label=label,
+                    misconception_tag=str(
+                        raw_choice.get("misconception_tag") or ""
+                    ).strip(),
+                )
+            )
         checks.append(
             KnowledgeCheck(
                 episode_id=str(item.get("episode_id") or "").strip(),
@@ -240,6 +258,8 @@ def _parse_package(
                     for c in (item.get("success_criteria") or ())
                     if str(c).strip()
                 ),
+                choices=tuple(choices),
+                correct_choice_id=str(item.get("correct_choice_id") or "").strip(),
             )
         )
 

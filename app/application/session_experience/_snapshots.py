@@ -93,6 +93,8 @@ def activity_snapshot(activity: ActivityProjection) -> ActivitySnapshot:
         common_mistake=activity.common_mistake,
         next_action=activity.next_action,
         scored_correct=activity.scored_correct,
+        response_type=activity.response_type,
+        choices=activity.choices,
         metadata=activity.metadata,
     )
 

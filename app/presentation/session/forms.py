@@ -6,6 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import (
     HiddenField,
     RadioField,
+    StringField,
     SubmitField,
     TextAreaField,
 )
@@ -44,15 +45,34 @@ class ChecklistItemForm(FlaskForm):
 
 
 class SubmitAnswerForm(FlaskForm):
-    """Submit an activity response."""
+    """Submit an activity response (textarea or MCQ choice id)."""
 
     session_id = HiddenField(validators=[DataRequired(), Length(max=128)])
     activity_id = HiddenField(validators=[DataRequired(), Length(max=128)])
     response = TextAreaField(
         "Your answer",
-        validators=[DataRequired(), Length(min=1, max=8000)],
+        validators=[Optional(), Length(min=1, max=8000)],
+    )
+    choice = StringField(
+        "Your choice",
+        validators=[Optional(), Length(max=64)],
     )
     submit = SubmitField("Submit Answer")
+
+    def resolved_response(self) -> str:
+        """Prefer MCQ choice id when posted; otherwise free-text response."""
+        choice = (self.choice.data or "").strip()
+        if choice:
+            return choice
+        return (self.response.data or "").strip()
+
+    def validate(self, extra_validators=None):
+        if not super().validate(extra_validators=extra_validators):
+            return False
+        if not self.resolved_response():
+            self.response.errors.append("A response is required.")
+            return False
+        return True
 
 
 class AdvanceActivityForm(FlaskForm):

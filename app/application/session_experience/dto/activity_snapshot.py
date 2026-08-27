@@ -32,4 +32,6 @@ class ActivitySnapshot:
     common_mistake: str = ""
     next_action: str = ""
     scored_correct: bool | None = None
+    response_type: str = ""
+    choices: tuple[tuple[str, str], ...] = ()
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)

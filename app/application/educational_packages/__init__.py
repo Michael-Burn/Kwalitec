@@ -22,6 +22,7 @@ from app.application.educational_packages.loader import (
 from app.application.educational_packages.models import (
     CertifiedEducationalPackage,
     KnowledgeCheck,
+    KnowledgeCheckChoice,
     ReadingGuidance,
     TomorrowPreviewPack,
 )
@@ -33,6 +34,7 @@ __all__ = [
     "CertifiedEducationalPackage",
     "EducationalPackageLoader",
     "KnowledgeCheck",
+    "KnowledgeCheckChoice",
     "ReadingGuidance",
     "TomorrowPreviewPack",
     "certified_guidance_enforced",

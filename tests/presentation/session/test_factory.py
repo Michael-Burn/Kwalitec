@@ -49,6 +49,7 @@ def test_submit_answer_form_fields(session_app):
     with session_app.app_context():
         form = SubmitAnswerForm()
         assert "response" in form._fields
+        assert "choice" in form._fields
         assert "activity_id" in form._fields
 
 

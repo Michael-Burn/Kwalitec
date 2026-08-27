@@ -514,6 +514,30 @@
     {{ answer_form.hidden_tag() }}
     {{ answer_form.session_id() }}
     {{ answer_form.activity_id() }}
+    {% if s.response_type == 'mcq' and s.practice_choices %}
+    <fieldset class="ds-session-answer__choices" role="radiogroup" aria-labelledby="session-answer-label">
+      <legend class="ds-session-answer__label" id="session-answer-label">
+        {{ s.answer_prompt }}
+      </legend>
+      {% for cid, label in s.practice_choices %}
+      <label class="ds-exam-row" for="session-choice-{{ loop.index0 }}">
+        <input
+          class="ds-exam-row__input"
+          type="radio"
+          name="{{ answer_form.choice.name }}"
+          id="session-choice-{{ loop.index0 }}"
+          value="{{ cid }}"
+          required
+        >
+        <span class="ds-exam-row__body">
+          <span class="ds-exam-row__title-row">
+            <span class="ds-exam-row__title">{{ label }}</span>
+          </span>
+        </span>
+      </label>
+      {% endfor %}
+    </fieldset>
+    {% else %}
     <label class="ds-session-answer__label" for="{{ answer_form.response.id }}" id="session-answer-label">
       {{ s.answer_prompt }}
     </label>
@@ -523,6 +547,7 @@
       autocomplete="off",
       **{"aria-labelledby": "session-answer-label"}
     ) }}
+    {% endif %}
     <div class="ds-primary-strip" role="group" aria-label="Primary actions">
       <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
         {{ s.primary_label }}

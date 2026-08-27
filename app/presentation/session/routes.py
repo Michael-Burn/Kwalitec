@@ -321,7 +321,7 @@ def answer(session_id: str):
         submit_answer(
             session_id=session_id,
             activity_id=(form.activity_id.data or "").strip(),
-            response=(form.response.data or "").strip(),
+            response=form.resolved_response(),
         )
     except SessionOwnershipError as exc:
         return _guard_ownership(exc)

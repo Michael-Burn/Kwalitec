@@ -198,7 +198,28 @@ def _build_activity(
             opaque.get("next_action") or opaque.get("next_action_label") or ""
         ),
         scored_correct=_optional_bool(opaque.get("scored_correct")),
+        response_type=str(opaque.get("response_type") or ""),
+        choices=_parse_choices(opaque.get("choices")),
     )
+
+
+def _parse_choices(raw: Any) -> tuple[tuple[str, str], ...]:
+    """Normalise opaque choice payloads to (id, label) pairs."""
+    if not raw:
+        return ()
+    pairs: list[tuple[str, str]] = []
+    for item in raw:
+        if isinstance(item, dict):
+            cid = str(item.get("id") or "").strip()
+            label = str(item.get("label") or "").strip()
+            if cid and label:
+                pairs.append((cid, label))
+        elif isinstance(item, list | tuple) and len(item) >= 2:
+            cid = str(item[0]).strip()
+            label = str(item[1]).strip()
+            if cid and label:
+                pairs.append((cid, label))
+    return tuple(pairs)
 
 
 def _explanation_text(value: Any) -> str:

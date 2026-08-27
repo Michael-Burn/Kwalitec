@@ -60,6 +60,8 @@ class ActivityProjection:
     common_mistake: str = ""
     next_action: str = ""
     scored_correct: bool | None = None
+    response_type: str = ""
+    choices: tuple[tuple[str, str], ...] = ()
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
 
     @classmethod
@@ -86,6 +88,8 @@ class ActivityProjection:
         common_mistake: str = "",
         next_action: str = "",
         scored_correct: bool | None = None,
+        response_type: str = "",
+        choices: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
         metadata: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
     ) -> ActivityProjection:
         """Build an activity projection from opaque port facts."""
@@ -100,6 +104,11 @@ class ActivityProjection:
         )
         resolved_type = (activity_type or "").strip()
         resolved_stage = (stage_label or "").strip()
+        cleaned_choices = tuple(
+            (str(cid).strip(), str(label).strip())
+            for cid, label in (choices or ())
+            if str(cid).strip() and str(label).strip()
+        )
         return cls(
             activity_id=_require_non_empty(activity_id, "activity_id"),
             session_id=_require_non_empty(session_id, "session_id"),
@@ -121,6 +130,8 @@ class ActivityProjection:
             common_mistake=(common_mistake or "").strip(),
             next_action=(next_action or "").strip(),
             scored_correct=scored_correct,
+            response_type=(response_type or "").strip().lower(),
+            choices=cleaned_choices,
             metadata=tuple(metadata or ()),
         )
 

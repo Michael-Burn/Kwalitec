@@ -166,6 +166,12 @@ def _activities(
             if is_final
             else "Continue"
         )
+        if scoreable.response_type is PracticeResponseType.MCQ:
+            answer_prompt = "Select your answer"
+        elif scoreable.response_type is PracticeResponseType.NUMERIC:
+            answer_prompt = "Your numeric answer"
+        else:
+            answer_prompt = "Your answer"
         activities.append(
             EducationalActivitySpec(
                 activity_id=f"act-practice-{index}",
@@ -176,7 +182,7 @@ def _activities(
                 or "Closed-book retrieval aligned to today's Mission success criteria.",
                 supporting_material=check.explanation,
                 hints=check.hints,
-                answer_prompt="Your answer",
+                answer_prompt=answer_prompt,
                 objective_ids=objective_ids[:1] if objective_ids else (),
                 syllabus_refs=syllabus,
                 scoreable=scoreable,
@@ -309,11 +315,23 @@ def _scoreable_from_check(
         response = PracticeResponseType.MCQ
     elif (check.response_type or "").lower() in {"numeric", "number"}:
         response = PracticeResponseType.NUMERIC
+    if response is PracticeResponseType.MCQ:
+        accepted = check.accepted_keywords
+        answer_key = AnswerKey(
+            accepted=accepted,
+            correct_choice_id=check.correct_choice_id,
+        )
+        choices = tuple((c.id, c.label) for c in check.choices)
+    else:
+        answer_key = AnswerKey(
+            accepted=check.accepted_keywords or ("explain", "link"),
+        )
+        choices = ()
     return ScoreablePracticeItem(
         item_id=check.item_id or check.episode_id,
         prompt=check.prompt,
         response_type=response,
-        answer_key=AnswerKey(accepted=check.accepted_keywords or ("explain", "link")),
+        answer_key=answer_key,
         mark_scheme=MarkScheme(
             points=check.success_criteria
             or ("Address the Mission success criteria for this check.",),
@@ -325,6 +343,7 @@ def _scoreable_from_check(
         next_action="Continue to the next Knowledge Check or Reflection.",
         topic_id=pack.topic_code,
         topic_keywords=pack.topic_title_keywords,
+        choices=choices,
         body=check.body,
         supporting_material=check.explanation,
         hints=check.hints,

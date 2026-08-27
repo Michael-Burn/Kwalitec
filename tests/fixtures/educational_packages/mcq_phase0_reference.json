@@ -1,0 +1,167 @@
+{
+  "package_version": "mcq-phase0-infra-1.0.0",
+  "publication_version": "mcq-phase0-infra-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "MCQ-PHASE0-INFRA",
+  "subject_id": "CS1",
+  "cmp_edition": "Synthetic fixture — not live curriculum content",
+  "certification_refs": [
+    "tests/fixtures/educational_packages/mcq_phase0_reference.json"
+  ],
+  "author_id": "mcq-phase0-infra",
+  "authored_at": "2026-08-27",
+  "topic_code": "99.9.9",
+  "topic_title": "MCQ Phase 0 infrastructure reference",
+  "topic_id": "MCQ-PHASE0-REF",
+  "package_id": "CS1-MCQ-PHASE0-REF",
+  "campaign_day": "INFRA-D0",
+  "topic_aliases": [
+    "MCQ-PHASE0-REF",
+    "99.9.9"
+  ],
+  "topic_title_keywords": [
+    "mcq",
+    "phase0",
+    "infrastructure",
+    "reference"
+  ],
+  "golden_id": "GOLDEN-MCQ-PHASE0-REF",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-mcq-phase0-ref",
+    "display_title": "MCQ Phase 0 reference Mission",
+    "mission_purpose": "Prove package JSON → loader → substance → MCQ scoring path.",
+    "tutor_intent": "Infrastructure proof only.",
+    "educational_intent": "Synthetic fixture for MCQ wiring.",
+    "learning_objective": "Select the correct MCQ choice id end-to-end.",
+    "concept_focus": "MCQ response_type wiring.",
+    "prior_bridge": "N/A — synthetic fixture.",
+    "why_now": "Phase 0 infrastructure needs a reference package before content conversion.",
+    "expected_benefit": "Correct choice scores correct; incorrect choice scores incorrect.",
+    "explainability": "Assigned as synthetic fixture for Phase 0 MCQ infrastructure.",
+    "success_criteria": [
+      "Correct choice id scores as correct.",
+      "Incorrect choice id scores as incorrect."
+    ],
+    "task_descriptions": [
+      "Answer the synthetic MCQ checkpoint."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 10,
+      "max": 15
+    }
+  },
+  "session": {
+    "session_id": "ssn-mcq-phase0-ref",
+    "session_educational_purpose": "Infrastructure proof for MCQ scoring.",
+    "session_tutor_purpose": "Exercise the MCQ path only.",
+    "duration_budget_minutes": {
+      "min": 10,
+      "max": 15
+    },
+    "wrap_up": "Synthetic MCQ Phase 0 reference session complete.",
+    "confidence_prompt": "Infrastructure fixture — not for student confidence measurement."
+  },
+  "reading_guidance": {
+    "lead_line": "Synthetic reading guidance for MCQ Phase 0.",
+    "focus_questions": [
+      "Which choice id is correct?"
+    ],
+    "misconception_watch": [
+      "Treating this fixture as live curriculum content."
+    ],
+    "open_point": "Open the synthetic MCQ path.",
+    "stop_condition": "Stop after the checkpoint scores.",
+    "out_of_scope_today": [
+      "Live CS1 content conversion."
+    ],
+    "annotation_task": "Note which choice id you selected.",
+    "attempt_before_reveal": "Select before reading the model answer.",
+    "exit_line": "Leave the fixture once scoring is proven.",
+    "return_cue": "Return only to re-run the infrastructure proof.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Confirm response_type is mcq before submitting.",
+        "student_action": "Confirm"
+      }
+    ],
+    "reentry_line": "Welcome back to the MCQ Phase 0 fixture."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-mcq-phase0-ar-01",
+      "kind": "active_recall",
+      "item_id": "mcq-phase0-ar-01",
+      "title": "Active Recall: Phase 0 (still short_structured)",
+      "prompt": "Name the response type this Active Recall item uses (infrastructure control).",
+      "response_type": "short_structured",
+      "body": "Control item — remains short_structured so AR is untouched by Phase 0.",
+      "hints": [
+        "Look at response_type in the package JSON."
+      ],
+      "accepted_keywords": [
+        "short_structured",
+        "textarea"
+      ],
+      "explanation": "Active Recall stays short_structured in Phase 0.",
+      "model_answer": "short_structured",
+      "common_mistake": "Assuming Phase 0 converted Active Recall to MCQ.",
+      "success_criteria": [
+        "Names short_structured."
+      ]
+    },
+    {
+      "episode_id": "lep-mcq-phase0-cp-01",
+      "kind": "checkpoint",
+      "item_id": "mcq-phase0-cp-01",
+      "title": "Checkpoint: Phase 0 MCQ",
+      "prompt": "Which value is 2 + 2?",
+      "response_type": "mcq",
+      "body": "Synthetic MCQ checkpoint — not real exam content.",
+      "hints": [
+        "Pick the arithmetic result."
+      ],
+      "accepted_keywords": [],
+      "choices": [
+        {
+          "id": "a",
+          "label": "3",
+          "misconception_tag": "off_by_one"
+        },
+        {
+          "id": "b",
+          "label": "4",
+          "misconception_tag": ""
+        },
+        {
+          "id": "c",
+          "label": "5",
+          "misconception_tag": "off_by_one"
+        }
+      ],
+      "correct_choice_id": "b",
+      "explanation": "2 + 2 = 4.",
+      "model_answer": "4",
+      "common_mistake": "Selecting an adjacent integer.",
+      "success_criteria": [
+        "Selects choice b."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Infrastructure fixture reflection.",
+    "prompt": "Did the MCQ path score correctly?",
+    "prompts": [
+      "Did correct choice b score Correct?",
+      "Did incorrect choice a score Incorrect?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "99.9.9",
+    "next_topic_title": "MCQ content conversion (next phase)",
+    "continuity_line": "After infrastructure, convert real checkpoint content.",
+    "light_prep_cue": "No prep — fixture only.",
+    "student_facing": "Infrastructure complete; content conversion follows."
+  }
+}

@@ -115,6 +115,8 @@ class ActivityViewModel:
     common_mistake: str = ""
     next_action: str = ""
     scored_correct: bool | None = None
+    response_type: str = ""
+    choices: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -299,6 +301,8 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
         common_mistake=snap.common_mistake,
         next_action=snap.next_action,
         scored_correct=snap.scored_correct,
+        response_type=snap.response_type or "",
+        choices=snap.choices or (),
     )
 
 

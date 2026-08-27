@@ -7,6 +7,15 @@ from typing import Any
 
 
 @dataclass(frozen=True)
+class KnowledgeCheckChoice:
+    """One MCQ option for a Knowledge Check (checkpoint / active recall)."""
+
+    id: str
+    label: str
+    misconception_tag: str = ""
+
+
+@dataclass(frozen=True)
 class KnowledgeCheck:
     """One Active Recall or Checkpoint item from a certified package."""
 
@@ -23,6 +32,9 @@ class KnowledgeCheck:
     model_answer: str = ""
     common_mistake: str = ""
     success_criteria: tuple[str, ...] = ()
+    # MCQ fields — unused for short_structured; additive and optional.
+    choices: tuple[KnowledgeCheckChoice, ...] = ()
+    correct_choice_id: str = ""
 
 
 @dataclass(frozen=True)

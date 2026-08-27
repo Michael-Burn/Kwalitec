@@ -114,6 +114,9 @@ class StudySessionPage:
     model_answer: str = ""
     common_mistake: str = ""
     feedback_next_action: str = ""
+    # MCQ practice response (additive; short_structured keeps textarea)
+    response_type: str = ""
+    practice_choices: tuple[tuple[str, str], ...] = ()
     # KWP-005 Sitting Report
     what_studied: str = ""
     performance_summary: str = ""

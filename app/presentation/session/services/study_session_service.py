@@ -260,6 +260,8 @@ class StudySessionService:
             model_answer=str(content.get("model_answer") or ""),
             common_mistake=str(content.get("common_mistake") or ""),
             feedback_next_action=str(content.get("feedback_next_action") or ""),
+            response_type=str(content.get("response_type") or ""),
+            practice_choices=tuple(content.get("practice_choices") or ()),
             disclosures=disclosures,
             technical_lines=technical,
             session_id=page.shell.session_id,
@@ -669,6 +671,8 @@ class StudySessionService:
             "common_mistake": "",
             "feedback_next_action": "",
             "practice_prompt": "",
+            "response_type": "",
+            "practice_choices": (),
         }
 
         if surface is SessionSurface.OVERVIEW and page.overview:
@@ -722,6 +726,8 @@ class StudySessionService:
                     feedback_next_action if act.has_explanation else ""
                 ),
                 "practice_prompt": practice_prompt,
+                "response_type": (act.response_type or "").strip().lower(),
+                "practice_choices": tuple(act.choices or ()),
             }
 
         if surface is SessionSurface.REFLECTION and page.reflection:
