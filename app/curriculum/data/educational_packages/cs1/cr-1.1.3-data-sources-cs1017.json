@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.3-ar-01",
       "title": "Active Recall: 1.1.3",
-      "prompt": "Closed-book. (1) Name source types. (2) Name one large-set characteristic. (3) Why is 1.1.4 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.3 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly contrasts data source types and one large-set characteristic that affects analysis?",
+      "response_type": "mcq",
+      "body": "Select source characteristics and scale constraint.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "sources",
-        "characteristics",
-        "large",
-        "data"
-      ],
-      "explanation": "Active recall for 1.1.3.",
-      "model_answer": "Sources differ in origin and quality; large sets add scale constraints. Reproducibility opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Quality and bias depend on source design, not size alone. Large scale can add engineering constraints rather than remove them.",
+      "model_answer": "Source quality varies; large volume does not auto-imply fitness.",
+      "common_mistake": "Bigger-is-better, deferred trust checks, or ignoring scale limits.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Sources differ in origin and quality (for example administrative records versus voluntary surveys bring different bias and coverage risks). Extremely large sets add scale constraints such as storage, compute limits, or need for sampling despite volume.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A larger file is automatically better data because volume implies representativeness and removes selection concerns.",
+          "misconception_tag": "bigger_is_better"
+        },
+        {
+          "id": "c",
+          "label": "Source characteristics matter only after modelling is complete; during exploration all files may be treated as equally trustworthy.",
+          "misconception_tag": "trust_after_modelling"
+        },
+        {
+          "id": "d",
+          "label": "Extremely large data sets always remove the need for sampling or distributed tooling because every row can always be processed locally without constraint.",
+          "misconception_tag": "scale_no_constraint"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.3-cp-01",
       "title": "Checkpoint: 1.1.3",
-      "prompt": "Closed-book. Compare an administrative claims extract with a voluntary customer survey, both used for the same pricing question. (1) Name two source characteristics that change how you trust results. (2) Name one characteristic of an extremely large data set that constrains analysis. (3) Refuse: 'The bigger file is automatically better data.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.3.",
+      "prompt": "Closed-book. Compare an administrative claims extract with a voluntary customer survey, both used for the same pricing question. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name trust characteristics and a large-set constraint; refuse bigger-is-better.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "reproducible",
-        "1.1.4",
-        "sources"
-      ],
-      "explanation": "Checkpoint for 1.1.3.",
-      "model_answer": "(1) Examples: selection/response bias (voluntary survey vs administrative coverage); granularity or completeness of fields; measurement error. (2) Scale constraints: storage/compute limits, need for sampling or distributed tooling, or quality issues that volume does not fix. (3) Refuse: volume alone does not imply representativeness or fitness for the analysis aim.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Bias and coverage differ by source mechanism. Row count does not replace representativeness or remove scale work.",
+      "model_answer": "Compare bias/coverage; large n does not imply better data.",
+      "common_mistake": "Row-count superiority, deferred trust, or volume cures bias.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Examples: selection or response bias (survey versus administrative coverage), completeness or granularity of fields, measurement error. Large scale may still require sampling or distributed tooling and does not fix representativeness by itself. Volume alone is not automatically better data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The administrative extract is always superior because it has more rows, so source characteristics need not be compared.",
+          "misconception_tag": "bigger_is_better"
+        },
+        {
+          "id": "c",
+          "label": "Both sources are equally trustworthy during EDA because trust is assessed only after the final model is chosen.",
+          "misconception_tag": "trust_after_modelling"
+        },
+        {
+          "id": "d",
+          "label": "Extremely large survey files remove bias automatically because every respondent row is included in the analysis file.",
+          "misconception_tag": "volume_fixes_bias"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

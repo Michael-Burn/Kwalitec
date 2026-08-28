@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -40,11 +40,11 @@
     "tutor_intent": "Today I will force discrete family recognition and refuse 'Publication Front finished continuous distributions / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of named discrete distributions on a finite set.",
     "learning_objective": "Geometric, binomial, negative binomial, hypergeometric, Poisson and uniform discrete distributions on a finite set",
-    "concept_focus": "Counting / selection situation → discrete family → defining characteristic → refuse mismatched family.",
+    "concept_focus": "Counting / selection situation \u2192 discrete family \u2192 defining characteristic \u2192 refuse mismatched family.",
     "prior_bridge": "Yesterday you studied PCA (1.2.3). Today opens Topic 2.1 on Publication Front.",
     "why_now": "Discrete families are the first univariate distribution honesty LO still AA.",
     "expected_benefit": "You will be able to match a discrete data-generating situation to a syllabus family and refuse a habitual mismatch.",
-    "explainability": "Assigned as Campaign Rho Day 8 because Publication Front places discrete families before continuous families.",
+    "explainability": "Day 8 focuses places discrete.families before continuous families.",
     "success_criteria": [
       "Closed-book, name the discrete families in scope.",
       "State one distinguishing warrant between two named families.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Discrete distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.1 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.1 (discrete distributions (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.1\u2013discrete distributions (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 2.1.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing continuous families today.",
       "Watch for claiming Topic 2.1 complete."
     ],
-    "open_point": "CMP · Syllabus 2.1.1 discrete distributions",
+    "open_point": "CMP \u00b7 Syllabus 2.1.1 discrete distributions",
     "stop_condition": "Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2)",
     "out_of_scope_today": [
       "Continuous distributions as primary",
@@ -95,9 +95,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 2.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.1 discrete distributions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 2.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.1 discrete distributions. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.1 (stop before continuous distributions primary 2.1.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -118,52 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-2.1.1-ar-01",
       "title": "Active Recall: 2.1.1",
-      "prompt": "Closed-book. (1) List discrete families in scope. (2) Give one distinguishing warrant. (3) Why is 2.1.2 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.1.1 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly contrasts named discrete distribution families on a finite or countable support?",
+      "response_type": "mcq",
+      "body": "Select family distinguishing warrants.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "geometric",
-        "binomial",
-        "Poisson",
-        "discrete"
-      ],
-      "explanation": "Active recall for 2.1.1.",
-      "model_answer": "Named discrete families share discrete support with distinct generative stories. Continuous families open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Family choice follows the data-generating story, not integer typing alone. Normal-for-counts or interchangeable families are mismatches.",
+      "model_answer": "Match generative story to family; discrete \u2260 interchangeable.",
+      "common_mistake": "Normal for counts, ignoring without-replacement structure, or integer implies Poisson.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Named discrete families (geometric, binomial, negative binomial, hypergeometric, Poisson, uniform discrete) share discrete support but differ in generative stories: for example Poisson counts rare events in a fixed interval under a constant rate; binomial counts successes in fixed independent trials.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "All discrete count data should be modelled as Normal because the Normal is the default family for any numeric column.",
+          "misconception_tag": "normal_for_counts"
+        },
+        {
+          "id": "c",
+          "label": "Hypergeometric and Poisson are interchangeable whenever counts are non-negative integers.",
+          "misconception_tag": "families_interchangeable"
+        },
+        {
+          "id": "d",
+          "label": "Discrete families apply only after continuous models fail; integer support alone determines Poisson regardless of generating mechanism.",
+          "misconception_tag": "integer_implies_poisson"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-2.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-2.1.1-cp-01",
       "title": "Checkpoint: 2.1.1",
-      "prompt": "Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments. Which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.1.1.",
+      "prompt": "Closed-book. For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Place Poisson; refuse habitual mismatch.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "continuous",
-        "2.1.2",
-        "discrete"
-      ],
-      "explanation": "Checkpoint for 2.1.1.",
-      "model_answer": "(1) Poisson: counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Poisson matches rare events in fixed time with constant rate. Normal, automatic hypergeometric, or forced binomial n = 1 are mismatches.",
+      "model_answer": "Poisson for rare events; refuse Normal/hypergeometric mismatch.",
+      "common_mistake": "Normal-by-default or wrong discrete family for the story.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson fits: counts of rare events in a fixed interval under a constant rate / independent-increments story. Refuse Normal for a non-negative integer count or hypergeometric when there is no without-replacement draw from a finite success/failure population.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Normal(\u03bc, \u03c3\u00b2) fits best because the sample mean and variance can always be matched for any count variable.",
+          "misconception_tag": "normal_for_counts"
+        },
+        {
+          "id": "c",
+          "label": "Hypergeometric is required because every insurance count problem draws without replacement from a finite population of policies.",
+          "misconception_tag": "hypergeometric_always"
+        },
+        {
+          "id": "d",
+          "label": "Binomial is mandatory because there is one policy, so n = 1 trial always defines a binomial count model for annual claims.",
+          "misconception_tag": "binomial_n_one"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

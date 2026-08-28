@@ -118,52 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-2.1.1-ar-01",
       "title": "Active Recall: 2.1.1",
-      "prompt": "Closed-book. (1) List discrete families in scope. (2) Give one distinguishing warrant. (3) Why is 2.1.2 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.1.1 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly contrasts named discrete distribution families on a finite or countable support?",
+      "response_type": "mcq",
+      "body": "Select family distinguishing warrants.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "geometric",
-        "binomial",
-        "Poisson",
-        "discrete"
-      ],
-      "explanation": "Active recall for 2.1.1.",
-      "model_answer": "Named discrete families share discrete support with distinct generative stories. Continuous families open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Family choice follows the data-generating story, not integer typing alone. Normal-for-counts or interchangeable families are mismatches.",
+      "model_answer": "Match generative story to family; discrete ≠ interchangeable.",
+      "common_mistake": "Normal for counts, ignoring without-replacement structure, or integer implies Poisson.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Named discrete families (geometric, binomial, negative binomial, hypergeometric, Poisson, uniform discrete) share discrete support but differ in generative stories: for example Poisson counts rare events in a fixed interval under a constant rate; binomial counts successes in fixed independent trials.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "All discrete count data should be modelled as Normal because the Normal is the default family for any numeric column.",
+          "misconception_tag": "normal_for_counts"
+        },
+        {
+          "id": "c",
+          "label": "Hypergeometric and Poisson are interchangeable whenever counts are non-negative integers.",
+          "misconception_tag": "families_interchangeable"
+        },
+        {
+          "id": "d",
+          "label": "Discrete families apply only after continuous models fail; integer support alone determines Poisson regardless of generating mechanism.",
+          "misconception_tag": "integer_implies_poisson"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-2.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-2.1.1-cp-01",
       "title": "Checkpoint: 2.1.1",
-      "prompt": "Closed-book. (1) For a single policy, you model the number of claims in a fixed year with a constant rare-event rate and independent increments. Which discrete family fits, and why? (2) Name one family that would be a habitual mismatch here, and refuse it in one sentence.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.1.1.",
+      "prompt": "Closed-book. For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Place Poisson; refuse habitual mismatch.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "continuous",
-        "2.1.2",
-        "discrete"
-      ],
-      "explanation": "Checkpoint for 2.1.1.",
-      "model_answer": "(1) Poisson: counts of rare events in a fixed interval under a constant rate / independent-increments story. (2) Refuse continuous Normal for a non-negative integer count, or refuse hypergeometric if there is no without-replacement draw from a finite success/failure population.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Poisson matches rare events in fixed time with constant rate. Normal, automatic hypergeometric, or forced binomial n = 1 are mismatches.",
+      "model_answer": "Poisson for rare events; refuse Normal/hypergeometric mismatch.",
+      "common_mistake": "Normal-by-default or wrong discrete family for the story.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson fits: counts of rare events in a fixed interval under a constant rate / independent-increments story. Refuse Normal for a non-negative integer count or hypergeometric when there is no without-replacement draw from a finite success/failure population.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Normal(μ, σ²) fits best because the sample mean and variance can always be matched for any count variable.",
+          "misconception_tag": "normal_for_counts"
+        },
+        {
+          "id": "c",
+          "label": "Hypergeometric is required because every insurance count problem draws without replacement from a finite population of policies.",
+          "misconception_tag": "hypergeometric_always"
+        },
+        {
+          "id": "d",
+          "label": "Binomial is mandatory because there is one policy, so n = 1 trial always defines a binomial count model for annual claims.",
+          "misconception_tag": "binomial_n_one"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

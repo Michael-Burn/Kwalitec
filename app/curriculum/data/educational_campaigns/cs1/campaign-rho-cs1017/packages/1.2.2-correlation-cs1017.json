@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,12 +39,12 @@
     "mission_purpose": "Today's Mission exists to study Syllabus 1.2.2 correlation measures under Publication Front discipline. Without pretending PCA (1.2.3) is finished.",
     "tutor_intent": "Today I will force Pearson/Spearman/Kendall warrant and refuse 'Publication Front finished PCA / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of bivariate correlation measures and inference.",
-    "learning_objective": "Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s measures of correlation for bivariate data",
-    "concept_focus": "Measure choice (Pearson / Spearman / Kendall) → what association means → refuse causation / linearity overclaim.",
+    "learning_objective": "Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s measures of correlation for bivariate data",
+    "concept_focus": "Measure choice (Pearson / Spearman / Kendall) \u2192 what association means \u2192 refuse causation / linearity overclaim.",
     "prior_bridge": "Yesterday you studied EDA summaries (1.2.1). Today continues Publication Front.",
     "why_now": "Association measures sit between summaries and dimensionality reduction.",
     "expected_benefit": "You will be able to justify a correlation measure for bivariate data and state one inferential limit of a large coefficient.",
-    "explainability": "Assigned as Campaign Rho Day 6 because Publication Front places correlation before PCA.",
+    "explainability": "Day 6 focuses places correlation.before PCA.",
     "success_criteria": [
       "Closed-book, distinguish Pearson, Spearman, and Kendall at foundation level.",
       "State one inference caution for bivariate correlation.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Correlation measures (Publication Front). You practised selective CMP reading on Syllabus 1.2.2 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.2 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.2 (correlation measures (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.2\u2013correlation measures (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.2?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing PCA today.",
       "Watch for claiming Topic 1.2 complete."
     ],
-    "open_point": "CMP · Syllabus 1.2.2 correlation measures for bivariate data",
+    "open_point": "CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3)",
     "out_of_scope_today": [
       "PCA as primary",
@@ -94,9 +94,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.2.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.2 correlation measures for bivariate data. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.2.2.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,56 +117,92 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.2.2-ar-01",
       "title": "Active Recall: 1.2.2",
-      "prompt": "Closed-book. (1) Distinguish Pearson, Spearman, Kendall. (2) Name one inference caution. (3) Why is 1.2.3 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.2.2 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly distinguishes Pearson, Spearman, and Kendall correlation measures?",
+      "response_type": "mcq",
+      "body": "Select measure definitions and one inference caution.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Pearson",
-        "Spearman",
-        "Kendall",
-        "correlation"
-      ],
-      "explanation": "Active recall for 1.2.2.",
-      "model_answer": "Pearson is linear association; Spearman/Kendall are rank-based. PCA opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Measures differ in what association they capture. Identity claims, causal proof, or PCA confusion are wrong.",
+      "model_answer": "Pearson linear; Spearman/Kendall rank; correlation \u2260 causation.",
+      "common_mistake": "Treating measures as identical or reading causation from r.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson measures linear association; Spearman and Kendall use ranks and suit monotone but nonlinear patterns and outlier resistance better in many skewed cases. A large coefficient does not prove causation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Pearson, Spearman, and Kendall always give identical values because they are three names for the same formula.",
+          "misconception_tag": "all_same_measure"
+        },
+        {
+          "id": "c",
+          "label": "A significant Pearson correlation proves that changing X causes Y to change in the observed direction.",
+          "misconception_tag": "correlation_is_causation"
+        },
+        {
+          "id": "d",
+          "label": "Kendall is used only for PCA inputs; Pearson is used only after PCA scores are constructed.",
+          "misconception_tag": "pca_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.2-cp-01",
       "title": "Checkpoint: 1.2.2",
-      "prompt": "Closed-book. Years licensed vs claim frequency: frequency is skewed with visible outliers; the scatter looks roughly decreasing but nonlinear. (1) Which correlation measure would you prefer and why? (2) State one claim a large coefficient still does not justify.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.2.2.",
+      "prompt": "Closed-book. Years licensed vs claim frequency: frequency is skewed with outliers; scatter looks roughly decreasing but nonlinear. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Choose correlation measure and state one limit of a large coefficient.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "PCA",
-        "1.2.3",
-        "correlation"
-      ],
-      "explanation": "Checkpoint for 1.2.2.",
-      "model_answer": "(1) Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. (2) A large coefficient still does not prove that changing years licensed causes frequency to change.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Rank measures suit monotone nonlinear patterns with outliers. Neither Pearson-only nor causal claims follow from association alone.",
+      "model_answer": "Spearman/Kendall preferred; refuse causation from correlation.",
+      "common_mistake": "Pearson by default, causal inference from r, or PCA confusion.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. A large coefficient still does not prove that changing years licensed causes frequency to change.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use Pearson only because linear correlation is required whenever a scatter plot is drawn.",
+          "misconception_tag": "pearson_only"
+        },
+        {
+          "id": "c",
+          "label": "A strong negative Spearman correlation proves that reducing years licensed will reduce claim frequency.",
+          "misconception_tag": "correlation_is_causation"
+        },
+        {
+          "id": "d",
+          "label": "Use Kendall because it measures variance explained by PC1, which is the correct bivariate association measure here.",
+          "misconception_tag": "pca_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest correlation wobble: PCA continues Publication Front tomorrow.",
+    "framing": "Harvest correlation wobble. PCA continues Publication Front tomorrow.",
     "prompt": "Which part of today's 1.2.2 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.2.2 work is stickiest and why?",

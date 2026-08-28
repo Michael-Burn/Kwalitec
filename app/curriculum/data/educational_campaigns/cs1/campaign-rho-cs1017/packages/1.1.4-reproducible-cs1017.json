@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,11 +39,11 @@
     "tutor_intent": "Today I will force reproducibility elements warrant and refuse 'Publication Front finished EDA / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of reproducibility elements.",
     "learning_objective": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
-    "concept_focus": "Reproducibility meaning → required elements (data, code, docs) → refuse one-off-rerun-as-reproducible.",
+    "concept_focus": "Reproducibility meaning \u2192 required elements (data, code, docs) \u2192 refuse one-off-rerun-as-reproducible.",
     "prior_bridge": "Yesterday you studied data sources (1.1.3). Today continues Publication Front.",
     "why_now": "Reproducibility closes Topic 1.1 before EDA entry.",
     "expected_benefit": "You will be able to state what reproducible research means and name elements required to keep a data analysis reproducible.",
-    "explainability": "Assigned as Campaign Rho Day 4 because Publication Front closes Topic 1.1 at reproducibility before EDA.",
+    "explainability": "Day 4 focuses the named learning objective. Closes Topic 1.1 at reproducibility before EDA.",
     "success_criteria": [
       "Closed-book, state meaning/value of reproducible research.",
       "List required elements at foundation level.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Reproducible research (Publication Front). You practised selective CMP reading on Syllabus 1.1.4 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4 (reproducible research (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4\u2013reproducible research (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.4?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing EDA today.",
       "Watch for claiming Section 1 complete as Approver clearance."
     ],
-    "open_point": "CMP · Syllabus 1.1.4 reproducible research",
+    "open_point": "CMP \u00b7 Syllabus 1.1.4 reproducible research",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1)",
     "out_of_scope_today": [
       "EDA summaries as primary",
@@ -93,9 +93,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.1.4.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.4.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -116,56 +116,92 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.4-ar-01",
       "title": "Active Recall: 1.1.4",
-      "prompt": "Closed-book. (1) What does reproducible research mean? (2) Name required elements. (3) Why is 1.2.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.4 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly defines reproducible research and names required elements?",
+      "response_type": "mcq",
+      "body": "Select reproducibility meaning and element list.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "reproducible",
-        "elements",
-        "analysis",
-        "research"
-      ],
-      "explanation": "Active recall for 1.1.4.",
-      "model_answer": "Reproducible research lets others reconstruct the analysis; elements include data, code, and documentation warrants. EDA opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Reconstruction from shared artefacts is the core. One local rerun, memory, or papers-only scope misstates reproducibility.",
+      "model_answer": "Others can reconstruct results; data, code, documentation required.",
+      "common_mistake": "One-off rerun, memory-only, or excluding internal analyses.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Reproducible research lets others (or a future you) reconstruct the same analysis results from stated inputs and steps. Required elements include versioned or clearly identified data, scripted code paths, and documented environment and decisions.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Reproducibility means re-running one notebook cell once on a local laptop; shared data, code, and documentation are optional.",
+          "misconception_tag": "one_off_rerun"
+        },
+        {
+          "id": "c",
+          "label": "An analysis is reproducible if the author remembers the steps; formal versioning and scripts are bureaucracy only.",
+          "misconception_tag": "memory_as_reproducible"
+        },
+        {
+          "id": "d",
+          "label": "Reproducibility applies only to published papers, not to internal pricing or reserves work.",
+          "misconception_tag": "papers_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.4-cp-01",
       "title": "Checkpoint: 1.1.4",
-      "prompt": "Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. (1) In one sentence, what does reproducible research mean? (2) Name two elements required to keep an analysis reproducible. (3) Refuse the colleague's claim in one sentence.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.4.",
+      "prompt": "Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Define reproducibility; name elements; refuse one-off rerun claim.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "EDA",
-        "1.2.1",
-        "Approver"
-      ],
-      "explanation": "Checkpoint for 1.1.4.",
-      "model_answer": "(1) Others (or a future you) can reconstruct the same analysis results from the stated inputs and steps. (2) Examples: versioned data (or clear extract identity); scripted code path; documented environment/parameters and decisions. (3) Refuse: a one-off local re-run without shared data, code, and documentation is not reproducibility.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Shared data, code, and environment documentation enable reconstruction. Duplicate local output, email notes, or dated filenames alone fail.",
+      "model_answer": "Reconstruct from shared artefacts; refuse one-off rerun.",
+      "common_mistake": "Equating reproducibility with a single local re-run or weak versioning.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Reproducible research means others can reconstruct the same results from stated inputs and steps. Examples of required elements: versioned data or clear extract identity, scripted code, documented environment/parameters. A one-off local re-run without shared artefacts is not reproducibility.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Re-running the last cell proves reproducibility because the output appeared twice on the same machine.",
+          "misconception_tag": "one_off_rerun"
+        },
+        {
+          "id": "c",
+          "label": "Documentation is unnecessary if the colleague wrote detailed comments in email about what they did.",
+          "misconception_tag": "email_as_documentation"
+        },
+        {
+          "id": "d",
+          "label": "Reproducibility is satisfied when the notebook filename includes the analysis date; data versioning is optional.",
+          "misconception_tag": "filename_as_version"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest reproducibility wobble: EDA continues Publication Front tomorrow.",
+    "framing": "Harvest reproducibility wobble. EDA continues Publication Front tomorrow.",
     "prompt": "Which part of today's 1.1.4 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 1.1.4 work is stickiest and why?",

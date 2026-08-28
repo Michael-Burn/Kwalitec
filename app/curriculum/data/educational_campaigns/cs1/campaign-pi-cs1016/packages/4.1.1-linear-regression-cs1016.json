@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you retrieved HT foundations (3.3.1). Today continues Memory Front at Continuity Front join regression entry.",
     "why_now": "Refresh response vs explanatory roles. The entry point into linear modelling.",
     "expected_benefit": "You'll retrieve how to name response and explanatory variables with modelling warrants in a linear regression setting.",
-    "explainability": "Assigned as Campaign Pi Day 8 because Memory Front returns to Nu CF-join entry before Bayes tip.",
+    "explainability": "Day 8 focuses the named learning objective. Returns to Nu CF-join entry before Bayes tip.",
     "success_criteria": [
       "Closed-book, distinguish response vs explanatory with one actuarial-flavoured example.",
       "State why this is entry not full 4.1 mastery.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 4.1.1 (retrieve linear-regression entry (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 4.1.1–retrieve linear-regression entry (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 4.1.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -94,8 +94,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before Bayes tip primary 5.1.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 4.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before Bayes tip primary 5.1.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -117,56 +117,92 @@
       "kind": "active_recall",
       "item_id": "cs1016-4.1.1-ar-01",
       "title": "Active Recall: 4.1.1",
-      "prompt": "Closed-book. (1) What is a response variable? (2) What is an explanatory variable? (3) Why is 5.1.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly assigns response and explanatory roles in a linear regression modelling question?",
+      "response_type": "mcq",
+      "body": "Select Y, X, and the modelling warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "explanatory",
-        "regression",
-        "variable"
-      ],
-      "explanation": "Active recall for 4.1.1.",
-      "model_answer": "Response is modelled outcome; explanatory variables explain variation in the response. Bayes tip opens tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Y is the outcome for the modelling question; X variables are chosen with warrants. Column-soup, equation-first, or software order do not replace role assignment.",
+      "model_answer": "Y = outcome modelled; X = predictors with warrants.",
+      "common_mistake": "Column-soup, delaying roles until equation form, or software-order rules.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The response variable Y is the outcome being modelled or predicted; explanatory variables X are predictors thought to help explain or predict Y, each with a modelling warrant for the stated question.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Every numeric column in a data set is automatically an explanatory variable; the response is whichever column has the largest variance.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Response and explanatory roles are defined only after writing the full multiple regression equation; roles cannot be stated before model form.",
+          "misconception_tag": "model_form_first"
+        },
+        {
+          "id": "d",
+          "label": "The response is always the column entered last in the software formula because estimation order defines Y.",
+          "misconception_tag": "software_order_defines_y"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-4.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-4.1.1-cp-01",
       "title": "Checkpoint: 4.1.1",
-      "prompt": "Closed-book. Household contents book: you want to model renewal premium. Columns include renewal premium, sum insured, number of bedrooms, previous claims count, and postcode band. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side. That finishes variable-role modelling' and 'Treat renewal premium as an explanatory variable for sum insured.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.1.",
+      "prompt": "Closed-book. Household contents book: model renewal premium. Columns include renewal premium, sum insured, bedrooms, previous claims count, and postcode band. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name Y and warranted X variables; refuse column-soup and role-swap.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "Bayes",
-        "5.1.1",
-        "spine"
-      ],
-      "explanation": "Checkpoint for 4.1.1.",
-      "model_answer": "(1) Response Y = renewal premium (the outcome to explain/predict). Explanatory examples: sum insured and bedrooms (predictors of premium level); previous claims count may also warrant as an X. (2) Refuse: column-soup is not modelling (choose Y for the modelling question, then choose X's with warrants). Swapping so that premium explains sum insured answers a different question.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Premium is the outcome for this question. Sum insured and bedrooms are plausible X's. Column-soup, self-prediction, or equation-first delay are wrong.",
+      "model_answer": "Y = renewal premium; X examples: sum insured, bedrooms; refuse column-soup.",
+      "common_mistake": "Column-soup, swapping Y and X, or requiring equation before roles.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Response Y = renewal premium (outcome to explain). Explanatory examples: sum insured and bedrooms as predictors of premium level; previous claims count may also warrant as an X. Putting every numeric column on the right-hand side is not role modelling, and treating premium as an X for sum insured answers a different question.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Response Y = sum insured; renewal premium, bedrooms, and claims count are explanatory because all numeric fields belong on the right-hand side.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Response Y = renewal premium; premium must also be an explanatory variable for bedrooms because both appear in the same policy record.",
+          "misconception_tag": "role_swap"
+        },
+        {
+          "id": "d",
+          "label": "No response can be named until a regression equation is fully written; premium modelling starts with equation form, not Y versus X.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest regression-entry wobble: Bayes tip continues Memory Front tomorrow.",
+    "framing": "Harvest regression-entry wobble. Bayes tip continues Memory Front tomorrow.",
     "prompt": "Which part of today's 4.1.1 retrieval is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.1.1 retrieval is stickiest and why?",

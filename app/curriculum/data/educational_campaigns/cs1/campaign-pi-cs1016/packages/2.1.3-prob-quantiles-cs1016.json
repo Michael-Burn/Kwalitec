@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you closed Campaign Omicron Revision at the Continuity Front tip (5.1). Today opens Memory Front / spine re-audit at the historical Opening Continuity Front hinge 2.1.3.",
     "why_now": "Topic 5.1 is closed and there is no 5.2 next. Retrieve probability and quantile evaluation from earlier distribution work.",
     "expected_benefit": "You'll retrieve how to evaluate a probability and a quantile for a placed univariate family from memory.",
-    "explainability": "Assigned as Campaign Pi Day 1 because Memory Front after tip close begins at the Opening Continuity Front hinge already Published via Gamma.",
+    "explainability": "Day 1 focuses the named learning objective. After tip close begins at the Opening hinge already Published via Gamma.",
     "success_criteria": [
       "Closed-book, outline one probability and one quantile move for a named univariate distribution.",
       "State why this is retrieval not new first-pass discovery theatre.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 2.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.1.3 (retrieve probabilities and quantiles (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.1.3–retrieve probabilities and quantiles (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 2.1.3?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,8 +93,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 2.1.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.3 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.3 (stop before joint distributions primary 2.2.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 2.1.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.3 probabilities and quantiles. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.3 (stop before joint distributions primary 2.2.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-2.1.3-ar-01",
       "title": "Active Recall: 2.1.3",
-      "prompt": "Closed-book. (1) What probability object do you evaluate for a univariate distribution? (2) What is a quantile move? (3) Why is 2.2.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.1.3 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly describes probability and quantile evaluation for a named univariate distribution?",
+      "response_type": "mcq",
+      "body": "Select the probability/quantile retrieval move.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "probability",
-        "quantile",
-        "univariate",
-        "distribution"
-      ],
-      "explanation": "Active recall for 2.1.3.",
-      "model_answer": "Evaluate probabilities and quantiles for named univariate distributions. Joint distributions open tomorrow under Memory Front.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Univariate probability and quantile work uses the one-dimensional CDF or survival function. Recognition alone is not evaluation, and joint machinery is not the primary move for a single named univariate family.",
+      "model_answer": "Use CDF/survival for probabilities; invert CDF for quantiles on a named univariate family.",
+      "common_mistake": "Treating family recognition as finished evaluation, or pulling joint steps into a univariate task.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For a placed univariate family, evaluate a probability such as P(X > x) from the CDF or survival function, and evaluate a quantile by inverting the CDF to solve F(x) = p for x.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Naming the distribution family (for example Exponential) completes probability and quantile evaluation; no calculation is required once the family is recognised.",
+          "misconception_tag": "recognition_as_evaluation"
+        },
+        {
+          "id": "c",
+          "label": "A quantile is always the sample mean of the distribution; probabilities are read directly from a joint table of (X, Y).",
+          "misconception_tag": "quantile_as_mean"
+        },
+        {
+          "id": "d",
+          "label": "Probability evaluation for univariate X requires first obtaining marginals by summing out Y from a joint distribution.",
+          "misconception_tag": "joint_required_for_univariate"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-2.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-2.1.3-cp-01",
       "title": "Checkpoint: 2.1.3",
-      "prompt": "Closed-book. Claim sizes ~ Exponential with mean θ = 1000. (1) Compute P(X > 2000). (2) Compute the 90th percentile of X (leave exact form or a one-decimal numerical value). (3) Refuse: 'I recognise it is Exponential, so evaluation is finished without computing.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.1.3.",
+      "prompt": "Closed-book. Claim sizes are Exponential with mean θ = 1000. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute P(X > 2000) and the 90th percentile; refuse recognition-as-evaluation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "spine",
-        "2.2.1",
-        "Memory"
-      ],
-      "explanation": "Checkpoint for 2.1.3.",
-      "model_answer": "(1) P(X > 2000) = e^{-2000/1000} = e^{-2} ≈ 0.135. (2) Solve 1 − e^{-x/1000} = 0.9 ⇒ x = 1000 ln(10) ≈ 2302.6. (3) Refuse: naming the family is not the evaluation. You still must compute the probability or quantile.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Survival gives e^{-2000/1000}. Quantile inversion gives 1000 ln(10). Halving by mean ratio, scaling the mean by 0.9, or stopping at recognition are all wrong.",
+      "model_answer": "P(X > 2000) ≈ 0.135; 90th percentile ≈ 2302.6; refuse recognition-only.",
+      "common_mistake": "Heuristic mean ratios, linear scaling of the mean for quantiles, or recognition without calculation.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "P(X > 2000) = e^{-2} ≈ 0.135. The 90th percentile solves 1 − e^{-x/1000} = 0.9, giving x = 1000 ln(10) ≈ 2302.6. Naming Exponential does not replace these calculations.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(X > 2000) = 0.5 because the threshold 2000 is twice the mean 1000, so the tail probability is one half.",
+          "misconception_tag": "mean_ratio_as_probability"
+        },
+        {
+          "id": "c",
+          "label": "The 90th percentile is 900 because 0.9 × 1000 = 900 for any Exponential with mean θ.",
+          "misconception_tag": "percentile_times_mean"
+        },
+        {
+          "id": "d",
+          "label": "Once the model is Exponential(θ = 1000), probability and quantile questions are answered by naming the family; numeric evaluation is optional decoration.",
+          "misconception_tag": "recognition_as_evaluation"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

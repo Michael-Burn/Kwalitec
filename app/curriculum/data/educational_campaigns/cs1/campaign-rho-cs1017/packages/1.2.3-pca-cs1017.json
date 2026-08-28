@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,11 +39,11 @@
     "tutor_intent": "Today I will force PCA dimensionality-reduction warrant and refuse 'Publication Front finished discrete distributions / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of PCA to reduce dimensionality.",
     "learning_objective": "Principal component analysis to reduce the dimensionality of a complex data set",
-    "concept_focus": "Why reduce dimensions → what PCs capture → refuse PC-as-causal-driver theatre.",
+    "concept_focus": "Why reduce dimensions \u2192 what PCs capture \u2192 refuse PC-as-causal-driver theatre.",
     "prior_bridge": "Yesterday you studied correlation (1.2.2). Today closes Topic 1.2 on Publication Front.",
     "why_now": "PCA closes EDA before univariate distribution entry.",
     "expected_benefit": "You will be able to state a lawful exploratory use of PCA and refuse treating a principal component as a proven causal factor.",
-    "explainability": "Assigned as Campaign Rho Day 7 because Publication Front closes Topic 1.2 at PCA before discrete distributions.",
+    "explainability": "Day 7 focuses the named learning objective. Closes Topic 1.2 at PCA before discrete distributions.",
     "success_criteria": [
       "Closed-book, state PCA purpose for dimensionality reduction.",
       "Name what a principal component represents at foundation level.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Principal component analysis (Publication Front). You practised selective CMP reading on Syllabus 1.2.3 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.3 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.3 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.3 (principal component analysis (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.3\u2013principal component analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.3?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing discrete distributions today.",
       "Watch for claiming Section 1 complete as Approver clearance."
     ],
-    "open_point": "CMP · Syllabus 1.2.3 principal component analysis",
+    "open_point": "CMP \u00b7 Syllabus 1.2.3 principal component analysis",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1)",
     "out_of_scope_today": [
       "Discrete distributions as primary",
@@ -93,9 +93,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.2.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.3 principal component analysis. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.2.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.3 principal component analysis. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.3 (stop before discrete distributions primary 2.1.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.2.3-ar-01",
       "title": "Active Recall: 1.2.3",
-      "prompt": "Closed-book. (1) What does PCA reduce? (2) What is a principal component at foundation level? (3) Why is 2.1.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.2.3 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly describes PCA for dimensionality reduction?",
+      "response_type": "mcq",
+      "body": "Select PCA purpose and what a component represents.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "PCA",
-        "dimensionality",
-        "component",
-        "variance"
-      ],
-      "explanation": "Active recall for 1.2.3.",
-      "model_answer": "PCA reduces dimensionality via components capturing variation structure. Discrete distributions open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "PCA summarises variation for exploration or compression. Causal proof, correlation replacement, or mean-vector confusion misread components.",
+      "model_answer": "Components capture variation structure; not automatic causal drivers.",
+      "common_mistake": "Treating PC1 as causal or equating it with the mean vector.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PCA reduces dimensionality by constructing orthogonal components that capture major patterns of variation in correlated variables; a principal component is a weighted combination summarising shared variation, not by itself a proven causal driver.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PCA selects the single causal factor behind all rating variables and proves which factor drives claims.",
+          "misconception_tag": "pc_as_causal"
+        },
+        {
+          "id": "c",
+          "label": "PCA replaces the need for correlation analysis because components are always interpretable causal scores.",
+          "misconception_tag": "pca_replaces_correlation"
+        },
+        {
+          "id": "d",
+          "label": "The first principal component always equals the sample mean vector of the original variables.",
+          "misconception_tag": "pc1_is_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.3-cp-01",
       "title": "Checkpoint: 1.2.3",
-      "prompt": "Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' (1) What one useful thing might PC1 still be doing exploratorily? (2) State one claim this statement overreaches.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.2.3.",
+      "prompt": "Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State exploratory use of PC1; refuse causal auto-decline claim.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "discrete",
-        "2.1.1",
-        "Approver"
-      ],
-      "explanation": "Checkpoint for 1.2.3.",
-      "model_answer": "(1) PC1 may usefully summarise major shared variation among correlated rating factors for exploration or visualisation. (2) It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Exploratory summarisation differs from causal underwriting policy. Variance rank or averaging does not create a validated risk driver.",
+      "model_answer": "PC1 may summarise variation; refuse causal auto-decline.",
+      "common_mistake": "Treating PC1 as proven causal score or portfolio mean.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PC1 may summarise major shared variation among correlated rating factors for exploration or visualisation. It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PC1 is the true latent risk score by construction, so auto-decline on PC1 alone is statistically justified.",
+          "misconception_tag": "pc_as_causal"
+        },
+        {
+          "id": "c",
+          "label": "Because PC1 explains the largest variance, it replaces correlation analysis and hypothesis testing for rating factors.",
+          "misconception_tag": "pca_replaces_correlation"
+        },
+        {
+          "id": "d",
+          "label": "PC1 equals the average of standardised rating factors, so it is the same as the portfolio mean premium.",
+          "misconception_tag": "pc1_is_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

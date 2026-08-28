@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.2.3-ar-01",
       "title": "Active Recall: 1.2.3",
-      "prompt": "Closed-book. (1) What does PCA reduce? (2) What is a principal component at foundation level? (3) Why is 2.1.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.2.3 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly describes PCA for dimensionality reduction?",
+      "response_type": "mcq",
+      "body": "Select PCA purpose and what a component represents.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "PCA",
-        "dimensionality",
-        "component",
-        "variance"
-      ],
-      "explanation": "Active recall for 1.2.3.",
-      "model_answer": "PCA reduces dimensionality via components capturing variation structure. Discrete distributions open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "PCA summarises variation for exploration or compression. Causal proof, correlation replacement, or mean-vector confusion misread components.",
+      "model_answer": "Components capture variation structure; not automatic causal drivers.",
+      "common_mistake": "Treating PC1 as causal or equating it with the mean vector.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PCA reduces dimensionality by constructing orthogonal components that capture major patterns of variation in correlated variables; a principal component is a weighted combination summarising shared variation, not by itself a proven causal driver.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PCA selects the single causal factor behind all rating variables and proves which factor drives claims.",
+          "misconception_tag": "pc_as_causal"
+        },
+        {
+          "id": "c",
+          "label": "PCA replaces the need for correlation analysis because components are always interpretable causal scores.",
+          "misconception_tag": "pca_replaces_correlation"
+        },
+        {
+          "id": "d",
+          "label": "The first principal component always equals the sample mean vector of the original variables.",
+          "misconception_tag": "pc1_is_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.3-cp-01",
       "title": "Checkpoint: 1.2.3",
-      "prompt": "Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' (1) What one useful thing might PC1 still be doing exploratorily? (2) State one claim this statement overreaches.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.2.3.",
+      "prompt": "Closed-book. A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State exploratory use of PC1; refuse causal auto-decline claim.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "discrete",
-        "2.1.1",
-        "Approver"
-      ],
-      "explanation": "Checkpoint for 1.2.3.",
-      "model_answer": "(1) PC1 may usefully summarise major shared variation among correlated rating factors for exploration or visualisation. (2) It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Exploratory summarisation differs from causal underwriting policy. Variance rank or averaging does not create a validated risk driver.",
+      "model_answer": "PC1 may summarise variation; refuse causal auto-decline.",
+      "common_mistake": "Treating PC1 as proven causal score or portfolio mean.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PC1 may summarise major shared variation among correlated rating factors for exploration or visualisation. It does not by itself prove a causal risk driver or justify auto-decline without external subject-matter and decision warrants.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PC1 is the true latent risk score by construction, so auto-decline on PC1 alone is statistically justified.",
+          "misconception_tag": "pc_as_causal"
+        },
+        {
+          "id": "c",
+          "label": "Because PC1 explains the largest variance, it replaces correlation analysis and hypothesis testing for rating factors.",
+          "misconception_tag": "pca_replaces_correlation"
+        },
+        {
+          "id": "d",
+          "label": "PC1 equals the average of standardised rating factors, so it is the same as the portfolio mean premium.",
+          "misconception_tag": "pc1_is_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -12,7 +12,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from _mcq_batch1_section3_payload import apply_mcq_overlay
+from _mcq_batch1_section3_payload import apply_mcq_overlay as apply_batch1_mcq_overlay
+from _mcq_batch3_memory_publication_payload import apply_mcq_overlay as apply_batch3_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-pi-cs1016"
@@ -892,7 +893,9 @@ def main() -> None:
     span: list[str] = []
 
     for d in LEARNING:
-        pkg = apply_mcq_overlay(learning_pkg(d), d["stem"])
+        pkg = apply_batch3_mcq_overlay(
+            apply_batch1_mcq_overlay(learning_pkg(d), d["stem"]), d["stem"]
+        )
         path = PKG_DIR / f"{d['stem']}.json"
         path.write_text(json.dumps(pkg, indent=2, ensure_ascii=False) + "\n")
         inventory.append(d["pid"])

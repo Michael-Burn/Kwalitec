@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,11 +39,11 @@
     "tutor_intent": "Today I will force source characteristics warrant and refuse 'Publication Front finished reproducibility / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of data sources including large sets.",
     "learning_objective": "Sources of data and their characteristics, including extremely large data sets",
-    "concept_focus": "Source type → trust/quality characteristics (incl. scale) → refuse bigger-equals-better.",
+    "concept_focus": "Source type \u2192 trust/quality characteristics (incl. scale) \u2192 refuse bigger-equals-better.",
     "prior_bridge": "Yesterday you studied stages/tools (1.1.2). Today continues Publication Front.",
     "why_now": "Source honesty precedes reproducible analysis claims.",
     "expected_benefit": "You will be able to name source characteristics that change how you trust results, including constraints from large data sets.",
-    "explainability": "Assigned as Campaign Rho Day 3 because Publication Front places source characteristics before reproducibility.",
+    "explainability": "Day 3 focuses places source.characteristics before reproducibility.",
     "success_criteria": [
       "Closed-book, name source types and one scale characteristic.",
       "State one risk of ignoring source characteristics.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Data sources and large data sets (Publication Front). You practised selective CMP reading on Syllabus 1.1.3 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.3 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.3 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.3 (data sources and large data sets (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.3\u2013data sources and large data sets (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.3?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing reproducibility today.",
       "Watch for claiming Section 1 complete."
     ],
-    "open_point": "CMP · Syllabus 1.1.3 sources of data and large data sets",
+    "open_point": "CMP \u00b7 Syllabus 1.1.3 sources of data and large data sets",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.3 (stop before reproducible research primary 1.1.4)",
     "out_of_scope_today": [
       "Reproducible research as primary",
@@ -93,9 +93,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.1.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.3 sources of data and large data sets. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.3 (stop before reproducible research primary 1.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.3.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.3 sources of data and large data sets. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.3 (stop before reproducible research primary 1.1.4). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.3-ar-01",
       "title": "Active Recall: 1.1.3",
-      "prompt": "Closed-book. (1) Name source types. (2) Name one large-set characteristic. (3) Why is 1.1.4 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.3 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly contrasts data source types and one large-set characteristic that affects analysis?",
+      "response_type": "mcq",
+      "body": "Select source characteristics and scale constraint.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "sources",
-        "characteristics",
-        "large",
-        "data"
-      ],
-      "explanation": "Active recall for 1.1.3.",
-      "model_answer": "Sources differ in origin and quality; large sets add scale constraints. Reproducibility opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Quality and bias depend on source design, not size alone. Large scale can add engineering constraints rather than remove them.",
+      "model_answer": "Source quality varies; large volume does not auto-imply fitness.",
+      "common_mistake": "Bigger-is-better, deferred trust checks, or ignoring scale limits.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Sources differ in origin and quality (for example administrative records versus voluntary surveys bring different bias and coverage risks). Extremely large sets add scale constraints such as storage, compute limits, or need for sampling despite volume.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A larger file is automatically better data because volume implies representativeness and removes selection concerns.",
+          "misconception_tag": "bigger_is_better"
+        },
+        {
+          "id": "c",
+          "label": "Source characteristics matter only after modelling is complete; during exploration all files may be treated as equally trustworthy.",
+          "misconception_tag": "trust_after_modelling"
+        },
+        {
+          "id": "d",
+          "label": "Extremely large data sets always remove the need for sampling or distributed tooling because every row can always be processed locally without constraint.",
+          "misconception_tag": "scale_no_constraint"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.3-cp-01",
       "title": "Checkpoint: 1.1.3",
-      "prompt": "Closed-book. Compare an administrative claims extract with a voluntary customer survey, both used for the same pricing question. (1) Name two source characteristics that change how you trust results. (2) Name one characteristic of an extremely large data set that constrains analysis. (3) Refuse: 'The bigger file is automatically better data.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.3.",
+      "prompt": "Closed-book. Compare an administrative claims extract with a voluntary customer survey, both used for the same pricing question. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name trust characteristics and a large-set constraint; refuse bigger-is-better.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "reproducible",
-        "1.1.4",
-        "sources"
-      ],
-      "explanation": "Checkpoint for 1.1.3.",
-      "model_answer": "(1) Examples: selection/response bias (voluntary survey vs administrative coverage); granularity or completeness of fields; measurement error. (2) Scale constraints: storage/compute limits, need for sampling or distributed tooling, or quality issues that volume does not fix. (3) Refuse: volume alone does not imply representativeness or fitness for the analysis aim.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Bias and coverage differ by source mechanism. Row count does not replace representativeness or remove scale work.",
+      "model_answer": "Compare bias/coverage; large n does not imply better data.",
+      "common_mistake": "Row-count superiority, deferred trust, or volume cures bias.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Examples: selection or response bias (survey versus administrative coverage), completeness or granularity of fields, measurement error. Large scale may still require sampling or distributed tooling and does not fix representativeness by itself. Volume alone is not automatically better data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The administrative extract is always superior because it has more rows, so source characteristics need not be compared.",
+          "misconception_tag": "bigger_is_better"
+        },
+        {
+          "id": "c",
+          "label": "Both sources are equally trustworthy during EDA because trust is assessed only after the final model is chosen.",
+          "misconception_tag": "trust_after_modelling"
+        },
+        {
+          "id": "d",
+          "label": "Extremely large survey files remove bias automatically because every respondent row is included in the analysis file.",
+          "misconception_tag": "volume_fixes_bias"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

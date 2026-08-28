@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -40,11 +40,11 @@
     "tutor_intent": "Today I will force aims classification (descriptive / inferential / predictive) and refuse 'Publication Front finished stages/tools / Approver clearance'.",
     "educational_intent": "Produce Publication Front LO-per-day study of analysis aims as the lawful first day after Memory Front close.",
     "learning_objective": "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
-    "concept_focus": "Stated task → classify aim (descriptive / inferential / predictive) → refuse collapsing all aims into EDA.",
+    "concept_focus": "Stated task \u2192 classify aim (descriptive / inferential / predictive) \u2192 refuse collapsing all aims into EDA.",
     "prior_bridge": "Yesterday you closed Campaign Pi Revision (Memory Front). Today opens Publication Front / Wave 0 residual at Syllabus 1.1.1.",
     "why_now": "Start the opening analysis arc at aims: descriptive, inferential, and predictive intents.",
     "expected_benefit": "You will be able to classify actuarial analysis aims as descriptive, inferential, or predictive and refuse EDA-as-everything.",
-    "explainability": "Assigned as Campaign Rho Day 1 because Publication Front after Memory Front close begins at the opening honesty LO already Awaiting Approval.",
+    "explainability": "Day 1 opens the analysis arc at aims. The natural start for opening syllabus work.",
     "success_criteria": [
       "Closed-book, distinguish descriptive, inferential, and predictive aims in one careful trio.",
       "State why this is Publication Front catalogue work not Approver clearance.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Aims of a data analysis (Publication Front). You practised selective CMP reading on Syllabus 1.1.1 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1 (aims of a data analysis (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1\u2013aims of a data analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing 1.1.2 today.",
       "Watch for claiming Approver clearance from one LO."
     ],
-    "open_point": "CMP · Syllabus 1.1.1 aims of a data analysis",
+    "open_point": "CMP \u00b7 Syllabus 1.1.1 aims of a data analysis",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2)",
     "out_of_scope_today": [
       "Stages and tools as primary",
@@ -94,9 +94,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 1.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,52 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.1-ar-01",
       "title": "Active Recall: 1.1.1",
-      "prompt": "Closed-book. (1) Name three analysis aims. (2) Give one warrant that separates inferential from predictive. (3) Why is 1.1.2 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.1 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly distinguishes descriptive, inferential, and predictive analysis aims?",
+      "response_type": "mcq",
+      "body": "Select the three aim types and one separating warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "descriptive",
-        "inferential",
-        "predictive",
-        "aims"
-      ],
-      "explanation": "Active recall for 1.1.1.",
-      "model_answer": "Descriptive summarises; inferential generalises from sample evidence; predictive forecasts. Stages/tools open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Each aim has a distinct target. Collapsing all into EDA or swapping inferential/predictive roles misclassifies tasks.",
+      "model_answer": "Descriptive = summarise; inferential = generalise; predictive = forecast.",
+      "common_mistake": "Treating all aims as EDA, or swapping inferential and predictive.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Descriptive analysis summarises observed data; inferential analysis generalises from sample evidence to population quantities; predictive analysis forecasts future outcomes. Inferential targets parameters under uncertainty; predictive targets future values.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Descriptive, inferential, and predictive are interchangeable labels for any exploratory data analysis; the aim is always EDA.",
+          "misconception_tag": "eda_as_everything"
+        },
+        {
+          "id": "c",
+          "label": "Inferential analysis always means building a forecasting model for next year; descriptive analysis always means hypothesis testing.",
+          "misconception_tag": "aims_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Predictive analysis summarises last year's data; inferential analysis plots histograms only.",
+          "misconception_tag": "aims_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.1-cp-01",
       "title": "Checkpoint: 1.1.1",
-      "prompt": "Closed-book. Motor pricing review tasks: (A) histogram of last year's claim severities; (B) a confidence interval for mean severity; (C) a model that forecasts next year's severity. (1) Classify each as descriptive, inferential, or predictive. (2) Refuse: 'All three are just EDA, so aims are done.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.1.",
+      "prompt": "Closed-book. Motor pricing review tasks: (A) histogram of last year's claim severities; (B) confidence interval for mean severity; (C) model forecasting next year's severity. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Classify each aim; refuse EDA-as-everything.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "Approver",
-        "1.1.2",
-        "Publication"
-      ],
-      "explanation": "Checkpoint for 1.1.1.",
-      "model_answer": "(1) A descriptive (summarise observed severities); B inferential (generalise from sample evidence to a parameter); C predictive (forecast future severity). (2) Refuse: EDA is exploratory summarising. It does not replace naming distinct descriptive, inferential, and predictive aims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Histogram summarises; CI targets a parameter; forecast targets future severity. Historical data alone does not make every task descriptive.",
+      "model_answer": "A descriptive; B inferential; C predictive; refuse EDA collapse.",
+      "common_mistake": "EDA-as-everything or mislabelling forecast/interval tasks.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A is descriptive (summarise observed severities); B is inferential (generalise to a parameter); C is predictive (forecast future severity). Calling all three 'just EDA' collapses distinct aims.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "All three are descriptive because each uses historical claim data from the motor book.",
+          "misconception_tag": "eda_as_everything"
+        },
+        {
+          "id": "c",
+          "label": "A is predictive, B is descriptive, and C is inferential because forecasting is exploratory and intervals are summaries only.",
+          "misconception_tag": "aims_swapped"
+        },
+        {
+          "id": "d",
+          "label": "B and C are both inferential; only A is descriptive, because any model or interval is automatically inference.",
+          "misconception_tag": "interval_and_model_same"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

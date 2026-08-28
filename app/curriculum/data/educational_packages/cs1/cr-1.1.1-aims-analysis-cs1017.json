@@ -117,52 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.1-ar-01",
       "title": "Active Recall: 1.1.1",
-      "prompt": "Closed-book. (1) Name three analysis aims. (2) Give one warrant that separates inferential from predictive. (3) Why is 1.1.2 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.1 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly distinguishes descriptive, inferential, and predictive analysis aims?",
+      "response_type": "mcq",
+      "body": "Select the three aim types and one separating warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "descriptive",
-        "inferential",
-        "predictive",
-        "aims"
-      ],
-      "explanation": "Active recall for 1.1.1.",
-      "model_answer": "Descriptive summarises; inferential generalises from sample evidence; predictive forecasts. Stages/tools open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Each aim has a distinct target. Collapsing all into EDA or swapping inferential/predictive roles misclassifies tasks.",
+      "model_answer": "Descriptive = summarise; inferential = generalise; predictive = forecast.",
+      "common_mistake": "Treating all aims as EDA, or swapping inferential and predictive.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Descriptive analysis summarises observed data; inferential analysis generalises from sample evidence to population quantities; predictive analysis forecasts future outcomes. Inferential targets parameters under uncertainty; predictive targets future values.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Descriptive, inferential, and predictive are interchangeable labels for any exploratory data analysis; the aim is always EDA.",
+          "misconception_tag": "eda_as_everything"
+        },
+        {
+          "id": "c",
+          "label": "Inferential analysis always means building a forecasting model for next year; descriptive analysis always means hypothesis testing.",
+          "misconception_tag": "aims_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Predictive analysis summarises last year's data; inferential analysis plots histograms only.",
+          "misconception_tag": "aims_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.1-cp-01",
       "title": "Checkpoint: 1.1.1",
-      "prompt": "Closed-book. Motor pricing review tasks: (A) histogram of last year's claim severities; (B) a confidence interval for mean severity; (C) a model that forecasts next year's severity. (1) Classify each as descriptive, inferential, or predictive. (2) Refuse: 'All three are just EDA, so aims are done.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.1.",
+      "prompt": "Closed-book. Motor pricing review tasks: (A) histogram of last year's claim severities; (B) confidence interval for mean severity; (C) model forecasting next year's severity. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Classify each aim; refuse EDA-as-everything.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "Approver",
-        "1.1.2",
-        "Publication"
-      ],
-      "explanation": "Checkpoint for 1.1.1.",
-      "model_answer": "(1) A descriptive (summarise observed severities); B inferential (generalise from sample evidence to a parameter); C predictive (forecast future severity). (2) Refuse: EDA is exploratory summarising. It does not replace naming distinct descriptive, inferential, and predictive aims.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Histogram summarises; CI targets a parameter; forecast targets future severity. Historical data alone does not make every task descriptive.",
+      "model_answer": "A descriptive; B inferential; C predictive; refuse EDA collapse.",
+      "common_mistake": "EDA-as-everything or mislabelling forecast/interval tasks.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A is descriptive (summarise observed severities); B is inferential (generalise to a parameter); C is predictive (forecast future severity). Calling all three 'just EDA' collapses distinct aims.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "All three are descriptive because each uses historical claim data from the motor book.",
+          "misconception_tag": "eda_as_everything"
+        },
+        {
+          "id": "c",
+          "label": "A is predictive, B is descriptive, and C is inferential because forecasting is exploratory and intervals are summaries only.",
+          "misconception_tag": "aims_swapped"
+        },
+        {
+          "id": "d",
+          "label": "B and C are both inferential; only A is descriptive, because any model or interval is automatically inference.",
+          "misconception_tag": "interval_and_model_same"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

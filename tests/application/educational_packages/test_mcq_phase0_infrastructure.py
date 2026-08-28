@@ -1,8 +1,9 @@
 """Phase 0 — MCQ infrastructure for checkpoint Knowledge Checks.
 
 Proves package JSON → loader → substance → scoring → UI branch wiring.
-Batch 1 Section 3 packages (see _BATCH1_MCQ_PACKAGE_STEMS) and Batch 2 Continuity
-Front packages (see _BATCH2_MCQ_PACKAGE_STEMS) are live MCQ content; all other
+Batch 1 Section 3 packages (see _BATCH1_MCQ_PACKAGE_STEMS), Batch 2 Continuity
+Front packages (see _BATCH2_MCQ_PACKAGE_STEMS), and Batch 3 Memory/Publication
+Front packages (see _BATCH3_MCQ_PACKAGE_STEMS) are live MCQ content; all other
 live inventory packages remain short_structured until later batches.
 """
 
@@ -220,27 +221,58 @@ _BATCH2_MCQ_PACKAGE_STEMS = frozenset(
     }
 )
 
-_MCQ_CONVERTED_STEMS = _BATCH1_MCQ_PACKAGE_STEMS | _BATCH2_MCQ_PACKAGE_STEMS
+# Batch 3 MCQ content conversion (Memory Front remainder + Publication Front).
+# Keep in sync with scripts/_mcq_batch3_memory_publication_payload.py CONVERSIONS keys.
+_BATCH3_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "cp-2.1.3-prob-quantiles-cs1016",
+        "cp-2.2.1-marginal-conditional-cs1016",
+        "cp-2.5.1-clt-cs1016",
+        "cp-2.6.1-random-samples-cs1016",
+        "cp-4.1.1-linear-regression-cs1016",
+        "cp-5.1.1-bayes-theorem-cs1016",
+        "cr-1.1.1-aims-analysis-cs1017",
+        "cr-1.1.2-stages-tools-cs1017",
+        "cr-1.1.3-data-sources-cs1017",
+        "cr-1.1.4-reproducible-cs1017",
+        "cr-1.2.1-eda-summaries-cs1017",
+        "cr-1.2.2-correlation-cs1017",
+        "cr-1.2.3-pca-cs1017",
+        "cr-2.1.1-discrete-cs1017",
+        "cr-2.1.2-continuous-cs1017",
+    }
+)
+
+_MCQ_CONVERTED_STEMS = (
+    _BATCH1_MCQ_PACKAGE_STEMS | _BATCH2_MCQ_PACKAGE_STEMS | _BATCH3_MCQ_PACKAGE_STEMS
+)
 
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
-    """Live inventory outside Batch 1/2 MCQ conversion stays short_structured."""
+    """Live inventory outside Batch 1/2/3 MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
     batch1_seen = 0
     batch2_seen = 0
+    batch3_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
         is_batch1 = stem in _BATCH1_MCQ_PACKAGE_STEMS
         is_batch2 = stem in _BATCH2_MCQ_PACKAGE_STEMS
+        is_batch3 = stem in _BATCH3_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
-            if (is_batch1 or is_batch2) and check.kind in {"active_recall", "checkpoint"}:
+            if (
+                (is_batch1 or is_batch2 or is_batch3)
+                and check.kind in {"active_recall", "checkpoint"}
+            ):
                 if is_batch1:
                     batch1_seen += 1
-                else:
+                elif is_batch2:
                     batch2_seen += 1
+                else:
+                    batch3_seen += 1
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -251,6 +283,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
             assert check.accepted_keywords  # existing keyword scoring still present
     assert batch1_seen == 44  # 22 packages × AR + CP
     assert batch2_seen == 48  # 24 packages × AR + CP
+    assert batch3_seen == 30  # 15 packages × AR + CP
 
     # Spot-check a known non-Batch-1 live package still resolves and scores as before.
     live = find_educational_package(topic_code="2.5", subject_id="CS1")

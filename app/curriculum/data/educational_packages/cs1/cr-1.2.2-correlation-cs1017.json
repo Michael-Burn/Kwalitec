@@ -117,52 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.2.2-ar-01",
       "title": "Active Recall: 1.2.2",
-      "prompt": "Closed-book. (1) Distinguish Pearson, Spearman, Kendall. (2) Name one inference caution. (3) Why is 1.2.3 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.2.2 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly distinguishes Pearson, Spearman, and Kendall correlation measures?",
+      "response_type": "mcq",
+      "body": "Select measure definitions and one inference caution.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Pearson",
-        "Spearman",
-        "Kendall",
-        "correlation"
-      ],
-      "explanation": "Active recall for 1.2.2.",
-      "model_answer": "Pearson is linear association; Spearman/Kendall are rank-based. PCA opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Measures differ in what association they capture. Identity claims, causal proof, or PCA confusion are wrong.",
+      "model_answer": "Pearson linear; Spearman/Kendall rank; correlation ≠ causation.",
+      "common_mistake": "Treating measures as identical or reading causation from r.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson measures linear association; Spearman and Kendall use ranks and suit monotone but nonlinear patterns and outlier resistance better in many skewed cases. A large coefficient does not prove causation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Pearson, Spearman, and Kendall always give identical values because they are three names for the same formula.",
+          "misconception_tag": "all_same_measure"
+        },
+        {
+          "id": "c",
+          "label": "A significant Pearson correlation proves that changing X causes Y to change in the observed direction.",
+          "misconception_tag": "correlation_is_causation"
+        },
+        {
+          "id": "d",
+          "label": "Kendall is used only for PCA inputs; Pearson is used only after PCA scores are constructed.",
+          "misconception_tag": "pca_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.2-cp-01",
       "title": "Checkpoint: 1.2.2",
-      "prompt": "Closed-book. Years licensed vs claim frequency: frequency is skewed with visible outliers; the scatter looks roughly decreasing but nonlinear. (1) Which correlation measure would you prefer and why? (2) State one claim a large coefficient still does not justify.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.2.2.",
+      "prompt": "Closed-book. Years licensed vs claim frequency: frequency is skewed with outliers; scatter looks roughly decreasing but nonlinear. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Choose correlation measure and state one limit of a large coefficient.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "PCA",
-        "1.2.3",
-        "correlation"
-      ],
-      "explanation": "Checkpoint for 1.2.2.",
-      "model_answer": "(1) Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. (2) A large coefficient still does not prove that changing years licensed causes frequency to change.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Rank measures suit monotone nonlinear patterns with outliers. Neither Pearson-only nor causal claims follow from association alone.",
+      "model_answer": "Spearman/Kendall preferred; refuse causation from correlation.",
+      "common_mistake": "Pearson by default, causal inference from r, or PCA confusion.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear and outliers can distort Pearson. A large coefficient still does not prove that changing years licensed causes frequency to change.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use Pearson only because linear correlation is required whenever a scatter plot is drawn.",
+          "misconception_tag": "pearson_only"
+        },
+        {
+          "id": "c",
+          "label": "A strong negative Spearman correlation proves that reducing years licensed will reduce claim frequency.",
+          "misconception_tag": "correlation_is_causation"
+        },
+        {
+          "id": "d",
+          "label": "Use Kendall because it measures variance explained by PC1, which is the correct bivariate association measure here.",
+          "misconception_tag": "pca_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

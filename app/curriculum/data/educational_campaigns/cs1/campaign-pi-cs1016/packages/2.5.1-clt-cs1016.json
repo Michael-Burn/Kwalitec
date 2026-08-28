@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you retrieved marginal/conditional (2.2.1). Today continues Memory Front at CLT.",
     "why_now": "CLT is a high-decay hinge between distributions and sampling/inference.",
     "expected_benefit": "You'll retrieve how to apply the CLT to approximate a probability for a sample mean from an iid sequence.",
-    "explainability": "Assigned as Campaign Pi Day 3 because Memory Front protects CLT before sampling foundations.",
+    "explainability": "Day 3 focuses the named learning objective. Protects CLT before sampling foundations.",
     "success_criteria": [
       "Closed-book, state CLT for an IID sequence in one careful sentence.",
       "Name one condition you must not drop.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 2.5.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.5.1 (retrieve the central limit theorem (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.5.1–retrieve the central limit theorem (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 2.5.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,8 +93,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 2.5.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.5.1 central limit theorem. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (stop before random samples primary 2.6.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 2.5.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.5.1 central limit theorem. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.5.1 (stop before random samples primary 2.6.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.5.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-2.5.1-ar-01",
       "title": "Active Recall: 2.5.1",
-      "prompt": "Closed-book. (1) State CLT for an IID sequence. (2) What does it approximate? (3) Why is 2.6.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.5.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly states the central limit theorem for an IID sequence and what it approximates?",
+      "response_type": "mcq",
+      "body": "Select the CLT statement and its target object.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "CLT",
-        "IID",
-        "approximate",
-        "normal"
-      ],
-      "explanation": "Active recall for 2.5.1.",
-      "model_answer": "For IID with finite mean/variance, sample-mean distributions approach Normal under CLT conditions. Sampling foundations open tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "CLT targets the sample mean (or its standardised form) under IID with finite variance. Casual Normal habit, single-X claims, or requiring a Normal population misstate the theorem.",
+      "model_answer": "IID, finite mean/variance → sample mean ≈ Normal for large n.",
+      "common_mistake": "Normal-by-habit, CLT on one observation, or population must be Normal.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For an IID sequence with finite mean and variance, the distribution of the sample mean X̄ (equivalently a standardised X̄) approaches Normal as n grows, giving a Normal approximation for sample-mean probabilities under stated conditions.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The CLT says every insurance quantity is Normal, so any routine Normal model needs no theorem statement or IID conditions.",
+          "misconception_tag": "normal_everywhere"
+        },
+        {
+          "id": "c",
+          "label": "The CLT approximates the distribution of a single observation X₁ as Normal whenever the population has a finite mean, regardless of sample size.",
+          "misconception_tag": "clt_on_single_observation"
+        },
+        {
+          "id": "d",
+          "label": "The CLT applies only when the population is already Normal; for non-Normal populations the sample mean cannot be approximated.",
+          "misconception_tag": "population_must_be_normal"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-2.5.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-2.5.1-cp-01",
       "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. Claim sizes are iid with mean μ = 500 and sd σ = 200; n = 100. Using the CLT, approximate P(X̄ > 540). (1) State the approximate distribution of X̄. (2) Compute the standardised z and the approximate probability (use Φ(2) ≈ 0.977). (3) Refuse: 'We already use the Normal all the time, so the CLT is just common sense and needs no statement.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.5.1.",
+      "prompt": "Closed-book. Claim sizes are iid with mean μ = 500 and sd σ = 200; n = 100. Using the CLT, which statement about P(X̄ > 540) is correct? (Use Φ(2) ≈ 0.977.)",
+      "response_type": "mcq",
+      "body": "Approximate distribution of X̄, standardise, and refuse Normal-by-habit.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "sample",
-        "2.6.1",
-        "CLT"
-      ],
-      "explanation": "Checkpoint for 2.5.1.",
-      "model_answer": "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z = (540 − 500) / 20 = 2; P(X̄ > 540) ≈ 1 − Φ(2) ≈ 0.023. (3) Refuse: casual Normal habit is not the CLT. Today's skill is stating and applying the theorem for iid sequences under the stated conditions.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Standard error is 200/10 = 20. z = 2 gives upper tail 0.023. Using σ instead of σ/√n, a 0.5 heuristic, or reading Φ(2) as the upper tail are common errors.",
+      "model_answer": "X̄ ≈ N(500, 20); z = 2; P ≈ 0.023; refuse Normal-by-habit.",
+      "common_mistake": "Forgetting √n in the standard error, heuristic 0.5, or misreading Φ.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X̄ ≈ Normal(μ = 500, sd = σ/√n = 20). z = (540 − 500)/20 = 2, so P(X̄ > 540) ≈ 1 − Φ(2) ≈ 0.023. Casual Normal use without stating IID CLT conditions is not the same skill.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X̄ ≈ Normal(500, 200) because σ = 200 is the population sd, so P(X̄ > 540) ≈ 1 − Φ(0.2) without dividing by √n.",
+          "misconception_tag": "forget_sqrt_n"
+        },
+        {
+          "id": "c",
+          "label": "P(X̄ > 540) ≈ 0.5 because 540 exceeds the mean 500, so the sample mean is above average.",
+          "misconception_tag": "above_mean_half"
+        },
+        {
+          "id": "d",
+          "label": "P(X̄ > 540) ≈ 0.977 because z = 2 and Φ(2) ≈ 0.977 is the upper-tail probability directly.",
+          "misconception_tag": "phi_as_upper_tail"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

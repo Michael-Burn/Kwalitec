@@ -118,53 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-5.1.1-ar-01",
       "title": "Active Recall: 5.1.1",
-      "prompt": "Closed-book. (1) State Bayes' theorem for a simple case. (2) What probability do you update? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly states Bayes' theorem for a simple conditional probability update?",
+      "response_type": "mcq",
+      "body": "Select the Bayes update with prior, likelihood, and evidence.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayes",
-        "conditional",
-        "prior",
-        "posterior"
-      ],
-      "explanation": "Active recall for 5.1.1.",
-      "model_answer": "Bayes updates probabilities using prior and likelihood information in simple cases. Spine PASS and until-exam remain out of scope.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Bayes combines prior, likelihood, and evidence. Equating P(A|B) with P(B|A) or dropping the base rate reverses or omits required pieces.",
+      "model_answer": "P(A|B) ∝ P(B|A)P(A); normalise by P(B).",
+      "common_mistake": "Equating posterior with likelihood or ignoring the base rate.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bayes' theorem updates P(A|B) from P(B|A), P(A), and P(B): posterior equals prior times likelihood divided by evidence. A simple update requires all three pieces, not confusing posterior with likelihood alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(A|B) always equals P(B|A) because conditioning is symmetric for any events A and B.",
+          "misconception_tag": "posterior_equals_likelihood"
+        },
+        {
+          "id": "c",
+          "label": "Bayes' theorem means posterior equals likelihood; the base rate P(A) never enters a positive-test update.",
+          "misconception_tag": "ignore_base_rate"
+        },
+        {
+          "id": "d",
+          "label": "Updating a conditional requires only the prior P(A); likelihood and normalising evidence are optional labels.",
+          "misconception_tag": "prior_only_update"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-5.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. Screening: P(D) = 0.01, P(+|D) = 0.95, P(+|not D) = 0.10. A case tests positive. (1) Compute P(D|+) via Bayes (show the normalising P(+)). (2) Refuse: 'P(D|+) equals P(+|D) = 0.95.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.1.",
+      "prompt": "Closed-book. Screening: P(D) = 0.01, P(+|D) = 0.95, P(+|not D) = 0.10. A case tests positive. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute P(D|+) via Bayes; refuse P(D|+) = P(+|D).",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "spine",
-        "Wave 0",
-        "until-exam",
-        "revision"
-      ],
-      "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "(1) P(+) = 0.95·0.01 + 0.10·0.99 = 0.0095 + 0.099 = 0.1085. P(D|+) = 0.0095 / 0.1085 ≈ 0.0876. (2) Refuse: that equates posterior with likelihood and ignores the base rate. Bayes multiplies prior × likelihood and normalises.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Evidence P(+) = 0.1085 and posterior ≈ 0.0876. Sensitivity 0.95 is not the posterior. Prior alone or the false-positive rate alone is wrong.",
+      "model_answer": "P(+)=0.1085; P(D|+)≈0.0876; refuse posterior equals likelihood.",
+      "common_mistake": "Taking P(D|+) = 0.95 or ignoring base-rate normalisation.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "P(+) = 0.95×0.01 + 0.10×0.99 = 0.1085. P(D|+) = 0.0095/0.1085 ≈ 0.0876. Equating P(D|+) with P(+|D) = 0.95 ignores the base rate; Bayes multiplies prior by likelihood and normalises.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(D|+) = P(+|D) = 0.95 because the test is accurate when disease is present, so the positive predictive value equals the sensitivity.",
+          "misconception_tag": "posterior_equals_likelihood"
+        },
+        {
+          "id": "c",
+          "label": "P(D|+) = 0.01 because the prior prevalence is the answer once a case tests positive.",
+          "misconception_tag": "prior_only_update"
+        },
+        {
+          "id": "d",
+          "label": "P(D|+) = 0.10 because P(+|not D) = 0.10 dominates the update for any positive screen.",
+          "misconception_tag": "false_positive_rate_as_posterior"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

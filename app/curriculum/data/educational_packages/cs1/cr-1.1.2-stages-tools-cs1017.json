@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.2-ar-01",
       "title": "Active Recall: 1.1.2",
-      "prompt": "Closed-book. (1) List analysis stages. (2) Pair one stage with a suitable tool class. (3) Why is 1.1.3 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.2 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly orders analysis stages and pairs a stage with a suitable tool class?",
+      "response_type": "mcq",
+      "body": "Select staged analysis path and tool pairing.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "stages",
-        "tools",
-        "workflow",
-        "analysis"
-      ],
-      "explanation": "Active recall for 1.1.2.",
-      "model_answer": "Stages structure the analysis path; tools serve stages. Data sources open tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Stages structure the workflow; tools serve named stages. Opening software, reversing order, or collapsing explore with inference skips staged analysis.",
+      "model_answer": "Aim → data → clean/explore → analyse → communicate; EDA tools in explore.",
+      "common_mistake": "Tool-shopping without stages, reversed order, or EDA equals inference.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A sensible path runs from defining the aim through obtaining data, cleaning/exploring, analysing (infer or predict), to communicating results. Exploratory work sits in clean/explore and pairs with summary statistics and exploratory visualisations (or data-wrangling scripts).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Analysis stages are finished once a notebook is opened and packages loaded; tool choice replaces staged planning.",
+          "misconception_tag": "tools_without_stages"
+        },
+        {
+          "id": "c",
+          "label": "Communicate results first, then obtain data, then define the aim so stakeholders see output early.",
+          "misconception_tag": "stages_reversed"
+        },
+        {
+          "id": "d",
+          "label": "Clean/explore and final inference are the same stage because any plot automatically completes both.",
+          "misconception_tag": "eda_equals_inference"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.2-cp-01",
       "title": "Checkpoint: 1.1.2",
-      "prompt": "Closed-book. You are running a reserves data analysis. (1) List the main stages in a sensible order and mark which stage exploratory work sits in. (2) Pair the clean/explore stage with one suitable tool class. (3) Refuse: 'I opened a notebook and loaded packages, so the analysis stages are finished.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.2.",
+      "prompt": "Closed-book. You are running a reserves data analysis. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Order stages, place EDA, pair a tool; refuse tools-without-stages.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "sources",
-        "1.1.3",
-        "stages"
-      ],
-      "explanation": "Checkpoint for 1.1.2.",
-      "model_answer": "(1) Define aim → obtain data → clean/explore → analyse (infer or predict) → communicate; EDA sits in clean/explore. (2) Clean/explore pairs with summary statistics and exploratory visualisations (or data-wrangling scripts). (3) Refuse: opening tools is not completing the staged analysis path.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "EDA sits inside clean/explore with appropriate tools. Package load or plots alone do not complete inference or communication stages.",
+      "model_answer": "Ordered stages with EDA in explore; tools serve stages.",
+      "common_mistake": "Equating package load or plots with finished staged analysis.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Main stages: define aim → obtain data → clean/explore → analyse → communicate; exploratory work sits in clean/explore. That stage pairs with summary statistics and exploratory visualisations. Opening a notebook and loading packages does not finish the staged path.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Reserves analysis begins and ends in clean/explore because once plots are drawn the inference stage is complete.",
+          "misconception_tag": "eda_equals_inference"
+        },
+        {
+          "id": "c",
+          "label": "The analysis is complete when R or Python packages load successfully; stage order is optional after that.",
+          "misconception_tag": "tools_without_stages"
+        },
+        {
+          "id": "d",
+          "label": "Communicate findings before defining the aim so reserves output reaches stakeholders without delay.",
+          "misconception_tag": "stages_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

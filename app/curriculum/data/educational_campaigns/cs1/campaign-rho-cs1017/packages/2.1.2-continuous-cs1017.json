@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -40,11 +40,11 @@
     "tutor_intent": "Today I will force continuous family recognition and refuse 'Publication Front cleared Approver honesty / finished spine / unlocked until-exam'.",
     "educational_intent": "Produce Publication Front study of named continuous distributions as the Learning close before Revision.",
     "learning_objective": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous distributions on an interval",
-    "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default for mismatched response.",
+    "concept_focus": "Support / shape story \u2192 continuous family \u2192 refuse Normal-by-default for mismatched response.",
     "prior_bridge": "Yesterday you studied discrete distributions (2.1.1). Today closes Publication Front Learning.",
     "why_now": "Place continuous families to close this opening stretch. Then revise the analysis-to-distributions chain.",
     "expected_benefit": "You will be able to place a continuous family from support and shape and refuse Normal-by-default for a mismatched quantity.",
-    "explainability": "Assigned as Campaign Rho Day 9 because Publication Front closes Learning at the last AA continuous-families LO before CR-R1.",
+    "explainability": "Day 9 closes the opening stretch at continuous families. Then revise the chain.",
     "success_criteria": [
       "Closed-book, name continuous families in scope.",
       "State one distinguishing warrant between two named families.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Continuous distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.2 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.2 closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.2 (continuous distributions (publication front)) under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.2\u2013continuous distributions (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 2.1.2?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing 2.1.3 as Rho Learning.",
       "Watch for skipping Revision."
     ],
-    "open_point": "CMP · Syllabus 2.1.2 continuous distributions",
+    "open_point": "CMP \u00b7 Syllabus 2.1.2 continuous distributions",
     "stop_condition": "Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim)",
     "out_of_scope_today": [
       "First-pass spine PASS",
@@ -97,9 +97,9 @@
     ],
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution. Stay inside 2.1.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.2 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 2.1.2.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.2 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -120,57 +120,92 @@
       "kind": "active_recall",
       "item_id": "cs1017-2.1.2-ar-01",
       "title": "Active Recall: 2.1.2",
-      "prompt": "Closed-book. (1) List continuous families in scope. (2) Give one distinguishing warrant. (3) Name one reason this does not clear Approver honesty or finish first-pass spine.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.1.2 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly contrasts named continuous distribution families on an interval support?",
+      "response_type": "mcq",
+      "body": "Select continuous family distinguishing warrants.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "normal",
-        "gamma",
-        "exponential",
-        "continuous"
-      ],
-      "explanation": "Active recall for 2.1.2.",
-      "model_answer": "Named continuous families share continuous support with distinct shape/scale stories. Approver seals and spine PASS remain out of scope.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Support and generative story guide family choice. Normal-by-default or interchangeable families ignore positive support and hazard shape.",
+      "model_answer": "Match support/shape story; exponential for memoryless waiting times.",
+      "common_mistake": "Normal-by-default or treating distinct continuous families as interchangeable.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Named continuous families (Normal, lognormal, exponential, gamma, chi-square, t, F, beta, uniform continuous) share continuous support but differ in shape and scale stories: for example exponential models positive memoryless waiting times under constant hazard.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Normal is the default family for any positive quantity because symmetric all-real support is always adequate after standardisation.",
+          "misconception_tag": "normal_by_default"
+        },
+        {
+          "id": "c",
+          "label": "Exponential and Normal are interchangeable for waiting times because both have a single numeric parameter.",
+          "misconception_tag": "families_interchangeable"
+        },
+        {
+          "id": "d",
+          "label": "Continuous families apply only to variables already transformed to z-scores; raw positive data must first be declared Normal.",
+          "misconception_tag": "zscore_first"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-2.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-2.1.2-cp-01",
       "title": "Checkpoint: 2.1.2",
-      "prompt": "Closed-book. Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. (1) Which continuous family would you place first, and why? (2) Refuse Normal-by-default for this quantity in one sentence.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.1.2.",
+      "prompt": "Closed-book. Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Place exponential; refuse Normal-by-default.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "Approver",
-        "spine",
-        "until-exam",
-        "revision"
-      ],
-      "explanation": "Checkpoint for 2.1.2.",
-      "model_answer": "(1) Exponential: positive support and memoryless waiting times under a constant hazard. (2) Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Memoryless positive waiting aligns with exponential. Normal CLT misuse, beta on unbounded times, or false lognormal exclusion are wrong.",
+      "model_answer": "Exponential for memoryless waiting; refuse Normal-by-default.",
+      "common_mistake": "Normal-by-default or misplacing beta/lognormal for the stated story.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Exponential fits first: positive support and memoryless waiting times under constant hazard. Refuse Normal-by-default because a symmetric all-real support model mismatches strictly positive waiting times.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Normal(\u03bc, \u03c3\u00b2) is appropriate because the central limit theorem always makes waiting times Normal regardless of support.",
+          "misconception_tag": "clt_on_waiting_times"
+        },
+        {
+          "id": "c",
+          "label": "Beta distribution is required because waiting times are bounded between zero and one.",
+          "misconception_tag": "beta_mismatch"
+        },
+        {
+          "id": "d",
+          "label": "Lognormal is ruled out for any waiting-time problem because memoryless property implies exponential only when data are discrete.",
+          "misconception_tag": "lognormal_ruled_out"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest continuous-family wobble: Revision protects the Publication Front chain tomorrow.",
+    "framing": "Harvest continuous-family wobble. Revision protects the Publication Front chain tomorrow.",
     "prompt": "Which part of today's 2.1.2 work is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 2.1.2 work is stickiest and why?",

@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.1.4-ar-01",
       "title": "Active Recall: 1.1.4",
-      "prompt": "Closed-book. (1) What does reproducible research mean? (2) Name required elements. (3) Why is 1.2.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.1.4 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly defines reproducible research and names required elements?",
+      "response_type": "mcq",
+      "body": "Select reproducibility meaning and element list.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "reproducible",
-        "elements",
-        "analysis",
-        "research"
-      ],
-      "explanation": "Active recall for 1.1.4.",
-      "model_answer": "Reproducible research lets others reconstruct the analysis; elements include data, code, and documentation warrants. EDA opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Reconstruction from shared artefacts is the core. One local rerun, memory, or papers-only scope misstates reproducibility.",
+      "model_answer": "Others can reconstruct results; data, code, documentation required.",
+      "common_mistake": "One-off rerun, memory-only, or excluding internal analyses.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Reproducible research lets others (or a future you) reconstruct the same analysis results from stated inputs and steps. Required elements include versioned or clearly identified data, scripted code paths, and documented environment and decisions.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Reproducibility means re-running one notebook cell once on a local laptop; shared data, code, and documentation are optional.",
+          "misconception_tag": "one_off_rerun"
+        },
+        {
+          "id": "c",
+          "label": "An analysis is reproducible if the author remembers the steps; formal versioning and scripts are bureaucracy only.",
+          "misconception_tag": "memory_as_reproducible"
+        },
+        {
+          "id": "d",
+          "label": "Reproducibility applies only to published papers, not to internal pricing or reserves work.",
+          "misconception_tag": "papers_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.4-cp-01",
       "title": "Checkpoint: 1.1.4",
-      "prompt": "Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. (1) In one sentence, what does reproducible research mean? (2) Name two elements required to keep an analysis reproducible. (3) Refuse the colleague's claim in one sentence.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.1.4.",
+      "prompt": "Closed-book. A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Define reproducibility; name elements; refuse one-off rerun claim.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "EDA",
-        "1.2.1",
-        "Approver"
-      ],
-      "explanation": "Checkpoint for 1.1.4.",
-      "model_answer": "(1) Others (or a future you) can reconstruct the same analysis results from the stated inputs and steps. (2) Examples: versioned data (or clear extract identity); scripted code path; documented environment/parameters and decisions. (3) Refuse: a one-off local re-run without shared data, code, and documentation is not reproducibility.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Shared data, code, and environment documentation enable reconstruction. Duplicate local output, email notes, or dated filenames alone fail.",
+      "model_answer": "Reconstruct from shared artefacts; refuse one-off rerun.",
+      "common_mistake": "Equating reproducibility with a single local re-run or weak versioning.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Reproducible research means others can reconstruct the same results from stated inputs and steps. Examples of required elements: versioned data or clear extract identity, scripted code, documented environment/parameters. A one-off local re-run without shared artefacts is not reproducibility.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Re-running the last cell proves reproducibility because the output appeared twice on the same machine.",
+          "misconception_tag": "one_off_rerun"
+        },
+        {
+          "id": "c",
+          "label": "Documentation is unnecessary if the colleague wrote detailed comments in email about what they did.",
+          "misconception_tag": "email_as_documentation"
+        },
+        {
+          "id": "d",
+          "label": "Reproducibility is satisfied when the notebook filename includes the analysis date; data versioning is optional.",
+          "misconception_tag": "filename_as_version"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-1.2.1-ar-01",
       "title": "Active Recall: 1.2.1",
-      "prompt": "Closed-book. (1) Name summary tools. (2) Name one visualisation class. (3) Why is 1.2.2 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 1.2.1 closed-book under Publication Front discipline.",
+      "prompt": "Closed-book. Which statement correctly pairs summary tools and exploratory visualisations with variable type and analysis aim?",
+      "response_type": "mcq",
+      "body": "Select EDA tool choice aligned to aim.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "summary",
-        "visualisation",
-        "EDA",
-        "tools"
-      ],
-      "explanation": "Active recall for 1.2.1.",
-      "model_answer": "Summaries and visuals explore structure before formal association measures. Correlation opens tomorrow.",
-      "common_mistake": "Skipping the LO or claiming Approver clearance / spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Summaries and plots should match type and question. Mean-only, pie defaults, or skipping plots for correlations mis-serve EDA.",
+      "model_answer": "Match summary/plot to type and aim; means can hide shape.",
+      "common_mistake": "Mean-only tables, pie misuse, or correlation without visual checks.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Tool choice depends on variable type and the exploratory question: for example counts may use bar charts or histograms to reveal mass and tail behaviour; means alone can hide zero-inflation or skew.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "EDA always uses the sample mean and a pie chart regardless of variable type because any numeric column is continuous.",
+          "misconception_tag": "mean_and_pie_always"
+        },
+        {
+          "id": "c",
+          "label": "Exploratory visualisation is optional once correlation coefficients are computed because numbers replace plots.",
+          "misconception_tag": "correlation_replaces_eda"
+        },
+        {
+          "id": "d",
+          "label": "Pie charts are the default for any frequency exploration because they show part-to-whole structure for every count variable.",
+          "misconception_tag": "pie_default"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-1.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.2.1-cp-01",
       "title": "Checkpoint: 1.2.1",
-      "prompt": "Closed-book. Claim counts per policy-year: many zeros, a long right tail of large counts. Aim: explore the frequency shape before modelling. (1) Name one exploratory visualisation you would use and what pattern it should reveal. (2) Name one visualisation or summary misuse you would refuse for this aim.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 1.2.1.",
+      "prompt": "Closed-book. Claim counts per policy-year: many zeros, a long right tail of large counts. Aim: explore frequency shape before modelling. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Choose visualisation and refuse misuse for zero-inflated counts.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "correlation",
-        "1.2.2",
-        "EDA"
-      ],
-      "explanation": "Checkpoint for 1.2.1.",
-      "model_answer": "(1) A bar/histogram of counts (or a zero-aware frequency plot) to reveal the mass at zero and the right tail. (2) Refuse a pie chart of policies or a mean-only table that hides zero-inflation and the tail.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Zero mass and tail need shape plots. Mean-only, pie charts, or jumping to correlation without shape checks miss the stated aim.",
+      "model_answer": "Histogram/bar for zero and tail; refuse mean-only or pie.",
+      "common_mistake": "Mean-only summary, pie misuse, or correlation without EDA.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Use a bar chart or histogram of counts (or a zero-aware frequency plot) to reveal mass at zero and the right tail. Refuse a pie chart of policies or a mean-only summary that hides zero-inflation and tail behaviour.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use the sample mean count alone because one number summarises the distribution for modelling decisions.",
+          "misconception_tag": "mean_only"
+        },
+        {
+          "id": "c",
+          "label": "Use a pie chart of policy segments because part-to-whole display always shows zero-inflation clearly.",
+          "misconception_tag": "pie_default"
+        },
+        {
+          "id": "d",
+          "label": "Skip visual exploration and proceed directly to correlation with premium because coefficients replace shape diagnostics.",
+          "misconception_tag": "correlation_replaces_eda"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

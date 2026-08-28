@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you retrieved CLT (2.5.1). Today continues Memory Front at sampling foundations.",
     "why_now": "Sampling vocabulary must retrieve before estimator and CI hinges.",
     "expected_benefit": "You'll retrieve what a random sample from a population requires and why a pile of observations is not automatically one.",
-    "explainability": "Assigned as Campaign Pi Day 4 because Memory Front places sampling before inference hinges.",
+    "explainability": "Day 4 focuses the named learning objective. Places sampling before inference hinges.",
     "success_criteria": [
       "Closed-book, define a random sample from a population.",
       "State why sampling precedes estimators in the hinge chain.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 2.6.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.6.1 (retrieve random samples foundations (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 2.6.1–retrieve random samples foundations (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 2.6.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,8 +93,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 2.6.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.1 random samples from a population. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.6.1 (stop before estimators primary 3.1.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 2.6.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.6.1 random samples from a population. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.6.1 (stop before estimators primary 3.1.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.6.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -116,52 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1016-2.6.1-ar-01",
       "title": "Active Recall: 2.6.1",
-      "prompt": "Closed-book. (1) What is a random sample from a population? (2) Why does sampling precede estimators? (3) Why is 3.1.1 not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.1 closed-book under Memory Front discipline.",
+      "prompt": "Closed-book. Which statement correctly defines a random sample from a population and why sampling precedes estimator construction?",
+      "response_type": "mcq",
+      "body": "Select the sampling warrant and inference ordering.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "sample",
-        "population",
-        "random",
-        "inference"
-      ],
-      "explanation": "Active recall for 2.6.1.",
-      "model_answer": "A random sample is drawn from a population under a sampling model. Estimators open tomorrow.",
-      "common_mistake": "Skipping the LO hinge or claiming spine / until-exam complete.",
+      "accepted_keywords": [],
+      "explanation": "Random sample is about how data relate to a population model, not merely count or accidental equality of means. Estimators presuppose a sampling story.",
+      "model_answer": "Lawful draw from population model; observations alone are not enough.",
+      "common_mistake": "Equating n observations with a random sample, or skipping the sampling warrant before estimators.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A random sample is drawn so observations follow the population distribution under a stated sampling model (for example iid draws). Estimator and interval procedures require this warrant; a pile of observations is not automatically a random sample.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Any n observations collected in practice constitute a random sample because having data is sufficient for inference formulas to apply.",
+          "misconception_tag": "n_observations_as_sample"
+        },
+        {
+          "id": "c",
+          "label": "A random sample means the sample mean equals the population mean; once that equality holds, the sampling model is verified.",
+          "misconception_tag": "sample_mean_equals_population"
+        },
+        {
+          "id": "d",
+          "label": "Sampling vocabulary is optional because estimator formulas can be applied to any spreadsheet column without a population model.",
+          "misconception_tag": "estimators_without_sampling"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-2.6.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-2.6.1-cp-01",
       "title": "Checkpoint: 2.6.1",
-      "prompt": "Closed-book. An analyst takes the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book. (1) In one sentence, why this may fail as a random sample of the portfolio population. (2) State what a random sample from a population requires. (3) Refuse: 'I have n = 40 observations, so I already have a random sample.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.1.",
+      "prompt": "Closed-book. An analyst takes the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Judge sampling warrant; refuse n-observations-as-random-sample.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "estimator",
-        "3.1.1",
-        "sample"
-      ],
-      "explanation": "Checkpoint for 2.6.1.",
-      "model_answer": "(1) Consecutive claims from one client are clustered and not an iid draw from the whole book. Dependence and selection bias break the portfolio sampling warrant. (2) A random sample is drawn so that each observation follows the population distribution under CMP/iid (or stated sampling) conditions. (3) Refuse: having observations is not the same as a random sample with a lawful sampling warrant.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Selection from one client breaks portfolio-level iid sampling. Large n, similar means, or deferred vocabulary do not repair the warrant.",
+      "model_answer": "Selection bias breaks random sample; n alone is insufficient.",
+      "common_mistake": "Large-n rule, mean-match validation, or treating sampling as optional.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Consecutive claims from one client are clustered and not an iid draw from the portfolio population; dependence and selection bias break the random-sample warrant. Having n = 40 observations does not by itself create a random sample.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Because n = 40 exceeds a common rule-of-thumb threshold, the extract is a random sample of the motor book regardless of how it was selected.",
+          "misconception_tag": "n_observations_as_sample"
+        },
+        {
+          "id": "c",
+          "label": "If the sample mean claim size is close to the book average, the selection mechanism is validated and the extract counts as a random sample.",
+          "misconception_tag": "sample_mean_equals_population"
+        },
+        {
+          "id": "d",
+          "label": "Random-sample language applies only after an estimator is chosen; until then any claims file may be treated as a population draw.",
+          "misconception_tag": "estimators_without_sampling"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
