@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force Bayes' theorem on simple conditionals and refuse 'Bayesian means credibility premium on day one'.",
     "educational_intent": "Produce Bayes' theorem application as the Continuity Front join hinge from Xi GLM into Topic 5.1.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
-    "concept_focus": "Prior / base rate → likelihood of data → Bayes update → posterior probability → refuse inverse-probability confusion.",
+    "concept_focus": "Prior / base rate \u2192 likelihood of data \u2192 Bayes update \u2192 posterior probability \u2192 refuse inverse-probability confusion.",
     "prior_bridge": "Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1. The next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
     "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals. Prior/posterior language comes next.",
     "expected_benefit": "You will be able to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors.",
@@ -68,7 +68,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Apply Bayes' theorem to simple conditionals. You practised selective CMP reading on Syllabus 5.1.1. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.1: apply bayes' theorem to simple conditionals. Stop before out-of-scope later LOs.",
@@ -83,7 +83,7 @@
       "Watch for finishing prior/posterior on day one.",
       "Watch for claiming spine / until-exam from theorem practice."
     ],
-    "open_point": "CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities",
+    "open_point": "CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2)",
     "out_of_scope_today": [
       "Prior / posterior / conjugate as primary",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,55 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.1-ar-01",
       "title": "Active Recall: 5.1.1",
-      "prompt": "Closed-book. (1) State Bayes' theorem for events A and B. (2) What one simple conditional does 5.1.1 require you to update? (3) Name one reason this does not finish prior/posterior (5.1.2).",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly states Bayes' theorem for events and names what a simple conditional probability update requires?",
+      "response_type": "mcq",
+      "body": "Select Bayes theorem foundation statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayes",
-        "conditional",
-        "probability",
-        "prior",
-        "likelihood"
-      ],
-      "explanation": "Active recall for 5.1.1.",
-      "model_answer": "Bayes' theorem updates P(A|B) from P(B|A), P(A), P(B). Today is theorem/conditionals. Prior/posterior/conjugate are tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bayes combines prior, likelihood, and evidence. Equating P(A|B) with P(B|A) or ignoring the base rate reverses or drops required pieces.",
+      "model_answer": "P(A|B) proportional to P(B|A)P(A); normalise by P(B).",
+      "common_mistake": "Equating posterior with likelihood or ignoring base rate.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bayes' theorem updates P(A|B) from P(B|A), P(A), and P(B): posterior equals prior times likelihood divided by evidence. A simple conditional update requires the likelihood, prior, and normalising evidence, not confusing posterior with likelihood alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(A|B) always equals P(B|A) because conditioning is symmetric for any events A and B.",
+          "misconception_tag": "posterior_equals_likelihood"
+        },
+        {
+          "id": "c",
+          "label": "Bayes' theorem means posterior equals likelihood; the base rate P(A) never enters a flagged-claim update.",
+          "misconception_tag": "ignore_base_rate"
+        },
+        {
+          "id": "d",
+          "label": "Updating a conditional requires only the prior; likelihood and evidence are optional labels.",
+          "misconception_tag": "prior_only_update"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. Fraud screen: P(fraud)=0.02, P(flag|fraud)=0.90, P(flag|genuine)=0.05. A claim is flagged. (1) Compute P(fraud|flag) via Bayes. (2) Refuse: 'P(fraud|flag) equals P(flag|fraud)=0.90.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.1.",
+      "prompt": "Closed-book. Fraud screen: P(fraud)=0.02, P(flag|fraud)=0.90, P(flag|genuine)=0.05. A claim is flagged. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute P(fraud|flag); refuse likelihood-as-posterior.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayes",
-        "0.269",
-        "base rate",
-        "posterior",
-        "refuse",
-        "likelihood"
-      ],
-      "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "(1) P(flag)=0.90·0.02 + 0.05·0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 ≈ 0.269. (2) Refuse: that equates posterior with likelihood and ignores the base rate. Bayes multiplies prior × likelihood and normalises.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Evidence P(flag)=0.067 and posterior 0.018/0.067 \u2248 0.269. Likelihood 0.90 is not the posterior. Prior alone or genuine false-flag rate alone is wrong.",
+      "model_answer": "P(flag)=0.067; P(fraud|flag) \u2248 0.269. Refuse posterior equals likelihood.",
+      "common_mistake": "Taking P(fraud|flag)=0.90 or ignoring base rate normalisation.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "P(flag)=0.90 times 0.02 + 0.05 times 0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 \u2248 0.269. That equating posterior with P(flag|fraud)=0.90 ignores the base rate; Bayes multiplies prior times likelihood and normalises.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(fraud|flag)=P(flag|fraud)=0.90 because the flag was observed and the screen is accurate for fraud.",
+          "misconception_tag": "posterior_equals_likelihood"
+        },
+        {
+          "id": "c",
+          "label": "P(fraud|flag)=0.02 because the prior is the answer once a claim is flagged.",
+          "misconception_tag": "prior_only_update"
+        },
+        {
+          "id": "d",
+          "label": "P(fraud|flag)=0.05 because P(flag|genuine)=0.05 dominates the update for flagged claims.",
+          "misconception_tag": "genuine_rate_as_posterior"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

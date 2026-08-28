@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to read software output as evidence (slope inference, GOF, prediction limits, residual checks) and refuse treating variable-selection shopping as today's LO.",
     "educational_intent": "Produce a cognitive move from hand least squares to software-mediated fit, inference, prediction, and residual diagnostics under CMP.",
     "learning_objective": "Use of appropriate software to fit a linear regression model to a data set and interpret the output: Perform statistical inference on the slope parameter; Describe the use of measures of goodness of fit of a linear regression model; Use a fitted linear relationship to predict a mean response or an individual response with confidence limits; Use residuals to check the suitability and validity of a linear regression model",
-    "concept_focus": "Software fit → slope inference → GOF measures → mean vs individual prediction limits → residual checks.",
+    "concept_focus": "Software fit \u2192 slope inference \u2192 GOF measures \u2192 mean vs individual prediction limits \u2192 residual checks.",
     "prior_bridge": "Yesterday you obtained least squares estimates for the simple linear model (4.1.3). Today practises software fit and interpretation of that fitted relationship.",
     "why_now": "4.1.4 is contiguous after least squares. Examiners expect software output literacy. Not GUI tourism and not jumping to selection theatre.",
     "expected_benefit": "You will be able to interpret a fitted linear regression: slope inference, GOF, prediction limits, and residual checks.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Fit a linear regression in software and interpret the output. You practised selective CMP reading on Syllabus 4.1.4. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.4: fit a linear regression in software and interpret the output. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for treating residual plots as optional decoration.",
       "Watch for starting variable-selection shopping (4.1.5) as today's finish."
     ],
-    "open_point": "CMP · Syllabus 4.1.4 software fit and interpretation of linear regression",
+    "open_point": "CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5)",
     "out_of_scope_today": [
       "Variable selection as primary (4.1.5)",
@@ -95,8 +95,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1013-4.1.4-ar-01",
       "title": "Active Recall: 4.1.4",
-      "prompt": "Closed-book. (1) What inference on the slope do you report from software? (2) Name one goodness-of-fit measure use. (3) How do mean-response and individual-response prediction limits differ? (4) What do residuals check? (5) Name one reason variable selection is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.4 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes slope inference, goodness-of-fit use, mean versus individual prediction limits, and residual checks after a linear fit?",
+      "response_type": "mcq",
+      "body": "Select the post-fit inference statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "slope",
-        "inference",
-        "goodness of fit",
-        "prediction",
-        "confidence",
-        "residuals",
-        "mean",
-        "individual"
-      ],
-      "explanation": "Active recall for 4.1.4.",
-      "model_answer": "Slope inference uses the software estimate and its uncertainty under CMP. GOF summarises how well the linear relationship describes the data. Individual prediction limits are wider than mean-response limits. Residuals check suitability/validity. Variable selection is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Slope inference, GOF, prediction limits, and residual checks are all required after a fit. Residuals are not optional after significance, and the two interval types differ in width.",
+      "model_answer": "Slope SE and inference; GOF; prediction wider than mean interval; residuals check validity.",
+      "common_mistake": "Treating residuals as optional or collapsing GOF to R-squared alone.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Report the slope estimate with its standard error and inference under the model. Goodness-of-fit summarises how well the linear relationship describes the data. A prediction interval for a new observation is typically wider than a mean-response interval because it adds residual variance. Residuals check suitability and validity of the linear model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "After a significant slope, residual plots are optional because significance already proves the model is valid.",
+          "misconception_tag": "residuals_optional"
+        },
+        {
+          "id": "c",
+          "label": "Mean-response and individual-response intervals are identical for a new x-star because both target E[Y | x-star].",
+          "misconception_tag": "intervals_identical"
+        },
+        {
+          "id": "d",
+          "label": "Goodness-of-fit means adjusted R-squared alone; slope inference and prediction limits are not part of software fit output.",
+          "misconception_tag": "gof_r2_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1013-4.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. After fitting Y = β₀ + β₁x in software you see β̂₁, SE(β̂₁), R², and residual plots. (1) For a new x*, distinguish predicting the mean response E[Y|x*] from predicting an individual Y_new. Which interval is typically wider? (2) Refuse: 'Running best-subset selection finishes software fit/inference' and 'residuals are optional after a significant slope.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.4.",
+      "prompt": "Closed-book. After fitting Y = \u03b2\u2080 + \u03b2\u2081 x in software you see \u03b2\u0302\u2081, SE(\u03b2\u0302\u2081), R-squared, and residual plots. For a new x-star, which statement is correct?",
+      "response_type": "mcq",
+      "body": "Distinguish mean versus individual prediction; refuse selection.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "mean response",
-        "prediction",
-        "wider",
-        "residuals",
-        "refuse",
-        "selection"
-      ],
-      "explanation": "Checkpoint for 4.1.4.",
-      "model_answer": "(1) A mean-response interval covers E[Y|x*]; a prediction interval covers a new observation and is typically wider (adds residual variance). (2) Refuse: variable selection is a different LO; slope inference, GOF, prediction limits, and residual checks are all required after a fit.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Mean interval targets the conditional mean; prediction adds observation noise. Variable selection and optional residuals are misconceptions.",
+      "model_answer": "Mean interval for E[Y | x-star]; prediction wider; refuse selection-as-fit and optional residuals.",
+      "common_mistake": "Accepting variable selection as finishing fit, or treating residuals as optional after significance.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A mean-response interval covers E[Y | x-star]; a prediction interval covers a new observation and is typically wider (adds residual variance). Running best-subset selection is separate from post-fit inference; slope inference, GOF, prediction limits, and residual checks are all required after a fit.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Running best-subset variable selection finishes software fit and inference for this model.",
+          "misconception_tag": "variable_selection_finishes"
+        },
+        {
+          "id": "c",
+          "label": "Because the slope is significant, residual plots are optional diagnostic theatre.",
+          "misconception_tag": "residuals_optional"
+        },
+        {
+          "id": "d",
+          "label": "The mean-response interval and prediction interval for x-star are the same width because both estimate E[Y | x-star] only.",
+          "misconception_tag": "intervals_identical"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

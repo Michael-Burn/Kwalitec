@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force credible-interval construction from the posterior and refuse 'credible equals confidence interval under frequentist law'.",
     "educational_intent": "Produce credible intervals as contiguous after loss-based estimators.",
     "learning_objective": "Construct credible intervals in simple cases.",
-    "concept_focus": "Posterior → credible interval construction → refuse copying frequentist CI coverage slogans.",
+    "concept_focus": "Posterior \u2192 credible interval construction \u2192 refuse copying frequentist CI coverage slogans.",
     "prior_bridge": "Yesterday you derived loss-based estimators (5.1.4). Today constructs credible intervals.",
     "why_now": "5.1.5 completes core Bayesian estimation objects before credibility theory.",
     "expected_benefit": "You will be able to construct a credible interval in a simple case and interpret it as a posterior probability statement.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Construct credible intervals in simple cases. You practised selective CMP reading on Syllabus 5.1.5. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.5: construct credible intervals in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for finishing credibility premium today.",
       "Watch for swallowing 5.1.6."
     ],
-    "open_point": "CMP · Syllabus 5.1.5 credible intervals in simple cases",
+    "open_point": "CMP \u00b7 Syllabus 5.1.5 credible intervals in simple cases",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.5 (stop before credibility premium primary 5.1.6)",
     "out_of_scope_today": [
       "Credibility premium as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.5.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.5 credible intervals in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.5 (stop before credibility premium primary 5.1.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.5 credible intervals in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.5 (stop before credibility premium primary 5.1.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -115,54 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.5-ar-01",
       "title": "Active Recall: 5.1.5",
-      "prompt": "Closed-book. (1) What does a credible interval say? (2) What posterior object do you use? (3) Why is credibility premium not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes what a credible interval says and which posterior object it uses?",
+      "response_type": "mcq",
+      "body": "Select Bayesian interval reading statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "credible",
-        "interval",
-        "posterior",
-        "probability"
-      ],
-      "explanation": "Active recall for 5.1.5.",
-      "model_answer": "A credible interval is a posterior probability statement for the parameter. Credibility premium formula is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Credible interval is posterior probability for \u03b8. Repeated-sampling coverage slogan is the frequentist confidence interval reading unless carefully distinguished.",
+      "model_answer": "Posterior probability statement for \u03b8 using posterior distribution.",
+      "common_mistake": "Reading credible interval with frequentist repeated-coverage language only.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A credible interval is a posterior probability statement about the parameter \u03b8 given the observed data, typically constructed from the posterior distribution (for example equal-tailed quantiles).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A 95% credible interval means that in repeated samples the random interval covers theta 95% of the time without any Bayesian reading.",
+          "misconception_tag": "frequentist_reading"
+        },
+        {
+          "id": "c",
+          "label": "Credible intervals use only the prior; the likelihood enters credible intervals only in credibility premium formulas.",
+          "misconception_tag": "prior_only_interval"
+        },
+        {
+          "id": "d",
+          "label": "A credible interval is the same object as a confidence interval; the adjective is interchangeable in all readings.",
+          "misconception_tag": "ci_cr_collapsed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.5-cp-01",
       "title": "Checkpoint: 5.1.5",
-      "prompt": "Closed-book. Posterior for a risk parameter θ is Normal(0.10, 0.02²). (1) Construct an approximate 95% equal-tailed credible interval for θ. (2) Refuse: 'A 95% credible interval means that in repeated samples the random interval covers θ 95% of the time' without noting the Bayesian reading.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.5.",
+      "prompt": "Closed-book. Posterior for risk parameter \u03b8 is Normal(0.10, 0.02 squared). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Construct 95% equal-tailed interval; refuse frequentist reading.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "0.0608",
-        "0.1392",
-        "credible",
-        "posterior",
-        "refuse",
-        "confidence"
-      ],
-      "explanation": "Checkpoint for 5.1.5.",
-      "model_answer": "(1) ≈ 0.10 ± 1.96·0.02 → about (0.0608, 0.1392). (2) Refuse: that is the frequentist coverage slogan for a confidence interval; a credible interval is a posterior probability statement about θ given the data.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Normal(0.10, 0.02^2) gives equal-tailed interval \u2248 (0.0608, 0.1392). Frequentist coverage language misstates credible intervals.",
+      "model_answer": "Approx (0.0608, 0.1392). Credible is posterior probability for theta.",
+      "common_mistake": "Using frequentist coverage reading or wrong interval width rule.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Approximate 95% equal-tailed credible interval: 0.10 plus or minus 1.96 times 0.02 gives about (0.0608, 0.1392). That frequentist repeated-sampling coverage slogan is the confidence-interval reading; a credible interval is a posterior probability statement about \u03b8 given the data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "95% credible interval (0.10, 0.10) because theta equals the posterior mean with probability 1.",
+          "misconception_tag": "degenerate_interval"
+        },
+        {
+          "id": "c",
+          "label": "Approximate interval (0.08, 0.12) using plus or minus one posterior standard deviation only, which is always the 95% equal-tailed rule.",
+          "misconception_tag": "one_sd_rule"
+        },
+        {
+          "id": "d",
+          "label": "A 95% credible interval means that in repeated samples the random interval covers theta 95% of the time; no Bayesian reading is needed.",
+          "misconception_tag": "frequentist_reading"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

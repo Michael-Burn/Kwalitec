@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force a simple posterior calculation path and refuse 'posterior means point estimate under loss'.",
     "educational_intent": "Produce simple posterior calculation as contiguous after prior/conjugate language.",
     "learning_objective": "Obtain the posterior distribution for a parameter in simple cases.",
-    "concept_focus": "Prior + data → posterior distribution in a simple conjugate case.",
+    "concept_focus": "Prior + data \u2192 posterior distribution in a simple conjugate case.",
     "prior_bridge": "Yesterday you explained prior/posterior/conjugate (5.1.2). Today calculates a simple posterior.",
     "why_now": "5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
     "expected_benefit": "You will be able to obtain the posterior distribution for a parameter in a simple conjugate case.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Obtain posteriors in simple cases. You practised selective CMP reading on Syllabus 5.1.3. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.3: obtain posteriors in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for skipping distributional warrant.",
       "Watch for swallowing 5.1.4."
     ],
-    "open_point": "CMP · Syllabus 5.1.3 posterior distribution for a parameter in simple cases",
+    "open_point": "CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4)",
     "out_of_scope_today": [
       "Loss functions / Bayesian estimators as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.3 posterior distribution for a parameter in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -115,54 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.3-ar-01",
       "title": "Active Recall: 5.1.3",
-      "prompt": "Closed-book. (1) What inputs yield a simple posterior? (2) What object do you obtain? (3) Why is a loss-based point estimate not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the inputs and output object for a simple posterior calculation?",
+      "response_type": "mcq",
+      "body": "Select prior-plus-likelihood to posterior statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "posterior",
-        "prior",
-        "likelihood",
-        "parameter",
-        "distribution"
-      ],
-      "explanation": "Active recall for 5.1.3.",
-      "model_answer": "Prior and likelihood yield a posterior distribution for the parameter. Loss-based estimators are tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Posterior is the updated distribution. Point estimators under loss and intervals are subsequent summaries, not automatic byproducts of writing posterior.",
+      "model_answer": "Prior plus likelihood give posterior distribution. Loss-based point estimate is a further step.",
+      "common_mistake": "Treating posterior as automatically delivering loss-based point estimator.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prior and likelihood together yield a posterior distribution for the parameter. A loss-based point estimator is a further step summarising that posterior under a chosen loss function.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Having the posterior distribution automatically finishes choosing the Bayesian point estimator under squared-error loss; no further step exists.",
+          "misconception_tag": "posterior_finishes_loss_estimator"
+        },
+        {
+          "id": "c",
+          "label": "Simple posterior means the prior alone; likelihood enters only in frequentist confidence intervals.",
+          "misconception_tag": "prior_only_posterior"
+        },
+        {
+          "id": "d",
+          "label": "The output object is always a credible interval; a full posterior distribution is unnecessary once data are observed.",
+          "misconception_tag": "interval_only_output"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.3-cp-01",
       "title": "Checkpoint: 5.1.3",
-      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. (1) State the posterior distribution (parameters). (2) Refuse: 'Having the posterior distribution finishes choosing the Bayesian point estimator under squared-error loss.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.3.",
+      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State posterior parameters; refuse loss-as-automatic.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Beta(5,9)",
-        "posterior",
-        "refuse",
-        "squared-error",
-        "estimator"
-      ],
-      "explanation": "Checkpoint for 5.1.3.",
-      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse: the posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Conjugate update adds successes to first shape and failures to second: Beta(5,9). Posterior mean under squared-error loss is a separate summary step.",
+      "model_answer": "Posterior Beta(5,9). Refuse posterior as automatic loss estimator.",
+      "common_mistake": "Stopping at prior, sample proportion, or treating posterior as automatic point estimator.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Posterior Beta(2+3, 2+7) = Beta(5,9). The posterior is the full distribution; a loss-based point estimator (for example posterior mean under squared-error loss) is a further step.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Posterior Beta(2,2) because the prior dominates with n=10 small; successes add nothing to the parameters.",
+          "misconception_tag": "prior_unchanged"
+        },
+        {
+          "id": "c",
+          "label": "Posterior mean 3/10 = 0.3 is the posterior distribution; Beta(5,9) is optional notation.",
+          "misconception_tag": "mean_is_posterior"
+        },
+        {
+          "id": "d",
+          "label": "Having Beta(5,9) finishes choosing the Bayesian point estimator under squared-error loss without calculation.",
+          "misconception_tag": "posterior_finishes_loss_estimator"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

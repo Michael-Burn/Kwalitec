@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force Bayesian credibility premiums in simple cases and refuse 'Bayesian credibility finished Empirical Bayes'.",
     "educational_intent": "Produce Bayesian credibility as contiguous after the premium formula.",
     "learning_objective": "Apply the Bayesian approach to credibility theory and calculate credibility premiums in simple cases.",
-    "concept_focus": "Bayesian credibility with known structural/prior parameters → Z and μ → credibility premium.",
+    "concept_focus": "Bayesian credibility with known structural/prior parameters \u2192 Z and \u03bc \u2192 credibility premium.",
     "prior_bridge": "Yesterday you used the credibility premium formula (5.1.6). Today applies the Bayesian approach.",
     "why_now": "5.1.7 precedes Empirical Bayes (5.1.8) contrast.",
     "expected_benefit": "You will be able to apply the Bayesian approach to credibility and compute a premium in a simple case.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Apply Bayesian credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.7. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.7 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.7 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.7: apply bayesian credibility in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for finishing contrast LO today.",
       "Watch for swallowing 5.1.8."
     ],
-    "open_point": "CMP · Syllabus 5.1.7 Bayesian approach to credibility theory",
+    "open_point": "CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility theory",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8)",
     "out_of_scope_today": [
       "Empirical Bayes as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.7.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.7 Bayesian approach to credibility theory. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.7 Bayesian approach to credibility theory. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.7 (stop before Empirical Bayes primary 5.1.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -115,54 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.7-ar-01",
       "title": "Active Recall: 5.1.7",
-      "prompt": "Closed-book. (1) What distinguishes the Bayesian credibility approach in simple cases? (2) What premium object do you calculate? (3) Why is EB not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.7 closed-book.",
+      "prompt": "Closed-book. Which statement correctly distinguishes the Bayesian credibility approach in simple cases and names the premium object calculated?",
+      "response_type": "mcq",
+      "body": "Select Bayesian credibility approach statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayesian",
-        "credibility",
-        "prior",
-        "premium"
-      ],
-      "explanation": "Active recall for 5.1.7.",
-      "model_answer": "Bayesian credibility uses an explicit prior structure for risk parameters. Empirical Bayes is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bayesian approach treats structural parameters as known from prior structure. Empirical Bayes estimates them from data, a different approach.",
+      "model_answer": "Explicit prior structure supplies mu and Z; premium Z X\u0304 + (1-Z) mu.",
+      "common_mistake": "Collapsing Bayesian credibility into Empirical Bayes.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bayesian credibility uses an explicit prior or structural distribution for risk parameters. The premium object is Z times X\u0304 + (1 minus Z) times \u03bc with Z and mu determined theoretically from the prior structure in simple cases.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Applying Bayesian credibility finishes the Empirical Bayes approach because both yield a numeric premium.",
+          "misconception_tag": "bayesian_finishes_eb"
+        },
+        {
+          "id": "c",
+          "label": "Bayesian credibility never supplies mu or Z; only Empirical Bayes defines those quantities.",
+          "misconception_tag": "eb_only_supplies"
+        },
+        {
+          "id": "d",
+          "label": "The premium object is the posterior mean only; Z and mu never appear in Bayesian credibility.",
+          "misconception_tag": "posterior_mean_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z·X̄ + (1−Z)·μ. (1) What do the prior/structural assumptions supply that lets you compute Z and μ? (2) Refuse: 'Applying Bayesian credibility finishes the Empirical Bayes approach.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.7.",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times X\u0304 + (1 minus Z) times \u03bc. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State what prior supplies; refuse EB conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "structural",
-        "prior",
-        "Z",
-        "μ",
-        "refuse",
-        "Empirical Bayes"
-      ],
-      "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse: Empirical Bayes estimates those structural parameters from data. A different approach from treating them as known in the Bayesian calculation.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Known structural parameters from prior theory yield mu and Z. EB estimates structural parameters from collective experience.",
+      "model_answer": "Prior supplies mean and variance components for mu and Z. EB estimates structurals from data.",
+      "common_mistake": "Accepting Bayesian credibility as finishing Empirical Bayes.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed X\u0304. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Applying Bayesian credibility finishes the Empirical Bayes approach.",
+          "misconception_tag": "bayesian_finishes_eb"
+        },
+        {
+          "id": "c",
+          "label": "mu and Z must be estimated from collective data even in the fully Bayesian setup; prior structure supplies nothing.",
+          "misconception_tag": "eb_only_supplies"
+        },
+        {
+          "id": "d",
+          "label": "Structural parameters are always user-chosen constants unrelated to any prior; Z equals 1 by definition.",
+          "misconception_tag": "arbitrary_z"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

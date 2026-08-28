@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
     "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
-    "concept_focus": "Candidate explanatory sets → fit measures (e.g. adjusted R², AIC/BIC) → select an appropriate set.",
+    "concept_focus": "Candidate explanatory sets \u2192 fit measures (e.g. adjusted R\u00b2, AIC/BIC) \u2192 select an appropriate set.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
     "why_now": "Finish Topic 4.1 by selecting variables using fit measures. Then revise before moving into GLM.",
     "expected_benefit": "You will be able to use measures of model fit to select an appropriate set of explanatory variables.",
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Select explanatory variables using measures of model fit. You practised selective CMP reading on Syllabus 4.1.5. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5: select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating 'best R²' with automatically correct selection without CMP caveat.",
+      "Watch for equating 'best R\u00b2' with automatically correct selection without CMP caveat.",
       "Watch for claiming GLM/Bayesian finished Continuity Front.",
       "Watch for claiming spine / until-exam complete after Topic 4.1."
     ],
-    "open_point": "CMP · Syllabus 4.1.5 measures of model fit for variable selection",
+    "open_point": "CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims)",
     "out_of_scope_today": [
       "GLM / Topic 4.2 as primary",
@@ -96,8 +96,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1013-4.1.5-ar-01",
       "title": "Active Recall: 4.1.5",
-      "prompt": "Closed-book. (1) What decision does 4.1.5 ask you to make? (2) What role do measures of model fit play? (3) Name one reason more explanatory variables is not automatically better. (4) Name one reason this does not finish Topic 4.2 or first-pass spine.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the variable-selection decision and the role of model-fit measures?",
+      "response_type": "mcq",
+      "body": "Select the explanatory-set selection statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "selection",
-        "explanatory",
-        "model fit",
-        "measure",
-        "compare",
-        "overfit",
-        "4.2"
-      ],
-      "explanation": "Active recall for 4.1.5.",
-      "model_answer": "4.1.5 selects an appropriate explanatory set using fit measures. More variables can overfit or dilute interpretation. Topic 4.2 GLM and first-pass spine PASS are out of scope.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Selection compares candidate explanatory sets using fit measures with complexity penalties. Mechanical p-value chopping and GLM conflation are wrong tasks.",
+      "model_answer": "Select explanatory set via fit measures; more variables is not automatically better.",
+      "common_mistake": "Mechanical p-value chopping or conflating linear selection with GLM link-and-family modelling.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Select an appropriate set of explanatory variables using fit measures that reward fit while penalising unnecessary complexity. More explanatory variables is not automatically better because overfitting and diluted interpretation can worsen the model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Keep every term with p less than 0.05; that mechanical rule completes explanatory-variable selection.",
+          "misconception_tag": "p_value_chopping"
+        },
+        {
+          "id": "c",
+          "label": "Variable selection for linear models is the same task as choosing a GLM link function; both are finished by raw R-squared alone.",
+          "misconception_tag": "glm_finishes"
+        },
+        {
+          "id": "d",
+          "label": "The best explanatory set always contains every available numeric column because unused columns waste information.",
+          "misconception_tag": "more_variables_always"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1013-4.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.5-cp-01",
       "title": "Checkpoint: 4.1.5",
-      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. (1) Name two fit measures you could use to choose between candidate explanatory sets and what each rewards or penalises. (2) Refuse: 'Keep every term with p<0.05 and selection is done' and 'variable selection finishes GLM modelling.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.5.",
+      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name fit measures; refuse p-chopping and GLM conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "adjusted R²",
-        "AIC",
-        "BIC",
-        "selection",
-        "refuse",
-        "p-value"
-      ],
-      "explanation": "Checkpoint for 4.1.5.",
-      "model_answer": "(1) e.g. adjusted R² (rewards fit while adjusting for unused complexity vs raw R²); AIC/BIC (likelihood fit with a parameter-count penalty). (2) Refuse: mechanical p-value chopping is not a complete selection warrant; GLM is a different topic. Today is selecting explanatory variables for linear models via fit measures.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Adjusted R-squared and AIC/BIC penalise complexity. p-value chopping and GLM conflation do not finish linear explanatory selection.",
+      "model_answer": "Adjusted R-squared; AIC/BIC. Refuse p-chopping and GLM conflation.",
+      "common_mistake": "Accepting p-value chopping or treating selection as finishing GLM.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Examples: adjusted R-squared (rewards fit while adjusting for unused complexity versus raw R-squared); AIC or BIC (likelihood fit with a parameter-count penalty). Mechanical p-value chopping is not a complete selection warrant; GLM uses links and exponential-family responses, not linear explanatory selection alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Keep every term with p less than 0.05 in M2 and selection is done; no fit measure comparison is needed.",
+          "misconception_tag": "p_value_chopping"
+        },
+        {
+          "id": "c",
+          "label": "Variable selection finishes GLM modelling because both choose predictors using software output.",
+          "misconception_tag": "glm_finishes"
+        },
+        {
+          "id": "d",
+          "label": "Raw R-squared alone decides between M1 and M2 because it never increases when variables are added.",
+          "misconception_tag": "raw_r2_penalty"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -183,7 +214,7 @@
   "tomorrow_preview": {
     "next_topic_code": "CN-R1",
     "next_topic_title": "Campaign Nu Revision: retrieve 4.1 hinges",
-    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1–4.1.5.",
+    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1\u20134.1.5.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 4.1 hinge for Revision",
     "student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link. Titles only tonight."
   },

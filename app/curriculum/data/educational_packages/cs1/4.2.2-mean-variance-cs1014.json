@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force mean/variance/variance-function/scale statements per family and refuse treating link choice as today's LO.",
     "educational_intent": "Produce a cognitive move from family membership to lawful moment and scale structure under CMP.",
     "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
-    "concept_focus": "Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
+    "concept_focus": "Family \u2192 E(Y) \u2192 Var(Y) \u2192 variance function V(\u03bc) \u2192 scale parameter.",
     "prior_bridge": "Yesterday you placed responses in the exponential family (4.2.1). Today continues Topic 4.2 at moments and scale. Still Continuity Front join.",
     "why_now": "4.2.2 is contiguous after family placement. Without moments/scale, link and deviance lack distributional warrant.",
     "expected_benefit": "You will be able to state mean, variance, variance function and scale for the standard GLM families.",
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Evaluate mean, variance, variance function and scale. You practised selective CMP reading on Syllabus 4.2.2. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.2: evaluate mean, variance, variance function and scale. Stop before out-of-scope later LOs.",
@@ -84,7 +84,7 @@
       "Watch for jumping to link choice (4.2.3) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP · Syllabus 4.2.2 mean, variance, variance function and scale",
+    "open_point": "CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function and scale",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.2 (stop before link / canonical link 4.2.3)",
     "out_of_scope_today": [
       "Link / canonical link as primary (4.2.3)",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.2 mean, variance, variance function and scale. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.2 (stop before link / canonical link 4.2.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.2 mean, variance, variance function and scale. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.2 (stop before link / canonical link 4.2.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,56 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1014-4.2.2-ar-01",
       "title": "Active Recall: 4.2.2",
-      "prompt": "Closed-book. (1) What four quantities does 4.2.2 ask you to handle? (2) Pick one family and state its mean and variance (or variance function). (3) Name one reason link/canonical is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly names the four quantities handled for a GLM response family and gives a Poisson example?",
+      "response_type": "mcq",
+      "body": "Select mean, variance, variance function, scale.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "mean",
-        "variance",
-        "variance function",
-        "scale",
-        "Poisson",
-        "binomial"
-      ],
-      "explanation": "Active recall for 4.2.2.",
-      "model_answer": "Mean, variance, variance function, and scale. Example: Poisson mean=λ, variance=λ (scale often 1). Link/canonical is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Family structure specifies mean, variance, V(mu), and scale. The link maps \u03bc to \u03b7 and is a separate object from the response variance structure.",
+      "model_answer": "Mean, variance, V(mu), scale. Poisson: E[Y]=Var[Y]=lambda.",
+      "common_mistake": "Letting link choice substitute for family mean-variance structure.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Mean, variance, variance function V(mu), and scale (dispersion). Example: Poisson with mean lambda has E[Y]=Var[Y]=lambda and V(\u03bc)=\u03bc with scale often 1.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Choosing the logit link finishes stating mean, variance, variance function, and scale for any family.",
+          "misconception_tag": "link_finishes_mean_variance"
+        },
+        {
+          "id": "c",
+          "label": "For every GLM response, Var[Y] equals \u03c3\u00b2 constant independent of mu; V(\u03bc)=1 always.",
+          "misconception_tag": "constant_variance_all"
+        },
+        {
+          "id": "d",
+          "label": "Mean and variance are defined only after writing the linear predictor \u03b7; family structure is secondary.",
+          "misconception_tag": "eta_first"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1014-4.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.2-cp-01",
       "title": "Checkpoint: 4.2.2",
-      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(μ) for each. (2) Refuse: 'Choosing the logit link finishes stating mean, variance, variance function and scale.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.2.",
+      "prompt": "Closed-book. For Poisson and Normal GLM responses, which statement is correct?",
+      "response_type": "mcq",
+      "body": "State E[Y], Var[Y], V(mu); refuse link-as-structure.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Poisson",
-        "Normal",
-        "variance function",
-        "scale",
-        "refuse",
-        "link"
-      ],
-      "explanation": "Checkpoint for 4.2.2.",
-      "model_answer": "(1) Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². (2) Refuse: the link maps μ to η; today requires the mean/variance/scale structure of the response family.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Poisson has mean-variance equality; Normal has constant variance with scale \u03c3\u00b2. Link choice does not replace these family facts.",
+      "model_answer": "Poisson V(\u03bc)=\u03bc; Normal V(\u03bc)=1, scale \u03c3\u00b2. Refuse link-as-structure.",
+      "common_mistake": "Accepting link choice as finishing mean-variance structure.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson: E[Y]=\u03bc, Var[Y]=\u03bc, V(\u03bc)=\u03bc (scale typically 1). Normal: E[Y]=\u03bc, Var[Y]=\u03c3\u00b2, V(\u03bc)=1 with scale \u03c3\u00b2. The link maps \u03bc to \u03b7; this question requires the mean, variance, and scale structure of the response family.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Choosing the logit link finishes stating E[Y], Var[Y], V(mu), and scale for Poisson and Normal.",
+          "misconception_tag": "link_finishes_mean_variance"
+        },
+        {
+          "id": "c",
+          "label": "Poisson: E[Y]=\u03bc, Var[Y]=\u03c3\u00b2 constant; Normal: E[Y]=\u03bc, Var[Y]=\u03bc because both GLM families share the same variance function.",
+          "misconception_tag": "families_collapsed"
+        },
+        {
+          "id": "d",
+          "label": "V(mu) is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=\u03bc.",
+          "misconception_tag": "v_mu_universal"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

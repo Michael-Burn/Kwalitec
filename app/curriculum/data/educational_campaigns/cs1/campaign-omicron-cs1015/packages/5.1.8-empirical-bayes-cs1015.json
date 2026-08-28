@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force EB credibility premiums in simple cases and refuse 'EB finished the contrast LO'.",
     "educational_intent": "Produce Empirical Bayes credibility as contiguous after Bayesian credibility.",
     "learning_objective": "Apply the Empirical Bayes approach to credibility theory and derive credibility premiums in simple cases.",
-    "concept_focus": "Estimate structural parameters from collective data → plug into credibility formula → EB premium.",
+    "concept_focus": "Estimate structural parameters from collective data \u2192 plug into credibility formula \u2192 EB premium.",
     "prior_bridge": "Yesterday you applied Bayesian credibility (5.1.7). Today applies Empirical Bayes.",
     "why_now": "5.1.8 sets up the contrast LO 5.1.9.",
     "expected_benefit": "You will be able to apply Empirical Bayes to estimate structural parameters and form a credibility premium.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Apply Empirical Bayes credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.8. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.8: apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for finishing contrast today.",
       "Watch for swallowing 5.1.9."
     ],
-    "open_point": "CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility",
+    "open_point": "CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9)",
     "out_of_scope_today": [
       "Bayes vs EB contrast as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.8.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -115,55 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.8-ar-01",
       "title": "Active Recall: 5.1.8",
-      "prompt": "Closed-book. (1) How does EB obtain structural parameters differently from a fully specified Bayesian prior? (2) What premium do you derive? (3) Why is contrast not today's primary?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.8 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes how Empirical Bayes obtains structural parameters differently from a fully specified Bayesian prior and names the premium derived?",
+      "response_type": "mcq",
+      "body": "Select Empirical Bayes move statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Empirical",
-        "Bayes",
-        "credibility",
-        "structural",
-        "data"
-      ],
-      "explanation": "Active recall for 5.1.8.",
-      "model_answer": "EB estimates structural parameters from data rather than a fully specified prior alone. Contrast LO is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "EB estimates overall mean and process variance components from collective experience, then forms credibility premium. Same assumptions as fully Bayesian is incorrect.",
+      "model_answer": "Estimate structurals from collective data; premium \u1e90 X\u0304 + (1-\u1e90) \u03bc\u0302.",
+      "common_mistake": "Treating EB as identical assumptions or single-claim update.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium \u1e90 times X\u0304 + (1 minus \u1e90) times \u03bc-hat follows after plugging estimated structural parameters into the credibility formula.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Empirical Bayes and fully Bayesian credibility always use identical assumptions for structural parameters.",
+          "misconception_tag": "same_assumptions"
+        },
+        {
+          "id": "c",
+          "label": "Empirical Bayes obtains the premium only by applying Bayes' theorem to a single claim; collective data never enter.",
+          "misconception_tag": "single_claim_only"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes means choosing Z = 1 always because data estimate full credibility automatically.",
+          "misconception_tag": "full_credibility_eb"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.8-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. (1) Outline the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown. (2) Refuse: 'Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.8.",
+      "prompt": "Closed-book. Which statement correctly outlines the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown?",
+      "response_type": "mcq",
+      "body": "Outline EB premium; refuse contrast-as-finished.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Empirical Bayes",
-        "structural",
-        "estimate",
-        "Ẑ",
-        "refuse",
-        "contrast"
-      ],
-      "explanation": "Checkpoint for 5.1.8.",
-      "model_answer": "(1) Estimate structural parameters (e.g. overall mean and process/variance components) from the collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ·X̄ + (1−Ẑ)·μ̂ for the risk. (2) Refuse: applying EB is not the same LO as contrasting the assumption sets of Bayes vs EB.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "EB pipeline: estimate structurals, plug into credibility form, compute premium. That calculation differs from the contrast LO about assumptions.",
+      "model_answer": "Estimate structurals from collective data; plug into Z and mu; form premium.",
+      "common_mistake": "Treating one EB premium calculation as finishing Bayes versus EB contrast.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Estimate structural parameters (for example overall mean and process or variance components) from the collective data, plug them into the credibility formula to get \u1e90 and \u03bc\u0302, then form \u1e90 times X\u0304 + (1 minus \u1e90) times \u03bc-hat for the risk. Computing one EB premium is not the same task as contrasting assumption sets of Bayes versus EB.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.",
+          "misconception_tag": "eb_premium_finishes_contrast"
+        },
+        {
+          "id": "c",
+          "label": "Empirical Bayes requires a fully specified prior before any data; collective estimation is unnecessary.",
+          "misconception_tag": "prior_required_first"
+        },
+        {
+          "id": "d",
+          "label": "Structural parameters are set to sample proportions only; no credibility formula is used afterward.",
+          "misconception_tag": "no_credibility_formula"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

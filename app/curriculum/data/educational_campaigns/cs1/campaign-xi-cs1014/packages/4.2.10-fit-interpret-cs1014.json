@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force fit-and-interpret literacy and refuse treating Bayesian / spine / until-exam as finished.",
     "educational_intent": "Produce a cognitive move from acceptability tests to lawful software fit and interpretation, closing 4.2 Learning under Continuity Front join.",
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
-    "concept_focus": "Choose family/link → fit GLM → interpret coefficients on the mean scale → check fit/diagnostics.",
+    "concept_focus": "Choose family/link \u2192 fit GLM \u2192 interpret coefficients on the mean scale \u2192 check fit/diagnostics.",
     "prior_bridge": "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic 4.2 Learning at fit and interpret.",
     "why_now": "After goodness-of-fit tests, fit a GLM and interpret the output. Then revise the GLM chain.",
     "expected_benefit": "You will be able to fit a GLM and interpret coefficients and fit output in exam-style language.",
@@ -51,7 +51,7 @@
       "Refuse one 'I finished Bayesian / the exam journey' claim."
     ],
     "task_descriptions": [
-      "Sketch fit → interpret checklist before CMP.",
+      "Sketch fit \u2192 interpret checklist before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.10.",
       "Closed-book Knowledge Checks: interpret + refuse 5.1/spine swallow."
     ],
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Fit a GLM and interpret the output. You practised selective CMP reading on Syllabus 4.2.10. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.10 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.10 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.10: fit a glm and interpret the output. Stop before out-of-scope later LOs.",
@@ -84,7 +84,7 @@
       "Watch for claiming Bayesian / spine / until-exam finished Continuity Front.",
       "Watch for skipping earlier 4.2 hinges as irrelevant once software runs."
     ],
-    "open_point": "CMP · Syllabus 4.2.10 fit a GLM and interpret the output",
+    "open_point": "CMP \u00b7 Syllabus 4.2.10 fit a GLM and interpret the output",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims)",
     "out_of_scope_today": [
       "Bayesian / Topic 5.1 as primary",
@@ -96,8 +96,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.10.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.10 fit a GLM and interpret the output. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.10 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.10 fit a GLM and interpret the output. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.10 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -118,56 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1014-4.2.10-ar-01",
       "title": "Active Recall: 4.2.10",
-      "prompt": "Closed-book. (1) What does 4.2.10 require beyond clicking Fit? (2) Name three output elements to interpret. (3) Name one reason this does not finish Topic 5.1 or first-pass spine.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.10 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes what is required beyond clicking Fit for a GLM and names three output elements to interpret?",
+      "response_type": "mcq",
+      "body": "Select fit-and-interpret requirement statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "fit",
-        "interpret",
-        "coefficient",
-        "deviance",
-        "residual",
-        "output"
-      ],
-      "explanation": "Active recall for 4.2.10.",
-      "model_answer": "Fit and interpret: coefficients, fit measures, residuals/diagnostics as warranted. Topic 5.1 Bayesian and first-pass spine PASS are out of scope.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "GLM work includes coefficient interpretation, fit assessment, and diagnostics. Fit click alone or Bayesian conflation misses the requirement.",
+      "model_answer": "Interpret coefficients, fit measures, diagnostics; Fit alone is incomplete.",
+      "common_mistake": "Treating Fit as finishing interpretation or conflating GLM with Bayesian modelling.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Fit and interpret: coefficients on the link scale, fit measures such as deviance or AIC as warranted, and residual or diagnostic checks. Clicking Fit alone is incomplete without interpretation and diagnostics.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Clicking Fit finishes interpretation and diagnostics because software displays all required actuarial conclusions automatically.",
+          "misconception_tag": "fit_without_interpret"
+        },
+        {
+          "id": "c",
+          "label": "Fitting a GLM finishes Bayesian credibility work because both use statistical software output.",
+          "misconception_tag": "glm_finishes_bayesian"
+        },
+        {
+          "id": "d",
+          "label": "Interpretation requires only the intercept; factor coefficients and diagnostics are optional extras.",
+          "misconception_tag": "intercept_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1014-4.2.10-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.10-cp-01",
       "title": "Checkpoint: 4.2.10",
-      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. (1) Interpret a coefficient of 0.20 on class High vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit finishes interpretation and diagnostics' and 'fitting a GLM finishes Bayesian credibility work.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.10.",
+      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. A coefficient of 0.20 on class High vs baseline is reported. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Interpret log-link coefficient; refuse Fit-only.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Poisson",
-        "log link",
-        "e^{0.20}",
-        "interpret",
-        "refuse",
-        "Fit"
-      ],
-      "explanation": "Checkpoint for 4.2.10.",
-      "model_answer": "(1) Under log link, β̂ = 0.20 means the fitted mean for High is e^{0.20} ≈ 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. (2) Refuse: fit without interpretation/diagnostics is incomplete; Bayesian modelling is a different topic.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Log-link coefficient multiplies baseline mean by exp(0.20) \u2248 1.22. Additive reading on count scale is wrong. Bayesian credibility is separate.",
+      "model_answer": "exp(0.20) \u2248 1.22 times baseline mean. Refuse Fit-only and Bayesian conflation.",
+      "common_mistake": "Additive reading of log-link coefficient or Fit-only completion.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Under log link, \u03b2\u0302 = 0.20 means the fitted mean for High is e^{0.20} \u2248 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. Fit without interpretation or diagnostics is incomplete; Bayesian credibility uses prior-posterior updating, not GLM log-link coefficient reading alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Clicking Fit finishes interpretation and diagnostics; 0.20 is read directly as a 0.20 claim count increase on the original scale.",
+          "misconception_tag": "fit_without_interpret"
+        },
+        {
+          "id": "c",
+          "label": "\u03b2\u0302 = 0.20 means High has mean 0.20 claims because log-link coefficients are means on the count scale.",
+          "misconception_tag": "coeff_as_mean"
+        },
+        {
+          "id": "d",
+          "label": "Fitting this GLM finishes Bayesian credibility premium calculation because both use Poisson counts.",
+          "misconception_tag": "glm_finishes_bayesian"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -182,7 +214,7 @@
   "tomorrow_preview": {
     "next_topic_code": "CX-R1",
     "next_topic_title": "Campaign Xi Revision: retrieve GLM hinges (4.2)",
-    "continuity_line": "Today you closed Topic 4.2 Learning at fit/interpret; tomorrow is Campaign Xi Revision returning to 4.2.1–4.2.10.",
+    "continuity_line": "Today you closed Topic 4.2 Learning at fit/interpret; tomorrow is Campaign Xi Revision returning to 4.2.1\u20134.2.10.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 4.2 hinge for Revision",
     "student_facing": "Tomorrow: CX-R1 Revision of 4.2. Optional: note your weakest 4.2 link. Titles only tonight."
   },

@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force prior/posterior/conjugate vocabulary with warrants and refuse 'conjugate means I already calculated the posterior'.",
     "educational_intent": "Produce prior/posterior/conjugate as the contiguous hinge after Bayes' theorem.",
     "learning_objective": "Explain prior distribution, posterior distribution and conjugate prior distribution.",
-    "concept_focus": "Prior → likelihood → posterior; conjugate pairs keep the posterior in the same family.",
+    "concept_focus": "Prior \u2192 likelihood \u2192 posterior; conjugate pairs keep the posterior in the same family.",
     "prior_bridge": "Yesterday you applied Bayes' theorem (5.1.1). Today continues Topic 5.1 at prior, posterior and conjugate.",
     "why_now": "5.1.2 unlocks lawful language before simple posterior calculations (5.1.3).",
     "expected_benefit": "You will be able to explain prior, posterior and conjugate prior distributions with a concrete pair.",
@@ -49,7 +49,7 @@
       "Refuse one 'I already finished the posterior calculation' claim."
     ],
     "task_descriptions": [
-      "Sketch prior → posterior chain before CMP.",
+      "Sketch prior \u2192 posterior chain before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 5.1.2.",
       "Closed-book Knowledge Checks: definitions + refuse calc swallow."
     ],
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Explain prior, posterior and conjugate priors. You practised selective CMP reading on Syllabus 5.1.2. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.2: explain prior, posterior and conjugate priors. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for skipping prior honesty.",
       "Watch for swallowing 5.1.3 calculation."
     ],
-    "open_point": "CMP · Syllabus 5.1.2 prior, posterior, conjugate prior",
+    "open_point": "CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3)",
     "out_of_scope_today": [
       "Simple posterior calculation as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -115,54 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.2-ar-01",
       "title": "Active Recall: 5.1.2",
-      "prompt": "Closed-book. (1) Define prior and posterior. (2) What makes a prior conjugate? (3) Why does naming conjugate not finish 5.1.3?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines prior, posterior, and conjugate prior, and contrasts naming conjugate with obtaining a posterior?",
+      "response_type": "mcq",
+      "body": "Select prior-posterior-conjugate statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prior",
-        "posterior",
-        "conjugate",
-        "likelihood"
-      ],
-      "explanation": "Active recall for 5.1.2.",
-      "model_answer": "Prior encodes belief before data; posterior after. Conjugate priors keep posterior in the same family. Calculation of a simple posterior is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Prior and posterior are distinct stages. Conjugate family closure simplifies algebra but does not replace calculating posterior parameters from data.",
+      "model_answer": "Prior before data; posterior after; conjugate keeps family. Naming is not calculating.",
+      "common_mistake": "Treating conjugate naming as finishing posterior calculation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prior encodes belief about \u03b8 before data; posterior is the updated belief after data. Conjugate prior: a prior family closed under updating so the posterior stays in the same family. Naming conjugate structures the update but still requires obtaining the posterior from prior plus data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Naming a conjugate pair such as Beta-Binomial automatically delivers the numerical posterior parameters without further calculation from data.",
+          "misconception_tag": "conjugate_finishes_posterior"
+        },
+        {
+          "id": "c",
+          "label": "Prior and posterior are the same object; conjugate means the prior equals the maximum likelihood estimate.",
+          "misconception_tag": "prior_equals_posterior"
+        },
+        {
+          "id": "d",
+          "label": "Conjugate prior means any prior on (0,1) for a proportion; closure under updating is optional.",
+          "misconception_tag": "any_prior_conjugate"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.2-cp-01",
       "title": "Checkpoint: 5.1.2",
-      "prompt": "Closed-book. (1) In one sentence each, define prior, posterior, and conjugate prior. Name one conjugate pair used in actuarial modelling. (2) Refuse: 'Naming a conjugate pair finishes obtaining the numerical posterior for a parameter.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.2.",
+      "prompt": "Closed-book. Which statement correctly defines prior, posterior, and conjugate prior and names one actuarial conjugate pair?",
+      "response_type": "mcq",
+      "body": "Define terms; refuse conjugate-as-finished.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prior",
-        "posterior",
-        "conjugate",
-        "Beta",
-        "Binomial",
-        "refuse"
-      ],
-      "explanation": "Checkpoint for 5.1.2.",
-      "model_answer": "(1) Prior: belief about θ before data. Posterior: updated belief after data. Conjugate: a prior family closed under updating so the posterior stays in the same family. Example: Beta–Binomial or Gamma–Poisson. (2) Refuse: conjugate language structures the update; you still must obtain the actual posterior (parameters/distribution) from prior + data.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Definitions plus example pair. Conjugate naming does not replace posterior calculation from observed data.",
+      "model_answer": "Prior, posterior, conjugate definitions; Beta-Binomial example. Refuse naming as calculating.",
+      "common_mistake": "Accepting conjugate naming as finishing posterior numerics.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prior: belief about \u03b8 before data. Posterior: updated belief after data. Conjugate: prior family closed under updating so posterior stays in the same family. Example: Beta-Binomial or Gamma-Poisson. Conjugate language structures the update; you still must obtain the actual posterior parameters from prior plus data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Naming Beta-Binomial finishes obtaining the numerical posterior for a parameter; no prior-plus-data calculation is required.",
+          "misconception_tag": "conjugate_finishes_posterior"
+        },
+        {
+          "id": "c",
+          "label": "Prior equals the sample mean; posterior equals the prior because conjugate updating leaves parameters unchanged.",
+          "misconception_tag": "prior_equals_posterior"
+        },
+        {
+          "id": "d",
+          "label": "Conjugate pair means prior and likelihood are independent objects that never combine into a posterior.",
+          "misconception_tag": "no_combination"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

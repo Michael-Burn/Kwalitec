@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force nested comparison via analysis of deviance and refuse treating residual plots as today's LO.",
     "educational_intent": "Produce a cognitive move from deviance definition to lawful model-choice practice under CMP.",
     "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
-    "concept_focus": "Nested models → analysis of deviance / likelihood-ratio comparison → parameter significance.",
+    "concept_focus": "Nested models \u2192 analysis of deviance / likelihood-ratio comparison \u2192 parameter significance.",
     "prior_bridge": "Yesterday you explained deviance and estimation (4.2.6). Today continues Topic 4.2 at model choice.",
     "why_now": "4.2.7 is contiguous after deviance. Without model choice, residual diagnostics have no selected structure to check.",
     "expected_benefit": "You will be able to choose a GLM using analysis of deviance and examination of parameter significance.",
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Choose a GLM using analysis of deviance. You practised selective CMP reading on Syllabus 4.2.7. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.7: choose a glm using analysis of deviance. Stop before out-of-scope later LOs.",
@@ -84,19 +84,19 @@
       "Watch for jumping into residual diagnostics (4.2.8) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP · Syllabus 4.2.7 analysis of deviance and model choice",
+    "open_point": "CMP \u00b7 Syllabus 4.2.7 analysis of deviance and model choice",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8)",
     "out_of_scope_today": [
       "Pearson / deviance residuals as primary (4.2.8)",
-      "χ² / LRT acceptability tests as primary (4.2.9)",
+      "\u03c7\u00b2 / LRT acceptability tests as primary (4.2.9)",
       "Bayesian / Topic 5.1 as primary",
       "Until-exam educational trust"
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.7.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,55 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1014-4.2.7-ar-01",
       "title": "Active Recall: 4.2.7",
-      "prompt": "Closed-book. (1) What does analysis of deviance compare? (2) How do parameter significance checks enter? (3) Name one reason residuals are not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.7 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes analysis of deviance and the role of parameter significance in nested GLM choice?",
+      "response_type": "mcq",
+      "body": "Select nested model comparison statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "deviance",
-        "nested",
-        "significance",
-        "choose",
-        "model"
-      ],
-      "explanation": "Active recall for 4.2.7.",
-      "model_answer": "Analysis of deviance compares nested models via deviance differences; parameter significance supports inclusion. Residuals are tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Nested comparison uses deviance difference with reference distribution. Residual plots are diagnostics, a different task from analysis of deviance.",
+      "model_answer": "Deviance difference for nested models; significance supports inclusion.",
+      "common_mistake": "Treating residual plots as finishing analysis of deviance.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Analysis of deviance compares nested models via deviance differences (likelihood-ratio style). Parameter significance checks support whether added terms are statistically and scientifically warranted.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Plotting Pearson residuals finishes model choice via analysis of deviance because large residuals imply the full model wins.",
+          "misconception_tag": "residuals_finishes_model_choice"
+        },
+        {
+          "id": "c",
+          "label": "Non-nested models are always compared by raw R-squared on the link scale; deviance differences apply only to Normal GLMs.",
+          "misconception_tag": "r2_non_nested"
+        },
+        {
+          "id": "d",
+          "label": "Parameter significance alone replaces deviance comparison; if every p-value is below 0.05, deviance difference is unnecessary.",
+          "misconception_tag": "p_only_choice"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1014-4.2.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.7-cp-01",
       "title": "Checkpoint: 4.2.7",
-      "prompt": "Closed-book. Nested GLMs M_reduced ⊂ M_full. (1) Outline how an analysis of deviance (likelihood-ratio / deviance difference) plus parameter significance guides choosing between them. (2) Refuse: 'Plotting Pearson residuals finishes model choice via analysis of deviance.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.7.",
+      "prompt": "Closed-book. Nested GLMs M_reduced subset M_full. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Outline deviance difference choice; refuse residual plot.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "analysis of deviance",
-        "nested",
-        "χ²",
-        "significance",
-        "refuse",
-        "residuals"
-      ],
-      "explanation": "Checkpoint for 4.2.7.",
-      "model_answer": "(1) Compare deviance (or −2Δℓ) between nested models against a χ² reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. (2) Refuse: residual plots are diagnostics (a different LO); today is choosing a model via analysis of deviance and parameter significance.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Deviance difference with chi-squared reference compares nested GLMs. Residual plotting and p-only rules do not replace analysis of deviance.",
+      "model_answer": "Deviance difference plus parameter warrants. Residual plots are diagnostics, not model choice here.",
+      "common_mistake": "Accepting residual plots as finishing analysis of deviance.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Compare deviance (or \u22122\u0394\u2113) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Plotting Pearson residuals finishes model choice via analysis of deviance.",
+          "misconception_tag": "residuals_finishes_model_choice"
+        },
+        {
+          "id": "c",
+          "label": "Choose M_full whenever any single added p-value is below 0.05; deviance difference is redundant if significance exists.",
+          "misconception_tag": "p_only_choice"
+        },
+        {
+          "id": "d",
+          "label": "Analysis of deviance applies only when both models use Normal identity GLMs; Poisson models require raw AIC only.",
+          "misconception_tag": "normal_only_aod"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

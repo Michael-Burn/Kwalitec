@@ -107,8 +107,9 @@ def test_overview_briefing_keeps_real_topic_fields() -> None:
     checkpoint = str(briefing["checkpoint_preview"])
     reflection = str(briefing["reflection_preview"])
     assert "Closed-book" in checkpoint
-    assert "Refuse" in checkpoint
-    assert "package name" in checkpoint.lower()
+    # Authored MCQ stem (Batch 2 Continuity Front): family names, not mad-lib title.
+    assert "binomial" in checkpoint.lower() or "poisson" in checkpoint.lower()
+    assert "glm" in checkpoint.lower() or "normal" in checkpoint.lower()
     assert "Checkpoint: can you explain" not in checkpoint
     assert "stickiest" in reflection.lower()
     assert "Reflect briefly:" not in reflection

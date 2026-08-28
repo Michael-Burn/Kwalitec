@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to discriminate response from explanatory variables on an actuarial data sketch and refuse treating 'all columns are predictors' as modelling.",
     "educational_intent": "Produce a cognitive move from hypothesis-testing closure (3.3) to lawful response/explanatory roles at the Continuity Front join into Section 4.",
     "learning_objective": "Response and explanatory variables",
-    "concept_focus": "Data sketch → name response Y → name explanatory X's with warrants → refuse column-soup modelling.",
+    "concept_focus": "Data sketch \u2192 name response Y \u2192 name explanatory X's with warrants \u2192 refuse column-soup modelling.",
     "prior_bridge": "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. Today opens Continuity Front join at Topic 4.1 LO 4.1.1. The next official syllabus topic after 3.3. Trust Front CS1-003 already holds LIVE 4.1 inventory independently; Nu is the Continuity Front native Pilot Arc.",
     "why_now": "Regression starts by naming response vs explanatory variables with modelling intent. Model forms come next.",
     "expected_benefit": "You will be able to name response and explanatory variables with modelling warrants for a stated actuarial sketch.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Name response and explanatory variables with modelling intent. You practised selective CMP reading on Syllabus 4.1.1. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.1: name response and explanatory variables with modelling intent. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for starting simple/multiple algebra (4.1.2) inside this sitting.",
       "Watch for claiming Trust Front 4.2/5.1 absorb or spine PASS."
     ],
-    "open_point": "CMP · Syllabus 4.1.1 response and explanatory variables",
+    "open_point": "CMP \u00b7 Syllabus 4.1.1 response and explanatory variables",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2)",
     "out_of_scope_today": [
       "Simple vs multiple model forms as primary (4.1.2)",
@@ -98,8 +98,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -120,57 +120,88 @@
       "kind": "active_recall",
       "item_id": "cs1013-4.1.1-ar-01",
       "title": "Active Recall: 4.1.1",
-      "prompt": "Closed-book. (1) What is a response variable? (2) What is an explanatory variable? (3) Give one actuarial-flavoured pair (Y, X). (4) Name one reason simple vs multiple models are not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly assigns response and explanatory roles in a regression modelling question?",
+      "response_type": "mcq",
+      "body": "Select the statement that names Y, X, and an actuarial pair.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "explanatory",
-        "outcome",
-        "predictor",
-        "Y",
-        "X",
-        "model"
-      ],
-      "explanation": "Active recall for 4.1.1.",
-      "model_answer": "Response is the outcome modelled; explanatory variables are the predictors. Example: claim severity (Y) vs age and sum insured (X's). Simple/multiple model forms are tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Y is the outcome for the modelling question; X variables are predictors with a warrant. Putting every numeric column on the right-hand side, or treating claim count as automatically an X for severity, ignores the modelling question.",
+      "model_answer": "Response is the outcome modelled; explanatory variables are predictors. Example: claim severity (Y) vs age and sum insured.",
+      "common_mistake": "Column-soup modelling, or treating claim count as automatically an explanatory variable for severity.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The response variable Y is the outcome being modelled or predicted; explanatory variables X are the predictors thought to help explain or predict Y. Example: claim severity (Y) with age and sum insured as X variables.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Every numeric column in a data set is automatically an explanatory variable; the response is whichever column has the largest variance.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Claim count is always an explanatory variable when modelling claim severity, because both are numeric policy fields.",
+          "misconception_tag": "claim_count_as_x"
+        },
+        {
+          "id": "d",
+          "label": "Response and explanatory roles are defined only after writing a simple versus multiple linear model equation; variable roles cannot be stated before model form.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1013-4.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.1-cp-01",
       "title": "Checkpoint: 4.1.1",
-      "prompt": "Closed-book. Motor book: you want to model claim severity. Columns include age, sum insured, claim amount, NCD discount, and claim count. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side. That finishes variable-role modelling.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.1.",
+      "prompt": "Closed-book. Motor book: you want to model claim severity. Columns include age, sum insured, claim amount, NCD discount, and claim count. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name Y and warranted X variables; refuse column-soup.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "explanatory",
-        "severity",
-        "claim amount",
-        "refuse",
-        "column"
-      ],
-      "explanation": "Checkpoint for 4.1.1.",
-      "model_answer": "(1) Response Y = claim amount (severity (the outcome to explain/predict). Explanatory examples: age and sum insured (predictors of severity). Claim count is a frequency outcome, not automatically an X for severity. (2) Refuse: column-soup is not modelling) choose Y for the modelling question, then choose X's with warrants.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "For severity modelling, claim amount is Y. Age and sum insured are plausible X's with warrants. Claim count is a different outcome type. Column-soup is not role assignment.",
+      "model_answer": "Y = claim amount (severity). X examples: age, sum insured. Refuse column-soup.",
+      "common_mistake": "Accepting column-soup or treating claim count as automatically an X for severity.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Response Y = claim amount (severity, the outcome to explain). Explanatory examples: age and sum insured (predictors of severity with a one-sentence warrant each). Claim count is a frequency outcome, not automatically an X for severity. Putting every numeric column on the right-hand side is not variable-role modelling.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Response Y = claim count; explanatory variables are claim amount, age, sum insured, and NCD because all numeric columns belong on the right-hand side.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Response Y = claim amount; claim count must also be an explanatory variable because it appears in the same policy record as severity.",
+          "misconception_tag": "claim_count_as_x"
+        },
+        {
+          "id": "d",
+          "label": "No response can be named until a multiple regression equation is fully written; severity modelling starts with equation form, not Y versus X.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

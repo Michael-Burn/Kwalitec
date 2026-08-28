@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to connect residuals to the least-squares criterion and refuse treating GUI software output as today's LO.",
     "educational_intent": "Produce a cognitive move from model forms to the least-squares estimation criterion and slope/intercept estimates for the simple linear model.",
     "learning_objective": "Least squares estimates of the slope and intercept parameters in a simple linear regression model",
-    "concept_focus": "Residual → sum of squared residuals → least-squares slope and intercept formulae.",
+    "concept_focus": "Residual \u2192 sum of squared residuals \u2192 least-squares slope and intercept formulae.",
     "prior_bridge": "Yesterday you distinguished simple and multiple linear models (4.1.2). Today estimates the simple linear parameters by least squares.",
     "why_now": "4.1.3 is contiguous after model forms. Without least squares, software fit is black-box theatre.",
     "expected_benefit": "You will be able to state the OLS criterion and the closed-form slope and intercept for simple linear regression.",
@@ -52,7 +52,7 @@
       "Refuse one 'I clicked Fit in software, so I finished today's LO' claim."
     ],
     "task_descriptions": [
-      "Sketch residual → SS criterion before CMP.",
+      "Sketch residual \u2192 SS criterion before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.1.3.",
       "Closed-book Knowledge Checks: least squares + refuse software swallow."
     ],
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Obtain least squares estimates of slope and intercept. You practised selective CMP reading on Syllabus 4.1.3. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.3 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.3: obtain least squares estimates of slope and intercept. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for jumping into software output interpretation (4.1.4) as today's finish.",
       "Watch for multiple-regression matrix algebra as the required hinge today."
     ],
-    "open_point": "CMP · Syllabus 4.1.3 least squares estimates (simple linear regression)",
+    "open_point": "CMP \u00b7 Syllabus 4.1.3 least squares estimates (simple linear regression)",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4)",
     "out_of_scope_today": [
       "Software fit / inference / prediction / residual diagnostics as primary (4.1.4)",
@@ -95,8 +95,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.3 least squares estimates (simple linear regression). Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.3 least squares estimates (simple linear regression). Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.3 (stop before software fit / inference 4.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,56 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1013-4.1.3-ar-01",
       "title": "Active Recall: 4.1.3",
-      "prompt": "Closed-book. (1) What quantity does least squares minimise? (2) Which two parameters are estimated in the simple linear model? (3) What is a residual? (4) Name one reason software fit is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the least-squares criterion, parameters estimated in simple linear regression, and a residual?",
+      "response_type": "mcq",
+      "body": "Select the OLS foundation statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "least squares",
-        "residual",
-        "slope",
-        "intercept",
-        "minimise",
-        "sum of squares"
-      ],
-      "explanation": "Active recall for 4.1.3.",
-      "model_answer": "Least squares minimises the sum of squared residuals. Slope and intercept are estimated. A residual is observed minus fitted. Software fit/inference is tomorrow's LO.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "OLS minimises sum of squared residuals and estimates slope and intercept. Correlation is dimensionless association, not the OLS slope (which scales by SD ratios).",
+      "model_answer": "Minimise sum of squared residuals; estimate slope and intercept; residual = observed minus fitted.",
+      "common_mistake": "Treating software Fit as the criterion, or equating OLS slope with correlation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Least squares minimises the sum of squared residuals. In the simple linear model, slope and intercept are estimated. A residual is observed minus fitted value.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Least squares means clicking Fit in software; the criterion is whatever the package minimises internally without a closed-form expression.",
+          "misconception_tag": "fit_as_criterion"
+        },
+        {
+          "id": "c",
+          "label": "The ordinary least-squares slope equals the correlation Corr(X, Y); correlation is therefore the slope estimate by definition.",
+          "misconception_tag": "corr_as_slope"
+        },
+        {
+          "id": "d",
+          "label": "Least squares minimises the sum of absolute residuals; the intercept alone is estimated while the slope is fixed at the sample correlation.",
+          "misconception_tag": "lad_as_ols"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1013-4.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.3-cp-01",
       "title": "Checkpoint: 4.1.3",
-      "prompt": "Closed-book. Simple linear model Y = β₀ + β₁x + ε with data pairs (xᵢ, yᵢ). (1) State the least-squares criterion and the closed-form slope (in terms of sums or covariance). (2) Refuse: 'Least squares is just clicking Fit' and 'the OLS slope equals Corr(X,Y).'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.3.",
+      "prompt": "Closed-book. Simple linear model Y = \u03b2\u2080 + \u03b2\u2081 x + \u03b5 with data pairs (xi, yi). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State the criterion and slope; refuse Fit-as-criterion.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "least squares",
-        "minimise",
-        "slope",
-        "intercept",
-        "refuse",
-        "correlation"
-      ],
-      "explanation": "Checkpoint for 4.1.3.",
-      "model_answer": "(1) Choose β₀, β₁ to minimise Σ(yᵢ − β₀ − β₁xᵢ)². Slope β̂₁ = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² = Cov̂(X,Y)/Var̂(X); intercept β̂₀ = ȳ − β̂₁ x̄. (2) Refuse: Fit implements OLS but is not the criterion; Corr(X,Y) is dimensionless association, not the OLS slope (which scales by SD_Y/SD_X).",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "The criterion is sum of squared residuals. The slope formula uses covariance over variance. Correlation lacks the SD scaling of the OLS slope.",
+      "model_answer": "Minimise sum squared residuals; \u03b2\u0302\u2081 = Cov\u0302/Var\u0302; refuse Fit-as-criterion and Corr-as-slope.",
+      "common_mistake": "Accepting Fit as the criterion or Corr(X, Y) as the OLS slope.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Choose \u03b2\u2080, \u03b2\u2081 to minimise sum (yi minus \u03b2\u2080 minus \u03b2\u2081 xi) squared. Slope \u03b2\u0302\u2081 = sum (xi minus x-bar)(yi minus \u0233) / sum (xi minus x\u0304) squared = Cov\u0302(X, Y) / Var\u0302(X); intercept \u03b2\u0302\u2080 = \u0233 minus \u03b2\u0302\u2081 x\u0304. Fit implements OLS but is not the criterion; Corr(X, Y) is not the OLS slope.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Least squares is clicking Fit; the closed-form slope formula is optional once software returns \u03b2\u0302.",
+          "misconception_tag": "fit_as_criterion"
+        },
+        {
+          "id": "c",
+          "label": "The OLS slope equals Corr(X, Y) because both measure linear association on the same scale.",
+          "misconception_tag": "corr_as_slope"
+        },
+        {
+          "id": "d",
+          "label": "Minimise sum |yi minus \u03b2\u2080 minus \u03b2\u2081 xi|; the resulting slope is Cov\u0302(X, Y) / Var\u0302(X) for simple linear regression.",
+          "misconception_tag": "lad_as_ols"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

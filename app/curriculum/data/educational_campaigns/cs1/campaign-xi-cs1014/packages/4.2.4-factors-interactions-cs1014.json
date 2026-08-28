@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -37,23 +37,23 @@
     "mission_id": "msn-cs1014-cs1-4.2-factors-interactions",
     "display_title": "Use variables, factors and interactions in GLMs",
     "mission_purpose": "Today's Mission exists to explain variables, factors taking categorical values, and interaction terms in the GLM setting. Without pretending linear-predictor writing (4.2.5) is finished.",
-    "tutor_intent": "Today I will force variable/factor/interaction discrimination and refuse treating η-form writing as today's LO.",
+    "tutor_intent": "Today I will force variable/factor/interaction discrimination and refuse treating \u03b7-form writing as today's LO.",
     "educational_intent": "Produce a cognitive move from link to lawful GLM covariate structure under CMP.",
     "learning_objective": "Explain variables, factors taking categorical values, and interaction terms in the GLM setting.",
-    "concept_focus": "Continuous variable → categorical factor coding → interaction term changing a slope by level.",
+    "concept_focus": "Continuous variable \u2192 categorical factor coding \u2192 interaction term changing a slope by level.",
     "prior_bridge": "Yesterday you explained link and canonical link (4.2.3). Today continues Topic 4.2 at variables, factors and interactions.",
-    "why_now": "4.2.4 is contiguous after link. Without factors/interactions, η forms lack actuarial covariate honesty.",
+    "why_now": "4.2.4 is contiguous after link. Without factors/interactions, \u03b7 forms lack actuarial covariate honesty.",
     "expected_benefit": "You will be able to explain variables, factors and interaction terms in a GLM linear predictor.",
     "explainability": "Assigned as Campaign Xi Day 4 because Continuity Front law keeps linear predictor forms as tomorrow.",
     "success_criteria": [
       "Closed-book, distinguish a continuous variable from a categorical factor.",
       "State what an interaction term allows.",
-      "Refuse one 'I wrote η, so I finished today's LO' claim."
+      "Refuse one 'I wrote \u03b7, so I finished today's LO' claim."
     ],
     "task_descriptions": [
       "Sketch variable/factor/interaction before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.4.",
-      "Closed-book Knowledge Checks: factors + refuse η swallow."
+      "Closed-book Knowledge Checks: factors + refuse \u03b7 swallow."
     ],
     "estimated_study_time_minutes": {
       "min": 55,
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Use variables, factors and interactions in GLMs. You practised selective CMP reading on Syllabus 4.2.4. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.4 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.4: use variables, factors and interactions in glms. Stop before out-of-scope later LOs.",
@@ -81,10 +81,10 @@
     ],
     "misconception_watch": [
       "Watch for treating every covariate as a continuous variable.",
-      "Watch for jumping to full η polynomial forms (4.2.5) as today's finish.",
+      "Watch for jumping to full \u03b7 polynomial forms (4.2.5) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP · Syllabus 4.2.4 variables, factors and interactions",
+    "open_point": "CMP \u00b7 Syllabus 4.2.4 variables, factors and interactions",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.4 (stop before linear predictor forms 4.2.5)",
     "out_of_scope_today": [
       "Linear predictor writing as primary (4.2.5)",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.4.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.4 variables, factors and interactions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.4 (stop before linear predictor forms 4.2.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.4 variables, factors and interactions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.4 (stop before linear predictor forms 4.2.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,59 +117,92 @@
       "kind": "active_recall",
       "item_id": "cs1014-4.2.4-ar-01",
       "title": "Active Recall: 4.2.4",
-      "prompt": "Closed-book. (1) What is a factor in the GLM setting? (2) What does an interaction term capture? (3) Name one reason writing the full linear predictor is not today's LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.4 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines a factor and an interaction term in a GLM?",
+      "response_type": "mcq",
+      "body": "Select the categorical factor and interaction statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "factor",
-        "categorical",
-        "interaction",
-        "variable",
-        "levels"
-      ],
-      "explanation": "Active recall for 4.2.4.",
-      "model_answer": "A factor takes categorical levels; an interaction allows joint level effects beyond main effects. Full η-form writing is tomorrow.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Factors encode categorical levels; interactions modify joint effects. A continuous-only eta does not encode region levels, and interaction is not merely another main slope.",
+      "model_answer": "Factor: categorical levels; interaction: joint level effects beyond mains.",
+      "common_mistake": "Treating interaction as another main effect or omitting factor indicators.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A factor represents categorical levels with indicator or contrast coding. An interaction term allows the effect of one variable to depend on the level of another, beyond main effects alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "An interaction is just another main-effect slope on a continuous variable; it never changes slope by level.",
+          "misconception_tag": "interaction_as_main"
+        },
+        {
+          "id": "c",
+          "label": "Factors apply only to linear regression outside GLMs; GLMs use only continuous covariates.",
+          "misconception_tag": "factors_not_glm"
+        },
+        {
+          "id": "d",
+          "label": "Writing \u03b7 = \u03b2\u2080 + \u03b2\u2081 x with no factor indicators already explains categorical region levels completely.",
+          "misconception_tag": "no_factors_finishes"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1014-4.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.4-cp-01",
       "title": "Checkpoint: 4.2.4",
-      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age×region interaction. (2) Refuse: 'Writing η = β₀ + β₁x with no factors finishes explaining factors and interactions' and 'an interaction is just another main-effect slope.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.4.",
+      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Write eta with factor and interaction; refuse no-factor eta.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "factor",
-        "interaction",
-        "I_South",
-        "η",
-        "refuse",
-        "main effect"
-      ],
-      "explanation": "Checkpoint for 4.2.4.",
-      "model_answer": "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) Refuse: factors encode categorical levels; an interaction changes the age slope by region. It is not merely another additive main effect.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Factor indicator plus age-by-region interaction encodes level effects and slope change. Constant shift alone is not a full interaction story.",
+      "model_answer": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 I_South + \u03b2\u2083 x I_South. Refuse no-factor eta and interaction-as-main.",
+      "common_mistake": "Accepting \u03b7 = \u03b2\u2080 + \u03b2\u2081 x only or treating interaction as another main effect.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 I_South + \u03b2\u2083 x times I_South with North baseline. Factors encode categorical levels; an interaction changes the age slope by region. It is not merely another additive main effect.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x finishes explaining factors and interactions because region is known to the modeller.",
+          "misconception_tag": "no_factors_finishes"
+        },
+        {
+          "id": "c",
+          "label": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 I_South only; the interaction is unnecessary because South adds a constant shift equal to an interaction.",
+          "misconception_tag": "interaction_as_main"
+        },
+        {
+          "id": "d",
+          "label": "Region enters as numeric 1 for North and 2 for South on the same slope as age; that is the GLM factor definition.",
+          "misconception_tag": "numeric_levels"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest factor/interaction wobble. Keep η-form writing out of tonight's claim.",
+    "framing": "Harvest factor/interaction wobble. Keep \u03b7-form writing out of tonight's claim.",
     "prompt": "Which part of today's 4.2.4 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.4 is stickiest and why?",

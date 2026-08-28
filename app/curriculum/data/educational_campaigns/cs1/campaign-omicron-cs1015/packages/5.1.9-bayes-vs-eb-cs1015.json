@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force Bayes vs EB assumption contrast and refuse 'Topic 5.1 finished the exam journey / first-pass spine'.",
     "educational_intent": "Produce Bayes vs EB contrast as the Topic 5.1 Learning close before Revision.",
     "learning_objective": "Understand the differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-    "concept_focus": "Bayesian assumptions (prior/structural known in model) ↔ EB assumptions (structural parameters estimated from data).",
+    "concept_focus": "Bayesian assumptions (prior/structural known in model) \u2194 EB assumptions (structural parameters estimated from data).",
     "prior_bridge": "Yesterday you applied Empirical Bayes (5.1.8). Today closes Topic 5.1 Learning at the contrast.",
     "why_now": "Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
     "expected_benefit": "You will be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
@@ -68,7 +68,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Contrast Bayesian and Empirical Bayes assumptions. You practised selective CMP reading on Syllabus 5.1.9. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.9: contrast bayesian and empirical bayes assumptions. Stop before out-of-scope later LOs.",
@@ -83,7 +83,7 @@
       "Watch for collapsing Bayes and EB as identical.",
       "Watch for skipping Revision."
     ],
-    "open_point": "CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions",
+    "open_point": "CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim)",
     "out_of_scope_today": [
       "First-pass spine PASS",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.9.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -117,55 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-5.1.9-ar-01",
       "title": "Active Recall: 5.1.9",
-      "prompt": "Closed-book. (1) Name two assumption differences Bayes vs EB. (2) Why might premiums differ? (3) Name one reason this does not finish first-pass spine or until-exam trust.",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.9 closed-book.",
+      "prompt": "Closed-book. Which statement correctly names assumption differences between fully Bayesian credibility and Empirical Bayes and explains why premiums may differ?",
+      "response_type": "mcq",
+      "body": "Select Bayes versus EB contrast statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayes",
-        "Empirical",
-        "assumption",
-        "prior",
-        "data"
-      ],
-      "explanation": "Active recall for 5.1.9.",
-      "model_answer": "Bayes uses a specified prior structure; EB estimates structural parameters from data. Assumptions differ. Spine PASS and until-exam remain out of scope.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Key contrast is specified structural knowledge versus estimated from collective data. Same method or software-only differences misstate the approaches.",
+      "model_answer": "Bayes: specified prior structure; EB: estimated structurals. Premiums can differ.",
+      "common_mistake": "Treating Bayes and EB as identical or reversing who specifies structure.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Fully Bayesian credibility treats structural or prior parameters as specified within a prior model. Empirical Bayes estimates those structural parameters from observed collective data. Different assumptions about structural knowledge can yield different premiums.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Bayesian and Empirical Bayes are the same method with different names; premiums must always agree.",
+          "misconception_tag": "same_method"
+        },
+        {
+          "id": "c",
+          "label": "Premiums differ only because software packages differ; assumptions about structural parameters are identical.",
+          "misconception_tag": "software_only_difference"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes always uses a specified prior; fully Bayesian credibility never uses prior structure.",
+          "misconception_tag": "assumptions_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-5.1.9-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.9-cp-01",
       "title": "Checkpoint: 5.1.9",
-      "prompt": "Closed-book. (1) State one key assumption difference between a fully Bayesian credibility approach and Empirical Bayes. (2) Refuse: 'Bayesian and Empirical Bayes are the same method with different names' and 'contrasting them means all of Topic 5.1 is finished.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.9.",
+      "prompt": "Closed-book. Which statement correctly states one key assumption difference between a fully Bayesian credibility approach and Empirical Bayes?",
+      "response_type": "mcq",
+      "body": "Contrast assumptions; refuse same-method claim.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayesian",
-        "Empirical Bayes",
-        "structural",
-        "estimate",
-        "refuse",
-        "assumptions"
-      ],
-      "explanation": "Checkpoint for 5.1.9.",
-      "model_answer": "(1) Bayesian treats structural/prior parameters as specified within a prior model; Empirical Bayes estimates those structural parameters from the observed collective data. (2) Refuse: they differ in how structural knowledge enters; a contrast does not replace the separate calculation LOs across Topic 5.1.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Specified versus estimated structural parameters is the core difference. Same-method and all-formulas-finished claims are misconceptions.",
+      "model_answer": "Specified prior structure vs estimated structurals from collective data.",
+      "common_mistake": "Accepting same-method claim or reversed assumption roles.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bayesian treats structural or prior parameters as specified within a prior model; Empirical Bayes estimates those structural parameters from the observed collective data. They differ in how structural knowledge enters; contrasting them does not replace separate posterior, interval, and premium calculations.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Bayesian and Empirical Bayes are the same method with different names.",
+          "misconception_tag": "same_method"
+        },
+        {
+          "id": "c",
+          "label": "Contrasting them means every prior calculation, posterior, loss estimator, and premium formula is already finished.",
+          "misconception_tag": "contrast_finishes_all"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes specifies all structural parameters in advance; Bayesian credibility estimates them only from collective data.",
+          "misconception_tag": "assumptions_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -180,7 +213,7 @@
   "tomorrow_preview": {
     "next_topic_code": "CO-R1",
     "next_topic_title": "Campaign Omicron Revision: retrieve Bayesian hinges (5.1)",
-    "continuity_line": "Today you closed Topic 5.1 Learning at Bayes vs EB contrast; tomorrow is Campaign Omicron Revision returning to 5.1.1–5.1.9.",
+    "continuity_line": "Today you closed Topic 5.1 Learning at Bayes vs EB contrast; tomorrow is Campaign Omicron Revision returning to 5.1.1\u20135.1.9.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 5.1 hinge for Revision",
     "student_facing": "Tomorrow: CO-R1 Revision of 5.1. Optional: note your weakest 5.1 link. Titles only tonight."
   },
