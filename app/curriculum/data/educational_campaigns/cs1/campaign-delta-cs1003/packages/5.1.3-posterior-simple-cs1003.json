@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -92,7 +92,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.3 posterior in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.3 posterior in simple cases. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -114,55 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.3-ar-01",
       "title": "Active Recall: 5.1.3",
-      "prompt": "Closed-book. Outline: given a conjugate prior and likelihood, how do you obtain the posterior (family + updated parameters at a high level)?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the inputs and output object for a simple posterior calculation?",
+      "response_type": "mcq",
+      "body": "Select prior-plus-likelihood to posterior statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "conjugate",
-        "update",
-        "posterior",
-        "parameters",
-        "prior",
-        "likelihood"
-      ],
-      "explanation": "Active recall for 5.1.3.",
-      "model_answer": "Multiply prior × likelihood (or use conjugate update formulae); renormalise; read updated parameters of the same family.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Posterior is the updated distribution. Point estimators under loss and intervals are subsequent summaries, not automatic byproducts of writing posterior.",
+      "model_answer": "Prior plus likelihood give posterior distribution. Loss-based point estimate is a further step.",
+      "common_mistake": "Treating posterior as automatically delivering loss-based point estimator.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prior and likelihood together yield a posterior distribution for the parameter. A loss-based point estimator is a further step summarising that posterior under a chosen loss function.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Having the posterior distribution automatically finishes choosing the Bayesian point estimator under squared-error loss; no further step exists.",
+          "misconception_tag": "posterior_finishes_loss_estimator"
+        },
+        {
+          "id": "c",
+          "label": "Simple posterior means the prior alone; likelihood enters only in frequentist confidence intervals.",
+          "misconception_tag": "prior_only_posterior"
+        },
+        {
+          "id": "d",
+          "label": "The output object is always a credible interval; a full posterior distribution is unnecessary once data are observed.",
+          "misconception_tag": "interval_only_output"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.3-cp-01",
       "title": "Checkpoint: 5.1.3",
-      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. (1) State the posterior distribution (parameters). (2) Refuse: 'Bayesian means I believe in Bayes' without a posterior, and 'having the posterior distribution finishes choosing the Bayesian point estimator under squared-error loss.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.3.",
+      "prompt": "Closed-book. Binomial n=10 with x=3 successes and Beta(2,2) prior. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State posterior parameters; refuse slogan-Bayes and loss-as-automatic.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "posterior",
-        "not slogan",
-        "distribution",
-        "parameter"
-      ],
-      "explanation": "Checkpoint for 5.1.3.",
-      "model_answer": "(1) Posterior Beta(2+3, 2+7) = Beta(5,9). (2) Refuse slogan-Bayes. Produce an actual posterior distribution (or its parameters). The posterior is the full distribution; a loss-based point estimator (e.g. posterior mean under squared-error loss) is a further step.",
-      "common_mistake": "Slogan-Bayes without a posterior, or jumping to a point estimator as if it were the posterior.",
+      "accepted_keywords": [],
+      "explanation": "Conjugate update gives Beta(5,9). Slogan-Bayes and automatic loss estimators are refusals from the checkpoint stem.",
+      "model_answer": "Posterior Beta(5,9). Refuse slogan-Bayes; loss estimator is a further step.",
+      "common_mistake": "Slogan-Bayes without a posterior or treating posterior as automatic point estimator.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Posterior Beta(2+3, 2+7) = Beta(5,9). Bayesian work requires an actual posterior distribution, not a slogan. The posterior is the full distribution; a loss-based point estimator under squared-error loss is a further step.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Bayesian means I believe in Bayes; no posterior distribution is required once the prior is named Beta(2,2).",
+          "misconception_tag": "slogan_bayes"
+        },
+        {
+          "id": "c",
+          "label": "Posterior Beta(2,2) because the prior dominates with n=10 small; successes add nothing to the parameters.",
+          "misconception_tag": "prior_unchanged"
+        },
+        {
+          "id": "d",
+          "label": "Having Beta(5,9) finishes choosing the Bayesian point estimator under squared-error loss without further calculation.",
+          "misconception_tag": "posterior_finishes_loss_estimator"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -180,6 +213,5 @@
     "continuity_line": "Today you obtained simple posteriors; tomorrow continues at loss functions to derive Bayesian estimators.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.4. Titles only tonight",
     "student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

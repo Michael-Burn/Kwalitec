@@ -114,55 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.8-ar-01",
       "title": "Active Recall: 4.2.8",
-      "prompt": "Closed-book. Name Pearson residuals and deviance residuals. Give one sentence on what inspecting them helps you check.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.8 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes Pearson and deviance residuals and one diagnostic use?",
+      "response_type": "mcq",
+      "body": "Select residual definition statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "pearson",
-        "deviance",
-        "residual",
-        "fit",
-        "pattern",
-        "outlier"
-      ],
-      "explanation": "Active recall for 4.2.8.",
-      "model_answer": "Pearson and deviance residuals summarise observation-level fit; patterns/outliers flag suitability problems.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Pearson scales by fitted variance; deviance residual comes from deviance contributions. LRT is a formal test, not the residual definition.",
+      "model_answer": "Pearson: standardised (y-μ̂)/sqrt(Var); deviance: signed deviance contribution.",
+      "common_mistake": "Collapsing residuals into LRT or omitting variance scaling.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: (y minus μ̂) over sqrt(Var̂(Y)). Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Running a likelihood-ratio test finishes explaining Pearson and deviance residuals because LRT and residuals are the same diagnostic object.",
+          "misconception_tag": "lrt_finishes_residuals"
+        },
+        {
+          "id": "c",
+          "label": "Pearson and deviance residuals equal (y minus μ̂) with no variance scaling in GLMs.",
+          "misconception_tag": "raw_only_residual"
+        },
+        {
+          "id": "d",
+          "label": "Deviance residuals apply only to Normal GLMs; Poisson and binomial models use Pearson residuals exclusively by definition.",
+          "misconception_tag": "deviance_normal_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.8-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.8-cp-01",
       "title": "Checkpoint: 4.2.8",
-      "prompt": "Closed-book. (1) State the idea of a Pearson residual and a deviance residual for a GLM observation. (2) Refuse: 'Residuals are optional after a significant model' and 'running a likelihood-ratio test finishes explaining Pearson and deviance residuals.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.8.",
+      "prompt": "Closed-book. Which statement correctly states the idea of a Pearson residual and a deviance residual for a GLM observation?",
+      "response_type": "mcq",
+      "body": "Define residuals; refuse LRT-as-residual.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "residual",
-        "check",
-        "suitability",
-        "not optional"
-      ],
-      "explanation": "Checkpoint for 4.2.8.",
-      "model_answer": "(1) Pearson residual: (y − μ̂)/√Var̂(Y) (a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers and patterns. (2) Refuse: significance alone does not validate fit) residual diagnostics are required; an LRT is a formal acceptability/model-comparison test, different from defining and using residual diagnostics.",
-      "common_mistake": "Treating residuals as optional after a significant model, or confusing them with an LRT.",
+      "accepted_keywords": [],
+      "explanation": "Residuals standardise or decompose deviance at observation level. LRT compares models or assesses acceptability, a separate object.",
+      "model_answer": "Pearson standardised discrepancy; deviance signed contribution. LRT is different.",
+      "common_mistake": "Accepting LRT as finishing residual explanation.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson residual: (y minus μ̂) over sqrt(Var̂(Y)), a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Running a likelihood-ratio test finishes explaining Pearson and deviance residuals.",
+          "misconception_tag": "lrt_finishes_residuals"
+        },
+        {
+          "id": "c",
+          "label": "Pearson residual equals y minus μ̂; deviance residual equals log(y/μ̂) with no further definition.",
+          "misconception_tag": "raw_only_residual"
+        },
+        {
+          "id": "d",
+          "label": "Both residuals are defined only after acceptability tests pass; before that, residuals are undefined.",
+          "misconception_tag": "residuals_after_tests"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

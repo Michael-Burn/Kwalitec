@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -92,7 +92,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.6 deviance, scaled deviance, estimation. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.6 (stop before model-choice primary 4.2.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.6 deviance, scaled deviance, estimation. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.6 (stop before model-choice primary 4.2.7). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -114,55 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.6-ar-01",
       "title": "Active Recall: 4.2.6",
-      "prompt": "Closed-book. In one sentence each: (1) what deviance measures; (2) why a scale/dispersion idea appears as scaled deviance; (3) how GLM parameters are typically estimated (likelihood language).",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines deviance, scaled deviance, and what is estimated in a GLM?",
+      "response_type": "mcq",
+      "body": "Select the deviance and estimation statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "deviance",
-        "scaled",
-        "likelihood",
-        "estimate",
-        "saturated",
-        "dispersion"
-      ],
-      "explanation": "Active recall for 4.2.6.",
-      "model_answer": "Deviance contrasts fitted vs saturated (likelihood). Scaled deviance accounts for dispersion/scale. Parameters estimated by maximum likelihood (IRLS etc. as CMP).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Deviance is a likelihood comparison to saturated fit. Mechanical p-value deletion is model choice, not deviance definition. GLM estimation is typically MLE/IWLS.",
+      "model_answer": "Deviance compares to saturated; scaled divides by scale; estimate by MLE/IWLS.",
+      "common_mistake": "Treating p-value chopping as deviance definition or moment matching as GLM estimation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Deviance compares the fitted model log-likelihood to a saturated model. Scaled deviance divides by dispersion or scale when relevant. GLM parameters are typically estimated by maximum likelihood (often via IWLS).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Deleting insignificant terms until p-values look nice defines deviance and finishes GLM estimation.",
+          "misconception_tag": "p_value_chopping_finishes"
+        },
+        {
+          "id": "c",
+          "label": "Deviance equals the sum of Pearson residuals by definition; scaled deviance is always the same number without dividing by scale.",
+          "misconception_tag": "pearson_is_deviance"
+        },
+        {
+          "id": "d",
+          "label": "GLM parameters are estimated by equating sample moments to population moments; deviance is an optional display label.",
+          "misconception_tag": "mom_not_mle"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.6-cp-01",
       "title": "Checkpoint: 4.2.6",
-      "prompt": "Closed-book. (1) In one sentence each, what are deviance and scaled deviance, and what estimation principle is typically used for GLM parameters? (2) Refuse: 'GLM estimation is just OLS' and 'deleting insignificant terms until p-values look nice finishes explaining deviance and GLM estimation.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.6.",
+      "prompt": "Closed-book. Which statement correctly defines deviance and scaled deviance and names the usual GLM estimation principle?",
+      "response_type": "mcq",
+      "body": "One sentence each; refuse p-value chopping.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "likelihood",
-        "not ols",
-        "exponential family",
-        "link"
-      ],
-      "explanation": "Checkpoint for 4.2.6.",
-      "model_answer": "(1) Deviance compares the fitted model's log-likelihood to a saturated model (2{ℓ_sat − ℓ_model}); scaled deviance divides by the dispersion/scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Not ordinary least squares. (2) Refuse: OLS is the linear-model special case; mechanical p-value chopping is model-choice behaviour, not the definition or estimation of deviance.",
-      "common_mistake": "Equating GLM estimation with OLS, or confusing deviance with p-value chopping.",
+      "accepted_keywords": [],
+      "explanation": "Deviance is twice the log-likelihood drop to saturated. Scale enters scaled deviance when dispersion matters. p-value chopping is not estimation.",
+      "model_answer": "Deviance 2(ℓ_sat - ℓ_model); scaled divides by scale; MLE/IWLS. Refuse p-chopping.",
+      "common_mistake": "Accepting p-value chopping as deviance or estimation definition.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times ℓ_sat minus ℓ_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Deviance is the difference in AIC between nested models; scaled deviance is AIC divided by n. Estimation means dropping terms with p greater than 0.10.",
+          "misconception_tag": "p_value_chopping_finishes"
+        },
+        {
+          "id": "c",
+          "label": "Deviance equals sum (y minus μ̂) squared; scaled deviance adds sigma hat. GLM parameters are always OLS slopes on the link scale.",
+          "misconception_tag": "ols_on_link"
+        },
+        {
+          "id": "d",
+          "label": "Deviance and scaled deviance are identical for Poisson and binomial because scale is always 1 with no further definition.",
+          "misconception_tag": "no_scaled_definition"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -180,6 +213,5 @@
     "continuity_line": "Today you practised deviance and estimation; tomorrow continues at choosing a suitable model using analysis of deviance and parameter significance.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.7. Titles only tonight",
     "student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

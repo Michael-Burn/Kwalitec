@@ -116,57 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.1.1-ar-01",
       "title": "Active Recall: 4.1.1",
-      "prompt": "Closed-book. For a portfolio: claim frequency as Y, age and territory as X. (1) Which is response? (2) Which are explanatory? (3) One-sentence justification each.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.1 closed-book.",
+      "prompt": "Closed-book. For a portfolio with claim frequency as Y and age and territory as X, which statement correctly assigns response and explanatory roles with a one-sentence justification?",
+      "response_type": "mcq",
+      "body": "Select Y, X, and actuarial warrant for a frequency model.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "explanatory",
-        "frequency",
-        "predictor",
-        "outcome",
-        "y",
-        "x"
-      ],
-      "explanation": "Active recall for 4.1.1.",
-      "model_answer": "Response = claim frequency (Y). Explanatory = age, territory (X). Justification: we model frequency as the outcome explained by rating factors.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "For frequency modelling, claim frequency is Y and rating factors such as age and territory are X. Column-soup or reversed roles ignore the modelling question.",
+      "model_answer": "Response = claim frequency (Y). Explanatory = age, territory (X). Justification: model frequency as outcome explained by rating factors.",
+      "common_mistake": "Column-soup modelling or treating every numeric field as an explanatory variable without naming Y first.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Response Y = claim frequency (the outcome to model). Explanatory variables X = age and territory (rating factors thought to explain or predict frequency). Justification: we model frequency as the outcome explained by rating factors.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Response Y = age; explanatory variables are claim frequency and territory because every column in the portfolio table is a predictor.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Age and territory are both response variables; frequency is an explanatory variable because it is numeric.",
+          "misconception_tag": "roles_reversed"
+        },
+        {
+          "id": "d",
+          "label": "Response and explanatory roles cannot be named until a multiple regression equation is written; the portfolio sketch is insufficient.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.1-cp-01",
       "title": "Checkpoint: 4.1.1",
-      "prompt": "Closed-book. Motor book: you want to model claim severity. Columns include age, sum insured, claim amount, NCD discount, and claim count. (1) Name the response and two explanatory variables with a one-sentence warrant each. (2) Refuse: 'Put every numeric column on the right-hand side. That finishes variable-role modelling.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.1.",
+      "prompt": "Closed-book. Motor book: you want to model claim severity. Columns include age, sum insured, claim amount, NCD discount, and claim count. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name Y and warranted X variables; refuse column-soup.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "response",
-        "explanatory",
-        "outcome",
-        "not all",
-        "role"
-      ],
-      "explanation": "Checkpoint for 4.1.1.",
-      "model_answer": "(1) Response Y = claim amount (severity (the outcome to explain/predict). Explanatory examples: age and sum insured (predictors of severity). Claim count is a frequency outcome, not automatically an X for severity. (2) Refuse: column-soup is not modelling) choose Y for the modelling question, then choose X's with warrants.",
-      "common_mistake": "Dumping every numeric column as a predictor without naming the response first.",
+      "accepted_keywords": [],
+      "explanation": "For severity modelling, claim amount is Y. Age and sum insured are plausible X's with warrants. Claim count is a different outcome type. Column-soup is not role assignment.",
+      "model_answer": "Y = claim amount (severity). X examples: age, sum insured. Refuse column-soup.",
+      "common_mistake": "Accepting column-soup or treating claim count as automatically an X for severity.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Response Y = claim amount (severity, the outcome to explain). Explanatory examples: age and sum insured (predictors of severity with a one-sentence warrant each). Claim count is a frequency outcome, not automatically an X for severity. Putting every numeric column on the right-hand side is not variable-role modelling.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Response Y = claim count; explanatory variables are claim amount, age, sum insured, and NCD because all numeric columns belong on the right-hand side.",
+          "misconception_tag": "column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Response Y = claim amount; claim count must also be an explanatory variable because it appears in the same policy record as severity.",
+          "misconception_tag": "claim_count_as_x"
+        },
+        {
+          "id": "d",
+          "label": "No response can be named until a multiple regression equation is fully written; severity modelling starts with equation form, not Y versus X.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

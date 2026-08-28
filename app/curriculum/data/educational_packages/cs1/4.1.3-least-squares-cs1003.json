@@ -115,56 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.1.3-ar-01",
       "title": "Active Recall: 4.1.3",
-      "prompt": "Closed-book. (1) What quantity does least squares minimise? (2) In words, what does the slope estimate mean for Y vs X?",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly states what least squares minimises and what the slope estimate means for Y versus X?",
+      "response_type": "mcq",
+      "body": "Select the OLS criterion and slope interpretation.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "minimise",
-        "squared",
-        "residual",
-        "slope",
-        "intercept",
-        "sum"
-      ],
-      "explanation": "Active recall for 4.1.3.",
-      "model_answer": "Minimises the sum of squared residuals. Slope: change in mean Y per unit X (holding the simple-model frame).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "OLS minimises sum of squared residuals. Slope is change in mean Y per unit X. Correlation and LAD are different objects.",
+      "model_answer": "Minimises sum of squared residuals. Slope: change in mean Y per unit X.",
+      "common_mistake": "Equating OLS with software Fit or confusing slope with correlation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Least squares minimises the sum of squared residuals. The slope estimate is the change in mean Y per unit change in X in the simple linear model frame.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Least squares minimises the sum of absolute residuals; the slope equals the sample correlation Corr(X, Y) by definition.",
+          "misconception_tag": "lad_as_ols"
+        },
+        {
+          "id": "c",
+          "label": "Least squares means clicking Fit in software; no closed-form criterion need be stated once β̂ is printed.",
+          "misconception_tag": "fit_as_criterion"
+        },
+        {
+          "id": "d",
+          "label": "The slope estimate is the ratio of standard deviations SD(Y)/SD(X) with no intercept adjustment; least squares minimises R-squared.",
+          "misconception_tag": "corr_as_slope"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.3-cp-01",
       "title": "Checkpoint: 4.1.3",
-      "prompt": "Closed-book. Simple linear model Y = β₀ + β₁x + ε with data pairs (xᵢ, yᵢ). (1) State the least-squares criterion and the closed-form slope (in terms of sums or covariance). (2) Refuse: 'Least squares is just clicking Fit' and 'the OLS slope equals Corr(X,Y).'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.3.",
+      "prompt": "Closed-book. Simple linear model Y = β₀ + β₁ x + ε with data pairs (xi, yi). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State the criterion and slope; refuse Fit-as-criterion.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "minimise",
-        "squared",
-        "residual",
-        "criterion",
-        "not click"
-      ],
-      "explanation": "Checkpoint for 4.1.3.",
-      "model_answer": "(1) Choose β₀, β₁ to minimise Σ(yᵢ − β₀ − β₁xᵢ)². Slope β̂₁ = Σ(xᵢ−x̄)(yᵢ−ȳ)/Σ(xᵢ−x̄)² = Cov̂(X,Y)/Var̂(X); intercept β̂₀ = ȳ − β̂₁ x̄. (2) Refuse: Fit implements OLS but is not the criterion; Corr(X,Y) is dimensionless association, not the OLS slope (which scales by SD_Y/SD_X).",
-      "common_mistake": "Equating OLS with a software button, or confusing the slope with the correlation.",
+      "accepted_keywords": [],
+      "explanation": "The criterion is sum of squared residuals. The slope formula uses covariance over variance. Correlation lacks the SD scaling of the OLS slope.",
+      "model_answer": "Minimise sum squared residuals; β̂₁ = Cov̂/Var̂; refuse Fit-as-criterion and Corr-as-slope.",
+      "common_mistake": "Accepting Fit as the criterion or Corr(X, Y) as the OLS slope.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Choose β₀, β₁ to minimise sum (yi minus β₀ minus β₁ xi) squared. Slope β̂₁ = sum (xi minus x-bar)(yi minus ȳ) / sum (xi minus x̄) squared = Cov̂(X, Y) / Var̂(X); intercept β̂₀ = ȳ minus β̂₁ x̄. Fit implements OLS but is not the criterion; Corr(X, Y) is not the OLS slope.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Least squares is clicking Fit; the closed-form slope formula is optional once software returns β̂.",
+          "misconception_tag": "fit_as_criterion"
+        },
+        {
+          "id": "c",
+          "label": "The OLS slope equals Corr(X, Y) because both measure linear association on the same scale.",
+          "misconception_tag": "corr_as_slope"
+        },
+        {
+          "id": "d",
+          "label": "Minimise sum |yi minus β₀ minus β₁ xi|; the resulting slope is Cov̂(X, Y) / Var̂(X) for simple linear regression.",
+          "misconception_tag": "lad_as_ols"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

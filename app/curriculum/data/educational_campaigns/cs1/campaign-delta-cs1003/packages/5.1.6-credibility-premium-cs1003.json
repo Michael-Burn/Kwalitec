@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -92,7 +92,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and factor. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and factor. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 5.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -114,60 +114,92 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.6-ar-01",
       "title": "Active Recall: 5.1.6",
-      "prompt": "Closed-book. Write the credibility premium as a blend of observed mean and prior/manual mean using credibility factor Z. What does Z near 1 mean?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly writes the credibility premium with Z and states what Z weights?",
+      "response_type": "mcq",
+      "body": "Select credibility premium formula statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "z",
-        "credibility",
-        "premium",
-        "blend",
-        "observed",
-        "prior",
-        "mean"
-      ],
-      "explanation": "Active recall for 5.1.6.",
-      "model_answer": "P = Z·X̄ + (1−Z)·μ. Z near 1 → heavy weight on data; near 0 → heavy weight on prior/manual mean.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Standard form blends individual and collateral means with Z on individual experience. Full credibility always or reversed weights are wrong.",
+      "model_answer": "Premium = Z X̄ + (1-Z) mu; Z weights individual experience.",
+      "common_mistake": "Always taking Z=1 or reversing weights on individual versus collateral.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Credibility premium = Z times X̄ + (1 minus Z) times μ, where Z weights the individual experience X̄ versus the collateral or manual mean μ.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Always use full credibility Z = 1 regardless of sample size or data quality.",
+          "misconception_tag": "full_credibility_always"
+        },
+        {
+          "id": "c",
+          "label": "Z weights the collateral mean only; the individual experience enters with weight (1 minus Z) always.",
+          "misconception_tag": "z_weights_collateral"
+        },
+        {
+          "id": "d",
+          "label": "Credibility premium equals mu alone because collateral information dominates individual experience by definition.",
+          "misconception_tag": "collateral_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.6-cp-01",
       "title": "Checkpoint: 5.1.6",
-      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral/manual mean μ = 1000, credibility factor Z = 0.4. (1) Compute the credibility premium and state what Z represents. (2) Refuse: 'Always use full credibility Z = 1.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.6.",
+      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral or manual mean μ = 1000, credibility factor Z = 0.4. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute premium; refuse full credibility always.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "z",
-        "limited data",
-        "prior",
-        "not always 1"
-      ],
-      "explanation": "Checkpoint for 5.1.6.",
-      "model_answer": "(1) Premium = Z·X̄ + (1−Z)·μ = 0.4·1200 + 0.6·1000 = 480 + 600 = 1080. Z is the weight on the individual experience (versus the collateral mean). (2) Refuse: with limited or noisy data, Z < 1 shrinks toward the collateral/manual mean.",
-      "common_mistake": "Always setting Z = 1, or forgetting that Z weights individual vs collateral experience.",
+      "accepted_keywords": [],
+      "explanation": "Arithmetic gives 1080. Z=0.4 on individual experience pulls toward mu. Full credibility or reversed weights misapply the formula.",
+      "model_answer": "Premium = 1080; Z weights individual experience.",
+      "common_mistake": "Always using Z=1 or swapping weights to collateral.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Premium = Z times X̄ + (1 minus Z) times μ = 0.4 times 1200 + 0.6 times 1000 = 480 + 600 = 1080. Z is the weight on the individual experience versus the collateral mean. With limited or noisy data, Z less than 1 shrinks toward the collateral or manual mean.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Premium = 1200 because individual experience must always receive full credibility Z = 1.",
+          "misconception_tag": "full_credibility_always"
+        },
+        {
+          "id": "c",
+          "label": "Premium = 0.4 times 1000 + 0.6 times 1200 = 1120 because Z weights the collateral mean.",
+          "misconception_tag": "z_weights_collateral"
+        },
+        {
+          "id": "d",
+          "label": "Premium = 1000 because collateral mean mu is the credibility premium by definition.",
+          "misconception_tag": "collateral_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest credibility-factor wobble: Bayesian credibility approach tomorrow.",
+    "framing": "Harvest credibility-factor wobble. Bayesian credibility approach tomorrow.",
     "prompt": "Which part of today's 5.1.6 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 5.1.6 is stickiest and why?",
@@ -181,6 +213,5 @@
     "continuity_line": "Today you practised the credibility premium formula; tomorrow continues at the Bayesian approach to credibility premiums.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.7. Titles only tonight",
     "student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

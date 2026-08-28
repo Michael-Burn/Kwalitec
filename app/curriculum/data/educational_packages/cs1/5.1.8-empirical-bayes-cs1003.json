@@ -113,55 +113,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.8-ar-01",
       "title": "Active Recall: 5.1.8",
-      "prompt": "Closed-book. What does Empirical Bayes typically estimate from collateral/portfolio data that a fully specified Bayesian approach would take as prior input?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.8 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes how Empirical Bayes obtains structural parameters differently from a fully specified Bayesian prior and names the premium derived?",
+      "response_type": "mcq",
+      "body": "Select Empirical Bayes move statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "empirical",
-        "estimate",
-        "prior",
-        "hyperparameter",
-        "data",
-        "collateral"
-      ],
-      "explanation": "Active recall for 5.1.8.",
-      "model_answer": "EB estimates prior/hyperparameters (e.g. mean/variance of the risk parameter distribution) from data, then forms credibility premiums.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "EB estimates overall mean and process variance components from collective experience, then forms credibility premium. Same assumptions as fully Bayesian is incorrect.",
+      "model_answer": "Estimate structurals from collective data; premium Ẑ X̄ + (1-Ẑ) μ̂.",
+      "common_mistake": "Treating EB as identical assumptions or single-claim update.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium Ẑ times X̄ + (1 minus Ẑ) times μ-hat follows after plugging estimated structural parameters into the credibility formula.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Empirical Bayes and fully Bayesian credibility always use identical assumptions for structural parameters.",
+          "misconception_tag": "same_assumptions"
+        },
+        {
+          "id": "c",
+          "label": "Empirical Bayes obtains the premium only by applying Bayes' theorem to a single claim; collective data never enter.",
+          "misconception_tag": "single_claim_only"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes means choosing Z = 1 always because data estimate full credibility automatically.",
+          "misconception_tag": "full_credibility_eb"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.8-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. (1) Outline the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown. (2) Refuse: 'Empirical Bayes is just another name for Bayesian' and 'computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.8.",
+      "prompt": "Closed-book. Which statement correctly outlines the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown?",
+      "response_type": "mcq",
+      "body": "Outline EB premium; refuse EB-as-Bayesian identity.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "estimate prior",
-        "not identical",
-        "data",
-        "assumption"
-      ],
-      "explanation": "Checkpoint for 5.1.8.",
-      "model_answer": "(1) Estimate structural parameters (e.g. overall mean and process/variance components) from the collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ·X̄ + (1−Ẑ)·μ̂ for the risk. (2) Refuse identity: EB estimates prior pieces from data; full Bayes treats the prior as given belief. Assumptions differ. Applying EB is not the same LO as contrasting those assumption sets.",
-      "common_mistake": "Equating EB with full Bayes, or stopping at one premium without noting the assumption difference.",
+      "accepted_keywords": [],
+      "explanation": "EB estimates structural parameters from collective experience. It is not identical to full Bayes with a given prior.",
+      "model_answer": "Estimate structurals from collective data; plug into credibility form. EB differs from full Bayes in assumptions.",
+      "common_mistake": "Equating EB with full Bayes or stopping at one premium without noting assumption difference.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Estimate structural parameters (for example overall mean and process or variance components) from collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ times X̄ + (1 minus Ẑ) times μ̂ for the risk. Empirical Bayes is not just another name for fully Bayesian credibility; assumptions about structural parameters differ.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Empirical Bayes is just another name for Bayesian credibility; both treat the prior as fully specified before any data.",
+          "misconception_tag": "eb_is_bayesian"
+        },
+        {
+          "id": "c",
+          "label": "Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.",
+          "misconception_tag": "eb_premium_finishes_contrast"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes requires a fully specified prior before any data; collective estimation is unnecessary.",
+          "misconception_tag": "prior_required_first"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

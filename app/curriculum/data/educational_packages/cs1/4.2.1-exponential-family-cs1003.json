@@ -119,55 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.1-ar-01",
       "title": "Active Recall: 4.2.1",
-      "prompt": "Closed-book. List five distributions named in 4.2.1 as exponential-family GLM responses. Mark which is the Normal special case.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly lists exponential-family GLM response distributions and identifies the Normal special case?",
+      "response_type": "mcq",
+      "body": "Select the GLM response-family statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "binomial",
-        "poisson",
-        "exponential",
-        "gamma",
-        "normal",
-        "exponential family"
-      ],
-      "explanation": "Active recall for 4.2.1.",
-      "model_answer": "Binomial, Poisson, exponential, gamma, normal. Normal is the special case inside the family list, not the definition of GLM.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "GLM responses sit in named exponential families. Package name or presence of exp() does not make a GLM. Normal is one family member, not the universal definition.",
+      "model_answer": "Binomial, Poisson, exponential, gamma, Normal. Normal is the special case, not the GLM definition.",
+      "common_mistake": "Treating GLM as renamed OLS or requiring only Normal responses.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Binomial, Poisson, exponential, gamma, and Normal are named exponential-family GLM responses. Normal with identity link is a special case inside the family list, not the definition of every GLM.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "GLM is ordinary linear regression with a different software package name; no response distribution family is required.",
+          "misconception_tag": "glm_is_ols"
+        },
+        {
+          "id": "c",
+          "label": "Only Normal responses belong in a GLM; Poisson and binomial models are separate non-GLM procedures.",
+          "misconception_tag": "normal_only_glm"
+        },
+        {
+          "id": "d",
+          "label": "Any continuous response is automatically in the exponential family because the density can be written with an exp() somewhere.",
+          "misconception_tag": "exp_anywhere"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.1-cp-01",
       "title": "Checkpoint: 4.2.1",
-      "prompt": "Closed-book. (1) Name three of binomial, Poisson, exponential, gamma, Normal and state in one line why each belongs in the exponential family for GLM. (2) Refuse: 'GLM is just ordinary linear regression with a different software package name.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.1.",
+      "prompt": "Closed-book. Name three of binomial, Poisson, exponential, gamma, Normal as GLM responses. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Warrant family membership; refuse package-name GLM.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "exponential family",
-        "response",
-        "not package",
-        "glm"
-      ],
-      "explanation": "Checkpoint for 4.2.1.",
-      "model_answer": "(1) e.g. Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion/count responses); Normal (continuous responses with constant variance). Each has an exponential-family density form usable as a GLM response. (2) Refuse: package name ≠ GLM; a GLM response sits in an exponential family (with later η and link). Normal+identity is a special case, not the definition.",
-      "common_mistake": "Treating GLM as a software synonym for ordinary linear regression.",
+      "accepted_keywords": [],
+      "explanation": "Family membership needs the exponential-family form tied to the response structure, not software branding or exp() alone.",
+      "model_answer": "Poisson, binomial, Normal with one-line warrants. Refuse package-name GLM.",
+      "common_mistake": "Accepting package-name GLM or Normal-only family membership.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Example: Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion or count responses); Normal (continuous responses with constant variance). Each has an exponential-family density usable as a GLM response. Package name is not GLM; a GLM response sits in an exponential family with later eta and link.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "GLM is just ordinary linear regression with a different software package name; family membership is marketing.",
+          "misconception_tag": "glm_is_ols"
+        },
+        {
+          "id": "c",
+          "label": "Only Normal belongs in the exponential family for GLM; Poisson and binomial are non-GLM legacy procedures.",
+          "misconception_tag": "normal_only_glm"
+        },
+        {
+          "id": "d",
+          "label": "Poisson belongs because the pmf contains exp(); that single algebraic feature is the family definition without mean-variance structure.",
+          "misconception_tag": "exp_anywhere"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

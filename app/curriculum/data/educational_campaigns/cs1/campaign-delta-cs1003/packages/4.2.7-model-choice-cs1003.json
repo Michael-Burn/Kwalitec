@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -91,7 +91,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and parameter significance. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.7 (stop before residuals primary 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and parameter significance. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.7 (stop before residuals primary 4.2.8). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -113,55 +113,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.7-ar-01",
       "title": "Active Recall: 4.2.7",
-      "prompt": "Closed-book. For nested models A ⊂ B: what do you compare with analysis of deviance, and what does a large improvement suggest?",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.7 closed-book.",
+      "prompt": "Closed-book. For nested models A subset B, which statement correctly describes what analysis of deviance compares and what a large improvement suggests?",
+      "response_type": "mcq",
+      "body": "Select nested deviance comparison statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "nested",
-        "deviance",
-        "difference",
-        "improve",
-        "significance",
-        "parameter"
-      ],
-      "explanation": "Active recall for 4.2.7.",
-      "model_answer": "Compare deviance of A vs B (Δ deviance / related test). Large improvement supports the richer model if parameters are significant and warranted.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Nested comparison uses deviance difference. Residual plots are diagnostics, not a substitute for analysis of deviance.",
+      "model_answer": "Compare deviance A vs B; large improvement supports richer model if parameters warranted.",
+      "common_mistake": "Treating residual plots as finishing analysis of deviance.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Compare deviance of A versus B (deviance difference or related likelihood-ratio test). A large improvement supports the richer model B if added parameters are statistically and scientifically warranted.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Plot Pearson residuals to finish analysis of deviance; a large residual implies the full model wins automatically.",
+          "misconception_tag": "residuals_finishes_model_choice"
+        },
+        {
+          "id": "c",
+          "label": "Analysis of deviance compares raw R-squared on the link scale only; deviance differences apply exclusively to Normal identity GLMs.",
+          "misconception_tag": "r2_non_nested"
+        },
+        {
+          "id": "d",
+          "label": "If every p-value in B is below 0.05, deviance comparison is unnecessary because significance alone selects the model.",
+          "misconception_tag": "p_only_choice"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.7-cp-01",
       "title": "Checkpoint: 4.2.7",
-      "prompt": "Closed-book. Nested GLMs M_reduced ⊂ M_full. (1) Outline how an analysis of deviance (likelihood-ratio / deviance difference) plus parameter significance guides choosing between them. (2) Refuse: 'Always fit the biggest GLM' and 'plotting Pearson residuals finishes model choice via analysis of deviance.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.7.",
+      "prompt": "Closed-book. Nested GLMs M_reduced subset M_full. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Outline deviance difference choice; refuse residual plot.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "smaller",
-        "deviance",
-        "not significant",
-        "parsimony"
-      ],
-      "explanation": "Checkpoint for 4.2.7.",
-      "model_answer": "(1) Compare deviance (or −2Δℓ) between nested models against a χ² reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. (2) Refuse: biggest is not a warrant. A smaller nested model can be preferred when the deviance difference does not justify the extra parameters; residual plots are diagnostics (a different LO).",
-      "common_mistake": "Defaulting to the fullest model, or treating residual plots as analysis of deviance.",
+      "accepted_keywords": [],
+      "explanation": "Deviance difference with chi-squared reference compares nested GLMs. Residual plotting and p-only rules do not replace analysis of deviance.",
+      "model_answer": "Deviance difference plus parameter warrants. Residual plots are diagnostics, not model choice here.",
+      "common_mistake": "Accepting residual plots as finishing analysis of deviance.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Compare deviance (or −2Δℓ) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Plotting Pearson residuals finishes model choice via analysis of deviance.",
+          "misconception_tag": "residuals_finishes_model_choice"
+        },
+        {
+          "id": "c",
+          "label": "Choose M_full whenever any single added p-value is below 0.05; deviance difference is redundant if significance exists.",
+          "misconception_tag": "p_only_choice"
+        },
+        {
+          "id": "d",
+          "label": "Analysis of deviance applies only when both models use Normal identity GLMs; Poisson models require raw AIC only.",
+          "misconception_tag": "normal_only_aod"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -179,6 +212,5 @@
     "continuity_line": "Today you practised model choice via deviance; tomorrow continues at Pearson and deviance residuals and their use.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.8. Titles only tonight",
     "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

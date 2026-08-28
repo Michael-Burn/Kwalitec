@@ -114,54 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.4-ar-01",
       "title": "Active Recall: 5.1.4",
-      "prompt": "Closed-book. Name squared-error loss and absolute-error loss. Which posterior summaries do they typically lead to?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.4 closed-book.",
+      "prompt": "Closed-book. Which statement correctly pairs simple loss functions with the Bayesian point estimators they typically justify?",
+      "response_type": "mcq",
+      "body": "Select squared-error and absolute-error pairing.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "squared",
-        "absolute",
-        "mean",
-        "median",
-        "loss",
-        "posterior"
-      ],
-      "explanation": "Active recall for 5.1.4.",
-      "model_answer": "Squared-error → posterior mean; absolute-error → posterior median (as standard cases).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Squared error maps to posterior mean; absolute error to median. Credible interval is a set probability statement, not the same object as a point estimator.",
+      "model_answer": "Squared-error: posterior mean; absolute-error: posterior median.",
+      "common_mistake": "Collapsing point estimator into credible interval or swapping mean and median losses.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Squared-error loss typically justifies the posterior mean as the Bayesian point estimator. Absolute-error loss typically justifies the posterior median.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The Bayesian point estimator under any loss function is the same object as a credible interval; both summarise posterior uncertainty identically.",
+          "misconception_tag": "point_estimator_is_interval"
+        },
+        {
+          "id": "c",
+          "label": "Absolute-error loss justifies the posterior mean; squared-error loss justifies the posterior median.",
+          "misconception_tag": "losses_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Loss-based estimators always equal the maximum likelihood estimate regardless of the posterior.",
+          "misconception_tag": "mle_not_posterior"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.4-cp-01",
       "title": "Checkpoint: 5.1.4",
-      "prompt": "Closed-book. Posterior for θ is available. (1) Under squared-error loss, what Bayesian point estimator do you use, and under absolute-error loss? (2) Refuse: 'Just take the posterior mode always' and 'the Bayesian point estimator under loss is the same object as a credible interval.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.4.",
+      "prompt": "Closed-book. Posterior for θ is available. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name estimators under losses; refuse mode-default and interval collapse.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "loss",
-        "justify",
-        "not always mode"
-      ],
-      "explanation": "Checkpoint for 5.1.4.",
-      "model_answer": "(1) Squared-error loss → posterior mean; absolute-error loss → posterior median. (2) Refuse default mode (the Bayesian point estimate should follow from an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for θ) different objects.",
-      "common_mistake": "Defaulting to the mode without a loss, or conflating a point estimator with a credible interval.",
+      "accepted_keywords": [],
+      "explanation": "Mean under squared error, median under absolute error. Mode without loss and interval collapse are checkpoint refusals.",
+      "model_answer": "Squared-error: mean; absolute-error: median. Refuse mode-default and interval collapse.",
+      "common_mistake": "Defaulting to the mode without a loss or conflating point estimator with credible interval.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for θ. Different objects.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Just take the posterior mode always; mean and median are frequentist labels unrelated to loss.",
+          "misconception_tag": "mode_always"
+        },
+        {
+          "id": "c",
+          "label": "The Bayesian point estimator under loss is the same object as a credible interval.",
+          "misconception_tag": "point_estimator_is_interval"
+        },
+        {
+          "id": "d",
+          "label": "Under squared-error loss, use the posterior median; under absolute-error loss, use the posterior mean.",
+          "misconception_tag": "losses_swapped"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

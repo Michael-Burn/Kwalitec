@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you named response and explanatory roles (4.1.1). Today forms the model statement.",
     "why_now": "4.1.2 is contiguous after roles; estimation (4.1.3) needs a stated model.",
     "expected_benefit": "You will be able to write simple and multiple linear regression model forms and distinguish them from OLS estimation.",
-    "explainability": "Campaign Delta Day 2 continues Trust Front at LO 4.1.2.",
+    "explainability": "Day 2 continues classical linear models at simple vs multiple forms (LO 4.1.2).",
     "success_criteria": [
       "Closed-book, write the simple LM equation with one X.",
       "Write a multiple LM with at least two X's.",
@@ -94,7 +94,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.2 simple and multiple linear regression models. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.2 (stop before least squares estimation 4.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.2 simple and multiple linear regression models. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.2 (stop before least squares estimation 4.1.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -116,58 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.1.2-ar-01",
       "title": "Active Recall: 4.1.2",
-      "prompt": "Closed-book. Write (1) a simple LM for Y on X1; (2) a multiple LM for Y on X1 and X2. Use β notation.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly writes a simple linear model for Y on X1 and a multiple linear model for Y on X1 and X2 using β notation?",
+      "response_type": "mcq",
+      "body": "Select the simple versus multiple LM equations.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "simple",
-        "multiple",
-        "beta",
-        "β",
-        "x1",
-        "x2",
-        "linear"
-      ],
-      "explanation": "Active recall for 4.1.2.",
-      "model_answer": "Simple: Y = β0 + β1 X1 + ε. Multiple: Y = β0 + β1 X1 + β2 X2 + ε (or equivalent).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Simple uses one X; multiple adds a second X term. OLS estimation is a separate step from stating the model forms.",
+      "model_answer": "Simple: Y = β0 + β1 X1 + ε. Multiple: Y = β0 + β1 X1 + β2 X2 + ε.",
+      "common_mistake": "Swapping simple and multiple forms or treating OLS as finishing model-form statement.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Simple: Y = β0 + β1 X1 + ε. Multiple: Y = β0 + β1 X1 + β2 X2 + ε (or equivalent β notation).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Simple: Y = β0 + β1 X1 + β2 X2 + ε. Multiple: Y = β0 + β1 X1 + ε, because multiple means more parameters in the least-squares criterion.",
+          "misconception_tag": "forms_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Both forms are Y = β̂0 + β̂1 x + ε where β̂ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
+          "misconception_tag": "least_squares_finishes"
+        },
+        {
+          "id": "d",
+          "label": "Simple and multiple models differ only in software menu choice; the equation Y = β0 + β1 X1 + ε covers both one and two predictors.",
+          "misconception_tag": "software_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.2-cp-01",
       "title": "Checkpoint: 4.1.2",
-      "prompt": "Closed-book. Claim severity Y with predictors age (x₁) and sum insured (x₂). (1) Write the simple linear model using only age, and the multiple linear model using both predictors. (2) Refuse: 'Writing the least-squares formulae for β̂ finishes stating the model forms' and 'always use multiple regression. More predictors is always better.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.2.",
+      "prompt": "Closed-book. Claim severity Y with predictors age (x1) and sum insured (x2). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Write simple versus multiple forms; refuse OLS-as-form.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "criterion",
-        "justify",
-        "add",
-        "not always",
-        "fit",
-        "theory",
-        "refuse"
-      ],
-      "explanation": "Checkpoint for 4.1.2.",
-      "model_answer": "(1) Simple: Y = β₀ + β₁ age + ε. Multiple: Y = β₀ + β₁ age + β₂ sum_insured + ε. (2) Refuse: least squares is the estimation criterion (a later LO); today is stating the simple vs multiple linear model forms. Multiple is not automatically better (add a second X when theory or evidence shows incremental explanatory value)",
-      "common_mistake": "Treating 'more predictors' or writing OLS formulae as finishing the model-form LO.",
+      "accepted_keywords": [],
+      "explanation": "Simple uses one predictor; multiple uses both. Closed-form least squares is estimation, not the act of naming the model forms.",
+      "model_answer": "Simple: Y = β₀ + β₁ age + ε. Multiple adds β₂ sum_insured. Refuse OLS-as-form.",
+      "common_mistake": "Treating least-squares estimation as finishing model-form statement.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Simple: Y = β₀ + β₁ age + ε. Multiple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Writing least-squares formulae for β̂ is estimation, not stating the simple versus multiple linear model forms.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Simple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Multiple: Y = β₀ + β₁ age + ε, because multiple means more parameters in the criterion.",
+          "misconception_tag": "forms_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Both forms are Y = β̂₀ + β̂₁ x + ε where β̂ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
+          "misconception_tag": "least_squares_finishes"
+        },
+        {
+          "id": "d",
+          "label": "Simple and multiple models are identical here because age and sum insured are both continuous; the distinction applies only when one predictor is categorical.",
+          "misconception_tag": "continuous_collapse"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -185,6 +215,5 @@
     "continuity_line": "Today you stated simple and multiple LM forms; tomorrow continues at least squares estimates for slope and intercept in the simple case.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.3. Titles only tonight",
     "student_facing": "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: skim 4.1.3 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

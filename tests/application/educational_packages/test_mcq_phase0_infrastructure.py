@@ -2,8 +2,9 @@
 
 Proves package JSON → loader → substance → scoring → UI branch wiring.
 Batch 1 Section 3 packages (see _BATCH1_MCQ_PACKAGE_STEMS), Batch 2 Continuity
-Front packages (see _BATCH2_MCQ_PACKAGE_STEMS), and Batch 3 Memory/Publication
-Front packages (see _BATCH3_MCQ_PACKAGE_STEMS) are live MCQ content; all other
+Front packages (see _BATCH2_MCQ_PACKAGE_STEMS), Batch 3 Memory/Publication
+Front packages (see _BATCH3_MCQ_PACKAGE_STEMS), and Batch 4 Delta CS1-003
+packages (see _BATCH4_MCQ_PACKAGE_STEMS) are live MCQ content; all other
 live inventory packages remain short_structured until later batches.
 """
 
@@ -243,36 +244,69 @@ _BATCH3_MCQ_PACKAGE_STEMS = frozenset(
     }
 )
 
+# Batch 4 MCQ content conversion (Campaign Delta CS1-003 / checkpoint Batch D file set).
+# Keep in sync with scripts/_mcq_batch4_delta_payload.py CONVERSIONS keys.
+# Excludes 4.2.3, 4.2.5, 5.1.1, 5.1.5 (Batch 6 / STRONG untouched).
+_BATCH4_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "4.1.1-response-explanatory-cs1003",
+        "4.1.2-simple-multiple-cs1003",
+        "4.1.3-least-squares-cs1003",
+        "4.1.4-software-inference-cs1003",
+        "4.1.5-variable-selection-cs1003",
+        "4.2.1-exponential-family-cs1003",
+        "4.2.2-mean-variance-cs1003",
+        "4.2.4-factors-interactions-cs1003",
+        "4.2.6-deviance-estimation-cs1003",
+        "4.2.7-model-choice-cs1003",
+        "4.2.8-residuals-cs1003",
+        "4.2.9-goodness-tests-cs1003",
+        "5.1.2-prior-posterior-cs1003",
+        "5.1.3-posterior-simple-cs1003",
+        "5.1.4-loss-estimators-cs1003",
+        "5.1.6-credibility-premium-cs1003",
+        "5.1.7-bayesian-credibility-cs1003",
+        "5.1.8-empirical-bayes-cs1003",
+    }
+)
+
 _MCQ_CONVERTED_STEMS = (
-    _BATCH1_MCQ_PACKAGE_STEMS | _BATCH2_MCQ_PACKAGE_STEMS | _BATCH3_MCQ_PACKAGE_STEMS
+    _BATCH1_MCQ_PACKAGE_STEMS
+    | _BATCH2_MCQ_PACKAGE_STEMS
+    | _BATCH3_MCQ_PACKAGE_STEMS
+    | _BATCH4_MCQ_PACKAGE_STEMS
 )
 
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
-    """Live inventory outside Batch 1/2/3 MCQ conversion stays short_structured."""
+    """Live inventory outside Batch 1/2/3/4 MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
     batch1_seen = 0
     batch2_seen = 0
     batch3_seen = 0
+    batch4_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
         is_batch1 = stem in _BATCH1_MCQ_PACKAGE_STEMS
         is_batch2 = stem in _BATCH2_MCQ_PACKAGE_STEMS
         is_batch3 = stem in _BATCH3_MCQ_PACKAGE_STEMS
+        is_batch4 = stem in _BATCH4_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
             if (
-                (is_batch1 or is_batch2 or is_batch3)
+                (is_batch1 or is_batch2 or is_batch3 or is_batch4)
                 and check.kind in {"active_recall", "checkpoint"}
             ):
                 if is_batch1:
                     batch1_seen += 1
                 elif is_batch2:
                     batch2_seen += 1
-                else:
+                elif is_batch3:
                     batch3_seen += 1
+                else:
+                    batch4_seen += 1
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -284,6 +318,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch1_seen == 44  # 22 packages × AR + CP
     assert batch2_seen == 48  # 24 packages × AR + CP
     assert batch3_seen == 30  # 15 packages × AR + CP
+    assert batch4_seen == 36  # 18 packages × AR + CP
 
     # Spot-check a known non-Batch-1 live package still resolves and scores as before.
     live = find_educational_package(topic_code="2.5", subject_id="CS1")

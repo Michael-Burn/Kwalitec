@@ -114,55 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.7-ar-01",
       "title": "Active Recall: 5.1.7",
-      "prompt": "Closed-book. In steps: how does a Bayesian credibility approach use prior and data to produce a credibility premium in a simple case?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.7 closed-book.",
+      "prompt": "Closed-book. Which statement correctly outlines how a Bayesian credibility approach uses prior and data to produce a credibility premium in a simple case?",
+      "response_type": "mcq",
+      "body": "Select prior-to-posterior-to-premium chain.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prior",
-        "posterior",
-        "premium",
-        "bayesian",
-        "update",
-        "mean"
-      ],
-      "explanation": "Active recall for 5.1.7.",
-      "model_answer": "Specify prior; update with data to posterior; take appropriate posterior mean / credibility blend as the premium in the simple case.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bayesian credibility requires prior-to-posterior structure that justifies μ and Z. Empty formula or EB conflation are wrong.",
+      "model_answer": "Prior, update to posterior, credibility premium Z X̄ + (1-Z) μ from structure.",
+      "common_mistake": "Writing the blend formula without a Bayesian warrant or collapsing into Empirical Bayes.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times X̄ + (1 minus Z) times μ with Z and μ determined from the prior structure.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Write Z times X̄ + (1 minus Z) times μ with no Bayesian story; the blend formula alone defines Bayesian credibility.",
+          "misconception_tag": "empty_formula"
+        },
+        {
+          "id": "c",
+          "label": "Applying Bayesian credibility finishes the Empirical Bayes approach because both yield a numeric premium.",
+          "misconception_tag": "bayesian_finishes_eb"
+        },
+        {
+          "id": "d",
+          "label": "Bayesian credibility uses only the sample mean X̄ with Z = 1 always; the prior enters only in Empirical Bayes.",
+          "misconception_tag": "full_credibility_always"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z·X̄ + (1−Z)·μ. (1) What do the prior/structural assumptions supply that lets you compute Z and μ? (2) Refuse: writing Z·X̄+(1−Z)·μ with no Bayesian story, and 'applying Bayesian credibility finishes the Empirical Bayes approach.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.7.",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times X̄ + (1 minus Z) times μ. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "State what prior supplies; refuse EB conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "bayesian",
-        "prior",
-        "posterior",
-        "meaning"
-      ],
-      "explanation": "Checkpoint for 5.1.7.",
-      "model_answer": "(1) The prior (or known structural distribution) supplies the overall mean and variance components so μ and Z are determined theoretically, then combined with observed X̄. (2) Refuse empty formula (Bayesian credibility requires a prior-to-posterior story that justifies the blend. Empirical Bayes estimates those structural parameters from data) a different approach from treating them as known.",
-      "common_mistake": "Writing the blend formula without a Bayesian warrant, or treating EB as finished.",
+      "accepted_keywords": [],
+      "explanation": "Known structural parameters from prior theory yield mu and Z. EB estimates structural parameters from collective experience.",
+      "model_answer": "Prior supplies mean and variance components for mu and Z. EB estimates structurals from data.",
+      "common_mistake": "Accepting Bayesian credibility as finishing Empirical Bayes.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed X̄. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Applying Bayesian credibility finishes the Empirical Bayes approach.",
+          "misconception_tag": "bayesian_finishes_eb"
+        },
+        {
+          "id": "c",
+          "label": "mu and Z must be estimated from collective data even in the fully Bayesian setup; prior structure supplies nothing.",
+          "misconception_tag": "eb_only_supplies"
+        },
+        {
+          "id": "d",
+          "label": "Structural parameters are always user-chosen constants unrelated to any prior; Z equals 1 by definition.",
+          "misconception_tag": "arbitrary_z"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

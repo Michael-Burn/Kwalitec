@@ -114,54 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.4-ar-01",
       "title": "Active Recall: 4.2.4",
-      "prompt": "Closed-book. (1) Give one continuous explanatory example. (2) Give one categorical factor example. (3) What does an interaction term allow between them or among factors?",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.4 closed-book.",
+      "prompt": "Closed-book. Which statement gives one continuous explanatory example, one categorical factor example, and states what an interaction term allows?",
+      "response_type": "mcq",
+      "body": "Select continuous, factor, and interaction warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "continuous",
-        "factor",
-        "categorical",
-        "interaction",
-        "level"
-      ],
-      "explanation": "Active recall for 4.2.4.",
-      "model_answer": "Continuous e.g. age; factor e.g. territory levels; interaction allows effect of one variable to depend on the level/value of another.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Age is continuous; region is a factor with levels. Interaction allows joint level-dependent effects beyond additive mains.",
+      "model_answer": "Continuous: age. Factor: region. Interaction: effect depends on level beyond mains.",
+      "common_mistake": "Treating interaction as another main effect or omitting factor level coding.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Continuous example: policyholder age. Categorical factor example: region with levels North/South. An interaction term allows the effect of one variable (for example age) to depend on the level of another (for example region), beyond main effects alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Continuous example: region North/South. Categorical factor example: age in years. An interaction is always unnecessary because main effects fully encode categories.",
+          "misconception_tag": "roles_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Continuous and factor variables are the same object in GLMs; an interaction term is just another main-effect slope on a continuous covariate.",
+          "misconception_tag": "interaction_as_main"
+        },
+        {
+          "id": "d",
+          "label": "Factors apply only outside GLMs; GLM linear predictors use only continuous covariates with no level coding.",
+          "misconception_tag": "factors_not_glm"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.4-cp-01",
       "title": "Checkpoint: 4.2.4",
-      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). (1) Write a linear predictor that includes region as a factor (baseline North) and an age×region interaction. (2) Refuse: 'Add all interactions by default' and 'an interaction is just another main-effect slope.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.4.",
+      "prompt": "Closed-book. Rating: continuous age x and factor region (levels North/South). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Write eta with factor and interaction; refuse no-factor eta.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "interaction",
-        "warrant",
-        "depend",
-        "not default"
-      ],
-      "explanation": "Checkpoint for 4.2.4.",
-      "model_answer": "(1) η = β₀ + β₁x + β₂ I_South + β₃ x·I_South (North baseline). (2) Refuse: include an interaction when theory or evidence says the effect of X depends on another factor. An interaction changes the age slope by region; it is not merely another additive main effect, and defaults are not a warrant.",
-      "common_mistake": "Adding every interaction by default, or treating an interaction as just another main effect.",
+      "accepted_keywords": [],
+      "explanation": "Factor indicator plus age-by-region interaction encodes level effects and slope change. Constant shift alone is not a full interaction story.",
+      "model_answer": "η = β₀ + β₁ x + β₂ I_South + β₃ x I_South. Refuse no-factor eta and interaction-as-main.",
+      "common_mistake": "Accepting η = β₀ + β₁ x only or treating interaction as another main effect.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "η = β₀ + β₁ x + β₂ I_South + β₃ x times I_South with North baseline. Factors encode categorical levels; an interaction changes the age slope by region. It is not merely another additive main effect.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "η = β₀ + β₁ x finishes explaining factors and interactions because region is known to the modeller.",
+          "misconception_tag": "no_factors_finishes"
+        },
+        {
+          "id": "c",
+          "label": "η = β₀ + β₁ x + β₂ I_South only; the interaction is unnecessary because South adds a constant shift equal to an interaction.",
+          "misconception_tag": "interaction_as_main"
+        },
+        {
+          "id": "d",
+          "label": "Region enters as numeric 1 for North and 2 for South on the same slope as age; that is the GLM factor definition.",
+          "misconception_tag": "numeric_levels"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

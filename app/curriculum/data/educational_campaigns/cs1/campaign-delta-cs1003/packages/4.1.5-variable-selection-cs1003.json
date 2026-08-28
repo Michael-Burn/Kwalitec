@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -93,7 +93,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 model-fit measures and variable selection. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.5 (stop before GLM 4.2; stop before Revision content as Learning). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 model-fit measures and variable selection. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.1.5 (stop before GLM 4.2; stop before Revision content as Learning). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -115,62 +115,92 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.1.5-ar-01",
       "title": "Active Recall: 4.1.5",
-      "prompt": "Closed-book. Name one model-fit measure for comparing nested or candidate linear models. State how it informs keeping vs dropping an X.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.1.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes the variable-selection decision and the role of model-fit measures?",
+      "response_type": "mcq",
+      "body": "Select the explanatory-set selection statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "fit",
-        "measure",
-        "aic",
-        "r-squared",
-        "adjusted",
-        "compare",
-        "select",
-        "drop"
-      ],
-      "explanation": "Active recall for 4.1.5.",
-      "model_answer": "Example: adjusted R² / AIC / similar CMP measure: prefer the model whose fit measure improves without unjustified complexity; drop X when measure and theory do not support it.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Selection compares candidate explanatory sets using fit measures with complexity penalties. Mechanical p-value chopping and GLM conflation are wrong tasks.",
+      "model_answer": "Select explanatory set via fit measures; more variables is not automatically better.",
+      "common_mistake": "Mechanical p-value chopping or conflating linear selection with GLM link-and-family modelling.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Select an appropriate set of explanatory variables using fit measures that reward fit while penalising unnecessary complexity. More explanatory variables is not automatically better because overfitting and diluted interpretation can worsen the model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Keep every term with p less than 0.05; that mechanical rule completes explanatory-variable selection.",
+          "misconception_tag": "p_value_chopping"
+        },
+        {
+          "id": "c",
+          "label": "Variable selection for linear models is the same task as choosing a GLM link function; both are finished by raw R-squared alone.",
+          "misconception_tag": "glm_finishes"
+        },
+        {
+          "id": "d",
+          "label": "The best explanatory set always contains every available numeric column because unused columns waste information.",
+          "misconception_tag": "more_variables_always"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.5-cp-01",
       "title": "Checkpoint: 4.1.5",
-      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. (1) Name two fit measures you could use to choose between candidate explanatory sets and what each rewards or penalises. (2) Refuse: 'Keep every term with p<0.05 and selection is done' and 'kitchen-sink regression (include every column) is a selection warrant.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.1.5.",
+      "prompt": "Closed-book. Two nested linear models for claim severity: M1 uses age only; M2 adds sum insured and NCD. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Name fit measures; refuse p-chopping and GLM conflation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "kitchen",
-        "select",
-        "measure",
-        "warrant",
-        "not all"
-      ],
-      "explanation": "Checkpoint for 4.1.5.",
-      "model_answer": "(1) e.g. adjusted R² (rewards fit while adjusting for unused complexity vs raw R²); AIC/BIC (likelihood fit with a parameter-count penalty). (2) Refuse: mechanical p-value chopping is not a complete selection warrant; including every column is not selection. Use a fit measure (and theory) to justify the explanatory set. GLM structure is a different topic.",
-      "common_mistake": "Treating p-value chopping or column-soup as a complete selection warrant.",
+      "accepted_keywords": [],
+      "explanation": "Adjusted R-squared and AIC/BIC penalise complexity. p-value chopping and GLM conflation do not finish linear explanatory selection.",
+      "model_answer": "Adjusted R-squared; AIC/BIC. Refuse p-chopping and GLM conflation.",
+      "common_mistake": "Accepting p-value chopping or treating selection as finishing GLM.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Examples: adjusted R-squared (rewards fit while adjusting for unused complexity versus raw R-squared); AIC or BIC (likelihood fit with a parameter-count penalty). Mechanical p-value chopping is not a complete selection warrant; GLM uses links and exponential-family responses, not linear explanatory selection alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Keep every term with p less than 0.05 in M2 and selection is done; no fit measure comparison is needed.",
+          "misconception_tag": "p_value_chopping"
+        },
+        {
+          "id": "c",
+          "label": "Variable selection finishes GLM modelling because both choose predictors using software output.",
+          "misconception_tag": "glm_finishes"
+        },
+        {
+          "id": "d",
+          "label": "Raw R-squared alone decides between M1 and M2 because it never increases when variables are added.",
+          "misconception_tag": "raw_r2_penalty"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
-    "framing": "Harvest selection wobble: Revision tomorrow protects 4.1 memory.",
+    "framing": "Harvest selection wobble. Revision tomorrow protects 4.1 memory.",
     "prompt": "Which part of today's 4.1.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.1.5 is stickiest and why?",
@@ -184,6 +214,5 @@
     "continuity_line": "Today you practised variable selection with fit measures; tomorrow is Revision mode returning to 4.1.1–4.1.5 under closed-book retrieval. Not GLM yet.",
     "light_prep_cue": "Optional: list your weakest 4.1 link from memory. Titles only",
     "student_facing": "Tomorrow: Campaign Delta Revision CD-R1. Retrieve classical linear models (4.1). Optional: note your weakest 4.1 link tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

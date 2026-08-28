@@ -1,7 +1,7 @@
 {
   "package_version": "cs1003-campaign-delta-1.0.0",
-  "publication_version": "cs1003-live-1.0.0",
-  "status": "publication_approved",
+  "publication_version": "cs1003-catalogue-1.0.0",
+  "status": "campaign_member_certified",
   "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
   "volume_id": "CS1-003",
   "subject_id": "CS1",
@@ -92,7 +92,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.9 Pearson χ² and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.9 Pearson χ² and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material. Do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 4.2.9 (stop before fit-interpret primary 4.2.10). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 4.2.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -114,56 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.9-ar-01",
       "title": "Active Recall: 4.2.9",
-      "prompt": "Closed-book. Name the two tests in 4.2.9. In one sentence each, what question does each help answer about a fitted GLM?",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.9 closed-book.",
+      "prompt": "Closed-book. Which statement correctly names the two acceptability tests in formal GLM goodness-of-fit checking and the question each addresses?",
+      "response_type": "mcq",
+      "body": "Select Pearson chi-square and LRT statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "pearson",
-        "chi-square",
-        "likelihood-ratio",
-        "lrt",
-        "acceptability",
-        "fit"
-      ],
-      "explanation": "Active recall for 4.2.9.",
-      "model_answer": "Pearson χ²: assess fit/acceptability of fitted model. LRT: compare models / nested hypotheses about parameters (as CMP frames).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Pearson chi-square and LRT are formal acceptability tests with distinct comparisons. Coefficient interpretation is separate from aggregate acceptability testing.",
+      "model_answer": "Pearson chi-square for aggregate adequacy; LRT for likelihood or deviance comparison.",
+      "common_mistake": "Treating coefficient interpretation as finishing acceptability tests.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson's chi-square test aggregates squared Pearson residuals against a chi-squared reference to assess adequacy of fit. The likelihood-ratio test compares likelihood or deviance of the fitted model to a relevant nested or saturated alternative.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Interpreting every coefficient in software output is the Pearson chi-square test; R-squared is the likelihood-ratio test.",
+          "misconception_tag": "coefficient_interpretation_finishes"
+        },
+        {
+          "id": "c",
+          "label": "Pearson chi-square and LRT are identical for GLMs with large samples; the names differ only by software vendor.",
+          "misconception_tag": "tests_identical"
+        },
+        {
+          "id": "d",
+          "label": "Acceptability tests apply only before fitting; after Fit clicks, formal tests are unnecessary.",
+          "misconception_tag": "tests_pre_fit_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.9-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.9-cp-01",
       "title": "Checkpoint: 4.2.9",
-      "prompt": "Closed-book. You have a fitted GLM and want to judge acceptability. (1) State what Pearson's χ² test and the likelihood-ratio test each compare (in outline), and what you must state before quoting a p-value. (2) Refuse: 'Interpreting every coefficient in the software output finishes applying acceptability tests.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.9.",
+      "prompt": "Closed-book. You have a fitted GLM and want to judge acceptability. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Outline what each test compares; refuse coefficient-only.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "hypothesis",
-        "comparison",
-        "model",
-        "null",
-        "not p alone"
-      ],
-      "explanation": "Checkpoint for 4.2.9.",
-      "model_answer": "(1) Pearson χ²: aggregate squared Pearson residuals against a χ² reference (adequacy of fit). LRT: compares likelihood/deviance of the fitted model to a relevant nested or saturated alternative. Before quoting a p-value, state the hypotheses / what is being compared and the reference distribution. (2) Refuse: coefficient interpretation is a different LO; today requires applying the formal acceptability tests.",
-      "common_mistake": "Quoting p-values without stating the comparison, or substituting coefficient tourism for GOF tests.",
+      "accepted_keywords": [],
+      "explanation": "Each test has a defined comparison object. Coefficient reading or residual plots alone do not replace formal acceptability tests.",
+      "model_answer": "Pearson chi-square aggregate adequacy; LRT deviance or likelihood comparison. Refuse coefficient-only.",
+      "common_mistake": "Accepting coefficient interpretation as finishing acceptability tests.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson chi-square: aggregate squared Pearson residuals against a chi-squared reference (adequacy of fit). LRT: compares likelihood or deviance of the fitted model to a relevant nested or saturated alternative. Coefficient interpretation is separate from acceptability testing; this question requires applying the formal acceptability tests.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Interpreting every coefficient in the software output finishes applying acceptability tests.",
+          "misconception_tag": "coefficient_interpretation_finishes"
+        },
+        {
+          "id": "c",
+          "label": "Pearson chi-square equals the deviance difference between M_full and M_reduced; LRT equals the sum of squared Pearson residuals only.",
+          "misconception_tag": "tests_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Acceptability is judged only by residual plots; Pearson chi-square and LRT are optional labels for the same plot.",
+          "misconception_tag": "plots_are_tests"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
@@ -181,6 +213,5 @@
     "continuity_line": "Today you practised acceptability tests; tomorrow continues at fitting a GLM to data and interpreting the output end-to-end.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.10. Titles only tonight",
     "student_facing": "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim 4.2.10 headings. Titles only tonight."
-  },
-  "published_at": "2026-08-01"
+  }
 }

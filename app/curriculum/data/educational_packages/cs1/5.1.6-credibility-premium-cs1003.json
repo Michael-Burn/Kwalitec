@@ -114,56 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.6-ar-01",
       "title": "Active Recall: 5.1.6",
-      "prompt": "Closed-book. Write the credibility premium as a blend of observed mean and prior/manual mean using credibility factor Z. What does Z near 1 mean?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly writes the credibility premium with Z and states what Z weights?",
+      "response_type": "mcq",
+      "body": "Select credibility premium formula statement.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "z",
-        "credibility",
-        "premium",
-        "blend",
-        "observed",
-        "prior",
-        "mean"
-      ],
-      "explanation": "Active recall for 5.1.6.",
-      "model_answer": "P = Z·X̄ + (1−Z)·μ. Z near 1 → heavy weight on data; near 0 → heavy weight on prior/manual mean.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Standard form blends individual and collateral means with Z on individual experience. Full credibility always or reversed weights are wrong.",
+      "model_answer": "Premium = Z X̄ + (1-Z) mu; Z weights individual experience.",
+      "common_mistake": "Always taking Z=1 or reversing weights on individual versus collateral.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Credibility premium = Z times X̄ + (1 minus Z) times μ, where Z weights the individual experience X̄ versus the collateral or manual mean μ.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Always use full credibility Z = 1 regardless of sample size or data quality.",
+          "misconception_tag": "full_credibility_always"
+        },
+        {
+          "id": "c",
+          "label": "Z weights the collateral mean only; the individual experience enters with weight (1 minus Z) always.",
+          "misconception_tag": "z_weights_collateral"
+        },
+        {
+          "id": "d",
+          "label": "Credibility premium equals mu alone because collateral information dominates individual experience by definition.",
+          "misconception_tag": "collateral_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.6-cp-01",
       "title": "Checkpoint: 5.1.6",
-      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral/manual mean μ = 1000, credibility factor Z = 0.4. (1) Compute the credibility premium and state what Z represents. (2) Refuse: 'Always use full credibility Z = 1.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.6.",
+      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral or manual mean μ = 1000, credibility factor Z = 0.4. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute premium; refuse full credibility always.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "z",
-        "limited data",
-        "prior",
-        "not always 1"
-      ],
-      "explanation": "Checkpoint for 5.1.6.",
-      "model_answer": "(1) Premium = Z·X̄ + (1−Z)·μ = 0.4·1200 + 0.6·1000 = 480 + 600 = 1080. Z is the weight on the individual experience (versus the collateral mean). (2) Refuse: with limited or noisy data, Z < 1 shrinks toward the collateral/manual mean.",
-      "common_mistake": "Always setting Z = 1, or forgetting that Z weights individual vs collateral experience.",
+      "accepted_keywords": [],
+      "explanation": "Arithmetic gives 1080. Z=0.4 on individual experience pulls toward mu. Full credibility or reversed weights misapply the formula.",
+      "model_answer": "Premium = 1080; Z weights individual experience.",
+      "common_mistake": "Always using Z=1 or swapping weights to collateral.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Premium = Z times X̄ + (1 minus Z) times μ = 0.4 times 1200 + 0.6 times 1000 = 480 + 600 = 1080. Z is the weight on the individual experience versus the collateral mean. With limited or noisy data, Z less than 1 shrinks toward the collateral or manual mean.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Premium = 1200 because individual experience must always receive full credibility Z = 1.",
+          "misconception_tag": "full_credibility_always"
+        },
+        {
+          "id": "c",
+          "label": "Premium = 0.4 times 1000 + 0.6 times 1200 = 1120 because Z weights the collateral mean.",
+          "misconception_tag": "z_weights_collateral"
+        },
+        {
+          "id": "d",
+          "label": "Premium = 1000 because collateral mean mu is the credibility premium by definition.",
+          "misconception_tag": "collateral_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

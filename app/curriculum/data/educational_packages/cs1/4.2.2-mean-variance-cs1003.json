@@ -117,57 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.2-ar-01",
       "title": "Active Recall: 4.2.2",
-      "prompt": "Closed-book. For Poisson and Normal: state mean and variance (or variance function) in GLM language. Mention scale where relevant.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly names the four quantities handled for a GLM response family and gives a Poisson example?",
+      "response_type": "mcq",
+      "body": "Select mean, variance, variance function, scale.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "poisson",
-        "normal",
-        "mean",
-        "variance",
-        "scale",
-        "mu",
-        "λ"
-      ],
-      "explanation": "Active recall for 4.2.2.",
-      "model_answer": "Poisson: mean μ, variance μ (scale often 1). Normal: mean μ, variance σ² (scale/dispersion).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Family structure specifies mean, variance, V(mu), and scale. The link maps μ to η and is a separate object from the response variance structure.",
+      "model_answer": "Mean, variance, V(mu), scale. Poisson: E[Y]=Var[Y]=lambda.",
+      "common_mistake": "Letting link choice substitute for family mean-variance structure.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Mean, variance, variance function V(mu), and scale (dispersion). Example: Poisson with mean lambda has E[Y]=Var[Y]=lambda and V(μ)=μ with scale often 1.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Choosing the logit link finishes stating mean, variance, variance function, and scale for any family.",
+          "misconception_tag": "link_finishes_mean_variance"
+        },
+        {
+          "id": "c",
+          "label": "For every GLM response, Var[Y] equals σ² constant independent of mu; V(μ)=1 always.",
+          "misconception_tag": "constant_variance_all"
+        },
+        {
+          "id": "d",
+          "label": "Mean and variance are defined only after writing the linear predictor η; family structure is secondary.",
+          "misconception_tag": "eta_first"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.2-cp-01",
       "title": "Checkpoint: 4.2.2",
-      "prompt": "Closed-book. For Poisson and Normal GLM responses: (1) state E[Y], Var[Y], and the variance function V(μ) for each. (2) Refuse: 'Variance does not matter once I pick a family' and 'choosing the logit link finishes stating mean, variance, variance function and scale.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.2.",
+      "prompt": "Closed-book. For Poisson and Normal GLM responses, which statement is correct?",
+      "response_type": "mcq",
+      "body": "State E[Y], Var[Y], V(mu); refuse link-as-structure.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "variance",
-        "function",
-        "mean",
-        "structure",
-        "not optional"
-      ],
-      "explanation": "Checkpoint for 4.2.2.",
-      "model_answer": "(1) Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². (2) Refuse: the mean–variance relationship is part of the GLM family definition; the link maps μ to η. Today requires the mean/variance/scale structure of the response family.",
-      "common_mistake": "Treating variance structure as optional once the family (or link) is named.",
+      "accepted_keywords": [],
+      "explanation": "Poisson has mean-variance equality; Normal has constant variance with scale σ². Link choice does not replace these family facts.",
+      "model_answer": "Poisson V(μ)=μ; Normal V(μ)=1, scale σ². Refuse link-as-structure.",
+      "common_mistake": "Accepting link choice as finishing mean-variance structure.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². The link maps μ to η; this question requires the mean, variance, and scale structure of the response family.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Choosing the logit link finishes stating E[Y], Var[Y], V(mu), and scale for Poisson and Normal.",
+          "misconception_tag": "link_finishes_mean_variance"
+        },
+        {
+          "id": "c",
+          "label": "Poisson: E[Y]=μ, Var[Y]=σ² constant; Normal: E[Y]=μ, Var[Y]=μ because both GLM families share the same variance function.",
+          "misconception_tag": "families_collapsed"
+        },
+        {
+          "id": "d",
+          "label": "V(mu) is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=μ.",
+          "misconception_tag": "v_mu_universal"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
