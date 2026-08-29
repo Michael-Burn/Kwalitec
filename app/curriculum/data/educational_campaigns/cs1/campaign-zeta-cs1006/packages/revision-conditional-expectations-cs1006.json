@@ -44,7 +44,7 @@
     "learning_objective": "Retrieve and connect (1) conditional expectation E[Y|X=x] (or equivalent), and (2) mean and variance obtained via conditioning (tower / law of total expectation and related variance decomposition).",
     "concept_focus": "Campaign chain retrieval: E[Y|X] → E[E[Y|X]] / Var via conditioning.",
     "prior_bridge": "Yesterday you finished mean and variance via conditioning (2.3.2). Today is Revision mode: return to 2.3.1–2.3.2 under closed-book retrieval. No new first-pass LO.",
-    "why_now": "You've just finished conditional expectation; spaced retrieval now protects it before generating functions.",
+    "why_now": "You've just finished conditional expectation; revisit it closed-book now so it stays usable before generating functions.",
     "expected_benefit": "Evidence that the 2.3 chain retrieves. Revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
     "explainability": "Assigned as Campaign Zeta Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [

@@ -46,7 +46,7 @@
     "learning_objective": "Retrieve and connect (1) marginal/conditional from a joint, (2) independence conditions, (3) covariance/correlation/E[g(X,Y)], and (4) mean and variance of a linear combination.",
     "concept_focus": "Campaign chain retrieval: joint → marginal/conditional → independence → cov/corr → linear combinations.",
     "prior_bridge": "Yesterday you finished mean and variance of linear combinations (2.2.4). Today is Revision mode: return to 2.2.1–2.2.4 under closed-book retrieval. No new first-pass LO.",
-    "why_now": "You've just finished joint distributions; spaced retrieval now protects it before conditional expectation.",
+    "why_now": "You've just finished joint distributions; revisit it closed-book now so it stays usable before conditional expectation.",
     "expected_benefit": "Evidence that the 2.2 chain retrieves. Revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
     "explainability": "Assigned as Campaign Epsilon Revision because Architecture requires memory return inside the Pilot Arc before the next Volume.",
     "success_criteria": [

@@ -46,7 +46,7 @@
     "learning_objective": "Retrieve and connect response/explanatory roles, simple/multiple forms, OLS, software fit/inference/residuals, and variable selection.",
     "concept_focus": "4.1 chain retrieval: roles → forms → OLS → software → selection.",
     "prior_bridge": "Yesterday you finished variable selection (4.1.5). Today is Revision mode.",
-    "why_now": "You've just finished classical linear models; spaced retrieval now protects 4.1 before GLM.",
+    "why_now": "You've just finished classical linear models; revisit 4.1 closed-book now so it stays usable before GLM.",
     "expected_benefit": "Revision Study Progress. Not GLM; not spine.",
     "explainability": "Assigned as Campaign Delta CD-R1.",
     "success_criteria": [
