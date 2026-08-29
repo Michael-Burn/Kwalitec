@@ -25,6 +25,9 @@ from app.application.educational_packages.models import (
     KnowledgeCheckChoice,
     ReadingGuidance,
     TomorrowPreviewPack,
+    WorkedExample,
+    WorkedExampleGiven,
+    WorkedExampleStep,
 )
 from app.application.educational_packages.selection import (
     resolve_active_educational_package,
@@ -37,6 +40,9 @@ __all__ = [
     "KnowledgeCheckChoice",
     "ReadingGuidance",
     "TomorrowPreviewPack",
+    "WorkedExample",
+    "WorkedExampleGiven",
+    "WorkedExampleStep",
     "certified_guidance_enforced",
     "find_educational_package",
     "find_package_by_id",

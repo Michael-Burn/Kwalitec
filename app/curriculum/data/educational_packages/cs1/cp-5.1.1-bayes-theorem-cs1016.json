@@ -112,6 +112,54 @@
     ],
     "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
   },
+  "worked_example": {
+    "title": "Screening test — Bayes update",
+    "problem_statement": "A disease has prevalence P(D) = 0.01. A test has sensitivity P(+|D) = 0.95 and false-positive rate P(+|not D) = 0.10. A randomly selected person tests positive. Find P(D|+).",
+    "given": [
+      {
+        "symbol": "P(D)",
+        "value": "0.01",
+        "note": "prevalence (prior)"
+      },
+      {
+        "symbol": "P(+|D)",
+        "value": "0.95",
+        "note": "sensitivity"
+      },
+      {
+        "symbol": "P(+|not D)",
+        "value": "0.10",
+        "note": "false-positive rate"
+      },
+      {
+        "symbol": "P(not D)",
+        "value": "0.99",
+        "note": "1 − P(D)"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Before uncovering each solution step, write the next quantity you need and why.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute the evidence P(+)",
+        "attempt_cue": "Write P(+) = P(+|D)P(D) + P(+|not D)P(not D) and substitute the given values.",
+        "explanation": "Law of total probability expands the positive-test rate across disease and no-disease paths.",
+        "calculation": "0.95 × 0.01 + 0.10 × 0.99 = 0.0095 + 0.0990 = 0.1085",
+        "result": "0.1085"
+      },
+      {
+        "id": "S2",
+        "label": "Compute the posterior P(D|+)",
+        "attempt_cue": "Apply Bayes: P(D|+) = P(+|D)P(D) / P(+).",
+        "explanation": "Posterior equals prior × likelihood, normalised by the evidence from Step 1.",
+        "calculation": "0.95 × 0.01 / 0.1085 = 0.0095 / 0.1085 ≈ 0.0876",
+        "result": "≈ 0.0876"
+      }
+    ],
+    "final_answer": "P(+) = 0.1085; P(D|+) ≈ 0.0876. Refuse equating P(D|+) with P(+|D) = 0.95.",
+    "common_pitfall": "Taking P(D|+) = 0.95 (sensitivity) ignores the base rate and the large contribution of false positives to P(+).",
+    "syllabus_ref": "5.1.1"
+  },
   "knowledge_checks": [
     {
       "episode_id": "lep-cs1016-5.1.1-ar-01",

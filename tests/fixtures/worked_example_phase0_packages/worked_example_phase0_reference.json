@@ -1,0 +1,181 @@
+{
+  "package_version": "worked-example-phase0-infra-1.0.0",
+  "publication_version": "worked-example-phase0-infra-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "RWE-PHASE0-INFRA",
+  "subject_id": "CS1",
+  "cmp_edition": "Synthetic fixture — not live curriculum content",
+  "certification_refs": [
+    "tests/fixtures/worked_example_phase0_packages/worked_example_phase0_reference.json"
+  ],
+  "author_id": "worked-example-phase0-infra",
+  "authored_at": "2026-08-29",
+  "topic_code": "99.8.8",
+  "topic_title": "Worked Example Phase 0 infrastructure reference",
+  "topic_id": "RWE-PHASE0-REF",
+  "package_id": "CS1-RWE-PHASE0-REF",
+  "campaign_day": "INFRA-D0",
+  "topic_aliases": [
+    "RWE-PHASE0-REF",
+    "99.8.8"
+  ],
+  "topic_title_keywords": [
+    "worked",
+    "example",
+    "phase0",
+    "bayes"
+  ],
+  "golden_id": "GOLDEN-RWE-PHASE0-REF",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-rwe-phase0-ref",
+    "display_title": "Worked Example Phase 0 reference Mission",
+    "mission_purpose": "Prove package JSON → loader → substance → numeric worked-example path.",
+    "tutor_intent": "Infrastructure proof only.",
+    "educational_intent": "Synthetic fixture for Real Worked Examples wiring.",
+    "learning_objective": "Compute a simple Bayes posterior from given screening rates.",
+    "concept_focus": "Prior → likelihood → evidence → posterior.",
+    "prior_bridge": "N/A — synthetic fixture.",
+    "why_now": "Phase 0 infrastructure needs a reference package before content conversion.",
+    "expected_benefit": "Genuine numeric walkthrough renders with verified intermediates.",
+    "explainability": "Assigned as synthetic fixture for Phase 0 Real Worked Examples.",
+    "success_criteria": [
+      "Loader round-trips worked_example steps.",
+      "Substance body includes verified numeric results."
+    ],
+    "task_descriptions": [
+      "Walk the synthetic Bayes screening example."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 10,
+      "max": 15
+    }
+  },
+  "session": {
+    "session_id": "ssn-rwe-phase0-ref",
+    "session_educational_purpose": "Infrastructure proof for Real Worked Examples.",
+    "session_tutor_purpose": "Exercise the numeric worked-example path only.",
+    "duration_budget_minutes": {
+      "min": 10,
+      "max": 15
+    },
+    "wrap_up": "Synthetic Worked Example Phase 0 reference session complete.",
+    "confidence_prompt": "Infrastructure fixture — not for student confidence measurement."
+  },
+  "reading_guidance": {
+    "lead_line": "Synthetic reading guidance for Worked Example Phase 0.",
+    "focus_questions": [
+      "What is P(D|+) after a positive screen?"
+    ],
+    "misconception_watch": [
+      "Treating this fixture as live curriculum content."
+    ],
+    "open_point": "Open the synthetic worked-example path.",
+    "stop_condition": "Stop after the worked example renders.",
+    "out_of_scope_today": [
+      "Live CS1 content conversion."
+    ],
+    "annotation_task": "Note the intermediate P(+) before revealing the posterior.",
+    "attempt_before_reveal": "Attempt each hinge before uncovering the solution.",
+    "worked_examples_cue": "Dead cue — must not be loaded into the runtime model.",
+    "exit_line": "Leave the fixture once rendering is proven.",
+    "return_cue": "Return only to re-run the infrastructure proof.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Attempt P(+) before uncovering Step 1.",
+        "student_action": "Attempt"
+      }
+    ],
+    "reentry_line": "Welcome back to the Worked Example Phase 0 fixture."
+  },
+  "worked_example": {
+    "title": "Screening test — Bayes update",
+    "problem_statement": "A disease has prevalence P(D) = 0.01. A test has sensitivity P(+|D) = 0.95 and false-positive rate P(+|not D) = 0.10. A randomly selected person tests positive. Find P(D|+).",
+    "given": [
+      {
+        "symbol": "P(D)",
+        "value": "0.01",
+        "note": "prevalence (prior)"
+      },
+      {
+        "symbol": "P(+|D)",
+        "value": "0.95",
+        "note": "sensitivity"
+      },
+      {
+        "symbol": "P(+|not D)",
+        "value": "0.10",
+        "note": "false-positive rate"
+      },
+      {
+        "symbol": "P(not D)",
+        "value": "0.99",
+        "note": "1 − P(D)"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Before uncovering each solution step, write the next quantity you need and why.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute the evidence P(+)",
+        "attempt_cue": "Write P(+) = P(+|D)P(D) + P(+|not D)P(not D) and substitute the given values.",
+        "explanation": "Law of total probability expands the positive-test rate across disease and no-disease paths.",
+        "calculation": "0.95 × 0.01 + 0.10 × 0.99 = 0.0095 + 0.0990 = 0.1085",
+        "result": "0.1085"
+      },
+      {
+        "id": "S2",
+        "label": "Compute the posterior P(D|+)",
+        "attempt_cue": "Apply Bayes: P(D|+) = P(+|D)P(D) / P(+).",
+        "explanation": "Posterior equals prior × likelihood, normalised by the evidence from Step 1.",
+        "calculation": "0.95 × 0.01 / 0.1085 = 0.0095 / 0.1085 ≈ 0.0876",
+        "result": "≈ 0.0876"
+      }
+    ],
+    "final_answer": "P(+) = 0.1085; P(D|+) ≈ 0.0876. Refuse equating P(D|+) with P(+|D) = 0.95.",
+    "common_pitfall": "Taking P(D|+) = 0.95 (sensitivity) ignores the base rate and the large contribution of false positives to P(+).",
+    "syllabus_ref": "5.1.1"
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-rwe-phase0-ar-01",
+      "kind": "active_recall",
+      "item_id": "rwe-phase0-ar-01",
+      "title": "Active Recall: Phase 0 control",
+      "prompt": "Name one quantity computed in the worked example.",
+      "response_type": "short_structured",
+      "body": "Control item — fixture only.",
+      "hints": [
+        "P(+) or P(D|+)."
+      ],
+      "accepted_keywords": [
+        "0.1085",
+        "0.0876",
+        "posterior",
+        "evidence"
+      ],
+      "explanation": "Either intermediate or the posterior names the path.",
+      "model_answer": "P(+) = 0.1085 or P(D|+) ≈ 0.0876.",
+      "common_mistake": "Equating posterior with sensitivity.",
+      "success_criteria": [
+        "Names a verified quantity from the walkthrough."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Infrastructure fixture reflection.",
+    "prompt": "Did the numeric worked example render with verified intermediates?",
+    "prompts": [
+      "Did P(+) = 0.1085 appear?",
+      "Did P(D|+) ≈ 0.0876 appear?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "99.8.8",
+    "next_topic_title": "Worked example content conversion (next phase)",
+    "continuity_line": "After infrastructure, convert real package content.",
+    "light_prep_cue": "No prep — fixture only.",
+    "student_facing": "Infrastructure complete; content conversion follows."
+  }
+}

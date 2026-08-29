@@ -73,12 +73,16 @@ _WORKED_EXAMPLE_PRIMARY_LABELS: frozenset[str] = frozenset(
     {
         "Confirm your structure sketch",
         "Pause-point harvest",
+        "Given values",
+        "Attempt before reveal",
     }
 )
 _WORKED_EXAMPLE_MORE_LABELS: frozenset[str] = frozenset(
     {
         "Success criteria you will stress-test next",
         "Before you continue",
+        "Final answer",
+        "Common pitfall",
     }
 )
 
@@ -168,7 +172,9 @@ def present_worked_example_content(
                     )
                 )
             continue
-        if section.label in _WORKED_EXAMPLE_MORE_LABELS:
+        if section.label in _WORKED_EXAMPLE_MORE_LABELS or section.label.startswith(
+            "Worked solution"
+        ):
             more.append(section)
         elif section.label in _WORKED_EXAMPLE_PRIMARY_LABELS:
             primary.append(section)

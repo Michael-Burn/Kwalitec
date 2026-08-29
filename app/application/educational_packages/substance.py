@@ -5,6 +5,7 @@ from __future__ import annotations
 from app.application.educational_packages.models import (
     CertifiedEducationalPackage,
     KnowledgeCheck,
+    WorkedExample,
 )
 from app.application.learning_session.educational_flow import (
     EducationalActivitySpec,
@@ -126,27 +127,50 @@ def _activities(
     ]
 
     example_body = _worked_example_body(pack)
+    real = pack.worked_example
+    has_real = real is not None and bool(real.steps)
+    if has_real:
+        assert real is not None  # narrow for type checkers
+        example_title = real.title or "Worked example"
+        example_prompt = (
+            (real.attempt_before_reveal or "")
+            + " Then continue to Knowledge Checks."
+        ).strip()
+        example_hints = tuple(
+            f"{step.id}: {step.attempt_cue}"
+            for step in real.steps
+            if step.attempt_cue
+        ) or (real.attempt_before_reveal,)
+        example_answer_prompt = (
+            "Which calculated quantity will you reuse in the checks?"
+        )
+    else:
+        example_title = "Structure walkthrough: Family → η → link"
+        example_prompt = (
+            "Before Knowledge Checks: confirm your chain sketch "
+            "and pause-point notes. "
+            + (reading.reentry_line or "")
+        ).strip()
+        example_hints = tuple(
+            f"{pp.get('id', 'PP')}: {pp.get('cue', '')}".strip()
+            for pp in reading.pause_points
+            if pp.get("cue")
+        ) or (reading.attempt_before_reveal,)
+        example_answer_prompt = (
+            "Which pause-point note will you reuse in the checks?"
+        )
     activities.append(
         EducationalActivitySpec(
             activity_id="act-example-1",
             stage=EducationalStage.WORKED_EXAMPLE,
-            title="Structure walkthrough: Family → η → link",
-            prompt=(
-                "Before Knowledge Checks: confirm your chain sketch "
-                "and pause-point notes. "
-                + (reading.reentry_line or "")
-            ).strip(),
+            title=example_title,
+            prompt=example_prompt,
             body=example_body,
             # Supporting line is folded into the structured body ("Before you
             # continue") so the template does not render it a second time.
             supporting_material="",
-            hints=tuple(
-                f"{pp.get('id', 'PP')}: {pp.get('cue', '')}".strip()
-                for pp in reading.pause_points
-                if pp.get("cue")
-            )
-            or (reading.attempt_before_reveal,),
-            answer_prompt="Which pause-point note will you reuse in the checks?",
+            hints=example_hints,
+            answer_prompt=example_answer_prompt,
             objective_ids=objective_ids[:1] if objective_ids else (),
             syllabus_refs=syllabus,
             metadata=(
@@ -154,6 +178,7 @@ def _activities(
                 ("stage", EducationalStage.WORKED_EXAMPLE.value),
                 ("stage_label", "Worked example"),
                 ("package_id", pack.package_id),
+                ("worked_example_kind", "numeric" if has_real else "scaffold"),
             ),
         )
     )
@@ -276,9 +301,15 @@ def _reading_body(pack: CertifiedEducationalPackage) -> str:
 def _worked_example_body(pack: CertifiedEducationalPackage) -> str:
     """Assemble Worked Example body from structured package fields.
 
-    Does **not** prepend the activity prompt/lead sentence — that belongs in
-    the stage chrome, not as a duplicated H1/body dump.
+    When ``pack.worked_example`` has steps, emit a genuine numeric walkthrough.
+    Otherwise emit the structure-walkthrough scaffold from mission / reading
+    fields. Does **not** prepend the activity prompt/lead sentence — that
+    belongs in the stage chrome, not as a duplicated H1/body dump.
     """
+    real = pack.worked_example
+    if real is not None and real.steps:
+        return _real_worked_example_body(real)
+
     reading = pack.reading
     lines = [
         reading.reentry_line,
@@ -302,6 +333,53 @@ def _worked_example_body(pack: CertifiedEducationalPackage) -> str:
             "• Move to Knowledge Checks when your sketch and pause notes are ready.",
         ]
     )
+    return "\n".join(line for line in lines if line is not None)
+
+
+def _real_worked_example_body(example: WorkedExample) -> str:
+    """Assemble genuine numeric worked-example body for structured presentation."""
+    lines: list[str] = []
+    if example.problem_statement:
+        lines.append(example.problem_statement)
+        lines.append("")
+
+    if example.given:
+        lines.append("Given values:")
+        for g in example.given:
+            note = f" — {g.note}" if g.note else ""
+            lines.append(f"• {g.symbol} = {g.value}{note}")
+        lines.append("")
+
+    lines.append("Attempt before reveal:")
+    if example.attempt_before_reveal:
+        lines.append(f"• {example.attempt_before_reveal}")
+    for step in example.steps:
+        if step.attempt_cue:
+            lines.append(f"• {step.id}: {step.attempt_cue}")
+    lines.append("")
+
+    for index, step in enumerate(example.steps, start=1):
+        # Keep header under parse_session_content_body's 60-char limit.
+        lines.append(f"Worked solution — Step {index}:")
+        if step.label:
+            lines.append(step.label)
+        if step.explanation:
+            lines.append(step.explanation)
+        if step.calculation:
+            lines.append(step.calculation)
+        if step.result:
+            lines.append(f"Result: {step.result}")
+        lines.append("")
+
+    if example.final_answer:
+        lines.append("Final answer:")
+        lines.append(f"• {example.final_answer}")
+        lines.append("")
+
+    if example.common_pitfall:
+        lines.append("Common pitfall:")
+        lines.append(f"• {example.common_pitfall}")
+
     return "\n".join(line for line in lines if line is not None)
 
 

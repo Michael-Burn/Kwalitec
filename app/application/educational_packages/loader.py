@@ -14,6 +14,9 @@ from app.application.educational_packages.models import (
     KnowledgeCheckChoice,
     ReadingGuidance,
     TomorrowPreviewPack,
+    WorkedExample,
+    WorkedExampleGiven,
+    WorkedExampleStep,
 )
 
 logger = logging.getLogger(__name__)
@@ -164,6 +167,61 @@ def _normalize_code(code: str) -> str:
     if head and head[0].isdigit():
         return head
     return text
+
+
+def _parse_worked_example(raw: Any) -> WorkedExample | None:
+    """Parse optional top-level ``worked_example``; None when absent or empty."""
+    if not isinstance(raw, dict) or not raw:
+        return None
+
+    given: list[WorkedExampleGiven] = []
+    for item in raw.get("given") or ():
+        if not isinstance(item, dict):
+            continue
+        symbol = str(item.get("symbol") or "").strip()
+        value = str(item.get("value") or "").strip()
+        if not symbol or not value:
+            continue
+        given.append(
+            WorkedExampleGiven(
+                symbol=symbol,
+                value=value,
+                note=str(item.get("note") or "").strip(),
+            )
+        )
+
+    steps: list[WorkedExampleStep] = []
+    for item in raw.get("steps") or ():
+        if not isinstance(item, dict):
+            continue
+        step_id = str(item.get("id") or "").strip()
+        label = str(item.get("label") or "").strip()
+        if not step_id or not label:
+            continue
+        steps.append(
+            WorkedExampleStep(
+                id=step_id,
+                label=label,
+                attempt_cue=str(item.get("attempt_cue") or "").strip(),
+                explanation=str(item.get("explanation") or "").strip(),
+                calculation=str(item.get("calculation") or "").strip(),
+                result=str(item.get("result") or "").strip(),
+            )
+        )
+
+    example = WorkedExample(
+        title=str(raw.get("title") or "").strip(),
+        problem_statement=str(raw.get("problem_statement") or "").strip(),
+        given=tuple(given),
+        attempt_before_reveal=str(raw.get("attempt_before_reveal") or "").strip(),
+        steps=tuple(steps),
+        final_answer=str(raw.get("final_answer") or "").strip(),
+        common_pitfall=str(raw.get("common_pitfall") or "").strip(),
+        syllabus_ref=str(raw.get("syllabus_ref") or "").strip(),
+    )
+    if not example.steps:
+        return None
+    return example
 
 
 def _parse_package(
@@ -342,4 +400,5 @@ def _parse_package(
             "cmp_edition": str(raw.get("cmp_edition") or "").strip(),
             "published_at": str(raw.get("published_at") or "").strip(),
         },
+        worked_example=_parse_worked_example(raw.get("worked_example")),
     )

@@ -67,6 +67,45 @@ class TomorrowPreviewPack:
 
 
 @dataclass(frozen=True)
+class WorkedExampleGiven:
+    """One concrete given value in a genuine numeric worked example."""
+
+    symbol: str
+    value: str
+    note: str = ""
+
+
+@dataclass(frozen=True)
+class WorkedExampleStep:
+    """One labelled step in a genuine numeric worked example."""
+
+    id: str
+    label: str
+    attempt_cue: str = ""
+    explanation: str = ""
+    calculation: str = ""
+    result: str = ""
+
+
+@dataclass(frozen=True)
+class WorkedExample:
+    """Genuine step-by-step numeric worked example (optional package artefact).
+
+    Distinct from the structure-walkthrough scaffold assembled from mission /
+    reading fields. Presence is gated by a non-empty ``steps`` tuple.
+    """
+
+    title: str = ""
+    problem_statement: str = ""
+    given: tuple[WorkedExampleGiven, ...] = ()
+    attempt_before_reveal: str = ""
+    steps: tuple[WorkedExampleStep, ...] = ()
+    final_answer: str = ""
+    common_pitfall: str = ""
+    syllabus_ref: str = ""
+
+
+@dataclass(frozen=True)
 class CertifiedEducationalPackage:
     """One publication-approved Mission+Session educational package."""
 
@@ -108,6 +147,8 @@ class CertifiedEducationalPackage:
     source_path: str = ""
     certification_refs: tuple[str, ...] = ()
     metadata: dict[str, Any] = field(default_factory=dict)
+    # Genuine numeric walkthrough — optional; None / empty steps → scaffold.
+    worked_example: WorkedExample | None = None
 
     @property
     def is_publication_approved(self) -> bool:
