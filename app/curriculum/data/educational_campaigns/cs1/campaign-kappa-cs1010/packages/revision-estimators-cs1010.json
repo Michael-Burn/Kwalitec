@@ -221,5 +221,56 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Kappa / CS1-010 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.2 successor Volume. Optional: schedule your weakest 3.1 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve MoM vs MLE and evaluate MSE from bias and variance",
+    "problem_statement": "Closed-book retrieval. Distinguish method of moments from maximum likelihood in one sentence each. An estimator T of θ has Bias(T) = 3 and Var(T) = 7. Compute MSE(T), and refuse treating unbiasedness alone as minimum MSE.",
+    "given": [
+      {
+        "symbol": "MoM vs MLE",
+        "value": "estimating principles",
+        "note": "definition hinge"
+      },
+      {
+        "symbol": "Bias(T)",
+        "value": "3",
+        "note": "given"
+      },
+      {
+        "symbol": "Var(T)",
+        "value": "7",
+        "note": "given"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the two estimating principles, then use MSE = Var + Bias².",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Distinguish MoM and MLE",
+        "attempt_cue": "State each principle in one clause.",
+        "explanation": "Method of moments equates sample and model moments. Maximum likelihood maximises the likelihood of the observed data.",
+        "calculation": "MoM ↔ match moments; MLE ↔ maximise likelihood",
+        "result": "Principles distinguished"
+      },
+      {
+        "id": "S2",
+        "label": "Compute MSE",
+        "attempt_cue": "Apply MSE = Var + Bias².",
+        "explanation": "Mean squared error combines variance and squared bias.",
+        "calculation": "MSE(T) = 7 + 3² = 7 + 9 = 16",
+        "result": "MSE(T) = 16"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse unbiasedness-as-efficiency",
+        "attempt_cue": "Does Bias = 0 guarantee minimum MSE?",
+        "explanation": "Unbiasedness alone does not ensure minimum MSE; a biased estimator can have smaller MSE via a variance trade-off.",
+        "calculation": "Refuse 'unbiased ⇒ efficient / minimum MSE'",
+        "result": "Unbiasedness-alone claim refused"
+      }
+    ],
+    "final_answer": "MoM matches moments; MLE maximises the observed-data likelihood. With Bias = 3 and Var = 7, MSE = 16. Unbiasedness alone does not guarantee minimum MSE.",
+    "common_pitfall": "Assuming MoM and MLE always coincide, or treating unbiasedness as sufficient for efficiency / minimum MSE without checking variance.",
+    "syllabus_ref": "3.1"
+  }
 }

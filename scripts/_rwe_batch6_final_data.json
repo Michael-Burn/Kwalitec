@@ -1,0 +1,1491 @@
+{
+  "worked_examples": {
+    "1.1-purpose-function-ep001.json": {
+      "title": "Classify three analysis aims in a health book review",
+      "problem_statement": "A health-insurance portfolio review lists three tasks: (A) tabulate last year's paid claim counts by age band; (B) estimate a confidence interval for the population mean claim cost; (C) forecast next year's aggregate claim payments for budgeting. Assign each task to descriptive, inferential, or predictive analysis, and name one concrete reproducibility element the review still needs.",
+      "given": [
+        {
+          "symbol": "Task A",
+          "value": "tabulate last year's paid claim counts by age band",
+          "note": "observed-data summary"
+        },
+        {
+          "symbol": "Task B",
+          "value": "confidence interval for population mean claim cost",
+          "note": "sample-to-population uncertainty"
+        },
+        {
+          "symbol": "Task C",
+          "value": "forecast next year's aggregate claim payments",
+          "note": "future outcome target"
+        },
+        {
+          "symbol": "reproducibility ask",
+          "value": "name one concrete element",
+          "note": "not 'be careful' alone"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. For each task, ask whether the target is a summary of seen data, a population parameter under uncertainty, or a future value, then name one reproducibility artefact.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Classify Task A",
+          "attempt_cue": "Is A summarising observed data or generalising/forecasting?",
+          "explanation": "A table of last year's paid counts by age band summarises what was observed. That is a descriptive aim.",
+          "calculation": "A → descriptive (summarise observed counts)",
+          "result": "A = descriptive"
+        },
+        {
+          "id": "S2",
+          "label": "Classify Task B",
+          "attempt_cue": "What does a CI for mean claim cost target?",
+          "explanation": "A confidence interval generalises from sample evidence to a population parameter under uncertainty. That is an inferential aim.",
+          "calculation": "B → inferential (parameter under uncertainty)",
+          "result": "B = inferential"
+        },
+        {
+          "id": "S3",
+          "label": "Classify Task C and name reproducibility",
+          "attempt_cue": "Name C's aim, then one concrete reproducibility element.",
+          "explanation": "Forecasting next year's aggregate payments targets a future outcome, so C is predictive. Reproducibility needs a concrete artefact such as versioned data and a scripted analysis path, not a vague care statement.",
+          "calculation": "C → predictive; reproducibility e.g. versioned data + scripted path",
+          "result": "C = predictive; name a concrete reproducibility element"
+        }
+      ],
+      "final_answer": "A descriptive; B inferential; C predictive. Reproducibility still needs a concrete element such as versioned data and a scripted analysis path.",
+      "common_pitfall": "Labelling every portfolio-review task as 'looking at data', or saying 'be careful with data' without naming a concrete reproducibility element such as versioned inputs and a scripted path.",
+      "syllabus_ref": "1.1"
+    },
+    "1.2.1-eda-summaries-ep001.json": {
+      "title": "Choose summaries for right-skewed claim sizes",
+      "problem_statement": "Five settled household claim sizes (£) are 180, 220, 310, 450, 2400. The aim is descriptive exploration of severity shape before modelling. Compute the mean and median, then choose an exploratory summary and plot approach that reveals skew and the large observation.",
+      "given": [
+        {
+          "symbol": "sizes (£)",
+          "value": "180, 220, 310, 450, 2400",
+          "note": "n = 5 settled claims"
+        },
+        {
+          "symbol": "aim",
+          "value": "descriptive exploration of severity shape",
+          "note": "EDA tool choice, not a full model fit"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute mean and median, then decide whether mean-only summarises the shape you need to see.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Compute mean and median",
+          "attempt_cue": "Average the five sizes; then take the middle ordered value.",
+          "explanation": "Ordered sizes are 180, 220, 310, 450, 2400. The mean is pulled by 2400; the median sits at the middle observation 310.",
+          "calculation": "mean = (180+220+310+450+2400)/5 = 3560/5 = 712; median = 310",
+          "result": "mean = 712; median = 310"
+        },
+        {
+          "id": "S2",
+          "label": "Choose exploratory tools for shape",
+          "attempt_cue": "Name a plot/summary that shows skew and the large claim.",
+          "explanation": "A histogram or boxplot reveals right skew and the large observation. Median and IQR support the centre/spread story when the mean is distorted.",
+          "calculation": "Prefer histogram/boxplot + median/IQR over mean-only",
+          "result": "Histogram/boxplot + median (not mean-only)"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse pie / mean-only",
+          "attempt_cue": "State why a pie of policies or mean-only fails the exploratory aim.",
+          "explanation": "A pie chart of policies does not display the severity distribution's skew and extreme. A mean of 712 alone misrepresents the typical size.",
+          "calculation": "Refuse pie-of-policies and mean-only as shape EDA",
+          "result": "Mean-only / pie rejected for this aim"
+        }
+      ],
+      "final_answer": "Mean = 712 and median = 310; use a histogram or boxplot (with median/IQR support) to reveal right skew and the large claim. Refuse mean-only or a pie chart for this exploratory aim.",
+      "common_pitfall": "Reporting only the mean claim size 712 as the exploratory summary, which hides right skew and the large observation that modelling must confront.",
+      "syllabus_ref": "1.2.1"
+    },
+    "1.2.2-eda-association-ep001.json": {
+      "title": "Choose Spearman for monotone nonlinear mileage association",
+      "problem_statement": "For annual mileage versus claim severity, severity is skewed with outliers and the scatter looks roughly increasing but nonlinear. Software reports Pearson r = 0.25 and Spearman ρ = 0.52. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+      "given": [
+        {
+          "symbol": "scatter pattern",
+          "value": "roughly increasing, nonlinear; skewed severity with outliers",
+          "note": "association shape"
+        },
+        {
+          "symbol": "Pearson r",
+          "value": "0.25",
+          "note": "linear correlation"
+        },
+        {
+          "symbol": "Spearman ρ",
+          "value": "0.52",
+          "note": "rank correlation"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match measure to linear vs monotone-nonlinear association, then separate association from causation.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match measure to association type",
+          "attempt_cue": "Say what Pearson vs Spearman each target.",
+          "explanation": "Pearson measures linear association. Spearman uses ranks and suits monotone but nonlinear patterns, with better resistance to outliers in many skewed cases.",
+          "calculation": "Pattern = monotone nonlinear + outliers → prefer Spearman (or Kendall)",
+          "result": "Prefer Spearman over Pearson here"
+        },
+        {
+          "id": "S2",
+          "label": "Read the two reported coefficients",
+          "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+          "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone increase under skew and outliers.",
+          "calculation": "|ρ| = 0.52 > |r| = 0.25; rank measure captures monotone association better here",
+          "result": "Report Spearman ρ = 0.52 as the preferred description"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse causation from correlation",
+          "attempt_cue": "State what a large coefficient still does not prove.",
+          "explanation": "A large correlation coefficient does not prove that changing mileage causes severity to change.",
+          "calculation": "Association ≠ causation (even if |ρ| is large)",
+          "result": "Refuse causal claim from correlation alone"
+        }
+      ],
+      "final_answer": "Prefer Spearman ρ = 0.52 (monotone, skewed, outlier-prone) over Pearson r = 0.25. A large coefficient still does not prove causation.",
+      "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = 0.52 as proof that higher mileage causes higher claim severity.",
+      "syllabus_ref": "1.2.2"
+    },
+    "1.2.3-pca-cs1002.json": {
+      "title": "Refuse treating the first three PCs as ready-made pricing factors",
+      "problem_statement": "A colleague says: 'We ran PCA on twelve correlated rating factors. Keep PC1-PC3 as the true latent risk factors and drop the originals from the pricing model without checking loadings or residual structure.' Decide what PCA actually provides here, and whether that drop-originals justification holds.",
+      "given": [
+        {
+          "symbol": "colleague claim",
+          "value": "PC1-PC3 = true latent risk factors; drop originals without checks",
+          "note": "causal/factor leap"
+        },
+        {
+          "symbol": "PCA role",
+          "value": "dimensionality reduction on correlated rating factors",
+          "note": "variation summary, not automatic pricing factors"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Separate 'summarises shared variation' from 'proven latent risk factors ready for pricing' before judging the drop-originals claim.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State what PCA constructs",
+          "attempt_cue": "Describe principal components in variation terms.",
+          "explanation": "PCA builds orthogonal components that capture major patterns of variation among correlated variables. Components are weighted combinations summarising shared variation.",
+          "calculation": "PCs = orthogonal variation summaries, not automatically named causal risk factors",
+          "result": "PCA summarises variation structure"
+        },
+        {
+          "id": "S2",
+          "label": "Separate summary from pricing readiness",
+          "attempt_cue": "Say whether PC1-PC3 alone prove ready-made latent pricing factors.",
+          "explanation": "Summarising shared variation does not by itself prove that the leading components are the true latent risk drivers, nor that originals can be dropped without checking loadings, interpretability, and model residual behaviour.",
+          "calculation": "Variation summary ≠ proven latent pricing factors without further warrants",
+          "result": "Refuse automatic latent-factor identity"
+        },
+        {
+          "id": "S3",
+          "label": "Judge the drop-originals proposal",
+          "attempt_cue": "Accept or refuse dropping originals without checks.",
+          "explanation": "Dropping the original factors solely because PC1-PC3 explain most variance lacks subject-matter and diagnostic warrants. PCA may still be useful for exploration of correlated rating factors.",
+          "calculation": "Judgment: REFUSE drop-originals-without-checks; allow exploratory PCA use",
+          "result": "Refuse unchecked replacement; PCA may still explore variation"
+        }
+      ],
+      "final_answer": "PC1-PC3 may summarise major shared variation among rating factors for exploration, but they do not by themselves prove true latent risk factors or justify dropping the originals without loadings checks and residual diagnostics.",
+      "common_pitfall": "Treating the leading principal components as ready-made latent pricing factors and deleting the original covariates solely because those components explain most sample variance.",
+      "syllabus_ref": "1.2.3"
+    },
+    "2.1.1-discrete-cs1002.json": {
+      "title": "Select Binomial for fixed independent inspection trials",
+      "problem_statement": "A manufacturer independently inspects n = 30 items, each with the same probability p of being defective. Choose the matching discrete family for the number of defectives. As a light numeric check, if p = 0.1 under that family, compute P(X = 0).",
+      "given": [
+        {
+          "symbol": "generative story",
+          "value": "fixed n = 30 independent Bernoulli trials with common success probability p",
+          "note": "count of defectives"
+        },
+        {
+          "symbol": "p",
+          "value": "0.1",
+          "note": "illustrative success probability"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match story to family",
+          "attempt_cue": "Name the discrete family for a fixed number of independent Bernoulli trials.",
+          "explanation": "A fixed number of independent Bernoulli trials with constant success probability produces a binomial count. Hypergeometric needs without-replacement draws from a finite population; Poisson is a rare-event limit story, not the primary match when n and p are stated this way.",
+          "calculation": "Story → Binomial(n = 30, p) (not hypergeometric; not Poisson-by-default)",
+          "result": "Family choice: Binomial"
+        },
+        {
+          "id": "S2",
+          "label": "Light numeric illustration P(X = 0)",
+          "attempt_cue": "For Binomial(30, 0.1), evaluate (1-p)^n.",
+          "explanation": "Under Binomial(n, p), P(X = 0) = (1-p)^n. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+          "calculation": "P(X = 0) = (0.9)^30 ≈ 0.0424",
+          "result": "P(X = 0) ≈ 0.0424"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse hypergeometric mismatch",
+          "attempt_cue": "State why hypergeometric fails this story.",
+          "explanation": "Hypergeometric requires sampling without replacement from a finite success/failure population. Independent inspections with constant p are with-replacement / infinite-population Bernoulli trials, so Binomial is the match.",
+          "calculation": "Refuse hypergeometric without without-replacement finite draw story",
+          "result": "Binomial retained; hypergeometric refused"
+        }
+      ],
+      "final_answer": "Choose Binomial(30, p) for the fixed independent inspection story; with p = 0.1, P(X = 0) ≈ 0.0424. Refuse hypergeometric for this generative story.",
+      "common_pitfall": "Choosing hypergeometric because the number of inspections is fixed, without a without-replacement finite-population draw story, or defaulting to Poisson whenever the response is a count.",
+      "syllabus_ref": "2.1.1"
+    },
+    "2.1.2-continuous-cs1002.json": {
+      "title": "Select Lognormal for positive right-skewed severities",
+      "problem_statement": "Individual claim severities are strictly positive and strongly right-skewed on the raw scale, with a roughly symmetric shape after taking logs. Choose the matching continuous family. As a light numeric check, if ln(X) ~ Normal(μ = 6, σ = 1), compute the median of X.",
+      "given": [
+        {
+          "symbol": "generative story",
+          "value": "strictly positive, right-skewed severities; approximately Normal on the log scale",
+          "note": "continuous support on (0, ∞)"
+        },
+        {
+          "symbol": "ln(X)",
+          "value": "Normal(μ = 6, σ = 1)",
+          "note": "illustrative log-scale law"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match support and log-scale shape to a named continuous family before evaluating the median.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match story to family",
+          "attempt_cue": "Name the continuous family for positive right-skewed sizes that are Normal on the log scale.",
+          "explanation": "Lognormal models strictly positive variables that are approximately Normal after a log transform and typically right-skewed on the raw scale. Normal on the raw scale allows negatives and is a poor default for severities.",
+          "calculation": "Story → Lognormal (refuse Normal-by-default on raw severity)",
+          "result": "Family choice: Lognormal"
+        },
+        {
+          "id": "S2",
+          "label": "Light numeric illustration of the median",
+          "attempt_cue": "For ln(X) ~ Normal(6, 1), state median(X).",
+          "explanation": "If ln(X) is Normal(μ, σ), the median of X is e^μ because the Normal median equals μ. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+          "calculation": "median(X) = e^6 ≈ 403.43",
+          "result": "median(X) ≈ 403.43"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse Normal-by-default",
+          "attempt_cue": "State the support mismatch for a raw-scale Normal severity model.",
+          "explanation": "A Normal model on the raw scale allows negative severities and does not encode the stated log-scale symmetry. That mismatches the positive right-skewed severity story.",
+          "calculation": "Normal raw support includes negatives → refuse as first match",
+          "result": "Lognormal retained; Normal default refused"
+        }
+      ],
+      "final_answer": "Choose Lognormal for positive right-skewed severities that are Normal on the log scale; with ln(X) ~ Normal(6, 1), median(X) = e^6 ≈ 403.43. Refuse Normal-by-default on the raw severity scale.",
+      "common_pitfall": "Defaulting to a Normal severity model because it is familiar, ignoring that claim sizes are strictly positive and right-skewed on the raw scale.",
+      "syllabus_ref": "2.1.2"
+    },
+    "2.1.3-prob-quantiles-cs1004.json": {
+      "title": "Exponential severity probability and median",
+      "problem_statement": "Travel medical claim sizes X (£) are modelled as Exponential with mean θ = 250. Compute (a) P(X ≤ 100) and (b) the median claim size.",
+      "given": [
+        {
+          "symbol": "X",
+          "value": "Exponential(mean θ = 250)",
+          "note": "claim size (£)"
+        },
+        {
+          "symbol": "threshold",
+          "value": "100",
+          "note": "for the CDF evaluation"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Use the Exponential CDF F(x) = 1 - e^{-x/θ} and the median formula θ ln 2.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Evaluate P(X ≤ 100)",
+          "attempt_cue": "Apply F(100) = 1 - e^{-100/250}.",
+          "explanation": "For Exponential mean θ, P(X ≤ x) = 1 - e^{-x/θ}. Here x/θ = 100/250 = 0.4.",
+          "calculation": "P(X ≤ 100) = 1 - e^{-0.4} ≈ 1 - 0.6703 = 0.3297",
+          "result": "P(X ≤ 100) ≈ 0.3297"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate the median",
+          "attempt_cue": "Solve F(m) = 0.5 for m.",
+          "explanation": "The median m satisfies 1 - e^{-m/θ} = 0.5, so m = θ ln 2.",
+          "calculation": "m = 250 ln 2 ≈ 250 × 0.6931 = 173.29",
+          "result": "median ≈ 173.29"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse recognition-as-evaluation",
+          "attempt_cue": "State why naming 'Exponential' alone is not the evaluation.",
+          "explanation": "Recognising the family is not the same as evaluating the probability and quantile. The LO requires the numeric CDF and median results.",
+          "calculation": "Family name ≠ completed probability/quantile evaluation",
+          "result": "Numeric CDF and median required"
+        }
+      ],
+      "final_answer": "P(X ≤ 100) ≈ 0.3297; median ≈ 173.29. Naming the Exponential family alone does not finish the evaluation.",
+      "common_pitfall": "Stopping after recognising that the size is Exponential, without computing the CDF probability and the median quantile.",
+      "syllabus_ref": "2.1.3"
+    },
+    "2.1.4-poisson-process-cs1004.json": {
+      "title": "Poisson process count in a fixed window",
+      "problem_statement": "Claims arrive as a homogeneous Poisson process with rate λ = 1.5 claims per day. For a 4-day window, name the distribution of the claim count N(4), compute P(N(4) = 0), and state the distribution of the waiting time until the next claim.",
+      "given": [
+        {
+          "symbol": "λ",
+          "value": "1.5 per day",
+          "note": "homogeneous Poisson process rate"
+        },
+        {
+          "symbol": "window",
+          "value": "t = 4 days",
+          "note": "fixed observation interval"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Link process rate × time to the Poisson count mean, then name the interarrival family.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Name the count distribution",
+          "attempt_cue": "State N(t) for a Poisson process with rate λ.",
+          "explanation": "In a homogeneous Poisson process with rate λ, the count in an interval of length t is Poisson with mean λt.",
+          "calculation": "N(4) ~ Poisson(λt = 1.5 × 4 = 6)",
+          "result": "N(4) ~ Poisson(6)"
+        },
+        {
+          "id": "S2",
+          "label": "Compute P(N(4) = 0)",
+          "attempt_cue": "Evaluate e^{-6}.",
+          "explanation": "For Poisson(6), P(N = 0) = e^{-6}.",
+          "calculation": "P(N(4) = 0) = e^{-6} ≈ 0.0025",
+          "result": "P(N(4) = 0) ≈ 0.0025"
+        },
+        {
+          "id": "S3",
+          "label": "Name the interarrival distribution",
+          "attempt_cue": "State the waiting-time law and refuse count/wait collapse.",
+          "explanation": "Interarrival waiting times are Exponential with the same rate λ = 1.5. The Poisson count and the Exponential wait are linked but not the same object.",
+          "calculation": "Waiting time ~ Exponential(rate 1.5); refuse equating count with wait",
+          "result": "Interarrival = Exponential(rate 1.5)"
+        }
+      ],
+      "final_answer": "N(4) ~ Poisson(6) with P(N(4) = 0) ≈ 0.0025; waiting time until the next claim is Exponential(rate 1.5). Refuse collapsing the count and the wait into one label.",
+      "common_pitfall": "Calling both the 4-day count and the waiting time 'Poisson' (or both 'Exponential'), collapsing the process-count link into a single mislabelled object.",
+      "syllabus_ref": "2.1.4"
+    },
+    "2.1.5-inverse-transform-cs1004.json": {
+      "title": "Inverse transform for Exponential and a discrete CDF",
+      "problem_statement": "Generate one draw by the inverse transform method in each setting: (a) continuous: X has Exponential rate λ = 0.5 and U = 0.2 is Uniform(0,1); (b) discrete: Y has CDF values F(1) = 0.3, F(2) = 0.8, F(3) = 1 on support {1,2,3}, and U = 0.55. Compute the two generated values and refuse treating a black-box RNG call as the method.",
+      "given": [
+        {
+          "symbol": "continuous",
+          "value": "Exponential(rate λ = 0.5), U = 0.2",
+          "note": "invert the CDF"
+        },
+        {
+          "symbol": "discrete CDF",
+          "value": "F(1)=0.3, F(2)=0.8, F(3)=1; U=0.55",
+          "note": "smallest y with F(y) ≥ U"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Invert the Exponential CDF for (a); find the smallest support point with F(y) ≥ U for (b).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Invert the Exponential CDF",
+          "attempt_cue": "Solve F(x) = U for x when F(x) = 1 - e^{-λx}.",
+          "explanation": "For Exponential rate λ, F(x) = 1 - e^{-λx}, so x = -ln(1-U)/λ.",
+          "calculation": "X = -ln(1-0.2)/0.5 = -ln(0.8)/0.5 ≈ 0.2231/0.5 = 0.4463",
+          "result": "X ≈ 0.4463"
+        },
+        {
+          "id": "S2",
+          "label": "Apply the discrete inverse",
+          "attempt_cue": "Find the smallest y with F(y) ≥ 0.55.",
+          "explanation": "F(1) = 0.3 < 0.55, so y = 1 is too small. F(2) = 0.8 ≥ 0.55, so the inverse-transform draw is Y = 2.",
+          "calculation": "0.3 < 0.55 ≤ 0.8 → Y = 2",
+          "result": "Y = 2"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse black-box theatre",
+          "attempt_cue": "State why a nameless RNG call is not the inverse transform method.",
+          "explanation": "Inverse transform requires an explicit Uniform source and an explicit inverse CDF (or discrete CDF threshold). A black-box draw without that construction does not demonstrate the method.",
+          "calculation": "Uniform + inverse CDF required; nameless RNG ≠ method shown",
+          "result": "Method requires explicit inverse construction"
+        }
+      ],
+      "final_answer": "X ≈ 0.4463 from Exponential(rate 0.5) with U = 0.2; Y = 2 from the discrete CDF with U = 0.55. A black-box RNG call without Uniform-to-inverse-CDF construction is not the inverse transform method.",
+      "common_pitfall": "Treating any software random draw as inverse transform sampling, without exhibiting a Uniform(0,1) source and the inverse CDF (or discrete CDF threshold) step.",
+      "syllabus_ref": "2.1.5"
+    },
+    "2.2.2-independence-cs1005.json": {
+      "title": "Test independence on a theft-fire joint table",
+      "problem_statement": "A household book records indicators (X, Y) with joint PMF P(0,0) = 0.50, P(0,1) = 0.10, P(1,0) = 0.20, P(1,1) = 0.20, where X = 1 if a theft claim occurs and Y = 1 if a fire claim occurs in the same year. Compute the marginals, check whether X and Y are independent, and refuse equating zero covariance with independence in general.",
+      "given": [
+        {
+          "symbol": "P(0,0)",
+          "value": "0.50",
+          "note": "no theft, no fire"
+        },
+        {
+          "symbol": "P(0,1)",
+          "value": "0.10",
+          "note": "no theft, fire"
+        },
+        {
+          "symbol": "P(1,0)",
+          "value": "0.20",
+          "note": "theft, no fire"
+        },
+        {
+          "symbol": "P(1,1)",
+          "value": "0.20",
+          "note": "theft and fire"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form marginals, then compare each joint cell with the product of marginals.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the marginals",
+          "attempt_cue": "Sum rows/columns for P(X) and P(Y).",
+          "explanation": "P(X=0) = 0.50+0.10 = 0.60; P(X=1) = 0.20+0.20 = 0.40; P(Y=0) = 0.50+0.20 = 0.70; P(Y=1) = 0.10+0.20 = 0.30.",
+          "calculation": "P(X=0)=0.60, P(X=1)=0.40, P(Y=0)=0.70, P(Y=1)=0.30",
+          "result": "Marginals: (0.60, 0.40) and (0.70, 0.30)"
+        },
+        {
+          "id": "S2",
+          "label": "Check the factorisation",
+          "attempt_cue": "Compare P(0,0) with P(X=0)P(Y=0), and at least one other cell.",
+          "explanation": "Independence requires P(x,y) = P(X=x)P(Y=y) for every cell. Here P(X=0)P(Y=0) = 0.60×0.70 = 0.42, but P(0,0) = 0.50 ≠ 0.42, so X and Y are not independent.",
+          "calculation": "0.60×0.70 = 0.42 ≠ 0.50 = P(0,0) → not independent",
+          "result": "X and Y are dependent"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse uncorrelated-as-independent",
+          "attempt_cue": "State why Cov = 0 would not finish the independence check in general.",
+          "explanation": "Zero covariance is necessary under independence when variances are finite, but it is not sufficient in general. Independence is the full joint factorisation, not a single covariance number.",
+          "calculation": "Independence = joint factorisation everywhere; Cov = 0 is not a general proof",
+          "result": "Refuse Cov=0 as a general independence proof"
+        }
+      ],
+      "final_answer": "Marginals are P(X=0)=0.60, P(X=1)=0.40, P(Y=0)=0.70, P(Y=1)=0.30. Since 0.60×0.70 = 0.42 ≠ P(0,0) = 0.50, X and Y are not independent. Zero covariance would not by itself prove independence in general.",
+      "common_pitfall": "Declaring independence from a quick look at the table, or treating Cov(X, Y) = 0 as a general proof of independence without checking joint factorisation.",
+      "syllabus_ref": "2.2.2"
+    },
+    "2.6.2-sampling-distribution-statistic-cs1009.json": {
+      "title": "Separate a realised mean from its sampling distribution",
+      "problem_statement": "A population of claim costs has mean μ = 80 and variance σ² = 400. A random sample of size n = 16 yields a realised sample mean x̄ = 78. State what the sampling distribution of the sample mean is, give E[X̄] and Var(X̄), and decide whether 78 is that sampling distribution.",
+      "given": [
+        {
+          "symbol": "μ",
+          "value": "80",
+          "note": "population mean"
+        },
+        {
+          "symbol": "σ²",
+          "value": "400",
+          "note": "population variance"
+        },
+        {
+          "symbol": "n",
+          "value": "16",
+          "note": "sample size"
+        },
+        {
+          "symbol": "realised x̄",
+          "value": "78",
+          "note": "one observed sample mean"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of X̄, then classify 78.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Define the sampling distribution",
+          "attempt_cue": "Say what distribution the sample mean has across repeated samples.",
+          "explanation": "The sampling distribution of the sample mean is the probability distribution of values X̄ would take over repeated random samples of the same size.",
+          "calculation": "Sampling distribution = law of X̄ over repeated samples of size 16",
+          "result": "Sampling distribution defined over repeated samples"
+        },
+        {
+          "id": "S2",
+          "label": "Compute E[X̄] and Var(X̄)",
+          "attempt_cue": "Use E[X̄] = μ and Var(X̄) = σ²/n.",
+          "explanation": "For a random sample from a population with mean μ and variance σ², E[X̄] = μ and Var(X̄) = σ²/n.",
+          "calculation": "E[X̄] = 80; Var(X̄) = 400/16 = 25",
+          "result": "E[X̄] = 80; Var(X̄) = 25"
+        },
+        {
+          "id": "S3",
+          "label": "Classify the realised value 78",
+          "attempt_cue": "Is 78 the sampling distribution or one draw from it?",
+          "explanation": "The number 78 is one realised value of the statistic, not the sampling distribution itself.",
+          "calculation": "78 = one realised X̄; refuse equating it with the sampling distribution",
+          "result": "78 is a realised statistic, not the sampling distribution"
+        }
+      ],
+      "final_answer": "The sampling distribution of X̄ is the distribution of the sample mean over repeated samples of size 16; E[X̄] = 80 and Var(X̄) = 25. The observed 78 is one realised value, not that distribution.",
+      "common_pitfall": "Treating the single observed sample mean 78 as 'the sampling distribution' of the mean, rather than as one realisation from the repeated-sampling distribution.",
+      "syllabus_ref": "2.6.2"
+    },
+    "revision-purpose-eda-ep001.json": {
+      "title": "Retrieve aims map and refuse mean-only for skewed severities",
+      "problem_statement": "Closed-book retrieval. A contents portfolio needs: (A) a histogram of observed claim sizes; (B) a confidence interval for mean severity; (C) a forecast of next year's claim count. Assign each task's analysis aim. Separately, for strongly right-skewed claim amounts with large observations, choose a defensible descriptive summary-and-plot pair and refuse one misuse.",
+      "given": [
+        {
+          "symbol": "Task A",
+          "value": "histogram of observed claim sizes",
+          "note": "seen-data summary"
+        },
+        {
+          "symbol": "Task B",
+          "value": "CI for mean severity",
+          "note": "population parameter under uncertainty"
+        },
+        {
+          "symbol": "Task C",
+          "value": "forecast next year's claim count",
+          "note": "future outcome"
+        },
+        {
+          "symbol": "EDA case",
+          "value": "right-skewed claim amounts with large observations",
+          "note": "descriptive tool choice"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Classify A/B/C by aim, then choose a robust summary-and-plot pair for the skewed severity case.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the three aims",
+          "attempt_cue": "Map A, B, and C to descriptive, inferential, and predictive.",
+          "explanation": "A histogram of observed sizes is descriptive. A CI for mean severity is inferential. A forecast of next year's count is predictive.",
+          "calculation": "A → descriptive; B → inferential; C → predictive",
+          "result": "Aims retrieved and kept distinct"
+        },
+        {
+          "id": "S2",
+          "label": "Choose EDA tools for skew",
+          "attempt_cue": "Name a summary-and-plot pair for right-skewed severities.",
+          "explanation": "Median and IQR with a histogram or boxplot reveal centre, spread, skew, and extremes without letting one large claim dominate the story.",
+          "calculation": "Prefer median/IQR + histogram/boxplot",
+          "result": "Robust summary + distributional plot"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse mean-only / pie misuse",
+          "attempt_cue": "Name one refused misuse for this descriptive aim.",
+          "explanation": "A mean-only summary hides skew and extremes. A pie chart of policies does not display the severity distribution.",
+          "calculation": "Refuse mean-only and pie-of-policies for skewed severity EDA",
+          "result": "Mean-only / pie refused"
+        }
+      ],
+      "final_answer": "A descriptive; B inferential; C predictive. For right-skewed claim amounts, use median/IQR with a histogram or boxplot, and refuse mean-only or a pie chart as the descriptive summary.",
+      "common_pitfall": "Collapsing A/B/C into 'just looking at data', or reporting only the mean for strongly right-skewed claim amounts.",
+      "syllabus_ref": "1.1 / 1.2.1"
+    },
+    "revision-pca-distributions-cs1002.json": {
+      "title": "Retrieve Binomial match for fixed independent trials",
+      "problem_statement": "Closed-book retrieval of one discrete-family hinge. A manufacturer independently inspects n = 25 items, each with the same probability p of being defective. Name the distribution of the number of defectives, and refuse one mismatched family that students often pick when n is fixed.",
+      "given": [
+        {
+          "symbol": "generative story",
+          "value": "n = 25 independent Bernoulli trials with common success probability p",
+          "note": "count of defectives"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match the fixed independent-trial story to a named discrete family, then refuse a common mismatch.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match story to Binomial",
+          "attempt_cue": "Name the family for a fixed number of independent Bernoulli trials.",
+          "explanation": "A fixed number of independent Bernoulli trials with constant success probability produces a binomial count.",
+          "calculation": "Count ~ Binomial(n = 25, p)",
+          "result": "Binomial(25, p)"
+        },
+        {
+          "id": "S2",
+          "label": "Refuse hypergeometric mismatch",
+          "attempt_cue": "Why is hypergeometric the wrong first match here?",
+          "explanation": "Hypergeometric requires sampling without replacement from a finite success/failure population. Independent inspections with constant p do not supply that story.",
+          "calculation": "Refuse hypergeometric without without-replacement finite draw story",
+          "result": "Hypergeometric refused"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse Normal count default",
+          "attempt_cue": "State why Normal is not the first match for this count.",
+          "explanation": "Normal has continuous all-real support and is a poor first match for a non-negative integer count of defectives.",
+          "calculation": "Refuse Normal-by-default for a discrete defective count",
+          "result": "Binomial retained"
+        }
+      ],
+      "final_answer": "The number of defectives is Binomial(25, p). Refuse hypergeometric (no without-replacement finite-population story) and Normal-by-default for this count.",
+      "common_pitfall": "Choosing hypergeometric merely because the number of inspections is fixed, or defaulting to Normal because the response is a 'measurement'.",
+      "syllabus_ref": "2.1.1"
+    },
+    "revision-linear-models-cs1003.json": {
+      "title": "Retrieve OLS roles and refuse funnel residuals as fine",
+      "problem_statement": "Closed-book retrieval. In a multiple linear model Y = Xβ + ε fitted by ordinary least squares, state what Y and the columns of X are, and what OLS minimises. The residual plot then shows spread increasing markedly with fitted values. What is the warranted interpretation?",
+      "given": [
+        {
+          "symbol": "model",
+          "value": "Y = Xβ + ε",
+          "note": "classical linear model"
+        },
+        {
+          "symbol": "residual pattern",
+          "value": "spread increases with fitted values",
+          "note": "funnel shape"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve response/explanatory roles and the OLS criterion, then interpret the funnel residual plot.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve roles and OLS criterion",
+          "attempt_cue": "Name Y, X, and what OLS minimises.",
+          "explanation": "Y is the response; columns of X are explanatory variables; OLS chooses β to minimise the sum of squared residuals.",
+          "calculation": "Y = response; X = explanatory columns; OLS minimises Σ(y - ŷ)²",
+          "result": "Roles and OLS criterion retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Interpret the funnel residual plot",
+          "attempt_cue": "What assumption is doubtful?",
+          "explanation": "Residuals whose spread grows with fitted values indicate non-constant variance (heteroscedasticity). Usual OLS standard errors and inference may be unreliable without a remedy.",
+          "calculation": "Funnel → doubtful constant-variance assumption",
+          "result": "Heteroscedasticity concern raised"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse R²-as-diagnostics",
+          "attempt_cue": "Can high R² dismiss the residual pattern?",
+          "explanation": "A large R² does not repair a clear residual funnel. Diagnostics remain required.",
+          "calculation": "Refuse treating high R² as a substitute for residual diagnostics",
+          "result": "R² does not clear the funnel pattern"
+        }
+      ],
+      "final_answer": "Y is the response, X holds explanatory variables, and OLS minimises residual sum of squares. A funnel residual plot casts doubt on constant variance, and high R² does not dismiss that concern.",
+      "common_pitfall": "Confusing OLS with minimising fitted values, or treating a large R² as proof that a funnel-shaped residual plot can be ignored.",
+      "syllabus_ref": "4.1"
+    },
+    "revision-regression-glm-cs1003.json": {
+      "title": "Retrieve GLM Family-eta-link and Poisson log link",
+      "problem_statement": "Closed-book retrieval. State what the sequence Family → η → link means in a generalised linear model. For a Poisson GLM, name the canonical link and state what deviance compares.",
+      "given": [
+        {
+          "symbol": "GLM skeleton",
+          "value": "Family → η → link",
+          "note": "structure hinge"
+        },
+        {
+          "symbol": "Poisson ask",
+          "value": "canonical link and deviance role",
+          "note": "one diagnostic hinge"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the GLM skeleton, then the Poisson canonical link and deviance comparison.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve Family → η → link",
+          "attempt_cue": "What does each piece specify?",
+          "explanation": "The response family specifies mean-variance behaviour, η = Xβ is the linear predictor, and the link satisfies g(μ) = η.",
+          "calculation": "Family = mean-variance; η = Xβ; g(μ) = η",
+          "result": "GLM skeleton retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Name the Poisson canonical link",
+          "attempt_cue": "State g(μ) for Poisson.",
+          "explanation": "The Poisson canonical link is logarithmic: log(μ) = η.",
+          "calculation": "Canonical link: log(μ) = η",
+          "result": "Poisson log link named"
+        },
+        {
+          "id": "S3",
+          "label": "State what deviance compares",
+          "attempt_cue": "Deviance compares fitted work with what?",
+          "explanation": "GLM deviance is a likelihood comparison between the fitted model and the saturated fit. It is not ordinary residual sum of squares in every GLM.",
+          "calculation": "Deviance = likelihood comparison with saturated fit (not RSS-by-default)",
+          "result": "Deviance role retrieved; RSS collapse refused"
+        }
+      ],
+      "final_answer": "Family specifies mean-variance behaviour, η = Xβ is the linear predictor, and g(μ) = η is the link. For Poisson, the canonical link is log(μ) = η, and deviance compares fitted and saturated models through likelihoods.",
+      "common_pitfall": "Treating the link as a transformation of the raw observations, or treating GLM deviance as ordinary residual sum of squares in every model.",
+      "syllabus_ref": "4.2"
+    },
+    "revision-midspine-cs1003.json": {
+      "title": "Retrieve Beta-Binomial conjugate update",
+      "problem_statement": "Closed-book retrieval of one Bayes hinge. If X | θ ~ Binomial(n = 8, θ) and θ has prior Beta(α, β) = Beta(4, 6), state the posterior after observing X = 2, and refuse one wrong update rule.",
+      "given": [
+        {
+          "symbol": "likelihood",
+          "value": "X | θ ~ Binomial(8, θ)",
+          "note": "observed X = 2"
+        },
+        {
+          "symbol": "prior",
+          "value": "Beta(4, 6)",
+          "note": "conjugate Beta prior"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State the conjugate update",
+          "attempt_cue": "Write the posterior Beta parameters.",
+          "explanation": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
+          "calculation": "Posterior = Beta(4+2, 6+(8-2)) = Beta(6, 12)",
+          "result": "Posterior Beta(6, 12)"
+        },
+        {
+          "id": "S2",
+          "label": "Refuse a wrong update",
+          "attempt_cue": "Name one incorrect parameter update students use.",
+          "explanation": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
+          "calculation": "Refuse Beta(4+8, 6+2) and similar swapped updates",
+          "result": "Wrong update rules refused"
+        },
+        {
+          "id": "S3",
+          "label": "Separate full Bayes from EB (light contrast)",
+          "attempt_cue": "In one sentence, how does empirical Bayes differ?",
+          "explanation": "Empirical Bayes estimates some prior hyperparameters from data, whereas a fully Bayesian analysis places priors on those hyperparameters and propagates their uncertainty.",
+          "calculation": "EB plugs in estimated hyperparameters; full Bayes models their uncertainty",
+          "result": "Bayes vs EB contrast retrieved"
+        }
+      ],
+      "final_answer": "Posterior is Beta(6, 12). Refuse swapped success/failure updates. Empirical Bayes plugs in estimated hyperparameters; full Bayes models their uncertainty.",
+      "common_pitfall": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
+      "syllabus_ref": "5.1.2"
+    },
+    "revision-distributions-generation-cs1004.json": {
+      "title": "Retrieve Exponential inverse-transform construction",
+      "problem_statement": "Closed-book retrieval. Let U ~ Uniform(0, 1). To generate an Exponential random variable with rate λ = 2, state a valid inverse-transform formula, evaluate it at U = 0.3, and refuse applying F instead of F inverse.",
+      "given": [
+        {
+          "symbol": "target",
+          "value": "Exponential(rate λ = 2)",
+          "note": "positive continuous waiting time"
+        },
+        {
+          "symbol": "U",
+          "value": "0.3",
+          "note": "Uniform(0,1) draw"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Invert F(x) = 1 - e^{-λx}, then evaluate at U = 0.3.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State the inverse-transform formula",
+          "attempt_cue": "Write X in terms of U and λ.",
+          "explanation": "For Exponential rate λ, X = -ln(1-U)/λ (equivalently -ln(U)/λ).",
+          "calculation": "X = -ln(1-U)/λ",
+          "result": "Inverse-transform formula stated"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate at U = 0.3",
+          "attempt_cue": "Substitute U = 0.3 and λ = 2.",
+          "explanation": "With U = 0.3 and λ = 2, X = -ln(0.7)/2.",
+          "calculation": "X = -ln(0.7)/2 ≈ 0.3567/2 = 0.1783",
+          "result": "X ≈ 0.1783"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse F(U) instead of F inverse",
+          "attempt_cue": "Why is X = F(U) wrong here?",
+          "explanation": "Applying the CDF rather than its inverse does not produce an Exponential(λ) draw. The method maps Uniform probability through the quantile function.",
+          "calculation": "Refuse X = F(U); require X = F inverse(U)",
+          "result": "CDF-vs-inverse confusion refused"
+        }
+      ],
+      "final_answer": "Use X = -ln(1-U)/λ; at U = 0.3 and λ = 2, X ≈ 0.1783. Refuse setting X = F(U) in place of the inverse CDF.",
+      "common_pitfall": "Generating Exponential draws by applying the CDF to U instead of the inverse CDF, or multiplying by λ instead of dividing by λ in the quantile formula.",
+      "syllabus_ref": "2.1.5"
+    },
+    "revision-joint-distributions-cs1005.json": {
+      "title": "Retrieve independence factorisation and Var(aX+bY)",
+      "problem_statement": "Closed-book retrieval. State the joint-factorisation condition for independence of discrete random variables X and Y. Then, for finite variances, write Var(aX + bY), and refuse omitting the covariance term without warrant.",
+      "given": [
+        {
+          "symbol": "independence ask",
+          "value": "discrete joint factorisation",
+          "note": "definition hinge"
+        },
+        {
+          "symbol": "linear combination",
+          "value": "Var(aX + bY)",
+          "note": "with possible dependence"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the factorisation definition, then the full variance expansion.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the independence condition",
+          "attempt_cue": "Write the factorisation that must hold everywhere.",
+          "explanation": "Discrete X and Y are independent if and only if p_{X,Y}(x,y) = p_X(x)p_Y(y) for every pair in the joint support.",
+          "calculation": "Independence ⇔ p(x,y) = p_X(x)p_Y(y) for all pairs",
+          "result": "Joint factorisation condition retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Write Var(aX + bY)",
+          "attempt_cue": "Expand including the covariance term.",
+          "explanation": "Variance scales with the square of coefficients, and the cross term contributes 2ab Cov(X,Y).",
+          "calculation": "Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y)",
+          "result": "Full variance formula retrieved"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse Cov=0 and independence collapse",
+          "attempt_cue": "Name two refused shortcuts.",
+          "explanation": "Zero covariance is not a general proof of independence. Omitting 2ab Cov(X,Y) is valid only when Cov(X,Y) = 0 is established.",
+          "calculation": "Refuse Cov=0 ⇒ independent in general; refuse dropping Cov without warrant",
+          "result": "Both shortcuts refused"
+        }
+      ],
+      "final_answer": "Independence requires p(x,y) = p_X(x)p_Y(y) for every pair. Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y). Refuse treating Cov = 0 as a general independence proof or dropping the covariance term without warrant.",
+      "common_pitfall": "Equating zero covariance with independence, or writing Var(aX+bY) = a²Var(X) + b²Var(Y) in all cases without checking Cov(X,Y).",
+      "syllabus_ref": "2.2.2 / 2.2.4"
+    },
+    "revision-conditional-expectations-cs1006.json": {
+      "title": "Retrieve tower law and variance decomposition",
+      "problem_statement": "Closed-book retrieval. State the law of total expectation relating E[Y] to E[Y|X]. Then write the variance decomposition of Var(Y) by conditioning on X, and refuse treating E[Y|X] as an unconditional constant.",
+      "given": [
+        {
+          "symbol": "mean identity",
+          "value": "law of total expectation",
+          "note": "tower property"
+        },
+        {
+          "symbol": "variance identity",
+          "value": "law of total variance",
+          "note": "within + between"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the tower law",
+          "attempt_cue": "Write E[Y] in terms of E[Y|X].",
+          "explanation": "Averaging the conditional mean over X recovers the unconditional mean: E[Y] = E[E[Y|X]].",
+          "calculation": "E[Y] = E[E[Y|X]]",
+          "result": "Tower law retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Retrieve the variance decomposition",
+          "attempt_cue": "Write Var(Y) using within- and between-condition terms.",
+          "explanation": "Total variance combines expected within-condition variance and variance between conditional means.",
+          "calculation": "Var(Y) = E[Var(Y|X)] + Var(E[Y|X])",
+          "result": "Variance decomposition retrieved"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse conditional-as-constant",
+          "attempt_cue": "Why is E[Y] = E[Y|X] for every realised X wrong?",
+          "explanation": "E[Y|X] is a random variable (a function of X), not the unconditional constant E[Y], except in special cases.",
+          "calculation": "Refuse E[Y] = E[Y|X] for every realised X",
+          "result": "Conditional-as-constant confusion refused"
+        }
+      ],
+      "final_answer": "E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]). Refuse treating E[Y|X] as equal to the unconditional mean for every realised X.",
+      "common_pitfall": "Treating the conditional expectation E[Y|X] as an unconditional constant, or omitting either the within-condition or between-condition term in the variance decomposition.",
+      "syllabus_ref": "2.3"
+    },
+    "revision-generating-functions-cs1007.json": {
+      "title": "Retrieve MGF/CGF definitions and first two raw moments",
+      "problem_statement": "Closed-book retrieval. Define the moment generating function M_X(t) and the cumulant generating function K_X(t). If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling M_X''(0) the variance in every case.",
+      "given": [
+        {
+          "symbol": "MGF ask",
+          "value": "definition of M_X(t)",
+          "note": "where finite"
+        },
+        {
+          "symbol": "CGF ask",
+          "value": "definition of K_X(t)",
+          "note": "log transform"
+        },
+        {
+          "symbol": "moments ask",
+          "value": "M_X'(0) and M_X''(0)",
+          "note": "raw moments"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve M_X = E[e^{tX}], K_X = log M_X, then the derivative-at-zero rules.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve MGF and CGF",
+          "attempt_cue": "Write both definitions.",
+          "explanation": "Where finite, M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t).",
+          "calculation": "M_X(t)=E[exp(tX)]; K_X(t)=log M_X(t)",
+          "result": "MGF and CGF defined"
+        },
+        {
+          "id": "S2",
+          "label": "Retrieve raw-moment derivatives",
+          "attempt_cue": "State M_X'(0) and M_X''(0).",
+          "explanation": "The nth derivative of the MGF at zero gives the nth raw moment when the MGF exists in a neighbourhood of zero.",
+          "calculation": "E[X] = M_X'(0); E[X²] = M_X''(0)",
+          "result": "First two raw moments from derivatives"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse raw-second-as-variance",
+          "attempt_cue": "How do you get Var(X) from these?",
+          "explanation": "Variance is E[X²] - (E[X])², not M_X''(0) alone.",
+          "calculation": "Var(X) = M_X''(0) - [M_X'(0)]²; refuse Var = M_X''(0) in every case",
+          "result": "Raw second moment ≠ variance"
+        }
+      ],
+      "final_answer": "M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t). E[X] = M_X'(0) and E[X²] = M_X''(0). Variance subtracts the squared mean; M_X''(0) alone is not the variance in general.",
+      "common_pitfall": "Calling the second MGF derivative at zero the variance without subtracting (E[X])², or confusing the MGF with a distribution function.",
+      "syllabus_ref": "2.4"
+    },
+    "revision-central-limit-theorem-cs1008.json": {
+      "title": "Retrieve the CLT for iid sums and refuse exact Normality",
+      "problem_statement": "Closed-book retrieval. Let X₁, …, Xₙ be iid with finite mean μ and finite positive variance σ². State what the central limit theorem says about the standardised sample mean. The observations are highly skewed but have finite variance: what is justified about Normal approximation for their sample mean?",
+      "given": [
+        {
+          "symbol": "setup",
+          "value": "iid with finite μ and σ² > 0",
+          "note": "CLT conditions"
+        },
+        {
+          "symbol": "skew case",
+          "value": "highly skewed observations, finite variance",
+          "note": "finite-n caution"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the standardised-mean limit, then judge the skewed finite-n approximation carefully.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the CLT statement",
+          "attempt_cue": "Write the limiting law for the standardised mean.",
+          "explanation": "The CLT states that √n (X̄ - μ)/σ converges in distribution to N(0,1) as n → ∞.",
+          "calculation": "√n (X̄ - μ)/σ →ᵈ N(0,1)",
+          "result": "Standardised-mean CLT retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Judge the skewed finite-n case",
+          "attempt_cue": "Is the sample mean exactly Normal for every n?",
+          "explanation": "Finite-variance skewed data can satisfy the CLT, but the Normal approximation is not generally exact at finite n; strong skewness may need larger n.",
+          "calculation": "For large n, Normal approximation may be usable; not exact for every finite n",
+          "result": "Cautious large-n approximation only"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse exact-Normality theatre",
+          "attempt_cue": "Refuse one overclaim.",
+          "explanation": "Calculating a sample mean does not make that mean exactly Normal for every n.",
+          "calculation": "Refuse 'mean was calculated ⇒ exactly Normal for every n'",
+          "result": "Exact-Normality overclaim refused"
+        }
+      ],
+      "final_answer": "√n (X̄ - μ)/σ converges in distribution to N(0,1). For skewed finite-variance data, a Normal approximation may be usable for sufficiently large n but is not generally exact at every finite n.",
+      "common_pitfall": "Claiming the sample mean is exactly Normal for every n because a mean was calculated, or applying the CLT without standardisation.",
+      "syllabus_ref": "2.5.1"
+    },
+    "revision-sampling-distributions-cs1009.json": {
+      "title": "Retrieve sampling distribution of the mean and the t pivot",
+      "problem_statement": "Closed-book retrieval. Define the sampling distribution of the sample mean. A random sample of size n comes from a Normal population with unknown variance: name the pivot used for inference about the mean, including its degrees of freedom.",
+      "given": [
+        {
+          "symbol": "definition ask",
+          "value": "sampling distribution of the sample mean",
+          "note": "repeated-sampling law"
+        },
+        {
+          "symbol": "Normal, σ unknown",
+          "value": "inference for the mean",
+          "note": "t pivot"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Separate the repeated-sampling law from one realised mean, then retrieve the t pivot.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Define the sampling distribution",
+          "attempt_cue": "What distribution does X̄ have across repeated samples?",
+          "explanation": "It is the probability distribution of values the sample mean would take over repeated random samples of the same size.",
+          "calculation": "Sampling distribution = law of X̄ over repeated samples",
+          "result": "Definition retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Retrieve the t pivot",
+          "attempt_cue": "Write T when σ is estimated by S.",
+          "explanation": "With unknown Normal variance, T = (X̄ - μ)/(S/√n) follows a t distribution with n - 1 degrees of freedom.",
+          "calculation": "T = (X̄ - μ)/(S/√n) ~ t_{n-1}",
+          "result": "t pivot with n-1 df retrieved"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse z-with-S shortcut",
+          "attempt_cue": "Why is a standard Normal pivot wrong here?",
+          "explanation": "Replacing σ by S without switching to t ignores the extra uncertainty from estimating the variance.",
+          "calculation": "Refuse treating (X̄ - μ)/S as N(0,1) in this setting",
+          "result": "z-with-S overclaim refused"
+        }
+      ],
+      "final_answer": "The sampling distribution of the sample mean is the distribution of X̄ over repeated samples of fixed size. For Normal data with unknown variance, use T = (X̄ - μ)/(S/√n) ~ t_{n-1}, not a standard Normal pivot with S in place of σ.",
+      "common_pitfall": "Confusing a single observed sample mean with its sampling distribution, or using a standard Normal pivot when the Normal variance is estimated from the sample.",
+      "syllabus_ref": "2.6.2 / 2.6.5"
+    },
+    "revision-estimators-cs1010.json": {
+      "title": "Retrieve MoM vs MLE and evaluate MSE from bias and variance",
+      "problem_statement": "Closed-book retrieval. Distinguish method of moments from maximum likelihood in one sentence each. An estimator T of θ has Bias(T) = 3 and Var(T) = 7. Compute MSE(T), and refuse treating unbiasedness alone as minimum MSE.",
+      "given": [
+        {
+          "symbol": "MoM vs MLE",
+          "value": "estimating principles",
+          "note": "definition hinge"
+        },
+        {
+          "symbol": "Bias(T)",
+          "value": "3",
+          "note": "given"
+        },
+        {
+          "symbol": "Var(T)",
+          "value": "7",
+          "note": "given"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the two estimating principles, then use MSE = Var + Bias².",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Distinguish MoM and MLE",
+          "attempt_cue": "State each principle in one clause.",
+          "explanation": "Method of moments equates sample and model moments. Maximum likelihood maximises the likelihood of the observed data.",
+          "calculation": "MoM ↔ match moments; MLE ↔ maximise likelihood",
+          "result": "Principles distinguished"
+        },
+        {
+          "id": "S2",
+          "label": "Compute MSE",
+          "attempt_cue": "Apply MSE = Var + Bias².",
+          "explanation": "Mean squared error combines variance and squared bias.",
+          "calculation": "MSE(T) = 7 + 3² = 7 + 9 = 16",
+          "result": "MSE(T) = 16"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse unbiasedness-as-efficiency",
+          "attempt_cue": "Does Bias = 0 guarantee minimum MSE?",
+          "explanation": "Unbiasedness alone does not ensure minimum MSE; a biased estimator can have smaller MSE via a variance trade-off.",
+          "calculation": "Refuse 'unbiased ⇒ efficient / minimum MSE'",
+          "result": "Unbiasedness-alone claim refused"
+        }
+      ],
+      "final_answer": "MoM matches moments; MLE maximises the observed-data likelihood. With Bias = 3 and Var = 7, MSE = 16. Unbiasedness alone does not guarantee minimum MSE.",
+      "common_pitfall": "Assuming MoM and MLE always coincide, or treating unbiasedness as sufficient for efficiency / minimum MSE without checking variance.",
+      "syllabus_ref": "3.1"
+    },
+    "revision-confidence-intervals-cs1011.json": {
+      "title": "Retrieve frequentist CI meaning and a light z-interval",
+      "problem_statement": "Closed-book retrieval. After a frequentist 95% confidence interval for a fixed parameter θ has been calculated, state the correct coverage interpretation. Then, given X̄ = 42 from n = 36 observations with known σ = 12, compute the 95% z-interval for μ (use z_{0.025} = 1.96).",
+      "given": [
+        {
+          "symbol": "interpretation ask",
+          "value": "frequentist 95% CI for fixed θ",
+          "note": "coverage hinge"
+        },
+        {
+          "symbol": "X̄",
+          "value": "42",
+          "note": "sample mean"
+        },
+        {
+          "symbol": "n",
+          "value": "36",
+          "note": "sample size"
+        },
+        {
+          "symbol": "σ",
+          "value": "12",
+          "note": "known population sd"
+        },
+        {
+          "symbol": "z_{0.025}",
+          "value": "1.96",
+          "note": "standard Normal critical value"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the repeated-sampling coverage reading, then form X̄ ± 1.96 σ/√n.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the coverage interpretation",
+          "attempt_cue": "What does 95% refer to?",
+          "explanation": "The construction procedure covers the fixed parameter θ in 95% of repeated samples under the model. It does not assign posterior probability 0.95 to θ given these data.",
+          "calculation": "95% = long-run coverage of the random interval procedure",
+          "result": "Frequentist coverage interpretation retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Compute the standard error",
+          "attempt_cue": "Evaluate σ/√n.",
+          "explanation": "With known σ, SE(X̄) = σ/√n = 12/6 = 2.",
+          "calculation": "SE = 12/√36 = 12/6 = 2",
+          "result": "SE = 2"
+        },
+        {
+          "id": "S3",
+          "label": "Form the 95% z-interval",
+          "attempt_cue": "Compute X̄ ± 1.96 SE.",
+          "explanation": "The interval is 42 ± 1.96×2 = 42 ± 3.92.",
+          "calculation": "42 ± 3.92 → (38.08, 45.92)",
+          "result": "95% CI = (38.08, 45.92)"
+        }
+      ],
+      "final_answer": "A 95% frequentist CI procedure covers θ in 95% of repeated samples under the model (not a posterior probability for fixed θ given these data). Numerically, (38.08, 45.92).",
+      "common_pitfall": "Saying that given these data, θ has probability 0.95 of lying in the calculated interval, which swaps a frequentist coverage statement for a posterior probability reading.",
+      "syllabus_ref": "3.2.1"
+    },
+    "revision-hypothesis-testing-cs1012.json": {
+      "title": "Retrieve p-value definition and refuse proof-from-significance",
+      "problem_statement": "Closed-book retrieval. Define a p-value for an observed test statistic. A test then produces a very small p-value: state what conclusion is justified, and refuse one overclaim.",
+      "given": [
+        {
+          "symbol": "definition ask",
+          "value": "p-value under the null",
+          "note": "tail probability"
+        },
+        {
+          "symbol": "result",
+          "value": "very small p-value",
+          "note": "interpretation hinge"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the null-conditional tail definition, then judge what a small p-value does and does not prove.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the p-value definition",
+          "attempt_cue": "What probability is the p-value?",
+          "explanation": "Assuming the null hypothesis, the p-value is the probability of a test statistic at least as incompatible with the null as the observed value.",
+          "calculation": "p-value = null-conditional tail probability of extremeness",
+          "result": "p-value definition retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Interpret a very small p-value",
+          "attempt_cue": "What is warranted?",
+          "explanation": "The data are difficult to reconcile with the null under the test assumptions. That can support rejecting the null at an appropriate level after checking assumptions.",
+          "calculation": "Small p ⇒ evidence against H₀ under assumptions (not automatic proof)",
+          "result": "Evidence-against-null reading"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse proof and importance overclaims",
+          "attempt_cue": "Name one refused overclaim.",
+          "explanation": "A small p-value does not prove the alternative with probability one, does not equal P(H₀ true), and does not by itself measure practical importance.",
+          "calculation": "Refuse P(H₀ true) reading and proof/importance collapse",
+          "result": "Overclaims refused"
+        }
+      ],
+      "final_answer": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not P(H₀ true), and not a measure of practical importance by itself.",
+      "common_pitfall": "Interpreting the p-value as the probability that the null is true, or treating statistical significance as proof of the alternative and as substantive importance.",
+      "syllabus_ref": "3.3.1"
+    },
+    "revision-linear-regression-cs1013.json": {
+      "title": "Retrieve OLS criterion and refuse R²-clears-curvature",
+      "problem_statement": "Closed-book retrieval. For observations (x_i, y_i), state the ordinary least squares criterion. Stepwise selection then produces a linear model with high R², but the residual plot shows clear curvature. What is the warranted conclusion?",
+      "given": [
+        {
+          "symbol": "OLS ask",
+          "value": "criterion for coefficient estimates",
+          "note": "4.1 hinge"
+        },
+        {
+          "symbol": "diagnostics",
+          "value": "high R² with curved residual plot",
+          "note": "adequacy hinge"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve the residual-sum-of-squares criterion, then interpret curvature despite high R².",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the OLS criterion",
+          "attempt_cue": "What sum is minimised?",
+          "explanation": "OLS chooses coefficients that minimise the sum over i of (y_i - fitted y_i)².",
+          "calculation": "Minimise Σ(y_i - ŷ_i)²",
+          "result": "OLS criterion retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Interpret residual curvature",
+          "attempt_cue": "What does clear curvature suggest?",
+          "explanation": "Residual curvature indicates an inadequate mean structure (wrong functional form), even if selection criteria look strong.",
+          "calculation": "Curvature → mean structure likely misspecified",
+          "result": "Functional-form concern raised"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse R²-as-adequacy",
+          "attempt_cue": "Does high R² clear the curvature?",
+          "explanation": "High R² and automated selection do not establish adequacy when residuals show clear curvature. Reconsider justified transformations or nonlinear terms and validate.",
+          "calculation": "Refuse 'high R² ⇒ linear form adequate'",
+          "result": "R²-clears-curvature claim refused"
+        }
+      ],
+      "final_answer": "OLS minimises Σ(y_i - ŷ_i)². Clear residual curvature signals mean misspecification; high R² from stepwise selection does not clear that concern.",
+      "common_pitfall": "Minimising the sum of fitted values instead of squared residuals, or treating high R² from automated selection as proof that a curved residual plot can be ignored.",
+      "syllabus_ref": "4.1"
+    },
+    "revision-glm-cs1014.json": {
+      "title": "Retrieve GLM link role and nested deviance use",
+      "problem_statement": "Closed-book retrieval. In a generalised linear model, state the role of the link function g. Two nested GLMs use the same response family and scale treatment: state a valid use of their deviance difference, and refuse one misuse.",
+      "given": [
+        {
+          "symbol": "link ask",
+          "value": "role of g in a GLM",
+          "note": "g(μ) = η"
+        },
+        {
+          "symbol": "nested models",
+          "value": "same family and scale treatment",
+          "note": "deviance difference"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve g(μ) = η = Xβ, then the nested deviance-difference test idea.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve the link role",
+          "attempt_cue": "What does g map?",
+          "explanation": "The link maps the conditional mean μ to the linear predictor through g(μ) = η = Xβ. It is not a device that forces every residual to be Normal.",
+          "calculation": "g(μ) = η = Xβ",
+          "result": "Link role retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Retrieve nested deviance use",
+          "attempt_cue": "What can a deviance difference test?",
+          "explanation": "Under suitable regularity conditions, the deviance difference can test whether added terms improve fit using an asymptotic chi-squared reference, while residual checks remain required.",
+          "calculation": "Deviance difference ↔ nested likelihood-ratio style test (asymptotic χ² under conditions)",
+          "result": "Valid nested-test use stated"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse automatic complexity choice",
+          "attempt_cue": "Must the larger model always win?",
+          "explanation": "A smaller deviance for a larger model does not automatically mandate choosing complexity, and one nested test is not complete validation.",
+          "calculation": "Refuse 'more parameters always wins' and 'one test = full validation'",
+          "result": "Misuses refused"
+        }
+      ],
+      "final_answer": "The link satisfies g(μ) = η = Xβ. For nested GLMs with the same family/scale treatment, a deviance difference can support an asymptotic chi-squared nested test, but it does not automatically choose the larger model or replace residual checks.",
+      "common_pitfall": "Treating the link as a transformation that makes the raw response Normal, or automatically choosing the more complex nested GLM because deviance cannot increase.",
+      "syllabus_ref": "4.2"
+    },
+    "revision-bayesian-cs1015.json": {
+      "title": "Retrieve posterior proportionality and a Normal credible interval",
+      "problem_statement": "Closed-book retrieval. Write the Bayesian posterior for θ after observing data y up to proportionality. Then, if the posterior for θ is Normal with mean 60 and standard deviation 4, compute a central 95% credible interval (use z_{0.025} = 1.96), and refuse a frequentist repeated-sampling reading of that interval.",
+      "given": [
+        {
+          "symbol": "Bayes update",
+          "value": "posterior ∝ likelihood × prior",
+          "note": "definition hinge"
+        },
+        {
+          "symbol": "posterior",
+          "value": "Normal(mean 60, sd 4)",
+          "note": "for the numeric credible interval"
+        },
+        {
+          "symbol": "z_{0.025}",
+          "value": "1.96",
+          "note": "central 95% Normal critical value"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Retrieve posterior proportionality",
+          "attempt_cue": "Write posterior(θ|y) up to a constant.",
+          "explanation": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
+          "calculation": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ)",
+          "result": "Posterior proportionality retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Compute the 95% credible interval",
+          "attempt_cue": "Use mean ± 1.96 sd for a Normal posterior.",
+          "explanation": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
+          "calculation": "60 ± 1.96×4 = 60 ± 7.84 → (52.16, 67.84)",
+          "result": "95% credible interval = (52.16, 67.84)"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse confidence-coverage swap",
+          "attempt_cue": "What does 95% mean here?",
+          "explanation": "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
+          "calculation": "95% = posterior probability content; refuse repeated-sampling coverage reading",
+          "result": "Credible-vs-confidence confusion refused"
+        }
+      ],
+      "final_answer": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ). The Normal(60, 4²) central 95% credible interval is (52.16, 67.84), meaning posterior probability 0.95 under the model, prior, and data - not frequentist repeated-sampling coverage.",
+      "common_pitfall": "Adding prior and likelihood instead of multiplying, or giving a frequentist repeated-sampling coverage interpretation to a Bayesian credible interval.",
+      "syllabus_ref": "5.1.1 / 5.1.5"
+    },
+    "cp-revision-spine-memory-cs1016.json": {
+      "title": "Retrieve MoM construction vs sampling distribution",
+      "problem_statement": "Closed-book retrieval. A method-of-moments estimator sets the sample mean equal to a model mean m(θ). An unbiased estimator T has sampling variance 9/n, and √n(T - θ) converges in distribution to N(0, 9). Distinguish the MoM estimating equation from the estimator's sampling distribution, and state the large-n Normal approximation for T.",
+      "given": [
+        {
+          "symbol": "MoM rule",
+          "value": "sample mean = m(θ)",
+          "note": "estimating equation"
+        },
+        {
+          "symbol": "Var(T)",
+          "value": "9/n",
+          "note": "unbiased estimator"
+        },
+        {
+          "symbol": "limit",
+          "value": "√n(T - θ) →ᵈ N(0, 9)",
+          "note": "CLT-scale limit"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Separate the estimating equation from the repeated-sampling law, then read the large-n Normal approximation.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Separate MoM rule from sampling distribution",
+          "attempt_cue": "What does the estimating equation define, versus what distribution describes?",
+          "explanation": "Solving sample mean = m(θ) defines an estimator. Its sampling distribution describes the values of that estimator over repeated samples.",
+          "calculation": "Estimating equation ≠ sampling distribution",
+          "result": "Construction and sampling law distinguished"
+        },
+        {
+          "id": "S2",
+          "label": "Read the large-n approximation",
+          "attempt_cue": "Given the limit and Var(T) = 9/n, approximate the law of T.",
+          "explanation": "For large n, T is approximately Normal with mean θ and variance 9/n. Unbiasedness alone does not determine the sampling distribution.",
+          "calculation": "T ≈ Normal(θ, 9/n) for large n",
+          "result": "Large-n Normal approximation stated"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse unbiasedness-as-distribution",
+          "attempt_cue": "Does unbiasedness make T exactly Normal for every n?",
+          "explanation": "Unbiasedness specifies a mean property. Exact Normality for every n does not follow from unbiasedness alone.",
+          "calculation": "Refuse 'unbiased ⇒ exactly Normal for every n'",
+          "result": "Unbiasedness-as-distribution claim refused"
+        }
+      ],
+      "final_answer": "The MoM equation defines an estimator; the sampling distribution describes that estimator over repeated samples. For large n, T ≈ Normal(θ, 9/n). Unbiasedness alone does not make T exactly Normal for every n.",
+      "common_pitfall": "Treating the method-of-moments estimating equation as if it were itself the sampling distribution, or assuming an unbiased estimator is exactly Normal for every n.",
+      "syllabus_ref": "3.1.1 / 2.6.2"
+    },
+    "cr-revision-publication-front-cs1017.json": {
+      "title": "Retrieve count placement and association honesty",
+      "problem_statement": "Closed-book retrieval. A portfolio records the number of claims made by each policyholder during one year: classify the variable type and name a candidate family. Separately, a scatter plot shows a curved increasing association between telematics score and claim count: state the most defensible conclusion and refuse a causal overclaim.",
+      "given": [
+        {
+          "symbol": "recorded variable",
+          "value": "number of claims per policyholder in one year",
+          "note": "support classification"
+        },
+        {
+          "symbol": "scatter",
+          "value": "curved increasing telematics score vs claim count",
+          "note": "association honesty"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Classify the count variable first, then separate descriptive association from causation on the scatter.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Classify the claim-number variable",
+          "attempt_cue": "Is this discrete count or continuous because a year is continuous?",
+          "explanation": "The recorded variable is a non-negative integer count, regardless of the continuous observation window. A discrete count model such as Poisson is a candidate, subject to assumption checks.",
+          "calculation": "Support = {0,1,2,…} → discrete count; Poisson is a candidate",
+          "result": "Discrete count placement retrieved"
+        },
+        {
+          "id": "S2",
+          "label": "Read the scatter honestly",
+          "attempt_cue": "What association claim is warranted?",
+          "explanation": "The plot supports a positive, possibly nonlinear association between telematics score and claim count.",
+          "calculation": "Descriptive association: positive, possibly nonlinear",
+          "result": "Association described without causation"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse causal overclaim",
+          "attempt_cue": "Does the curve prove that raising telematics score causes fewer or more claims?",
+          "explanation": "A curved scatter alone does not show that changing telematics score causes claim counts to change.",
+          "calculation": "Refuse causation-from-scatter; also refuse 'curve ⇒ no association'",
+          "result": "Causal overclaim refused"
+        }
+      ],
+      "final_answer": "Annual claim number is a discrete count (Poisson is a candidate under checks). The telematics-vs-count scatter supports a positive possibly nonlinear association but does not by itself establish causation.",
+      "common_pitfall": "Calling the claim count continuous because a year is continuous and forcing Normal, or turning an exploratory curved association into a causal claim.",
+      "syllabus_ref": "2.1.1 / 1.2.2"
+    }
+  },
+  "campaign_twins": {
+    "1.1-purpose-function-ep001.json": "campaign-alpha-ep001/packages/1.1-purpose-function-ep001.json",
+    "1.2.1-eda-summaries-ep001.json": "campaign-alpha-ep001/packages/1.2-eda-summaries-ep001.json",
+    "1.2.2-eda-association-ep001.json": "campaign-alpha-ep001/packages/1.2-eda-association-ep001.json",
+    "1.2.3-pca-cs1002.json": "campaign-beta-cs1002/packages/1.2-pca-cs1002.json",
+    "2.1.1-discrete-cs1002.json": "campaign-beta-cs1002/packages/2.1-discrete-cs1002.json",
+    "2.1.2-continuous-cs1002.json": "campaign-beta-cs1002/packages/2.1-continuous-cs1002.json",
+    "2.1.3-prob-quantiles-cs1004.json": "campaign-gamma-cs1004/packages/2.1.3-prob-quantiles-cs1004.json",
+    "2.1.4-poisson-process-cs1004.json": "campaign-gamma-cs1004/packages/2.1.4-poisson-process-cs1004.json",
+    "2.1.5-inverse-transform-cs1004.json": "campaign-gamma-cs1004/packages/2.1.5-inverse-transform-cs1004.json",
+    "2.2.2-independence-cs1005.json": "campaign-epsilon-cs1005/packages/2.2.2-independence-cs1005.json",
+    "2.6.2-sampling-distribution-statistic-cs1009.json": "campaign-iota-cs1009/packages/2.6.2-sampling-distribution-statistic-cs1009.json",
+    "revision-purpose-eda-ep001.json": "campaign-alpha-ep001/packages/revision-purpose-eda-ep001.json",
+    "revision-pca-distributions-cs1002.json": "campaign-beta-cs1002/packages/revision-pca-distributions-cs1002.json",
+    "revision-linear-models-cs1003.json": "campaign-delta-cs1003/packages/revision-linear-models-cs1003.json",
+    "revision-regression-glm-cs1003.json": "campaign-delta-cs1003/packages/revision-regression-glm-cs1003.json",
+    "revision-midspine-cs1003.json": "campaign-delta-cs1003/packages/revision-midspine-cs1003.json",
+    "revision-distributions-generation-cs1004.json": "campaign-gamma-cs1004/packages/revision-distributions-generation-cs1004.json",
+    "revision-joint-distributions-cs1005.json": "campaign-epsilon-cs1005/packages/revision-joint-distributions-cs1005.json",
+    "revision-conditional-expectations-cs1006.json": "campaign-zeta-cs1006/packages/revision-conditional-expectations-cs1006.json",
+    "revision-generating-functions-cs1007.json": "campaign-eta-cs1007/packages/revision-generating-functions-cs1007.json",
+    "revision-central-limit-theorem-cs1008.json": "campaign-theta-cs1008/packages/revision-central-limit-theorem-cs1008.json",
+    "revision-sampling-distributions-cs1009.json": "campaign-iota-cs1009/packages/revision-sampling-distributions-cs1009.json",
+    "revision-estimators-cs1010.json": "campaign-kappa-cs1010/packages/revision-estimators-cs1010.json",
+    "revision-confidence-intervals-cs1011.json": "campaign-lambda-cs1011/packages/revision-confidence-intervals-cs1011.json",
+    "revision-hypothesis-testing-cs1012.json": "campaign-mu-cs1012/packages/revision-hypothesis-testing-cs1012.json",
+    "revision-linear-regression-cs1013.json": "campaign-nu-cs1013/packages/revision-linear-regression-cs1013.json",
+    "revision-glm-cs1014.json": "campaign-xi-cs1014/packages/revision-glm-cs1014.json",
+    "revision-bayesian-cs1015.json": "campaign-omicron-cs1015/packages/revision-bayesian-cs1015.json",
+    "cp-revision-spine-memory-cs1016.json": "campaign-pi-cs1016/packages/revision-spine-memory-cs1016.json",
+    "cr-revision-publication-front-cs1017.json": "campaign-rho-cs1017/packages/revision-publication-front-cs1017.json"
+  }
+}

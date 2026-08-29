@@ -216,5 +216,51 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.1.4. Titles only tonight",
     "student_facing": "Tomorrow: Poisson process and its connection to the Poisson distribution (2.1.4). Optional light prep: skim 2.1.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Exponential severity probability and median",
+    "problem_statement": "Travel medical claim sizes X (£) are modelled as Exponential with mean θ = 250. Compute (a) P(X ≤ 100) and (b) the median claim size.",
+    "given": [
+      {
+        "symbol": "X",
+        "value": "Exponential(mean θ = 250)",
+        "note": "claim size (£)"
+      },
+      {
+        "symbol": "threshold",
+        "value": "100",
+        "note": "for the CDF evaluation"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Use the Exponential CDF F(x) = 1 - e^{-x/θ} and the median formula θ ln 2.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Evaluate P(X ≤ 100)",
+        "attempt_cue": "Apply F(100) = 1 - e^{-100/250}.",
+        "explanation": "For Exponential mean θ, P(X ≤ x) = 1 - e^{-x/θ}. Here x/θ = 100/250 = 0.4.",
+        "calculation": "P(X ≤ 100) = 1 - e^{-0.4} ≈ 1 - 0.6703 = 0.3297",
+        "result": "P(X ≤ 100) ≈ 0.3297"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate the median",
+        "attempt_cue": "Solve F(m) = 0.5 for m.",
+        "explanation": "The median m satisfies 1 - e^{-m/θ} = 0.5, so m = θ ln 2.",
+        "calculation": "m = 250 ln 2 ≈ 250 × 0.6931 = 173.29",
+        "result": "median ≈ 173.29"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse recognition-as-evaluation",
+        "attempt_cue": "State why naming 'Exponential' alone is not the evaluation.",
+        "explanation": "Recognising the family is not the same as evaluating the probability and quantile. The LO requires the numeric CDF and median results.",
+        "calculation": "Family name ≠ completed probability/quantile evaluation",
+        "result": "Numeric CDF and median required"
+      }
+    ],
+    "final_answer": "P(X ≤ 100) ≈ 0.3297; median ≈ 173.29. Naming the Exponential family alone does not finish the evaluation.",
+    "common_pitfall": "Stopping after recognising that the size is Exponential, without computing the CDF probability and the median quantile.",
+    "syllabus_ref": "2.1.3"
+  }
 }

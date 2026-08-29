@@ -217,5 +217,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.1. Titles only tonight",
     "student_facing": "Tomorrow: GLM exponential-family responses (4.2.1). Optional light prep: skim 4.2.1 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Retrieve OLS roles and refuse funnel residuals as fine",
+    "problem_statement": "Closed-book retrieval. In a multiple linear model Y = Xβ + ε fitted by ordinary least squares, state what Y and the columns of X are, and what OLS minimises. The residual plot then shows spread increasing markedly with fitted values. What is the warranted interpretation?",
+    "given": [
+      {
+        "symbol": "model",
+        "value": "Y = Xβ + ε",
+        "note": "classical linear model"
+      },
+      {
+        "symbol": "residual pattern",
+        "value": "spread increases with fitted values",
+        "note": "funnel shape"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve response/explanatory roles and the OLS criterion, then interpret the funnel residual plot.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve roles and OLS criterion",
+        "attempt_cue": "Name Y, X, and what OLS minimises.",
+        "explanation": "Y is the response; columns of X are explanatory variables; OLS chooses β to minimise the sum of squared residuals.",
+        "calculation": "Y = response; X = explanatory columns; OLS minimises Σ(y - ŷ)²",
+        "result": "Roles and OLS criterion retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Interpret the funnel residual plot",
+        "attempt_cue": "What assumption is doubtful?",
+        "explanation": "Residuals whose spread grows with fitted values indicate non-constant variance (heteroscedasticity). Usual OLS standard errors and inference may be unreliable without a remedy.",
+        "calculation": "Funnel → doubtful constant-variance assumption",
+        "result": "Heteroscedasticity concern raised"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse R²-as-diagnostics",
+        "attempt_cue": "Can high R² dismiss the residual pattern?",
+        "explanation": "A large R² does not repair a clear residual funnel. Diagnostics remain required.",
+        "calculation": "Refuse treating high R² as a substitute for residual diagnostics",
+        "result": "R² does not clear the funnel pattern"
+      }
+    ],
+    "final_answer": "Y is the response, X holds explanatory variables, and OLS minimises residual sum of squares. A funnel residual plot casts doubt on constant variance, and high R² does not dismiss that concern.",
+    "common_pitfall": "Confusing OLS with minimising fitted values, or treating a large R² as proof that a funnel-shaped residual plot can be ignored.",
+    "syllabus_ref": "4.1"
+  }
 }

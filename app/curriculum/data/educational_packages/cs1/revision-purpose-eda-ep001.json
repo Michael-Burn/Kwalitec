@@ -247,5 +247,61 @@
     "continuity_line": "Campaign Alpha completes after this Revision. The honest handoff is to a successor Campaign opening univariate distributions (2.1): exploratory judgement meets the distributional vocabulary that models the variables you explored. PCA (1.2.3) remains a deferred LO to place in a successor Learning day. Not silently complete.",
     "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1 discrete and continuous distribution families (titles only, no deep study tonight)",
     "student_facing": "Campaign Alpha complete after today. Next journey opens basic univariate distributions (2.1) (the modelling language for variables you learned to explore. PCA (1.2.3) is deferred to a later Learning placement. Optional light prep: skim 2.1 headings) titles only tonight."
+  },
+  "worked_example": {
+    "title": "Retrieve aims map and refuse mean-only for skewed severities",
+    "problem_statement": "Closed-book retrieval. A contents portfolio needs: (A) a histogram of observed claim sizes; (B) a confidence interval for mean severity; (C) a forecast of next year's claim count. Assign each task's analysis aim. Separately, for strongly right-skewed claim amounts with large observations, choose a defensible descriptive summary-and-plot pair and refuse one misuse.",
+    "given": [
+      {
+        "symbol": "Task A",
+        "value": "histogram of observed claim sizes",
+        "note": "seen-data summary"
+      },
+      {
+        "symbol": "Task B",
+        "value": "CI for mean severity",
+        "note": "population parameter under uncertainty"
+      },
+      {
+        "symbol": "Task C",
+        "value": "forecast next year's claim count",
+        "note": "future outcome"
+      },
+      {
+        "symbol": "EDA case",
+        "value": "right-skewed claim amounts with large observations",
+        "note": "descriptive tool choice"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Classify A/B/C by aim, then choose a robust summary-and-plot pair for the skewed severity case.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the three aims",
+        "attempt_cue": "Map A, B, and C to descriptive, inferential, and predictive.",
+        "explanation": "A histogram of observed sizes is descriptive. A CI for mean severity is inferential. A forecast of next year's count is predictive.",
+        "calculation": "A → descriptive; B → inferential; C → predictive",
+        "result": "Aims retrieved and kept distinct"
+      },
+      {
+        "id": "S2",
+        "label": "Choose EDA tools for skew",
+        "attempt_cue": "Name a summary-and-plot pair for right-skewed severities.",
+        "explanation": "Median and IQR with a histogram or boxplot reveal centre, spread, skew, and extremes without letting one large claim dominate the story.",
+        "calculation": "Prefer median/IQR + histogram/boxplot",
+        "result": "Robust summary + distributional plot"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse mean-only / pie misuse",
+        "attempt_cue": "Name one refused misuse for this descriptive aim.",
+        "explanation": "A mean-only summary hides skew and extremes. A pie chart of policies does not display the severity distribution.",
+        "calculation": "Refuse mean-only and pie-of-policies for skewed severity EDA",
+        "result": "Mean-only / pie refused"
+      }
+    ],
+    "final_answer": "A descriptive; B inferential; C predictive. For right-skewed claim amounts, use median/IQR with a histogram or boxplot, and refuse mean-only or a pie chart as the descriptive summary.",
+    "common_pitfall": "Collapsing A/B/C into 'just looking at data', or reporting only the mean for strongly right-skewed claim amounts.",
+    "syllabus_ref": "1.1 / 1.2.1"
   }
 }

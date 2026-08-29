@@ -217,5 +217,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.3. Titles only tonight",
     "student_facing": "Tomorrow: mean/variance of sample mean and mean of sample variance (2.6.3). Optional light prep: skim 2.6.3 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Separate a realised mean from its sampling distribution",
+    "problem_statement": "A population of claim costs has mean μ = 80 and variance σ² = 400. A random sample of size n = 16 yields a realised sample mean x̄ = 78. State what the sampling distribution of the sample mean is, give E[X̄] and Var(X̄), and decide whether 78 is that sampling distribution.",
+    "given": [
+      {
+        "symbol": "μ",
+        "value": "80",
+        "note": "population mean"
+      },
+      {
+        "symbol": "σ²",
+        "value": "400",
+        "note": "population variance"
+      },
+      {
+        "symbol": "n",
+        "value": "16",
+        "note": "sample size"
+      },
+      {
+        "symbol": "realised x̄",
+        "value": "78",
+        "note": "one observed sample mean"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of X̄, then classify 78.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Define the sampling distribution",
+        "attempt_cue": "Say what distribution the sample mean has across repeated samples.",
+        "explanation": "The sampling distribution of the sample mean is the probability distribution of values X̄ would take over repeated random samples of the same size.",
+        "calculation": "Sampling distribution = law of X̄ over repeated samples of size 16",
+        "result": "Sampling distribution defined over repeated samples"
+      },
+      {
+        "id": "S2",
+        "label": "Compute E[X̄] and Var(X̄)",
+        "attempt_cue": "Use E[X̄] = μ and Var(X̄) = σ²/n.",
+        "explanation": "For a random sample from a population with mean μ and variance σ², E[X̄] = μ and Var(X̄) = σ²/n.",
+        "calculation": "E[X̄] = 80; Var(X̄) = 400/16 = 25",
+        "result": "E[X̄] = 80; Var(X̄) = 25"
+      },
+      {
+        "id": "S3",
+        "label": "Classify the realised value 78",
+        "attempt_cue": "Is 78 the sampling distribution or one draw from it?",
+        "explanation": "The number 78 is one realised value of the statistic, not the sampling distribution itself.",
+        "calculation": "78 = one realised X̄; refuse equating it with the sampling distribution",
+        "result": "78 is a realised statistic, not the sampling distribution"
+      }
+    ],
+    "final_answer": "The sampling distribution of X̄ is the distribution of the sample mean over repeated samples of size 16; E[X̄] = 80 and Var(X̄) = 25. The observed 78 is one realised value, not that distribution.",
+    "common_pitfall": "Treating the single observed sample mean 78 as 'the sampling distribution' of the mean, rather than as one realisation from the repeated-sampling distribution.",
+    "syllabus_ref": "2.6.2"
+  }
 }

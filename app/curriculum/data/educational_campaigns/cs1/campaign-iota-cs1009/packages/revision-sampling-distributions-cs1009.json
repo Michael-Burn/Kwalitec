@@ -220,5 +220,51 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Iota / CS1-009 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.1 successor Volume. Optional: schedule your weakest 2.6 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve sampling distribution of the mean and the t pivot",
+    "problem_statement": "Closed-book retrieval. Define the sampling distribution of the sample mean. A random sample of size n comes from a Normal population with unknown variance: name the pivot used for inference about the mean, including its degrees of freedom.",
+    "given": [
+      {
+        "symbol": "definition ask",
+        "value": "sampling distribution of the sample mean",
+        "note": "repeated-sampling law"
+      },
+      {
+        "symbol": "Normal, σ unknown",
+        "value": "inference for the mean",
+        "note": "t pivot"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Separate the repeated-sampling law from one realised mean, then retrieve the t pivot.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Define the sampling distribution",
+        "attempt_cue": "What distribution does X̄ have across repeated samples?",
+        "explanation": "It is the probability distribution of values the sample mean would take over repeated random samples of the same size.",
+        "calculation": "Sampling distribution = law of X̄ over repeated samples",
+        "result": "Definition retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Retrieve the t pivot",
+        "attempt_cue": "Write T when σ is estimated by S.",
+        "explanation": "With unknown Normal variance, T = (X̄ - μ)/(S/√n) follows a t distribution with n - 1 degrees of freedom.",
+        "calculation": "T = (X̄ - μ)/(S/√n) ~ t_{n-1}",
+        "result": "t pivot with n-1 df retrieved"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse z-with-S shortcut",
+        "attempt_cue": "Why is a standard Normal pivot wrong here?",
+        "explanation": "Replacing σ by S without switching to t ignores the extra uncertainty from estimating the variance.",
+        "calculation": "Refuse treating (X̄ - μ)/S as N(0,1) in this setting",
+        "result": "z-with-S overclaim refused"
+      }
+    ],
+    "final_answer": "The sampling distribution of the sample mean is the distribution of X̄ over repeated samples of fixed size. For Normal data with unknown variance, use T = (X̄ - μ)/(S/√n) ~ t_{n-1}, not a standard Normal pivot with S in place of σ.",
+    "common_pitfall": "Confusing a single observed sample mean with its sampling distribution, or using a standard Normal pivot when the Normal variance is estimated from the sample.",
+    "syllabus_ref": "2.6.2 / 2.6.5"
+  }
 }

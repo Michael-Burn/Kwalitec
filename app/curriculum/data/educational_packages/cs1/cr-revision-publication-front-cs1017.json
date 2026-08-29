@@ -233,5 +233,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Terminal Revision for Campaign Rho Publication Front chain."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Retrieve count placement and association honesty",
+    "problem_statement": "Closed-book retrieval. A portfolio records the number of claims made by each policyholder during one year: classify the variable type and name a candidate family. Separately, a scatter plot shows a curved increasing association between telematics score and claim count: state the most defensible conclusion and refuse a causal overclaim.",
+    "given": [
+      {
+        "symbol": "recorded variable",
+        "value": "number of claims per policyholder in one year",
+        "note": "support classification"
+      },
+      {
+        "symbol": "scatter",
+        "value": "curved increasing telematics score vs claim count",
+        "note": "association honesty"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Classify the count variable first, then separate descriptive association from causation on the scatter.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Classify the claim-number variable",
+        "attempt_cue": "Is this discrete count or continuous because a year is continuous?",
+        "explanation": "The recorded variable is a non-negative integer count, regardless of the continuous observation window. A discrete count model such as Poisson is a candidate, subject to assumption checks.",
+        "calculation": "Support = {0,1,2,…} → discrete count; Poisson is a candidate",
+        "result": "Discrete count placement retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Read the scatter honestly",
+        "attempt_cue": "What association claim is warranted?",
+        "explanation": "The plot supports a positive, possibly nonlinear association between telematics score and claim count.",
+        "calculation": "Descriptive association: positive, possibly nonlinear",
+        "result": "Association described without causation"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse causal overclaim",
+        "attempt_cue": "Does the curve prove that raising telematics score causes fewer or more claims?",
+        "explanation": "A curved scatter alone does not show that changing telematics score causes claim counts to change.",
+        "calculation": "Refuse causation-from-scatter; also refuse 'curve ⇒ no association'",
+        "result": "Causal overclaim refused"
+      }
+    ],
+    "final_answer": "Annual claim number is a discrete count (Poisson is a candidate under checks). The telematics-vs-count scatter supports a positive possibly nonlinear association but does not by itself establish causation.",
+    "common_pitfall": "Calling the claim count continuous because a year is continuous and forcing Normal, or turning an exploratory curved association into a causal claim.",
+    "syllabus_ref": "2.1.1 / 1.2.2"
+  }
 }

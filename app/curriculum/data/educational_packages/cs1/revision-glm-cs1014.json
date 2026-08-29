@@ -239,5 +239,51 @@
     ],
     "protect_prior_hinge": "Nu 4.1 as needed"
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Retrieve GLM link role and nested deviance use",
+    "problem_statement": "Closed-book retrieval. In a generalised linear model, state the role of the link function g. Two nested GLMs use the same response family and scale treatment: state a valid use of their deviance difference, and refuse one misuse.",
+    "given": [
+      {
+        "symbol": "link ask",
+        "value": "role of g in a GLM",
+        "note": "g(μ) = η"
+      },
+      {
+        "symbol": "nested models",
+        "value": "same family and scale treatment",
+        "note": "deviance difference"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve g(μ) = η = Xβ, then the nested deviance-difference test idea.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the link role",
+        "attempt_cue": "What does g map?",
+        "explanation": "The link maps the conditional mean μ to the linear predictor through g(μ) = η = Xβ. It is not a device that forces every residual to be Normal.",
+        "calculation": "g(μ) = η = Xβ",
+        "result": "Link role retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Retrieve nested deviance use",
+        "attempt_cue": "What can a deviance difference test?",
+        "explanation": "Under suitable regularity conditions, the deviance difference can test whether added terms improve fit using an asymptotic chi-squared reference, while residual checks remain required.",
+        "calculation": "Deviance difference ↔ nested likelihood-ratio style test (asymptotic χ² under conditions)",
+        "result": "Valid nested-test use stated"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse automatic complexity choice",
+        "attempt_cue": "Must the larger model always win?",
+        "explanation": "A smaller deviance for a larger model does not automatically mandate choosing complexity, and one nested test is not complete validation.",
+        "calculation": "Refuse 'more parameters always wins' and 'one test = full validation'",
+        "result": "Misuses refused"
+      }
+    ],
+    "final_answer": "The link satisfies g(μ) = η = Xβ. For nested GLMs with the same family/scale treatment, a deviance difference can support an asymptotic chi-squared nested test, but it does not automatically choose the larger model or replace residual checks.",
+    "common_pitfall": "Treating the link as a transformation that makes the raw response Normal, or automatically choosing the more complex nested GLM because deviance cannot increase.",
+    "syllabus_ref": "4.2"
+  }
 }

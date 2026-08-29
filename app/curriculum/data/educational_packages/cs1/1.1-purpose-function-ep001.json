@@ -209,5 +209,61 @@
     "continuity_line": "Today you named the aim and stage of analysis; tomorrow you enter the exploratory stage with summary statistics and visualisations chosen for a stated aim. Not charts for their own sake.",
     "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.1 summary statistics and exploratory visualisations (titles only, no deep study tonight)",
     "student_facing": "Tomorrow: exploratory data analysis (summaries and visualisations (1.2). Today's purpose map tells you which aim you serve; tomorrow you choose exploratory tools inside that aim. Optional light prep: skim CMP headings for 1.2.1) titles only tonight."
+  },
+  "worked_example": {
+    "title": "Classify three analysis aims in a health book review",
+    "problem_statement": "A health-insurance portfolio review lists three tasks: (A) tabulate last year's paid claim counts by age band; (B) estimate a confidence interval for the population mean claim cost; (C) forecast next year's aggregate claim payments for budgeting. Assign each task to descriptive, inferential, or predictive analysis, and name one concrete reproducibility element the review still needs.",
+    "given": [
+      {
+        "symbol": "Task A",
+        "value": "tabulate last year's paid claim counts by age band",
+        "note": "observed-data summary"
+      },
+      {
+        "symbol": "Task B",
+        "value": "confidence interval for population mean claim cost",
+        "note": "sample-to-population uncertainty"
+      },
+      {
+        "symbol": "Task C",
+        "value": "forecast next year's aggregate claim payments",
+        "note": "future outcome target"
+      },
+      {
+        "symbol": "reproducibility ask",
+        "value": "name one concrete element",
+        "note": "not 'be careful' alone"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. For each task, ask whether the target is a summary of seen data, a population parameter under uncertainty, or a future value, then name one reproducibility artefact.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Classify Task A",
+        "attempt_cue": "Is A summarising observed data or generalising/forecasting?",
+        "explanation": "A table of last year's paid counts by age band summarises what was observed. That is a descriptive aim.",
+        "calculation": "A → descriptive (summarise observed counts)",
+        "result": "A = descriptive"
+      },
+      {
+        "id": "S2",
+        "label": "Classify Task B",
+        "attempt_cue": "What does a CI for mean claim cost target?",
+        "explanation": "A confidence interval generalises from sample evidence to a population parameter under uncertainty. That is an inferential aim.",
+        "calculation": "B → inferential (parameter under uncertainty)",
+        "result": "B = inferential"
+      },
+      {
+        "id": "S3",
+        "label": "Classify Task C and name reproducibility",
+        "attempt_cue": "Name C's aim, then one concrete reproducibility element.",
+        "explanation": "Forecasting next year's aggregate payments targets a future outcome, so C is predictive. Reproducibility needs a concrete artefact such as versioned data and a scripted analysis path, not a vague care statement.",
+        "calculation": "C → predictive; reproducibility e.g. versioned data + scripted path",
+        "result": "C = predictive; name a concrete reproducibility element"
+      }
+    ],
+    "final_answer": "A descriptive; B inferential; C predictive. Reproducibility still needs a concrete element such as versioned data and a scripted analysis path.",
+    "common_pitfall": "Labelling every portfolio-review task as 'looking at data', or saying 'be careful with data' without naming a concrete reproducibility element such as versioned inputs and a scripted path.",
+    "syllabus_ref": "1.1"
   }
 }

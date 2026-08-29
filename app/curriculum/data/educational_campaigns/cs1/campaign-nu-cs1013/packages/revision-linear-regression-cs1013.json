@@ -218,5 +218,51 @@
     "light_prep_cue": "Light prep: skim CMP headings for exponential-family GLM responses only. No new first-pass LO tonight beyond tomorrow's open",
     "student_facing": "Campaign Nu / CS1-013 complete after today. Honest next: Continuity Front join at Topic 4.2 (Campaign Xi / CS1-014 CX-D1). Optional: schedule your weakest 4.1 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve OLS criterion and refuse R²-clears-curvature",
+    "problem_statement": "Closed-book retrieval. For observations (x_i, y_i), state the ordinary least squares criterion. Stepwise selection then produces a linear model with high R², but the residual plot shows clear curvature. What is the warranted conclusion?",
+    "given": [
+      {
+        "symbol": "OLS ask",
+        "value": "criterion for coefficient estimates",
+        "note": "4.1 hinge"
+      },
+      {
+        "symbol": "diagnostics",
+        "value": "high R² with curved residual plot",
+        "note": "adequacy hinge"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the residual-sum-of-squares criterion, then interpret curvature despite high R².",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the OLS criterion",
+        "attempt_cue": "What sum is minimised?",
+        "explanation": "OLS chooses coefficients that minimise the sum over i of (y_i - fitted y_i)².",
+        "calculation": "Minimise Σ(y_i - ŷ_i)²",
+        "result": "OLS criterion retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Interpret residual curvature",
+        "attempt_cue": "What does clear curvature suggest?",
+        "explanation": "Residual curvature indicates an inadequate mean structure (wrong functional form), even if selection criteria look strong.",
+        "calculation": "Curvature → mean structure likely misspecified",
+        "result": "Functional-form concern raised"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse R²-as-adequacy",
+        "attempt_cue": "Does high R² clear the curvature?",
+        "explanation": "High R² and automated selection do not establish adequacy when residuals show clear curvature. Reconsider justified transformations or nonlinear terms and validate.",
+        "calculation": "Refuse 'high R² ⇒ linear form adequate'",
+        "result": "R²-clears-curvature claim refused"
+      }
+    ],
+    "final_answer": "OLS minimises Σ(y_i - ŷ_i)². Clear residual curvature signals mean misspecification; high R² from stepwise selection does not clear that concern.",
+    "common_pitfall": "Minimising the sum of fitted values instead of squared residuals, or treating high R² from automated selection as proof that a curved residual plot can be ignored.",
+    "syllabus_ref": "4.1"
+  }
 }

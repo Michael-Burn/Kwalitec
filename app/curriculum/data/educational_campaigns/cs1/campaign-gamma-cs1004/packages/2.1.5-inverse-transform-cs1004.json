@@ -215,5 +215,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.1.6. Titles only tonight",
     "student_facing": "Tomorrow: generate discrete and continuous random variables using statistical software (2.1.6). Optional light prep: skim 2.1.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Inverse transform for Exponential and a discrete CDF",
+    "problem_statement": "Generate one draw by the inverse transform method in each setting: (a) continuous: X has Exponential rate λ = 0.5 and U = 0.2 is Uniform(0,1); (b) discrete: Y has CDF values F(1) = 0.3, F(2) = 0.8, F(3) = 1 on support {1,2,3}, and U = 0.55. Compute the two generated values and refuse treating a black-box RNG call as the method.",
+    "given": [
+      {
+        "symbol": "continuous",
+        "value": "Exponential(rate λ = 0.5), U = 0.2",
+        "note": "invert the CDF"
+      },
+      {
+        "symbol": "discrete CDF",
+        "value": "F(1)=0.3, F(2)=0.8, F(3)=1; U=0.55",
+        "note": "smallest y with F(y) ≥ U"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Invert the Exponential CDF for (a); find the smallest support point with F(y) ≥ U for (b).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Invert the Exponential CDF",
+        "attempt_cue": "Solve F(x) = U for x when F(x) = 1 - e^{-λx}.",
+        "explanation": "For Exponential rate λ, F(x) = 1 - e^{-λx}, so x = -ln(1-U)/λ.",
+        "calculation": "X = -ln(1-0.2)/0.5 = -ln(0.8)/0.5 ≈ 0.2231/0.5 = 0.4463",
+        "result": "X ≈ 0.4463"
+      },
+      {
+        "id": "S2",
+        "label": "Apply the discrete inverse",
+        "attempt_cue": "Find the smallest y with F(y) ≥ 0.55.",
+        "explanation": "F(1) = 0.3 < 0.55, so y = 1 is too small. F(2) = 0.8 ≥ 0.55, so the inverse-transform draw is Y = 2.",
+        "calculation": "0.3 < 0.55 ≤ 0.8 → Y = 2",
+        "result": "Y = 2"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse black-box theatre",
+        "attempt_cue": "State why a nameless RNG call is not the inverse transform method.",
+        "explanation": "Inverse transform requires an explicit Uniform source and an explicit inverse CDF (or discrete CDF threshold). A black-box draw without that construction does not demonstrate the method.",
+        "calculation": "Uniform + inverse CDF required; nameless RNG ≠ method shown",
+        "result": "Method requires explicit inverse construction"
+      }
+    ],
+    "final_answer": "X ≈ 0.4463 from Exponential(rate 0.5) with U = 0.2; Y = 2 from the discrete CDF with U = 0.55. A black-box RNG call without Uniform-to-inverse-CDF construction is not the inverse transform method.",
+    "common_pitfall": "Treating any software random draw as inverse transform sampling, without exhibiting a Uniform(0,1) source and the inverse CDF (or discrete CDF threshold) step.",
+    "syllabus_ref": "2.1.5"
+  }
 }

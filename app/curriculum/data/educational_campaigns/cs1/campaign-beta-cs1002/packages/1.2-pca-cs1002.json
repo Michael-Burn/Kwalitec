@@ -213,5 +213,51 @@
     "continuity_line": "Today you placed PCA as exploratory dimensionality reduction with honest limits; tomorrow opens the distributional spine at Syllabus 2.1.1 (characteristics of basic discrete univariate distributions) so the variables you explored gain a modelling vocabulary.",
     "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.1 discrete distribution family names (titles only, no deep study tonight)",
     "student_facing": "Tomorrow: basic discrete univariate distributions (2.1.1). We open Chapter 2 after closing PCA. Optional light prep: skim 2.1.1 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Refuse treating the first three PCs as ready-made pricing factors",
+    "problem_statement": "A colleague says: 'We ran PCA on twelve correlated rating factors. Keep PC1-PC3 as the true latent risk factors and drop the originals from the pricing model without checking loadings or residual structure.' Decide what PCA actually provides here, and whether that drop-originals justification holds.",
+    "given": [
+      {
+        "symbol": "colleague claim",
+        "value": "PC1-PC3 = true latent risk factors; drop originals without checks",
+        "note": "causal/factor leap"
+      },
+      {
+        "symbol": "PCA role",
+        "value": "dimensionality reduction on correlated rating factors",
+        "note": "variation summary, not automatic pricing factors"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Separate 'summarises shared variation' from 'proven latent risk factors ready for pricing' before judging the drop-originals claim.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State what PCA constructs",
+        "attempt_cue": "Describe principal components in variation terms.",
+        "explanation": "PCA builds orthogonal components that capture major patterns of variation among correlated variables. Components are weighted combinations summarising shared variation.",
+        "calculation": "PCs = orthogonal variation summaries, not automatically named causal risk factors",
+        "result": "PCA summarises variation structure"
+      },
+      {
+        "id": "S2",
+        "label": "Separate summary from pricing readiness",
+        "attempt_cue": "Say whether PC1-PC3 alone prove ready-made latent pricing factors.",
+        "explanation": "Summarising shared variation does not by itself prove that the leading components are the true latent risk drivers, nor that originals can be dropped without checking loadings, interpretability, and model residual behaviour.",
+        "calculation": "Variation summary ≠ proven latent pricing factors without further warrants",
+        "result": "Refuse automatic latent-factor identity"
+      },
+      {
+        "id": "S3",
+        "label": "Judge the drop-originals proposal",
+        "attempt_cue": "Accept or refuse dropping originals without checks.",
+        "explanation": "Dropping the original factors solely because PC1-PC3 explain most variance lacks subject-matter and diagnostic warrants. PCA may still be useful for exploration of correlated rating factors.",
+        "calculation": "Judgment: REFUSE drop-originals-without-checks; allow exploratory PCA use",
+        "result": "Refuse unchecked replacement; PCA may still explore variation"
+      }
+    ],
+    "final_answer": "PC1-PC3 may summarise major shared variation among rating factors for exploration, but they do not by themselves prove true latent risk factors or justify dropping the originals without loadings checks and residual diagnostics.",
+    "common_pitfall": "Treating the leading principal components as ready-made latent pricing factors and deleting the original covariates solely because those components explain most sample variance.",
+    "syllabus_ref": "1.2.3"
   }
 }

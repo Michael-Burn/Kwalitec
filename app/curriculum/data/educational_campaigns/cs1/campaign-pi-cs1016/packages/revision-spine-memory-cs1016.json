@@ -232,5 +232,56 @@
     "returns_on": "CP-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Terminal Revision for Campaign Pi Memory Front hinge chain."
+  },
+  "worked_example": {
+    "title": "Retrieve MoM construction vs sampling distribution",
+    "problem_statement": "Closed-book retrieval. A method-of-moments estimator sets the sample mean equal to a model mean m(θ). An unbiased estimator T has sampling variance 9/n, and √n(T - θ) converges in distribution to N(0, 9). Distinguish the MoM estimating equation from the estimator's sampling distribution, and state the large-n Normal approximation for T.",
+    "given": [
+      {
+        "symbol": "MoM rule",
+        "value": "sample mean = m(θ)",
+        "note": "estimating equation"
+      },
+      {
+        "symbol": "Var(T)",
+        "value": "9/n",
+        "note": "unbiased estimator"
+      },
+      {
+        "symbol": "limit",
+        "value": "√n(T - θ) →ᵈ N(0, 9)",
+        "note": "CLT-scale limit"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Separate the estimating equation from the repeated-sampling law, then read the large-n Normal approximation.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Separate MoM rule from sampling distribution",
+        "attempt_cue": "What does the estimating equation define, versus what distribution describes?",
+        "explanation": "Solving sample mean = m(θ) defines an estimator. Its sampling distribution describes the values of that estimator over repeated samples.",
+        "calculation": "Estimating equation ≠ sampling distribution",
+        "result": "Construction and sampling law distinguished"
+      },
+      {
+        "id": "S2",
+        "label": "Read the large-n approximation",
+        "attempt_cue": "Given the limit and Var(T) = 9/n, approximate the law of T.",
+        "explanation": "For large n, T is approximately Normal with mean θ and variance 9/n. Unbiasedness alone does not determine the sampling distribution.",
+        "calculation": "T ≈ Normal(θ, 9/n) for large n",
+        "result": "Large-n Normal approximation stated"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse unbiasedness-as-distribution",
+        "attempt_cue": "Does unbiasedness make T exactly Normal for every n?",
+        "explanation": "Unbiasedness specifies a mean property. Exact Normality for every n does not follow from unbiasedness alone.",
+        "calculation": "Refuse 'unbiased ⇒ exactly Normal for every n'",
+        "result": "Unbiasedness-as-distribution claim refused"
+      }
+    ],
+    "final_answer": "The MoM equation defines an estimator; the sampling distribution describes that estimator over repeated samples. For large n, T ≈ Normal(θ, 9/n). Unbiasedness alone does not make T exactly Normal for every n.",
+    "common_pitfall": "Treating the method-of-moments estimating equation as if it were itself the sampling distribution, or assuming an unbiased estimator is exactly Normal for every n.",
+    "syllabus_ref": "3.1.1 / 2.6.2"
   }
 }

@@ -219,5 +219,51 @@
     "light_prep_cue": "Light prep: skim CMP headings for response vs explanatory variables only. No new first-pass LO tonight beyond tomorrow's open",
     "student_facing": "Campaign Mu / CS1-012 complete after today. Honest next: Continuity Front join at Topic 4.1 (Campaign Nu / CS1-013 CN-D1). Optional: schedule your weakest 3.3 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve p-value definition and refuse proof-from-significance",
+    "problem_statement": "Closed-book retrieval. Define a p-value for an observed test statistic. A test then produces a very small p-value: state what conclusion is justified, and refuse one overclaim.",
+    "given": [
+      {
+        "symbol": "definition ask",
+        "value": "p-value under the null",
+        "note": "tail probability"
+      },
+      {
+        "symbol": "result",
+        "value": "very small p-value",
+        "note": "interpretation hinge"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the null-conditional tail definition, then judge what a small p-value does and does not prove.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the p-value definition",
+        "attempt_cue": "What probability is the p-value?",
+        "explanation": "Assuming the null hypothesis, the p-value is the probability of a test statistic at least as incompatible with the null as the observed value.",
+        "calculation": "p-value = null-conditional tail probability of extremeness",
+        "result": "p-value definition retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Interpret a very small p-value",
+        "attempt_cue": "What is warranted?",
+        "explanation": "The data are difficult to reconcile with the null under the test assumptions. That can support rejecting the null at an appropriate level after checking assumptions.",
+        "calculation": "Small p ⇒ evidence against H₀ under assumptions (not automatic proof)",
+        "result": "Evidence-against-null reading"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse proof and importance overclaims",
+        "attempt_cue": "Name one refused overclaim.",
+        "explanation": "A small p-value does not prove the alternative with probability one, does not equal P(H₀ true), and does not by itself measure practical importance.",
+        "calculation": "Refuse P(H₀ true) reading and proof/importance collapse",
+        "result": "Overclaims refused"
+      }
+    ],
+    "final_answer": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not P(H₀ true), and not a measure of practical importance by itself.",
+    "common_pitfall": "Interpreting the p-value as the probability that the null is true, or treating statistical significance as proof of the alternative and as substantive importance.",
+    "syllabus_ref": "3.3.1"
+  }
 }

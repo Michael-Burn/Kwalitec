@@ -215,5 +215,56 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Eta / CS1-007 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.5 successor Volume. Optional: schedule your weakest 2.4 rework only."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Retrieve MGF/CGF definitions and first two raw moments",
+    "problem_statement": "Closed-book retrieval. Define the moment generating function M_X(t) and the cumulant generating function K_X(t). If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling M_X''(0) the variance in every case.",
+    "given": [
+      {
+        "symbol": "MGF ask",
+        "value": "definition of M_X(t)",
+        "note": "where finite"
+      },
+      {
+        "symbol": "CGF ask",
+        "value": "definition of K_X(t)",
+        "note": "log transform"
+      },
+      {
+        "symbol": "moments ask",
+        "value": "M_X'(0) and M_X''(0)",
+        "note": "raw moments"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve M_X = E[e^{tX}], K_X = log M_X, then the derivative-at-zero rules.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve MGF and CGF",
+        "attempt_cue": "Write both definitions.",
+        "explanation": "Where finite, M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t).",
+        "calculation": "M_X(t)=E[exp(tX)]; K_X(t)=log M_X(t)",
+        "result": "MGF and CGF defined"
+      },
+      {
+        "id": "S2",
+        "label": "Retrieve raw-moment derivatives",
+        "attempt_cue": "State M_X'(0) and M_X''(0).",
+        "explanation": "The nth derivative of the MGF at zero gives the nth raw moment when the MGF exists in a neighbourhood of zero.",
+        "calculation": "E[X] = M_X'(0); E[X²] = M_X''(0)",
+        "result": "First two raw moments from derivatives"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse raw-second-as-variance",
+        "attempt_cue": "How do you get Var(X) from these?",
+        "explanation": "Variance is E[X²] - (E[X])², not M_X''(0) alone.",
+        "calculation": "Var(X) = M_X''(0) - [M_X'(0)]²; refuse Var = M_X''(0) in every case",
+        "result": "Raw second moment ≠ variance"
+      }
+    ],
+    "final_answer": "M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t). E[X] = M_X'(0) and E[X²] = M_X''(0). Variance subtracts the squared mean; M_X''(0) alone is not the variance in general.",
+    "common_pitfall": "Calling the second MGF derivative at zero the variance without subtracting (E[X])², or confusing the MGF with a distribution function.",
+    "syllabus_ref": "2.4"
+  }
 }

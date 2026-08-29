@@ -213,5 +213,51 @@
     "continuity_line": "Today you chose summaries and plots for a stated aim; tomorrow those exploratory descriptions become association (interpreting Pearson, Spearman, and Kendall with discipline)",
     "light_prep_cue": "Optional skim: CMP headings for Syllabus 1.2.2 correlation measures (titles only, no deep study tonight)",
     "student_facing": "Tomorrow: association measures for bivariate data (still 1.2). Today's summaries and plots prepare the variables; tomorrow you interpret correlation with the same aim discipline. Optional light prep: skim CMP headings for 1.2.2. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Choose summaries for right-skewed claim sizes",
+    "problem_statement": "Five settled household claim sizes (£) are 180, 220, 310, 450, 2400. The aim is descriptive exploration of severity shape before modelling. Compute the mean and median, then choose an exploratory summary and plot approach that reveals skew and the large observation.",
+    "given": [
+      {
+        "symbol": "sizes (£)",
+        "value": "180, 220, 310, 450, 2400",
+        "note": "n = 5 settled claims"
+      },
+      {
+        "symbol": "aim",
+        "value": "descriptive exploration of severity shape",
+        "note": "EDA tool choice, not a full model fit"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute mean and median, then decide whether mean-only summarises the shape you need to see.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute mean and median",
+        "attempt_cue": "Average the five sizes; then take the middle ordered value.",
+        "explanation": "Ordered sizes are 180, 220, 310, 450, 2400. The mean is pulled by 2400; the median sits at the middle observation 310.",
+        "calculation": "mean = (180+220+310+450+2400)/5 = 3560/5 = 712; median = 310",
+        "result": "mean = 712; median = 310"
+      },
+      {
+        "id": "S2",
+        "label": "Choose exploratory tools for shape",
+        "attempt_cue": "Name a plot/summary that shows skew and the large claim.",
+        "explanation": "A histogram or boxplot reveals right skew and the large observation. Median and IQR support the centre/spread story when the mean is distorted.",
+        "calculation": "Prefer histogram/boxplot + median/IQR over mean-only",
+        "result": "Histogram/boxplot + median (not mean-only)"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse pie / mean-only",
+        "attempt_cue": "State why a pie of policies or mean-only fails the exploratory aim.",
+        "explanation": "A pie chart of policies does not display the severity distribution's skew and extreme. A mean of 712 alone misrepresents the typical size.",
+        "calculation": "Refuse pie-of-policies and mean-only as shape EDA",
+        "result": "Mean-only / pie rejected for this aim"
+      }
+    ],
+    "final_answer": "Mean = 712 and median = 310; use a histogram or boxplot (with median/IQR support) to reveal right skew and the large claim. Refuse mean-only or a pie chart for this exploratory aim.",
+    "common_pitfall": "Reporting only the mean claim size 712 as the exploratory summary, which hides right skew and the large observation that modelling must confront.",
+    "syllabus_ref": "1.2.1"
   }
 }

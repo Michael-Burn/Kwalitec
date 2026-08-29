@@ -234,5 +234,51 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Delta / CS1-003 complete after today (pending human Approver + LIVE). Honest next: stop. Wave 3 is separate. Optional: schedule your weakest mid-spine rework only."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Retrieve Beta-Binomial conjugate update",
+    "problem_statement": "Closed-book retrieval of one Bayes hinge. If X | θ ~ Binomial(n = 8, θ) and θ has prior Beta(α, β) = Beta(4, 6), state the posterior after observing X = 2, and refuse one wrong update rule.",
+    "given": [
+      {
+        "symbol": "likelihood",
+        "value": "X | θ ~ Binomial(8, θ)",
+        "note": "observed X = 2"
+      },
+      {
+        "symbol": "prior",
+        "value": "Beta(4, 6)",
+        "note": "conjugate Beta prior"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State the conjugate update",
+        "attempt_cue": "Write the posterior Beta parameters.",
+        "explanation": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
+        "calculation": "Posterior = Beta(4+2, 6+(8-2)) = Beta(6, 12)",
+        "result": "Posterior Beta(6, 12)"
+      },
+      {
+        "id": "S2",
+        "label": "Refuse a wrong update",
+        "attempt_cue": "Name one incorrect parameter update students use.",
+        "explanation": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
+        "calculation": "Refuse Beta(4+8, 6+2) and similar swapped updates",
+        "result": "Wrong update rules refused"
+      },
+      {
+        "id": "S3",
+        "label": "Separate full Bayes from EB (light contrast)",
+        "attempt_cue": "In one sentence, how does empirical Bayes differ?",
+        "explanation": "Empirical Bayes estimates some prior hyperparameters from data, whereas a fully Bayesian analysis places priors on those hyperparameters and propagates their uncertainty.",
+        "calculation": "EB plugs in estimated hyperparameters; full Bayes models their uncertainty",
+        "result": "Bayes vs EB contrast retrieved"
+      }
+    ],
+    "final_answer": "Posterior is Beta(6, 12). Refuse swapped success/failure updates. Empirical Bayes plugs in estimated hyperparameters; full Bayes models their uncertainty.",
+    "common_pitfall": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
+    "syllabus_ref": "5.1.2"
+  }
 }

@@ -216,5 +216,51 @@
     "continuity_line": "Today you opened discrete family recognition under 2.1.1; tomorrow continues the same 2.1 topic at LO 2.1.2 (characteristics of basic continuous univariate distributions) so discrete and continuous vocabularies sit side by side before deeper calculation days.",
     "light_prep_cue": "Optional skim: CMP headings for Syllabus 2.1.2 continuous family names (titles only, no deep study tonight)",
     "student_facing": "Tomorrow: basic continuous univariate distributions (2.1.2). Same Chapter 2 entry arc (now continuous families. Optional light prep: skim 2.1.2 headings) titles only tonight."
+  },
+  "worked_example": {
+    "title": "Select Binomial for fixed independent inspection trials",
+    "problem_statement": "A manufacturer independently inspects n = 30 items, each with the same probability p of being defective. Choose the matching discrete family for the number of defectives. As a light numeric check, if p = 0.1 under that family, compute P(X = 0).",
+    "given": [
+      {
+        "symbol": "generative story",
+        "value": "fixed n = 30 independent Bernoulli trials with common success probability p",
+        "note": "count of defectives"
+      },
+      {
+        "symbol": "p",
+        "value": "0.1",
+        "note": "illustrative success probability"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match story to family",
+        "attempt_cue": "Name the discrete family for a fixed number of independent Bernoulli trials.",
+        "explanation": "A fixed number of independent Bernoulli trials with constant success probability produces a binomial count. Hypergeometric needs without-replacement draws from a finite population; Poisson is a rare-event limit story, not the primary match when n and p are stated this way.",
+        "calculation": "Story → Binomial(n = 30, p) (not hypergeometric; not Poisson-by-default)",
+        "result": "Family choice: Binomial"
+      },
+      {
+        "id": "S2",
+        "label": "Light numeric illustration P(X = 0)",
+        "attempt_cue": "For Binomial(30, 0.1), evaluate (1-p)^n.",
+        "explanation": "Under Binomial(n, p), P(X = 0) = (1-p)^n. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+        "calculation": "P(X = 0) = (0.9)^30 ≈ 0.0424",
+        "result": "P(X = 0) ≈ 0.0424"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse hypergeometric mismatch",
+        "attempt_cue": "State why hypergeometric fails this story.",
+        "explanation": "Hypergeometric requires sampling without replacement from a finite success/failure population. Independent inspections with constant p are with-replacement / infinite-population Bernoulli trials, so Binomial is the match.",
+        "calculation": "Refuse hypergeometric without without-replacement finite draw story",
+        "result": "Binomial retained; hypergeometric refused"
+      }
+    ],
+    "final_answer": "Choose Binomial(30, p) for the fixed independent inspection story; with p = 0.1, P(X = 0) ≈ 0.0424. Refuse hypergeometric for this generative story.",
+    "common_pitfall": "Choosing hypergeometric because the number of inspections is fixed, without a without-replacement finite-population draw story, or defaulting to Poisson whenever the response is a count.",
+    "syllabus_ref": "2.1.1"
   }
 }

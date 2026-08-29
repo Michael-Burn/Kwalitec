@@ -214,5 +214,51 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Theta / CS1-008 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.6 successor Volume. Optional: schedule your weakest 2.5 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve the CLT for iid sums and refuse exact Normality",
+    "problem_statement": "Closed-book retrieval. Let X₁, …, Xₙ be iid with finite mean μ and finite positive variance σ². State what the central limit theorem says about the standardised sample mean. The observations are highly skewed but have finite variance: what is justified about Normal approximation for their sample mean?",
+    "given": [
+      {
+        "symbol": "setup",
+        "value": "iid with finite μ and σ² > 0",
+        "note": "CLT conditions"
+      },
+      {
+        "symbol": "skew case",
+        "value": "highly skewed observations, finite variance",
+        "note": "finite-n caution"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the standardised-mean limit, then judge the skewed finite-n approximation carefully.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the CLT statement",
+        "attempt_cue": "Write the limiting law for the standardised mean.",
+        "explanation": "The CLT states that √n (X̄ - μ)/σ converges in distribution to N(0,1) as n → ∞.",
+        "calculation": "√n (X̄ - μ)/σ →ᵈ N(0,1)",
+        "result": "Standardised-mean CLT retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Judge the skewed finite-n case",
+        "attempt_cue": "Is the sample mean exactly Normal for every n?",
+        "explanation": "Finite-variance skewed data can satisfy the CLT, but the Normal approximation is not generally exact at finite n; strong skewness may need larger n.",
+        "calculation": "For large n, Normal approximation may be usable; not exact for every finite n",
+        "result": "Cautious large-n approximation only"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse exact-Normality theatre",
+        "attempt_cue": "Refuse one overclaim.",
+        "explanation": "Calculating a sample mean does not make that mean exactly Normal for every n.",
+        "calculation": "Refuse 'mean was calculated ⇒ exactly Normal for every n'",
+        "result": "Exact-Normality overclaim refused"
+      }
+    ],
+    "final_answer": "√n (X̄ - μ)/σ converges in distribution to N(0,1). For skewed finite-variance data, a Normal approximation may be usable for sufficiently large n but is not generally exact at every finite n.",
+    "common_pitfall": "Claiming the sample mean is exactly Normal for every n because a mean was calculated, or applying the CLT without standardisation.",
+    "syllabus_ref": "2.5.1"
+  }
 }

@@ -216,5 +216,51 @@
     "continuity_line": "Today you placed continuous families beside discrete ones; tomorrow is a Revision day that returns to PCA limits, discrete matching, continuous placement (and one Alpha association hinge) not a new first-pass LO such as 2.1.3.",
     "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 (titles of sticky points only, no new CMP chapter tonight)",
     "student_facing": "Tomorrow: Campaign Beta Revision day. We return to PCA → discrete families → continuous placement, plus one Alpha association hinge. Optional light prep: skim your own Reflection residuals. Sticky titles only tonight."
+  },
+  "worked_example": {
+    "title": "Select Lognormal for positive right-skewed severities",
+    "problem_statement": "Individual claim severities are strictly positive and strongly right-skewed on the raw scale, with a roughly symmetric shape after taking logs. Choose the matching continuous family. As a light numeric check, if ln(X) ~ Normal(μ = 6, σ = 1), compute the median of X.",
+    "given": [
+      {
+        "symbol": "generative story",
+        "value": "strictly positive, right-skewed severities; approximately Normal on the log scale",
+        "note": "continuous support on (0, ∞)"
+      },
+      {
+        "symbol": "ln(X)",
+        "value": "Normal(μ = 6, σ = 1)",
+        "note": "illustrative log-scale law"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match support and log-scale shape to a named continuous family before evaluating the median.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match story to family",
+        "attempt_cue": "Name the continuous family for positive right-skewed sizes that are Normal on the log scale.",
+        "explanation": "Lognormal models strictly positive variables that are approximately Normal after a log transform and typically right-skewed on the raw scale. Normal on the raw scale allows negatives and is a poor default for severities.",
+        "calculation": "Story → Lognormal (refuse Normal-by-default on raw severity)",
+        "result": "Family choice: Lognormal"
+      },
+      {
+        "id": "S2",
+        "label": "Light numeric illustration of the median",
+        "attempt_cue": "For ln(X) ~ Normal(6, 1), state median(X).",
+        "explanation": "If ln(X) is Normal(μ, σ), the median of X is e^μ because the Normal median equals μ. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+        "calculation": "median(X) = e^6 ≈ 403.43",
+        "result": "median(X) ≈ 403.43"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse Normal-by-default",
+        "attempt_cue": "State the support mismatch for a raw-scale Normal severity model.",
+        "explanation": "A Normal model on the raw scale allows negative severities and does not encode the stated log-scale symmetry. That mismatches the positive right-skewed severity story.",
+        "calculation": "Normal raw support includes negatives → refuse as first match",
+        "result": "Lognormal retained; Normal default refused"
+      }
+    ],
+    "final_answer": "Choose Lognormal for positive right-skewed severities that are Normal on the log scale; with ln(X) ~ Normal(6, 1), median(X) = e^6 ≈ 403.43. Refuse Normal-by-default on the raw severity scale.",
+    "common_pitfall": "Defaulting to a Normal severity model because it is familiar, ignoring that claim sizes are strictly positive and right-skewed on the raw scale.",
+    "syllabus_ref": "2.1.2"
   }
 }

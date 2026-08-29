@@ -213,5 +213,51 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Zeta / CS1-006 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.4 successor Volume. Optional: schedule your weakest 2.3 rework only."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Retrieve tower law and variance decomposition",
+    "problem_statement": "Closed-book retrieval. State the law of total expectation relating E[Y] to E[Y|X]. Then write the variance decomposition of Var(Y) by conditioning on X, and refuse treating E[Y|X] as an unconditional constant.",
+    "given": [
+      {
+        "symbol": "mean identity",
+        "value": "law of total expectation",
+        "note": "tower property"
+      },
+      {
+        "symbol": "variance identity",
+        "value": "law of total variance",
+        "note": "within + between"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the tower law",
+        "attempt_cue": "Write E[Y] in terms of E[Y|X].",
+        "explanation": "Averaging the conditional mean over X recovers the unconditional mean: E[Y] = E[E[Y|X]].",
+        "calculation": "E[Y] = E[E[Y|X]]",
+        "result": "Tower law retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Retrieve the variance decomposition",
+        "attempt_cue": "Write Var(Y) using within- and between-condition terms.",
+        "explanation": "Total variance combines expected within-condition variance and variance between conditional means.",
+        "calculation": "Var(Y) = E[Var(Y|X)] + Var(E[Y|X])",
+        "result": "Variance decomposition retrieved"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse conditional-as-constant",
+        "attempt_cue": "Why is E[Y] = E[Y|X] for every realised X wrong?",
+        "explanation": "E[Y|X] is a random variable (a function of X), not the unconditional constant E[Y], except in special cases.",
+        "calculation": "Refuse E[Y] = E[Y|X] for every realised X",
+        "result": "Conditional-as-constant confusion refused"
+      }
+    ],
+    "final_answer": "E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]). Refuse treating E[Y|X] as equal to the unconditional mean for every realised X.",
+    "common_pitfall": "Treating the conditional expectation E[Y|X] as an unconditional constant, or omitting either the within-condition or between-condition term in the variance decomposition.",
+    "syllabus_ref": "2.3"
+  }
 }

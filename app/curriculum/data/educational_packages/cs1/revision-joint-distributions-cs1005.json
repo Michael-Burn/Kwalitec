@@ -219,5 +219,51 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Epsilon / CS1-005 complete after today (pending human Approver + LIVE). Honest next: stop or await 2.3 successor Volume. Optional: schedule your weakest 2.2 rework only."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Retrieve independence factorisation and Var(aX+bY)",
+    "problem_statement": "Closed-book retrieval. State the joint-factorisation condition for independence of discrete random variables X and Y. Then, for finite variances, write Var(aX + bY), and refuse omitting the covariance term without warrant.",
+    "given": [
+      {
+        "symbol": "independence ask",
+        "value": "discrete joint factorisation",
+        "note": "definition hinge"
+      },
+      {
+        "symbol": "linear combination",
+        "value": "Var(aX + bY)",
+        "note": "with possible dependence"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the factorisation definition, then the full variance expansion.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the independence condition",
+        "attempt_cue": "Write the factorisation that must hold everywhere.",
+        "explanation": "Discrete X and Y are independent if and only if p_{X,Y}(x,y) = p_X(x)p_Y(y) for every pair in the joint support.",
+        "calculation": "Independence ⇔ p(x,y) = p_X(x)p_Y(y) for all pairs",
+        "result": "Joint factorisation condition retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Write Var(aX + bY)",
+        "attempt_cue": "Expand including the covariance term.",
+        "explanation": "Variance scales with the square of coefficients, and the cross term contributes 2ab Cov(X,Y).",
+        "calculation": "Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y)",
+        "result": "Full variance formula retrieved"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse Cov=0 and independence collapse",
+        "attempt_cue": "Name two refused shortcuts.",
+        "explanation": "Zero covariance is not a general proof of independence. Omitting 2ab Cov(X,Y) is valid only when Cov(X,Y) = 0 is established.",
+        "calculation": "Refuse Cov=0 ⇒ independent in general; refuse dropping Cov without warrant",
+        "result": "Both shortcuts refused"
+      }
+    ],
+    "final_answer": "Independence requires p(x,y) = p_X(x)p_Y(y) for every pair. Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y). Refuse treating Cov = 0 as a general independence proof or dropping the covariance term without warrant.",
+    "common_pitfall": "Equating zero covariance with independence, or writing Var(aX+bY) = a²Var(X) + b²Var(Y) in all cases without checking Cov(X,Y).",
+    "syllabus_ref": "2.2.2 / 2.2.4"
+  }
 }

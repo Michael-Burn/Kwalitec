@@ -214,5 +214,56 @@
     "continuity_line": "Today you interpreted association without overclaiming; tomorrow is a Revision day that returns to the Campaign chain (purpose map, aim-linked EDA tools, and one association interpretation) not a new first-pass topic.",
     "light_prep_cue": "Optional: glance at your Reflection residuals from Days 1–3 (titles of sticky points only, no new CMP chapter tonight)",
     "student_facing": "Tomorrow: Campaign Alpha Revision day. We return to purpose → exploratory tool choice → association limits. Optional light prep: skim your own Reflection residuals from Days 1–3. Sticky titles only tonight."
+  },
+  "worked_example": {
+    "title": "Choose Spearman for monotone nonlinear mileage association",
+    "problem_statement": "For annual mileage versus claim severity, severity is skewed with outliers and the scatter looks roughly increasing but nonlinear. Software reports Pearson r = 0.25 and Spearman ρ = 0.52. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+    "given": [
+      {
+        "symbol": "scatter pattern",
+        "value": "roughly increasing, nonlinear; skewed severity with outliers",
+        "note": "association shape"
+      },
+      {
+        "symbol": "Pearson r",
+        "value": "0.25",
+        "note": "linear correlation"
+      },
+      {
+        "symbol": "Spearman ρ",
+        "value": "0.52",
+        "note": "rank correlation"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match measure to linear vs monotone-nonlinear association, then separate association from causation.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match measure to association type",
+        "attempt_cue": "Say what Pearson vs Spearman each target.",
+        "explanation": "Pearson measures linear association. Spearman uses ranks and suits monotone but nonlinear patterns, with better resistance to outliers in many skewed cases.",
+        "calculation": "Pattern = monotone nonlinear + outliers → prefer Spearman (or Kendall)",
+        "result": "Prefer Spearman over Pearson here"
+      },
+      {
+        "id": "S2",
+        "label": "Read the two reported coefficients",
+        "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+        "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone increase under skew and outliers.",
+        "calculation": "|ρ| = 0.52 > |r| = 0.25; rank measure captures monotone association better here",
+        "result": "Report Spearman ρ = 0.52 as the preferred description"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse causation from correlation",
+        "attempt_cue": "State what a large coefficient still does not prove.",
+        "explanation": "A large correlation coefficient does not prove that changing mileage causes severity to change.",
+        "calculation": "Association ≠ causation (even if |ρ| is large)",
+        "result": "Refuse causal claim from correlation alone"
+      }
+    ],
+    "final_answer": "Prefer Spearman ρ = 0.52 (monotone, skewed, outlier-prone) over Pearson r = 0.25. A large coefficient still does not prove causation.",
+    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = 0.52 as proof that higher mileage causes higher claim severity.",
+    "syllabus_ref": "1.2.2"
   }
 }

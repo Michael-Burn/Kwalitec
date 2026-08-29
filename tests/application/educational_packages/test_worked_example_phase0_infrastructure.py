@@ -1,12 +1,14 @@
 """Phase 0 — Real Worked Examples infrastructure.
 
 Proves package JSON → loader → substance → content presentation wiring.
-One live pilot (Bayes screening on CS1016 Memory Front) carries the field;
-remaining live inventory keeps the structure-walkthrough scaffold.
+The live CS1 catalogue (130 publication_approved packages) now carries genuine
+worked_example content after RWE Batch 6 closure. Scaffold fallback remains
+available when a package has no real WE steps.
 """
 
 from __future__ import annotations
 
+from dataclasses import replace
 from pathlib import Path
 
 from app.application.educational_packages.loader import (
@@ -117,16 +119,15 @@ def test_presentation_splits_attempt_primary_from_solution_more() -> None:
 
 
 def test_package_without_worked_example_keeps_structure_scaffold() -> None:
+    """Scaffold fallback still fires when real WE steps are absent.
+
+    Live inventory is fully populated after Batch 6, so this uses a stripped
+    copy of an approved package rather than hunting for an empty live slot.
+    """
     reset_educational_package_cache()
-    loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT)
-    scaffold_pack = None
-    for pack in loader.all_approved():
-        if pack.package_id == PILOT_PACKAGE_ID:
-            continue
-        if pack.worked_example is None or not pack.worked_example.steps:
-            scaffold_pack = pack
-            break
-    assert scaffold_pack is not None
+    pilot = find_package_by_id(PILOT_PACKAGE_ID)
+    assert pilot is not None
+    scaffold_pack = replace(pilot, worked_example=None)
     substance = substance_from_package(
         scaffold_pack,
         curriculum_identity="CS1:scaffold",
@@ -171,6 +172,9 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     # Phase 0 pilot slot (Bayes on CS1016, content replaced in RWE Batch 3)
     # + RWE Batch 1 (Section 3: 22) + RWE Batch 2 (Continuity: 24)
     # + RWE Batch 3 (Pi/Rho Memory-Publication: 14 new packages; pilot replaced in place)
-    # + RWE Batch 4 (Delta Domain F1b / cs1003: 24).
+    # + RWE Batch 4 (Delta Domain F1b / cs1003: 24)
+    # + RWE Batch 5 (Section 2 / cs1004-cs1009: 15)
+    # + RWE Batch 6 (final Domain F1b closure: 30) → 130/130 live catalogue.
     assert PILOT_PACKAGE_ID in with_real
-    assert len(with_real) == 100
+    assert len(with_real) == 130
+    assert len(loader.all_approved()) == 130

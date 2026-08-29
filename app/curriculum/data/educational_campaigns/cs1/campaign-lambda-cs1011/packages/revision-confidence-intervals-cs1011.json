@@ -222,5 +222,66 @@
     "light_prep_cue": "No new first-pass LO tonight: rest or schedule weakest-link rework only",
     "student_facing": "Campaign Lambda / CS1-011 complete after today (pending human Approver + LIVE). Honest next: stop or await 3.3 successor Volume. Optional: schedule your weakest 3.2 rework only."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Retrieve frequentist CI meaning and a light z-interval",
+    "problem_statement": "Closed-book retrieval. After a frequentist 95% confidence interval for a fixed parameter θ has been calculated, state the correct coverage interpretation. Then, given X̄ = 42 from n = 36 observations with known σ = 12, compute the 95% z-interval for μ (use z_{0.025} = 1.96).",
+    "given": [
+      {
+        "symbol": "interpretation ask",
+        "value": "frequentist 95% CI for fixed θ",
+        "note": "coverage hinge"
+      },
+      {
+        "symbol": "X̄",
+        "value": "42",
+        "note": "sample mean"
+      },
+      {
+        "symbol": "n",
+        "value": "36",
+        "note": "sample size"
+      },
+      {
+        "symbol": "σ",
+        "value": "12",
+        "note": "known population sd"
+      },
+      {
+        "symbol": "z_{0.025}",
+        "value": "1.96",
+        "note": "standard Normal critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Retrieve the repeated-sampling coverage reading, then form X̄ ± 1.96 σ/√n.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Retrieve the coverage interpretation",
+        "attempt_cue": "What does 95% refer to?",
+        "explanation": "The construction procedure covers the fixed parameter θ in 95% of repeated samples under the model. It does not assign posterior probability 0.95 to θ given these data.",
+        "calculation": "95% = long-run coverage of the random interval procedure",
+        "result": "Frequentist coverage interpretation retrieved"
+      },
+      {
+        "id": "S2",
+        "label": "Compute the standard error",
+        "attempt_cue": "Evaluate σ/√n.",
+        "explanation": "With known σ, SE(X̄) = σ/√n = 12/6 = 2.",
+        "calculation": "SE = 12/√36 = 12/6 = 2",
+        "result": "SE = 2"
+      },
+      {
+        "id": "S3",
+        "label": "Form the 95% z-interval",
+        "attempt_cue": "Compute X̄ ± 1.96 SE.",
+        "explanation": "The interval is 42 ± 1.96×2 = 42 ± 3.92.",
+        "calculation": "42 ± 3.92 → (38.08, 45.92)",
+        "result": "95% CI = (38.08, 45.92)"
+      }
+    ],
+    "final_answer": "A 95% frequentist CI procedure covers θ in 95% of repeated samples under the model (not a posterior probability for fixed θ given these data). Numerically, (38.08, 45.92).",
+    "common_pitfall": "Saying that given these data, θ has probability 0.95 of lying in the calculated interval, which swaps a frequentist coverage statement for a posterior probability reading.",
+    "syllabus_ref": "3.2.1"
+  }
 }
