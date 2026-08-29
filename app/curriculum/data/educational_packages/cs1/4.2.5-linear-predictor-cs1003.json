@@ -114,56 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.5-ar-01",
       "title": "Active Recall: 4.2.5",
-      "prompt": "Closed-book. Write η for (1) η = β0 + β1 x; (2) a two-level factor with baseline coding idea; (3) add a quadratic term in x.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly writes linear predictors for a simple slope, a two-level factor with baseline coding, and a quadratic term in x?",
+      "response_type": "mcq",
+      "body": "Select the three eta forms.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "eta",
-        "η",
-        "beta",
-        "factor",
-        "polynomial",
-        "quadratic"
-      ],
-      "explanation": "Active recall for 4.2.5.",
-      "model_answer": "(1) β0+β1x; (2) β0 + β_A I_A (vs baseline); (3) β0+β1x+β2x².",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Linear-predictor fluency covers continuous slopes, baseline factor coding, and polynomial terms inside eta.",
+      "model_answer": "beta0+beta1x; beta0+beta_A I_A; beta0+beta1x+beta2x^2.",
+      "common_mistake": "Skipping factor or polynomial forms, or moving structure into the link by habit.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Simple slope: eta = beta0 + beta1 x. Two-level factor with baseline coding: eta = beta0 + beta_A I_A (versus baseline). Quadratic: eta = beta0 + beta1 x + beta2 x^2.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "All three cases use only eta = beta0, because factors and polynomials are handled entirely by the link function.",
+          "misconception_tag": "intercept_only"
+        },
+        {
+          "id": "c",
+          "label": "A two-level factor must enter as a multiplicative link term rather than an indicator in eta, and a quadratic term is written without coefficients.",
+          "misconception_tag": "factor_in_link"
+        },
+        {
+          "id": "d",
+          "label": "Quadratic terms are forbidden in linear predictors, and factor coding always absorbs the intercept so beta0 disappears.",
+          "misconception_tag": "no_quadratic"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.5-cp-01",
       "title": "Checkpoint: 4.2.5",
-      "prompt": "Refuse: 'the link function is the linear predictor.' Restate both objects.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.5.",
+      "prompt": "Closed-book. Which statement correctly refuses treating the link function as the linear predictor and restates both objects?",
+      "response_type": "mcq",
+      "body": "Refuse conflation; restate eta and the link.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "link",
-        "linear predictor",
-        "eta",
-        "g(mu)",
-        "distinct"
-      ],
-      "explanation": "Checkpoint for 4.2.5.",
-      "model_answer": "Refuse conflation. η = Xβ is the linear predictor; the link g maps mean μ to η.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Eta is X beta; the link maps mean to eta. Conflating them breaks GLM structure.",
+      "model_answer": "Refuse conflation. Eta = X beta; link g maps mu to eta.",
+      "common_mistake": "Accepting that the link function is the linear predictor.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse: the link is not the linear predictor. Eta = X beta is the linear predictor; the link g maps the mean mu to eta.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept: link and linear predictor are two names for the same eta object.",
+          "misconception_tag": "accept_conflation"
+        },
+        {
+          "id": "c",
+          "label": "Refuse the word link, but treat g(mu) as identical to X beta with no mapping role for the mean.",
+          "misconception_tag": "refuse_word_only"
+        },
+        {
+          "id": "d",
+          "label": "The linear predictor maps mu to a restricted range, while the link is only the coefficient vector beta.",
+          "misconception_tag": "roles_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

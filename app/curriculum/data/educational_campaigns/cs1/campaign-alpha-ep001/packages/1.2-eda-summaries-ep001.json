@@ -114,62 +114,88 @@
       "kind": "active_recall",
       "item_id": "ep001-1.2a-ar-01",
       "title": "Active Recall: aim-linked summary",
-      "prompt": "Closed-book. Suppose your aim is descriptive and your variable is a right-skewed claim size. Which summary statistic would you lead with, and why is it preferable to a naive mean-only report?",
-      "response_type": "short_structured",
-      "body": "Justify from distribution shape and aim. Not from software defaults.",
+      "prompt": "Closed-book. For a descriptive aim on right-skewed claim sizes, which statement correctly chooses and justifies the lead summary?",
+      "response_type": "mcq",
+      "body": "Select the shape-aware descriptive summary.",
       "hints": [
-        "Skewed positive data often needs median/IQR or careful mean-with-shape warning.",
-        "Say what the mean alone hides."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "median",
-        "iqr",
-        "quartile",
-        "skew",
-        "mean",
-        "outlier",
-        "shape",
-        "robust"
-      ],
+      "accepted_keywords": [],
       "explanation": "Descriptive EDA on skewed claim sizes should not hide behind a lone mean; shape-aware summaries protect the aim.",
-      "model_answer": "Lead with median (and IQR or percentiles); the mean is pulled by the long right tail and can mislead a descriptive brief about typical claim size.",
-      "common_mistake": "Defaulting to the mean because 'that is what we always compute.'",
+      "model_answer": "Median and IQR/percentiles for right-skewed claim sizes; mean alone is distorted by the tail.",
+      "common_mistake": "Defaulting to the mean because that is what is always computed.",
       "success_criteria": [
-        "A shape-aware summary named.",
-        "Clear reason tied to skew / atypical mean.",
-        "Aim remains descriptive."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Lead with the median (and IQR or percentiles). The mean is pulled by the long right tail and can mislead a descriptive brief about typical claim size.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Lead with the mean alone because that is the default statistic software computes for every numeric variable.",
+          "misconception_tag": "mean_by_habit"
+        },
+        {
+          "id": "c",
+          "label": "Lead with the sample maximum because descriptive work on claims should always emphasise the single largest observation.",
+          "misconception_tag": "max_as_typical"
+        },
+        {
+          "id": "d",
+          "label": "Any single summary is fine for a descriptive aim because skew does not affect how a mean represents typical size.",
+          "misconception_tag": "skew_ignored"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ep001-1.2a-cp-01",
       "kind": "checkpoint",
       "item_id": "ep001-1.2a-cp-01",
       "title": "Checkpoint: visualisation and misuse",
-      "prompt": "Closed-book. For the same skewed claim-size case: (1) Name one exploratory visualisation you would use and what pattern it should reveal. (2) Name one visualisation or summary misuse you would refuse for this aim.",
-      "response_type": "short_structured",
-      "body": "Pair a plot with a pattern, then refuse a misuse.",
+      "prompt": "Closed-book. For the same right-skewed claim-size case, which statement pairs a suitable exploratory plot with a refused misuse?",
+      "response_type": "mcq",
+      "body": "Choose plot-plus-pattern and refuse a misuse.",
       "hints": [
-        "Histogram, density, or boxplot are common exploratory choices for numeric skew.",
-        "Misuses: pie charts for continuous magnitude; mean-only dashboard; truncated axes that hide the tail."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "histogram",
-        "boxplot",
-        "box plot",
-        "density",
-        "tail",
-        "skew",
-        "pie",
-        "refuse",
-        "mislead"
-      ],
+      "accepted_keywords": [],
       "explanation": "Exploratory visualisations exist to reveal shape and extremes; refusing decorative or misleading displays is part of professional EDA.",
-      "model_answer": "Use a histogram or boxplot to reveal right skew and extreme claims. Refuse a pie chart (or a mean-only table) that hides the tail.",
+      "model_answer": "Histogram or boxplot for skew and extremes; refuse pie charts or mean-only summaries that hide the tail.",
       "common_mistake": "Naming a plot without saying what pattern it reveals.",
       "success_criteria": [
-        "Suitable plot named with pattern purpose.",
-        "One concrete misuse refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Use a histogram or boxplot to reveal right skew and extreme claims. Refuse a pie chart or a mean-only table that hides the tail.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use a pie chart of claim sizes to reveal the continuous tail shape, and refuse any histogram because histograms hide extremes.",
+          "misconception_tag": "pie_preferred"
+        },
+        {
+          "id": "c",
+          "label": "Name a boxplot without saying what pattern it should reveal, and accept a mean-only dashboard as fully informative for skew.",
+          "misconception_tag": "plot_without_pattern"
+        },
+        {
+          "id": "d",
+          "label": "Any decorative chart is acceptable for exploratory work because visualisation choice cannot mislead a descriptive aim.",
+          "misconception_tag": "decorative_ok"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

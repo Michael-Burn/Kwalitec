@@ -116,58 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1005-2.2.2-ar-01",
       "title": "Active Recall: 2.2.2",
-      "prompt": "Closed-book. State one clear condition under which X and Y are independent, using joint and marginal language (or an equivalent CMP form).",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.2.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly gives a clear independence condition for X and Y using joint and marginal language?",
+      "response_type": "mcq",
+      "body": "Select the factorisation warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "independent",
-        "joint",
-        "marginal",
-        "product",
-        "factor",
-        "p(x,y)",
-        "f(x,y)",
-        "equals"
-      ],
-      "explanation": "Active recall for 2.2.2.",
-      "model_answer": "X and Y are independent if the joint equals the product of the marginals (for all x,y in the support). Or an equivalent CMP statement (e.g. conditional equals marginal).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Independence is joint factorisation into marginals, or an equivalent CMP form.",
+      "model_answer": "Joint equals product of marginals on the support (or equivalent conditional-equals-marginal form).",
+      "common_mistake": "Skipping the factorisation hinge or confusing independence with weaker association summaries.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X and Y are independent if the joint equals the product of the marginals for all (x, y) in the support (or an equivalent form such as conditional equals marginal).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X and Y are independent whenever their covariance is defined, even if the joint does not factor into marginals.",
+          "misconception_tag": "covariance_as_independence"
+        },
+        {
+          "id": "c",
+          "label": "Independence means the joint equals the sum of the marginals for all (x, y).",
+          "misconception_tag": "sum_not_product"
+        },
+        {
+          "id": "d",
+          "label": "Independence requires only that each marginal exists; the joint need not equal the product of those marginals.",
+          "misconception_tag": "marginals_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1005-2.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.2-cp-01",
       "title": "Checkpoint: 2.2.2",
-      "prompt": "Closed-book. A student says 'correlation is zero, so they are independent.' Refuse and state what additional warrant independence requires.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.2.2.",
+      "prompt": "Closed-book. A student says correlation is zero, so X and Y are independent. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Refuse the claim; state the stronger warrant.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "uncorrelated",
-        "independent",
-        "not same",
-        "joint",
-        "factor"
-      ],
-      "explanation": "Checkpoint for 2.2.2.",
-      "model_answer": "Refuse: zero correlation is not independence. Independence requires the joint factorisation (or equivalent). Uncorrelated is weaker and can fail for non-linear dependence.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Uncorrelated does not imply independent; independence needs the joint factorisation warrant.",
+      "model_answer": "Refuse equating zero correlation with independence; require joint factorisation or equivalent.",
+      "common_mistake": "Accepting the forbidden zero-correlation claim.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse: zero correlation is not independence. Independence requires joint factorisation (or equivalent). Uncorrelated is weaker and can fail under nonlinear dependence.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept: zero correlation is necessary and sufficient for independence in all bivariate settings.",
+          "misconception_tag": "accept_zero_corr"
+        },
+        {
+          "id": "c",
+          "label": "Refuse independence language entirely, and treat zero correlation as proving the joint cannot factor.",
+          "misconception_tag": "corr_blocks_factor"
+        },
+        {
+          "id": "d",
+          "label": "Zero correlation is stronger than independence, so factorisation of the joint is unnecessary once corr(X,Y)=0.",
+          "misconception_tag": "corr_stronger"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

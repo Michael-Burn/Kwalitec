@@ -113,55 +113,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.5-ar-01",
       "title": "Active Recall: 5.1.5",
-      "prompt": "Closed-book. In one sentence, what probability claim does a 95% credible interval make about the parameter (Bayesian reading)?",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly gives the Bayesian probability claim made by a 95% credible interval?",
+      "response_type": "mcq",
+      "body": "Select the posterior probability reading.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "posterior",
-        "probability",
-        "parameter",
-        "interval",
-        "credible",
-        "95"
-      ],
-      "explanation": "Active recall for 5.1.5.",
-      "model_answer": "Under the posterior, the parameter lies in the interval with probability 95% (for a 95% credible interval).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "A credible interval is a posterior probability statement about the parameter.",
+      "model_answer": "Posterior probability 95% that the parameter lies in the interval.",
+      "common_mistake": "Copying a frequentist coverage slogan onto the credible interval.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Under the posterior, the parameter lies in the interval with probability 95% (for a 95% credible interval).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "In repeated samples, 95% of such random intervals will cover the fixed parameter, which is the credible-interval reading.",
+          "misconception_tag": "frequentist_slogan"
+        },
+        {
+          "id": "c",
+          "label": "The interval contains 95% of the sample observations, not a probability statement about the parameter.",
+          "misconception_tag": "sample_coverage"
+        },
+        {
+          "id": "d",
+          "label": "A 95% credible interval means the posterior mean equals 0.95, with no probability claim about an interval for the parameter.",
+          "misconception_tag": "mean_is_95"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.5-cp-01",
       "title": "Checkpoint: 5.1.5",
-      "prompt": "Refuse copying a frequentist confidence slogan onto a credible interval without noting the difference. What differs?",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.5.",
+      "prompt": "Closed-book. Which statement correctly refuses copying a frequentist confidence slogan onto a credible interval and states what differs?",
+      "response_type": "mcq",
+      "body": "Refuse slogan copy; contrast the readings.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "posterior",
-        "parameter",
-        "not frequentist",
-        "probability"
-      ],
-      "explanation": "Checkpoint for 5.1.5.",
-      "model_answer": "Refuse slogan copy. Credible intervals are posterior probability statements about the parameter; confidence intervals have a different frequentist coverage reading.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Credible and confidence intervals answer different probability questions; slogans must not be copied blindly.",
+      "model_answer": "Refuse slogan copy. Credible: posterior probability for the parameter. Confidence: frequentist coverage reading.",
+      "common_mistake": "Accepting a frequentist confidence slogan as the credible-interval meaning.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse slogan copy. Credible intervals are posterior probability statements about the parameter. Confidence intervals have a different frequentist coverage reading over repeated samples.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept the copy: credible and confidence intervals always have identical probability readings about the parameter.",
+          "misconception_tag": "accept_slogan_copy"
+        },
+        {
+          "id": "c",
+          "label": "Refuse credible intervals entirely because only frequentist coverage language is ever valid for interval estimates.",
+          "misconception_tag": "reject_credible"
+        },
+        {
+          "id": "d",
+          "label": "The difference is only notation: once an interval is computed, posterior probability and frequentist coverage are the same claim.",
+          "misconception_tag": "notation_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

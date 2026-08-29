@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1002-2.1a-ar-01",
       "title": "Active Recall: discrete family roster",
-      "prompt": "Closed-book. Name the six discrete distribution families in Syllabus 2.1.1. For each, give one short situation cue (not a full formula).",
-      "response_type": "short_structured",
-      "body": "Roster + situation cues; no deep probability calculation required.",
+      "prompt": "Closed-book. Which statement correctly lists the six Syllabus 2.1.1 discrete families with a short situation cue for each?",
+      "response_type": "mcq",
+      "body": "Select the complete roster with cues.",
       "hints": [
-        "Geometric; binomial; negative binomial; hypergeometric; Poisson; discrete uniform.",
-        "Cues: trials-to-first-success; fixed trials successes; successes-to-r; without replacement; rare counts / rate; equally likely finite set."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "geometric",
-        "binomial",
-        "negative binomial",
-        "hypergeometric",
-        "poisson",
-        "uniform"
-      ],
-      "explanation": "Chapter 2 entry requires the family roster to retrieve before calculation theatre.",
-      "model_answer": "Geometric (trials to first success); binomial (successes in fixed trials); negative binomial (trials to r successes); hypergeometric (successes in without-replacement sample); Poisson (counts with rate story); discrete uniform (equally likely finite outcomes).",
+      "accepted_keywords": [],
+      "explanation": "Chapter 2 entry requires the discrete family roster to retrieve before calculation theatre.",
+      "model_answer": "Geometric, binomial, negative binomial, hypergeometric, Poisson, discrete uniform, each with its situation cue.",
       "common_mistake": "Omitting hypergeometric or collapsing negative binomial into geometric.",
       "success_criteria": [
-        "All six families named.",
-        "Situation cue for each."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Geometric: trials to first success. Binomial: successes in fixed trials. Negative binomial: trials to r successes. Hypergeometric: successes in a without-replacement sample. Poisson: counts with a rate story. Discrete uniform: equally likely finite outcomes.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Geometric, binomial, Poisson, and discrete uniform only; negative binomial collapses into geometric, and hypergeometric is optional decoration.",
+          "misconception_tag": "roster_incomplete"
+        },
+        {
+          "id": "c",
+          "label": "Binomial is without-replacement sampling, hypergeometric is fixed independent trials, and Poisson is any continuous waiting time.",
+          "misconception_tag": "cues_swapped"
+        },
+        {
+          "id": "d",
+          "label": "The six families are Normal, lognormal, exponential, gamma, beta, and continuous uniform, each with a discrete count cue.",
+          "misconception_tag": "continuous_roster"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-2.1a-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1002-2.1a-cp-01",
       "title": "Checkpoint: match and refuse mis-match",
-      "prompt": "Closed-book. (1) From a finite portfolio of policies, you draw a sample without replacement and count how many are currently in claim. Which discrete family fits, and why? (2) Name one family that would be a habitual mis-match here, and refuse it in one sentence.",
-      "response_type": "short_structured",
-      "body": "Without-replacement sampling → hypergeometric; refuse binomial/Poisson-by-habit when dependence from depletion matters.",
+      "prompt": "Closed-book. From a finite portfolio you sample without replacement and count how many policies are in claim. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Choose the fitting family and refuse a habitual mismatch.",
       "hints": [
-        "Without replacement from a finite population → hypergeometric.",
-        "Refuse: binomial (assumes independent trials / replacement) or Poisson without rate/independence warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "hypergeometric",
-        "without",
-        "replacement",
-        "finite",
-        "binomial",
-        "poisson",
-        "refuse",
-        "not"
-      ],
-      "explanation": "Situation discipline prevents treating every count as binomial or Poisson.",
-      "model_answer": "Hypergeometric: successes counted in a without-replacement sample from a finite population. Refuse binomial here if trials are not independent with constant success probability (depletion matters), or refuse Poisson-by-habit without a rate process warrant.",
+      "accepted_keywords": [],
+      "explanation": "Situation discipline prevents treating every count as binomial or Poisson when without-replacement structure matters.",
+      "model_answer": "Hypergeometric for without-replacement from a finite population; refuse binomial or Poisson-by-habit when that structure matters.",
       "common_mistake": "Default binomial or Poisson without noticing without-replacement structure.",
       "success_criteria": [
-        "Hypergeometric with without-replacement warrant.",
-        "One named mis-match refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Hypergeometric fits because successes are counted in a without-replacement sample from a finite population. Refuse binomial here when depletion makes trials dependent with non-constant success probability, or refuse Poisson-by-habit without a rate-process warrant.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Binomial fits automatically for any count of claims, including without-replacement sampling from a finite portfolio.",
+          "misconception_tag": "binomial_by_habit"
+        },
+        {
+          "id": "c",
+          "label": "Poisson fits by default for every claim count, so without-replacement structure can be ignored.",
+          "misconception_tag": "poisson_by_habit"
+        },
+        {
+          "id": "d",
+          "label": "Discrete uniform fits because each policy is equally likely, and hypergeometric never applies to insurance portfolios.",
+          "misconception_tag": "uniform_mismatch"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

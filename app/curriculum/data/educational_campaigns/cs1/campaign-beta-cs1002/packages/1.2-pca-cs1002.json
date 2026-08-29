@@ -114,61 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1002-1.2c-ar-01",
       "title": "Active Recall: PCA purpose",
-      "prompt": "Closed-book. In one professional sentence, what is the purpose of principal component analysis for a complex data set? Then name what early components typically capture versus what later components tend to hold.",
-      "response_type": "short_structured",
-      "body": "Purpose first; then capture-vs-discard without formula dump.",
+      "prompt": "Closed-book. Which statement correctly states the purpose of PCA and what early versus later components typically capture?",
+      "response_type": "mcq",
+      "body": "Select purpose and capture-order.",
       "hints": [
-        "Purpose: reduce dimensionality / summarise correlated structure into fewer components.",
-        "Early PCs: major shared variation; later PCs: residual / smaller variation patterns."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "dimension",
-        "reduce",
-        "component",
-        "vari",
-        "correl",
-        "summar",
-        "early",
-        "later"
-      ],
+      "accepted_keywords": [],
       "explanation": "PCA is an exploratory reduction tool; purpose and capture order must retrieve before interpretation theatre.",
-      "model_answer": "PCA reduces the dimensionality of a complex correlated data set by summarising shared variation into fewer principal components. Early components typically capture major shared structure; later components tend to hold residual or smaller-scale variation.",
-      "common_mistake": "Describing only 'eigenvectors' without a purpose sentence, or claiming every PC is equally meaningful.",
+      "model_answer": "Dimensionality reduction of correlated structure; early PCs major shared variation; later PCs residual or smaller variation.",
+      "common_mistake": "Describing only eigenvectors without a purpose sentence, or claiming every PC is equally meaningful.",
       "success_criteria": [
-        "One clear purpose sentence.",
-        "Early vs later capture distinction stated."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PCA reduces the dimensionality of a complex correlated data set by summarising shared variation into fewer principal components. Early components typically capture major shared structure; later components tend to hold residual or smaller-scale variation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PCA invents causal risk factors from eigenvectors alone, and every principal component is equally meaningful by construction.",
+          "misconception_tag": "causal_equal_pcs"
+        },
+        {
+          "id": "c",
+          "label": "PCA exists only to compute eigenvectors; purpose need not be stated, and later components always dominate major shared structure.",
+          "misconception_tag": "eigen_only_order_wrong"
+        },
+        {
+          "id": "d",
+          "label": "PCA replaces all subject-matter judgment and proves that early components are named business drivers without external warrant.",
+          "misconception_tag": "replaces_judgment"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-1.2c-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1002-1.2c-cp-01",
       "title": "Checkpoint: refuse PCA overclaim",
-      "prompt": "Closed-book. A colleague says: 'PC1 is the true underlying risk factor driving claims, so we can treat it as a causal driver in the business model.' (1) What one useful thing might PC1 still be doing exploratorily? (2) State one claim this statement overreaches.",
-      "response_type": "short_structured",
-      "body": "Allow exploratory usefulness; refuse causal / named-factor invention.",
+      "prompt": "Closed-book. A colleague says PC1 is the true underlying risk factor driving claims, so it can be treated as a causal driver. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Allow exploratory usefulness; refuse causal invention.",
       "hints": [
-        "Useful: summarises correlated structure / reduces noise for visualisation.",
-        "Refuse: automatic causation; automatic named business factor without external warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "summar",
-        "correl",
-        "explor",
-        "visual",
-        "cause",
-        "causal",
-        "not",
-        "refuse",
-        "factor"
-      ],
+      "accepted_keywords": [],
       "explanation": "PCA can aid exploration; it does not mint causal business factors by construction.",
-      "model_answer": "PC1 may usefully summarise major shared variation among correlated variables for exploration or visualisation. It does not by itself prove a causal business driver or invent a named risk factor without external subject-matter warrant.",
+      "model_answer": "PC1 can summarise shared variation exploratorily; refuse automatic causation or invented named factors without external warrant.",
       "common_mistake": "Accepting the causal claim, or rejecting PCA entirely as useless.",
       "success_criteria": [
-        "One exploratory use retained.",
-        "One clear non-claim (causation / invented factor)."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PC1 may usefully summarise major shared variation among correlated variables for exploration or visualisation. It does not by itself prove a causal business driver or invent a named risk factor without external subject-matter warrant.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept the causal claim because the first principal component is always a true business risk factor by construction.",
+          "misconception_tag": "accept_causal"
+        },
+        {
+          "id": "c",
+          "label": "Reject PCA entirely as useless for exploration once someone mentions causation, even as a summary of correlated structure.",
+          "misconception_tag": "reject_all_pca"
+        },
+        {
+          "id": "d",
+          "label": "PC1 proves causation for claims whenever it explains the largest share of variance, so naming a risk factor needs no external warrant.",
+          "misconception_tag": "variance_proves_cause"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

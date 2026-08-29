@@ -114,55 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.1-ar-01",
       "title": "Active Recall: 5.1.1",
-      "prompt": "Closed-book. State Bayes' theorem connecting prior, likelihood, and posterior for an event/parameter in words.",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly states Bayes' theorem connecting prior, likelihood, and posterior?",
+      "response_type": "mcq",
+      "body": "Select the update warrant.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prior",
-        "likelihood",
-        "posterior",
-        "bayes",
-        "conditional",
-        "proportional"
-      ],
-      "explanation": "Active recall for 5.1.1.",
-      "model_answer": "Posterior ∝ prior × likelihood (normalised). Bayes updates beliefs given data.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Bayes updates by combining prior and likelihood into a normalised posterior.",
+      "model_answer": "Posterior proportional to prior times likelihood (normalised).",
+      "common_mistake": "Skipping the prior-likelihood product or equating inverse conditionals.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Posterior is proportional to prior times likelihood (then normalised). Bayes updates beliefs about an event or parameter given the data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Posterior equals the likelihood alone; the prior is discarded once data arrive.",
+          "misconception_tag": "likelihood_only"
+        },
+        {
+          "id": "c",
+          "label": "Posterior equals the prior alone; likelihood is used only for frequentist tests.",
+          "misconception_tag": "prior_only"
+        },
+        {
+          "id": "d",
+          "label": "Bayes equates P(A|B) with P(B|A) automatically, so prior and likelihood need not be combined.",
+          "misconception_tag": "inverse_collapse"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Refuse: treating P(disease|positive) as equal to P(positive|disease) without calculation. What does Bayes require?",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.1.",
+      "prompt": "Closed-book. Which statement correctly refuses treating P(disease|positive) as equal to P(positive|disease) without calculation?",
+      "response_type": "mcq",
+      "body": "Refuse inverse confusion; state what Bayes requires.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "base rate",
-        "prior",
-        "not equal",
-        "inverse"
-      ],
-      "explanation": "Checkpoint for 5.1.1.",
-      "model_answer": "Refuse inverse confusion. Bayes combines prior (base rate) with likelihood of the data; the two conditionals are not equal.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Inverse probability confusion ignores base rates; Bayes combines prior and likelihood.",
+      "model_answer": "Refuse equating the inverse conditionals; combine prior (base rate) with likelihood.",
+      "common_mistake": "Accepting P(disease|positive) = P(positive|disease) without Bayes.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse inverse confusion. The two conditionals are not equal. Bayes combines a prior (base rate) with the likelihood of the data to obtain the posterior.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept the equality because positive tests and disease status are interchangeable labels.",
+          "misconception_tag": "accept_inverse"
+        },
+        {
+          "id": "c",
+          "label": "Refuse only when base rates are unknown; if prevalence is known, P(disease|positive) equals P(positive|disease) automatically.",
+          "misconception_tag": "base_rate_makes_equal"
+        },
+        {
+          "id": "d",
+          "label": "Bayes requires replacing the prior with the likelihood alone, which makes the two conditionals equal after any positive test.",
+          "misconception_tag": "replace_prior"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

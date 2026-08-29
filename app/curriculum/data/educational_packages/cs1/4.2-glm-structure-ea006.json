@@ -108,64 +108,88 @@
       "kind": "active_recall",
       "item_id": "ea005-4.2-ar-01",
       "title": "Active Recall: GLM structure chain",
-      "prompt": "Closed-book. In your own words, explain how a generalised linear model joins (1) an exponential-family response, (2) a linear predictor, and (3) a link function. One short paragraph is enough.",
-      "response_type": "short_structured",
-      "body": "CMP closed. Name all three parts in a coherent order and distinguish the linear predictor from the link.",
+      "prompt": "Closed-book. Which statement correctly explains how a GLM joins an exponential-family response, a linear predictor, and a link function?",
+      "response_type": "mcq",
+      "body": "Select the three-part structure with eta distinguished from the link.",
       "hints": [
-        "Start from the response family, then η = Xβ, then g(μ) = η.",
-        "Say explicitly that non-Normal responses are in scope."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "exponential family",
-        "linear predictor",
-        "link",
-        "eta",
-        "η",
-        "non-normal",
-        "non normal",
-        "response"
-      ],
-      "explanation": "A GLM joins an exponential-family response, a linear predictor η = Xβ, and a link g(μ) = η. The link is not the same object as the linear predictor; Normal + identity is the special case, not the definition.",
-      "model_answer": "A GLM specifies an exponential-family response, forms a linear predictor η = Xβ, and connects the mean to η through a link function g(μ) = η. So non-Normal outcomes stay inside a linear modelling frame.",
-      "common_mistake": "Treating GLM as 'linear regression with software' or conflating the link with the linear predictor.",
+      "accepted_keywords": [],
+      "explanation": "A GLM joins exponential-family response, eta = X beta, and g(mu) = eta. Normal plus identity is a special case, not the definition.",
+      "model_answer": "Exponential-family response; eta = X beta; g(mu) = eta; distinguish link from linear predictor.",
+      "common_mistake": "Treating GLM as linear regression with software, or conflating the link with the linear predictor.",
       "success_criteria": [
-        "All three parts named in a coherent order.",
-        "Linear predictor distinguished from the link.",
-        "At least one phrase showing non-Normal responses are in scope."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A GLM specifies an exponential-family response, forms a linear predictor eta = X beta, and connects the mean to eta through a link g(mu) = eta. Non-Normal outcomes stay inside a linear modelling frame. The link is not the same object as the linear predictor.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A GLM is linear regression with different software, and the link function is identical to the linear predictor eta.",
+          "misconception_tag": "software_and_conflation"
+        },
+        {
+          "id": "c",
+          "label": "GLMs allow only Normal responses with identity link; exponential-family language is optional decoration.",
+          "misconception_tag": "normal_only"
+        },
+        {
+          "id": "d",
+          "label": "The linear predictor maps the mean into restricted support, while the link is the design matrix X without coefficients.",
+          "misconception_tag": "roles_scrambled"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ea005-4.2-cp-01",
       "kind": "checkpoint",
       "item_id": "ea005-4.2-cp-01",
       "title": "Checkpoint: canonical link",
-      "prompt": "Name one non-Normal response family used in GLMs (e.g. Poisson or binomial). State its canonical link (or a clearly justified link). In one sentence, why is that link a sensible default for that family?",
-      "response_type": "short_structured",
-      "body": "Justify from support / mean range. Not from software defaults.",
+      "prompt": "Closed-book. Which statement correctly pairs a non-Normal GLM family with a justified canonical link?",
+      "response_type": "mcq",
+      "body": "Justify from mean range, not software defaults.",
       "hints": [
-        "Poisson → log; binomial → logit are the usual canonical pairings.",
-        "Mention that the link maps the mean into an unrestricted linear predictor."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "poisson",
-        "binomial",
-        "bernoulli",
-        "gamma",
-        "log",
-        "logit",
-        "canonical",
-        "mean",
-        "positive",
-        "probability"
-      ],
-      "explanation": "Canonical links (e.g. Poisson–log, binomial–logit) map the mean into an unrestricted linear predictor while respecting the response support. That is distributional justification, not a software habit.",
-      "model_answer": "Poisson with log link (canonical): the mean must stay positive, and log maps (0, ∞) onto the real line for η.",
-      "common_mistake": "Saying 'because R / glm() defaults to it' without mean-range reasoning.",
+      "accepted_keywords": [],
+      "explanation": "Canonical links map the mean into an unrestricted linear predictor while respecting response support.",
+      "model_answer": "Poisson-log (or binomial-logit) justified by mean range, not by software habit.",
+      "common_mistake": "Saying the link is used because software defaults to it.",
       "success_criteria": [
-        "Family named correctly.",
-        "Link named correctly for that family (canonical preferred).",
-        "Justification is distributional / mean-range aware."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson with log link (canonical): the mean must stay positive, and log maps (0, infinity) onto the real line for eta. Binomial with logit is a similar mean-range pairing.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Poisson with log link only because glm() defaults to it, with no mean-range reasoning required.",
+          "misconception_tag": "software_default"
+        },
+        {
+          "id": "c",
+          "label": "Poisson with identity link as canonical because counts already live on the whole real line.",
+          "misconception_tag": "identity_for_poisson"
+        },
+        {
+          "id": "d",
+          "label": "Binomial with log link as the usual canonical choice because probabilities are unrestricted on the real line.",
+          "misconception_tag": "wrong_binomial_link"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

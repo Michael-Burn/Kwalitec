@@ -117,62 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1002-2.1b-ar-01",
       "title": "Active Recall: continuous family roster",
-      "prompt": "Closed-book. Name the continuous distribution families in Syllabus 2.1.2. For Normal, lognormal, exponential, and gamma, give one short modelling or support cue each.",
-      "response_type": "short_structured",
-      "body": "Roster emphasis with four core placement cues; remaining families at least named.",
+      "prompt": "Closed-book. Which statement correctly names the Syllabus 2.1.2 continuous families and gives support or role cues for Normal, lognormal, exponential, and gamma?",
+      "response_type": "mcq",
+      "body": "Select roster plus core placement cues.",
       "hints": [
-        "Normal; lognormal; exponential; gamma; chi-square; t; F; beta; continuous uniform.",
-        "Cues: symmetric continuous; positive skewed product/claims; waiting/memoryless; flexible positive shape family."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "normal",
-        "lognormal",
-        "exponential",
-        "gamma",
-        "chi-square",
-        "chi",
-        "t",
-        "f",
-        "beta",
-        "uniform"
-      ],
+      "accepted_keywords": [],
       "explanation": "Continuous entry requires roster and core placement cues before calculation days.",
-      "model_answer": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta, continuous uniform. Example cues: Normal (symmetric continuous approximation; lognormal) positive skewed magnitudes; exponential (waiting/memoryless; gamma) flexible positive continuous shapes.",
+      "model_answer": "Name the continuous families; cue Normal, lognormal, exponential, and gamma by support or modelling role.",
       "common_mistake": "Naming only Normal, or dumping formulae without placement cues.",
       "success_criteria": [
-        "Syllabus continuous families named.",
-        "Support/role cues for Normal, lognormal, exponential, gamma."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Families include Normal, lognormal, exponential, gamma, chi-square, t, F, beta, and continuous uniform. Cues: Normal for symmetric continuous approximation; lognormal for positive skewed magnitudes; exponential for waiting or memoryless times; gamma for flexible positive continuous shapes.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Only Normal is needed in 2.1.2; other continuous families are optional names without placement cues.",
+          "misconception_tag": "normal_only"
+        },
+        {
+          "id": "c",
+          "label": "Normal has strictly positive support, lognormal is symmetric on all reals, exponential is for without-replacement counts, and gamma is only for probabilities on (0,1).",
+          "misconception_tag": "cues_reversed"
+        },
+        {
+          "id": "d",
+          "label": "The continuous roster is geometric, binomial, negative binomial, hypergeometric, Poisson, and discrete uniform.",
+          "misconception_tag": "discrete_roster"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-2.1b-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1002-2.1b-cp-01",
       "title": "Checkpoint: place and refuse Normal default",
-      "prompt": "Closed-book. Individual claim sizes are strictly positive and right-skewed. (1) Which continuous family (or short-listed pair) would you place first, and why? (2) Refuse Normal-by-default for this quantity in one sentence.",
-      "response_type": "short_structured",
-      "body": "Prefer positive skewed families (lognormal/gamma); refuse Normal on support/shape grounds.",
+      "prompt": "Closed-book. Individual claim sizes are strictly positive and right-skewed. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Prefer a positive skewed family; refuse Normal-by-default.",
       "hints": [
-        "Lognormal or gamma commonly fit positive skewed magnitudes.",
-        "Refuse Normal: support on all reals / light left tail vs strictly positive skew."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "lognormal",
-        "gamma",
-        "positive",
-        "skew",
-        "normal",
-        "refuse",
-        "not",
-        "support"
-      ],
+      "accepted_keywords": [],
       "explanation": "Continuous judgement refuses Normal theatre for positive skewed claim sizes.",
-      "model_answer": "Start with lognormal or gamma because claim sizes are strictly positive and right-skewed. Refuse Normal-by-default because a symmetric all-real support model mismatches the support and skew of the quantity.",
-      "common_mistake": "Default Normal 'because CLT' without addressing support/skew of the individual size.",
+      "model_answer": "Prefer lognormal or gamma; refuse Normal on support and skew grounds for individual claim sizes.",
+      "common_mistake": "Default Normal because of the CLT without addressing support and skew of the individual size.",
       "success_criteria": [
-        "Positive skewed family preferred with warrant.",
-        "Normal default refused with support/shape reason."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Start with lognormal or gamma because claim sizes are strictly positive and right-skewed. Refuse Normal-by-default because a symmetric all-real support model mismatches the support and skew of the quantity.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use Normal by default because the central limit theorem always makes individual claim sizes Normal.",
+          "misconception_tag": "normal_by_clt"
+        },
+        {
+          "id": "c",
+          "label": "Use continuous uniform on all reals because positive skew is irrelevant once a continuous family is chosen.",
+          "misconception_tag": "uniform_mismatch"
+        },
+        {
+          "id": "d",
+          "label": "Refuse lognormal and gamma for positive skewed sizes, and prefer Normal specifically because it cannot produce negative draws in practice.",
+          "misconception_tag": "refuse_good_families"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -115,62 +115,88 @@
       "kind": "active_recall",
       "item_id": "ep001-1.2b-ar-01",
       "title": "Active Recall: three measures",
-      "prompt": "Closed-book. In one sentence each, what does Pearson's, Spearman's, and Kendall's correlation primarily capture? Mention at least one way a rank-based measure differs from Pearson.",
-      "response_type": "short_structured",
-      "body": "Distinguish linear vs monotonic / concordance ideas without dumping formulae.",
+      "prompt": "Closed-book. Which statement correctly distinguishes Pearson, Spearman, and Kendall correlation and names one rank-versus-Pearson difference?",
+      "response_type": "mcq",
+      "body": "Select the three-measure discrimination.",
       "hints": [
-        "Pearson: linear association of raw values (sensitive to outliers / non-linearity).",
-        "Spearman: monotonic association via ranks.",
-        "Kendall: concordance of pairwise orderings."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "pearson",
-        "linear",
-        "spearman",
-        "rank",
-        "monotonic",
-        "kendall",
-        "concord",
-        "outlier"
-      ],
-      "explanation": "The three measures answer related but different association questions; treating them as synonyms fails examiner discrimination items.",
-      "model_answer": "Pearson measures linear association of raw values. Spearman measures monotonic association via ranks. Kendall measures pairwise concordance of orderings. Rank measures are more robust to certain nonlinear monotone relationships and some outlier patterns than Pearson.",
-      "common_mistake": "Saying only 'they all measure correlation' without discrimination.",
+      "accepted_keywords": [],
+      "explanation": "The three measures answer related but different association questions; treating them as synonyms fails examiner discrimination.",
+      "model_answer": "Pearson linear raw; Spearman monotonic ranks; Kendall concordance; ranks more robust for monotone nonlinear or some outlier cases.",
+      "common_mistake": "Saying only that they all measure correlation without discrimination.",
       "success_criteria": [
-        "All three named with distinct capture statements.",
-        "At least one rank-vs-Pearson difference stated."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Pearson measures linear association of raw values. Spearman measures monotonic association via ranks. Kendall measures pairwise concordance of orderings. Rank measures are more robust to some nonlinear monotone relationships and some outlier patterns than Pearson.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Pearson, Spearman, and Kendall all measure the same linear association of raw values, so choosing among them is only a naming preference.",
+          "misconception_tag": "all_same"
+        },
+        {
+          "id": "c",
+          "label": "Pearson is rank-based and robust to outliers, while Spearman and Kendall measure only linear association of raw values.",
+          "misconception_tag": "roles_reversed"
+        },
+        {
+          "id": "d",
+          "label": "Kendall measures causation, Spearman measures prediction accuracy, and Pearson measures only sample size.",
+          "misconception_tag": "wrong_targets"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ep001-1.2b-cp-01",
       "kind": "checkpoint",
       "item_id": "ep001-1.2b-cp-01",
       "title": "Checkpoint: choose and refuse overclaim",
-      "prompt": "Closed-book. Data: two skewed positive variables with visible outliers and a roughly increasing but nonlinear scatter. (1) Which correlation measure would you prefer and why? (2) State one claim a large coefficient still does not justify.",
-      "response_type": "short_structured",
-      "body": "Choose for the situation; refuse causation or over-precise prediction claims.",
+      "prompt": "Closed-book. Two skewed positive variables show outliers and a roughly increasing but nonlinear scatter. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Choose measure preference and refuse an overclaim.",
       "hints": [
-        "Rank-based measures often fit monotone nonlinear association better than Pearson.",
-        "Refuse: causation; 'we can control Y by changing X'; guaranteed prediction accuracy."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "spearman",
-        "kendall",
-        "rank",
-        "monotonic",
-        "outlier",
-        "causation",
-        "cause",
-        "not",
-        "refuse"
-      ],
+      "accepted_keywords": [],
       "explanation": "Measure choice follows shape and robustness; interpretation discipline refuses causal theatre from exploratory association.",
-      "model_answer": "Prefer Spearman (or Kendall) because the relationship looks monotone but nonlinear with outliers that can distort Pearson. A large coefficient still does not prove that changing X causes Y to change.",
+      "model_answer": "Prefer Spearman or Kendall for monotone nonlinear association with outliers; refuse causation from the coefficient.",
       "common_mistake": "Choosing Pearson by habit, or claiming causation from r.",
       "success_criteria": [
-        "Rank-based preference with situation reason.",
-        "One clear non-claim (causation or similar)."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prefer Spearman or Kendall because the relationship looks monotone but nonlinear with outliers that can distort Pearson. A large coefficient still does not prove that changing X causes Y to change.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Prefer Pearson by habit for every numeric pair, and treat a large r as proof that changing X causes Y.",
+          "misconception_tag": "pearson_and_causation"
+        },
+        {
+          "id": "c",
+          "label": "Any correlation measure is interchangeable here, and a large coefficient justifies controlling Y by changing X.",
+          "misconception_tag": "control_claim"
+        },
+        {
+          "id": "d",
+          "label": "Prefer Spearman only when the scatter is perfectly linear with no outliers, and refuse rank measures when skew is present.",
+          "misconception_tag": "rank_when_linear"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.3-ar-01",
       "title": "Active Recall: 4.2.3",
-      "prompt": "Closed-book. Explain how a GLM joins exponential-family response, linear predictor η, and link g(μ)=η. Distinguish η from the link.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly explains how a GLM joins exponential-family response, linear predictor eta, and link g(mu)=eta while distinguishing eta from the link?",
+      "response_type": "mcq",
+      "body": "Select the structure discrimination for the link LO.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "exponential family",
-        "linear predictor",
-        "link",
-        "eta",
-        "η",
-        "mu"
-      ],
-      "explanation": "Active recall for 4.2.3.",
-      "model_answer": "Response in exponential family; η = Xβ; g(μ)=η links mean to predictor. Link ≠ η.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Link competence requires naming response family, eta, and g(mu)=eta as distinct structural pieces.",
+      "model_answer": "Exponential-family response; eta = X beta; g(mu)=eta; link is not eta.",
+      "common_mistake": "Conflating the link with the linear predictor or skipping the three-part join.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The response is in an exponential family; eta = X beta is the linear predictor; g(mu) = eta links the mean to that predictor. The link function is not the same object as eta.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Eta and the link are the same object, so writing g(mu) = eta is only optional notation.",
+          "misconception_tag": "eta_is_link"
+        },
+        {
+          "id": "c",
+          "label": "The link replaces the exponential-family response, and eta is unused once a family is named.",
+          "misconception_tag": "link_replaces_family"
+        },
+        {
+          "id": "d",
+          "label": "GLMs join only a Normal response to an identity mean with no separate link idea.",
+          "misconception_tag": "normal_identity_only"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.3-cp-01",
       "title": "Checkpoint: 4.2.3",
-      "prompt": "Name one non-Normal family and its canonical link. Justify from mean range. Not software default.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.3.",
+      "prompt": "Closed-book. Which statement correctly names a non-Normal family with its canonical link and justifies the choice from mean range?",
+      "response_type": "mcq",
+      "body": "Choose distributional link warrant; refuse software-default theatre.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "poisson",
-        "binomial",
-        "log",
-        "logit",
-        "canonical",
-        "mean",
-        "positive"
-      ],
-      "explanation": "Checkpoint for 4.2.3.",
-      "model_answer": "Poisson–log (canonical): mean positive; log maps (0,∞) to ℝ for η. Or binomial–logit similarly.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "Canonical links are justified by mean range and support, not by software defaults.",
+      "model_answer": "Poisson-log or binomial-logit with mean-range justification.",
+      "common_mistake": "Accepting a software-default justification without mean-range reasoning.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Poisson with log (canonical): mean is positive and log maps (0, infinity) to the reals for eta. Binomial with logit is similarly justified by mapping probabilities in (0,1) to the real line.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Any link is canonical for any family because software will pick a default automatically.",
+          "misconception_tag": "any_link_canonical"
+        },
+        {
+          "id": "c",
+          "label": "Poisson with logit as canonical because counts are probabilities on (0,1).",
+          "misconception_tag": "poisson_logit"
+        },
+        {
+          "id": "d",
+          "label": "Binomial with identity as canonical because probabilities already equal eta with no transform needed for mean range.",
+          "misconception_tag": "binomial_identity"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

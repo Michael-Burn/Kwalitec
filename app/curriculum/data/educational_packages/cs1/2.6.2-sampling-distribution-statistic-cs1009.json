@@ -117,57 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.2-ar-01",
       "title": "Active Recall: 2.6.2",
-      "prompt": "Closed-book. (1) What is a statistic in this LO? (2) What is its sampling distribution? (3) How does that differ from one realised value from one sample?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly distinguishes a statistic, its sampling distribution, and one realised value from one sample?",
+      "response_type": "mcq",
+      "body": "Select the three-way discrimination.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "statistic",
-        "sampling",
-        "distribution",
-        "sample",
-        "repeated",
-        "function",
-        "parameter"
-      ],
-      "explanation": "Active recall for 2.6.2.",
-      "model_answer": "A statistic is a function of the sample. Its sampling distribution is the distribution of that statistic over repeated random samples. One realised value is a single draw from that distribution, not the distribution itself.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The learning objective separates the statistic, its repeated-sample distribution, and one realised draw.",
+      "model_answer": "Statistic = function of sample; sampling distribution = law over repeated samples; realised value = one draw.",
+      "common_mistake": "Collapsing the realised value into the sampling distribution.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A statistic is a function of the sample. Its sampling distribution is the distribution of that statistic over repeated random samples. One realised value is a single draw from that distribution, not the distribution itself.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A statistic is a fixed population parameter, and its sampling distribution is that same constant number.",
+          "misconception_tag": "statistic_is_parameter"
+        },
+        {
+          "id": "c",
+          "label": "The sampling distribution is the single realised sample mean from the data set you hold, and repeated-sample language is optional.",
+          "misconception_tag": "realised_is_distribution"
+        },
+        {
+          "id": "d",
+          "label": "A realised statistic equals its sampling distribution whenever the sample size is larger than 30.",
+          "misconception_tag": "n30_collapse"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.2-cp-01",
       "title": "Checkpoint: 2.6.2",
-      "prompt": "Closed-book. A colleague says 'my sample mean is 12, so the sampling distribution is 12.' Refuse and restate today's LO.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.2.",
+      "prompt": "Closed-book. A colleague says my sample mean is 12, so the sampling distribution is 12. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Refuse the collapse; restate the LO.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "sampling",
-        "distribution",
-        "statistic",
-        "realised",
-        "repeated"
-      ],
-      "explanation": "Checkpoint for 2.6.2.",
-      "model_answer": "Refuse: a realised statistic is not its sampling distribution. Today's skill is describing the distribution of the statistic over repeated samples.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "A realised statistic is one draw; the sampling distribution is the repeated-sample law.",
+      "model_answer": "Refuse equating the realised mean with the sampling distribution; describe the repeated-sample distribution of the statistic.",
+      "common_mistake": "Accepting the forbidden realised-value claim.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse: a realised statistic is not its sampling distribution. The skill is describing the distribution of the statistic over repeated samples.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept: the sampling distribution equals whatever number the current sample mean takes.",
+          "misconception_tag": "accept_realised"
+        },
+        {
+          "id": "c",
+          "label": "Refuse only if n is small; for large n the realised mean is the sampling distribution.",
+          "misconception_tag": "large_n_exception"
+        },
+        {
+          "id": "d",
+          "label": "The claim is correct because parameters and sampling distributions are the same object once a mean is computed.",
+          "misconception_tag": "parameter_collapse"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -1,11 +1,8 @@
 """Phase 0 — MCQ infrastructure for checkpoint Knowledge Checks.
 
 Proves package JSON → loader → substance → scoring → UI branch wiring.
-Batch 1 Section 3 packages (see _BATCH1_MCQ_PACKAGE_STEMS), Batch 2 Continuity
-Front packages (see _BATCH2_MCQ_PACKAGE_STEMS), Batch 3 Memory/Publication
-Front packages (see _BATCH3_MCQ_PACKAGE_STEMS), and Batch 4 Delta CS1-003
-packages (see _BATCH4_MCQ_PACKAGE_STEMS) are live MCQ content; all other
-live inventory packages remain short_structured until later batches.
+Batches 1–6A (see _BATCH*_MCQ_PACKAGE_STEMS) are live MCQ content; remaining
+live inventory outside those stems stays short_structured.
 """
 
 from __future__ import annotations
@@ -272,7 +269,7 @@ _BATCH4_MCQ_PACKAGE_STEMS = frozenset(
 
 # Batch 5 MCQ content conversion (checkpoint Batch E file set).
 # Keep in sync with scripts/_mcq_batch5_batch_e_payload.py CONVERSIONS keys.
-# Includes WEAK Delta 4.2.10 and 5.1.9; excludes STRONG Batch 6 (4.2.3, 4.2.5, 5.1.1, 5.1.5).
+# Includes WEAK Delta 4.2.10 and 5.1.9; STRONG Delta items are Batch 6A.
 _BATCH5_MCQ_PACKAGE_STEMS = frozenset(
     {
         "2.1.6-software-generation-cs1004",
@@ -295,17 +292,41 @@ _BATCH5_MCQ_PACKAGE_STEMS = frozenset(
     }
 )
 
+# Batch 6A MCQ content conversion (16 already-STRONG packages).
+# Keep in sync with scripts/_mcq_batch6a_strong_payload.py CONVERSIONS keys.
+_BATCH6A_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "1.1-purpose-function-ep001",
+        "1.2.1-eda-summaries-ep001",
+        "1.2.2-eda-association-ep001",
+        "1.2.3-pca-cs1002",
+        "2.1.1-discrete-cs1002",
+        "2.1.2-continuous-cs1002",
+        "2.1.3-prob-quantiles-cs1004",
+        "2.1.4-poisson-process-cs1004",
+        "2.1.5-inverse-transform-cs1004",
+        "2.2.2-independence-cs1005",
+        "2.6.2-sampling-distribution-statistic-cs1009",
+        "4.2-glm-structure-ea006",
+        "4.2.3-link-canonical-cs1003",
+        "4.2.5-linear-predictor-cs1003",
+        "5.1.1-bayes-theorem-cs1003",
+        "5.1.5-credible-intervals-cs1003",
+    }
+)
+
 _MCQ_CONVERTED_STEMS = (
     _BATCH1_MCQ_PACKAGE_STEMS
     | _BATCH2_MCQ_PACKAGE_STEMS
     | _BATCH3_MCQ_PACKAGE_STEMS
     | _BATCH4_MCQ_PACKAGE_STEMS
     | _BATCH5_MCQ_PACKAGE_STEMS
+    | _BATCH6A_MCQ_PACKAGE_STEMS
 )
 
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
-    """Live inventory outside Batch 1–5 MCQ conversion stays short_structured."""
+    """Live inventory outside Batch 1–6A MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
@@ -314,6 +335,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     batch3_seen = 0
     batch4_seen = 0
     batch5_seen = 0
+    batch6a_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
@@ -322,9 +344,17 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
         is_batch3 = stem in _BATCH3_MCQ_PACKAGE_STEMS
         is_batch4 = stem in _BATCH4_MCQ_PACKAGE_STEMS
         is_batch5 = stem in _BATCH5_MCQ_PACKAGE_STEMS
+        is_batch6a = stem in _BATCH6A_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
             if (
-                (is_batch1 or is_batch2 or is_batch3 or is_batch4 or is_batch5)
+                (
+                    is_batch1
+                    or is_batch2
+                    or is_batch3
+                    or is_batch4
+                    or is_batch5
+                    or is_batch6a
+                )
                 and check.kind in {"active_recall", "checkpoint"}
             ):
                 if is_batch1:
@@ -335,8 +365,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     batch3_seen += 1
                 elif is_batch4:
                     batch4_seen += 1
-                else:
+                elif is_batch5:
                     batch5_seen += 1
+                else:
+                    batch6a_seen += 1
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -350,9 +382,13 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch3_seen == 30  # 15 packages × AR + CP
     assert batch4_seen == 36  # 18 packages × AR + CP
     assert batch5_seen == 34  # 17 packages × AR + CP
+    # 15 publication_approved Batch 6A packages × AR + CP. Catalogue twin
+    # 4.2-glm-structure-ea006 is also converted but status is
+    # superseded_by_campaign_delta, so it is outside all_approved().
+    assert batch6a_seen == 30
 
-    # Spot-check a live package still outside Batches 1–5 (topic 1.1).
-    live = find_educational_package(topic_code="1.1", subject_id="CS1")
+    # Spot-check a live package still outside Batches 1–6A (revision day CA-R1).
+    live = find_educational_package(topic_code="CA-R1", subject_id="CS1")
     assert live is not None
     substance = substance_from_package(
         live,

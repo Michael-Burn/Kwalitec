@@ -110,64 +110,88 @@
       "kind": "active_recall",
       "item_id": "ep001-1.1-ar-01",
       "title": "Active Recall: aims of data analysis",
-      "prompt": "Closed-book. Name the three primary aims of a data analysis used in CS1. For each aim, give one short actuarial-flavoured example (one sentence each).",
-      "response_type": "short_structured",
-      "body": "CMP closed. Distinguish descriptive vs inferential vs predictive with concrete examples.",
+      "prompt": "Closed-book. Which statement correctly names the three primary aims of CS1 data analysis with distinct actuarial examples?",
+      "response_type": "mcq",
+      "body": "Select the aims-and-examples statement.",
       "hints": [
-        "Descriptive summarises what is in the data; inferential generalises to a population; predictive forecasts unseen outcomes.",
-        "Think claims, pricing, and reserving contexts for examples. Keep them short."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "descriptive",
-        "inferential",
-        "predictive",
-        "summar",
-        "population",
-        "predict",
-        "forecast"
-      ],
-      "explanation": "CS1 frames data analysis around descriptive, inferential, and predictive aims. Confusing summarising a sample with making a population claim is a classic first-week error.",
-      "model_answer": "Descriptive: summarise claim sizes in a portfolio year. Inferential: estimate mean claim severity for the population of similar risks. Predictive: forecast next year's claim count for pricing.",
-      "common_mistake": "Listing tools (plots, means) instead of aims, or collapsing all three into 'look at data.'",
+      "accepted_keywords": [],
+      "explanation": "CS1 frames data analysis around descriptive, inferential, and predictive aims. Tools are not aims, and the three aims must stay distinct.",
+      "model_answer": "Descriptive summarise sample; inferential population estimate; predictive forecast unseen outcomes, each with a distinct actuarial example.",
+      "common_mistake": "Listing tools instead of aims, or collapsing all three into 'look at data.'",
       "success_criteria": [
-        "All three aims named correctly.",
-        "Each aim has a distinct, plausible example.",
-        "Examples do not confuse aim with tool."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Descriptive: summarise claim sizes in a portfolio year. Inferential: estimate mean claim severity for a population of similar risks. Predictive: forecast next year's claim count for pricing.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The three aims are plotting, computing means, and using software, illustrated by making a histogram, a sample mean, and an R call.",
+          "misconception_tag": "tools_as_aims"
+        },
+        {
+          "id": "c",
+          "label": "All three aims collapse into looking at data carefully, so one example such as 'inspect claims' covers descriptive, inferential, and predictive work.",
+          "misconception_tag": "aims_collapsed"
+        },
+        {
+          "id": "d",
+          "label": "Descriptive forecasts next year's claims, inferential summarises the sample only, and predictive estimates a population mean without prediction.",
+          "misconception_tag": "aims_swapped"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ep001-1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "ep001-1.1-cp-01",
       "title": "Checkpoint: stages, sources, reproducibility",
-      "prompt": "Closed-book. (1) List the main stages of a data analysis in a sensible order and mark which stage exploratory work sits in. (2) Name two source characteristics that change how you trust results. (3) Name one element required to keep an analysis reproducible.",
-      "response_type": "short_structured",
-      "body": "Connect stages to sources and reproducibility. Not tool names alone.",
+      "prompt": "Closed-book. Which statement correctly links analysis stages, data-source trust cues, and a reproducibility element?",
+      "response_type": "mcq",
+      "body": "Choose the pipeline, source, and reproducibility warrant.",
       "hints": [
-        "Stages typically run from problem framing through data acquisition, cleaning/EDA, modelling/inference, and communication.",
-        "Source cues: sampling frame, bias, granularity, volume/velocity for large sets.",
-        "Reproducibility: code, data version, documentation, seed, environment. Name at least one clearly."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "stage",
-        "explorat",
-        "clean",
-        "source",
-        "bias",
-        "sample",
-        "reproduc",
-        "document",
-        "version",
-        "code"
-      ],
-      "explanation": "Purpose and function includes knowing where you are in the pipeline, what the data can support, and how another analyst could repeat the work.",
-      "model_answer": "Stages: define aim → obtain data → clean/explore → analyse/infer or predict → communicate. EDA sits in explore/clean. Sources: biased sample; coarse granularity. Reproducibility: versioned data and scripted code path.",
+      "accepted_keywords": [],
+      "explanation": "Purpose and function includes pipeline location, what the data can support, and how another analyst could repeat the work.",
+      "model_answer": "Ordered stages with EDA in explore/clean; name concrete source traits; name a concrete reproducibility element.",
       "common_mistake": "Saying 'be careful with data' without naming source traits or a concrete reproducibility element.",
       "success_criteria": [
-        "Ordered stages with EDA located.",
-        "Two concrete source characteristics.",
-        "One concrete reproducibility element."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A sensible order is define aim, obtain data, clean/explore, analyse or predict, then communicate, with EDA in clean/explore. Source trust changes with traits such as sampling bias or coarse granularity. Reproducibility needs something concrete such as versioned data and a scripted code path.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Stages need not be ordered because exploratory work can sit anywhere, and saying 'be careful with data' is enough for source trust and reproducibility.",
+          "misconception_tag": "vague_care_only"
+        },
+        {
+          "id": "c",
+          "label": "EDA belongs only after final communication, source characteristics never affect trust, and reproducibility is automatic once a plot is saved.",
+          "misconception_tag": "eda_and_repro_wrong"
+        },
+        {
+          "id": "d",
+          "label": "The only required stage is software fitting; source bias is irrelevant if the model converges, and naming a package version replaces scripted reproducibility.",
+          "misconception_tag": "software_stage_only"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

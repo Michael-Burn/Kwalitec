@@ -115,57 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1004-2.1e-ar-01",
       "title": "Active Recall: inverse transform steps",
-      "prompt": "Closed-book. List the steps of the inverse transform method for a continuous random variable with CDF F. Name the Uniform source explicitly.",
-      "response_type": "short_structured",
-      "body": "U~U(0,1); X=F^{-1}(U).",
+      "prompt": "Closed-book. Which statement correctly lists the inverse-transform steps for a continuous random variable with CDF F?",
+      "response_type": "mcq",
+      "body": "Select Uniform source plus inverse CDF.",
       "hints": [
-        "Start with Uniform(0,1).",
-        "Apply inverse CDF."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "uniform",
-        "cdf",
-        "inverse",
-        "u(0,1)",
-        "f^{-1}",
-        "quantile"
-      ],
-      "explanation": "Method fluency requires naming Uniform and inverse CDF.",
-      "model_answer": "Draw U ~ Uniform(0,1). Set X = F^{-1}(U) (the quantile function). Then X has CDF F (under standard conditions).",
+      "accepted_keywords": [],
+      "explanation": "Method fluency requires naming Uniform(0,1) and applying the inverse CDF.",
+      "model_answer": "U ~ Uniform(0,1); X = F^{-1}(U).",
       "common_mistake": "Omitting the Uniform source.",
       "success_criteria": [
-        "Uniform named.",
-        "Inverse CDF step named."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Draw U ~ Uniform(0,1). Set X = F^{-1}(U), the quantile function. Then X has CDF F under standard conditions.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Draw X directly from F without a Uniform source, because the inverse CDF step is optional.",
+          "misconception_tag": "omit_uniform"
+        },
+        {
+          "id": "c",
+          "label": "Draw U ~ Normal(0,1) and set X = F(U), using the CDF rather than the inverse CDF.",
+          "misconception_tag": "wrong_source_and_map"
+        },
+        {
+          "id": "d",
+          "label": "Set X = F(U) with U already equal to X, which makes Uniform sampling unnecessary.",
+          "misconception_tag": "circular_definition"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1004-2.1e-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-2.1e-cp-01",
       "title": "Checkpoint: discrete case + refuse black-box",
-      "prompt": "Closed-book. (1) In outline, how does inverse transform generate a basic discrete RV? (2) Refuse in one sentence: 'I do not need the method because software can sample.'",
-      "response_type": "short_structured",
-      "body": "Discrete inverse via CDF thresholds; refuse black-box substitute for the LO.",
+      "prompt": "Closed-book. Which statement correctly outlines discrete inverse-transform sampling and refuses a software-only substitute for the method?",
+      "response_type": "mcq",
+      "body": "Choose discrete outline plus method warrant.",
       "hints": [
-        "Use cumulative probabilities / threshold on U.",
-        "Syllabus requires the method, not only a sampler call."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "discrete",
-        "cdf",
-        "uniform",
-        "threshold",
-        "refuse",
-        "software",
-        "method"
-      ],
-      "explanation": "2.1.5 is method competence; software alone does not satisfy the LO.",
-      "model_answer": "(1) Draw U~U(0,1); assign the discrete value whose CDF first exceeds U (inverse CDF / threshold rule). (2) Refuse: software sampling can implement the draw, but the LO requires understanding inverse transform. Not only calling a black box.",
-      "common_mistake": "Only saying 'use rbinom' without inverse idea.",
+      "accepted_keywords": [],
+      "explanation": "2.1.5 is method competence; software alone does not satisfy the learning objective.",
+      "model_answer": "Discrete: Uniform then CDF threshold. Refuse treating a sampler call as a substitute for the method.",
+      "common_mistake": "Only saying use rbinom without the inverse idea.",
       "success_criteria": [
-        "Discrete outline present.",
-        "Black-box refusal present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Draw U ~ Uniform(0,1) and assign the discrete value whose CDF first exceeds U (inverse CDF or threshold rule). Software sampling can implement the draw, but the learning objective requires understanding inverse transform, not only calling a black box.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "For discrete variables, skip Uniform and thresholds and only call a sampler such as rbinom, because software replaces the method.",
+          "misconception_tag": "software_replaces_method"
+        },
+        {
+          "id": "c",
+          "label": "Discrete inverse transform uses Normal draws rather than Uniform, and understanding the method is optional once a library exists.",
+          "misconception_tag": "normal_not_uniform"
+        },
+        {
+          "id": "d",
+          "label": "Assign outcomes by sorting probabilities alphabetically with no Uniform threshold, which finishes the inverse-transform LO.",
+          "misconception_tag": "alphabetical_rule"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

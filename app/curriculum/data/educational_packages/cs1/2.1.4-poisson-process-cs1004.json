@@ -116,58 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1004-2.1d-ar-01",
       "title": "Active Recall: process story",
-      "prompt": "Closed-book. In two to four sentences: what does a Poisson process model, and how does the number of events in a fixed time interval connect to the Poisson distribution?",
-      "response_type": "short_structured",
-      "body": "Process arrivals; count ~ Poisson.",
+      "prompt": "Closed-book. Which statement correctly connects a Poisson process to the Poisson distribution for counts in an interval?",
+      "response_type": "mcq",
+      "body": "Select the process-to-count warrant.",
       "hints": [
-        "Arrivals in continuous time.",
-        "Count in interval has Poisson distribution under process assumptions."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "poisson",
-        "process",
-        "count",
-        "interval",
-        "rate",
-        "arrival",
-        "events"
-      ],
-      "explanation": "The LO is the process↔distribution connection, not rote formula dump.",
-      "model_answer": "A Poisson process models random arrivals/events in continuous time at a constant average rate (under standard assumptions). The number of events in a fixed interval then follows a Poisson distribution with mean rate × length.",
+      "accepted_keywords": [],
+      "explanation": "The learning objective is the process-to-distribution connection, not a rote PMF dump.",
+      "model_answer": "Process: continuous-time arrivals at a rate. Count in an interval: Poisson with mean rate times length.",
       "common_mistake": "Only restating the Poisson PMF without the process story.",
       "success_criteria": [
-        "Process story present.",
-        "Count↔Poisson link stated."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A Poisson process models random arrivals or events in continuous time at a constant average rate under standard assumptions. The number of events in a fixed interval then follows a Poisson distribution with mean equal to rate times length.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "A Poisson process is only another name for the Poisson PMF, with no continuous-time arrival story required.",
+          "misconception_tag": "pmf_only"
+        },
+        {
+          "id": "c",
+          "label": "Counts in a fixed interval follow a continuous Normal distribution under a Poisson process, while the Poisson distribution is only for waiting times.",
+          "misconception_tag": "count_law_wrong"
+        },
+        {
+          "id": "d",
+          "label": "The Poisson distribution models arrivals in continuous time, and the Poisson process is the discrete count law in an interval.",
+          "misconception_tag": "roles_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1004-2.1d-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-2.1d-cp-01",
       "title": "Checkpoint: refuse label-collapse",
-      "prompt": "Closed-book. A student says: 'Poisson just means the discrete distribution. Process talk is optional decoration.' Refuse that claim in two sentences with one process↔count warrant.",
-      "response_type": "short_structured",
-      "body": "Refuse collapse; state connection.",
+      "prompt": "Closed-book. A student says Poisson just means the discrete distribution and process talk is optional decoration. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Refuse the collapse; state the connection.",
       "hints": [
-        "Process is the continuous-time arrival model.",
-        "Distribution is the count law in an interval."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "process",
-        "count",
-        "interval",
-        "refuse",
-        "distribution",
-        "not",
-        "optional"
-      ],
-      "explanation": "Syllabus 2.1.4 requires the connection, not optional decoration.",
-      "model_answer": "Refuse: the Poisson process is the continuous-time arrival model; the Poisson distribution is the law for the count in an interval under that process. Collapsing them loses the LO's required connection.",
+      "accepted_keywords": [],
+      "explanation": "Syllabus 2.1.4 requires the process-to-count connection, not optional decoration.",
+      "model_answer": "Process is continuous-time arrivals; distribution is the interval count law; refuse collapsing them.",
       "common_mistake": "Agreeing that process language is optional.",
       "success_criteria": [
-        "Refusal clear.",
-        "Connection warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse: the Poisson process is the continuous-time arrival model; the Poisson distribution is the law for the count in an interval under that process. Collapsing them loses the required connection.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Agree: process language is optional decoration once the discrete Poisson PMF is named.",
+          "misconception_tag": "agree_optional"
+        },
+        {
+          "id": "c",
+          "label": "Refuse only the word process, but accept that interval counts need no distributional link to arrivals.",
+          "misconception_tag": "refuse_word_only"
+        },
+        {
+          "id": "d",
+          "label": "The discrete Poisson distribution already includes continuous-time arrivals, so distinguishing process from count law is unnecessary.",
+          "misconception_tag": "distribution_includes_process"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
