@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.4. Titles only tonight",
     "student_facing": "Tomorrow: basic Normal sampling distributions for mean and variance (2.6.4). Optional light prep: skim 2.6.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Mean and variance of X̄ and mean of S²",
+    "problem_statement": "A population has mean μ = 12 and variance σ² = 36. A random sample of size n = 9 is drawn. Express E[X̄], Var(X̄), and E[S²] in terms of μ, σ², and n, and evaluate each numerically. Do not invoke Normal sampling laws or the t-statistic.",
+    "given": [
+      {
+        "symbol": "μ",
+        "value": "12",
+        "note": "population mean"
+      },
+      {
+        "symbol": "σ²",
+        "value": "36",
+        "note": "population variance"
+      },
+      {
+        "symbol": "n",
+        "value": "9",
+        "note": "sample size"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Use E[X̄] = μ, Var(X̄) = σ²/n, and E[S²] = σ² for the unbiased sample variance.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Mean of the sample mean",
+        "attempt_cue": "State and evaluate E[X̄].",
+        "explanation": "For a random sample with finite mean, the sample mean is unbiased for μ.",
+        "calculation": "E[X̄] = μ = 12",
+        "result": "E[X̄] = 12"
+      },
+      {
+        "id": "S2",
+        "label": "Variance of the sample mean",
+        "attempt_cue": "State and evaluate Var(X̄).",
+        "explanation": "Independence in the random sample gives Var(X̄) = σ²/n.",
+        "calculation": "Var(X̄) = 36 / 9 = 4",
+        "result": "Var(X̄) = 4"
+      },
+      {
+        "id": "S3",
+        "label": "Mean of S² and refuse Normal/t jump",
+        "attempt_cue": "State E[S²] and name what this LO does not yet require.",
+        "explanation": "For the usual unbiased sample variance, E[S²] = σ². This identity does not by itself give Normal laws for X̄ or the t-statistic; those need extra distributional assumptions treated in later LOs.",
+        "calculation": "E[S²] = σ² = 36",
+        "result": "E[S²] = 36; no Normal/t claim required here"
+      }
+    ],
+    "final_answer": "E[X̄] = 12; Var(X̄) = 4; E[S²] = 36. These moment identities do not yet invoke Normal sampling laws or t.",
+    "common_pitfall": "Writing Var(X̄) = σ² = 36 instead of σ²/n = 4, or jumping to X̄ ~ Normal or a t pivot before this LO asks for it.",
+    "syllabus_ref": "2.6.3"
+  }
 }

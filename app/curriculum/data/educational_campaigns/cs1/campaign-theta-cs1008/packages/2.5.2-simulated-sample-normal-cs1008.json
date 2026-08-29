@@ -218,5 +218,61 @@
     "light_prep_cue": "Optional: list the two 2.5 LO hinges from memory. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Theta Revision (retrieve 2.5.1–2.5.2). Optional light prep: list the two hinges from memory. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Compare Exponential samples with a Normal overlay",
+    "problem_statement": "Waiting times (days) follow Exponential with mean θ = 400 (so sd = 400 also). An analyst simulates samples of size n = 20 and overlays a Normal(400, 400²) density on the histogram of individual draws. Judge whether that Normal overlay is a good description of the individual-sample histogram, and state what changes if the object compared is instead the sampling distribution of X̄ at much larger n.",
+    "given": [
+      {
+        "symbol": "parent",
+        "value": "Exponential(mean θ = 400)",
+        "note": "right-skewed continuous waiting times"
+      },
+      {
+        "symbol": "theoretical sd",
+        "value": "400",
+        "note": "equals the mean for Exponential"
+      },
+      {
+        "symbol": "simulation size",
+        "value": "n = 20",
+        "note": "draws in each simulated sample"
+      },
+      {
+        "symbol": "overlay",
+        "value": "Normal(400, 400²)",
+        "note": "matched-mean-and-sd Normal on the histogram"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Separate the shape of individual Exponential draws from the CLT behaviour of sample means before judging the overlay.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Characterise the parent shape",
+        "attempt_cue": "Name the skewness feature of Exponential(400).",
+        "explanation": "An Exponential waiting-time law is right-skewed and supported on (0, ∞). Matching mean and sd to a Normal does not remove that skew for individual observations.",
+        "calculation": "Parent: right-skewed, support (0, ∞); Normal overlay is symmetric on (−∞, ∞)",
+        "result": "Parent shape ≠ Normal shape"
+      },
+      {
+        "id": "S2",
+        "label": "Judge the n = 20 individual-sample overlay",
+        "attempt_cue": "Decide whether Normal(400, 400²) describes the histogram of draws.",
+        "explanation": "At n = 20, simulated individual draws still show the Exponential skew and a hard floor at 0. A matched Normal puts mass on negative values and understates the right tail, so the overlay is a poor description of the sample histogram.",
+        "calculation": "Judgement: poor fit of Normal overlay to individual Exponential draws at n = 20",
+        "result": "Normal overlay fails for individual draws"
+      },
+      {
+        "id": "S3",
+        "label": "Contrast with the sample-mean story",
+        "attempt_cue": "State what improves when comparing sampling distributions of X̄ at large n.",
+        "explanation": "The CLT concerns the sample mean, not individual draws. Histograms of X̄ from many large-n replications become closer to Normal even when the parent is Exponential; that is a different comparison from overlaying Normal on raw waiting times.",
+        "calculation": "Individual draws: Normal poor; X̄ at large n: Normal approximation may improve",
+        "result": "Object of comparison matters (draws vs means)"
+      }
+    ],
+    "final_answer": "Normal(400, 400²) is a poor description of individual Exponential(400) draws at n = 20 (skew, support). Comparing sampling distributions of X̄ at large n is a different question where Normal approximation can improve.",
+    "common_pitfall": "Treating a matched-mean-and-sd Normal overlay as automatically adequate for skewed individual draws, or confusing that histogram comparison with a CLT statement about X̄.",
+    "syllabus_ref": "2.5.2"
+  }
 }

@@ -218,5 +218,51 @@
     "light_prep_cue": "Optional: list the two 2.4 LO hinges from memory. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Eta Revision (retrieve 2.4.1–2.4.2). Optional light prep: list the two hinges from memory. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Mean and variance from the Poisson CGF",
+    "problem_statement": "For X ~ Poisson(λ = 2), the cumulant generating function is C_X(t) = 2(e^t − 1). Obtain E[X] and Var(X) by differentiating the CGF at t = 0. Confirm that stopping at writing down C_X(t) without differentiation does not extract the moments.",
+    "given": [
+      {
+        "symbol": "C_X(t)",
+        "value": "2(e^t − 1)",
+        "note": "CGF for Poisson(λ = 2)"
+      },
+      {
+        "symbol": "extraction rule",
+        "value": "E[X] = C'(0); Var(X) = C''(0)",
+        "note": "first two cumulants"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Differentiate C once and twice, then evaluate at t = 0.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Differentiate once for the mean",
+        "attempt_cue": "Compute C'(t) and evaluate at 0.",
+        "explanation": "C'(t) = 2e^t, so the first cumulant at the origin is the mean.",
+        "calculation": "C'(t) = 2e^t; C'(0) = 2e^0 = 2",
+        "result": "E[X] = 2"
+      },
+      {
+        "id": "S2",
+        "label": "Differentiate twice for the variance",
+        "attempt_cue": "Compute C''(t) and evaluate at 0.",
+        "explanation": "For this CGF, C''(t) = 2e^t as well, so the second cumulant equals the mean, as required for Poisson.",
+        "calculation": "C''(t) = 2e^t; C''(0) = 2",
+        "result": "Var(X) = 2"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse definition-as-extraction",
+        "attempt_cue": "State why writing C_X(t) = 2(e^t − 1) alone does not give the moments.",
+        "explanation": "Having the generating function is not the same as extracting moments. Differentiation (or series expansion) at t = 0 is the extraction step.",
+        "calculation": "C_X(t) known ≠ moments extracted until C'(0), C''(0) evaluated",
+        "result": "Must differentiate (or expand) to extract"
+      }
+    ],
+    "final_answer": "E[X] = C'(0) = 2; Var(X) = C''(0) = 2. Writing the CGF without differentiation does not extract the moments.",
+    "common_pitfall": "Treating the presence of C_X(t) = 2(e^t − 1) as already giving the moments, or evaluating C(0) = 0 and calling that the mean.",
+    "syllabus_ref": "2.4.2"
+  }
 }

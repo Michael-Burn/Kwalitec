@@ -217,5 +217,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.6. Titles only tonight",
     "student_facing": "Tomorrow: F distribution for the ratio of two sample variances (2.6.6). Optional light prep: skim 2.6.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Evaluate a one-sample t-statistic under Normal sampling",
+    "problem_statement": "A random sample of size n = 16 from a Normal population yields X̄ = 105 and sample standard deviation S = 8. Under H₀: μ = 100, compute the t-statistic and state its null degrees of freedom. Explain why replacing S by the unknown σ in a z formula is not available here.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "16",
+        "note": "sample size"
+      },
+      {
+        "symbol": "X̄",
+        "value": "105",
+        "note": "sample mean"
+      },
+      {
+        "symbol": "S",
+        "value": "8",
+        "note": "sample sd (σ unknown)"
+      },
+      {
+        "symbol": "μ₀",
+        "value": "100",
+        "note": "null mean"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form t = (X̄ − μ₀)/(S/√n) and name df = n − 1.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the standard error using S",
+        "attempt_cue": "Compute S/√n.",
+        "explanation": "With σ unknown, the studentised mean uses the sample sd in the denominator.",
+        "calculation": "S/√n = 8 / √16 = 8 / 4 = 2",
+        "result": "SE = 2"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate t and degrees of freedom",
+        "attempt_cue": "Compute (X̄ − μ₀)/SE and df.",
+        "explanation": "Under Normal sampling and H₀, t follows Student-t with n − 1 degrees of freedom.",
+        "calculation": "t = (105 − 100)/2 = 2.5; df = 16 − 1 = 15",
+        "result": "t = 2.5 on 15 df"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse z-with-S and F swallow",
+        "attempt_cue": "State why a z pivot with S is not the t law, and why F is a different job.",
+        "explanation": "Using S inside a Normal z formula pretends σ is known. The t law accounts for estimating σ. An F comparison of two sample variances is a different sampling problem from this one-sample mean pivot.",
+        "calculation": "z-with-S ≠ t_{15}; F is for variance ratios, not this mean pivot",
+        "result": "Use t_{15}, not z-with-S or F"
+      }
+    ],
+    "final_answer": "t = 2.5 on 15 degrees of freedom. With σ unknown, the correct pivot is t, not a z that plugs in S, and not an F variance-ratio statistic.",
+    "common_pitfall": "Computing z = (105 − 100)/(8/4) = 2.5 and treating it as standard Normal because the arithmetic matches t, or reaching for an F statistic when the question is about a single mean.",
+    "syllabus_ref": "2.6.5"
+  }
 }

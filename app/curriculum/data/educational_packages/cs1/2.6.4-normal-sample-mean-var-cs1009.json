@@ -218,5 +218,51 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.5. Titles only tonight",
     "student_facing": "Tomorrow: t-statistic for random samples from a Normal (2.6.5). Optional light prep: skim 2.6.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Normal laws for X̄ and for (n−1)S²/σ²",
+    "problem_statement": "A random sample of size n = 16 is drawn from Normal(μ = 100, σ² = 25). State the exact sampling distribution of X̄ and of (n − 1)S²/σ². Explain why writing the t-statistic is a different object from these two laws.",
+    "given": [
+      {
+        "symbol": "parent",
+        "value": "Normal(μ = 100, σ² = 25)",
+        "note": "iid Normal sample"
+      },
+      {
+        "symbol": "n",
+        "value": "16",
+        "note": "sample size"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the Normal law for X̄ with variance σ²/n, then the chi-square law for the scaled sample variance, and keep t separate.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Sampling distribution of X̄",
+        "attempt_cue": "Name the Normal parameters for X̄.",
+        "explanation": "For iid Normal observations, the sample mean is exactly Normal with mean μ and variance σ²/n.",
+        "calculation": "X̄ ~ Normal(100, 25/16) = Normal(100, 1.5625)",
+        "result": "X̄ ~ Normal(100, 1.5625)"
+      },
+      {
+        "id": "S2",
+        "label": "Sampling distribution of the scaled sample variance",
+        "attempt_cue": "State the chi-square law and its degrees of freedom.",
+        "explanation": "Independently of X̄, (n − 1)S²/σ² follows χ² with n − 1 degrees of freedom.",
+        "calculation": "(16 − 1)S²/25 = 15 S²/25 ~ χ²_15",
+        "result": "15 S²/25 ~ χ²_15"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse treating this as the t-statistic",
+        "attempt_cue": "Name what extra ratio creates t.",
+        "explanation": "The t-statistic replaces σ with S in the studentised mean and uses the ratio of the Normal and chi-square pieces. Stating the separate Normal and χ² laws is not yet writing t = (X̄ − μ)/(S/√n).",
+        "calculation": "t uses (X̄ − μ)/(S/√n); that is not either law alone",
+        "result": "Normal and χ² laws ≠ the t-statistic"
+      }
+    ],
+    "final_answer": "X̄ ~ Normal(100, 1.5625); 15 S²/25 ~ χ²_15. The t-statistic is a further ratio that replaces σ by S, not either of these laws alone.",
+    "common_pitfall": "Writing X̄ ~ Normal(100, 25) without dividing by n, or labelling (n − 1)S²/σ² ~ χ²_{n−1} as the t-statistic.",
+    "syllabus_ref": "2.6.4"
+  }
 }

@@ -217,5 +217,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.2.2. Titles only tonight",
     "student_facing": "Tomorrow: independence conditions for jointly distributed RVs (2.2.2). Optional light prep: skim 2.2.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Marginal and conditional from a flood-wind property table",
+    "problem_statement": "A property book records indicators (X, Y) with joint PMF P(0,0) = 0.55, P(0,1) = 0.15, P(1,0) = 0.20, P(1,1) = 0.10, where X = 1 if a flood claim occurs and Y = 1 if a wind claim occurs in the same year. Compute P(Y = 1) and P(X = 1 | Y = 1).",
+    "given": [
+      {
+        "symbol": "P(0,0)",
+        "value": "0.55",
+        "note": "no flood, no wind"
+      },
+      {
+        "symbol": "P(0,1)",
+        "value": "0.15",
+        "note": "no flood, wind"
+      },
+      {
+        "symbol": "P(1,0)",
+        "value": "0.20",
+        "note": "flood, no wind"
+      },
+      {
+        "symbol": "P(1,1)",
+        "value": "0.10",
+        "note": "flood and wind"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Sum the Y = 1 column for the marginal, then divide the joint cell by that marginal for the conditional.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the marginal P(Y = 1)",
+        "attempt_cue": "Add the joint probabilities with Y = 1.",
+        "explanation": "The marginal for Y = 1 sums over X: P(Y = 1) = P(0,1) + P(1,1).",
+        "calculation": "P(Y = 1) = 0.15 + 0.10 = 0.25",
+        "result": "P(Y = 1) = 0.25"
+      },
+      {
+        "id": "S2",
+        "label": "Form the conditional P(X = 1 | Y = 1)",
+        "attempt_cue": "Divide P(1,1) by P(Y = 1).",
+        "explanation": "Conditional probability renormalises the joint cell by the matching marginal.",
+        "calculation": "P(X = 1 | Y = 1) = 0.10 / 0.25 = 0.40",
+        "result": "P(X = 1 | Y = 1) = 0.40"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse joint-as-marginal",
+        "attempt_cue": "State why P(1,1) = 0.10 is not P(Y = 1).",
+        "explanation": "A single joint cell is not a marginal. Marginals sum across the other variable; conditionals divide by that sum.",
+        "calculation": "0.10 is P(X=1, Y=1), not P(Y=1)",
+        "result": "Joint cell ≠ marginal or conditional"
+      }
+    ],
+    "final_answer": "P(Y = 1) = 0.25; P(X = 1 | Y = 1) = 0.40. The joint table is not interchangeable with its margins or conditionals without these moves.",
+    "common_pitfall": "Reporting P(Y = 1) = 0.10 because that is the flood-and-wind cell, or taking P(X = 1 | Y = 1) = 0.10 without dividing by the marginal 0.25.",
+    "syllabus_ref": "2.2.1"
+  }
 }

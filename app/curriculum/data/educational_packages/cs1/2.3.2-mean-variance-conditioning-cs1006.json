@@ -218,5 +218,61 @@
     "light_prep_cue": "Optional: list the two 2.3 LO hinges from memory. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Zeta Revision (retrieve 2.3.1–2.3.2). Optional light prep: list the two hinges from memory. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Tower law and variance decomposition for claim cost",
+    "problem_statement": "A risk type indicator X equals 0 with probability 0.4 and 1 with probability 0.6. Conditional on X, claim cost Y (£00) satisfies E[Y | X = 0] = 5, E[Y | X = 1] = 12, Var(Y | X = 0) = 4, and Var(Y | X = 1) = 9. Compute E[Y] and Var(Y) using the conditioning formulae.",
+    "given": [
+      {
+        "symbol": "P(X = 0)",
+        "value": "0.4",
+        "note": "low-risk type"
+      },
+      {
+        "symbol": "P(X = 1)",
+        "value": "0.6",
+        "note": "high-risk type"
+      },
+      {
+        "symbol": "E[Y | X]",
+        "value": "5 if X = 0; 12 if X = 1",
+        "note": "conditional means"
+      },
+      {
+        "symbol": "Var(Y | X)",
+        "value": "4 if X = 0; 9 if X = 1",
+        "note": "conditional variances"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Apply E[Y] = E[E[Y|X]], then Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Apply the tower law for the mean",
+        "attempt_cue": "Average the conditional means with P(X).",
+        "explanation": "The law of total expectation recovers the unconditional mean from the conditional means.",
+        "calculation": "E[Y] = 0.4×5 + 0.6×12 = 2 + 7.2 = 9.2",
+        "result": "E[Y] = 9.2"
+      },
+      {
+        "id": "S2",
+        "label": "Form E[Var(Y|X)] and Var(E[Y|X])",
+        "attempt_cue": "Average the conditional variances, then variance the conditional means.",
+        "explanation": "Within-group variation is E[Var(Y|X)]. Between-group variation is Var(E[Y|X]) = E[m(X)²] − (E[m(X)])² with m(X) = E[Y|X].",
+        "calculation": "E[Var(Y|X)] = 0.4×4 + 0.6×9 = 7; Var(E[Y|X]) = 0.4×25 + 0.6×144 − 9.2² = 96.4 − 84.64 = 11.76",
+        "result": "E[Var] = 7; Var(E) = 11.76"
+      },
+      {
+        "id": "S3",
+        "label": "Add for Var(Y) and refuse stopping at E[Y|X]",
+        "attempt_cue": "Sum the two variance pieces and state why E[Y|X] alone is incomplete.",
+        "explanation": "Total variance is within plus between. Stopping after reporting E[Y|X] leaves both the unconditional mean (unless averaged) and the variance decomposition unfinished.",
+        "calculation": "Var(Y) = 7 + 11.76 = 18.76",
+        "result": "Var(Y) = 18.76; need both pieces"
+      }
+    ],
+    "final_answer": "E[Y] = 9.2; Var(Y) = 18.76, from E[Var(Y|X)] = 7 and Var(E[Y|X]) = 11.76.",
+    "common_pitfall": "Reporting only E[Y|X] = 5 or 12 as if that finished the mean, or computing Var(Y) as E[Var(Y|X)] = 7 and omitting the between-group term Var(E[Y|X]) = 11.76.",
+    "syllabus_ref": "2.3.2"
+  }
 }

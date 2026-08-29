@@ -1,0 +1,826 @@
+{
+  "worked_examples": {
+    "2.1.6-software-generation-cs1004.json": {
+      "title": "Generate and sanity-check Poisson and Exponential draws",
+      "problem_statement": "An analyst needs software samples from two univariate families before any joint modelling: (i) annual claim counts as Poisson(λ = 3); (ii) inter-claim waiting times (days) as Exponential with mean θ = 5. Describe the generation plan for n = 50 draws of each family, state one sanity check for each sample, and decide whether a mean of 3.1 on the Poisson sample alone proves the software call was correct.",
+      "given": [
+        {
+          "symbol": "discrete family",
+          "value": "Poisson(λ = 3)",
+          "note": "claim counts; support {0, 1, 2, …}"
+        },
+        {
+          "symbol": "continuous family",
+          "value": "Exponential(mean θ = 5)",
+          "note": "waiting times in days; support (0, ∞)"
+        },
+        {
+          "symbol": "n",
+          "value": "50",
+          "note": "planned draws per family"
+        },
+        {
+          "symbol": "observed Poisson sample mean",
+          "value": "3.1",
+          "note": "illustrative software output for the refuse step"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Name a sampler for each family, one check against support or mean, then judge whether 3.1 alone certifies the Poisson call.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Plan the two software samplers",
+          "attempt_cue": "Name a discrete call for Poisson(3) and a continuous call for Exponential mean 5.",
+          "explanation": "Software generation starts from a named family and parameter, not from a blank RNG. Poisson uses a discrete count sampler; Exponential uses a positive continuous sampler with mean 5 (or rate 1/5, depending on the package convention).",
+          "calculation": "Poisson: rpois / Poisson(3); Exponential: rexp(mean=5) or Exp(rate=0.2)",
+          "result": "Two named samplers, parameters fixed before drawing"
+        },
+        {
+          "id": "S2",
+          "label": "Run one sanity check per sample",
+          "attempt_cue": "State a support check and a rough mean check.",
+          "explanation": "A usable check compares sample behaviour with the family's support and first moment. Poisson draws must be non-negative integers with sample mean near 3; Exponential draws must be strictly positive with sample mean near 5.",
+          "calculation": "Poisson: all ≥ 0 integers, mean ≈ 3; Exponential: all > 0, mean ≈ 5",
+          "result": "Support + rough mean check for each family"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse mean-near-target as sole proof",
+          "attempt_cue": "Decide whether sample mean 3.1 alone proves the Poisson call was correct.",
+          "explanation": "A sample mean near λ is consistent with Poisson(3) but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
+          "calculation": "3.1 ≈ 3 is consistent, not a proof of correct generation",
+          "result": "Mean proximity alone does not certify the sampler"
+        }
+      ],
+      "final_answer": "Generate n = 50 from Poisson(3) and Exponential(mean 5) with named software samplers; check support and rough means; a Poisson sample mean of 3.1 is consistent but not sole proof that the call was correct.",
+      "common_pitfall": "Treating any code that prints numbers as generation complete, or treating a sample mean near 3 as proof the Poisson(3) call was correct without checking support, parameterisation, or that joint distributions remain out of scope.",
+      "syllabus_ref": "2.1.6"
+    },
+    "2.2.1-marginal-conditional-cs1005.json": {
+      "title": "Marginal and conditional from a flood-wind property table",
+      "problem_statement": "A property book records indicators (X, Y) with joint PMF P(0,0) = 0.55, P(0,1) = 0.15, P(1,0) = 0.20, P(1,1) = 0.10, where X = 1 if a flood claim occurs and Y = 1 if a wind claim occurs in the same year. Compute P(Y = 1) and P(X = 1 | Y = 1).",
+      "given": [
+        {
+          "symbol": "P(0,0)",
+          "value": "0.55",
+          "note": "no flood, no wind"
+        },
+        {
+          "symbol": "P(0,1)",
+          "value": "0.15",
+          "note": "no flood, wind"
+        },
+        {
+          "symbol": "P(1,0)",
+          "value": "0.20",
+          "note": "flood, no wind"
+        },
+        {
+          "symbol": "P(1,1)",
+          "value": "0.10",
+          "note": "flood and wind"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Sum the Y = 1 column for the marginal, then divide the joint cell by that marginal for the conditional.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the marginal P(Y = 1)",
+          "attempt_cue": "Add the joint probabilities with Y = 1.",
+          "explanation": "The marginal for Y = 1 sums over X: P(Y = 1) = P(0,1) + P(1,1).",
+          "calculation": "P(Y = 1) = 0.15 + 0.10 = 0.25",
+          "result": "P(Y = 1) = 0.25"
+        },
+        {
+          "id": "S2",
+          "label": "Form the conditional P(X = 1 | Y = 1)",
+          "attempt_cue": "Divide P(1,1) by P(Y = 1).",
+          "explanation": "Conditional probability renormalises the joint cell by the matching marginal.",
+          "calculation": "P(X = 1 | Y = 1) = 0.10 / 0.25 = 0.40",
+          "result": "P(X = 1 | Y = 1) = 0.40"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse joint-as-marginal",
+          "attempt_cue": "State why P(1,1) = 0.10 is not P(Y = 1).",
+          "explanation": "A single joint cell is not a marginal. Marginals sum across the other variable; conditionals divide by that sum.",
+          "calculation": "0.10 is P(X=1, Y=1), not P(Y=1)",
+          "result": "Joint cell ≠ marginal or conditional"
+        }
+      ],
+      "final_answer": "P(Y = 1) = 0.25; P(X = 1 | Y = 1) = 0.40. The joint table is not interchangeable with its margins or conditionals without these moves.",
+      "common_pitfall": "Reporting P(Y = 1) = 0.10 because that is the flood-and-wind cell, or taking P(X = 1 | Y = 1) = 0.10 without dividing by the marginal 0.25.",
+      "syllabus_ref": "2.2.1"
+    },
+    "2.2.3-cov-corr-expectation-cs1005.json": {
+      "title": "Covariance, correlation, and E[X+2Y] from a joint PMF",
+      "problem_statement": "Two binary indicators (X, Y) for a household have joint PMF P(0,0) = 0.30, P(0,1) = 0.20, P(1,0) = 0.20, P(1,1) = 0.30, where X = 1 if a contents claim occurs and Y = 1 if a buildings claim occurs. Compute Cov(X, Y), Corr(X, Y), and E[X + 2Y].",
+      "given": [
+        {
+          "symbol": "P(0,0)",
+          "value": "0.30",
+          "note": "no contents, no buildings"
+        },
+        {
+          "symbol": "P(0,1)",
+          "value": "0.20",
+          "note": "no contents, buildings"
+        },
+        {
+          "symbol": "P(1,0)",
+          "value": "0.20",
+          "note": "contents, no buildings"
+        },
+        {
+          "symbol": "P(1,1)",
+          "value": "0.30",
+          "note": "contents and buildings"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form E[X], E[Y], and E[XY] first, then Cov, then Corr, then E[X+2Y] by linearity.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Compute the first moments",
+          "attempt_cue": "Find E[X], E[Y], and E[XY] from the joint table.",
+          "explanation": "For binary indicators, E[X] = P(X = 1) and E[Y] = P(Y = 1). The product moment is E[XY] = P(X = 1, Y = 1).",
+          "calculation": "E[X] = 0.20 + 0.30 = 0.50; E[Y] = 0.20 + 0.30 = 0.50; E[XY] = 0.30",
+          "result": "E[X] = 0.50; E[Y] = 0.50; E[XY] = 0.30"
+        },
+        {
+          "id": "S2",
+          "label": "Form Cov and Corr",
+          "attempt_cue": "Use Cov = E[XY] − E[X]E[Y] and divide by σ_X σ_Y.",
+          "explanation": "Covariance subtracts the product of means from E[XY]. Each margin is Bernoulli(0.5), so Var(X) = Var(Y) = 0.25 and σ_X = σ_Y = 0.5.",
+          "calculation": "Cov = 0.30 − 0.50×0.50 = 0.05; Corr = 0.05 / (0.5×0.5) = 0.20",
+          "result": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20"
+        },
+        {
+          "id": "S3",
+          "label": "Evaluate E[X + 2Y] and refuse Corr=0⇒independence",
+          "attempt_cue": "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
+          "explanation": "Linearity gives E[X + 2Y] = E[X] + 2E[Y] without needing the joint again. Correlation here is 0.20, not zero; even Corr = 0 would not by itself prove independence for general joint distributions.",
+          "calculation": "E[X + 2Y] = 0.50 + 2×0.50 = 1.50",
+          "result": "E[X + 2Y] = 1.50; Corr ≠ 0 here (and Corr = 0 ≠ independence in general)"
+        }
+      ],
+      "final_answer": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20; E[X + 2Y] = 1.50. Zero correlation is not automatic independence, and here correlation is not zero.",
+      "common_pitfall": "Computing Cov as E[XY] alone (forgetting to subtract E[X]E[Y]), or claiming that Corr = 0 would prove independence for any joint distribution.",
+      "syllabus_ref": "2.2.3"
+    },
+    "2.2.4-linear-combinations-cs1005.json": {
+      "title": "Mean and variance of 2X − Y with nonzero covariance",
+      "problem_statement": "Portfolio losses X and Y (£000) satisfy E[X] = 10, E[Y] = 4, Var(X) = 9, Var(Y) = 4, and Cov(X, Y) = 3. For the linear combination L = 2X − Y, compute E[L] and Var(L).",
+      "given": [
+        {
+          "symbol": "E[X]",
+          "value": "10",
+          "note": "mean of X (£000)"
+        },
+        {
+          "symbol": "E[Y]",
+          "value": "4",
+          "note": "mean of Y (£000)"
+        },
+        {
+          "symbol": "Var(X)",
+          "value": "9",
+          "note": "variance of X"
+        },
+        {
+          "symbol": "Var(Y)",
+          "value": "4",
+          "note": "variance of Y"
+        },
+        {
+          "symbol": "Cov(X, Y)",
+          "value": "3",
+          "note": "nonzero dependence"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Apply linearity for the mean, then expand Var(2X − Y) including the covariance term.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Compute E[2X − Y]",
+          "attempt_cue": "Use E[aX + bY] = aE[X] + bE[Y] with a = 2, b = −1.",
+          "explanation": "Expectation is linear whether or not X and Y are dependent.",
+          "calculation": "E[L] = 2×10 + (−1)×4 = 20 − 4 = 16",
+          "result": "E[L] = 16"
+        },
+        {
+          "id": "S2",
+          "label": "Expand Var(2X − Y)",
+          "attempt_cue": "Write a²Var(X) + b²Var(Y) + 2ab Cov(X, Y).",
+          "explanation": "Variance of a linear combination needs the covariance whenever dependence is present. Here a = 2 and b = −1, so 2ab Cov = 2(2)(−1)(3) = −12.",
+          "calculation": "Var(L) = 4×9 + 1×4 + 2(2)(−1)(3) = 36 + 4 − 12 = 28",
+          "result": "Var(L) = 28"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse dropping Cov",
+          "attempt_cue": "State the incorrect variance obtained if Cov is ignored.",
+          "explanation": "Dropping the covariance term as if X and Y were uncorrelated gives 36 + 4 = 40, which overstates Var(L) when Cov = 3 > 0 and the combination is 2X − Y.",
+          "calculation": "Without Cov: 40 (wrong); with Cov: 28",
+          "result": "Must retain 2ab Cov when dependent"
+        }
+      ],
+      "final_answer": "E[2X − Y] = 16; Var(2X − Y) = 28. Omitting Cov(X, Y) = 3 incorrectly yields 40.",
+      "common_pitfall": "Computing Var(2X − Y) as 4Var(X) + Var(Y) = 40 and dropping the covariance term even though Cov(X, Y) = 3 is given.",
+      "syllabus_ref": "2.2.4"
+    },
+    "2.3.1-conditional-expectation-cs1006.json": {
+      "title": "Conditional mean severity given claim count",
+      "problem_statement": "Claim count X and severity band Y (£00) have joint PMF P(1,10) = 0.25, P(1,20) = 0.25, P(2,10) = 0.15, P(2,20) = 0.35. Compute E[Y | X = 1] and E[Y | X = 2], and state why neither equals the unconditional E[Y] as an object.",
+      "given": [
+        {
+          "symbol": "P(1,10)",
+          "value": "0.25",
+          "note": "one claim, severity band 10"
+        },
+        {
+          "symbol": "P(1,20)",
+          "value": "0.25",
+          "note": "one claim, severity band 20"
+        },
+        {
+          "symbol": "P(2,10)",
+          "value": "0.15",
+          "note": "two claims, severity band 10"
+        },
+        {
+          "symbol": "P(2,20)",
+          "value": "0.35",
+          "note": "two claims, severity band 20"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form P(X = x), then weight the Y values by the conditional probabilities given X = x.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the X margins",
+          "attempt_cue": "Sum the joint cells for X = 1 and for X = 2.",
+          "explanation": "Conditional expectation renormalises the joint slice for fixed X by the marginal P(X = x).",
+          "calculation": "P(X = 1) = 0.25 + 0.25 = 0.50; P(X = 2) = 0.15 + 0.35 = 0.50",
+          "result": "P(X = 1) = P(X = 2) = 0.50"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate E[Y | X = 1] and E[Y | X = 2]",
+          "attempt_cue": "Compute the conditional means from the renormalised joints.",
+          "explanation": "E[Y | X = x] = Σ y P(X = x, Y = y) / P(X = x).",
+          "calculation": "E[Y|X=1] = (10×0.25 + 20×0.25)/0.50 = 15; E[Y|X=2] = (10×0.15 + 20×0.35)/0.50 = 17",
+          "result": "E[Y|X=1] = 15; E[Y|X=2] = 17"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse equating E[Y] with E[Y|X]",
+          "attempt_cue": "Compute E[Y] and contrast it with the conditional means as objects.",
+          "explanation": "The unconditional mean E[Y] = 10×0.40 + 20×0.60 = 16 is a single number. E[Y|X] is a random function of X (15 when X = 1, 17 when X = 2). They are related by the tower law but are not the same object.",
+          "calculation": "E[Y] = 16; E[Y|X] takes values 15 and 17",
+          "result": "E[Y] ≠ E[Y|X] as objects"
+        }
+      ],
+      "final_answer": "E[Y | X = 1] = 15; E[Y | X = 2] = 17. Unconditional E[Y] = 16 is a number; E[Y|X] is a function of X.",
+      "common_pitfall": "Reporting E[Y | X = 1] = 10×0.25 + 20×0.25 = 7.5 without dividing by P(X = 1), or treating the unconditional mean 16 as interchangeable with E[Y|X].",
+      "syllabus_ref": "2.3.1"
+    },
+    "2.3.2-mean-variance-conditioning-cs1006.json": {
+      "title": "Tower law and variance decomposition for claim cost",
+      "problem_statement": "A risk type indicator X equals 0 with probability 0.4 and 1 with probability 0.6. Conditional on X, claim cost Y (£00) satisfies E[Y | X = 0] = 5, E[Y | X = 1] = 12, Var(Y | X = 0) = 4, and Var(Y | X = 1) = 9. Compute E[Y] and Var(Y) using the conditioning formulae.",
+      "given": [
+        {
+          "symbol": "P(X = 0)",
+          "value": "0.4",
+          "note": "low-risk type"
+        },
+        {
+          "symbol": "P(X = 1)",
+          "value": "0.6",
+          "note": "high-risk type"
+        },
+        {
+          "symbol": "E[Y | X]",
+          "value": "5 if X = 0; 12 if X = 1",
+          "note": "conditional means"
+        },
+        {
+          "symbol": "Var(Y | X)",
+          "value": "4 if X = 0; 9 if X = 1",
+          "note": "conditional variances"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Apply E[Y] = E[E[Y|X]], then Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Apply the tower law for the mean",
+          "attempt_cue": "Average the conditional means with P(X).",
+          "explanation": "The law of total expectation recovers the unconditional mean from the conditional means.",
+          "calculation": "E[Y] = 0.4×5 + 0.6×12 = 2 + 7.2 = 9.2",
+          "result": "E[Y] = 9.2"
+        },
+        {
+          "id": "S2",
+          "label": "Form E[Var(Y|X)] and Var(E[Y|X])",
+          "attempt_cue": "Average the conditional variances, then variance the conditional means.",
+          "explanation": "Within-group variation is E[Var(Y|X)]. Between-group variation is Var(E[Y|X]) = E[m(X)²] − (E[m(X)])² with m(X) = E[Y|X].",
+          "calculation": "E[Var(Y|X)] = 0.4×4 + 0.6×9 = 7; Var(E[Y|X]) = 0.4×25 + 0.6×144 − 9.2² = 96.4 − 84.64 = 11.76",
+          "result": "E[Var] = 7; Var(E) = 11.76"
+        },
+        {
+          "id": "S3",
+          "label": "Add for Var(Y) and refuse stopping at E[Y|X]",
+          "attempt_cue": "Sum the two variance pieces and state why E[Y|X] alone is incomplete.",
+          "explanation": "Total variance is within plus between. Stopping after reporting E[Y|X] leaves both the unconditional mean (unless averaged) and the variance decomposition unfinished.",
+          "calculation": "Var(Y) = 7 + 11.76 = 18.76",
+          "result": "Var(Y) = 18.76; need both pieces"
+        }
+      ],
+      "final_answer": "E[Y] = 9.2; Var(Y) = 18.76, from E[Var(Y|X)] = 7 and Var(E[Y|X]) = 11.76.",
+      "common_pitfall": "Reporting only E[Y|X] = 5 or 12 as if that finished the mean, or computing Var(Y) as E[Var(Y|X)] = 7 and omitting the between-group term Var(E[Y|X]) = 11.76.",
+      "syllabus_ref": "2.3.2"
+    },
+    "2.4.1-mgf-cgf-cs1007.json": {
+      "title": "MGF and CGF for a Poisson claim count",
+      "problem_statement": "Annual claim count X ~ Poisson(λ = 2). Obtain the moment generating function M_X(t) and the cumulant generating function C_X(t). State why writing M_X(t) = 2 does not define the MGF.",
+      "given": [
+        {
+          "symbol": "X",
+          "value": "Poisson(λ = 2)",
+          "note": "claim count"
+        },
+        {
+          "symbol": "definition",
+          "value": "M_X(t) = E[e^{tX}]",
+          "note": "MGF definition"
+        },
+        {
+          "symbol": "CGF link",
+          "value": "C_X(t) = log M_X(t)",
+          "note": "cumulant generating function"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Start from E[e^{tX}] for the Poisson pmf, then take the log for the CGF.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Derive the Poisson MGF",
+          "attempt_cue": "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
+          "explanation": "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
+          "calculation": "M_X(t) = exp(2(e^t − 1))",
+          "result": "M_X(t) = exp(2(e^t − 1))"
+        },
+        {
+          "id": "S2",
+          "label": "Form the CGF",
+          "attempt_cue": "Take the natural log of the MGF.",
+          "explanation": "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
+          "calculation": "C_X(t) = 2(e^t − 1)",
+          "result": "C_X(t) = 2(e^t − 1)"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse mean-as-MGF",
+          "attempt_cue": "State why M_X(t) = 2 is wrong even though E[X] = 2.",
+          "explanation": "The mean E[X] = 2 is M'(0) (or C'(0)), not the MGF itself. The MGF is a function of t, here exp(2(e^t − 1)), not the constant mean.",
+          "calculation": "E[X] = 2 = M'(0); M_X(t) ≠ 2",
+          "result": "Mean is not the MGF"
+        }
+      ],
+      "final_answer": "M_X(t) = exp(2(e^t − 1)); C_X(t) = 2(e^t − 1). The mean 2 is M'(0), not the MGF.",
+      "common_pitfall": "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
+      "syllabus_ref": "2.4.1"
+    },
+    "2.4.2-moment-via-gf-cs1007.json": {
+      "title": "Mean and variance from the Poisson CGF",
+      "problem_statement": "For X ~ Poisson(λ = 2), the cumulant generating function is C_X(t) = 2(e^t − 1). Obtain E[X] and Var(X) by differentiating the CGF at t = 0. Confirm that stopping at writing down C_X(t) without differentiation does not extract the moments.",
+      "given": [
+        {
+          "symbol": "C_X(t)",
+          "value": "2(e^t − 1)",
+          "note": "CGF for Poisson(λ = 2)"
+        },
+        {
+          "symbol": "extraction rule",
+          "value": "E[X] = C'(0); Var(X) = C''(0)",
+          "note": "first two cumulants"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Differentiate C once and twice, then evaluate at t = 0.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Differentiate once for the mean",
+          "attempt_cue": "Compute C'(t) and evaluate at 0.",
+          "explanation": "C'(t) = 2e^t, so the first cumulant at the origin is the mean.",
+          "calculation": "C'(t) = 2e^t; C'(0) = 2e^0 = 2",
+          "result": "E[X] = 2"
+        },
+        {
+          "id": "S2",
+          "label": "Differentiate twice for the variance",
+          "attempt_cue": "Compute C''(t) and evaluate at 0.",
+          "explanation": "For this CGF, C''(t) = 2e^t as well, so the second cumulant equals the mean, as required for Poisson.",
+          "calculation": "C''(t) = 2e^t; C''(0) = 2",
+          "result": "Var(X) = 2"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse definition-as-extraction",
+          "attempt_cue": "State why writing C_X(t) = 2(e^t − 1) alone does not give the moments.",
+          "explanation": "Having the generating function is not the same as extracting moments. Differentiation (or series expansion) at t = 0 is the extraction step.",
+          "calculation": "C_X(t) known ≠ moments extracted until C'(0), C''(0) evaluated",
+          "result": "Must differentiate (or expand) to extract"
+        }
+      ],
+      "final_answer": "E[X] = C'(0) = 2; Var(X) = C''(0) = 2. Writing the CGF without differentiation does not extract the moments.",
+      "common_pitfall": "Treating the presence of C_X(t) = 2(e^t − 1) as already giving the moments, or evaluating C(0) = 0 and calling that the mean.",
+      "syllabus_ref": "2.4.2"
+    },
+    "2.5.1-clt-cs1008.json": {
+      "title": "CLT probability for a mean pet-insurance severity",
+      "problem_statement": "Pet-insurance claim severities are iid with mean μ = 180 and standard deviation σ = 60. A sample of n = 36 claims is drawn. Using the CLT, approximate P(X̄ < 170). Use Φ(1) ≈ 0.841.",
+      "given": [
+        {
+          "symbol": "μ",
+          "value": "180",
+          "note": "population mean severity (£)"
+        },
+        {
+          "symbol": "σ",
+          "value": "60",
+          "note": "population sd (£)"
+        },
+        {
+          "symbol": "n",
+          "value": "36",
+          "note": "sample size"
+        },
+        {
+          "symbol": "Φ(1)",
+          "value": "≈ 0.841",
+          "note": "standard Normal CDF at 1"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form the sampling sd σ/√n first, then standardise 170 before reading Φ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Standard error of the sample mean",
+          "attempt_cue": "Compute σ/√n.",
+          "explanation": "Under the CLT for iid observations, X̄ is approximately Normal with mean μ and sd σ/√n.",
+          "calculation": "σ/√n = 60 / √36 = 60 / 6 = 10",
+          "result": "sd(X̄) = 10"
+        },
+        {
+          "id": "S2",
+          "label": "Standardise and evaluate the lower tail",
+          "attempt_cue": "Form z = (170 − 180)/10, then convert with Φ.",
+          "explanation": "The probability is the lower Normal tail at z = −1, equal to 1 − Φ(1).",
+          "calculation": "z = (170 − 180)/10 = −1; P(X̄ < 170) ≈ Φ(−1) = 1 − Φ(1) ≈ 1 − 0.841 = 0.159",
+          "result": "P ≈ 0.159"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse σ in place of σ/√n",
+          "attempt_cue": "State why using sd = 60 for X̄ is wrong.",
+          "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by √n. Using the population sd as if it were sd(X̄) ignores that reduction.",
+          "calculation": "sd(X̄) = 10, not σ = 60",
+          "result": "Must divide σ by √n"
+        }
+      ],
+      "final_answer": "X̄ ≈ Normal(180, 10); z = −1; P(X̄ < 170) ≈ 0.159. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
+      "common_pitfall": "Using X̄ ≈ Normal(180, 60) and computing z = (170 − 180)/60 = −1/6, or reading Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+      "syllabus_ref": "2.5.1"
+    },
+    "2.5.2-simulated-sample-normal-cs1008.json": {
+      "title": "Compare Exponential samples with a Normal overlay",
+      "problem_statement": "Waiting times (days) follow Exponential with mean θ = 400 (so sd = 400 also). An analyst simulates samples of size n = 20 and overlays a Normal(400, 400²) density on the histogram of individual draws. Judge whether that Normal overlay is a good description of the individual-sample histogram, and state what changes if the object compared is instead the sampling distribution of X̄ at much larger n.",
+      "given": [
+        {
+          "symbol": "parent",
+          "value": "Exponential(mean θ = 400)",
+          "note": "right-skewed continuous waiting times"
+        },
+        {
+          "symbol": "theoretical sd",
+          "value": "400",
+          "note": "equals the mean for Exponential"
+        },
+        {
+          "symbol": "simulation size",
+          "value": "n = 20",
+          "note": "draws in each simulated sample"
+        },
+        {
+          "symbol": "overlay",
+          "value": "Normal(400, 400²)",
+          "note": "matched-mean-and-sd Normal on the histogram"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Separate the shape of individual Exponential draws from the CLT behaviour of sample means before judging the overlay.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Characterise the parent shape",
+          "attempt_cue": "Name the skewness feature of Exponential(400).",
+          "explanation": "An Exponential waiting-time law is right-skewed and supported on (0, ∞). Matching mean and sd to a Normal does not remove that skew for individual observations.",
+          "calculation": "Parent: right-skewed, support (0, ∞); Normal overlay is symmetric on (−∞, ∞)",
+          "result": "Parent shape ≠ Normal shape"
+        },
+        {
+          "id": "S2",
+          "label": "Judge the n = 20 individual-sample overlay",
+          "attempt_cue": "Decide whether Normal(400, 400²) describes the histogram of draws.",
+          "explanation": "At n = 20, simulated individual draws still show the Exponential skew and a hard floor at 0. A matched Normal puts mass on negative values and understates the right tail, so the overlay is a poor description of the sample histogram.",
+          "calculation": "Judgement: poor fit of Normal overlay to individual Exponential draws at n = 20",
+          "result": "Normal overlay fails for individual draws"
+        },
+        {
+          "id": "S3",
+          "label": "Contrast with the sample-mean story",
+          "attempt_cue": "State what improves when comparing sampling distributions of X̄ at large n.",
+          "explanation": "The CLT concerns the sample mean, not individual draws. Histograms of X̄ from many large-n replications become closer to Normal even when the parent is Exponential; that is a different comparison from overlaying Normal on raw waiting times.",
+          "calculation": "Individual draws: Normal poor; X̄ at large n: Normal approximation may improve",
+          "result": "Object of comparison matters (draws vs means)"
+        }
+      ],
+      "final_answer": "Normal(400, 400²) is a poor description of individual Exponential(400) draws at n = 20 (skew, support). Comparing sampling distributions of X̄ at large n is a different question where Normal approximation can improve.",
+      "common_pitfall": "Treating a matched-mean-and-sd Normal overlay as automatically adequate for skewed individual draws, or confusing that histogram comparison with a CLT statement about X̄.",
+      "syllabus_ref": "2.5.2"
+    },
+    "2.6.1-random-samples-cs1009.json": {
+      "title": "Classify a severity-truncated slice as not a random sample",
+      "problem_statement": "An analyst keeps only the first 25 claims whose settled cost exceeds £10,000 from a national household book and treats that list as a random sample from all household claims in order to estimate portfolio mean severity. Decide whether this extract is a random sample from the stated population, and name the sampling defect.",
+      "given": [
+        {
+          "symbol": "population target",
+          "value": "all household claims in the national book",
+          "note": "intended inferential population"
+        },
+        {
+          "symbol": "extract",
+          "value": "first 25 claims with settled cost > £10,000",
+          "note": "observed selection mechanism"
+        },
+        {
+          "symbol": "intended use",
+          "value": "estimator for portfolio mean severity",
+          "note": "requires a sampling warrant"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compare the severity-truncation mechanism with an iid (or otherwise stated) draw from all household claims before judging the sample label.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State what a random sample requires",
+          "attempt_cue": "Name the warrant that links observations to the population distribution.",
+          "explanation": "A random sample is drawn so that observations follow the population distribution under a stated sampling model (for example iid draws). Estimators and intervals inherit that warrant.",
+          "calculation": "Require: stated sampling model linking extract to all-household-claim population",
+          "result": "Random sample = lawful draw under a sampling model"
+        },
+        {
+          "id": "S2",
+          "label": "Inspect the actual selection mechanism",
+          "attempt_cue": "Describe how the 25 claims were chosen.",
+          "explanation": "Keeping only claims above £10,000 truncates the severity distribution and over-represents large losses relative to the full household book. Order of arrival does not repair that truncation.",
+          "calculation": "Mechanism = severity truncation above £10,000 (selection on the outcome)",
+          "result": "Selection is truncated / outcome-dependent, not portfolio random"
+        },
+        {
+          "id": "S3",
+          "label": "Classify and refuse n-as-warrant",
+          "attempt_cue": "Decide yes/no on random sample, and say why n = 25 alone fails.",
+          "explanation": "Having twenty-five observations does not create a random sample. Without a lawful draw from all household claims, estimator procedures lack the sampling warrant.",
+          "calculation": "Classification: NOT a random sample from all household claims; defect = severity truncation / selection on Y",
+          "result": "Not a random sample; n alone is insufficient"
+        }
+      ],
+      "final_answer": "Not a random sample from all household claims: keeping only costs above £10,000 truncates severity. n = 25 does not by itself create a random sample.",
+      "common_pitfall": "Treating any large enough extract as a random sample because n = 25 looks adequate, without checking whether the draw matches the stated all-claims population.",
+      "syllabus_ref": "2.6.1"
+    },
+    "2.6.3-mean-var-sample-cs1009.json": {
+      "title": "Mean and variance of X̄ and mean of S²",
+      "problem_statement": "A population has mean μ = 12 and variance σ² = 36. A random sample of size n = 9 is drawn. Express E[X̄], Var(X̄), and E[S²] in terms of μ, σ², and n, and evaluate each numerically. Do not invoke Normal sampling laws or the t-statistic.",
+      "given": [
+        {
+          "symbol": "μ",
+          "value": "12",
+          "note": "population mean"
+        },
+        {
+          "symbol": "σ²",
+          "value": "36",
+          "note": "population variance"
+        },
+        {
+          "symbol": "n",
+          "value": "9",
+          "note": "sample size"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Use E[X̄] = μ, Var(X̄) = σ²/n, and E[S²] = σ² for the unbiased sample variance.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Mean of the sample mean",
+          "attempt_cue": "State and evaluate E[X̄].",
+          "explanation": "For a random sample with finite mean, the sample mean is unbiased for μ.",
+          "calculation": "E[X̄] = μ = 12",
+          "result": "E[X̄] = 12"
+        },
+        {
+          "id": "S2",
+          "label": "Variance of the sample mean",
+          "attempt_cue": "State and evaluate Var(X̄).",
+          "explanation": "Independence in the random sample gives Var(X̄) = σ²/n.",
+          "calculation": "Var(X̄) = 36 / 9 = 4",
+          "result": "Var(X̄) = 4"
+        },
+        {
+          "id": "S3",
+          "label": "Mean of S² and refuse Normal/t jump",
+          "attempt_cue": "State E[S²] and name what this LO does not yet require.",
+          "explanation": "For the usual unbiased sample variance, E[S²] = σ². This identity does not by itself give Normal laws for X̄ or the t-statistic; those need extra distributional assumptions treated in later LOs.",
+          "calculation": "E[S²] = σ² = 36",
+          "result": "E[S²] = 36; no Normal/t claim required here"
+        }
+      ],
+      "final_answer": "E[X̄] = 12; Var(X̄) = 4; E[S²] = 36. These moment identities do not yet invoke Normal sampling laws or t.",
+      "common_pitfall": "Writing Var(X̄) = σ² = 36 instead of σ²/n = 4, or jumping to X̄ ~ Normal or a t pivot before this LO asks for it.",
+      "syllabus_ref": "2.6.3"
+    },
+    "2.6.4-normal-sample-mean-var-cs1009.json": {
+      "title": "Normal laws for X̄ and for (n−1)S²/σ²",
+      "problem_statement": "A random sample of size n = 16 is drawn from Normal(μ = 100, σ² = 25). State the exact sampling distribution of X̄ and of (n − 1)S²/σ². Explain why writing the t-statistic is a different object from these two laws.",
+      "given": [
+        {
+          "symbol": "parent",
+          "value": "Normal(μ = 100, σ² = 25)",
+          "note": "iid Normal sample"
+        },
+        {
+          "symbol": "n",
+          "value": "16",
+          "note": "sample size"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Write the Normal law for X̄ with variance σ²/n, then the chi-square law for the scaled sample variance, and keep t separate.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Sampling distribution of X̄",
+          "attempt_cue": "Name the Normal parameters for X̄.",
+          "explanation": "For iid Normal observations, the sample mean is exactly Normal with mean μ and variance σ²/n.",
+          "calculation": "X̄ ~ Normal(100, 25/16) = Normal(100, 1.5625)",
+          "result": "X̄ ~ Normal(100, 1.5625)"
+        },
+        {
+          "id": "S2",
+          "label": "Sampling distribution of the scaled sample variance",
+          "attempt_cue": "State the chi-square law and its degrees of freedom.",
+          "explanation": "Independently of X̄, (n − 1)S²/σ² follows χ² with n − 1 degrees of freedom.",
+          "calculation": "(16 − 1)S²/25 = 15 S²/25 ~ χ²_15",
+          "result": "15 S²/25 ~ χ²_15"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse treating this as the t-statistic",
+          "attempt_cue": "Name what extra ratio creates t.",
+          "explanation": "The t-statistic replaces σ with S in the studentised mean and uses the ratio of the Normal and chi-square pieces. Stating the separate Normal and χ² laws is not yet writing t = (X̄ − μ)/(S/√n).",
+          "calculation": "t uses (X̄ − μ)/(S/√n); that is not either law alone",
+          "result": "Normal and χ² laws ≠ the t-statistic"
+        }
+      ],
+      "final_answer": "X̄ ~ Normal(100, 1.5625); 15 S²/25 ~ χ²_15. The t-statistic is a further ratio that replaces σ by S, not either of these laws alone.",
+      "common_pitfall": "Writing X̄ ~ Normal(100, 25) without dividing by n, or labelling (n − 1)S²/σ² ~ χ²_{n−1} as the t-statistic.",
+      "syllabus_ref": "2.6.4"
+    },
+    "2.6.5-t-statistic-cs1009.json": {
+      "title": "Evaluate a one-sample t-statistic under Normal sampling",
+      "problem_statement": "A random sample of size n = 16 from a Normal population yields X̄ = 105 and sample standard deviation S = 8. Under H₀: μ = 100, compute the t-statistic and state its null degrees of freedom. Explain why replacing S by the unknown σ in a z formula is not available here.",
+      "given": [
+        {
+          "symbol": "n",
+          "value": "16",
+          "note": "sample size"
+        },
+        {
+          "symbol": "X̄",
+          "value": "105",
+          "note": "sample mean"
+        },
+        {
+          "symbol": "S",
+          "value": "8",
+          "note": "sample sd (σ unknown)"
+        },
+        {
+          "symbol": "μ₀",
+          "value": "100",
+          "note": "null mean"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form t = (X̄ − μ₀)/(S/√n) and name df = n − 1.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the standard error using S",
+          "attempt_cue": "Compute S/√n.",
+          "explanation": "With σ unknown, the studentised mean uses the sample sd in the denominator.",
+          "calculation": "S/√n = 8 / √16 = 8 / 4 = 2",
+          "result": "SE = 2"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate t and degrees of freedom",
+          "attempt_cue": "Compute (X̄ − μ₀)/SE and df.",
+          "explanation": "Under Normal sampling and H₀, t follows Student-t with n − 1 degrees of freedom.",
+          "calculation": "t = (105 − 100)/2 = 2.5; df = 16 − 1 = 15",
+          "result": "t = 2.5 on 15 df"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse z-with-S and F swallow",
+          "attempt_cue": "State why a z pivot with S is not the t law, and why F is a different job.",
+          "explanation": "Using S inside a Normal z formula pretends σ is known. The t law accounts for estimating σ. An F comparison of two sample variances is a different sampling problem from this one-sample mean pivot.",
+          "calculation": "z-with-S ≠ t_{15}; F is for variance ratios, not this mean pivot",
+          "result": "Use t_{15}, not z-with-S or F"
+        }
+      ],
+      "final_answer": "t = 2.5 on 15 degrees of freedom. With σ unknown, the correct pivot is t, not a z that plugs in S, and not an F variance-ratio statistic.",
+      "common_pitfall": "Computing z = (105 − 100)/(8/4) = 2.5 and treating it as standard Normal because the arithmetic matches t, or reaching for an F statistic when the question is about a single mean.",
+      "syllabus_ref": "2.6.5"
+    },
+    "2.6.6-f-distribution-cs1009.json": {
+      "title": "Variance-ratio F from two independent Normal samples",
+      "problem_statement": "Two independent random samples are drawn from Normal populations with equal variances. Sample 1 has n₁ = 10 and S₁² = 20; sample 2 has n₂ = 8 and S₂² = 10. Form the variance-ratio statistic F = S₁² / S₂², state its null distribution (degrees of freedom), and explain why a one-sample t-statistic is the wrong tool for this comparison.",
+      "given": [
+        {
+          "symbol": "n₁, S₁²",
+          "value": "10, 20",
+          "note": "first Normal sample"
+        },
+        {
+          "symbol": "n₂, S₂²",
+          "value": "8, 10",
+          "note": "second Normal sample, independent of the first"
+        },
+        {
+          "symbol": "null structure",
+          "value": "σ₁² = σ₂²",
+          "note": "equal population variances"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form the ratio of sample variances and attach F(df₁, df₂) with df = n − 1 for each sample.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the variance ratio",
+          "attempt_cue": "Compute F = S₁² / S₂².",
+          "explanation": "For independent Normal samples, the ratio of unbiased sample variances is the natural comparison of scale under equal-variance nulls.",
+          "calculation": "F = 20 / 10 = 2",
+          "result": "F = 2"
+        },
+        {
+          "id": "S2",
+          "label": "State the null F distribution",
+          "attempt_cue": "Name degrees of freedom for numerator and denominator.",
+          "explanation": "Under σ₁² = σ₂², F ~ F(n₁ − 1, n₂ − 1) = F(9, 7).",
+          "calculation": "df₁ = 10 − 1 = 9; df₂ = 8 − 1 = 7; F ~ F(9, 7)",
+          "result": "F ~ F(9, 7) under the null"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse using t for that job",
+          "attempt_cue": "State why a t pivot for a mean is the wrong tool here.",
+          "explanation": "The t-statistic studentises a mean using one sample's S. Comparing two variances uses the F ratio of sample variances. Substituting a t critical value or a one-sample mean pivot does not answer the variance-ratio question.",
+          "calculation": "t studentises a mean; F compares two sample variances",
+          "result": "Use F(9, 7), not t"
+        }
+      ],
+      "final_answer": "F = 2 ~ F(9, 7) under equal variances. A t-statistic for a mean is the wrong tool for a two-sample variance comparison.",
+      "common_pitfall": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as n₁ and n₂ instead of n₁ − 1 and n₂ − 1.",
+      "syllabus_ref": "2.6.6"
+    }
+  },
+  "campaign_twins": {
+    "2.1.6-software-generation-cs1004.json": "campaign-gamma-cs1004/packages/2.1.6-software-generation-cs1004.json",
+    "2.2.1-marginal-conditional-cs1005.json": "campaign-epsilon-cs1005/packages/2.2.1-marginal-conditional-cs1005.json",
+    "2.2.3-cov-corr-expectation-cs1005.json": "campaign-epsilon-cs1005/packages/2.2.3-cov-corr-expectation-cs1005.json",
+    "2.2.4-linear-combinations-cs1005.json": "campaign-epsilon-cs1005/packages/2.2.4-linear-combinations-cs1005.json",
+    "2.3.1-conditional-expectation-cs1006.json": "campaign-zeta-cs1006/packages/2.3.1-conditional-expectation-cs1006.json",
+    "2.3.2-mean-variance-conditioning-cs1006.json": "campaign-zeta-cs1006/packages/2.3.2-mean-variance-conditioning-cs1006.json",
+    "2.4.1-mgf-cgf-cs1007.json": "campaign-eta-cs1007/packages/2.4.1-mgf-cgf-cs1007.json",
+    "2.4.2-moment-via-gf-cs1007.json": "campaign-eta-cs1007/packages/2.4.2-moment-via-gf-cs1007.json",
+    "2.5.1-clt-cs1008.json": "campaign-theta-cs1008/packages/2.5.1-clt-cs1008.json",
+    "2.5.2-simulated-sample-normal-cs1008.json": "campaign-theta-cs1008/packages/2.5.2-simulated-sample-normal-cs1008.json",
+    "2.6.1-random-samples-cs1009.json": "campaign-iota-cs1009/packages/2.6.1-random-samples-cs1009.json",
+    "2.6.3-mean-var-sample-cs1009.json": "campaign-iota-cs1009/packages/2.6.3-mean-var-sample-cs1009.json",
+    "2.6.4-normal-sample-mean-var-cs1009.json": "campaign-iota-cs1009/packages/2.6.4-normal-sample-mean-var-cs1009.json",
+    "2.6.5-t-statistic-cs1009.json": "campaign-iota-cs1009/packages/2.6.5-t-statistic-cs1009.json",
+    "2.6.6-f-distribution-cs1009.json": "campaign-iota-cs1009/packages/2.6.6-f-distribution-cs1009.json"
+  }
+}

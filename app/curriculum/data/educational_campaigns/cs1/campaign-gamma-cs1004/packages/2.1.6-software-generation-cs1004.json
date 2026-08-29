@@ -215,5 +215,61 @@
     "light_prep_cue": "Optional: list sticky titles from 2.1.3–2.1.6 Reflections. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Gamma Revision day (retrieve evaluation, Poisson process, inverse transform, and software generation). Optional light prep: sticky titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Generate and sanity-check Poisson and Exponential draws",
+    "problem_statement": "An analyst needs software samples from two univariate families before any joint modelling: (i) annual claim counts as Poisson(λ = 3); (ii) inter-claim waiting times (days) as Exponential with mean θ = 5. Describe the generation plan for n = 50 draws of each family, state one sanity check for each sample, and decide whether a mean of 3.1 on the Poisson sample alone proves the software call was correct.",
+    "given": [
+      {
+        "symbol": "discrete family",
+        "value": "Poisson(λ = 3)",
+        "note": "claim counts; support {0, 1, 2, …}"
+      },
+      {
+        "symbol": "continuous family",
+        "value": "Exponential(mean θ = 5)",
+        "note": "waiting times in days; support (0, ∞)"
+      },
+      {
+        "symbol": "n",
+        "value": "50",
+        "note": "planned draws per family"
+      },
+      {
+        "symbol": "observed Poisson sample mean",
+        "value": "3.1",
+        "note": "illustrative software output for the refuse step"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Name a sampler for each family, one check against support or mean, then judge whether 3.1 alone certifies the Poisson call.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Plan the two software samplers",
+        "attempt_cue": "Name a discrete call for Poisson(3) and a continuous call for Exponential mean 5.",
+        "explanation": "Software generation starts from a named family and parameter, not from a blank RNG. Poisson uses a discrete count sampler; Exponential uses a positive continuous sampler with mean 5 (or rate 1/5, depending on the package convention).",
+        "calculation": "Poisson: rpois / Poisson(3); Exponential: rexp(mean=5) or Exp(rate=0.2)",
+        "result": "Two named samplers, parameters fixed before drawing"
+      },
+      {
+        "id": "S2",
+        "label": "Run one sanity check per sample",
+        "attempt_cue": "State a support check and a rough mean check.",
+        "explanation": "A usable check compares sample behaviour with the family's support and first moment. Poisson draws must be non-negative integers with sample mean near 3; Exponential draws must be strictly positive with sample mean near 5.",
+        "calculation": "Poisson: all ≥ 0 integers, mean ≈ 3; Exponential: all > 0, mean ≈ 5",
+        "result": "Support + rough mean check for each family"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse mean-near-target as sole proof",
+        "attempt_cue": "Decide whether sample mean 3.1 alone proves the Poisson call was correct.",
+        "explanation": "A sample mean near λ is consistent with Poisson(3) but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
+        "calculation": "3.1 ≈ 3 is consistent, not a proof of correct generation",
+        "result": "Mean proximity alone does not certify the sampler"
+      }
+    ],
+    "final_answer": "Generate n = 50 from Poisson(3) and Exponential(mean 5) with named software samplers; check support and rough means; a Poisson sample mean of 3.1 is consistent but not sole proof that the call was correct.",
+    "common_pitfall": "Treating any code that prints numbers as generation complete, or treating a sample mean near 3 as proof the Poisson(3) call was correct without checking support, parameterisation, or that joint distributions remain out of scope.",
+    "syllabus_ref": "2.1.6"
+  }
 }

@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.6.2. Titles only tonight",
     "student_facing": "Tomorrow: sampling distribution of a statistic (2.6.2). Optional light prep: skim 2.6.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Classify a severity-truncated slice as not a random sample",
+    "problem_statement": "An analyst keeps only the first 25 claims whose settled cost exceeds £10,000 from a national household book and treats that list as a random sample from all household claims in order to estimate portfolio mean severity. Decide whether this extract is a random sample from the stated population, and name the sampling defect.",
+    "given": [
+      {
+        "symbol": "population target",
+        "value": "all household claims in the national book",
+        "note": "intended inferential population"
+      },
+      {
+        "symbol": "extract",
+        "value": "first 25 claims with settled cost > £10,000",
+        "note": "observed selection mechanism"
+      },
+      {
+        "symbol": "intended use",
+        "value": "estimator for portfolio mean severity",
+        "note": "requires a sampling warrant"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compare the severity-truncation mechanism with an iid (or otherwise stated) draw from all household claims before judging the sample label.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State what a random sample requires",
+        "attempt_cue": "Name the warrant that links observations to the population distribution.",
+        "explanation": "A random sample is drawn so that observations follow the population distribution under a stated sampling model (for example iid draws). Estimators and intervals inherit that warrant.",
+        "calculation": "Require: stated sampling model linking extract to all-household-claim population",
+        "result": "Random sample = lawful draw under a sampling model"
+      },
+      {
+        "id": "S2",
+        "label": "Inspect the actual selection mechanism",
+        "attempt_cue": "Describe how the 25 claims were chosen.",
+        "explanation": "Keeping only claims above £10,000 truncates the severity distribution and over-represents large losses relative to the full household book. Order of arrival does not repair that truncation.",
+        "calculation": "Mechanism = severity truncation above £10,000 (selection on the outcome)",
+        "result": "Selection is truncated / outcome-dependent, not portfolio random"
+      },
+      {
+        "id": "S3",
+        "label": "Classify and refuse n-as-warrant",
+        "attempt_cue": "Decide yes/no on random sample, and say why n = 25 alone fails.",
+        "explanation": "Having twenty-five observations does not create a random sample. Without a lawful draw from all household claims, estimator procedures lack the sampling warrant.",
+        "calculation": "Classification: NOT a random sample from all household claims; defect = severity truncation / selection on Y",
+        "result": "Not a random sample; n alone is insufficient"
+      }
+    ],
+    "final_answer": "Not a random sample from all household claims: keeping only costs above £10,000 truncates severity. n = 25 does not by itself create a random sample.",
+    "common_pitfall": "Treating any large enough extract as a random sample because n = 25 looks adequate, without checking whether the draw matches the stated all-claims population.",
+    "syllabus_ref": "2.6.1"
+  }
 }

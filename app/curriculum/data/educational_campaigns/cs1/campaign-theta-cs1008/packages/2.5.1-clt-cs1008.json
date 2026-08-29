@@ -219,5 +219,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.5.2. Titles only tonight",
     "student_facing": "Tomorrow: comparison of simulated samples with the Normal (2.5.2). Optional light prep: skim 2.5.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "CLT probability for a mean pet-insurance severity",
+    "problem_statement": "Pet-insurance claim severities are iid with mean μ = 180 and standard deviation σ = 60. A sample of n = 36 claims is drawn. Using the CLT, approximate P(X̄ < 170). Use Φ(1) ≈ 0.841.",
+    "given": [
+      {
+        "symbol": "μ",
+        "value": "180",
+        "note": "population mean severity (£)"
+      },
+      {
+        "symbol": "σ",
+        "value": "60",
+        "note": "population sd (£)"
+      },
+      {
+        "symbol": "n",
+        "value": "36",
+        "note": "sample size"
+      },
+      {
+        "symbol": "Φ(1)",
+        "value": "≈ 0.841",
+        "note": "standard Normal CDF at 1"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form the sampling sd σ/√n first, then standardise 170 before reading Φ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Standard error of the sample mean",
+        "attempt_cue": "Compute σ/√n.",
+        "explanation": "Under the CLT for iid observations, X̄ is approximately Normal with mean μ and sd σ/√n.",
+        "calculation": "σ/√n = 60 / √36 = 60 / 6 = 10",
+        "result": "sd(X̄) = 10"
+      },
+      {
+        "id": "S2",
+        "label": "Standardise and evaluate the lower tail",
+        "attempt_cue": "Form z = (170 − 180)/10, then convert with Φ.",
+        "explanation": "The probability is the lower Normal tail at z = −1, equal to 1 − Φ(1).",
+        "calculation": "z = (170 − 180)/10 = −1; P(X̄ < 170) ≈ Φ(−1) = 1 − Φ(1) ≈ 1 − 0.841 = 0.159",
+        "result": "P ≈ 0.159"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse σ in place of σ/√n",
+        "attempt_cue": "State why using sd = 60 for X̄ is wrong.",
+        "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by √n. Using the population sd as if it were sd(X̄) ignores that reduction.",
+        "calculation": "sd(X̄) = 10, not σ = 60",
+        "result": "Must divide σ by √n"
+      }
+    ],
+    "final_answer": "X̄ ≈ Normal(180, 10); z = −1; P(X̄ < 170) ≈ 0.159. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
+    "common_pitfall": "Using X̄ ≈ Normal(180, 60) and computing z = (170 − 180)/60 = −1/6, or reading Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+    "syllabus_ref": "2.5.1"
+  }
 }

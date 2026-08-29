@@ -173,4 +173,4 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     # + RWE Batch 3 (Pi/Rho Memory-Publication: 14 new packages; pilot replaced in place)
     # + RWE Batch 4 (Delta Domain F1b / cs1003: 24).
     assert PILOT_PACKAGE_ID in with_real
-    assert len(with_real) == 85
+    assert len(with_real) == 100

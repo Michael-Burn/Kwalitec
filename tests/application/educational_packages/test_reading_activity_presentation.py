@@ -184,8 +184,10 @@ def test_cs1009_2_6_5_worked_example_body_is_structured() -> None:
         a for a in substance.activities if a.activity_id == "act-example-1"
     )
     assert example.supporting_material == ""
-    assert "Confirm your structure sketch:" in example.body
-    assert "Before you continue:" in example.body
+    assert "Confirm your structure sketch:" not in example.body
+    assert dict(example.metadata).get("worked_example_kind") == "numeric"
+    assert "t = 2.5" in example.body
+    assert "15" in example.body
     presented = present_worked_example_content(
         parse_session_content_body(example.body)
     )

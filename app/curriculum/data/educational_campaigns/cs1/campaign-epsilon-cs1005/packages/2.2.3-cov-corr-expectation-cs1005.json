@@ -216,5 +216,61 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 2.2.4. Titles only tonight",
     "student_facing": "Tomorrow: mean and variance of linear combinations (2.2.4). Optional light prep: skim 2.2.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Covariance, correlation, and E[X+2Y] from a joint PMF",
+    "problem_statement": "Two binary indicators (X, Y) for a household have joint PMF P(0,0) = 0.30, P(0,1) = 0.20, P(1,0) = 0.20, P(1,1) = 0.30, where X = 1 if a contents claim occurs and Y = 1 if a buildings claim occurs. Compute Cov(X, Y), Corr(X, Y), and E[X + 2Y].",
+    "given": [
+      {
+        "symbol": "P(0,0)",
+        "value": "0.30",
+        "note": "no contents, no buildings"
+      },
+      {
+        "symbol": "P(0,1)",
+        "value": "0.20",
+        "note": "no contents, buildings"
+      },
+      {
+        "symbol": "P(1,0)",
+        "value": "0.20",
+        "note": "contents, no buildings"
+      },
+      {
+        "symbol": "P(1,1)",
+        "value": "0.30",
+        "note": "contents and buildings"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form E[X], E[Y], and E[XY] first, then Cov, then Corr, then E[X+2Y] by linearity.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute the first moments",
+        "attempt_cue": "Find E[X], E[Y], and E[XY] from the joint table.",
+        "explanation": "For binary indicators, E[X] = P(X = 1) and E[Y] = P(Y = 1). The product moment is E[XY] = P(X = 1, Y = 1).",
+        "calculation": "E[X] = 0.20 + 0.30 = 0.50; E[Y] = 0.20 + 0.30 = 0.50; E[XY] = 0.30",
+        "result": "E[X] = 0.50; E[Y] = 0.50; E[XY] = 0.30"
+      },
+      {
+        "id": "S2",
+        "label": "Form Cov and Corr",
+        "attempt_cue": "Use Cov = E[XY] − E[X]E[Y] and divide by σ_X σ_Y.",
+        "explanation": "Covariance subtracts the product of means from E[XY]. Each margin is Bernoulli(0.5), so Var(X) = Var(Y) = 0.25 and σ_X = σ_Y = 0.5.",
+        "calculation": "Cov = 0.30 − 0.50×0.50 = 0.05; Corr = 0.05 / (0.5×0.5) = 0.20",
+        "result": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20"
+      },
+      {
+        "id": "S3",
+        "label": "Evaluate E[X + 2Y] and refuse Corr=0⇒independence",
+        "attempt_cue": "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
+        "explanation": "Linearity gives E[X + 2Y] = E[X] + 2E[Y] without needing the joint again. Correlation here is 0.20, not zero; even Corr = 0 would not by itself prove independence for general joint distributions.",
+        "calculation": "E[X + 2Y] = 0.50 + 2×0.50 = 1.50",
+        "result": "E[X + 2Y] = 1.50; Corr ≠ 0 here (and Corr = 0 ≠ independence in general)"
+      }
+    ],
+    "final_answer": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20; E[X + 2Y] = 1.50. Zero correlation is not automatic independence, and here correlation is not zero.",
+    "common_pitfall": "Computing Cov as E[XY] alone (forgetting to subtract E[X]E[Y]), or claiming that Corr = 0 would prove independence for any joint distribution.",
+    "syllabus_ref": "2.2.3"
+  }
 }

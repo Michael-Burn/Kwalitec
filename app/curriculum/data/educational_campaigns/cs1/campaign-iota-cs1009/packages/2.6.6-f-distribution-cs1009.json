@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: list the six 2.6 LO hinges from memory. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Iota Revision (retrieve 2.6.1–2.6.6). Optional light prep: list the six hinges from memory. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Variance-ratio F from two independent Normal samples",
+    "problem_statement": "Two independent random samples are drawn from Normal populations with equal variances. Sample 1 has n₁ = 10 and S₁² = 20; sample 2 has n₂ = 8 and S₂² = 10. Form the variance-ratio statistic F = S₁² / S₂², state its null distribution (degrees of freedom), and explain why a one-sample t-statistic is the wrong tool for this comparison.",
+    "given": [
+      {
+        "symbol": "n₁, S₁²",
+        "value": "10, 20",
+        "note": "first Normal sample"
+      },
+      {
+        "symbol": "n₂, S₂²",
+        "value": "8, 10",
+        "note": "second Normal sample, independent of the first"
+      },
+      {
+        "symbol": "null structure",
+        "value": "σ₁² = σ₂²",
+        "note": "equal population variances"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form the ratio of sample variances and attach F(df₁, df₂) with df = n − 1 for each sample.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the variance ratio",
+        "attempt_cue": "Compute F = S₁² / S₂².",
+        "explanation": "For independent Normal samples, the ratio of unbiased sample variances is the natural comparison of scale under equal-variance nulls.",
+        "calculation": "F = 20 / 10 = 2",
+        "result": "F = 2"
+      },
+      {
+        "id": "S2",
+        "label": "State the null F distribution",
+        "attempt_cue": "Name degrees of freedom for numerator and denominator.",
+        "explanation": "Under σ₁² = σ₂², F ~ F(n₁ − 1, n₂ − 1) = F(9, 7).",
+        "calculation": "df₁ = 10 − 1 = 9; df₂ = 8 − 1 = 7; F ~ F(9, 7)",
+        "result": "F ~ F(9, 7) under the null"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse using t for that job",
+        "attempt_cue": "State why a t pivot for a mean is the wrong tool here.",
+        "explanation": "The t-statistic studentises a mean using one sample's S. Comparing two variances uses the F ratio of sample variances. Substituting a t critical value or a one-sample mean pivot does not answer the variance-ratio question.",
+        "calculation": "t studentises a mean; F compares two sample variances",
+        "result": "Use F(9, 7), not t"
+      }
+    ],
+    "final_answer": "F = 2 ~ F(9, 7) under equal variances. A t-statistic for a mean is the wrong tool for a two-sample variance comparison.",
+    "common_pitfall": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as n₁ and n₂ instead of n₁ − 1 and n₂ − 1.",
+    "syllabus_ref": "2.6.6"
+  }
 }

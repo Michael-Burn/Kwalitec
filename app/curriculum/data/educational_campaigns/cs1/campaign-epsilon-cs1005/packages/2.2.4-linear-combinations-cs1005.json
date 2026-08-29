@@ -217,5 +217,66 @@
     "light_prep_cue": "Optional: list the four 2.2 LO hinges from memory. Titles only tonight",
     "student_facing": "Tomorrow: Campaign Epsilon Revision (retrieve 2.2.1–2.2.4). Optional light prep: list the four hinges from memory. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Mean and variance of 2X − Y with nonzero covariance",
+    "problem_statement": "Portfolio losses X and Y (£000) satisfy E[X] = 10, E[Y] = 4, Var(X) = 9, Var(Y) = 4, and Cov(X, Y) = 3. For the linear combination L = 2X − Y, compute E[L] and Var(L).",
+    "given": [
+      {
+        "symbol": "E[X]",
+        "value": "10",
+        "note": "mean of X (£000)"
+      },
+      {
+        "symbol": "E[Y]",
+        "value": "4",
+        "note": "mean of Y (£000)"
+      },
+      {
+        "symbol": "Var(X)",
+        "value": "9",
+        "note": "variance of X"
+      },
+      {
+        "symbol": "Var(Y)",
+        "value": "4",
+        "note": "variance of Y"
+      },
+      {
+        "symbol": "Cov(X, Y)",
+        "value": "3",
+        "note": "nonzero dependence"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Apply linearity for the mean, then expand Var(2X − Y) including the covariance term.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute E[2X − Y]",
+        "attempt_cue": "Use E[aX + bY] = aE[X] + bE[Y] with a = 2, b = −1.",
+        "explanation": "Expectation is linear whether or not X and Y are dependent.",
+        "calculation": "E[L] = 2×10 + (−1)×4 = 20 − 4 = 16",
+        "result": "E[L] = 16"
+      },
+      {
+        "id": "S2",
+        "label": "Expand Var(2X − Y)",
+        "attempt_cue": "Write a²Var(X) + b²Var(Y) + 2ab Cov(X, Y).",
+        "explanation": "Variance of a linear combination needs the covariance whenever dependence is present. Here a = 2 and b = −1, so 2ab Cov = 2(2)(−1)(3) = −12.",
+        "calculation": "Var(L) = 4×9 + 1×4 + 2(2)(−1)(3) = 36 + 4 − 12 = 28",
+        "result": "Var(L) = 28"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse dropping Cov",
+        "attempt_cue": "State the incorrect variance obtained if Cov is ignored.",
+        "explanation": "Dropping the covariance term as if X and Y were uncorrelated gives 36 + 4 = 40, which overstates Var(L) when Cov = 3 > 0 and the combination is 2X − Y.",
+        "calculation": "Without Cov: 40 (wrong); with Cov: 28",
+        "result": "Must retain 2ab Cov when dependent"
+      }
+    ],
+    "final_answer": "E[2X − Y] = 16; Var(2X − Y) = 28. Omitting Cov(X, Y) = 3 incorrectly yields 40.",
+    "common_pitfall": "Computing Var(2X − Y) as 4Var(X) + Var(Y) = 40 and dropping the covariance term even though Cov(X, Y) = 3 is given.",
+    "syllabus_ref": "2.2.4"
+  }
 }

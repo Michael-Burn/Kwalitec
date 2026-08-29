@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 2.4.2. Titles only tonight",
     "student_facing": "Tomorrow: moment calculation via generating functions (2.4.2). Optional light prep: skim 2.4.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "MGF and CGF for a Poisson claim count",
+    "problem_statement": "Annual claim count X ~ Poisson(λ = 2). Obtain the moment generating function M_X(t) and the cumulant generating function C_X(t). State why writing M_X(t) = 2 does not define the MGF.",
+    "given": [
+      {
+        "symbol": "X",
+        "value": "Poisson(λ = 2)",
+        "note": "claim count"
+      },
+      {
+        "symbol": "definition",
+        "value": "M_X(t) = E[e^{tX}]",
+        "note": "MGF definition"
+      },
+      {
+        "symbol": "CGF link",
+        "value": "C_X(t) = log M_X(t)",
+        "note": "cumulant generating function"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Start from E[e^{tX}] for the Poisson pmf, then take the log for the CGF.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Derive the Poisson MGF",
+        "attempt_cue": "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
+        "explanation": "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
+        "calculation": "M_X(t) = exp(2(e^t − 1))",
+        "result": "M_X(t) = exp(2(e^t − 1))"
+      },
+      {
+        "id": "S2",
+        "label": "Form the CGF",
+        "attempt_cue": "Take the natural log of the MGF.",
+        "explanation": "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
+        "calculation": "C_X(t) = 2(e^t − 1)",
+        "result": "C_X(t) = 2(e^t − 1)"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse mean-as-MGF",
+        "attempt_cue": "State why M_X(t) = 2 is wrong even though E[X] = 2.",
+        "explanation": "The mean E[X] = 2 is M'(0) (or C'(0)), not the MGF itself. The MGF is a function of t, here exp(2(e^t − 1)), not the constant mean.",
+        "calculation": "E[X] = 2 = M'(0); M_X(t) ≠ 2",
+        "result": "Mean is not the MGF"
+      }
+    ],
+    "final_answer": "M_X(t) = exp(2(e^t − 1)); C_X(t) = 2(e^t − 1). The mean 2 is M'(0), not the MGF.",
+    "common_pitfall": "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
+    "syllabus_ref": "2.4.1"
+  }
 }
