@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force exponential-family placement for named responses and refuse 'GLM means linear regression in a package'.",
     "educational_intent": "Produce family placement as the Continuity Front join hinge from Nu linear regression into Topic 4.2 structure.",
     "learning_objective": "Recognise binomial, Poisson, exponential, gamma and normal distributions as members of an exponential family in the GLM setting.",
-    "concept_focus": "Named response distributions \u2192 exponential-family membership in the GLM setting \u2192 refuse package-name GLM.",
+    "concept_focus": "Named response distributions → exponential-family membership in the GLM setting → refuse package-name GLM.",
     "prior_bridge": "Campaign Nu closed linear regression (4.1) with Revision. Today opens Continuity Front join at Topic 4.2 LO 4.2.1. The next official syllabus topic after 4.1. Trust Front CS1-003 already holds LIVE 4.2 inventory independently; Xi is the Continuity Front native Pilot Arc.",
     "why_now": "Open GLM structure by placing responses in the exponential family. Moments and scale come next.",
     "expected_benefit": "You will be able to recognise binomial, Poisson, exponential, gamma and Normal as exponential-family GLM responses.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Place GLM responses in the exponential family. You practised selective CMP reading on Syllabus 4.2.1. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.1: place glm responses in the exponential family. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for diving into mean/variance formulae (4.2.2) as today's finish.",
       "Watch for claiming Trust Front 5.1 absorb or spine PASS."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.1 exponential family responses for GLMs",
+    "open_point": "CMP · Syllabus 4.2.1 exponential family responses for GLMs",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.1 (stop before mean/variance/scale 4.2.2)",
     "out_of_scope_today": [
       "Mean / variance / variance function / scale as primary (4.2.2)",
@@ -96,8 +96,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.1 exponential family responses for GLMs. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.1 (stop before mean/variance/scale 4.2.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.1 exponential family responses for GLMs. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.1 (stop before mean/variance/scale 4.2.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Example: Poisson (counts with E[Y]=Var[Y]=\u03bc); binomial (bounded proportion or count responses); Normal (continuous responses with constant variance). Each has an exponential-family density usable as a GLM response. Package name is not GLM; a GLM response sits in an exponential family with later eta and link.",
+          "label": "Example: Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion or count responses); Normal (continuous responses with constant variance). Each has an exponential-family density usable as a GLM response. Package name is not GLM; a GLM response sits in an exponential family with later eta and link.",
           "misconception_tag": ""
         },
         {
@@ -223,5 +223,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.1 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Poisson natural parameter from claim frequency",
+    "problem_statement": "Weekly claim counts on a small commercial book are modelled as Poisson(λ). For λ = 4, write the pmf in exponential-family form exp{yθ − b(θ)} / a(φ) × c(y, φ) (with φ = 1), identify the natural parameter θ, and evaluate θ numerically. Also state why the Normal distribution is a special case within the same GLM exponential family, not a rival outside it.",
+    "given": [
+      {
+        "symbol": "Y",
+        "value": "Poisson(λ)",
+        "note": "claim count response"
+      },
+      {
+        "symbol": "λ",
+        "value": "4",
+        "note": "mean frequency for this evaluation"
+      },
+      {
+        "symbol": "pmf",
+        "value": "e^{−λ} λ^y / y!",
+        "note": "Poisson probability mass function"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Rewrite the Poisson pmf as exp{y ln λ − λ − ln y!} and read off θ = ln λ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Exponential-family rewrite",
+        "attempt_cue": "Take the log of the Poisson pmf and regroup the y-dependent term.",
+        "explanation": "Members of the exponential family admit a linear natural parameter multiplying y. For Poisson, that term is y ln λ.",
+        "calculation": "f(y) = exp{y ln λ − λ − ln(y!)};  θ = ln λ,  b(θ) = e^θ (= λ)",
+        "result": "θ = ln λ"
+      },
+      {
+        "id": "S2",
+        "label": "Numeric natural parameter at λ = 4",
+        "attempt_cue": "Evaluate θ = ln 4.",
+        "explanation": "Substituting the given mean frequency produces a concrete natural parameter.",
+        "calculation": "θ = ln 4 ≈ 1.3863",
+        "result": "θ ≈ 1.3863"
+      },
+      {
+        "id": "S3",
+        "label": "Normal as a special case",
+        "attempt_cue": "State where Normal sits relative to Binomial, Poisson, exponential, and gamma.",
+        "explanation": "Binomial, Poisson, exponential, gamma, and Normal are all exponential-family GLM responses. Normal is the continuous identity-link special case, not an exclusion from the family.",
+        "calculation": "Normal ∈ exponential family (alongside Poisson, etc.)",
+        "result": "Normal is inside the family, not outside it"
+      }
+    ],
+    "final_answer": "θ = ln λ = ln 4 ≈ 1.3863; Poisson is exponential-family with b(θ) = e^θ. Normal is a member of the same family, not a rival outside it.",
+    "common_pitfall": "Reporting θ = λ = 4 (the mean) instead of the natural parameter ln λ, or claiming Normal is excluded from the GLM exponential family.",
+    "syllabus_ref": "4.2.1"
+  }
 }

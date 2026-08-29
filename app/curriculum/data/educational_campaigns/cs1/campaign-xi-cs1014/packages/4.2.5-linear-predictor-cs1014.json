@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -37,23 +37,23 @@
     "mission_id": "msn-cs1014-cs1-4.2-linear-predictor",
     "display_title": "Write the linear predictor for simple GLM forms",
     "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models, including polynomial models and models involving factors. Without pretending deviance/estimation (4.2.6) are finished.",
-    "tutor_intent": "Today I will force \u03b7-form writing for simple GLM structures and refuse treating deviance as today's LO.",
+    "tutor_intent": "Today I will force η-form writing for simple GLM structures and refuse treating deviance as today's LO.",
     "educational_intent": "Produce a cognitive move from covariate structure to lawful linear predictor forms under CMP.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
-    "concept_focus": "\u03b7 = X\u03b2 definition \u2192 polynomial and factor forms \u2192 refuse conflating \u03b7 with the link function.",
+    "concept_focus": "η = Xβ definition → polynomial and factor forms → refuse conflating η with the link function.",
     "prior_bridge": "Yesterday you explained variables, factors and interactions (4.2.4). Today writes the linear predictor forms.",
-    "why_now": "4.2.5 is contiguous after factors. Without \u03b7 forms, deviance and software fit lack structure.",
+    "why_now": "4.2.5 is contiguous after factors. Without η forms, deviance and software fit lack structure.",
     "expected_benefit": "You will be able to define the linear predictor and write its form for polynomial and factor models.",
     "explainability": "Assigned as Campaign Xi Day 5 because Continuity Front law keeps deviance/estimation as tomorrow.",
     "success_criteria": [
-      "Closed-book, define the linear predictor \u03b7.",
+      "Closed-book, define the linear predictor η.",
       "Write or state one simple form and one form involving a factor or polynomial.",
       "Refuse one 'I computed deviance, so I finished today's LO' claim."
     ],
     "task_descriptions": [
-      "Sketch \u03b7 forms before CMP.",
+      "Sketch η forms before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.5.",
-      "Closed-book Knowledge Checks: \u03b7 forms + refuse deviance swallow."
+      "Closed-book Knowledge Checks: η forms + refuse deviance swallow."
     ],
     "estimated_study_time_minutes": {
       "min": 55,
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Write the linear predictor for simple GLM forms. You practised selective CMP reading on Syllabus 4.2.5. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.5: write the linear predictor for simple glm forms. Stop before out-of-scope later LOs.",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating \u03b7 with \u03bc without the link.",
+      "Watch for equating η with μ without the link.",
       "Watch for jumping into deviance calculation (4.2.6) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.5 linear predictor forms",
+    "open_point": "CMP · Syllabus 4.2.5 linear predictor forms",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6)",
     "out_of_scope_today": [
       "Deviance / scaled deviance / estimation as primary (4.2.6)",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.5.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.5 linear predictor forms. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.5 (stop before deviance / estimation 4.2.6). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -125,8 +125,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "\u03b7 = X\u03b2 is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
-      "model_answer": "\u03b7 = X beta; examples with x and with factor or polynomial terms.",
+      "explanation": "η = Xβ is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
+      "model_answer": "η = X beta; examples with x and with factor or polynomial terms.",
       "common_mistake": "Equating link with eta or forbidding polynomial terms in GLM eta.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -135,7 +135,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "The linear predictor \u03b7 is typically X beta on the scale linked to the mean. Example simple: \u03b7 = \u03b2\u2080 + \u03b2\u2081 x. Example with structure: eta includes factor indicators or polynomial powers such as x squared.",
+          "label": "The linear predictor η is typically X beta on the scale linked to the mean. Example simple: η = β₀ + β₁ x. Example with structure: eta includes factor indicators or polynomial powers such as x squared.",
           "misconception_tag": ""
         },
         {
@@ -169,8 +169,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps \u03bc to \u03b7; they are distinct objects.",
-      "model_answer": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 x^2 + \u03b2\u2083 I_Plus. Link maps \u03bc to \u03b7.",
+      "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps μ to η; they are distinct objects.",
+      "model_answer": "η = β₀ + β₁ x + β₂ x^2 + β₃ I_Plus. Link maps μ to η.",
       "common_mistake": "Treating link as eta or placing polynomial terms only in mu.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 x squared + \u03b2\u2083 I_Plus with Standard baseline. \u03b7 = X\u03b2 is the linear predictor; the link g maps mean \u03bc to \u03b7 (for example log(\u03bc)=\u03b7 for Poisson log link).",
+          "label": "η = β₀ + β₁ x + β₂ x squared + β₃ I_Plus with Standard baseline. η = Xβ is the linear predictor; the link g maps mean μ to η (for example log(μ)=η for Poisson log link).",
           "misconception_tag": ""
         },
         {
@@ -189,12 +189,12 @@
         },
         {
           "id": "c",
-          "label": "\u03b7 = log(mu) = \u03b2\u2080 + \u03b2\u2081 x only; quadratic and factor terms belong in mu, not in eta.",
+          "label": "η = log(mu) = β₀ + β₁ x only; quadratic and factor terms belong in mu, not in eta.",
           "misconception_tag": "structure_in_mu"
         },
         {
           "id": "d",
-          "label": "\u03b7 = \u03b2\u2080 + \u03b2\u2081 x + \u03b2\u2082 I_Plus only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
+          "label": "η = β₀ + β₁ x + β₂ I_Plus only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
           "misconception_tag": "poly_normal_only"
         }
       ],
@@ -202,7 +202,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest \u03b7-form wobble. Keep deviance out of tonight's claim.",
+    "framing": "Harvest η-form wobble. Keep deviance out of tonight's claim.",
     "prompt": "Which part of today's 4.2.5 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.5 is stickiest and why?",
@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.5 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Linear predictor with covariate and quadratic term",
+    "problem_statement": "A severity GLM (gamma, log link) uses linear predictor η = β₀ + β₁x + β₂x² with fitted coefficients β₀ = 1.0, β₁ = 0.2, β₂ = −0.01. For a risk with x = 10 (age proxy), compute η and the mean severity μ = e^η.",
+    "given": [
+      {
+        "symbol": "η",
+        "value": "β₀ + β₁x + β₂x²",
+        "note": "polynomial linear predictor"
+      },
+      {
+        "symbol": "(β₀, β₁, β₂)",
+        "value": "(1.0, 0.2, −0.01)",
+        "note": "fitted coefficients"
+      },
+      {
+        "symbol": "x",
+        "value": "10",
+        "note": "age proxy"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Evaluate η = 1.0 + 0.2x − 0.01x² at x = 10, then μ = e^η.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Write η as xᵀβ",
+        "attempt_cue": "Confirm the linear predictor is linear in parameters, not in x.",
+        "explanation": "The linear predictor η = xᵀβ may include powers or factors; 'linear' refers to parameters β, not to the raw covariate.",
+        "calculation": "η = 1.0 + 0.2x − 0.01x²  (linear in β₀, β₁, β₂)",
+        "result": "η linear in β; quadratic in x"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate η at x = 10",
+        "attempt_cue": "Substitute x = 10.",
+        "explanation": "Plug the covariate value into the polynomial predictor.",
+        "calculation": "η = 1.0 + 0.2 × 10 − 0.01 × 100 = 1.0 + 2.0 − 1.0 = 2.0",
+        "result": "η = 2.0"
+      },
+      {
+        "id": "S3",
+        "label": "Mean on the response scale",
+        "attempt_cue": "Apply the log link inverse μ = e^η.",
+        "explanation": "The mean lives on the response scale after inverting the link.",
+        "calculation": "μ = e^{2.0} ≈ 7.3891",
+        "result": "μ ≈ 7.3891"
+      }
+    ],
+    "final_answer": "η(10) = 2.0; μ = e^{2} ≈ 7.3891 on the severity scale.",
+    "common_pitfall": "Calling a quadratic model 'nonlinear regression' because of x², or reporting η = 2.0 as the mean severity without exponentiating.",
+    "syllabus_ref": "4.2.5"
+  }
 }

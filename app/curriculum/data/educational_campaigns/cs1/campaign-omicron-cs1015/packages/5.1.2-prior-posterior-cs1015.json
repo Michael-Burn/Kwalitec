@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force prior/posterior/conjugate vocabulary with warrants and refuse 'conjugate means I already calculated the posterior'.",
     "educational_intent": "Produce prior/posterior/conjugate as the contiguous hinge after Bayes' theorem.",
     "learning_objective": "Explain prior distribution, posterior distribution and conjugate prior distribution.",
-    "concept_focus": "Prior \u2192 likelihood \u2192 posterior; conjugate pairs keep the posterior in the same family.",
+    "concept_focus": "Prior → likelihood → posterior; conjugate pairs keep the posterior in the same family.",
     "prior_bridge": "Yesterday you applied Bayes' theorem (5.1.1). Today continues Topic 5.1 at prior, posterior and conjugate.",
     "why_now": "5.1.2 unlocks lawful language before simple posterior calculations (5.1.3).",
     "expected_benefit": "You will be able to explain prior, posterior and conjugate prior distributions with a concrete pair.",
@@ -49,7 +49,7 @@
       "Refuse one 'I already finished the posterior calculation' claim."
     ],
     "task_descriptions": [
-      "Sketch prior \u2192 posterior chain before CMP.",
+      "Sketch prior → posterior chain before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 5.1.2.",
       "Closed-book Knowledge Checks: definitions + refuse calc swallow."
     ],
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Explain prior, posterior and conjugate priors. You practised selective CMP reading on Syllabus 5.1.2. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.2 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.2: explain prior, posterior and conjugate priors. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for skipping prior honesty.",
       "Watch for swallowing 5.1.3 calculation."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior",
+    "open_point": "CMP · Syllabus 5.1.2 prior, posterior, conjugate prior",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3)",
     "out_of_scope_today": [
       "Simple posterior calculation as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.2 prior, posterior, conjugate prior. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.2 (stop before simple posterior calculation primary 5.1.3). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Prior encodes belief about \u03b8 before data; posterior is the updated belief after data. Conjugate prior: a prior family closed under updating so the posterior stays in the same family. Naming conjugate structures the update but still requires obtaining the posterior from prior plus data.",
+          "label": "Prior encodes belief about θ before data; posterior is the updated belief after data. Conjugate prior: a prior family closed under updating so the posterior stays in the same family. Naming conjugate structures the update but still requires obtaining the posterior from prior plus data.",
           "misconception_tag": ""
         },
         {
@@ -177,7 +177,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Prior: belief about \u03b8 before data. Posterior: updated belief after data. Conjugate: prior family closed under updating so posterior stays in the same family. Example: Beta-Binomial or Gamma-Poisson. Conjugate language structures the update; you still must obtain the actual posterior parameters from prior plus data.",
+          "label": "Prior: belief about θ before data. Posterior: updated belief after data. Conjugate: prior family closed under updating so posterior stays in the same family. Example: Beta-Binomial or Gamma-Poisson. Conjugate language structures the update; you still must obtain the actual posterior parameters from prior plus data.",
           "misconception_tag": ""
         },
         {
@@ -220,5 +220,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.2 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Beta-Binomial conjugate update for claim probability",
+    "problem_statement": "A portfolio claim probability θ has prior Beta(α, β) = Beta(2, 8). In a new sample of n = 10 independent risks, s = 3 claims are observed (Binomial likelihood). Using conjugacy, state the posterior distribution and compute the prior mean and posterior mean.",
+    "given": [
+      {
+        "symbol": "prior",
+        "value": "Beta(2, 8)",
+        "note": "prior for θ"
+      },
+      {
+        "symbol": "data",
+        "value": "s = 3 claims in n = 10",
+        "note": "Binomial evidence"
+      },
+      {
+        "symbol": "update",
+        "value": "Beta(α+s, β+n−s)",
+        "note": "Beta-Binomial conjugate rule"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Apply α' = α + s and β' = β + n − s before computing means.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Prior mean",
+        "attempt_cue": "Compute α/(α + β) for Beta(2, 8).",
+        "explanation": "The prior is the distribution of θ before seeing the new sample.",
+        "calculation": "E[θ]_prior = 2/(2+8) = 2/10 = 0.2",
+        "result": "Prior mean = 0.2"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior parameters",
+        "attempt_cue": "Update to Beta(2+3, 8+10−3).",
+        "explanation": "A conjugate prior keeps the same distributional family after updating. Naming conjugacy is not itself the posterior calculation.",
+        "calculation": "Posterior = Beta(5, 15)",
+        "result": "θ | data ~ Beta(5, 15)"
+      },
+      {
+        "id": "S3",
+        "label": "Posterior mean",
+        "attempt_cue": "Compute 5/(5+15).",
+        "explanation": "The posterior is the distribution of θ after combining prior and likelihood.",
+        "calculation": "E[θ]_post = 5/20 = 0.25",
+        "result": "Posterior mean = 0.25"
+      }
+    ],
+    "final_answer": "Prior Beta(2, 8) with mean 0.2; posterior Beta(5, 15) with mean 0.25.",
+    "common_pitfall": "Reporting the MLE 3/10 = 0.3 as the posterior mean, or stating 'conjugate Beta' without updating the parameters to Beta(5, 15).",
+    "syllabus_ref": "5.1.2"
+  }
 }

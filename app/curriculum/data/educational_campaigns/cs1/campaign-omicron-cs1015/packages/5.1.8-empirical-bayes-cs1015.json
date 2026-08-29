@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force EB credibility premiums in simple cases and refuse 'EB finished the contrast LO'.",
     "educational_intent": "Produce Empirical Bayes credibility as contiguous after Bayesian credibility.",
     "learning_objective": "Apply the Empirical Bayes approach to credibility theory and derive credibility premiums in simple cases.",
-    "concept_focus": "Estimate structural parameters from collective data \u2192 plug into credibility formula \u2192 EB premium.",
+    "concept_focus": "Estimate structural parameters from collective data → plug into credibility formula → EB premium.",
     "prior_bridge": "Yesterday you applied Bayesian credibility (5.1.7). Today applies Empirical Bayes.",
     "why_now": "5.1.8 sets up the contrast LO 5.1.9.",
     "expected_benefit": "You will be able to apply Empirical Bayes to estimate structural parameters and form a credibility premium.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Apply Empirical Bayes credibility in simple cases. You practised selective CMP reading on Syllabus 5.1.8. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.8: apply empirical bayes credibility in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for finishing contrast today.",
       "Watch for swallowing 5.1.9."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility",
+    "open_point": "CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9)",
     "out_of_scope_today": [
       "Bayes vs EB contrast as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.8.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.8 Empirical Bayes approach to credibility. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.8 (stop before contrast primary 5.1.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -124,7 +124,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "EB estimates overall mean and process variance components from collective experience, then forms credibility premium. Same assumptions as fully Bayesian is incorrect.",
-      "model_answer": "Estimate structurals from collective data; premium \u1e90 X\u0304 + (1-\u1e90) \u03bc\u0302.",
+      "model_answer": "Estimate structurals from collective data; premium Ẑ X̄ + (1-Ẑ) μ̂.",
       "common_mistake": "Treating EB as identical assumptions or single-claim update.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium \u1e90 times X\u0304 + (1 minus \u1e90) times \u03bc-hat follows after plugging estimated structural parameters into the credibility formula.",
+          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium Ẑ times X̄ + (1 minus Ẑ) times μ-hat follows after plugging estimated structural parameters into the credibility formula.",
           "misconception_tag": ""
         },
         {
@@ -177,7 +177,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Estimate structural parameters (for example overall mean and process or variance components) from the collective data, plug them into the credibility formula to get \u1e90 and \u03bc\u0302, then form \u1e90 times X\u0304 + (1 minus \u1e90) times \u03bc-hat for the risk. Computing one EB premium is not the same task as contrasting assumption sets of Bayes versus EB.",
+          "label": "Estimate structural parameters (for example overall mean and process or variance components) from the collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ times X̄ + (1 minus Ẑ) times μ-hat for the risk. Computing one EB premium is not the same task as contrasting assumption sets of Bayes versus EB.",
           "misconception_tag": ""
         },
         {
@@ -220,5 +220,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.8 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Empirical Bayes premium with estimated structurals",
+    "problem_statement": "Under Empirical Bayes, structural parameters are estimated from collective data: μ̂ = £500 and k̂ = 10. A risk has n = 5 years with X̄ = £700. Compute Ẑ = n/(n+k̂) and the EB credibility premium P = Ẑ X̄ + (1 − Ẑ) μ̂.",
+    "given": [
+      {
+        "symbol": "μ̂, k̂",
+        "value": "500, 10",
+        "note": "collective estimates of structurals"
+      },
+      {
+        "symbol": "n, X̄",
+        "value": "5, 700",
+        "note": "risk experience"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form Ẑ = 5/(5+10), then blend X̄ with μ̂.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Estimated credibility factor",
+        "attempt_cue": "Compute Ẑ = n/(n+k̂).",
+        "explanation": "Empirical Bayes replaces a fully specified prior's structurals with estimates from the collective portfolio.",
+        "calculation": "Ẑ = 5/(5+10) = 5/15 = 1/3",
+        "result": "Ẑ = 1/3"
+      },
+      {
+        "id": "S2",
+        "label": "EB premium",
+        "attempt_cue": "Evaluate Ẑ X̄ + (1 − Ẑ) μ̂.",
+        "explanation": "The premium formula matches classical credibility, with estimated Z and μ.",
+        "calculation": "P = (1/3)×700 + (2/3)×500 = 700/3 + 1000/3 = 1700/3 ≈ 566.67",
+        "result": "P ≈ £566.67"
+      },
+      {
+        "id": "S3",
+        "label": "Source of structurals",
+        "attempt_cue": "Contrast EB with a fully Bayesian prior specification.",
+        "explanation": "EB estimates μ and k from data; a fully Bayesian analysis would take them from an explicit prior structure.",
+        "calculation": "Structurals μ̂, k̂ from collective data (not a fixed prior)",
+        "result": "EB uses estimated structurals"
+      }
+    ],
+    "final_answer": "Ẑ = 1/3; Empirical Bayes premium P = 1700/3 ≈ £566.67.",
+    "common_pitfall": "Using the fully Bayesian k = 3 from a different exercise instead of the collective estimate k̂ = 10, which would incorrectly give Z = 5/8 and a different premium.",
+    "syllabus_ref": "5.1.8"
+  }
 }

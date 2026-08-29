@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -38,7 +38,7 @@
     "tutor_intent": "Today I will force a simple posterior calculation path and refuse 'posterior means point estimate under loss'.",
     "educational_intent": "Produce simple posterior calculation as contiguous after prior/conjugate language.",
     "learning_objective": "Obtain the posterior distribution for a parameter in simple cases.",
-    "concept_focus": "Prior + data \u2192 posterior distribution in a simple conjugate case.",
+    "concept_focus": "Prior + data → posterior distribution in a simple conjugate case.",
     "prior_bridge": "Yesterday you explained prior/posterior/conjugate (5.1.2). Today calculates a simple posterior.",
     "why_now": "5.1.3 is the calculation hinge before loss-based estimators (5.1.4).",
     "expected_benefit": "You will be able to obtain the posterior distribution for a parameter in a simple conjugate case.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Obtain posteriors in simple cases. You practised selective CMP reading on Syllabus 5.1.3. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.3: obtain posteriors in simple cases. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for skipping distributional warrant.",
       "Watch for swallowing 5.1.4."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases",
+    "open_point": "CMP · Syllabus 5.1.3 posterior distribution for a parameter in simple cases",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4)",
     "out_of_scope_today": [
       "Loss functions / Bayesian estimators as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.3 posterior distribution for a parameter in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.3 posterior distribution for a parameter in simple cases. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.3 (stop before loss/estimators primary 5.1.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -220,5 +220,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.3 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Posterior for Exponential rate with Gamma prior",
+    "problem_statement": "Claim waiting times (months) are Exponential with rate λ. The prior is Gamma(α, β) with shape-rate parameterisation π(λ) ∝ λ^{α−1} e^{−βλ}, here α = 4, β = 6. A sample of n = 5 independent waiting times has sum Σxᵢ = 8. Obtain the posterior distribution and its mean.",
+    "given": [
+      {
+        "symbol": "prior",
+        "value": "Gamma(4, 6)",
+        "note": "shape-rate prior for λ"
+      },
+      {
+        "symbol": "n, Σxᵢ",
+        "value": "5, 8",
+        "note": "sample size and total waiting time"
+      },
+      {
+        "symbol": "update",
+        "value": "Gamma(α+n, β+Σxᵢ)",
+        "note": "Gamma-Exponential conjugate rule"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Update shape by +n and rate by +Σxᵢ, then mean = shape/rate.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Likelihood structure",
+        "attempt_cue": "Recall L(λ) ∝ λ^n exp(−λ Σxᵢ) for Exponential waiting times.",
+        "explanation": "The posterior combines prior and likelihood. For Exponential rate with a Gamma prior, the update stays Gamma.",
+        "calculation": "Likelihood contributes λ^5 e^{−8λ}",
+        "result": "Likelihood factor λ^5 e^{−8λ}"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior distribution",
+        "attempt_cue": "Apply α' = 4 + 5 and β' = 6 + 8.",
+        "explanation": "Conjugacy yields Gamma(α+n, β+Σxᵢ).",
+        "calculation": "λ | data ~ Gamma(9, 14)",
+        "result": "Posterior Gamma(9, 14)"
+      },
+      {
+        "id": "S3",
+        "label": "Posterior mean",
+        "attempt_cue": "For shape-rate Gamma, E[λ] = α'/β'.",
+        "explanation": "A point estimate from the posterior (e.g. under squared error) is a separate loss step; here report the posterior mean.",
+        "calculation": "E[λ|data] = 9/14 ≈ 0.6429",
+        "result": "Posterior mean ≈ 0.6429"
+      }
+    ],
+    "final_answer": "Posterior is Gamma(9, 14) with mean 9/14 ≈ 0.6429 per month.",
+    "common_pitfall": "Updating only the shape (Gamma(9, 6)) or using the MLE λ̂ = n/Σxᵢ = 5/8 = 0.625 as if it were already the full posterior object.",
+    "syllabus_ref": "5.1.3"
+  }
 }

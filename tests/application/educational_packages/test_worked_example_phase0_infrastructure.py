@@ -168,6 +168,6 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
         for p in loader.all_approved()
         if p.worked_example is not None and p.worked_example.steps
     )
-    # Phase 0 pilot (Bayes) + Real Worked Examples Batch 1 (Section 3: 22 packages).
+    # Phase 0 pilot (Bayes) + RWE Batch 1 (Section 3: 22) + RWE Batch 2 (Continuity: 24).
     assert PILOT_PACKAGE_ID in with_real
-    assert len(with_real) == 23
+    assert len(with_real) == 47

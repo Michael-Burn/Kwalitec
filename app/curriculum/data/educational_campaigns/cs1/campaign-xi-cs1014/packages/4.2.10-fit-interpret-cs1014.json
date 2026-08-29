@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force fit-and-interpret literacy and refuse treating Bayesian / spine / until-exam as finished.",
     "educational_intent": "Produce a cognitive move from acceptability tests to lawful software fit and interpretation, closing 4.2 Learning under Continuity Front join.",
     "learning_objective": "Fit a generalised linear model to a data set and interpret the output.",
-    "concept_focus": "Choose family/link \u2192 fit GLM \u2192 interpret coefficients on the mean scale \u2192 check fit/diagnostics.",
+    "concept_focus": "Choose family/link → fit GLM → interpret coefficients on the mean scale → check fit/diagnostics.",
     "prior_bridge": "Yesterday you applied formal acceptability tests (4.2.9). Today closes Topic 4.2 Learning at fit and interpret.",
     "why_now": "After goodness-of-fit tests, fit a GLM and interpret the output. Then revise the GLM chain.",
     "expected_benefit": "You will be able to fit a GLM and interpret coefficients and fit output in exam-style language.",
@@ -51,7 +51,7 @@
       "Refuse one 'I finished Bayesian / the exam journey' claim."
     ],
     "task_descriptions": [
-      "Sketch fit \u2192 interpret checklist before CMP.",
+      "Sketch fit → interpret checklist before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.10.",
       "Closed-book Knowledge Checks: interpret + refuse 5.1/spine swallow."
     ],
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Fit a GLM and interpret the output. You practised selective CMP reading on Syllabus 4.2.10. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.10 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.10 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.10: fit a glm and interpret the output. Stop before out-of-scope later LOs.",
@@ -84,7 +84,7 @@
       "Watch for claiming Bayesian / spine / until-exam finished Continuity Front.",
       "Watch for skipping earlier 4.2 hinges as irrelevant once software runs."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.10 fit a GLM and interpret the output",
+    "open_point": "CMP · Syllabus 4.2.10 fit a GLM and interpret the output",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims)",
     "out_of_scope_today": [
       "Bayesian / Topic 5.1 as primary",
@@ -96,8 +96,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.10.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.10 fit a GLM and interpret the output. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.10 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.10 fit a GLM and interpret the output. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.10 (stop before Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.10 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -170,8 +170,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Log-link coefficient multiplies baseline mean by exp(0.20) \u2248 1.22. Additive reading on count scale is wrong. Bayesian credibility is separate.",
-      "model_answer": "exp(0.20) \u2248 1.22 times baseline mean. Refuse Fit-only and Bayesian conflation.",
+      "explanation": "Log-link coefficient multiplies baseline mean by exp(0.20) ≈ 1.22. Additive reading on count scale is wrong. Bayesian credibility is separate.",
+      "model_answer": "exp(0.20) ≈ 1.22 times baseline mean. Refuse Fit-only and Bayesian conflation.",
       "common_mistake": "Additive reading of log-link coefficient or Fit-only completion.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Under log link, \u03b2\u0302 = 0.20 means the fitted mean for High is e^{0.20} \u2248 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. Fit without interpretation or diagnostics is incomplete; Bayesian credibility uses prior-posterior updating, not GLM log-link coefficient reading alone.",
+          "label": "Under log link, β̂ = 0.20 means the fitted mean for High is e^{0.20} ≈ 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. Fit without interpretation or diagnostics is incomplete; Bayesian credibility uses prior-posterior updating, not GLM log-link coefficient reading alone.",
           "misconception_tag": ""
         },
         {
@@ -190,7 +190,7 @@
         },
         {
           "id": "c",
-          "label": "\u03b2\u0302 = 0.20 means High has mean 0.20 claims because log-link coefficients are means on the count scale.",
+          "label": "β̂ = 0.20 means High has mean 0.20 claims because log-link coefficients are means on the count scale.",
           "misconception_tag": "coeff_as_mean"
         },
         {
@@ -214,7 +214,7 @@
   "tomorrow_preview": {
     "next_topic_code": "CX-R1",
     "next_topic_title": "Campaign Xi Revision: retrieve GLM hinges (4.2)",
-    "continuity_line": "Today you closed Topic 4.2 Learning at fit/interpret; tomorrow is Campaign Xi Revision returning to 4.2.1\u20134.2.10.",
+    "continuity_line": "Today you closed Topic 4.2 Learning at fit/interpret; tomorrow is Campaign Xi Revision returning to 4.2.1–4.2.10.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 4.2 hinge for Revision",
     "student_facing": "Tomorrow: CX-R1 Revision of 4.2. Optional: note your weakest 4.2 link. Titles only tonight."
   },
@@ -223,5 +223,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.10 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Interpret a log-link Poisson coefficient multiplicatively",
+    "problem_statement": "A fitted Poisson claim-frequency GLM with log link gives β̂_urban = 0.2 for an urban indicator (baseline = rural). Compute the multiplicative effect e^{β̂_urban} on mean frequency, and the percentage uplift. Also, given residual deviance D = 40 on residual df = 36 and a largest |Pearson residual| of 3.1, state three output elements that must be interpreted beyond clicking Fit.",
+    "given": [
+      {
+        "symbol": "β̂_urban",
+        "value": "0.2",
+        "note": "log-link coefficient for urban"
+      },
+      {
+        "symbol": "D, df_res",
+        "value": "40, 36",
+        "note": "residual deviance and df"
+      },
+      {
+        "symbol": "max |r_P|",
+        "value": "3.1",
+        "note": "largest absolute Pearson residual"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Convert β̂ through e^β before discussing diagnostics.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Multiplicative mean effect",
+        "attempt_cue": "Compute e^{0.2}.",
+        "explanation": "Under a log link, a coefficient is a log mean ratio. Exponentiating yields the multiplicative effect on μ.",
+        "calculation": "e^{0.2} ≈ 1.2214",
+        "result": "urban mean ≈ 1.2214 × rural mean"
+      },
+      {
+        "id": "S2",
+        "label": "Percentage uplift",
+        "attempt_cue": "Convert the multiplier to a percent increase.",
+        "explanation": "A factor 1.2214 is a 22.14% higher mean frequency for urban vs rural.",
+        "calculation": "(1.2214 − 1) × 100% ≈ 22.14%",
+        "result": "≈ 22.14% higher mean frequency"
+      },
+      {
+        "id": "S3",
+        "label": "Interpret beyond Fit",
+        "attempt_cue": "Name coefficients, fit measures, and diagnostics as required outputs.",
+        "explanation": "Fitting alone is incomplete: interpret coefficients on the response scale, review deviance / df, and inspect residual diagnostics (here a |r_P| of 3.1 warrants attention).",
+        "calculation": "Interpret: (1) coefficients, (2) fit measures (D = 40 on 36 df), (3) diagnostics (|r_P| = 3.1)",
+        "result": "Coefficients + fit measures + diagnostics"
+      }
+    ],
+    "final_answer": "Urban mean frequency ≈ 1.2214× rural (≈ +22.14%). Also interpret deviance/df and residual diagnostics; Fit alone is incomplete.",
+    "common_pitfall": "Reading β̂ = 0.2 as a +0.2 additive increase in mean frequency on the count scale, instead of a multiplicative e^{0.2} effect under the log link.",
+    "syllabus_ref": "4.2.10"
+  }
 }

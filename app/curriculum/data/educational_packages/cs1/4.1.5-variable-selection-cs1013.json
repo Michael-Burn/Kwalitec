@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force the candidate to compare candidate explanatory sets using fit measures and refuse treating Trust Front 4.2/5.1 absorb as Continuity Front credit.",
     "educational_intent": "Produce a cognitive move from a single fitted linear model to disciplined variable selection using measures of model fit under CMP.",
     "learning_objective": "Measures of model fit to select an appropriate set of explanatory variables",
-    "concept_focus": "Candidate explanatory sets \u2192 fit measures (e.g. adjusted R\u00b2, AIC/BIC) \u2192 select an appropriate set.",
+    "concept_focus": "Candidate explanatory sets → fit measures (e.g. adjusted R², AIC/BIC) → select an appropriate set.",
     "prior_bridge": "Yesterday you practised software fit, inference, prediction, and residual checks (4.1.4). Today closes Topic 4.1 Learning at variable selection.",
     "why_now": "Finish Topic 4.1 by selecting variables using fit measures. Then revise before moving into GLM.",
     "expected_benefit": "You will be able to use measures of model fit to select an appropriate set of explanatory variables.",
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Select explanatory variables using measures of model fit. You practised selective CMP reading on Syllabus 4.1.5. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.5 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.5: select explanatory variables using measures of model fit. Stop before out-of-scope later LOs.",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating 'best R\u00b2' with automatically correct selection without CMP caveat.",
+      "Watch for equating 'best R²' with automatically correct selection without CMP caveat.",
       "Watch for claiming GLM/Bayesian finished Continuity Front.",
       "Watch for claiming spine / until-exam complete after Topic 4.1."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection",
+    "open_point": "CMP · Syllabus 4.1.5 measures of model fit for variable selection",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims)",
     "out_of_scope_today": [
       "GLM / Topic 4.2 as primary",
@@ -96,8 +96,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.5 measures of model fit for variable selection. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.5 (stop before GLM 4.2 / Bayesian 5.1 / spine trophy claims). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.5 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -214,9 +214,60 @@
   "tomorrow_preview": {
     "next_topic_code": "CN-R1",
     "next_topic_title": "Campaign Nu Revision: retrieve 4.1 hinges",
-    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1\u20134.1.5.",
+    "continuity_line": "Today you closed Topic 4.1 Learning at variable selection; tomorrow is Campaign Nu Revision returning to 4.1.1–4.1.5.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 4.1 hinge for Revision",
     "student_facing": "Tomorrow: CN-R1 Revision of 4.1. Optional: note your weakest 4.1 link. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Choose explanatory set by adjusted R²",
+    "problem_statement": "Two nested severity regressions are fitted on the same n = 50 policies.\nModel A uses p = 2 explanatory variables and has R² = 0.60.\nModel B uses p = 5 explanatory variables and has R² = 0.62.\nCompute adjusted R² for each model using R²_adj = 1 − (1 − R²)(n − 1)/(n − p − 1), and select the model preferred by adjusted R².",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "50",
+        "note": "common sample size"
+      },
+      {
+        "symbol": "Model A",
+        "value": "p = 2, R² = 0.60",
+        "note": "smaller explanatory set"
+      },
+      {
+        "symbol": "Model B",
+        "value": "p = 5, R² = 0.62",
+        "note": "larger explanatory set"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write R²_adj for each model before comparing; do not select on raw R² alone.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Adjusted R² for Model A",
+        "attempt_cue": "Substitute n = 50, p = 2, R² = 0.60 into the formula.",
+        "explanation": "Adjusted R² penalises extra parameters so that raw R² inflation from adding variables is not automatic preference.",
+        "calculation": "R²_adj,A = 1 − (1 − 0.60) × 49 / 47 = 1 − 0.40 × 49/47 = 1 − 19.6/47 ≈ 0.5830",
+        "result": "R²_adj,A ≈ 0.5830"
+      },
+      {
+        "id": "S2",
+        "label": "Adjusted R² for Model B",
+        "attempt_cue": "Substitute n = 50, p = 5, R² = 0.62.",
+        "explanation": "The larger model starts with higher raw R² but faces a heavier penalty.",
+        "calculation": "R²_adj,B = 1 − (1 − 0.62) × 49 / 44 = 1 − 0.38 × 49/44 = 1 − 18.62/44 ≈ 0.5768",
+        "result": "R²_adj,B ≈ 0.5768"
+      },
+      {
+        "id": "S3",
+        "label": "Select by adjusted R²",
+        "attempt_cue": "Compare the two adjusted values.",
+        "explanation": "Prefer the larger adjusted R². Here Model A wins despite smaller raw R².",
+        "calculation": "0.5830 > 0.5768 ⇒ prefer Model A on adjusted R²",
+        "result": "Prefer Model A (p = 2)"
+      }
+    ],
+    "final_answer": "R²_adj,A ≈ 0.5830; R²_adj,B ≈ 0.5768; select Model A. More variables is not automatically better.",
+    "common_pitfall": "Choosing Model B solely because raw R² = 0.62 exceeds 0.60, and ignoring that adjusted R² falls after the extra three variables.",
+    "syllabus_ref": "4.1.5"
+  }
 }

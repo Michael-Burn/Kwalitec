@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to read software output as evidence (slope inference, GOF, prediction limits, residual checks) and refuse treating variable-selection shopping as today's LO.",
     "educational_intent": "Produce a cognitive move from hand least squares to software-mediated fit, inference, prediction, and residual diagnostics under CMP.",
     "learning_objective": "Use of appropriate software to fit a linear regression model to a data set and interpret the output: Perform statistical inference on the slope parameter; Describe the use of measures of goodness of fit of a linear regression model; Use a fitted linear relationship to predict a mean response or an individual response with confidence limits; Use residuals to check the suitability and validity of a linear regression model",
-    "concept_focus": "Software fit \u2192 slope inference \u2192 GOF measures \u2192 mean vs individual prediction limits \u2192 residual checks.",
+    "concept_focus": "Software fit → slope inference → GOF measures → mean vs individual prediction limits → residual checks.",
     "prior_bridge": "Yesterday you obtained least squares estimates for the simple linear model (4.1.3). Today practises software fit and interpretation of that fitted relationship.",
     "why_now": "4.1.4 is contiguous after least squares. Examiners expect software output literacy. Not GUI tourism and not jumping to selection theatre.",
     "expected_benefit": "You will be able to interpret a fitted linear regression: slope inference, GOF, prediction limits, and residual checks.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Fit a linear regression in software and interpret the output. You practised selective CMP reading on Syllabus 4.1.4. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.4 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.4: fit a linear regression in software and interpret the output. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for treating residual plots as optional decoration.",
       "Watch for starting variable-selection shopping (4.1.5) as today's finish."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression",
+    "open_point": "CMP · Syllabus 4.1.4 software fit and interpretation of linear regression",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5)",
     "out_of_scope_today": [
       "Variable selection as primary (4.1.5)",
@@ -95,8 +95,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.4 software fit and interpretation of linear regression. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.4 (stop before variable selection 4.1.5). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. After fitting Y = \u03b2\u2080 + \u03b2\u2081 x in software you see \u03b2\u0302\u2081, SE(\u03b2\u0302\u2081), R-squared, and residual plots. For a new x-star, which statement is correct?",
+      "prompt": "Closed-book. After fitting Y = β₀ + β₁ x in software you see β̂₁, SE(β̂₁), R-squared, and residual plots. For a new x-star, which statement is correct?",
       "response_type": "mcq",
       "body": "Distinguish mean versus individual prediction; refuse selection.",
       "hints": [
@@ -217,5 +217,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.5. Titles only tonight",
     "student_facing": "Tomorrow: variable selection via fit measures (4.1.5). Optional light prep: skim 4.1.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Slope t-test and mean vs prediction intervals",
+    "problem_statement": "Software returns slope estimate β̂₁ = 12 (£ per year of age) with SE(β̂₁) = 4. Treat the Normal approximation as adequate and use z_{0.975} = 1.96.\n(a) Compute the Wald z statistic for H₀: β₁ = 0.\n(b) Form the approximate 95% CI for β₁.\n(c) At a fixed age, the fitted mean is ŷ = 500 with SE_mean = 20 and SE_pred = 50. Compare the half-widths of the 95% mean and individual prediction intervals.",
+    "given": [
+      {
+        "symbol": "β̂₁, SE(β̂₁)",
+        "value": "12, 4",
+        "note": "slope estimate and its SE"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "Normal critical value"
+      },
+      {
+        "symbol": "ŷ, SE_mean, SE_pred",
+        "value": "500, 20, 50",
+        "note": "mean fit and interval SEs"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form z = β̂₁/SE(β̂₁), then contrast SE_mean with SE_pred before writing intervals.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Wald statistic for the slope",
+        "attempt_cue": "Divide β̂₁ by its standard error.",
+        "explanation": "Software inference on the slope starts from the estimate and its SE; under H₀: β₁ = 0 the ratio is approximately standard Normal for large samples.",
+        "calculation": "z = 12 / 4 = 3",
+        "result": "z = 3"
+      },
+      {
+        "id": "S2",
+        "label": "Approximate 95% CI for β₁",
+        "attempt_cue": "Compute β̂₁ ± 1.96 × SE(β̂₁).",
+        "explanation": "A Wald interval centres on the estimate and scales the SE by z_{0.975}.",
+        "calculation": "12 ± 1.96 × 4 = 12 ± 7.84 ⇒ (4.16, 19.84)",
+        "result": "95% CI ≈ (4.16, 19.84)"
+      },
+      {
+        "id": "S3",
+        "label": "Mean interval vs individual prediction interval",
+        "attempt_cue": "Form ŷ ± 1.96 × SE for each SE, and compare widths.",
+        "explanation": "Prediction of an individual response includes residual variance, so SE_pred > SE_mean and the individual interval is wider than the mean interval.",
+        "calculation": "Mean: 500 ± 1.96 × 20 = 500 ± 39.2 ⇒ (460.8, 539.2); Individual: 500 ± 1.96 × 50 = 500 ± 98 ⇒ (402, 598); half-widths 39.2 < 98",
+        "result": "Individual interval wider than mean interval"
+      }
+    ],
+    "final_answer": "z = 3; 95% CI for β₁ ≈ (4.16, 19.84); mean interval (460.8, 539.2) is narrower than individual prediction interval (402, 598).",
+    "common_pitfall": "Reporting the mean confidence interval as if it were an individual prediction interval, or using SE_mean in place of SE_pred when predicting a single new claim.",
+    "syllabus_ref": "4.1.4"
+  }
 }

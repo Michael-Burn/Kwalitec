@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -35,11 +35,11 @@
   "mission": {
     "mission_id": "msn-cs1014-cs1-4.2-residuals",
     "display_title": "Use Pearson and deviance residuals",
-    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and their use. Without pretending \u03c7\u00b2 / LRT acceptability tests (4.2.9) are finished.",
+    "mission_purpose": "Today's Mission exists to explain Pearson and deviance residuals and their use. Without pretending χ² / LRT acceptability tests (4.2.9) are finished.",
     "tutor_intent": "Today I will force Pearson vs deviance residual discrimination and refuse treating formal acceptability tests as today's LO.",
     "educational_intent": "Produce a cognitive move from selected model to lawful residual diagnostics under CMP.",
     "learning_objective": "Explain Pearson and deviance residuals and their use.",
-    "concept_focus": "Pearson residual \u2192 deviance residual \u2192 diagnostic use for fit, outliers and patterns.",
+    "concept_focus": "Pearson residual → deviance residual → diagnostic use for fit, outliers and patterns.",
     "prior_bridge": "Yesterday you chose a model via analysis of deviance (4.2.7). Today continues Topic 4.2 at residuals.",
     "why_now": "4.2.8 is contiguous after model choice. Without residual literacy, acceptability tests lack diagnostic context.",
     "expected_benefit": "You will be able to explain Pearson and deviance residuals and how they are used diagnostically.",
@@ -68,7 +68,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Use Pearson and deviance residuals. You practised selective CMP reading on Syllabus 4.2.8. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.8 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.8 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.8: use pearson and deviance residuals. Stop before out-of-scope later LOs.",
@@ -80,13 +80,13 @@
     ],
     "misconception_watch": [
       "Watch for treating residual plots as automatic model proof.",
-      "Watch for jumping into formal \u03c7\u00b2/LRT (4.2.9) as today's finish.",
+      "Watch for jumping into formal χ²/LRT (4.2.9) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals",
-    "stop_condition": "Through the CMP treatment of Syllabus 4.2.8 (stop before \u03c7\u00b2 / LRT acceptability tests 4.2.9)",
+    "open_point": "CMP · Syllabus 4.2.8 Pearson and deviance residuals",
+    "stop_condition": "Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT acceptability tests 4.2.9)",
     "out_of_scope_today": [
-      "\u03c7\u00b2 / LRT acceptability tests as primary (4.2.9)",
+      "χ² / LRT acceptability tests as primary (4.2.9)",
       "Software fit/interpret as primary (4.2.10)",
       "Bayesian / Topic 5.1 as primary",
       "Until-exam educational trust"
@@ -94,8 +94,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.8.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.8 (stop before \u03c7\u00b2 / LRT acceptability tests 4.2.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT acceptability tests 4.2.9). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.8 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Pearson scales by fitted variance; deviance residual comes from deviance contributions. LRT is a formal test, not the residual definition.",
-      "model_answer": "Pearson: standardised (y-\u03bc\u0302)/sqrt(Var); deviance: signed deviance contribution.",
+      "model_answer": "Pearson: standardised (y-μ̂)/sqrt(Var); deviance: signed deviance contribution.",
       "common_mistake": "Collapsing residuals into LRT or omitting variance scaling.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: (y minus \u03bc\u0302) over sqrt(Var\u0302(Y)). Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
+          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: (y minus μ̂) over sqrt(Var̂(Y)). Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
           "misconception_tag": ""
         },
         {
@@ -144,7 +144,7 @@
         },
         {
           "id": "c",
-          "label": "Pearson and deviance residuals equal (y minus \u03bc\u0302) with no variance scaling in GLMs.",
+          "label": "Pearson and deviance residuals equal (y minus μ̂) with no variance scaling in GLMs.",
           "misconception_tag": "raw_only_residual"
         },
         {
@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Pearson residual: (y minus \u03bc\u0302) over sqrt(Var\u0302(Y)), a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
+          "label": "Pearson residual: (y minus μ̂) over sqrt(Var̂(Y)), a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
           "misconception_tag": ""
         },
         {
@@ -188,7 +188,7 @@
         },
         {
           "id": "c",
-          "label": "Pearson residual equals y minus \u03bc\u0302; deviance residual equals log(y/\u03bc\u0302) with no further definition.",
+          "label": "Pearson residual equals y minus μ̂; deviance residual equals log(y/μ̂) with no further definition.",
           "misconception_tag": "raw_only_residual"
         },
         {
@@ -201,7 +201,7 @@
     }
   ],
   "reflection": {
-    "framing": "Harvest residual-type wobble. Keep \u03c7\u00b2/LRT out of tonight's claim.",
+    "framing": "Harvest residual-type wobble. Keep χ²/LRT out of tonight's claim.",
     "prompt": "Which part of today's 4.2.8 move is stickiest and why? Quote or paraphrase the single CMP cue still unclear. If you had five minutes tomorrow, what one move would you rework?",
     "prompts": [
       "Which part of 4.2.8 is stickiest and why?",
@@ -214,12 +214,58 @@
     "next_topic_title": "Acceptability tests for a fitted GLM (4.2.9)",
     "continuity_line": "Today you established Pearson and deviance residuals; tomorrow continues 4.2 at formal acceptability tests.",
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.2.9. Titles only tonight",
-    "student_facing": "Tomorrow: Pearson \u03c7\u00b2 and likelihood-ratio acceptability tests (4.2.9). Optional light prep: skim 4.2.9 headings. Titles only tonight."
+    "student_facing": "Tomorrow: Pearson χ² and likelihood-ratio acceptability tests (4.2.9). Optional light prep: skim 4.2.9 headings. Titles only tonight."
   },
   "revision_linkage": {
     "returns_on": "CX-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.8 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Pearson and deviance residuals for a Poisson count",
+    "problem_statement": "One policy has observed claim count y = 9 and fitted Poisson mean μ̂ = 4. Compute the Pearson residual r_P = (y − μ̂) / √V(μ̂) with V(μ) = μ. Then compute the Poisson deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)] and the deviance residual r_D = sign(y − μ̂) √d.",
+    "given": [
+      {
+        "symbol": "y, μ̂",
+        "value": "9, 4",
+        "note": "observed count and fitted mean"
+      },
+      {
+        "symbol": "V(μ)",
+        "value": "μ",
+        "note": "Poisson variance function"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute r_P = (y − μ̂)/√μ̂ first, then d and r_D.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Pearson residual",
+        "attempt_cue": "Standardise the raw residual by √V(μ̂).",
+        "explanation": "Pearson residuals are (y − μ̂)/√Var(μ̂). For Poisson, Var(μ̂) = μ̂.",
+        "calculation": "r_P = (9 − 4) / √4 = 5 / 2 = 2.5",
+        "result": "r_P = 2.5"
+      },
+      {
+        "id": "S2",
+        "label": "Deviance contribution",
+        "attempt_cue": "Compute d = 2[y ln(y/μ̂) − (y − μ̂)].",
+        "explanation": "Deviance residuals start from the signed square root of the unit deviance.",
+        "calculation": "d = 2[9 ln(9/4) − (9 − 4)] = 2[9 ln(2.25) − 5] ≈ 2[7.298 − 5] = 2[2.298] ≈ 4.597",
+        "result": "d ≈ 4.597"
+      },
+      {
+        "id": "S3",
+        "label": "Deviance residual",
+        "attempt_cue": "r_D = sign(y − μ̂) √d.",
+        "explanation": "The sign matches (y − μ̂). Large |r_P| or |r_D| flags observations for diagnostic review.",
+        "calculation": "r_D = +√4.597 ≈ +2.144",
+        "result": "r_D ≈ 2.144"
+      }
+    ],
+    "final_answer": "Pearson residual r_P = 2.5; deviance residual r_D ≈ 2.144.",
+    "common_pitfall": "Using √Var = √y instead of √μ̂ in the Pearson residual, or dropping the sign and reporting √d as unsigned when y < μ̂.",
+    "syllabus_ref": "4.2.8"
+  }
 }

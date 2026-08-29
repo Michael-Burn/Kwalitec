@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -37,13 +37,13 @@
     "mission_id": "msn-cs1014-cs1-4.2-goodness-tests",
     "display_title": "Test acceptability of a fitted GLM",
     "mission_purpose": "Today's Mission exists to apply statistical tests to determine acceptability of a fitted model (Pearson's chi-square test and the likelihood-ratio test) without pretending software fit/interpret (4.2.10) is finished.",
-    "tutor_intent": "Today I will force \u03c7\u00b2 vs LRT acceptability discrimination and refuse treating full software interpretation as today's LO.",
+    "tutor_intent": "Today I will force χ² vs LRT acceptability discrimination and refuse treating full software interpretation as today's LO.",
     "educational_intent": "Produce a cognitive move from residual literacy to lawful formal acceptability tests under CMP.",
     "learning_objective": "Apply statistical tests to determine the acceptability of a fitted model: Pearson's chi-square test and the likelihood-ratio test.",
-    "concept_focus": "Fitted GLM \u2192 Pearson \u03c7\u00b2 acceptability test \u2192 likelihood-ratio test.",
+    "concept_focus": "Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
     "prior_bridge": "Yesterday you explained Pearson and deviance residuals (4.2.8). Today continues Topic 4.2 at formal acceptability tests.",
     "why_now": "4.2.9 is contiguous after residuals. Without formal tests, fit/interpret lacks acceptability warrant.",
-    "expected_benefit": "You will be able to apply Pearson's \u03c7\u00b2 and likelihood-ratio tests to judge acceptability of a fitted GLM.",
+    "expected_benefit": "You will be able to apply Pearson's χ² and likelihood-ratio tests to judge acceptability of a fitted GLM.",
     "explainability": "Assigned as Campaign Xi Day 9 because Continuity Front law keeps fit/interpret as tomorrow.",
     "success_criteria": [
       "Closed-book, name the two acceptability tests in 4.2.9.",
@@ -51,7 +51,7 @@
       "Refuse one 'I interpreted every coefficient in software, so I finished today's LO' claim."
     ],
     "task_descriptions": [
-      "Sketch \u03c7\u00b2 vs LRT before CMP.",
+      "Sketch χ² vs LRT before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 4.2.9.",
       "Closed-book Knowledge Checks: tests + refuse fit/interpret swallow."
     ],
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Test acceptability of a fitted GLM. You practised selective CMP reading on Syllabus 4.2.9. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.9 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.9 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.9: test acceptability of a fitted glm. Stop before out-of-scope later LOs.",
@@ -80,11 +80,11 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for treating a non-significant \u03c7\u00b2 as automatic model perfection.",
+      "Watch for treating a non-significant χ² as automatic model perfection.",
       "Watch for jumping into full software interpretation (4.2.10) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.9 Pearson chi-square and likelihood-ratio tests",
+    "open_point": "CMP · Syllabus 4.2.9 Pearson chi-square and likelihood-ratio tests",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.9 (stop before fit / interpret 4.2.10)",
     "out_of_scope_today": [
       "Software fit / full output interpretation as primary (4.2.10)",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.9.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.9 Pearson chi-square and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.9 (stop before fit / interpret 4.2.10). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.9 Pearson chi-square and likelihood-ratio tests. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.9 (stop before fit / interpret 4.2.10). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.9 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Pearson chi-square GOF for a Poisson GLM",
+    "problem_statement": "Three exposure groups have observed claim counts O = 8, 12, 10 and fitted expected counts E = 10, 10, 10 from a Poisson GLM. Compute Pearson's X² = Σ(O − E)²/E. Decide at α = 0.05 using χ²_{2, 0.95} = 5.991 (df = 3 − 1 for this illustrative grouped check). Also state what a nested likelihood-ratio / deviance test addresses that this aggregate Pearson check does not.",
+    "given": [
+      {
+        "symbol": "O",
+        "value": "8, 12, 10",
+        "note": "observed counts"
+      },
+      {
+        "symbol": "E",
+        "value": "10, 10, 10",
+        "note": "fitted expected counts"
+      },
+      {
+        "symbol": "χ²_{2,0.95}",
+        "value": "5.991",
+        "note": "5% critical value on 2 df"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form each (O − E)²/E term, sum them, then compare with 5.991.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Category contributions",
+        "attempt_cue": "Compute (O − 10)²/10 for each group.",
+        "explanation": "Pearson GOF aggregates standardised squared discrepancies.",
+        "calculation": "(−2)²/10 + 2²/10 + 0²/10 = 4/10 + 4/10 + 0 = 0.4 + 0.4 + 0",
+        "result": "0.4 + 0.4 + 0"
+      },
+      {
+        "id": "S2",
+        "label": "Sum and decide",
+        "attempt_cue": "Sum to X² and compare with 5.991.",
+        "explanation": "Large X² rejects aggregate adequacy of the fitted means.",
+        "calculation": "X² = 0.8;  0.8 < 5.991 ⇒ do not reject aggregate adequacy at 5%",
+        "result": "X² = 0.8; retain model on this check"
+      },
+      {
+        "id": "S3",
+        "label": "Companion LRT role",
+        "attempt_cue": "Name what the likelihood-ratio / deviance comparison tests.",
+        "explanation": "Pearson chi-square asks about aggregate adequacy of fitted means. A likelihood-ratio (deviance) test compares nested model likelihoods / deviances for relative structure.",
+        "calculation": "LRT: nested likelihood or deviance comparison (not the same question as X² alone)",
+        "result": "Pearson = aggregate; LRT = nested comparison"
+      }
+    ],
+    "final_answer": "X² = 0.8 < 5.991; do not reject aggregate adequacy at α = 0.05. LRT/deviance tests nested model comparison.",
+    "common_pitfall": "Treating X² = 0.8 as a nested deviance difference, or using df = 3 without recognising the constraint structure appropriate to the GOF layout.",
+    "syllabus_ref": "4.2.9"
+  }
 }

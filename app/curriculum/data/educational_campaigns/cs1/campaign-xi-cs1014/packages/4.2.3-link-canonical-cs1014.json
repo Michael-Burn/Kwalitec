@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force link vs canonical-link discrimination and refuse treating factor coding as today's LO.",
     "educational_intent": "Produce a cognitive move from moments/scale to lawful link and canonical link under CMP.",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
-    "concept_focus": "g(\u03bc)=\u03b7 \u2192 link role \u2192 canonical link as natural-parameter pairing per family.",
+    "concept_focus": "g(μ)=η → link role → canonical link as natural-parameter pairing per family.",
     "prior_bridge": "Yesterday you evaluated mean/variance/scale (4.2.2). Today continues Topic 4.2 at link functions.",
     "why_now": "4.2.3 is contiguous after moments. Without link, the linear predictor has no mean map.",
     "expected_benefit": "You will be able to explain the link and canonical link for GLM families and refuse software-default myths.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Choose link and canonical link with warrant. You practised selective CMP reading on Syllabus 4.2.3. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.3 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.3 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.3: choose link and canonical link with warrant. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for diving into factor/interaction coding (4.2.4) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.3 link function and canonical link",
+    "open_point": "CMP · Syllabus 4.2.3 link function and canonical link",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.3 (stop before factors / interactions 4.2.4)",
     "out_of_scope_today": [
       "Factors / interactions as primary (4.2.4)",
@@ -96,8 +96,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.3.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.3 link function and canonical link. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.3 (stop before factors / interactions 4.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.3 link function and canonical link. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.3 (stop before factors / interactions 4.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -126,8 +126,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Link maps \u03bc to \u03b7; canonical is family-specific natural parameter link. Software default needs a warrant, and link is not eta itself.",
-      "model_answer": "Link maps \u03bc to \u03b7; canonical examples logit (binomial), log (Poisson).",
+      "explanation": "Link maps μ to η; canonical is family-specific natural parameter link. Software default needs a warrant, and link is not eta itself.",
+      "model_answer": "Link maps μ to η; canonical examples logit (binomial), log (Poisson).",
       "common_mistake": "Treating software default as canonical or equating link with eta.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,7 +136,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A link function connects the mean response mu to the linear predictor \u03b7. A canonical link is the natural family link equating eta with the natural parameter. Binomial: logit; Poisson: log.",
+          "label": "A link function connects the mean response mu to the linear predictor η. A canonical link is the natural family link equating eta with the natural parameter. Binomial: logit; Poisson: log.",
           "misconception_tag": ""
         },
         {
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Binomial: logit (\u03bc in (0,1) and logit maps to the real line for eta). Gamma: reciprocal (negative-reciprocal canonical form as in CMP) because \u03bc greater than 0 maps the positive mean onto the \u03b7 scale for the gamma exponential-family form. A software default needs a warrant; canonical means the link equating eta with the natural parameter.",
+          "label": "Binomial: logit (μ in (0,1) and logit maps to the real line for eta). Gamma: reciprocal (negative-reciprocal canonical form as in CMP) because μ greater than 0 maps the positive mean onto the η scale for the gamma exponential-family form. A software default needs a warrant; canonical means the link equating eta with the natural parameter.",
           "misconception_tag": ""
         },
         {
@@ -223,5 +223,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.3 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Logit and log canonical links with numeric η",
+    "problem_statement": "A GLM uses a link g so that η = g(μ) = xᵀβ.\n(a) For a binomial probability μ = 0.8, compute the canonical logit link η = ln(μ/(1 − μ)).\n(b) For a Poisson mean with linear predictor η = 0.5, compute μ = e^η under the canonical log link.\nState why logit and log are the canonical links for binomial and Poisson respectively.",
+    "given": [
+      {
+        "symbol": "μ_binom",
+        "value": "0.8",
+        "note": "binomial mean probability"
+      },
+      {
+        "symbol": "η_pois",
+        "value": "0.5",
+        "note": "Poisson linear predictor"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write η = logit(μ) and μ = e^η before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Binomial canonical logit",
+        "attempt_cue": "Compute ln(0.8/0.2).",
+        "explanation": "The link maps the mean μ to the linear predictor η. For binomial, the canonical link is the logit.",
+        "calculation": "η = ln(0.8/0.2) = ln 4 ≈ 1.3863",
+        "result": "η ≈ 1.3863"
+      },
+      {
+        "id": "S2",
+        "label": "Poisson canonical log link",
+        "attempt_cue": "Compute μ = exp(0.5).",
+        "explanation": "For Poisson, the canonical link is log, so the mean is the exponential of the linear predictor.",
+        "calculation": "μ = e^{0.5} ≈ 1.6487",
+        "result": "μ ≈ 1.6487"
+      },
+      {
+        "id": "S3",
+        "label": "Canonical status",
+        "attempt_cue": "Name the canonical links without inventing a third 'default'.",
+        "explanation": "Canonical means the link equates η with the natural parameter of the exponential family: logit for binomial, log for Poisson.",
+        "calculation": "Canonical: logit (binomial), log (Poisson)",
+        "result": "Link maps μ → η; canonical as above"
+      }
+    ],
+    "final_answer": "logit(0.8) ≈ 1.3863; Poisson μ = e^{0.5} ≈ 1.6487. Canonical links: logit (binomial), log (Poisson).",
+    "common_pitfall": "Using the identity link for Poisson (μ = η = 0.5) or reporting logit(0.8) = 0.8/0.2 = 4 without taking the logarithm.",
+    "syllabus_ref": "4.2.3"
+  }
 }

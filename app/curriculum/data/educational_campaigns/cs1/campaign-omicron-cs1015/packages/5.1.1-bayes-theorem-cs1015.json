@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force Bayes' theorem on simple conditionals and refuse 'Bayesian means credibility premium on day one'.",
     "educational_intent": "Produce Bayes' theorem application as the Continuity Front join hinge from Xi GLM into Topic 5.1.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
-    "concept_focus": "Prior / base rate \u2192 likelihood of data \u2192 Bayes update \u2192 posterior probability \u2192 refuse inverse-probability confusion.",
+    "concept_focus": "Prior / base rate → likelihood of data → Bayes update → posterior probability → refuse inverse-probability confusion.",
     "prior_bridge": "Campaign Xi closed generalised linear models (4.2) with Revision. Today opens Continuity Front join at Topic 5.1 LO 5.1.1. The next official syllabus topic after 4.2. Trust Front CS1-003 already holds LIVE 5.1 inventory independently; Omicron is the Continuity Front native Pilot Arc.",
     "why_now": "Bayesian work starts with Bayes' theorem on simple conditionals. Prior/posterior language comes next.",
     "expected_benefit": "You will be able to apply Bayes' theorem to compute a simple posterior probability and refuse inverse-probability errors.",
@@ -68,7 +68,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Apply Bayes' theorem to simple conditionals. You practised selective CMP reading on Syllabus 5.1.1. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.1: apply bayes' theorem to simple conditionals. Stop before out-of-scope later LOs.",
@@ -83,7 +83,7 @@
       "Watch for finishing prior/posterior on day one.",
       "Watch for claiming spine / until-exam from theorem practice."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities",
+    "open_point": "CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2)",
     "out_of_scope_today": [
       "Prior / posterior / conjugate as primary",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.1 Bayes' theorem and simple conditional probabilities. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.1 (stop before prior/posterior/conjugate primary 5.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -169,8 +169,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Evidence P(flag)=0.067 and posterior 0.018/0.067 \u2248 0.269. Likelihood 0.90 is not the posterior. Prior alone or genuine false-flag rate alone is wrong.",
-      "model_answer": "P(flag)=0.067; P(fraud|flag) \u2248 0.269. Refuse posterior equals likelihood.",
+      "explanation": "Evidence P(flag)=0.067 and posterior 0.018/0.067 ≈ 0.269. Likelihood 0.90 is not the posterior. Prior alone or genuine false-flag rate alone is wrong.",
+      "model_answer": "P(flag)=0.067; P(fraud|flag) ≈ 0.269. Refuse posterior equals likelihood.",
       "common_mistake": "Taking P(fraud|flag)=0.90 or ignoring base rate normalisation.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "P(flag)=0.90 times 0.02 + 0.05 times 0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 \u2248 0.269. That equating posterior with P(flag|fraud)=0.90 ignores the base rate; Bayes multiplies prior times likelihood and normalises.",
+          "label": "P(flag)=0.90 times 0.02 + 0.05 times 0.98 = 0.018 + 0.049 = 0.067. P(fraud|flag)=0.018/0.067 ≈ 0.269. That equating posterior with P(flag|fraud)=0.90 ignores the base rate; Bayes multiplies prior times likelihood and normalises.",
           "misconception_tag": ""
         },
         {
@@ -222,5 +222,61 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.1 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Bayes update for a fraud screen flag",
+    "problem_statement": "In a claims book, P(Fraud) = 0.05. A screening rule flags positive with P(+|Fraud) = 0.90 and P(+|not Fraud) = 0.15. A randomly chosen claim is flagged positive. Compute P(+) and then P(Fraud|+).",
+    "given": [
+      {
+        "symbol": "P(F)",
+        "value": "0.05",
+        "note": "prior fraud probability"
+      },
+      {
+        "symbol": "P(+|F)",
+        "value": "0.90",
+        "note": "sensitivity of the flag"
+      },
+      {
+        "symbol": "P(+|not F)",
+        "value": "0.15",
+        "note": "false-positive rate"
+      },
+      {
+        "symbol": "P(not F)",
+        "value": "0.95",
+        "note": "1 − P(F)"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Expand P(+) by the law of total probability before applying Bayes.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Evidence P(+)",
+        "attempt_cue": "Compute P(+) = P(+|F)P(F) + P(+|not F)P(not F).",
+        "explanation": "The positive-flag rate mixes true fraud flags and false positives.",
+        "calculation": "P(+) = 0.90 × 0.05 + 0.15 × 0.95 = 0.045 + 0.1425 = 0.1875",
+        "result": "P(+) = 0.1875"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior P(F|+)",
+        "attempt_cue": "Apply P(F|+) = P(+|F)P(F) / P(+).",
+        "explanation": "Bayes multiplies prior and likelihood, then normalises by the evidence.",
+        "calculation": "P(F|+) = 0.045 / 0.1875 = 0.24",
+        "result": "P(F|+) = 0.24"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse equating posterior with sensitivity",
+        "attempt_cue": "Contrast 0.24 with P(+|F) = 0.90.",
+        "explanation": "Sensitivity is not the posterior. Base rate and false positives pull P(F|+) well below 0.90.",
+        "calculation": "0.24 ≠ 0.90; base rate matters",
+        "result": "Posterior 0.24, not 0.90"
+      }
+    ],
+    "final_answer": "P(+) = 0.1875; P(Fraud|+) = 0.24.",
+    "common_pitfall": "Setting P(Fraud|+) = 0.90 (sensitivity) and ignoring the base rate and the large false-positive contribution to P(+).",
+    "syllabus_ref": "5.1.1"
+  }
 }

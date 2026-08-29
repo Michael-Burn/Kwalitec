@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force Bayes vs EB assumption contrast and refuse 'Topic 5.1 finished the exam journey / first-pass spine'.",
     "educational_intent": "Produce Bayes vs EB contrast as the Topic 5.1 Learning close before Revision.",
     "learning_objective": "Understand the differences between Bayesian and Empirical Bayes approaches and the assumptions underlying each.",
-    "concept_focus": "Bayesian assumptions (prior/structural known in model) \u2194 EB assumptions (structural parameters estimated from data).",
+    "concept_focus": "Bayesian assumptions (prior/structural known in model) ↔ EB assumptions (structural parameters estimated from data).",
     "prior_bridge": "Yesterday you applied Empirical Bayes (5.1.8). Today closes Topic 5.1 Learning at the contrast.",
     "why_now": "Contrast Bayesian vs Empirical Bayes assumptions to close Bayesian foundations before revision.",
     "expected_benefit": "You will be able to state how Bayesian and Empirical Bayes differ in assumptions and what each is entitled to claim.",
@@ -68,7 +68,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Contrast Bayesian and Empirical Bayes assumptions. You practised selective CMP reading on Syllabus 5.1.9. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.9 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.9: contrast bayesian and empirical bayes assumptions. Stop before out-of-scope later LOs.",
@@ -83,7 +83,7 @@
       "Watch for collapsing Bayes and EB as identical.",
       "Watch for skipping Revision."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions",
+    "open_point": "CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim)",
     "out_of_scope_today": [
       "First-pass spine PASS",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.9.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.9 Bayes vs Empirical Bayes differences and assumptions. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.9 (stop before terminal Revision as Learning; no spine / until-exam claim). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.9 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -213,7 +213,7 @@
   "tomorrow_preview": {
     "next_topic_code": "CO-R1",
     "next_topic_title": "Campaign Omicron Revision: retrieve Bayesian hinges (5.1)",
-    "continuity_line": "Today you closed Topic 5.1 Learning at Bayes vs EB contrast; tomorrow is Campaign Omicron Revision returning to 5.1.1\u20135.1.9.",
+    "continuity_line": "Today you closed Topic 5.1 Learning at Bayes vs EB contrast; tomorrow is Campaign Omicron Revision returning to 5.1.1–5.1.9.",
     "light_prep_cue": "No new LO tonight: rest or jot the stickiest 5.1 hinge for Revision",
     "student_facing": "Tomorrow: CO-R1 Revision of 5.1. Optional: note your weakest 5.1 link. Titles only tonight."
   },
@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.9 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Same risk, Bayesian vs EB premiums compared",
+    "problem_statement": "The same risk has n = 4 years and X̄ = £900.\nFully Bayesian structurals (from a specified prior): μ = £700, k = 6.\nEmpirical Bayes structurals (from collective data): μ̂ = £750, k̂ = 12.\nCompute both credibility premiums and explain why they differ.",
+    "given": [
+      {
+        "symbol": "n, X̄",
+        "value": "4, 900",
+        "note": "common risk experience"
+      },
+      {
+        "symbol": "Bayes (μ, k)",
+        "value": "(700, 6)",
+        "note": "specified prior structurals"
+      },
+      {
+        "symbol": "EB (μ̂, k̂)",
+        "value": "(750, 12)",
+        "note": "estimated structurals"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute Z and P under each structural pair separately.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Fully Bayesian premium",
+        "attempt_cue": "Z = 4/(4+6); P = Z×900 + (1−Z)×700.",
+        "explanation": "Bayes uses prior-specified μ and k.",
+        "calculation": "Z = 4/10 = 0.4;  P = 0.4×900 + 0.6×700 = 360 + 420 = 780",
+        "result": "Bayes P = £780"
+      },
+      {
+        "id": "S2",
+        "label": "Empirical Bayes premium",
+        "attempt_cue": "Ẑ = 4/(4+12); P = Ẑ×900 + (1−Ẑ)×750.",
+        "explanation": "EB uses collectively estimated μ̂ and k̂.",
+        "calculation": "Ẑ = 4/16 = 0.25;  P = 0.25×900 + 0.75×750 = 225 + 562.5 = 787.5",
+        "result": "EB P = £787.5"
+      },
+      {
+        "id": "S3",
+        "label": "Why the premiums differ",
+        "attempt_cue": "Contrast assumption sources, not just the numeric gap.",
+        "explanation": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different (μ, k) pairs produce different Z and different blends, so premiums need not match.",
+        "calculation": "780 vs 787.5 because (μ, k) ≠ (μ̂, k̂)",
+        "result": "Assumption source drives the difference"
+      }
+    ],
+    "final_answer": "Bayesian premium £780; EB premium £787.5. They differ because Bayes uses specified prior structurals while EB uses estimated ones.",
+    "common_pitfall": "Assuming the two approaches must produce identical premiums whenever X̄ and n match, or mixing Bayes μ with EB k̂ in one formula.",
+    "syllabus_ref": "5.1.9"
+  }
 }

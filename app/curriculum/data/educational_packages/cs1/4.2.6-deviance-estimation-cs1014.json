@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -38,11 +38,11 @@
     "display_title": "Use deviance and estimate GLM parameters",
     "mission_purpose": "Today's Mission exists to explain deviance, scaled deviance, and estimation of GLM parameters. Without pretending analysis-of-deviance model choice (4.2.7) is finished.",
     "tutor_intent": "Today I will force deviance vs scaled deviance and estimation hinges and refuse treating model-choice theatre as today's LO.",
-    "educational_intent": "Produce a cognitive move from \u03b7 forms to lawful deviance and parameter estimation under CMP.",
+    "educational_intent": "Produce a cognitive move from η forms to lawful deviance and parameter estimation under CMP.",
     "learning_objective": "Explain deviance, scaled deviance, and estimation of the parameters of a generalised linear model.",
-    "concept_focus": "Log-likelihood \u2192 deviance \u2192 scaled deviance \u2192 maximum-likelihood / IWLS parameter estimates.",
+    "concept_focus": "Log-likelihood → deviance → scaled deviance → maximum-likelihood / IWLS parameter estimates.",
     "prior_bridge": "Yesterday you wrote linear predictor forms (4.2.5). Today continues Topic 4.2 at deviance and estimation.",
-    "why_now": "4.2.6 is contiguous after \u03b7. Without deviance/estimation, model choice and diagnostics lack a criterion.",
+    "why_now": "4.2.6 is contiguous after η. Without deviance/estimation, model choice and diagnostics lack a criterion.",
     "expected_benefit": "You will be able to explain deviance, scaled deviance, and how GLM parameters are estimated.",
     "explainability": "Assigned as Campaign Xi Day 6 because Continuity Front law keeps analysis of deviance model choice as tomorrow.",
     "success_criteria": [
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Use deviance and estimate GLM parameters. You practised selective CMP reading on Syllabus 4.2.6. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.6 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.6: use deviance and estimate glm parameters. Stop before out-of-scope later LOs.",
@@ -84,7 +84,7 @@
       "Watch for jumping into nested model-choice theatre (4.2.7) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance and estimation",
+    "open_point": "CMP · Syllabus 4.2.6 deviance, scaled deviance and estimation",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.6 (stop before analysis-of-deviance model choice 4.2.7)",
     "out_of_scope_today": [
       "Analysis of deviance model choice as primary (4.2.7)",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.6.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.6 deviance, scaled deviance and estimation. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.6 (stop before analysis-of-deviance model choice 4.2.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.6 deviance, scaled deviance and estimation. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.6 (stop before analysis-of-deviance model choice 4.2.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Deviance is twice the log-likelihood drop to saturated. Scale enters scaled deviance when dispersion matters. p-value chopping is not estimation.",
-      "model_answer": "Deviance 2(\u2113_sat - \u2113_model); scaled divides by scale; MLE/IWLS. Refuse p-chopping.",
+      "model_answer": "Deviance 2(ℓ_sat - ℓ_model); scaled divides by scale; MLE/IWLS. Refuse p-chopping.",
       "common_mistake": "Accepting p-value chopping as deviance or estimation definition.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times \u2113_sat minus \u2113_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
+          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times ℓ_sat minus ℓ_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
           "misconception_tag": ""
         },
         {
@@ -189,7 +189,7 @@
         },
         {
           "id": "c",
-          "label": "Deviance equals sum (y minus \u03bc\u0302) squared; scaled deviance adds sigma hat. GLM parameters are always OLS slopes on the link scale.",
+          "label": "Deviance equals sum (y minus μ̂) squared; scaled deviance adds sigma hat. GLM parameters are always OLS slopes on the link scale.",
           "misconception_tag": "ols_on_link"
         },
         {
@@ -222,5 +222,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.6 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Poisson deviance contribution and scaled deviance",
+    "problem_statement": "A Poisson GLM fitted mean for one observation is μ̂ = 4, and the observed count is y = 5. Compute the observation's deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)]. Then, if the total deviance across the sample is D = 18.4 and the scale is φ = 1, state the scaled deviance D/φ. Finally, name how GLM parameters are estimated (MLE / IWLS).",
+    "given": [
+      {
+        "symbol": "y, μ̂",
+        "value": "5, 4",
+        "note": "one Poisson observation and its fitted mean"
+      },
+      {
+        "symbol": "D, φ",
+        "value": "18.4, 1",
+        "note": "total deviance and scale"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write d = 2[y ln(y/μ̂) − (y − μ̂)] before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Poisson deviance contribution",
+        "attempt_cue": "Substitute y = 5 and μ̂ = 4 into the formula.",
+        "explanation": "Deviance compares the fitted model to the saturated model. For Poisson, each observation contributes 2[y ln(y/μ̂) − (y − μ̂)].",
+        "calculation": "d = 2[5 ln(5/4) − (5 − 4)] = 2[5 ln(1.25) − 1] ≈ 2[5 × 0.22314 − 1] = 2[0.1157] ≈ 0.2314",
+        "result": "d ≈ 0.2314"
+      },
+      {
+        "id": "S2",
+        "label": "Scaled deviance",
+        "attempt_cue": "Compute D/φ.",
+        "explanation": "Scaled deviance divides total deviance by the scale parameter.",
+        "calculation": "D/φ = 18.4 / 1 = 18.4",
+        "result": "Scaled deviance = 18.4"
+      },
+      {
+        "id": "S3",
+        "label": "Estimation method",
+        "attempt_cue": "Name the standard GLM estimation route.",
+        "explanation": "GLM coefficients are estimated by maximum likelihood, typically computed via iteratively reweighted least squares (IWLS).",
+        "calculation": "Estimate β by MLE (implemented as IWLS)",
+        "result": "MLE / IWLS"
+      }
+    ],
+    "final_answer": "Observation deviance ≈ 0.2314; scaled deviance = 18.4; parameters estimated by MLE (IWLS).",
+    "common_pitfall": "Using (y − μ̂)²/μ̂ as if it were the deviance contribution (that is Pearson), or dividing by φ when φ is already 1 and then treating 18.4 as something other than D itself.",
+    "syllabus_ref": "4.2.6"
+  }
 }

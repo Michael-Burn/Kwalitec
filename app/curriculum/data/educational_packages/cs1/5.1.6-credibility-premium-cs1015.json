@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
   "volume_id": "CS1-015",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1015_EDUCATIONAL_VOLUME.md",
     "CS1015_CERTIFICATION_REPORT.md",
@@ -35,10 +35,10 @@
     "mission_id": "msn-cs1015-cs1-5.1-credibility-premium",
     "display_title": "Use the credibility premium formula and factor",
     "mission_purpose": "Today's Mission exists to use the credibility premium formula and credibility factor. Without pretending Bayesian credibility approach (5.1.7) is finished.",
-    "tutor_intent": "Today I will force premium = Z\u00b7mean + (1\u2212Z)\u00b7collateral structure and refuse 'Z finished Bayesian credibility theory'.",
+    "tutor_intent": "Today I will force premium = Z·mean + (1−Z)·collateral structure and refuse 'Z finished Bayesian credibility theory'.",
     "educational_intent": "Produce credibility premium/factor as the entry to credibility theory after Bayesian estimation objects.",
     "learning_objective": "Use the credibility premium formula and explain the role of the credibility factor.",
-    "concept_focus": "Individual experience + collateral mean \u2192 credibility factor Z \u2192 credibility premium.",
+    "concept_focus": "Individual experience + collateral mean → credibility factor Z → credibility premium.",
     "prior_bridge": "Yesterday you constructed credible intervals (5.1.5). Today opens credibility theory at the premium formula.",
     "why_now": "5.1.6 opens credibility theory before Bayesian vs EB approaches.",
     "expected_benefit": "You will be able to compute a credibility premium and explain the role of the credibility factor Z.",
@@ -67,7 +67,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Use the credibility premium formula and factor. You practised selective CMP reading on Syllabus 5.1.6. This is Study Progress for today's block. Not Topic Complete for later 5.1 LOs, whole-Delta absorb, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.6 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 5.1.6 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 5.1.6: use the credibility premium formula and factor. Stop before out-of-scope later LOs.",
@@ -82,7 +82,7 @@
       "Watch for finishing Bayesian credibility approach today.",
       "Watch for swallowing 5.1.7."
     ],
-    "open_point": "CMP \u00b7 Syllabus 5.1.6 credibility premium formula and credibility factor",
+    "open_point": "CMP · Syllabus 5.1.6 credibility premium formula and credibility factor",
     "stop_condition": "Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach primary 5.1.7)",
     "out_of_scope_today": [
       "Bayesian credibility approach as primary",
@@ -93,8 +93,8 @@
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 5.1.6.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 5.1.6 credibility premium formula and credibility factor. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 5.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 5.1.6 credibility premium formula and credibility factor. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 5.1.6 (stop before Bayesian credibility approach primary 5.1.7). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 5.1.6 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -124,7 +124,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Standard form blends individual and collateral means with Z on individual experience. Full credibility always or reversed weights are wrong.",
-      "model_answer": "Premium = Z X\u0304 + (1-Z) mu; Z weights individual experience.",
+      "model_answer": "Premium = Z X̄ + (1-Z) mu; Z weights individual experience.",
       "common_mistake": "Always taking Z=1 or reversing weights on individual versus collateral.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Credibility premium = Z times X\u0304 + (1 minus Z) times \u03bc, where Z weights the individual experience X\u0304 versus the collateral or manual mean \u03bc.",
+          "label": "Credibility premium = Z times X̄ + (1 minus Z) times μ, where Z weights the individual experience X̄ versus the collateral or manual mean μ.",
           "misconception_tag": ""
         },
         {
@@ -159,7 +159,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.6-cp-01",
       "title": "Checkpoint: 5.1.6",
-      "prompt": "Closed-book. Individual mean claim X\u0304 = 1200, collateral or manual mean \u03bc = 1000, credibility factor Z = 0.4. Which statement is correct?",
+      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral or manual mean μ = 1000, credibility factor Z = 0.4. Which statement is correct?",
       "response_type": "mcq",
       "body": "Compute premium; refuse full credibility always.",
       "hints": [
@@ -177,7 +177,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Premium = Z times X\u0304 + (1 minus Z) times \u03bc = 0.4 times 1200 + 0.6 times 1000 = 480 + 600 = 1080. Z is the weight on the individual experience versus the collateral mean. With limited or noisy data, Z less than 1 shrinks toward the collateral or manual mean.",
+          "label": "Premium = Z times X̄ + (1 minus Z) times μ = 0.4 times 1200 + 0.6 times 1000 = 480 + 600 = 1080. Z is the weight on the individual experience versus the collateral mean. With limited or noisy data, Z less than 1 shrinks toward the collateral or manual mean.",
           "misconception_tag": ""
         },
         {
@@ -220,5 +220,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
     "note": "Syllabus 5.1.6 is a CO-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Credibility premium with given Z",
+    "problem_statement": "A risk's sample mean claim cost is X̄ = £800. The hypothetical mean for the risk class is μ = £600. The credibility factor is Z = 0.4. Compute the credibility premium P = Z X̄ + (1 − Z)μ and state what Z weights.",
+    "given": [
+      {
+        "symbol": "X̄",
+        "value": "800",
+        "note": "individual experience mean (£)"
+      },
+      {
+        "symbol": "μ",
+        "value": "600",
+        "note": "class hypothetical mean (£)"
+      },
+      {
+        "symbol": "Z",
+        "value": "0.4",
+        "note": "credibility factor"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write P = Z X̄ + (1 − Z)μ before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Complementary weight",
+        "attempt_cue": "Compute 1 − Z.",
+        "explanation": "The formula blends individual experience with the class mean.",
+        "calculation": "1 − Z = 1 − 0.4 = 0.6",
+        "result": "1 − Z = 0.6"
+      },
+      {
+        "id": "S2",
+        "label": "Credibility premium",
+        "attempt_cue": "Evaluate Z X̄ + (1 − Z)μ.",
+        "explanation": "Z weights the individual mean; (1 − Z) weights the class mean.",
+        "calculation": "P = 0.4 × 800 + 0.6 × 600 = 320 + 360 = 680",
+        "result": "P = £680"
+      },
+      {
+        "id": "S3",
+        "label": "Role of Z",
+        "attempt_cue": "State what larger Z means.",
+        "explanation": "Larger Z places more weight on the risk's own experience X̄.",
+        "calculation": "Z weights individual experience; here 40% on X̄, 60% on μ",
+        "result": "Z = weight on X̄"
+      }
+    ],
+    "final_answer": "Credibility premium P = £680; Z = 0.4 weights individual experience.",
+    "common_pitfall": "Computing Z μ + (1 − Z) X̄ (swapping the weights), which would give 0.4×600 + 0.6×800 = 720 instead of 680.",
+    "syllabus_ref": "5.1.6"
+  }
 }

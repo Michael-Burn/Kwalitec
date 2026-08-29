@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-XI",
   "volume_id": "CS1-014",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1014_EDUCATIONAL_VOLUME.md",
     "CS1014_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force nested comparison via analysis of deviance and refuse treating residual plots as today's LO.",
     "educational_intent": "Produce a cognitive move from deviance definition to lawful model-choice practice under CMP.",
     "learning_objective": "Choose a suitable model using an analysis of deviance and examination of the significance of the parameters.",
-    "concept_focus": "Nested models \u2192 analysis of deviance / likelihood-ratio comparison \u2192 parameter significance.",
+    "concept_focus": "Nested models → analysis of deviance / likelihood-ratio comparison → parameter significance.",
     "prior_bridge": "Yesterday you explained deviance and estimation (4.2.6). Today continues Topic 4.2 at model choice.",
     "why_now": "4.2.7 is contiguous after deviance. Without model choice, residual diagnostics have no selected structure to check.",
     "expected_benefit": "You will be able to choose a GLM using analysis of deviance and examination of parameter significance.",
@@ -69,7 +69,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Choose a GLM using analysis of deviance. You practised selective CMP reading on Syllabus 4.2.7. This is Study Progress for today's block. Not Topic Complete for later 4.2 LOs, Trust Front absorb of 5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.2.7 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.2.7: choose a glm using analysis of deviance. Stop before out-of-scope later LOs.",
@@ -84,19 +84,19 @@
       "Watch for jumping into residual diagnostics (4.2.8) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.2.7 analysis of deviance and model choice",
+    "open_point": "CMP · Syllabus 4.2.7 analysis of deviance and model choice",
     "stop_condition": "Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8)",
     "out_of_scope_today": [
       "Pearson / deviance residuals as primary (4.2.8)",
-      "\u03c7\u00b2 / LRT acceptability tests as primary (4.2.9)",
+      "χ² / LRT acceptability tests as primary (4.2.9)",
       "Bayesian / Topic 5.1 as primary",
       "Until-exam educational trust"
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 4.2.7.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.2.7 analysis of deviance and model choice. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.2.7 (stop before Pearson / deviance residuals 4.2.8). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.2.7 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Compare deviance (or \u22122\u0394\u2113) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
+          "label": "Compare deviance (or −2Δℓ) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
           "misconception_tag": ""
         },
         {
@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-GLM-XI",
     "note": "Syllabus 4.2.7 is a CX-R1 return target after Learning span closes."
   },
-  "published_at": "2026-08-03"
+  "published_at": "2026-08-03",
+  "worked_example": {
+    "title": "Nested GLM choice by deviance difference",
+    "problem_statement": "Two nested Poisson GLMs are fitted to the same claim-count data. The reduced model (no vehicle-type factor) has deviance D_R = 42.0 on more residual df. The fuller model (with vehicle-type) has D_F = 33.8. The difference uses ν = 2 degrees of freedom (two extra parameters). Test H₀: the reduced model suffices at α = 0.05 using χ²_{2, 0.95} = 5.991.",
+    "given": [
+      {
+        "symbol": "D_R, D_F",
+        "value": "42.0, 33.8",
+        "note": "reduced and full residual deviances"
+      },
+      {
+        "symbol": "ν",
+        "value": "2",
+        "note": "extra parameters in the full model"
+      },
+      {
+        "symbol": "χ²_{2,0.95}",
+        "value": "5.991",
+        "note": "5% critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form ΔD = D_R − D_F and compare with χ²_{ν, 0.95}.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Deviance difference",
+        "attempt_cue": "Subtract full deviance from reduced deviance.",
+        "explanation": "For nested GLMs, the analysis of deviance uses ΔD = D_reduced − D_full, which is approximately χ² under H₀ with df equal to the number of extra parameters.",
+        "calculation": "ΔD = 42.0 − 33.8 = 8.2",
+        "result": "ΔD = 8.2 on 2 df"
+      },
+      {
+        "id": "S2",
+        "label": "Compare with critical value",
+        "attempt_cue": "Compare 8.2 with 5.991.",
+        "explanation": "Reject the reduced model when ΔD exceeds the χ² critical value.",
+        "calculation": "8.2 > 5.991 ⇒ reject H₀ (reduced model insufficient)",
+        "result": "Reject reduced model at 5%"
+      },
+      {
+        "id": "S3",
+        "label": "Role of parameter significance",
+        "attempt_cue": "State how coefficient significance supports the same choice.",
+        "explanation": "Significant vehicle-type coefficients support including that factor; analysis of deviance and parameter tests are companion tools for nested choice.",
+        "calculation": "Include vehicle-type; significance supports the fuller model",
+        "result": "Prefer fuller model on deviance difference"
+      }
+    ],
+    "final_answer": "ΔD = 8.2 on 2 df > 5.991; reject the reduced model at α = 0.05 and retain vehicle-type.",
+    "common_pitfall": "Comparing D_F = 33.8 alone with χ²_{2, 0.95} instead of the nested difference ΔD = 8.2, or using |D_F − D_R| with the wrong sign convention while forgetting nesting.",
+    "syllabus_ref": "4.2.7"
+  }
 }

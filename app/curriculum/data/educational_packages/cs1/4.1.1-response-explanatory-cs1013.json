@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-NU",
   "volume_id": "CS1-013",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1013_EDUCATIONAL_VOLUME.md",
     "CS1013_CERTIFICATION_REPORT.md",
@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to discriminate response from explanatory variables on an actuarial data sketch and refuse treating 'all columns are predictors' as modelling.",
     "educational_intent": "Produce a cognitive move from hypothesis-testing closure (3.3) to lawful response/explanatory roles at the Continuity Front join into Section 4.",
     "learning_objective": "Response and explanatory variables",
-    "concept_focus": "Data sketch \u2192 name response Y \u2192 name explanatory X's with warrants \u2192 refuse column-soup modelling.",
+    "concept_focus": "Data sketch → name response Y → name explanatory X's with warrants → refuse column-soup modelling.",
     "prior_bridge": "Campaign Mu closed hypothesis testing and goodness of fit (3.3) with Revision. Today opens Continuity Front join at Topic 4.1 LO 4.1.1. The next official syllabus topic after 3.3. Trust Front CS1-003 already holds LIVE 4.1 inventory independently; Nu is the Continuity Front native Pilot Arc.",
     "why_now": "Regression starts by naming response vs explanatory variables with modelling intent. Model forms come next.",
     "expected_benefit": "You will be able to name response and explanatory variables with modelling warrants for a stated actuarial sketch.",
@@ -70,7 +70,7 @@
       "max": 75
     },
     "wrap_up": "Session complete for Name response and explanatory variables with modelling intent. You practised selective CMP reading on Syllabus 4.1.1. This is Study Progress for today's block. Not Topic Complete for later 4.1 LOs, Trust Front absorb of 4.2/5.1, first-pass spine PASS, or until-exam trust.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 4.1.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
     "lead_line": "Purpose of this reading: use the CMP to extract Syllabus 4.1.1: name response and explanatory variables with modelling intent. Stop before out-of-scope later LOs.",
@@ -85,7 +85,7 @@
       "Watch for starting simple/multiple algebra (4.1.2) inside this sitting.",
       "Watch for claiming Trust Front 4.2/5.1 absorb or spine PASS."
     ],
-    "open_point": "CMP \u00b7 Syllabus 4.1.1 response and explanatory variables",
+    "open_point": "CMP · Syllabus 4.1.1 response and explanatory variables",
     "stop_condition": "Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2)",
     "out_of_scope_today": [
       "Simple vs multiple model forms as primary (4.1.2)",
@@ -98,8 +98,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 4.1.1 response and explanatory variables. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 4.1.1 (stop before simple/multiple model forms 4.1.2). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 4.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -220,5 +220,51 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.2. Titles only tonight",
     "student_facing": "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light prep: skim 4.1.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Assign Y and X, then evaluate a severity line",
+    "problem_statement": "A motor pricing analyst models claim severity (£). The fitted simple linear relationship from a pilot sample is ŷ = 1200 + 40x, where x is driver age in years. (a) Name the response and the explanatory variable. (b) Compute the fitted mean severity at age 45.",
+    "given": [
+      {
+        "symbol": "ŷ",
+        "value": "1200 + 40x",
+        "note": "fitted mean severity (£)"
+      },
+      {
+        "symbol": "x",
+        "value": "45",
+        "note": "driver age (years) for the prediction"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Name Y and X in one sentence, then substitute x = 45 into ŷ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Assign response and explanatory roles",
+        "attempt_cue": "State which quantity is Y and which is X.",
+        "explanation": "The modelling question is claim severity, so severity is the response Y. Age is the predictor used to explain severity, so age is the explanatory variable X.",
+        "calculation": "Y = claim severity (£); X = driver age (years)",
+        "result": "Y = severity; X = age"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate the fitted mean at age 45",
+        "attempt_cue": "Substitute x = 45 into ŷ = 1200 + 40x.",
+        "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
+        "calculation": "ŷ(45) = 1200 + 40 × 45 = 1200 + 1800 = 3000",
+        "result": "ŷ = £3000"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse column-soup",
+        "attempt_cue": "State why claim count is not automatically an X for severity.",
+        "explanation": "Claim count is a frequency outcome. Sharing a policy record with severity does not make it an automatic explanatory variable for a severity model.",
+        "calculation": "Claim count is a different outcome type, not auto-X for severity",
+        "result": "Roles fixed by the modelling question, not by column presence"
+      }
+    ],
+    "final_answer": "Y = claim severity, X = driver age; ŷ(45) = £3000. Claim count is not automatically an explanatory variable for severity.",
+    "common_pitfall": "Treating every numeric policy field (including claim count) as an explanatory variable for severity, or swapping roles so that age is modelled as Y and severity as X.",
+    "syllabus_ref": "4.1.1"
+  }
 }
