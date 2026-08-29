@@ -225,5 +225,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 2.1.2 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Select Exponential for memoryless waiting times",
+    "problem_statement": "Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Choose the matching continuous family. As a light numeric check, if the mean waiting time is 6 months, compute P(T > 6).",
+    "given": [
+      {
+        "symbol": "generative story",
+        "value": "strictly positive waiting times; constant hazard; memoryless",
+        "note": "continuous support on (0, ∞)"
+      },
+      {
+        "symbol": "mean waiting time",
+        "value": "6 months",
+        "note": "Exponential mean θ = 6"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match support and memorylessness to a named continuous family before evaluating the survival probability.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match story to family",
+        "attempt_cue": "Name the continuous family for positive memoryless waiting times.",
+        "explanation": "Exponential models positive memoryless waiting times under constant hazard. Normal has symmetric all-real support and is a poor default for strictly positive waits.",
+        "calculation": "Story → Exponential (refuse Normal-by-default)",
+        "result": "Family choice: Exponential"
+      },
+      {
+        "id": "S2",
+        "label": "Light numeric illustration P(T > 6)",
+        "attempt_cue": "For Exponential mean 6, evaluate the survival at t = 6.",
+        "explanation": "With mean θ = 6, P(T > t) = e^{−t/θ}. At the mean, survival equals e^{−1}. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+        "calculation": "P(T > 6) = e^{−6/6} = e^{−1} ≈ 0.3679",
+        "result": "P(T > 6) ≈ 0.3679"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse Normal-by-default",
+        "attempt_cue": "State the support mismatch for a Normal waiting-time model.",
+        "explanation": "A Normal model allows negative waiting times and is not memoryless. That mismatches the stated positive constant-hazard story.",
+        "calculation": "Normal support includes negatives; not memoryless → refuse",
+        "result": "Exponential retained; Normal default refused"
+      }
+    ],
+    "final_answer": "Choose Exponential for positive memoryless waiting times; with mean 6 months, P(T > 6) ≈ 0.3679. Refuse Normal-by-default for this story.",
+    "common_pitfall": "Defaulting to a Normal waiting-time model because it is familiar, ignoring that waiting times are strictly positive and memoryless under constant hazard.",
+    "syllabus_ref": "2.1.2"
+  }
 }

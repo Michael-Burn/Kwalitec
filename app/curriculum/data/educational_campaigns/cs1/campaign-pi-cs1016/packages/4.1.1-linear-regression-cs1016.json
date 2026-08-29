@@ -221,5 +221,51 @@
     "returns_on": "CP-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 4.1.1 is a CP-R1 return target after Memory Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Assign Y and X, then evaluate a premium line",
+    "problem_statement": "A household contents pricing analyst models renewal premium (£). The fitted simple linear relationship from a pilot sample is ŷ = 180 + 12x, where x is sum insured in £000. (a) Name the response and the explanatory variable. (b) Compute the fitted mean premium at sum insured = 25 (£000).",
+    "given": [
+      {
+        "symbol": "ŷ",
+        "value": "180 + 12x",
+        "note": "fitted mean renewal premium (£)"
+      },
+      {
+        "symbol": "x",
+        "value": "25",
+        "note": "sum insured (£000) for the prediction"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Name Y and X in one sentence, then substitute x = 25 into ŷ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Assign response and explanatory roles",
+        "attempt_cue": "State which quantity is Y and which is X.",
+        "explanation": "The modelling question is renewal premium, so premium is the response Y. Sum insured is the predictor used to explain premium, so sum insured is the explanatory variable X.",
+        "calculation": "Y = renewal premium (£); X = sum insured (£000)",
+        "result": "Y = premium; X = sum insured"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate the fitted mean at x = 25",
+        "attempt_cue": "Substitute x = 25 into ŷ = 180 + 12x.",
+        "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
+        "calculation": "ŷ(25) = 180 + 12 × 25 = 180 + 300 = 480",
+        "result": "ŷ = £480"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse column-soup",
+        "attempt_cue": "State why postcode band is not automatically an X, and why premium is not an X for sum insured.",
+        "explanation": "Explanatory variables need a modelling warrant for the stated question. Dumping every numeric column on the right-hand side is not role assignment. Treating premium as X for sum insured answers a different modelling question.",
+        "calculation": "Roles fixed by the modelling question (premium on Y), not by column presence",
+        "result": "Roles follow the question, not the column list"
+      }
+    ],
+    "final_answer": "Y = renewal premium, X = sum insured; ŷ(25) = £480. Postcode band is not automatically explanatory, and premium is not an X for sum insured under this question.",
+    "common_pitfall": "Treating every numeric policy field as an explanatory variable for premium, or swapping roles so that sum insured is modelled as Y and premium as X.",
+    "syllabus_ref": "4.1.1"
   }
 }

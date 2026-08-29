@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force aims classification (descriptive / inferential / predictive) and refuse 'Publication Front finished stages/tools / Approver clearance'.",
     "educational_intent": "Produce Publication Front LO-per-day study of analysis aims as the lawful first day after Memory Front close.",
     "learning_objective": "Aims of a data analysis (e.g. descriptive, inferential and predictive)",
-    "concept_focus": "Stated task \u2192 classify aim (descriptive / inferential / predictive) \u2192 refuse collapsing all aims into EDA.",
+    "concept_focus": "Stated task → classify aim (descriptive / inferential / predictive) → refuse collapsing all aims into EDA.",
     "prior_bridge": "Yesterday you closed Campaign Pi Revision (Memory Front). Today opens Publication Front / Wave 0 residual at Syllabus 1.1.1.",
     "why_now": "Start the opening analysis arc at aims: descriptive, inferential, and predictive intents.",
     "expected_benefit": "You will be able to classify actuarial analysis aims as descriptive, inferential, or predictive and refuse EDA-as-everything.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Aims of a data analysis (Publication Front). You practised selective CMP reading on Syllabus 1.1.1 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1\u2013aims of a data analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.1–aims of a data analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing 1.1.2 today.",
       "Watch for claiming Approver clearance from one LO."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.1.1 aims of a data analysis",
+    "open_point": "CMP · Syllabus 1.1.1 aims of a data analysis",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2)",
     "out_of_scope_today": [
       "Stages and tools as primary",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.1 aims of a data analysis. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.1 (stop before stages/tools primary 1.1.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -221,5 +221,56 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.1 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Classify descriptive, inferential, and predictive aims",
+    "problem_statement": "A motor pricing review lists three tasks: (A) draw a histogram of last year's claim severities; (B) form a confidence interval for mean severity; (C) fit a model that forecasts next year's severity. Assign each task to descriptive, inferential, or predictive analysis.",
+    "given": [
+      {
+        "symbol": "Task A",
+        "value": "histogram of last year's claim severities",
+        "note": "observed-data summary"
+      },
+      {
+        "symbol": "Task B",
+        "value": "confidence interval for mean severity",
+        "note": "sample-to-population uncertainty"
+      },
+      {
+        "symbol": "Task C",
+        "value": "model forecasting next year's severity",
+        "note": "future outcome target"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. For each task, ask whether the target is a summary of seen data, a population parameter under uncertainty, or a future value.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Classify Task A",
+        "attempt_cue": "Is A summarising observed data or generalising/forecasting?",
+        "explanation": "A histogram of last year's severities summarises what was observed. That is a descriptive aim.",
+        "calculation": "A → descriptive (summarise observed severities)",
+        "result": "A = descriptive"
+      },
+      {
+        "id": "S2",
+        "label": "Classify Task B",
+        "attempt_cue": "What does a CI for mean severity target?",
+        "explanation": "A confidence interval generalises from sample evidence to a population parameter under uncertainty. That is an inferential aim.",
+        "calculation": "B → inferential (parameter under uncertainty)",
+        "result": "B = inferential"
+      },
+      {
+        "id": "S3",
+        "label": "Classify Task C and refuse EDA collapse",
+        "attempt_cue": "Name C's aim, then say why A/B/C are not 'just EDA'.",
+        "explanation": "Forecasting next year's severity targets a future outcome, so C is predictive. Calling all three 'just EDA' collapses distinct aims.",
+        "calculation": "C → predictive; refuse A=B=C='EDA'",
+        "result": "C = predictive; aims remain distinct"
+      }
+    ],
+    "final_answer": "A descriptive; B inferential; C predictive. Calling all three 'just EDA' collapses distinct analysis aims.",
+    "common_pitfall": "Labelling every pricing-review task as exploratory data analysis, so that confidence intervals and forecasts are treated as the same aim as a histogram.",
+    "syllabus_ref": "1.1.1"
   }
 }

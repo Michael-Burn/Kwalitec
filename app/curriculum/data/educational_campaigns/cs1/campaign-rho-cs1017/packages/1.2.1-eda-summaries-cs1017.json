@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force summary/visual tool warrant and refuse 'Publication Front finished correlation / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of EDA summary statistics and visualisations.",
     "learning_objective": "Appropriate tools to calculate suitable summary statistics and undertake exploratory data visualisations",
-    "concept_focus": "Variable type \u2192 suitable summary \u2192 suitable visualisation \u2192 aim alignment \u2192 refuse mean-only / pie misuse.",
+    "concept_focus": "Variable type → suitable summary → suitable visualisation → aim alignment → refuse mean-only / pie misuse.",
     "prior_bridge": "Yesterday you studied reproducibility (1.1.4). Today opens Topic 1.2 on Publication Front.",
     "why_now": "EDA entry is the next contiguous opening honesty LO after Topic 1.1 close.",
     "expected_benefit": "You will be able to choose a summary-and-plot pair for a named EDA aim and refuse a visualisation misuse.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for EDA summaries and visualisations (Publication Front). You practised selective CMP reading on Syllabus 1.2.1 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.1 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.1 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.1\u2013eda summaries and visualisations (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.1–eda summaries and visualisations (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.1?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing correlation today.",
       "Watch for claiming Topic 1.2 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations",
+    "open_point": "CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2)",
     "out_of_scope_today": [
       "Correlation measures as primary",
@@ -94,8 +94,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.2.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.1 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.1 summary statistics and exploratory visualisations. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.1 (stop before correlation primary 1.2.2). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -220,5 +220,51 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.2.1 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Choose summaries for zero-inflated claim counts",
+    "problem_statement": "Five policy-years show claim counts 0, 0, 1, 3, 10 (many zeros and a long right tail). Aim: explore frequency shape before modelling. Compute the mean and median, then choose an exploratory summary/plot approach that reveals zero mass and the tail.",
+    "given": [
+      {
+        "symbol": "counts",
+        "value": "0, 0, 1, 3, 10",
+        "note": "n = 5 policy-year claim counts"
+      },
+      {
+        "symbol": "aim",
+        "value": "explore frequency shape before modelling",
+        "note": "EDA tool choice, not a full model fit"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute mean and median, then decide whether mean-only summarises the shape you need to see.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute mean and median",
+        "attempt_cue": "Average the five counts; then take the middle ordered value.",
+        "explanation": "Ordered counts are 0, 0, 1, 3, 10. The mean is pulled by the large count; the median sits at the middle observation.",
+        "calculation": "mean = (0+0+1+3+10)/5 = 14/5 = 2.8; median = 1",
+        "result": "mean = 2.8; median = 1"
+      },
+      {
+        "id": "S2",
+        "label": "Choose exploratory tools for shape",
+        "attempt_cue": "Name a plot/summary that shows zero mass and the right tail.",
+        "explanation": "A bar chart or histogram of counts (or a zero-aware frequency plot) reveals mass at zero and the long tail. Mean-only hides both features.",
+        "calculation": "Prefer histogram/bar (zero-aware) over mean-only; median/IQR support the centre/spread story",
+        "result": "Histogram/bar + median (not mean-only)"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse pie / mean-only",
+        "attempt_cue": "State why a pie of policies or mean-only fails the exploratory aim.",
+        "explanation": "A pie chart of policies does not display the count distribution's zero inflation and tail. A mean of 2.8 alone misrepresents the typical frequency shape.",
+        "calculation": "Refuse pie-of-policies and mean-only as shape EDA",
+        "result": "Mean-only / pie rejected for this aim"
+      }
+    ],
+    "final_answer": "Mean = 2.8 and median = 1; use a histogram or bar chart of counts (with median/IQR support) to reveal zero mass and the right tail. Refuse mean-only or a pie chart for this exploratory aim.",
+    "common_pitfall": "Reporting only the mean count 2.8 as the exploratory summary, which hides zero-inflation and the long right tail that the modelling stage must confront.",
+    "syllabus_ref": "1.2.1"
   }
 }

@@ -223,5 +223,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 2.1.1 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Select Poisson for rare annual claim counts",
+    "problem_statement": "For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Choose the matching discrete family. As a light numeric check, if λ = 0.4 under that family, compute P(X = 0).",
+    "given": [
+      {
+        "symbol": "generative story",
+        "value": "rare events in a fixed year; constant rate; independent increments",
+        "note": "count support, non-negative integers"
+      },
+      {
+        "symbol": "λ",
+        "value": "0.4",
+        "note": "illustrative Poisson mean rate (per year)"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match story to family",
+        "attempt_cue": "Name the discrete family for rare events in a fixed interval under constant rate.",
+        "explanation": "Poisson counts rare events in a fixed interval under a constant rate / independent-increments story. Binomial needs a fixed number of independent trials; hypergeometric needs without-replacement draws from a finite population.",
+        "calculation": "Story → Poisson (not Normal; not hypergeometric)",
+        "result": "Family choice: Poisson"
+      },
+      {
+        "id": "S2",
+        "label": "Light numeric illustration P(X = 0)",
+        "attempt_cue": "For Poisson(λ = 0.4), evaluate e^{−λ}.",
+        "explanation": "Under Poisson(λ), P(X = 0) = e^{−λ}. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+        "calculation": "P(X = 0) = e^{−0.4} ≈ 0.6703",
+        "result": "P(X = 0) ≈ 0.6703"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse Normal / hypergeometric mismatch",
+        "attempt_cue": "State why Normal or hypergeometric fails this story.",
+        "explanation": "Normal has continuous all-real support and is a poor first match for a non-negative integer count. Hypergeometric requires a without-replacement finite success/failure population, which this policy-year rare-event story does not provide.",
+        "calculation": "Refuse Normal count model and hypergeometric without finite draw story",
+        "result": "Poisson retained; mismatched families refused"
+      }
+    ],
+    "final_answer": "Choose Poisson for the rare-event fixed-year count story; with λ = 0.4, P(X = 0) ≈ 0.6703. Refuse Normal or hypergeometric for this generative story.",
+    "common_pitfall": "Defaulting to a Normal model for claim counts because it is familiar, or picking hypergeometric without a without-replacement finite-population draw story.",
+    "syllabus_ref": "2.1.1"
+  }
 }

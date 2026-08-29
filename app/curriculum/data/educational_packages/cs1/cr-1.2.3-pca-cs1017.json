@@ -221,5 +221,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.2.3 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Refuse treating PC1 as a causal auto-decline score",
+    "problem_statement": "A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' Decide what PCA actually provides here, and whether that auto-decline justification holds.",
+    "given": [
+      {
+        "symbol": "colleague claim",
+        "value": "PC1 = true causal risk score; auto-decline on PC1 alone",
+        "note": "causal + decision leap"
+      },
+      {
+        "symbol": "PCA role",
+        "value": "dimensionality reduction on correlated rating factors",
+        "note": "variation summary, not automatic causation"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Separate 'summarises shared variation' from 'proven causal driver' before judging the auto-decline claim.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State what PCA constructs",
+        "attempt_cue": "Describe principal components in variation terms.",
+        "explanation": "PCA builds orthogonal components that capture major patterns of variation among correlated variables. A component is a weighted combination summarising shared variation.",
+        "calculation": "PC1 = leading variation summary (weighted combination), not a named causal mechanism by itself",
+        "result": "PCA summarises variation structure"
+      },
+      {
+        "id": "S2",
+        "label": "Separate summary from causation",
+        "attempt_cue": "Say whether PC1 proves a causal risk driver.",
+        "explanation": "Summarising shared variation does not by itself prove that PC1 is a causal risk driver. Causal claims need external subject-matter warrants beyond the eigenstructure.",
+        "calculation": "Variation summary ≠ proven causal driver",
+        "result": "Refuse causal identity for PC1 alone"
+      },
+      {
+        "id": "S3",
+        "label": "Judge the auto-decline proposal",
+        "attempt_cue": "Accept or refuse auto-decline on PC1 alone.",
+        "explanation": "Auto-decline on PC1 alone lacks decision and subject-matter warrants. PC1 may still be useful for exploration or visualisation of correlated rating factors.",
+        "calculation": "Judgment: REFUSE auto-decline-on-PC1-alone; allow exploratory use of PC1 as variation summary",
+        "result": "Refuse causal auto-decline; PC1 may still summarise variation"
+      }
+    ],
+    "final_answer": "PC1 may summarise major shared variation among rating factors for exploration, but it does not by itself prove a causal risk driver or justify auto-decline without external warrants.",
+    "common_pitfall": "Treating the first principal component as the 'true risk score' and using it as a standalone causal decline rule because it explains the most variance.",
+    "syllabus_ref": "1.2.3"
+  }
 }

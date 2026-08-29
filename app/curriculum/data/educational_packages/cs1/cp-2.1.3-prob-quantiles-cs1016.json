@@ -221,5 +221,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 2.1.3 is a CP-R1 return target after Memory Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Exponential claim sizes: CDF and median",
+    "problem_statement": "Household claim sizes X (£) are modelled as Exponential with mean θ = 800. Compute (a) P(X ≤ 400) and (b) the median claim size.",
+    "given": [
+      {
+        "symbol": "X",
+        "value": "Exp(mean θ = 800)",
+        "note": "claim size (£)"
+      },
+      {
+        "symbol": "threshold",
+        "value": "400",
+        "note": "for the CDF evaluation"
+      },
+      {
+        "symbol": "p",
+        "value": "0.5",
+        "note": "median probability level"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the Exponential CDF and survival forms first, then evaluate at 400 and invert for the median.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Evaluate the CDF at 400",
+        "attempt_cue": "Use F(x) = 1 − e^{−x/θ} with x = 400 and θ = 800.",
+        "explanation": "For an Exponential with mean θ, the CDF is 1 − e^{−x/θ}. The threshold is half the mean, so the exponent is −1/2.",
+        "calculation": "F(400) = 1 − e^{−400/800} = 1 − e^{−0.5} ≈ 1 − 0.6065 = 0.3935",
+        "result": "P(X ≤ 400) ≈ 0.3935"
+      },
+      {
+        "id": "S2",
+        "label": "Invert for the median",
+        "attempt_cue": "Solve 1 − e^{−m/800} = 0.5 for m.",
+        "explanation": "The median is the 0.5-quantile. Survival equals one half when e^{−m/θ} = 1/2, so m = θ ln 2.",
+        "calculation": "e^{−m/800} = 0.5 ⇒ m = 800 ln 2 ≈ 800 × 0.6931 = 554.5",
+        "result": "median ≈ £554.5"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse recognition-as-evaluation",
+        "attempt_cue": "State why naming Exponential does not replace the CDF and quantile arithmetic.",
+        "explanation": "Recognising the family identifies which formulas apply. Probability and quantile questions still require substituting the given numbers into those formulas.",
+        "calculation": "Family name ≠ numeric F(400) or m_{0.5}",
+        "result": "Evaluation requires the CDF/quantile arithmetic"
+      }
+    ],
+    "final_answer": "P(X ≤ 400) ≈ 0.3935; median ≈ £554.5. Naming Exponential does not replace these calculations.",
+    "common_pitfall": "Treating P(X ≤ 400) as 0.5 because 400 is half the mean 800, or reporting the median as 0.5 × 800 = 400 instead of θ ln 2.",
+    "syllabus_ref": "2.1.3"
+  }
 }

@@ -221,5 +221,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.3 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Contrast admin claims extract with a voluntary survey",
+    "problem_statement": "The same pricing question can be answered from an administrative claims extract or from a voluntary customer survey. Contrast the two sources on bias or coverage, and state why a very large survey sample size does not automatically make the survey the better source.",
+    "given": [
+      {
+        "symbol": "Source A",
+        "value": "administrative claims extract",
+        "note": "operational records for the book"
+      },
+      {
+        "symbol": "Source B",
+        "value": "voluntary customer survey",
+        "note": "self-selected responses"
+      },
+      {
+        "symbol": "shared use",
+        "value": "same pricing question",
+        "note": "fitness depends on source properties"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compare selection/coverage risks first, then separate volume from representativeness.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Contrast bias and coverage",
+        "attempt_cue": "Name one bias or coverage difference between admin extract and survey.",
+        "explanation": "Administrative records cover booked claims but may miss unreported events or soft fields. Voluntary surveys often suffer response or selection bias and uneven coverage of the risk population.",
+        "calculation": "Contrast: admin coverage vs survey response/selection bias (and field completeness)",
+        "result": "Sources differ in bias and coverage risks"
+      },
+      {
+        "id": "S2",
+        "label": "Note large-set constraints without equating volume to quality",
+        "attempt_cue": "State one scale issue and refuse 'larger n ⇒ better data'.",
+        "explanation": "Extremely large sets can still need sampling or distributed tooling. Large n does not repair non-representativeness by itself.",
+        "calculation": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
+        "result": "Volume is not automatically better data"
+      },
+      {
+        "id": "S3",
+        "label": "Judgment for the pricing question",
+        "attempt_cue": "State how to choose between A and B for pricing.",
+        "explanation": "Choose by matching source bias, coverage, and measurement properties to the pricing question, not by raw row count alone.",
+        "calculation": "Decision rule: fitness = bias/coverage/measurement match, not n-max",
+        "result": "Prefer source fitness over largest n"
+      }
+    ],
+    "final_answer": "Admin extract and voluntary survey differ in selection/response bias and coverage. Large survey n does not automatically fix representativeness or make the survey better for the pricing question.",
+    "common_pitfall": "Assuming the voluntary survey is better whenever its row count exceeds the admin extract, without comparing bias, coverage, and measurement quality for the pricing use.",
+    "syllabus_ref": "1.1.3"
+  }
 }

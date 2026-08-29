@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,8 +39,8 @@
     "mission_purpose": "Today's Mission exists to study Syllabus 1.2.2 correlation measures under Publication Front discipline. Without pretending PCA (1.2.3) is finished.",
     "tutor_intent": "Today I will force Pearson/Spearman/Kendall warrant and refuse 'Publication Front finished PCA / Approver clearance'.",
     "educational_intent": "Produce Publication Front study of bivariate correlation measures and inference.",
-    "learning_objective": "Interpret and make statistical inferences using Pearson\u2019s, Spearman\u2019s and Kendall\u2019s measures of correlation for bivariate data",
-    "concept_focus": "Measure choice (Pearson / Spearman / Kendall) \u2192 what association means \u2192 refuse causation / linearity overclaim.",
+    "learning_objective": "Interpret and make statistical inferences using Pearson’s, Spearman’s and Kendall’s measures of correlation for bivariate data",
+    "concept_focus": "Measure choice (Pearson / Spearman / Kendall) → what association means → refuse causation / linearity overclaim.",
     "prior_bridge": "Yesterday you studied EDA summaries (1.2.1). Today continues Publication Front.",
     "why_now": "Association measures sit between summaries and dimensionality reduction.",
     "expected_benefit": "You will be able to justify a correlation measure for bivariate data and state one inferential limit of a large coefficient.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Correlation measures (Publication Front). You practised selective CMP reading on Syllabus 1.2.2 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.2.2 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.2\u2013correlation measures (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.2.2–correlation measures (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.2.2?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing PCA today.",
       "Watch for claiming Topic 1.2 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data",
+    "open_point": "CMP · Syllabus 1.2.2 correlation measures for bivariate data",
     "stop_condition": "Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3)",
     "out_of_scope_today": [
       "PCA as primary",
@@ -95,8 +95,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.2.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.2.2 correlation measures for bivariate data. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.2.2 correlation measures for bivariate data. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.2.2 (stop before PCA primary 1.2.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.2.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -126,7 +126,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Measures differ in what association they capture. Identity claims, causal proof, or PCA confusion are wrong.",
-      "model_answer": "Pearson linear; Spearman/Kendall rank; correlation \u2260 causation.",
+      "model_answer": "Pearson linear; Spearman/Kendall rank; correlation ≠ causation.",
       "common_mistake": "Treating measures as identical or reading causation from r.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -221,5 +221,56 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.2.2 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Choose Spearman when association is monotone but skewed",
+    "problem_statement": "For years licensed versus claim frequency, frequency is skewed with outliers and the scatter looks roughly decreasing but nonlinear. Software reports Pearson r = −0.28 and Spearman ρ = −0.55. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+    "given": [
+      {
+        "symbol": "scatter pattern",
+        "value": "roughly decreasing, nonlinear; skewed frequency with outliers",
+        "note": "association shape"
+      },
+      {
+        "symbol": "Pearson r",
+        "value": "−0.28",
+        "note": "linear correlation"
+      },
+      {
+        "symbol": "Spearman ρ",
+        "value": "−0.55",
+        "note": "rank correlation"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match measure to linear vs monotone-nonlinear association, then separate association from causation.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match measure to association type",
+        "attempt_cue": "Say what Pearson vs Spearman each target.",
+        "explanation": "Pearson measures linear association. Spearman uses ranks and suits monotone but nonlinear patterns, with better resistance to outliers in many skewed cases.",
+        "calculation": "Pattern = monotone nonlinear + outliers → prefer Spearman (or Kendall)",
+        "result": "Prefer Spearman over Pearson here"
+      },
+      {
+        "id": "S2",
+        "label": "Read the two reported coefficients",
+        "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+        "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone decrease under skew and outliers.",
+        "calculation": "|ρ| = 0.55 > |r| = 0.28; rank measure captures monotone association better here",
+        "result": "Report Spearman ρ = −0.55 as the preferred description"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse causation from correlation",
+        "attempt_cue": "State what a large coefficient still does not prove.",
+        "explanation": "A large correlation coefficient does not prove that changing years licensed causes frequency to change.",
+        "calculation": "Association ≠ causation (even if |ρ| is large)",
+        "result": "Refuse causal claim from correlation alone"
+      }
+    ],
+    "final_answer": "Prefer Spearman ρ = −0.55 (monotone, skewed, outlier-prone) over Pearson r = −0.28. A large coefficient still does not prove causation.",
+    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = −0.55 as proof that more years licensed causes lower claim frequency.",
+    "syllabus_ref": "1.2.2"
   }
 }

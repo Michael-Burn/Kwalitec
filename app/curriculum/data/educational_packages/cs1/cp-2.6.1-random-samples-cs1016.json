@@ -221,5 +221,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 2.6.1 is a CP-R1 return target after Memory Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Classify a convenience extract as not a random sample",
+    "problem_statement": "An analyst pulls the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book in order to build an estimator for portfolio mean severity. Decide whether this extract is a random sample from the stated population, and name the sampling defect.",
+    "given": [
+      {
+        "symbol": "population target",
+        "value": "whole motor book",
+        "note": "intended inferential population"
+      },
+      {
+        "symbol": "extract",
+        "value": "40 most recent claims, one commercial client",
+        "note": "observed selection mechanism"
+      },
+      {
+        "symbol": "intended use",
+        "value": "estimator for portfolio mean severity",
+        "note": "requires a sampling warrant"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compare the selection mechanism with an iid (or otherwise stated) draw from the motor-book population before judging the sample label.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State what a random sample requires",
+        "attempt_cue": "Name the warrant that links observations to the population distribution.",
+        "explanation": "A random sample is drawn so that observations follow the population distribution under a stated sampling model (for example iid draws). Estimators and intervals inherit that warrant.",
+        "calculation": "Require: stated sampling model linking extract to motor-book population",
+        "result": "Random sample = lawful draw under a sampling model"
+      },
+      {
+        "id": "S2",
+        "label": "Inspect the actual selection mechanism",
+        "attempt_cue": "Describe how the 40 claims were chosen.",
+        "explanation": "The extract is consecutive recent claims from one client. That clusters time and client, so dependence and selection bias enter relative to the whole motor book.",
+        "calculation": "Mechanism = one-client recent slice (clustered, not portfolio iid)",
+        "result": "Selection is convenience / clustered, not portfolio random"
+      },
+      {
+        "id": "S3",
+        "label": "Classify and refuse n-as-warrant",
+        "attempt_cue": "Decide yes/no on random sample, and say why n = 40 alone fails.",
+        "explanation": "Having forty observations does not create a random sample. Without a lawful draw from the motor book, estimator procedures lack the sampling warrant.",
+        "calculation": "Classification: NOT a random sample from the motor book; defect = selection bias / clustering",
+        "result": "Not a random sample; n alone is insufficient"
+      }
+    ],
+    "final_answer": "Not a random sample from the whole motor book: one-client consecutive claims are clustered and selection-biased. n = 40 does not by itself create a random sample.",
+    "common_pitfall": "Treating any large enough extract as a random sample because n = 40 looks adequate, without checking whether the draw matches the stated portfolio population.",
+    "syllabus_ref": "2.6.1"
+  }
 }

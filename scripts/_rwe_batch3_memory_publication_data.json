@@ -1,0 +1,766 @@
+{
+  "worked_examples": {
+    "cp-2.1.3-prob-quantiles-cs1016.json": {
+      "title": "Exponential claim sizes: CDF and median",
+      "problem_statement": "Household claim sizes X (£) are modelled as Exponential with mean θ = 800. Compute (a) P(X ≤ 400) and (b) the median claim size.",
+      "given": [
+        {
+          "symbol": "X",
+          "value": "Exp(mean θ = 800)",
+          "note": "claim size (£)"
+        },
+        {
+          "symbol": "threshold",
+          "value": "400",
+          "note": "for the CDF evaluation"
+        },
+        {
+          "symbol": "p",
+          "value": "0.5",
+          "note": "median probability level"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Write the Exponential CDF and survival forms first, then evaluate at 400 and invert for the median.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Evaluate the CDF at 400",
+          "attempt_cue": "Use F(x) = 1 − e^{−x/θ} with x = 400 and θ = 800.",
+          "explanation": "For an Exponential with mean θ, the CDF is 1 − e^{−x/θ}. The threshold is half the mean, so the exponent is −1/2.",
+          "calculation": "F(400) = 1 − e^{−400/800} = 1 − e^{−0.5} ≈ 1 − 0.6065 = 0.3935",
+          "result": "P(X ≤ 400) ≈ 0.3935"
+        },
+        {
+          "id": "S2",
+          "label": "Invert for the median",
+          "attempt_cue": "Solve 1 − e^{−m/800} = 0.5 for m.",
+          "explanation": "The median is the 0.5-quantile. Survival equals one half when e^{−m/θ} = 1/2, so m = θ ln 2.",
+          "calculation": "e^{−m/800} = 0.5 ⇒ m = 800 ln 2 ≈ 800 × 0.6931 = 554.5",
+          "result": "median ≈ £554.5"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse recognition-as-evaluation",
+          "attempt_cue": "State why naming Exponential does not replace the CDF and quantile arithmetic.",
+          "explanation": "Recognising the family identifies which formulas apply. Probability and quantile questions still require substituting the given numbers into those formulas.",
+          "calculation": "Family name ≠ numeric F(400) or m_{0.5}",
+          "result": "Evaluation requires the CDF/quantile arithmetic"
+        }
+      ],
+      "final_answer": "P(X ≤ 400) ≈ 0.3935; median ≈ £554.5. Naming Exponential does not replace these calculations.",
+      "common_pitfall": "Treating P(X ≤ 400) as 0.5 because 400 is half the mean 800, or reporting the median as 0.5 × 800 = 400 instead of θ ln 2.",
+      "syllabus_ref": "2.1.3"
+    },
+    "cp-2.2.1-marginal-conditional-cs1016.json": {
+      "title": "Marginal and conditional from a joint claim table",
+      "problem_statement": "A policy year records indicators (X, Y) with joint PMF P(0,0) = 0.05, P(0,1) = 0.15, P(1,0) = 0.20, P(1,1) = 0.60, where X = 1 if a weather claim occurs and Y = 1 if a liability claim occurs. Compute P(X = 1) and P(Y = 0 | X = 1).",
+      "given": [
+        {
+          "symbol": "P(0,0)",
+          "value": "0.05",
+          "note": "no weather, no liability"
+        },
+        {
+          "symbol": "P(0,1)",
+          "value": "0.15",
+          "note": "no weather, liability"
+        },
+        {
+          "symbol": "P(1,0)",
+          "value": "0.20",
+          "note": "weather, no liability"
+        },
+        {
+          "symbol": "P(1,1)",
+          "value": "0.60",
+          "note": "weather and liability"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Sum the X = 1 column for the marginal, then divide the joint cell by that marginal for the conditional.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the marginal P(X = 1)",
+          "attempt_cue": "Add the joint probabilities with X = 1.",
+          "explanation": "The marginal for X = 1 sums over Y: P(X = 1) = P(1,0) + P(1,1).",
+          "calculation": "P(X = 1) = 0.20 + 0.60 = 0.80",
+          "result": "P(X = 1) = 0.80"
+        },
+        {
+          "id": "S2",
+          "label": "Form the conditional P(Y = 0 | X = 1)",
+          "attempt_cue": "Divide P(1,0) by P(X = 1).",
+          "explanation": "Conditional probability renormalises the joint cell by the matching marginal.",
+          "calculation": "P(Y = 0 | X = 1) = 0.20 / 0.80 = 0.25",
+          "result": "P(Y = 0 | X = 1) = 0.25"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse joint-as-marginal",
+          "attempt_cue": "State why P(1,1) = 0.60 is not P(X = 1).",
+          "explanation": "A single joint cell is not a marginal. Marginals sum across the other variable; conditionals divide by that sum.",
+          "calculation": "0.60 is P(X=1, Y=1), not P(X=1)",
+          "result": "Joint cell ≠ marginal or conditional"
+        }
+      ],
+      "final_answer": "P(X = 1) = 0.80; P(Y = 0 | X = 1) = 0.25. The joint table is not interchangeable with its margins or conditionals without these moves.",
+      "common_pitfall": "Reporting P(X = 1) = 0.60 because P(1,1) is the largest cell, or taking P(Y = 0 | X = 1) = 0.20 without dividing by the marginal 0.80.",
+      "syllabus_ref": "2.2.1"
+    },
+    "cp-2.5.1-clt-cs1016.json": {
+      "title": "CLT probability for a mean repair cost",
+      "problem_statement": "Repair costs are iid with mean μ = 1200 and standard deviation σ = 300. A sample of n = 36 repairs is drawn. Using the CLT, approximate P(X̄ < 1150). Use Φ(1) ≈ 0.841.",
+      "given": [
+        {
+          "symbol": "μ",
+          "value": "1200",
+          "note": "population mean repair cost (£)"
+        },
+        {
+          "symbol": "σ",
+          "value": "300",
+          "note": "population sd (£)"
+        },
+        {
+          "symbol": "n",
+          "value": "36",
+          "note": "sample size"
+        },
+        {
+          "symbol": "Φ(1)",
+          "value": "≈ 0.841",
+          "note": "standard Normal CDF at 1"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form the sampling sd σ/√n first, then standardise 1150 before reading Φ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Standard error of the sample mean",
+          "attempt_cue": "Compute σ/√n.",
+          "explanation": "Under the CLT for iid observations, X̄ is approximately Normal with mean μ and sd σ/√n.",
+          "calculation": "σ/√n = 300 / √36 = 300 / 6 = 50",
+          "result": "sd(X̄) = 50"
+        },
+        {
+          "id": "S2",
+          "label": "Standardise and evaluate the lower tail",
+          "attempt_cue": "Form z = (1150 − 1200)/50, then convert with Φ.",
+          "explanation": "The probability is the lower Normal tail at z = −1, equal to 1 − Φ(1).",
+          "calculation": "z = (1150 − 1200)/50 = −1; P(X̄ < 1150) ≈ Φ(−1) = 1 − Φ(1) ≈ 1 − 0.841 = 0.159",
+          "result": "P ≈ 0.159"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse σ in place of σ/√n",
+          "attempt_cue": "State why using sd = 300 for X̄ is wrong.",
+          "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by √n. Using the population sd as if it were sd(X̄) ignores that reduction.",
+          "calculation": "sd(X̄) = 50, not σ = 300",
+          "result": "Must divide σ by √n"
+        }
+      ],
+      "final_answer": "X̄ ≈ Normal(1200, 50); z = −1; P(X̄ < 1150) ≈ 0.159. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
+      "common_pitfall": "Using X̄ ≈ Normal(1200, 300) and computing z = (1150 − 1200)/300 = −1/6, or reading Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+      "syllabus_ref": "2.5.1"
+    },
+    "cp-2.6.1-random-samples-cs1016.json": {
+      "title": "Classify a convenience extract as not a random sample",
+      "problem_statement": "An analyst pulls the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book in order to build an estimator for portfolio mean severity. Decide whether this extract is a random sample from the stated population, and name the sampling defect.",
+      "given": [
+        {
+          "symbol": "population target",
+          "value": "whole motor book",
+          "note": "intended inferential population"
+        },
+        {
+          "symbol": "extract",
+          "value": "40 most recent claims, one commercial client",
+          "note": "observed selection mechanism"
+        },
+        {
+          "symbol": "intended use",
+          "value": "estimator for portfolio mean severity",
+          "note": "requires a sampling warrant"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compare the selection mechanism with an iid (or otherwise stated) draw from the motor-book population before judging the sample label.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State what a random sample requires",
+          "attempt_cue": "Name the warrant that links observations to the population distribution.",
+          "explanation": "A random sample is drawn so that observations follow the population distribution under a stated sampling model (for example iid draws). Estimators and intervals inherit that warrant.",
+          "calculation": "Require: stated sampling model linking extract to motor-book population",
+          "result": "Random sample = lawful draw under a sampling model"
+        },
+        {
+          "id": "S2",
+          "label": "Inspect the actual selection mechanism",
+          "attempt_cue": "Describe how the 40 claims were chosen.",
+          "explanation": "The extract is consecutive recent claims from one client. That clusters time and client, so dependence and selection bias enter relative to the whole motor book.",
+          "calculation": "Mechanism = one-client recent slice (clustered, not portfolio iid)",
+          "result": "Selection is convenience / clustered, not portfolio random"
+        },
+        {
+          "id": "S3",
+          "label": "Classify and refuse n-as-warrant",
+          "attempt_cue": "Decide yes/no on random sample, and say why n = 40 alone fails.",
+          "explanation": "Having forty observations does not create a random sample. Without a lawful draw from the motor book, estimator procedures lack the sampling warrant.",
+          "calculation": "Classification: NOT a random sample from the motor book; defect = selection bias / clustering",
+          "result": "Not a random sample; n alone is insufficient"
+        }
+      ],
+      "final_answer": "Not a random sample from the whole motor book: one-client consecutive claims are clustered and selection-biased. n = 40 does not by itself create a random sample.",
+      "common_pitfall": "Treating any large enough extract as a random sample because n = 40 looks adequate, without checking whether the draw matches the stated portfolio population.",
+      "syllabus_ref": "2.6.1"
+    },
+    "cp-4.1.1-linear-regression-cs1016.json": {
+      "title": "Assign Y and X, then evaluate a premium line",
+      "problem_statement": "A household contents pricing analyst models renewal premium (£). The fitted simple linear relationship from a pilot sample is ŷ = 180 + 12x, where x is sum insured in £000. (a) Name the response and the explanatory variable. (b) Compute the fitted mean premium at sum insured = 25 (£000).",
+      "given": [
+        {
+          "symbol": "ŷ",
+          "value": "180 + 12x",
+          "note": "fitted mean renewal premium (£)"
+        },
+        {
+          "symbol": "x",
+          "value": "25",
+          "note": "sum insured (£000) for the prediction"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Name Y and X in one sentence, then substitute x = 25 into ŷ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Assign response and explanatory roles",
+          "attempt_cue": "State which quantity is Y and which is X.",
+          "explanation": "The modelling question is renewal premium, so premium is the response Y. Sum insured is the predictor used to explain premium, so sum insured is the explanatory variable X.",
+          "calculation": "Y = renewal premium (£); X = sum insured (£000)",
+          "result": "Y = premium; X = sum insured"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate the fitted mean at x = 25",
+          "attempt_cue": "Substitute x = 25 into ŷ = 180 + 12x.",
+          "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
+          "calculation": "ŷ(25) = 180 + 12 × 25 = 180 + 300 = 480",
+          "result": "ŷ = £480"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse column-soup",
+          "attempt_cue": "State why postcode band is not automatically an X, and why premium is not an X for sum insured.",
+          "explanation": "Explanatory variables need a modelling warrant for the stated question. Dumping every numeric column on the right-hand side is not role assignment. Treating premium as X for sum insured answers a different modelling question.",
+          "calculation": "Roles fixed by the modelling question (premium on Y), not by column presence",
+          "result": "Roles follow the question, not the column list"
+        }
+      ],
+      "final_answer": "Y = renewal premium, X = sum insured; ŷ(25) = £480. Postcode band is not automatically explanatory, and premium is not an X for sum insured under this question.",
+      "common_pitfall": "Treating every numeric policy field as an explanatory variable for premium, or swapping roles so that sum insured is modelled as Y and premium as X.",
+      "syllabus_ref": "4.1.1"
+    },
+    "cp-5.1.1-bayes-theorem-cs1016.json": {
+      "title": "Bayes update for a cyber-breach alert",
+      "problem_statement": "In a commercial cyber book, P(Breach) = 0.03. An intrusion-detection rule raises an alert with P(Alert|Breach) = 0.88 and P(Alert|no Breach) = 0.12. A randomly chosen policy raises an alert. Compute P(Alert) and then P(Breach|Alert).",
+      "given": [
+        {
+          "symbol": "P(Breach)",
+          "value": "0.03",
+          "note": "prior breach probability"
+        },
+        {
+          "symbol": "P(Alert|Breach)",
+          "value": "0.88",
+          "note": "true-positive alert rate"
+        },
+        {
+          "symbol": "P(Alert|no Breach)",
+          "value": "0.12",
+          "note": "false-positive alert rate"
+        },
+        {
+          "symbol": "P(no Breach)",
+          "value": "0.97",
+          "note": "1 − P(Breach)"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Expand P(Alert) by the law of total probability before forming the posterior.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Compute the evidence P(Alert)",
+          "attempt_cue": "Write P(Alert) = P(Alert|Breach)P(Breach) + P(Alert|no Breach)P(no Breach).",
+          "explanation": "The alert rate mixes true breach alerts and false positives from non-breach policies.",
+          "calculation": "0.88 × 0.03 + 0.12 × 0.97 = 0.0264 + 0.1164 = 0.1428",
+          "result": "P(Alert) = 0.1428"
+        },
+        {
+          "id": "S2",
+          "label": "Compute the posterior P(Breach|Alert)",
+          "attempt_cue": "Apply Bayes: P(Breach|Alert) = P(Alert|Breach)P(Breach) / P(Alert).",
+          "explanation": "Posterior equals prior times likelihood, normalised by the evidence from Step 1.",
+          "calculation": "0.88 × 0.03 / 0.1428 = 0.0264 / 0.1428 = 0.1849 (to 4 d.p.)",
+          "result": "P(Breach|Alert) ≈ 0.1849"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse posterior equals sensitivity",
+          "attempt_cue": "State why P(Breach|Alert) is not 0.88.",
+          "explanation": "Sensitivity P(Alert|Breach) is not the posterior. Most alerts still arise from the large non-breach share because the prior breach rate is small.",
+          "calculation": "0.88 is P(Alert|Breach), not P(Breach|Alert)",
+          "result": "Refuse equating posterior with likelihood"
+        }
+      ],
+      "final_answer": "P(Alert) = 0.1428; P(Breach|Alert) ≈ 0.1849. Refuse equating P(Breach|Alert) with P(Alert|Breach) = 0.88.",
+      "common_pitfall": "Setting P(Breach|Alert) = 0.88 (the true-positive rate) and ignoring the base rate and the large false-positive contribution to P(Alert).",
+      "syllabus_ref": "5.1.1"
+    },
+    "cr-1.1.1-aims-analysis-cs1017.json": {
+      "title": "Classify descriptive, inferential, and predictive aims",
+      "problem_statement": "A motor pricing review lists three tasks: (A) draw a histogram of last year's claim severities; (B) form a confidence interval for mean severity; (C) fit a model that forecasts next year's severity. Assign each task to descriptive, inferential, or predictive analysis.",
+      "given": [
+        {
+          "symbol": "Task A",
+          "value": "histogram of last year's claim severities",
+          "note": "observed-data summary"
+        },
+        {
+          "symbol": "Task B",
+          "value": "confidence interval for mean severity",
+          "note": "sample-to-population uncertainty"
+        },
+        {
+          "symbol": "Task C",
+          "value": "model forecasting next year's severity",
+          "note": "future outcome target"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. For each task, ask whether the target is a summary of seen data, a population parameter under uncertainty, or a future value.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Classify Task A",
+          "attempt_cue": "Is A summarising observed data or generalising/forecasting?",
+          "explanation": "A histogram of last year's severities summarises what was observed. That is a descriptive aim.",
+          "calculation": "A → descriptive (summarise observed severities)",
+          "result": "A = descriptive"
+        },
+        {
+          "id": "S2",
+          "label": "Classify Task B",
+          "attempt_cue": "What does a CI for mean severity target?",
+          "explanation": "A confidence interval generalises from sample evidence to a population parameter under uncertainty. That is an inferential aim.",
+          "calculation": "B → inferential (parameter under uncertainty)",
+          "result": "B = inferential"
+        },
+        {
+          "id": "S3",
+          "label": "Classify Task C and refuse EDA collapse",
+          "attempt_cue": "Name C's aim, then say why A/B/C are not 'just EDA'.",
+          "explanation": "Forecasting next year's severity targets a future outcome, so C is predictive. Calling all three 'just EDA' collapses distinct aims.",
+          "calculation": "C → predictive; refuse A=B=C='EDA'",
+          "result": "C = predictive; aims remain distinct"
+        }
+      ],
+      "final_answer": "A descriptive; B inferential; C predictive. Calling all three 'just EDA' collapses distinct analysis aims.",
+      "common_pitfall": "Labelling every pricing-review task as exploratory data analysis, so that confidence intervals and forecasts are treated as the same aim as a histogram.",
+      "syllabus_ref": "1.1.1"
+    },
+    "cr-1.1.2-stages-tools-cs1017.json": {
+      "title": "Order analysis stages and pair an exploratory tool",
+      "problem_statement": "You are running a reserves data analysis. State a sensible ordered path of main stages from aim to communication, place exploratory work in that path, and name one suitable tool class for the exploratory stage.",
+      "given": [
+        {
+          "symbol": "context",
+          "value": "reserves data analysis",
+          "note": "end-to-end analysis path required"
+        },
+        {
+          "symbol": "question focus",
+          "value": "stage order + exploratory tool class",
+          "note": "not a single notebook open"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Sketch the stage sequence first, then locate explore and name a tool class that serves that stage.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State the ordered stages",
+          "attempt_cue": "List aim → data → clean/explore → analyse → communicate.",
+          "explanation": "A coherent path runs from defining the aim through obtaining data, cleaning and exploring, analysing (infer or predict), then communicating results.",
+          "calculation": "Order: define aim → obtain data → clean/explore → analyse → communicate",
+          "result": "Five-stage ordered path stated"
+        },
+        {
+          "id": "S2",
+          "label": "Locate exploratory work",
+          "attempt_cue": "Name which stage holds EDA.",
+          "explanation": "Exploratory work sits in clean/explore, after data are obtained and before formal inferential or predictive analysis.",
+          "calculation": "EDA location = clean/explore stage",
+          "result": "Explore sits after obtain-data, before analyse"
+        },
+        {
+          "id": "S3",
+          "label": "Pair a tool class and refuse open-notebook-as-done",
+          "attempt_cue": "Name a tool class for explore, and reject 'opened a notebook' as finishing the path.",
+          "explanation": "Summary statistics and exploratory visualisations (or data-wrangling scripts) serve clean/explore. Opening a notebook and loading packages does not finish the staged path.",
+          "calculation": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
+          "result": "Explore ↔ summaries/plots; stages still required"
+        }
+      ],
+      "final_answer": "Stages: define aim → obtain data → clean/explore → analyse → communicate. Exploratory work sits in clean/explore and pairs with summary statistics and exploratory visualisations. Opening a notebook does not finish the path.",
+      "common_pitfall": "Treating 'I opened a notebook and imported packages' as completing analysis staging, without placing exploratory tools inside an ordered aim-to-communicate path.",
+      "syllabus_ref": "1.1.2"
+    },
+    "cr-1.1.3-data-sources-cs1017.json": {
+      "title": "Contrast admin claims extract with a voluntary survey",
+      "problem_statement": "The same pricing question can be answered from an administrative claims extract or from a voluntary customer survey. Contrast the two sources on bias or coverage, and state why a very large survey sample size does not automatically make the survey the better source.",
+      "given": [
+        {
+          "symbol": "Source A",
+          "value": "administrative claims extract",
+          "note": "operational records for the book"
+        },
+        {
+          "symbol": "Source B",
+          "value": "voluntary customer survey",
+          "note": "self-selected responses"
+        },
+        {
+          "symbol": "shared use",
+          "value": "same pricing question",
+          "note": "fitness depends on source properties"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compare selection/coverage risks first, then separate volume from representativeness.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Contrast bias and coverage",
+          "attempt_cue": "Name one bias or coverage difference between admin extract and survey.",
+          "explanation": "Administrative records cover booked claims but may miss unreported events or soft fields. Voluntary surveys often suffer response or selection bias and uneven coverage of the risk population.",
+          "calculation": "Contrast: admin coverage vs survey response/selection bias (and field completeness)",
+          "result": "Sources differ in bias and coverage risks"
+        },
+        {
+          "id": "S2",
+          "label": "Note large-set constraints without equating volume to quality",
+          "attempt_cue": "State one scale issue and refuse 'larger n ⇒ better data'.",
+          "explanation": "Extremely large sets can still need sampling or distributed tooling. Large n does not repair non-representativeness by itself.",
+          "calculation": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
+          "result": "Volume is not automatically better data"
+        },
+        {
+          "id": "S3",
+          "label": "Judgment for the pricing question",
+          "attempt_cue": "State how to choose between A and B for pricing.",
+          "explanation": "Choose by matching source bias, coverage, and measurement properties to the pricing question, not by raw row count alone.",
+          "calculation": "Decision rule: fitness = bias/coverage/measurement match, not n-max",
+          "result": "Prefer source fitness over largest n"
+        }
+      ],
+      "final_answer": "Admin extract and voluntary survey differ in selection/response bias and coverage. Large survey n does not automatically fix representativeness or make the survey better for the pricing question.",
+      "common_pitfall": "Assuming the voluntary survey is better whenever its row count exceeds the admin extract, without comparing bias, coverage, and measurement quality for the pricing use.",
+      "syllabus_ref": "1.1.3"
+    },
+    "cr-1.1.4-reproducible-cs1017.json": {
+      "title": "Judge whether a one-cell notebook rerun is reproducible",
+      "problem_statement": "A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. Decide whether that claim meets the definition of reproducible research, and name required elements that are still missing.",
+      "given": [
+        {
+          "symbol": "colleague claim",
+          "value": "re-run one notebook cell on their laptop",
+          "note": "local one-off rerun"
+        },
+        {
+          "symbol": "standard",
+          "value": "others can reconstruct the same results from stated inputs and steps",
+          "note": "reproducible-research definition"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compare the colleague's evidence with the reconstruct-from-shared-artefacts standard before judging.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State the reproducibility standard",
+          "attempt_cue": "Define reproducible research in one sentence.",
+          "explanation": "Reproducible research lets others (or a future you) reconstruct the same analysis results from stated inputs and steps.",
+          "calculation": "Standard = reconstruct same results from stated inputs/steps",
+          "result": "Reconstruction standard stated"
+        },
+        {
+          "id": "S2",
+          "label": "List required elements",
+          "attempt_cue": "Name data, code, and environment/documentation pieces.",
+          "explanation": "Required elements include versioned or clearly identified data, scripted code paths, and documented environment and decisions (including parameters/seeds where relevant).",
+          "calculation": "Need: versioned/identified data + scripted code + documented environment/decisions",
+          "result": "Data, code, and documentation required"
+        },
+        {
+          "id": "S3",
+          "label": "Judge the colleague claim",
+          "attempt_cue": "Decide pass/fail and name what a one-cell local rerun lacks.",
+          "explanation": "A one-off local re-run without shared artefacts does not let others reconstruct the analysis. The claim fails the reproducibility standard.",
+          "calculation": "Judgment: FAIL; missing shared data identity, full scripted path, and environment docs",
+          "result": "Not reproducible under the reconstruction standard"
+        }
+      ],
+      "final_answer": "Not reproducible: a one-off local notebook-cell rerun lacks shared versioned data, scripted end-to-end code, and documented environment/decisions that others can use to reconstruct the results.",
+      "common_pitfall": "Equating 'I can re-run this cell on my laptop' with reproducibility, without requiring shared artefacts that let someone else reconstruct the same results.",
+      "syllabus_ref": "1.1.4"
+    },
+    "cr-1.2.1-eda-summaries-cs1017.json": {
+      "title": "Choose summaries for zero-inflated claim counts",
+      "problem_statement": "Five policy-years show claim counts 0, 0, 1, 3, 10 (many zeros and a long right tail). Aim: explore frequency shape before modelling. Compute the mean and median, then choose an exploratory summary/plot approach that reveals zero mass and the tail.",
+      "given": [
+        {
+          "symbol": "counts",
+          "value": "0, 0, 1, 3, 10",
+          "note": "n = 5 policy-year claim counts"
+        },
+        {
+          "symbol": "aim",
+          "value": "explore frequency shape before modelling",
+          "note": "EDA tool choice, not a full model fit"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute mean and median, then decide whether mean-only summarises the shape you need to see.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Compute mean and median",
+          "attempt_cue": "Average the five counts; then take the middle ordered value.",
+          "explanation": "Ordered counts are 0, 0, 1, 3, 10. The mean is pulled by the large count; the median sits at the middle observation.",
+          "calculation": "mean = (0+0+1+3+10)/5 = 14/5 = 2.8; median = 1",
+          "result": "mean = 2.8; median = 1"
+        },
+        {
+          "id": "S2",
+          "label": "Choose exploratory tools for shape",
+          "attempt_cue": "Name a plot/summary that shows zero mass and the right tail.",
+          "explanation": "A bar chart or histogram of counts (or a zero-aware frequency plot) reveals mass at zero and the long tail. Mean-only hides both features.",
+          "calculation": "Prefer histogram/bar (zero-aware) over mean-only; median/IQR support the centre/spread story",
+          "result": "Histogram/bar + median (not mean-only)"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse pie / mean-only",
+          "attempt_cue": "State why a pie of policies or mean-only fails the exploratory aim.",
+          "explanation": "A pie chart of policies does not display the count distribution's zero inflation and tail. A mean of 2.8 alone misrepresents the typical frequency shape.",
+          "calculation": "Refuse pie-of-policies and mean-only as shape EDA",
+          "result": "Mean-only / pie rejected for this aim"
+        }
+      ],
+      "final_answer": "Mean = 2.8 and median = 1; use a histogram or bar chart of counts (with median/IQR support) to reveal zero mass and the right tail. Refuse mean-only or a pie chart for this exploratory aim.",
+      "common_pitfall": "Reporting only the mean count 2.8 as the exploratory summary, which hides zero-inflation and the long right tail that the modelling stage must confront.",
+      "syllabus_ref": "1.2.1"
+    },
+    "cr-1.2.2-correlation-cs1017.json": {
+      "title": "Choose Spearman when association is monotone but skewed",
+      "problem_statement": "For years licensed versus claim frequency, frequency is skewed with outliers and the scatter looks roughly decreasing but nonlinear. Software reports Pearson r = −0.28 and Spearman ρ = −0.55. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+      "given": [
+        {
+          "symbol": "scatter pattern",
+          "value": "roughly decreasing, nonlinear; skewed frequency with outliers",
+          "note": "association shape"
+        },
+        {
+          "symbol": "Pearson r",
+          "value": "−0.28",
+          "note": "linear correlation"
+        },
+        {
+          "symbol": "Spearman ρ",
+          "value": "−0.55",
+          "note": "rank correlation"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match measure to linear vs monotone-nonlinear association, then separate association from causation.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match measure to association type",
+          "attempt_cue": "Say what Pearson vs Spearman each target.",
+          "explanation": "Pearson measures linear association. Spearman uses ranks and suits monotone but nonlinear patterns, with better resistance to outliers in many skewed cases.",
+          "calculation": "Pattern = monotone nonlinear + outliers → prefer Spearman (or Kendall)",
+          "result": "Prefer Spearman over Pearson here"
+        },
+        {
+          "id": "S2",
+          "label": "Read the two reported coefficients",
+          "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+          "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone decrease under skew and outliers.",
+          "calculation": "|ρ| = 0.55 > |r| = 0.28; rank measure captures monotone association better here",
+          "result": "Report Spearman ρ = −0.55 as the preferred description"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse causation from correlation",
+          "attempt_cue": "State what a large coefficient still does not prove.",
+          "explanation": "A large correlation coefficient does not prove that changing years licensed causes frequency to change.",
+          "calculation": "Association ≠ causation (even if |ρ| is large)",
+          "result": "Refuse causal claim from correlation alone"
+        }
+      ],
+      "final_answer": "Prefer Spearman ρ = −0.55 (monotone, skewed, outlier-prone) over Pearson r = −0.28. A large coefficient still does not prove causation.",
+      "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = −0.55 as proof that more years licensed causes lower claim frequency.",
+      "syllabus_ref": "1.2.2"
+    },
+    "cr-1.2.3-pca-cs1017.json": {
+      "title": "Refuse treating PC1 as a causal auto-decline score",
+      "problem_statement": "A colleague says: 'PC1 from our rating factors is the true underlying risk score, so we can treat it as a causal driver and auto-decline on PC1 alone.' Decide what PCA actually provides here, and whether that auto-decline justification holds.",
+      "given": [
+        {
+          "symbol": "colleague claim",
+          "value": "PC1 = true causal risk score; auto-decline on PC1 alone",
+          "note": "causal + decision leap"
+        },
+        {
+          "symbol": "PCA role",
+          "value": "dimensionality reduction on correlated rating factors",
+          "note": "variation summary, not automatic causation"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Separate 'summarises shared variation' from 'proven causal driver' before judging the auto-decline claim.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "State what PCA constructs",
+          "attempt_cue": "Describe principal components in variation terms.",
+          "explanation": "PCA builds orthogonal components that capture major patterns of variation among correlated variables. A component is a weighted combination summarising shared variation.",
+          "calculation": "PC1 = leading variation summary (weighted combination), not a named causal mechanism by itself",
+          "result": "PCA summarises variation structure"
+        },
+        {
+          "id": "S2",
+          "label": "Separate summary from causation",
+          "attempt_cue": "Say whether PC1 proves a causal risk driver.",
+          "explanation": "Summarising shared variation does not by itself prove that PC1 is a causal risk driver. Causal claims need external subject-matter warrants beyond the eigenstructure.",
+          "calculation": "Variation summary ≠ proven causal driver",
+          "result": "Refuse causal identity for PC1 alone"
+        },
+        {
+          "id": "S3",
+          "label": "Judge the auto-decline proposal",
+          "attempt_cue": "Accept or refuse auto-decline on PC1 alone.",
+          "explanation": "Auto-decline on PC1 alone lacks decision and subject-matter warrants. PC1 may still be useful for exploration or visualisation of correlated rating factors.",
+          "calculation": "Judgment: REFUSE auto-decline-on-PC1-alone; allow exploratory use of PC1 as variation summary",
+          "result": "Refuse causal auto-decline; PC1 may still summarise variation"
+        }
+      ],
+      "final_answer": "PC1 may summarise major shared variation among rating factors for exploration, but it does not by itself prove a causal risk driver or justify auto-decline without external warrants.",
+      "common_pitfall": "Treating the first principal component as the 'true risk score' and using it as a standalone causal decline rule because it explains the most variance.",
+      "syllabus_ref": "1.2.3"
+    },
+    "cr-2.1.1-discrete-cs1017.json": {
+      "title": "Select Poisson for rare annual claim counts",
+      "problem_statement": "For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Choose the matching discrete family. As a light numeric check, if λ = 0.4 under that family, compute P(X = 0).",
+      "given": [
+        {
+          "symbol": "generative story",
+          "value": "rare events in a fixed year; constant rate; independent increments",
+          "note": "count support, non-negative integers"
+        },
+        {
+          "symbol": "λ",
+          "value": "0.4",
+          "note": "illustrative Poisson mean rate (per year)"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match story to family",
+          "attempt_cue": "Name the discrete family for rare events in a fixed interval under constant rate.",
+          "explanation": "Poisson counts rare events in a fixed interval under a constant rate / independent-increments story. Binomial needs a fixed number of independent trials; hypergeometric needs without-replacement draws from a finite population.",
+          "calculation": "Story → Poisson (not Normal; not hypergeometric)",
+          "result": "Family choice: Poisson"
+        },
+        {
+          "id": "S2",
+          "label": "Light numeric illustration P(X = 0)",
+          "attempt_cue": "For Poisson(λ = 0.4), evaluate e^{−λ}.",
+          "explanation": "Under Poisson(λ), P(X = 0) = e^{−λ}. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+          "calculation": "P(X = 0) = e^{−0.4} ≈ 0.6703",
+          "result": "P(X = 0) ≈ 0.6703"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse Normal / hypergeometric mismatch",
+          "attempt_cue": "State why Normal or hypergeometric fails this story.",
+          "explanation": "Normal has continuous all-real support and is a poor first match for a non-negative integer count. Hypergeometric requires a without-replacement finite success/failure population, which this policy-year rare-event story does not provide.",
+          "calculation": "Refuse Normal count model and hypergeometric without finite draw story",
+          "result": "Poisson retained; mismatched families refused"
+        }
+      ],
+      "final_answer": "Choose Poisson for the rare-event fixed-year count story; with λ = 0.4, P(X = 0) ≈ 0.6703. Refuse Normal or hypergeometric for this generative story.",
+      "common_pitfall": "Defaulting to a Normal model for claim counts because it is familiar, or picking hypergeometric without a without-replacement finite-population draw story.",
+      "syllabus_ref": "2.1.1"
+    },
+    "cr-2.1.2-continuous-cs1017.json": {
+      "title": "Select Exponential for memoryless waiting times",
+      "problem_statement": "Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Choose the matching continuous family. As a light numeric check, if the mean waiting time is 6 months, compute P(T > 6).",
+      "given": [
+        {
+          "symbol": "generative story",
+          "value": "strictly positive waiting times; constant hazard; memoryless",
+          "note": "continuous support on (0, ∞)"
+        },
+        {
+          "symbol": "mean waiting time",
+          "value": "6 months",
+          "note": "Exponential mean θ = 6"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Match support and memorylessness to a named continuous family before evaluating the survival probability.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Match story to family",
+          "attempt_cue": "Name the continuous family for positive memoryless waiting times.",
+          "explanation": "Exponential models positive memoryless waiting times under constant hazard. Normal has symmetric all-real support and is a poor default for strictly positive waits.",
+          "calculation": "Story → Exponential (refuse Normal-by-default)",
+          "result": "Family choice: Exponential"
+        },
+        {
+          "id": "S2",
+          "label": "Light numeric illustration P(T > 6)",
+          "attempt_cue": "For Exponential mean 6, evaluate the survival at t = 6.",
+          "explanation": "With mean θ = 6, P(T > t) = e^{−t/θ}. At the mean, survival equals e^{−1}. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+          "calculation": "P(T > 6) = e^{−6/6} = e^{−1} ≈ 0.3679",
+          "result": "P(T > 6) ≈ 0.3679"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse Normal-by-default",
+          "attempt_cue": "State the support mismatch for a Normal waiting-time model.",
+          "explanation": "A Normal model allows negative waiting times and is not memoryless. That mismatches the stated positive constant-hazard story.",
+          "calculation": "Normal support includes negatives; not memoryless → refuse",
+          "result": "Exponential retained; Normal default refused"
+        }
+      ],
+      "final_answer": "Choose Exponential for positive memoryless waiting times; with mean 6 months, P(T > 6) ≈ 0.3679. Refuse Normal-by-default for this story.",
+      "common_pitfall": "Defaulting to a Normal waiting-time model because it is familiar, ignoring that waiting times are strictly positive and memoryless under constant hazard.",
+      "syllabus_ref": "2.1.2"
+    }
+  },
+  "campaign_twins": {
+    "cp-2.1.3-prob-quantiles-cs1016.json": "campaign-pi-cs1016/packages/2.1.3-prob-quantiles-cs1016.json",
+    "cp-2.2.1-marginal-conditional-cs1016.json": "campaign-pi-cs1016/packages/2.2.1-marginal-conditional-cs1016.json",
+    "cp-2.5.1-clt-cs1016.json": "campaign-pi-cs1016/packages/2.5.1-clt-cs1016.json",
+    "cp-2.6.1-random-samples-cs1016.json": "campaign-pi-cs1016/packages/2.6.1-random-samples-cs1016.json",
+    "cp-4.1.1-linear-regression-cs1016.json": "campaign-pi-cs1016/packages/4.1.1-linear-regression-cs1016.json",
+    "cp-5.1.1-bayes-theorem-cs1016.json": "campaign-pi-cs1016/packages/5.1.1-bayes-theorem-cs1016.json",
+    "cr-1.1.1-aims-analysis-cs1017.json": "campaign-rho-cs1017/packages/1.1.1-aims-analysis-cs1017.json",
+    "cr-1.1.2-stages-tools-cs1017.json": "campaign-rho-cs1017/packages/1.1.2-stages-tools-cs1017.json",
+    "cr-1.1.3-data-sources-cs1017.json": "campaign-rho-cs1017/packages/1.1.3-data-sources-cs1017.json",
+    "cr-1.1.4-reproducible-cs1017.json": "campaign-rho-cs1017/packages/1.1.4-reproducible-cs1017.json",
+    "cr-1.2.1-eda-summaries-cs1017.json": "campaign-rho-cs1017/packages/1.2.1-eda-summaries-cs1017.json",
+    "cr-1.2.2-correlation-cs1017.json": "campaign-rho-cs1017/packages/1.2.2-correlation-cs1017.json",
+    "cr-1.2.3-pca-cs1017.json": "campaign-rho-cs1017/packages/1.2.3-pca-cs1017.json",
+    "cr-2.1.1-discrete-cs1017.json": "campaign-rho-cs1017/packages/2.1.1-discrete-cs1017.json",
+    "cr-2.1.2-continuous-cs1017.json": "campaign-rho-cs1017/packages/2.1.2-continuous-cs1017.json"
+  }
+}

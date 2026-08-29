@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force reproducibility elements warrant and refuse 'Publication Front finished EDA / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of reproducibility elements.",
     "learning_objective": "Meaning and value of reproducible research and the elements required to ensure a data analysis is reproducible",
-    "concept_focus": "Reproducibility meaning \u2192 required elements (data, code, docs) \u2192 refuse one-off-rerun-as-reproducible.",
+    "concept_focus": "Reproducibility meaning → required elements (data, code, docs) → refuse one-off-rerun-as-reproducible.",
     "prior_bridge": "Yesterday you studied data sources (1.1.3). Today continues Publication Front.",
     "why_now": "Reproducibility closes Topic 1.1 before EDA entry.",
     "expected_benefit": "You will be able to state what reproducible research means and name elements required to keep a data analysis reproducible.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Reproducible research (Publication Front). You practised selective CMP reading on Syllabus 1.1.4 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.4 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4\u2013reproducible research (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.4–reproducible research (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.4?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing EDA today.",
       "Watch for claiming Section 1 complete as Approver clearance."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.1.4 reproducible research",
+    "open_point": "CMP · Syllabus 1.1.4 reproducible research",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1)",
     "out_of_scope_today": [
       "EDA summaries as primary",
@@ -94,8 +94,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.4.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.4 reproducible research. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.4 (stop before EDA primary 1.2.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.4 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -220,5 +220,51 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.4 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Judge whether a one-cell notebook rerun is reproducible",
+    "problem_statement": "A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. Decide whether that claim meets the definition of reproducible research, and name required elements that are still missing.",
+    "given": [
+      {
+        "symbol": "colleague claim",
+        "value": "re-run one notebook cell on their laptop",
+        "note": "local one-off rerun"
+      },
+      {
+        "symbol": "standard",
+        "value": "others can reconstruct the same results from stated inputs and steps",
+        "note": "reproducible-research definition"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compare the colleague's evidence with the reconstruct-from-shared-artefacts standard before judging.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State the reproducibility standard",
+        "attempt_cue": "Define reproducible research in one sentence.",
+        "explanation": "Reproducible research lets others (or a future you) reconstruct the same analysis results from stated inputs and steps.",
+        "calculation": "Standard = reconstruct same results from stated inputs/steps",
+        "result": "Reconstruction standard stated"
+      },
+      {
+        "id": "S2",
+        "label": "List required elements",
+        "attempt_cue": "Name data, code, and environment/documentation pieces.",
+        "explanation": "Required elements include versioned or clearly identified data, scripted code paths, and documented environment and decisions (including parameters/seeds where relevant).",
+        "calculation": "Need: versioned/identified data + scripted code + documented environment/decisions",
+        "result": "Data, code, and documentation required"
+      },
+      {
+        "id": "S3",
+        "label": "Judge the colleague claim",
+        "attempt_cue": "Decide pass/fail and name what a one-cell local rerun lacks.",
+        "explanation": "A one-off local re-run without shared artefacts does not let others reconstruct the analysis. The claim fails the reproducibility standard.",
+        "calculation": "Judgment: FAIL; missing shared data identity, full scripted path, and environment docs",
+        "result": "Not reproducible under the reconstruction standard"
+      }
+    ],
+    "final_answer": "Not reproducible: a one-off local notebook-cell rerun lacks shared versioned data, scripted end-to-end code, and documented environment/decisions that others can use to reconstruct the results.",
+    "common_pitfall": "Equating 'I can re-run this cell on my laptop' with reproducibility, without requiring shared artefacts that let someone else reconstruct the same results.",
+    "syllabus_ref": "1.1.4"
   }
 }

@@ -221,5 +221,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.2 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Order analysis stages and pair an exploratory tool",
+    "problem_statement": "You are running a reserves data analysis. State a sensible ordered path of main stages from aim to communication, place exploratory work in that path, and name one suitable tool class for the exploratory stage.",
+    "given": [
+      {
+        "symbol": "context",
+        "value": "reserves data analysis",
+        "note": "end-to-end analysis path required"
+      },
+      {
+        "symbol": "question focus",
+        "value": "stage order + exploratory tool class",
+        "note": "not a single notebook open"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Sketch the stage sequence first, then locate explore and name a tool class that serves that stage.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State the ordered stages",
+        "attempt_cue": "List aim → data → clean/explore → analyse → communicate.",
+        "explanation": "A coherent path runs from defining the aim through obtaining data, cleaning and exploring, analysing (infer or predict), then communicating results.",
+        "calculation": "Order: define aim → obtain data → clean/explore → analyse → communicate",
+        "result": "Five-stage ordered path stated"
+      },
+      {
+        "id": "S2",
+        "label": "Locate exploratory work",
+        "attempt_cue": "Name which stage holds EDA.",
+        "explanation": "Exploratory work sits in clean/explore, after data are obtained and before formal inferential or predictive analysis.",
+        "calculation": "EDA location = clean/explore stage",
+        "result": "Explore sits after obtain-data, before analyse"
+      },
+      {
+        "id": "S3",
+        "label": "Pair a tool class and refuse open-notebook-as-done",
+        "attempt_cue": "Name a tool class for explore, and reject 'opened a notebook' as finishing the path.",
+        "explanation": "Summary statistics and exploratory visualisations (or data-wrangling scripts) serve clean/explore. Opening a notebook and loading packages does not finish the staged path.",
+        "calculation": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
+        "result": "Explore ↔ summaries/plots; stages still required"
+      }
+    ],
+    "final_answer": "Stages: define aim → obtain data → clean/explore → analyse → communicate. Exploratory work sits in clean/explore and pairs with summary statistics and exploratory visualisations. Opening a notebook does not finish the path.",
+    "common_pitfall": "Treating 'I opened a notebook and imported packages' as completing analysis staging, without placing exploratory tools inside an ordered aim-to-communicate path.",
+    "syllabus_ref": "1.1.2"
+  }
 }

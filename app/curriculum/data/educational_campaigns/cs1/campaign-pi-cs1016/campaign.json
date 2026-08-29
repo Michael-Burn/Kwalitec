@@ -5,8 +5,8 @@
   "subject_id": "CS1",
   "package_version_pin": "IFoA CS1 2026",
   "scope_class": "Pilot Arc",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
-  "status": "released",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "status": "authored_pending_gate_cg",
   "volume_id": "CS1-016",
   "prior_volume_id": "CS1-015",
   "day_count": {
@@ -33,7 +33,8 @@
     "Topic 5.2 invention / remainder theatre",
     "Trust Front whole-Delta absorb into Continuity Front credit",
     "Wave 15 authoring",
-    "coverage mirage / Student Reliance increase from catalogue alone"
+    "coverage mirage / Student Reliance increase from catalogue alone",
+    "LIVE copies in educational_packages/"
   ],
   "inventory": [
     "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
@@ -48,5 +49,5 @@
     "CS1-EP001-PKG-REV-SPINE-MEMORY-PI"
   ],
   "wave0_note": "Publication Front / Wave 0 Alpha/Beta Approver honesty gap remains open. Approver ownership is scheduled; Pi catalogue must not claim clearance.",
-  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1–5.1. Pi package IDs are CP-prefixed Memory Front LIVE inventory (RO-014). Published Coverage unchanged (hinges already counted)."
+  "trust_front_note": "CS1-003 / Campaign Delta remains independent Trust Front LIVE inventory for 4.1\u20135.1. Pi package IDs are CP-prefixed Memory Front catalogue. not LIVE this cycle; Published Coverage unchanged (hinges already counted)."
 }

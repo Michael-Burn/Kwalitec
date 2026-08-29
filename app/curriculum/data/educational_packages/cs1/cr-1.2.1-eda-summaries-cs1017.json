@@ -221,5 +221,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.2.1 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Choose summaries for zero-inflated claim counts",
+    "problem_statement": "Five policy-years show claim counts 0, 0, 1, 3, 10 (many zeros and a long right tail). Aim: explore frequency shape before modelling. Compute the mean and median, then choose an exploratory summary/plot approach that reveals zero mass and the tail.",
+    "given": [
+      {
+        "symbol": "counts",
+        "value": "0, 0, 1, 3, 10",
+        "note": "n = 5 policy-year claim counts"
+      },
+      {
+        "symbol": "aim",
+        "value": "explore frequency shape before modelling",
+        "note": "EDA tool choice, not a full model fit"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute mean and median, then decide whether mean-only summarises the shape you need to see.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute mean and median",
+        "attempt_cue": "Average the five counts; then take the middle ordered value.",
+        "explanation": "Ordered counts are 0, 0, 1, 3, 10. The mean is pulled by the large count; the median sits at the middle observation.",
+        "calculation": "mean = (0+0+1+3+10)/5 = 14/5 = 2.8; median = 1",
+        "result": "mean = 2.8; median = 1"
+      },
+      {
+        "id": "S2",
+        "label": "Choose exploratory tools for shape",
+        "attempt_cue": "Name a plot/summary that shows zero mass and the right tail.",
+        "explanation": "A bar chart or histogram of counts (or a zero-aware frequency plot) reveals mass at zero and the long tail. Mean-only hides both features.",
+        "calculation": "Prefer histogram/bar (zero-aware) over mean-only; median/IQR support the centre/spread story",
+        "result": "Histogram/bar + median (not mean-only)"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse pie / mean-only",
+        "attempt_cue": "State why a pie of policies or mean-only fails the exploratory aim.",
+        "explanation": "A pie chart of policies does not display the count distribution's zero inflation and tail. A mean of 2.8 alone misrepresents the typical frequency shape.",
+        "calculation": "Refuse pie-of-policies and mean-only as shape EDA",
+        "result": "Mean-only / pie rejected for this aim"
+      }
+    ],
+    "final_answer": "Mean = 2.8 and median = 1; use a histogram or bar chart of counts (with median/IQR support) to reveal zero mass and the right tail. Refuse mean-only or a pie chart for this exploratory aim.",
+    "common_pitfall": "Reporting only the mean count 2.8 as the exploratory summary, which hides zero-inflation and the long right tail that the modelling stage must confront.",
+    "syllabus_ref": "1.2.1"
+  }
 }

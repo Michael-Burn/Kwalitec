@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -39,7 +39,7 @@
     "tutor_intent": "Today I will force stages/tools warrant and refuse 'Publication Front finished data sources / Approver clearance'.",
     "educational_intent": "Produce contiguous Publication Front study of analysis stages and suitable tools.",
     "learning_objective": "Stages and suitable tools used to conduct a data analysis to solve real-world problems",
-    "concept_focus": "Analysis stages in order \u2192 suitable tool class per stage \u2192 refuse tool-shopping-without-stages.",
+    "concept_focus": "Analysis stages in order → suitable tool class per stage → refuse tool-shopping-without-stages.",
     "prior_bridge": "Yesterday you studied analysis aims (1.1.1). Today continues Publication Front.",
     "why_now": "Stages/tools convert aims into an executable analysis path.",
     "expected_benefit": "You will be able to list analysis stages in a sensible order and pair a stage with a suitable tool class.",
@@ -68,10 +68,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Stages and tools for data analysis (Publication Front). You practised selective CMP reading on Syllabus 1.1.2 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 1.1.2 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.2\u2013stages and tools for data analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 1.1.2–stages and tools for data analysis (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 1.1.2?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -83,7 +83,7 @@
       "Watch for swallowing data sources today.",
       "Watch for claiming Section 1 complete."
     ],
-    "open_point": "CMP \u00b7 Syllabus 1.1.2 stages and suitable tools",
+    "open_point": "CMP · Syllabus 1.1.2 stages and suitable tools",
     "stop_condition": "Through the CMP treatment of Syllabus 1.1.2 (stop before data sources primary 1.1.3)",
     "out_of_scope_today": [
       "Data sources as primary",
@@ -94,8 +94,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 1.1.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 1.1.2 stages and suitable tools. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.2 (stop before data sources primary 1.1.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 1.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 1.1.2 stages and suitable tools. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 1.1.2 (stop before data sources primary 1.1.3). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 1.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Stages structure the workflow; tools serve named stages. Opening software, reversing order, or collapsing explore with inference skips staged analysis.",
-      "model_answer": "Aim \u2192 data \u2192 clean/explore \u2192 analyse \u2192 communicate; EDA tools in explore.",
+      "model_answer": "Aim → data → clean/explore → analyse → communicate; EDA tools in explore.",
       "common_mistake": "Tool-shopping without stages, reversed order, or EDA equals inference.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Main stages: define aim \u2192 obtain data \u2192 clean/explore \u2192 analyse \u2192 communicate; exploratory work sits in clean/explore. That stage pairs with summary statistics and exploratory visualisations. Opening a notebook and loading packages does not finish the staged path.",
+          "label": "Main stages: define aim → obtain data → clean/explore → analyse → communicate; exploratory work sits in clean/explore. That stage pairs with summary statistics and exploratory visualisations. Opening a notebook and loading packages does not finish the staged path.",
           "misconception_tag": ""
         },
         {
@@ -220,5 +220,51 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.2 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Order analysis stages and pair an exploratory tool",
+    "problem_statement": "You are running a reserves data analysis. State a sensible ordered path of main stages from aim to communication, place exploratory work in that path, and name one suitable tool class for the exploratory stage.",
+    "given": [
+      {
+        "symbol": "context",
+        "value": "reserves data analysis",
+        "note": "end-to-end analysis path required"
+      },
+      {
+        "symbol": "question focus",
+        "value": "stage order + exploratory tool class",
+        "note": "not a single notebook open"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Sketch the stage sequence first, then locate explore and name a tool class that serves that stage.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State the ordered stages",
+        "attempt_cue": "List aim → data → clean/explore → analyse → communicate.",
+        "explanation": "A coherent path runs from defining the aim through obtaining data, cleaning and exploring, analysing (infer or predict), then communicating results.",
+        "calculation": "Order: define aim → obtain data → clean/explore → analyse → communicate",
+        "result": "Five-stage ordered path stated"
+      },
+      {
+        "id": "S2",
+        "label": "Locate exploratory work",
+        "attempt_cue": "Name which stage holds EDA.",
+        "explanation": "Exploratory work sits in clean/explore, after data are obtained and before formal inferential or predictive analysis.",
+        "calculation": "EDA location = clean/explore stage",
+        "result": "Explore sits after obtain-data, before analyse"
+      },
+      {
+        "id": "S3",
+        "label": "Pair a tool class and refuse open-notebook-as-done",
+        "attempt_cue": "Name a tool class for explore, and reject 'opened a notebook' as finishing the path.",
+        "explanation": "Summary statistics and exploratory visualisations (or data-wrangling scripts) serve clean/explore. Opening a notebook and loading packages does not finish the staged path.",
+        "calculation": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
+        "result": "Explore ↔ summaries/plots; stages still required"
+      }
+    ],
+    "final_answer": "Stages: define aim → obtain data → clean/explore → analyse → communicate. Exploratory work sits in clean/explore and pairs with summary statistics and exploratory visualisations. Opening a notebook does not finish the path.",
+    "common_pitfall": "Treating 'I opened a notebook and imported packages' as completing analysis staging, without placing exploratory tools inside an ordered aim-to-communicate path.",
+    "syllabus_ref": "1.1.2"
   }
 }

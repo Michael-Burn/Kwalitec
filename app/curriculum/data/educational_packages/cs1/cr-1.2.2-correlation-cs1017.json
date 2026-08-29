@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.2.2 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Choose Spearman when association is monotone but skewed",
+    "problem_statement": "For years licensed versus claim frequency, frequency is skewed with outliers and the scatter looks roughly decreasing but nonlinear. Software reports Pearson r = −0.28 and Spearman ρ = −0.55. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+    "given": [
+      {
+        "symbol": "scatter pattern",
+        "value": "roughly decreasing, nonlinear; skewed frequency with outliers",
+        "note": "association shape"
+      },
+      {
+        "symbol": "Pearson r",
+        "value": "−0.28",
+        "note": "linear correlation"
+      },
+      {
+        "symbol": "Spearman ρ",
+        "value": "−0.55",
+        "note": "rank correlation"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match measure to linear vs monotone-nonlinear association, then separate association from causation.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match measure to association type",
+        "attempt_cue": "Say what Pearson vs Spearman each target.",
+        "explanation": "Pearson measures linear association. Spearman uses ranks and suits monotone but nonlinear patterns, with better resistance to outliers in many skewed cases.",
+        "calculation": "Pattern = monotone nonlinear + outliers → prefer Spearman (or Kendall)",
+        "result": "Prefer Spearman over Pearson here"
+      },
+      {
+        "id": "S2",
+        "label": "Read the two reported coefficients",
+        "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+        "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone decrease under skew and outliers.",
+        "calculation": "|ρ| = 0.55 > |r| = 0.28; rank measure captures monotone association better here",
+        "result": "Report Spearman ρ = −0.55 as the preferred description"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse causation from correlation",
+        "attempt_cue": "State what a large coefficient still does not prove.",
+        "explanation": "A large correlation coefficient does not prove that changing years licensed causes frequency to change.",
+        "calculation": "Association ≠ causation (even if |ρ| is large)",
+        "result": "Refuse causal claim from correlation alone"
+      }
+    ],
+    "final_answer": "Prefer Spearman ρ = −0.55 (monotone, skewed, outlier-prone) over Pearson r = −0.28. A large coefficient still does not prove causation.",
+    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = −0.55 as proof that more years licensed causes lower claim frequency.",
+    "syllabus_ref": "1.2.2"
+  }
 }

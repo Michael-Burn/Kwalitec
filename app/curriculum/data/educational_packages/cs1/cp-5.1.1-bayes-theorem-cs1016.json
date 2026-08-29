@@ -113,51 +113,59 @@
     "reentry_line": "Welcome back. Keep your CMP closed. Immediate next activity: Worked-example re-entry, then Knowledge Checks."
   },
   "worked_example": {
-    "title": "Screening test — Bayes update",
-    "problem_statement": "A disease has prevalence P(D) = 0.01. A test has sensitivity P(+|D) = 0.95 and false-positive rate P(+|not D) = 0.10. A randomly selected person tests positive. Find P(D|+).",
+    "title": "Bayes update for a cyber-breach alert",
+    "problem_statement": "In a commercial cyber book, P(Breach) = 0.03. An intrusion-detection rule raises an alert with P(Alert|Breach) = 0.88 and P(Alert|no Breach) = 0.12. A randomly chosen policy raises an alert. Compute P(Alert) and then P(Breach|Alert).",
     "given": [
       {
-        "symbol": "P(D)",
-        "value": "0.01",
-        "note": "prevalence (prior)"
+        "symbol": "P(Breach)",
+        "value": "0.03",
+        "note": "prior breach probability"
       },
       {
-        "symbol": "P(+|D)",
-        "value": "0.95",
-        "note": "sensitivity"
+        "symbol": "P(Alert|Breach)",
+        "value": "0.88",
+        "note": "true-positive alert rate"
       },
       {
-        "symbol": "P(+|not D)",
-        "value": "0.10",
-        "note": "false-positive rate"
+        "symbol": "P(Alert|no Breach)",
+        "value": "0.12",
+        "note": "false-positive alert rate"
       },
       {
-        "symbol": "P(not D)",
-        "value": "0.99",
-        "note": "1 − P(D)"
+        "symbol": "P(no Breach)",
+        "value": "0.97",
+        "note": "1 − P(Breach)"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Before uncovering each solution step, write the next quantity you need and why.",
+    "attempt_before_reveal": "CMP closed. Expand P(Alert) by the law of total probability before forming the posterior.",
     "steps": [
       {
         "id": "S1",
-        "label": "Compute the evidence P(+)",
-        "attempt_cue": "Write P(+) = P(+|D)P(D) + P(+|not D)P(not D) and substitute the given values.",
-        "explanation": "Law of total probability expands the positive-test rate across disease and no-disease paths.",
-        "calculation": "0.95 × 0.01 + 0.10 × 0.99 = 0.0095 + 0.0990 = 0.1085",
-        "result": "0.1085"
+        "label": "Compute the evidence P(Alert)",
+        "attempt_cue": "Write P(Alert) = P(Alert|Breach)P(Breach) + P(Alert|no Breach)P(no Breach).",
+        "explanation": "The alert rate mixes true breach alerts and false positives from non-breach policies.",
+        "calculation": "0.88 × 0.03 + 0.12 × 0.97 = 0.0264 + 0.1164 = 0.1428",
+        "result": "P(Alert) = 0.1428"
       },
       {
         "id": "S2",
-        "label": "Compute the posterior P(D|+)",
-        "attempt_cue": "Apply Bayes: P(D|+) = P(+|D)P(D) / P(+).",
-        "explanation": "Posterior equals prior × likelihood, normalised by the evidence from Step 1.",
-        "calculation": "0.95 × 0.01 / 0.1085 = 0.0095 / 0.1085 ≈ 0.0876",
-        "result": "≈ 0.0876"
+        "label": "Compute the posterior P(Breach|Alert)",
+        "attempt_cue": "Apply Bayes: P(Breach|Alert) = P(Alert|Breach)P(Breach) / P(Alert).",
+        "explanation": "Posterior equals prior times likelihood, normalised by the evidence from Step 1.",
+        "calculation": "0.88 × 0.03 / 0.1428 = 0.0264 / 0.1428 = 0.1849 (to 4 d.p.)",
+        "result": "P(Breach|Alert) ≈ 0.1849"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse posterior equals sensitivity",
+        "attempt_cue": "State why P(Breach|Alert) is not 0.88.",
+        "explanation": "Sensitivity P(Alert|Breach) is not the posterior. Most alerts still arise from the large non-breach share because the prior breach rate is small.",
+        "calculation": "0.88 is P(Alert|Breach), not P(Breach|Alert)",
+        "result": "Refuse equating posterior with likelihood"
       }
     ],
-    "final_answer": "P(+) = 0.1085; P(D|+) ≈ 0.0876. Refuse equating P(D|+) with P(+|D) = 0.95.",
-    "common_pitfall": "Taking P(D|+) = 0.95 (sensitivity) ignores the base rate and the large contribution of false positives to P(+).",
+    "final_answer": "P(Alert) = 0.1428; P(Breach|Alert) ≈ 0.1849. Refuse equating P(Breach|Alert) with P(Alert|Breach) = 0.88.",
+    "common_pitfall": "Setting P(Breach|Alert) = 0.88 (the true-positive rate) and ignoring the base rate and the large false-positive contribution to P(Alert).",
     "syllabus_ref": "5.1.1"
   },
   "knowledge_checks": [

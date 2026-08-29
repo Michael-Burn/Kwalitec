@@ -221,5 +221,51 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.4 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Judge whether a one-cell notebook rerun is reproducible",
+    "problem_statement": "A colleague says their pricing analysis is reproducible because they can re-run one notebook cell on their laptop. Decide whether that claim meets the definition of reproducible research, and name required elements that are still missing.",
+    "given": [
+      {
+        "symbol": "colleague claim",
+        "value": "re-run one notebook cell on their laptop",
+        "note": "local one-off rerun"
+      },
+      {
+        "symbol": "standard",
+        "value": "others can reconstruct the same results from stated inputs and steps",
+        "note": "reproducible-research definition"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compare the colleague's evidence with the reconstruct-from-shared-artefacts standard before judging.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "State the reproducibility standard",
+        "attempt_cue": "Define reproducible research in one sentence.",
+        "explanation": "Reproducible research lets others (or a future you) reconstruct the same analysis results from stated inputs and steps.",
+        "calculation": "Standard = reconstruct same results from stated inputs/steps",
+        "result": "Reconstruction standard stated"
+      },
+      {
+        "id": "S2",
+        "label": "List required elements",
+        "attempt_cue": "Name data, code, and environment/documentation pieces.",
+        "explanation": "Required elements include versioned or clearly identified data, scripted code paths, and documented environment and decisions (including parameters/seeds where relevant).",
+        "calculation": "Need: versioned/identified data + scripted code + documented environment/decisions",
+        "result": "Data, code, and documentation required"
+      },
+      {
+        "id": "S3",
+        "label": "Judge the colleague claim",
+        "attempt_cue": "Decide pass/fail and name what a one-cell local rerun lacks.",
+        "explanation": "A one-off local re-run without shared artefacts does not let others reconstruct the analysis. The claim fails the reproducibility standard.",
+        "calculation": "Judgment: FAIL; missing shared data identity, full scripted path, and environment docs",
+        "result": "Not reproducible under the reconstruction standard"
+      }
+    ],
+    "final_answer": "Not reproducible: a one-off local notebook-cell rerun lacks shared versioned data, scripted end-to-end code, and documented environment/decisions that others can use to reconstruct the results.",
+    "common_pitfall": "Equating 'I can re-run this cell on my laptop' with reproducibility, without requiring shared artefacts that let someone else reconstruct the same results.",
+    "syllabus_ref": "1.1.4"
+  }
 }

@@ -221,5 +221,61 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 2.2.1 is a CP-R1 return target after Memory Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Marginal and conditional from a joint claim table",
+    "problem_statement": "A policy year records indicators (X, Y) with joint PMF P(0,0) = 0.05, P(0,1) = 0.15, P(1,0) = 0.20, P(1,1) = 0.60, where X = 1 if a weather claim occurs and Y = 1 if a liability claim occurs. Compute P(X = 1) and P(Y = 0 | X = 1).",
+    "given": [
+      {
+        "symbol": "P(0,0)",
+        "value": "0.05",
+        "note": "no weather, no liability"
+      },
+      {
+        "symbol": "P(0,1)",
+        "value": "0.15",
+        "note": "no weather, liability"
+      },
+      {
+        "symbol": "P(1,0)",
+        "value": "0.20",
+        "note": "weather, no liability"
+      },
+      {
+        "symbol": "P(1,1)",
+        "value": "0.60",
+        "note": "weather and liability"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Sum the X = 1 column for the marginal, then divide the joint cell by that marginal for the conditional.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the marginal P(X = 1)",
+        "attempt_cue": "Add the joint probabilities with X = 1.",
+        "explanation": "The marginal for X = 1 sums over Y: P(X = 1) = P(1,0) + P(1,1).",
+        "calculation": "P(X = 1) = 0.20 + 0.60 = 0.80",
+        "result": "P(X = 1) = 0.80"
+      },
+      {
+        "id": "S2",
+        "label": "Form the conditional P(Y = 0 | X = 1)",
+        "attempt_cue": "Divide P(1,0) by P(X = 1).",
+        "explanation": "Conditional probability renormalises the joint cell by the matching marginal.",
+        "calculation": "P(Y = 0 | X = 1) = 0.20 / 0.80 = 0.25",
+        "result": "P(Y = 0 | X = 1) = 0.25"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse joint-as-marginal",
+        "attempt_cue": "State why P(1,1) = 0.60 is not P(X = 1).",
+        "explanation": "A single joint cell is not a marginal. Marginals sum across the other variable; conditionals divide by that sum.",
+        "calculation": "0.60 is P(X=1, Y=1), not P(X=1)",
+        "result": "Joint cell ≠ marginal or conditional"
+      }
+    ],
+    "final_answer": "P(X = 1) = 0.80; P(Y = 0 | X = 1) = 0.25. The joint table is not interchangeable with its margins or conditionals without these moves.",
+    "common_pitfall": "Reporting P(X = 1) = 0.60 because P(1,1) is the largest cell, or taking P(Y = 0 | X = 1) = 0.20 without dividing by the marginal 0.80.",
+    "syllabus_ref": "2.2.1"
+  }
 }

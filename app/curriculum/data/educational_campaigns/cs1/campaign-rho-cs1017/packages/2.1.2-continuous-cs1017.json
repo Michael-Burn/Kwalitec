@@ -5,7 +5,7 @@
   "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
   "volume_id": "CS1-017",
   "subject_id": "CS1",
-  "cmp_edition": "IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment",
+  "cmp_edition": "IFoA CS1 Core Reading / CMP · 2026 syllabus alignment",
   "certification_refs": [
     "CS1017_EDUCATIONAL_VOLUME.md",
     "CS1017_CERTIFICATION_REPORT.md",
@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force continuous family recognition and refuse 'Publication Front cleared Approver honesty / finished spine / unlocked until-exam'.",
     "educational_intent": "Produce Publication Front study of named continuous distributions as the Learning close before Revision.",
     "learning_objective": "Normal, lognormal, exponential, gamma, chi-square, t, F, beta and uniform continuous distributions on an interval",
-    "concept_focus": "Support / shape story \u2192 continuous family \u2192 refuse Normal-by-default for mismatched response.",
+    "concept_focus": "Support / shape story → continuous family → refuse Normal-by-default for mismatched response.",
     "prior_bridge": "Yesterday you studied discrete distributions (2.1.1). Today closes Publication Front Learning.",
     "why_now": "Place continuous families to close this opening stretch. Then revise the analysis-to-distributions chain.",
     "expected_benefit": "You will be able to place a continuous family from support and shape and refuse Normal-by-default for a mismatched quantity.",
@@ -69,10 +69,10 @@
       "max": 75
     },
     "wrap_up": "Session complete for Continuous distributions (Publication Front). You practised selective CMP reading on Syllabus 2.1.2 under Publication Front discipline. This is Study Progress for today's LO. Not first-pass spine PASS, until-exam trust, or Approver honesty clearance.",
-    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.2 closed-book tomorrow? Rate 1\u20135 and give one honest warrant."
+    "confidence_prompt": "How confident are you that you could retrieve today's 2.1.2 closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.2\u2013continuous distributions (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to study Syllabus 2.1.2–continuous distributions (publication front): under Publication Front / Wave 0 residual discipline. Stop before out-of-scope later LOs as primary.",
     "focus_questions": [
       "What is the core move of Syllabus 2.1.2?",
       "What warrant separates today's LO from the next Publication Front day?",
@@ -84,7 +84,7 @@
       "Watch for swallowing 2.1.3 as Rho Learning.",
       "Watch for skipping Revision."
     ],
-    "open_point": "CMP \u00b7 Syllabus 2.1.2 continuous distributions",
+    "open_point": "CMP · Syllabus 2.1.2 continuous distributions",
     "stop_condition": "Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim)",
     "out_of_scope_today": [
       "First-pass spine PASS",
@@ -98,8 +98,8 @@
     "annotation_task": "Before deep reading: sketch today's LO chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
     "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the LO step before uncovering the solution: stay inside 2.1.2.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP \u00b7 2026 syllabus alignment) at CMP \u00b7 Syllabus 2.1.2 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
-    "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall \u2192 Checkpoint).",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.1.2 continuous distributions. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 2.1.2 (stop before terminal Revision as Learning; no Approver / spine / until-exam claim). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "return_cue": "You are finished with Guided Reading when the CMP 2.1.2 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
         "id": "PP1",
@@ -187,7 +187,7 @@
         },
         {
           "id": "b",
-          "label": "Normal(\u03bc, \u03c3\u00b2) is appropriate because the central limit theorem always makes waiting times Normal regardless of support.",
+          "label": "Normal(μ, σ²) is appropriate because the central limit theorem always makes waiting times Normal regardless of support.",
           "misconception_tag": "clt_on_waiting_times"
         },
         {
@@ -224,5 +224,51 @@
     "returns_on": "CR-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 2.1.2 is a CR-R1 return target after Publication Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Select Exponential for memoryless waiting times",
+    "problem_statement": "Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Choose the matching continuous family. As a light numeric check, if the mean waiting time is 6 months, compute P(T > 6).",
+    "given": [
+      {
+        "symbol": "generative story",
+        "value": "strictly positive waiting times; constant hazard; memoryless",
+        "note": "continuous support on (0, ∞)"
+      },
+      {
+        "symbol": "mean waiting time",
+        "value": "6 months",
+        "note": "Exponential mean θ = 6"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Match support and memorylessness to a named continuous family before evaluating the survival probability.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Match story to family",
+        "attempt_cue": "Name the continuous family for positive memoryless waiting times.",
+        "explanation": "Exponential models positive memoryless waiting times under constant hazard. Normal has symmetric all-real support and is a poor default for strictly positive waits.",
+        "calculation": "Story → Exponential (refuse Normal-by-default)",
+        "result": "Family choice: Exponential"
+      },
+      {
+        "id": "S2",
+        "label": "Light numeric illustration P(T > 6)",
+        "attempt_cue": "For Exponential mean 6, evaluate the survival at t = 6.",
+        "explanation": "With mean θ = 6, P(T > t) = e^{−t/θ}. At the mean, survival equals e^{−1}. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+        "calculation": "P(T > 6) = e^{−6/6} = e^{−1} ≈ 0.3679",
+        "result": "P(T > 6) ≈ 0.3679"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse Normal-by-default",
+        "attempt_cue": "State the support mismatch for a Normal waiting-time model.",
+        "explanation": "A Normal model allows negative waiting times and is not memoryless. That mismatches the stated positive constant-hazard story.",
+        "calculation": "Normal support includes negatives; not memoryless → refuse",
+        "result": "Exponential retained; Normal default refused"
+      }
+    ],
+    "final_answer": "Choose Exponential for positive memoryless waiting times; with mean 6 months, P(T > 6) ≈ 0.3679. Refuse Normal-by-default for this story.",
+    "common_pitfall": "Defaulting to a Normal waiting-time model because it is familiar, ignoring that waiting times are strictly positive and memoryless under constant hazard.",
+    "syllabus_ref": "2.1.2"
   }
 }

@@ -146,9 +146,9 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     pilot = find_package_by_id(PILOT_PACKAGE_ID)
     assert pilot is not None
     assert pilot.worked_example is not None
-    assert len(pilot.worked_example.steps) == 2
-    assert pilot.worked_example.steps[0].result == "0.1085"
-    assert pilot.worked_example.steps[1].result == "≈ 0.0876"
+    assert len(pilot.worked_example.steps) == 3
+    assert pilot.worked_example.steps[0].result == "P(Alert) = 0.1428"
+    assert pilot.worked_example.steps[1].result == "P(Breach|Alert) ≈ 0.1849"
 
     substance = substance_from_package(
         pilot,
@@ -158,8 +158,8 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     example = next(
         a for a in substance.activities if a.stage is EducationalStage.WORKED_EXAMPLE
     )
-    assert example.title == "Screening test — Bayes update"
-    assert "0.1085" in example.body
+    assert example.title == "Bayes update for a cyber-breach alert"
+    assert "0.1428" in example.body
     assert "Confirm your structure sketch" not in example.body
 
     loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT)
@@ -168,6 +168,8 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
         for p in loader.all_approved()
         if p.worked_example is not None and p.worked_example.steps
     )
-    # Phase 0 pilot (Bayes) + RWE Batch 1 (Section 3: 22) + RWE Batch 2 (Continuity: 24).
+    # Phase 0 pilot slot (Bayes on CS1016, content replaced in RWE Batch 3)
+    # + RWE Batch 1 (Section 3: 22) + RWE Batch 2 (Continuity: 24)
+    # + RWE Batch 3 (Pi/Rho Memory-Publication: 14 new packages; pilot replaced in place).
     assert PILOT_PACKAGE_ID in with_real
-    assert len(with_real) == 47
+    assert len(with_real) == 61

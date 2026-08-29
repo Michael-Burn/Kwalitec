@@ -222,5 +222,56 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
     "note": "Syllabus 1.1.1 is a CR-R1 return target after Publication Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Classify descriptive, inferential, and predictive aims",
+    "problem_statement": "A motor pricing review lists three tasks: (A) draw a histogram of last year's claim severities; (B) form a confidence interval for mean severity; (C) fit a model that forecasts next year's severity. Assign each task to descriptive, inferential, or predictive analysis.",
+    "given": [
+      {
+        "symbol": "Task A",
+        "value": "histogram of last year's claim severities",
+        "note": "observed-data summary"
+      },
+      {
+        "symbol": "Task B",
+        "value": "confidence interval for mean severity",
+        "note": "sample-to-population uncertainty"
+      },
+      {
+        "symbol": "Task C",
+        "value": "model forecasting next year's severity",
+        "note": "future outcome target"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. For each task, ask whether the target is a summary of seen data, a population parameter under uncertainty, or a future value.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Classify Task A",
+        "attempt_cue": "Is A summarising observed data or generalising/forecasting?",
+        "explanation": "A histogram of last year's severities summarises what was observed. That is a descriptive aim.",
+        "calculation": "A → descriptive (summarise observed severities)",
+        "result": "A = descriptive"
+      },
+      {
+        "id": "S2",
+        "label": "Classify Task B",
+        "attempt_cue": "What does a CI for mean severity target?",
+        "explanation": "A confidence interval generalises from sample evidence to a population parameter under uncertainty. That is an inferential aim.",
+        "calculation": "B → inferential (parameter under uncertainty)",
+        "result": "B = inferential"
+      },
+      {
+        "id": "S3",
+        "label": "Classify Task C and refuse EDA collapse",
+        "attempt_cue": "Name C's aim, then say why A/B/C are not 'just EDA'.",
+        "explanation": "Forecasting next year's severity targets a future outcome, so C is predictive. Calling all three 'just EDA' collapses distinct aims.",
+        "calculation": "C → predictive; refuse A=B=C='EDA'",
+        "result": "C = predictive; aims remain distinct"
+      }
+    ],
+    "final_answer": "A descriptive; B inferential; C predictive. Calling all three 'just EDA' collapses distinct analysis aims.",
+    "common_pitfall": "Labelling every pricing-review task as exploratory data analysis, so that confidence intervals and forecasts are treated as the same aim as a histogram.",
+    "syllabus_ref": "1.1.1"
+  }
 }
