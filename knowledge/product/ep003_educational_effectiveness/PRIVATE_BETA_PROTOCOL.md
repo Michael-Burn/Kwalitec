@@ -53,7 +53,7 @@ Analytics flag `ANALYTICS_EVENTS_V1` remains OFF until EP-002 go-live checklist 
 
 Follow [`../private_beta/BETA_ONBOARDING.md`](../private_beta/BETA_ONBOARDING.md):
 
-1. Invite + welcome note (intelligent study companion; learning outcomes, not gamification).
+1. Invite + welcome note (exam-focused study companion; learning outcomes, not gamification).
 2. First Session — calibration / onboarding already in product; start Today's Session.
 3. Orientation — Home, Journey, History, Revision, Reflection when prompted.
 4. Expectations — bugs expected; educational honesty preferred; feedback channels linked.

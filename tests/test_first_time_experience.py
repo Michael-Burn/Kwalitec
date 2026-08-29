@@ -91,7 +91,8 @@ class TestEmptyStatesAndOnboarding:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "No Study Plan" in body
-        assert "personalised recommendations" in body
+        assert "next-step recommendations from your exam plan" in body
+        assert "personalised recommendations" not in body
 
     def test_mission_includes_study_tip(self, logged_in_client):
         response = logged_in_client.get("/missions/")
@@ -104,4 +105,5 @@ class TestEmptyStatesAndOnboarding:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "No Study Plan" in body
-        assert "personalised recommendations" in body
+        assert "next-step recommendations from your exam plan" in body
+        assert "personalised recommendations" not in body

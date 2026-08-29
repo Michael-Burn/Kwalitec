@@ -60,6 +60,6 @@ class EducationalFeedbackLoopSnapshot:
     sensei_review_recorded: bool = False
     page_title: str = "Educational feedback"
     intro_line: str = (
-        "Optional reflection helps the Study Sensei understand whether "
-        "guidance was educationally useful — never to score engagement."
+        "Optional reflection helps Sensei record whether "
+        "guidance was educationally useful; it never scores engagement."
     )

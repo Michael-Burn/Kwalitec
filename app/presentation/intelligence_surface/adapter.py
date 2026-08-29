@@ -33,8 +33,8 @@ SOURCE_AUTHORITY_STUDY_INSIGHTS = "study_insights"
 SOURCE_AUTHORITY_READINESS_INTELLIGENCE = "readiness_intelligence"
 SOURCE_AUTHORITY_DAILY_STUDY_PLAN = "daily_study_plan"
 
-_TWIN_MISSION_REASON_FALLBACK = "Projected from Twin daily study plan"
-_TWIN_MISSION_PURPOSE_FALLBACK = "Follow today's Adaptive Study Planner focus"
+_TWIN_MISSION_REASON_FALLBACK = "Projected from today's study plan"
+_TWIN_MISSION_PURPOSE_FALLBACK = "Follow today's study-plan focus"
 
 
 def _authority(surface: dict[str, Any] | None) -> str:
@@ -554,7 +554,7 @@ class RuntimeAPresentationAdapter:
             topic_title=title,
             educational_purpose=purpose,
             reason_for_selection=reason,
-            educational_position="Twin Adaptive Study Planner focus for today",
+            educational_position="Study-plan focus for today",
             next_action=title,
             observed_facts=tuple(observed[:6]),
             estimates=(),

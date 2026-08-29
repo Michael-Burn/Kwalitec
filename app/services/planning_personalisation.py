@@ -281,6 +281,8 @@ def _adapt_session_duration(
         f"session length."
     )
     rationale = str(workload.get("rationale") or "").strip()
+    # Domain E Part 1: PLP-gated only (same as habit note below). Unreachable
+    # while KWALITEC_PERSONAL_LEARNING_PROFILE is OFF. Re-review if PLP enables.
     note = f" Personalised session length toward {target} minutes."
     if note.strip() not in rationale:
         workload["rationale"] = f"{rationale}{note}".strip()
@@ -651,6 +653,9 @@ def _attach_personalisation_explanation(
     surface["observed_facts"] = observed[:8]
 
     why = str(surface.get("why_this_plan") or "").strip()
+    # Domain E Part 1: appended only when PLP personalisation actually applies.
+    # KWALITEC_PERSONAL_LEARNING_PROFILE defaults OFF, so this path is unreachable
+    # in current production configs. Leave as-is; re-review if PLP is ever enabled.
     note = " Personalised using your observed study habits where evidence allows."
     if note.strip() not in why:
         surface["why_this_plan"] = (why + note).strip()

@@ -9,7 +9,7 @@ Every beta participant knows what Kwalitec is for, what to do first, and how to 
 ## Recommended flow (ops)
 
 1. **Invite** — Founder issues account (no public registration).
-2. **Welcome note** — Purpose: intelligent study companion; north star is learning toward pass probability; not a question bank or gamification app.
+2. **Welcome note** — Purpose: exam-focused study companion; north star is learning toward pass probability; not a question bank or gamification app.
 3. **First session** — Complete onboarding / calibration already in product; start Today's Session.
 4. **Orientation checklist** — Home (what now), Journey (progress), History (evidence), Revision, Reflection when prompted.
 5. **Expectations** — Bugs expected; educational honesty preferred over polish; feedback channels linked.

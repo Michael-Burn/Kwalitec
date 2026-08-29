@@ -425,7 +425,7 @@ def _default_next_action(row: dict[str, Any]) -> str:
             "Keep momentum on this strength without abandoning today’s plan."
         ),
         CATEGORY_DEFERRED: (
-            "Complete a short study session so guidance can be personalised."
+            "Complete a short study session so guidance can use your recent study signals."
         ),
     }
     return mapping.get(category, f"Take the next clear step: {title}.")
@@ -527,7 +527,7 @@ def _honest_refusal_row(authorised_focus: str | None) -> dict[str, Any]:
     next_action = (
         f"Continue Today’s Mission: {authorised_focus}."
         if authorised_focus
-        else "Complete a short study session so guidance can be personalised."
+        else "Complete a short study session so guidance can use your recent study signals."
     )
     row = {
         "title": "No recommendation yet",

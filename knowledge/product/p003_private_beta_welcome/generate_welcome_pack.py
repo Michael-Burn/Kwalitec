@@ -281,10 +281,11 @@ def build_pdf() -> None:
     # What is Kwalitec?
     y = section_heading("What is Kwalitec?", y)
     y = body_para(
-        "Kwalitec is an AI-powered study companion. It complements official IFoA study resources and "
-        "is designed to bring clarity to what to study next and why it matters. It does not replace "
+        "Kwalitec is a study companion that recommends what to study next and why, "
+        "based on your exam plan and study progress. It complements official IFoA study resources and "
+        "is designed to bring clarity to daily study decisions. It does not replace "
         "your CMP, Core Reading, tutorials, or professional judgement. Those remain the foundation of "
-        "your preparation. Kwalitec is here to guide study decisions with honesty — not to substitute "
+        "your preparation. Kwalitec guides study decisions with honesty; it does not substitute "
         "the work of becoming a professional.",
         y,
     )
@@ -599,10 +600,11 @@ def build_docx() -> None:
 
     heading("What is Kwalitec?")
     body(
-        "Kwalitec is an AI-powered study companion. It complements official IFoA study resources and "
-        "is designed to bring clarity to what to study next and why it matters. It does not replace "
+        "Kwalitec is a study companion that recommends what to study next and why, "
+        "based on your exam plan and study progress. It complements official IFoA study resources and "
+        "is designed to bring clarity to daily study decisions. It does not replace "
         "your CMP, Core Reading, tutorials, or professional judgement. Those remain the foundation of "
-        "your preparation. Kwalitec is here to guide study decisions with honesty — not to substitute "
+        "your preparation. Kwalitec guides study decisions with honesty; it does not substitute "
         "the work of becoming a professional."
     )
 

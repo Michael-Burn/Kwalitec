@@ -46,15 +46,16 @@ class TestInternalAlphaSettings:
         """B10 (PX-003): page renamed from "Internal Alpha Status" to
         "Account Status"; internal build-track version moved behind the
         "Diagnostic information" disclosure (still present, just not the
-        first thing a student sees); "Learning profile status" renamed to
-        "Personalised recommendations"."""
+        first thing a student sees); twin setup state labelled
+        "Learning profile" (values Ready / Not yet set up)."""
         response = logged_in_client.get("/settings/internal-alpha")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "Account Status" in body
         assert "Internal Alpha Status" not in body
         assert INTERNAL_ALPHA_VERSION in body
-        assert "Personalised recommendations" in body
+        assert "Learning profile" in body
+        assert "Personalised recommendations" not in body
         assert "Learning profile status" not in body
         assert "Current curriculum" in body
         assert 'data-appearance-option="light"' in body

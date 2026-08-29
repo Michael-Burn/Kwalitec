@@ -210,7 +210,7 @@ Support channel named in your invite pack (P0 security / data = immediate; P1 ca
 
 ### Who we are
 
-Kwalitec provides an invite-only adaptive study companion for professional exam preparation. There is **no public self-registration** for this pilot.
+Kwalitec provides an invite-only exam-focused study companion for professional exam preparation. There is **no public self-registration** for this pilot.
 
 ### What we store
 

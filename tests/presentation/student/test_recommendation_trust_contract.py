@@ -75,10 +75,10 @@ def _honest_refusal_row(**overrides):
             "Avoid fabricated certainty; build enough evidence for useful guidance."
         ),
         "suggested_next_action": (
-            "Complete a short study session so guidance can be personalised."
+            "Complete a short study session so guidance can use your recent study signals."
         ),
         "next_action": (
-            "Complete a short study session so guidance can be personalised."
+            "Complete a short study session so guidance can use your recent study signals."
         ),
         "confidence_level": "Cannot yet be estimated",
         "supporting_evidence": [
@@ -240,7 +240,7 @@ def test_tr_a03_honest_refusal_hides_alternatives(app, ctx):
         ),
         confidence_label="Cannot yet be estimated",
         suggested_next_action=(
-            "Complete a short study session so guidance can be personalised."
+            "Complete a short study session so guidance can use your recent study signals."
         ),
         review_point="Reassess after your next completed study session.",
         is_complete=True,

@@ -405,6 +405,11 @@ def _attach_personalisation_explanation(
     row["observed_facts"] = observed[:6]
 
     why = str(row.get("why_recommended") or row.get("reason") or "").strip()
+    # Domain E Part 1: this note only runs when personalisation_applied is true
+    # (factors present). With KWALITEC_PERSONAL_LEARNING_PROFILE default OFF,
+    # consume_personal_learning_profile returns None and this path is unreachable
+    # in production configs. Leave copy as-is (safe dead code); re-review honesty
+    # of "Personalised…" wording before ever enabling PLP for students.
     note = " Personalised using your observed study habits where evidence allows."
     if note.strip() not in why:
         row["why_recommended"] = (why + note).strip()

@@ -167,13 +167,13 @@ def share_feedback():
 @settings_bp.get("/internal-alpha")
 @login_required
 def internal_alpha():
-    """Render account/personalisation status (presentation only).
+    """Render account status (presentation only).
 
-    B10 (PX-003): page title and on-screen labels use student-meaningful
-    language ("Account Status", "Personalised recommendations") rather than
-    internal engine-state terms ("Internal Alpha", "Learning profile
-    status", "Digital Twin"). Route path/endpoint name kept stable — only
-    the URL slug is legacy, not a student-visible label.
+    B10 (PX-003) / Domain E Part 1: page title and on-screen labels use
+    student-meaningful language ("Account Status", "Learning profile") rather
+    than internal engine-state terms ("Internal Alpha", "Digital Twin") or
+    overclaiming personalisation labels. Route path/endpoint name kept
+    stable — only the URL slug is legacy, not a student-visible label.
     """
     from app.services.internal_alpha_status_service import InternalAlphaStatusService
 

@@ -41,7 +41,7 @@ APPROVED_TERMS: tuple[str, ...] = (
     "Learning Timeline",
     "Readiness Forecast",
     "Study Trajectory",
-    "Adaptive Study Workspace",
+    "Adaptive Study Workspace",  # Internal Home composition name only — not student/cohort copy until Adaptive Engine Authority is live (see PRODUCT_LANGUAGE_GUIDE §10).
     "Morning Brief",
     "Current Focus",
     "Session Plan",
@@ -91,7 +91,7 @@ FEEDBACK_LOOP_STUDENT_TERM: str = "Sensei reflection"
 FEEDBACK_LOOP_TERMINOLOGY_POLICY: str = (
     "Students never see “Feedback Loop” as a product label. "
     "Optional Decision Journal reflection is taught as Sensei reflection. "
-    "It helps Study Sensei understand whether guidance was useful and "
+    "It helps Sensei record whether guidance was useful and "
     "does not re-rank today's Mission."
 )
 
@@ -99,8 +99,8 @@ FEEDBACK_LOOP_TERMINOLOGY_POLICY: str = (
 REFLECTION_FAMILY_MAP_SENTENCE: str = (
     "Reflection after a Session closes practice. "
     "Commitment reflection on Home confirms you finished what you chose. "
-    "Optional reflection in the Decision Journal helps the Study Sensei "
-    "learn whether guidance was useful. "
+    "Optional reflection in the Decision Journal helps Sensei "
+    "record whether guidance was useful. "
     "The Educational Timeline asks deeper questions about your learning story. "
     "Product Check-in is feedback for the product team, not educational reflection."
 )

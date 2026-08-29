@@ -208,8 +208,15 @@ welcome modal) uses the approved Session terminology.
 
 ## 10. Version 1 Adaptive Workspace vocabulary (RC-002)
 
-Normative labels for Adaptive Study Workspace and related student surfaces.
-Keep these exact strings in student-facing copy where the product uses them.
+Normative labels for Home composition and related student surfaces.
+Most terms below may appear in student-facing copy where the product uses them.
+
+**Restriction — Adaptive Study Workspace:** this remains an *internal*
+architectural / programme name for the certified Home composition (KWP-013).
+Do **not** use “Adaptive Study Workspace” (or “adaptive study”) in any
+student-facing or cohort-facing copy until Adaptive Engine Authority is
+actually live and claim-reviewed. Prefer **Home** for learner-facing naming.
+Internal code, founder metrics, and programme docs may keep the historical term.
 
 | Approved term | Use for |
 |---------------|---------|
@@ -229,7 +236,7 @@ Keep these exact strings in student-facing copy where the product uses them.
 | **Learning Timeline** | Chronological learning events |
 | **Readiness Forecast** | Forward readiness projection |
 | **Study Trajectory** | Trajectory / momentum language |
-| **Adaptive Study Workspace** | Certified Home composition |
+| **Adaptive Study Workspace** | Internal Home composition name only (see restriction above) |
 | **Morning Brief** | Start-of-day brief |
 | **Current Focus** | Today's focus topic |
 | **Session Plan** | Planned sitting structure |

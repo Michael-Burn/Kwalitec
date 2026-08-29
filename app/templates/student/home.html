@@ -23,7 +23,7 @@
   data-sop="command-centre"
   data-ux="premium-home"
   data-kwp="013"
-  data-workspace="adaptive-study"
+  data-workspace="study-home"
   data-px004="home-composition"
   data-density="{{ density }}"
 >
@@ -201,7 +201,7 @@
   {# ——— 3–5. Secondary chrome: progressive disclosure (PX-B-010 / PX-B-048) ——— #}
   {% set open_secondary = density == 'established' %}
 
-  {# Selective Adaptive Workspace — Home-safe disclosures only (UX-001 subset).
+  {# Selective Home disclosures — Home-safe progressive chrome only (UX-001 subset).
      Episodes / checkpoint / reflection / plan chrome / full forecast / journey
      cards stay Session Overview / Journey exclusive. #}
   {% if ws and ws.current_focus and ws.current_focus.curriculum_why %}

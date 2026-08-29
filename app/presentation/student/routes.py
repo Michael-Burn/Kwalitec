@@ -131,7 +131,7 @@ def home():
         EVENT_DASHBOARD_OPENED,
         user_id=current_user.id,
         path="/student/",
-        context={"surface": "home", "workspace": "adaptive-study"},
+        context={"surface": "home", "workspace": "study-home"},
     )
     from app.services.presentation_telemetry_service import (
         EVENT_WORKSPACE_OPENED,
@@ -141,7 +141,7 @@ def home():
         EVENT_WORKSPACE_OPENED,
         user_id=current_user.id,
         path="/student/",
-        context={"surface": "adaptive-study-workspace"},
+        context={"surface": "study-home"},
     )
     form = StartSessionForm()
     complete_form = CompleteRuntimeMissionForm()

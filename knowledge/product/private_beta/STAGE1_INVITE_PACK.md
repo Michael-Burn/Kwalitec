@@ -28,7 +28,7 @@ For each `BETA-PIL-00N` invitee:
 
 Hello,
 
-You are invited to a **small, invite-only Stage 1 pilot** of **Kwalitec** — an adaptive study companion for professional exam preparation (IFoA in-scope subjects).
+You are invited to a **small, invite-only Stage 1 pilot** of **Kwalitec** — an exam-focused study companion for professional exam preparation (IFoA in-scope subjects).
 
 Kwalitec is built to help you study with clarity and honesty. The north star is learning that supports exam readiness over time — **not** a question bank, gamification app, or a promise of pass rates.
 
@@ -93,7 +93,7 @@ Support channel named in this invite pack (P0 security / data = immediate; P1 ca
 **Version:** 2026-07-26 · **Audience:** Invite-only Stage 1 pilot participants  
 
 ### Who we are
-Kwalitec provides an invite-only adaptive study companion for professional exam preparation. There is **no public self-registration** for this pilot.
+Kwalitec provides an invite-only exam-focused study companion for professional exam preparation. There is **no public self-registration** for this pilot.
 
 ### What we store
 1. **Account data** — email and credentials needed to authenticate your invite account.  

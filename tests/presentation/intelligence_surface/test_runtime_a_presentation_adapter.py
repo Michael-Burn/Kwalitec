@@ -245,7 +245,11 @@ class TestMissionNarrative:
                 "today_missions_slots": [{"topic_id": "x"}],
             },
         )
-        assert "Projected from Twin daily study plan" in narrative.reason_for_selection
+        assert "Projected from today's study plan" in narrative.reason_for_selection
+        assert "study-plan focus" in narrative.educational_purpose
+        assert "Adaptive Study Planner" not in narrative.educational_purpose
+        assert "Adaptive Study Planner" not in narrative.educational_position
+        assert "Twin" not in narrative.educational_position
 
     def test_none_mission_returns_none(self):
         assert (

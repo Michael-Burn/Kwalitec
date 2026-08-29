@@ -319,7 +319,7 @@ class TestHomeInsights:
         # KWP-013 — Home remains Adaptive Study Workspace; briefing data still
         # projects for Session / Journey rather than a Home insight wall.
         assert 'data-kwp="013"' in html
-        assert 'data-workspace="adaptive-study"' in html
+        assert 'data-workspace="study-home"' in html
         assert 'data-workspace-section="greeting"' in html
         assert 'data-workspace-section="todays-mission"' in html
         assert "digital twin" not in html.lower()
