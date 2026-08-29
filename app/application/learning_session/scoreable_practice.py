@@ -13,6 +13,18 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any
 
+# Choice rows are (id, label) or (id, label, misconception_tag). Tag is
+# additive analytics metadata; learner UI and correctness matching use id/label.
+PracticeChoice = tuple[str, str] | tuple[str, str, str]
+
+
+def choice_parts(choice: tuple[str, ...] | list[str]) -> tuple[str, str, str]:
+    """Normalise a 2- or 3-tuple choice to (id, label, misconception_tag)."""
+    cid = str(choice[0]).strip() if len(choice) >= 1 else ""
+    label = str(choice[1]).strip() if len(choice) >= 2 else ""
+    tag = str(choice[2]).strip() if len(choice) >= 3 else ""
+    return cid, label, tag
+
 
 class PracticeResponseType(StrEnum):
     """Authorised response shapes for scoreable Session practice."""
@@ -99,7 +111,7 @@ class ScoreablePracticeItem:
     syllabus_refs: tuple[str, ...] = ()
     topic_id: str = ""
     topic_keywords: tuple[str, ...] = ()
-    choices: tuple[tuple[str, str], ...] = ()
+    choices: tuple[PracticeChoice, ...] = ()
     emit_structured: bool = False
     body: str = ""
     supporting_material: str = ""
@@ -113,6 +125,13 @@ class ScoreablePracticeItem:
         } or self.emit_structured
 
     def to_opaque(self) -> dict[str, Any]:
+        opaque_choices: list[dict[str, str]] = []
+        for choice in self.choices:
+            cid, label, tag = choice_parts(choice)
+            row = {"id": cid, "label": label}
+            if tag:
+                row["misconception_tag"] = tag
+            opaque_choices.append(row)
         return {
             "item_id": self.item_id,
             "prompt": self.prompt,
@@ -127,7 +146,7 @@ class ScoreablePracticeItem:
             "syllabus_refs": list(self.syllabus_refs),
             "topic_id": self.topic_id,
             "topic_keywords": list(self.topic_keywords),
-            "choices": [{"id": cid, "label": label} for cid, label in self.choices],
+            "choices": opaque_choices,
             "emit_structured": self.emit_structured,
             "body": self.body,
             "supporting_material": self.supporting_material,
@@ -135,12 +154,15 @@ class ScoreablePracticeItem:
         }
 
     def learner_opaque(self) -> dict[str, Any]:
-        """Learner-safe payload — never exposes the answer key."""
+        """Learner-safe payload — never exposes the answer key or tags."""
         return {
             "item_id": self.item_id,
             "prompt": self.prompt,
             "response_type": self.response_type.value,
-            "choices": [{"id": cid, "label": label} for cid, label in self.choices],
+            "choices": [
+                {"id": cid, "label": label}
+                for cid, label, _tag in (choice_parts(c) for c in self.choices)
+            ],
             "objective_ids": list(self.objective_ids),
             "syllabus_refs": list(self.syllabus_refs),
             "mark_scheme_points": list(self.mark_scheme.points),
@@ -163,15 +185,20 @@ class ScoreablePracticeItem:
         except ValueError:
             response_type = PracticeResponseType.SHORT_STRUCTURED
         choices_raw = raw.get("choices") or ()
-        choices: list[tuple[str, str]] = []
+        choices: list[PracticeChoice] = []
         for choice in choices_raw:
             if isinstance(choice, dict):
                 cid = str(choice.get("id") or "").strip()
                 label = str(choice.get("label") or "").strip()
+                tag = str(choice.get("misconception_tag") or "").strip()
                 if cid and label:
-                    choices.append((cid, label))
+                    choices.append((cid, label, tag) if tag else (cid, label))
             elif isinstance(choice, list | tuple) and len(choice) >= 2:
-                choices.append((str(choice[0]).strip(), str(choice[1]).strip()))
+                cid = str(choice[0]).strip()
+                label = str(choice[1]).strip()
+                tag = str(choice[2]).strip() if len(choice) >= 3 else ""
+                if cid and label:
+                    choices.append((cid, label, tag) if tag else (cid, label))
         return cls(
             item_id=str(raw["item_id"]).strip(),
             prompt=str(raw.get("prompt") or "").strip(),
@@ -225,13 +252,15 @@ class PracticeScoreResult:
     emit_structured: bool = False
     item_id: str = ""
     response_type: str = ""
+    # Analytics identifier for the selected distractor; not student-facing.
+    selected_misconception_tag: str = ""
 
     @property
     def scored_correct(self) -> bool | None:
         return self.correct if self.scored else None
 
     def to_opaque(self) -> dict[str, Any]:
-        return {
+        payload = {
             "scored": self.scored,
             "correct": self.correct,
             "scored_correct": self.scored_correct,
@@ -252,6 +281,9 @@ class PracticeScoreResult:
                 else None
             ),
         }
+        if self.selected_misconception_tag:
+            payload["selected_misconception_tag"] = self.selected_misconception_tag
+        return payload
 
 
 def score_practice_response(
@@ -297,6 +329,14 @@ def score_practice_response(
             if correct
             else "Review the model answer, then try the next question."
         )
+    from app.application.learning_session.choice_aware_feedback_prototype import (
+        assemble_choice_aware_mistake,
+    )
+
+    # Feedback assembly only — correctness already decided by _matches_key.
+    common_mistake, selected_tag = assemble_choice_aware_mistake(
+        item, text, correct=correct
+    )
     return PracticeScoreResult(
         scored=True,
         correct=correct,
@@ -306,11 +346,12 @@ def score_practice_response(
         feedback_outcome=outcome,
         explanation=item.explanation,
         model_answer=item.model_answer,
-        common_mistake="" if correct else item.common_mistake,
+        common_mistake=common_mistake,
         next_action=next_action,
         emit_structured=item.is_structured,
         item_id=item.item_id,
         response_type=item.response_type.value,
+        selected_misconception_tag=selected_tag,
     )
 
 
@@ -334,7 +375,8 @@ def _match_mcq(
         or raw == correct_id
     ):
         return True, correct_id
-    for cid, label in item.choices:
+    for choice in item.choices:
+        cid, label, _tag = choice_parts(choice)
         if cid == correct_id or _normalise(label, case_sensitive=False) in {
             _normalise(a, case_sensitive=False) for a in item.answer_key.accepted
         }:

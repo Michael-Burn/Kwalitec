@@ -85,7 +85,11 @@ def test_scoreable_from_check_scores_correct_and_incorrect() -> None:
     assert mcq.scoreable is not None
     assert mcq.scoreable.response_type is PracticeResponseType.MCQ
     assert mcq.scoreable.answer_key.correct_choice_id == "b"
-    assert mcq.scoreable.choices == (("a", "3"), ("b", "4"), ("c", "5"))
+    assert mcq.scoreable.choices == (
+        ("a", "3", "off_by_one"),
+        ("b", "4"),
+        ("c", "5", "off_by_one"),
+    )
     assert mcq.answer_prompt == "Select your answer"
 
     ok = score_practice_response(mcq.scoreable, "b")
@@ -119,6 +123,13 @@ def test_package_engine_opaque_carries_choices() -> None:
         {"id": "c", "label": "5"},
     ]
     assert item["scoreable"]["answer_key"]["correct_choice_id"] == "b"
+    assert item["scoreable"]["choices"][0] == {
+        "id": "a",
+        "label": "3",
+        "misconception_tag": "off_by_one",
+    }
+    # Learner-facing list still omits the tag.
+    assert "misconception_tag" not in item["choices"][0]
 
     domain = _build_activity("sess-mcq-phase0", item)
     assert domain.response_type == "mcq"
@@ -437,5 +448,5 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
         assert act.scoreable.response_type is PracticeResponseType.MCQ
         assert len(act.scoreable.choices) == 4
         assert act.scoreable.answer_key.correct_choice_id in {
-            choice_id for choice_id, _label in act.scoreable.choices
+            choice[0] for choice in act.scoreable.choices
         }

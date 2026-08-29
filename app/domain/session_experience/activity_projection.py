@@ -105,9 +105,9 @@ class ActivityProjection:
         resolved_type = (activity_type or "").strip()
         resolved_stage = (stage_label or "").strip()
         cleaned_choices = tuple(
-            (str(cid).strip(), str(label).strip())
-            for cid, label in (choices or ())
-            if str(cid).strip() and str(label).strip()
+            (str(row[0]).strip(), str(row[1]).strip())
+            for row in (choices or ())
+            if len(row) >= 2 and str(row[0]).strip() and str(row[1]).strip()
         )
         return cls(
             activity_id=_require_non_empty(activity_id, "activity_id"),

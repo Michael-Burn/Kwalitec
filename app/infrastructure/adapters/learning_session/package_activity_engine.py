@@ -18,6 +18,7 @@ from app.application.learning_session.educational_flow import (
 )
 from app.application.learning_session.scoreable_practice import (
     ScoreablePracticeItem,
+    choice_parts,
     score_practice_response,
 )
 from app.application.learning_session.substance_planner import (
@@ -127,6 +128,8 @@ class PackageActivityEngine:
                 "item_id": score.item_id,
                 "emit_structured": score.emit_structured,
                 "score": score.to_opaque(),
+                # Stable analytics id for selected distractor (not student-facing).
+                "selected_misconception_tag": score.selected_misconception_tag,
             }
         )
         responses["items"] = items
@@ -174,8 +177,10 @@ class PackageActivityEngine:
             },
         }
         if scoreable is not None and scoreable.choices:
+            # Learner UI: id + label only (never surface misconception_tag).
             result["choices"] = [
-                {"id": cid, "label": label} for cid, label in scoreable.choices
+                {"id": cid, "label": label}
+                for cid, label, _tag in (choice_parts(c) for c in scoreable.choices)
             ]
         return result
 
@@ -444,8 +449,10 @@ def _spec_to_sequence_item(
         # Server-side scoring retains the full key; learner opaque omits it.
         item["scoreable"] = scoreable.to_opaque()
         item["response_type"] = scoreable.response_type.value
+        # Learner-facing choice list omits misconception_tag.
         item["choices"] = [
-            {"id": cid, "label": label} for cid, label in scoreable.choices
+            {"id": cid, "label": label}
+            for cid, label, _tag in (choice_parts(c) for c in scoreable.choices)
         ]
         item["item_id"] = scoreable.item_id
     return item

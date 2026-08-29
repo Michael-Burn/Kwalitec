@@ -399,7 +399,12 @@ def _scoreable_from_check(
             accepted=accepted,
             correct_choice_id=check.correct_choice_id,
         )
-        choices = tuple((c.id, c.label) for c in check.choices)
+        choices = tuple(
+            (c.id, c.label, c.misconception_tag)
+            if c.misconception_tag
+            else (c.id, c.label)
+            for c in check.choices
+        )
     else:
         answer_key = AnswerKey(
             accepted=check.accepted_keywords or ("explain", "link"),
