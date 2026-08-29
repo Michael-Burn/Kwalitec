@@ -213,5 +213,56 @@
     "continuity_line": "Today you practised the credibility premium formula; tomorrow continues at the Bayesian approach to credibility premiums.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.7. Titles only tonight",
     "student_facing": "Tomorrow: Bayesian approach to credibility theory (5.1.7). Optional light prep: skim 5.1.7 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Credibility premium with given Z",
+    "problem_statement": "A risk's sample mean claim cost is X̄ = £1200. The hypothetical mean for the risk class is μ = £1000. The credibility factor is Z = 0.55. Compute the credibility premium P = Z X̄ + (1 − Z)μ and state what Z weights.",
+    "given": [
+      {
+        "symbol": "X̄",
+        "value": "1200",
+        "note": "sample mean claim cost (£)"
+      },
+      {
+        "symbol": "μ",
+        "value": "1000",
+        "note": "hypothetical mean (£)"
+      },
+      {
+        "symbol": "Z",
+        "value": "0.55",
+        "note": "credibility factor"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form the convex combination with weights Z and 1 − Z.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Complementary weight",
+        "attempt_cue": "Compute 1 − Z.",
+        "explanation": "Credibility premiums are weighted averages of individual and collective means.",
+        "calculation": "1 − Z = 0.45",
+        "result": "1 − Z = 0.45"
+      },
+      {
+        "id": "S2",
+        "label": "Credibility premium",
+        "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
+        "explanation": "Substitute the given values into the standard credibility formula.",
+        "calculation": "P = 0.55 × 1200 + 0.45 × 1000 = 660 + 450 = 1110",
+        "result": "P = £1110"
+      },
+      {
+        "id": "S3",
+        "label": "Interpret Z",
+        "attempt_cue": "State what Z multiplies.",
+        "explanation": "Z is the weight on the risk's own experience X̄; 1 − Z weights the class hypothetical mean.",
+        "calculation": "Z weights X̄; (1 − Z) weights μ",
+        "result": "Z = 0.55 weights individual experience"
+      }
+    ],
+    "final_answer": "Credibility premium P = £1110; Z = 0.55 weights individual experience.",
+    "common_pitfall": "Swapping the weights so that Z multiplies μ, or treating Z as a probability that must equal X̄/μ.",
+    "syllabus_ref": "5.1.6"
   }
 }

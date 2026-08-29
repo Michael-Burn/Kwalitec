@@ -213,5 +213,56 @@
     "continuity_line": "Today you obtained simple posteriors; tomorrow continues at loss functions to derive Bayesian estimators.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.4. Titles only tonight",
     "student_facing": "Tomorrow: loss functions and Bayesian estimators (5.1.4). Optional light prep: skim 5.1.4 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Posterior for Poisson rate with Gamma prior",
+    "problem_statement": "Annual flood claim counts are modelled as Poisson(λ). The prior is Gamma(α, β) with shape-rate parameterisation π(λ) ∝ λ^{α−1} e^{−βλ}, here α = 2, β = 3. A sample of n = 4 independent years has total counts Σyᵢ = 10. State the posterior distribution and its mean.",
+    "given": [
+      {
+        "symbol": "prior",
+        "value": "Gamma(2, 3)",
+        "note": "shape-rate Gamma prior"
+      },
+      {
+        "symbol": "n, Σyᵢ",
+        "value": "4, 10",
+        "note": "years and total claim counts"
+      },
+      {
+        "symbol": "update",
+        "value": "Gamma(α+Σyᵢ, β+n)",
+        "note": "Poisson-Gamma conjugacy"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Add Σyᵢ to the shape and n to the rate before forming the posterior mean.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Identify the conjugate update",
+        "attempt_cue": "Write the posterior parameter map.",
+        "explanation": "For Poisson observations with a Gamma(α, β) shape-rate prior, the posterior is Gamma(α+Σy, β+n).",
+        "calculation": "Posterior = Gamma(2+10, 3+4) = Gamma(12, 7)",
+        "result": "Posterior Gamma(12, 7)"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior mean",
+        "attempt_cue": "Compute α'/β'.",
+        "explanation": "Under the shape-rate parameterisation the Gamma mean is shape/rate.",
+        "calculation": "Mean = 12/7 ≈ 1.7143 per year",
+        "result": "Posterior mean ≈ 1.7143"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse wrong update direction",
+        "attempt_cue": "State why n enters the rate, not the shape alone.",
+        "explanation": "Each observation year contributes one unit of exposure to the rate parameter; claim counts update the shape.",
+        "calculation": "Shape += total counts; rate += number of years",
+        "result": "Do not add n to the shape and Σy to the rate"
+      }
+    ],
+    "final_answer": "Posterior is Gamma(12, 7) with mean 12/7 ≈ 1.7143 claims per year.",
+    "common_pitfall": "Swapping the updates (adding n to the shape and Σy to the rate), or treating the Gamma as shape-scale when the brief specifies shape-rate.",
+    "syllabus_ref": "5.1.3"
   }
 }

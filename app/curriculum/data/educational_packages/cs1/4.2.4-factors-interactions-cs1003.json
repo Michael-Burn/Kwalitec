@@ -214,5 +214,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.5. Titles only tonight",
     "student_facing": "Tomorrow: definition and form of the linear predictor (4.2.5). Optional light prep: skim 4.2.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Factor and interaction linear predictor for flood frequency",
+    "problem_statement": "A Poisson log-link flood-frequency GLM uses two binary factors: Coastal (1 if coastal postcode, else 0) and HighRise (1 if high-rise property, else 0), plus their interaction. The fitted linear predictor is η = −1.5 + 0.4 Coastal + 0.25 HighRise + 0.15 Coastal×HighRise. Compute η and μ = e^η for (a) coastal high-rise and (b) inland low-rise. State when the interaction term contributes.",
+    "given": [
+      {
+        "symbol": "η",
+        "value": "−1.5 + 0.4 C + 0.25 H + 0.15 C×H",
+        "note": "fitted linear predictor"
+      },
+      {
+        "symbol": "link",
+        "value": "log",
+        "note": "Poisson log link"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Plug indicator patterns into η before exponentiating; check when C×H is nonzero.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Coastal and high-rise",
+        "attempt_cue": "Set C = 1, H = 1 and evaluate η, then μ.",
+        "explanation": "All main effects and the interaction are active when both indicators equal 1.",
+        "calculation": "η = −1.5 + 0.4 + 0.25 + 0.15 = −0.7; μ = e^{−0.7} ≈ 0.4966",
+        "result": "Coastal & high-rise: η = −0.7, μ ≈ 0.4966"
+      },
+      {
+        "id": "S2",
+        "label": "Inland and low-rise",
+        "attempt_cue": "Set C = 0, H = 0.",
+        "explanation": "Only the intercept remains when both factors are at baseline.",
+        "calculation": "η = −1.5; μ = e^{−1.5} ≈ 0.2231",
+        "result": "Inland & low-rise: η = −1.5"
+      },
+      {
+        "id": "S3",
+        "label": "When the interaction applies",
+        "attempt_cue": "State the indicator condition for the 0.15 term.",
+        "explanation": "An interaction of two binary factors contributes only when both factors equal 1.",
+        "calculation": "0.15 applies only if Coastal = 1 and HighRise = 1",
+        "result": "Interaction active only for coastal high-rise"
+      }
+    ],
+    "final_answer": "Coastal & high-rise: η = −0.7, μ ≈ 0.4966. Inland & low-rise: η = −1.5. The interaction term 0.15 applies only when both factors equal 1.",
+    "common_pitfall": "Adding the interaction coefficient whenever either factor is present, or forgetting to include main effects when both indicators are 1.",
+    "syllabus_ref": "4.2.4"
+  }
 }

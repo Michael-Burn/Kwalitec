@@ -217,5 +217,56 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.3. Titles only tonight",
     "student_facing": "Tomorrow: link function and canonical link (4.2.3). Optional light prep: skim 4.2.3 headings. Titles only tonight."
   },
-  "absorption_note": "EA-006 structure absorb day 2/3"
+  "absorption_note": "EA-006 structure absorb day 2/3",
+  "worked_example": {
+    "title": "Mean, variance, V(μ), and scale for three families",
+    "problem_statement": "For three candidate GLM responses, evaluate mean, variance, variance function V(μ), and scale φ where relevant:\n(1) Poisson with λ = 3;\n(2) Binomial(n = 20, p = 0.4);\n(3) Gamma with mean μ = 8 and shape α = 2.",
+    "given": [
+      {
+        "symbol": "Poisson",
+        "value": "λ = 3",
+        "note": "count mean"
+      },
+      {
+        "symbol": "Binomial",
+        "value": "n = 20, p = 0.4",
+        "note": "trials and success probability"
+      },
+      {
+        "symbol": "Gamma",
+        "value": "μ = 8, α = 2",
+        "note": "mean and shape"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. For each family write E(Y), Var(Y), then identify V(μ) and φ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Poisson(λ = 3)",
+        "attempt_cue": "State mean, variance, and V(μ).",
+        "explanation": "For Poisson, mean equals variance and the variance function is V(μ) = μ with φ = 1.",
+        "calculation": "E = Var = 3; V(μ) = μ; φ = 1",
+        "result": "Poisson: E = Var = 3, V(μ) = μ"
+      },
+      {
+        "id": "S2",
+        "label": "Binomial(n = 20, p = 0.4)",
+        "attempt_cue": "Compute np and np(1 − p).",
+        "explanation": "Binomial mean is np; variance is np(1 − p); as a GLM for the count, V(μ) = μ(1 − μ/n).",
+        "calculation": "E = 20 × 0.4 = 8; Var = 20 × 0.4 × 0.6 = 4.8; V(μ) = μ(1 − μ/n)",
+        "result": "Binomial: E = 8, Var = 4.8"
+      },
+      {
+        "id": "S3",
+        "label": "Gamma(μ = 8, α = 2)",
+        "attempt_cue": "Use Var = μ²/α and V(μ) = μ².",
+        "explanation": "Gamma has variance function V(μ) = μ²; with shape α the scale relates as Var = μ²/α.",
+        "calculation": "E = 8; Var = 64/2 = 32; V(μ) = μ²",
+        "result": "Gamma: E = 8, Var = 32, V(μ) = μ²"
+      }
+    ],
+    "final_answer": "Poisson: E = Var = 3, V(μ) = μ. Binomial: E = 8, Var = 4.8. Gamma: E = 8, Var = 32, V(μ) = μ².",
+    "common_pitfall": "Using V(μ) = μ for Gamma, or forgetting the (1 − p) factor in the Binomial variance.",
+    "syllabus_ref": "4.2.2"
+  }
 }

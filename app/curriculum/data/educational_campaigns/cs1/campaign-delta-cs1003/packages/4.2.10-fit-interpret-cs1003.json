@@ -221,5 +221,56 @@
     "continuity_line": "Today you closed GLM fit/interpret; tomorrow is Revision returning to 4.1–4.2 under closed-book retrieval. Bayesian 5.1 comes after.",
     "light_prep_cue": "Optional: note weakest 4.2 link from memory. Titles only",
     "student_facing": "Tomorrow: Campaign Delta Revision CD-R2. Retrieve classical LM through GLM (4.1–4.2). Optional: note your weakest 4.2 link tonight."
+  },
+  "worked_example": {
+    "title": "Interpret a log-link Poisson coefficient multiplicatively",
+    "problem_statement": "A fitted Poisson claim-frequency GLM with log link for employers' liability gives β̂_night = −0.15 for a night-shift indicator (baseline = day shift). Compute the multiplicative effect e^{β̂_night} on mean frequency, and the percentage change. Also, given D = 28 on df_res = 25 and max |r_P| = 2.4, state what else should accompany coefficient interpretation.",
+    "given": [
+      {
+        "symbol": "β̂_night",
+        "value": "−0.15",
+        "note": "night-shift coefficient"
+      },
+      {
+        "symbol": "D, df_res",
+        "value": "28, 25",
+        "note": "deviance and residual df"
+      },
+      {
+        "symbol": "max |r_P|",
+        "value": "2.4",
+        "note": "largest absolute Pearson residual"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Exponentiate the coefficient before converting to a percentage change.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Multiplicative effect",
+        "attempt_cue": "Compute e^{β̂_night}.",
+        "explanation": "On a log link, a coefficient is a multiplicative adjustment to the mean frequency relative to baseline.",
+        "calculation": "e^{−0.15} ≈ 0.8607",
+        "result": "Night-shift mean ≈ 0.8607 × day-shift mean"
+      },
+      {
+        "id": "S2",
+        "label": "Percentage change",
+        "attempt_cue": "Convert the multiplier to a percentage.",
+        "explanation": "Percentage change = (e^β − 1) × 100%.",
+        "calculation": "(0.8607 − 1) × 100% ≈ −13.93%",
+        "result": "≈ −13.93% vs day shift"
+      },
+      {
+        "id": "S3",
+        "label": "Interpret fit diagnostics alongside the coefficient",
+        "attempt_cue": "Comment on D/df and residual size.",
+        "explanation": "Coefficient interpretation is incomplete without checking overall fit and residual outliers.",
+        "calculation": "D/df_res = 28/25 = 1.12; max |r_P| = 2.4 warrants residual review",
+        "result": "Fit alone is incomplete without diagnostics"
+      }
+    ],
+    "final_answer": "Night-shift mean frequency ≈ 0.8607× day-shift (≈ −13.93%). Also interpret deviance/df and residual diagnostics; Fit alone is incomplete.",
+    "common_pitfall": "Treating β̂_night = −0.15 as a −15% additive change on the frequency scale, without exponentiating.",
+    "syllabus_ref": "4.2.10"
   }
 }

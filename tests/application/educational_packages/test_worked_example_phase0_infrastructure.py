@@ -170,6 +170,7 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     )
     # Phase 0 pilot slot (Bayes on CS1016, content replaced in RWE Batch 3)
     # + RWE Batch 1 (Section 3: 22) + RWE Batch 2 (Continuity: 24)
-    # + RWE Batch 3 (Pi/Rho Memory-Publication: 14 new packages; pilot replaced in place).
+    # + RWE Batch 3 (Pi/Rho Memory-Publication: 14 new packages; pilot replaced in place)
+    # + RWE Batch 4 (Delta Domain F1b / cs1003: 24).
     assert PILOT_PACKAGE_ID in with_real
-    assert len(with_real) == 61
+    assert len(with_real) == 85

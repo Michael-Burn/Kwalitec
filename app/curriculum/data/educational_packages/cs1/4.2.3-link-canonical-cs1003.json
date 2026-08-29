@@ -219,5 +219,51 @@
     "student_facing": "Tomorrow: variables, factors and interactions (4.2.4). Optional light prep: skim 4.2.4 headings. Titles only tonight."
   },
   "absorption_note": "EA-006 structure absorb day 3/3. Grandfather excellence now Campaign member",
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Logit and log canonical links with numeric η",
+    "problem_statement": "A GLM uses a link g so that η = g(μ) = xᵀβ.\n(a) For a binomial probability μ = 0.25, compute the canonical logit link η = ln(μ/(1 − μ)).\n(b) For a Poisson mean with linear predictor η = 1.2, compute μ = e^η.\nState the canonical links for binomial and Poisson.",
+    "given": [
+      {
+        "symbol": "μ_binom",
+        "value": "0.25",
+        "note": "binomial mean probability"
+      },
+      {
+        "symbol": "η_pois",
+        "value": "1.2",
+        "note": "Poisson linear predictor"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute logit(0.25) and e^{1.2} before naming canonical links.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Canonical logit at μ = 0.25",
+        "attempt_cue": "Evaluate ln(μ/(1 − μ)).",
+        "explanation": "The binomial canonical link is the logit.",
+        "calculation": "η = ln(0.25/0.75) = ln(1/3) ≈ −1.0986",
+        "result": "logit(0.25) ≈ −1.0986"
+      },
+      {
+        "id": "S2",
+        "label": "Poisson mean from η = 1.2",
+        "attempt_cue": "Invert the log link: μ = e^η.",
+        "explanation": "The Poisson canonical link is the log, so the mean is the exponential of the linear predictor.",
+        "calculation": "μ = e^{1.2} ≈ 3.3201",
+        "result": "μ ≈ 3.3201"
+      },
+      {
+        "id": "S3",
+        "label": "Name canonical links",
+        "attempt_cue": "State canonical g for binomial and Poisson.",
+        "explanation": "Canonical links maximise the correspondence between natural parameter and linear predictor.",
+        "calculation": "Binomial: logit; Poisson: log",
+        "result": "Canonical: logit (binomial), log (Poisson)"
+      }
+    ],
+    "final_answer": "logit(0.25) ≈ −1.0986; Poisson μ = e^{1.2} ≈ 3.3201. Canonical links: logit (binomial), log (Poisson).",
+    "common_pitfall": "Using the identity link as if it were canonical for Poisson, or confusing logit with log.",
+    "syllabus_ref": "4.2.3"
+  }
 }

@@ -214,5 +214,51 @@
     "continuity_line": "Today you practised OLS slope/intercept; tomorrow continues at software fit, inference, prediction, and residual checks for linear models.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.4. Titles only tonight",
     "student_facing": "Tomorrow: fit linear regression with software and interpret output (4.1.4). Optional light prep: skim 4.1.4 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "OLS slope and intercept for four marine cargo points",
+    "problem_statement": "Four (voyage risk band, cargo loss) pairs (x, y) with y in £000 are (2, 4), (3, 6), (4, 7), (5, 9). Fit the simple linear model y = β₀ + β₁x by ordinary least squares: compute x̄, ȳ, S_xx, S_xy, then β̂₁ and β̂₀. Also report the residual at x = 4.",
+    "given": [
+      {
+        "symbol": "(xᵢ, yᵢ)",
+        "value": "(2,4), (3,6), (4,7), (5,9)",
+        "note": "n = 4 paired observations"
+      },
+      {
+        "symbol": "model",
+        "value": "y = β₀ + β₁x",
+        "note": "simple linear regression"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute x̄ and ȳ first, then S_xx and S_xy, before forming β̂₁ = S_xy/S_xx.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Sample means",
+        "attempt_cue": "Average the four x values and the four y values.",
+        "explanation": "OLS formulas centre on the sample means of X and Y.",
+        "calculation": "x̄ = (2+3+4+5)/4 = 14/4 = 3.5;  ȳ = (4+6+7+9)/4 = 26/4 = 6.5",
+        "result": "x̄ = 3.5; ȳ = 6.5"
+      },
+      {
+        "id": "S2",
+        "label": "Corrected sums of squares and products",
+        "attempt_cue": "Compute S_xx = Σ(xᵢ − x̄)² and S_xy = Σ(xᵢ − x̄)(yᵢ − ȳ).",
+        "explanation": "S_xx measures spread in X; S_xy measures co-movement of X and Y about their means.",
+        "calculation": "S_xx = (−1.5)²+(−0.5)²+(0.5)²+(1.5)² = 2.25+0.25+0.25+2.25 = 5; S_xy = (−1.5)(−2.5)+(−0.5)(−0.5)+(0.5)(0.5)+(1.5)(2.5) = 3.75+0.25+0.25+3.75 = 8",
+        "result": "S_xx = 5; S_xy = 8"
+      },
+      {
+        "id": "S3",
+        "label": "Slope, intercept, and residual at x = 4",
+        "attempt_cue": "β̂₁ = S_xy/S_xx, β̂₀ = ȳ − β̂₁ x̄, residual = y − (β̂₀ + β̂₁x).",
+        "explanation": "Least squares minimises Σ residual²; the closed forms give the unique minimisers for simple linear regression.",
+        "calculation": "β̂₁ = 8/5 = 1.6;  β̂₀ = 6.5 − 1.6 × 3.5 = 6.5 − 5.6 = 0.9; ŷ(4) = 0.9 + 1.6 × 4 = 7.3;  residual = 7 − 7.3 = −0.3",
+        "result": "β̂₁ = 1.6; β̂₀ = 0.9; e(4) = −0.3"
+      }
+    ],
+    "final_answer": "β̂₁ = 1.6, β̂₀ = 0.9; fitted line ŷ = 0.9 + 1.6x; residual at x = 4 equals −0.3 (£000).",
+    "common_pitfall": "Using S_xy/S_yy for the slope, or reporting the residual as ŷ − y instead of the convention e = y − ŷ.",
+    "syllabus_ref": "4.1.3"
   }
 }

@@ -213,5 +213,56 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.3. Titles only tonight",
     "student_facing": "Tomorrow: posterior distribution for a parameter in simple cases (5.1.3). Optional light prep: skim 5.1.3 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Beta-Binomial conjugate update for claim probability",
+    "problem_statement": "A portfolio claim probability θ has prior Beta(α, β) = Beta(3, 5). In a new sample of n = 12 independent risks, s = 4 claims are observed (Binomial likelihood). Using conjugacy, state the posterior distribution and compare prior and posterior means.",
+    "given": [
+      {
+        "symbol": "prior",
+        "value": "Beta(3, 5)",
+        "note": "conjugate prior for θ"
+      },
+      {
+        "symbol": "data",
+        "value": "s = 4 claims in n = 12",
+        "note": "Binomial sample"
+      },
+      {
+        "symbol": "update",
+        "value": "Beta(α+s, β+n−s)",
+        "note": "Beta-Binomial conjugacy"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Apply α' = α + s and β' = β + n − s before computing means.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Prior mean",
+        "attempt_cue": "Compute α/(α+β).",
+        "explanation": "The Beta mean is α/(α+β).",
+        "calculation": "Prior mean = 3/(3+5) = 3/8 = 0.375",
+        "result": "Prior mean = 0.375"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior parameters",
+        "attempt_cue": "Update α and β with the Binomial counts.",
+        "explanation": "Conjugacy adds successes to α and failures to β.",
+        "calculation": "Posterior = Beta(3+4, 5+12−4) = Beta(7, 13)",
+        "result": "Posterior Beta(7, 13)"
+      },
+      {
+        "id": "S3",
+        "label": "Posterior mean",
+        "attempt_cue": "Compute 7/(7+13).",
+        "explanation": "The posterior mean blends prior weight with the sample proportion 4/12.",
+        "calculation": "Posterior mean = 7/20 = 0.35",
+        "result": "Posterior mean = 0.35"
+      }
+    ],
+    "final_answer": "Prior Beta(3, 5) with mean 0.375; posterior Beta(7, 13) with mean 0.35.",
+    "common_pitfall": "Updating as Beta(α+n, β+s) or forgetting to add failures n − s to β.",
+    "syllabus_ref": "5.1.2"
+  }
 }

@@ -1,0 +1,1214 @@
+{
+  "worked_examples": {
+    "4.1.1-response-explanatory-cs1003.json": {
+      "title": "Assign Y and X, then evaluate an EL severity line",
+      "problem_statement": "An employers' liability pricing analyst models claim severity (£). The fitted simple linear relationship from a pilot sample is ŷ = 2500 + 150x, where x is years in a hazardous occupation class. (a) Name the response and the explanatory variable. (b) Compute the fitted mean severity at x = 8.",
+      "given": [
+        {
+          "symbol": "ŷ",
+          "value": "2500 + 150x",
+          "note": "fitted mean severity (£)"
+        },
+        {
+          "symbol": "x",
+          "value": "8",
+          "note": "years in hazardous class for the prediction"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Name Y and X in one sentence, then substitute x = 8 into ŷ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Assign response and explanatory roles",
+          "attempt_cue": "State which quantity is Y and which is X.",
+          "explanation": "The modelling question is claim severity, so severity is the response Y. Years in the hazardous class is the predictor used to explain severity, so that tenure measure is the explanatory variable X.",
+          "calculation": "Y = EL claim severity (£); X = years in hazardous occupation class",
+          "result": "Y = severity; X = hazardous-class years"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate the fitted mean at x = 8",
+          "attempt_cue": "Substitute x = 8 into ŷ = 2500 + 150x.",
+          "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
+          "calculation": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
+          "result": "ŷ = £3700"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse column-soup",
+          "attempt_cue": "State why written premium is not automatically an X for severity.",
+          "explanation": "Written premium is a pricing output (or input to another model). Sharing a policy record with severity does not make it an automatic explanatory variable for a severity model.",
+          "calculation": "Written premium is not auto-X for severity by column presence alone",
+          "result": "Roles fixed by the modelling question, not by column presence"
+        }
+      ],
+      "final_answer": "Y = EL claim severity, X = years in hazardous occupation class; ŷ(8) = £3700. Written premium is not automatically an explanatory variable for severity.",
+      "common_pitfall": "Treating every numeric policy field (including written premium or headcount) as an explanatory variable for severity, or swapping roles so that hazardous-class years are modelled as Y and severity as X.",
+      "syllabus_ref": "4.1.1"
+    },
+    "4.1.2-simple-multiple-cs1003.json": {
+      "title": "Simple vs multiple fitted travel medical costs",
+      "problem_statement": "Two fitted linear models for travel medical claim cost Y (£00) are available.\nSimple: Ŷ_s = 3.5 + 0.8x₁, where x₁ is trip length in weeks.\nMultiple: Ŷ_m = 2.0 + 0.6x₁ + 0.4x₂, where x₂ is a destination risk score.\nFor a trip with x₁ = 5 and x₂ = 3, compute both fitted values and state which model form each equation represents.",
+      "given": [
+        {
+          "symbol": "Ŷ_s",
+          "value": "3.5 + 0.8x₁",
+          "note": "simple linear fit"
+        },
+        {
+          "symbol": "Ŷ_m",
+          "value": "2.0 + 0.6x₁ + 0.4x₂",
+          "note": "multiple linear fit"
+        },
+        {
+          "symbol": "(x₁, x₂)",
+          "value": "(5, 3)",
+          "note": "trip weeks and destination risk score"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Count the explanatory variables in each equation, then evaluate both fitted values at (5, 3).",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Identify simple vs multiple form",
+          "attempt_cue": "Count explanatory variables on the right-hand side of each equation.",
+          "explanation": "Simple linear regression has one explanatory variable. Multiple linear regression has several explanatory variables entering jointly.",
+          "calculation": "Ŷ_s uses only x₁ (simple); Ŷ_m uses x₁ and x₂ (multiple)",
+          "result": "Simple vs multiple identified by number of X's"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate the simple fit",
+          "attempt_cue": "Substitute x₁ = 5 into Ŷ_s.",
+          "explanation": "The simple model ignores x₂ even if that covariate is available.",
+          "calculation": "Ŷ_s = 3.5 + 0.8 × 5 = 3.5 + 4.0 = 7.5",
+          "result": "Ŷ_s = 7.5 (£00)"
+        },
+        {
+          "id": "S3",
+          "label": "Evaluate the multiple fit",
+          "attempt_cue": "Substitute x₁ = 5 and x₂ = 3 into Ŷ_m.",
+          "explanation": "The multiple model adjusts the trip-length contribution and adds the destination-risk term jointly.",
+          "calculation": "Ŷ_m = 2.0 + 0.6 × 5 + 0.4 × 3 = 2.0 + 3.0 + 1.2 = 6.2",
+          "result": "Ŷ_m = 6.2 (£00)"
+        }
+      ],
+      "final_answer": "Ŷ_s = 7.5 (£00) is simple (one X); Ŷ_m = 6.2 (£00) is multiple (two X's). Least-squares estimation is a separate step from writing the model form.",
+      "common_pitfall": "Calling Ŷ_m 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same (x₁, x₂).",
+      "syllabus_ref": "4.1.2"
+    },
+    "4.1.3-least-squares-cs1003.json": {
+      "title": "OLS slope and intercept for four marine cargo points",
+      "problem_statement": "Four (voyage risk band, cargo loss) pairs (x, y) with y in £000 are (2, 4), (3, 6), (4, 7), (5, 9). Fit the simple linear model y = β₀ + β₁x by ordinary least squares: compute x̄, ȳ, S_xx, S_xy, then β̂₁ and β̂₀. Also report the residual at x = 4.",
+      "given": [
+        {
+          "symbol": "(xᵢ, yᵢ)",
+          "value": "(2,4), (3,6), (4,7), (5,9)",
+          "note": "n = 4 paired observations"
+        },
+        {
+          "symbol": "model",
+          "value": "y = β₀ + β₁x",
+          "note": "simple linear regression"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute x̄ and ȳ first, then S_xx and S_xy, before forming β̂₁ = S_xy/S_xx.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Sample means",
+          "attempt_cue": "Average the four x values and the four y values.",
+          "explanation": "OLS formulas centre on the sample means of X and Y.",
+          "calculation": "x̄ = (2+3+4+5)/4 = 14/4 = 3.5;  ȳ = (4+6+7+9)/4 = 26/4 = 6.5",
+          "result": "x̄ = 3.5; ȳ = 6.5"
+        },
+        {
+          "id": "S2",
+          "label": "Corrected sums of squares and products",
+          "attempt_cue": "Compute S_xx = Σ(xᵢ − x̄)² and S_xy = Σ(xᵢ − x̄)(yᵢ − ȳ).",
+          "explanation": "S_xx measures spread in X; S_xy measures co-movement of X and Y about their means.",
+          "calculation": "S_xx = (−1.5)²+(−0.5)²+(0.5)²+(1.5)² = 2.25+0.25+0.25+2.25 = 5; S_xy = (−1.5)(−2.5)+(−0.5)(−0.5)+(0.5)(0.5)+(1.5)(2.5) = 3.75+0.25+0.25+3.75 = 8",
+          "result": "S_xx = 5; S_xy = 8"
+        },
+        {
+          "id": "S3",
+          "label": "Slope, intercept, and residual at x = 4",
+          "attempt_cue": "β̂₁ = S_xy/S_xx, β̂₀ = ȳ − β̂₁ x̄, residual = y − (β̂₀ + β̂₁x).",
+          "explanation": "Least squares minimises Σ residual²; the closed forms give the unique minimisers for simple linear regression.",
+          "calculation": "β̂₁ = 8/5 = 1.6;  β̂₀ = 6.5 − 1.6 × 3.5 = 6.5 − 5.6 = 0.9; ŷ(4) = 0.9 + 1.6 × 4 = 7.3;  residual = 7 − 7.3 = −0.3",
+          "result": "β̂₁ = 1.6; β̂₀ = 0.9; e(4) = −0.3"
+        }
+      ],
+      "final_answer": "β̂₁ = 1.6, β̂₀ = 0.9; fitted line ŷ = 0.9 + 1.6x; residual at x = 4 equals −0.3 (£000).",
+      "common_pitfall": "Using S_xy/S_yy for the slope, or reporting the residual as ŷ − y instead of the convention e = y − ŷ.",
+      "syllabus_ref": "4.1.3"
+    },
+    "4.1.4-software-inference-cs1003.json": {
+      "title": "Slope Wald test and mean vs prediction intervals (pet book)",
+      "problem_statement": "Software returns slope estimate β̂₁ = −8 (£ per year of pet age) with SE(β̂₁) = 2.5. Treat the Normal approximation as adequate and use z_{0.975} = 1.96.\n(a) Compute the Wald z statistic for H₀: β₁ = 0.\n(b) Form the approximate 95% CI for β₁.\n(c) At a fixed pet age, the fitted mean is ŷ = 320 with SE_mean = 15 and SE_pred = 40. Compare the half-widths of the 95% mean and individual prediction intervals.",
+      "given": [
+        {
+          "symbol": "β̂₁, SE(β̂₁)",
+          "value": "−8, 2.5",
+          "note": "slope estimate and its SE"
+        },
+        {
+          "symbol": "z_{0.975}",
+          "value": "1.96",
+          "note": "Normal critical value"
+        },
+        {
+          "symbol": "ŷ, SE_mean, SE_pred",
+          "value": "320, 15, 40",
+          "note": "mean fit and interval SEs"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form z = β̂₁/SE(β̂₁), then contrast SE_mean with SE_pred before writing intervals.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Wald statistic for the slope",
+          "attempt_cue": "Divide β̂₁ by its standard error.",
+          "explanation": "Software inference on the slope starts from the estimate and its SE; under H₀: β₁ = 0 the ratio is approximately standard Normal for large samples.",
+          "calculation": "z = −8 / 2.5 = −3.2",
+          "result": "z = −3.2"
+        },
+        {
+          "id": "S2",
+          "label": "Approximate 95% CI for β₁",
+          "attempt_cue": "Compute β̂₁ ± 1.96 × SE(β̂₁).",
+          "explanation": "A Wald interval centres on the estimate and scales the SE by z_{0.975}.",
+          "calculation": "−8 ± 1.96 × 2.5 = −8 ± 4.9 ⇒ (−12.9, −3.1)",
+          "result": "95% CI ≈ (−12.9, −3.1)"
+        },
+        {
+          "id": "S3",
+          "label": "Mean interval vs individual prediction interval",
+          "attempt_cue": "Form ŷ ± 1.96 × SE for each SE, and compare widths.",
+          "explanation": "Prediction of an individual response includes residual variance, so SE_pred > SE_mean and the individual interval is wider than the mean interval.",
+          "calculation": "Mean: 320 ± 1.96 × 15 = 320 ± 29.4 ⇒ (290.6, 349.4); Individual: 320 ± 1.96 × 40 = 320 ± 78.4 ⇒ (241.6, 398.4); half-widths 29.4 < 78.4",
+          "result": "Individual interval wider than mean interval"
+        }
+      ],
+      "final_answer": "z = −3.2; 95% CI for β₁ ≈ (−12.9, −3.1); mean interval (290.6, 349.4) is narrower than individual prediction interval (241.6, 398.4).",
+      "common_pitfall": "Reporting the mean confidence interval as if it were an individual prediction interval, or using SE_mean in place of SE_pred when predicting a single new claim.",
+      "syllabus_ref": "4.1.4"
+    },
+    "4.1.5-variable-selection-cs1003.json": {
+      "title": "Choose explanatory set by adjusted R² (commercial property)",
+      "problem_statement": "Two nested commercial-property severity regressions are fitted on the same n = 60 risks.\nModel A uses p = 3 explanatory variables and has R² = 0.55.\nModel B uses p = 6 explanatory variables and has R² = 0.58.\nCompute adjusted R² for each model using R²_adj = 1 − (1 − R²)(n − 1)/(n − p − 1), and select the model preferred by adjusted R².",
+      "given": [
+        {
+          "symbol": "n",
+          "value": "60",
+          "note": "common sample size"
+        },
+        {
+          "symbol": "Model A",
+          "value": "p = 3, R² = 0.55",
+          "note": "smaller explanatory set"
+        },
+        {
+          "symbol": "Model B",
+          "value": "p = 6, R² = 0.58",
+          "note": "larger explanatory set"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Write R²_adj for each model before comparing; do not select on raw R² alone.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Adjusted R² for Model A",
+          "attempt_cue": "Substitute n = 60, p = 3, R² = 0.55 into the formula.",
+          "explanation": "Adjusted R² penalises extra parameters so that raw R² inflation from adding variables is not automatic preference.",
+          "calculation": "R²_adj,A = 1 − (1 − 0.55) × 59 / 56 = 1 − 0.45 × 59/56 = 1 − 26.55/56 ≈ 0.5259",
+          "result": "R²_adj,A ≈ 0.5259"
+        },
+        {
+          "id": "S2",
+          "label": "Adjusted R² for Model B",
+          "attempt_cue": "Substitute n = 60, p = 6, R² = 0.58.",
+          "explanation": "The larger model starts with higher raw R² but faces a heavier penalty.",
+          "calculation": "R²_adj,B = 1 − (1 − 0.58) × 59 / 53 = 1 − 0.42 × 59/53 = 1 − 24.78/53 ≈ 0.5325",
+          "result": "R²_adj,B ≈ 0.5325"
+        },
+        {
+          "id": "S3",
+          "label": "Select by adjusted R²",
+          "attempt_cue": "Compare the two adjusted values.",
+          "explanation": "Prefer the larger adjusted R². Here Model B wins after the penalty.",
+          "calculation": "0.5325 > 0.5259 ⇒ prefer Model B on adjusted R²",
+          "result": "Prefer Model B (p = 6)"
+        }
+      ],
+      "final_answer": "R²_adj,A ≈ 0.5259; R²_adj,B ≈ 0.5325; select Model B. Raw R² alone is not the selection rule.",
+      "common_pitfall": "Choosing Model B solely because raw R² = 0.58 exceeds 0.55 without computing adjusted R², or assuming the larger model always loses after any penalty.",
+      "syllabus_ref": "4.1.5"
+    },
+    "4.2.1-exponential-family-cs1003.json": {
+      "title": "Bernoulli natural parameter from a lapse indicator",
+      "problem_statement": "A policy lapse indicator is modelled as Bernoulli(p) with p = 0.25. Write the pmf in exponential-family form exp{yθ − b(θ)} / a(φ) × c(y, φ) (with φ = 1), identify the natural parameter θ = logit(p), and evaluate θ numerically. Also state why the Normal distribution is a special case within the same GLM exponential family, not a rival outside it.",
+      "given": [
+        {
+          "symbol": "Y",
+          "value": "Bernoulli(p)",
+          "note": "lapse indicator"
+        },
+        {
+          "symbol": "p",
+          "value": "0.25",
+          "note": "success probability"
+        },
+        {
+          "symbol": "pmf",
+          "value": "p^y (1 − p)^{1−y}",
+          "note": "Bernoulli pmf"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Rewrite the pmf as exp{y logit(p) + ln(1 − p)} before naming θ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Exponential-family rewrite",
+          "attempt_cue": "Take ln of the Bernoulli pmf and collect the coefficient of y.",
+          "explanation": "ln pmf = y ln p + (1 − y) ln(1 − p) = y ln(p/(1 − p)) + ln(1 − p).",
+          "calculation": "exp{y ln(p/(1 − p)) + ln(1 − p)} matches exp{yθ − b(θ)} with θ = logit(p)",
+          "result": "Natural parameter is logit(p)"
+        },
+        {
+          "id": "S2",
+          "label": "Evaluate θ at p = 0.25",
+          "attempt_cue": "Compute ln(0.25/0.75).",
+          "explanation": "Substitute the given probability into the natural parameter map.",
+          "calculation": "θ = ln(0.25/0.75) = ln(1/3) ≈ −1.0986",
+          "result": "θ ≈ −1.0986"
+        },
+        {
+          "id": "S3",
+          "label": "Place Normal inside the exponential family",
+          "attempt_cue": "State whether Normal is inside or outside the GLM exponential family.",
+          "explanation": "The Normal distribution is itself a member of the exponential family used by GLMs (with its own canonical identity link). It is not a rival family outside GLM theory.",
+          "calculation": "Normal ∈ exponential family (canonical link = identity)",
+          "result": "Normal is inside the family, not a rival outside it"
+        }
+      ],
+      "final_answer": "θ = logit(0.25) = ln(1/3) ≈ −1.0986; Bernoulli/Binomial is exponential-family with b(θ) = ln(1 + e^θ). Normal is a member of the same family, not a rival outside it.",
+      "common_pitfall": "Taking θ = p or θ = ln p instead of logit(p), or claiming the Normal distribution is outside the exponential family used by GLMs.",
+      "syllabus_ref": "4.2.1"
+    },
+    "4.2.2-mean-variance-cs1003.json": {
+      "title": "Mean, variance, V(μ), and scale for three families",
+      "problem_statement": "For three candidate GLM responses, evaluate mean, variance, variance function V(μ), and scale φ where relevant:\n(1) Poisson with λ = 3;\n(2) Binomial(n = 20, p = 0.4);\n(3) Gamma with mean μ = 8 and shape α = 2.",
+      "given": [
+        {
+          "symbol": "Poisson",
+          "value": "λ = 3",
+          "note": "count mean"
+        },
+        {
+          "symbol": "Binomial",
+          "value": "n = 20, p = 0.4",
+          "note": "trials and success probability"
+        },
+        {
+          "symbol": "Gamma",
+          "value": "μ = 8, α = 2",
+          "note": "mean and shape"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. For each family write E(Y), Var(Y), then identify V(μ) and φ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Poisson(λ = 3)",
+          "attempt_cue": "State mean, variance, and V(μ).",
+          "explanation": "For Poisson, mean equals variance and the variance function is V(μ) = μ with φ = 1.",
+          "calculation": "E = Var = 3; V(μ) = μ; φ = 1",
+          "result": "Poisson: E = Var = 3, V(μ) = μ"
+        },
+        {
+          "id": "S2",
+          "label": "Binomial(n = 20, p = 0.4)",
+          "attempt_cue": "Compute np and np(1 − p).",
+          "explanation": "Binomial mean is np; variance is np(1 − p); as a GLM for the count, V(μ) = μ(1 − μ/n).",
+          "calculation": "E = 20 × 0.4 = 8; Var = 20 × 0.4 × 0.6 = 4.8; V(μ) = μ(1 − μ/n)",
+          "result": "Binomial: E = 8, Var = 4.8"
+        },
+        {
+          "id": "S3",
+          "label": "Gamma(μ = 8, α = 2)",
+          "attempt_cue": "Use Var = μ²/α and V(μ) = μ².",
+          "explanation": "Gamma has variance function V(μ) = μ²; with shape α the scale relates as Var = μ²/α.",
+          "calculation": "E = 8; Var = 64/2 = 32; V(μ) = μ²",
+          "result": "Gamma: E = 8, Var = 32, V(μ) = μ²"
+        }
+      ],
+      "final_answer": "Poisson: E = Var = 3, V(μ) = μ. Binomial: E = 8, Var = 4.8. Gamma: E = 8, Var = 32, V(μ) = μ².",
+      "common_pitfall": "Using V(μ) = μ for Gamma, or forgetting the (1 − p) factor in the Binomial variance.",
+      "syllabus_ref": "4.2.2"
+    },
+    "4.2.3-link-canonical-cs1003.json": {
+      "title": "Logit and log canonical links with numeric η",
+      "problem_statement": "A GLM uses a link g so that η = g(μ) = xᵀβ.\n(a) For a binomial probability μ = 0.25, compute the canonical logit link η = ln(μ/(1 − μ)).\n(b) For a Poisson mean with linear predictor η = 1.2, compute μ = e^η.\nState the canonical links for binomial and Poisson.",
+      "given": [
+        {
+          "symbol": "μ_binom",
+          "value": "0.25",
+          "note": "binomial mean probability"
+        },
+        {
+          "symbol": "η_pois",
+          "value": "1.2",
+          "note": "Poisson linear predictor"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute logit(0.25) and e^{1.2} before naming canonical links.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Canonical logit at μ = 0.25",
+          "attempt_cue": "Evaluate ln(μ/(1 − μ)).",
+          "explanation": "The binomial canonical link is the logit.",
+          "calculation": "η = ln(0.25/0.75) = ln(1/3) ≈ −1.0986",
+          "result": "logit(0.25) ≈ −1.0986"
+        },
+        {
+          "id": "S2",
+          "label": "Poisson mean from η = 1.2",
+          "attempt_cue": "Invert the log link: μ = e^η.",
+          "explanation": "The Poisson canonical link is the log, so the mean is the exponential of the linear predictor.",
+          "calculation": "μ = e^{1.2} ≈ 3.3201",
+          "result": "μ ≈ 3.3201"
+        },
+        {
+          "id": "S3",
+          "label": "Name canonical links",
+          "attempt_cue": "State canonical g for binomial and Poisson.",
+          "explanation": "Canonical links maximise the correspondence between natural parameter and linear predictor.",
+          "calculation": "Binomial: logit; Poisson: log",
+          "result": "Canonical: logit (binomial), log (Poisson)"
+        }
+      ],
+      "final_answer": "logit(0.25) ≈ −1.0986; Poisson μ = e^{1.2} ≈ 3.3201. Canonical links: logit (binomial), log (Poisson).",
+      "common_pitfall": "Using the identity link as if it were canonical for Poisson, or confusing logit with log.",
+      "syllabus_ref": "4.2.3"
+    },
+    "4.2.4-factors-interactions-cs1003.json": {
+      "title": "Factor and interaction linear predictor for flood frequency",
+      "problem_statement": "A Poisson log-link flood-frequency GLM uses two binary factors: Coastal (1 if coastal postcode, else 0) and HighRise (1 if high-rise property, else 0), plus their interaction. The fitted linear predictor is η = −1.5 + 0.4 Coastal + 0.25 HighRise + 0.15 Coastal×HighRise. Compute η and μ = e^η for (a) coastal high-rise and (b) inland low-rise. State when the interaction term contributes.",
+      "given": [
+        {
+          "symbol": "η",
+          "value": "−1.5 + 0.4 C + 0.25 H + 0.15 C×H",
+          "note": "fitted linear predictor"
+        },
+        {
+          "symbol": "link",
+          "value": "log",
+          "note": "Poisson log link"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Plug indicator patterns into η before exponentiating; check when C×H is nonzero.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Coastal and high-rise",
+          "attempt_cue": "Set C = 1, H = 1 and evaluate η, then μ.",
+          "explanation": "All main effects and the interaction are active when both indicators equal 1.",
+          "calculation": "η = −1.5 + 0.4 + 0.25 + 0.15 = −0.7; μ = e^{−0.7} ≈ 0.4966",
+          "result": "Coastal & high-rise: η = −0.7, μ ≈ 0.4966"
+        },
+        {
+          "id": "S2",
+          "label": "Inland and low-rise",
+          "attempt_cue": "Set C = 0, H = 0.",
+          "explanation": "Only the intercept remains when both factors are at baseline.",
+          "calculation": "η = −1.5; μ = e^{−1.5} ≈ 0.2231",
+          "result": "Inland & low-rise: η = −1.5"
+        },
+        {
+          "id": "S3",
+          "label": "When the interaction applies",
+          "attempt_cue": "State the indicator condition for the 0.15 term.",
+          "explanation": "An interaction of two binary factors contributes only when both factors equal 1.",
+          "calculation": "0.15 applies only if Coastal = 1 and HighRise = 1",
+          "result": "Interaction active only for coastal high-rise"
+        }
+      ],
+      "final_answer": "Coastal & high-rise: η = −0.7, μ ≈ 0.4966. Inland & low-rise: η = −1.5. The interaction term 0.15 applies only when both factors equal 1.",
+      "common_pitfall": "Adding the interaction coefficient whenever either factor is present, or forgetting to include main effects when both indicators are 1.",
+      "syllabus_ref": "4.2.4"
+    },
+    "4.2.5-linear-predictor-cs1003.json": {
+      "title": "Linear predictor with covariate and quadratic term (fleet)",
+      "problem_statement": "A fleet mileage severity GLM (gamma, log link) uses linear predictor η = β₀ + β₁x + β₂x² with fitted coefficients β₀ = 0.5, β₁ = 0.15, β₂ = −0.005. For a risk with x = 8 (mileage band), compute η and the mean severity μ = e^η.",
+      "given": [
+        {
+          "symbol": "η",
+          "value": "β₀ + β₁x + β₂x²",
+          "note": "linear predictor"
+        },
+        {
+          "symbol": "(β₀, β₁, β₂)",
+          "value": "(0.5, 0.15, −0.005)",
+          "note": "fitted coefficients"
+        },
+        {
+          "symbol": "x",
+          "value": "8",
+          "note": "mileage band"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute x² first, then form η before exponentiating.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Form the linear predictor",
+          "attempt_cue": "Substitute x = 8 into η.",
+          "explanation": "The linear predictor is linear in the parameters even when it includes x² as a constructed covariate.",
+          "calculation": "η(8) = 0.5 + 0.15 × 8 + (−0.005) × 64 = 0.5 + 1.2 − 0.32 = 1.38",
+          "result": "η = 1.38"
+        },
+        {
+          "id": "S2",
+          "label": "Map to the mean scale",
+          "attempt_cue": "Compute μ = e^η.",
+          "explanation": "Under a log link the mean is the exponential of the linear predictor.",
+          "calculation": "μ = e^{1.38} ≈ 3.9749",
+          "result": "μ ≈ 3.9749"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse confusing link with linear predictor",
+          "attempt_cue": "State what η is versus μ.",
+          "explanation": "η is the linear predictor on the link scale; μ is the mean on the response scale after the inverse link.",
+          "calculation": "η = 1.38 (link scale); μ = e^{1.38} (mean scale)",
+          "result": "Do not report η as if it were mean severity"
+        }
+      ],
+      "final_answer": "η(8) = 1.38; μ = e^{1.38} ≈ 3.9749 on the severity scale.",
+      "common_pitfall": "Reporting η as the mean severity, or dropping the quadratic term when x² is part of the specified linear predictor.",
+      "syllabus_ref": "4.2.5"
+    },
+    "4.2.6-deviance-estimation-cs1003.json": {
+      "title": "Poisson deviance contribution and scaled deviance",
+      "problem_statement": "A Poisson GLM fitted mean for one observation is μ̂ = 5, and the observed count is y = 8. Compute the observation's deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)]. Then, if the total deviance across the sample is D = 22.0 and φ = 1, state the scaled deviance D/φ and how parameters were estimated.",
+      "given": [
+        {
+          "symbol": "y, μ̂",
+          "value": "8, 5",
+          "note": "observed count and fitted mean"
+        },
+        {
+          "symbol": "D, φ",
+          "value": "22.0, 1",
+          "note": "total deviance and scale"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute y ln(y/μ̂) before doubling; then form D/φ.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Observation deviance contribution",
+          "attempt_cue": "Substitute y = 8 and μ̂ = 5 into the Poisson deviance formula.",
+          "explanation": "The deviance contribution measures the observation's lack of fit relative to a saturated model.",
+          "calculation": "d = 2[8 ln(8/5) − (8 − 5)] = 2[8 ln(1.6) − 3] ≈ 2[3.7600 − 3] = 2 × 0.7600 ≈ 1.5201",
+          "result": "d ≈ 1.5201"
+        },
+        {
+          "id": "S2",
+          "label": "Scaled deviance",
+          "attempt_cue": "Compute D/φ.",
+          "explanation": "With φ = 1 the scaled deviance equals the total deviance.",
+          "calculation": "D/φ = 22.0 / 1 = 22.0",
+          "result": "Scaled deviance = 22.0"
+        },
+        {
+          "id": "S3",
+          "label": "Estimation method",
+          "attempt_cue": "Name how GLM parameters are estimated in this setting.",
+          "explanation": "GLM mean parameters are estimated by maximum likelihood, typically via iteratively reweighted least squares (IWLS).",
+          "calculation": "MLE via IWLS",
+          "result": "Parameters estimated by MLE (IWLS)"
+        }
+      ],
+      "final_answer": "Observation deviance ≈ 1.5201; scaled deviance = 22.0; parameters estimated by MLE (IWLS).",
+      "common_pitfall": "Omitting the factor of 2 in the deviance contribution, or treating D/φ as something other than scaled deviance when φ = 1.",
+      "syllabus_ref": "4.2.6"
+    },
+    "4.2.7-model-choice-cs1003.json": {
+      "title": "Nested GLM choice by deviance difference (flood region)",
+      "problem_statement": "Two nested Poisson GLMs are fitted to the same flood claim-count data. The reduced model (no region factor) has deviance D_R = 50.0 on more residual df. The fuller model (with region) has D_F = 40.0. The region factor uses ν = 2 degrees of freedom. Compute ΔD = D_R − D_F and compare with χ²_{2,0.95} = 5.991 at α = 0.05.",
+      "given": [
+        {
+          "symbol": "D_R, D_F",
+          "value": "50.0, 40.0",
+          "note": "reduced and fuller deviance"
+        },
+        {
+          "symbol": "ν",
+          "value": "2",
+          "note": "df for the nested comparison"
+        },
+        {
+          "symbol": "χ²_{2,0.95}",
+          "value": "5.991",
+          "note": "critical value"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form ΔD before comparing to the chi-square critical value.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Deviance difference",
+          "attempt_cue": "Compute D_R − D_F.",
+          "explanation": "For nested GLMs the deviance difference is the likelihood-ratio statistic for the omitted terms.",
+          "calculation": "ΔD = 50.0 − 40.0 = 10.0",
+          "result": "ΔD = 10.0"
+        },
+        {
+          "id": "S2",
+          "label": "Compare with critical value",
+          "attempt_cue": "Compare 10.0 with 5.991 on 2 df.",
+          "explanation": "Reject the reduced model at α = 0.05 if ΔD exceeds the critical value.",
+          "calculation": "10.0 > 5.991 ⇒ reject reduced model",
+          "result": "Reject reduced model at α = 0.05"
+        },
+        {
+          "id": "S3",
+          "label": "Modelling conclusion",
+          "attempt_cue": "State whether to retain the region factor.",
+          "explanation": "The data support keeping the region factor in the frequency model.",
+          "calculation": "Retain region factor",
+          "result": "Prefer the fuller model with region"
+        }
+      ],
+      "final_answer": "ΔD = 10.0 on 2 df > 5.991; reject the reduced model at α = 0.05 and retain region.",
+      "common_pitfall": "Comparing D_F alone to the critical value, or reversing the subtraction as D_F − D_R.",
+      "syllabus_ref": "4.2.7"
+    },
+    "4.2.8-residuals-cs1003.json": {
+      "title": "Pearson and deviance residuals for a Poisson count",
+      "problem_statement": "One commercial policy has observed claim count y = 3 and fitted Poisson mean μ̂ = 6. Compute the Pearson residual r_P = (y − μ̂) / √V(μ̂) with V(μ) = μ. Then compute the Poisson deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)] and the deviance residual r_D = sign(y − μ̂) √d.",
+      "given": [
+        {
+          "symbol": "y, μ̂",
+          "value": "3, 6",
+          "note": "observed count and fitted mean"
+        },
+        {
+          "symbol": "V(μ)",
+          "value": "μ",
+          "note": "Poisson variance function"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form the Pearson residual first; then d and the signed square root.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Pearson residual",
+          "attempt_cue": "Compute (y − μ̂)/√μ̂.",
+          "explanation": "Pearson residuals standardise the raw residual by the model standard deviation.",
+          "calculation": "r_P = (3 − 6)/√6 = −3/√6 = −√(9/6) = −√1.5 ≈ −1.2247",
+          "result": "r_P ≈ −1.2247"
+        },
+        {
+          "id": "S2",
+          "label": "Deviance contribution",
+          "attempt_cue": "Substitute into the Poisson deviance formula.",
+          "explanation": "The deviance contribution is always non-negative; the residual takes the sign of y − μ̂.",
+          "calculation": "d = 2[3 ln(3/6) − (3 − 6)] = 2[3 ln(0.5) + 3] ≈ 2[−2.0794 + 3] = 2 × 0.9206 ≈ 1.8411",
+          "result": "d ≈ 1.8411"
+        },
+        {
+          "id": "S3",
+          "label": "Deviance residual",
+          "attempt_cue": "Apply sign(y − μ̂) √d.",
+          "explanation": "Because y < μ̂ the deviance residual is negative.",
+          "calculation": "r_D = −√1.8411 ≈ −1.3569",
+          "result": "r_D ≈ −1.3569"
+        }
+      ],
+      "final_answer": "Pearson residual r_P ≈ −1.2247; deviance residual r_D ≈ −1.3569.",
+      "common_pitfall": "Dropping the sign when forming the deviance residual, or using √V(μ) = μ instead of √μ for Poisson.",
+      "syllabus_ref": "4.2.8"
+    },
+    "4.2.9-goodness-tests-cs1003.json": {
+      "title": "Pearson chi-square GOF for a Poisson GLM",
+      "problem_statement": "Three exposure groups have observed claim counts O = 15, 9, 12 and fitted expected counts E = 12, 12, 12 from a Poisson GLM. Compute Pearson's X² = Σ(O − E)²/E. Decide at α = 0.05 using χ²_{2, 0.95} = 5.991. State what LRT/deviance tests are for by contrast.",
+      "given": [
+        {
+          "symbol": "O",
+          "value": "15, 9, 12",
+          "note": "observed counts"
+        },
+        {
+          "symbol": "E",
+          "value": "12, 12, 12",
+          "note": "fitted expected counts"
+        },
+        {
+          "symbol": "χ²_{2,0.95}",
+          "value": "5.991",
+          "note": "critical value"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form each (O − E)²/E term before summing and comparing to 5.991.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Pearson X²",
+          "attempt_cue": "Sum (O − E)²/E over the three groups.",
+          "explanation": "Pearson's statistic aggregates standardised squared discrepancies between observed and fitted counts.",
+          "calculation": "X² = (15−12)²/12 + (9−12)²/12 + (12−12)²/12 = 9/12 + 9/12 + 0 = 1.5",
+          "result": "X² = 1.5"
+        },
+        {
+          "id": "S2",
+          "label": "Goodness-of-fit decision",
+          "attempt_cue": "Compare 1.5 with 5.991.",
+          "explanation": "Do not reject aggregate adequacy at α = 0.05 when X² is below the critical value.",
+          "calculation": "1.5 < 5.991 ⇒ do not reject",
+          "result": "Do not reject aggregate adequacy at α = 0.05"
+        },
+        {
+          "id": "S3",
+          "label": "Contrast with nested LRT",
+          "attempt_cue": "State the role of deviance/LRT tests.",
+          "explanation": "Likelihood-ratio / deviance tests compare nested models; Pearson X² here is an aggregate goodness-of-fit check against fitted expectations.",
+          "calculation": "LRT/deviance: nested model comparison; Pearson X²: aggregate GOF vs fitted E",
+          "result": "Different question from nested model choice"
+        }
+      ],
+      "final_answer": "X² = 1.5 < 5.991; do not reject aggregate adequacy at α = 0.05. LRT/deviance tests nested model comparison.",
+      "common_pitfall": "Using |O − E|/E without squaring, or treating a non-significant X² as proof that every individual observation fits well.",
+      "syllabus_ref": "4.2.9"
+    },
+    "4.2.10-fit-interpret-cs1003.json": {
+      "title": "Interpret a log-link Poisson coefficient multiplicatively",
+      "problem_statement": "A fitted Poisson claim-frequency GLM with log link for employers' liability gives β̂_night = −0.15 for a night-shift indicator (baseline = day shift). Compute the multiplicative effect e^{β̂_night} on mean frequency, and the percentage change. Also, given D = 28 on df_res = 25 and max |r_P| = 2.4, state what else should accompany coefficient interpretation.",
+      "given": [
+        {
+          "symbol": "β̂_night",
+          "value": "−0.15",
+          "note": "night-shift coefficient"
+        },
+        {
+          "symbol": "D, df_res",
+          "value": "28, 25",
+          "note": "deviance and residual df"
+        },
+        {
+          "symbol": "max |r_P|",
+          "value": "2.4",
+          "note": "largest absolute Pearson residual"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Exponentiate the coefficient before converting to a percentage change.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Multiplicative effect",
+          "attempt_cue": "Compute e^{β̂_night}.",
+          "explanation": "On a log link, a coefficient is a multiplicative adjustment to the mean frequency relative to baseline.",
+          "calculation": "e^{−0.15} ≈ 0.8607",
+          "result": "Night-shift mean ≈ 0.8607 × day-shift mean"
+        },
+        {
+          "id": "S2",
+          "label": "Percentage change",
+          "attempt_cue": "Convert the multiplier to a percentage.",
+          "explanation": "Percentage change = (e^β − 1) × 100%.",
+          "calculation": "(0.8607 − 1) × 100% ≈ −13.93%",
+          "result": "≈ −13.93% vs day shift"
+        },
+        {
+          "id": "S3",
+          "label": "Interpret fit diagnostics alongside the coefficient",
+          "attempt_cue": "Comment on D/df and residual size.",
+          "explanation": "Coefficient interpretation is incomplete without checking overall fit and residual outliers.",
+          "calculation": "D/df_res = 28/25 = 1.12; max |r_P| = 2.4 warrants residual review",
+          "result": "Fit alone is incomplete without diagnostics"
+        }
+      ],
+      "final_answer": "Night-shift mean frequency ≈ 0.8607× day-shift (≈ −13.93%). Also interpret deviance/df and residual diagnostics; Fit alone is incomplete.",
+      "common_pitfall": "Treating β̂_night = −0.15 as a −15% additive change on the frequency scale, without exponentiating.",
+      "syllabus_ref": "4.2.10"
+    },
+    "5.1.1-bayes-theorem-cs1003.json": {
+      "title": "Bayes update for a lapse-screen flag",
+      "problem_statement": "In a personal-lines renewals book, P(Lapse) = 0.08. A screening rule flags positive with P(+|Lapse) = 0.85 and P(+|not Lapse) = 0.20. A randomly chosen policy is flagged positive. Compute P(+) and then P(Lapse|+).",
+      "given": [
+        {
+          "symbol": "P(L)",
+          "value": "0.08",
+          "note": "prior lapse probability"
+        },
+        {
+          "symbol": "P(+|L)",
+          "value": "0.85",
+          "note": "true-positive rate"
+        },
+        {
+          "symbol": "P(+|not L)",
+          "value": "0.20",
+          "note": "false-positive rate"
+        },
+        {
+          "symbol": "P(not L)",
+          "value": "0.92",
+          "note": "prior non-lapse probability"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form P(+) by the law of total probability before applying Bayes' theorem.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Marginal probability of a positive flag",
+          "attempt_cue": "Compute P(+) = P(+|L)P(L) + P(+|not L)P(not L).",
+          "explanation": "The flag can arise from true lapses and from false positives among non-lapses.",
+          "calculation": "P(+) = 0.85 × 0.08 + 0.20 × 0.92 = 0.068 + 0.184 = 0.252",
+          "result": "P(+) = 0.252"
+        },
+        {
+          "id": "S2",
+          "label": "Posterior probability of lapse",
+          "attempt_cue": "Compute P(L|+) = P(+|L)P(L) / P(+).",
+          "explanation": "Bayes' theorem updates the prior using the likelihood of the observed flag.",
+          "calculation": "P(L|+) = 0.068 / 0.252 = 68/252 = 17/63 ≈ 0.2698",
+          "result": "P(Lapse|+) ≈ 0.2698"
+        },
+        {
+          "id": "S3",
+          "label": "Interpret the update",
+          "attempt_cue": "Compare posterior with prior 0.08.",
+          "explanation": "A positive flag raises lapse probability, but false positives keep the posterior well below 1.",
+          "calculation": "0.2698 > 0.08, yet far from certainty",
+          "result": "Screen raises probability; does not prove lapse"
+        }
+      ],
+      "final_answer": "P(+) = 0.252; P(Lapse|+) ≈ 0.2698.",
+      "common_pitfall": "Reporting P(+|Lapse) = 0.85 as if it were P(Lapse|+), ignoring the base rate and false-positive contribution.",
+      "syllabus_ref": "5.1.1"
+    },
+    "5.1.2-prior-posterior-cs1003.json": {
+      "title": "Beta-Binomial conjugate update for claim probability",
+      "problem_statement": "A portfolio claim probability θ has prior Beta(α, β) = Beta(3, 5). In a new sample of n = 12 independent risks, s = 4 claims are observed (Binomial likelihood). Using conjugacy, state the posterior distribution and compare prior and posterior means.",
+      "given": [
+        {
+          "symbol": "prior",
+          "value": "Beta(3, 5)",
+          "note": "conjugate prior for θ"
+        },
+        {
+          "symbol": "data",
+          "value": "s = 4 claims in n = 12",
+          "note": "Binomial sample"
+        },
+        {
+          "symbol": "update",
+          "value": "Beta(α+s, β+n−s)",
+          "note": "Beta-Binomial conjugacy"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Apply α' = α + s and β' = β + n − s before computing means.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Prior mean",
+          "attempt_cue": "Compute α/(α+β).",
+          "explanation": "The Beta mean is α/(α+β).",
+          "calculation": "Prior mean = 3/(3+5) = 3/8 = 0.375",
+          "result": "Prior mean = 0.375"
+        },
+        {
+          "id": "S2",
+          "label": "Posterior parameters",
+          "attempt_cue": "Update α and β with the Binomial counts.",
+          "explanation": "Conjugacy adds successes to α and failures to β.",
+          "calculation": "Posterior = Beta(3+4, 5+12−4) = Beta(7, 13)",
+          "result": "Posterior Beta(7, 13)"
+        },
+        {
+          "id": "S3",
+          "label": "Posterior mean",
+          "attempt_cue": "Compute 7/(7+13).",
+          "explanation": "The posterior mean blends prior weight with the sample proportion 4/12.",
+          "calculation": "Posterior mean = 7/20 = 0.35",
+          "result": "Posterior mean = 0.35"
+        }
+      ],
+      "final_answer": "Prior Beta(3, 5) with mean 0.375; posterior Beta(7, 13) with mean 0.35.",
+      "common_pitfall": "Updating as Beta(α+n, β+s) or forgetting to add failures n − s to β.",
+      "syllabus_ref": "5.1.2"
+    },
+    "5.1.3-posterior-simple-cs1003.json": {
+      "title": "Posterior for Poisson rate with Gamma prior",
+      "problem_statement": "Annual flood claim counts are modelled as Poisson(λ). The prior is Gamma(α, β) with shape-rate parameterisation π(λ) ∝ λ^{α−1} e^{−βλ}, here α = 2, β = 3. A sample of n = 4 independent years has total counts Σyᵢ = 10. State the posterior distribution and its mean.",
+      "given": [
+        {
+          "symbol": "prior",
+          "value": "Gamma(2, 3)",
+          "note": "shape-rate Gamma prior"
+        },
+        {
+          "symbol": "n, Σyᵢ",
+          "value": "4, 10",
+          "note": "years and total claim counts"
+        },
+        {
+          "symbol": "update",
+          "value": "Gamma(α+Σyᵢ, β+n)",
+          "note": "Poisson-Gamma conjugacy"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Add Σyᵢ to the shape and n to the rate before forming the posterior mean.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Identify the conjugate update",
+          "attempt_cue": "Write the posterior parameter map.",
+          "explanation": "For Poisson observations with a Gamma(α, β) shape-rate prior, the posterior is Gamma(α+Σy, β+n).",
+          "calculation": "Posterior = Gamma(2+10, 3+4) = Gamma(12, 7)",
+          "result": "Posterior Gamma(12, 7)"
+        },
+        {
+          "id": "S2",
+          "label": "Posterior mean",
+          "attempt_cue": "Compute α'/β'.",
+          "explanation": "Under the shape-rate parameterisation the Gamma mean is shape/rate.",
+          "calculation": "Mean = 12/7 ≈ 1.7143 per year",
+          "result": "Posterior mean ≈ 1.7143"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse wrong update direction",
+          "attempt_cue": "State why n enters the rate, not the shape alone.",
+          "explanation": "Each observation year contributes one unit of exposure to the rate parameter; claim counts update the shape.",
+          "calculation": "Shape += total counts; rate += number of years",
+          "result": "Do not add n to the shape and Σy to the rate"
+        }
+      ],
+      "final_answer": "Posterior is Gamma(12, 7) with mean 12/7 ≈ 1.7143 claims per year.",
+      "common_pitfall": "Swapping the updates (adding n to the shape and Σy to the rate), or treating the Gamma as shape-scale when the brief specifies shape-rate.",
+      "syllabus_ref": "5.1.3"
+    },
+    "5.1.4-loss-estimators-cs1003.json": {
+      "title": "Squared-error vs absolute-error Bayes estimates",
+      "problem_statement": "A discrete posterior for an IBNR reserve parameter θ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
+      "given": [
+        {
+          "symbol": "θ values",
+          "value": "4, 5, 7",
+          "note": "support of the posterior"
+        },
+        {
+          "symbol": "posterior probs",
+          "value": "0.15, 0.55, 0.30",
+          "note": "posterior masses"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute the posterior mean for squared error; identify the median for absolute error.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Squared-error Bayes estimate",
+          "attempt_cue": "Compute the posterior mean.",
+          "explanation": "Under squared-error loss the Bayes estimate is the posterior mean.",
+          "calculation": "E[θ|data] = 4×0.15 + 5×0.55 + 7×0.30 = 0.6 + 2.75 + 2.1 = 5.45",
+          "result": "Squared-error estimate = 5.45"
+        },
+        {
+          "id": "S2",
+          "label": "Absolute-error Bayes estimate",
+          "attempt_cue": "Find the posterior median.",
+          "explanation": "Under absolute-error loss the Bayes estimate is a posterior median.",
+          "calculation": "Cumulative probs: 0.15 at 4, 0.70 at 5, 1.00 at 7 ⇒ median = 5",
+          "result": "Absolute-error estimate = 5"
+        },
+        {
+          "id": "S3",
+          "label": "Contrast the two answers",
+          "attempt_cue": "State why mean and median need not coincide.",
+          "explanation": "The distribution is asymmetric (mass on 7 pulls the mean above 5), so the two loss functions disagree.",
+          "calculation": "Mean 5.45 ≠ median 5 because of right-tail mass at 7",
+          "result": "Loss function choice changes the point estimate"
+        }
+      ],
+      "final_answer": "Squared-error Bayes estimate = 5.45; absolute-error Bayes estimate = 5 (posterior median).",
+      "common_pitfall": "Reporting the mode 5 as the squared-error estimate, or using the mean under absolute-error loss.",
+      "syllabus_ref": "5.1.4"
+    },
+    "5.1.5-credible-intervals-cs1003.json": {
+      "title": "Normal posterior 95% credible interval",
+      "problem_statement": "After observing claim experience, the posterior for mean ultimate cost θ (£000) is Normal with mean 250 and standard deviation 8: θ | data ~ N(250, 8²). Using z_{0.975} = 1.96, construct a central 95% credible interval for θ.",
+      "given": [
+        {
+          "symbol": "posterior",
+          "value": "N(250, 8²)",
+          "note": "posterior for θ"
+        },
+        {
+          "symbol": "z_{0.975}",
+          "value": "1.96",
+          "note": "Normal critical value"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Central 95% endpoints",
+          "attempt_cue": "Compute 250 ± 1.96 × 8.",
+          "explanation": "For a Normal posterior a central credible interval uses the usual Normal quantiles.",
+          "calculation": "250 ± 1.96 × 8 = 250 ± 15.68 ⇒ (234.32, 265.68)",
+          "result": "Interval (234.32, 265.68)"
+        },
+        {
+          "id": "S2",
+          "label": "Posterior probability interpretation",
+          "attempt_cue": "Write the probability statement conditional on the data.",
+          "explanation": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
+          "calculation": "P(234.32 < θ < 265.68 | data) = 0.95",
+          "result": "Posterior probability 0.95"
+        },
+        {
+          "id": "S3",
+          "label": "Refuse confusing with confidence intervals",
+          "attempt_cue": "State the interpretive difference in one line.",
+          "explanation": "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
+          "calculation": "Credible: posterior probability; confidence: repeated-sampling coverage",
+          "result": "Do not narrate as frequentist coverage"
+        }
+      ],
+      "final_answer": "Central 95% credible interval (234.32, 265.68); P(234.32 < θ < 265.68 | data) = 0.95.",
+      "common_pitfall": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
+      "syllabus_ref": "5.1.5"
+    },
+    "5.1.6-credibility-premium-cs1003.json": {
+      "title": "Credibility premium with given Z",
+      "problem_statement": "A risk's sample mean claim cost is X̄ = £1200. The hypothetical mean for the risk class is μ = £1000. The credibility factor is Z = 0.55. Compute the credibility premium P = Z X̄ + (1 − Z)μ and state what Z weights.",
+      "given": [
+        {
+          "symbol": "X̄",
+          "value": "1200",
+          "note": "sample mean claim cost (£)"
+        },
+        {
+          "symbol": "μ",
+          "value": "1000",
+          "note": "hypothetical mean (£)"
+        },
+        {
+          "symbol": "Z",
+          "value": "0.55",
+          "note": "credibility factor"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form the convex combination with weights Z and 1 − Z.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Complementary weight",
+          "attempt_cue": "Compute 1 − Z.",
+          "explanation": "Credibility premiums are weighted averages of individual and collective means.",
+          "calculation": "1 − Z = 0.45",
+          "result": "1 − Z = 0.45"
+        },
+        {
+          "id": "S2",
+          "label": "Credibility premium",
+          "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
+          "explanation": "Substitute the given values into the standard credibility formula.",
+          "calculation": "P = 0.55 × 1200 + 0.45 × 1000 = 660 + 450 = 1110",
+          "result": "P = £1110"
+        },
+        {
+          "id": "S3",
+          "label": "Interpret Z",
+          "attempt_cue": "State what Z multiplies.",
+          "explanation": "Z is the weight on the risk's own experience X̄; 1 − Z weights the class hypothetical mean.",
+          "calculation": "Z weights X̄; (1 − Z) weights μ",
+          "result": "Z = 0.55 weights individual experience"
+        }
+      ],
+      "final_answer": "Credibility premium P = £1110; Z = 0.55 weights individual experience.",
+      "common_pitfall": "Swapping the weights so that Z multiplies μ, or treating Z as a probability that must equal X̄/μ.",
+      "syllabus_ref": "5.1.6"
+    },
+    "5.1.7-bayesian-credibility-cs1003.json": {
+      "title": "Bühlmann Z from prior structure, then premium",
+      "problem_statement": "In a Bayesian credibility (Bühlmann) setting, the expected process variance is EVPV = 200 and the variance of hypothetical means is VHM = 50, so k = EVPV/VHM = 4. A risk has n = 8 observation years with X̄ = £950 and hypothetical mean μ = £800. Compute Z = n/(n+k) and the Bayesian credibility premium.",
+      "given": [
+        {
+          "symbol": "EVPV, VHM",
+          "value": "200, 50",
+          "note": "process and hypothetical-mean variance"
+        },
+        {
+          "symbol": "k",
+          "value": "4",
+          "note": "EVPV/VHM"
+        },
+        {
+          "symbol": "n, X̄, μ",
+          "value": "8, 950, 800",
+          "note": "years, sample mean, hypothetical mean"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form Z = n/(n+k) before the premium convex combination.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Credibility factor",
+          "attempt_cue": "Compute Z = n/(n+k).",
+          "explanation": "Bühlmann credibility increases with more years and decreases with larger k.",
+          "calculation": "Z = 8/(8+4) = 8/12 = 2/3",
+          "result": "Z = 2/3"
+        },
+        {
+          "id": "S2",
+          "label": "Bayesian credibility premium",
+          "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
+          "explanation": "With Z in hand the premium is the usual credibility mixture.",
+          "calculation": "P = (2/3)×950 + (1/3)×800 = 1900/3 + 800/3 = 2700/3 = 900",
+          "result": "P = £900"
+        },
+        {
+          "id": "S3",
+          "label": "Link to prior structure",
+          "attempt_cue": "State where k came from.",
+          "explanation": "Here k is known from the prior structure (EVPV and VHM), not estimated from the collective sample.",
+          "calculation": "k = EVPV/VHM = 4 from specified structurals",
+          "result": "Fully Bayesian structurals (not EB estimates)"
+        }
+      ],
+      "final_answer": "Z = 2/3; Bayesian credibility premium P = £900.",
+      "common_pitfall": "Using Z = k/(n+k), or estimating k from the single risk's sample variance instead of using the given EVPV/VHM.",
+      "syllabus_ref": "5.1.7"
+    },
+    "5.1.8-empirical-bayes-cs1003.json": {
+      "title": "Empirical Bayes premium with estimated structurals",
+      "problem_statement": "Under Empirical Bayes, structural parameters are estimated from collective data: μ̂ = £900 and k̂ = 6. A risk has n = 3 years with X̄ = £1200. Compute Ẑ = n/(n+k̂) and the EB credibility premium P = Ẑ X̄ + (1 − Ẑ)μ̂.",
+      "given": [
+        {
+          "symbol": "μ̂, k̂",
+          "value": "900, 6",
+          "note": "EB structural estimates"
+        },
+        {
+          "symbol": "n, X̄",
+          "value": "3, 1200",
+          "note": "risk years and sample mean"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Form Ẑ from n and k̂ before mixing X̄ with μ̂.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Estimated credibility factor",
+          "attempt_cue": "Compute Ẑ = n/(n+k̂).",
+          "explanation": "Empirical Bayes plugs estimated structurals into the same Bühlmann Z formula.",
+          "calculation": "Ẑ = 3/(3+6) = 3/9 = 1/3",
+          "result": "Ẑ = 1/3"
+        },
+        {
+          "id": "S2",
+          "label": "EB premium",
+          "attempt_cue": "Compute Ẑ X̄ + (1 − Ẑ)μ̂.",
+          "explanation": "The premium uses estimated μ and k in place of known prior structurals.",
+          "calculation": "P = (1/3)×1200 + (2/3)×900 = 400 + 600 = 1000",
+          "result": "P = £1000"
+        },
+        {
+          "id": "S3",
+          "label": "What makes it Empirical Bayes",
+          "attempt_cue": "State the source of μ̂ and k̂.",
+          "explanation": "EB estimates structural parameters from collective portfolio data rather than taking them as known from a fully specified prior.",
+          "calculation": "μ̂, k̂ from collective data (not a fully specified prior)",
+          "result": "Empirical Bayes uses estimated structurals"
+        }
+      ],
+      "final_answer": "Ẑ = 1/3; Empirical Bayes premium P = £1000.",
+      "common_pitfall": "Treating μ̂ and k̂ as if they were known prior structurals (fully Bayesian), or using Z = k̂/(n+k̂).",
+      "syllabus_ref": "5.1.8"
+    },
+    "5.1.9-bayes-vs-eb-cs1003.json": {
+      "title": "Same risk, Bayesian vs EB premiums compared",
+      "problem_statement": "The same risk has n = 5 years and X̄ = £1100.\nFully Bayesian structurals (from a specified prior): μ = £900, k = 5.\nEmpirical Bayes structurals (from collective data): μ̂ = £950, k̂ = 15.\nCompute both credibility premiums and state why they differ.",
+      "given": [
+        {
+          "symbol": "n, X̄",
+          "value": "5, 1100",
+          "note": "common risk experience"
+        },
+        {
+          "symbol": "Bayes (μ, k)",
+          "value": "(900, 5)",
+          "note": "specified prior structurals"
+        },
+        {
+          "symbol": "EB (μ̂, k̂)",
+          "value": "(950, 15)",
+          "note": "estimated structurals"
+        }
+      ],
+      "attempt_before_reveal": "CMP closed. Compute Z for each structural pair separately before forming the two premiums.",
+      "steps": [
+        {
+          "id": "S1",
+          "label": "Fully Bayesian premium",
+          "attempt_cue": "Z = n/(n+k), then mix.",
+          "explanation": "Bayesian credibility uses structurals taken as known from the prior.",
+          "calculation": "Z = 5/(5+5) = 0.5; P_B = 0.5×1100 + 0.5×900 = 550 + 450 = 1000",
+          "result": "Bayesian premium = £1000"
+        },
+        {
+          "id": "S2",
+          "label": "Empirical Bayes premium",
+          "attempt_cue": "Ẑ = n/(n+k̂), then mix with μ̂.",
+          "explanation": "EB replaces prior structurals with estimates from collective data.",
+          "calculation": "Ẑ = 5/(5+15) = 0.25; P_EB = 0.25×1100 + 0.75×950 = 275 + 712.5 = 987.5",
+          "result": "EB premium = £987.5"
+        },
+        {
+          "id": "S3",
+          "label": "Why the premiums differ",
+          "attempt_cue": "Contrast the structural sources.",
+          "explanation": "Same risk experience can produce different premiums when (μ, k) differ because Bayes uses specified prior structurals while EB uses estimated ones.",
+          "calculation": "Different (μ, k) pairs ⇒ different Z and different blend with X̄",
+          "result": "Difference is structural source, not a calculation error"
+        }
+      ],
+      "final_answer": "Bayesian premium £1000; EB premium £987.5. They differ because Bayes uses specified prior structurals while EB uses estimated structurals.",
+      "common_pitfall": "Forcing the two premiums to match by reusing one Z for both structural pairs, or claiming EB and Bayes must always agree for the same X̄.",
+      "syllabus_ref": "5.1.9"
+    }
+  },
+  "campaign_twins": {
+    "4.1.1-response-explanatory-cs1003.json": "campaign-delta-cs1003/packages/4.1.1-response-explanatory-cs1003.json",
+    "4.1.2-simple-multiple-cs1003.json": "campaign-delta-cs1003/packages/4.1.2-simple-multiple-cs1003.json",
+    "4.1.3-least-squares-cs1003.json": "campaign-delta-cs1003/packages/4.1.3-least-squares-cs1003.json",
+    "4.1.4-software-inference-cs1003.json": "campaign-delta-cs1003/packages/4.1.4-software-inference-cs1003.json",
+    "4.1.5-variable-selection-cs1003.json": "campaign-delta-cs1003/packages/4.1.5-variable-selection-cs1003.json",
+    "4.2.1-exponential-family-cs1003.json": "campaign-delta-cs1003/packages/4.2.1-exponential-family-cs1003.json",
+    "4.2.2-mean-variance-cs1003.json": "campaign-delta-cs1003/packages/4.2.2-mean-variance-cs1003.json",
+    "4.2.3-link-canonical-cs1003.json": "campaign-delta-cs1003/packages/4.2.3-link-canonical-cs1003.json",
+    "4.2.4-factors-interactions-cs1003.json": "campaign-delta-cs1003/packages/4.2.4-factors-interactions-cs1003.json",
+    "4.2.5-linear-predictor-cs1003.json": "campaign-delta-cs1003/packages/4.2.5-linear-predictor-cs1003.json",
+    "4.2.6-deviance-estimation-cs1003.json": "campaign-delta-cs1003/packages/4.2.6-deviance-estimation-cs1003.json",
+    "4.2.7-model-choice-cs1003.json": "campaign-delta-cs1003/packages/4.2.7-model-choice-cs1003.json",
+    "4.2.8-residuals-cs1003.json": "campaign-delta-cs1003/packages/4.2.8-residuals-cs1003.json",
+    "4.2.9-goodness-tests-cs1003.json": "campaign-delta-cs1003/packages/4.2.9-goodness-tests-cs1003.json",
+    "4.2.10-fit-interpret-cs1003.json": "campaign-delta-cs1003/packages/4.2.10-fit-interpret-cs1003.json",
+    "5.1.1-bayes-theorem-cs1003.json": "campaign-delta-cs1003/packages/5.1.1-bayes-theorem-cs1003.json",
+    "5.1.2-prior-posterior-cs1003.json": "campaign-delta-cs1003/packages/5.1.2-prior-posterior-cs1003.json",
+    "5.1.3-posterior-simple-cs1003.json": "campaign-delta-cs1003/packages/5.1.3-posterior-simple-cs1003.json",
+    "5.1.4-loss-estimators-cs1003.json": "campaign-delta-cs1003/packages/5.1.4-loss-estimators-cs1003.json",
+    "5.1.5-credible-intervals-cs1003.json": "campaign-delta-cs1003/packages/5.1.5-credible-intervals-cs1003.json",
+    "5.1.6-credibility-premium-cs1003.json": "campaign-delta-cs1003/packages/5.1.6-credibility-premium-cs1003.json",
+    "5.1.7-bayesian-credibility-cs1003.json": "campaign-delta-cs1003/packages/5.1.7-bayesian-credibility-cs1003.json",
+    "5.1.8-empirical-bayes-cs1003.json": "campaign-delta-cs1003/packages/5.1.8-empirical-bayes-cs1003.json",
+    "5.1.9-bayes-vs-eb-cs1003.json": "campaign-delta-cs1003/packages/5.1.9-bayes-vs-eb-cs1003.json"
+  }
+}

@@ -212,5 +212,56 @@
     "continuity_line": "Today you practised model choice via deviance; tomorrow continues at Pearson and deviance residuals and their use.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.8. Titles only tonight",
     "student_facing": "Tomorrow: Pearson and deviance residuals (4.2.8). Optional light prep: skim 4.2.8 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Nested GLM choice by deviance difference (flood region)",
+    "problem_statement": "Two nested Poisson GLMs are fitted to the same flood claim-count data. The reduced model (no region factor) has deviance D_R = 50.0 on more residual df. The fuller model (with region) has D_F = 40.0. The region factor uses ν = 2 degrees of freedom. Compute ΔD = D_R − D_F and compare with χ²_{2,0.95} = 5.991 at α = 0.05.",
+    "given": [
+      {
+        "symbol": "D_R, D_F",
+        "value": "50.0, 40.0",
+        "note": "reduced and fuller deviance"
+      },
+      {
+        "symbol": "ν",
+        "value": "2",
+        "note": "df for the nested comparison"
+      },
+      {
+        "symbol": "χ²_{2,0.95}",
+        "value": "5.991",
+        "note": "critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form ΔD before comparing to the chi-square critical value.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Deviance difference",
+        "attempt_cue": "Compute D_R − D_F.",
+        "explanation": "For nested GLMs the deviance difference is the likelihood-ratio statistic for the omitted terms.",
+        "calculation": "ΔD = 50.0 − 40.0 = 10.0",
+        "result": "ΔD = 10.0"
+      },
+      {
+        "id": "S2",
+        "label": "Compare with critical value",
+        "attempt_cue": "Compare 10.0 with 5.991 on 2 df.",
+        "explanation": "Reject the reduced model at α = 0.05 if ΔD exceeds the critical value.",
+        "calculation": "10.0 > 5.991 ⇒ reject reduced model",
+        "result": "Reject reduced model at α = 0.05"
+      },
+      {
+        "id": "S3",
+        "label": "Modelling conclusion",
+        "attempt_cue": "State whether to retain the region factor.",
+        "explanation": "The data support keeping the region factor in the frequency model.",
+        "calculation": "Retain region factor",
+        "result": "Prefer the fuller model with region"
+      }
+    ],
+    "final_answer": "ΔD = 10.0 on 2 df > 5.991; reject the reduced model at α = 0.05 and retain region.",
+    "common_pitfall": "Comparing D_F alone to the critical value, or reversing the subtraction as D_F − D_R.",
+    "syllabus_ref": "4.2.7"
   }
 }

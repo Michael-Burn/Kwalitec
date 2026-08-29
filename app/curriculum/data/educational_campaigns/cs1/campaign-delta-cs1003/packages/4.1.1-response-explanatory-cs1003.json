@@ -215,5 +215,51 @@
     "continuity_line": "Today you named response and explanatory roles; tomorrow continues 4.1 at simple vs multiple linear model forms. Not least squares algebra yet.",
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 4.1.2. Titles only tonight",
     "student_facing": "Tomorrow: simple and multiple linear regression models (4.1.2). Optional light prep: skim 4.1.2 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Assign Y and X, then evaluate an EL severity line",
+    "problem_statement": "An employers' liability pricing analyst models claim severity (£). The fitted simple linear relationship from a pilot sample is ŷ = 2500 + 150x, where x is years in a hazardous occupation class. (a) Name the response and the explanatory variable. (b) Compute the fitted mean severity at x = 8.",
+    "given": [
+      {
+        "symbol": "ŷ",
+        "value": "2500 + 150x",
+        "note": "fitted mean severity (£)"
+      },
+      {
+        "symbol": "x",
+        "value": "8",
+        "note": "years in hazardous class for the prediction"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Name Y and X in one sentence, then substitute x = 8 into ŷ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Assign response and explanatory roles",
+        "attempt_cue": "State which quantity is Y and which is X.",
+        "explanation": "The modelling question is claim severity, so severity is the response Y. Years in the hazardous class is the predictor used to explain severity, so that tenure measure is the explanatory variable X.",
+        "calculation": "Y = EL claim severity (£); X = years in hazardous occupation class",
+        "result": "Y = severity; X = hazardous-class years"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate the fitted mean at x = 8",
+        "attempt_cue": "Substitute x = 8 into ŷ = 2500 + 150x.",
+        "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
+        "calculation": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
+        "result": "ŷ = £3700"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse column-soup",
+        "attempt_cue": "State why written premium is not automatically an X for severity.",
+        "explanation": "Written premium is a pricing output (or input to another model). Sharing a policy record with severity does not make it an automatic explanatory variable for a severity model.",
+        "calculation": "Written premium is not auto-X for severity by column presence alone",
+        "result": "Roles fixed by the modelling question, not by column presence"
+      }
+    ],
+    "final_answer": "Y = EL claim severity, X = years in hazardous occupation class; ŷ(8) = £3700. Written premium is not automatically an explanatory variable for severity.",
+    "common_pitfall": "Treating every numeric policy field (including written premium or headcount) as an explanatory variable for severity, or swapping roles so that hazardous-class years are modelled as Y and severity as X.",
+    "syllabus_ref": "4.1.1"
   }
 }

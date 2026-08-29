@@ -215,5 +215,56 @@
     "continuity_line": "Today you stated simple and multiple LM forms; tomorrow continues at least squares estimates for slope and intercept in the simple case.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.1.3. Titles only tonight",
     "student_facing": "Tomorrow: least squares slope and intercept (4.1.3). Optional light prep: skim 4.1.3 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Simple vs multiple fitted travel medical costs",
+    "problem_statement": "Two fitted linear models for travel medical claim cost Y (£00) are available.\nSimple: Ŷ_s = 3.5 + 0.8x₁, where x₁ is trip length in weeks.\nMultiple: Ŷ_m = 2.0 + 0.6x₁ + 0.4x₂, where x₂ is a destination risk score.\nFor a trip with x₁ = 5 and x₂ = 3, compute both fitted values and state which model form each equation represents.",
+    "given": [
+      {
+        "symbol": "Ŷ_s",
+        "value": "3.5 + 0.8x₁",
+        "note": "simple linear fit"
+      },
+      {
+        "symbol": "Ŷ_m",
+        "value": "2.0 + 0.6x₁ + 0.4x₂",
+        "note": "multiple linear fit"
+      },
+      {
+        "symbol": "(x₁, x₂)",
+        "value": "(5, 3)",
+        "note": "trip weeks and destination risk score"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Count the explanatory variables in each equation, then evaluate both fitted values at (5, 3).",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Identify simple vs multiple form",
+        "attempt_cue": "Count explanatory variables on the right-hand side of each equation.",
+        "explanation": "Simple linear regression has one explanatory variable. Multiple linear regression has several explanatory variables entering jointly.",
+        "calculation": "Ŷ_s uses only x₁ (simple); Ŷ_m uses x₁ and x₂ (multiple)",
+        "result": "Simple vs multiple identified by number of X's"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate the simple fit",
+        "attempt_cue": "Substitute x₁ = 5 into Ŷ_s.",
+        "explanation": "The simple model ignores x₂ even if that covariate is available.",
+        "calculation": "Ŷ_s = 3.5 + 0.8 × 5 = 3.5 + 4.0 = 7.5",
+        "result": "Ŷ_s = 7.5 (£00)"
+      },
+      {
+        "id": "S3",
+        "label": "Evaluate the multiple fit",
+        "attempt_cue": "Substitute x₁ = 5 and x₂ = 3 into Ŷ_m.",
+        "explanation": "The multiple model adjusts the trip-length contribution and adds the destination-risk term jointly.",
+        "calculation": "Ŷ_m = 2.0 + 0.6 × 5 + 0.4 × 3 = 2.0 + 3.0 + 1.2 = 6.2",
+        "result": "Ŷ_m = 6.2 (£00)"
+      }
+    ],
+    "final_answer": "Ŷ_s = 7.5 (£00) is simple (one X); Ŷ_m = 6.2 (£00) is multiple (two X's). Least-squares estimation is a separate step from writing the model form.",
+    "common_pitfall": "Calling Ŷ_m 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same (x₁, x₂).",
+    "syllabus_ref": "4.1.2"
   }
 }

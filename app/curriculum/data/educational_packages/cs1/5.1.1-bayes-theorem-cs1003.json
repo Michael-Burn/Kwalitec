@@ -214,5 +214,61 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.2. Titles only tonight",
     "student_facing": "Tomorrow: prior, posterior and conjugate prior (5.1.2). Optional light prep: skim 5.1.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Bayes update for a lapse-screen flag",
+    "problem_statement": "In a personal-lines renewals book, P(Lapse) = 0.08. A screening rule flags positive with P(+|Lapse) = 0.85 and P(+|not Lapse) = 0.20. A randomly chosen policy is flagged positive. Compute P(+) and then P(Lapse|+).",
+    "given": [
+      {
+        "symbol": "P(L)",
+        "value": "0.08",
+        "note": "prior lapse probability"
+      },
+      {
+        "symbol": "P(+|L)",
+        "value": "0.85",
+        "note": "true-positive rate"
+      },
+      {
+        "symbol": "P(+|not L)",
+        "value": "0.20",
+        "note": "false-positive rate"
+      },
+      {
+        "symbol": "P(not L)",
+        "value": "0.92",
+        "note": "prior non-lapse probability"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form P(+) by the law of total probability before applying Bayes' theorem.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Marginal probability of a positive flag",
+        "attempt_cue": "Compute P(+) = P(+|L)P(L) + P(+|not L)P(not L).",
+        "explanation": "The flag can arise from true lapses and from false positives among non-lapses.",
+        "calculation": "P(+) = 0.85 × 0.08 + 0.20 × 0.92 = 0.068 + 0.184 = 0.252",
+        "result": "P(+) = 0.252"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior probability of lapse",
+        "attempt_cue": "Compute P(L|+) = P(+|L)P(L) / P(+).",
+        "explanation": "Bayes' theorem updates the prior using the likelihood of the observed flag.",
+        "calculation": "P(L|+) = 0.068 / 0.252 = 68/252 = 17/63 ≈ 0.2698",
+        "result": "P(Lapse|+) ≈ 0.2698"
+      },
+      {
+        "id": "S3",
+        "label": "Interpret the update",
+        "attempt_cue": "Compare posterior with prior 0.08.",
+        "explanation": "A positive flag raises lapse probability, but false positives keep the posterior well below 1.",
+        "calculation": "0.2698 > 0.08, yet far from certainty",
+        "result": "Screen raises probability; does not prove lapse"
+      }
+    ],
+    "final_answer": "P(+) = 0.252; P(Lapse|+) ≈ 0.2698.",
+    "common_pitfall": "Reporting P(+|Lapse) = 0.85 as if it were P(Lapse|+), ignoring the base rate and false-positive contribution.",
+    "syllabus_ref": "5.1.1"
+  }
 }

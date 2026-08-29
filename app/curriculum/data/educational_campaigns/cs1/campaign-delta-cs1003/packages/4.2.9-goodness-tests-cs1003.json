@@ -213,5 +213,56 @@
     "continuity_line": "Today you practised acceptability tests; tomorrow continues at fitting a GLM to data and interpreting the output end-to-end.",
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.10. Titles only tonight",
     "student_facing": "Tomorrow: fit a GLM and interpret output (4.2.10). Optional light prep: skim 4.2.10 headings. Titles only tonight."
+  },
+  "worked_example": {
+    "title": "Pearson chi-square GOF for a Poisson GLM",
+    "problem_statement": "Three exposure groups have observed claim counts O = 15, 9, 12 and fitted expected counts E = 12, 12, 12 from a Poisson GLM. Compute Pearson's X² = Σ(O − E)²/E. Decide at α = 0.05 using χ²_{2, 0.95} = 5.991. State what LRT/deviance tests are for by contrast.",
+    "given": [
+      {
+        "symbol": "O",
+        "value": "15, 9, 12",
+        "note": "observed counts"
+      },
+      {
+        "symbol": "E",
+        "value": "12, 12, 12",
+        "note": "fitted expected counts"
+      },
+      {
+        "symbol": "χ²_{2,0.95}",
+        "value": "5.991",
+        "note": "critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form each (O − E)²/E term before summing and comparing to 5.991.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Pearson X²",
+        "attempt_cue": "Sum (O − E)²/E over the three groups.",
+        "explanation": "Pearson's statistic aggregates standardised squared discrepancies between observed and fitted counts.",
+        "calculation": "X² = (15−12)²/12 + (9−12)²/12 + (12−12)²/12 = 9/12 + 9/12 + 0 = 1.5",
+        "result": "X² = 1.5"
+      },
+      {
+        "id": "S2",
+        "label": "Goodness-of-fit decision",
+        "attempt_cue": "Compare 1.5 with 5.991.",
+        "explanation": "Do not reject aggregate adequacy at α = 0.05 when X² is below the critical value.",
+        "calculation": "1.5 < 5.991 ⇒ do not reject",
+        "result": "Do not reject aggregate adequacy at α = 0.05"
+      },
+      {
+        "id": "S3",
+        "label": "Contrast with nested LRT",
+        "attempt_cue": "State the role of deviance/LRT tests.",
+        "explanation": "Likelihood-ratio / deviance tests compare nested models; Pearson X² here is an aggregate goodness-of-fit check against fitted expectations.",
+        "calculation": "LRT/deviance: nested model comparison; Pearson X²: aggregate GOF vs fitted E",
+        "result": "Different question from nested model choice"
+      }
+    ],
+    "final_answer": "X² = 1.5 < 5.991; do not reject aggregate adequacy at α = 0.05. LRT/deviance tests nested model comparison.",
+    "common_pitfall": "Using |O − E|/E without squaring, or treating a non-significant X² as proof that every individual observation fits well.",
+    "syllabus_ref": "4.2.9"
   }
 }

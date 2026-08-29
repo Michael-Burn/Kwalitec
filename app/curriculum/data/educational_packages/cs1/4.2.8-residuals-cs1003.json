@@ -214,5 +214,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.9. Titles only tonight",
     "student_facing": "Tomorrow: Pearson's chi-square and likelihood-ratio tests for fitted GLMs (4.2.9). Optional light prep: skim 4.2.9 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Pearson and deviance residuals for a Poisson count",
+    "problem_statement": "One commercial policy has observed claim count y = 3 and fitted Poisson mean μ̂ = 6. Compute the Pearson residual r_P = (y − μ̂) / √V(μ̂) with V(μ) = μ. Then compute the Poisson deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)] and the deviance residual r_D = sign(y − μ̂) √d.",
+    "given": [
+      {
+        "symbol": "y, μ̂",
+        "value": "3, 6",
+        "note": "observed count and fitted mean"
+      },
+      {
+        "symbol": "V(μ)",
+        "value": "μ",
+        "note": "Poisson variance function"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form the Pearson residual first; then d and the signed square root.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Pearson residual",
+        "attempt_cue": "Compute (y − μ̂)/√μ̂.",
+        "explanation": "Pearson residuals standardise the raw residual by the model standard deviation.",
+        "calculation": "r_P = (3 − 6)/√6 = −3/√6 = −√(9/6) = −√1.5 ≈ −1.2247",
+        "result": "r_P ≈ −1.2247"
+      },
+      {
+        "id": "S2",
+        "label": "Deviance contribution",
+        "attempt_cue": "Substitute into the Poisson deviance formula.",
+        "explanation": "The deviance contribution is always non-negative; the residual takes the sign of y − μ̂.",
+        "calculation": "d = 2[3 ln(3/6) − (3 − 6)] = 2[3 ln(0.5) + 3] ≈ 2[−2.0794 + 3] = 2 × 0.9206 ≈ 1.8411",
+        "result": "d ≈ 1.8411"
+      },
+      {
+        "id": "S3",
+        "label": "Deviance residual",
+        "attempt_cue": "Apply sign(y − μ̂) √d.",
+        "explanation": "Because y < μ̂ the deviance residual is negative.",
+        "calculation": "r_D = −√1.8411 ≈ −1.3569",
+        "result": "r_D ≈ −1.3569"
+      }
+    ],
+    "final_answer": "Pearson residual r_P ≈ −1.2247; deviance residual r_D ≈ −1.3569.",
+    "common_pitfall": "Dropping the sign when forming the deviance residual, or using √V(μ) = μ instead of √μ for Poisson.",
+    "syllabus_ref": "4.2.8"
+  }
 }

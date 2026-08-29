@@ -214,5 +214,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.7. Titles only tonight",
     "student_facing": "Tomorrow: model choice using analysis of deviance (4.2.7). Optional light prep: skim 4.2.7 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Poisson deviance contribution and scaled deviance",
+    "problem_statement": "A Poisson GLM fitted mean for one observation is μ̂ = 5, and the observed count is y = 8. Compute the observation's deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)]. Then, if the total deviance across the sample is D = 22.0 and φ = 1, state the scaled deviance D/φ and how parameters were estimated.",
+    "given": [
+      {
+        "symbol": "y, μ̂",
+        "value": "8, 5",
+        "note": "observed count and fitted mean"
+      },
+      {
+        "symbol": "D, φ",
+        "value": "22.0, 1",
+        "note": "total deviance and scale"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute y ln(y/μ̂) before doubling; then form D/φ.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Observation deviance contribution",
+        "attempt_cue": "Substitute y = 8 and μ̂ = 5 into the Poisson deviance formula.",
+        "explanation": "The deviance contribution measures the observation's lack of fit relative to a saturated model.",
+        "calculation": "d = 2[8 ln(8/5) − (8 − 5)] = 2[8 ln(1.6) − 3] ≈ 2[3.7600 − 3] = 2 × 0.7600 ≈ 1.5201",
+        "result": "d ≈ 1.5201"
+      },
+      {
+        "id": "S2",
+        "label": "Scaled deviance",
+        "attempt_cue": "Compute D/φ.",
+        "explanation": "With φ = 1 the scaled deviance equals the total deviance.",
+        "calculation": "D/φ = 22.0 / 1 = 22.0",
+        "result": "Scaled deviance = 22.0"
+      },
+      {
+        "id": "S3",
+        "label": "Estimation method",
+        "attempt_cue": "Name how GLM parameters are estimated in this setting.",
+        "explanation": "GLM mean parameters are estimated by maximum likelihood, typically via iteratively reweighted least squares (IWLS).",
+        "calculation": "MLE via IWLS",
+        "result": "Parameters estimated by MLE (IWLS)"
+      }
+    ],
+    "final_answer": "Observation deviance ≈ 1.5201; scaled deviance = 22.0; parameters estimated by MLE (IWLS).",
+    "common_pitfall": "Omitting the factor of 2 in the deviance contribution, or treating D/φ as something other than scaled deviance when φ = 1.",
+    "syllabus_ref": "4.2.6"
+  }
 }

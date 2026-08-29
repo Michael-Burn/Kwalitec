@@ -213,5 +213,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.6. Titles only tonight",
     "student_facing": "Tomorrow: credibility premium formula and credibility factor (5.1.6). Optional light prep: skim 5.1.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Normal posterior 95% credible interval",
+    "problem_statement": "After observing claim experience, the posterior for mean ultimate cost θ (£000) is Normal with mean 250 and standard deviation 8: θ | data ~ N(250, 8²). Using z_{0.975} = 1.96, construct a central 95% credible interval for θ.",
+    "given": [
+      {
+        "symbol": "posterior",
+        "value": "N(250, 8²)",
+        "note": "posterior for θ"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "Normal critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Central 95% endpoints",
+        "attempt_cue": "Compute 250 ± 1.96 × 8.",
+        "explanation": "For a Normal posterior a central credible interval uses the usual Normal quantiles.",
+        "calculation": "250 ± 1.96 × 8 = 250 ± 15.68 ⇒ (234.32, 265.68)",
+        "result": "Interval (234.32, 265.68)"
+      },
+      {
+        "id": "S2",
+        "label": "Posterior probability interpretation",
+        "attempt_cue": "Write the probability statement conditional on the data.",
+        "explanation": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
+        "calculation": "P(234.32 < θ < 265.68 | data) = 0.95",
+        "result": "Posterior probability 0.95"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse confusing with confidence intervals",
+        "attempt_cue": "State the interpretive difference in one line.",
+        "explanation": "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
+        "calculation": "Credible: posterior probability; confidence: repeated-sampling coverage",
+        "result": "Do not narrate as frequentist coverage"
+      }
+    ],
+    "final_answer": "Central 95% credible interval (234.32, 265.68); P(234.32 < θ < 265.68 | data) = 0.95.",
+    "common_pitfall": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
+    "syllabus_ref": "5.1.5"
+  }
 }

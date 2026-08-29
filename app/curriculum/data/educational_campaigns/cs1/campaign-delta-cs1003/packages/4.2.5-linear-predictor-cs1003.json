@@ -214,5 +214,56 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 4.2.6. Titles only tonight",
     "student_facing": "Tomorrow: deviance, scaled deviance and GLM parameter estimation (4.2.6). Optional light prep: skim 4.2.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Linear predictor with covariate and quadratic term (fleet)",
+    "problem_statement": "A fleet mileage severity GLM (gamma, log link) uses linear predictor η = β₀ + β₁x + β₂x² with fitted coefficients β₀ = 0.5, β₁ = 0.15, β₂ = −0.005. For a risk with x = 8 (mileage band), compute η and the mean severity μ = e^η.",
+    "given": [
+      {
+        "symbol": "η",
+        "value": "β₀ + β₁x + β₂x²",
+        "note": "linear predictor"
+      },
+      {
+        "symbol": "(β₀, β₁, β₂)",
+        "value": "(0.5, 0.15, −0.005)",
+        "note": "fitted coefficients"
+      },
+      {
+        "symbol": "x",
+        "value": "8",
+        "note": "mileage band"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute x² first, then form η before exponentiating.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the linear predictor",
+        "attempt_cue": "Substitute x = 8 into η.",
+        "explanation": "The linear predictor is linear in the parameters even when it includes x² as a constructed covariate.",
+        "calculation": "η(8) = 0.5 + 0.15 × 8 + (−0.005) × 64 = 0.5 + 1.2 − 0.32 = 1.38",
+        "result": "η = 1.38"
+      },
+      {
+        "id": "S2",
+        "label": "Map to the mean scale",
+        "attempt_cue": "Compute μ = e^η.",
+        "explanation": "Under a log link the mean is the exponential of the linear predictor.",
+        "calculation": "μ = e^{1.38} ≈ 3.9749",
+        "result": "μ ≈ 3.9749"
+      },
+      {
+        "id": "S3",
+        "label": "Refuse confusing link with linear predictor",
+        "attempt_cue": "State what η is versus μ.",
+        "explanation": "η is the linear predictor on the link scale; μ is the mean on the response scale after the inverse link.",
+        "calculation": "η = 1.38 (link scale); μ = e^{1.38} (mean scale)",
+        "result": "Do not report η as if it were mean severity"
+      }
+    ],
+    "final_answer": "η(8) = 1.38; μ = e^{1.38} ≈ 3.9749 on the severity scale.",
+    "common_pitfall": "Reporting η as the mean severity, or dropping the quadratic term when x² is part of the specified linear predictor.",
+    "syllabus_ref": "4.2.5"
+  }
 }

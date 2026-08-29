@@ -214,5 +214,51 @@
     "light_prep_cue": "Optional: skim CMP headings for Syllabus 5.1.5. Titles only tonight",
     "student_facing": "Tomorrow: credible intervals in simple cases (5.1.5). Optional light prep: skim 5.1.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-01"
+  "published_at": "2026-08-01",
+  "worked_example": {
+    "title": "Squared-error vs absolute-error Bayes estimates",
+    "problem_statement": "A discrete posterior for an IBNR reserve parameter θ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
+    "given": [
+      {
+        "symbol": "θ values",
+        "value": "4, 5, 7",
+        "note": "support of the posterior"
+      },
+      {
+        "symbol": "posterior probs",
+        "value": "0.15, 0.55, 0.30",
+        "note": "posterior masses"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute the posterior mean for squared error; identify the median for absolute error.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Squared-error Bayes estimate",
+        "attempt_cue": "Compute the posterior mean.",
+        "explanation": "Under squared-error loss the Bayes estimate is the posterior mean.",
+        "calculation": "E[θ|data] = 4×0.15 + 5×0.55 + 7×0.30 = 0.6 + 2.75 + 2.1 = 5.45",
+        "result": "Squared-error estimate = 5.45"
+      },
+      {
+        "id": "S2",
+        "label": "Absolute-error Bayes estimate",
+        "attempt_cue": "Find the posterior median.",
+        "explanation": "Under absolute-error loss the Bayes estimate is a posterior median.",
+        "calculation": "Cumulative probs: 0.15 at 4, 0.70 at 5, 1.00 at 7 ⇒ median = 5",
+        "result": "Absolute-error estimate = 5"
+      },
+      {
+        "id": "S3",
+        "label": "Contrast the two answers",
+        "attempt_cue": "State why mean and median need not coincide.",
+        "explanation": "The distribution is asymmetric (mass on 7 pulls the mean above 5), so the two loss functions disagree.",
+        "calculation": "Mean 5.45 ≠ median 5 because of right-tail mass at 7",
+        "result": "Loss function choice changes the point estimate"
+      }
+    ],
+    "final_answer": "Squared-error Bayes estimate = 5.45; absolute-error Bayes estimate = 5 (posterior median).",
+    "common_pitfall": "Reporting the mode 5 as the squared-error estimate, or using the mean under absolute-error loss.",
+    "syllabus_ref": "5.1.4"
+  }
 }
