@@ -221,5 +221,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.2. Titles only tonight",
     "student_facing": "Tomorrow: basic tests (3.3.2). Optional light prep: skim 3.3.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Two-sided p-value for a claim-mean z-test",
+    "problem_statement": "A pricing team tests H₀: μ = £10,000 vs H₁: μ ≠ £10,000 for mean claim cost at significance level α = 0.05. The test statistic is z = 2.1 under H₀ (standard Normal). Compute the two-sided p-value and state the decision. Use Φ(2.1) = 0.9821.",
+    "given": [
+      {
+        "symbol": "H₀",
+        "value": "μ = 10000",
+        "note": "null mean claim cost (£)"
+      },
+      {
+        "symbol": "z",
+        "value": "2.1",
+        "note": "observed test statistic"
+      },
+      {
+        "symbol": "Φ(2.1)",
+        "value": "0.9821",
+        "note": "standard Normal CDF"
+      },
+      {
+        "symbol": "α",
+        "value": "0.05",
+        "note": "significance level"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the two-sided p-value as 2[1 − Φ(|z|)] before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Upper-tail probability",
+        "attempt_cue": "Compute 1 − Φ(2.1).",
+        "explanation": "For a continuous symmetric null, the one-sided tail is 1 − Φ(|z|).",
+        "calculation": "1 − 0.9821 = 0.0179",
+        "result": "1 − Φ(2.1) = 0.0179"
+      },
+      {
+        "id": "S2",
+        "label": "Two-sided p-value",
+        "attempt_cue": "Double the one-sided tail.",
+        "explanation": "A two-sided alternative charges both tails; the p-value is twice the one-sided tail probability.",
+        "calculation": "p = 2 × 0.0179 = 0.0358",
+        "result": "p = 0.0358"
+      },
+      {
+        "id": "S3",
+        "label": "Decision at α = 0.05",
+        "attempt_cue": "Compare p with α.",
+        "explanation": "Reject H₀ when p ≤ α. Here p = 0.0358 < 0.05.",
+        "calculation": "0.0358 < 0.05  ⇒  reject H₀",
+        "result": "Reject H₀ at 5%"
+      }
+    ],
+    "final_answer": "Two-sided p-value = 0.0358; reject H₀: μ = £10,000 at α = 0.05.",
+    "common_pitfall": "Reporting only the one-sided tail 0.0179 as the p-value for a two-sided alternative, or comparing z to α directly (2.1 vs 0.05).",
+    "syllabus_ref": "3.3.1"
+  }
 }

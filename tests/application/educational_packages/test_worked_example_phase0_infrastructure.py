@@ -163,9 +163,11 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     assert "Confirm your structure sketch" not in example.body
 
     loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT)
-    with_real = [
+    with_real = sorted(
         p.package_id
         for p in loader.all_approved()
         if p.worked_example is not None and p.worked_example.steps
-    ]
-    assert with_real == [PILOT_PACKAGE_ID]
+    )
+    # Phase 0 pilot (Bayes) + Real Worked Examples Batch 1 (Section 3: 22 packages).
+    assert PILOT_PACKAGE_ID in with_real
+    assert len(with_real) == 23

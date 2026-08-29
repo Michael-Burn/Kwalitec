@@ -217,5 +217,56 @@
     "light_prep_cue": "Optional: list the five 3.3 LO codes from memory. Titles only tonight",
     "student_facing": "Tomorrow: CM-R1 Revision (retrieve 3.3.1–3.3.5). Optional light prep: list the five LO codes from memory. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Chi-square test of independence in a 2×2 fraud table",
+    "problem_statement": "Claims are cross-classified by channel and fraud flag:\nOnline & Fraud 20; Online & Clean 30; Broker & Fraud 10; Broker & Clean 40. Row totals 50 and 50; column totals 30 and 70; n = 100. Test independence at α = 0.05 using χ²_{1, 0.95} = 3.841.",
+    "given": [
+      {
+        "symbol": "table",
+        "value": "20, 30 / 10, 40",
+        "note": "Online then Broker rows"
+      },
+      {
+        "symbol": "margins",
+        "value": "rows 50,50; cols 30,70; n=100",
+        "note": "totals"
+      },
+      {
+        "symbol": "χ²_{1,0.95}",
+        "value": "3.841",
+        "note": "5% critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute expected counts E_{ij} = (row × col)/n before χ².",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Expected counts",
+        "attempt_cue": "Compute all four E_{ij} = (row total × column total)/n.",
+        "explanation": "Under independence, expected cell counts factor through the margins.",
+        "calculation": "E11 = 50×30/100 = 15;  E12 = 50×70/100 = 35;  E21 = 50×30/100 = 15;  E22 = 50×70/100 = 35",
+        "result": "E = 15, 35 / 15, 35"
+      },
+      {
+        "id": "S2",
+        "label": "Pearson χ²",
+        "attempt_cue": "Sum (O − E)²/E over the four cells.",
+        "explanation": "Same Pearson form as GOF, applied to the contingency table.",
+        "calculation": "(20−15)²/15 + (30−35)²/35 + (10−15)²/15 + (40−35)²/35 = 25/15 + 25/35 + 25/15 + 25/35 = 50/15 + 50/35 = 10/3 + 10/7 = 100/21 ≈ 4.762",
+        "result": "χ² = 100/21 ≈ 4.762"
+      },
+      {
+        "id": "S3",
+        "label": "Decision",
+        "attempt_cue": "Compare 4.762 with 3.841.",
+        "explanation": "Reject independence when χ² exceeds the df = 1 critical value.",
+        "calculation": "4.762 > 3.841  ⇒  reject independence",
+        "result": "Reject independence at 5%"
+      }
+    ],
+    "final_answer": "χ² = 100/21 ≈ 4.762 on 1 df; reject independence of channel and fraud flag at α = 0.05.",
+    "common_pitfall": "Using E_{ij} = n/4 = 25 (ignoring unequal margins) or forgetting to square (O − E) before dividing by E.",
+    "syllabus_ref": "3.3.5"
+  }
 }

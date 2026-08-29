@@ -220,5 +220,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.6. Titles only tonight",
     "student_facing": "Tomorrow: two-sample CIs (3.2.6). Optional light prep: skim 3.2.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Approximate 95% CI for a claim frequency proportion",
+    "problem_statement": "In a sample of n = 100 policies, x = 22 produce at least one claim in the year. Using the Normal approximation with p̂ = x/n, construct an approximate 95% confidence interval for the claim incidence probability p.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "100",
+        "note": "policies"
+      },
+      {
+        "symbol": "x",
+        "value": "22",
+        "note": "policies with ≥1 claim"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write p̂ ± 1.96 √[p̂(1−p̂)/n] before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Sample proportion",
+        "attempt_cue": "Compute p̂ = x/n.",
+        "explanation": "The MLE / MoM estimator of a Bernoulli probability is the sample proportion.",
+        "calculation": "p̂ = 22/100 = 0.22",
+        "result": "p̂ = 0.22"
+      },
+      {
+        "id": "S2",
+        "label": "Estimated SE",
+        "attempt_cue": "Compute √[0.22 × 0.78 / 100].",
+        "explanation": "Binomial/Bernoulli variance p(1−p)/n is plugged in at p̂.",
+        "calculation": "√(0.22 × 0.78 / 100) = √0.001716 ≈ 0.041425",
+        "result": "SÊ ≈ 0.041425"
+      },
+      {
+        "id": "S3",
+        "label": "Interval",
+        "attempt_cue": "Compute 0.22 ± 1.96 × 0.041425.",
+        "explanation": "Wald interval for a proportion.",
+        "calculation": "1.96 × 0.041425 ≈ 0.08119;  0.22 − 0.08119 ≈ 0.13881;  0.22 + 0.08119 ≈ 0.30119",
+        "result": "(0.13881, 0.30119)"
+      }
+    ],
+    "final_answer": "Approximate 95% CI for p: (0.13881, 0.30119).",
+    "common_pitfall": "Using √[p̂/n] = √0.0022 (Poisson-style) instead of √[p̂(1−p̂)/n], or forgetting the (1−p̂) factor.",
+    "syllabus_ref": "3.2.5"
+  }
 }

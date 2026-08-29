@@ -219,5 +219,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.4. Titles only tonight",
     "student_facing": "Tomorrow: comparison of estimators (3.1.4). Optional light prep: skim 3.1.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Bias and MSE for two reserve estimators",
+    "problem_statement": "Two estimators of mean ultimate claim cost μ (in £000) are under review. Estimator A is unbiased with Var(A) = 25. Estimator B has E[B] = μ + 2 and Var(B) = 16. Compute Bias(B) and MSE for both estimators, and state which has smaller MSE.",
+    "given": [
+      {
+        "symbol": "E[A]",
+        "value": "μ",
+        "note": "A is unbiased"
+      },
+      {
+        "symbol": "Var(A)",
+        "value": "25",
+        "note": "variance of A"
+      },
+      {
+        "symbol": "E[B]",
+        "value": "μ + 2",
+        "note": "expectation of B"
+      },
+      {
+        "symbol": "Var(B)",
+        "value": "16",
+        "note": "variance of B"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write Bias(θ̂) = E[θ̂] − θ and MSE = Var + Bias² before computing.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Compute biases",
+        "attempt_cue": "Bias(A) = E[A] − μ and Bias(B) = E[B] − μ.",
+        "explanation": "Bias is the systematic error E[θ̂] − θ. Unbiased means Bias = 0.",
+        "calculation": "Bias(A) = μ − μ = 0;  Bias(B) = (μ + 2) − μ = 2",
+        "result": "Bias(A) = 0; Bias(B) = 2"
+      },
+      {
+        "id": "S2",
+        "label": "Compute MSE for each estimator",
+        "attempt_cue": "Use MSE(θ̂) = Var(θ̂) + [Bias(θ̂)]².",
+        "explanation": "Mean squared error decomposes into variance plus squared bias, so a biased estimator can still win on MSE.",
+        "calculation": "MSE(A) = 25 + 0² = 25;  MSE(B) = 16 + 2² = 16 + 4 = 20",
+        "result": "MSE(A) = 25; MSE(B) = 20"
+      },
+      {
+        "id": "S3",
+        "label": "Compare",
+        "attempt_cue": "Name which estimator has smaller MSE.",
+        "explanation": "Smaller MSE is the comparison criterion requested here.",
+        "calculation": "20 < 25  ⇒  B has smaller MSE",
+        "result": "B preferred on MSE (despite Bias = 2)"
+      }
+    ],
+    "final_answer": "Bias(A) = 0, MSE(A) = 25; Bias(B) = 2, MSE(B) = 20. B has smaller MSE.",
+    "common_pitfall": "Choosing A solely because it is unbiased, and ignoring that MSE(B) = 20 is smaller than MSE(A) = 25.",
+    "syllabus_ref": "3.1.3"
+  }
 }

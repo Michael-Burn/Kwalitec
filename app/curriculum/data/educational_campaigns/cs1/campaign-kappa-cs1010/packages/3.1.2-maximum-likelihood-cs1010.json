@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.3. Titles only tonight",
     "student_facing": "Tomorrow: efficiency / bias / consistency / MSE (3.1.3). Optional light prep: skim 3.1.3 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "MLE for Exponential claim waiting times",
+    "problem_statement": "Four independent claim settlement delays (months) are modelled as Exponential with rate λ (pdf f(x) = λ e^{−λx} for x > 0): 2, 3, 1, 4. Find the maximum-likelihood estimate of λ.",
+    "given": [
+      {
+        "symbol": "x₁…x₄",
+        "value": "2, 3, 1, 4",
+        "note": "settlement delays (months)"
+      },
+      {
+        "symbol": "n",
+        "value": "4",
+        "note": "sample size"
+      },
+      {
+        "symbol": "f(x|λ)",
+        "value": "λ e^{−λx}",
+        "note": "Exponential rate pdf"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the log-likelihood ℓ(λ) before differentiating.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Form the likelihood and log-likelihood",
+        "attempt_cue": "Write L(λ) = λⁿ exp(−λ Σxᵢ) and ℓ(λ) = n ln λ − λ Σxᵢ.",
+        "explanation": "Independence multiplies the densities. The log turns the product into a sum that is easy to differentiate.",
+        "calculation": "Σxᵢ = 2+3+1+4 = 10;  ℓ(λ) = 4 ln λ − 10λ",
+        "result": "ℓ(λ) = 4 ln λ − 10λ"
+      },
+      {
+        "id": "S2",
+        "label": "Differentiate and solve the score equation",
+        "attempt_cue": "Set dℓ/dλ = 0 and solve for λ.",
+        "explanation": "The MLE solves the score equation. For Exponential rate, this yields λ̂ = n / Σxᵢ = 1/x̄.",
+        "calculation": "dℓ/dλ = 4/λ − 10 = 0  ⇒  λ̂ = 4/10 = 0.4",
+        "result": "λ̂_MLE = 0.4"
+      },
+      {
+        "id": "S3",
+        "label": "Confirm it is a maximum",
+        "attempt_cue": "Check the second derivative sign at λ̂.",
+        "explanation": "d²ℓ/dλ² = −n/λ² < 0 for λ > 0, so the critical point is a maximum.",
+        "calculation": "d²ℓ/dλ² = −4/λ² < 0 at λ̂ = 0.4",
+        "result": "λ̂_MLE = 0.4 (maximum)"
+      }
+    ],
+    "final_answer": "λ̂_MLE = 4/10 = 0.4 per month.",
+    "common_pitfall": "Reporting the MLE of the mean μ̂ = x̄ = 2.5 when the question asked for the rate λ, or writing λ̂ = Σxᵢ/n = 2.5 instead of n/Σxᵢ.",
+    "syllabus_ref": "3.1.2"
+  }
 }

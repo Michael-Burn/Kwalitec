@@ -217,5 +217,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.6. Titles only tonight",
     "student_facing": "Tomorrow: bootstrap for estimator properties (3.1.6). Optional light prep: skim 3.1.6 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Asymptotic SE and CI for Exponential rate MLE",
+    "problem_statement": "From n = 64 independent Exponential claim delays with rate λ, the MLE is λ̂ = 0.25. Using the asymptotic Normal approximation λ̂ ≈ N(λ, λ²/n) (equivalently SE ≈ λ̂/√n), give the estimated standard error and an approximate 95% confidence interval for λ.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "64",
+        "note": "sample size"
+      },
+      {
+        "symbol": "λ̂",
+        "value": "0.25",
+        "note": "MLE of the rate"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal 97.5% quantile"
+      },
+      {
+        "symbol": "asymptotic Var",
+        "value": "λ²/n",
+        "note": "Exp(rate) Fisher information inverse"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write SÊ = λ̂/√n before building the interval.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Estimated asymptotic standard error",
+        "attempt_cue": "Compute λ̂/√n with √64 = 8.",
+        "explanation": "For Exponential rate, I(λ) = 1/λ² per observation, so asymptotic variance is λ²/n and SE = λ/√n, plugged in at λ̂.",
+        "calculation": "SÊ = 0.25 / √64 = 0.25 / 8 = 0.03125",
+        "result": "SÊ = 0.03125"
+      },
+      {
+        "id": "S2",
+        "label": "Half-width of the approximate 95% CI",
+        "attempt_cue": "Multiply SÊ by 1.96.",
+        "explanation": "Wald interval uses the Normal quantile times the estimated SE.",
+        "calculation": "1.96 × 0.03125 = 0.06125",
+        "result": "half-width = 0.06125"
+      },
+      {
+        "id": "S3",
+        "label": "Form the interval",
+        "attempt_cue": "Compute λ̂ ± 1.96 SÊ.",
+        "explanation": "Centre at the MLE and add/subtract the half-width.",
+        "calculation": "0.25 ± 0.06125  ⇒  (0.18875, 0.31125)",
+        "result": "(0.18875, 0.31125)"
+      }
+    ],
+    "final_answer": "SÊ = 0.03125; approximate 95% CI for λ is (0.18875, 0.31125).",
+    "common_pitfall": "Using SE = 1/(λ̂√n) = 1/(0.25×8) = 0.5 (the Exponential-mean information form) instead of SE = λ̂/√n = 0.03125 for the rate.",
+    "syllabus_ref": "3.1.5"
+  }
 }

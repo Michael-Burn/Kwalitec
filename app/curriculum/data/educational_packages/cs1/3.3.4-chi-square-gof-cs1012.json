@@ -216,5 +216,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.5. Titles only tonight",
     "student_facing": "Tomorrow: contingency independence (3.3.5). Optional light prep: skim 3.3.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Chi-square GOF for equal claim-type shares",
+    "problem_statement": "n = 100 claims are classified into five product types. Under H₀ each type has probability 1/5, so expected counts are 20. Observed counts: 18, 22, 20, 15, 25. Compute Pearson's χ² and decide at α = 0.05 using χ²_{4, 0.95} = 9.488.",
+    "given": [
+      {
+        "symbol": "Oᵢ",
+        "value": "18, 22, 20, 15, 25",
+        "note": "observed counts"
+      },
+      {
+        "symbol": "Eᵢ",
+        "value": "20",
+        "note": "common expected count under H₀"
+      },
+      {
+        "symbol": "df",
+        "value": "4",
+        "note": "5 − 1 categories"
+      },
+      {
+        "symbol": "χ²_{4,0.95}",
+        "value": "9.488",
+        "note": "5% critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write χ² = Σ(Oᵢ − Eᵢ)²/Eᵢ before summing.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Squared Pearson residuals",
+        "attempt_cue": "Compute each (Oᵢ − 20)²/20.",
+        "explanation": "Each category contributes (O − E)²/E to the Pearson statistic.",
+        "calculation": "(−2)²/20 + 2²/20 + 0/20 + (−5)²/20 + 5²/20 = 4/20 + 4/20 + 0 + 25/20 + 25/20",
+        "result": "0.2 + 0.2 + 0 + 1.25 + 1.25"
+      },
+      {
+        "id": "S2",
+        "label": "Sum to χ²",
+        "attempt_cue": "Add the five contributions.",
+        "explanation": "The GOF statistic is the sum of the category contributions.",
+        "calculation": "0.2 + 0.2 + 0 + 1.25 + 1.25 = 2.9",
+        "result": "χ² = 2.9"
+      },
+      {
+        "id": "S3",
+        "label": "Decision",
+        "attempt_cue": "Compare 2.9 with 9.488.",
+        "explanation": "Reject H₀ for large χ²; here 2.9 < 9.488.",
+        "calculation": "2.9 < 9.488  ⇒  do not reject H₀",
+        "result": "Do not reject equal shares at 5%"
+      }
+    ],
+    "final_answer": "χ² = 2.9 on 4 df; do not reject H₀ at α = 0.05.",
+    "common_pitfall": "Using df = 5 (forgetting −1 for the multinomial constraint) or comparing χ² to a Normal z critical value.",
+    "syllabus_ref": "3.3.4"
+  }
 }

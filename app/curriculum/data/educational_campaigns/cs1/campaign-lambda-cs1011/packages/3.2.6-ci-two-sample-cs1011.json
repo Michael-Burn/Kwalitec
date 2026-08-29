@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.7. Titles only tonight",
     "student_facing": "Tomorrow: paired mean-difference CI (3.2.7). Optional light prep: skim 3.2.7 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "95% CI for difference of two mean claim costs",
+    "problem_statement": "Independent samples from portfolios A and B (Normal, known variances): n_A = 40, x̄_A = £8,200, σ_A = £1,200; n_B = 45, x̄_B = £7,600, σ_B = £1,100. Construct a 95% CI for μ_A − μ_B.",
+    "given": [
+      {
+        "symbol": "n_A, x̄_A, σ_A",
+        "value": "40, 8200, 1200",
+        "note": "portfolio A"
+      },
+      {
+        "symbol": "n_B, x̄_B, σ_B",
+        "value": "45, 7600, 1100",
+        "note": "portfolio B"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write SE = √(σ_A²/n_A + σ_B²/n_B) before the interval.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Point estimate of the difference",
+        "attempt_cue": "Compute x̄_A − x̄_B.",
+        "explanation": "The natural centre for μ_A − μ_B is the difference of sample means.",
+        "calculation": "8200 − 7600 = 600",
+        "result": "x̄_A − x̄_B = 600"
+      },
+      {
+        "id": "S2",
+        "label": "SE of the difference",
+        "attempt_cue": "Compute √(1200²/40 + 1100²/45).",
+        "explanation": "Independence adds the variances of the two sample means.",
+        "calculation": "1200²/40 = 36000;  1100²/45 = 1210000/45 ≈ 26888.889;  √(36000 + 26888.889) = √62888.889 ≈ 250.777",
+        "result": "SE ≈ 250.777"
+      },
+      {
+        "id": "S3",
+        "label": "Interval",
+        "attempt_cue": "Compute 600 ± 1.96 × 250.777.",
+        "explanation": "Two-sample z-interval with known variances.",
+        "calculation": "1.96 × 250.777 ≈ 491.522;  600 − 491.522 ≈ 108.478;  600 + 491.522 ≈ 1091.522",
+        "result": "(108.478, 1091.522)"
+      }
+    ],
+    "final_answer": "95% CI for μ_A − μ_B: approximately (£108.48, £1,091.52).",
+    "common_pitfall": "Pooling into √(σ²(1/n_A+1/n_B)) with a single σ, or subtracting SEs instead of adding variances under the square root.",
+    "syllabus_ref": "3.2.6"
+  }
 }

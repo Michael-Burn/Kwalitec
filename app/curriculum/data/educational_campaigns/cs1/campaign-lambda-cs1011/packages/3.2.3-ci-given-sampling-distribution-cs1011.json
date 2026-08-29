@@ -219,5 +219,48 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.4. Titles only tonight",
     "student_facing": "Tomorrow: Normal mean and variance CIs (3.2.4). Optional light prep: skim 3.2.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "CI from a stated Normal sampling distribution",
+    "problem_statement": "An estimator θ̂ of a portfolio proportion satisfies θ̂ ~ N(θ, 0.01²) exactly (sampling distribution given). Observing θ̂ = 0.42, construct a 95% confidence interval for θ.",
+    "given": [
+      {
+        "symbol": "θ̂",
+        "value": "0.42",
+        "note": "observed estimate"
+      },
+      {
+        "symbol": "SD(θ̂)",
+        "value": "0.01",
+        "note": "given sampling SD"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Invert θ̂ ~ N(θ, 0.01²) into θ̂ ± 1.96 × 0.01.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Identify the pivot half-width",
+        "attempt_cue": "Compute 1.96 × 0.01.",
+        "explanation": "When the sampling distribution is given as Normal with known SD, the CI is the estimate plus/minus z times that SD.",
+        "calculation": "1.96 × 0.01 = 0.0196",
+        "result": "half-width = 0.0196"
+      },
+      {
+        "id": "S2",
+        "label": "Form the interval",
+        "attempt_cue": "Compute 0.42 ± 0.0196.",
+        "explanation": "Centre at the observed θ̂.",
+        "calculation": "0.42 − 0.0196 = 0.4004;  0.42 + 0.0196 = 0.4396",
+        "result": "(0.4004, 0.4396)"
+      }
+    ],
+    "final_answer": "95% CI for θ: (0.4004, 0.4396).",
+    "common_pitfall": "Dividing 0.01 by √n when no sample size is part of the given sampling distribution, or using 0.42 ± 1.96 × 0.01².",
+    "syllabus_ref": "3.2.3"
+  }
 }

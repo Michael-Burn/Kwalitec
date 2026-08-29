@@ -218,5 +218,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.8. Titles only tonight",
     "student_facing": "Tomorrow: bootstrap CIs (3.2.8). Optional light prep: skim 3.2.8 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Paired t-interval for before/after loss reduction",
+    "problem_statement": "Eight policyholders each have a before/after loss pair. Differences d = before − after (£00) are: 12, 8, −2, 15, 10, 5, 9, 7. Using t_{7, 0.975} = 2.365, construct a 95% CI for the mean difference μ_d.",
+    "given": [
+      {
+        "symbol": "d₁…d₈",
+        "value": "12, 8, −2, 15, 10, 5, 9, 7",
+        "note": "paired differences (£00)"
+      },
+      {
+        "symbol": "n",
+        "value": "8",
+        "note": "pairs"
+      },
+      {
+        "symbol": "t_{7,0.975}",
+        "value": "2.365",
+        "note": "t critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Reduce to a one-sample t-interval on the differences.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Mean difference",
+        "attempt_cue": "Average the eight differences.",
+        "explanation": "Paired data are analysed through the differences d_i.",
+        "calculation": "(12+8−2+15+10+5+9+7)/8 = 64/8 = 8",
+        "result": "d̄ = 8"
+      },
+      {
+        "id": "S2",
+        "label": "Sample SD of differences",
+        "attempt_cue": "Compute s_d = √[Σ(d_i − d̄)²/(n−1)].",
+        "explanation": "The SE uses the sample SD of the paired differences, not the raw before/after series.",
+        "calculation": "Σ(d_i−8)² = 16+0+100+49+4+9+1+1 = 180;  s_d = √(180/7) = √25.714286 ≈ 5.0709",
+        "result": "s_d ≈ 5.0709"
+      },
+      {
+        "id": "S3",
+        "label": "SE and interval",
+        "attempt_cue": "SE = s_d/√n; then d̄ ± t × SE.",
+        "explanation": "One-sample t formula applied to the differences.",
+        "calculation": "SE = 5.0709/√8 ≈ 1.7928;  2.365 × 1.7928 ≈ 4.240;  8 − 4.240 ≈ 3.760;  8 + 4.240 ≈ 12.240",
+        "result": "(3.760, 12.240)"
+      }
+    ],
+    "final_answer": "95% CI for μ_d: approximately (3.760, 12.240) in £00.",
+    "common_pitfall": "Treating the before and after samples as independent two-sample data instead of pairing, or using z = 1.96 with n = 8.",
+    "syllabus_ref": "3.2.7"
+  }
 }

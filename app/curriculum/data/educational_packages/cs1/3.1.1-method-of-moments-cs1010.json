@@ -219,5 +219,56 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.2. Titles only tonight",
     "student_facing": "Tomorrow: maximum likelihood (3.1.2). Optional light prep: skim 3.1.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "MoM mean claim severity (Exponential)",
+    "problem_statement": "A motor book records five independent claim sizes (£): 2400, 1600, 3200, 1800, 2000. Model each claim as Exponential with unknown mean μ (so E[X] = μ). Construct the method-of-moments estimator of μ and evaluate it on this sample.",
+    "given": [
+      {
+        "symbol": "x₁…x₅",
+        "value": "2400, 1600, 3200, 1800, 2000",
+        "note": "claim sizes (£)"
+      },
+      {
+        "symbol": "n",
+        "value": "5",
+        "note": "sample size"
+      },
+      {
+        "symbol": "E[X]",
+        "value": "μ",
+        "note": "Exponential mean parameter"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Before uncovering, write the first population moment in terms of μ and the matching sample moment.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Write the first-moment equation",
+        "attempt_cue": "Equate E[X] to the sample mean and solve for μ.",
+        "explanation": "Method of moments equates the population moment E[X] = μ to the sample moment x̄, then solves for the parameter.",
+        "calculation": "E[X] = μ  ⇒  μ̂_MoM = x̄",
+        "result": "μ̂_MoM = x̄"
+      },
+      {
+        "id": "S2",
+        "label": "Compute the sample mean",
+        "attempt_cue": "Add the five claim sizes and divide by 5.",
+        "explanation": "The first sample moment is the ordinary arithmetic mean.",
+        "calculation": "(2400 + 1600 + 3200 + 1800 + 2000) / 5 = 11000 / 5 = 2200",
+        "result": "x̄ = 2200"
+      },
+      {
+        "id": "S3",
+        "label": "State the MoM estimate",
+        "attempt_cue": "Substitute x̄ into μ̂_MoM.",
+        "explanation": "For the Exponential mean parameter, MoM and the sample mean coincide.",
+        "calculation": "μ̂_MoM = 2200",
+        "result": "μ̂_MoM = 2200 (£)"
+      }
+    ],
+    "final_answer": "μ̂_MoM = x̄ = £2200 for this sample.",
+    "common_pitfall": "Using the Exponential rate parameter λ = 1/μ and reporting λ̂ = 2200 (or 1/5) instead of solving the moment equation for the mean parameter actually requested.",
+    "syllabus_ref": "3.1.1"
+  }
 }

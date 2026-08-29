@@ -218,5 +218,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.1.5. Titles only tonight",
     "student_facing": "Tomorrow: asymptotic distribution of MLEs (3.1.5). Optional light prep: skim 3.1.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Compare two premium estimators by MSE",
+    "problem_statement": "An insurer compares two estimators of mean annual premium μ (£). Estimator T₁ has Bias(T₁) = 0 and Var(T₁) = 9. Estimator T₂ has Bias(T₂) = 1 and Var(T₂) = 4. Compute both MSEs and select the estimator with smaller MSE.",
+    "given": [
+      {
+        "symbol": "Bias(T₁)",
+        "value": "0",
+        "note": "bias of T₁"
+      },
+      {
+        "symbol": "Var(T₁)",
+        "value": "9",
+        "note": "variance of T₁"
+      },
+      {
+        "symbol": "Bias(T₂)",
+        "value": "1",
+        "note": "bias of T₂"
+      },
+      {
+        "symbol": "Var(T₂)",
+        "value": "4",
+        "note": "variance of T₂"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Before uncovering, write MSE = Var + Bias² for each estimator.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "MSE of T₁",
+        "attempt_cue": "Substitute Bias(T₁) and Var(T₁) into the MSE identity.",
+        "explanation": "MSE(T₁) = Var(T₁) + [Bias(T₁)]² collapses to variance when Bias = 0.",
+        "calculation": "MSE(T₁) = 9 + 0² = 9",
+        "result": "MSE(T₁) = 9"
+      },
+      {
+        "id": "S2",
+        "label": "MSE of T₂",
+        "attempt_cue": "Substitute Bias(T₂) = 1 and Var(T₂) = 4.",
+        "explanation": "Squared bias is added in full; do not omit the Bias² term.",
+        "calculation": "MSE(T₂) = 4 + 1² = 4 + 1 = 5",
+        "result": "MSE(T₂) = 5"
+      },
+      {
+        "id": "S3",
+        "label": "Select by MSE",
+        "attempt_cue": "Compare 9 and 5.",
+        "explanation": "Under an MSE comparison rule, prefer the smaller value.",
+        "calculation": "5 < 9  ⇒  prefer T₂",
+        "result": "T₂ has smaller MSE"
+      }
+    ],
+    "final_answer": "MSE(T₁) = 9; MSE(T₂) = 5. Prefer T₂ on MSE.",
+    "common_pitfall": "Comparing variances alone (9 vs 4) and declaring T₂ better without adding Bias², or refusing T₂ because Bias ≠ 0 despite MSE(T₂) = 5 < 9.",
+    "syllabus_ref": "3.1.4"
+  }
 }

@@ -221,5 +221,48 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 3.1.1 is a CP-R1 return target after Memory Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "MoM for Poisson claim counts",
+    "problem_statement": "Six independent monthly claim counts on a small commercial book are modelled as Poisson(λ): 2, 1, 3, 0, 4, 2. Construct the method-of-moments estimator of λ and evaluate it on this sample.",
+    "given": [
+      {
+        "symbol": "x₁…x₆",
+        "value": "2, 1, 3, 0, 4, 2",
+        "note": "monthly claim counts"
+      },
+      {
+        "symbol": "n",
+        "value": "6",
+        "note": "months"
+      },
+      {
+        "symbol": "E[X]",
+        "value": "λ",
+        "note": "Poisson mean"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Equate the Poisson mean λ to the sample mean before computing.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Moment equation",
+        "attempt_cue": "Write λ̂_MoM = x̄.",
+        "explanation": "Poisson has E[X] = λ, so MoM matches λ to the sample mean.",
+        "calculation": "E[X] = λ  ⇒  λ̂_MoM = x̄",
+        "result": "λ̂_MoM = x̄"
+      },
+      {
+        "id": "S2",
+        "label": "Evaluate on the sample",
+        "attempt_cue": "Average the six counts.",
+        "explanation": "Substitute the observed counts into x̄.",
+        "calculation": "(2+1+3+0+4+2)/6 = 12/6 = 2",
+        "result": "λ̂_MoM = 2"
+      }
+    ],
+    "final_answer": "λ̂_MoM = x̄ = 2 claims per month.",
+    "common_pitfall": "Equating λ to the sample variance (here also 2 by chance) as if that were a second-moment MoM step required for one-parameter Poisson, or reporting Σxᵢ = 12 as the estimate of λ.",
+    "syllabus_ref": "3.1.1"
+  }
 }

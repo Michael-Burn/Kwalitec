@@ -220,5 +220,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.5. Titles only tonight",
     "student_facing": "Tomorrow: binomial/Poisson CIs (3.2.5). Optional light prep: skim 3.2.5 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "t-interval for Normal mean claim amount",
+    "problem_statement": "A sample of n = 16 Normal claim amounts has x̄ = £100 and sample SD s = £6. Using t_{15, 0.975} = 2.131, construct a 95% confidence interval for the mean μ (σ unknown).",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "16",
+        "note": "sample size"
+      },
+      {
+        "symbol": "x̄",
+        "value": "100",
+        "note": "sample mean (£)"
+      },
+      {
+        "symbol": "s",
+        "value": "6",
+        "note": "sample SD (£)"
+      },
+      {
+        "symbol": "t_{15,0.975}",
+        "value": "2.131",
+        "note": "t critical value"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write x̄ ± t_{n−1} s/√n with n−1 = 15 before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Standard error",
+        "attempt_cue": "Compute s/√n with √16 = 4.",
+        "explanation": "With σ unknown, replace σ by s in the SE of the mean.",
+        "calculation": "6 / 4 = 1.5",
+        "result": "SE = 1.5"
+      },
+      {
+        "id": "S2",
+        "label": "Half-width",
+        "attempt_cue": "Multiply SE by t_{15,0.975} = 2.131.",
+        "explanation": "The t quantile (not 1.96) accounts for estimating σ.",
+        "calculation": "2.131 × 1.5 = 3.1965",
+        "result": "half-width = 3.1965"
+      },
+      {
+        "id": "S3",
+        "label": "Interval",
+        "attempt_cue": "Compute 100 ± 3.1965.",
+        "explanation": "Centre at x̄.",
+        "calculation": "100 − 3.1965 = 96.8035;  100 + 3.1965 = 103.1965",
+        "result": "(96.8035, 103.1965)"
+      }
+    ],
+    "final_answer": "95% CI for μ: (£96.8035, £103.1965).",
+    "common_pitfall": "Using z = 1.96 instead of t_{15,0.975} = 2.131 when σ is estimated from the sample, which understates the half-width (2.94 vs 3.1965).",
+    "syllabus_ref": "3.2.4"
+  }
 }

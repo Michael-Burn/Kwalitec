@@ -219,5 +219,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.2. Titles only tonight",
     "student_facing": "Tomorrow: prediction interval (3.2.2). Optional light prep: skim 3.2.2 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "95% z-interval for mean claim cost",
+    "problem_statement": "A random sample of n = 36 commercial property claims has sample mean x̄ = £12,000. Claim sizes are modelled as Normal with known σ = £1,800. Construct a 95% confidence interval for the population mean μ.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "36",
+        "note": "sample size"
+      },
+      {
+        "symbol": "x̄",
+        "value": "12000",
+        "note": "sample mean (£)"
+      },
+      {
+        "symbol": "σ",
+        "value": "1800",
+        "note": "known population SD (£)"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the z-interval formula x̄ ± z_{0.975} σ/√n before substituting.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Standard error of the mean",
+        "attempt_cue": "Compute σ/√n with √36 = 6.",
+        "explanation": "For a Normal mean with known σ, SE(x̄) = σ/√n.",
+        "calculation": "1800 / 6 = 300",
+        "result": "SE = 300"
+      },
+      {
+        "id": "S2",
+        "label": "Half-width",
+        "attempt_cue": "Multiply the SE by 1.96.",
+        "explanation": "The 95% z critical value scales the SE into the margin of error.",
+        "calculation": "1.96 × 300 = 588",
+        "result": "half-width = 588"
+      },
+      {
+        "id": "S3",
+        "label": "Interval endpoints",
+        "attempt_cue": "Compute 12000 ± 588.",
+        "explanation": "Centre at x̄ and add/subtract the half-width.",
+        "calculation": "12000 − 588 = 11412;  12000 + 588 = 12588",
+        "result": "(11412, 12588)"
+      }
+    ],
+    "final_answer": "95% CI for μ: (£11,412, £12,588).",
+    "common_pitfall": "Using σ instead of σ/√n in the margin (1.96 × 1800) and producing a wildly wide interval, or using √n = √36 incorrectly as 36.",
+    "syllabus_ref": "3.2.1"
+  }
 }

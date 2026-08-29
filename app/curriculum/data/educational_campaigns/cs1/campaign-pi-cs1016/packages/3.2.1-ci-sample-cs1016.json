@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you retrieved estimators (3.1.1). Today continues Memory Front at CI-from-sample.",
     "why_now": "CI construction is a high-stakes inference hinge before hypothesis testing.",
     "expected_benefit": "You'll retrieve how to build a confidence interval for a parameter from a random sample.",
-    "explainability": "Assigned as Campaign Pi Day 6 because Memory Front places CI-from-sample before HT.",
+    "explainability": "Day 6 focuses the named learning objective. Places CI-from-sample before HT.",
     "success_criteria": [
       "Closed-book, outline CI construction from a random sample.",
       "State what 'confidence' does and does not mean in one careful sentence.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 3.2.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.2.1 (retrieve ci from a random sample (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.2.1–retrieve ci from a random sample (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 3.2.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,8 +93,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 3.2.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.1 confidence interval based on a random sample. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before hypothesis testing primary 3.3.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 3.2.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.2.1 confidence interval based on a random sample. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.2.1 (stop before hypothesis testing primary 3.3.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.2.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -220,5 +220,53 @@
     "returns_on": "CP-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 3.2.1 is a CP-R1 return target after Memory Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "95% z-interval for mean premium",
+    "problem_statement": "A random sample of n = 100 household premiums has x̄ = £450. Model premiums as Normal with known σ = £50. Construct a 95% confidence interval for the mean premium μ.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "100",
+        "note": "sample size"
+      },
+      {
+        "symbol": "x̄",
+        "value": "450",
+        "note": "sample mean (£)"
+      },
+      {
+        "symbol": "σ",
+        "value": "50",
+        "note": "known SD (£)"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write x̄ ± 1.96 σ/√n with √100 = 10.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Standard error",
+        "attempt_cue": "Compute 50/10.",
+        "explanation": "SE of the sample mean with known σ is σ/√n.",
+        "calculation": "50 / 10 = 5",
+        "result": "SE = 5"
+      },
+      {
+        "id": "S2",
+        "label": "Half-width and interval",
+        "attempt_cue": "Compute 450 ± 1.96 × 5.",
+        "explanation": "95% z-interval centres at x̄.",
+        "calculation": "1.96 × 5 = 9.8;  450 − 9.8 = 440.2;  450 + 9.8 = 459.8",
+        "result": "(440.2, 459.8)"
+      }
+    ],
+    "final_answer": "95% CI for μ: (£440.2, £459.8).",
+    "common_pitfall": "Using 1.96 × 50 = 98 as the half-width (forgetting /√n), which yields the nonsensical interval (352, 548) for a mean of 450 with n = 100.",
+    "syllabus_ref": "3.2.1"
   }
 }

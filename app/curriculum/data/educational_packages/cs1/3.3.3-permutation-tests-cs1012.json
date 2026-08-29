@@ -217,5 +217,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.4. Titles only tonight",
     "student_facing": "Tomorrow: chi-square GOF (3.3.4). Optional light prep: skim 3.3.4 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Exact permutation test for two claim groups",
+    "problem_statement": "Small claim samples (£00): Group A = {10, 12, 14}, Group B = {8, 9, 11}. Test H₀: the two groups share the same distribution, using the two-sided permutation statistic |x̄_A − x̄_B|. Enumerate all C(6,3) = 20 assignments of three labels to A. The observed |x̄_A − x̄_B| equals 8/3. Exactly 4 of the 20 permutations have |diff| ≥ 8/3. Report the exact permutation p-value.",
+    "given": [
+      {
+        "symbol": "A",
+        "value": "{10, 12, 14}",
+        "note": "group A claims (£00)"
+      },
+      {
+        "symbol": "B",
+        "value": "{8, 9, 11}",
+        "note": "group B claims (£00)"
+      },
+      {
+        "symbol": "C(6,3)",
+        "value": "20",
+        "note": "number of label assignments"
+      },
+      {
+        "symbol": "# extreme",
+        "value": "4",
+        "note": "permutations with |diff| ≥ observed"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Compute the observed |x̄_A − x̄_B|, then form p = (# extreme)/20.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Observed difference",
+        "attempt_cue": "Compute |mean(A) − mean(B)|.",
+        "explanation": "The permutation test needs the observed value of the chosen statistic.",
+        "calculation": "x̄_A = 36/3 = 12;  x̄_B = 28/3 ≈ 9.333;  |12 − 28/3| = 8/3 ≈ 2.667",
+        "result": "|x̄_A − x̄_B| = 8/3"
+      },
+      {
+        "id": "S2",
+        "label": "Exact p-value",
+        "attempt_cue": "Divide the number of extreme permutations by 20.",
+        "explanation": "Under H₀ every assignment of three labels to A is equally likely; the p-value is the proportion at least as extreme as observed.",
+        "calculation": "p = 4/20 = 0.2",
+        "result": "p = 0.2"
+      },
+      {
+        "id": "S3",
+        "label": "Decision at α = 0.05",
+        "attempt_cue": "Compare p with 0.05.",
+        "explanation": "Do not reject H₀ when p > α.",
+        "calculation": "0.2 > 0.05  ⇒  do not reject H₀",
+        "result": "Do not reject H₀ at 5%"
+      }
+    ],
+    "final_answer": "Observed |x̄_A − x̄_B| = 8/3; exact permutation p-value = 0.2; do not reject H₀ at α = 0.05.",
+    "common_pitfall": "Computing a two-sample t p-value on n = 3 per group and treating it as the permutation p-value, or reporting 4/C(6,3) incorrectly as 4/15 by mixing combinations with permutations of a different size.",
+    "syllabus_ref": "3.3.3"
+  }
 }

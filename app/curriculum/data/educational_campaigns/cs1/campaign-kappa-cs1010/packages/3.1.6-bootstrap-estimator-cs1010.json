@@ -217,5 +217,51 @@
     "light_prep_cue": "Optional: list the six 3.1 LO titles from memory. No new reading tonight",
     "student_facing": "Tomorrow: Revision (CK-R1): retrieve estimator hinges. Optional: list 3.1.1–3.1.6 titles from memory tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "Bootstrap SE of mean claim severity",
+    "problem_statement": "A nonparametric bootstrap of the sample mean claim severity produced B = 5 bootstrap replicates (£00): 210, 195, 220, 205, 200. Estimate the bootstrap standard error of the mean using SÊ_boot = √[(1/B) Σ(θ̂*_b − θ̄*)²], where θ̄* is the mean of the bootstrap replicates.",
+    "given": [
+      {
+        "symbol": "θ̂*_1…θ̂*_5",
+        "value": "210, 195, 220, 205, 200",
+        "note": "bootstrap means (£00)"
+      },
+      {
+        "symbol": "B",
+        "value": "5",
+        "note": "number of bootstrap replicates"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. First compute θ̄*, then the average squared deviation.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Mean of bootstrap replicates",
+        "attempt_cue": "Average the five bootstrap means.",
+        "explanation": "θ̄* centres the bootstrap deviations used in the SE formula.",
+        "calculation": "(210 + 195 + 220 + 205 + 200) / 5 = 1030 / 5 = 206",
+        "result": "θ̄* = 206"
+      },
+      {
+        "id": "S2",
+        "label": "Sum of squared deviations",
+        "attempt_cue": "Compute Σ(θ̂*_b − 206)².",
+        "explanation": "Each replicate's squared distance from θ̄* enters the bootstrap variance.",
+        "calculation": "(210−206)² + (195−206)² + (220−206)² + (205−206)² + (200−206)² = 16 + 121 + 196 + 1 + 36 = 370",
+        "result": "Σ(θ̂*_b − θ̄*)² = 370"
+      },
+      {
+        "id": "S3",
+        "label": "Bootstrap SE",
+        "attempt_cue": "Take √(370/B) with B = 5.",
+        "explanation": "The stated bootstrap SE divides by B inside the square root.",
+        "calculation": "SÊ_boot = √(370/5) = √74 ≈ 8.602",
+        "result": "SÊ_boot ≈ 8.602 (£00)"
+      }
+    ],
+    "final_answer": "θ̄* = 206; SÊ_boot = √74 ≈ 8.602 (£00).",
+    "common_pitfall": "Dividing by B−1 = 4 (ordinary sample SD) to get √(370/4) = √92.5 ≈ 9.62 instead of the bootstrap /B form √(370/5) = √74 required here.",
+    "syllabus_ref": "3.1.6"
+  }
 }

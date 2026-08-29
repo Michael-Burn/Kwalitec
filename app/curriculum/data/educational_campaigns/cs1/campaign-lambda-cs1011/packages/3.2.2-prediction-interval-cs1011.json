@@ -219,5 +219,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.2.3. Titles only tonight",
     "student_facing": "Tomorrow: CI given a sampling distribution (3.2.3). Optional light prep: skim 3.2.3 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "95% prediction interval for a future claim",
+    "problem_statement": "From n = 25 independent Normal claims with known σ = £40, the sample mean is x̄ = £500. Construct a 95% prediction interval for one future independent claim Y.",
+    "given": [
+      {
+        "symbol": "n",
+        "value": "25",
+        "note": "sample size"
+      },
+      {
+        "symbol": "x̄",
+        "value": "500",
+        "note": "sample mean (£)"
+      },
+      {
+        "symbol": "σ",
+        "value": "40",
+        "note": "known SD (£)"
+      },
+      {
+        "symbol": "z_{0.975}",
+        "value": "1.96",
+        "note": "standard Normal quantile"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write the prediction SE σ√(1 + 1/n) before the interval.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Prediction standard error",
+        "attempt_cue": "Compute σ√(1 + 1/n).",
+        "explanation": "A future observation has variance σ² plus the variance of x̄, so the prediction SE is σ√(1 + 1/n), not σ/√n.",
+        "calculation": "√(1 + 1/25) = √1.04 ≈ 1.019804;  40 × 1.019804 ≈ 40.792",
+        "result": "SE_pred ≈ 40.792"
+      },
+      {
+        "id": "S2",
+        "label": "Half-width",
+        "attempt_cue": "Multiply SE_pred by 1.96.",
+        "explanation": "Same Normal quantile as a mean CI, but applied to the prediction SE.",
+        "calculation": "1.96 × 40.792 ≈ 79.953",
+        "result": "half-width ≈ 79.953"
+      },
+      {
+        "id": "S3",
+        "label": "Prediction interval",
+        "attempt_cue": "Compute 500 ± 79.953.",
+        "explanation": "Centre at x̄; the wider SE distinguishes prediction from mean estimation.",
+        "calculation": "500 − 79.953 ≈ 420.047;  500 + 79.953 ≈ 579.953",
+        "result": "(420.047, 579.953)"
+      }
+    ],
+    "final_answer": "95% prediction interval for Y: approximately (£420.05, £579.95).",
+    "common_pitfall": "Using the mean CI half-width 1.96 × 40/√25 = 15.68 instead of the prediction form 1.96 × 40√(1+1/25) ≈ 79.95.",
+    "syllabus_ref": "3.2.2"
+  }
 }

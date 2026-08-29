@@ -221,5 +221,61 @@
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 3.3.1 is a CP-R1 return target after Memory Front Learning span closes."
   },
-  "published_at": "2026-08-04"
+  "published_at": "2026-08-04",
+  "worked_example": {
+    "title": "Type I / Type II counts from a fraud screen",
+    "problem_statement": "A fraud screen is run on 1,000 claims. Truth vs decision: 200 truly fraudulent claims, of which 40 are missed (flagged clean); 800 truly clean claims, of which 24 are falsely flagged as fraud. Taking H₀: claim is clean, compute the empirical Type I error rate and Type II error rate from these counts.",
+    "given": [
+      {
+        "symbol": "n_clean",
+        "value": "800",
+        "note": "truly clean claims"
+      },
+      {
+        "symbol": "false flags",
+        "value": "24",
+        "note": "clean flagged as fraud"
+      },
+      {
+        "symbol": "n_fraud",
+        "value": "200",
+        "note": "truly fraudulent claims"
+      },
+      {
+        "symbol": "misses",
+        "value": "40",
+        "note": "fraud flagged clean"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Recall Type I = reject H₀ when H₀ true; Type II = fail to reject H₀ when H₀ false, with H₀: clean.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Type I error rate",
+        "attempt_cue": "False fraud flags divided by truly clean claims.",
+        "explanation": "Type I error is a false rejection of H₀. With H₀: clean, that is flagging a clean claim as fraud.",
+        "calculation": "24 / 800 = 0.03",
+        "result": "Type I rate = 0.03"
+      },
+      {
+        "id": "S2",
+        "label": "Type II error rate",
+        "attempt_cue": "Missed frauds divided by truly fraudulent claims.",
+        "explanation": "Type II error is failing to reject H₀ when the claim is fraudulent (H₀ false).",
+        "calculation": "40 / 200 = 0.20",
+        "result": "Type II rate = 0.20"
+      },
+      {
+        "id": "S3",
+        "label": "Power (optional check)",
+        "attempt_cue": "Power = 1 − Type II rate.",
+        "explanation": "Power is the probability of correctly flagging fraud.",
+        "calculation": "1 − 0.20 = 0.80",
+        "result": "Power = 0.80"
+      }
+    ],
+    "final_answer": "Type I error rate = 0.03; Type II error rate = 0.20; power = 0.80.",
+    "common_pitfall": "Swapping the denominators: dividing 24 by 200 or 40 by 800, which swaps Type I and Type II, or treating 24/1000 as the Type I rate.",
+    "syllabus_ref": "3.3.1"
+  }
 }

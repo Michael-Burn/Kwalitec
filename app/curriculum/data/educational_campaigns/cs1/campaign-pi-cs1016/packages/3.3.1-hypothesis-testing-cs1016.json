@@ -43,7 +43,7 @@
     "prior_bridge": "Yesterday you retrieved CI-from-sample (3.2.1). Today continues Memory Front at HT foundations.",
     "why_now": "Refresh hypothesis-testing foundations before you revisit regression and GLM.",
     "expected_benefit": "You'll retrieve null/alternative, error types, p-values, and power at foundation level.",
-    "explainability": "Assigned as Campaign Pi Day 7 because Memory Front closes Chapter 3 at HT foundations before CF-join regression.",
+    "explainability": "Day 7 focuses the named learning objective. Closes Chapter 3 at HT foundations before CF-join regression.",
     "success_criteria": [
       "Closed-book, name null vs alternative and type I vs type II in careful pairs.",
       "Name test statistic / critical region / significance at foundation level.",
@@ -71,7 +71,7 @@
     "confidence_prompt": "How confident are you that you could retrieve today's 3.3.1 hinge closed-book tomorrow? Rate 1–5 and give one honest warrant."
   },
   "reading_guidance": {
-    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.3.1 (retrieve hypothesis-testing foundations (memory front)) under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
+    "lead_line": "Purpose of this reading: use the CMP to retrieve Syllabus 3.3.1–retrieve hypothesis-testing foundations (memory front): under Memory Front / spine re-audit discipline. Stop before out-of-scope later hinges as primary.",
     "focus_questions": [
       "What is the core retrieval move of Syllabus 3.3.1?",
       "What warrant separates today's hinge from the next Memory Front day?",
@@ -93,8 +93,8 @@
     ],
     "annotation_task": "Before deep reading: sketch today's hinge chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution. Stay inside 3.3.1.",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.1 hypothesis testing foundations. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before linear regression primary 4.1.1). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "worked_examples_cue": "Worked-example re-entry (CMP closed): attempt the hinge step before uncovering the solution: stay inside 3.3.1.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 3.3.1 hypothesis testing foundations. Kwalitec is the guide; the CMP is the authoritative material. do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through the CMP treatment of Syllabus 3.3.1 (stop before linear regression primary 4.1.1). Then close the CMP and return here. Next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 3.3.1 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -220,5 +220,61 @@
     "returns_on": "CP-R1",
     "campaign_revision_package": "CS1-EP001-PKG-REV-SPINE-MEMORY-PI",
     "note": "Syllabus 3.3.1 is a CP-R1 return target after Memory Front Learning span closes."
+  },
+  "worked_example": {
+    "title": "Type I / Type II counts from a fraud screen",
+    "problem_statement": "A fraud screen is run on 1,000 claims. Truth vs decision: 200 truly fraudulent claims, of which 40 are missed (flagged clean); 800 truly clean claims, of which 24 are falsely flagged as fraud. Taking H₀: claim is clean, compute the empirical Type I error rate and Type II error rate from these counts.",
+    "given": [
+      {
+        "symbol": "n_clean",
+        "value": "800",
+        "note": "truly clean claims"
+      },
+      {
+        "symbol": "false flags",
+        "value": "24",
+        "note": "clean flagged as fraud"
+      },
+      {
+        "symbol": "n_fraud",
+        "value": "200",
+        "note": "truly fraudulent claims"
+      },
+      {
+        "symbol": "misses",
+        "value": "40",
+        "note": "fraud flagged clean"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Recall Type I = reject H₀ when H₀ true; Type II = fail to reject H₀ when H₀ false, with H₀: clean.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Type I error rate",
+        "attempt_cue": "False fraud flags divided by truly clean claims.",
+        "explanation": "Type I error is a false rejection of H₀. With H₀: clean, that is flagging a clean claim as fraud.",
+        "calculation": "24 / 800 = 0.03",
+        "result": "Type I rate = 0.03"
+      },
+      {
+        "id": "S2",
+        "label": "Type II error rate",
+        "attempt_cue": "Missed frauds divided by truly fraudulent claims.",
+        "explanation": "Type II error is failing to reject H₀ when the claim is fraudulent (H₀ false).",
+        "calculation": "40 / 200 = 0.20",
+        "result": "Type II rate = 0.20"
+      },
+      {
+        "id": "S3",
+        "label": "Power (optional check)",
+        "attempt_cue": "Power = 1 − Type II rate.",
+        "explanation": "Power is the probability of correctly flagging fraud.",
+        "calculation": "1 − 0.20 = 0.80",
+        "result": "Power = 0.80"
+      }
+    ],
+    "final_answer": "Type I error rate = 0.03; Type II error rate = 0.20; power = 0.80.",
+    "common_pitfall": "Swapping the denominators: dividing 24 by 200 or 40 by 800, which swaps Type I and Type II, or treating 24/1000 as the Type I rate.",
+    "syllabus_ref": "3.3.1"
   }
 }

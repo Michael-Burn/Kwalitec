@@ -219,5 +219,61 @@
     "light_prep_cue": "Optional: glance at CMP headings for Syllabus 3.3.3. Titles only tonight",
     "student_facing": "Tomorrow: permutation tests (3.3.3). Optional light prep: skim 3.3.3 headings. Titles only tonight."
   },
-  "published_at": "2026-08-02"
+  "published_at": "2026-08-02",
+  "worked_example": {
+    "title": "One-sample z-test for mean repair cost",
+    "problem_statement": "Test H₀: μ = £500 vs H₁: μ ≠ £500 for mean repair cost. A sample of n = 36 repairs has x̄ = £520. Assume Normal data with known σ = £60. Compute the z statistic and the two-sided p-value using Φ(2.0) = 0.9772. Decide at α = 0.05.",
+    "given": [
+      {
+        "symbol": "μ₀",
+        "value": "500",
+        "note": "null mean (£)"
+      },
+      {
+        "symbol": "n, x̄, σ",
+        "value": "36, 520, 60",
+        "note": "sample and known SD"
+      },
+      {
+        "symbol": "Φ(2.0)",
+        "value": "0.9772",
+        "note": "standard Normal CDF"
+      },
+      {
+        "symbol": "α",
+        "value": "0.05",
+        "note": "significance level"
+      }
+    ],
+    "attempt_before_reveal": "CMP closed. Write z = (x̄ − μ₀)/(σ/√n) before looking up the p-value.",
+    "steps": [
+      {
+        "id": "S1",
+        "label": "Standard error and z",
+        "attempt_cue": "Compute σ/√n and then z.",
+        "explanation": "One-sample z-test standardises the sample mean under H₀.",
+        "calculation": "σ/√n = 60/6 = 10;  z = (520 − 500)/10 = 20/10 = 2",
+        "result": "z = 2"
+      },
+      {
+        "id": "S2",
+        "label": "Two-sided p-value",
+        "attempt_cue": "Compute 2[1 − Φ(2)].",
+        "explanation": "Two-sided alternative doubles the upper tail.",
+        "calculation": "1 − 0.9772 = 0.0228;  p = 2 × 0.0228 = 0.0456",
+        "result": "p = 0.0456"
+      },
+      {
+        "id": "S3",
+        "label": "Decision",
+        "attempt_cue": "Compare p with 0.05.",
+        "explanation": "Reject H₀ when p ≤ α.",
+        "calculation": "0.0456 < 0.05  ⇒  reject H₀",
+        "result": "Reject H₀ at 5%"
+      }
+    ],
+    "final_answer": "z = 2; p = 0.0456; reject H₀: μ = £500 at α = 0.05.",
+    "common_pitfall": "Using (x̄ − μ₀)/σ = 20/60 ≈ 0.33 instead of dividing by σ/√n = 10, which collapses the test statistic toward zero.",
+    "syllabus_ref": "3.3.2"
+  }
 }
