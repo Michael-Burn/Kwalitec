@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1006-2.3.1-ar-01",
       "title": "Active Recall: 2.3.1",
-      "prompt": "Closed-book. (1) In words, what is E[Y|X=x]? (2) How does it differ from E[Y]? (3) Name one operation or setup that produces it from a joint/conditional.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.3.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines E[Y|X=x]?",
+      "response_type": "mcq",
+      "body": "Select the meaning and construction of conditional expectation.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "conditional",
-        "expectation",
-        "given",
-        "E[Y|X]",
-        "function",
-        "x",
-        "joint",
-        "average"
-      ],
-      "explanation": "Active recall for 2.3.1.",
-      "model_answer": "E[Y|X=x] is the expected value of Y when X is fixed at x. A function of x. It is not the same as the unconditional E[Y]. Obtain it from the conditional distribution of Y|X=x (or equivalent joint setup in the CMP).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Conditional expectation averages Y using its distribution after fixing X=x, so its value can vary with x.",
+      "model_answer": "Expected Y under Y|X=x; a function of x and generally different from E[Y].",
+      "common_mistake": "Replacing the conditional mean with the unconditional mean or a single joint cell.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[Y|X=x] is the expected value of Y under the conditional distribution of Y given X=x. As x varies it is a function of x, and it need not equal E[Y].",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[Y|X=x] is always the unconditional mean E[Y] because expectation removes all conditioning information.",
+          "misconception_tag": "conditional_equals_unconditional"
+        },
+        {
+          "id": "c",
+          "label": "E[Y|X=x] is the joint probability P(X=x,Y=y) evaluated at the largest y.",
+          "misconception_tag": "joint_cell_as_expectation"
+        },
+        {
+          "id": "d",
+          "label": "Conditional expectation is a fixed constant that cannot depend on the value x.",
+          "misconception_tag": "not_a_function_of_x"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1006-2.3.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.1-cp-01",
       "title": "Checkpoint: 2.3.1",
-      "prompt": "Closed-book. Same joint as a 2×2 table: P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40 (X row, Y column values 0/1). (1) Compute E[Y|X=1]. (2) Refuse: 'E[Y|X] is just the same skill as computing E[Y]' and 'once I know E[Y], I already have E[Y|X=x].'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.3.1.",
+      "prompt": "Closed-book. For P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40, what is E[Y|X=1]?",
+      "response_type": "mcq",
+      "body": "Compute the conditional mean from the joint PMF.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "E[Y|X",
-        "0.571",
-        "conditional",
-        "refuse",
-        "function",
-        "unconditional"
-      ],
-      "explanation": "Checkpoint for 2.3.1.",
-      "model_answer": "(1) P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0·P(Y=0|X=1)+1·P(Y=1|X=1)≈0.571. (2) Refuse: E[Y] is a single number; E[Y|X=x] is a function of x obtained from the conditional distribution. Knowing the unconditional mean does not give the conditional expectation.",
-      "common_mistake": "Equating unconditional E[Y] with the conditional expectation function E[Y|X=x].",
+      "accepted_keywords": [],
+      "explanation": "Normalise the X=1 row, then average Y under that conditional distribution.",
+      "model_answer": "E[Y|X=1]=0.40/(0.30+0.40)≈0.571.",
+      "common_mistake": "Using E[Y] or the unnormalised joint cell instead of the conditional distribution.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Given X=1, P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)≈0.571.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[Y|X=1]=E[Y]=0.60 because conditioning does not change an expectation.",
+          "misconception_tag": "conditional_equals_unconditional"
+        },
+        {
+          "id": "c",
+          "label": "E[Y|X=1]=0.40 because the joint cell P(1,1) needs no normalisation.",
+          "misconception_tag": "joint_cell_as_conditional_mean"
+        },
+        {
+          "id": "d",
+          "label": "E[Y|X=1]=0.70 because the marginal P(X=1) is itself the conditional mean of Y.",
+          "misconception_tag": "conditioning_marginal_as_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

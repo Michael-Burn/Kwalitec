@@ -119,60 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1008-2.5.1-ar-01",
       "title": "Active Recall: 2.5.1",
-      "prompt": "Closed-book. (1) State the CLT for an iid sequence in one or two sentences (conditions + conclusion). (2) What random quantity is becoming approximately Normal? (3) Name one reason 'the Normal is common' is not the same as stating the CLT.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.5.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly states the central limit theorem for a sample mean?",
+      "response_type": "mcq",
+      "body": "Select the CLT conditions and target.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "CLT",
-        "central",
-        "limit",
-        "iid",
-        "independent",
-        "identical",
-        "mean",
-        "Normal",
-        "standardis",
-        "n"
-      ],
-      "explanation": "Active recall for 2.5.1.",
-      "model_answer": "Under CMP conditions (iid; finite mean/variance as stated), the standardised sample mean (or sum) converges in distribution to Normal as n increases. Knowing the Normal shape is not the same as stating this limit theorem for iid sequences.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The theorem concerns the distribution of the standardised sum or mean, not individual observations, under stated conditions.",
+      "model_answer": "For iid finite-variance data, X̄≈N(μ,σ²/n) for large n.",
+      "common_mistake": "Applying the CLT to one observation or forgetting the √n reduction in standard deviation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For iid observations with finite mean μ and variance σ², the standardised sample mean approaches N(0,1), so X̄ is approximately N(μ,σ²/n) for large n.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The CLT makes each individual observation approximately Normal as n grows.",
+          "misconception_tag": "clt_on_single_observation"
+        },
+        {
+          "id": "c",
+          "label": "The CLT applies only when the parent population is already Normal.",
+          "misconception_tag": "normal_parent_required"
+        },
+        {
+          "id": "d",
+          "label": "The sample mean has variance σ² rather than σ²/n because averaging changes only its mean.",
+          "misconception_tag": "variance_not_reduced"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1008-2.5.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.1-cp-01",
       "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. Claim sizes are iid with mean μ=500 and sd σ=200; n=100. Using the CLT, approximate P(X̄>540). (1) State the approximate distribution of X̄. (2) Compute the standardised z and the approximate probability (use Φ(2)≈0.977). (3) Refuse: 'We already use the Normal all the time, so the CLT is just common sense and needs no statement.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.5.1.",
+      "prompt": "Closed-book. Claim sizes are iid with μ=500, σ=200, n=100. Using Φ(2)≈0.977, what is P(X̄>540)?",
+      "response_type": "mcq",
+      "body": "Apply and standardise the CLT approximation.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "CLT",
-        "iid",
-        "z=2",
-        "0.023",
-        "Normal",
-        "refuse"
-      ],
-      "explanation": "Checkpoint for 2.5.1.",
-      "model_answer": "(1) X̄ ≈ Normal(μ=500, sd=σ/√n=20). (2) z=(540−500)/20=2; P(X̄>540)≈1−Φ(2)≈0.023. (3) Refuse: casual Normal habit is not the CLT. Today's skill is stating and applying the theorem for iid sequences under the stated conditions.",
-      "common_mistake": "Invoking Normal by habit without stating/applying CLT conditions for the iid mean.",
+      "accepted_keywords": [],
+      "explanation": "The standard error is 20 and Φ is a lower-tail CDF, so the required upper tail is about 0.023.",
+      "model_answer": "SE=20, z=2, upper tail≈0.023.",
+      "common_mistake": "Using σ instead of σ/√n or reading Φ(2) as an upper-tail probability.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "SD(X̄)=200/√100=20, so z=(540-500)/20=2 and P(X̄>540)≈1-Φ(2)≈0.023.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "SD(X̄)=200, so z=0.2 because sample size does not change spread.",
+          "misconception_tag": "forget_sqrt_n"
+        },
+        {
+          "id": "c",
+          "label": "P(X̄>540)≈0.977 because Φ(2) is the upper-tail probability.",
+          "misconception_tag": "phi_as_upper_tail"
+        },
+        {
+          "id": "d",
+          "label": "P(X̄>540)=0.5 because 540 is above the mean and every above-mean event has probability one half.",
+          "misconception_tag": "above_mean_half"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

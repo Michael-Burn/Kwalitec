@@ -115,56 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-5.1.9-ar-01",
       "title": "Active Recall: 5.1.9",
-      "prompt": "Closed-book. Give two differences between Bayesian and Empirical Bayes credibility approaches. Name one assumption for each.",
-      "response_type": "short_structured",
-      "body": "Retrieve 5.1.9 closed-book.",
+      "prompt": "Closed-book. Which statement correctly distinguishes fully Bayesian credibility from Empirical Bayes?",
+      "response_type": "mcq",
+      "body": "Select the structural-assumption contrast.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "prior",
-        "estimate",
-        "assumption",
-        "bayesian",
-        "empirical",
-        "difference"
-      ],
-      "explanation": "Active recall for 5.1.9.",
-      "model_answer": "Bayes: prior specified as belief. EB: estimates prior pieces from data. Assumptions: Bayes needs a credible prior; EB needs enough collateral structure to estimate hyperparameters.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The key distinction is specified prior structure versus structure estimated from collective experience.",
+      "model_answer": "Bayes specifies prior structure; EB estimates structural parameters from collective data; premiums may differ.",
+      "common_mistake": "Calling the approaches identical or reversing how structural information enters.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A fully Bayesian approach specifies a prior model for structural parameters. Empirical Bayes estimates structural parameters from collective data and plugs them into the analysis. These different inputs can produce different premiums.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Fully Bayesian and Empirical Bayes are identical methods under different names, so their premiums must agree.",
+          "misconception_tag": "same_method"
+        },
+        {
+          "id": "c",
+          "label": "Empirical Bayes specifies all structural parameters before observing data, while fully Bayesian analysis estimates them only from the collective.",
+          "misconception_tag": "assumptions_reversed"
+        },
+        {
+          "id": "d",
+          "label": "Any premium difference is caused only by software rounding because the methods make identical structural assumptions.",
+          "misconception_tag": "software_only_difference"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-5.1.9-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.9-cp-01",
       "title": "Checkpoint: 5.1.9",
-      "prompt": "Closed-book. Same portfolio credibility problem: you need a premium blending risk data with a collective structure. (1) State one key assumption difference between a fully Bayesian approach and Empirical Bayes on this problem, and what each is entitled to claim about the structural parameters. (2) Refuse: 'Bayesian and Empirical Bayes are the same method with different names' and 'contrasting them means Bayesian foundations are exam-ready.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 5.1.9.",
+      "prompt": "Closed-book. Which statement correctly identifies the assumption difference between fully Bayesian credibility and Empirical Bayes?",
+      "response_type": "mcq",
+      "body": "Contrast the methods without overextending the result.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayesian",
-        "Empirical Bayes",
-        "structural",
-        "estimate",
-        "refuse",
-        "assumptions"
-      ],
-      "explanation": "Checkpoint for 5.1.9.",
-      "model_answer": "(1) Bayesian treats structural/prior parameters as specified within a prior model (belief/structure you bring); Empirical Bayes estimates those structural parameters from the observed collective data. So EB claims about structure are data-estimated, not prior-specified. (2) Refuse: they differ in how structural knowledge enters; a contrast does not make foundations exam-ready or replace the separate calculation LOs across Topic 5.1.",
-      "common_mistake": "Equating Bayes and EB as the same method, or treating a contrast as exam-ready mastery of Topic 5.1.",
+      "accepted_keywords": [],
+      "explanation": "The methods differ in how structural knowledge is supplied. Naming that difference is not a substitute for subsequent calculations.",
+      "model_answer": "Specified prior structure versus estimated structural parameters from collective data.",
+      "common_mistake": "Treating the methods as identical or assuming the conceptual contrast completes all Bayesian foundations.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Fully Bayesian credibility specifies structural or prior parameters within a prior model. Empirical Bayes estimates them from observed collective data. This contrast does not itself complete posterior, interval, or premium calculations.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The methods are identical because both can return a credibility premium.",
+          "misconception_tag": "same_method"
+        },
+        {
+          "id": "c",
+          "label": "Once the contrast is stated, all posterior distributions, estimators, intervals, and premiums have also been calculated.",
+          "misconception_tag": "contrast_finishes_all"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes requires a fully specified prior before data, while fully Bayesian credibility uses only collective estimates.",
+          "misconception_tag": "assumptions_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

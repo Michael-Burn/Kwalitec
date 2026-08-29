@@ -118,58 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1006-2.3.2-ar-01",
       "title": "Active Recall: 2.3.2",
-      "prompt": "Closed-book. (1) Write or state E[Y] in terms of conditional expectation. (2) In one sentence, how can variance use conditioning (CMP idea)?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.3.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly recovers unconditional mean and variance by conditioning on X?",
+      "response_type": "mcq",
+      "body": "Select the tower and total-variance identities.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "expectation",
-        "conditional",
-        "tower",
-        "total",
-        "variance",
-        "E[E[Y|X]]",
-        "conditioning",
-        "mean"
-      ],
-      "explanation": "Active recall for 2.3.2.",
-      "model_answer": "E[Y] = E[E[Y|X]] (law of total / tower expectation). Variance can be recovered via conditioning (e.g. law of total variance / related CMP decomposition).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The tower property averages conditional means. Total variance adds average within-condition variance and variance between conditional means.",
+      "model_answer": "E[Y]=E(E[Y|X]); Var(Y)=E Var(Y|X)+Var E[Y|X].",
+      "common_mistake": "Stopping at a conditional quantity without the outer expectation or omitting one variance component.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[Y]=E[E[Y|X]], and Var(Y)=E[Var(Y|X)]+Var(E[Y|X]).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[Y]=E[Y|X] for every realised X, so no outer expectation is required.",
+          "misconception_tag": "tower_outer_expectation_missing"
+        },
+        {
+          "id": "c",
+          "label": "Var(Y)=Var(E[Y|X]) only, because conditional variation disappears after conditioning.",
+          "misconception_tag": "within_group_variance_dropped"
+        },
+        {
+          "id": "d",
+          "label": "Var(Y)=E[Var(Y|X)] only, because variation of conditional means is irrelevant.",
+          "misconception_tag": "between_group_variance_dropped"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1006-2.3.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.2-cp-01",
       "title": "Checkpoint: 2.3.2",
-      "prompt": "Closed-book. Given X∈{0,1} with P(X=1)=0.4, and E[Y|X=0]=10, E[Y|X=1]=20. (1) Compute E[Y] using the law of total expectation. (2) Refuse: 'Computing E[Y|X=x] already finished obtaining mean and variance via conditioning' and 'E[Y]=E[Y|X] as equality of random objects without taking E[·].'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.3.2.",
+      "prompt": "Closed-book. P(X=1)=0.4, E[Y|X=0]=10, and E[Y|X=1]=20. What is E[Y]?",
+      "response_type": "mcq",
+      "body": "Apply the tower property.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "tower",
-        "14",
-        "E[E[Y|X]]",
-        "refuse",
-        "conditioning",
-        "variance"
-      ],
-      "explanation": "Checkpoint for 2.3.2.",
-      "model_answer": "(1) E[Y]=E[E[Y|X]]=0.6·10+0.4·20=6+8=14. (2) Refuse: E[Y|X] is an intermediate object. Today's LO applies the tower (and variance decomposition) to recover unconditional mean/variance; you must take the outer expectation, and E[Y]=E[Y|X] is not a free equality without that step.",
-      "common_mistake": "Stopping after forming E[Y|X] without applying the tower / total-variance law.",
+      "accepted_keywords": [],
+      "explanation": "The outer expectation weights each conditional mean by the probability of its condition.",
+      "model_answer": "0.6×10+0.4×20=14.",
+      "common_mistake": "Stopping at E[Y|X] or averaging conditional means without probability weights.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[Y]=(0.6)(10)+(0.4)(20)=14.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[Y]=20 because E[Y|X=1] is the conditional mean for the event explicitly given.",
+          "misconception_tag": "single_condition_as_unconditional"
+        },
+        {
+          "id": "c",
+          "label": "E[Y]=(10+20)/2=15 because conditional means always receive equal weight.",
+          "misconception_tag": "conditions_equally_weighted"
+        },
+        {
+          "id": "d",
+          "label": "E[Y]=E[Y|X], so the answer remains the two-valued function 10 or 20 rather than one unconditional mean.",
+          "misconception_tag": "outer_expectation_missing"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

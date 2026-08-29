@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.4-ar-01",
       "title": "Active Recall: 2.6.4",
-      "prompt": "Closed-book. For iid Normal samples (CMP): (1) What is the distribution of X̄? (2) What sampling result applies to the sample variance (χ² form as CMP)? (3) Why is this not yet the t-statistic LO?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.4 closed-book.",
+      "prompt": "Closed-book. For an iid sample from N(μ,σ²), which exact sampling laws are correct?",
+      "response_type": "mcq",
+      "body": "Select the Normal mean and sample-variance laws.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Normal",
-        "mean",
-        "variance",
-        "chi",
-        "square",
-        "distribution",
-        "sample"
-      ],
-      "explanation": "Active recall for 2.6.4.",
-      "model_answer": "For Normal samples, X̄ is Normal with mean μ and variance σ²/n (CMP). Sample variance follows a χ²-related law as CMP states. The t-statistic is a separate LO when σ is replaced by S.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Normal sampling gives exact laws for the mean and scaled variance, plus their independence.",
+      "model_answer": "X̄~N(μ,σ²/n); (n-1)S²/σ²~χ²_{n-1}; independence.",
+      "common_mistake": "Missing the n-1 scale or forgetting the special Normal-sample independence result.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X̄~N(μ,σ²/n), (n-1)S²/σ²~χ²_{n-1}, and X̄ is independent of S².",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X̄~N(μ,σ²) because taking a mean does not change variance.",
+          "misconception_tag": "mean_variance_not_scaled"
+        },
+        {
+          "id": "c",
+          "label": "S²/σ²~χ²_n because no scaling by n-1 is required.",
+          "misconception_tag": "chi_square_scaling_missing"
+        },
+        {
+          "id": "d",
+          "label": "X̄ and S² are necessarily dependent for Normal samples because both use the same observations.",
+          "misconception_tag": "normal_independence_denied"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.4-cp-01",
       "title": "Checkpoint: 2.6.4",
-      "prompt": "Closed-book. X₁,…,Xₙ iid N(μ,σ²). (1) State the sampling distribution of X̄ and of (n−1)S²/σ². (2) Refuse: 'Normal sampling laws for mean and variance already finished the t-statistic when σ is unknown.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.4.",
+      "prompt": "Closed-book. An iid sample of size n comes from N(μ,σ²). Which statement correctly identifies the exact laws without prematurely using t?",
+      "response_type": "mcq",
+      "body": "Choose the exact component distributions.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Normal",
-        "χ²",
-        "X̄",
-        "S²",
-        "refuse",
-        "t-statistic"
-      ],
-      "explanation": "Checkpoint for 2.6.4.",
-      "model_answer": "(1) X̄ ~ N(μ, σ²/n); (n−1)S²/σ² ~ χ²_{n−1} (independent of X̄ under Normal samples, as CMP). (2) Refuse: these are the Normal/χ² laws for X̄ and S². The t-statistic replaces σ by S and is a separate LO.",
-      "common_mistake": "Jumping from Normal X̄/S² laws to the t-statistic before stating today's sampling distributions.",
+      "accepted_keywords": [],
+      "explanation": "The Normal and chi-square components, with independence, are the ingredients from which the t result is derived.",
+      "model_answer": "State the Normal mean and chi-square variance laws; t comes from their combination.",
+      "common_mistake": "Calling the unstandardised mean t distributed or treating component laws as the finished t statistic.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X̄~N(μ,σ²/n) and (n-1)S²/σ²~χ²_{n-1}, independently. A t law follows only after combining these when σ is unknown.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X̄~t_{n-1} before standardisation because every Normal sample mean has a t distribution.",
+          "misconception_tag": "t_too_early"
+        },
+        {
+          "id": "c",
+          "label": "(n-1)S²/σ²~N(0,1) because sample variance is an average.",
+          "misconception_tag": "variance_as_normal"
+        },
+        {
+          "id": "d",
+          "label": "The two exact laws finish all t-statistic work even when S has not replaced σ in a standardised mean.",
+          "misconception_tag": "normal_laws_finish_t"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

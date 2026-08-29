@@ -115,57 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.2.10-ar-01",
       "title": "Active Recall: 4.2.10",
-      "prompt": "Closed-book. Outline steps: choose family and link → fit in software → list three output elements you must interpret.",
-      "response_type": "short_structured",
-      "body": "Retrieve 4.2.10 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes what is required beyond fitting a GLM in software?",
+      "response_type": "mcq",
+      "body": "Select the complete fit-and-interpret procedure.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "family",
-        "link",
-        "coefficient",
-        "deviance",
-        "residual",
-        "fit",
-        "interpret"
-      ],
-      "explanation": "Active recall for 4.2.10.",
-      "model_answer": "Choose family/link; fit; interpret coefficients (direction/scale via link), fit/deviance cues, and residual/test signals as relevant.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "A fitted object still requires coefficient interpretation, fit assessment, and diagnostic checking.",
+      "model_answer": "Interpret link-scale coefficients, assess fit, and check residuals and diagnostics; Fit alone is incomplete.",
+      "common_mistake": "Stopping when software returns coefficients or conflating GLM fitting with Bayesian credibility.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Interpret coefficients on the link scale and, where useful, transform them to the response scale. Assess fit measures such as deviance or AIC as warranted, then inspect residuals and diagnostics. Fitting alone is incomplete.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The software Fit command supplies all actuarial interpretation and validation automatically, so diagnostics are optional.",
+          "misconception_tag": "fit_without_interpret"
+        },
+        {
+          "id": "c",
+          "label": "Only the intercept needs interpretation because factor coefficients have no response-scale meaning.",
+          "misconception_tag": "intercept_only"
+        },
+        {
+          "id": "d",
+          "label": "Fitting a GLM completes Bayesian credibility because both methods can model claim counts.",
+          "misconception_tag": "glm_finishes_bayesian"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-4.2.10-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.10-cp-01",
       "title": "Checkpoint: 4.2.10",
-      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. (1) Interpret a coefficient of 0.20 on class High vs baseline in terms of mean count. (2) Refuse: 'Clicking Fit finishes interpretation and diagnostics' and 'fitting a GLM finishes Bayesian credibility work.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 4.2.10.",
+      "prompt": "Closed-book. A Poisson log-link GLM reports β̂=0.20 for class High versus baseline. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Interpret the coefficient and assess the fit boundary.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Poisson",
-        "log link",
-        "e^{0.20}",
-        "interpret",
-        "refuse",
-        "Fit"
-      ],
-      "explanation": "Checkpoint for 4.2.10.",
-      "model_answer": "(1) Under log link, β̂=0.20 means the fitted mean for High is e^{0.20}≈1.22 times the baseline class mean (multiplicative effect), other terms held fixed. (2) Refuse: fit without interpretation/diagnostics is incomplete; Bayesian modelling is a different topic.",
-      "common_mistake": "Stopping at Fit without interpreting coefficients on the mean scale or checking diagnostics.",
+      "accepted_keywords": [],
+      "explanation": "Exponentiating a log-link coefficient gives a multiplicative mean ratio. The coefficient does not complete diagnostics or Bayesian work.",
+      "model_answer": "exp(0.20)≈1.22 times baseline, other terms fixed; continue with fit and diagnostic checks.",
+      "common_mistake": "Reading a log-link coefficient additively on the count scale or treating Fit as complete analysis.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Holding other terms fixed, the fitted mean for class High is exp(0.20)≈1.22 times the baseline mean. This interpretation still needs fit and diagnostic assessment.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The fitted mean rises by exactly 0.20 claims because log-link coefficients are additive on the response scale.",
+          "misconception_tag": "link_scale_as_response_scale"
+        },
+        {
+          "id": "c",
+          "label": "The class High fitted mean equals 0.20 because every Poisson coefficient is itself a count mean.",
+          "misconception_tag": "coefficient_as_mean"
+        },
+        {
+          "id": "d",
+          "label": "The coefficient provides a Bayesian credibility premium because a Poisson GLM and a prior-posterior model are the same method.",
+          "misconception_tag": "glm_finishes_bayesian"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -118,59 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1007-2.4.1-ar-01",
       "title": "Active Recall: 2.4.1",
-      "prompt": "Closed-book. (1) Write or state the MGF of a random variable X. (2) What is the CGF in relation to the MGF (or CMP form)? (3) Name one reason these objects are not the same as listing a few raw moments.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.4.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines the moment generating function and cumulant generating function?",
+      "response_type": "mcq",
+      "body": "Select the MGF and CGF definitions.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "MGF",
-        "CGF",
-        "moment",
-        "cumulant",
-        "generating",
-        "E[e",
-        "log",
-        "function",
-        "t"
-      ],
-      "explanation": "Active recall for 2.4.1.",
-      "model_answer": "MGF is M_X(t)=E[e^{tX}] (or CMP equivalent). CGF is typically K_X(t)=log M_X(t) (or CMP cumulant form). Knowing a few moments is not the same as possessing the generating-function object that encodes the moment sequence.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The MGF is an exponential expectation and the CGF is its logarithm. A few moments are not the full function.",
+      "model_answer": "M(t)=E[e^{tX}]; K(t)=log M(t), where the MGF exists.",
+      "common_mistake": "Treating a stated mean and variance as though they were the MGF.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Where it exists around t=0, M_X(t)=E[e^{tX}] and the cumulant generating function is K_X(t)=log M_X(t). Knowing only a mean and variance does not determine that the MGF has been obtained.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "M_X(t)=E[tX] and K_X(t)=e^{M_X(t)}, so both are linear in t.",
+          "misconception_tag": "definitions_reversed"
+        },
+        {
+          "id": "c",
+          "label": "An MGF is simply the pair (E[X],Var(X)); no function of t is required.",
+          "misconception_tag": "moments_as_mgf"
+        },
+        {
+          "id": "d",
+          "label": "Every random variable has a finite MGF for every real t, so existence conditions never matter.",
+          "misconception_tag": "mgf_always_exists"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1007-2.4.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.1-cp-01",
       "title": "Checkpoint: 2.4.1",
-      "prompt": "Closed-book. Let X ~ Poisson(λ). (1) Write M_X(t)=E[e^{tX}] and simplify to the closed form for this family; then write C_X(t). (2) Refuse: 'I already know E[X] and Var(X), so I have the MGF' and 'mean and variance finish the generating-function LO.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.4.1.",
+      "prompt": "Closed-book. If X is Poisson with parameter λ, which MGF and CGF pair is correct?",
+      "response_type": "mcq",
+      "body": "Identify the Poisson generating functions.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "MGF",
-        "Poisson",
-        "exp(λ(e^t−1))",
-        "CGF",
-        "refuse",
-        "moments"
-      ],
-      "explanation": "Checkpoint for 2.4.1.",
-      "model_answer": "(1) M_X(t)=E[e^{tX}]=exp(λ(e^t−1)); C_X(t)=log M_X(t)=λ(e^t−1). (2) Refuse: knowing mean and variance gives two moments, not the MGF as a function of t; today's LO is obtaining and interpreting the generating functions themselves.",
-      "common_mistake": "Treating knowledge of mean/variance as having obtained the MGF/CGF.",
+      "accepted_keywords": [],
+      "explanation": "Summing E[e^{tX}] under the Poisson PMF gives exp(λ(e^t-1)); taking its logarithm gives the CGF.",
+      "model_answer": "M(t)=exp(λ(e^t-1)); K(t)=λ(e^t-1).",
+      "common_mistake": "Replacing the generating function with the mean and variance or swapping MGF and CGF.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "M_X(t)=exp(λ(e^t-1)) and K_X(t)=λ(e^t-1).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "M_X(t)=exp(λt) and K_X(t)=λt because the mean alone determines the full Poisson MGF.",
+          "misconception_tag": "mean_only_mgf"
+        },
+        {
+          "id": "c",
+          "label": "M_X(t)=λ(e^t-1) and K_X(t)=exp(λ(e^t-1)), so the MGF and CGF are reversed.",
+          "misconception_tag": "mgf_cgf_reversed"
+        },
+        {
+          "id": "d",
+          "label": "M_X(t)=λ and K_X(t)=log λ because Poisson mean and variance both equal λ.",
+          "misconception_tag": "moments_as_generating_functions"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.5-ar-01",
       "title": "Active Recall: 2.6.5",
-      "prompt": "Closed-book. (1) Write the t-statistic for a Normal random sample (CMP). (2) When do you use t rather than a Normal/z form? (3) What df warrant applies?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.5 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines the one-sample t statistic for a Normal population with unknown σ?",
+      "response_type": "mcq",
+      "body": "Select the statistic, use case, and degrees of freedom.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "t",
-        "statistic",
-        "S",
-        "sigma",
-        "normal",
-        "df",
-        "n",
-        "mean"
-      ],
-      "explanation": "Active recall for 2.6.5.",
-      "model_answer": "t=(X̄−μ)/(S/√n) for Normal samples (CMP). Use t when σ is unknown and estimated by S. Degrees of freedom follow CMP (typically n−1 for one-sample).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Estimating σ with S introduces t uncertainty, and the standard error remains S/√n.",
+      "model_answer": "T=(X̄-μ)/(S/√n)~t_{n-1} for a Normal sample with unknown σ.",
+      "common_mistake": "Using S as though it were known σ in a z law or omitting √n.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "T=(X̄-μ)/(S/√n) has a t distribution with n-1 degrees of freedom when sampling from a Normal population and σ is unknown.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "T=(X̄-μ)/S has t_n because dividing by √n is unnecessary.",
+          "misconception_tag": "standard_error_missing"
+        },
+        {
+          "id": "c",
+          "label": "Replacing σ by S in a z statistic leaves an exact standard Normal distribution.",
+          "misconception_tag": "z_with_estimated_sigma"
+        },
+        {
+          "id": "d",
+          "label": "The t statistic is used only for comparing two sample variances.",
+          "misconception_tag": "t_as_variance_ratio"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.5-cp-01",
       "title": "Checkpoint: 2.6.5",
-      "prompt": "Closed-book. Iid Normal sample of size n; μ known in the null form, σ unknown. (1) Write the t-statistic and name its distribution (df). (2) Refuse: 'Using z=(X̄−μ)/(S/√n) is fine because S estimates σ' and 'The t-statistic finished the F variance-ratio LO and Chapter 3.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.5.",
+      "prompt": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for μ and correctly refuses 'The t-statistic finished the F variance-ratio LO and Chapter 3'?",
+      "response_type": "mcq",
+      "body": "Identify the t pivot and its boundary.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "t-statistic",
-        "S/√n",
-        "t_{n−1}",
-        "refuse",
-        "z",
-        "F"
-      ],
-      "explanation": "Checkpoint for 2.6.5.",
-      "model_answer": "(1) t=(X̄−μ)/(S/√n) ~ t_{n−1}. (2) Refuse: replacing σ by S in a Normal/z pivot yields a t (not z) law. You must name t and its df; the F variance-ratio LO and Chapter 3 inference are separate.",
-      "common_mistake": "Using a Normal/z pivot with S in place of σ without naming the t distribution, or swallowing F/Chapter 3.",
+      "accepted_keywords": [],
+      "explanation": "The t pivot uses the estimated standard error and n-1 degrees of freedom. Variance ratios use F, not t.",
+      "model_answer": "Use (X̄-μ)/(S/√n)~t_{n-1}; refuse The t-statistic finished the F variance-ratio LO.",
+      "common_mistake": "Using a z law with S or treating t as the variance-ratio distribution.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "(X̄-μ)/(S/√n)~t_{n-1}. This supports inference for μ, but does not by itself give the F law for comparing variances, so The t-statistic finished the F variance-ratio LO is false.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "(X̄-μ)/(S/√n)~N(0,1) exactly because S and σ are interchangeable.",
+          "misconception_tag": "z_with_sample_sd"
+        },
+        {
+          "id": "c",
+          "label": "(X̄-μ)/S~t_{n-1} because S is already a standard error.",
+          "misconception_tag": "sd_as_standard_error"
+        },
+        {
+          "id": "d",
+          "label": "S₁²/S₂²~t_{n-1} because t is the standard law for variance ratios.",
+          "misconception_tag": "t_for_variance_ratio"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

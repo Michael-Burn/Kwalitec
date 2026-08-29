@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from _mcq_batch4_delta_payload import apply_mcq_overlay
+from _mcq_batch4_delta_payload import apply_mcq_overlay as apply_batch4_mcq_overlay
+from _mcq_batch5_batch_e_payload import apply_mcq_overlay as apply_batch5_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-delta-cs1003"
@@ -1601,7 +1602,10 @@ def main() -> None:
     span = []
 
     for d in LEARNING:
-        pkg = apply_mcq_overlay(learning_pkg(d), d["stem"])
+        pkg = apply_batch5_mcq_overlay(
+            apply_batch4_mcq_overlay(learning_pkg(d), d["stem"]),
+            d["stem"],
+        )
         path = PKG_DIR / f"{d['stem']}.json"
         path.write_text(json.dumps(pkg, indent=2) + "\n")
         inventory.append(d["pid"])

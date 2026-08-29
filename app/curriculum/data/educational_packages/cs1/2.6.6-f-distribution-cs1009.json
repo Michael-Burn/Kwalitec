@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.6-ar-01",
       "title": "Active Recall: 2.6.6",
-      "prompt": "Closed-book. (1) What ratio has an F distribution in this LO? (2) What sample conditions are required (independence / Normal as CMP)? (3) What do the two degrees of freedom refer to?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.6 closed-book.",
+      "prompt": "Closed-book. Which statement correctly describes an F distribution in variance comparison?",
+      "response_type": "mcq",
+      "body": "Select the variance-ratio construction.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "F",
-        "variance",
-        "ratio",
-        "independent",
-        "Normal",
-        "df",
-        "sample"
-      ],
-      "explanation": "Active recall for 2.6.6.",
-      "model_answer": "Under CMP conditions, a suitably scaled ratio of two independent sample variances from Normal populations follows an F distribution with two df parameters tied to the two sample sizes / variance estimators.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "F is a ratio construction with separate numerator and denominator degrees of freedom under independence and Normal-sample conditions.",
+      "model_answer": "Scaled ratio of independent Normal-sample variances; two degrees of freedom.",
+      "common_mistake": "Using t for a variance ratio or ignoring independence and population assumptions.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "An F variable is a ratio of two independent chi-square variables, each divided by its degrees of freedom. It arises from a scaled ratio of independent sample variances from Normal populations and has two degrees of freedom.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "An F variable is the difference of two sample means divided by one pooled standard error.",
+          "misconception_tag": "f_as_two_sample_t"
+        },
+        {
+          "id": "c",
+          "label": "An F distribution has one degrees-of-freedom parameter because numerator and denominator must have equal sample sizes.",
+          "misconception_tag": "one_df_only"
+        },
+        {
+          "id": "d",
+          "label": "Any ratio of sample variances is exactly F distributed even when samples are dependent or populations are non-Normal.",
+          "misconception_tag": "assumptions_ignored"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.6-cp-01",
       "title": "Checkpoint: 2.6.6",
-      "prompt": "Closed-book. Independent samples: n₁ observations from N(μ₁,σ₁²) and n₂ from N(μ₂,σ₂²). (1) Write the variance-ratio statistic that has an F distribution under σ₁²=σ₂², and state F(df₁, df₂). (2) Refuse: 'Yesterday's t-statistic already finished comparing two sample variances' and 'use t for a variance ratio.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.6.",
+      "prompt": "Closed-book. Independent Normal samples of sizes n₁ and n₂ have equal population variances. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Identify the sample-variance ratio law.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "F",
-        "S₁²/S₂²",
-        "df",
-        "variance ratio",
-        "refuse",
-        "t"
-      ],
-      "explanation": "Checkpoint for 2.6.6.",
-      "model_answer": "(1) Under σ₁²=σ₂², F = S₁²/S₂² ~ F(n₁−1, n₂−1) (CMP form for independent Normal samples). (2) Refuse: t compares means (unknown σ) for Normal samples; a variance ratio uses F. T does not finish this LO.",
-      "common_mistake": "Using the t-statistic for a variance-ratio comparison, or treating t as finishing F.",
+      "accepted_keywords": [],
+      "explanation": "Each sample variance contributes a chi-square component with n_i-1 degrees of freedom, producing the stated F ratio.",
+      "model_answer": "S₁²/S₂²~F_{n₁-1,n₂-1} under equal variances.",
+      "common_mistake": "Applying a t law to variance ratios or using n rather than n-1 degrees of freedom.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "F=S₁²/S₂²~F_{n₁-1,n₂-1} under the equal-variance null, with the numerator and denominator degrees of freedom kept in that order.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "S₁²/S₂²~t_{n₁+n₂-2} because both t and F use sample variances.",
+          "misconception_tag": "t_for_variance_ratio"
+        },
+        {
+          "id": "c",
+          "label": "S₁²/S₂²~F_{n₁,n₂} because estimating sample means does not consume degrees of freedom.",
+          "misconception_tag": "degrees_of_freedom_not_reduced"
+        },
+        {
+          "id": "d",
+          "label": "S₁²/S₂² is standard Normal under equal variances because its expected value is near one.",
+          "misconception_tag": "ratio_as_normal"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

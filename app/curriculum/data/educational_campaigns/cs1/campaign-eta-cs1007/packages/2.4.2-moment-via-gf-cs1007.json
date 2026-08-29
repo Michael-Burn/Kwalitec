@@ -118,59 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1007-2.4.2-ar-01",
       "title": "Active Recall: 2.4.2",
-      "prompt": "Closed-book. (1) How does a series expansion of an MGF yield moments? (2) In one sentence, how can differentiation of a GF produce a moment (CMP idea)?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.4.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly extracts moments from an MGF?",
+      "response_type": "mcq",
+      "body": "Select the derivative and Taylor-coefficient rule.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "series",
-        "expansion",
-        "Taylor",
-        "coefficient",
-        "derivative",
-        "differentiation",
-        "moment",
-        "MGF",
-        "t=0"
-      ],
-      "explanation": "Active recall for 2.4.2.",
-      "model_answer": "Moments appear as coefficients in the Taylor series of the MGF (scaled as in the CMP). Differentiating the MGF and evaluating at t=0 (or equivalent CMP operation) recovers moments.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Raw moments are derivatives at zero, or equivalently factorial-scaled Taylor coefficients.",
+      "model_answer": "M^{(r)}(0)=E[X^r]; in particular M'(0)=E[X].",
+      "common_mistake": "Stopping at the MGF definition or evaluating the derivative at the wrong point.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "If M_X(t) exists around zero, its Taylor expansion has E[X^r] as the coefficient multiplied by r!, equivalently M_X^{(r)}(0)=E[X^r].",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "M_X(0)=E[X], so evaluating the MGF once at zero gives the first moment.",
+          "misconception_tag": "mgf_value_as_mean"
+        },
+        {
+          "id": "c",
+          "label": "M_X'(1)=E[X] for every distribution because moments are evaluated at t=1.",
+          "misconception_tag": "derivative_at_one"
+        },
+        {
+          "id": "d",
+          "label": "Writing M_X(t)=E[e^{tX}] completes moment extraction without differentiation or coefficient matching.",
+          "misconception_tag": "definition_finishes_extraction"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1007-2.4.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.2-cp-01",
       "title": "Checkpoint: 2.4.2",
-      "prompt": "Closed-book. Suppose M_X(t)=exp(λ(e^t−1)) (Poisson(λ)). (1) Compute E[X] by differentiating the MGF and evaluating at t=0. (2) Refuse: 'Writing down the MGF definition already finished extracting moments via differentiation/expansion.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.4.2.",
+      "prompt": "Closed-book. For Poisson X, M_X(t)=exp(λ(e^t-1)). Which statement correctly obtains E[X]?",
+      "response_type": "mcq",
+      "body": "Differentiate the MGF at zero.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "differentiate",
-        "M'(0)",
-        "λ",
-        "moment",
-        "refuse",
-        "MGF"
-      ],
-      "explanation": "Checkpoint for 2.4.2.",
-      "model_answer": "(1) M'_X(t)=exp(λ(e^t−1))·λ e^t; M'_X(0)=λ, so E[X]=λ. (2) Refuse: stating M_X(t)=E[e^{tX}] is the definition LO; today's skill is obtaining moments by differentiating or series-expanding the generating function.",
-      "common_mistake": "Stopping at the MGF definition without differentiating/expanding to extract a moment.",
+      "accepted_keywords": [],
+      "explanation": "Differentiate using the chain rule and set t=0. The value M(0)=1 is normalisation, not the mean.",
+      "model_answer": "M'(0)=λ.",
+      "common_mistake": "Using M(0) as the mean or writing the MGF without extracting a derivative.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "M_X'(t)=λe^t exp(λ(e^t-1)), so M_X'(0)=λ=E[X].",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "M_X(0)=1, so E[X]=1 for every Poisson distribution.",
+          "misconception_tag": "mgf_value_as_mean"
+        },
+        {
+          "id": "c",
+          "label": "M_X'(0)=e^λ because differentiating removes the inner e^t-1 term.",
+          "misconception_tag": "chain_rule_omitted"
+        },
+        {
+          "id": "d",
+          "label": "The formula M_X(t)=E[e^{tX}] already states the mean, so no derivative is needed.",
+          "misconception_tag": "definition_finishes_extraction"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

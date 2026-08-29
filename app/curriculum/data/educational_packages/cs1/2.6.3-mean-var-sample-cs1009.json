@@ -118,59 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.3-ar-01",
       "title": "Active Recall: 2.6.3",
-      "prompt": "Closed-book. (1) State E[X̄] and Var(X̄) for a random sample (CMP form). (2) State what E[S²] equals (or CMP-equivalent). (3) Which quantities are population parameters vs sample size?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.3 closed-book.",
+      "prompt": "Closed-book. For an iid sample with population mean μ and variance σ², which statement about X̄ and S² is correct?",
+      "response_type": "mcq",
+      "body": "Select the sample-statistic moments.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "mean",
-        "variance",
-        "sample",
-        "mu",
-        "sigma",
-        "n",
-        "E",
-        "Var",
-        "S"
-      ],
-      "explanation": "Active recall for 2.6.3.",
-      "model_answer": "Under CMP random-sample conditions: E[X̄]=μ, Var(X̄)=σ²/n (finite variance), and E[S²]=σ² for the usual unbiased sample variance (as CMP states). μ,σ² are population; n is sample size.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The sample mean is unbiased with variance σ²/n, and the usual S² is unbiased for population variance.",
+      "model_answer": "E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ².",
+      "common_mistake": "Confusing population variance, variance of the sample mean, and the target of S².",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[X̄]=μ, Var(X̄)=σ²/n, and for the usual denominator n-1 sample variance, E[S²]=σ².",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[X̄]=μ/n because averaging divides the expected value by n.",
+          "misconception_tag": "mean_divided_by_n"
+        },
+        {
+          "id": "c",
+          "label": "Var(X̄)=σ² because averaging independent observations does not reduce variance.",
+          "misconception_tag": "variance_not_divided_by_n"
+        },
+        {
+          "id": "d",
+          "label": "E[S²]=σ²/n because sample variance estimates the variance of X̄ rather than the population variance.",
+          "misconception_tag": "sample_variance_targets_mean_variance"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.3-cp-01",
       "title": "Checkpoint: 2.6.3",
-      "prompt": "Closed-book. Random sample of size n from a population with mean μ and variance σ². (1) Write E[X̄], Var(X̄), and E[S²]. (2) Refuse: 'Knowing Var(X̄)=σ²/n finishes Normal sampling laws and the t-statistic today.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.3.",
+      "prompt": "Closed-book. Which statement correctly summarises the distribution-free moment results for X̄ and unbiased S²?",
+      "response_type": "mcq",
+      "body": "Identify what the moment identities do and do not establish.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "E[X̄]",
-        "σ²/n",
-        "E[S²]",
-        "refuse",
-        "moment",
-        "μ"
-      ],
-      "explanation": "Checkpoint for 2.6.3.",
-      "model_answer": "(1) E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ² (unbiased sample variance, CMP form). (2) Refuse: these are moment identities for the sample mean/variance. Normal sampling distributions (2.6.4) and the t-statistic (2.6.5) are separate LOs.",
-      "common_mistake": "Jumping from Var(X̄)=σ²/n to Normal/t sampling laws before stating today's moment identities.",
+      "accepted_keywords": [],
+      "explanation": "Means and variances do not by themselves determine exact sampling distributions.",
+      "model_answer": "State the three moment identities; do not infer exact Normal or t laws from them alone.",
+      "common_mistake": "Treating unbiasedness and variance formulas as sufficient for exact distributional results.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[X̄]=μ, Var(X̄)=σ²/n, and E[S²]=σ². These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Var(X̄)=σ²/n proves X̄ is exactly Normal for every parent population and every n.",
+          "misconception_tag": "moments_imply_normality"
+        },
+        {
+          "id": "c",
+          "label": "E[S²]=σ² proves (X̄-μ)/(S/√n) is t distributed without any population assumptions.",
+          "misconception_tag": "unbiasedness_implies_t"
+        },
+        {
+          "id": "d",
+          "label": "E[X̄]=μ means X̄ equals μ in every sample, so sampling variability is zero.",
+          "misconception_tag": "unbiased_means_exact"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

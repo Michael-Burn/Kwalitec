@@ -117,58 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1005-2.2.4-ar-01",
       "title": "Active Recall: 2.2.4",
-      "prompt": "Closed-book. For aX + bY: (1) write E[aX+bY]; (2) write Var(aX+bY) when X and Y may be dependent (include Cov).",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.2.4 closed-book.",
+      "prompt": "Closed-book. Which statement gives the expectation and variance of aX+bY?",
+      "response_type": "mcq",
+      "body": "Select the linear-combination formulas.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "expectation",
-        "variance",
-        "covariance",
-        "linear",
-        "a",
-        "b",
-        "2ab",
-        "dependent"
-      ],
-      "explanation": "Active recall for 2.2.4.",
-      "model_answer": "E[aX+bY] = a E[X] + b E[Y]. Var(aX+bY) = a² Var(X) + b² Var(Y) + 2ab Cov(X,Y) (Cov term vanishes if independent).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Expectation is linear. Variance squares scale coefficients and includes the covariance cross-term.",
+      "model_answer": "E=aEX+bEY; Var=a²VarX+b²VarY+2abCov.",
+      "common_mistake": "Dropping covariance without independence or failing to square variance coefficients.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[aX+bY]=aE[X]+bE[Y], and Var(aX+bY)=a²Var(X)+b²Var(Y)+2abCov(X,Y).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Var(aX+bY)=aVar(X)+bVar(Y)+2abCov(X,Y), because variance is linear in constants.",
+          "misconception_tag": "constants_not_squared"
+        },
+        {
+          "id": "c",
+          "label": "Var(aX+bY)=a²Var(X)+b²Var(Y) for all X and Y, because covariance never affects a linear combination.",
+          "misconception_tag": "covariance_always_dropped"
+        },
+        {
+          "id": "d",
+          "label": "E[aX+bY]=a²E[X]+b²E[Y], matching the squared coefficients used in variance.",
+          "misconception_tag": "expectation_coefficients_squared"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1005-2.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.4-cp-01",
       "title": "Checkpoint: 2.2.4",
-      "prompt": "Closed-book. X and Y have Var(X)=4, Var(Y)=9, Cov(X,Y)=2. (1) Compute Var(2X−Y). (2) Refuse: 'I can always drop the Cov term when variables may be dependent' and 'Var(aX+bY)=a²Var(X)+b²Var(Y) is always enough.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.2.4.",
+      "prompt": "Closed-book. Var(X)=4, Var(Y)=9, and Cov(X,Y)=2. What is Var(2X-Y)?",
+      "response_type": "mcq",
+      "body": "Compute the variance with its covariance term.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Var",
-        "17",
-        "Cov",
-        "2ab",
-        "refuse",
-        "dependent"
-      ],
-      "explanation": "Checkpoint for 2.2.4.",
-      "model_answer": "(1) Var(2X−Y)=4·Var(X)+1·Var(Y)+2·2·(−1)·Cov(X,Y)=16+9−8=17. (2) Refuse: when X and Y may be dependent you must keep the 2ab Cov term; dropping Cov is lawful only under independence (Cov=0), not by habit.",
-      "common_mistake": "Dropping the 2ab Cov term for dependent variables, or treating independence as automatic.",
+      "accepted_keywords": [],
+      "explanation": "With a=2 and b=-1, the cross-term is negative: 2abCov=-8.",
+      "model_answer": "16+9-8=17.",
+      "common_mistake": "Dropping covariance for dependent variables or losing the negative coefficient in the cross-term.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Var(2X-Y)=2²(4)+(-1)²(9)+2(2)(-1)(2)=16+9-8=17.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Var(2X-Y)=16+9=25 because covariance is omitted whenever the variables differ.",
+          "misconception_tag": "covariance_dropped"
+        },
+        {
+          "id": "c",
+          "label": "Var(2X-Y)=2(4)-9+2(2)(-1)(2)=-9 because variance follows the signs in the linear combination.",
+          "misconception_tag": "variance_not_squared"
+        },
+        {
+          "id": "d",
+          "label": "Var(2X-Y)=16+9+8=33 because covariance always enters with a positive sign.",
+          "misconception_tag": "cross_term_sign_ignored"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

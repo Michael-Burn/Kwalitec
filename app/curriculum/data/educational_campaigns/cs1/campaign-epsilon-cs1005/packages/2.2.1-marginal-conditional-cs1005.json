@@ -117,59 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1005-2.2.1-ar-01",
       "title": "Active Recall: 2.2.1",
-      "prompt": "Closed-book. For a discrete joint p(x,y): (1) how do you get the marginal of X? (2) how do you get the conditional of Y given X=x? State the operations in words or formula shape.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.2.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly obtains marginal and conditional distributions from a joint distribution?",
+      "response_type": "mcq",
+      "body": "Select marginal and conditional construction.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "marginal",
-        "conditional",
-        "sum",
-        "integrate",
-        "joint",
-        "divide",
-        "p(x,y)",
-        "given"
-      ],
-      "explanation": "Active recall for 2.2.1.",
-      "model_answer": "Marginal of X: sum (or integrate) the joint over y. Conditional of Y|X=x: joint divided by the marginal of X at x (where defined).",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Marginalisation removes the other variable by summation or integration. Conditioning renormalises by the conditioning event's marginal.",
+      "model_answer": "Marginal: sum or integrate out the other variable. Conditional: joint divided by conditioning marginal.",
+      "common_mistake": "Treating a joint entry as a finished marginal or conditional without the required operation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Obtain a marginal by summing or integrating the joint distribution over the other variable. Obtain a conditional by dividing the relevant joint probability or density by the marginal of the conditioning value.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The joint distribution is already numerically equal to every marginal and conditional, so no extraction or normalisation is needed.",
+          "misconception_tag": "joint_as_margins_done"
+        },
+        {
+          "id": "c",
+          "label": "Obtain a marginal by dividing each joint value by the other variable, and obtain a conditional by summing over the conditioning variable.",
+          "misconception_tag": "operations_reversed"
+        },
+        {
+          "id": "d",
+          "label": "A conditional probability equals its joint numerator without division whenever the joint table totals one.",
+          "misconception_tag": "conditional_without_normalise"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1005-2.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.1-cp-01",
       "title": "Checkpoint: 2.2.1",
-      "prompt": "Closed-book. Joint PMF of (X, Y):\n  P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40.\n(1) Compute the marginal P(X=1). (2) Compute P(Y=1 | X=1). (3) Refuse: 'We have the joint table, so marginals and conditionals are optional decoration.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.2.1.",
+      "prompt": "Closed-book. Joint PMF: P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute one marginal and one conditional probability.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "marginal",
-        "conditional",
-        "0.70",
-        "0.40",
-        "joint",
-        "refuse",
-        "sum"
-      ],
-      "explanation": "Checkpoint for 2.2.1.",
-      "model_answer": "(1) P(X=1) = 0.30 + 0.40 = 0.70. (2) P(Y=1 | X=1) = 0.40 / 0.70 ≈ 0.571. (3) Refuse: the joint is not the same as its margins or conditionals. You must sum for the marginal and divide by that marginal for the conditional.",
-      "common_mistake": "Treating the joint table as already supplying margins/conditionals without summing and normalising.",
+      "accepted_keywords": [],
+      "explanation": "Sum the X=1 row for the marginal, then divide the (1,1) cell by that row total.",
+      "model_answer": "P(X=1)=0.70; P(Y=1|X=1)=0.40/0.70≈0.571.",
+      "common_mistake": "Using a single joint cell as a marginal or failing to normalise a conditional.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "P(X=1)=0.30+0.40=0.70, and P(Y=1|X=1)=0.40/0.70≈0.571.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "P(X=1)=0.40 because the largest cell in the X=1 row is the marginal.",
+          "misconception_tag": "largest_cell_as_marginal"
+        },
+        {
+          "id": "c",
+          "label": "P(Y=1|X=1)=0.40 because the joint cell is already conditional.",
+          "misconception_tag": "conditional_without_normalise"
+        },
+        {
+          "id": "d",
+          "label": "P(X=1)=0.70 and P(Y=1|X=1)=0.60 because P(Y=1) is the conditional numerator.",
+          "misconception_tag": "wrong_conditional_numerator"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

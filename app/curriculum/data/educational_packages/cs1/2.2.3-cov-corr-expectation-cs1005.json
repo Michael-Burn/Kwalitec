@@ -116,57 +116,88 @@
       "kind": "active_recall",
       "item_id": "cs1005-2.2.3-ar-01",
       "title": "Active Recall: 2.2.3",
-      "prompt": "Closed-book. (1) In words, what does Cov(X,Y) measure? (2) How is correlation related to covariance? (3) How do you set up E[g(X,Y)] from a joint?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.2.3 closed-book.",
+      "prompt": "Closed-book. Which statement correctly links expectation of a function, covariance, and correlation for a joint distribution?",
+      "response_type": "mcq",
+      "body": "Select the correct joint-distribution formulas.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "covariance",
-        "correlation",
-        "expectation",
-        "joint",
-        "standardised",
-        "linear",
-        "g(x,y)"
-      ],
-      "explanation": "Active recall for 2.2.3.",
-      "model_answer": "Cov measures joint linear co-movement (E[(X−μx)(Y−μy)] or equivalent). Correlation standardises covariance by the product of SDs. E[g(X,Y)] is the double sum/integral of g(x,y) times the joint.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Joint expectation weights g by joint probabilities or density. Covariance captures linear co-movement, while correlation standardises it.",
+      "model_answer": "E[g]=sum or integral of g times joint; Cov=E[XY]-EX EY; Corr=Cov/(SDX SDY).",
+      "common_mistake": "Assuming zero covariance proves independence or reversing correlation standardisation.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[g(X,Y)] is the sum or integral of g(x,y) weighted by the joint distribution. Cov(X,Y)=E[XY]-E[X]E[Y], and Corr(X,Y)=Cov(X,Y)/(SD(X)SD(Y)).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[g(X,Y)] is found from marginal means alone for every g, so the joint distribution is unnecessary.",
+          "misconception_tag": "marginals_determine_every_function"
+        },
+        {
+          "id": "c",
+          "label": "Correlation equals covariance multiplied by both standard deviations, so it retains measurement units.",
+          "misconception_tag": "correlation_scaling_reversed"
+        },
+        {
+          "id": "d",
+          "label": "Covariance measures all forms of dependence, and zero covariance proves independence for any joint distribution.",
+          "misconception_tag": "zero_cov_implies_independence"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1005-2.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.3-cp-01",
       "title": "Checkpoint: 2.2.3",
-      "prompt": "Closed-book. Discrete joint: P(X=0,Y=0)=0.2, P(0,1)=0.3, P(1,0)=0.1, P(1,1)=0.4. (1) Compute E[X], E[Y], E[XY], and Cov(X,Y). (2) Refuse: 'Cov=0 (or Corr=0) always means X and Y are independent' and 'independence already finished Cov/Corr/E[g].'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.2.3.",
+      "prompt": "Closed-book. P(0,0)=0.2, P(0,1)=0.3, P(1,0)=0.1, P(1,1)=0.4. Which covariance statement is correct?",
+      "response_type": "mcq",
+      "body": "Compute E[X], E[Y], E[XY], and covariance.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Cov",
-        "E[XY]",
-        "0.05",
-        "correlation",
-        "refuse",
-        "independence"
-      ],
-      "explanation": "Checkpoint for 2.2.3.",
-      "model_answer": "(1) E[X]=0·(0.2+0.3)+1·(0.1+0.4)=0.5; E[Y]=0·(0.2+0.1)+1·(0.3+0.4)=0.7; E[XY]=1·1·0.4=0.4; Cov(X,Y)=0.4−0.5·0.7=0.05. (2) Refuse: zero correlation does not imply independence (non-linear dependence can remain); independence is a different LO. Today requires Cov/Corr and E[g] algebra from the joint.",
-      "common_mistake": "Skipping the Cov algebra, or treating Corr=0 as independence / independence as finishing Cov.",
+      "accepted_keywords": [],
+      "explanation": "Only cell (1,1) contributes to E[XY]. Subtracting the product of the means gives 0.05.",
+      "model_answer": "E[X]=0.5, E[Y]=0.7, E[XY]=0.4, Cov=0.05.",
+      "common_mistake": "Assuming independence from marginals or using E[XY] as covariance without centring.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[X]=0.5, E[Y]=0.7, E[XY]=0.4, so Cov(X,Y)=0.4-(0.5)(0.7)=0.05.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[XY]=E[X]E[Y]=0.35 by definition, so covariance must be zero before checking the joint table.",
+          "misconception_tag": "assume_independence"
+        },
+        {
+          "id": "c",
+          "label": "Cov(X,Y)=E[XY]=0.4 because covariance is the expected product without centring.",
+          "misconception_tag": "uncentred_product_as_covariance"
+        },
+        {
+          "id": "d",
+          "label": "E[X]=0.5 and E[Y]=0.7 imply independence, so no E[XY] calculation is needed.",
+          "misconception_tag": "marginals_imply_independence"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -118,59 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1008-2.5.2-ar-01",
       "title": "Active Recall: 2.5.2",
-      "prompt": "Closed-book. (1) What do you simulate for Syllabus 2.5.2? (2) What do you compare those samples against, and why does that check the CLT intuition?",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.5.2 closed-book.",
+      "prompt": "Closed-book. Which statement correctly uses simulation to investigate the Normal approximation for sample means?",
+      "response_type": "mcq",
+      "body": "Select the simulation comparison design.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "simulate",
-        "sample",
-        "Normal",
-        "distribution",
-        "compare",
-        "CLT",
-        "shape",
-        "histogram"
-      ],
-      "explanation": "Active recall for 2.5.2.",
-      "model_answer": "Simulate samples (or sample means / related quantities as the CMP directs) from a given distribution; compare their behaviour or shape to the Normal. The comparison stress-tests when Normal approximation looks reasonable versus when it does not.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "The object to compare is the repeated-sampling distribution of X̄, and changing n reveals convergence behaviour.",
+      "model_answer": "Simulate many samples, collect means, and compare their distribution with Normal across n.",
+      "common_mistake": "Simulating single observations or asserting the theorem without performing the comparison.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Repeatedly simulate samples of a fixed size from the parent distribution, record each sample mean, and compare the empirical distribution of means with the relevant Normal approximation across sample sizes.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Simulate one observation from the parent and compare it with a Normal density; this directly tests the CLT for sample means.",
+          "misconception_tag": "single_draw_as_clt_test"
+        },
+        {
+          "id": "c",
+          "label": "State the CLT without simulating repeated samples, because a theorem statement is the same as an empirical comparison.",
+          "misconception_tag": "theorem_as_simulation"
+        },
+        {
+          "id": "d",
+          "label": "A skewed parent distribution prevents sample means from ever becoming approximately Normal.",
+          "misconception_tag": "skewness_never_averages"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1008-2.5.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.2-cp-01",
       "title": "Checkpoint: 2.5.2",
-      "prompt": "Closed-book. Parent distribution: Exp(mean=1), heavily right-skewed. You simulate many samples of size n=5 and of size n=100, each time plotting the histogram of the sample mean against a Normal with matching mean/variance. (1) What qualitative difference do you expect between n=5 and n=100, and why (CLT intuition)? (2) Refuse: 'Stating the CLT already finished comparing simulated samples with the Normal' and 'a skewed parent means the sample mean is never approximately Normal.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.5.2.",
+      "prompt": "Closed-book. Samples come from an Exponential distribution with mean 1. What should repeated simulations show for X̄ at n=5 versus n=100?",
+      "response_type": "mcq",
+      "body": "Compare simulated sampling distributions by sample size.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "simulate",
-        "skewed",
-        "n=5",
-        "n=100",
-        "Normal",
-        "refuse",
-        "CLT"
-      ],
-      "explanation": "Checkpoint for 2.5.2.",
-      "model_answer": "(1) At n=5 the histogram of X̄ should still look skewed (poor Normal match); at n=100 it should be much closer to Normal as the CLT kicks in for the mean. (2) Refuse: stating the theorem is not the same as checking simulated samples against Normal; skewness of the parent does not forbid approximate Normality of the mean for large n under CLT conditions.",
-      "common_mistake": "Treating the CLT statement as a simulation comparison, or claiming skewed parents never yield approximately Normal means.",
+      "accepted_keywords": [],
+      "explanation": "The CLT approximation improves as n grows, while the mean stays near 1 and its standard deviation shrinks as 1/√n.",
+      "model_answer": "n=5 may remain skewed; n=100 is closer to N(1,0.1²).",
+      "common_mistake": "Assuming sample means retain the parent shape or that any sample size gives exact Normality.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "At n=5 the distribution of X̄ can remain noticeably right-skewed. At n=100 it should be much closer to Normal, centred near 1 with standard deviation about 1/√100=0.1.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Both distributions of X̄ must be exactly Exponential with mean 1 because averaging preserves the parent family.",
+          "misconception_tag": "mean_distribution_equals_parent"
+        },
+        {
+          "id": "c",
+          "label": "At n=100 the means remain as skewed as individual Exponential observations because a skewed parent can never yield approximately Normal means.",
+          "misconception_tag": "skewness_never_averages"
+        },
+        {
+          "id": "d",
+          "label": "At n=5 the means are exactly Normal by the CLT, while at n=100 they return to an Exponential shape.",
+          "misconception_tag": "clt_direction_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -270,16 +270,42 @@ _BATCH4_MCQ_PACKAGE_STEMS = frozenset(
     }
 )
 
+# Batch 5 MCQ content conversion (checkpoint Batch E file set).
+# Keep in sync with scripts/_mcq_batch5_batch_e_payload.py CONVERSIONS keys.
+# Includes WEAK Delta 4.2.10 and 5.1.9; excludes STRONG Batch 6 (4.2.3, 4.2.5, 5.1.1, 5.1.5).
+_BATCH5_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "2.1.6-software-generation-cs1004",
+        "2.2.1-marginal-conditional-cs1005",
+        "2.2.3-cov-corr-expectation-cs1005",
+        "2.2.4-linear-combinations-cs1005",
+        "2.3.1-conditional-expectation-cs1006",
+        "2.3.2-mean-variance-conditioning-cs1006",
+        "2.4.1-mgf-cgf-cs1007",
+        "2.4.2-moment-via-gf-cs1007",
+        "2.5.1-clt-cs1008",
+        "2.5.2-simulated-sample-normal-cs1008",
+        "2.6.1-random-samples-cs1009",
+        "2.6.3-mean-var-sample-cs1009",
+        "2.6.4-normal-sample-mean-var-cs1009",
+        "2.6.5-t-statistic-cs1009",
+        "2.6.6-f-distribution-cs1009",
+        "4.2.10-fit-interpret-cs1003",
+        "5.1.9-bayes-vs-eb-cs1003",
+    }
+)
+
 _MCQ_CONVERTED_STEMS = (
     _BATCH1_MCQ_PACKAGE_STEMS
     | _BATCH2_MCQ_PACKAGE_STEMS
     | _BATCH3_MCQ_PACKAGE_STEMS
     | _BATCH4_MCQ_PACKAGE_STEMS
+    | _BATCH5_MCQ_PACKAGE_STEMS
 )
 
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
-    """Live inventory outside Batch 1/2/3/4 MCQ conversion stays short_structured."""
+    """Live inventory outside Batch 1–5 MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
@@ -287,6 +313,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     batch2_seen = 0
     batch3_seen = 0
     batch4_seen = 0
+    batch5_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
@@ -294,9 +321,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
         is_batch2 = stem in _BATCH2_MCQ_PACKAGE_STEMS
         is_batch3 = stem in _BATCH3_MCQ_PACKAGE_STEMS
         is_batch4 = stem in _BATCH4_MCQ_PACKAGE_STEMS
+        is_batch5 = stem in _BATCH5_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
             if (
-                (is_batch1 or is_batch2 or is_batch3 or is_batch4)
+                (is_batch1 or is_batch2 or is_batch3 or is_batch4 or is_batch5)
                 and check.kind in {"active_recall", "checkpoint"}
             ):
                 if is_batch1:
@@ -305,8 +333,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     batch2_seen += 1
                 elif is_batch3:
                     batch3_seen += 1
-                else:
+                elif is_batch4:
                     batch4_seen += 1
+                else:
+                    batch5_seen += 1
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -319,9 +349,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch2_seen == 48  # 24 packages × AR + CP
     assert batch3_seen == 30  # 15 packages × AR + CP
     assert batch4_seen == 36  # 18 packages × AR + CP
+    assert batch5_seen == 34  # 17 packages × AR + CP
 
-    # Spot-check a known non-Batch-1 live package still resolves and scores as before.
-    live = find_educational_package(topic_code="2.5", subject_id="CS1")
+    # Spot-check a live package still outside Batches 1–5 (topic 1.1).
+    live = find_educational_package(topic_code="1.1", subject_id="CS1")
     assert live is not None
     substance = substance_from_package(
         live,

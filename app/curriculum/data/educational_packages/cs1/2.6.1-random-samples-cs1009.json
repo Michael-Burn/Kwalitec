@@ -118,57 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.1-ar-01",
       "title": "Active Recall: 2.6.1",
-      "prompt": "Closed-book. (1) What is a random sample from a population (CMP form)? (2) What independence / identical-distribution warrant matters? (3) Name one reason a convenience collection is not automatically a random sample.",
-      "response_type": "short_structured",
-      "body": "Retrieve 2.6.1 closed-book.",
+      "prompt": "Closed-book. Which statement correctly defines a random sample from a population?",
+      "response_type": "mcq",
+      "body": "Select the sampling warrant for inference.",
       "hints": [
-        "Use CMP language from today's notes.",
-        "Stay inside today's LO."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "random",
-        "sample",
-        "population",
-        "iid",
-        "independent",
-        "identical",
-        "distribution"
-      ],
-      "explanation": "Active recall for 2.6.1.",
-      "model_answer": "A random sample is a set of observations drawn from a population under CMP sampling conditions (typically modelled as iid). Convenience collections need not satisfy those conditions.",
-      "common_mistake": "Skipping the LO hinge or swallowing the next LO.",
+      "accepted_keywords": [],
+      "explanation": "Random-sample status comes from the selection mechanism and population relationship, not from sample size or observed summaries.",
+      "model_answer": "Observations must follow the stated sampling model, usually iid draws from the target population.",
+      "common_mistake": "Treating an available data extract as random without examining how it was selected.",
       "success_criteria": [
-        "Addresses the prompt structure.",
-        "Stays inside today's LO."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A random sample consists of observations generated from the stated population under a sampling model, commonly iid draws. A collection of n observations is not automatically representative or independent.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Any n observations form a random sample once their sample mean and variance can be calculated.",
+          "misconception_tag": "n_observations_as_sample"
+        },
+        {
+          "id": "c",
+          "label": "A sample is random exactly when its sample mean equals the population mean.",
+          "misconception_tag": "mean_match_proves_randomness"
+        },
+        {
+          "id": "d",
+          "label": "Sampling design is irrelevant after an estimator formula has been selected.",
+          "misconception_tag": "estimator_repairs_sampling"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-2.6.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.1-cp-01",
       "title": "Checkpoint: 2.6.1",
-      "prompt": "Closed-book. An analyst takes the 40 most recent claims from one large commercial client and treats them as a random sample from the whole motor book. (1) In one sentence, why this may fail as a random sample of the portfolio population. (2) State what a random sample from a population requires. (3) Refuse: 'I have n=40 observations, so I already have a random sample.'",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse/warrant for 2.6.1.",
+      "prompt": "Closed-book. An analyst takes the 40 most recent claims from one client as a sample of the whole motor book. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Assess the random-sample warrant.",
       "hints": [
-        "Name the refusal clearly.",
-        "Give a positive warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "random sample",
-        "population",
-        "iid",
-        "refuse",
-        "observations",
-        "convenience"
-      ],
-      "explanation": "Checkpoint for 2.6.1.",
-      "model_answer": "(1) Consecutive claims from one client are clustered and not an iid draw from the whole book. Dependence and selection bias break the portfolio sampling warrant. (2) A random sample is drawn so that each observation follows the population distribution under CMP/iid (or stated sampling) conditions. (3) Refuse: having observations is not the same as a random sample with a lawful sampling warrant.",
-      "common_mistake": "Equating any set of n observations with a random sample from the stated population.",
+      "accepted_keywords": [],
+      "explanation": "Selection from one client does not represent an iid draw from the whole motor portfolio.",
+      "model_answer": "Not random for the whole book; selection and dependence remain despite n=40.",
+      "common_mistake": "Using sample size or a matching mean as evidence that the selection mechanism was random.",
       "success_criteria": [
-        "Refusal present.",
-        "Positive warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The extract is not a random sample of the whole book: one client's consecutive claims create selection and possible dependence. Having 40 observations does not repair that sampling mechanism.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "It is random because n=40 exceeds a common large-sample threshold.",
+          "misconception_tag": "large_n_proves_randomness"
+        },
+        {
+          "id": "c",
+          "label": "It becomes random if its mean happens to be close to the whole-book mean.",
+          "misconception_tag": "mean_match_proves_randomness"
+        },
+        {
+          "id": "d",
+          "label": "Choosing a t statistic later will correct any client-level selection bias.",
+          "misconception_tag": "statistic_repairs_selection"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
