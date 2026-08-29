@@ -14,6 +14,7 @@ class ReflectionSnapshot:
     concept_confidence: str = ""
     suggested_improvement: str = ""
     reflection_prompt: str = ""
+    confidence_prompt: str = ""
     topic_title: str = ""
     next_action_label: str = "Continue to Summary"
     has_insight: bool = False

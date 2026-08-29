@@ -315,13 +315,23 @@ class LearningSessionPersistenceAdapter:
         return deepcopy(updated)
 
     def save_reflection_note(
-        self, *, session_id: str, note: str, student_id: str = ""
+        self,
+        *,
+        session_id: str,
+        note: str,
+        student_id: str = "",
+        confidence_rating: int | None = None,
     ) -> dict[str, Any] | None:
         """Persist free-text session reflection onto the handle document.
 
         Queryable via ``load`` / completion summary. Does not score or interpret
         the note. Empty notes clear any prior stored text. When ``student_id``
         is provided, ownership must match.
+
+        Optional ``confidence_rating`` (1-5) is stored on the same document for
+        session-local calibration display only. Passing ``None`` leaves any
+        prior rating unchanged; pass an out-of-range clear by omitting storage
+        when the caller did not submit a rating.
         """
         doc = self.load(session_id=session_id)
         if doc is None:
@@ -330,7 +340,14 @@ class LearningSessionPersistenceAdapter:
         if sid and str(doc.get("student_id") or "") != sid:
             return None
         cleaned = (note or "").strip()
-        updated = {**doc, "reflection_note": cleaned}
+        updated: dict[str, Any] = {**doc, "reflection_note": cleaned}
+        if confidence_rating is not None:
+            try:
+                rating = int(confidence_rating)
+            except (TypeError, ValueError):
+                rating = 0
+            if 1 <= rating <= 5:
+                updated["confidence_rating"] = rating
         self._store.save(NS_HANDLE, session_id.strip(), updated)
         return deepcopy(updated)
 

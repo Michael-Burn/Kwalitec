@@ -403,7 +403,11 @@ def reflection_continue(session_id: str):
         flash(FLASH_WARNING["continue_invalid"], "warning")
         return redirect(url_for("session.reflection", session_id=session_id))
     try:
-        continue_reflection(session_id=session_id, note=form.reflection_note.data)
+        continue_reflection(
+            session_id=session_id,
+            note=form.reflection_note.data,
+            confidence_rating=form.resolved_confidence_rating(),
+        )
     except SessionOwnershipError as exc:
         return _guard_ownership(exc)
     except PortUnavailable:

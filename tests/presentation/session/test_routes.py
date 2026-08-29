@@ -124,7 +124,7 @@ def test_reflection_note_is_persisted_via_runtime_port(session_client, session_a
     assert cont.status_code in {302, 303}
     runtime_port = svc.reflection._runtime
     assert runtime_port.reflection_note_calls == [
-        ("1", "sess-1", "I still find deferred tax tricky.")
+        ("1", "sess-1", "I still find deferred tax tricky.", None)
     ]
     assert "/summary" in cont.headers.get("Location", "")
 

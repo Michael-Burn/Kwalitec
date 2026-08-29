@@ -160,10 +160,21 @@ class FakeSessionRuntimePort:
         }
 
     def record_reflection_note(
-        self, student_id: str, *, session_id: str, note: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        note: str,
+        confidence_rating: int | None = None,
     ) -> dict[str, Any]:
-        self.reflection_note_calls.append((student_id, session_id, note))
-        return {"recorded": True, "session_id": session_id}
+        self.reflection_note_calls.append(
+            (student_id, session_id, note, confidence_rating)
+        )
+        return {
+            "recorded": True,
+            "session_id": session_id,
+            "confidence_rating": confidence_rating,
+        }
 
     def get_completion_summary(
         self, student_id: str, *, session_id: str

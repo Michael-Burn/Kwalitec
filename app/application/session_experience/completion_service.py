@@ -234,6 +234,9 @@ class CompletionService:
         note = str(opaque.get("reflection_note") or "").strip()
         if note:
             metadata.append(("reflection_note", note))
+        rating = opaque.get("confidence_rating")
+        if rating is not None and str(rating).strip():
+            metadata.append(("confidence_rating", str(rating).strip()))
         if opaque.get("educational_package_id"):
             metadata.append(
                 (

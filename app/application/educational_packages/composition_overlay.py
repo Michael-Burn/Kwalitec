@@ -132,6 +132,7 @@ def compose_from_package(
         episodes=(episode,),
         checkpoint_prompt=checkpoint,
         reflection_prompt=reflection,
+        confidence_prompt=(pack.confidence_prompt or "").strip(),
         tomorrow_preview=tomorrow if tomorrow.has_preview else None,
         extra_study=(),
         mission_narrative=pack.student_brief or pack.mission_narrative,

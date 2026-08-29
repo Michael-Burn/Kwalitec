@@ -43,6 +43,7 @@ class ReflectionProjection:
     concept_confidence: str = ""
     suggested_improvement: str = ""
     reflection_prompt: str = ""
+    confidence_prompt: str = ""
     topic_title: str = ""
     next_action_label: str = "Continue to Summary"
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
@@ -56,6 +57,7 @@ class ReflectionProjection:
         concept_confidence: str = "",
         suggested_improvement: str = "",
         reflection_prompt: str = "",
+        confidence_prompt: str = "",
         topic_title: str = "",
         next_action_label: str = "Continue to Summary",
         metadata: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
@@ -65,11 +67,13 @@ class ReflectionProjection:
         confidence = (concept_confidence or "").strip()
         improvement = (suggested_improvement or "").strip()
         prompt = (reflection_prompt or "").strip()
+        conf_prompt = (confidence_prompt or "").strip()
         for label, text in (
             ("key_insight", insight),
             ("concept_confidence", confidence),
             ("suggested_improvement", improvement),
             ("reflection_prompt", prompt),
+            ("confidence_prompt", conf_prompt),
         ):
             if text and not is_reflection_safe(text):
                 raise ValueError(f"{label} contains forbidden scoring language")
@@ -80,6 +84,7 @@ class ReflectionProjection:
             suggested_improvement=improvement,
             reflection_prompt=prompt
             or "What felt clearest, and what still needs practice?",
+            confidence_prompt=conf_prompt,
             topic_title=(topic_title or "").strip(),
             next_action_label=(
                 (next_action_label or "Continue to Summary").strip()

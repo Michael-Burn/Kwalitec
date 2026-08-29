@@ -68,6 +68,7 @@ def default_reflection(
             f"Revisit borderline cases in {topic} next session"
         ),
         "reflection_prompt": f"What still feels unclear about {topic}?",
+        "confidence_prompt": "",
         "topic_title": topic,
         "next_action_label": "Continue to Summary",
         "student_note": "",

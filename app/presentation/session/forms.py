@@ -90,7 +90,31 @@ class ContinueReflectionForm(FlaskForm):
         "Your reflection",
         validators=[Optional(), Length(max=2000)],
     )
+    confidence_rating = RadioField(
+        "Confidence",
+        choices=[
+            ("1", "1"),
+            ("2", "2"),
+            ("3", "3"),
+            ("4", "4"),
+            ("5", "5"),
+        ],
+        validators=[Optional()],
+    )
     submit = SubmitField("Continue to Summary")
+
+    def resolved_confidence_rating(self) -> int | None:
+        """Return 1-5 when a valid rating was posted; otherwise None."""
+        raw = (self.confidence_rating.data or "").strip()
+        if not raw:
+            return None
+        try:
+            value = int(raw)
+        except (TypeError, ValueError):
+            return None
+        if 1 <= value <= 5:
+            return value
+        return None
 
 
 class FinishReviewForm(FlaskForm):

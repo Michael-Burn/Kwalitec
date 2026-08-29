@@ -123,6 +123,7 @@ class StudySessionService:
         tomorrow_preview = ""
         assessment_mode_active = False
         assessment_summary = ""
+        confidence_calibration = ""
         exercises_assigned: tuple[str, ...] = ()
         exercises_completed: tuple[str, ...] = ()
         strengthened: tuple[str, ...] = ()
@@ -151,6 +152,7 @@ class StudySessionService:
             tomorrow_preview = completion.tomorrow_preview or ""
             assessment_mode_active = bool(completion.assessment_mode_active)
             assessment_summary = completion.assessment_summary or ""
+            confidence_calibration = completion.confidence_calibration or ""
             exercises_assigned = completion.exercises_assigned or ()
             exercises_completed = completion.exercises_completed or ()
             strengthened = completion.strengthened or ()
@@ -267,6 +269,7 @@ class StudySessionService:
             session_id=page.shell.session_id,
             activity_id=(page.activity.activity_id if page.activity else ""),
             mission_id=(page.overview.mission_id if page.overview else "") or "",
+            confidence_prompt=str(content.get("confidence_prompt") or ""),
             reading_progress_percent=reading_progress,
             show_pause=product
             and surface
@@ -302,6 +305,7 @@ class StudySessionService:
             tomorrow_preview=tomorrow_preview,
             assessment_mode_active=assessment_mode_active,
             assessment_summary=assessment_summary,
+            confidence_calibration=confidence_calibration,
             exercises_assigned=exercises_assigned,
             exercises_completed=exercises_completed,
             strengthened=strengthened,
@@ -665,6 +669,7 @@ class StudySessionService:
             "support": "",
             "answer_prompt": "Your answer",
             "show_answer_input": False,
+            "confidence_prompt": "",
             "feedback_outcome": "",
             "feedback_explanation": "",
             "model_answer": "",
@@ -737,6 +742,7 @@ class StudySessionService:
             )
 
             prompt = (page.reflection.reflection_prompt or "").strip()
+            confidence_prompt = (page.reflection.confidence_prompt or "").strip()
             support = ""
             if page.reflection.key_insight:
                 support = page.reflection.key_insight
@@ -749,6 +755,7 @@ class StudySessionService:
                 "body": "",
                 "support": support,
                 "answer_prompt": prompt or "Your reflection",
+                "confidence_prompt": confidence_prompt,
                 "show_answer_input": True,
             }
 

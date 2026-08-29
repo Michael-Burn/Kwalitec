@@ -305,6 +305,9 @@
       {% if s.assessment_summary %}
       <p data-assessment-summary="true">{{ s.assessment_summary }}</p>
       {% endif %}
+      {% if s.confidence_calibration %}
+      <p class="ds-list__meta" data-confidence-calibration="true">{{ s.confidence_calibration }}</p>
+      {% endif %}
       {% if s.performance_summary %}
       <p class="ds-list__meta" data-performance-summary="true">{{ s.performance_summary }}</p>
       {% endif %}
@@ -583,6 +586,24 @@
         autocomplete="off",
         **{"aria-labelledby": "session-reflection-label"}
       ) }}
+      {% if s.confidence_prompt %}
+      <fieldset class="ds-session-finish-review__choices" data-confidence-rating="true">
+        <legend class="ds-session-reflection__prompt" id="session-confidence-label">
+          {{ s.confidence_prompt }}
+        </legend>
+        {% for value, label in form.confidence_rating.choices %}
+        <label class="ds-session-finish-review__option">
+          <input
+            type="radio"
+            name="{{ form.confidence_rating.name }}"
+            value="{{ value }}"
+            {% if form.confidence_rating.data == value %}checked{% endif %}
+          >
+          {{ label }}
+        </label>
+        {% endfor %}
+      </fieldset>
+      {% endif %}
       <div class="ds-primary-strip" role="group" aria-label="Primary actions">
         <button class="ds-btn ds-btn--primary" type="submit" data-session-cta="primary">
           {{ s.primary_label }}

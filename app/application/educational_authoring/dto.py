@@ -204,6 +204,7 @@ class MissionComposition:
     episodes: tuple[LearningEpisode, ...] = ()
     checkpoint_prompt: str = ""
     reflection_prompt: str = ""
+    confidence_prompt: str = ""
     tomorrow_preview: TomorrowPreview | None = None
     extra_study: tuple[ExtraStudyOffer, ...] = ()
     mission_narrative: str = ""
@@ -224,6 +225,7 @@ class MissionComposition:
             "episodes": [e.to_opaque() for e in self.episodes],
             "checkpoint_prompt": self.checkpoint_prompt,
             "reflection_prompt": self.reflection_prompt,
+            "confidence_prompt": self.confidence_prompt,
             "tomorrow_preview": (
                 self.tomorrow_preview.to_opaque()
                 if self.tomorrow_preview

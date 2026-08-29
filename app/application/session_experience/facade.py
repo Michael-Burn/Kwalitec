@@ -262,10 +262,18 @@ class SessionExperienceService:
         return self._reflection.reflection(student_id, session_id=session_id)
 
     def continue_from_reflection(
-        self, student_id: str, *, session_id: str, note: str | None = None
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        note: str | None = None,
+        confidence_rating: int | None = None,
     ) -> ReflectionSnapshot:
         return self._reflection.continue_to_summary(
-            student_id, session_id=session_id, note=note
+            student_id,
+            session_id=session_id,
+            note=note,
+            confidence_rating=confidence_rating,
         )
 
     def get_summary(

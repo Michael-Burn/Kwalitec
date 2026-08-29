@@ -125,6 +125,7 @@ class ReflectionViewModel:
     concept_confidence: str = ""
     suggested_improvement: str = ""
     reflection_prompt: str = ""
+    confidence_prompt: str = ""
     topic_title: str = ""
     next_action_label: str = "Continue to Summary"
     session_id: str = ""
@@ -155,6 +156,7 @@ class CompletionViewModel:
     tomorrow_preview: str = ""
     assessment_mode_active: bool = False
     assessment_summary: str = ""
+    confidence_calibration: str = ""
     exercises_assigned: tuple[str, ...] = ()
     exercises_completed: tuple[str, ...] = ()
     strengthened: tuple[str, ...] = ()
@@ -326,6 +328,7 @@ def reflection_vm(snap: ReflectionSnapshot) -> ReflectionViewModel:
         concept_confidence=snap.concept_confidence,
         suggested_improvement=snap.suggested_improvement,
         reflection_prompt=snap.reflection_prompt,
+        confidence_prompt=snap.confidence_prompt,
         topic_title=snap.topic_title,
         next_action_label=snap.next_action_label,
         session_id=snap.session_id,
@@ -422,6 +425,7 @@ def completion_vm(snap: CompletionSnapshot) -> CompletionViewModel:
         ),
         assessment_mode_active=sitting.assessment_mode_active,
         assessment_summary=sitting.assessment_summary,
+        confidence_calibration=sitting.confidence_calibration,
         exercises_assigned=sitting.exercises_assigned,
         exercises_completed=sitting.exercises_completed,
         strengthened=sitting.strengthened,
@@ -472,6 +476,9 @@ def _sitting_opaque_from_metadata_pairs(
     return {
         "topic_title": meta.get("topic_title") or "",
         "reflection_note": meta.get("reflection_note") or "",
+        "confidence_rating": _parse_confidence_rating(
+            meta.get("confidence_rating")
+        ),
         "learning_objectives": objectives,
         "activities": activities,
         "observations": observations,
@@ -516,6 +523,19 @@ def _sitting_opaque_from_metadata_pairs(
             else None
         ),
     }
+
+
+def _parse_confidence_rating(raw: object) -> int | None:
+    """Coerce opaque confidence_rating to 1-5 or None."""
+    if raw is None or raw == "":
+        return None
+    try:
+        value = int(raw)
+    except (TypeError, ValueError):
+        return None
+    if 1 <= value <= 5:
+        return value
+    return None
 
 
 def _primary_cta(surface, overview, activity, reflection, completion):

@@ -400,7 +400,12 @@ class SessionRuntimeAdapter:
         )
 
     def record_reflection_note(
-        self, student_id: str, *, session_id: str, note: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        note: str,
+        confidence_rating: int | None = None,
     ) -> dict[str, Any]:
         """Persist the student's free-text reflection note onto the session record.
 
@@ -409,6 +414,9 @@ class SessionRuntimeAdapter:
         ``ENABLE_DURABLE_STORE`` is on (production), process-local memory
         otherwise. Live engine path also writes ``reflection_note`` onto the
         Learning Session handle document. Never scores or interprets the note.
+
+        Optional ``confidence_rating`` (1-5) is stored beside the note for
+        session-local calibration display only.
         """
         self._diagnostics.record_call(self.ADAPTER_ID)
         sid = student_id.strip()
@@ -418,7 +426,10 @@ class SessionRuntimeAdapter:
             self._engine, "record_reflection_note_opaque"
         ):
             recorded = self._engine.record_reflection_note_opaque(
-                sid, session_id=sess, note=cleaned
+                sid,
+                session_id=sess,
+                note=cleaned,
+                confidence_rating=confidence_rating,
             )
             if isinstance(recorded, dict):
                 # Keep NS_REFLECTION aligned with engine handle persistence.
@@ -437,6 +448,10 @@ class SessionRuntimeAdapter:
                     else cleaned
                 )
                 updated = {**existing, "student_note": note_text}
+                if recorded.get("confidence_rating") is not None:
+                    updated["confidence_rating"] = recorded.get("confidence_rating")
+                elif confidence_rating is not None:
+                    updated["confidence_rating"] = confidence_rating
                 self._store.save(self.NS_REFLECTION, self._key(sid, sess), updated)
                 return dict(recorded)
         overview = self.get_session_overview(sid, session_id=sess) or {}
@@ -446,12 +461,20 @@ class SessionRuntimeAdapter:
             topic_title=_topic_from_overview(overview),
         )
         updated = {**existing, "student_note": cleaned}
+        if confidence_rating is not None:
+            try:
+                rating = int(confidence_rating)
+            except (TypeError, ValueError):
+                rating = 0
+            if 1 <= rating <= 5:
+                updated["confidence_rating"] = rating
         self._store.save(self.NS_REFLECTION, self._key(sid, sess), updated)
         return {
             "recorded": True,
             "student_id": sid,
             "session_id": sess,
             "authority": "learning_session_runtime",
+            "confidence_rating": updated.get("confidence_rating"),
         }
 
     def get_completion_summary(

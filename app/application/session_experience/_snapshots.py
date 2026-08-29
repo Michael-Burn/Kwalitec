@@ -106,6 +106,7 @@ def reflection_snapshot(reflection: ReflectionProjection) -> ReflectionSnapshot:
         concept_confidence=reflection.concept_confidence,
         suggested_improvement=reflection.suggested_improvement,
         reflection_prompt=reflection.reflection_prompt,
+        confidence_prompt=reflection.confidence_prompt,
         topic_title=reflection.topic_title,
         next_action_label=reflection.next_action_label,
         has_insight=reflection.has_insight,

@@ -60,6 +60,7 @@ class ReflectionService:
                 reflection_prompt=str(
                     opaque.get("reflection_prompt") or opaque.get("prompt") or ""
                 ),
+                confidence_prompt=str(opaque.get("confidence_prompt") or ""),
                 topic_title=str(opaque.get("topic_title") or opaque.get("topic") or ""),
                 next_action_label=str(
                     opaque.get("next_action_label") or "Continue to Summary"
@@ -76,7 +77,12 @@ class ReflectionService:
         return reflection_snapshot(domain)
 
     def continue_to_summary(
-        self, student_id: str, *, session_id: str, note: str | None = None
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        note: str | None = None,
+        confidence_rating: int | None = None,
     ) -> ReflectionSnapshot:
         """Acknowledge reflection and move workspace to Summary.
 
@@ -84,13 +90,24 @@ class ReflectionService:
         reflection record via the Session Runtime port before navigating —
         this is what backs the "stays with your session record" promise made
         on the Reflection screen (see B1, PX-003 release blockers).
+
+        Optional ``confidence_rating`` (1-5) is stored on the same session
+        record for session-local calibration display only. It is never scored
+        into Twin, Decision, mastery, or recommendation pathways.
         """
         snap = self.reflection(student_id, session_id=session_id)
-        if note is not None and note.strip():
+        has_note = note is not None and note.strip()
+        has_rating = confidence_rating is not None
+        if has_note or has_rating:
             runtime = self._require_runtime()
             sid = _require_id(student_id)
             sess = _require_id(session_id, field="session_id")
-            runtime.record_reflection_note(sid, session_id=sess, note=note.strip())
+            runtime.record_reflection_note(
+                sid,
+                session_id=sess,
+                note=(note or "").strip(),
+                confidence_rating=confidence_rating,
+            )
         if self._registry is not None:
             workspace = self._registry.get_workspace_for_session(session_id)
             if workspace is not None:

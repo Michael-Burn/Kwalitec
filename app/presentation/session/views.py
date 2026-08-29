@@ -166,11 +166,17 @@ def advance_activity(*, session_id: str) -> ActivitySnapshot | None:
 
 
 def continue_reflection(
-    *, session_id: str, note: str | None = None
+    *,
+    session_id: str,
+    note: str | None = None,
+    confidence_rating: int | None = None,
 ) -> ReflectionSnapshot:
     assert_session_owned(session_id)
     return service().continue_from_reflection(
-        student_id(), session_id=session_id, note=note
+        student_id(),
+        session_id=session_id,
+        note=note,
+        confidence_rating=confidence_rating,
     )
 
 

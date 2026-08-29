@@ -74,6 +74,8 @@ class StudySessionPage:
     session_id: str
     activity_id: str
     mission_id: str = ""
+    # Domain H.1 — authored package confidence prompt (reflection only).
+    confidence_prompt: str = ""
     # Structured L1 body (Reading / checklist-style guidance). Empty → plain body.
     # For Reading: default-visible essentials only; secondary blocks in
     # content_sections_more (collapsed "More guidance" disclosure).
@@ -124,6 +126,7 @@ class StudySessionPage:
     tomorrow_preview: str = ""
     assessment_mode_active: bool = False
     assessment_summary: str = ""
+    confidence_calibration: str = ""
     exercises_assigned: tuple[str, ...] = ()
     exercises_completed: tuple[str, ...] = ()
     strengthened: tuple[str, ...] = ()

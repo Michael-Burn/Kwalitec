@@ -90,6 +90,8 @@ class SittingReportViewModel:
     assessment_mode_active: bool = False
     assessment_summary: str = ""
     has_report: bool = False
+    # Domain H.2 — session-local confidence vs scored practice (display only).
+    confidence_calibration: str = ""
     # KWP-007 — Learning Strategy (student-safe; no calibration labels).
     strategy_title: str = ""
     strategy_body: str = ""
@@ -182,6 +184,9 @@ def build_sitting_report(
             f"You attempted {counts['attempted']} practice items on {topic}. "
             "Scored results will appear when practice includes checkable answers."
         )
+    confidence_calibration = _confidence_calibration(
+        opaque.get("confidence_rating"), counts
+    )
 
     twin_enrichment = twin_signals or twin_insights or {}
     # KWP-011 — prefer frozen Sitting Report fields when present.
@@ -237,6 +242,7 @@ def build_sitting_report(
             finish_outcome_label=_safe(finish_label),
             assessment_mode_active=has_scored or bool(assigned),
             assessment_summary=_safe(assessment_summary),
+            confidence_calibration=_safe(confidence_calibration),
             has_report=True,
             strategy_title=_safe(strategy_title),
             strategy_body=_safe(strategy_body),
@@ -318,6 +324,7 @@ def build_sitting_report(
         finish_outcome_label=_safe(finish_label),
         assessment_mode_active=has_scored or bool(assigned),
         assessment_summary=_safe(assessment_summary),
+        confidence_calibration=_safe(confidence_calibration),
         has_report=True,
         strategy_title=_safe(strategy.recommendation_title),
         strategy_body=_safe(strategy.recommendation_body),
@@ -583,6 +590,36 @@ def _practice_counts(opaque: dict[str, Any]) -> dict[str, int]:
         "attempted": attempted,
         "unscored": unscored,
     }
+
+
+def _confidence_calibration(
+    raw_rating: object, counts: dict[str, int]
+) -> str:
+    """Session-local line comparing self-rated confidence to scored practice.
+
+    Descriptive only. Does not claim exam readiness, adjust mastery, or feed
+    Twin / Decision / recommendation pathways.
+    """
+    scored = int(counts.get("correct") or 0) + int(counts.get("incorrect") or 0)
+    if scored <= 0:
+        return ""
+    try:
+        rating = int(raw_rating) if raw_rating is not None and raw_rating != "" else 0
+    except (TypeError, ValueError):
+        return ""
+    if rating < 1 or rating > 5:
+        return ""
+    correct = int(counts.get("correct") or 0)
+    incorrect = int(counts.get("incorrect") or 0)
+    mostly_correct = correct > incorrect
+    missed_checks = incorrect > 0
+    if rating >= 4 and missed_checks:
+        return (
+            "You felt ready today; the checks told a different story."
+        )
+    if rating <= 2 and mostly_correct:
+        return "You weren't sure, but the checks went well."
+    return ""
 
 
 def _type_ids(opaque: dict[str, Any]) -> list[str]:

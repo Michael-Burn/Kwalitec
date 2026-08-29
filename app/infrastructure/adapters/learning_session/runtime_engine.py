@@ -897,16 +897,25 @@ class LearningSessionRuntimeEngine:
         if substance_on:
             # EA-006: prefer certified package reflection when topic matches.
             pack_prompt = ""
+            pack_confidence = ""
             try:
                 from app.application.educational_packages.loader import (
                     find_educational_package,
+                    find_package_by_id,
                 )
 
-                pack = find_educational_package(topic_title=topic)
+                pack = None
+                pkg_id = str(record.get("educational_package_id") or "").strip()
+                if pkg_id:
+                    pack = find_package_by_id(pkg_id)
+                if pack is None:
+                    pack = find_educational_package(topic_title=topic)
                 if pack is not None:
                     pack_prompt = pack.reflection_prompt or pack.reflection_framing
+                    pack_confidence = (pack.confidence_prompt or "").strip()
             except Exception:  # noqa: BLE001 — reflection must stay resilient
                 pack_prompt = ""
+                pack_confidence = ""
             objectives = self._learning_objectives_from_sequence(
                 student_id=student_id, session_id=session_id
             )
@@ -926,11 +935,14 @@ class LearningSessionRuntimeEngine:
                 f"After reading, examples, and practice on {topic}, "
                 "what still feels unclear — and what will you try next?"
             )
+            stored_rating = record.get("confidence_rating")
             return {
                 "key_insight": insight,
                 "concept_confidence": confidence,
                 "suggested_improvement": improvement,
                 "reflection_prompt": prompt,
+                "confidence_prompt": pack_confidence,
+                "confidence_rating": stored_rating,
                 "topic_title": topic,
                 "learning_objectives": objectives,
                 "skip_available": True,
@@ -944,6 +956,8 @@ class LearningSessionRuntimeEngine:
             "concept_confidence": "",
             "suggested_improvement": "",
             "reflection_prompt": f"What felt clear about {topic}?",
+            "confidence_prompt": "",
+            "confidence_rating": record.get("confidence_rating"),
             "topic_title": topic,
             "student_note": str(record.get("reflection_note") or ""),
             "authority": "learning_session_runtime",
@@ -1025,6 +1039,7 @@ class LearningSessionRuntimeEngine:
             "exam_readiness_change": 0.0,
             "topic_title": topic,
             "reflection_note": str(record.get("reflection_note") or ""),
+            "confidence_rating": record.get("confidence_rating"),
             "authority": "learning_session_runtime",
             "progress_advanced": progress_advanced,
             "mission_completed": mission_completed,
@@ -1094,14 +1109,30 @@ class LearningSessionRuntimeEngine:
         return items
 
     def record_reflection_note_opaque(
-        self, student_id: str, *, session_id: str, note: str
+        self,
+        student_id: str,
+        *,
+        session_id: str,
+        note: str,
+        confidence_rating: int | None = None,
     ) -> dict[str, Any]:
         record = self._persistence.load(session_id=session_id) or {}
         text = (note or "").strip()
         # Durable free-text on the session handle (not length-only evidence).
         self._persistence.save_reflection_note(
-            session_id=session_id, note=text, student_id=student_id
+            session_id=session_id,
+            note=text,
+            student_id=student_id,
+            confidence_rating=confidence_rating,
         )
+        stored_rating = None
+        if confidence_rating is not None:
+            try:
+                rating = int(confidence_rating)
+            except (TypeError, ValueError):
+                rating = 0
+            if 1 <= rating <= 5:
+                stored_rating = rating
         if text:
             self._emit_candidate(
                 RuntimeEvidenceType.REFLECTION_SUBMITTED,
@@ -1124,6 +1155,7 @@ class LearningSessionRuntimeEngine:
             "student_id": student_id,
             "session_id": session_id,
             "student_note": text,
+            "confidence_rating": stored_rating,
             "authority": "learning_session_runtime",
             # Structured note stays on the session record — Journal is REF-001.
             "journal_written": False,
