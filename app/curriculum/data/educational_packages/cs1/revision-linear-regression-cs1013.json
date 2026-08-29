@@ -118,60 +118,88 @@
       "kind": "active_recall",
       "item_id": "cs1013-cn-r1-ar-01",
       "title": "Active Recall: CN-R1",
-      "prompt": "Closed-book. Name the five Campaign Nu Learning hinges in order (4.1.1→4.1.5) in short phrases.",
-      "response_type": "short_structured",
-      "body": "Retrieve Nu chain closed-book.",
+      "prompt": "Closed-book. For observations (xi, yi), what criterion defines ordinary least squares estimates?",
+      "response_type": "mcq",
+      "body": "Select the correct criterion.",
       "hints": [
-        "Response/explanatory first.",
-        "End with variable selection."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "explanatory",
-        "simple",
-        "multiple",
-        "least squares",
-        "software",
-        "residuals",
-        "variable selection"
-      ],
-      "explanation": "RV retrieves the Campaign chain.",
-      "model_answer": "4.1.1 response/explanatory → 4.1.2 simple/multiple → 4.1.3 least squares → 4.1.4 software fit/inference/prediction/residuals → 4.1.5 variable selection by fit measures.",
-      "common_mistake": "Skipping least squares or collapsing software day into selection.",
+      "accepted_keywords": [],
+      "explanation": "OLS minimises residual sum of squares for the specified model form.",
+      "model_answer": "Minimise squared vertical differences between observed and fitted responses.",
+      "common_mistake": "Minimising fitted values or requiring exact interpolation.",
       "success_criteria": [
-        "Five hinges in order.",
-        "Short phrases sufficient."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Choose coefficients that minimise the sum over i of (yi minus fitted yi) squared.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Choose coefficients that minimise the sum of fitted responses squared.",
+          "misconception_tag": "fitted_values_objective"
+        },
+        {
+          "id": "c",
+          "label": "Choose coefficients that maximise sample correlation in every regression.",
+          "misconception_tag": "correlation_as_ols"
+        },
+        {
+          "id": "d",
+          "label": "Choose coefficients that make every residual zero regardless of parameter count.",
+          "misconception_tag": "perfect_interpolation_requirement"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1013-cn-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1013-cn-r1-cp-01",
       "title": "Checkpoint: CN-R1",
-      "prompt": "Closed-book. (1) Name today's weakest linear-regression link and one concrete rework. (2) Refuse: 'Variable selection finished GLM and Bayesian modelling.' (3) Name whether you stop here or what syllabus topic honestly comes next. Not 'exam ready.'",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. Stepwise selection produces a linear model with high R-squared, but its residual plot shows clear curvature. What is the best conclusion?",
+      "response_type": "mcq",
+      "body": "Select the warranted response.",
       "hints": [
-        "Name a rework, not a vague review.",
-        "Refuse trophy claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weakest",
-        "rework",
-        "refuse",
-        "4.2",
-        "spine",
-        "Wave 0",
-        "remainder",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. residual diagnostics (five-minute rework. (2) Refuse 4.2/5.1 absorb / spine / until-exam. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit successor Volume) not claimed finished here.",
-      "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Residual curvature indicates an inadequate mean structure; selection criteria do not replace diagnostics.",
+      "model_answer": "Reconsider the functional form and validate a justified revised specification.",
+      "common_mistake": "Assuming automated selection or high R-squared establishes adequacy.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The mean structure is likely misspecified, so investigate justified transformations or nonlinear terms and validate the revised model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "High R-squared proves the linear functional form is adequate.",
+          "misconception_tag": "r_squared_overrides_curvature"
+        },
+        {
+          "id": "c",
+          "label": "Variable selection guarantees unbiased coefficients and valid inference.",
+          "misconception_tag": "selection_guarantees_inference"
+        },
+        {
+          "id": "d",
+          "label": "Delete observations on one side of the curve until residuals look flat.",
+          "misconception_tag": "diagnostic_driven_deletion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

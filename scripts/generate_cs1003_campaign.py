@@ -8,6 +8,7 @@ from pathlib import Path
 from _mcq_batch4_delta_payload import apply_mcq_overlay as apply_batch4_mcq_overlay
 from _mcq_batch5_batch_e_payload import apply_mcq_overlay as apply_batch5_mcq_overlay
 from _mcq_batch6a_strong_payload import apply_mcq_overlay as apply_batch6a_mcq_overlay
+from _mcq_batch6b_revision_payload import apply_mcq_overlay as apply_batch6b_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-delta-cs1003"
@@ -1623,7 +1624,9 @@ def main() -> None:
     for rev in REVISIONS:
         stem = rev_stems[rev["campaign_day"]]
         path = PKG_DIR / f"{stem}.json"
-        path.write_text(json.dumps(rev, indent=2) + "\n")
+        path.write_text(
+            json.dumps(apply_batch6b_mcq_overlay(rev, stem), indent=2) + "\n"
+        )
         inventory.append(rev["package_id"])
 
     # Insert revisions into inventory order: after 4.1, after 4.2, after 5.1

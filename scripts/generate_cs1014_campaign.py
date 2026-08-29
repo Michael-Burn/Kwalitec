@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 
 from _mcq_batch2_continuity_front_payload import apply_mcq_overlay
+from _mcq_batch6b_revision_payload import apply_mcq_overlay as apply_batch6b_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-xi-cs1014"
@@ -1563,7 +1564,7 @@ def main() -> None:
         inventory.append(d["pid"])
         span.append(d["lo"])
 
-    rev = revision_pkg()
+    rev = apply_batch6b_mcq_overlay(revision_pkg(), "revision-glm-cs1014")
     (PKG_DIR / "revision-glm-cs1014.json").write_text(json.dumps(rev, indent=2) + "\n")
     inventory.append(rev["package_id"])
 

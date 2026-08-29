@@ -117,56 +117,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-cd-r1-ar-01",
       "title": "Active Recall: CD-R1",
-      "prompt": "Closed-book. In order, name the five 4.1 Learning moves (4.1.1–4.1.5) in one short phrase each.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall.",
+      "prompt": "Closed-book. In a multiple linear model Y = X beta + epsilon, which statement correctly describes ordinary least squares?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "simple",
-        "multiple",
-        "least squares",
-        "software",
-        "selection",
-        "residual"
-      ],
-      "explanation": "Revision retrieves the arc.",
-      "model_answer": "Roles; simple/multiple forms; OLS slope/intercept; software fit/inference/prediction/residuals; fit-measure selection.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "OLS estimates coefficients by minimising squared differences between observed and fitted responses.",
+      "model_answer": "Y is the response, X contains predictors, and OLS minimises residual sum of squares.",
+      "common_mistake": "Confusing variable roles or minimising fitted values rather than residuals.",
       "success_criteria": [
-        "Return targets named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Y is the response, columns of X are explanatory variables, and OLS chooses beta to minimise the sum of squared residuals.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "OLS chooses Y to minimise the sum of squared fitted values.",
+          "misconception_tag": "ols_objective_confusion"
+        },
+        {
+          "id": "c",
+          "label": "Every explanatory variable must be independent of every other explanatory variable.",
+          "misconception_tag": "predictor_independence_requirement"
+        },
+        {
+          "id": "d",
+          "label": "Multiple regression fits a separate response for each predictor.",
+          "misconception_tag": "multiple_regression_role_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-cd-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-cd-r1-cp-01",
-      "title": "Checkpoint: CD-R1",
-      "prompt": "Closed-book. (1) Weakest 4.1 link + one rework. (2) Confirm GLM was out of scope today and name tomorrow's LO.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "title": "Revision Checkpoint: residual diagnostics under heteroscedasticity",
+      "prompt": "Closed-book. An OLS fit has residuals whose spread increases markedly with fitted values. What is the best interpretation?",
+      "response_type": "mcq",
+      "body": "Select the warranted conclusion.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "4.2.1",
-        "glm",
-        "out of scope"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. residual checks: five-minute rework. (2) GLM out of scope; tomorrow 4.2.1 exponential family.",
-      "common_mistake": "Spine / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "A funnel-shaped residual plot indicates heteroscedasticity, which affects usual OLS inference.",
+      "model_answer": "Investigate non-constant variance and consider a justified transformation, variance model, or robust inference.",
+      "common_mistake": "Treating high R-squared as a substitute for residual diagnostics.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The constant-variance assumption is doubtful, so usual standard errors and inference may be unreliable without an appropriate remedy.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The pattern proves the fitted mean relationship is exactly correct.",
+          "misconception_tag": "diagnostic_as_confirmation"
+        },
+        {
+          "id": "c",
+          "label": "The pattern is harmless whenever R-squared is high.",
+          "misconception_tag": "r_squared_overrides_diagnostics"
+        },
+        {
+          "id": "d",
+          "label": "Always remove observations with the largest residuals.",
+          "misconception_tag": "automatic_residual_deletion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

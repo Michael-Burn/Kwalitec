@@ -119,59 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1004-cgr1-ar-01",
       "title": "Active Recall: Gamma chain",
-      "prompt": "Closed-book. In order, name the four Gamma Learning moves (2.1.3–2.1.6) in one short phrase each. Then add one Beta placement hinge (discrete or continuous).",
-      "response_type": "short_structured",
-      "body": "Chain + Beta hinge.",
+      "prompt": "Closed-book. Let F be a continuous strictly increasing distribution function and U be Uniform(0, 1). Which variable has distribution function F?",
+      "response_type": "mcq",
+      "body": "Select the inverse-transform construction.",
       "hints": [
-        "evaluate; process; inverse transform; software generation",
-        "Beta: discrete match or continuous place/refuse Normal"
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "quantile",
-        "probability",
-        "poisson",
-        "process",
-        "inverse",
-        "software",
-        "discrete",
-        "continuous",
-        "normal"
-      ],
-      "explanation": "Revision retrieves the arc, not isolated trivia.",
-      "model_answer": "2.1.3 evaluate probabilities/quantiles; 2.1.4 Poisson process↔Poisson; 2.1.5 inverse transform; 2.1.6 software generation. Beta hinge example: place lognormal for positive skew and refuse Normal-by-default.",
-      "common_mistake": "Skipping process or generation links.",
+      "accepted_keywords": [],
+      "explanation": "Inverse transform maps a uniform probability through the target quantile function.",
+      "model_answer": "Generate U uniformly and set X = F inverse(U).",
+      "common_mistake": "Applying the distribution function rather than its inverse.",
       "success_criteria": [
-        "Four Gamma moves named.",
-        "One Beta hinge."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X = F inverse(U).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X = F(U).",
+          "misconception_tag": "cdf_vs_inverse"
+        },
+        {
+          "id": "c",
+          "label": "X = 1 minus U for every F.",
+          "misconception_tag": "uniform_only_transform"
+        },
+        {
+          "id": "d",
+          "label": "X = log(U) regardless of the support of F.",
+          "misconception_tag": "unsupported_fixed_transform"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1004-cgr1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-cgr1-cp-01",
-      "title": "Checkpoint: weakest link + honest next",
-      "prompt": "Closed-book. (1) Which univariate link is weakest today (family placement, probability/quantile evaluation, process link, or generation) and what one rework will you schedule? (2) Confirm joints (2.2) were out of scope today and name the honest next topic after this stretch.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest handoff to 2.2.",
+      "title": "Revision Checkpoint: univariate generation and placement",
+      "prompt": "Closed-book. To generate an Exponential distribution with rate lambda from U distributed Uniform(0, 1), which formula is valid?",
+      "response_type": "mcq",
+      "body": "Select the valid construction.",
       "hints": [
-        "Name a concrete rework.",
-        "Next: joint distributions 2.2 (successor Volume), not claimed complete today."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "2.2",
-        "joint",
-        "out of scope",
-        "next"
-      ],
-      "explanation": "RV harvests memory debt and honest Continuity Front movement.",
-      "model_answer": "(1) e.g. Inverse transform discrete case. Schedule a five-minute threshold drill. (2) 2.2 was out of scope; honest next geography is jointly distributed random variables (2.2) in a successor Volume.",
-      "common_mistake": "Claiming Chapter 2 finished.",
+      "accepted_keywords": [],
+      "explanation": "The exponential quantile is -log(1-u)/lambda, and 1-U is also uniform.",
+      "model_answer": "Use X = -log(1-U)/lambda and verify non-negative support.",
+      "common_mistake": "Multiplying by the rate instead of dividing by it.",
       "success_criteria": [
-        "Weakest link + rework.",
-        "Honest 2.2 handoff named."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X = -log(1 - U) / lambda, equivalently -log(U) / lambda.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X = log(U) / lambda.",
+          "misconception_tag": "negative_support_error"
+        },
+        {
+          "id": "c",
+          "label": "X = lambda U.",
+          "misconception_tag": "uniform_scaling_confusion"
+        },
+        {
+          "id": "d",
+          "label": "X = -lambda log(U).",
+          "misconception_tag": "rate_scale_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

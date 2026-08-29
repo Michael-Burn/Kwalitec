@@ -113,61 +113,88 @@
       "kind": "active_recall",
       "item_id": "cs1006-cz-r1-ar-01",
       "title": "Active Recall: CZ-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) conditional expectation of one RV given another; (2) mean and/or variance obtained as an expectation of conditional expected values.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 2.3.",
+      "prompt": "Closed-book. Which identity is the law of total expectation?",
+      "response_type": "mcq",
+      "body": "Select the correct identity.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "conditional",
-        "expectation",
-        "given",
-        "tower",
-        "total",
-        "mean",
-        "variance",
-        "conditioning",
-        "E[Y|X]"
-      ],
-      "explanation": "Revision retrieves the 2.3 arc.",
-      "model_answer": "Example: (1) E[Y|X=x] is the expected value of Y given X=x (function of x). (2) E[Y]=E[E[Y|X]]; variance can use conditioning / law of total variance as in the CMP.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "Averaging the conditional mean over X recovers the unconditional mean.",
+      "model_answer": "Compute E[Y given X], then average over X.",
+      "common_mistake": "Treating conditional expectation as the unconditional constant.",
       "success_criteria": [
-        "Two hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[Y] = E[E[Y given X]].",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[Y] = E[Y given X] for every realised X.",
+          "misconception_tag": "conditional_as_constant"
+        },
+        {
+          "id": "c",
+          "label": "E[Y] = Var(E[Y given X]).",
+          "misconception_tag": "mean_variance_confusion"
+        },
+        {
+          "id": "d",
+          "label": "E[Y given X] = E[X given Y] in general.",
+          "misconception_tag": "conditional_symmetry"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1006-cz-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1006-cz-r1-cp-01",
       "title": "Checkpoint: CZ-R1",
-      "prompt": "Closed-book. (1) Name today's weakest conditioning link and one concrete rework. (2) Refuse: 'E[Y|X] is just ordinary expectation, so Chapter 2 is done.' (3) Name the honest next topic (generating functions, 2.4) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. Which formula correctly decomposes Var(Y) by conditioning on X?",
+      "response_type": "mcq",
+      "body": "Select the correct formula.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "2.4",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. Var via conditioning (five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 2.4 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Total variance combines expected within-condition variance and variance between conditional means.",
+      "model_answer": "Use Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+      "common_mistake": "Omitting either the within-condition or between-condition term.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Var(Y) = E[Var(Y given X)] + Var(E[Y given X]).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Var(Y) = Var(Y given X) + Var(X).",
+          "misconception_tag": "conditional_variance_addition"
+        },
+        {
+          "id": "c",
+          "label": "Var(Y) = E[Var(Y given X)] only.",
+          "misconception_tag": "between_group_variance_omitted"
+        },
+        {
+          "id": "d",
+          "label": "Var(Y) = Var(E[Y given X]) only.",
+          "misconception_tag": "within_group_variance_omitted"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

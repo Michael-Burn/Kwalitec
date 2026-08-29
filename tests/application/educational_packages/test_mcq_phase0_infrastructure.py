@@ -1,7 +1,7 @@
 """Phase 0 — MCQ infrastructure for checkpoint Knowledge Checks.
 
 Proves package JSON → loader → substance → scoring → UI branch wiring.
-Batches 1–6A (see _BATCH*_MCQ_PACKAGE_STEMS) are live MCQ content; remaining
+Batches 1–6B (see _BATCH*_MCQ_PACKAGE_STEMS) are live MCQ content; remaining
 live inventory outside those stems stays short_structured.
 """
 
@@ -315,6 +315,33 @@ _BATCH6A_MCQ_PACKAGE_STEMS = frozenset(
     }
 )
 
+# Batch 6B MCQ content conversion (19 revision-mode packages; 41 AR+CP items).
+# Keep in sync with scripts/_mcq_batch6b_revision_payload.py CONVERSIONS keys /
+# catalogue aliases (Pi/Rho use cp-/cr- prefixes in educational_packages).
+_BATCH6B_MCQ_PACKAGE_STEMS = frozenset(
+    {
+        "revision-purpose-eda-ep001",
+        "revision-pca-distributions-cs1002",
+        "revision-linear-models-cs1003",
+        "revision-regression-glm-cs1003",
+        "revision-midspine-cs1003",
+        "revision-distributions-generation-cs1004",
+        "revision-joint-distributions-cs1005",
+        "revision-conditional-expectations-cs1006",
+        "revision-generating-functions-cs1007",
+        "revision-central-limit-theorem-cs1008",
+        "revision-sampling-distributions-cs1009",
+        "revision-estimators-cs1010",
+        "revision-confidence-intervals-cs1011",
+        "revision-hypothesis-testing-cs1012",
+        "revision-linear-regression-cs1013",
+        "revision-glm-cs1014",
+        "revision-bayesian-cs1015",
+        "cp-revision-spine-memory-cs1016",
+        "cr-revision-publication-front-cs1017",
+    }
+)
+
 _MCQ_CONVERTED_STEMS = (
     _BATCH1_MCQ_PACKAGE_STEMS
     | _BATCH2_MCQ_PACKAGE_STEMS
@@ -322,11 +349,12 @@ _MCQ_CONVERTED_STEMS = (
     | _BATCH4_MCQ_PACKAGE_STEMS
     | _BATCH5_MCQ_PACKAGE_STEMS
     | _BATCH6A_MCQ_PACKAGE_STEMS
+    | _BATCH6B_MCQ_PACKAGE_STEMS
 )
 
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
-    """Live inventory outside Batch 1–6A MCQ conversion stays short_structured."""
+    """Live inventory outside Batch 1–6B MCQ conversion stays short_structured."""
     reset_educational_package_cache()
     packs = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT).all_approved()
     assert packs, "expected live educational packages"
@@ -336,6 +364,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     batch4_seen = 0
     batch5_seen = 0
     batch6a_seen = 0
+    batch6b_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
@@ -345,6 +374,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
         is_batch4 = stem in _BATCH4_MCQ_PACKAGE_STEMS
         is_batch5 = stem in _BATCH5_MCQ_PACKAGE_STEMS
         is_batch6a = stem in _BATCH6A_MCQ_PACKAGE_STEMS
+        is_batch6b = stem in _BATCH6B_MCQ_PACKAGE_STEMS
         for check in pack.knowledge_checks:
             if (
                 (
@@ -354,6 +384,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     or is_batch4
                     or is_batch5
                     or is_batch6a
+                    or is_batch6b
                 )
                 and check.kind in {"active_recall", "checkpoint"}
             ):
@@ -367,8 +398,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     batch4_seen += 1
                 elif is_batch5:
                     batch5_seen += 1
-                else:
+                elif is_batch6a:
                     batch6a_seen += 1
+                else:
+                    batch6b_seen += 1
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -386,8 +419,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     # 4.2-glm-structure-ea006 is also converted but status is
     # superseded_by_campaign_delta, so it is outside all_approved().
     assert batch6a_seen == 30
+    # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
+    assert batch6b_seen == 41
 
-    # Spot-check a live package still outside Batches 1–6A (revision day CA-R1).
+    # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")
     assert live is not None
     substance = substance_from_package(
@@ -399,6 +434,8 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert practice
     for act in practice:
         assert act.scoreable is not None
-        assert act.scoreable.response_type is PracticeResponseType.SHORT_STRUCTURED
-        assert act.scoreable.choices == ()
-        assert act.scoreable.answer_key.correct_choice_id == ""
+        assert act.scoreable.response_type is PracticeResponseType.MCQ
+        assert len(act.scoreable.choices) == 4
+        assert act.scoreable.answer_key.correct_choice_id in {
+            choice_id for choice_id, _label in act.scoreable.choices
+        }

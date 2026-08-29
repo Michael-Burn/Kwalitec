@@ -122,62 +122,88 @@
       "kind": "active_recall",
       "item_id": "cs1011-cl-r1-ar-01",
       "title": "Active Recall: CL-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) parameter CI from a random sample; (2) prediction interval; (3) CI given a sampling distribution; (4) Normal mean and variance CIs; (5) binomial/Poisson CIs (Normal approx); (6) two-sample CIs; (7) paired mean-difference CI; (8) bootstrap confidence intervals.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 3.2.",
+      "prompt": "Closed-book. After a frequentist 95 percent confidence interval for fixed parameter theta has been calculated, which interpretation is correct?",
+      "response_type": "mcq",
+      "body": "Select the correct interpretation.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "confidence",
-        "prediction",
-        "sampling",
-        "normal",
-        "binomial",
-        "Poisson",
-        "two-sample",
-        "paired",
-        "bootstrap",
-        "interval"
-      ],
-      "explanation": "Revision retrieves the 3.2 arc.",
-      "model_answer": "Example: (1) CI for a parameter from a random sample; (2) prediction interval for a future observation; (3) CI using a given sampling distribution; (4) Normal mean and variance intervals; (5) binomial/Poisson intervals with Normal approximation; (6) two-sample intervals; (7) paired mean-difference interval; (8) bootstrap CIs.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "The parameter is fixed; coverage refers to the long-run behaviour of the random interval procedure.",
+      "model_answer": "A 95 percent confidence procedure has 95 percent repeated-sampling coverage under its assumptions.",
+      "common_mistake": "Assigning posterior probability to a fixed parameter.",
       "success_criteria": [
-        "Eight hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The construction procedure covers theta in 95 percent of repeated samples under the model.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Given these data, theta has probability 0.95 of lying in this interval.",
+          "misconception_tag": "frequentist_parameter_probability"
+        },
+        {
+          "id": "c",
+          "label": "Ninety-five percent of sample values must lie inside the interval.",
+          "misconception_tag": "parameter_vs_observations"
+        },
+        {
+          "id": "d",
+          "label": "There is a 95 percent probability that the statistical model is true.",
+          "misconception_tag": "confidence_as_model_probability"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1011-cl-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-cl-r1-cp-01",
       "title": "Checkpoint: CL-R1",
-      "prompt": "Closed-book. (1) Name today's weakest interval-estimation link and one concrete rework. (2) Refuse: 'A confidence interval is the same as a prediction interval, so Chapter 3 is done.' (3) Name the honest next topic (hypothesis testing, 3.3) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. In a Normal linear model, how does a prediction interval for one future response generally compare with a confidence interval for the mean response at the same predictor value?",
+      "response_type": "mcq",
+      "body": "Select the correct comparison.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "3.3",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. two-sample Normal-approx CI (five-minute rework. (2) Refuse Chapter 3 complete / spine / until-exam. (3) Honest next is 3.3 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 3 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Prediction includes irreducible observation-level variance in addition to mean uncertainty.",
+      "model_answer": "The prediction interval is wider because it covers a new response.",
+      "common_mistake": "Using a mean-response confidence interval to predict one future observation.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The prediction interval is wider because it includes mean-estimation uncertainty and the future observation's random variation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The prediction interval is narrower because only one future value is considered.",
+          "misconception_tag": "single_value_narrower"
+        },
+        {
+          "id": "c",
+          "label": "The intervals are always identical.",
+          "misconception_tag": "mean_prediction_equivalence"
+        },
+        {
+          "id": "d",
+          "label": "The confidence interval includes future observation noise, but the prediction interval does not.",
+          "misconception_tag": "uncertainty_components_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

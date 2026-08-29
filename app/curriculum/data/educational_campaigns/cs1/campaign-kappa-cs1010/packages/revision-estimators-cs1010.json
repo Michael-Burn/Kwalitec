@@ -121,61 +121,88 @@
       "kind": "active_recall",
       "item_id": "cs1010-ck-r1-ar-01",
       "title": "Active Recall: CK-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) method of moments; (2) maximum likelihood; (3) efficiency / bias / consistency / MSE; (4) comparison via MSE and bias; (5) asymptotic distribution of MLEs; (6) bootstrap for estimator properties.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 3.1.",
+      "prompt": "Closed-book. Which statement correctly distinguishes method of moments from maximum likelihood estimation?",
+      "response_type": "mcq",
+      "body": "Select the correct distinction.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "moments",
-        "likelihood",
-        "bias",
-        "MSE",
-        "efficiency",
-        "consistency",
-        "asymptotic",
-        "bootstrap",
-        "estimator"
-      ],
-      "explanation": "Revision retrieves the 3.1 arc.",
-      "model_answer": "Example: (1) equate sample moments to population moments; (2) maximise likelihood / log-likelihood; (3) define bias, variance, MSE, efficiency, consistency; (4) compare estimators by MSE / bias; (5) asymptotic Normal behaviour of MLEs under CMP conditions; (6) resample to estimate estimator properties.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "The methods use different estimating principles and need not agree.",
+      "model_answer": "MoM matches moments; MLE maximises the observed-data likelihood.",
+      "common_mistake": "Assuming the methods are identical because they coincide in some models.",
       "success_criteria": [
-        "Six hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Method of moments equates sample and model moments, while maximum likelihood maximises the likelihood of observed data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Both methods always produce the same estimator.",
+          "misconception_tag": "mom_mle_equivalence"
+        },
+        {
+          "id": "c",
+          "label": "Method of moments maximises the probability of the observed sample.",
+          "misconception_tag": "mom_as_mle"
+        },
+        {
+          "id": "d",
+          "label": "Maximum likelihood uses only the first population moment.",
+          "misconception_tag": "mle_as_first_moment"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1010-ck-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-ck-r1-cp-01",
       "title": "Checkpoint: CK-R1",
-      "prompt": "Closed-book. (1) Name today's weakest estimator link and one concrete rework. (2) Refuse: 'Moments and MLE are interchangeable, so Chapter 3 is done.' (3) Name the honest next topic (confidence intervals, 3.2) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. Which identity correctly expresses the mean squared error of an estimator T for parameter theta?",
+      "response_type": "mcq",
+      "body": "Select the correct identity.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "3.2",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. asymptotic MLE variance (five-minute rework. (2) Refuse Chapter 3 complete / spine / until-exam. (3) Honest next is 3.2 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 3 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "MSE combines variance and squared bias; unbiasedness alone does not ensure minimum MSE.",
+      "model_answer": "MSE equals variance plus squared bias.",
+      "common_mistake": "Treating unbiasedness as sufficient for efficiency.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "MSE(T) = Var(T) + Bias(T) squared.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "MSE(T) = Var(T) + Bias(T).",
+          "misconception_tag": "unsquared_bias"
+        },
+        {
+          "id": "c",
+          "label": "MSE(T) = Bias(T) squared only.",
+          "misconception_tag": "variance_omitted"
+        },
+        {
+          "id": "d",
+          "label": "MSE(T) = Var(T) for every estimator.",
+          "misconception_tag": "bias_omitted"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

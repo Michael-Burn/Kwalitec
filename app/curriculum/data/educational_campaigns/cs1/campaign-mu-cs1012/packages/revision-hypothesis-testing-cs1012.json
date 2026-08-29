@@ -119,62 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1012-cm-r1-ar-01",
       "title": "Active Recall: CM-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) HT concepts (null/alternative, errors, p-value, power); (2) basic one-/two-sample and paired tests; (3) permutation non-parametric tests; (4) chi-square goodness of fit; (5) contingency independence.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 3.3.",
+      "prompt": "Closed-book. What is a p-value for an observed test statistic?",
+      "response_type": "mcq",
+      "body": "Select the correct definition.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "hypothesis",
-        "null",
-        "p-value",
-        "power",
-        "test",
-        "permutation",
-        "chi-square",
-        "goodness",
-        "contingency",
-        "independence"
-      ],
-      "explanation": "Revision retrieves the 3.3 arc.",
-      "model_answer": "Example: (1) HT vocabulary: null/alternative, type I/II, critical region, p-value, power; (2) basic Normal/binomial/Poisson and paired tests; (3) permutation approach; (4) chi-square GOF incl. unknown parameters; (5) contingency table independence test.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "The p-value is a null-conditional tail probability.",
+      "model_answer": "It measures extremeness of the result under the null distribution.",
+      "common_mistake": "Interpreting the p-value as the probability that the null is true.",
       "success_criteria": [
-        "Five hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Assuming the null hypothesis, it is the probability of a test statistic at least as incompatible with the null as the observed value.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "It is the probability that the null hypothesis is true after observing data.",
+          "misconception_tag": "p_value_as_null_probability"
+        },
+        {
+          "id": "c",
+          "label": "It is the probability that the alternative hypothesis is false.",
+          "misconception_tag": "p_value_as_alternative_probability"
+        },
+        {
+          "id": "d",
+          "label": "It is the probability that the same sample result occurs again.",
+          "misconception_tag": "replication_probability"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1012-cm-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-cm-r1-cp-01",
       "title": "Checkpoint: CM-R1",
-      "prompt": "Closed-book. (1) Name today's weakest hypothesis-testing link and one concrete rework. (2) Refuse: 'A small p-value proves the alternative, so Chapter 3 is done.' (3) Name whether you stop here or what syllabus topic honestly comes next. Not 'exam ready.'",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. A test produces a very small p-value. Which conclusion is justified?",
+      "response_type": "mcq",
+      "body": "Select the best conclusion.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "stop",
-        "remainder",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. permutation test construction (five-minute rework. (2) Refuse Chapter 3 complete / spine / until-exam. (3) Honest next is declared stop or remainder-spine successor Volume) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 3 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "A small p-value is evidence against the null, not proof or an effect-size measure.",
+      "model_answer": "Question or reject the null at an appropriate level, then assess assumptions and practical importance.",
+      "common_mistake": "Treating significance as proof, certainty, or substantive importance.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The data are difficult to reconcile with the null under the test assumptions, but this does not prove the alternative or measure practical importance.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The alternative has been proved with probability one.",
+          "misconception_tag": "small_p_proves_alternative"
+        },
+        {
+          "id": "c",
+          "label": "The probability of a Type I error for this completed test equals the p-value.",
+          "misconception_tag": "p_value_as_realised_type_i_rate"
+        },
+        {
+          "id": "d",
+          "label": "The effect must be large and practically important.",
+          "misconception_tag": "significance_as_effect_size"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

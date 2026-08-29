@@ -110,115 +110,176 @@
       "kind": "active_recall",
       "item_id": "cs1002-cb-r1-ar-01",
       "title": "Revision Recall: PCA limits",
-      "prompt": "Closed-book. Restate the purpose of PCA in one sentence and state one claim PCA does not support.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 1 (1.2.3).",
+      "prompt": "Closed-book. Which statement correctly describes principal component analysis?",
+      "response_type": "mcq",
+      "body": "Select the most accurate statement.",
       "hints": [
-        "Purpose: reduce dimensionality / summarise correlated structure.",
-        "Refuse: automatic causation / invented named business factor."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "dimension",
-        "reduce",
-        "component",
-        "correl",
-        "cause",
-        "causal",
-        "not",
-        "refuse"
-      ],
-      "explanation": "Revision succeeds only if PCA purpose and honesty still retrieve.",
-      "model_answer": "PCA reduces dimensionality by summarising shared variation in correlated variables into fewer components; it does not by itself prove a causal business driver.",
-      "common_mistake": "Formula dump without purpose, or causal overclaim.",
+      "accepted_keywords": [],
+      "explanation": "Principal components are orthogonal variance-ordered linear combinations, useful for dimension reduction rather than causal inference.",
+      "model_answer": "PCA summarises correlated variation with fewer orthogonal components and does not establish causation.",
+      "common_mistake": "Treating PCA as a causal or supervised modelling method.",
       "success_criteria": [
-        "Purpose sentence.",
-        "One non-claim."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "PCA forms orthogonal linear combinations of variables, ordered by explained sample variance. It can reduce dimension but does not by itself establish causal relationships.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "PCA identifies which observed variables causally determine a response.",
+          "misconception_tag": "pca_as_causal_model"
+        },
+        {
+          "id": "c",
+          "label": "PCA retains every original variable unchanged while reducing dimension.",
+          "misconception_tag": "no_transformation_misconception"
+        },
+        {
+          "id": "d",
+          "label": "PCA maximises the variance of each original variable separately.",
+          "misconception_tag": "component_definition_error"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-cb-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1002-cb-r1-cp-01",
       "title": "Revision Checkpoint: discrete match",
-      "prompt": "Closed-book. You count the number of defective items in a fixed number of independent inspections with constant defect probability. Which discrete family fits, and why? Name one family that would be a mis-match.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 2 (2.1.1).",
+      "prompt": "Closed-book. A manufacturer independently inspects 40 items, each having the same probability p of being defective. What is the distribution of the number of defective items?",
+      "response_type": "mcq",
+      "body": "Select the correct distribution.",
       "hints": [
-        "Fixed independent trials → binomial.",
-        "Mis-match example: hypergeometric (without replacement) or geometric (trials to first)."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "binomial",
-        "fixed",
-        "independent",
-        "hypergeometric",
-        "geometric",
-        "poisson"
-      ],
-      "explanation": "Revision must reconnect situation to discrete family.",
-      "model_answer": "Binomial: fixed number of independent trials with constant success probability. Mis-match: hypergeometric if sampling were without replacement from a finite lot.",
-      "common_mistake": "Poisson-by-habit for fixed-trial binary outcomes.",
+      "accepted_keywords": [],
+      "explanation": "A fixed number of independent Bernoulli trials with constant success probability produces a binomial count.",
+      "model_answer": "The count is Binomial(40, p).",
+      "common_mistake": "Choosing hypergeometric without finite-population sampling without replacement.",
       "success_criteria": [
-        "Binomial with warrant.",
-        "One named mis-match."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Binomial with parameters 40 and p.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Hypergeometric, because the number of inspections is fixed.",
+          "misconception_tag": "without_replacement_confusion"
+        },
+        {
+          "id": "c",
+          "label": "Poisson with parameter p, regardless of the number inspected.",
+          "misconception_tag": "poisson_parameter_error"
+        },
+        {
+          "id": "d",
+          "label": "Geometric with parameter p, because each item is defective or not defective.",
+          "misconception_tag": "count_vs_waiting_time"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-cb-r1-cp-02",
       "kind": "checkpoint",
       "item_id": "cs1002-cb-r1-cp-02",
       "title": "Revision Checkpoint: continuous placement",
-      "prompt": "Closed-book. Waiting time until the next claim event under a constant hazard story. Which continuous family fits first, and why? Refuse Normal-by-default in one sentence.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 3 (2.1.2).",
+      "prompt": "Closed-book. Claims arrive according to a Poisson process with constant rate lambda. What is the distribution of the waiting time until the next claim?",
+      "response_type": "mcq",
+      "body": "Select the correct distribution.",
       "hints": [
-        "Exponential for waiting/memoryless continuous time.",
-        "Refuse Normal on support/shape for waiting times."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "exponential",
-        "waiting",
-        "memoryless",
-        "normal",
-        "refuse",
-        "not",
-        "positive"
-      ],
-      "explanation": "Revision must keep continuous placement honest.",
-      "model_answer": "Exponential: continuous waiting time with memoryless/constant hazard story. Refuse Normal-by-default because waiting times are positive and the Normal support/shape story mismatches.",
-      "common_mistake": "Normal default; gamma without warrant when exponential is the direct story.",
+      "accepted_keywords": [],
+      "explanation": "Poisson-process interarrival times are exponentially distributed with constant hazard lambda.",
+      "model_answer": "The waiting time is Exponential(lambda), with mean 1/lambda.",
+      "common_mistake": "Confusing the Poisson count with the exponential interarrival time.",
       "success_criteria": [
-        "Exponential with waiting warrant.",
-        "Normal default refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Exponential with rate lambda.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Normal with mean 1/lambda because waiting times are continuous.",
+          "misconception_tag": "normal_by_default"
+        },
+        {
+          "id": "c",
+          "label": "Poisson with mean lambda because the arrivals form a Poisson process.",
+          "misconception_tag": "count_time_confusion"
+        },
+        {
+          "id": "d",
+          "label": "Uniform on the next unit interval because the hazard is constant.",
+          "misconception_tag": "constant_hazard_uniform_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1002-cb-r1-cp-03",
       "kind": "checkpoint",
       "item_id": "cs1002-cb-r1-cp-03",
       "title": "Revision Checkpoint: Alpha association hinge",
-      "prompt": "Closed-book (prior Volume hinge). Skewed variables, outliers, monotone but nonlinear scatter. Choose Pearson, Spearman, or Kendall and justify. State one claim the coefficient does not support.",
-      "response_type": "short_structured",
-      "body": "Return target: CS1-001 / Alpha Day 3 (1.2.2). Series continuity.",
+      "prompt": "Closed-book. Two continuous variables have outliers and a strong monotone but nonlinear relationship. Which conclusion is justified?",
+      "response_type": "mcq",
+      "body": "Select the best association statement.",
       "hints": [
-        "Prefer rank-based; refuse causation."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "spearman",
-        "kendall",
-        "rank",
-        "monotonic",
-        "causation",
-        "cause",
-        "not"
-      ],
-      "explanation": "Series continuity requires Alpha association honesty to remain retrievable.",
-      "model_answer": "Spearman or Kendall for monotone nonlinear association with outliers; coefficient does not prove causation.",
-      "common_mistake": "Pearson by habit; causal claim; skipping because 'old Volume.'",
+      "accepted_keywords": [],
+      "explanation": "Rank measures capture monotone association, while causation requires additional design or evidence.",
+      "model_answer": "Use Spearman's rho or Kendall's tau and avoid a causal interpretation.",
+      "common_mistake": "Assuming nonlinear association cannot be measured or that association proves causation.",
       "success_criteria": [
-        "Rank-based choice with reason.",
-        "One non-claim stated."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Spearman's rank correlation or Kendall's tau can measure the monotone association, but neither establishes causation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Pearson correlation measures every monotone relationship exactly.",
+          "misconception_tag": "pearson_monotonicity_confusion"
+        },
+        {
+          "id": "c",
+          "label": "A significant rank correlation proves that one variable causes the other.",
+          "misconception_tag": "association_as_causation"
+        },
+        {
+          "id": "d",
+          "label": "Correlation is necessarily zero whenever a relationship is nonlinear.",
+          "misconception_tag": "nonlinear_zero_correlation"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

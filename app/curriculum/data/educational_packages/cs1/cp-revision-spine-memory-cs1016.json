@@ -127,59 +127,89 @@
       "episode_id": "lep-cs1016-cp-r1-ar-01",
       "kind": "active_recall",
       "item_id": "cs1016-cp-r1-ar-01",
-      "title": "Active Recall: Memory Front hinges",
-      "prompt": "Closed-book. (1) Name the nine CP Learning hinges in order. (2) Name your weakest link. (3) Name one reason this does not finish first-pass spine PASS or until-exam trust.",
-      "response_type": "short_structured",
-      "body": "Retrieve the Memory Front hinge chain.",
+      "title": "Revision Recall: estimator asymptotics and sampling distribution",
+      "prompt": "Closed-book. An unbiased estimator T has sampling variance 9/n. What does the central limit theorem add if sqrt(n)(T minus theta) converges to N(0, 9)?",
+      "response_type": "mcq",
+      "body": "Select the correct implication.",
       "hints": [
-        "2.1.3 starts the chain.",
-        "5.1.1 is the tip hinge."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "2.1.3",
-        "2.2.1",
-        "2.5.1",
-        "2.6.1",
-        "3.1.1",
-        "3.2.1",
-        "3.3.1",
-        "4.1.1",
-        "5.1.1"
-      ],
-      "explanation": "Active recall for CP-R1.",
-      "model_answer": "Hinges: 2.1.3 → 2.2.1 → 2.5.1 → 2.6.1 → 3.1.1 → 3.2.1 → 3.3.1 → 4.1.1 → 5.1.1. Weakest link is personal. Spine PASS / until-exam remain out of scope.",
-      "common_mistake": "Claiming spine or until-exam complete from Revision day.",
+      "accepted_keywords": [],
+      "explanation": "Unbiasedness specifies a mean, while asymptotic Normality supplies an approximate distribution after scaling.",
+      "model_answer": "For large n, use T approximately N(theta, 9/n).",
+      "common_mistake": "Assuming unbiasedness determines the distribution or reversing n scaling.",
       "success_criteria": [
-        "Nine hinges named.",
-        "Weakest link named.",
-        "Refusal present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For large n, T is approximately Normal with mean theta and variance 9/n; unbiasedness alone does not determine its sampling distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "T is exactly Normal for every n because it is unbiased.",
+          "misconception_tag": "unbiased_implies_normal"
+        },
+        {
+          "id": "c",
+          "label": "The variance of T is approximately 9n.",
+          "misconception_tag": "asymptotic_variance_scaling"
+        },
+        {
+          "id": "d",
+          "label": "T converges to N(0, 9) without centring or scaling.",
+          "misconception_tag": "standardisation_omitted"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1016-cp-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-cp-r1-cp-01",
-      "title": "Checkpoint: refuse spine / until-exam / Wave 0",
-      "prompt": "Closed-book. A colleague says 'If I can recite Bayes' theorem, the whole chain from quantiles through regression is secure.' Refuse; name the weakest link on today's retrieval chain; name one concrete residual to rework.",
-      "response_type": "short_structured",
-      "body": "Checkpoint refuse for CP-R1.",
+      "title": "Revision Checkpoint: method of moments vs sampling distribution",
+      "prompt": "Closed-book. A method-of-moments estimator sets the sample mean equal to model mean m(theta). Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Name Wave 0 Approver residual.",
-        "Refuse until-exam."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "spine",
-        "Wave 0",
-        "until-exam"
-      ],
-      "explanation": "Checkpoint for CP-R1.",
-      "model_answer": "Refuse: Memory Front Revision ≠ first-pass spine PASS, ≠ Wave 0 Approver clearance, ≠ until-exam trust. Honest residual: Wave 0 Approver ownership remains scheduled; until-exam blocked.",
-      "common_mistake": "Accepting the forbidden claim.",
+      "accepted_keywords": [],
+      "explanation": "An estimating rule defines a statistic whose distribution must be derived from random sampling.",
+      "model_answer": "Distinguish the MoM construction from the estimator's sampling distribution.",
+      "common_mistake": "Confusing an estimating equation with a sampling distribution.",
       "success_criteria": [
-        "Refusal present.",
-        "Honest residual named."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Solving sample mean = m(theta) defines an estimator; its sampling distribution describes estimator values over repeated samples.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The estimating equation itself is the sampling distribution.",
+          "misconception_tag": "estimating_equation_as_distribution"
+        },
+        {
+          "id": "c",
+          "label": "The estimator has zero variance because the sample moment is observed.",
+          "misconception_tag": "observed_statistic_no_variance"
+        },
+        {
+          "id": "d",
+          "label": "Method of moments guarantees the same finite-sample distribution as maximum likelihood.",
+          "misconception_tag": "mom_mle_distribution_equivalence"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

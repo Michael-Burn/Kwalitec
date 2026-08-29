@@ -127,58 +127,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-cd-r2-ar-01",
       "title": "Active Recall: CD-R2",
-      "prompt": "Closed-book. Retrieve: (1) one 4.1 hinge; (2) Family→η→link; (3) one post-structure 4.2 hinge (deviance/choice/residual/test/fit).",
-      "response_type": "short_structured",
-      "body": "Revision chain recall.",
+      "prompt": "Closed-book. What does the sequence Family to eta to link represent in a generalised linear model?",
+      "response_type": "mcq",
+      "body": "Select the correct interpretation.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "response",
-        "link",
-        "eta",
-        "deviance",
-        "residual",
-        "glm",
-        "least squares"
-      ],
-      "explanation": "Revision retrieves the arc.",
-      "model_answer": "Example: OLS criterion; Family→η→link; analysis of deviance or residual check or fit/interpret.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "A GLM combines a response distribution, linear predictor, and link connecting the response mean to that predictor.",
+      "model_answer": "Choose a family, form eta = X beta, and connect mu through g(mu) = eta.",
+      "common_mistake": "Confusing the link with a transformation of observations or predictors.",
       "success_criteria": [
-        "Return targets named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The response family specifies mean-variance behaviour, eta = X beta is the linear predictor, and the link satisfies g(mu) = eta.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The family determines X, while the link transforms each predictor into response variance.",
+          "misconception_tag": "glm_component_roles"
+        },
+        {
+          "id": "c",
+          "label": "Eta is the observed response and the link is its density.",
+          "misconception_tag": "eta_response_confusion"
+        },
+        {
+          "id": "d",
+          "label": "The link requires the response itself to be Normal.",
+          "misconception_tag": "normality_requirement"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-cd-r2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-cd-r2-cp-01",
-      "title": "Checkpoint: CD-R2",
-      "prompt": "(1) Name today's weakest link across classical regression and GLM, plus one concrete rework. (2) Refuse: 'One strong regression/GLM day means Bayesian foundations can be skipped.' (3) Name tomorrow's honest next (Bayesian entry) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "title": "Revision Checkpoint: Poisson canonical link and deviance",
+      "prompt": "Closed-book. For a Poisson GLM, which statement about the canonical link and deviance is correct?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "golden",
-        "5.1.1",
-        "bayes"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. canonical link warrant. Rework. (2) Refuse Isolated Golden Day / spine. (3) Tomorrow 5.1.1.",
-      "common_mistake": "Spine / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "The Poisson canonical link is logarithmic, and GLM deviance is likelihood-based.",
+      "model_answer": "Use log(mu) = eta and interpret deviance as a likelihood comparison with the saturated fit.",
+      "common_mistake": "Treating deviance as ordinary residual sum of squares or complete model validation.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The canonical link is log(mu) = eta, and deviance compares fitted and saturated models through likelihoods.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The canonical link is mu squared = eta, and deviance is residual sum of squares in every GLM.",
+          "misconception_tag": "canonical_link_and_deviance_error"
+        },
+        {
+          "id": "c",
+          "label": "The identity link is the only valid Poisson link because counts are untransformed.",
+          "misconception_tag": "identity_only_confusion"
+        },
+        {
+          "id": "d",
+          "label": "Small deviance proves every distributional and independence assumption.",
+          "misconception_tag": "deviance_proves_assumptions"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

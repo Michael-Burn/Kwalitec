@@ -123,59 +123,88 @@
       "kind": "active_recall",
       "item_id": "cs1014-cx-r1-ar-01",
       "title": "Active Recall: Xi chain",
-      "prompt": "Closed-book. List the ten 4.2 Learning hinges in order as short phrases (family → … → fit/interpret).",
-      "response_type": "short_structured",
-      "body": "Retrieve Campaign Xi Learning span.",
+      "prompt": "Closed-book. In a generalised linear model, what is the role of link function g?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Start from exponential family.",
-        "End at fit and interpret."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "family",
-        "mean",
-        "link",
-        "factor",
-        "predictor",
-        "deviance",
-        "choice",
-        "residual",
-        "chi-square",
-        "fit"
-      ],
-      "explanation": "Order retrieval for CX-R1.",
-      "model_answer": "Family → mean/variance/scale → link/canonical → factors/interactions → linear predictor → deviance/estimation → model choice → residuals → acceptability tests → fit/interpret.",
-      "common_mistake": "Skipping mid-chain deviance/choice or collapsing into LM.",
+      "accepted_keywords": [],
+      "explanation": "The link connects the response mean scale to the systematic component.",
+      "model_answer": "The link satisfies g(E[Y|X]) = X beta.",
+      "common_mistake": "Treating the link as a transformation that makes the raw response Normal.",
       "success_criteria": [
-        "Ten hinges named in lawful order."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "It maps conditional mean mu to the linear predictor through g(mu) = eta = X beta.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "It maps each residual directly to a probability density.",
+          "misconception_tag": "link_as_residual_density"
+        },
+        {
+          "id": "c",
+          "label": "It forces every response distribution to become Normal.",
+          "misconception_tag": "link_normalises_response"
+        },
+        {
+          "id": "d",
+          "label": "It specifies covariance between all observations.",
+          "misconception_tag": "link_as_dependence_model"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1014-cx-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-cx-r1-cp-01",
-      "title": "Checkpoint: refuse 5.1 / spine",
-      "prompt": "Closed-book. A colleague says 'GLM revision finished Bayesian and the exam journey.' Refuse; name weakest link; name honest next.",
-      "response_type": "short_structured",
-      "body": "Refuse forbidden claims; harvest weakest link.",
+      "title": "Revision Checkpoint: GLM deviance and model choice",
+      "prompt": "Closed-book. Two nested GLMs use the same response family and scale treatment. What is a valid use of their deviance difference?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Refuse 5.1 absorb / spine / until-exam.",
-        "Name one rework."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "5.1",
-        "spine",
-        "Wave 0",
-        "weakest",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) Name weakest hinge + five-minute rework. (2) Refuse 5.1 absorb / spine / until-exam. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit / Topic 5.1 successor Volume. Not claimed finished here.",
-      "common_mistake": "Spine / Trust Front absorb / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "For appropriate nested GLMs, deviance difference is a likelihood-ratio statistic, often asymptotically chi-squared.",
+      "model_answer": "Use the deviance difference for a nested-model test while retaining residual checks.",
+      "common_mistake": "Automatically choosing complexity or treating one test as complete validation.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Under suitable regularity conditions, it can test whether added terms improve fit using an asymptotic chi-squared reference.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The model with more parameters must be chosen because its deviance cannot increase.",
+          "misconception_tag": "complexity_always_preferred"
+        },
+        {
+          "id": "c",
+          "label": "A deviance difference is always compared with standard Normal.",
+          "misconception_tag": "wrong_reference_distribution"
+        },
+        {
+          "id": "d",
+          "label": "A non-significant difference proves every residual assumption.",
+          "misconception_tag": "test_proves_adequacy"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from _mcq_batch1_section3_payload import apply_mcq_overlay
+from _mcq_batch6b_revision_payload import apply_mcq_overlay as apply_batch6b_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-mu-cs1012"
@@ -1090,7 +1091,7 @@ def main() -> None:
         inventory.append(d["pid"])
         span.append(d["lo"])
 
-    rev = revision_pkg()
+    rev = apply_batch6b_mcq_overlay(revision_pkg(), "revision-hypothesis-testing-cs1012")
     (PKG_DIR / "revision-hypothesis-testing-cs1012.json").write_text(
         json.dumps(rev, indent=2) + "\n"
     )

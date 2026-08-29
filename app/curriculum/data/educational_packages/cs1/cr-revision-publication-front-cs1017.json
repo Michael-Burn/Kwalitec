@@ -128,53 +128,88 @@
       "kind": "active_recall",
       "item_id": "cs1017-cr-r1-ar-01",
       "title": "Active Recall: Publication Front chain",
-      "prompt": "Closed-book. List the nine CR Learning LOs in order and give one warrant sentence for your stickiest LO.",
-      "response_type": "short_structured",
-      "body": "Retrieve Publication Front chain closed-book.",
+      "prompt": "Closed-book. A portfolio records the number of claims made by each policyholder during one year. Which model placement is most defensible?",
+      "response_type": "mcq",
+      "body": "Select the correct classification and candidate family.",
       "hints": [
-        "Order: 1.1.1→2.1.2.",
-        "One sticky warrant."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "1.1.1",
-        "1.2.1",
-        "2.1.1",
-        "2.1.2",
-        "retrieval"
-      ],
-      "explanation": "Active recall for CR-R1.",
-      "model_answer": "Chain: 1.1.1–1.1.4, 1.2.1–1.2.3, 2.1.1–2.1.2. Name the stickiest LO with one warrant.",
-      "common_mistake": "Skipping order or claiming Approver clearance.",
+      "accepted_keywords": [],
+      "explanation": "The recorded variable is a count regardless of the continuous observation period.",
+      "model_answer": "Treat annual claim number as discrete count data and assess an appropriate count distribution.",
+      "common_mistake": "Classifying a variable by its time window rather than its possible values.",
       "success_criteria": [
-        "Order present.",
-        "Sticky warrant present."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "This is a non-negative integer count, so a discrete count model such as Poisson is a candidate, subject to assumption checks.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "It is continuous because a year is continuous, so Normal is mandatory.",
+          "misconception_tag": "time_scale_determines_variable_type"
+        },
+        {
+          "id": "c",
+          "label": "It is categorical because some policyholders have zero claims.",
+          "misconception_tag": "zero_implies_category"
+        },
+        {
+          "id": "d",
+          "label": "It must be exponential because claims occur over time.",
+          "misconception_tag": "count_vs_waiting_time"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1017-cr-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-cr-r1-cp-01",
-      "title": "Checkpoint: refuse Approver / spine / until-exam",
-      "prompt": "Closed-book. A colleague says 'Placing continuous families means aims, reproducibility, EDA, and discrete matching are all solid.' Refuse; name the weakest link on today's retrieval chain; name one concrete residual to rework.",
-      "response_type": "short_structured",
-      "body": "Refuse Approver / spine / until-exam swallow after Revision.",
+      "title": "Revision Checkpoint: association honesty in the opening arc",
+      "prompt": "Closed-book. A scatter plot shows a curved increasing association between advertising spend and policy sales. Which statement is most defensible?",
+      "response_type": "mcq",
+      "body": "Select the most honest conclusion.",
       "hints": [
-        "Name Approver residual.",
-        "Refuse until-exam."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "Approver",
-        "spine",
-        "until-exam"
-      ],
-      "explanation": "Checkpoint for CR-R1.",
-      "model_answer": "Refuse: Publication Front Revision ≠ Approver honesty clearance, ≠ first-pass spine PASS, ≠ until-exam trust. Honest residual: human Publication Approver seals remain required; Coverage stays 63/72 until sealed.",
-      "common_mistake": "Accepting Approver clearance from catalogue.",
+      "accepted_keywords": [],
+      "explanation": "The plot supports a descriptive association claim, not causal attribution.",
+      "model_answer": "Report the positive nonlinear association and avoid a causal conclusion.",
+      "common_mistake": "Turning exploratory association into causation or assuming curvature means no association.",
       "success_criteria": [
-        "Refusal present.",
-        "Approver residual named."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The variables appear positively associated, possibly nonlinearly, but the plot alone does not show that advertising caused the increase.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The curve proves additional advertising causes additional sales.",
+          "misconception_tag": "association_as_causation"
+        },
+        {
+          "id": "c",
+          "label": "Pearson correlation must equal zero because the pattern is curved.",
+          "misconception_tag": "nonlinear_zero_pearson"
+        },
+        {
+          "id": "d",
+          "label": "A scatter plot cannot provide evidence about association between continuous variables.",
+          "misconception_tag": "visualisation_has_no_association_evidence"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

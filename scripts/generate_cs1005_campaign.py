@@ -7,6 +7,7 @@ from pathlib import Path
 
 from _mcq_batch5_batch_e_payload import apply_mcq_overlay as apply_batch5_mcq_overlay
 from _mcq_batch6a_strong_payload import apply_mcq_overlay as apply_batch6a_mcq_overlay
+from _mcq_batch6b_revision_payload import apply_mcq_overlay as apply_batch6b_mcq_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "app/curriculum/data/educational_campaigns/cs1/campaign-epsilon-cs1005"
@@ -873,7 +874,7 @@ def main() -> None:
         inventory.append(d["pid"])
         span.append(d["lo"])
 
-    rev = revision_pkg()
+    rev = apply_batch6b_mcq_overlay(revision_pkg(), "revision-joint-distributions-cs1005")
     (PKG_DIR / "revision-joint-distributions-cs1005.json").write_text(
         json.dumps(rev, indent=2) + "\n"
     )

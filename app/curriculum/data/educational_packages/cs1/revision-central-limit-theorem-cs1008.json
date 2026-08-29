@@ -114,62 +114,88 @@
       "kind": "active_recall",
       "item_id": "cs1008-ct-r1-ar-01",
       "title": "Active Recall: CT-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) central limit theorem for an iid sequence; (2) comparison of simulated samples with the Normal distribution.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 2.5.",
+      "prompt": "Closed-book. Let X1, ..., Xn be iid with finite mean mu and finite positive variance sigma squared. What does the central limit theorem state?",
+      "response_type": "mcq",
+      "body": "Select the correct limiting statement.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "CLT",
-        "central",
-        "limit",
-        "iid",
-        "independent",
-        "identical",
-        "Normal",
-        "simulate",
-        "sample",
-        "distribution"
-      ],
-      "explanation": "Revision retrieves the 2.5 arc.",
-      "model_answer": "Example: (1) For iid RVs with finite mean/variance (CMP conditions), standardised sample means → Normal as n grows. (2) Simulate samples from a stated distribution and compare behaviour / shape to the Normal (CMP).",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "The CLT concerns the centred and scaled sample mean or sum.",
+      "model_answer": "The standardised sample mean converges in distribution to N(0,1).",
+      "common_mistake": "Applying the limit to observations or omitting standardisation.",
       "success_criteria": [
-        "Two hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "sqrt(n)(sample mean minus mu)/sigma converges in distribution to a standard Normal variable as n grows.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The sample mean equals mu with probability 1 for every finite n.",
+          "misconception_tag": "clt_as_exact_equality"
+        },
+        {
+          "id": "c",
+          "label": "Each Xi becomes Normally distributed as n grows.",
+          "misconception_tag": "observations_become_normal"
+        },
+        {
+          "id": "d",
+          "label": "The unstandardised sum converges to standard Normal without centring or scaling.",
+          "misconception_tag": "missing_standardisation"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1008-ct-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1008-ct-r1-cp-01",
       "title": "Checkpoint: CT-R1",
-      "prompt": "Closed-book. (1) Name today's weakest CLT link and one concrete rework. (2) Refuse: 'The CLT means every sample mean is already Normal, so Chapter 2 is done.' (3) Name the honest next topic (sampling distributions, 2.6) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. The underlying observations are highly skewed but have finite variance. Which statement about their sample mean is justified?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "2.6",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. rate of Normal approximation (five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 2.6 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Finite-variance skewed data can satisfy the CLT, although strong skewness may require a larger sample.",
+      "model_answer": "Use the Normal approximation cautiously for sufficiently large n.",
+      "common_mistake": "Assuming every sample mean is exactly Normal.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For sufficiently large n, the standardised mean may be approximated by standard Normal, but the approximation is not generally exact at finite n.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The sample mean is exactly Normal for every n because a mean was calculated.",
+          "misconception_tag": "every_mean_exact_normal"
+        },
+        {
+          "id": "c",
+          "label": "The CLT cannot apply to any skewed distribution.",
+          "misconception_tag": "skewness_blocks_clt"
+        },
+        {
+          "id": "d",
+          "label": "Increasing n makes the original observations less skewed.",
+          "misconception_tag": "sample_vs_observation_confusion"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

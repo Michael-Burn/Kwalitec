@@ -119,61 +119,88 @@
       "kind": "active_recall",
       "item_id": "cs1005-ce-r1-ar-01",
       "title": "Active Recall: CE-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) marginal or conditional from a joint; (2) independence condition; (3) covariance/correlation or E[g(X,Y)]; (4) mean and variance of a linear combination.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 2.2.",
+      "prompt": "Closed-book. Which condition establishes independence of discrete random variables X and Y?",
+      "response_type": "mcq",
+      "body": "Select the correct factorisation.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "marginal",
-        "conditional",
-        "independent",
-        "covariance",
-        "correlation",
-        "expectation",
-        "linear",
-        "variance",
-        "joint"
-      ],
-      "explanation": "Revision retrieves the 2.2 arc.",
-      "model_answer": "Example: (1) Sum/integrate joint to get marginal; condition by dividing. (2) Joint factors as product of marginals (or equivalent). (3) Cov/Corr measure linear dependence; E[g] via double sum/integral. (4) E[aX+bY]=aE[X]+bE[Y]; Var needs variances plus 2ab Cov when dependent.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "Independence requires joint factorisation everywhere; zero covariance is generally insufficient.",
+      "model_answer": "Verify pX,Y(x,y) = pX(x)pY(y) for all possible pairs.",
+      "common_mistake": "Equating zero covariance with independence.",
       "success_criteria": [
-        "Four hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "pX,Y(x, y) = pX(x)pY(y) for every pair in the joint support.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Cov(X, Y) = 0 in every case.",
+          "misconception_tag": "uncorrelated_as_independent"
+        },
+        {
+          "id": "c",
+          "label": "pX,Y(x, y) = pX(x) + pY(y).",
+          "misconception_tag": "joint_addition_error"
+        },
+        {
+          "id": "d",
+          "label": "E[X] = E[Y].",
+          "misconception_tag": "equal_means_as_independence"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1005-ce-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-ce-r1-cp-01",
       "title": "Checkpoint: CE-R1",
-      "prompt": "Closed-book. (1) Name today's weakest joint-distribution link and one concrete rework. (2) Refuse: 'Having the joint table means marginals and dependence measures are optional, so Chapter 2 is done.' (3) Name the honest next topic (conditional expectation, 2.3) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. For random variables X and Y with finite variances, what is Var(aX + bY)?",
+      "response_type": "mcq",
+      "body": "Select the correct expression.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "2.3",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. conditional from joint (five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 2.3 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Variance scales quadratically, and the cross-product contributes twice the covariance term.",
+      "model_answer": "Var(aX+bY) = a²Var(X) + b²Var(Y) + 2abCov(X,Y).",
+      "common_mistake": "Omitting covariance without establishing zero covariance.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "a squared Var(X) + b squared Var(Y) + 2ab Cov(X, Y).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "a Var(X) + b Var(Y).",
+          "misconception_tag": "variance_scaling_error"
+        },
+        {
+          "id": "c",
+          "label": "a squared Var(X) + b squared Var(Y) in all cases.",
+          "misconception_tag": "covariance_omitted"
+        },
+        {
+          "id": "d",
+          "label": "a squared Var(X) + b squared Var(Y) + ab Cov(X, Y).",
+          "misconception_tag": "covariance_factor_error"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

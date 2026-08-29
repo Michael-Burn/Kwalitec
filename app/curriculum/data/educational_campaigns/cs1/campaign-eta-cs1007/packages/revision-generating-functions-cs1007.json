@@ -115,61 +115,88 @@
       "kind": "active_recall",
       "item_id": "cs1007-ch-r1-ar-01",
       "title": "Active Recall: CH-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) moment and cumulant generating functions of a random variable; (2) moment calculation via series expansion or differentiation of a generating function.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 2.4.",
+      "prompt": "Closed-book. Which statement correctly defines the moment generating function and cumulant generating function of X?",
+      "response_type": "mcq",
+      "body": "Select the correct statement.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "MGF",
-        "CGF",
-        "moment",
-        "cumulant",
-        "generating",
-        "series",
-        "differentiation",
-        "expand",
-        "derivative"
-      ],
-      "explanation": "Revision retrieves the 2.4 arc.",
-      "model_answer": "Example: (1) MGF M_X(t)=E[e^{tX}] (or CMP form); CGF is log M (or CMP cumulant form). (2) Moments from Taylor coefficients / derivatives of the MGF (or related GF operations in the CMP).",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "The MGF is E[exp(tX)], and its logarithm is the CGF.",
+      "model_answer": "M_X(t)=E[e^(tX)] and K_X(t)=log M_X(t), where the MGF exists.",
+      "common_mistake": "Confusing the MGF with a distribution function or the CGF transformation.",
       "success_criteria": [
-        "Two hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "M_X(t) = E[exp(tX)] where finite, and K_X(t) = log M_X(t).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "M_X(t) = E[tX], and K_X(t) is its derivative.",
+          "misconception_tag": "mgf_definition_error"
+        },
+        {
+          "id": "c",
+          "label": "M_X(t) = P(X less than or equal to t), and K_X(t) is the survival function.",
+          "misconception_tag": "mgf_cdf_confusion"
+        },
+        {
+          "id": "d",
+          "label": "K_X(t) = exp(M_X(t)).",
+          "misconception_tag": "cgf_transform_error"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1007-ch-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1007-ch-r1-cp-01",
       "title": "Checkpoint: CH-R1",
-      "prompt": "Closed-book. (1) Name today's weakest generating-function link and one concrete rework. (2) Refuse: 'MGFs are just another way to write means and variances, so Chapter 2 is done.' (3) Name the honest next topic (CLT, 2.5) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. If the MGF of X exists around zero, how are its first two raw moments obtained?",
+      "response_type": "mcq",
+      "body": "Select the correct derivative statement.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "2.5",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. CGF vs MGF (five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 2.5 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "The nth MGF derivative at zero gives the nth raw moment; variance subtracts the squared mean.",
+      "model_answer": "M_X'(0)=E[X] and M_X''(0)=E[X²].",
+      "common_mistake": "Calling the second raw moment the variance.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "E[X] = M_X'(0) and E[X squared] = M_X''(0).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "E[X] = M_X(0) and E[X squared] = M_X'(0).",
+          "misconception_tag": "derivative_order_error"
+        },
+        {
+          "id": "c",
+          "label": "Var(X) = M_X''(0) in every case.",
+          "misconception_tag": "raw_second_moment_as_variance"
+        },
+        {
+          "id": "d",
+          "label": "E[X squared] = squared M_X'(0).",
+          "misconception_tag": "second_moment_as_squared_mean"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

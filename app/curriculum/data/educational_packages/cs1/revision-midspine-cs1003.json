@@ -134,58 +134,88 @@
       "kind": "active_recall",
       "item_id": "cs1003-cd-r3-ar-01",
       "title": "Active Recall: CD-R3",
-      "prompt": "Closed-book. Retrieve five hinges: (1) 4.1; (2) GLM structure; (3) GLM diagnostic/fit; (4) Bayes theorem/posterior; (5) credibility Bayes-vs-EB contrast.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall.",
+      "prompt": "Closed-book. Which statement correctly distinguishes fully Bayesian inference from empirical Bayes inference?",
+      "response_type": "mcq",
+      "body": "Select the best distinction.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "least squares",
-        "link",
-        "deviance",
-        "bayes",
-        "credibility",
-        "empirical",
-        "residual"
-      ],
-      "explanation": "Revision retrieves the arc.",
-      "model_answer": "Example: OLS; Family→η→link; residual/test; Bayes update; Bayes vs EB assumptions.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "Empirical Bayes estimates prior-level quantities from data, while a full Bayesian model represents their uncertainty probabilistically.",
+      "model_answer": "Empirical Bayes plugs in estimated hyperparameters; full Bayes models their uncertainty.",
+      "common_mistake": "Claiming empirical Bayes has no prior or fully propagates plug-in uncertainty.",
       "success_criteria": [
-        "Return targets named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A fully Bayesian analysis gives prior distributions to hyperparameters, while empirical Bayes estimates some prior hyperparameters from observed data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Empirical Bayes never uses a prior distribution.",
+          "misconception_tag": "eb_no_prior"
+        },
+        {
+          "id": "c",
+          "label": "Fully Bayesian inference estimates every prior parameter by maximum likelihood from the same data.",
+          "misconception_tag": "full_bayes_as_eb"
+        },
+        {
+          "id": "d",
+          "label": "The approaches always produce identical posterior uncertainty.",
+          "misconception_tag": "uncertainty_equivalence"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1003-cd-r3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-cd-r3-cp-01",
-      "title": "Checkpoint: CD-R3",
-      "prompt": "(1) Name today's weakest link across LM, GLM, and Bayes/credibility contrast, plus one concrete rework. (2) Refuse: 'Retrieving the mid-syllabus stretch means I am exam-ready on regression through Bayes.' (3) Confirm you are not treating this revision alone as a licence to skip remaining syllabus topics.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "title": "Revision Checkpoint: conjugate update and Bayes vs EB",
+      "prompt": "Closed-book. If X given theta is Binomial(n, theta) and theta has a Beta(alpha, beta) prior, what is the posterior after observing X = x?",
+      "response_type": "mcq",
+      "body": "Select the correct posterior.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "until-exam",
-        "wave 3",
-        "stop"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) Named rework. (2) Spine/until-exam refused. (3) Wave 3 not started. Honest stop after Approver/LIVE path.",
-      "common_mistake": "Spine / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Beta-binomial conjugacy adds successes to alpha and failures to beta.",
+      "model_answer": "The posterior is Beta(alpha + x, beta + n - x).",
+      "common_mistake": "Adding successes to both parameters and ignoring failures.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Beta(alpha + x, beta + n - x).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Beta(alpha + n, beta + x).",
+          "misconception_tag": "beta_binomial_parameter_update"
+        },
+        {
+          "id": "c",
+          "label": "Binomial(n + alpha + beta, theta).",
+          "misconception_tag": "posterior_family_confusion"
+        },
+        {
+          "id": "d",
+          "label": "Beta(alpha + x, beta + x).",
+          "misconception_tag": "failures_omitted"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

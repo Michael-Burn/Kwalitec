@@ -120,61 +120,88 @@
       "kind": "active_recall",
       "item_id": "cs1009-ci-r1-ar-01",
       "title": "Active Recall: CI-R1",
-      "prompt": "Closed-book. Retrieve in order, one short phrase each: (1) random sample; (2) sampling distribution of a statistic; (3) mean/variance of sample mean and mean of sample variance; (4) Normal sampling laws for mean/variance; (5) t-statistic; (6) F variance ratio.",
-      "response_type": "short_structured",
-      "body": "Revision chain recall for 2.6.",
+      "prompt": "Closed-book. What is the sampling distribution of the sample mean?",
+      "response_type": "mcq",
+      "body": "Select the correct definition.",
       "hints": [
-        "Name each hinge briefly.",
-        "Stay retrieval-first."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "sample",
-        "sampling",
-        "distribution",
-        "mean",
-        "variance",
-        "Normal",
-        "t",
-        "F",
-        "statistic"
-      ],
-      "explanation": "Revision retrieves the 2.6 arc.",
-      "model_answer": "Example: (1) iid draws from a population; (2) distribution of a statistic over repeated samples; (3) E/Var of X̄ and E[S²] in population terms; (4) Normal-sample laws for X̄ and S² (χ² form as CMP); (5) t when σ unknown; (6) F for ratio of independent sample variances.",
-      "common_mistake": "Passive summary without retrieval.",
+      "accepted_keywords": [],
+      "explanation": "A sampling distribution describes repeated-sampling behaviour of a statistic.",
+      "model_answer": "It is the distribution of the sample mean across repeated samples of fixed size.",
+      "common_mistake": "Confusing a realised statistic with its sampling distribution.",
       "success_criteria": [
-        "Six hinges named.",
-        "Weakest link candid."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "It is the probability distribution of values the sample mean would take over repeated random samples of the same size.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "It is the single numerical sample mean observed in the available data.",
+          "misconception_tag": "statistic_vs_distribution"
+        },
+        {
+          "id": "c",
+          "label": "It is the empirical distribution of observations within one sample.",
+          "misconception_tag": "sample_distribution_confusion"
+        },
+        {
+          "id": "d",
+          "label": "It is always standard Normal, whatever the population and sample size.",
+          "misconception_tag": "universal_normality"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1009-ci-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-ci-r1-cp-01",
       "title": "Checkpoint: CI-R1",
-      "prompt": "Closed-book. (1) Name today's weakest sampling-distribution link and one concrete rework. (2) Refuse: 'My sample mean is the sampling distribution, so Chapter 2 is done.' (3) Name the honest next topic (estimators, 3.1) or confirm you are stopping here.",
-      "response_type": "short_structured",
-      "body": "Weakest link + honest next.",
+      "prompt": "Closed-book. A random sample of size n comes from a Normal population with unknown variance. Which pivot is used for inference about the mean?",
+      "response_type": "mcq",
+      "body": "Select the correct distributional result.",
       "hints": [
-        "Name a concrete rework.",
-        "Refuse forbidden claims."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "weak",
-        "rework",
-        "refuse",
-        "spine",
-        "chapter",
-        "3.1",
-        "stop",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) e.g. F degrees of freedom (five-minute rework. (2) Refuse Chapter 2 complete / spine / until-exam. (3) Honest next is 3.1 (successor Volume) or declared stop) not claimed finished here.",
-      "common_mistake": "Spine / Chapter 2 / until-exam claim.",
+      "accepted_keywords": [],
+      "explanation": "Estimating the unknown Normal population variance gives a t pivot with n - 1 degrees of freedom.",
+      "model_answer": "Use T = (Xbar-mu)/(S/sqrt(n)), which follows t_(n-1).",
+      "common_mistake": "Using a standard Normal pivot when variance is estimated from the sample.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "(sample mean minus mu)/(S divided by sqrt(n)) has a t distribution with n - 1 degrees of freedom.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "(sample mean minus mu)/S has a standard Normal distribution.",
+          "misconception_tag": "missing_standard_error_and_t"
+        },
+        {
+          "id": "c",
+          "label": "(sample mean minus mu)/(S divided by sqrt(n)) has a chi-squared distribution.",
+          "misconception_tag": "pivot_distribution_confusion"
+        },
+        {
+          "id": "d",
+          "label": "The sample mean itself has a t distribution with n degrees of freedom.",
+          "misconception_tag": "unstandardised_mean_t"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

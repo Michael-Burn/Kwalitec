@@ -104,85 +104,132 @@
       "kind": "active_recall",
       "item_id": "ep001-ca-r1-ar-01",
       "title": "Revision Recall: purpose map",
-      "prompt": "Closed-book. Restate the three primary aims of data analysis with one short example each, and name one reproducibility element.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 1 (1.1).",
+      "prompt": "Closed-book. Which statement correctly names the three primary aims of CS1 data analysis with distinct actuarial examples and one reproducibility element?",
+      "response_type": "mcq",
+      "body": "Select the complete aims-and-examples statement.",
       "hints": [
-        "Descriptive / inferential / predictive.",
-        "Reproducibility: versioned data, scripted path, documentation, seed…"
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "descriptive",
-        "inferential",
-        "predictive",
-        "reproduc",
-        "version",
-        "document",
-        "code"
-      ],
-      "explanation": "Revision succeeds only if Day 1 purpose language still retrieves.",
-      "model_answer": "Descriptive / inferential / predictive with distinct examples; plus e.g. versioned dataset and scripted analysis path.",
-      "common_mistake": "Listing EDA tools instead of aims.",
+      "accepted_keywords": [],
+      "explanation": "CS1 distinguishes descriptive, inferential, and predictive aims. Reproducibility requires a concrete repeatable analysis path.",
+      "model_answer": "Describe the observed portfolio, infer a population quantity, and predict a future outcome, with versioned data and scripted analysis.",
+      "common_mistake": "Listing tools instead of aims, collapsing the aims, or swapping their roles.",
       "success_criteria": [
-        "Three aims with examples.",
-        "One reproducibility element."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Descriptive: summarise claim sizes in a portfolio year. Inferential: estimate mean claim severity for a population of similar risks. Predictive: forecast next year's claim count for pricing. Reproducibility needs something concrete such as versioned data and a scripted analysis path.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The three aims are plotting, computing means, and using software. Reproducibility means saving the final chart.",
+          "misconception_tag": "tools_as_aims"
+        },
+        {
+          "id": "c",
+          "label": "All three aims mean inspecting observed claims, so one sample summary covers description, population inference, and future prediction.",
+          "misconception_tag": "aims_collapsed"
+        },
+        {
+          "id": "d",
+          "label": "Descriptive analysis forecasts future claims, inferential analysis reports only the observed sample, and predictive analysis estimates a fixed population parameter.",
+          "misconception_tag": "aims_swapped"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ep001-ca-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "ep001-ca-r1-cp-01",
       "title": "Revision Checkpoint: EDA tool judgement",
-      "prompt": "Closed-book. Aim = descriptive; variable = right-skewed claim size. Defend one summary and one visualisation; name one misuse you refuse.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 2 (1.2.1).",
+      "prompt": "Closed-book. Claim amounts are strongly right-skewed and contain several large observations. Which descriptive analysis is most defensible?",
+      "response_type": "mcq",
+      "body": "Select the best summary and visualisation.",
       "hints": [
-        "Median/IQR or shape-aware reporting; histogram/boxplot; refuse pie or mean-only theatre."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "median",
-        "iqr",
-        "histogram",
-        "boxplot",
-        "skew",
-        "refuse",
-        "mean"
-      ],
-      "explanation": "Revision must reconnect aim to tool choice.",
-      "model_answer": "Median (IQR) + histogram/boxplot for skew; refuse mean-only or pie-chart summary of continuous magnitude.",
-      "common_mistake": "Default mean with no shape warrant.",
+      "accepted_keywords": [],
+      "explanation": "Robust summaries and a distributional plot reveal centre, spread, skewness, and possible outliers without assuming errors.",
+      "model_answer": "Use the median, IQR, and a histogram or boxplot, then investigate the large claims.",
+      "common_mistake": "Using a mean-only summary or an unsuitable pie chart for skewed continuous data.",
       "success_criteria": [
-        "Summary and plot defended.",
-        "One misuse refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Report the median and interquartile range, use a histogram or boxplot to show skew and extremes, and investigate large claims rather than deleting them automatically.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Report only the mean because it is the standard summary for every numerical variable.",
+          "misconception_tag": "mean_by_habit"
+        },
+        {
+          "id": "c",
+          "label": "Use a pie chart because it displays the shape of continuous claim amounts more clearly than a histogram.",
+          "misconception_tag": "pie_preferred"
+        },
+        {
+          "id": "d",
+          "label": "Delete all claims above the upper quartile before calculating any summary.",
+          "misconception_tag": "automatic_outlier_deletion"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-ep001-ca-r1-cp-02",
       "kind": "checkpoint",
       "item_id": "ep001-ca-r1-cp-02",
       "title": "Revision Checkpoint: association limits",
-      "prompt": "Closed-book. Skewed variables, outliers, monotone but nonlinear scatter. Choose Pearson, Spearman, or Kendall and justify. State one claim the coefficient does not support.",
-      "response_type": "short_structured",
-      "body": "Return target: Day 3 (1.2.2).",
+      "prompt": "Closed-book. Two continuous variables have outliers and a strong monotone but nonlinear relationship. Which conclusion is justified?",
+      "response_type": "mcq",
+      "body": "Select the best association statement.",
       "hints": [
-        "Prefer rank-based; refuse causation."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "spearman",
-        "kendall",
-        "rank",
-        "monotonic",
-        "causation",
-        "cause",
-        "not"
-      ],
-      "explanation": "Revision must keep association honest.",
-      "model_answer": "Spearman or Kendall for monotone nonlinear association with outliers; coefficient does not prove causation.",
-      "common_mistake": "Pearson by habit; causal claim.",
+      "accepted_keywords": [],
+      "explanation": "Rank correlations measure monotone association without requiring linearity. Association alone does not establish causation.",
+      "model_answer": "Use Spearman's rho or Kendall's tau and avoid a causal claim.",
+      "common_mistake": "Using Pearson automatically or interpreting rank association as causation.",
       "success_criteria": [
-        "Rank-based choice with reason.",
-        "One non-claim stated."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Spearman's rank correlation or Kendall's tau can measure the monotone association and reduce sensitivity to extreme magnitudes, but neither establishes causation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Pearson correlation must equal 1 because every monotone relationship is perfectly linear.",
+          "misconception_tag": "pearson_monotonicity_confusion"
+        },
+        {
+          "id": "c",
+          "label": "Kendall's tau proves that changing one variable causes the other to change.",
+          "misconception_tag": "association_as_causation"
+        },
+        {
+          "id": "d",
+          "label": "No correlation measure can describe a nonlinear monotone relationship.",
+          "misconception_tag": "linearity_required_for_rank_correlation"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {

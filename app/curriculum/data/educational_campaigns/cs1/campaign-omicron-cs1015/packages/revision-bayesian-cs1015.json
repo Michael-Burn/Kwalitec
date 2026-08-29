@@ -122,57 +122,88 @@
       "kind": "active_recall",
       "item_id": "cs1015-co-r1-ar-01",
       "title": "Active Recall: Omicron chain",
-      "prompt": "Closed-book. List the nine 5.1 Learning hinges in order as short phrases (theorem → … → contrast).",
-      "response_type": "short_structured",
-      "body": "Retrieve Campaign Omicron Learning span.",
+      "prompt": "Closed-book. Which expression gives the Bayesian posterior density for theta after observing data y?",
+      "response_type": "mcq",
+      "body": "Select the correct proportionality.",
       "hints": [
-        "Start from Bayes' theorem.",
-        "End at Bayes vs EB contrast."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "Bayes",
-        "prior",
-        "posterior",
-        "loss",
-        "credible",
-        "premium",
-        "credibility",
-        "Empirical",
-        "contrast"
-      ],
-      "explanation": "Order retrieval for CO-R1.",
-      "model_answer": "Theorem → prior/posterior/conjugate → simple posterior → loss/estimators → credible intervals → premium/factor → Bayesian credibility → EB → contrast.",
-      "common_mistake": "Skipping mid-chain credibility or collapsing Bayes with EB.",
+      "accepted_keywords": [],
+      "explanation": "Bayes' theorem multiplies prior by likelihood and normalises over theta.",
+      "model_answer": "Posterior is proportional to likelihood times prior.",
+      "common_mistake": "Adding prior and likelihood or reversing conditional roles.",
       "success_criteria": [
-        "Nine hinges named in lawful order."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "posterior(theta given y) is proportional to likelihood(y given theta) times prior(theta).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "posterior(theta given y) is proportional to likelihood(theta given y) plus prior(theta).",
+          "misconception_tag": "bayes_addition_error"
+        },
+        {
+          "id": "c",
+          "label": "posterior equals likelihood without normalisation or a prior.",
+          "misconception_tag": "prior_omitted"
+        },
+        {
+          "id": "d",
+          "label": "posterior(theta given y) is proportional to prior(y) times likelihood(theta).",
+          "misconception_tag": "conditional_roles_reversed"
+        }
+      ],
+      "correct_choice_id": "a"
     },
     {
       "episode_id": "lep-cs1015-co-r1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1015-co-r1-cp-01",
-      "title": "Checkpoint: refuse spine / until-exam",
-      "prompt": "Closed-book. A colleague says 'Contrasting Bayes and Empirical Bayes means Topic 5.1 is exam-ready.' Refuse; name the weakest link on today's Bayesian retrieval chain; name one concrete next rework (not a new topic).",
-      "response_type": "short_structured",
-      "body": "Refuse forbidden claims; harvest weakest link.",
+      "title": "Revision Checkpoint: credible intervals vs coverage claims",
+      "prompt": "Closed-book. Which interpretation of a 95 percent Bayesian credible interval for theta is correct?",
+      "response_type": "mcq",
+      "body": "Select the correct interpretation.",
       "hints": [
-        "Refuse spine / until-exam / Wave 0 clearance.",
-        "Name one rework."
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
       ],
-      "accepted_keywords": [
-        "refuse",
-        "spine",
-        "Wave 0",
-        "weakest",
-        "until-exam"
-      ],
-      "explanation": "RV harvests memory debt and honest next.",
-      "model_answer": "(1) Name weakest hinge + five-minute rework. (2) Refuse spine PASS / until-exam / Wave 0 clearance. (3) Honest next is declared stop or Wave 0 honesty / spine re-audit. Not claimed finished here.",
-      "common_mistake": "Spine / until-exam / Wave 0 claim.",
+      "accepted_keywords": [],
+      "explanation": "A credible interval is a posterior probability statement conditional on the model and data.",
+      "model_answer": "The posterior assigns probability 0.95 to theta lying in the interval.",
+      "common_mistake": "Giving a frequentist repeated-sampling interpretation to a credible interval.",
       "success_criteria": [
-        "Rework named.",
-        "Forbidden claim refused."
-      ]
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Given the model, prior, and data, posterior probability that theta lies in the interval is 0.95.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Across repeated samples, exactly 95 percent of such intervals cover theta for every value.",
+          "misconception_tag": "credible_as_confidence_coverage"
+        },
+        {
+          "id": "c",
+          "label": "Ninety-five percent of future observations lie in the interval.",
+          "misconception_tag": "parameter_vs_prediction"
+        },
+        {
+          "id": "d",
+          "label": "The probability statement does not depend on prior or likelihood.",
+          "misconception_tag": "posterior_inputs_ignored"
+        }
+      ],
+      "correct_choice_id": "a"
     }
   ],
   "reflection": {
