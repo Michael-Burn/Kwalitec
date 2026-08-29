@@ -41,13 +41,13 @@ class EducationalTimelineSnapshot:
     page_title: str = "Educational Timeline"
     page_eyebrow: str = "Study Sensei"
     page_description: str = (
-        "Your chronological educational record — a learning story drawn "
+        "Your chronological educational record: a learning story drawn "
         "from the Decision Journal, not from scores or History stats."
     )
     empty_title: str = "Your timeline begins with journal entries"
     empty_description: str = (
         "As guidance lands in your Decision Journal, this Timeline builds "
-        "your chronological learning story — not a second memory store. "
+        "your chronological learning story, not a second memory store. "
         "History keeps practice archives separately."
     )
     primary_cta_label: str = "Open Decision Journal"

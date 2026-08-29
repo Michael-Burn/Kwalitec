@@ -38,7 +38,7 @@ STUDENT_SUPPORT_TEAM = "the Kwalitec team"
 # ── PX-B-042 — Help Centre ──────────────────────────────────────────────────
 HELP_CENTRE_EYEBROW = "Help"
 HELP_CENTRE_DESCRIPTION = (
-    "How Kwalitec and Study Sensei work together on your educational journey. "
+    "How Kwalitec and Study Sensei work together on your educational journey, "
     "and how to get support when you need it."
 )
 HELP_FEEDBACK_CTA = "Send product feedback"
@@ -55,19 +55,20 @@ FEEDBACK_QUICK_DESCRIPTION = (
     "One quick answer helps improve Kwalitec for students like you."
 )
 
-# Extra FAQ rows (deferral / exam change) appended to Help popular topics.
+# Extra FAQ rows (deferral / exam change); kept aligned with help.html topics
+# for consistency if later wired into the Help popular-topics list.
 HELP_FAQ_EXAM_CHANGE = (
     "How do I change my exam date or sitting?",
-    "Open Study Plan from the main navigation and update your exam date. "
-    "Your next Session updates from the revised plan. You do not need to "
-    "rebuild your journey from scratch.",
+    "Open Choose Exam from the main navigation, then choose Edit on your "
+    "plan and update your exam date. Your next Session updates from the "
+    "revised plan. You do not need to rebuild your plan from scratch.",
 )
 HELP_FAQ_DEFERRAL = (
     "What if I need to pause or defer my studies?",
     "Take the break you need. When you return, open Home and follow today's "
-    "authorised Session: Kwalitec does not invent catch-up work or penalise "
-    "gaps. If your exam sitting changes, update Study Plan so guidance stays "
-    "honest.",
+    "authorised Session. Kwalitec does not invent catch-up work or penalise "
+    "gaps. If your exam sitting changes, update your exam date under "
+    "Choose Exam so guidance stays honest.",
 )
 
 # ── PX-B-043 — Diagnostic disclosure ────────────────────────────────────────

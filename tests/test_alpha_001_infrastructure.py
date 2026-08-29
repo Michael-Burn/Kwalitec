@@ -70,7 +70,8 @@ class TestAlphaOnboarding:
         # (Sensei lexicon lives on Help, not this short orientation).
         assert "What Kwalitec is" in body
         assert "Choose your exam" in body
-        assert "Today" in body and "Focus" in body
+        assert "Today&#39;s Mission" in body or "Today's Mission" in body
+        assert "Today&#39;s Focus" not in body and "Today's Focus" not in body
         assert "Guidance you can understand" in body
         assert "Welcome to Kwalitec" in body
         assert "Continue to Home" in body

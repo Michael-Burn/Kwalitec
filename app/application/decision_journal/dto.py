@@ -57,7 +57,7 @@ class DecisionJournalTimelineSnapshot:
     page_title: str = "Decision Journal"
     page_eyebrow: str = "Study Sensei"
     page_description: str = (
-        "Study Sensei’s durable educational memory — significant guidance, "
+        "Study Sensei’s durable educational memory of significant guidance, "
         "the choices you made, and what was learned afterwards."
     )
     empty_title: str = "Your journal starts with the next guidance"

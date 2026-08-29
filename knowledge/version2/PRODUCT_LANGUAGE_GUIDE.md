@@ -87,7 +87,7 @@ Resume copy (flash, not button): “Welcome back — continuing where you left o
 | Open workspace | **Open Workspace** |
 | Advance workflow | **Advance to Next Stage** |
 | Validate | **Validate Curriculum** |
-| Preview | **Build Preview** |
+| Preview | **Generate preview** (Studio primary; guide also accepts **Build Preview**) |
 | Approve | **Approve Curriculum** |
 | Publish | **Publish Curriculum** |
 | Version | **Assign Version** |
@@ -110,7 +110,7 @@ Avoid **Open**, **Launch**, **Execute**, and **Proceed** on primary CTAs unless 
 
 ### Student primary nav
 
-Home · Journey · Revision · History · Settings · Study Plan · Help
+Home · Journey · Revision · History · Settings · Choose Exam · Help
 
 _(PX-002A T1-1: this table previously said "Dashboard · ... · Analytics," contradicting §1's own "Home" entry above. "Home" and "History" are now applied consistently in code — see `app/presentation/product_language.py:STUDENT_NAV_LABELS` and `knowledge/product/px002a/TERMINOLOGY_STANDARD.md`.)_
 

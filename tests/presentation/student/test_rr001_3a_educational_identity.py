@@ -44,7 +44,7 @@ def test_onboarding_steps_hand_off_to_study_sensei():
     titles = " ".join(step["title"] for step in steps)
     assert "What Kwalitec is" in titles
     assert "Choose your exam" in titles
-    assert "Today's Focus" in titles
+    assert "Today's Mission" in titles
     assert "Guidance you can understand" in titles
     assert "Study Plan" in bodies
     assert "black box" in bodies
