@@ -12,9 +12,15 @@ APP_STAGE1_MODULES = (
     "drift_detector.py",
 )
 
+# Stage 2 modules added under the same twin package.
+APP_STAGE2_MODULES = (
+    "cutover.py",
+)
+
 # Infrastructure adapter that may import models / persistence, but not content.
 INFRA_STAGE1_MODULES = (
     Path("app") / "infrastructure" / "adapters" / "student_twin" / "query_adapter.py",
+    Path("app") / "infrastructure" / "adapters" / "student_twin" / "cutover_bridge.py",
 )
 
 FORBIDDEN_IMPORT_FRAGMENTS = (
@@ -42,6 +48,7 @@ def _app_stage1_dir() -> Path:
 
 def _all_stage1_paths() -> list[Path]:
     paths = [_app_stage1_dir() / name for name in APP_STAGE1_MODULES]
+    paths.extend(_app_stage1_dir() / name for name in APP_STAGE2_MODULES)
     paths.extend(_repo_root() / rel for rel in INFRA_STAGE1_MODULES)
     return paths
 
@@ -49,7 +56,7 @@ def _all_stage1_paths() -> list[Path]:
 def test_stage1_modules_do_not_import_content_authoring_paths():
     offenders: list[str] = []
     for path in _all_stage1_paths():
-        assert path.is_file(), f"missing Stage 1 module {path}"
+        assert path.is_file(), f"missing Stage 1/2 module {path}"
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             modules: list[str] = []
@@ -62,6 +69,25 @@ def test_stage1_modules_do_not_import_content_authoring_paths():
                 for frag in FORBIDDEN_IMPORT_FRAGMENTS:
                     if frag in lowered:
                         offenders.append(f"{path.name}:{mod}")
+    assert offenders == [], offenders
+
+
+def test_stage2_cutover_module_does_not_import_content_authoring_paths():
+    path = _app_stage1_dir() / "cutover.py"
+    assert path.is_file()
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    offenders: list[str] = []
+    for node in ast.walk(tree):
+        modules: list[str] = []
+        if isinstance(node, ast.Import):
+            modules = [alias.name for alias in node.names]
+        elif isinstance(node, ast.ImportFrom):
+            modules = [node.module or ""]
+        for mod in modules:
+            lowered = mod.replace("\\", "/")
+            for frag in FORBIDDEN_IMPORT_FRAGMENTS:
+                if frag in lowered:
+                    offenders.append(f"{path.name}:{mod}")
     assert offenders == [], offenders
 
 

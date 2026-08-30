@@ -45,6 +45,14 @@ class AnalyticsService:
         leaf_ids = AnalyticsService._leaf_topic_ids()
         total_leaf = len(leaf_ids)
 
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
         progress_records = []
         if leaf_ids:
             progress_records = TopicProgress.query.filter(
@@ -55,12 +63,25 @@ class AnalyticsService:
         started_count = 0
         mastered_count = 0
         mastery_sum = 0.0
-        for p in progress_records:
-            if p.revision_count > 0:
-                started_count += 1
-                mastery_sum += p.mastery_score
-            if p.current_stage == TopicProgress.STAGE_MASTERED:
-                mastered_count += 1
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            scores = [
+                s
+                for s in (ek_display_0_100(f) for f in ek_map.values())
+                if s is not None
+            ]
+            started_count = len(scores)
+            mastery_sum = sum(scores)
+            for p in progress_records:
+                if p.current_stage == TopicProgress.STAGE_MASTERED:
+                    mastered_count += 1
+        else:
+            for p in progress_records:
+                if p.revision_count > 0:
+                    started_count += 1
+                    mastery_sum += p.mastery_score
+                if p.current_stage == TopicProgress.STAGE_MASTERED:
+                    mastered_count += 1
 
         coverage_pct = (started_count / total_leaf * 100) if total_leaf > 0 else 0.0
         avg_mastery = (mastery_sum / started_count) if started_count > 0 else 0.0
@@ -117,8 +138,27 @@ class AnalyticsService:
         today = date.today()
         leaf_ids = AnalyticsService._leaf_topic_ids()
 
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
         avg = 0.0
-        if leaf_ids:
+        if phase2_twin_cutover_enabled():
+            scores = [
+                s
+                for s in (
+                    ek_display_0_100(f)
+                    for f in topic_ek_by_orm_id(user_id=user_id).values()
+                )
+                if s is not None
+            ]
+            if scores:
+                avg = sum(scores) / len(scores)
+        elif leaf_ids:
             progress_records = TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.topic_id.in_(leaf_ids),

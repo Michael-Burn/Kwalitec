@@ -66,6 +66,7 @@ This artefact **does not** flip flags. It documents current production intent.
 | Advisory / recovery / simulation / trials / evidence review family | **OFF** | Mostly non-student or advisory | Architecture | Per programme soak | Unset each flag |
 | Runtime C / founder-student bridge family | **OFF** | Yes if ON | Architecture | Platform integration soak | Unset |
 | `KWALITEC_ADR027_M0_DECISION_BOUNDARY` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Decision Engine path for Runtime C daily sitting when ON | Architecture | ADR-027 M0 dual-path suite green; deliberate soak | Unset / `0`; redeploy returns to inlined `generate_daily_mission` selection |
+| `KWALITEC_ADR027_PHASE2_TWIN_CUTOVER` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Stack A/C EK writes skipped and Stage A / Runtime C EK readers use Learner Twin Query when ON | Architecture | ADR-027 Phase 2 Stage 2 dual-path suite green; deliberate soak; resume of `SR_TWIN_DAILY_LOOP` is a separate operator step | Unset / `0`; redeploy restores Stack A/C EK write+read behaviour |
 
 Full inventory (including Alpha posture notes): `knowledge/release/RP-001/FEATURE_FLAG_REGISTER.md`.
 

@@ -1397,11 +1397,23 @@ class PlanningService:
         from the stored ``current_stage`` label (which becomes Completed once
         Study Progress is marked done).
         """
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
         from app.models.topic_progress import TopicProgress
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
         ordered = CurriculumService.get_ordered_topics(curriculum)
         leaf_topics = [t for t in ordered if t.is_leaf_topic()]
+        ek_map = (
+            topic_ek_by_orm_id(user_id=user_id, topics=leaf_topics)
+            if phase2_twin_cutover_enabled()
+            else {}
+        )
         weak: list[tuple[float, int, Topic]] = []
         for topic in leaf_topics:
             if exclude_topic_id is not None and topic.id == exclude_topic_id:
@@ -1412,14 +1424,19 @@ class PlanningService:
             ).first()
             if not progress or not progress.completed:
                 continue
-            stage = AdaptiveLearningService.determine_stage(
-                float(progress.mastery_score or 0.0)
-            )
+            if phase2_twin_cutover_enabled():
+                twin_score = ek_display_0_100(ek_map.get(topic.id))
+                # No Twin evidence => treat as no EK (0.0 for stage only when
+                # covered) — Study Progress complete does not mint EK.
+                mastery_value = twin_score if twin_score is not None else 0.0
+            else:
+                mastery_value = float(progress.mastery_score or 0.0)
+            stage = AdaptiveLearningService.determine_stage(mastery_value)
             if stage in (
                 TopicProgress.STAGE_LEARNING,
                 TopicProgress.STAGE_NOT_STARTED,
             ):
-                weak.append((float(progress.mastery_score or 0.0), topic.id, topic))
+                weak.append((mastery_value, topic.id, topic))
         weak.sort(key=lambda row: (row[0], row[1]))
         return [row[2] for row in weak]
 

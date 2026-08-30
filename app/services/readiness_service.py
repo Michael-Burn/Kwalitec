@@ -695,6 +695,46 @@ class ReadinessService:
         Returns:
             list[dict]: Each dict has topic_name, mastery_score, stage, revision_count.
         """
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            if not ek_map:
+                return []
+            progress_list = (
+                TopicProgress.query.options(joinedload(TopicProgress.topic))
+                .filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(list(ek_map.keys())),
+                )
+                .all()
+            )
+            ranked: list[tuple[float, dict]] = []
+            for p in progress_list:
+                score = ek_display_0_100(ek_map.get(p.topic_id))
+                if score is None:
+                    continue
+                ranked.append(
+                    (
+                        score,
+                        {
+                            "topic_id": p.topic_id,
+                            "topic_name": p.topic.name if p.topic else "Unknown",
+                            "mastery_score": score,
+                            "stage": p.current_stage,
+                            "revision_count": p.revision_count,
+                        },
+                    )
+                )
+            ranked.sort(key=lambda item: item[0])
+            return [row for _score, row in ranked[:limit]]
+
         progress_list = (
             TopicProgress.query.options(joinedload(TopicProgress.topic))
             .filter(
@@ -734,6 +774,46 @@ class ReadinessService:
         Returns:
             list[dict]: Each dict has topic_name, mastery_score, stage, revision_count.
         """
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            if not ek_map:
+                return []
+            progress_list = (
+                TopicProgress.query.options(joinedload(TopicProgress.topic))
+                .filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(list(ek_map.keys())),
+                )
+                .all()
+            )
+            ranked: list[tuple[float, dict]] = []
+            for p in progress_list:
+                score = ek_display_0_100(ek_map.get(p.topic_id))
+                if score is None:
+                    continue
+                ranked.append(
+                    (
+                        score,
+                        {
+                            "topic_id": p.topic_id,
+                            "topic_name": p.topic.name if p.topic else "Unknown",
+                            "mastery_score": score,
+                            "stage": p.current_stage,
+                            "revision_count": p.revision_count,
+                        },
+                    )
+                )
+            ranked.sort(key=lambda item: item[0], reverse=True)
+            return [row for _score, row in ranked[:limit]]
+
         progress_list = (
             TopicProgress.query.options(joinedload(TopicProgress.topic))
             .filter(
@@ -796,10 +876,27 @@ class ReadinessService:
             (total_correct / total_questions * 100) if total_questions > 0 else None
         )
 
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            twin_fact_for_orm_topic,
+        )
+
+        if phase2_twin_cutover_enabled():
+            fact = twin_fact_for_orm_topic(
+                user_id=user_id, topic=progress.topic
+            )
+            twin_score = ek_display_0_100(fact)
+            mastery_score = twin_score if twin_score is not None else 0.0
+        else:
+            mastery_score = round(progress.mastery_score, 1)
+
         return {
             "topic_id": topic_id,
             "topic_name": progress.topic.name if progress.topic else "Unknown",
-            "mastery_score": round(progress.mastery_score, 1),
+            "mastery_score": mastery_score,
             "stage": progress.current_stage,
             "revision_count": progress.revision_count,
             "total_attempts": total_attempts,
@@ -846,6 +943,20 @@ class ReadinessService:
         ).all()
         progress_map = {row.topic_id: row for row in progress_rows}
 
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
+        ek_map = (
+            topic_ek_by_orm_id(user_id=user_id, topics=leaf_topics)
+            if phase2_twin_cutover_enabled()
+            else {}
+        )
+
         topics_completed = 0
         topics_mastered = 0
         knowledge_scores: list[float] = []
@@ -857,7 +968,11 @@ class ReadinessService:
                 topics_completed += 1
             if prog.current_stage == TopicProgress.STAGE_MASTERED:
                 topics_mastered += 1
-            if prog.has_estimated_knowledge:
+            if phase2_twin_cutover_enabled():
+                score = ek_display_0_100(ek_map.get(topic.id))
+                if score is not None:
+                    knowledge_scores.append(score)
+            elif prog.has_estimated_knowledge:
                 knowledge_scores.append(float(prog.mastery_score))
 
         coverage_pct = (topics_completed / total_topics) * 100.0

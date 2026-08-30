@@ -1549,16 +1549,54 @@ class EducationalRuntimeEngineService:
         artefacts = self._load_artefacts(enrolment.subject_code)
         derived = self._derive_progress_for(enrolment, artefacts)
         completed = set(derived.completed_topic_ids)
-        topics = tuple(
-            {
-                "topic_id": topic_id,
-                "completed": topic_id in completed,
-                "has_estimated_knowledge": False,
-                "average_accuracy": None,
-                "mastery_score": None,
-            }
-            for topic_id in derived.topic_ids
+
+        from app.application.student_twin.cutover import (
+            phase2_twin_cutover_enabled,
         )
+        from app.services.twin_cutover_service import (
+            learner_twin_query,
+        )
+
+        if phase2_twin_cutover_enabled():
+            query = learner_twin_query()
+            topics_list = []
+            for topic_id in derived.topic_ids:
+                fact = query.topic_knowledge(
+                    user_id=user_id,
+                    subject_code=enrolment.subject_code,
+                    topic_id=topic_id,
+                )
+                ek = (
+                    float(fact.estimated_knowledge)
+                    if fact.has_estimated_knowledge
+                    and fact.estimated_knowledge is not None
+                    else None
+                )
+                topics_list.append(
+                    {
+                        "topic_id": topic_id,
+                        "completed": topic_id in completed,
+                        "has_estimated_knowledge": bool(fact.has_estimated_knowledge),
+                        "estimated_knowledge": ek,
+                        "average_accuracy": None,
+                        "mastery_score": (
+                            round(ek * 100.0, 1) if ek is not None else None
+                        ),
+                    }
+                )
+            topics = tuple(topics_list)
+        else:
+            topics = tuple(
+                {
+                    "topic_id": topic_id,
+                    "completed": topic_id in completed,
+                    "has_estimated_knowledge": False,
+                    "estimated_knowledge": None,
+                    "average_accuracy": None,
+                    "mastery_score": None,
+                }
+                for topic_id in derived.topic_ids
+            )
         return EstimatedKnowledgeRuntimeInputs(
             curriculum_identity=derived.curriculum_identity,
             subject_code=enrolment.subject_code,

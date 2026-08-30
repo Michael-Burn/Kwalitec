@@ -648,8 +648,31 @@ def view_plan(study_plan_id: int):
         flash("You can only view your own study plans.", "danger")
         return redirect(url_for("study_plan.index"))
 
+    twin_progress_by_topic = None
+    from app.application.student_twin.cutover import (
+        phase2_twin_cutover_enabled,
+    )
+    from app.services.twin_cutover_service import (
+        study_plan_progress_display_map,
+    )
+
+    if phase2_twin_cutover_enabled():
+        topics = (
+            list(study_plan.curriculum.topics)
+            if study_plan.curriculum and study_plan.curriculum.topics
+            else None
+        )
+        twin_progress_by_topic = study_plan_progress_display_map(
+            user_id=current_user.id,
+            topic_progress_rows=list(current_user.topic_progress or ()),
+            topics=topics,
+        )
+
     return render_template(
-        "study_plan/view.html", study_plan=study_plan, title="Study Plan"
+        "study_plan/view.html",
+        study_plan=study_plan,
+        title="Study Plan",
+        twin_progress_by_topic=twin_progress_by_topic,
     )
 
 

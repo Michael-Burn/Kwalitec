@@ -87,7 +87,15 @@ class ReadinessRuntimeInputs:
 
 @dataclass(frozen=True)
 class EstimatedKnowledgeRuntimeInputs:
-    """EK inputs: mission completion alone does not mint evidence."""
+    """EK inputs: mission completion alone does not mint evidence.
+
+    Topic dict keys (Version 1 / ADR-027 Phase 2):
+    - topic_id, completed (Study Progress)
+    - has_estimated_knowledge
+    - estimated_knowledge: explicit 0-1 Twin scalar when present (Phase 2)
+    - mastery_score: optional 0-100 display derived from estimated_knowledge
+    - average_accuracy: legacy optional field
+    """
 
     curriculum_identity: str
     subject_code: str

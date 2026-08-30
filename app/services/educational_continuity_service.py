@@ -256,6 +256,14 @@ class EducationalContinuityService:
             if existing is not None and has_history:
                 # Fill missing estimate posture from mapped prior history without
                 # rewriting Study Progress coverage the learner already holds.
+                # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
+                from app.application.student_twin.cutover import (
+                    phase2_twin_cutover_enabled,
+                )
+
+                if phase2_twin_cutover_enabled():
+                    skipped_existing.append(target_topic.id)
+                    continue
                 can_fill = EducationalContinuityService._can_fill_estimates(
                     existing, source_tp
                 )
@@ -354,6 +362,15 @@ class EducationalContinuityService:
     @staticmethod
     def _copy_estimate_fields(source: TopicProgress, target: TopicProgress) -> None:
         """Continue estimate / evidence posture without rewriting Study Progress."""
+        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
+        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
+
+        if phase2_twin_cutover_enabled():
+            logger.info(
+                "Phase 2 cutover: skipping Stack A estimate field copy "
+                "(ADR-027 Phase 2 Stage 2)"
+            )
+            return
         target.mastery_score = source.mastery_score
         target.average_accuracy = source.average_accuracy
         target.average_confidence = source.average_confidence
@@ -376,5 +393,13 @@ class EducationalContinuityService:
     @staticmethod
     def _copy_continuity_fields(source: TopicProgress, target: TopicProgress) -> None:
         """Copy learner-owned continuity fields without inventing new values."""
+        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
+        # Skip mastery_score / average_accuracy when Twin owns EK.
+        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
+
+        skip_ek = phase2_twin_cutover_enabled()
+        ek_fields = frozenset({"mastery_score", "average_accuracy"})
         for field_name in EducationalContinuityService._CONTINUITY_FIELDS:
+            if skip_ek and field_name in ek_fields:
+                continue
             setattr(target, field_name, getattr(source, field_name))

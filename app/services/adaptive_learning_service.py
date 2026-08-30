@@ -251,6 +251,7 @@ class AdaptiveLearningService:
             TopicProgress: Progress record; estimate fields updated only when
             authorised evidence is present.
         """
+        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
         from app.services.curriculum_service import CurriculumService
         from app.services.educational_evidence_authority import (
             EducationalEvidenceAuthority,
@@ -260,6 +261,19 @@ class AdaptiveLearningService:
             user_id=user_id,
             topic_id=topic_id,
         )
+
+        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
+        # Stack B (Learner Twin) is the sole EK authority when the atomic
+        # KWALITEC_ADR027_PHASE2_TWIN_CUTOVER flag is ON. Study Progress
+        # (completed) is never written here regardless of flag state.
+        if phase2_twin_cutover_enabled():
+            logger.info(
+                "Phase 2 cutover: skipping Stack A EK write for user=%d "
+                "topic=%d (ADR-027 Phase 2 Stage 2)",
+                user_id,
+                topic_id,
+            )
+            return progress
 
         attempts = StudyAttempt.query.filter_by(
             user_id=user_id,
@@ -372,6 +386,36 @@ class AdaptiveLearningService:
         Returns:
             list[TopicProgress]: Weak topics ordered by mastery (lowest first).
         """
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            if not ek_map:
+                return []
+            rows = (
+                TopicProgress.query.filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(list(ek_map.keys())),
+                )
+                .all()
+            )
+            weak: list[tuple[float, TopicProgress]] = []
+            for row in rows:
+                score = ek_display_0_100(ek_map.get(row.topic_id))
+                if score is None or score >= threshold:
+                    continue
+                # In-memory overlay for callers; do not commit.
+                row.mastery_score = score
+                weak.append((score, row))
+            weak.sort(key=lambda item: item[0])
+            return [row for _score, row in weak]
+
         return (
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
@@ -393,6 +437,35 @@ class AdaptiveLearningService:
         Returns:
             list[TopicProgress]: Mastered topics ordered by mastery (highest first).
         """
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
+
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            if not ek_map:
+                return []
+            rows = (
+                TopicProgress.query.filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(list(ek_map.keys())),
+                )
+                .all()
+            )
+            mastered: list[tuple[float, TopicProgress]] = []
+            for row in rows:
+                score = ek_display_0_100(ek_map.get(row.topic_id))
+                if score is None or score < threshold:
+                    continue
+                row.mastery_score = score
+                mastered.append((score, row))
+            mastered.sort(key=lambda item: item[0], reverse=True)
+            return [row for _score, row in mastered]
+
         return (
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
@@ -443,31 +516,72 @@ class AdaptiveLearningService:
         - current_streak: Consecutive days with at least one study attempt.
         """
         # Overall mastery: average across all started topics
-        started_topics = TopicProgress.query.filter(
-            TopicProgress.user_id == user_id,
-            TopicProgress.revision_count > 0,
-        ).all()
+        from app.application.student_twin.cutover import (
+            ek_display_0_100,
+            phase2_twin_cutover_enabled,
+        )
+        from app.services.twin_cutover_service import (
+            topic_ek_by_orm_id,
+        )
 
-        if started_topics:
-            overall_mastery = sum(t.mastery_score for t in started_topics) / len(started_topics)
+        if phase2_twin_cutover_enabled():
+            ek_map = topic_ek_by_orm_id(user_id=user_id)
+            scores = [
+                score
+                for score in (ek_display_0_100(f) for f in ek_map.values())
+                if score is not None
+            ]
+            overall_mastery = (sum(scores) / len(scores)) if scores else 0.0
+            started_topics = (
+                TopicProgress.query.filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.topic_id.in_(list(ek_map.keys())),
+                ).all()
+                if ek_map
+                else []
+            )
+            weakest_topic = None
+            if ek_map and started_topics:
+                ranked = sorted(
+                    (
+                        (ek_display_0_100(ek_map.get(t.topic_id)), t)
+                        for t in started_topics
+                    ),
+                    key=lambda item: (
+                        item[0] if item[0] is not None else 999.0,
+                        item[1].topic_id,
+                    ),
+                )
+                if ranked and ranked[0][0] is not None:
+                    weakest_topic = ranked[0][1]
+                    weakest_topic.mastery_score = ranked[0][0]
         else:
-            overall_mastery = 0.0
+            started_topics = TopicProgress.query.filter(
+                TopicProgress.user_id == user_id,
+                TopicProgress.revision_count > 0,
+            ).all()
+
+            if started_topics:
+                overall_mastery = sum(t.mastery_score for t in started_topics) / len(
+                    started_topics
+                )
+            else:
+                overall_mastery = 0.0
+
+            weakest_topic = (
+                TopicProgress.query.filter(
+                    TopicProgress.user_id == user_id,
+                    TopicProgress.revision_count > 0,
+                )
+                .order_by(TopicProgress.mastery_score.asc())
+                .first()
+            )
 
         # Topics mastered
         topics_mastered = TopicProgress.query.filter(
             TopicProgress.user_id == user_id,
             TopicProgress.current_stage == TopicProgress.STAGE_MASTERED,
         ).count()
-
-        # Weakest topic
-        weakest_topic = (
-            TopicProgress.query.filter(
-                TopicProgress.user_id == user_id,
-                TopicProgress.revision_count > 0,
-            )
-            .order_by(TopicProgress.mastery_score.asc())
-            .first()
-        )
 
         # Reviews due today
         today = date.today()

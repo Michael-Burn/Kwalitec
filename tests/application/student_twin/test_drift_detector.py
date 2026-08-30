@@ -69,11 +69,29 @@ def test_d2_baseline_detects_existing_a_and_c_writers():
     assert len(inventory.hits) > 0
 
 
+def test_d2_inventory_only_when_cutover_off():
+    report = DriftDetector().check_single_writer_sentry(cutover_active=False)
+    assert report.ok
+    assert report.mode == "inventory"
+    assert report.cutover_active is False
+    assert report.missing_guards == ()
+    assert report.inventory.baseline_writers_present()
+
+
+def test_d2_enforces_cutover_guards_when_cutover_on():
+    report = DriftDetector().check_single_writer_sentry(cutover_active=True)
+    assert report.mode == "enforce"
+    assert report.cutover_active is True
+    assert report.ok, f"missing guards: {report.missing_guards}"
+    assert report.missing_guards == ()
+
+
 def test_d2_scan_skips_stage1_query_modules():
     inventory = DriftDetector().scan_ek_writers()
     for hit in inventory.hits:
         assert "application/student_twin/query" not in hit.path
         assert "application/student_twin/drift_detector" not in hit.path
+        assert "application/student_twin/cutover" not in hit.path
 
 
 # --- D3 ----------------------------------------------------------------------

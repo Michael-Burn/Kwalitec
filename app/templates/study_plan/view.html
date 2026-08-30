@@ -51,11 +51,17 @@
 
     {# Build a progress lookup keyed by topic_id #}
     {% set progress_by_topic = {} %}
-    {% for tp in current_user.topic_progress %}
-        {% if tp.topic_id not in progress_by_topic %}
-            {% set _dummy = progress_by_topic.update({tp.topic_id: tp}) %}
-        {% endif %}
-    {% endfor %}
+    {% if twin_progress_by_topic %}
+        {% for tid, tp in twin_progress_by_topic.items() %}
+            {% set _dummy = progress_by_topic.update({tid: tp}) %}
+        {% endfor %}
+    {% else %}
+        {% for tp in current_user.topic_progress %}
+            {% if tp.topic_id not in progress_by_topic %}
+                {% set _dummy = progress_by_topic.update({tp.topic_id: tp}) %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     {# Identify the current (Learning) topic and determine the Next topic #}
     {% set ns = namespace(current_topic_id=none, next_topic_id=none) %}

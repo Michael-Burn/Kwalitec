@@ -252,6 +252,12 @@ class Version2FeatureFlags:
     # When ON, EducationalExperienceService routes through
     # SittingDecisionOrchestrator + Policy V0; Runtime C materialises only.
     ADR027_M0_DECISION_BOUNDARY: bool = False
+    # ADR-027 Phase 2 Stage 2: atomic Twin cutover for Estimated Knowledge.
+    # Default OFF; never inherited from Commercial Loop. Explicit env only.
+    # When ON: Stack A/C EK writes are skipped AND §4.1 readers use
+    # LearnerTwinQueryPort. Writers and readers share this single flag so
+    # writes never stop while readers still expect A/C updates.
+    ADR027_PHASE2_TWIN_CUTOVER: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -558,6 +564,9 @@ def resolve_v2_feature_flags(
         ),
         ADR027_M0_DECISION_BOUNDARY=_env_truthy(
             "KWALITEC_ADR027_M0_DECISION_BOUNDARY", environ=environ
+        ),
+        ADR027_PHASE2_TWIN_CUTOVER=_env_truthy(
+            "KWALITEC_ADR027_PHASE2_TWIN_CUTOVER", environ=environ
         ),
     )
 

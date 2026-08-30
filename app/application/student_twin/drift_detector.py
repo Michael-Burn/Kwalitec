@@ -1,8 +1,9 @@
 """Architectural drift detector for the canonical Learner Twin (ADR-027).
 
 Phase 2 Stage 1 implements D1-D5 as callable checks. D2 inventories today's
-Stack A/C writers as a baseline; failing the build on their presence is
-Stage 2's job.
+Stack A/C writers as a baseline when the Phase 2 cutover flag is OFF.
+When KWALITEC_ADR027_PHASE2_TWIN_CUTOVER is ON, D2 enforces that every known
+EK write entry point retains an explicit cutover guard (zero unguarded writes).
 """
 
 from __future__ import annotations
@@ -27,7 +28,7 @@ from app.domain.student_twin.learner import Learner
 CODEC_DECIMAL_PLACES = 6
 
 # Paths relative to repo ``app/`` that Stage 1 expects to detect today.
-# Stage 2 will treat a non-empty production inventory as failure.
+# Stage 2 treats unguarded production writers as failure when cutover is ON.
 KNOWN_BASELINE_A_WRITER_FRAGMENTS = (
     "adaptive_learning_service.py",
     "educational_continuity_service.py",
@@ -35,6 +36,18 @@ KNOWN_BASELINE_A_WRITER_FRAGMENTS = (
 KNOWN_BASELINE_C_WRITER_FRAGMENTS = (
     "student_digital_twin/persistence.py",
     "student_reasoning_service.py",
+)
+
+# Known EK write entry points that must contain a Phase 2 cutover guard.
+_CUTOVER_GUARD_TOKEN = "phase2_twin_cutover_enabled"
+_GUARDED_WRITER_ENTRY_POINTS: tuple[tuple[str, str], ...] = (
+    ("services/adaptive_learning_service.py", "update_mastery_after_attempt"),
+    ("services/educational_continuity_service.py", "_copy_estimate_fields"),
+    ("services/educational_continuity_service.py", "_copy_continuity_fields"),
+    (
+        "application/student_digital_twin/persistence.py",
+        "replace_inferences",
+    ),
 )
 
 
@@ -88,6 +101,17 @@ class WriterInventory:
         a_ok = any(frag in paths for frag in KNOWN_BASELINE_A_WRITER_FRAGMENTS)
         c_ok = any(frag in paths for frag in KNOWN_BASELINE_C_WRITER_FRAGMENTS)
         return a_ok and c_ok
+
+
+@dataclass(frozen=True)
+class SingleWriterSentryReport:
+    """D2 result: inventory when cutover OFF; guard enforcement when ON."""
+
+    ok: bool
+    cutover_active: bool
+    inventory: WriterInventory
+    missing_guards: tuple[str, ...] = ()
+    mode: str = "inventory"
 
 
 @dataclass(frozen=True)
@@ -187,7 +211,7 @@ class DriftDetector:
             if not directory.is_dir():
                 continue
             for path in directory.rglob("*.py"):
-                # Stage 1 modules themselves are not writers; skip noise.
+                # Stage 1/2 twin modules themselves are not writers; skip noise.
                 rel = str(path.relative_to(app_root))
                 if rel.startswith("application/student_twin/drift_detector"):
                     continue
@@ -195,9 +219,64 @@ class DriftDetector:
                     continue
                 if rel.startswith("application/student_twin/canonical_topic_id"):
                     continue
+                if rel.startswith("application/student_twin/cutover"):
+                    continue
                 text = path.read_text(encoding="utf-8")
                 hits.extend(_scan_file_for_writers(rel, text))
         return WriterInventory(hits=tuple(hits))
+
+    def check_cutover_writer_guards(
+        self, *, root: Path | None = None
+    ) -> tuple[str, ...]:
+        """Return entry points missing an explicit Phase 2 cutover guard."""
+        app_root = root or self.app_root or _default_app_root()
+        missing: list[str] = []
+        for rel, method_name in _GUARDED_WRITER_ENTRY_POINTS:
+            path = app_root / rel
+            if not path.is_file():
+                missing.append(f"{rel}:{method_name}:missing_file")
+                continue
+            text = path.read_text(encoding="utf-8")
+            if not _method_contains_cutover_guard(text, method_name):
+                missing.append(f"{rel}:{method_name}")
+        return tuple(missing)
+
+    def check_single_writer_sentry(
+        self,
+        *,
+        cutover_active: bool | None = None,
+        root: Path | None = None,
+    ) -> SingleWriterSentryReport:
+        """D2: inventory when cutover OFF; enforce zero unguarded writers when ON.
+
+        When ``cutover_active`` is None, resolve from the Phase 2 flag.
+        """
+        if cutover_active is None:
+            from app.application.student_twin.cutover import (
+                phase2_twin_cutover_enabled,
+            )
+
+            cutover_active = phase2_twin_cutover_enabled()
+
+        inventory = self.scan_ek_writers(root=root)
+        if not cutover_active:
+            # Stage 1 posture: inventory only — presence is not a failure.
+            return SingleWriterSentryReport(
+                ok=True,
+                cutover_active=False,
+                inventory=inventory,
+                missing_guards=(),
+                mode="inventory",
+            )
+
+        missing = self.check_cutover_writer_guards(root=root)
+        return SingleWriterSentryReport(
+            ok=not missing,
+            cutover_active=True,
+            inventory=inventory,
+            missing_guards=missing,
+            mode="enforce",
+        )
 
     # --- D3 ------------------------------------------------------------------
 
@@ -362,3 +441,23 @@ def _scan_file_for_writers(rel: str, text: str) -> list[WriterHit]:
                     )
                 )
     return hits
+
+
+def _method_contains_cutover_guard(source: str, method_name: str) -> bool:
+    """True when ``method_name``'s body references phase2_twin_cutover_enabled."""
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return _CUTOVER_GUARD_TOKEN in source and f"def {method_name}" in source
+
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef):
+            continue
+        if node.name != method_name:
+            continue
+        try:
+            return _CUTOVER_GUARD_TOKEN in ast.unparse(node)
+        except Exception:
+            return _CUTOVER_GUARD_TOKEN in source
+    return False
+
