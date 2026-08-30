@@ -1,4 +1,4 @@
-"""SittingDecisionOrchestrator: thin ADR-027 M0 coordinator.
+"""SittingDecisionOrchestrator: thin ADR-027 M0/Phase 3 coordinator.
 
 Calls AdaptiveDecisionEngine, records DECISION_RECORDED, hands an execution
 spec to Runtime C materialisation. Not the Epic-2 LearningOrchestrator.
@@ -19,6 +19,7 @@ from app.application.adaptive_decision.types import (
     BLOCK_NO_MISSION_TEMPLATE,
     BLOCK_SYLLABUS_COMPLETE,
     BLOCK_UNSATISFIED_PREREQUISITES,
+    POLICY_V1_ID,
     DailySittingRequest,
     DecisionOutcome,
     SittingDecision,
@@ -42,6 +43,30 @@ if TYPE_CHECKING:
     )
 
 
+def _policy_v1_flag_enabled() -> bool:
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+
+    return bool(resolve_v2_feature_flags().ADR027_POLICY_V1)
+
+
+def _default_engine(
+    runtime: EducationalRuntimeEngineService,
+) -> AdaptiveDecisionEngine:
+    if _policy_v1_flag_enabled():
+        from app.application.adaptive_decision.policy_v1 import (
+            PolicyV1AdaptiveDecisionEngine,
+        )
+        from app.infrastructure.adapters.student_twin.query_adapter import (
+            DailyLoopLearnerTwinQueryAdapter,
+        )
+
+        return PolicyV1AdaptiveDecisionEngine(
+            runtime=runtime,
+            twin=DailyLoopLearnerTwinQueryAdapter(),
+        )
+    return PolicyV0AdaptiveDecisionEngine(runtime=runtime)
+
+
 class SittingDecisionOrchestrator:
     """Ensure today's Runtime C sitting via Decision Engine then materialise."""
 
@@ -58,7 +83,7 @@ class SittingDecisionOrchestrator:
 
             runtime = EducationalRuntimeEngineService()
         self._runtime = runtime
-        self._engine = engine or PolicyV0AdaptiveDecisionEngine(runtime=runtime)
+        self._engine = engine if engine is not None else _default_engine(runtime)
 
     def ensure_todays_sitting(
         self,
@@ -83,6 +108,7 @@ class SittingDecisionOrchestrator:
             subject_code=subject_code,
             mission_date=day,
             curriculum_identity=enrolment.curriculum_identity,
+            exam_date=enrolment.exam_date,
         )
         decision = self._engine.decide_daily_sitting(request)
 
@@ -102,9 +128,10 @@ class SittingDecisionOrchestrator:
             _raise_for_blocked(decision)
 
         if decision.outcome == DecisionOutcome.ADAPTIVE:
-            raise IllegalRuntimeState(
-                "ADR-027 M0 forbids ADAPTIVE outcomes from Policy V0"
-            )
+            if decision.policy_id != POLICY_V1_ID:
+                raise IllegalRuntimeState(
+                    "ADR-027 forbids ADAPTIVE outcomes outside Policy V1"
+                )
 
         spec = _spec_from_decision(
             decision,

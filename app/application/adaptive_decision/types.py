@@ -21,10 +21,17 @@ class DecisionOutcome(StrEnum):
 
 INTENT_DAILY_SITTING = "daily_sitting"
 POLICY_V0_ID = "policy_v0"
+POLICY_V1_ID = "policy_v1"
 SEAM_RUNTIME_C_GENERATE = "runtime_c.generate_daily_mission"
 
 REASON_NO_ADAPTIVE_POLICY_M0 = "no_adaptive_policy_m0"
 REASON_POLICY_V0_CAMPAIGN_ORDER = "policy_v0_campaign_order"
+REASON_POLICY_V1_BLOCK_WEAKNESS = "policy_v1_block_weakness"
+REASON_POLICY_V1_INSUFFICIENT_EVIDENCE = "policy_v1_insufficient_evidence"
+REASON_POLICY_V1_NOT_REVIEW_DAY = "policy_v1_not_review_day"
+
+# Twin evidence floor for acting on Estimated Knowledge (ADR-027 Phase 3).
+POLICY_V1_MIN_EVIDENCE = 3
 
 BLOCK_SYLLABUS_COMPLETE = "syllabus_complete"
 BLOCK_ENROLMENT_INACTIVE = "enrolment_inactive"
@@ -35,12 +42,13 @@ BLOCK_UNSATISFIED_PREREQUISITES = "unsatisfied_prerequisites"
 
 @dataclass(frozen=True)
 class DailySittingRequest:
-    """M0 inputs: enough to run Policy V0; not Twin state."""
+    """Daily-sitting Decision Engine inputs (M0 + Policy V1 exam proximity)."""
 
     user_id: int
     subject_code: str
     mission_date: date
     curriculum_identity: str | None = None
+    exam_date: date | None = None
 
 
 @dataclass(frozen=True)

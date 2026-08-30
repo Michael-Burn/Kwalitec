@@ -151,6 +151,8 @@ class CertifiedEducationalPackage:
     metadata: dict[str, Any] = field(default_factory=dict)
     # Genuine numeric walkthrough — optional; None / empty steps → scaffold.
     worked_example: WorkedExample | None = None
+    # Revision block scope (syllabus LO / topic codes). Empty for non-revision.
+    return_targets: tuple[str, ...] = ()
 
     @property
     def is_publication_approved(self) -> bool:

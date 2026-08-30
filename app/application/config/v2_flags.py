@@ -252,6 +252,11 @@ class Version2FeatureFlags:
     # When ON, EducationalExperienceService routes through
     # SittingDecisionOrchestrator + Policy V0; Runtime C materialises only.
     ADR027_M0_DECISION_BOUNDARY: bool = False
+    # ADR-027 Phase 3: Policy V1 evidence-backed revision-block selection.
+    # Default OFF; never inherited from Commercial Loop. Explicit env only.
+    # Absent from render.yaml (ship dark). Requires M0 boundary ON to reach
+    # the orchestrator; when ON, orchestrator uses Policy V1 instead of V0.
+    ADR027_POLICY_V1: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -558,6 +563,9 @@ def resolve_v2_feature_flags(
         ),
         ADR027_M0_DECISION_BOUNDARY=_env_truthy(
             "KWALITEC_ADR027_M0_DECISION_BOUNDARY", environ=environ
+        ),
+        ADR027_POLICY_V1=_env_truthy(
+            "KWALITEC_ADR027_POLICY_V1", environ=environ
         ),
     )
 

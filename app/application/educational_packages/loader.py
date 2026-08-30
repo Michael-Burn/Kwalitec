@@ -60,15 +60,25 @@ def find_package_by_id(package_id: str) -> CertifiedEducationalPackage | None:
 
 def packages_for_subject(
     subject_id: str,
+    *,
+    mode: str | None = None,
 ) -> tuple[CertifiedEducationalPackage, ...]:
-    """All publication-approved packages for a subject (stable load order)."""
+    """All publication-approved packages for a subject (stable load order).
+
+    Args:
+        subject_id: Subject code (e.g. ``CS1``).
+        mode: Optional package mode filter (e.g. ``revision``). When None,
+            all modes for the subject are returned.
+    """
     sid = (subject_id or "").strip().upper()
     if not sid:
         return ()
+    mode_filter = (mode or "").strip().lower()
     return tuple(
         p
         for p in EducationalPackageLoader().all_approved()
         if p.subject_id.upper() == sid
+        and (not mode_filter or (p.mode or "").strip().lower() == mode_filter)
     )
 
 
@@ -413,4 +423,9 @@ def _parse_package(
             "published_at": str(raw.get("published_at") or "").strip(),
         },
         worked_example=_parse_worked_example(raw.get("worked_example")),
+        return_targets=tuple(
+            str(t).strip()
+            for t in (raw.get("return_targets") or ())
+            if str(t).strip()
+        ),
     )

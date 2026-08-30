@@ -769,12 +769,17 @@ def test_blocked_records_stable_reason(ctx, runtime, engine, monkeypatch):
 def test_flag_defaults_off_and_explicit_env_only():
     bare = resolve_v2_feature_flags(environ={})
     assert bare.ADR027_M0_DECISION_BOUNDARY is False
+    assert bare.ADR027_POLICY_V1 is False
     loop = resolve_v2_feature_flags(environ={"KWALITEC_COMMERCIAL_LOOP": "1"})
     assert loop.ADR027_M0_DECISION_BOUNDARY is False
+    assert loop.ADR027_POLICY_V1 is False
     on = resolve_v2_feature_flags(
         environ={"KWALITEC_ADR027_M0_DECISION_BOUNDARY": "1"}
     )
     assert on.ADR027_M0_DECISION_BOUNDARY is True
+    assert on.ADR027_POLICY_V1 is False
+    v1 = resolve_v2_feature_flags(environ={"KWALITEC_ADR027_POLICY_V1": "1"})
+    assert v1.ADR027_POLICY_V1 is True
 
 
 def test_runtime_c_does_not_import_adaptive_decision():
