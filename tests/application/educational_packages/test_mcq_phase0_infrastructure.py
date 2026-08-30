@@ -3,6 +3,9 @@
 Proves package JSON → loader → substance → scoring → UI branch wiring.
 Batches 1–6B (see _BATCH*_MCQ_PACKAGE_STEMS) are live MCQ content; remaining
 live inventory outside those stems stays short_structured.
+
+Numeric checkpoint pilot stems (_NUMERIC_CHECKPOINT_PILOT_STEMS) keep Active
+Recall as MCQ and convert only the Checkpoint to response_type numeric.
 """
 
 from __future__ import annotations
@@ -363,6 +366,14 @@ _MCQ_CONVERTED_STEMS = (
     | _BATCH6B_MCQ_PACKAGE_STEMS
 )
 
+# Numeric checkpoint content pilot: Checkpoint only → numeric; AR stays MCQ.
+_NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
+    {
+        "2.1.3-prob-quantiles-cs1004",
+        "3.1.2-maximum-likelihood-cs1010",
+    }
+)
+
 
 def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     """Live inventory outside Batch 1–6B MCQ conversion stays short_structured."""
@@ -376,6 +387,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     batch5_seen = 0
     batch6a_seen = 0
     batch6b_seen = 0
+    numeric_pilot_seen = 0
     for pack in packs:
         assert pack.package_id != "CS1-MCQ-PHASE0-REF"
         stem = Path(pack.source_path).stem if pack.source_path else ""
@@ -386,6 +398,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
         is_batch5 = stem in _BATCH5_MCQ_PACKAGE_STEMS
         is_batch6a = stem in _BATCH6A_MCQ_PACKAGE_STEMS
         is_batch6b = stem in _BATCH6B_MCQ_PACKAGE_STEMS
+        is_numeric_pilot = stem in _NUMERIC_CHECKPOINT_PILOT_STEMS
         for check in pack.knowledge_checks:
             if (
                 (
@@ -413,6 +426,14 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     batch6a_seen += 1
                 else:
                     batch6b_seen += 1
+                if is_numeric_pilot and check.kind == "checkpoint":
+                    numeric_pilot_seen += 1
+                    assert check.response_type == "numeric"
+                    assert check.choices == ()
+                    assert check.correct_choice_id == ""
+                    assert check.accepted_keywords
+                    assert check.numeric_tolerance is not None
+                    continue
                 assert check.response_type == "mcq"
                 assert len(check.choices) == 4
                 assert check.correct_choice_id in {c.id for c in check.choices}
@@ -432,6 +453,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch6a_seen == 30
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
+    assert numeric_pilot_seen == 2  # one numeric checkpoint per pilot package
 
     # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")

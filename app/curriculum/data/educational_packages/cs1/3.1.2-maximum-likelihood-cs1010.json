@@ -161,45 +161,25 @@
       "episode_id": "lep-cs1010-3.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.2-cp-01",
-      "title": "Checkpoint: 3.1.2",
-      "prompt": "Closed-book. IID claims X₁,…,Xₙ ~ Exponential with rate λ (pdf λ e^{−λx} for x>0). Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Form the MLE for the Exponential rate and refuse MoM-as-MLE.",
+      "title": "Checkpoint: Exponential rate MLE",
+      "prompt": "Closed-book. Four independent claim settlement delays (months) are modelled as Exponential with rate λ (pdf f(x) = λ e^{−λx} for x > 0): 2, 3, 1, 4. Enter the maximum-likelihood estimate of λ.",
+      "response_type": "numeric",
+      "body": "Compute λ̂_MLE from the four observations.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Form ℓ(λ) = n ln λ − λ Σxᵢ, then solve the score equation.",
+        "For the rate parametrisation, λ̂ = n / Σxᵢ, not the sample mean."
       ],
-      "accepted_keywords": [],
-      "explanation": "For Exponential rate λ, ℓ(λ) = n ln λ − λ Σ xᵢ and λ̂ = 1/x̄. MoM can give the same number here, but MoM is still moment matching, not likelihood maximisation. The MLE is 1/x̄, not x̄, for the rate parametrisation.",
-      "model_answer": "ℓ(λ) = n ln λ − λ Σ xᵢ; λ̂ = 1/x̄. MoM ≠ MLE as constructions.",
-      "common_mistake": "Taking λ̂ = x̄ for the rate, or treating MoM coincidence as MLE.",
+      "accepted_keywords": [
+        "0.4"
+      ],
+      "numeric_tolerance": 0.001,
+      "explanation": "Σxᵢ = 2+3+1+4 = 10 and n = 4, so λ̂_MLE = n/Σxᵢ = 4/10 = 0.4 per month. The sample mean x̄ = 2.5 is the MLE of the mean, not of the rate.",
+      "model_answer": "0.4",
+      "common_mistake": "Reporting x̄ = 2.5 (or Σxᵢ/n) when the question asks for the rate λ̂ = n/Σxᵢ = 0.4.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "The log-likelihood is ℓ(λ) = n ln λ − λ Σ xᵢ, and the MLE is λ̂ = n/Σ xᵢ = 1/x̄. Matching moments is a different construction from maximising the likelihood, even if numbers sometimes agree.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "The log-likelihood is ℓ(λ) = n ln λ − λ Σ xᵢ, and the MLE is λ̂ = x̄ because the sample mean is always the MLE for a rate.",
-          "misconception_tag": "mle_equals_mean_rate"
-        },
-        {
-          "id": "c",
-          "label": "Because the method-of-moments estimator for this model equals 1/x̄, that moment-matching procedure is already maximum likelihood.",
-          "misconception_tag": "mom_as_mle"
-        },
-        {
-          "id": "d",
-          "label": "The MLE maximises Σ xᵢ − n/λ, so λ̂ = n/Σ xᵢ comes from minimising the sum of observations.",
-          "misconception_tag": "wrong_likelihood"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.001 of 0.4.",
+        "Uses n/Σxᵢ for the rate, not the sample mean."
+      ]
     }
   ],
   "reflection": {
