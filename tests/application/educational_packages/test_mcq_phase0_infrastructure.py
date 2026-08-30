@@ -4,8 +4,9 @@ Proves package JSON → loader → substance → scoring → UI branch wiring.
 Batches 1–6B (see _BATCH*_MCQ_PACKAGE_STEMS) are live MCQ content; remaining
 live inventory outside those stems stays short_structured.
 
-Numeric checkpoint pilot stems (_NUMERIC_CHECKPOINT_PILOT_STEMS) keep Active
-Recall as MCQ and convert only the Checkpoint to response_type numeric.
+Numeric checkpoint stems (_NUMERIC_CHECKPOINT_PILOT_STEMS: pilot + final
+catalogue batch) keep Active Recall as MCQ and convert only the Checkpoint
+to response_type numeric.
 """
 
 from __future__ import annotations
@@ -366,11 +367,20 @@ _MCQ_CONVERTED_STEMS = (
     | _BATCH6B_MCQ_PACKAGE_STEMS
 )
 
-# Numeric checkpoint content pilot: Checkpoint only → numeric; AR stays MCQ.
+# Numeric checkpoint conversions: Checkpoint only → numeric; AR stays MCQ.
+# Pilot (2) + final catalogue-scoped batch (8).
 _NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
     {
         "2.1.3-prob-quantiles-cs1004",
         "3.1.2-maximum-likelihood-cs1010",
+        "4.2.10-fit-interpret-cs1014",
+        "2.5.1-clt-cs1008",
+        "cp-2.5.1-clt-cs1016",
+        "3.1.1-method-of-moments-cs1010",
+        "cp-3.1.1-estimators-cs1016",
+        "4.2.10-fit-interpret-cs1003",
+        "5.1.6-credibility-premium-cs1003",
+        "5.1.6-credibility-premium-cs1015",
     }
 )
 
@@ -453,7 +463,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch6a_seen == 30
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
-    assert numeric_pilot_seen == 2  # one numeric checkpoint per pilot package
+    assert numeric_pilot_seen == 10  # one numeric checkpoint per converted package
 
     # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")

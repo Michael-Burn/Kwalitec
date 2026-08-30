@@ -159,45 +159,25 @@
       "episode_id": "lep-cs1016-2.5.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-2.5.1-cp-01",
-      "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. Claim sizes are iid with mean μ = 500 and sd σ = 200; n = 100. Using the CLT, which statement about P(X̄ > 540) is correct? (Use Φ(2) ≈ 0.977.)",
-      "response_type": "mcq",
-      "body": "Approximate distribution of X̄, standardise, and refuse Normal-by-habit.",
+      "title": "Checkpoint: CLT probability for sample mean",
+      "prompt": "Closed-book. Repair costs are iid with mean μ = 1200 and standard deviation σ = 300. A sample of n = 36 repairs is drawn. Using the CLT and Φ(1) ≈ 0.841, approximate P(X̄ < 1150). Enter the probability as a decimal.",
+      "response_type": "numeric",
+      "body": "Standardise the sample mean under the CLT and evaluate the lower tail.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "First form sd(X̄) = σ/√n, then z = (1150 - 1200)/sd(X̄).",
+        "Use Φ(-1) = 1 - Φ(1) with Φ(1) ≈ 0.841."
       ],
-      "accepted_keywords": [],
-      "explanation": "Standard error is 200/10 = 20. z = 2 gives upper tail 0.023. Using σ instead of σ/√n, a 0.5 heuristic, or reading Φ(2) as the upper tail are common errors.",
-      "model_answer": "X̄ ≈ N(500, 20); z = 2; P ≈ 0.023; refuse Normal-by-habit.",
-      "common_mistake": "Forgetting √n in the standard error, heuristic 0.5, or misreading Φ.",
+      "accepted_keywords": [
+        "0.159"
+      ],
+      "explanation": "sd(X̄) = σ/√n = 300/√36 = 50, so z = (1150 - 1200)/50 = -1 and P(X̄ < 1150) ≈ Φ(-1) = 1 - Φ(1) ≈ 1 - 0.841 = 0.159.",
+      "model_answer": "0.159",
+      "common_mistake": "Using σ = 300 instead of σ/√n = 50 so that z = -1/6, or reporting Φ(1) ≈ 0.841 as the lower-tail probability itself.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 0.159.",
+        "Uses σ/√n when standardising, and converts Φ(1) to the lower tail."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "X̄ ≈ Normal(μ = 500, sd = σ/√n = 20). z = (540 − 500)/20 = 2, so P(X̄ > 540) ≈ 1 − Φ(2) ≈ 0.023. Casual Normal use without stating IID CLT conditions is not the same skill.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "X̄ ≈ Normal(500, 200) because σ = 200 is the population sd, so P(X̄ > 540) ≈ 1 − Φ(0.2) without dividing by √n.",
-          "misconception_tag": "forget_sqrt_n"
-        },
-        {
-          "id": "c",
-          "label": "P(X̄ > 540) ≈ 0.5 because 540 exceeds the mean 500, so the sample mean is above average.",
-          "misconception_tag": "above_mean_half"
-        },
-        {
-          "id": "d",
-          "label": "P(X̄ > 540) ≈ 0.977 because z = 2 and Φ(2) ≈ 0.977 is the upper-tail probability directly.",
-          "misconception_tag": "phi_as_upper_tail"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

@@ -162,45 +162,25 @@
       "episode_id": "lep-cs1010-3.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.1-cp-01",
-      "title": "Checkpoint: 3.1.1",
-      "prompt": "Closed-book. Claim sizes are modelled as Exponential with mean θ. A sample has mean x̄ = 4. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Apply MoM to the Exponential mean and refuse MLE-as-MoM.",
+      "title": "Checkpoint: Exponential MoM mean",
+      "prompt": "Closed-book. Five independent claim sizes (£) are modelled as Exponential with unknown mean μ: 2400, 1600, 3200, 1800, 2000. Enter the method-of-moments estimate of μ.",
+      "response_type": "numeric",
+      "body": "Evaluate μ̂_MoM = x̄ on the stated sample.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "For Exponential mean μ, the first-moment equation gives μ̂_MoM = x̄.",
+        "Sum the five claims and divide by n = 5."
       ],
-      "accepted_keywords": [],
-      "explanation": "For Exponential with mean θ, E[X] = θ, so MoM equates x̄ = θ and gives θ̂_MoM = 4. Coincidence that the MLE equals x̄ does not make likelihood maximisation into MoM. Using the wrong population moment (or treating variance as equal to the sample mean by fiat) is incorrect.",
-      "model_answer": "E[X] = θ; equate x̄ = θ, so θ̂_MoM = 4. Likelihood maximisation is MLE, not MoM.",
-      "common_mistake": "Swapping mean/rate parametrisation, treating MLE coincidence as MoM, or matching the wrong moment.",
+      "accepted_keywords": [
+        "2200"
+      ],
+      "explanation": "E[X] = μ implies μ̂_MoM = x̄. The sample mean is (2400 + 1600 + 3200 + 1800 + 2000)/5 = 11000/5 = 2200, so μ̂_MoM = £2200.",
+      "model_answer": "2200",
+      "common_mistake": "Reporting the rate 1/2200 when the question asks for the mean μ, or reporting the sum 11000 instead of the sample mean.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.5 of 2200.",
+        "Uses the sample mean as MoM for the Exponential mean parameter."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "The population first-moment equation is E[X] = θ. Equating the sample mean gives θ̂_MoM = x̄ = 4. Maximising the likelihood is a different construction (MLE), not method of moments.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "The population first-moment equation is E[X] = 1/θ. Equating the sample mean gives θ̂_MoM = 1/4.",
-          "misconception_tag": "rate_mean_swap"
-        },
-        {
-          "id": "c",
-          "label": "Because maximising the Exponential likelihood yields θ̂ = x̄, that procedure is already the method-of-moments construction.",
-          "misconception_tag": "mle_as_mom"
-        },
-        {
-          "id": "d",
-          "label": "Method of moments for this model sets Var(X) = x̄ and solves, so θ̂_MoM = 4 because Var(X) = θ for the Exponential mean-θ parametrisation.",
-          "misconception_tag": "wrong_moment"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.5
     }
   ],
   "reflection": {

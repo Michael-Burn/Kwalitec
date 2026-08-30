@@ -161,45 +161,25 @@
       "episode_id": "lep-cs1014-4.2.10-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.10-cp-01",
-      "title": "Checkpoint: 4.2.10",
-      "prompt": "Closed-book. You fit a Poisson log-link GLM for claim counts with factor rating class. A coefficient of 0.20 on class High vs baseline is reported. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Interpret log-link coefficient; refuse Fit-only.",
+      "title": "Checkpoint: log-link multiplicative factor",
+      "prompt": "Closed-book. A fitted Poisson claim-frequency GLM with log link gives β̂_urban = 0.2 for an urban indicator (baseline = rural). Enter the multiplicative effect e^{β̂_urban} on mean frequency.",
+      "response_type": "numeric",
+      "body": "Compute the log-link multiplicative mean factor.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Exponentiate the log-link coefficient: e^{0.2}.",
+        "Enter the multiplicative factor, not a percentage uplift."
       ],
-      "accepted_keywords": [],
-      "explanation": "Log-link coefficient multiplies baseline mean by exp(0.20) ≈ 1.22. Additive reading on count scale is wrong. Bayesian credibility is separate.",
-      "model_answer": "exp(0.20) ≈ 1.22 times baseline mean. Refuse Fit-only and Bayesian conflation.",
-      "common_mistake": "Additive reading of log-link coefficient or Fit-only completion.",
+      "accepted_keywords": [
+        "1.2214"
+      ],
+      "explanation": "Under the log link, the urban mean frequency is e^{0.2} ≈ 1.2214 times the rural baseline mean, other terms held fixed. The coefficient 0.2 is not an additive increase of 0.2 claims on the frequency scale.",
+      "model_answer": "1.2214",
+      "common_mistake": "Reporting 0.2 (or +0.2 claims) as if the log-link coefficient were additive on the frequency scale, or reporting the percentage uplift 22.14 instead of the multiplicative factor 1.2214.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 1.2214.",
+        "Uses e^{β̂}, not the raw coefficient as an additive count change."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Under log link, β̂ = 0.20 means the fitted mean for High is e^{0.20} ≈ 1.22 times the baseline class mean (multiplicative effect), other terms held fixed. Fit without interpretation or diagnostics is incomplete; Bayesian credibility uses prior-posterior updating, not GLM log-link coefficient reading alone.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Clicking Fit finishes interpretation and diagnostics; 0.20 is read directly as a 0.20 claim count increase on the original scale.",
-          "misconception_tag": "fit_without_interpret"
-        },
-        {
-          "id": "c",
-          "label": "β̂ = 0.20 means High has mean 0.20 claims because log-link coefficients are means on the count scale.",
-          "misconception_tag": "coeff_as_mean"
-        },
-        {
-          "id": "d",
-          "label": "Fitting this GLM finishes Bayesian credibility premium calculation because both use Poisson counts.",
-          "misconception_tag": "glm_finishes_bayesian"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

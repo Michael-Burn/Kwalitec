@@ -162,45 +162,25 @@
       "episode_id": "lep-cs1008-2.5.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.1-cp-01",
-      "title": "Checkpoint: 2.5.1",
-      "prompt": "Closed-book. Claim sizes are iid with μ=500, σ=200, n=100. Using Φ(2)≈0.977, what is P(X̄>540)?",
-      "response_type": "mcq",
-      "body": "Apply and standardise the CLT approximation.",
+      "title": "Checkpoint: CLT probability for sample mean",
+      "prompt": "Closed-book. Pet-insurance claim severities are iid with mean μ = 180 and standard deviation σ = 60. A sample of n = 36 claims is drawn. Using the CLT and Φ(1) ≈ 0.841, approximate P(X̄ < 170). Enter the probability as a decimal.",
+      "response_type": "numeric",
+      "body": "Standardise the sample mean under the CLT and evaluate the lower tail.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "First form sd(X̄) = σ/√n, then z = (170 - 180)/sd(X̄).",
+        "Use Φ(-1) = 1 - Φ(1) with Φ(1) ≈ 0.841."
       ],
-      "accepted_keywords": [],
-      "explanation": "The standard error is 20 and Φ is a lower-tail CDF, so the required upper tail is about 0.023.",
-      "model_answer": "SE=20, z=2, upper tail≈0.023.",
-      "common_mistake": "Using σ instead of σ/√n or reading Φ(2) as an upper-tail probability.",
+      "accepted_keywords": [
+        "0.159"
+      ],
+      "explanation": "sd(X̄) = σ/√n = 60/√36 = 10, so z = (170 - 180)/10 = -1 and P(X̄ < 170) ≈ Φ(-1) = 1 - Φ(1) ≈ 1 - 0.841 = 0.159.",
+      "model_answer": "0.159",
+      "common_mistake": "Using σ = 60 instead of σ/√n = 10 so that z = -1/6, or reporting Φ(1) ≈ 0.841 as the lower-tail probability itself.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 0.159.",
+        "Uses σ/√n when standardising, and converts Φ(1) to the lower tail."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "SD(X̄)=200/√100=20, so z=(540-500)/20=2 and P(X̄>540)≈1-Φ(2)≈0.023.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "SD(X̄)=200, so z=0.2 because sample size does not change spread.",
-          "misconception_tag": "forget_sqrt_n"
-        },
-        {
-          "id": "c",
-          "label": "P(X̄>540)≈0.977 because Φ(2) is the upper-tail probability.",
-          "misconception_tag": "phi_as_upper_tail"
-        },
-        {
-          "id": "d",
-          "label": "P(X̄>540)=0.5 because 540 is above the mean and every above-mean event has probability one half.",
-          "misconception_tag": "above_mean_half"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

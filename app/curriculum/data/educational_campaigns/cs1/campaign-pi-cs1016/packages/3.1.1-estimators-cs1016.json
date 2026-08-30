@@ -159,45 +159,25 @@
       "episode_id": "lep-cs1016-3.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1016-3.1.1-cp-01",
-      "title": "Checkpoint: 3.1.1",
-      "prompt": "Closed-book. Exponential claim sizes with mean θ; sample mean x̄ = 5. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "MoM for Exponential mean; refuse MLE-as-MoM and estimator-as-CI.",
+      "title": "Checkpoint: Poisson MoM mean",
+      "prompt": "Closed-book. Six independent monthly claim counts are modelled as Poisson(λ): 2, 1, 3, 0, 4, 2. Enter the method-of-moments estimate of λ.",
+      "response_type": "numeric",
+      "body": "Evaluate λ̂_MoM = x̄ on the stated sample.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "For Poisson(λ), the first-moment equation gives λ̂_MoM = x̄.",
+        "Sum the six counts and divide by n = 6."
       ],
-      "accepted_keywords": [],
-      "explanation": "For mean-θ Exponential, MoM gives θ̂ = x̄ = 5. MLE coincidence does not rewrite the construction, and a point estimator is not a CI.",
-      "model_answer": "θ̂_MoM = x̄ = 5; refuse MLE-as-MoM and estimator-as-CI.",
-      "common_mistake": "Swapping mean/rate, collapsing MoM with MLE, or treating the point estimate as an interval.",
+      "accepted_keywords": [
+        "2"
+      ],
+      "explanation": "E[X] = λ implies λ̂_MoM = x̄. The sample mean is (2 + 1 + 3 + 0 + 4 + 2)/6 = 12/6 = 2, so λ̂_MoM = 2 claims per month.",
+      "model_answer": "2",
+      "common_mistake": "Reporting the sum Σxᵢ = 12 as λ̂, or treating a variance match as a required second MoM step for one-parameter Poisson.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 2.",
+        "Uses the sample mean as MoM for the Poisson mean λ."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Equate E[X]=θ to x̄, so θ̂_MoM = 5. Maximising the likelihood is MLE, a different construction. An estimator is a point estimate; a confidence interval is an interval procedure for a parameter.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "θ̂_MoM = 1/5 because the Exponential mean-θ model uses E[X]=1/θ.",
-          "misconception_tag": "rate_mean_swap"
-        },
-        {
-          "id": "c",
-          "label": "Because the MLE equals x̄ here, maximising the likelihood is already the method-of-moments construction.",
-          "misconception_tag": "mle_as_mom"
-        },
-        {
-          "id": "d",
-          "label": "θ̂_MoM = 5 means the 95% confidence interval for θ is the singleton {5}.",
-          "misconception_tag": "estimator_as_ci"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

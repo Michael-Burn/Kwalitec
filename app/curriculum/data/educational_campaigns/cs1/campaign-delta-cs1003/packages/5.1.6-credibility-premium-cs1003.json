@@ -157,45 +157,25 @@
       "episode_id": "lep-cs1003-5.1.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.6-cp-01",
-      "title": "Checkpoint: 5.1.6",
-      "prompt": "Closed-book. Individual mean claim X̄ = 1200, collateral or manual mean μ = 1000, credibility factor Z = 0.4. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Compute premium; refuse full credibility always.",
+      "title": "Checkpoint: credibility premium",
+      "prompt": "Closed-book. A risk's sample mean claim cost is X̄ = 1200, the hypothetical mean is μ = 1000, and the credibility factor is Z = 0.55. Enter the credibility premium P = Z X̄ + (1 - Z)μ.",
+      "response_type": "numeric",
+      "body": "Evaluate the credibility premium with the given Z.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Compute 1 - Z first, then blend X̄ and μ.",
+        "Z weights the individual experience X̄."
       ],
-      "accepted_keywords": [],
-      "explanation": "Arithmetic gives 1080. Z=0.4 on individual experience pulls toward mu. Full credibility or reversed weights misapply the formula.",
-      "model_answer": "Premium = 1080; Z weights individual experience.",
-      "common_mistake": "Always using Z=1 or swapping weights to collateral.",
+      "accepted_keywords": [
+        "1110"
+      ],
+      "explanation": "P = 0.55 × 1200 + 0.45 × 1000 = 660 + 450 = 1110. Z = 0.55 weights individual experience; (1 - Z) weights the hypothetical mean.",
+      "model_answer": "1110",
+      "common_mistake": "Swapping the weights to get 0.55 × 1000 + 0.45 × 1200 = 1090, or taking full credibility P = 1200.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.5 of 1110.",
+        "Uses Z on X̄ and (1 - Z) on μ."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Premium = Z times X̄ + (1 minus Z) times μ = 0.4 times 1200 + 0.6 times 1000 = 480 + 600 = 1080. Z is the weight on the individual experience versus the collateral mean. With limited or noisy data, Z less than 1 shrinks toward the collateral or manual mean.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Premium = 1200 because individual experience must always receive full credibility Z = 1.",
-          "misconception_tag": "full_credibility_always"
-        },
-        {
-          "id": "c",
-          "label": "Premium = 0.4 times 1000 + 0.6 times 1200 = 1120 because Z weights the collateral mean.",
-          "misconception_tag": "z_weights_collateral"
-        },
-        {
-          "id": "d",
-          "label": "Premium = 1000 because collateral mean mu is the credibility premium by definition.",
-          "misconception_tag": "collateral_only"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.5
     }
   ],
   "reflection": {
