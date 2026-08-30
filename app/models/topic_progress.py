@@ -10,9 +10,8 @@ from app.extensions import db
 class TopicProgress(db.Model):
     """Tracks a user's progress on individual topics.
     
-    This model records how users are progressing through curriculum topics,
-    including confidence levels, completion status, mastery metrics,
-    and review scheduling.
+    This model records Study Progress and review scheduling. Estimated
+    Knowledge lives in the Learner Twin and is not persisted here.
     """
 
     __tablename__ = "topic_progress"
@@ -68,17 +67,6 @@ class TopicProgress(db.Model):
         nullable=False,
         comment="Number of times this topic has been reviewed",
     )
-    mastery_score: float = db.Column(
-        db.Float,
-        default=0.0,
-        nullable=False,
-        comment="Internal estimate scalar 0-100; Version 1 student meaning: Estimated Knowledge",
-    )
-    average_accuracy: float = db.Column(
-        db.Float,
-        nullable=True,
-        comment="Average accuracy across all study attempts (0-100)",
-    )
     average_confidence: float = db.Column(
         db.Float,
         nullable=True,
@@ -121,16 +109,12 @@ class TopicProgress(db.Model):
 
     @property
     def has_estimated_knowledge(self) -> bool:
-        """True when an Estimated Knowledge figure is evidence-backed (EIP-006).
+        """False because ORM TopicProgress does not own Estimated Knowledge.
 
-        Completing a topic records Study Progress only (IA-004 / EIP-001).
-        Version 1 student surfaces may show Estimated Knowledge only when
-        authorised Structured Question Results (or future assessment pathways)
-        have produced accuracy evidence under Educational Evidence Authority
-        (EIP-002 / EL-005–EL-006). The stored scalar is understanding posture,
-        not constitutionally sufficient Estimated Mastery (EL-007).
+        Twin-backed display namespaces may set this property-equivalent value
+        to True when evidence-backed Estimated Knowledge exists.
         """
-        return self.average_accuracy is not None
+        return False
 
     @property
     def has_estimated_mastery(self) -> bool:

@@ -1,4 +1,4 @@
-"""Drift detector D1-D5 tests (ADR-027 Phase 2 Stage 1)."""
+"""Drift detector D1-D5 tests (ADR-027 Phase 2 Stage 4)."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ from pathlib import Path
 from app.application.student_twin.daily_loop_codec import encode_daily_loop_twin
 from app.application.student_twin.drift_detector import (
     CODEC_DECIMAL_PLACES,
-    KNOWN_BASELINE_A_WRITER_FRAGMENTS,
     KNOWN_BASELINE_C_WRITER_FRAGMENTS,
     DriftDetector,
 )
@@ -52,37 +51,24 @@ def test_d1_detects_corrupted_persisted_map():
 # --- D2 ----------------------------------------------------------------------
 
 
-def test_d2_baseline_detects_existing_a_and_c_writers():
-    """Stage 1: existing writers must be reported, not treated as CI failure."""
+def test_d2_inventory_retains_stack_c_sandbox_writers_only():
     inventory = DriftDetector().scan_ek_writers()
     paths = " ".join(h.path for h in inventory.hits)
 
-    for frag in KNOWN_BASELINE_A_WRITER_FRAGMENTS:
-        assert frag in paths, f"expected baseline A writer fragment {frag} in {paths}"
     for frag in KNOWN_BASELINE_C_WRITER_FRAGMENTS:
         assert frag in paths, f"expected baseline C writer fragment {frag} in {paths}"
 
     assert inventory.baseline_writers_present()
-    assert inventory.stack_a_hits
     assert inventory.stack_c_hits
-    # Explicit Stage 1 posture: presence is inventory, not a fail-closed gate.
     assert len(inventory.hits) > 0
 
 
-def test_d2_inventory_only_when_cutover_off():
-    report = DriftDetector().check_single_writer_sentry(cutover_active=False)
-    assert report.ok
-    assert report.mode == "inventory"
-    assert report.cutover_active is False
-    assert report.missing_guards == ()
-    assert report.inventory.baseline_writers_present()
-
-
-def test_d2_enforces_cutover_guards_when_cutover_on():
-    report = DriftDetector().check_single_writer_sentry(cutover_active=True)
+def test_d2_permanently_enforces_retired_column_writes():
+    report = DriftDetector().check_single_writer_sentry()
     assert report.mode == "enforce"
     assert report.cutover_active is True
-    assert report.ok, f"missing guards: {report.missing_guards}"
+    assert report.ok, f"retired writes: {report.retired_writes}"
+    assert report.retired_writes == ()
     assert report.missing_guards == ()
 
 

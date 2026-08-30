@@ -220,7 +220,6 @@ class TestCalculateTimeSummary:
         tp = TopicProgress(
             user_id=user_id,
             topic_id=topic_id,
-            mastery_score=80.0,
             current_stage=TopicProgress.STAGE_MASTERED,
             revision_count=5,
             completed=True,

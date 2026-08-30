@@ -351,42 +351,29 @@ class LearningLifecycleService:
             return PlanningService._topic_study_label(topic, topic_code=code)
 
         # Fall back to any completed topic with the lowest mastery among completed.
-        from app.application.student_twin.cutover import (
-            ek_display_0_100,
-            phase2_twin_cutover_enabled,
-        )
+        from app.application.student_twin.cutover import ek_display_0_100
         from app.services.twin_cutover_service import (
             topic_ek_by_orm_id,
         )
         from app.models.topic_progress import TopicProgress
 
-        if phase2_twin_cutover_enabled():
-            completed_rows = TopicProgress.query.filter(
-                TopicProgress.user_id == user_id,
-                TopicProgress.completed.is_(True),
-            ).all()
-            if not completed_rows:
-                return None
-            ek_map = topic_ek_by_orm_id(user_id=user_id)
-            ranked = sorted(
-                completed_rows,
-                key=lambda row: (
-                    ek_display_0_100(ek_map.get(row.topic_id))
-                    if ek_map.get(row.topic_id) is not None
-                    else 999.0,
-                    row.topic_id,
-                ),
-            )
-            completed = ranked[0] if ranked else None
-        else:
-            completed = (
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.completed.is_(True),
-                )
-                .order_by(TopicProgress.mastery_score.asc())
-                .first()
-            )
+        completed_rows = TopicProgress.query.filter(
+            TopicProgress.user_id == user_id,
+            TopicProgress.completed.is_(True),
+        ).all()
+        if not completed_rows:
+            return None
+        ek_map = topic_ek_by_orm_id(user_id=user_id)
+        ranked = sorted(
+            completed_rows,
+            key=lambda row: (
+                ek_display_0_100(ek_map.get(row.topic_id))
+                if ek_map.get(row.topic_id) is not None
+                else 999.0,
+                row.topic_id,
+            ),
+        )
+        completed = ranked[0] if ranked else None
         if completed is None or completed.topic is None:
             return None
         topic = completed.topic

@@ -160,7 +160,6 @@ def _seed_generated_state(user: User) -> Curriculum:
     progress = TopicProgress(
         user_id=user.id,
         topic_id=topic.id,
-        mastery_score=40.0,
         current_stage=TopicProgress.STAGE_LEARNING,
         revision_count=1,
     )

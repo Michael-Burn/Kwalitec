@@ -70,8 +70,6 @@ class TestNegativeNoUnsupportedMasteryClaims:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=True,
-            mastery_score=0.0,
-            average_accuracy=None,
             current_stage=TopicProgress.STAGE_COMPLETED,
             confidence="High",
         )
@@ -107,22 +105,20 @@ class TestNegativeNoUnsupportedMasteryClaims:
 
 @pytest.mark.usefixtures("ctx")
 class TestPositiveVersion1EducationalStates:
-    def test_evidence_gates_estimated_knowledge_alias(self, user, curriculum) -> None:
+    def test_orm_never_claims_estimated_knowledge(self, user, curriculum) -> None:
         _, topics = curriculum
         progress = TopicProgress(
             user_id=user.id,
             topic_id=topics[0].id,
             completed=True,
-            mastery_score=72.0,
-            average_accuracy=72.0,
             current_stage=TopicProgress.STAGE_PRACTISING,
             confidence="High",
         )
         db.session.add(progress)
         db.session.commit()
 
-        assert progress.has_estimated_knowledge is True
-        assert progress.has_estimated_mastery is True  # compatibility alias
+        assert progress.has_estimated_knowledge is False
+        assert progress.has_estimated_mastery is False
 
     def test_coverage_readiness_names_estimated_knowledge(self) -> None:
         narrative = EducationalExplainabilityService.explain_coverage_readiness(

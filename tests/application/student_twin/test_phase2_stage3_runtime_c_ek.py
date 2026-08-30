@@ -1,10 +1,7 @@
-"""ADR-027 Phase 2 Stage 3 — Runtime C Estimated Knowledge dual-path suite.
+"""ADR-027 Phase 2 Stage 4 Runtime C permanent Twin EK suite.
 
-Proves:
-- Flag OFF: get_estimated_knowledge_inputs keeps the Stage 2 stub (no Twin EK).
-- Flag ON: topics carry explicit estimated_knowledge (0-1) from LearnerTwinQueryPort.
-- Study Progress (completed / completed_topic_ids) is identical across flag states
-  for the same enrolment events — Twin EK never mints completion.
+Runtime C always reads Estimated Knowledge from LearnerTwinQueryPort. Study
+Progress remains separate, and covered topics without Twin evidence have no EK.
 """
 
 from __future__ import annotations
@@ -15,9 +12,11 @@ from pathlib import Path
 
 import pytest
 
-from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.application.educational_runtime_engine import EducationalRuntimeEngineService
-from app.application.student_twin.query import TopicKnowledgeFact
+from app.application.student_twin.query import (
+    LearnerKnowledgeSnapshot,
+    TopicKnowledgeFact,
+)
 from tests.application.educational_runtime_engine.helpers import (
     make_user,
     publish_subject,
@@ -31,14 +30,6 @@ FORBIDDEN_IMPORT_FRAGMENTS = (
     "curriculum/data",
     "app.curriculum.data",
 )
-
-
-def _set_cutover(monkeypatch, enabled: bool) -> None:
-    value = "1" if enabled else "0"
-    monkeypatch.setenv("KWALITEC_ADR027_PHASE2_TWIN_CUTOVER", value)
-    import app.application.config.v2_flags as flags_mod
-
-    flags_mod.V2_FEATURE_FLAGS = resolve_v2_feature_flags()
 
 
 def _fact(topic_id: str, *, ek: float | None) -> TopicKnowledgeFact:
@@ -58,28 +49,22 @@ class _FakeTwinQuery:
         self._by_topic = by_topic
 
     def topic_knowledge(self, *, user_id, subject_code, topic_id):
-        return self._by_topic.get(
-            topic_id,
-            _fact(topic_id, ek=None),
-        )
+        return self._by_topic.get(topic_id, _fact(topic_id, ek=None))
 
     def knowledge_snapshot(self, *, user_id, subject_code):
-        from app.application.student_twin.query import LearnerKnowledgeSnapshot
-
-        topics = tuple(self._by_topic.values())
         return LearnerKnowledgeSnapshot(
             user_id=user_id,
             subject_code=subject_code,
             curriculum_identity=None,
             overall_estimated_knowledge=None,
-            topics=topics,
+            topics=tuple(self._by_topic.values()),
         )
 
 
 @pytest.fixture
 def runtime_ek_fixture(ctx, monkeypatch):
-    user = make_user("stage3-ek@example.com")
-    subject = publish_subject("S3EK")
+    user = make_user("stage4-ek@example.com")
+    subject = publish_subject("S4EK")
     runtime = EducationalRuntimeEngineService()
     runtime.enrol_student(user_id=user.id, subject_code=subject)
     mission = runtime.generate_daily_mission(
@@ -91,21 +76,20 @@ def runtime_ek_fixture(ctx, monkeypatch):
         user_id=user.id,
         mission_instance_id=mission.mission_instance_id,
     )
-    # After one completion, topic_ids length is 2 and one is completed.
-    ek_off = runtime.get_estimated_knowledge_inputs(
+
+    initial = runtime.get_estimated_knowledge_inputs(
         user_id=user.id, subject_code=subject
     )
-    topic_ids = list(ek_off.topic_ids)
+    topic_ids = list(initial.topic_ids)
     assert len(topic_ids) == 2
-    completed = set(ek_off.completed_topic_ids)
+    completed = set(initial.completed_topic_ids)
     assert len(completed) == 1
     covered_id = next(iter(completed))
-    other_id = next(t for t in topic_ids if t not in completed)
+    other_id = next(topic_id for topic_id in topic_ids if topic_id not in completed)
 
     fake = _FakeTwinQuery(
         {
             other_id: _fact(other_id, ek=0.73),
-            # Covered topic deliberately has no Twin EK.
             covered_id: _fact(covered_id, ek=None),
         }
     )
@@ -124,27 +108,12 @@ def runtime_ek_fixture(ctx, monkeypatch):
     }
 
 
-def test_runtime_c_ek_stub_when_cutover_off(runtime_ek_fixture, monkeypatch):
-    _set_cutover(monkeypatch, False)
+def test_runtime_c_ek_is_always_twin_backed(runtime_ek_fixture):
     fx = runtime_ek_fixture
-    ek = fx["runtime"].get_estimated_knowledge_inputs(
+    result = fx["runtime"].get_estimated_knowledge_inputs(
         user_id=fx["user"].id, subject_code=fx["subject"]
     )
-    assert set(ek.completed_topic_ids) == fx["completed"]
-    for topic in ek.topics:
-        assert topic["has_estimated_knowledge"] is False
-        assert topic["estimated_knowledge"] is None
-        assert topic["mastery_score"] is None
-        assert topic["completed"] is (topic["topic_id"] in fx["completed"])
-
-
-def test_runtime_c_ek_twin_backed_when_cutover_on(runtime_ek_fixture, monkeypatch):
-    _set_cutover(monkeypatch, True)
-    fx = runtime_ek_fixture
-    ek = fx["runtime"].get_estimated_knowledge_inputs(
-        user_id=fx["user"].id, subject_code=fx["subject"]
-    )
-    by_id = {t["topic_id"]: t for t in ek.topics}
+    by_id = {topic["topic_id"]: topic for topic in result.topics}
 
     other = by_id[fx["other_id"]]
     assert other["has_estimated_knowledge"] is True
@@ -152,33 +121,41 @@ def test_runtime_c_ek_twin_backed_when_cutover_on(runtime_ek_fixture, monkeypatc
     assert other["mastery_score"] == pytest.approx(73.0)
     assert other["completed"] is False
 
+
+def test_runtime_c_covered_without_twin_evidence_has_no_ek(
+    runtime_ek_fixture,
+):
+    fx = runtime_ek_fixture
+    result = fx["runtime"].get_estimated_knowledge_inputs(
+        user_id=fx["user"].id, subject_code=fx["subject"]
+    )
+    by_id = {topic["topic_id"]: topic for topic in result.topics}
+
     covered = by_id[fx["covered_id"]]
     assert covered["completed"] is True
     assert covered["has_estimated_knowledge"] is False
     assert covered["estimated_knowledge"] is None
     assert covered["mastery_score"] is None
+    assert set(result.completed_topic_ids) == fx["completed"]
 
 
-def test_runtime_c_study_progress_unaffected_by_cutover_flag(
-    runtime_ek_fixture, monkeypatch
+def test_runtime_c_study_progress_is_independent_of_twin_ek(
+    runtime_ek_fixture,
 ):
     fx = runtime_ek_fixture
-    _set_cutover(monkeypatch, False)
-    off = fx["runtime"].get_estimated_knowledge_inputs(
+    result = fx["runtime"].get_estimated_knowledge_inputs(
         user_id=fx["user"].id, subject_code=fx["subject"]
     )
-    _set_cutover(monkeypatch, True)
-    on = fx["runtime"].get_estimated_knowledge_inputs(
-        user_id=fx["user"].id, subject_code=fx["subject"]
-    )
-    assert off.completed_topic_ids == on.completed_topic_ids
-    assert off.topic_ids == on.topic_ids
-    off_completed = {t["topic_id"]: t["completed"] for t in off.topics}
-    on_completed = {t["topic_id"]: t["completed"] for t in on.topics}
-    assert off_completed == on_completed
+    assert result.topic_ids == tuple(fx["topic_ids"])
+    assert set(result.completed_topic_ids) == fx["completed"]
+    completed_by_topic = {
+        topic["topic_id"]: topic["completed"] for topic in result.topics
+    }
+    assert completed_by_topic[fx["covered_id"]] is True
+    assert completed_by_topic[fx["other_id"]] is False
 
 
-def test_stage3_modules_forbid_content_imports():
+def test_stage4_runtime_modules_forbid_content_imports():
     paths = [
         REPO_ROOT / "app" / "presentation" / "stack_c_sandbox.py",
         REPO_ROOT
@@ -186,11 +163,7 @@ def test_stage3_modules_forbid_content_imports():
         / "presentation"
         / "student_digital_twin"
         / "routes.py",
-        REPO_ROOT
-        / "tests"
-        / "application"
-        / "student_twin"
-        / "test_phase2_stage3_runtime_c_ek.py",
+        Path(__file__),
         REPO_ROOT
         / "tests"
         / "application"
@@ -210,7 +183,7 @@ def test_stage3_modules_forbid_content_imports():
                 modules = [node.module or ""]
             for mod in modules:
                 lowered = mod.replace("\\", "/")
-                for frag in FORBIDDEN_IMPORT_FRAGMENTS:
-                    if frag in lowered:
+                for fragment in FORBIDDEN_IMPORT_FRAGMENTS:
+                    if fragment in lowered:
                         offenders.append(f"{path.name}:{mod}")
     assert offenders == []

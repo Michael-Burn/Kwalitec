@@ -6,6 +6,7 @@ from datetime import date, timedelta
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.application.student_experience.history_service import HistoryService
+from app.application.student_twin.query import TopicKnowledgeFact
 from app.infrastructure.adapters.educational_runtime_bridge import (
     AUTHORITY_HISTORY_BRIDGE,
     AUTHORITY_JOURNEY_BRIDGE,
@@ -276,15 +277,26 @@ def test_read_path_does_not_mutate_missions(ctx, db):
     assert Mission.query.filter_by(user_id=user.id).count() == before_count
 
 
-def test_mastered_topics_from_runtime_a(ctx, db):
+def test_mastered_topics_from_twin_ek(ctx, db, monkeypatch):
     user = _make_user()
     curriculum, topics = _make_curriculum()
     leaf = [t for t in topics if t.is_leaf_topic()][0]
     tp = _make_topic_progress(user.id, leaf.id)
     tp.current_stage = TopicProgress.STAGE_MASTERED
-    tp.mastery_score = 95.0
     tp.completed = True
     db.session.commit()
+    fact = TopicKnowledgeFact(
+        topic_id="TEST-MASTERED",
+        has_estimated_knowledge=True,
+        estimated_knowledge=0.95,
+        estimated_mastery=0.95,
+        evidence_count=3,
+        last_practised_at=None,
+    )
+    monkeypatch.setattr(
+        "app.services.twin_cutover_service.topic_ek_by_orm_id",
+        lambda **kwargs: {leaf.id: fact},
+    )
 
     result = HistoryAdapter().project_history(str(user.id))
     assert result.ok is True

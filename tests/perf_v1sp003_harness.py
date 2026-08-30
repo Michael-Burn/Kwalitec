@@ -218,7 +218,6 @@ def seed_perf_dataset(
                     confidence="Medium",
                     completed=t_i < 5,
                     revision_count=t_i + 1,
-                    mastery_score=40.0 + t_i,
                     current_stage=(
                         TopicProgress.STAGE_MASTERED
                         if t_i < 3

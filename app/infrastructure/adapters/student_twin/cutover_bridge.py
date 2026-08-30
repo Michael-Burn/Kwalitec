@@ -32,7 +32,8 @@ def subject_code_for_user(user_id: int) -> str | None:
         from app.services.examination_catalogue import parse_exam_name
         from app.services.study_plan_service import StudyPlanService
 
-        plan = StudyPlanService.get_user_active_plan(user_id)
+        # Read-only: never call get_user_active_plan (self-heals / may commit).
+        plan = StudyPlanService.read_active_study_plan(user_id)
         if plan is not None:
             _org, paper = parse_exam_name(plan.exam_name or "")
             if paper:

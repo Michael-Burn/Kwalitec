@@ -236,7 +236,7 @@ class StudyPlanService:
 
         Topics whose ``code`` appears in ``completed_curriculum_topics`` are
         initialised as *study completed* only (completed=True,
-        current_stage="Completed", mastery_score unchanged at 0.0).
+        current_stage="Completed"). Estimated Knowledge remains Twin-owned.
         Completion never declares Mastery and never co-writes student-felt
         confidence (IA-004 / EIP-001).
 
@@ -600,7 +600,6 @@ class StudyPlanService:
                 topic_id=db_topic.id,
                 confidence="Not Started",
                 completed=is_completed,
-                mastery_score=0.0,
                 revision_count=0,
                 last_reviewed=None,
                 current_stage=(

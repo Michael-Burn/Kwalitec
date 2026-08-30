@@ -33,7 +33,7 @@ Record Continuity Front LIVE credit for topic **3.3** under Wave 10 / Volume **C
 | LIVE root | `educational_packages/cs1/*-cs1012.json` · `publication_approved` |
 | Tip | `c409ad29871d7845f8d9d832776168142d40fad7` |
 | Approver-credit increase | **+5** Learning LOs (3.3.1–3.3.5) |
-| Out of scope this wave | Remainder / spine · Chapter 3 trophy · until-exam trust · Trust Front absorb · Wave 11 · PB-012 execution |
+| Out of scope this wave | Remainder / spine · Chapter 3 trophy · until-exam trust · Trust Front absorb · Wave 11 execution |
 
 ---
 
@@ -50,7 +50,7 @@ Record Continuity Front LIVE credit for topic **3.3** under Wave 10 / Volume **C
 
 **Student LIVE Continuity Front:** closed through **3.3.5** / CM-R1 (RO-010).  
 **Next (provisional):** remainder / spine re-audit / Wave 0 honesty — **not** commissioned here.  
-**PB-012:** authorised · not executed.
+**PB-012:** **PASS** (progressive confidence · mean 9.00/9) · EP-011 authorised · not started.
 
 ---
 
@@ -64,9 +64,10 @@ LIVE / Approver credit:
 Trust Front (independent):
   4.1──4.2──5.1──[CD-R*]                      CS1-003 LIVE
 
-CERTIFIED COVERAGE:            63 / 72 (87.5%)
-STUDENT RELIANCE:              Through Topic 3.3 / 3.3.5
-NOT THIS PROGRAMME:            PB-012 execution · Wave 11 · Chapter 3 trophy · until-exam
+CERTIFIED COVERAGE:            63 / 72 (87.5%) — HELD
+STUDENT RELIANCE:              Through Topic 3.3 / 3.3.5 — HELD
+PB-012:                        PASS · mean 9.00/9
+NOT THIS PROGRAMME:            Wave 11 execution · Chapter 3 trophy · until-exam · 100% CS1
 ```
 
 ---
@@ -74,7 +75,8 @@ NOT THIS PROGRAMME:            PB-012 execution · Wave 11 · Chapter 3 trophy �
 ## 6. Evidence
 
 - `RO010_DEPLOYMENT_REPORT.md` · `RO010_LIVE_VERIFICATION_REPORT.md` · `RO010_RELEASE_DECISION.md`
-- `knowledge/evidence/releases/RO010/`
+- `PB012_SIMULATION_REPORT.md` · `PB012_CONFIDENCE_REPORT.md` · `PB012_RELEASE_DECISION.md`
+- `knowledge/evidence/releases/RO010/` · `knowledge/evidence/releases/PB012/`
 - Prior: `HR010_*` · `EP010_WAVE10_PLAN.md` · `RO009_*` · `PB011_*`
 
-Signed: EP-010 Coverage Update · Wave 10 LIVE Verified · 2026-08-02
+Signed: EP-010 Coverage Update · Wave 10 LIVE Verified · PB-012 PASS · 2026-08-02

@@ -1,18 +1,13 @@
-"""ADR-027 Phase 2 Stage 2 atomic Twin cutover flag helpers.
+"""ADR-027 Phase 2 permanent Twin cutover helpers.
 
-Application-layer only: flag resolution and Twin 0-1 -> 0-100 display scale.
+Application-layer only: Twin 0-1 -> 0-100 display scale. The cutover is
+unconditional and has no feature flag.
 ORM / StudyPlan / Twin adapter wiring lives in infrastructure cutover_bridge.
 """
 
 from __future__ import annotations
 
-from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.application.student_twin.query import TopicKnowledgeFact
-
-
-def phase2_twin_cutover_enabled() -> bool:
-    """True when KWALITEC_ADR027_PHASE2_TWIN_CUTOVER is explicitly ON."""
-    return bool(resolve_v2_feature_flags().ADR027_PHASE2_TWIN_CUTOVER)
 
 
 def ek_display_0_100(fact: TopicKnowledgeFact | None) -> float | None:

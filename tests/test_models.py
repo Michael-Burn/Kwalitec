@@ -181,7 +181,7 @@ class TestTopicProgressModel:
 
     def test_create_topic_progress(self, topic_progress):
         assert topic_progress.id is not None
-        assert topic_progress.mastery_score == 75.0
+        assert topic_progress.has_estimated_knowledge is False
         assert topic_progress.current_stage == "Practising"
         assert topic_progress.revision_count == 3
 

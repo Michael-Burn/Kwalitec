@@ -345,17 +345,15 @@ class TestEducationalIsolation:
         progress = TopicProgress(
             user_id=user.id,
             topic_id=topic.id,
-            mastery_score=55.0,
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=1,
-            average_accuracy=60.0,
             next_review_date=date.today() + timedelta(days=2),
             completed=False,
         )
         db.session.add(progress)
         db.session.commit()
 
-        before_mastery = progress.mastery_score
+        before_revision_count = progress.revision_count
         before_status = mission.status
 
         _submit_checkin(user.id)
@@ -364,7 +362,8 @@ class TestEducationalIsolation:
         db.session.refresh(mission)
         db.session.refresh(progress)
         assert mission.status == before_status
-        assert progress.mastery_score == before_mastery
+        assert progress.revision_count == before_revision_count
+        assert progress.has_estimated_knowledge is False
 
 
 @pytest.mark.usefixtures("ctx")

@@ -88,7 +88,6 @@ def _complete_all_topics(user_id: int, topics: list[Topic]) -> None:
                 topic_id=topic.id,
                 confidence="Medium",
                 completed=True,
-                mastery_score=55.0,
                 revision_count=1,
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )
@@ -104,7 +103,6 @@ def _complete_some_topics(user_id: int, topics: list[Topic], count: int) -> None
                 topic_id=topic.id,
                 confidence="Medium",
                 completed=True,
-                mastery_score=50.0,
                 revision_count=1,
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )

@@ -11,6 +11,7 @@ from pathlib import Path
 
 import pytest
 
+from app.application.student_twin.query import TopicKnowledgeFact
 from app.extensions import db
 from app.mission.routes import _apply_mission_topic_progress
 from app.models.curriculum import Curriculum, Topic
@@ -90,6 +91,21 @@ def _make_active_plan(
     return plan
 
 
+def _stub_twin_ek(monkeypatch, topic_id: int, score: float) -> None:
+    fact = TopicKnowledgeFact(
+        topic_id="CS1-A-T01",
+        has_estimated_knowledge=True,
+        estimated_knowledge=score,
+        estimated_mastery=score,
+        evidence_count=2,
+        last_practised_at=None,
+    )
+    monkeypatch.setattr(
+        "app.services.twin_cutover_service.topic_ek_by_orm_id",
+        lambda **kwargs: {topic_id: fact},
+    )
+
+
 @pytest.mark.usefixtures("ctx")
 class TestCompletionRecordsStudyProgressOnly:
     """Completing a topic records Study Progress — never Mastery."""
@@ -104,14 +120,12 @@ class TestCompletionRecordsStudyProgressOnly:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=12.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=0,
         )
         db.session.add(before)
         db.session.commit()
-        prior_score = before.mastery_score
 
         _apply_mission_topic_progress(user.id, topics[0])
 
@@ -120,8 +134,8 @@ class TestCompletionRecordsStudyProgressOnly:
         ).one()
         assert progress.completed is True
         assert progress.current_stage == TopicProgress.STAGE_COMPLETED
-        assert progress.mastery_score == prior_score
         assert progress.confidence != "Mastered"
+        assert progress.has_estimated_knowledge is False
         assert progress.has_estimated_mastery is False
 
     def test_wizard_completed_topics_do_not_set_mastery(self, db, user):
@@ -146,10 +160,10 @@ class TestCompletionRecordsStudyProgressOnly:
         ).all()
         assert len(completed_rows) >= 2
         for row in completed_rows:
-            assert row.mastery_score == 0.0
             # EIP-001: Study Progress must not co-write student-felt confidence.
             assert row.confidence == "Not Started"
             assert row.current_stage == TopicProgress.STAGE_COMPLETED
+            assert row.has_estimated_knowledge is False
             assert row.has_estimated_mastery is False
 
 
@@ -173,7 +187,6 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=True,
-                mastery_score=10.0,  # fresh stage = Not Started (weak)
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )
         )
@@ -182,7 +195,6 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[1].id,
                 completed=False,
-                mastery_score=0.0,
                 current_stage=TopicProgress.STAGE_LEARNING,
             )
         )
@@ -217,9 +229,7 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=True,
-                mastery_score=15.0,
                 revision_count=5,
-                average_accuracy=20.0,
                 next_review_date=date.today() - timedelta(days=1),
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )
@@ -229,7 +239,6 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[1].id,
                 completed=False,
-                mastery_score=0.0,
                 current_stage=TopicProgress.STAGE_LEARNING,
             )
         )
@@ -266,9 +275,7 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[1].id,
                 completed=False,
-                mastery_score=10.0,
                 revision_count=4,
-                average_accuracy=15.0,
                 next_review_date=date.today(),
                 current_stage=TopicProgress.STAGE_NEEDS_REVIEW,
             )
@@ -286,7 +293,7 @@ class TestLearningModeMissionSelection:
         assert plan.new_topics_since_consolidation_checkpoint == 0
 
     def test_on_cadence_weak_covered_topic_triggers_consolidation(
-        self, db, user
+        self, db, user, monkeypatch
     ):
         """On cadence with a weak covered topic → disclosed consolidation, not CLT."""
         curriculum, topics = _make_curriculum(
@@ -299,12 +306,12 @@ class TestLearningModeMissionSelection:
         plan.exam_date = date.today() + timedelta(days=45)  # cadence 3
         plan.new_topics_since_consolidation_checkpoint = 3
         db.session.add(plan)
+        _stub_twin_ek(monkeypatch, topics[0].id, 0.2)
         db.session.add(
             TopicProgress(
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=True,
-                mastery_score=20.0,  # Not Started by determine_stage
                 current_stage=TopicProgress.STAGE_COMPLETED,
             )
         )
@@ -313,7 +320,6 @@ class TestLearningModeMissionSelection:
                 user_id=user.id,
                 topic_id=topics[1].id,
                 completed=False,
-                mastery_score=0.0,
                 current_stage=TopicProgress.STAGE_LEARNING,
             )
         )

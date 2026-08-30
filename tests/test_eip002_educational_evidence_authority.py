@@ -136,14 +136,11 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=27.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
         db.session.commit()
-        prior = progress.mastery_score
 
         mission = _make_mission(
             user.id, study_plan_id=plan.id, title=f"Study {topics[0].name}"
@@ -162,8 +159,7 @@ class TestNegativeEvidenceAuthorityRegressions:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score == prior
-        assert updated.average_accuracy is None
+        assert updated.has_estimated_knowledge is False
         assert updated.has_estimated_mastery is False
 
     def test_mission_completion_must_not_update_estimated_mastery(self, db, user):
@@ -177,15 +173,12 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=33.0,
-            average_accuracy=None,
             confidence="Medium",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=5,
         )
         db.session.add(progress)
         db.session.commit()
-        prior = progress.mastery_score
 
         mission = _make_mission(
             user.id, study_plan_id=plan.id, title=f"Study {topics[0].name}"
@@ -202,8 +195,7 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id, topic_id=topics[0].id
         ).one()
         assert updated.completed is True
-        assert updated.mastery_score == prior
-        assert updated.average_accuracy is None
+        assert updated.revision_count == 6
         assert updated.has_estimated_mastery is False
 
     def test_reading_completion_must_not_update_estimated_mastery(self, db, user):
@@ -216,14 +208,11 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=19.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
         db.session.commit()
-        prior = progress.mastery_score
 
         # Manual Study Progress write (reading / declaration path equivalent).
         progress.completed = True
@@ -238,8 +227,7 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id, topic_id=topics[0].id
         ).one()
         assert updated.completed is True
-        assert updated.mastery_score == prior
-        assert updated.average_accuracy is None
+        assert updated.current_stage == TopicProgress.STAGE_COMPLETED
         assert updated.has_estimated_mastery is False
 
     def test_student_confidence_must_not_update_educational_evidence(self, db, user):
@@ -253,8 +241,6 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=41.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
@@ -282,9 +268,8 @@ class TestNegativeEvidenceAuthorityRegressions:
         assert updated.confidence == "Mastered"
         assert attempt.confidence_after == "Mastered"
         assert attempt.notes is not None
-        # Observation retained — no Educational Evidence of understanding minted.
-        assert updated.average_accuracy is None
-        assert updated.mastery_score == 41.0
+        # Observation retained, but Stack A does not store Estimated Knowledge.
+        assert updated.has_estimated_knowledge is False
         assert updated.has_estimated_mastery is False
         has_questions = (
             EducationalEvidenceAuthority.study_attempt_has_structured_question_results(
@@ -304,15 +289,12 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=55.0,
-            average_accuracy=None,
             confidence="Medium",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=8,
         )
         db.session.add(progress)
         db.session.commit()
-        prior = progress.mastery_score
 
         mission = _make_mission(
             user.id, study_plan_id=plan.id, title=f"Study {topics[0].name}"
@@ -335,8 +317,7 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id, topic_id=topics[0].id
         ).one()
         assert attempt.duration_minutes == 180
-        assert updated.mastery_score == prior
-        assert updated.average_accuracy is None
+        assert updated.revision_count == 8
         assert updated.has_estimated_mastery is False
 
     def test_recommendation_acceptance_must_not_update_educational_evidence(
@@ -350,15 +331,11 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=12.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
         db.session.commit()
-        prior_mastery = progress.mastery_score
-        prior_accuracy = progress.average_accuracy
         attempts_before = StudyAttempt.query.filter_by(user_id=user.id).count()
 
         RecommendationService.record_decision(
@@ -378,9 +355,8 @@ class TestNegativeEvidenceAuthorityRegressions:
             user_id=user.id, topic_id=topics[0].id
         ).one()
         assert Decision.query.filter_by(user_id=user.id).count() == 1
-        assert updated.mastery_score == prior_mastery
-        assert updated.average_accuracy == prior_accuracy
         assert StudyAttempt.query.filter_by(user_id=user.id).count() == attempts_before
+        assert updated.has_estimated_knowledge is False
         assert updated.has_estimated_mastery is False
 
     def test_forbidden_observations_cannot_authorise_twin_writes(self):
@@ -416,8 +392,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=1,
@@ -442,9 +416,8 @@ class TestPositiveEvidenceAuthorityBehaviours:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score > 0.0
-        assert updated.average_accuracy == 80.0
-        assert updated.has_estimated_mastery is True
+        assert updated.has_estimated_knowledge is False
+        assert updated.has_estimated_mastery is False
         assert updated.completed is False
         assert updated.confidence == "High"
         assert updated.current_stage != TopicProgress.STAGE_COMPLETED
@@ -460,8 +433,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=14.0,
-            average_accuracy=None,
             confidence="Not Started",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
@@ -491,8 +462,7 @@ class TestPositiveEvidenceAuthorityBehaviours:
         assert attempt.confidence_after == "Medium"
         assert attempt.notes == "Hard start, clearer ending."
         assert updated.confidence == "Medium"
-        assert updated.mastery_score == 14.0
-        assert updated.average_accuracy is None
+        assert updated.has_estimated_knowledge is False
         assert updated.has_estimated_mastery is False
 
     def test_absence_of_authorised_evidence_leaves_estimates_unchanged(
@@ -508,8 +478,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=62.5,
-            average_accuracy=None,
             confidence="High",
             current_stage=TopicProgress.STAGE_PRACTISING,
             revision_count=9,
@@ -535,11 +503,10 @@ class TestPositiveEvidenceAuthorityBehaviours:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score == 62.5
-        assert updated.average_accuracy is None
+        assert updated.revision_count == 9
         assert updated.has_estimated_mastery is False
 
-    def test_high_mastery_stage_requires_evidence_accumulation(self, db, user):
+    def test_authorised_evidence_does_not_write_stack_a_ek(self, db, user):
         curriculum, topics = _make_curriculum(
             "IFoA CS1", ["Accumulation Topic"]
         )
@@ -550,7 +517,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=5,
@@ -573,8 +539,8 @@ class TestPositiveEvidenceAuthorityBehaviours:
         after_one = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert after_one.mastery_score >= 90.0
-        assert after_one.current_stage == TopicProgress.STAGE_PRACTISING
+        assert after_one.has_estimated_knowledge is False
+        assert after_one.current_stage == TopicProgress.STAGE_LEARNING
 
         LearningService.create_study_attempt(
             user_id=user.id,
@@ -587,7 +553,8 @@ class TestPositiveEvidenceAuthorityBehaviours:
         after_two = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert after_two.current_stage == TopicProgress.STAGE_MASTERED
+        assert after_two.current_stage == TopicProgress.STAGE_LEARNING
+        assert after_two.has_estimated_knowledge is False
         assert after_two.completed is False
 
     def test_recency_weighting_raises_mastery_vs_flat_average(self, db, user):
@@ -596,7 +563,7 @@ class TestPositiveEvidenceAuthorityBehaviours:
         Flat average of 20% and 90% is 55. Recency weighting (21-day half-life)
         with the weak attempt 60 days ago and the strong attempt yesterday
         yields ~81.3 as the accuracy base; with revision_count=0 and no
-        unresolved mistakes, mastery_score rounds to that base.
+        unresolved mistakes, the pure estimate calculation rounds to that base.
         """
         curriculum, topics = _make_curriculum(
             "IFoA CS1", ["Recency Weight Topic"]
@@ -608,8 +575,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=0,
@@ -641,10 +606,8 @@ class TestPositiveEvidenceAuthorityBehaviours:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        flat_base = 55.0
-        assert updated.average_accuracy == pytest.approx(81.3, abs=0.1)
-        assert updated.mastery_score == pytest.approx(81.3, abs=0.1)
-        assert updated.mastery_score > flat_base + 20.0
+        assert updated.has_estimated_knowledge is False
+        assert updated.revision_count == 0
 
     def test_single_attempt_recency_matches_raw_accuracy(self, db, user):
         """One authorised observation: recency is a no-op (weight 1)."""
@@ -658,8 +621,6 @@ class TestPositiveEvidenceAuthorityBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=0,
@@ -682,5 +643,5 @@ class TestPositiveEvidenceAuthorityBehaviours:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.average_accuracy == 30.0
-        assert updated.mastery_score == 30.0
+        assert updated.has_estimated_knowledge is False
+        assert updated.revision_count == 0

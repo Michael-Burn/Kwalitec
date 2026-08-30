@@ -51,8 +51,6 @@ class EducationalContinuityService:
         "completed",
         "last_reviewed",
         "revision_count",
-        "mastery_score",
-        "average_accuracy",
         "average_confidence",
         "next_review_date",
         "current_stage",
@@ -236,10 +234,16 @@ class EducationalContinuityService:
             source_tp = max(
                 candidates,
                 key=lambda tp: (
-                    tp.average_accuracy is not None,
-                    float(tp.mastery_score or 0.0),
                     bool(tp.completed),
                     int(tp.revision_count or 0),
+                    tp.last_reviewed is not None,
+                    tp.current_stage not in (
+                        TopicProgress.STAGE_NOT_STARTED,
+                        TopicProgress.STAGE_LEARNING,
+                        None,
+                        "",
+                    ),
+                    tp.average_confidence is not None,
                 ),
             )
 
@@ -254,26 +258,9 @@ class EducationalContinuityService:
             )
 
             if existing is not None and has_history:
-                # Fill missing estimate posture from mapped prior history without
-                # rewriting Study Progress coverage the learner already holds.
-                # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
-                from app.application.student_twin.cutover import (
-                    phase2_twin_cutover_enabled,
-                )
-
-                if phase2_twin_cutover_enabled():
-                    skipped_existing.append(target_topic.id)
-                    continue
-                can_fill = EducationalContinuityService._can_fill_estimates(
-                    existing, source_tp
-                )
-                if can_fill:
-                    EducationalContinuityService._copy_estimate_fields(
-                        source_tp, existing
-                    )
-                    remapped.append(target_topic.id)
-                else:
-                    skipped_existing.append(target_topic.id)
+                # Existing learner history is authoritative. Twin-owned EK is
+                # never filled through TopicProgress continuity.
+                skipped_existing.append(target_topic.id)
                 continue
 
             if existing is None:
@@ -282,7 +269,6 @@ class EducationalContinuityService:
                     topic_id=target_topic.id,
                     confidence="Not Started",
                     completed=False,
-                    mastery_score=0.0,
                     revision_count=0,
                     current_stage=TopicProgress.STAGE_NOT_STARTED,
                 )
@@ -331,10 +317,6 @@ class EducationalContinuityService:
         """Return True when a TopicProgress row already holds educational history."""
         if tp.completed:
             return True
-        if tp.average_accuracy is not None:
-            return True
-        if (tp.mastery_score or 0.0) > 0.0:
-            return True
         if (tp.revision_count or 0) > 0:
             return True
         if tp.last_reviewed is not None:
@@ -346,33 +328,21 @@ class EducationalContinuityService:
             "",
         ):
             return True
+        if tp.average_confidence is not None:
+            return True
         return False
 
     @staticmethod
     def _can_fill_estimates(target: TopicProgress, source: TopicProgress) -> bool:
-        """True when target lacks estimate/evidence posture but source has it."""
-        target_has_estimates = (
-            target.average_accuracy is not None or (target.mastery_score or 0.0) > 0.0
+        """True when target lacks continuity posture but source has it."""
+        return (
+            not EducationalContinuityService._has_learner_history(target)
+            and EducationalContinuityService._has_learner_history(source)
         )
-        source_has_estimates = (
-            source.average_accuracy is not None or (source.mastery_score or 0.0) > 0.0
-        )
-        return (not target_has_estimates) and source_has_estimates
 
     @staticmethod
     def _copy_estimate_fields(source: TopicProgress, target: TopicProgress) -> None:
-        """Continue estimate / evidence posture without rewriting Study Progress."""
-        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
-        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
-
-        if phase2_twin_cutover_enabled():
-            logger.info(
-                "Phase 2 cutover: skipping Stack A estimate field copy "
-                "(ADR-027 Phase 2 Stage 2)"
-            )
-            return
-        target.mastery_score = source.mastery_score
-        target.average_accuracy = source.average_accuracy
+        """Continue non-EK posture without rewriting Study Progress."""
         target.average_confidence = source.average_confidence
         if source.last_reviewed is not None and target.last_reviewed is None:
             target.last_reviewed = source.last_reviewed
@@ -393,13 +363,5 @@ class EducationalContinuityService:
     @staticmethod
     def _copy_continuity_fields(source: TopicProgress, target: TopicProgress) -> None:
         """Copy learner-owned continuity fields without inventing new values."""
-        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
-        # Skip mastery_score / average_accuracy when Twin owns EK.
-        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
-
-        skip_ek = phase2_twin_cutover_enabled()
-        ek_fields = frozenset({"mastery_score", "average_accuracy"})
         for field_name in EducationalContinuityService._CONTINUITY_FIELDS:
-            if skip_ek and field_name in ek_fields:
-                continue
             setattr(target, field_name, getattr(source, field_name))

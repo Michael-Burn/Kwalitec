@@ -1,4 +1,4 @@
-"""Service facade for ADR-027 Phase 2 Twin cutover readers.
+"""Service facade for permanent ADR-027 Phase 2 Twin readers.
 
 Keeps ``app.application`` free of infrastructure imports while Stage A /
 Runtime C consumers resolve Twin Estimated Knowledge.
@@ -8,16 +8,9 @@ from __future__ import annotations
 
 from typing import Any
 
-from app.application.student_twin.cutover import (
-    ek_display_0_100,
-    phase2_twin_cutover_enabled,
-)
+from app.application.student_twin.cutover import ek_display_0_100
 from app.application.student_twin.query import TopicKnowledgeFact
 from app.infrastructure.adapters.student_twin import cutover_bridge
-
-
-def is_cutover_enabled() -> bool:
-    return phase2_twin_cutover_enabled()
 
 
 def display_ek_0_100(fact: TopicKnowledgeFact | None) -> float | None:

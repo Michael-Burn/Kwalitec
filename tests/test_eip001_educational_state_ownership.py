@@ -126,15 +126,12 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=18.0,
-            average_accuracy=None,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=1,
         )
         db.session.add(progress)
         db.session.commit()
-        prior_mastery = progress.mastery_score
 
         mission = _make_mission(
             user.id,
@@ -152,12 +149,12 @@ class TestNegativeOwnershipRegressions:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score == prior_mastery
-        assert updated.average_accuracy is None
+        assert updated.completed is True
+        assert updated.revision_count == 2
         assert updated.has_estimated_mastery is False
 
     def test_mission_completion_must_not_modify_estimated_knowledge(self, db, user):
-        """Product estimated-knowledge store is mastery_score until Twin separates."""
+        """Mission completion must not create ORM Estimated Knowledge."""
         curriculum, topics = _make_curriculum(
             "IFoA CS1", ["Knowledge Topic A", "Knowledge Topic B"]
         )
@@ -168,13 +165,11 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=22.5,
             confidence="Medium",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
         db.session.commit()
-        prior = progress.mastery_score
 
         mission = _make_mission(
             user.id,
@@ -192,7 +187,7 @@ class TestNegativeOwnershipRegressions:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score == prior
+        assert updated.has_estimated_knowledge is False
 
     def test_student_confidence_must_not_modify_estimated_mastery(self, db, user):
         curriculum, topics = _make_curriculum(
@@ -205,14 +200,12 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=40.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=2,
         )
         db.session.add(progress)
         db.session.commit()
-        prior_mastery = progress.mastery_score
 
         mission = _make_mission(
             user.id,
@@ -231,7 +224,7 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id, topic_id=topics[0].id
         ).one()
         assert updated.confidence == "Mastered"
-        assert updated.mastery_score == prior_mastery
+        assert updated.has_estimated_knowledge is False
 
         # EIP-002: no authorised question results ⇒ correct silence.
         AdaptiveLearningService.update_mastery_after_attempt(
@@ -240,8 +233,8 @@ class TestNegativeOwnershipRegressions:
         after_recalc = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert after_recalc.mastery_score == prior_mastery
-        assert after_recalc.average_accuracy is None
+        assert after_recalc.has_estimated_knowledge is False
+        assert after_recalc.revision_count == 2
 
     def test_student_confidence_must_not_modify_study_progress(self, db, user):
         curriculum, topics = _make_curriculum(
@@ -254,7 +247,6 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
             confidence="Not Started",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
@@ -299,7 +291,7 @@ class TestNegativeOwnershipRegressions:
         ).one()
         assert progress.completed is True
         assert after_count == before_count
-        assert progress.average_accuracy is None
+        assert progress.has_estimated_knowledge is False
         assert progress.has_estimated_mastery is False
 
     def test_recommendation_generation_must_not_modify_current_learning(
@@ -326,7 +318,6 @@ class TestNegativeOwnershipRegressions:
                 topic_id=topics[1].id,
                 completed=False,
                 current_stage=TopicProgress.STAGE_LEARNING,
-                mastery_score=15.0,
                 revision_count=1,
             )
         )
@@ -382,7 +373,6 @@ class TestNegativeOwnershipRegressions:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=10.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=4,
@@ -412,7 +402,7 @@ class TestNegativeOwnershipRegressions:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score >= 70.0
+        assert updated.has_estimated_knowledge is False
         assert updated.completed is False
         assert updated.current_stage != TopicProgress.STAGE_COMPLETED
 
@@ -519,7 +509,6 @@ class TestPositiveOwnershipBehaviours:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=1,
@@ -549,8 +538,7 @@ class TestPositiveOwnershipBehaviours:
         updated = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert updated.mastery_score > 0.0
-        assert updated.average_accuracy is not None
-        assert updated.has_estimated_mastery is True
+        assert updated.has_estimated_knowledge is False
+        assert updated.has_estimated_mastery is False
         assert updated.completed is False
         assert updated.confidence == "High"  # felt confidence preserved, not estimate

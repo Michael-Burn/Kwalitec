@@ -6,7 +6,7 @@ import logging
 from datetime import date, datetime, timedelta
 
 from app.extensions import db
-from app.models.learning import Mistake, StudyAttempt
+from app.models.learning import StudyAttempt
 from app.models.topic_progress import TopicProgress
 
 logger = logging.getLogger(__name__)
@@ -27,11 +27,9 @@ ACCURACY_RECENCY_HALF_LIFE_DAYS = 21.0
 class AdaptiveLearningService:
     """Service for adaptive learning calculations.
 
-    Provides deterministic estimate calculations (internal field
-    ``mastery_score``; Version 1 student meaning: Estimated Knowledge),
-    review scheduling, and topic detection (weak/strong) based on stored
-    learning data. No external APIs or AI are used — all calculations are
-    purely mathematical.
+    Provides deterministic estimate calculations for Twin consumers, review
+    scheduling, and Twin-backed topic detection. TopicProgress no longer
+    persists Estimated Knowledge. No external APIs or AI are used.
     """
 
     # ── Mastery Calculation ──────────────────────────────────────────
@@ -46,9 +44,8 @@ class AdaptiveLearningService:
         """Calculate an estimate scalar from 0 to 100 from authorised accuracy.
 
         Version 1 student meaning of the returned scalar is Estimated Knowledge
-        (EIP-006). The method name and persistence field remain ``mastery_score``
-        for compatibility; this is not constitutionally sufficient Estimated
-        Mastery (EL-007).
+        (EIP-006). The method name remains for compatibility; this is not
+        constitutionally sufficient Estimated Mastery (EL-007).
 
         EIP-002: this formula may interpret authorised Structured Question
         Results (accuracy). It must not mint estimates from activity,
@@ -226,7 +223,7 @@ class AdaptiveLearningService:
         user_id: int,
         topic_id: int,
     ) -> TopicProgress:
-        """Recalculate evidence-backed understanding estimate from authorised Educational Evidence.
+        """Return progress without writing retired Stack A EK columns.
 
         Version 1 (EIP-006): the written scalar is student-facing Estimated Knowledge
         (understanding posture), not constitutionally sufficient Estimated Mastery.
@@ -248,127 +245,21 @@ class AdaptiveLearningService:
             topic_id: The ID of the topic.
 
         Returns:
-            TopicProgress: Progress record; estimate fields updated only when
-            authorised evidence is present.
+            TopicProgress: Existing or newly created Study Progress record.
         """
-        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
         from app.services.curriculum_service import CurriculumService
-        from app.services.educational_evidence_authority import (
-            EducationalEvidenceAuthority,
-        )
 
         progress = CurriculumService.get_or_create_topic_progress(
             user_id=user_id,
             topic_id=topic_id,
         )
 
-        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
-        # Stack B (Learner Twin) is the sole EK authority when the atomic
-        # KWALITEC_ADR027_PHASE2_TWIN_CUTOVER flag is ON. Study Progress
-        # (completed) is never written here regardless of flag state.
-        if phase2_twin_cutover_enabled():
-            logger.info(
-                "Phase 2 cutover: skipping Stack A EK write for user=%d "
-                "topic=%d (ADR-027 Phase 2 Stage 2)",
-                user_id,
-                topic_id,
-            )
-            return progress
-
-        attempts = StudyAttempt.query.filter_by(
-            user_id=user_id,
-            topic_id=topic_id,
-        ).order_by(StudyAttempt.study_date.asc()).all()
-
-        observations = (
-            EducationalEvidenceAuthority.collect_authorised_accuracy_observations(
-                attempts
-            )
-        )
-
-        # EIP-002: no authorised Educational Evidence ⇒ leave Twin estimates alone.
-        if not observations:
-            logger.info(
-                "No authorised Educational Evidence for user=%d topic=%d; "
-                "leaving Estimated Knowledge/Mastery unchanged",
-                user_id,
-                topic_id,
-            )
-            return progress
-
-        unresolved_mistakes = Mistake.query.join(StudyAttempt).filter(
-            StudyAttempt.user_id == user_id,
-            Mistake.topic_id == topic_id,
-            Mistake.resolved == False,
-        ).count()
-
-        # Recency-weighted accuracy (21-day half-life) is the formula base and
-        # the Twin average_accuracy display value — same scalar the estimate
-        # uses, so UI/Twin inspection stays consistent with mastery math.
-        avg_accuracy = AdaptiveLearningService.recency_weighted_accuracy(
-            observations
-        )
-
-        # Soft confidence average for display only — never formula input,
-        # never Educational Evidence of understanding (EIP-002).
-        confidence_after_values = [
-            AdaptiveLearningService.get_confidence_numeric(a.confidence_after)
-            for a in attempts
-            if a.confidence_after
-            and AdaptiveLearningService.get_confidence_numeric(a.confidence_after)
-            is not None
-        ]
-        avg_confidence = (
-            (sum(confidence_after_values) / len(confidence_after_values))
-            if confidence_after_values
-            else None
-        )
-
-        mastery_score = AdaptiveLearningService.calculate_mastery_score(
-            accuracy=avg_accuracy,
-            confidence_numeric=None,
-            revision_count=progress.revision_count,
-            unresolved_mistakes=unresolved_mistakes,
-        )
-
-        current_stage = AdaptiveLearningService.determine_stage(mastery_score)
-        # EL-007 / FINDING-007: Mastered-stage language requires accumulation.
-        if (
-            current_stage == TopicProgress.STAGE_MASTERED
-            and not EducationalEvidenceAuthority.may_assign_high_mastery_stage(
-                len(observations)
-            )
-        ):
-            current_stage = TopicProgress.STAGE_PRACTISING
-
-        next_review = AdaptiveLearningService.schedule_next_review(
-            mastery_score=mastery_score,
-            last_reviewed=progress.last_reviewed,
-        )
-
-        # Twin-owned estimate fields only — never Study Progress (EIP-001).
-        progress.mastery_score = round(mastery_score, 1)
-        progress.average_accuracy = round(avg_accuracy, 1)
-        progress.average_confidence = (
-            round(avg_confidence, 1) if avg_confidence is not None else None
-        )
-        progress.next_review_date = next_review
-        if not progress.completed:
-            progress.current_stage = current_stage
-
-        db.session.commit()
-
         logger.info(
-            "Mastery updated from authorised evidence for user=%d topic=%d: "
-            "score=%.1f stage=%s next_review=%s observations=%d",
+            "Permanent Twin cutover: Stack A EK write is retired for user=%d "
+            "topic=%d (ADR-027 Phase 2 Stage 4)",
             user_id,
             topic_id,
-            mastery_score,
-            current_stage,
-            next_review,
-            len(observations),
         )
-
         return progress
 
     # ── Weak / Mastered Topic Detection ──────────────────────────────
@@ -386,45 +277,31 @@ class AdaptiveLearningService:
         Returns:
             list[TopicProgress]: Weak topics ordered by mastery (lowest first).
         """
-        from app.application.student_twin.cutover import (
-            ek_display_0_100,
-            phase2_twin_cutover_enabled,
-        )
+        from app.application.student_twin.cutover import ek_display_0_100
         from app.services.twin_cutover_service import (
             topic_ek_by_orm_id,
         )
 
-        if phase2_twin_cutover_enabled():
-            ek_map = topic_ek_by_orm_id(user_id=user_id)
-            if not ek_map:
-                return []
-            rows = (
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.topic_id.in_(list(ek_map.keys())),
-                )
-                .all()
-            )
-            weak: list[tuple[float, TopicProgress]] = []
-            for row in rows:
-                score = ek_display_0_100(ek_map.get(row.topic_id))
-                if score is None or score >= threshold:
-                    continue
-                # In-memory overlay for callers; do not commit.
-                row.mastery_score = score
-                weak.append((score, row))
-            weak.sort(key=lambda item: item[0])
-            return [row for _score, row in weak]
-
-        return (
+        ek_map = topic_ek_by_orm_id(user_id=user_id)
+        if not ek_map:
+            return []
+        rows = (
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
-                TopicProgress.revision_count > 0,
-                TopicProgress.mastery_score < threshold,
+                TopicProgress.topic_id.in_(list(ek_map.keys())),
             )
-            .order_by(TopicProgress.mastery_score.asc())
             .all()
         )
+        weak: list[tuple[float, TopicProgress]] = []
+        for row in rows:
+            score = ek_display_0_100(ek_map.get(row.topic_id))
+            if score is None or score >= threshold:
+                continue
+            # In-memory overlay for callers; do not commit.
+            setattr(row, "mastery_score", score)
+            weak.append((score, row))
+        weak.sort(key=lambda item: item[0])
+        return [row for _score, row in weak]
 
     @staticmethod
     def get_mastered_topics(user_id: int, threshold: float = 90.0) -> list[TopicProgress]:
@@ -437,44 +314,30 @@ class AdaptiveLearningService:
         Returns:
             list[TopicProgress]: Mastered topics ordered by mastery (highest first).
         """
-        from app.application.student_twin.cutover import (
-            ek_display_0_100,
-            phase2_twin_cutover_enabled,
-        )
+        from app.application.student_twin.cutover import ek_display_0_100
         from app.services.twin_cutover_service import (
             topic_ek_by_orm_id,
         )
 
-        if phase2_twin_cutover_enabled():
-            ek_map = topic_ek_by_orm_id(user_id=user_id)
-            if not ek_map:
-                return []
-            rows = (
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.topic_id.in_(list(ek_map.keys())),
-                )
-                .all()
-            )
-            mastered: list[tuple[float, TopicProgress]] = []
-            for row in rows:
-                score = ek_display_0_100(ek_map.get(row.topic_id))
-                if score is None or score < threshold:
-                    continue
-                row.mastery_score = score
-                mastered.append((score, row))
-            mastered.sort(key=lambda item: item[0], reverse=True)
-            return [row for _score, row in mastered]
-
-        return (
+        ek_map = topic_ek_by_orm_id(user_id=user_id)
+        if not ek_map:
+            return []
+        rows = (
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
-                TopicProgress.current_stage == TopicProgress.STAGE_MASTERED,
-                TopicProgress.mastery_score >= threshold,
+                TopicProgress.topic_id.in_(list(ek_map.keys())),
             )
-            .order_by(TopicProgress.mastery_score.desc())
             .all()
         )
+        mastered: list[tuple[float, TopicProgress]] = []
+        for row in rows:
+            score = ek_display_0_100(ek_map.get(row.topic_id))
+            if score is None or score < threshold:
+                continue
+            setattr(row, "mastery_score", score)
+            mastered.append((score, row))
+        mastered.sort(key=lambda item: item[0], reverse=True)
+        return [row for _score, row in mastered]
 
     @staticmethod
     def get_topics_due_for_review(user_id: int, target_date: date | None = None) -> list[TopicProgress]:
@@ -516,66 +379,41 @@ class AdaptiveLearningService:
         - current_streak: Consecutive days with at least one study attempt.
         """
         # Overall mastery: average across all started topics
-        from app.application.student_twin.cutover import (
-            ek_display_0_100,
-            phase2_twin_cutover_enabled,
-        )
+        from app.application.student_twin.cutover import ek_display_0_100
         from app.services.twin_cutover_service import (
             topic_ek_by_orm_id,
         )
 
-        if phase2_twin_cutover_enabled():
-            ek_map = topic_ek_by_orm_id(user_id=user_id)
-            scores = [
-                score
-                for score in (ek_display_0_100(f) for f in ek_map.values())
-                if score is not None
-            ]
-            overall_mastery = (sum(scores) / len(scores)) if scores else 0.0
-            started_topics = (
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.topic_id.in_(list(ek_map.keys())),
-                ).all()
-                if ek_map
-                else []
-            )
-            weakest_topic = None
-            if ek_map and started_topics:
-                ranked = sorted(
-                    (
-                        (ek_display_0_100(ek_map.get(t.topic_id)), t)
-                        for t in started_topics
-                    ),
-                    key=lambda item: (
-                        item[0] if item[0] is not None else 999.0,
-                        item[1].topic_id,
-                    ),
-                )
-                if ranked and ranked[0][0] is not None:
-                    weakest_topic = ranked[0][1]
-                    weakest_topic.mastery_score = ranked[0][0]
-        else:
-            started_topics = TopicProgress.query.filter(
+        ek_map = topic_ek_by_orm_id(user_id=user_id)
+        scores = [
+            score
+            for score in (ek_display_0_100(f) for f in ek_map.values())
+            if score is not None
+        ]
+        overall_mastery = (sum(scores) / len(scores)) if scores else 0.0
+        started_topics = (
+            TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
-                TopicProgress.revision_count > 0,
+                TopicProgress.topic_id.in_(list(ek_map.keys())),
             ).all()
-
-            if started_topics:
-                overall_mastery = sum(t.mastery_score for t in started_topics) / len(
-                    started_topics
-                )
-            else:
-                overall_mastery = 0.0
-
-            weakest_topic = (
-                TopicProgress.query.filter(
-                    TopicProgress.user_id == user_id,
-                    TopicProgress.revision_count > 0,
-                )
-                .order_by(TopicProgress.mastery_score.asc())
-                .first()
+            if ek_map
+            else []
+        )
+        weakest_topic = None
+        if ek_map and started_topics:
+            ranked = sorted(
+                (
+                    (ek_display_0_100(ek_map.get(t.topic_id)), t)
+                    for t in started_topics
+                ),
+                key=lambda item: (
+                    item[0] if item[0] is not None else 999.0,
+                    item[1].topic_id,
+                ),
             )
+            if ranked and ranked[0][0] is not None:
+                weakest_topic = ranked[0][1]
+                setattr(weakest_topic, "mastery_score", ranked[0][0])
 
         # Topics mastered
         topics_mastered = TopicProgress.query.filter(

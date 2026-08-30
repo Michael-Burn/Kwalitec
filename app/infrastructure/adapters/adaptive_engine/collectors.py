@@ -259,9 +259,24 @@ class TopicProgressCollector:
                 .order_by(progress_cls.topic_id.asc(), progress_cls.id.asc())
                 .all()
             )
+            from app.services.twin_cutover_service import (
+                display_ek_0_100,
+                topic_ek_by_orm_id,
+            )
+
+            topics = [
+                topic
+                for topic in (getattr(row, "topic", None) for row in rows)
+                if topic is not None
+            ]
+            ek_map = topic_ek_by_orm_id(
+                user_id=user_id,
+                topics=topics or None,
+            )
             items: list[dict[str, Any]] = []
             for row in rows:
                 topic = getattr(row, "topic", None)
+                score = display_ek_0_100(ek_map.get(row.topic_id))
                 items.append(
                     {
                         "topic_progress_id": str(row.id),
@@ -271,12 +286,8 @@ class TopicProgressCollector:
                             if topic is None
                             else str(getattr(topic, "name", "") or "")
                         ),
-                        "mastery_score": float(row.mastery_score or 0.0),
-                        "average_accuracy": (
-                            None
-                            if row.average_accuracy is None
-                            else float(row.average_accuracy)
-                        ),
+                        "mastery_score": score if score is not None else 0.0,
+                        "average_accuracy": score,
                         "current_stage": str(row.current_stage or ""),
                         "confidence": str(row.confidence or ""),
                         "completed": bool(row.completed),

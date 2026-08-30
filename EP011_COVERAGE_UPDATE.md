@@ -1,25 +1,25 @@
-# EP-011 — Coverage Update (Wave 11 LIVE-complete)
+# EP-011 — Coverage Update (Wave 11 LIVE-complete · PB-013 PASS)
 
 **Programme:** EP-001 Production Era · Wave 11  
 **Measurement date:** 2026-08-02  
-**Authority:** `CE001_CATALOGUE_COVERAGE.md` (consumed; not amended) · `EP001_COVERAGE_MAP.md` · `EP011_WAVE11_PLAN.md` · HR-011 APPROVED · RO-011 LIVE-complete  
-**Prerequisites met:** HR-011 APPROVED · RO-011 Deployment PASS · RO-011 LIVE Verification PASS WITH RESIDUAL  
+**Authority:** `CE001_CATALOGUE_COVERAGE.md` (consumed; not amended) · `EP001_COVERAGE_MAP.md` · `EP011_WAVE11_PLAN.md` · HR-011 APPROVED · RO-011 LIVE-complete · PB-013 PASS  
+**Prerequisites met:** HR-011 APPROVED · RO-011 Deployment PASS · RO-011 LIVE Verification PASS WITH RESIDUAL · PB-013 Progressive Confidence PASS  
 
 ---
 
 ## 1. Purpose
 
-Record Continuity Front **join** LIVE activation for topic **4.1** under Wave 11 / Volume **CS1-013** / Campaign Nu. Hold Certified Educational Coverage honestly — Topic 4.1 is already Approver-credited via Trust Front CS1-003. Advance Student Reliance through Topic **4.1** after successful LIVE verification.
+Record Continuity Front **join** LIVE activation for topic **4.1** under Wave 11 / Volume **CS1-013** / Campaign Nu, and record PB-013 progressive confidence PASS. Hold Certified Educational Coverage honestly — Topic 4.1 is already Approver-credited via Trust Front CS1-003. Student Reliance remains through Topic **4.1**.
 
 ---
 
 ## 2. Dual view
 
-| View | Pre–RO-011 (HR-011 APPROVED · Awaiting LIVE) | Post–RO-011 LIVE-complete (this cycle) |
+| View | Pre–RO-011 (HR-011 APPROVED · Awaiting LIVE) | Post–RO-011 / PB-013 (this cycle) |
 |------|-----------------------------------------------|----------------------------------------|
-| **A — Approver credit (Published)** | **63 / 72 (87.5%)** | **63 / 72 (87.5%)** — **HELD** (4.1 already Published via CS1-003; Nu does not double-count) |
-| **B — Student reliance** | Through Topic **3.3** / **3.3.5** | Through Topic **4.1** — **ADVANCED** (CF-join LIVE Verified) |
-| **Pipeline** | APPROVED · Awaiting LIVE | **LIVE-complete (package path)** — Nu CF-join CN-D1…CN-R1; PB-013 authorised · not executed |
+| **A — Approver credit (Published)** | **63 / 72 (87.5%)** | **63 / 72 (87.5%)** — **HELD** (4.1 already Published via CS1-003; Nu / PB-013 do not double-count) |
+| **B — Student reliance** | Through Topic **3.3** / **3.3.5** | Through Topic **4.1** — **HELD** (CF-join LIVE Verified · progressive confidence PASS) |
+| **Pipeline** | APPROVED · Awaiting LIVE | **LIVE-complete (package path)** — Nu CF-join CN-D1…CN-R1; **PB-013 PASS** · EP-012 authorised · not started |
 
 ---
 
@@ -35,7 +35,7 @@ Record Continuity Front **join** LIVE activation for topic **4.1** under Wave 11
 | Package status (catalogue) | `campaign_member_certified` |
 | LIVE root | `educational_packages/cs1/*cs1013*` — **6** `publication_approved` |
 | Approver-credit increase this cycle | **+0** (4.1 already counted via CS1-003) |
-| Out of scope this wave | 4.2 / 5.1 absorb · Wave 0 clearance · spine PASS · until-exam · Wave 12 · PB-013 execution |
+| Out of scope this wave | 4.2 / 5.1 absorb · Wave 0 clearance · spine PASS · until-exam · Wave 12 execution |
 
 ---
 
@@ -50,8 +50,8 @@ Record Continuity Front **join** LIVE activation for topic **4.1** under Wave 11
 
 **Student LIVE Continuity Front:** advanced through Topic **4.1** / CN-R1 (RO-011).  
 **Trust Front:** independent Delta LIVE for 4.1–5.1 unchanged (cold entry `4.1` → CD-D1).  
-**Next after PB-013 (provisional):** Wave 0 honesty / spine re-audit / Topic 4.2 — **not** commissioned here.  
-**PB-013:** authorised · **not executed**.  
+**Next after PB-013:** EP-012 / Wave 12 authorised for programme start only — **not** started here.  
+**PB-013:** **PASS** (5 personas · mean 9.00/9).  
 **Wave 12:** **not started**.
 
 ---
@@ -71,8 +71,9 @@ Trust Front (independent LIVE — unchanged):
   4.1──4.2──5.1──[CD-R*]                      CS1-003 LIVE
 
 CERTIFIED COVERAGE:            63 / 72 (87.5%) — HELD
-STUDENT RELIANCE:              Through Topic 4.1 — ADVANCED
-NOT THIS PROGRAMME:            PB-013 execution · Wave 12 · Wave 0 clearance · until-exam · 100% CS1
+STUDENT RELIANCE:              Through Topic 4.1 — HELD
+NOT THIS PROGRAMME:            Wave 12 execution · Wave 0 clearance · until-exam · 100% CS1
+PB-013:                        PASS · EP-012 authorised · not started
 ```
 
 ---
@@ -80,8 +81,9 @@ NOT THIS PROGRAMME:            PB-013 execution · Wave 12 · Wave 0 clearance �
 ## 6. Evidence / References
 
 - `RO011_DEPLOYMENT_REPORT.md` · `RO011_LIVE_VERIFICATION_REPORT.md` · `RO011_RELEASE_DECISION.md`
-- `knowledge/evidence/releases/RO011/`
+- `PB013_SIMULATION_REPORT.md` · `PB013_CONFIDENCE_REPORT.md` · `PB013_CONFIDENCE_SCORE_AUDIT.md` · `PB013_RELEASE_DECISION.md`
+- `knowledge/evidence/releases/RO011/` · `knowledge/evidence/releases/PB013/`
 - Tip `a0d8df665fa826343579529956728ae493cf5f97` · deploy `dep-d9nq43m1egvs738jn2c0`
 - Prior: `HR011_*` · `EP011_WAVE11_*` · `CS1013_*` · `RO010_*` · `PB012_*`
 
-Signed: EP-011 Coverage Update · Wave 11 LIVE-complete · Coverage HELD 63/72 · Reliance through Topic 4.1 · 2026-08-02
+Signed: EP-011 Coverage Update · Wave 11 LIVE-complete · PB-013 PASS · Coverage HELD 63/72 · Reliance through Topic 4.1 · 2026-08-02

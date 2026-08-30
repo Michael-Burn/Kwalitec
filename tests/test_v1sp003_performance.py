@@ -48,8 +48,8 @@ class TestQueryBudgets:
         user = _make_user("trend@kwalitec.example")
         with count_queries() as stmts:
             AnalyticsService.get_readiness_over_time(user.id, weeks=12)
-        # leaf topics + progress + missions (3), independent of week count
-        assert len(stmts) <= 5
+        # Includes the permanent Twin EK lookup and remains week-count constant.
+        assert len(stmts) <= 7
 
     def test_revision_idle_is_single_query(self, ctx, db) -> None:
         user = _make_user("rev@kwalitec.example")
@@ -88,8 +88,8 @@ class TestQueryBudgets:
         ``_leaf_topics_for_user`` uses the global ``_get_leaf_topics`` batch
         (one topics scan). Captures ``uid`` before the counter so
         expire-on-commit User reload + RBAC ``selectin`` loads are excluded.
-        Expected statements: study_plans + topics + topic_progress + mission
-        status aggregate — not 4× leaf rescans.
+        Expected statements include the permanent Twin EK lookup, without
+        per-topic leaf rescans.
         """
         user = _make_user("ready@kwalitec.example")
         curriculum = Curriculum(
@@ -116,7 +116,6 @@ class TestQueryBudgets:
                     topic_id=topic.id,
                     confidence="Medium",
                     completed=True,
-                    mastery_score=50.0,
                 )
             )
         db.session.commit()
@@ -126,8 +125,8 @@ class TestQueryBudgets:
         uid = user.id
         with count_queries() as stmts:
             ReadinessService.get_overall_readiness(uid)
-        # plan lookup + topics + progress + mission status aggregate
-        assert len(stmts) == 4
+        # Plan, topics, progress, Twin EK, and mission aggregate queries.
+        assert len(stmts) == 6
 
 
 class TestDashboardDoesNotFetchDeadWidgets:

@@ -555,14 +555,10 @@ class TestEvidenceCompanionWriteThrough:
 
 @pytest.mark.usefixtures("ctx")
 class TestEvidenceCompanionPhase3TopicResolution:
-    def test_cs1_scored_practice_updates_mastery_for_practiced_topic_only(
+    def test_cs1_scored_practice_records_attempt_for_practiced_topic_only(
         self, monkeypatch, caplog
     ):
-        """Cold Runtime C student: mapped CS1 → real Topic.id + mastery move.
-
-        Scenario: 3/10 correct (7 wrong) — average_accuracy should become 30.0
-        via the existing update_mastery_after_attempt path.
-        """
+        """Cold Runtime C student maps CS1 evidence to the real Topic.id."""
         monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
         monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
         monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
@@ -642,9 +638,7 @@ class TestEvidenceCompanionPhase3TopicResolution:
         assert len(progress_rows) == 1
         progress = progress_rows[0]
         assert progress.topic_id == practiced.id
-        assert progress.average_accuracy == 30.0
-        assert progress.mastery_score is not None
-        assert float(progress.mastery_score) > 0.0
+        assert progress.has_estimated_knowledge is False
 
         # Whole-syllabus TopicProgress init must not have run.
         syllabus_topic_count = Topic.query.filter_by(

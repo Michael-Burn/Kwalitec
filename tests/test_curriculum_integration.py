@@ -125,7 +125,7 @@ class TestEndToEndCurriculumWorkflow:
             )
             if tp.completed:
                 assert tp.confidence != "Mastered"
-                assert tp.mastery_score == 0.0
+                assert tp.has_estimated_knowledge is False
 
     def test_completed_topics_have_study_progress_not_mastery(self, db, user):
         """Completed topics record Study Progress only — never Mastery or felt confidence."""
@@ -160,7 +160,7 @@ class TestEndToEndCurriculumWorkflow:
                     f"Completed topic '{db_topic.name}' has confidence "
                     f"'{tp.confidence}', expected 'Not Started' (coverage only)"
                 )
-                assert tp.mastery_score == 0.0
+                assert tp.has_estimated_knowledge is False
                 assert tp.has_estimated_mastery is False
 
     # ── (5) StudentCurriculumSummary returns non-null ───────────────────

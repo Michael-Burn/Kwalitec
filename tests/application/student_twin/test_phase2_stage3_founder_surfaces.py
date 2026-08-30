@@ -1,8 +1,7 @@
-"""ADR-027 Phase 2 Stage 3 — founder Stack C surface treatments.
+"""ADR-027 Phase 2 Stage 4 founder Stack C surface treatments.
 
 Each design §6 surface is either:
-- repointed to LearnerTwinQueryPort for student-knowledge reads (twin mastery
-  when cutover ON), or
+- repointed to LearnerTwinQueryPort for student-knowledge reads, or
 - explicitly labelled as a legacy SDT diagnostic sandbox with retention text.
 """
 
@@ -10,7 +9,6 @@ from __future__ import annotations
 
 import pytest
 
-from app.application.config.v2_flags import resolve_v2_feature_flags
 from app.application.student_digital_twin.student_digital_twin_service import (
     StudentDigitalTwinService,
 )
@@ -23,14 +21,6 @@ from app.presentation.stack_c_sandbox import (
     STACK_C_SANDBOX_META,
 )
 from tests.presentation.curriculum_studio.helpers import login_founder
-
-
-def _set_cutover(monkeypatch, enabled: bool) -> None:
-    value = "1" if enabled else "0"
-    monkeypatch.setenv("KWALITEC_ADR027_PHASE2_TWIN_CUTOVER", value)
-    import app.application.config.v2_flags as flags_mod
-
-    flags_mod.V2_FEATURE_FLAGS = resolve_v2_feature_flags()
 
 
 def _assert_sandbox(payload: dict) -> None:
@@ -108,23 +98,9 @@ def test_sandbox_label_on_learning_graph_index(client, app, ctx):
     _assert_sandbox(resp.get_json())
 
 
-def test_twin_mastery_sandbox_when_cutover_off(
+def test_twin_mastery_uses_canonical_twin(
     client, app, ctx, founder_twin, monkeypatch
 ):
-    _set_cutover(monkeypatch, False)
-    resp = client.get(f"/founder/twin/{founder_twin}/mastery")
-    assert resp.status_code == 200
-    body = resp.get_json()
-    _assert_sandbox(body)
-    assert "mastery" in body
-    assert body.get("ek_authority") == "not_authoritative"
-
-
-def test_twin_mastery_repoints_to_canonical_twin_when_cutover_on(
-    client, app, ctx, founder_twin, monkeypatch
-):
-    _set_cutover(monkeypatch, True)
-
     class _FakeQuery:
         def knowledge_snapshot(self, *, user_id, subject_code):
             assert user_id == 42

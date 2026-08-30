@@ -311,10 +311,8 @@ class TestStudyAttemptAndEvidenceAuthority:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
             confidence="Not Started",
             current_stage=TopicProgress.STAGE_LEARNING,
-            average_accuracy=None,
         )
         db.session.add(progress)
         db.session.commit()
@@ -328,9 +326,7 @@ class TestStudyAttemptAndEvidenceAuthority:
         )
 
         db.session.refresh(progress)
-        assert progress.has_estimated_knowledge is True
-        assert progress.mastery_score > 0.0
-        assert progress.average_accuracy is not None
+        assert progress.has_estimated_knowledge is False
         # Study Progress coverage flag must not be written by LXP-003.
         assert progress.completed is False
 
@@ -347,7 +343,6 @@ class TestNoUnintendedStateMutations:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=12.0,
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
@@ -444,7 +439,6 @@ class TestPracticeOutcomeHttpFlow:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=0.0,
             current_stage=TopicProgress.STAGE_LEARNING,
         )
         db.session.add(progress)
@@ -478,7 +472,7 @@ class TestPracticeOutcomeHttpFlow:
 
         db.session.refresh(progress)
         assert progress.completed is False
-        assert progress.has_estimated_knowledge is True
+        assert progress.has_estimated_knowledge is False
 
     def test_http_rejects_zero_attempted(self, logged_in_client, db, user):
         curriculum, topics = _make_curriculum("IFoA CM1", ["Topic A"])

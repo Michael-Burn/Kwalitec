@@ -10,6 +10,7 @@ from datetime import date, timedelta
 
 import pytest
 
+from app.application.student_twin.query import TopicKnowledgeFact
 from app.extensions import db
 from app.mission.routes import _apply_mission_topic_progress
 from app.models.curriculum import Curriculum, Topic
@@ -19,6 +20,8 @@ from app.services.educational_explainability_service import (
     EducationalExplainabilityService,
 )
 from app.services.planning_service import PlanningService
+
+_TWIN_EK: dict[int, TopicKnowledgeFact] = {}
 
 
 def _make_curriculum(
@@ -85,13 +88,12 @@ def _add_progress(
     topic: Topic,
     *,
     completed: bool,
-    mastery_score: float,
+    estimated_knowledge: float,
 ) -> TopicProgress:
     row = TopicProgress(
         user_id=user_id,
         topic_id=topic.id,
         completed=completed,
-        mastery_score=mastery_score,
         current_stage=(
             TopicProgress.STAGE_COMPLETED
             if completed
@@ -99,7 +101,28 @@ def _add_progress(
         ),
     )
     db.session.add(row)
+    if estimated_knowledge > 0:
+        score = estimated_knowledge / 100.0
+        _TWIN_EK[topic.id] = TopicKnowledgeFact(
+            topic_id=f"TEST-{topic.id}",
+            has_estimated_knowledge=True,
+            estimated_knowledge=score,
+            estimated_mastery=score,
+            evidence_count=2,
+            last_practised_at=None,
+        )
     return row
+
+
+@pytest.fixture(autouse=True)
+def twin_ek_stub(monkeypatch):
+    _TWIN_EK.clear()
+    monkeypatch.setattr(
+        "app.services.twin_cutover_service.topic_ek_by_orm_id",
+        lambda **kwargs: dict(_TWIN_EK),
+    )
+    yield
+    _TWIN_EK.clear()
 
 
 @pytest.mark.usefixtures("ctx")
@@ -147,8 +170,12 @@ class TestConsolidationCadenceBands:
             days_until_exam=days_until_exam,
             watermark=watermark,
         )
-        _add_progress(user.id, topics[0], completed=True, mastery_score=15.0)
-        _add_progress(user.id, topics[1], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=15.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         selected = PlanningService._select_topic_for_today(
@@ -180,8 +207,12 @@ class TestConsolidationSkipAndAntiRepeat:
             watermark=3,
         )
         # Covered but Practising (mastery 75) — not weak.
-        _add_progress(user.id, topics[0], completed=True, mastery_score=75.0)
-        _add_progress(user.id, topics[1], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=75.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         selected = PlanningService._select_topic_for_today(
@@ -207,9 +238,15 @@ class TestConsolidationSkipAndAntiRepeat:
             watermark=3,
         )
         plan.last_consolidation_topic_id = None  # set after first pick
-        _add_progress(user.id, topics[0], completed=True, mastery_score=10.0)
-        _add_progress(user.id, topics[1], completed=True, mastery_score=20.0)
-        _add_progress(user.id, topics[2], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=10.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=True, estimated_knowledge=20.0
+        )
+        _add_progress(
+            user.id, topics[2], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         first = PlanningService._select_topic_for_today(
@@ -250,8 +287,12 @@ class TestConsolidationVisibilityAndDeterminism:
             days_until_exam=45,
             watermark=3,
         )
-        _add_progress(user.id, topics[0], completed=True, mastery_score=18.0)
-        _add_progress(user.id, topics[1], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=18.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         mission = PlanningService._generate_mission_for_date(
@@ -292,9 +333,15 @@ class TestConsolidationVisibilityAndDeterminism:
             days_until_exam=45,
             watermark=3,
         )
-        _add_progress(user.id, topics[0], completed=True, mastery_score=12.0)
-        _add_progress(user.id, topics[1], completed=True, mastery_score=25.0)
-        _add_progress(user.id, topics[2], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=12.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=True, estimated_knowledge=25.0
+        )
+        _add_progress(
+            user.id, topics[2], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         # Snapshot state before selection mutates watermark.
@@ -333,7 +380,9 @@ class TestConsolidationVisibilityAndDeterminism:
             days_until_exam=45,
             watermark=0,
         )
-        _add_progress(user.id, topics[0], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=False, estimated_knowledge=0.0
+        )
         db.session.commit()
 
         _apply_mission_topic_progress(user.id, topics[0])
@@ -352,7 +401,9 @@ class TestConsolidationVisibilityAndDeterminism:
             days_until_exam=45,
             watermark=0,
         )
-        _add_progress(user.id, topics[0], completed=True, mastery_score=15.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=15.0
+        )
         db.session.commit()
 
         _apply_mission_topic_progress(user.id, topics[0])
@@ -373,10 +424,18 @@ class TestConsolidationVisibilityAndDeterminism:
             watermark=0,
         )
         # Simulate three CLT completions via watermark + covered progress.
-        _add_progress(user.id, topics[0], completed=True, mastery_score=22.0)
-        _add_progress(user.id, topics[1], completed=True, mastery_score=80.0)
-        _add_progress(user.id, topics[2], completed=True, mastery_score=85.0)
-        _add_progress(user.id, topics[3], completed=False, mastery_score=0.0)
+        _add_progress(
+            user.id, topics[0], completed=True, estimated_knowledge=22.0
+        )
+        _add_progress(
+            user.id, topics[1], completed=True, estimated_knowledge=80.0
+        )
+        _add_progress(
+            user.id, topics[2], completed=True, estimated_knowledge=85.0
+        )
+        _add_progress(
+            user.id, topics[3], completed=False, estimated_knowledge=0.0
+        )
         plan.new_topics_since_consolidation_checkpoint = 3
         db.session.add(plan)
         db.session.commit()

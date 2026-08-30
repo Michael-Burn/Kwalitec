@@ -394,7 +394,9 @@ def test_integrate_assessment_evidence_end_to_end(reasoning, twin) -> None:
     assert decision_result.decision_count >= 2
     reloaded = StudentDigitalTwinService().get(twin.twin_id)
     assert reloaded is not None
-    assert reloaded.mastery.get("concept-bayes") is not None
+    # In-memory mastery remains; Stack C SdtMasteryRecord persistence is
+    # permanently retired (ADR-027 Phase 2 Stage 4), so reload has empty mastery.
+    assert reloaded.mastery.get("concept-bayes") is None
     assert reloaded.version == updated.version
 
 

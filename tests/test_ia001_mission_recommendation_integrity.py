@@ -244,7 +244,6 @@ class TestMissionRecommendationIntegrity:
         weak = TopicProgress(
             user_id=user.id,
             topic_id=cm1_topics[0].id,
-            mastery_score=20.0,
             revision_count=3,
             current_stage=TopicProgress.STAGE_LEARNING,
             completed=False,

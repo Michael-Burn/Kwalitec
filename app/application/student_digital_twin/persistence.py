@@ -97,45 +97,18 @@ class TwinPersistenceService:
 
         twin_id = twin.twin_id
 
-        # Phase 2 cutover: EK write retired, see ADR-027 Phase 2 design.
-        # Skip SdtMasteryRecord delete+insert so student-authoritative Stack C
-        # EK is not rewritten. Other inference tables remain founder sandbox.
-        from app.application.student_twin.cutover import phase2_twin_cutover_enabled
-
-        skip_mastery_ek = phase2_twin_cutover_enabled()
-        if skip_mastery_ek:
-            logging.getLogger(__name__).info(
-                "Phase 2 cutover: skipping Stack C SdtMasteryRecord write "
-                "for twin=%s (ADR-027 Phase 2 Stage 2)",
-                twin_id,
-            )
-        else:
-            SdtMasteryRecord.query.filter_by(twin_id=twin_id).delete()
+        # Permanent Phase 2 cutover: do not rewrite retained Stack C sandbox
+        # mastery rows. Other inference tables remain founder sandbox.
+        logging.getLogger(__name__).info(
+            "Permanent Twin cutover: skipping Stack C SdtMasteryRecord write "
+            "for twin=%s (ADR-027 Phase 2 Stage 4)",
+            twin_id,
+        )
 
         SdtKnowledgeGap.query.filter_by(twin_id=twin_id).delete()
         SdtRecommendation.query.filter_by(twin_id=twin_id).delete()
         SdtPrediction.query.filter_by(twin_id=twin_id).delete()
         db.session.flush()
-
-        if not skip_mastery_ek:
-            for record in twin.mastery.records:
-                db.session.add(
-                    SdtMasteryRecord(
-                        mastery_id=record.mastery_id,
-                        twin_id=twin_id,
-                        concept_id=record.concept_id,
-                        concept_title=record.concept_title,
-                        mastery_score=record.mastery_score,
-                        confidence=record.confidence,
-                        trend=record.trend.value,
-                        evidence_count=record.evidence_count,
-                        supporting_evidence_json=_dumps(
-                            list(record.supporting_evidence)
-                        ),
-                        reason=record.reason,
-                        last_updated=record.last_updated,
-                    )
-                )
 
         for gap in twin.knowledge_gaps:
             db.session.add(

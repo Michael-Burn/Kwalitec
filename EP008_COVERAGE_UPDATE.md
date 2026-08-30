@@ -34,7 +34,7 @@ Record Continuity Front catalogue commission for topic **3.1** under Wave 8 / Vo
 | Learning span | **3.1.1 · 3.1.2 · 3.1.3 · 3.1.4 · 3.1.5 · 3.1.6** |
 | Revision | CK-R1 return 3.1.1–3.1.6 |
 | Catalogue root | `app/curriculum/data/educational_campaigns/cs1/campaign-kappa-cs1010/` |
-| Pipeline stage | **LIVE Verified** (RO-008) · PB-010 authorised |
+| Pipeline stage | **LIVE Verified** (RO-008) · PB-010 **PASS** |
 | Approver-credit increase | **+6** → **50 / 72 (69.4%)** |
 | Out of scope this wave | 3.2+ · Chapter 3 trophy · spine · until-exam trust · Wave 9 start · LIVE deploy |
 
@@ -54,7 +54,7 @@ Record Continuity Front catalogue commission for topic **3.1** under Wave 8 / Vo
 | 3.2.1–3.3.5 | Missing | Missing (unchanged — Continuity Front law) |
 
 **Student LIVE Continuity Front:** closed through **3.1.6** / CK-R1 (RO-008).  
-**Next LIVE open after Wave 8 LIVE exit (provisional):** **3.2** (Wave 9 gated on PB-010).
+**Next LIVE open after Wave 8 LIVE exit (provisional):** **3.2** (Wave 9 unblocked after PB-010 PASS · not started).
 
 ---
 

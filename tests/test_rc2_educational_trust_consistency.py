@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import pytest
 
+from app.application.student_twin.query import TopicKnowledgeFact
 from app.extensions import db
 from app.models.learning import LearningObjective
 from app.models.topic_progress import TopicProgress
@@ -41,14 +42,33 @@ class TestCoverageAuthorityParity:
             "_leaf_topics_for_user",
             staticmethod(lambda _uid: leaf_topics),
         )
+        monkeypatch.setattr(
+            "app.services.twin_cutover_service.topic_ek_by_orm_id",
+            lambda **kwargs: {
+                topics[0].id: TopicKnowledgeFact(
+                    topic_id="CS1-A-T01",
+                    has_estimated_knowledge=True,
+                    estimated_knowledge=0.7,
+                    estimated_mastery=0.7,
+                    evidence_count=2,
+                    last_practised_at=None,
+                ),
+                topics[2].id: TopicKnowledgeFact(
+                    topic_id="CS1-A-T02",
+                    has_estimated_knowledge=True,
+                    estimated_knowledge=0.4,
+                    estimated_mastery=0.4,
+                    evidence_count=2,
+                    last_practised_at=None,
+                ),
+            },
+        )
         # Practised (revision_count) but not completed — must not inflate coverage.
         practised = TopicProgress(
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
             revision_count=5,
-            mastery_score=70.0,
-            average_accuracy=70.0,
             current_stage=TopicProgress.STAGE_PRACTISING,
         )
         completed = TopicProgress(
@@ -56,8 +76,6 @@ class TestCoverageAuthorityParity:
             topic_id=topics[2].id,  # leaf child of Statistics
             completed=True,
             revision_count=1,
-            mastery_score=40.0,
-            average_accuracy=40.0,
             current_stage=TopicProgress.STAGE_COMPLETED,
         )
         db.session.add_all([practised, completed])
@@ -77,7 +95,7 @@ class TestCoverageAuthorityParity:
         assert overall["coverage_pct"] == pytest.approx(
             round(100.0 / len(leaf_topics), 1), abs=0.1
         )
-        # EK average uses evidence-backed topics (both have average_accuracy).
+        # EK average uses the two evidence-backed Twin facts.
         assert overall["avg_mastery"] == pytest.approx(55.0, abs=0.1)
 
     def test_revision_only_progress_does_not_raise_coverage(
@@ -92,14 +110,25 @@ class TestCoverageAuthorityParity:
             "_leaf_topics_for_user",
             staticmethod(lambda _uid: leaf_topics),
         )
+        monkeypatch.setattr(
+            "app.services.twin_cutover_service.topic_ek_by_orm_id",
+            lambda **kwargs: {
+                topics[0].id: TopicKnowledgeFact(
+                    topic_id="CS1-A-T01",
+                    has_estimated_knowledge=True,
+                    estimated_knowledge=0.8,
+                    estimated_mastery=0.8,
+                    evidence_count=2,
+                    last_practised_at=None,
+                )
+            },
+        )
         db.session.add(
             TopicProgress(
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=False,
                 revision_count=8,
-                mastery_score=80.0,
-                average_accuracy=80.0,
                 current_stage=TopicProgress.STAGE_PRACTISING,
             )
         )

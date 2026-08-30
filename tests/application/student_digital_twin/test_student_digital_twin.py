@@ -30,7 +30,7 @@ from app.domain.curriculum_retrieval.result import (
 from app.domain.student_digital_twin.knowledge_gap import KnowledgeGap
 from app.domain.student_digital_twin.observation import ObservationKind
 from app.domain.student_digital_twin.student import Student
-from app.models.student_digital_twin import SdtObservation
+from app.models.student_digital_twin import SdtMasteryRecord, SdtObservation
 from tests.presentation.curriculum_studio.helpers import login_founder
 
 
@@ -338,12 +338,15 @@ def test_persistence_round_trip(ctx):
     loaded = TwinPersistenceService().load_twin("twin-pers")
     assert loaded is not None
     assert loaded.observation_count == 3
-    assert loaded.mastery.get("concept-bayes") is not None
+    # ADR-027 Phase 2 Stage 4: Stack C SdtMasteryRecord writes are permanently
+    # retired; other sandbox inference tables still round-trip.
+    assert loaded.mastery.get("concept-bayes") is None
     assert loaded.knowledge_gaps
     assert loaded.recommendations
     assert loaded.predictions
     assert loaded.reasoning_history
     assert SdtObservation.query.filter_by(twin_id="twin-pers").count() == 3
+    assert SdtMasteryRecord.query.filter_by(twin_id="twin-pers").count() == 0
 
 
 def test_curriculum_retrieval_integration_contract(ctx):

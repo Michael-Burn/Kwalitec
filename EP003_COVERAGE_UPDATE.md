@@ -4,6 +4,7 @@
 **Measurement date:** 2026-08-01  
 **Authority:** `CE001_CATALOGUE_COVERAGE.md` (consumed; not amended) · `EP001_COVERAGE_MAP.md` · `EP003_WAVE3_PLAN.md`  
 **Prerequisites met:** Wave 1 COMPLETE · Wave 2 COMPLETE · HR-003 APPROVE · RO-003 PASS · PB-005 PASS  
+**Supersession note:** Wave 4 start recorded in `EP004_COVERAGE_UPDATE.md` / `EP004_WAVE4_PLAN.md` (2.3 Under Authoring). This file remains the Wave 3 LIVE-complete snapshot.
 
 ---
 
@@ -92,6 +93,6 @@ Catalogue copies remain `campaign_member_certified` under `campaign-epsilon-cs10
 
 ## 8. Closing
 
-Wave 3 Continuity Front into 2.2 is **LIVE-complete**. Wave 4 remains **not started**. Until-exam trust **not** claimed.
+Wave 3 Continuity Front into 2.2 is **LIVE-complete**. Wave 4 subsequently started under EP-004 (catalogue only — see `EP004_*`). Until-exam trust **not** claimed.
 
 Signed: EP-003 Coverage Update · RO-003 · 2026-08-01

@@ -1550,67 +1550,46 @@ class EducationalRuntimeEngineService:
         Study Progress (``completed`` / ``completed_topic_ids``) always comes
         from ``derive_progress`` and is independent of Twin EK.
 
-        When ``KWALITEC_ADR027_PHASE2_TWIN_CUTOVER`` is OFF (default): every
-        topic keeps the historical stub
-        (``has_estimated_knowledge=False``, ``estimated_knowledge=None``,
-        ``mastery_score=None``).
-
-        When ON: each topic's ``estimated_knowledge`` (explicit 0-1, ADR-027
-        resolution #5) is read from ``LearnerTwinQueryPort``; ``mastery_score``
-        is an optional 0-100 display derived from that value only.
+        Each topic's ``estimated_knowledge`` (explicit 0-1, ADR-027 resolution
+        #5) is always read from ``LearnerTwinQueryPort``. ``mastery_score`` is
+        an optional 0-100 display derived from that value only.
         """
         enrolment = self._require_enrolment(user_id, subject_code)
         artefacts = self._load_artefacts(enrolment.subject_code)
         derived = self._derive_progress_for(enrolment, artefacts)
         completed = set(derived.completed_topic_ids)
 
-        from app.application.student_twin.cutover import (
-            phase2_twin_cutover_enabled,
-        )
         from app.services.twin_cutover_service import (
             learner_twin_query,
         )
 
-        if phase2_twin_cutover_enabled():
-            query = learner_twin_query()
-            topics_list = []
-            for topic_id in derived.topic_ids:
-                fact = query.topic_knowledge(
-                    user_id=user_id,
-                    subject_code=enrolment.subject_code,
-                    topic_id=topic_id,
-                )
-                ek = (
-                    float(fact.estimated_knowledge)
-                    if fact.has_estimated_knowledge
-                    and fact.estimated_knowledge is not None
-                    else None
-                )
-                topics_list.append(
-                    {
-                        "topic_id": topic_id,
-                        "completed": topic_id in completed,
-                        "has_estimated_knowledge": bool(fact.has_estimated_knowledge),
-                        "estimated_knowledge": ek,
-                        "average_accuracy": None,
-                        "mastery_score": (
-                            round(ek * 100.0, 1) if ek is not None else None
-                        ),
-                    }
-                )
-            topics = tuple(topics_list)
-        else:
-            topics = tuple(
+        query = learner_twin_query()
+        topics_list = []
+        for topic_id in derived.topic_ids:
+            fact = query.topic_knowledge(
+                user_id=user_id,
+                subject_code=enrolment.subject_code,
+                topic_id=topic_id,
+            )
+            ek = (
+                float(fact.estimated_knowledge)
+                if fact.has_estimated_knowledge
+                and fact.estimated_knowledge is not None
+                else None
+            )
+            topics_list.append(
                 {
                     "topic_id": topic_id,
                     "completed": topic_id in completed,
-                    "has_estimated_knowledge": False,
-                    "estimated_knowledge": None,
+                    "has_estimated_knowledge": bool(fact.has_estimated_knowledge),
+                    "estimated_knowledge": ek,
                     "average_accuracy": None,
-                    "mastery_score": None,
+                    "mastery_score": (
+                        round(ek * 100.0, 1) if ek is not None else None
+                    ),
                 }
-                for topic_id in derived.topic_ids
             )
+        topics = tuple(topics_list)
         return EstimatedKnowledgeRuntimeInputs(
             curriculum_identity=derived.curriculum_identity,
             subject_code=enrolment.subject_code,

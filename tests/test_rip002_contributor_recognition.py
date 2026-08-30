@@ -256,10 +256,8 @@ class TestEducationalIsolation:
         progress = TopicProgress(
             user_id=user.id,
             topic_id=topics[0].id,
-            mastery_score=40.0,
             current_stage=TopicProgress.STAGE_LEARNING,
             revision_count=1,
-            average_accuracy=50.0,
             next_review_date=date.today() + timedelta(days=3),
             completed=False,
         )
@@ -267,7 +265,7 @@ class TestEducationalIsolation:
         db.session.commit()
 
         before_status = mission.status
-        before_mastery = progress.mastery_score
+        before_revision_count = progress.revision_count
 
         for _ in range(3):
             ResearchFeedbackService.submit_checkin(
@@ -284,7 +282,8 @@ class TestEducationalIsolation:
         db.session.refresh(mission)
         db.session.refresh(progress)
         assert mission.status == before_status
-        assert progress.mastery_score == before_mastery
+        assert progress.revision_count == before_revision_count
+        assert progress.has_estimated_knowledge is False
         assert ResearchContributorBadge.query.filter_by(user_id=user.id).count() >= 1
 
 

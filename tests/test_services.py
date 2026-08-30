@@ -7,6 +7,23 @@ from datetime import date, timedelta
 import pytest
 
 
+def _stub_topic_ek(monkeypatch, progress, score: float) -> None:
+    from app.application.student_twin.query import TopicKnowledgeFact
+
+    fact = TopicKnowledgeFact(
+        topic_id=f"TEST-{progress.topic_id}",
+        has_estimated_knowledge=True,
+        estimated_knowledge=score,
+        estimated_mastery=score,
+        evidence_count=2,
+        last_practised_at=None,
+    )
+    monkeypatch.setattr(
+        "app.services.twin_cutover_service.topic_ek_by_orm_id",
+        lambda **kwargs: {progress.topic_id: fact},
+    )
+
+
 class TestAdaptiveLearningService:
     """Tests for AdaptiveLearningService calculations."""
 
@@ -200,18 +217,18 @@ class TestAdaptiveLearningService:
         next_date = AdaptiveLearningService.schedule_next_review(80.0)
         assert next_date == date.today() + timedelta(days=7)
 
-    def test_get_weak_topics(self, db, user, topic_progress):
+    def test_get_weak_topics(self, db, user, topic_progress, monkeypatch):
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
+        _stub_topic_ek(monkeypatch, topic_progress, 0.75)
         weak = AdaptiveLearningService.get_weak_topics(user.id, threshold=80.0)
         assert len(weak) >= 1
-        assert weak[0].mastery_score < 80.0
+        assert weak[0].topic_id == topic_progress.topic_id
 
-    def test_get_mastered_topics(self, db, user, topic_progress):
+    def test_get_mastered_topics(self, db, user, topic_progress, monkeypatch):
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
-        # Make this topic mastered
-        topic_progress.mastery_score = 95.0
+        _stub_topic_ek(monkeypatch, topic_progress, 0.95)
         topic_progress.current_stage = "Mastered"
         db.session.commit()
 
@@ -236,9 +253,12 @@ class TestAdaptiveLearningService:
         assert snapshot["topics_mastered"] == 0
         assert snapshot["current_streak"] == 0
 
-    def test_get_learning_snapshot_with_data(self, db, user, topic_progress):
+    def test_get_learning_snapshot_with_data(
+        self, db, user, topic_progress, monkeypatch
+    ):
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
+        _stub_topic_ek(monkeypatch, topic_progress, 0.75)
         snapshot = AdaptiveLearningService.get_learning_snapshot(user.id)
         assert snapshot["overall_mastery"] > 0
         assert snapshot["total_topics_started"] >= 1
@@ -534,7 +554,7 @@ class TestStudyPlanService:
         # Every row must be initialised with defaults
         for tp in progress_rows:
             assert tp.completed is False
-            assert tp.mastery_score == 0.0
+            assert tp.has_estimated_knowledge is False
             assert tp.last_reviewed is None
             assert tp.revision_count == 0
             assert tp.confidence == "Not Started"
@@ -730,7 +750,6 @@ class TestStudyPlanService:
         rv_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=rv_topic.id,
         ).first()
-        rv_progress.mastery_score = 85.0
         rv_progress.completed = True
         rv_progress.confidence = "High"
         rv_progress.revision_count = 5
@@ -755,7 +774,6 @@ class TestStudyPlanService:
         rv_progress_check = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=rv_topic.id,
         ).first()
-        assert rv_progress_check.mastery_score == 85.0
         assert rv_progress_check.completed is True
         assert rv_progress_check.confidence == "High"
         assert rv_progress_check.revision_count == 5
@@ -943,9 +961,7 @@ class TestStudyPlanService:
     # ── completed_curriculum_topics initialisation ───────────────────────
 
     def test_completed_curriculum_topics_initialise_as_completed(self, db, user):
-        """Topics listed in completed_curriculum_topics must be initialised
-        with completed=True, mastery_score=0.0 (study progress only — IA-004),
-        current_stage='Completed'."""
+        """Completed curriculum topics initialise Study Progress only."""
         from app.services.study_plan_service import StudyPlanService
         from app.models.topic_progress import TopicProgress
 
@@ -984,12 +1000,12 @@ class TestStudyPlanService:
         # CS1-A (Random Variables) and CS1-B (Common Distributions) → Completed
         cs1a = name_to_progress["Describe the purpose and function of data analysis"]
         assert cs1a.completed is True
-        assert cs1a.mastery_score == 0.0  # study progress only (IA-004)
+        assert cs1a.has_estimated_knowledge is False
         assert cs1a.current_stage == TopicProgress.STAGE_COMPLETED
 
         cs1b = name_to_progress["Complete exploratory data analysis"]
         assert cs1b.completed is True
-        assert cs1b.mastery_score == 0.0  # study progress only (IA-004)
+        assert cs1b.has_estimated_knowledge is False
         assert cs1b.current_stage == TopicProgress.STAGE_COMPLETED
 
         # 2.1 (current topic) → Learning
@@ -998,7 +1014,7 @@ class TestStudyPlanService:
             "distributions and how to generate samples from them"
         ]
         assert cs1c.completed is False
-        assert cs1c.mastery_score == 0.0
+        assert cs1c.has_estimated_knowledge is False
         assert cs1c.current_stage == TopicProgress.STAGE_LEARNING
 
         # Remaining later topics → Not Started
@@ -1009,7 +1025,7 @@ class TestStudyPlanService:
         ):
             tp = name_to_progress[name]
             assert tp.completed is False
-            assert tp.mastery_score == 0.0
+            assert tp.has_estimated_knowledge is False
             assert tp.current_stage == TopicProgress.STAGE_NOT_STARTED
 
     def test_completed_curriculum_topics_empty_list(self, db, user):
@@ -1044,7 +1060,7 @@ class TestStudyPlanService:
             ).first()
             assert tp is not None
             assert tp.completed is False
-            assert tp.mastery_score == 0.0
+            assert tp.has_estimated_knowledge is False
             if db_topic.name == "Describe the purpose and function of data analysis":
                 assert tp.current_stage == TopicProgress.STAGE_LEARNING
             else:
@@ -1090,7 +1106,7 @@ class TestStudyPlanService:
         assert cs1d_progress is not None
         assert cs1d_progress.completed is True
         assert cs1d_progress.current_stage == TopicProgress.STAGE_COMPLETED
-        assert cs1d_progress.mastery_score == 0.0  # study progress only (IA-004)
+        assert cs1d_progress.has_estimated_knowledge is False
         # First incomplete in syllabus order (2.1 was never declared complete).
         assert sp.curriculum_topic_code == "2.1"
 
@@ -1103,7 +1119,7 @@ class TestStudyPlanService:
             user_id=user.id, topic_id=cs1a_topic.id,
         ).first()
         assert cs1a_progress.completed is True
-        assert cs1a_progress.mastery_score == 0.0  # study progress only (IA-004)
+        assert cs1a_progress.has_estimated_knowledge is False
         assert cs1a_progress.current_stage == TopicProgress.STAGE_COMPLETED
 
         cs1b_topic = DBTopic.query.filter_by(
@@ -1148,7 +1164,6 @@ class TestStudyPlanService:
         cs1b_progress = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1b_topic.id,
         ).first()
-        cs1b_progress.mastery_score = 72.0
         cs1b_progress.revision_count = 4
         cs1b_progress.confidence = "Medium"
         cs1b_progress.current_stage = TopicProgress.STAGE_PRACTISING
@@ -1178,7 +1193,6 @@ class TestStudyPlanService:
         cs1b_check = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=cs1b_topic.id,
         ).first()
-        assert cs1b_check.mastery_score == 72.0
         assert cs1b_check.revision_count == 4
         assert cs1b_check.confidence == "Medium"
         assert cs1b_check.current_stage == TopicProgress.STAGE_PRACTISING
@@ -1198,7 +1212,7 @@ class TestStudyPlanService:
         assert cs1c_check is not None
         assert cs1c_check.current_stage == TopicProgress.STAGE_LEARNING
         assert cs1c_check.completed is False
-        assert cs1c_check.mastery_score == 0.0
+        assert cs1c_check.has_estimated_knowledge is False
 
         # Row count unchanged
         assert TopicProgress.query.filter_by(user_id=user.id).count() == 14
@@ -1251,7 +1265,7 @@ class TestStudyPlanService:
         assert len(progress_rows) == 14
         for tp in progress_rows:
             assert tp.completed is False
-            assert tp.mastery_score == 0.0
+            assert tp.has_estimated_knowledge is False
 
 
     # ── Update study plan lifecycle tests ─────────────────────────────
@@ -1399,7 +1413,7 @@ class TestStudyPlanService:
         ).first()
         # CS1-A was removed from completed list — must be reset
         assert cs1a_check.completed is False
-        assert cs1a_check.mastery_score == 0.0
+        assert cs1a_check.has_estimated_knowledge is False
         assert cs1a_check.confidence == "Not Started"
         assert cs1a_check.current_stage == TopicProgress.STAGE_NOT_STARTED
 
@@ -2065,11 +2079,12 @@ class TestReadinessService:
         assert "total_backlog" in backlog
         assert backlog["total_backlog"] == 0
 
-    def test_get_weakest_topics(self, db, user, topic_progress):
+    def test_get_weakest_topics(self, db, user, topic_progress, monkeypatch):
         from app.services.readiness_service import ReadinessService
 
+        _stub_topic_ek(monkeypatch, topic_progress, 0.75)
         worst = ReadinessService.get_weakest_topics(user.id, limit=3)
-        assert len(worst) >= 1 if topic_progress.mastery_score < 100 else True
+        assert any(row["topic_id"] == topic_progress.topic_id for row in worst)
 
     def test_get_strongest_topics(self, db, user, topic_progress):
         from app.services.readiness_service import ReadinessService
@@ -2304,11 +2319,12 @@ class TestRecommendationService:
         rec = RecommendationService.generate_today_recommendation(user.id)
         assert rec is None or isinstance(rec, dict)
 
-    def test_generate_recommendations_with_data(self, db, user, topic_progress, curriculum):
+    def test_generate_recommendations_with_data(
+        self, db, user, topic_progress, curriculum, monkeypatch
+    ):
         from app.services.recommendation_service import RecommendationService
 
-        # Mark topic progress as weak to trigger recommendations
-        topic_progress.mastery_score = 25.0
+        _stub_topic_ek(monkeypatch, topic_progress, 0.25)
         topic_progress.current_stage = "Learning"
         db.session.commit()
 

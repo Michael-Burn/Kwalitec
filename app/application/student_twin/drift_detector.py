@@ -1,9 +1,8 @@
 """Architectural drift detector for the canonical Learner Twin (ADR-027).
 
-Phase 2 Stage 1 implements D1-D5 as callable checks. D2 inventories today's
-Stack A/C writers as a baseline when the Phase 2 cutover flag is OFF.
-When KWALITEC_ADR027_PHASE2_TWIN_CUTOVER is ON, D2 enforces that every known
-EK write entry point retains an explicit cutover guard (zero unguarded writes).
+Phase 2 Stage 4 implements D1-D5 as callable checks. D2 permanently enforces
+that Stack A contains no assignments to the retired Estimated Knowledge
+columns. Stack C mastery references remain inventory-only for sandbox retention.
 """
 
 from __future__ import annotations
@@ -27,27 +26,10 @@ from app.domain.student_twin.learner import Learner
 
 CODEC_DECIMAL_PLACES = 6
 
-# Paths relative to repo ``app/`` that Stage 1 expects to detect today.
-# Stage 2 treats unguarded production writers as failure when cutover is ON.
-KNOWN_BASELINE_A_WRITER_FRAGMENTS = (
-    "adaptive_learning_service.py",
-    "educational_continuity_service.py",
-)
+# Paths relative to repo ``app/`` that Stack C sandbox inventory expects.
 KNOWN_BASELINE_C_WRITER_FRAGMENTS = (
     "student_digital_twin/persistence.py",
     "student_reasoning_service.py",
-)
-
-# Known EK write entry points that must contain a Phase 2 cutover guard.
-_CUTOVER_GUARD_TOKEN = "phase2_twin_cutover_enabled"
-_GUARDED_WRITER_ENTRY_POINTS: tuple[tuple[str, str], ...] = (
-    ("services/adaptive_learning_service.py", "update_mastery_after_attempt"),
-    ("services/educational_continuity_service.py", "_copy_estimate_fields"),
-    ("services/educational_continuity_service.py", "_copy_continuity_fields"),
-    (
-        "application/student_digital_twin/persistence.py",
-        "replace_inferences",
-    ),
 )
 
 
@@ -83,7 +65,7 @@ class WriterHit:
 
 @dataclass(frozen=True)
 class WriterInventory:
-    """D2 single-writer sentry inventory (baseline-aware)."""
+    """D2 single-writer sentry inventory."""
 
     hits: tuple[WriterHit, ...] = ()
 
@@ -96,22 +78,25 @@ class WriterInventory:
         return tuple(h for h in self.hits if h.kind.startswith("C:"))
 
     def baseline_writers_present(self) -> bool:
-        """True when today's known A and C writer modules appear in hits."""
+        """True when known retained Stack C sandbox modules appear in hits."""
         paths = " ".join(h.path for h in self.hits)
-        a_ok = any(frag in paths for frag in KNOWN_BASELINE_A_WRITER_FRAGMENTS)
-        c_ok = any(frag in paths for frag in KNOWN_BASELINE_C_WRITER_FRAGMENTS)
-        return a_ok and c_ok
+        return any(frag in paths for frag in KNOWN_BASELINE_C_WRITER_FRAGMENTS)
 
 
 @dataclass(frozen=True)
 class SingleWriterSentryReport:
-    """D2 result: inventory when cutover OFF; guard enforcement when ON."""
+    """D2 permanent retired-column enforcement result."""
 
     ok: bool
     cutover_active: bool
     inventory: WriterInventory
-    missing_guards: tuple[str, ...] = ()
-    mode: str = "inventory"
+    retired_writes: tuple[str, ...] = ()
+    mode: str = "enforce"
+
+    @property
+    def missing_guards(self) -> tuple[str, ...]:
+        """Compatibility alias for pre-cutover sentry consumers."""
+        return self.retired_writes
 
 
 @dataclass(frozen=True)
@@ -225,56 +210,26 @@ class DriftDetector:
                 hits.extend(_scan_file_for_writers(rel, text))
         return WriterInventory(hits=tuple(hits))
 
-    def check_cutover_writer_guards(
-        self, *, root: Path | None = None
-    ) -> tuple[str, ...]:
-        """Return entry points missing an explicit Phase 2 cutover guard."""
-        app_root = root or self.app_root or _default_app_root()
-        missing: list[str] = []
-        for rel, method_name in _GUARDED_WRITER_ENTRY_POINTS:
-            path = app_root / rel
-            if not path.is_file():
-                missing.append(f"{rel}:{method_name}:missing_file")
-                continue
-            text = path.read_text(encoding="utf-8")
-            if not _method_contains_cutover_guard(text, method_name):
-                missing.append(f"{rel}:{method_name}")
-        return tuple(missing)
-
     def check_single_writer_sentry(
         self,
         *,
-        cutover_active: bool | None = None,
         root: Path | None = None,
     ) -> SingleWriterSentryReport:
-        """D2: inventory when cutover OFF; enforce zero unguarded writers when ON.
-
-        When ``cutover_active`` is None, resolve from the Phase 2 flag.
-        """
-        if cutover_active is None:
-            from app.application.student_twin.cutover import (
-                phase2_twin_cutover_enabled,
-            )
-
-            cutover_active = phase2_twin_cutover_enabled()
-
+        """D2: enforce zero Stack A retired EK attribute assignments."""
         inventory = self.scan_ek_writers(root=root)
-        if not cutover_active:
-            # Stage 1 posture: inventory only — presence is not a failure.
-            return SingleWriterSentryReport(
-                ok=True,
-                cutover_active=False,
-                inventory=inventory,
-                missing_guards=(),
-                mode="inventory",
-            )
-
-        missing = self.check_cutover_writer_guards(root=root)
+        retired_writes = tuple(
+            f"{hit.path}:{hit.detail}:{hit.kind}"
+            for hit in inventory.stack_a_hits
+            if hit.kind in {
+                "A:attr.mastery_score",
+                "A:attr.average_accuracy",
+            }
+        )
         return SingleWriterSentryReport(
-            ok=not missing,
+            ok=not retired_writes,
             cutover_active=True,
             inventory=inventory,
-            missing_guards=missing,
+            retired_writes=retired_writes,
             mode="enforce",
         )
 
@@ -416,7 +371,7 @@ def _scan_file_for_writers(rel: str, text: str) -> list[WriterHit]:
                 WriterHit(path=rel, kind=kind, detail=f"line {line}: {match.group(0)}")
             )
 
-    # Attribute assignments: progress mastery_score / average_accuracy writes.
+    # Attribute assignments in Stack A services are retired EK column writes.
     try:
         tree = ast.parse(text)
     except SyntaxError:
@@ -427,12 +382,8 @@ def _scan_file_for_writers(rel: str, text: str) -> list[WriterHit]:
             continue
         for target in node.targets:
             if isinstance(target, ast.Attribute) and target.attr in _ASSIGN_ATTRS:
-                # Skip dataclass field defaults and unrelated DTO constructors
-                # by requiring the assignment lives in services / known writers.
-                if "services/" not in rel and "application/" not in rel:
+                if "services/" not in rel:
                     continue
-                # Ignore Stage A init defaults mastery_score=0.0 in function kwargs
-                # (those are keywords, not Assign). Catch real attribute writes.
                 hits.append(
                     WriterHit(
                         path=rel,
@@ -441,23 +392,4 @@ def _scan_file_for_writers(rel: str, text: str) -> list[WriterHit]:
                     )
                 )
     return hits
-
-
-def _method_contains_cutover_guard(source: str, method_name: str) -> bool:
-    """True when ``method_name``'s body references phase2_twin_cutover_enabled."""
-    try:
-        tree = ast.parse(source)
-    except SyntaxError:
-        return _CUTOVER_GUARD_TOKEN in source and f"def {method_name}" in source
-
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef):
-            continue
-        if node.name != method_name:
-            continue
-        try:
-            return _CUTOVER_GUARD_TOKEN in ast.unparse(node)
-        except Exception:
-            return _CUTOVER_GUARD_TOKEN in source
-    return False
 

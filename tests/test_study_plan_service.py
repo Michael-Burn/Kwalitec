@@ -412,7 +412,7 @@ class TestCanonicalCS1Regression:
             user_id=user.id, topic_id=topic_a.id,
         ).first()
         assert tp_a.completed is True
-        assert tp_a.mastery_score == 0.0  # study progress only (IA-004)
+        assert tp_a.has_estimated_knowledge is False
 
     def test_v1_topic_ordering_uses_engine_order(self, ctx, db):
         """DB topics for V1 curriculum must have order values 1, 2, 3... matching
@@ -628,7 +628,7 @@ class TestV2SectionAwareInitialisation:
             user_id=user.id, topic_id=alpha_topic.id,
         ).first()
         assert tp.completed is True
-        assert tp.mastery_score == 0.0  # study progress only (IA-004 / EIP-001)
+        assert tp.has_estimated_knowledge is False
         assert tp.confidence == "Not Started"  # EIP-001: coverage ≠ confidence
 
     def test_v2_current_topic_honours_completed_list_and_advances_pointer(
@@ -732,7 +732,6 @@ class TestV2SectionAwareInitialisation:
         tp = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=alpha_topic.id,
         ).first()
-        tp.mastery_score = 90.0
         tp.completed = True
         tp.confidence = "High"
         db.session.commit()
@@ -755,7 +754,6 @@ class TestV2SectionAwareInitialisation:
         tp_check = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=alpha_topic.id,
         ).first()
-        assert tp_check.mastery_score == 90.0
         assert tp_check.completed is True
         assert tp_check.confidence == "High"
 
@@ -999,10 +997,11 @@ class TestCreateTopicProgressIfAbsent:
         )
         db.session.add(sp)
 
-        # Pre-existing row with custom mastery
+        # Pre-existing row with custom Study Progress.
         existing_tp = TopicProgress(
             user_id=user.id, topic_id=t.id,
-            mastery_score=75.0, completed=False,
+            completed=False,
+            revision_count=3,
             confidence="High",
             current_stage=TopicProgress.STAGE_PRACTISING,
         )
@@ -1014,7 +1013,8 @@ class TestCreateTopicProgressIfAbsent:
 
         rows = TopicProgress.query.filter_by(user_id=user.id, topic_id=t.id).all()
         assert len(rows) == 1  # No new row
-        assert rows[0].mastery_score == 75.0  # Untouched
+        assert rows[0].revision_count == 3
+        assert rows[0].confidence == "High"
 
     def test_creates_completed_row_for_completed_code(self, ctx, db):
         from app.models.curriculum import Curriculum
@@ -1059,7 +1059,7 @@ class TestCreateTopicProgressIfAbsent:
         tp = TopicProgress.query.filter_by(user_id=user.id, topic_id=t.id).first()
         assert tp is not None
         assert tp.completed is True
-        assert tp.mastery_score == 0.0  # study progress only (IA-004 / EIP-001)
+        assert tp.has_estimated_knowledge is False
         assert tp.confidence == "Not Started"  # EIP-001: coverage ≠ confidence
         assert tp.current_stage == TopicProgress.STAGE_COMPLETED
 
@@ -1111,7 +1111,7 @@ class TestSyncCompletedTopicsV2:
             user_id=user.id, topic_id=alpha.id,
         ).first()
         assert tp.completed is True
-        assert tp.mastery_score == 0.0  # study progress only (IA-004)
+        assert tp.has_estimated_knowledge is False
 
     def test_v2_sync_honours_completed_current_topic_and_advances_pointer(
         self, ctx, db

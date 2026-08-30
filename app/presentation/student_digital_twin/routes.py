@@ -1,9 +1,8 @@
 """Founder-only Twin diagnostic HTTP endpoints (SDT-001).
 
-ADR-027 Phase 2 Stage 3: SDT SQL surfaces are an explicitly labelled legacy
+ADR-027 Phase 2 Stage 4: SDT SQL surfaces remain an explicitly labelled legacy
 sandbox (see app.presentation.stack_c_sandbox). The mastery read that asks
-"what does this student know?" repoints to LearnerTwinQueryPort when
-KWALITEC_ADR027_PHASE2_TWIN_CUTOVER is ON.
+"what does this student know?" always uses LearnerTwinQueryPort.
 """
 
 from __future__ import annotations
@@ -21,7 +20,6 @@ from app.application.student_digital_twin.student_digital_twin_service import (
 from app.application.student_digital_twin.student_reasoning_service import (
     StudentReasoningService,
 )
-from app.application.student_twin.cutover import phase2_twin_cutover_enabled
 from app.founder.dashboard.access import founder_required
 from app.presentation.stack_c_sandbox import with_stack_c_sandbox_label
 from app.presentation.student_digital_twin import twin_diagnostics_bp
@@ -155,23 +153,14 @@ def twin_history(twin_id: str):
 @twin_diagnostics_bp.get("/<twin_id>/mastery")
 @founder_required
 def twin_mastery(twin_id: str):
-    """Student-knowledge read: Twin B when cutover ON; labelled SDT otherwise."""
+    """Student-knowledge read from Twin B with labelled legacy SDT payload."""
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
 
     legacy_mastery = [mastery_public(r) for r in twin.mastery.records]
 
-    if not phase2_twin_cutover_enabled():
-        return _sandbox(
-            {
-                "ok": True,
-                "twin_id": twin_id,
-                "mastery": legacy_mastery,
-            }
-        )
-
-    # Flag ON: primary "what does this student know?" comes from Twin B.
+    # Primary "what does this student know?" comes from Twin B.
     user_id = _resolve_user_id_for_sdt_twin(twin)
     subject = (twin.student.subject_code or "").strip()
     canonical: list[dict[str, Any]] = []

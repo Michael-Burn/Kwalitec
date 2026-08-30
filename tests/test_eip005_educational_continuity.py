@@ -137,7 +137,6 @@ class TestNegativeContinuityRegressions:
             topic_id=topics[0].id,
             confidence="Medium",
             completed=True,
-            mastery_score=0.0,
             current_stage=TopicProgress.STAGE_COMPLETED,
         )
         db.session.add(progress)
@@ -178,8 +177,7 @@ class TestNegativeContinuityRegressions:
         assert Mission.query.get(mission.id) is not None
         assert Mission.query.get(mission.id).study_plan_id is None
 
-    def test_delete_study_plan_does_not_delete_educational_evidence(self, db, user):
-        """Evidence posture lives on TopicProgress / attempts — must survive."""
+    def test_delete_study_plan_preserves_progress_stage(self, db, user):
         curriculum, topics = _make_curriculum(
             "IFoA CS1 Continuity", ["Evidence Topic"]
         )
@@ -191,8 +189,7 @@ class TestNegativeContinuityRegressions:
             topic_id=topics[0].id,
             confidence="High",
             completed=True,
-            mastery_score=72.0,
-            average_accuracy=80.0,
+            revision_count=4,
             current_stage=TopicProgress.STAGE_PRACTISING,
         )
         db.session.add(progress)
@@ -203,9 +200,11 @@ class TestNegativeContinuityRegressions:
         preserved = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert preserved.average_accuracy == 80.0
+        assert preserved.completed is True
+        assert preserved.revision_count == 4
+        assert preserved.current_stage == TopicProgress.STAGE_PRACTISING
 
-    def test_delete_study_plan_does_not_delete_estimated_knowledge(self, db, user):
+    def test_delete_study_plan_preserves_incomplete_progress(self, db, user):
         curriculum, topics = _make_curriculum(
             "IFoA CS1 Continuity", ["Knowledge Topic"]
         )
@@ -217,8 +216,7 @@ class TestNegativeContinuityRegressions:
             topic_id=topics[0].id,
             confidence="Medium",
             completed=False,
-            mastery_score=55.5,
-            average_accuracy=60.0,
+            revision_count=2,
             current_stage=TopicProgress.STAGE_PRACTISING,
         )
         db.session.add(progress)
@@ -229,9 +227,10 @@ class TestNegativeContinuityRegressions:
         preserved = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert preserved.mastery_score == 55.5
+        assert preserved.completed is False
+        assert preserved.revision_count == 2
 
-    def test_delete_study_plan_does_not_delete_estimated_mastery(self, db, user):
+    def test_delete_study_plan_preserves_completed_progress(self, db, user):
         curriculum, topics = _make_curriculum(
             "IFoA CS1 Continuity", ["Mastery Topic"]
         )
@@ -243,8 +242,7 @@ class TestNegativeContinuityRegressions:
             topic_id=topics[0].id,
             confidence="High",
             completed=True,
-            mastery_score=88.0,
-            average_accuracy=90.0,
+            revision_count=5,
             current_stage=TopicProgress.STAGE_MASTERED,
         )
         db.session.add(progress)
@@ -255,9 +253,10 @@ class TestNegativeContinuityRegressions:
         preserved = TopicProgress.query.filter_by(
             user_id=user.id, topic_id=topics[0].id
         ).one()
-        assert preserved.mastery_score == 88.0
+        assert preserved.completed is True
+        assert preserved.revision_count == 5
         assert preserved.current_stage == TopicProgress.STAGE_MASTERED
-        assert preserved.has_estimated_mastery is True
+        assert preserved.has_estimated_knowledge is False
 
 
 @pytest.mark.usefixtures("ctx")
@@ -299,14 +298,13 @@ class TestPositiveContinuityRegressions:
         completed_ids = {tp.topic_id for tp in first_progress if tp.completed}
         progress_count = len(first_progress)
 
-        # Stamp estimate evidence on a completed unit.
         sample = TopicProgress.query.filter(
             TopicProgress.user_id == user.id,
             TopicProgress.topic_id.in_(completed_ids),
         ).first()
         assert sample is not None
-        sample.average_accuracy = 75.0
-        sample.mastery_score = 70.0
+        sample.revision_count = 3
+        sample.current_stage = TopicProgress.STAGE_COMPLETED
         db.session.commit()
         sample_topic_id = sample.topic_id
 
@@ -331,8 +329,8 @@ class TestPositiveContinuityRegressions:
             user_id=user.id, topic_id=sample_topic_id
         ).one()
         assert continued.completed is True
-        assert continued.average_accuracy == 75.0
-        assert continued.mastery_score == 70.0
+        assert continued.revision_count == 3
+        assert continued.current_stage == TopicProgress.STAGE_COMPLETED
         assert new_plan.curriculum_id == sp.curriculum_id or new_plan.curriculum_id
 
     def test_current_learning_recalculates_from_preserved_progress(self, db, user):
@@ -489,8 +487,7 @@ class TestPositiveContinuityRegressions:
             topic_id=prior_topics[0].id,
             confidence="High",
             completed=True,
-            mastery_score=66.0,
-            average_accuracy=70.0,
+            revision_count=4,
             current_stage=TopicProgress.STAGE_COMPLETED,
         )
         orphan_progress = TopicProgress(
@@ -498,8 +495,7 @@ class TestPositiveContinuityRegressions:
             topic_id=prior_topics[1].id,
             confidence="Low",
             completed=True,
-            mastery_score=40.0,
-            average_accuracy=45.0,
+            revision_count=1,
             current_stage=TopicProgress.STAGE_COMPLETED,
         )
         db.session.add_all([prior_progress, orphan_progress])
@@ -530,8 +526,8 @@ class TestPositiveContinuityRegressions:
             user_id=user.id, topic_id=target_topics[0].id
         ).one()
         assert remapped.completed is True
-        assert remapped.mastery_score == 66.0
-        assert remapped.average_accuracy == 70.0
+        assert remapped.revision_count == 4
+        assert remapped.current_stage == TopicProgress.STAGE_COMPLETED
 
         # Unmapped prior unit remains as historical learner history.
         retained = TopicProgress.query.filter_by(

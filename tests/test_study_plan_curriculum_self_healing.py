@@ -230,7 +230,6 @@ class TestCS1Topic11ProgressPersistence:
         ).one()
         progress.completed = True
         progress.current_stage = TopicProgress.STAGE_COMPLETED
-        progress.mastery_score = 70.0
         progress.confidence = "High"
         # Simulate a partially unbound plan that still has a stale 1.1 pointer.
         plan.curriculum_id = None

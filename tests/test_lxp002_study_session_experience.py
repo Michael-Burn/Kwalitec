@@ -148,7 +148,6 @@ class TestStudySessionLifecycle:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=18.0,
             confidence="Low",
             current_stage=TopicProgress.STAGE_LEARNING,
         )
@@ -204,7 +203,7 @@ class TestStudySessionLifecycle:
 
         db.session.refresh(prior)
         assert prior.completed is prior_completed
-        assert prior.mastery_score == 18.0
+        assert prior.has_estimated_knowledge is False
 
 
 @pytest.mark.usefixtures("ctx")
@@ -220,7 +219,6 @@ class TestStudySessionCompletionBehaviour:
                 user_id=user.id,
                 topic_id=topics[0].id,
                 completed=False,
-                mastery_score=5.0,
                 current_stage=TopicProgress.STAGE_LEARNING,
             )
         )
@@ -301,14 +299,11 @@ class TestNoUnintendedEstimateOrEvidenceWrites:
             user_id=user.id,
             topic_id=topics[0].id,
             completed=False,
-            mastery_score=22.5,
             confidence="Medium",
             current_stage=TopicProgress.STAGE_LEARNING,
-            average_accuracy=None,
         )
         db.session.add(progress)
         db.session.commit()
-        prior_score = progress.mastery_score
         prior_confidence = progress.confidence
 
         StudySessionService.finish_session(
@@ -321,9 +316,7 @@ class TestNoUnintendedEstimateOrEvidenceWrites:
 
         db.session.refresh(progress)
         assert progress.completed is False
-        assert progress.mastery_score == prior_score
         assert progress.confidence == prior_confidence
-        assert progress.average_accuracy is None
         assert progress.has_estimated_knowledge is False
 
         attempt = StudyAttempt.query.filter_by(mission_id=mission.id).one()
