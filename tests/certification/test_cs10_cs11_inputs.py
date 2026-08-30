@@ -81,4 +81,5 @@ class TestEstimatedKnowledgeInputs:
         )
         for topic in ek.topics:
             assert topic["has_estimated_knowledge"] is False
+            assert topic.get("estimated_knowledge") is None
             assert topic["mastery_score"] is None

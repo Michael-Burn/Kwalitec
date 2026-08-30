@@ -1545,6 +1545,20 @@ class EducationalRuntimeEngineService:
         user_id: int,
         subject_code: str,
     ) -> EstimatedKnowledgeRuntimeInputs:
+        """Return Runtime C Estimated Knowledge inputs for a subject.
+
+        Study Progress (``completed`` / ``completed_topic_ids``) always comes
+        from ``derive_progress`` and is independent of Twin EK.
+
+        When ``KWALITEC_ADR027_PHASE2_TWIN_CUTOVER`` is OFF (default): every
+        topic keeps the historical stub
+        (``has_estimated_knowledge=False``, ``estimated_knowledge=None``,
+        ``mastery_score=None``).
+
+        When ON: each topic's ``estimated_knowledge`` (explicit 0-1, ADR-027
+        resolution #5) is read from ``LearnerTwinQueryPort``; ``mastery_score``
+        is an optional 0-100 display derived from that value only.
+        """
         enrolment = self._require_enrolment(user_id, subject_code)
         artefacts = self._load_artefacts(enrolment.subject_code)
         derived = self._derive_progress_for(enrolment, artefacts)

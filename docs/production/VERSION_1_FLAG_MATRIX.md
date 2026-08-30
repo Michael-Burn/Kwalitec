@@ -66,7 +66,17 @@ This artefact **does not** flip flags. It documents current production intent.
 | Advisory / recovery / simulation / trials / evidence review family | **OFF** | Mostly non-student or advisory | Architecture | Per programme soak | Unset each flag |
 | Runtime C / founder-student bridge family | **OFF** | Yes if ON | Architecture | Platform integration soak | Unset |
 | `KWALITEC_ADR027_M0_DECISION_BOUNDARY` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Decision Engine path for Runtime C daily sitting when ON | Architecture | ADR-027 M0 dual-path suite green; deliberate soak | Unset / `0`; redeploy returns to inlined `generate_daily_mission` selection |
-| `KWALITEC_ADR027_PHASE2_TWIN_CUTOVER` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Stack A/C EK writes skipped and Stage A / Runtime C EK readers use Learner Twin Query when ON | Architecture | ADR-027 Phase 2 Stage 2 dual-path suite green; deliberate soak; resume of `SR_TWIN_DAILY_LOOP` is a separate operator step | Unset / `0`; redeploy restores Stack A/C EK write+read behaviour |
+| `KWALITEC_ADR027_PHASE2_TWIN_CUTOVER` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Stack A/C EK writes skipped and Stage A / Runtime C EK readers use Learner Twin Query when ON; founder `/founder/twin/.../mastery` repoints to Twin B when ON | Architecture | ADR-027 Phase 2 Stage 2 + Stage 3 dual-path suites green; deliberate soak; resume of `SR_TWIN_DAILY_LOOP` is a separate operator step | Unset / `0`; redeploy restores Stack A/C EK write+read behaviour |
+
+### 3.1 Stack C founder sandbox retention (ADR-027 Phase 2 Stage 3)
+
+| Field | Record |
+|-------|--------|
+| **What** | Founder diagnostic JSON under `/founder/twin`, `/founder/reasoning`, `/founder/assessment`, `/founder/tutor`, `/founder/missions`, `/founder/learning-graph` carries an explicit **legacy SDT SQL sandbox** label (`app/presentation/stack_c_sandbox.py`). Sandbox mastery is never student-facing Estimated Knowledge. |
+| **Canonical EK** | Learner Twin Query Port (Stack B) when `KWALITEC_ADR027_PHASE2_TWIN_CUTOVER` is ON; Runtime C `get_estimated_knowledge_inputs` uses the same flag. |
+| **Harness** | `EducationalPipelineOrchestrator` + `DecisionGenerator` remain a test/cert harness (not student Home). |
+| **Retention (resolution #3)** | Retain labelled sandbox through Phase 2 implementation **plus one subsequent review cycle**, then remove unless a separate initiative explicitly claims it. |
+| **Authority** | `docs/architecture/ADR027_PHASE2_CANONICAL_TWIN_DESIGN.md` §6 + accepted resolution #3 |
 
 Full inventory (including Alpha posture notes): `knowledge/release/RP-001/FEATURE_FLAG_REGISTER.md`.
 

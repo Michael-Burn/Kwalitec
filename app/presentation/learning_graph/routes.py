@@ -1,4 +1,9 @@
-"""Founder-only Learning Graph diagnostic HTTP endpoints (SDT-003)."""
+"""Founder-only Learning Graph diagnostic HTTP endpoints (SDT-003).
+
+ADR-027 Phase 2 Stage 3: labelled legacy SDT sandbox. The Learning Graph remains
+non-authoritative for Estimated Knowledge
+(see app.presentation.stack_c_sandbox).
+"""
 
 from __future__ import annotations
 
@@ -13,6 +18,7 @@ from app.application.student_digital_twin.student_digital_twin_service import (
 )
 from app.founder.dashboard.access import founder_required
 from app.presentation.learning_graph import learning_graph_diagnostics_bp
+from app.presentation.stack_c_sandbox import sandbox_jsonify
 
 
 def _graphs() -> LearningGraphService:
@@ -29,7 +35,7 @@ def learning_graph_index():
     """List Learning Graphs for an optional student_id query param."""
     student_id = (request.args.get("student_id") or "").strip()
     if not student_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "message": (
@@ -39,7 +45,7 @@ def learning_graph_index():
             }
         )
     graphs = _graphs().list_for_student(student_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "student_id": student_id,
@@ -81,7 +87,7 @@ def learning_graph_traverse():
         result = trav.dependencies(graph, concept_id, max_depth=max_depth)
     elif kind == "learning_path":
         path = trav.learning_path(graph, concept_id, max_depth=max_depth)
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "kind": "learning_path",
@@ -90,7 +96,7 @@ def learning_graph_traverse():
         )
     elif kind == "recovery":
         path = trav.recovery_path(graph, concept_id, max_depth=max_depth)
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "kind": "recovery",
@@ -99,7 +105,7 @@ def learning_graph_traverse():
         )
     elif kind == "impact":
         analysis = trav.impact(graph, concept_id, max_depth=max_depth)
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "kind": "impact",
@@ -109,7 +115,7 @@ def learning_graph_traverse():
     else:
         result = trav.connected(graph, concept_id, max_depth=max_depth)
 
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "kind": result.kind,
@@ -143,7 +149,7 @@ def learning_graph_prerequisites():
     trav = _traversal()
     result = trav.prerequisites(graph, concept_id, max_depth=max_depth)
     recovery = trav.recovery_path(graph, concept_id, max_depth=max_depth)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "prerequisites": trav.traversal_as_dict(result),
@@ -177,7 +183,7 @@ def learning_graph_dependencies():
     trav = _traversal()
     result = trav.dependencies(graph, concept_id, max_depth=max_depth)
     impact = trav.impact(graph, concept_id, max_depth=max_depth)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "dependencies": trav.traversal_as_dict(result),
@@ -205,7 +211,7 @@ def learning_graph_for_student(student_id: str):
                     "error": f"Learning Graph for twin {twin_id!r} not found",
                 }
             ), 404
-        return jsonify(
+        return sandbox_jsonify(
             {"ok": True, "student_id": student_id, "graph": svc.as_dict(graph)}
         )
 
@@ -214,4 +220,4 @@ def learning_graph_for_student(student_id: str):
     for twin in twins:
         graph = svc.get_or_create_for_twin(twin, persist=True)
         graphs.append(svc.as_dict(graph))
-    return jsonify({"ok": True, "student_id": student_id, "graphs": graphs})
+    return sandbox_jsonify({"ok": True, "student_id": student_id, "graphs": graphs})

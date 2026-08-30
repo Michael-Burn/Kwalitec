@@ -14,6 +14,13 @@ Coordinates existing certified stage services only. Introduces no educational
 logic, heuristics, Twin semantics, Mission prioritisation, Tutor wording, or
 Assessment behaviour. Emits operational events, privacy-safe logs, and
 performance metrics.
+
+ADR-027 Phase 2 Stage 3: this orchestrator + DecisionGenerator chain is a
+test/cert harness only — it is not wired to student Home. It remains the
+legacy SDT / Epic-2 certification path until a separate programme rewrites it
+against Twin B. Sandbox retention matches resolution #3: Phase 2
+implementation plus one subsequent review cycle, then remove unless claimed.
+Functional behaviour is intentionally unchanged in Stage 3.
 """
 
 from __future__ import annotations

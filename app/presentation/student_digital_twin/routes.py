@@ -1,6 +1,14 @@
-"""Founder-only Twin diagnostic HTTP endpoints (SDT-001)."""
+"""Founder-only Twin diagnostic HTTP endpoints (SDT-001).
+
+ADR-027 Phase 2 Stage 3: SDT SQL surfaces are an explicitly labelled legacy
+sandbox (see app.presentation.stack_c_sandbox). The mastery read that asks
+"what does this student know?" repoints to LearnerTwinQueryPort when
+KWALITEC_ADR027_PHASE2_TWIN_CUTOVER is ON.
+"""
 
 from __future__ import annotations
+
+from typing import Any
 
 from flask import jsonify, request
 from flask_login import current_user
@@ -13,7 +21,9 @@ from app.application.student_digital_twin.student_digital_twin_service import (
 from app.application.student_digital_twin.student_reasoning_service import (
     StudentReasoningService,
 )
+from app.application.student_twin.cutover import phase2_twin_cutover_enabled
 from app.founder.dashboard.access import founder_required
+from app.presentation.stack_c_sandbox import with_stack_c_sandbox_label
 from app.presentation.student_digital_twin import twin_diagnostics_bp
 from app.presentation.student_digital_twin.serializers import (
     gap_public,
@@ -24,6 +34,7 @@ from app.presentation.student_digital_twin.serializers import (
     recommendation_public,
     twin_public,
 )
+from app.services.twin_cutover_service import learner_twin_query
 
 
 def _twins() -> StudentDigitalTwinService:
@@ -32,6 +43,27 @@ def _twins() -> StudentDigitalTwinService:
 
 def _not_found(twin_id: str):
     return jsonify({"ok": False, "error": f"Twin {twin_id!r} not found"}), 404
+
+
+def _sandbox(payload: dict[str, Any]):
+    return jsonify(with_stack_c_sandbox_label(payload))
+
+
+def _resolve_user_id_for_sdt_twin(twin: Any) -> int | None:
+    """Best-effort map SDT twin identity to a Flask user id for Twin B queries."""
+    student = getattr(twin, "student", None)
+    if student is None:
+        return None
+    for candidate in (
+        getattr(student, "external_user_id", None),
+        getattr(student, "student_id", None),
+    ):
+        if candidate is None:
+            continue
+        text = str(candidate).strip()
+        if text.isdigit():
+            return int(text)
+    return None
 
 
 @twin_diagnostics_bp.get("")
@@ -52,7 +84,7 @@ def twin_index():
             }
         ), 400
     twins = _twins().list_twins_for_student(student_id)
-    return jsonify({"ok": True, "twins": [twin_public(t) for t in twins]})
+    return _sandbox({"ok": True, "twins": [twin_public(t) for t in twins]})
 
 
 @twin_diagnostics_bp.post("")
@@ -75,7 +107,8 @@ def twin_create():
             else None
         ),
     )
-    return jsonify({"ok": True, "twin": twin_public(twin)}), 201
+    body = with_stack_c_sandbox_label({"ok": True, "twin": twin_public(twin)})
+    return jsonify(body), 201
 
 
 @twin_diagnostics_bp.get("/<twin_id>")
@@ -84,7 +117,7 @@ def twin_detail(twin_id: str):
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
-    return jsonify({"ok": True, "twin": twin_public(twin)})
+    return _sandbox({"ok": True, "twin": twin_public(twin)})
 
 
 @twin_diagnostics_bp.get("/<twin_id>/history")
@@ -94,7 +127,7 @@ def twin_history(twin_id: str):
     if twin is None:
         return _not_found(twin_id)
     snapshots = TwinPersistenceService().list_state_snapshots(twin_id)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -122,14 +155,57 @@ def twin_history(twin_id: str):
 @twin_diagnostics_bp.get("/<twin_id>/mastery")
 @founder_required
 def twin_mastery(twin_id: str):
+    """Student-knowledge read: Twin B when cutover ON; labelled SDT otherwise."""
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
+
+    legacy_mastery = [mastery_public(r) for r in twin.mastery.records]
+
+    if not phase2_twin_cutover_enabled():
+        return _sandbox(
+            {
+                "ok": True,
+                "twin_id": twin_id,
+                "mastery": legacy_mastery,
+            }
+        )
+
+    # Flag ON: primary "what does this student know?" comes from Twin B.
+    user_id = _resolve_user_id_for_sdt_twin(twin)
+    subject = (twin.student.subject_code or "").strip()
+    canonical: list[dict[str, Any]] = []
+    if user_id is not None and subject:
+        snap = learner_twin_query().knowledge_snapshot(
+            user_id=user_id, subject_code=subject
+        )
+        for fact in snap.topics:
+            if not fact.has_estimated_knowledge:
+                continue
+            canonical.append(
+                {
+                    "topic_id": fact.topic_id,
+                    "has_estimated_knowledge": True,
+                    "estimated_knowledge": fact.estimated_knowledge,
+                    "estimated_mastery": fact.estimated_mastery,
+                    "evidence_count": fact.evidence_count,
+                    "last_practised_at": (
+                        fact.last_practised_at.isoformat()
+                        if fact.last_practised_at is not None
+                        else None
+                    ),
+                }
+            )
+
     return jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
-            "mastery": [mastery_public(r) for r in twin.mastery.records],
+            "ek_authority": "canonical_learner_twin",
+            "estimated_knowledge": canonical,
+            "legacy_sdt_sandbox_mastery": with_stack_c_sandbox_label(
+                {"mastery": legacy_mastery}
+            ),
         }
     )
 
@@ -140,7 +216,7 @@ def twin_gaps(twin_id: str):
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -155,7 +231,7 @@ def twin_recommendations(twin_id: str):
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -172,7 +248,7 @@ def twin_predictions(twin_id: str):
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -187,7 +263,7 @@ def twin_reasoning(twin_id: str):
     twin = _twins().get(twin_id)
     if twin is None:
         return _not_found(twin_id)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -229,13 +305,14 @@ def twin_record_observation(twin_id: str):
             triggered_by="founder_observation",
             observation_ids=(obs.observation_id,),
         )
-    return jsonify(
+    body = with_stack_c_sandbox_label(
         {
             "ok": True,
             "observation": observation_public(obs),
             "twin": twin_public(twin),
         }
-    ), 201
+    )
+    return jsonify(body), 201
 
 
 @twin_diagnostics_bp.post("/<twin_id>/reason")
@@ -245,4 +322,4 @@ def twin_reason(twin_id: str):
     if twin is None:
         return _not_found(twin_id)
     twin = StudentReasoningService().reason(twin, triggered_by="founder_manual")
-    return jsonify({"ok": True, "twin": twin_public(twin)})
+    return _sandbox({"ok": True, "twin": twin_public(twin)})

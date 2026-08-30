@@ -1,6 +1,13 @@
-"""Founder-only Educational Reasoning diagnostic HTTP endpoints (SDT-002)."""
+"""Founder-only Educational Reasoning diagnostic HTTP endpoints (SDT-002).
+
+ADR-027 Phase 2 Stage 3: this surface exercises the Epic-2 reasoning engine
+against SDT SQL. It is an explicitly labelled legacy diagnostic sandbox, not
+student-facing Estimated Knowledge (see app.presentation.stack_c_sandbox).
+"""
 
 from __future__ import annotations
+
+from typing import Any
 
 from flask import jsonify, request
 
@@ -18,6 +25,7 @@ from app.application.student_digital_twin.student_reasoning_service import (
 )
 from app.founder.dashboard.access import founder_required
 from app.presentation.educational_reasoning import reasoning_diagnostics_bp
+from app.presentation.stack_c_sandbox import with_stack_c_sandbox_label
 from app.presentation.student_digital_twin.serializers import twin_public
 
 
@@ -27,6 +35,10 @@ def _reasoning() -> EducationalReasoningService:
 
 def _persistence() -> ReasoningPersistenceService:
     return ReasoningPersistenceService()
+
+
+def _sandbox(payload: dict[str, Any]):
+    return jsonify(with_stack_c_sandbox_label(payload))
 
 
 @reasoning_diagnostics_bp.post("/run")
@@ -46,7 +58,7 @@ def reasoning_run():
     twin = StudentReasoningService().reason(twin, triggered_by=triggered_by)
     runs = _persistence().list_runs_for_twin(twin_id, limit=1)
     run_payload = _persistence().run_as_dict(runs[0]) if runs else None
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin": twin_public(twin),
@@ -66,7 +78,7 @@ def reasoning_history():
         ), 400
     limit = min(int(request.args.get("limit") or 50), 200)
     runs = _persistence().list_runs_for_twin(twin_id, limit=limit)
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -80,7 +92,7 @@ def reasoning_history():
 def reasoning_rules():
     """List registered educational reasoning rules."""
     rules = _reasoning().list_rules()
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "engine_version": EducationalReasoningService.engine_version(),
@@ -99,7 +111,7 @@ def reasoning_explanations():
     rows = _persistence().list_explanations(
         twin_id=twin_id, run_id=run_id, limit=limit
     )
-    return jsonify(
+    return _sandbox(
         {
             "ok": True,
             "explanations": [_persistence().explanation_as_dict(r) for r in rows],
@@ -116,4 +128,6 @@ def reasoning_decision(decision_id: str):
         return jsonify(
             {"ok": False, "error": f"Decision {decision_id!r} not found"}
         ), 404
-    return jsonify({"ok": True, "decision": _persistence().decision_as_dict(row)})
+    return _sandbox(
+        {"ok": True, "decision": _persistence().decision_as_dict(row)}
+    )

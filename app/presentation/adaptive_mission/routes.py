@@ -1,4 +1,9 @@
-"""Founder-only Adaptive Mission Engine diagnostic HTTP endpoints (AME-001)."""
+"""Founder-only Adaptive Mission Engine diagnostic HTTP endpoints (AME-001).
+
+ADR-027 Phase 2 Stage 3: labelled legacy SDT sandbox. Adaptive mission
+generation here is Twin-first Epic-2 diagnostics, not student Home authority
+(see app.presentation.stack_c_sandbox).
+"""
 
 from __future__ import annotations
 
@@ -11,6 +16,7 @@ from app.application.adaptive_mission.adaptive_mission_service import (
 )
 from app.founder.dashboard.access import founder_required
 from app.presentation.adaptive_mission import adaptive_mission_diagnostics_bp
+from app.presentation.stack_c_sandbox import sandbox_jsonify
 
 
 def _missions() -> AdaptiveMissionService:
@@ -23,7 +29,7 @@ def missions_index():
     """List adaptive missions for a twin_id query param."""
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "message": (
@@ -35,7 +41,7 @@ def missions_index():
         )
     missions = _missions().list_for_twin(twin_id)
     active = _missions().get_active(twin_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -82,7 +88,7 @@ def missions_generate():
     except ValueError as exc:
         return jsonify({"ok": False, "error": str(exc)}), 400
 
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "mission": _missions().as_dict(mission),
@@ -99,7 +105,7 @@ def missions_history():
     if not twin_id:
         return jsonify({"ok": False, "error": "twin_id is required"}), 400
     history = _missions().history_for_twin(twin_id)
-    return jsonify({"ok": True, "twin_id": twin_id, "history": history})
+    return sandbox_jsonify({"ok": True, "twin_id": twin_id, "history": history})
 
 
 @adaptive_mission_diagnostics_bp.post("/validate")
@@ -123,7 +129,7 @@ def missions_validate():
                 {"ok": False, "error": f"mission {mission_id!r} not found"}
             ), 404
         result = service.validate(mission, check_active_duplicate=False)
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "mission_id": mission_id,
@@ -156,7 +162,7 @@ def missions_validate():
         return jsonify({"ok": False, "error": str(exc), "passed": False}), 400
 
     result = service.validate(mission, check_active_duplicate=True)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -182,7 +188,7 @@ def missions_diagnostics():
     """Founder diagnostics for Adaptive Mission Engine state."""
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "engine_version": AdaptiveMissionService.ENGINE_VERSION,
@@ -190,4 +196,4 @@ def missions_diagnostics():
                 "generated_at": datetime.utcnow().isoformat() + "Z",
             }
         )
-    return jsonify(_missions().diagnostics_for_twin(twin_id))
+    return sandbox_jsonify(_missions().diagnostics_for_twin(twin_id))

@@ -1,4 +1,9 @@
-"""Founder-only Assessment Pipeline diagnostic HTTP endpoints (AP-001)."""
+"""Founder-only Assessment Pipeline diagnostic HTTP endpoints (AP-001).
+
+ADR-027 Phase 2 Stage 3: labelled legacy SDT sandbox. Pipeline ingest may still
+exercise StudentReasoningService / SDT inferences for diagnostics; that data is
+not student-facing Estimated Knowledge (see app.presentation.stack_c_sandbox).
+"""
 
 from __future__ import annotations
 
@@ -10,6 +15,7 @@ from app.application.assessment_pipeline.assessment_pipeline_service import (
 from app.domain.assessment_pipeline.assessment_event import AssessmentEventType
 from app.founder.dashboard.access import founder_required
 from app.presentation.assessment_pipeline import assessment_pipeline_diagnostics_bp
+from app.presentation.stack_c_sandbox import sandbox_jsonify
 
 
 def _pipeline() -> AssessmentPipelineService:
@@ -22,7 +28,7 @@ def assessment_events():
     """List assessment events for a twin_id query param."""
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "message": "Provide twin_id to list assessment events.",
@@ -31,7 +37,7 @@ def assessment_events():
         )
     service = _pipeline()
     events = service.list_events(twin_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -49,7 +55,7 @@ def assessment_results():
         return jsonify({"ok": False, "error": "twin_id is required"}), 400
     service = _pipeline()
     results = service.list_results(twin_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -67,7 +73,7 @@ def assessment_feedback():
         return jsonify({"ok": False, "error": "twin_id is required"}), 400
     service = _pipeline()
     feedback = service.list_feedback(twin_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -82,7 +88,7 @@ def assessment_feedback():
 def assessment_pipeline_run():
     """Ingest an activity (POST) or describe the pipeline (GET)."""
     if request.method == "GET":
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "engine_version": AssessmentPipelineService.ENGINE_VERSION,
@@ -136,7 +142,7 @@ def assessment_pipeline_run():
         return jsonify({"ok": False, "error": str(exc)}), 400
 
     service = _pipeline()
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": run.ok,
             "validation": {
@@ -169,4 +175,4 @@ def assessment_diagnostics():
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
         return jsonify({"ok": False, "error": "twin_id is required"}), 400
-    return jsonify(_pipeline().diagnostics_for_twin(twin_id))
+    return sandbox_jsonify(_pipeline().diagnostics_for_twin(twin_id))

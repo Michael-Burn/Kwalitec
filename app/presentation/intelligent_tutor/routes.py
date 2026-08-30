@@ -1,4 +1,9 @@
-"""Founder-only Intelligent Tutor diagnostic HTTP endpoints (TUTOR-001)."""
+"""Founder-only Intelligent Tutor diagnostic HTTP endpoints (TUTOR-001).
+
+ADR-027 Phase 2 Stage 3: labelled legacy SDT sandbox. Tutor diagnostics consume
+SDT Twin state for Epic-2 experiments; not student-facing Estimated Knowledge
+(see app.presentation.stack_c_sandbox).
+"""
 
 from __future__ import annotations
 
@@ -15,6 +20,7 @@ from app.application.intelligent_tutor.persistence import (
 from app.extensions import db
 from app.founder.dashboard.access import founder_required
 from app.presentation.intelligent_tutor import intelligent_tutor_diagnostics_bp
+from app.presentation.stack_c_sandbox import sandbox_jsonify
 
 
 def _tutor() -> IntelligentTutorService:
@@ -27,7 +33,7 @@ def tutor_sessions():
     """List Tutor sessions for a twin_id query param."""
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "message": "Provide twin_id to list Tutor sessions.",
@@ -36,7 +42,7 @@ def tutor_sessions():
         )
     service = _tutor()
     sessions = service.list_sessions(twin_id)
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "twin_id": twin_id,
@@ -84,7 +90,7 @@ def tutor_context():
     context = service.build_context(
         twin, question, enrich_evidence=True
     )
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "context": {
@@ -148,7 +154,7 @@ def tutor_evidence():
     evidence = assemble_evidence(
         context, assembly_id="diag-asm", question_kind=kind
     )
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "assembly_id": evidence.assembly_id,
@@ -183,7 +189,7 @@ def tutor_explanations():
     if not twin_id:
         return jsonify({"ok": False, "error": "twin_id is required"}), 400
     rows = IntelligentTutorPersistenceService().list_explanations(twin_id)
-    return jsonify({"ok": True, "twin_id": twin_id, "explanations": rows})
+    return sandbox_jsonify({"ok": True, "twin_id": twin_id, "explanations": rows})
 
 
 @intelligent_tutor_diagnostics_bp.post("/ask")
@@ -217,7 +223,7 @@ def tutor_ask():
     except ValueError as exc:
         return jsonify({"ok": False, "error": str(exc)}), 400
 
-    return jsonify({"ok": True, "response": service.as_dict(response)})
+    return sandbox_jsonify({"ok": True, "response": service.as_dict(response)})
 
 
 @intelligent_tutor_diagnostics_bp.get("/diagnostics")
@@ -226,7 +232,7 @@ def tutor_diagnostics():
     """Founder diagnostics for Intelligent Tutor state."""
     twin_id = (request.args.get("twin_id") or "").strip()
     if not twin_id:
-        return jsonify(
+        return sandbox_jsonify(
             {
                 "ok": True,
                 "engine_version": IntelligentTutorService.ENGINE_VERSION,
@@ -234,7 +240,7 @@ def tutor_diagnostics():
                 "generated_at": datetime.utcnow().isoformat() + "Z",
             }
         )
-    return jsonify(_tutor().diagnostics_for_twin(twin_id))
+    return sandbox_jsonify(_tutor().diagnostics_for_twin(twin_id))
 
 
 @intelligent_tutor_diagnostics_bp.post("/feedback")
@@ -264,7 +270,7 @@ def tutor_feedback():
         helpful=bool(helpful) if helpful is not None else None,
     )
     db.session.commit()
-    return jsonify(
+    return sandbox_jsonify(
         {
             "ok": True,
             "feedback_id": row.feedback_id,

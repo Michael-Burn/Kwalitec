@@ -131,6 +131,8 @@ def test_readiness_and_ek_inputs_without_duplicating_state(ctx):
         user_id=user.id, subject_code=subject
     )
     assert all(topic["has_estimated_knowledge"] is False for topic in ek.topics)
+    assert all(topic.get("estimated_knowledge") is None for topic in ek.topics)
+    assert all(topic["mastery_score"] is None for topic in ek.topics)
     assert "study_progress_only" in ek.evidence_policy
 
 
