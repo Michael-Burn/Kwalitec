@@ -67,6 +67,13 @@ services:
       # leave individual SR_* flags unset/off.
       - key: KWALITEC_COMMERCIAL_LOOP
         value: "1"
+      # ADR-027 hold (2026-08-30): pause Twin daily-loop consumption / new
+      # writes pending Estimated Knowledge reconciliation. Explicit "0"
+      # overrides Commercial Loop inheritance (_sr_bundle_flag). Existing
+      # Twin documents are preserved (not deleted or modified). Resume:
+      # remove this key or set to "1" after ADR-027 reconciliation lands.
+      - key: SR_TWIN_DAILY_LOOP
+        value: "0"
 
 databases:
   - name: kwalitec-db
