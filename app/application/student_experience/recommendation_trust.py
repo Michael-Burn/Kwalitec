@@ -23,7 +23,7 @@ TRUST_STATE_REFUSAL = "refusal"
 TRUST_STATE_INCOMPLETE = "incomplete"
 
 _COMPLETION_LOOP_FALLBACK = (
-    "Tonight's practice updates what we suggest next."
+    "After you finish tonight's Session, Home shows the next step on your plan."
 )
 
 # Coherence codes that signal advice relative to Today's Mission (Q9).

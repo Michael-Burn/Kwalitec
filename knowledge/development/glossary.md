@@ -19,7 +19,7 @@ Kwalitec-specific terminology. Prefer these meanings in code reviews, ADRs, and 
 | **Mission Optimizer** | Service that ranks candidate tasks from urgency, readiness, workload, and plan context — without replacing canonical topic identity. |
 | **Readiness** | Explainable estimate of exam preparedness from coverage, pace, and related signals (`ReadinessService`). |
 | **Recommendation** | Deterministic, explainable “study next” suggestion (`RecommendationService`), optionally recorded in the Decision Journal. |
-| **Adaptive Learning** | Mastery scoring and spaced-repetition style scheduling from real attempts (`AdaptiveLearningService`). |
+| **Adaptive Learning** | Mastery / Estimated Knowledge scoring from authorised attempts via `AdaptiveLearningService` (session write-through gated by `SR_SESSION_SQL_EVIDENCE_COMPANION`; production default OFF). |
 | **Decision Journal** | Audit trail of accepted/dismissed recommendations (`Decision` model / related flows). |
 | **Burnout Monitor** | Workload intensity signals flagging unsustainable pacing (`BurnoutMonitor`). |
 | **Blueprint** | Flask feature package exposing HTTP routes (e.g. `auth`, `mission`). Should stay thin ([ADR-002](../architecture/ADR-002-blueprint-architecture.md)). |

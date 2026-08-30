@@ -23,7 +23,7 @@ Kwalitec is **not** a generic study planner and **not** a black-box AI tutor. Co
 | Curriculum Intelligence Engine | Source of truth for official syllabuses (V1 flat + V2 hierarchical) |
 | Study Plan Wizard | Exam-date-driven planning across available study days |
 | Learning Mode progression | Syllabus-order topic selection (first incomplete leaf); Consolidation Mission checkpoints at exam-proximity cadence (not spaced-repetition scheduling) |
-| Mastery scoring | Estimated Knowledge (`mastery_score`) updated from real attempts |
+| Mastery scoring | Estimated Knowledge (`mastery_score`) from authorised attempts when session evidence write-through is on (`SR_SESSION_SQL_EVIDENCE_COMPANION`); production default OFF — scored Session practice does not currently update mastery |
 | Exam Readiness Analytics | Coverage, projected pace, and pass-risk signals |
 | Recommendation Engine | Deterministic, explainable “study next” suggestions |
 | Decision Journal | Audit trail of accepted/dismissed recommendations |

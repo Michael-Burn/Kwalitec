@@ -240,7 +240,7 @@ Progress and analytics copy must preserve Study Progress vs Estimated Knowledge 
 |-----|------|
 | “Today’s Recommended Mission” (advice-shaped label on Learning Mode authority) | “Today’s Topic” / “Today’s Mission” |
 | No Why block | Why: Learning Mode follows your Current Learning Topic — the next syllabus topic you have not yet completed studying |
-| “Estimated Mastery grows from study evidence” | “Estimated Knowledge grows from practice results over time” |
+| “Estimated Mastery grows from study evidence” | “Estimated Knowledge is separate from Study Progress; when practice results are recorded into your progress record, estimates can grow over time” |
 
 ### Recommendations
 

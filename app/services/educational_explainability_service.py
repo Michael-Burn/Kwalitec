@@ -199,13 +199,16 @@ class EducationalExplainabilityService:
                 f"{int(round(syllabus_coverage_pct))}% of official syllabus weighting."
             )
             estimates.append(
-                "Estimated Knowledge is separate and grows from practice results "
-                "over time — completing studying alone is not understanding."
+                "Estimated Knowledge is separate from Study Progress; when "
+                "practice results are recorded into your progress record, "
+                "estimates can grow over time — completing studying alone "
+                "is not understanding."
             )
         else:
             estimates.append(
                 "Estimated Knowledge cannot yet be summarised here. "
-                "It grows from practice results over time."
+                "When practice results are recorded into your progress "
+                "record, estimates can grow over time."
             )
 
         if mission_status == "Completed":
@@ -295,7 +298,8 @@ class EducationalExplainabilityService:
         else:
             estimates.append(
                 "Estimated Knowledge cannot yet be summarised here. "
-                "It grows from practice results over time."
+                "When practice results are recorded into your progress "
+                "record, estimates can grow over time."
             )
 
         if mission_status == "Completed":

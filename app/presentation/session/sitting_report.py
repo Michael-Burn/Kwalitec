@@ -698,8 +698,8 @@ def _progress_explanation(
         )
     if correct or incorrect:
         return (
-            f"Practice on {topic} was recorded. Journey movement depends on "
-            "an honest finish and accepted study for the day."
+            f"You answered practice on {topic} today. Journey movement "
+            "depends on an honest finish and accepted study for the day."
         )
     return (
         f"Today's Session on {topic} is closed. Journey updates appear when "

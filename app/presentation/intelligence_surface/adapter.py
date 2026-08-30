@@ -495,8 +495,9 @@ class RuntimeAPresentationAdapter:
             )
         else:
             estimates.append(
-                "Estimated Knowledge is separate from Study Progress and "
-                "grows from practice results over time."
+                "Estimated Knowledge is separate from Study Progress; when "
+                "practice results are recorded into your progress record, "
+                "estimates can grow over time."
             )
         plan_drivers = tuple(
             _driver_evidence(mission_surface.get("plan_drivers"))[:3]

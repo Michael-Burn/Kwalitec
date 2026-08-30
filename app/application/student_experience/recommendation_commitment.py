@@ -66,8 +66,10 @@ CONTINUITY_REFLECTION = (
 CONTINUITY_HISTORY_HEADER = "Choices you've made inside one study plan."
 
 # Humble static frame — never personal-model theatre (Design §6.4).
+# Do not claim scored practice currently writes mastery/readiness while
+# SR_SESSION_SQL_EVIDENCE_COMPANION is OFF in production.
 WHAT_WAS_LEARNED_HUMBLE = (
-    "Tonight's practice updates the educational state that shapes "
+    "Tonight's Session stays part of the same study plan that shapes "
     "tomorrow's Mission."
 )
 
