@@ -65,6 +65,7 @@ This artefact **does not** flip flags. It documents current production intent.
 | `ANALYTICS_EVENTS_V1` / `KWALITEC_ANALYTICS_EVENTS_V1` | **OFF** | No UI — emit only | Release | EP-002 go-live checklist + cron/worker | Unset |
 | Advisory / recovery / simulation / trials / evidence review family | **OFF** | Mostly non-student or advisory | Architecture | Per programme soak | Unset each flag |
 | Runtime C / founder-student bridge family | **OFF** | Yes if ON | Architecture | Platform integration soak | Unset |
+| `KWALITEC_ADR027_M0_DECISION_BOUNDARY` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Decision Engine path for Runtime C daily sitting when ON | Architecture | ADR-027 M0 dual-path suite green; deliberate soak | Unset / `0`; redeploy returns to inlined `generate_daily_mission` selection |
 
 Full inventory (including Alpha posture notes): `knowledge/release/RP-001/FEATURE_FLAG_REGISTER.md`.
 

@@ -42,6 +42,7 @@ from app.application.educational_runtime_engine.dto import (
     ProgressSnapshot,
     ReadinessRuntimeInputs,
     RuntimeJourneySnapshot,
+    SittingExecutionSpec,
     StudyPlanInstanceSnapshot,
 )
 from app.application.educational_runtime_engine.exceptions import (
@@ -452,7 +453,12 @@ class EducationalRuntimeEngineService:
         subject_code: str,
         mission_date: date | None = None,
     ) -> MissionInstanceSnapshot:
-        """Generate (idempotently) today's mission from derived mission templates."""
+        """Generate (idempotently) today's mission from derived mission templates.
+
+        Legacy flag-OFF path: syllabus/enrolment guards, ops short-circuit,
+        then selection, then materialise. Selection helpers are shared with
+        ADR-027 Policy V0; composition unchanged.
+        """
         day = mission_date or date.today()
         enrolment = self._require_enrolment(user_id, subject_code)
         artefacts = self._load_artefacts(enrolment.subject_code)
@@ -474,7 +480,7 @@ class EducationalRuntimeEngineService:
             completed_package_ids=completed_packs,
             last_completed_package_id=last_pack_id,
         )
-        # RO-014/RO-015: tip-complete must not block CP-D1…CP-R1 or CR-D1…CR-R1.
+        # Preserve pre-M0 guard order: syllabus/inactive before short-circuit.
         if (
             progress.syllabus_complete or progress.current_topic_id is None
         ) and memory_pack is None:
@@ -482,7 +488,197 @@ class EducationalRuntimeEngineService:
                 f"syllabus complete for {enrolment.curriculum_identity}"
             )
         if enrolment.status != EnrolmentStatus.ACTIVE.value:
-            # Re-open tip-complete enrolment only when post-tip fronts remain.
+            if memory_pack is None:
+                raise IllegalRuntimeState(
+                    f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
+                )
+            enrolment.status = EnrolmentStatus.ACTIVE.value
+
+        existing = self.try_return_existing_daily_mission(
+            user_id=user_id,
+            subject_code=subject_code,
+            mission_date=day,
+        )
+        if existing is not None:
+            return existing
+        spec = self.compute_daily_sitting_selection(
+            user_id=user_id,
+            subject_code=subject_code,
+            mission_date=day,
+        )
+        return self.materialise_daily_mission_from_spec(spec)
+
+    def try_return_existing_daily_mission(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        mission_date: date | None = None,
+    ) -> MissionInstanceSnapshot | None:
+        """Operational short-circuit: return today's mission when still valid.
+
+        Handles tip-complete reopen, PX-B-005/006 retirement, and oversized
+        regeneration prep. Does not perform topic/package selection. Returns
+        None when a new sitting identity must be chosen (caller decides).
+        """
+        day = mission_date or date.today()
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        progress = self._derive_progress_for(enrolment, artefacts)
+        completed_packs = self._completed_educational_package_ids(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        last_pack_id = self._last_completed_educational_package_id(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        from app.application.educational_packages.selection import (
+            pending_post_tip_front_package,
+        )
+
+        memory_pack = pending_post_tip_front_package(
+            subject_id=enrolment.subject_code,
+            completed_package_ids=completed_packs,
+            last_completed_package_id=last_pack_id,
+        )
+        # Tip-complete reopen for post-tip fronts (selection may still BLOCK).
+        if enrolment.status != EnrolmentStatus.ACTIVE.value and memory_pack is not None:
+            enrolment.status = EnrolmentStatus.ACTIVE.value
+        if memory_pack is not None:
+            plan = (
+                RuntimeStudyPlanInstance.query.filter_by(
+                    enrolment_id=enrolment.enrolment_id,
+                    status=PlanInstanceStatus.ACTIVE.value,
+                ).first()
+                or RuntimeStudyPlanInstance.query.filter_by(
+                    enrolment_id=enrolment.enrolment_id,
+                )
+                .order_by(RuntimeStudyPlanInstance.id.desc())
+                .first()
+            )
+            if plan is None:
+                return None
+            if plan.status != PlanInstanceStatus.ACTIVE.value:
+                plan.status = PlanInstanceStatus.ACTIVE.value
+        else:
+            plan = RuntimeStudyPlanInstance.query.filter_by(
+                enrolment_id=enrolment.enrolment_id,
+                status=PlanInstanceStatus.ACTIVE.value,
+            ).first()
+            if plan is None:
+                return None
+
+        existing = RuntimeMissionInstance.query.filter_by(
+            plan_instance_id=plan.plan_instance_id,
+            mission_date=day,
+        ).first()
+        if existing is None:
+            return None
+
+        # PX-B-005 / PX-B-006: retire wrong-package or completed-learning blocking
+        # revision, then allow regeneration.
+        owed = None
+        if memory_pack is not None:
+            owed = memory_pack
+        else:
+            from app.application.educational_packages.selection import (
+                resolve_active_educational_package,
+            )
+
+            owed = resolve_active_educational_package(
+                subject_id=enrolment.subject_code,
+                syllabus_topic_code=progress.current_topic_id or "",
+                completed_package_ids=completed_packs,
+                last_completed_package_id=last_pack_id,
+            )
+        existing_pack = self._educational_package_id_for_mission(
+            existing.mission_instance_id
+        )
+        if existing.status == MissionStatus.COMPLETED.value:
+            if (
+                owed is not None
+                and owed.package_id
+                and owed.package_id != existing_pack
+                and (owed.mode or "").strip().lower() == "revision"
+            ):
+                db.session.delete(existing)
+                db.session.flush()
+                return None
+        elif (
+            existing.status
+            in {
+                MissionStatus.GENERATED.value,
+                MissionStatus.ACCEPTED.value,
+            }
+            and owed is not None
+            and owed.package_id
+            and existing_pack
+            and owed.package_id != existing_pack
+        ):
+            db.session.delete(existing)
+            db.session.flush()
+            return None
+        if not self._mission_exceeds_session_budget(
+            existing,
+            user_id=user_id,
+            artefacts=artefacts,
+            mission_date=day,
+        ):
+            return self._mission_snapshot(
+                existing,
+                artefacts=artefacts,
+                completed_topic_ids=progress.completed_topic_ids,
+            )
+        self._retire_oversized_daily_mission(
+            existing,
+            enrolment=enrolment,
+            plan=plan,
+        )
+        return None
+
+    def compute_daily_sitting_selection(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        mission_date: date | None = None,
+    ) -> SittingExecutionSpec:
+        """Select daily sitting identity (pre-chunk objectives).
+
+        Behavioural extract of the pre-M0 selection block inside
+        ``generate_daily_mission``. Raises the same exceptions as today for
+        syllabus-complete / inactive / guidance / template / prerequisite cases.
+        """
+        day = mission_date or date.today()
+        enrolment = self._require_enrolment(user_id, subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        progress = self._derive_progress_for(enrolment, artefacts)
+        completed_packs = self._completed_educational_package_ids(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        last_pack_id = self._last_completed_educational_package_id(
+            user_id=user_id,
+            curriculum_identity=enrolment.curriculum_identity,
+        )
+        from app.application.educational_packages.selection import (
+            pending_post_tip_front_package,
+        )
+
+        memory_pack = pending_post_tip_front_package(
+            subject_id=enrolment.subject_code,
+            completed_package_ids=completed_packs,
+            last_completed_package_id=last_pack_id,
+        )
+        # RO-014/RO-015: tip-complete must not block CP-D1...CP-R1 or CR-D1...CR-R1.
+        if (
+            progress.syllabus_complete or progress.current_topic_id is None
+        ) and memory_pack is None:
+            raise SyllabusAlreadyComplete(
+                f"syllabus complete for {enrolment.curriculum_identity}"
+            )
+        if enrolment.status != EnrolmentStatus.ACTIVE.value:
             if memory_pack is None:
                 raise IllegalRuntimeState(
                     f"enrolment {enrolment.enrolment_id} is {enrolment.status}"
@@ -509,83 +705,6 @@ class EducationalRuntimeEngineService:
         else:
             plan = self._require_active_plan(enrolment)
 
-        existing = RuntimeMissionInstance.query.filter_by(
-            plan_instance_id=plan.plan_instance_id,
-            mission_date=day,
-        ).first()
-        if existing is not None:
-            # PX-B-005: a completed sitting must not block terminal Revision when
-            # the journey owes a revision successor. Same-day completed learning
-            # missions are retired so CR-R1 / class equivalents can generate
-            # without ops force-R1 (RO15-R3).
-            # PX-B-006: first-sitting race — a GENERATED/ACCEPTED mission bound
-            # to the wrong campaign package (e.g. Iota before Rho engaged) must
-            # not stick via the idempotent return. Timing only; selection unchanged.
-            owed = None
-            if memory_pack is not None:
-                owed = memory_pack
-            else:
-                from app.application.educational_packages.selection import (
-                    resolve_active_educational_package,
-                )
-
-                owed = resolve_active_educational_package(
-                    subject_id=enrolment.subject_code,
-                    syllabus_topic_code=progress.current_topic_id or "",
-                    completed_package_ids=completed_packs,
-                    last_completed_package_id=last_pack_id,
-                )
-            existing_pack = self._educational_package_id_for_mission(
-                existing.mission_instance_id
-            )
-            if existing.status == MissionStatus.COMPLETED.value:
-                if (
-                    owed is not None
-                    and owed.package_id
-                    and owed.package_id != existing_pack
-                    and (owed.mode or "").strip().lower() == "revision"
-                ):
-                    # Same calendar day after learning-chain tip — retire the
-                    # completed sitting so terminal Revision can generate
-                    # without ops force-R1 (PX-B-005 / RO15-R3).
-                    db.session.delete(existing)
-                    db.session.flush()
-                    existing = None
-            elif (
-                existing.status
-                in {
-                    MissionStatus.GENERATED.value,
-                    MissionStatus.ACCEPTED.value,
-                }
-                and owed is not None
-                and owed.package_id
-                and existing_pack
-                and owed.package_id != existing_pack
-            ):
-                # Campaign join race: wrong inventory before chain engaged.
-                db.session.delete(existing)
-                db.session.flush()
-                existing = None
-            if existing is not None and not self._mission_exceeds_session_budget(
-                existing,
-                user_id=user_id,
-                artefacts=artefacts,
-                mission_date=day,
-            ):
-                return self._mission_snapshot(
-                    existing,
-                    artefacts=artefacts,
-                    completed_topic_ids=progress.completed_topic_ids,
-                )
-            if existing is not None:
-                # Pre-chunk missions packed an entire chapter into one sitting —
-                # retire and regenerate to fit the student's session length.
-                self._retire_oversized_daily_mission(
-                    existing,
-                    enrolment=enrolment,
-                    plan=plan,
-                )
-
         package = self._authority.get_active(enrolment.subject_code)
         package_dict = package.package if package is not None else {}
         preferred_topic = progress.current_topic_id
@@ -603,7 +722,7 @@ class EducationalRuntimeEngineService:
             user_id=user_id,
             curriculum_identity=enrolment.curriculum_identity,
         )
-        # MISSION-002: mission topic must match progress current topic —
+        # MISSION-002: mission topic must match progress current topic,
         # except post-tip Memory/Publication Front sittings (CP/CR package topic).
         topic_id = preferred_topic or progress.current_topic_id
         if (
@@ -618,7 +737,6 @@ class EducationalRuntimeEngineService:
                 f"no mission template for topic {topic_id}"
             )
 
-        # EQ-M07: refuse generation when prerequisites are not satisfied
         topic = next(
             (t for t in artefacts.topics if t["topic_id"] == template.topic_id),
             {},
@@ -649,21 +767,12 @@ class EducationalRuntimeEngineService:
         )
         objective_ids = [oid for oid in objective_ids if oid not in mastered]
         if not objective_ids:
-            # Certified/template lists may still be empty after partial coverage;
-            # fall back to remaining topic LOs so the sitting is not blank.
             objective_ids = [
                 oid
                 for oid in self._topic_objective_ids(artefacts, template.topic_id)
                 if oid not in mastered
             ] or list(template.objective_ids[:1])
-        session_budget = self._session_budget_minutes(user_id, day)
-        objective_ids = list(
-            self._chunk_objectives_for_session(
-                objective_ids,
-                artefacts=artefacts,
-                session_minutes=session_budget,
-            )
-        )
+
         topic_meta = next(
             (t for t in artefacts.topics if t.get("topic_id") == template.topic_id),
             {},
@@ -676,7 +785,6 @@ class EducationalRuntimeEngineService:
             title=topic_title,
             number=str(topic_meta.get("number") or ""),
         )
-        # PB-002 F7/F8: resolve publication_approved package or withhold honestly.
         from app.application.educational_packages.guard import (
             certified_guidance_enforced,
             withhold_message,
@@ -699,11 +807,130 @@ class EducationalRuntimeEngineService:
                     topic_code=human_code or template.topic_code,
                     subject_code=enrolment.subject_code,
                 )
-        # EA-006: when foundation overlaid a certified package display title,
-        # prefer it over syllabus-paste "Study {code} — …" chrome.
+
+        selection_reasons: tuple[str, ...] = ()
+        provenance: dict[str, Any] | None = None
+        calibration: tuple[str, ...] = ()
+        certified_mission_id: str | None = None
+        if certified_spec is not None:
+            certified_mission_id = certified_spec.mission_id
+            selection_reasons = tuple(
+                r.value for r in certified_spec.selection_reasons
+            )
+            provenance = {
+                "chain_id": certified_spec.provenance.chain_id,
+                "snapshot_id": certified_spec.provenance.snapshot_id,
+                "authority": certified_spec.provenance.authority,
+                "status": certified_spec.provenance.status,
+            }
+            if certified_spec.calibration_notes:
+                calibration = tuple(certified_spec.calibration_notes)
+
+        return SittingExecutionSpec(
+            user_id=user_id,
+            subject_code=enrolment.subject_code,
+            mission_date=day,
+            curriculum_identity=enrolment.curriculum_identity,
+            enrolment_id=enrolment.enrolment_id,
+            plan_instance_id=plan.plan_instance_id,
+            topic_id=template.topic_id,
+            topic_code=human_code or template.topic_code,
+            template_id=template.template_id,
+            objective_ids=tuple(objective_ids),
+            educational_package_id=(
+                pack.package_id if pack is not None else None
+            ),
+            educational_package_mode=(pack.mode if pack is not None else None),
+            educational_campaign_day=(
+                pack.campaign_day if pack is not None else None
+            ),
+            certified_mission_id=certified_mission_id,
+            selection_reasons=selection_reasons,
+            curriculum_provenance=provenance,
+            calibration_notes=calibration,
+            selection_trace={
+                "preferred_topic": preferred_topic,
+                "memory_pack_id": (
+                    memory_pack.package_id if memory_pack is not None else None
+                ),
+                "owed_pack_id": pack.package_id if pack is not None else None,
+                "progress_current_topic_id": progress.current_topic_id,
+                "adaptive_attempted": False,
+            },
+        )
+
+    def materialise_daily_mission_from_spec(
+        self,
+        spec: SittingExecutionSpec,
+    ) -> MissionInstanceSnapshot:
+        """Persist a daily mission from an execution spec (composition only).
+
+        Applies session-budget chunking, title/task assembly, and MISSION_GENERATED.
+        Does not import or consult the Adaptive Decision Engine.
+        """
+        day = spec.mission_date
+        enrolment = self._require_enrolment(spec.user_id, spec.subject_code)
+        artefacts = self._load_artefacts(enrolment.subject_code)
+        progress = self._derive_progress_for(enrolment, artefacts)
+        plan = RuntimeStudyPlanInstance.query.filter_by(
+            plan_instance_id=spec.plan_instance_id,
+        ).first()
+        if plan is None:
+            plan = self._require_active_plan(enrolment)
+
+        template = next(
+            (
+                t
+                for t in artefacts.mission_templates
+                if t.template_id == spec.template_id
+            ),
+            None,
+        )
+        if template is None:
+            template = self._mission_template_for_topic(artefacts, spec.topic_id)
+        if template is None:
+            raise IllegalRuntimeState(
+                f"no mission template for topic {spec.topic_id}"
+            )
+
+        session_budget = self._session_budget_minutes(spec.user_id, day)
+        objective_ids = list(
+            self._chunk_objectives_for_session(
+                list(spec.objective_ids),
+                artefacts=artefacts,
+                session_minutes=session_budget,
+            )
+        )
+        topic_meta = next(
+            (
+                t
+                for t in artefacts.topics
+                if t.get("topic_id") == template.topic_id
+            ),
+            {},
+        )
+        topic_title = str(
+            topic_meta.get("title") or topic_meta.get("text") or template.title
+        )
+        human_code = spec.topic_code or student_syllabus_code(
+            code=template.topic_code,
+            title=topic_title,
+            number=str(topic_meta.get("number") or ""),
+        )
+
+        pack = None
+        if spec.educational_package_id:
+            from app.application.educational_packages.loader import (
+                find_package_by_id,
+            )
+
+            pack = find_package_by_id(spec.educational_package_id)
+
         if pack is not None and pack.display_title:
             mission_title = str(pack.display_title).strip()
-        elif template.title and not str(template.title).lower().startswith("study "):
+        elif template.title and not str(template.title).lower().startswith(
+            "study "
+        ):
             mission_title = str(template.title).strip()
         else:
             mission_title = student_mission_title(
@@ -720,7 +947,7 @@ class EducationalRuntimeEngineService:
         mission = RuntimeMissionInstance(
             mission_instance_id=_new_id("msn"),
             plan_instance_id=plan.plan_instance_id,
-            user_id=user_id,
+            user_id=spec.user_id,
             curriculum_identity=enrolment.curriculum_identity,
             template_id=template.template_id,
             topic_id=template.topic_id,
@@ -744,24 +971,37 @@ class EducationalRuntimeEngineService:
         }
         if pack is not None:
             payload["educational_package_id"] = pack.package_id
-            payload["educational_package_mode"] = pack.mode
-            payload["educational_campaign_day"] = pack.campaign_day
-        if certified_spec is not None:
-            payload["certified_mission_id"] = certified_spec.mission_id
-            payload["selection_reasons"] = [
-                r.value for r in certified_spec.selection_reasons
-            ]
-            payload["curriculum_provenance"] = {
-                "chain_id": certified_spec.provenance.chain_id,
-                "snapshot_id": certified_spec.provenance.snapshot_id,
-                "authority": certified_spec.provenance.authority,
-                "status": certified_spec.provenance.status,
-            }
-            if certified_spec.calibration_notes:
-                payload["calibration_notes"] = list(certified_spec.calibration_notes)
+            payload["educational_package_mode"] = (
+                spec.educational_package_mode or pack.mode
+            )
+            payload["educational_campaign_day"] = (
+                spec.educational_campaign_day
+                if spec.educational_campaign_day is not None
+                else pack.campaign_day
+            )
+        elif spec.educational_package_id:
+            payload["educational_package_id"] = spec.educational_package_id
+            if spec.educational_package_mode:
+                payload["educational_package_mode"] = (
+                    spec.educational_package_mode
+                )
+            if spec.educational_campaign_day is not None:
+                payload["educational_campaign_day"] = (
+                    spec.educational_campaign_day
+                )
+        if spec.certified_mission_id:
+            payload["certified_mission_id"] = spec.certified_mission_id
+            if spec.selection_reasons:
+                payload["selection_reasons"] = list(spec.selection_reasons)
+            if spec.curriculum_provenance:
+                payload["curriculum_provenance"] = dict(
+                    spec.curriculum_provenance
+                )
+            if spec.calibration_notes:
+                payload["calibration_notes"] = list(spec.calibration_notes)
         self._append_event(
             event_type=EducationalEventType.MISSION_GENERATED,
-            user_id=user_id,
+            user_id=spec.user_id,
             curriculum_identity=enrolment.curriculum_identity,
             enrolment_id=enrolment.enrolment_id,
             plan_instance_id=plan.plan_instance_id,

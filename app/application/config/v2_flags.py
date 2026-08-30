@@ -247,6 +247,11 @@ class Version2FeatureFlags:
     # Mission for Runtime C sittings (StudyAttempt substrate only).
     # Default OFF; never inherited from Commercial Loop. Explicit env only.
     SR_SESSION_SQL_EVIDENCE_COMPANION: bool = False
+    # ADR-027 M0: Adaptive Decision Engine boundary for Runtime C daily sitting.
+    # Default OFF; never inherited from Commercial Loop. Explicit env only.
+    # When ON, EducationalExperienceService routes through
+    # SittingDecisionOrchestrator + Policy V0; Runtime C materialises only.
+    ADR027_M0_DECISION_BOUNDARY: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -550,6 +555,9 @@ def resolve_v2_feature_flags(
         ),
         SR_SESSION_SQL_EVIDENCE_COMPANION=_env_truthy(
             "SR_SESSION_SQL_EVIDENCE_COMPANION", environ=environ
+        ),
+        ADR027_M0_DECISION_BOUNDARY=_env_truthy(
+            "KWALITEC_ADR027_M0_DECISION_BOUNDARY", environ=environ
         ),
     )
 

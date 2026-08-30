@@ -401,6 +401,18 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         notes="Consumed by Adaptive Workspace.",
     ),
     PackageEntry(
+        path="app/application/adaptive_decision",
+        layer="application",
+        responsibility="ADR-027 M0 SittingDecisionOrchestrator + Policy V0",
+        owner="Adaptive Decision",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Flag-gated (KWALITEC_ADR027_M0_DECISION_BOUNDARY default OFF). "
+            "Runtime C must not import this package."
+        ),
+    ),
+    PackageEntry(
         path="app/application/curriculum_intelligence",
         layer="application",
         responsibility="Certified packages + CertifiedMissionEngine",

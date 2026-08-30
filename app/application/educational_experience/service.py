@@ -208,11 +208,27 @@ class EducationalExperienceService:
                 allow_mission = False
         if ensure_mission and allow_mission:
             try:
-                mission = self._runtime.generate_daily_mission(
-                    user_id=user_id,
-                    subject_code=enrolment.subject_code,
-                    mission_date=day,
-                )
+                from app.application.config.v2_flags import resolve_v2_feature_flags
+
+                flags = resolve_v2_feature_flags()
+                if flags.ADR027_M0_DECISION_BOUNDARY:
+                    from app.application.adaptive_decision import (
+                        SittingDecisionOrchestrator,
+                    )
+
+                    mission = SittingDecisionOrchestrator(
+                        runtime=self._runtime,
+                    ).ensure_todays_sitting(
+                        user_id=user_id,
+                        subject_code=enrolment.subject_code,
+                        mission_date=day,
+                    )
+                else:
+                    mission = self._runtime.generate_daily_mission(
+                        user_id=user_id,
+                        subject_code=enrolment.subject_code,
+                        mission_date=day,
+                    )
             except SyllabusAlreadyComplete:
                 mission = None
             except CertifiedGuidanceUnavailable as exc:

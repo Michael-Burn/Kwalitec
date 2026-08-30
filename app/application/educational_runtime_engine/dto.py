@@ -125,3 +125,32 @@ class RuntimeJourneySnapshot:
     estimated_knowledge_inputs: EstimatedKnowledgeRuntimeInputs
     open_mission: MissionInstanceSnapshot | None = None
     runtime_authority: str = "published_curriculum"
+
+
+@dataclass(frozen=True)
+class SittingExecutionSpec:
+    """Executable daily-sitting identity for Runtime C materialisation.
+
+    Produced by selection (legacy path or ADR-027 Decision Engine). Contains
+    pre-chunk objective_ids; session-budget chunking stays in materialisation.
+    Runtime C must not import Adaptive Decision Engine types for control flow.
+    """
+
+    user_id: int
+    subject_code: str
+    mission_date: date
+    curriculum_identity: str
+    enrolment_id: str
+    plan_instance_id: str
+    topic_id: str
+    topic_code: str
+    template_id: str
+    objective_ids: tuple[str, ...]
+    educational_package_id: str | None = None
+    educational_package_mode: str | None = None
+    educational_campaign_day: str | int | None = None
+    certified_mission_id: str | None = None
+    selection_reasons: tuple[str, ...] = ()
+    curriculum_provenance: dict | None = None
+    calibration_notes: tuple[str, ...] = ()
+    selection_trace: dict = field(default_factory=dict)

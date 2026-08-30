@@ -25,6 +25,8 @@ class EducationalEventType(StrEnum):
     TOPIC_COMPLETED = "topic_completed"
     JOURNEY_ADVANCED = "journey_advanced"
     SYLLABUS_COMPLETED = "syllabus_completed"
+    # ADR-027 M0: Adaptive Decision Engine audit (additive; observational)
+    DECISION_RECORDED = "decision_recorded"
 
 
 @dataclass(frozen=True)
