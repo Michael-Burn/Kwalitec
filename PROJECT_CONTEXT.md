@@ -1,6 +1,6 @@
 # Kwalitec — Project Context
 
-This document is the primary orientation guide for developers and AI agents working on Kwalitec. Read it before making architectural or product decisions. For structural detail, see [ARCHITECTURE.md](ARCHITECTURE.md). For contribution workflow, see [CONTRIBUTING.md](CONTRIBUTING.md). Cursor Agent rules live under [`.cursor/rules/`](.cursor/rules/).
+This document is the primary orientation guide for developers and AI agents working on Kwalitec. Read it before making architectural or product decisions. For structural detail, see [ARCHITECTURE.md](ARCHITECTURE.md). For contribution workflow, see [CONTRIBUTING.md](CONTRIBUTING.md). Cursor Agent rules live under [`.cursor/rules/`](.cursor/rules/). Claude as chief architect should start from [CLAUDE.md](CLAUDE.md).
 
 ---
 
@@ -22,8 +22,8 @@ Kwalitec is **not** a generic study planner and **not** a black-box AI tutor. Co
 |---|---|
 | Curriculum Intelligence Engine | Source of truth for official syllabuses (V1 flat + V2 hierarchical) |
 | Study Plan Wizard | Exam-date-driven planning across available study days |
-| Daily Mission Optimizer | Prioritized session tasks from urgency, readiness, and workload |
-| Adaptive Learning | Spaced repetition and mastery scoring from real attempts |
+| Learning Mode progression | Syllabus-order topic selection (first incomplete leaf); Consolidation Mission checkpoints at exam-proximity cadence (not spaced-repetition scheduling) |
+| Mastery scoring | Estimated Knowledge (`mastery_score`) updated from real attempts |
 | Exam Readiness Analytics | Coverage, projected pace, and pass-risk signals |
 | Recommendation Engine | Deterministic, explainable “study next” suggestions |
 | Decision Journal | Audit trail of accepted/dismissed recommendations |
@@ -125,9 +125,10 @@ Business logic lives in `app/services/`. Representative services:
 | `curriculum_service.py` | DB curriculum import, section/topic traversal, progress helpers |
 | `curriculum_engine_service.py` | Thin bridge over in-memory `CurriculumRepository` |
 | `study_plan_service.py` | Study plan CRUD, wizard persistence, active plan |
-| `planning_service.py` | Exam-date distribution and rebalancing |
-| `mission_service.py` / `mission_optimizer.py` | Daily mission generation and task prioritization |
-| `adaptive_learning_service.py` | Mastery / spaced-repetition scheduling |
+| `planning_service.py` | Exam-date distribution/rebalancing; Learning Mode topic selection; today's mission generation |
+| `mission_service.py` | Daily mission persistence and session helpers |
+| `mission_optimizer.py` | Quarantined balanced-mission helper; no production callers (EP-002.2) |
+| `adaptive_learning_service.py` | Mastery / Estimated Knowledge scoring from attempts (review dates may be written; Learning Mode does not use them for topic selection) |
 | `learning_service.py` | Attempts, mistakes, learning records |
 | `readiness_service.py` | Exam readiness metrics |
 | `recommendation_service.py` | Explainable next-step recommendations |
@@ -148,20 +149,24 @@ query the vector store directly.
 
 The Student Digital Twin foundation (SDT-001) lives under
 `app/domain/student_digital_twin/` and
-`app/application/student_digital_twin/`. It is the canonical learner-state
-aggregate. Educational reasoning is produced by the Educational Reasoning
+`app/application/student_digital_twin/`. It is the intended canonical
+learner-state aggregate; production flags default OFF
+(`ENABLE_DIGITAL_TWIN` / `ENABLE_DIGITAL_TWIN_AUTHORITY`), and live student
+missions remain Stage A `PlanningService` until an explicit Twin-first cutover.
+Educational reasoning is produced by the Educational Reasoning
 Engine (SDT-002) under `app/domain/educational_reasoning/` and
 `app/application/educational_reasoning/`. `StudentReasoningService` delegates
 to the rule registry rather than implementing educational logic directly.
 Curriculum evidence for gaps must come from `CurriculumRetrievalService`.
 The Learning Graph (SDT-003) under `app/domain/learning_graph/` and
-`app/application/learning_graph/` is the canonical representation of how each
-learner's knowledge is interconnected (prerequisites, dependencies, recovery
-paths). Educational reasoning traverses the Learning Graph rather than treating
-concepts as isolated. The Adaptive Mission Engine (AME-001) under
-`app/domain/adaptive_mission/` and `app/application/adaptive_mission/` converts
-Twin decisions + Learning Graph structure into one actionable daily mission
-per learner — it never performs educational reasoning itself. The Assessment
+`app/application/learning_graph/` is the intended canonical representation of
+how each learner's knowledge is interconnected (prerequisites, dependencies,
+recovery paths). Educational reasoning traverses the Learning Graph rather
+than treating concepts as isolated. The Adaptive Mission Engine (AME-001) under
+`app/domain/adaptive_mission/` and `app/application/adaptive_mission/` is built
+to convert Twin decisions + Learning Graph structure into one actionable daily
+mission per learner; it is not the live student mission path today and never
+performs educational reasoning itself. The Assessment
 & Learning Feedback Pipeline (AP-001) under `app/domain/assessment_pipeline/`
 and `app/application/assessment_pipeline/` records learner activity as
 immutable assessment events / observations and updates the Twin only through
@@ -169,12 +174,12 @@ immutable assessment events / observations and updates the Twin only through
 evidence automatically. The Evidence-Backed Intelligent Tutor (TUTOR-001)
 under `app/domain/intelligent_tutor/` and
 `app/application/intelligent_tutor/` explains educational decisions already
-produced by Twin / Reasoning / Graph / Missions / Assessment — it never
+produced by Twin / Reasoning / Graph / Missions / Assessment. It never
 performs educational reasoning itself. Response prose is generated behind
 `TutorGenerationPort` (deterministic placeholder in V1; future LLM adapters
 are replaceable without changing Tutor architecture). Conversation memory is
-session-scoped only; the Twin remains the learner-state system of record.
-Founder diagnostics: `/founder/twin/*` (Twin),
+session-scoped only; the Twin remains the learner-state system of record when
+Twin authority is enabled. Founder diagnostics: `/founder/twin/*` (Twin),
 `/founder/reasoning/*` (engine audit), `/founder/learning-graph/*` (graph),
 `/founder/missions/*` (adaptive missions), `/founder/assessment/*`
 (assessment pipeline), `/founder/tutor/*` (Intelligent Tutor).
@@ -248,7 +253,7 @@ As of Version1-RC2 / V1SP documentation baseline (Internal Alpha operational bas
 | Flask app factory, auth, CSRF, security headers | Stable; production cookies + redirect hardening (V1SP-001B); re-verified V1SP-004 |
 | Study plan wizard, study sessions, analytics, settings | Stable for Internal Alpha |
 | Learning + Revision workspaces | Stable (V1SP-001A lifecycle) |
-| Adaptive learning, readiness, recommendations | Stable (Stage A product path; Twin domain packages coexist) |
+| Mastery scoring, readiness, recommendations | Stable (Stage A product path; Twin domain packages coexist; Adaptive Engine / Twin authority flags default OFF) |
 | Curriculum Engine (in-memory JSON) | Stable; V1 + V2 support in engine/services |
 | Founder Command Centre (`/founder`) | Live SoT — Overview, **Operational Health**, Feedback, Research, Vision Journal, Releases (IAHF-003+, V1SP-001C/D) |
 | Brand pack (`app/static/branding/`) | Canonical SVG + optimised rasters (IAHF-004A/B; V1SP-001B) |
@@ -280,6 +285,8 @@ Release references: `knowledge/releases/RC2_OPERATIONAL_READINESS_REPORT.md`, `k
 ---
 
 ## AI Workflow
+
+**Division of labour:** Claude (chief architect) uses [CLAUDE.md](CLAUDE.md); Cursor (implementation engineer) uses this file, [ARCHITECTURE.md](ARCHITECTURE.md), and `.cursor/rules/`.
 
 Future Cursor Agent sessions should:
 
@@ -313,6 +320,7 @@ ruff check app/ tests/
 
 | Document | Use when |
 |---|---|
+| [CLAUDE.md](CLAUDE.md) | Claude chief-architect briefing (product, gates, current state, handoffs) |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Need diagrams, layers, dependency flow |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Branching, commits, PRs, milestones |
 | [README.md](README.md) | Setup, deploy, endpoint overview |
