@@ -1,0 +1,174 @@
+{
+  "package_version": "numeric-phase0-infra-1.0.0",
+  "publication_version": "numeric-phase0-infra-1.0.0",
+  "status": "publication_approved",
+  "campaign_id": "NUMERIC-PHASE0-INFRA",
+  "subject_id": "CS1",
+  "cmp_edition": "Synthetic fixture — not live curriculum content",
+  "certification_refs": [
+    "tests/fixtures/numeric_checkpoint_phase0_packages/numeric_phase0_reference.json"
+  ],
+  "author_id": "numeric-phase0-infra",
+  "authored_at": "2026-08-30",
+  "topic_code": "99.9.8",
+  "topic_title": "Numeric checkpoint Phase 0 infrastructure reference",
+  "topic_id": "NUMERIC-PHASE0-REF",
+  "package_id": "CS1-NUMERIC-PHASE0-REF",
+  "campaign_day": "INFRA-D0",
+  "topic_aliases": [
+    "NUMERIC-PHASE0-REF",
+    "99.9.8"
+  ],
+  "topic_title_keywords": [
+    "numeric",
+    "phase0",
+    "infrastructure",
+    "reference"
+  ],
+  "golden_id": "GOLDEN-NUMERIC-PHASE0-REF",
+  "mode": "learning",
+  "mission": {
+    "mission_id": "msn-numeric-phase0-ref",
+    "display_title": "Numeric Phase 0 reference Mission",
+    "mission_purpose": "Prove package JSON → loader → substance → numeric scoring path.",
+    "tutor_intent": "Infrastructure proof only.",
+    "educational_intent": "Synthetic fixture for numeric checkpoint wiring.",
+    "learning_objective": "Score a numeric checkpoint with and without custom tolerance.",
+    "concept_focus": "Numeric response_type and numeric_tolerance wiring.",
+    "prior_bridge": "N/A — synthetic fixture.",
+    "why_now": "Phase 0 infrastructure needs a reference package before numeric content conversion.",
+    "expected_benefit": "Custom tolerance scores; default 1e-6 preserved when omitted.",
+    "explainability": "Assigned as synthetic fixture for Phase 0 numeric infrastructure.",
+    "success_criteria": [
+      "Custom tolerance is honoured.",
+      "Omitted tolerance falls back to 1e-6."
+    ],
+    "task_descriptions": [
+      "Answer the synthetic numeric checkpoints."
+    ],
+    "estimated_study_time_minutes": {
+      "min": 10,
+      "max": 15
+    }
+  },
+  "session": {
+    "session_id": "ssn-numeric-phase0-ref",
+    "session_educational_purpose": "Infrastructure proof for numeric scoring.",
+    "session_tutor_purpose": "Exercise the numeric path only.",
+    "duration_budget_minutes": {
+      "min": 10,
+      "max": 15
+    },
+    "wrap_up": "Synthetic numeric Phase 0 reference session complete.",
+    "confidence_prompt": "Infrastructure fixture — not for student confidence measurement."
+  },
+  "reading_guidance": {
+    "lead_line": "Synthetic reading guidance for numeric Phase 0.",
+    "focus_questions": [
+      "Does custom numeric_tolerance affect scoring?"
+    ],
+    "misconception_watch": [
+      "Treating this fixture as live curriculum content."
+    ],
+    "open_point": "Open the synthetic numeric path.",
+    "stop_condition": "Stop after both checkpoints score.",
+    "out_of_scope_today": [
+      "Live CS1 content conversion.",
+      "Active Recall numeric conversion."
+    ],
+    "annotation_task": "Note the accepted value and tolerance.",
+    "attempt_before_reveal": "Enter a number before reading the model answer.",
+    "exit_line": "Leave the fixture once scoring is proven.",
+    "return_cue": "Return only to re-run the infrastructure proof.",
+    "pause_points": [
+      {
+        "id": "PP1",
+        "cue": "Confirm response_type is numeric before submitting.",
+        "student_action": "Confirm"
+      }
+    ],
+    "reentry_line": "Welcome back to the numeric Phase 0 fixture."
+  },
+  "knowledge_checks": [
+    {
+      "episode_id": "lep-numeric-phase0-ar-01",
+      "kind": "active_recall",
+      "item_id": "numeric-phase0-ar-01",
+      "title": "Active Recall: Phase 0 (still short_structured)",
+      "prompt": "Name the response type this Active Recall item uses (infrastructure control).",
+      "response_type": "short_structured",
+      "body": "Control item — remains short_structured so AR is untouched by numeric Phase 0.",
+      "hints": [
+        "Look at response_type in the package JSON."
+      ],
+      "accepted_keywords": [
+        "short_structured",
+        "textarea"
+      ],
+      "explanation": "Active Recall stays short_structured in numeric Phase 0.",
+      "model_answer": "short_structured",
+      "common_mistake": "Assuming Phase 0 converted Active Recall to numeric.",
+      "success_criteria": [
+        "Names short_structured."
+      ]
+    },
+    {
+      "episode_id": "lep-numeric-phase0-cp-tol",
+      "kind": "checkpoint",
+      "item_id": "numeric-phase0-cp-tol",
+      "title": "Checkpoint: Phase 0 numeric with custom tolerance",
+      "prompt": "What is 1/2 as a decimal?",
+      "response_type": "numeric",
+      "body": "Synthetic numeric checkpoint with numeric_tolerance 0.01.",
+      "hints": [
+        "Enter a decimal near 0.5."
+      ],
+      "accepted_keywords": [
+        "0.5"
+      ],
+      "numeric_tolerance": 0.01,
+      "explanation": "1/2 = 0.5; custom tolerance allows nearby values within 0.01.",
+      "model_answer": "0.5",
+      "common_mistake": "Entering a fraction instead of a decimal.",
+      "success_criteria": [
+        "Enters a value within 0.01 of 0.5."
+      ]
+    },
+    {
+      "episode_id": "lep-numeric-phase0-cp-default",
+      "kind": "checkpoint",
+      "item_id": "numeric-phase0-cp-default",
+      "title": "Checkpoint: Phase 0 numeric with default tolerance",
+      "prompt": "What is 3 × 0.1?",
+      "response_type": "numeric",
+      "body": "Synthetic numeric checkpoint without numeric_tolerance field.",
+      "hints": [
+        "Exact decimal expected under the scorer default."
+      ],
+      "accepted_keywords": [
+        "0.3"
+      ],
+      "explanation": "3 × 0.1 = 0.3; omitted tolerance uses scorer default 1e-6.",
+      "model_answer": "0.3",
+      "common_mistake": "Rounding away from 0.3.",
+      "success_criteria": [
+        "Enters 0.3 within 1e-6."
+      ]
+    }
+  ],
+  "reflection": {
+    "framing": "Infrastructure fixture reflection.",
+    "prompt": "Did the numeric path score correctly?",
+    "prompts": [
+      "Did custom tolerance accept a nearby value?",
+      "Did omitted tolerance keep the 1e-6 default?"
+    ]
+  },
+  "tomorrow_preview": {
+    "next_topic_code": "99.9.8",
+    "next_topic_title": "Numeric content conversion (next phase)",
+    "continuity_line": "After infrastructure, convert real checkpoint content.",
+    "light_prep_cue": "No prep — fixture only.",
+    "student_facing": "Infrastructure complete; content conversion follows."
+  }
+}

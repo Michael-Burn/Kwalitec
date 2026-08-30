@@ -540,6 +540,20 @@
       </label>
       {% endfor %}
     </fieldset>
+    {% elif s.response_type == 'numeric' %}
+    <label class="ds-session-answer__label" for="{{ answer_form.response.id }}" id="session-answer-label">
+      {{ s.answer_prompt }}
+    </label>
+    <input
+      class="ds-input"
+      type="text"
+      inputmode="decimal"
+      name="{{ answer_form.response.name }}"
+      id="{{ answer_form.response.id }}"
+      autocomplete="off"
+      required
+      aria-labelledby="session-answer-label"
+    >
     {% else %}
     <label class="ds-session-answer__label" for="{{ answer_form.response.id }}" id="session-answer-label">
       {{ s.answer_prompt }}

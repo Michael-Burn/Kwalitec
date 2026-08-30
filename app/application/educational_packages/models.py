@@ -35,6 +35,8 @@ class KnowledgeCheck:
     # MCQ fields — unused for short_structured; additive and optional.
     choices: tuple[KnowledgeCheckChoice, ...] = ()
     correct_choice_id: str = ""
+    # Numeric scoring — optional; None → scorer default 1e-6.
+    numeric_tolerance: float | None = None
 
 
 @dataclass(frozen=True)

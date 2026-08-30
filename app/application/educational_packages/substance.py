@@ -405,6 +405,22 @@ def _scoreable_from_check(
             else (c.id, c.label)
             for c in check.choices
         )
+    elif response is PracticeResponseType.NUMERIC:
+        # Never fall back to ("explain", "link") — those can never match a
+        # numeric response and would silently mark every answer wrong.
+        accepted = check.accepted_keywords
+        if not accepted:
+            raise ValueError(
+                f"numeric knowledge check {check.item_id or check.episode_id!r} "
+                "requires non-empty accepted_keywords "
+                "(authoring error: numeric items cannot use the "
+                "short_structured explain/link fallback)"
+            )
+        answer_key = AnswerKey(
+            accepted=accepted,
+            numeric_tolerance=check.numeric_tolerance,
+        )
+        choices = ()
     else:
         answer_key = AnswerKey(
             accepted=check.accepted_keywords or ("explain", "link"),

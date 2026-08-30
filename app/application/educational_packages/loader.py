@@ -169,6 +169,15 @@ def _normalize_code(code: str) -> str:
     return text
 
 
+def _parse_optional_float(raw: Any) -> float | None:
+    """Parse an optional numeric_tolerance (or similar) JSON value."""
+    if raw is None:
+        return None
+    if isinstance(raw, str) and not raw.strip():
+        return None
+    return float(raw)
+
+
 def _parse_worked_example(raw: Any) -> WorkedExample | None:
     """Parse optional top-level ``worked_example``; None when absent or empty."""
     if not isinstance(raw, dict) or not raw:
@@ -318,6 +327,9 @@ def _parse_package(
                 ),
                 choices=tuple(choices),
                 correct_choice_id=str(item.get("correct_choice_id") or "").strip(),
+                numeric_tolerance=_parse_optional_float(
+                    item.get("numeric_tolerance")
+                ),
             )
         )
 
