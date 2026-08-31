@@ -61,12 +61,36 @@ DEFAULT_CHECKLIST: tuple[dict[str, Any], ...] = (
 class LearningSessionPersistenceAdapter:
     """Durable (or in-memory) store for LearningSessionRuntime bindings."""
 
-    def __init__(self, *, store: SessionDocumentStore | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        store: SessionDocumentStore | None = None,
+        qualifying_study_day_index: Any | None = None,
+        enable_qualifying_study_day_index: bool = True,
+    ) -> None:
         self._store = store or SessionDocumentStore()
+        if qualifying_study_day_index is not None:
+            self._qualifying_index = qualifying_study_day_index
+        elif enable_qualifying_study_day_index:
+            from app.infrastructure.adapters.learner_progress import (
+                qualifying_study_day_persistence,
+            )
+
+            self._qualifying_index = (
+                qualifying_study_day_persistence.QualifyingStudyDayIndexPersistence(
+                    store=self._store
+                )
+            )
+        else:
+            self._qualifying_index = None
 
     @property
     def store(self) -> SessionDocumentStore:
         return self._store
+
+    @property
+    def qualifying_study_day_index(self) -> Any | None:
+        return self._qualifying_index
 
     def save_binding(
         self,
@@ -460,6 +484,8 @@ class LearningSessionPersistenceAdapter:
                 ),
             }
             self._store.save(NS_HANDLE, key, handle_doc)
+        if self._qualifying_index is not None:
+            self._qualifying_index.record_from_evidence_package(document)
         return deepcopy(document)
 
     def load_evidence_package(self, *, session_id: str) -> dict[str, Any] | None:

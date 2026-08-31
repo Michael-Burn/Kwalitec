@@ -966,6 +966,20 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         notes="Enrolment / checkpoint hooks.",
     ),
     PackageEntry(
+        path="app/application/learner_progress",
+        layer="application",
+        responsibility=(
+            "Honest Progress read-side: qualifying study days, streaks, milestones"
+        ),
+        owner="Learner Progress",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Flag-independent index over Accepted Educational+ evidence packages. "
+            "Does not write Twin state."
+        ),
+    ),
+    PackageEntry(
         path="app/application/student_curriculum_binding",
         layer="application",
         responsibility="Student ↔ curriculum binding",
