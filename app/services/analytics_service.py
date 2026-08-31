@@ -32,6 +32,10 @@ class AnalyticsService:
         For each complete week (Monday-Sunday), computes a snapshot of
         readiness at the end of that week.
 
+        Coverage and average Estimated Knowledge reflect the current Study
+        Progress and Twin snapshot (not historical point-in-time replay).
+        Review discipline is filtered per week from mission history.
+
         Args:
             user_id: The ID of the user.
             weeks: Number of past weeks to include (default 12).
@@ -42,40 +46,10 @@ class AnalyticsService:
         today = date.today()
         result = []
 
-        leaf_ids = AnalyticsService._leaf_topic_ids()
-        total_leaf = len(leaf_ids)
+        metrics = ReadinessService._study_progress_metrics(user_id)
+        coverage_pct = float(metrics["coverage_percentage"])
+        avg_mastery = metrics["avg_estimated_knowledge"]
 
-        from app.application.student_twin.cutover import ek_display_0_100
-        from app.services.twin_cutover_service import (
-            topic_ek_by_orm_id,
-        )
-
-        progress_records = []
-        if leaf_ids:
-            progress_records = TopicProgress.query.filter(
-                TopicProgress.user_id == user_id,
-                TopicProgress.topic_id.in_(leaf_ids),
-            ).all()
-
-        started_count = 0
-        mastered_count = 0
-        mastery_sum = 0.0
-        ek_map = topic_ek_by_orm_id(user_id=user_id)
-        scores = [
-            s
-            for s in (ek_display_0_100(f) for f in ek_map.values())
-            if s is not None
-        ]
-        started_count = len(scores)
-        mastery_sum = sum(scores)
-        for p in progress_records:
-            if p.current_stage == TopicProgress.STAGE_MASTERED:
-                mastered_count += 1
-
-        coverage_pct = (started_count / total_leaf * 100) if total_leaf > 0 else 0.0
-        avg_mastery = (mastery_sum / started_count) if started_count > 0 else 0.0
-
-        # Load missions once; filter per week in memory (same educational formula).
         missions = Mission.query.filter(Mission.user_id == user_id).all()
 
         for i in range(weeks - 1, -1, -1):
@@ -94,17 +68,19 @@ class AnalyticsService:
                 (completed / total_missions * 100) if total_missions > 0 else 0.0
             )
 
-            score = (
-                (coverage_pct * 0.50)
-                + (avg_mastery * 0.30)
-                + (review_discipline * 0.20)
+            score, _ = ReadinessService._composite_readiness_score(
+                coverage_pct=coverage_pct,
+                avg_mastery=avg_mastery,
+                review_discipline=review_discipline,
             )
 
             result.append({
                 "week_label": label,
-                "readiness_score": round(score, 1),
+                "readiness_score": score,
                 "coverage_pct": round(coverage_pct, 1),
-                "avg_mastery": round(avg_mastery, 1),
+                "avg_mastery": (
+                    round(avg_mastery, 1) if avg_mastery is not None else None
+                ),
                 "review_discipline": round(review_discipline, 1),
             })
 

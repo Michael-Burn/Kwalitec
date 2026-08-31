@@ -41,7 +41,9 @@ class ExamTimeline:
         coverage_pct = coverage["coverage_percentage"]
         mastery_pct = readiness["avg_mastery"]
 
-        phase = ExamTimeline._determine_phase(days_remaining, coverage_pct, mastery_pct)
+        phase = ExamTimeline._determine_phase(
+            days_remaining, coverage_pct, mastery_pct or 0.0
+        )
         status = ExamTimeline._determine_status(
             days_remaining=days_remaining,
             coverage_pct=coverage_pct,
@@ -56,7 +58,9 @@ class ExamTimeline:
             "exam_date": exam_date.isoformat(),
             "days_remaining": days_remaining,
             "curriculum_coverage_pct": round(coverage_pct, 1),
-            "average_mastery_pct": round(mastery_pct, 1),
+            "average_mastery_pct": (
+                round(mastery_pct, 1) if mastery_pct is not None else None
+            ),
             "current_phase": phase["name"],
             "phase_description": phase["description"],
             "next_phase": phase["next_phase"],

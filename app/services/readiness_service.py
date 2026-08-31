@@ -22,6 +22,8 @@ from typing import Any
 
 from sqlalchemy.orm import joinedload
 
+from app.application.adaptive_decision.types import POLICY_V1_MIN_EVIDENCE
+from app.application.student_twin.query import TopicKnowledgeFact
 from app.extensions import db
 from app.models.curriculum import Topic
 from app.models.learning import Mistake, StudyAttempt
@@ -29,6 +31,13 @@ from app.models.mission import Mission
 from app.models.topic_progress import TopicProgress
 
 logger = logging.getLogger(__name__)
+
+# Twin evidence floor (ADR-027 Phase 3 Policy V1) and mastery threshold aligned
+# with AdaptiveLearningService.get_mastered_topics (90% display scale).
+_EK_MASTERED_THRESHOLD = 90.0
+_COMPOSITE_WEIGHT_COVERAGE = 0.50
+_COMPOSITE_WEIGHT_MASTERY = 0.30
+_COMPOSITE_WEIGHT_REVIEW = 0.20
 
 
 @dataclass(frozen=True)
@@ -409,9 +418,11 @@ class ReadinessService:
         Returns:
             dict with keys: score, coverage_pct, avg_mastery, review_discipline,
                            total_topics, topics_started, topics_completed,
-                           topics_mastered.
+                           topics_mastered, topics_with_ek_evidence,
+                           mastery_available.
             ``topics_started`` mirrors ``topics_completed`` for API stability
-            (Study Progress completed count — not revision_count).
+            (Study Progress completed count). ``topics_with_ek_evidence`` counts
+            leaf topics with evidence-backed Twin Estimated Knowledge.
         """
         metrics = ReadinessService._study_progress_metrics(
             user_id, read_only=read_only
@@ -419,40 +430,49 @@ class ReadinessService:
         total_topics = metrics["total_topics"]
         topics_completed = metrics["topics_completed"]
         topics_mastered = metrics["topics_mastered"]
+        topics_with_ek_evidence = metrics["topics_with_ek_evidence"]
         coverage_pct = metrics["coverage_percentage"]
         avg_mastery_score = metrics["avg_estimated_knowledge"]
+        mastery_available = avg_mastery_score is not None
 
         if total_topics == 0:
             return {
                 "score": 0.0,
                 "coverage_pct": 0.0,
-                "avg_mastery": 0.0,
+                "avg_mastery": None,
+                "mastery_available": False,
                 "review_discipline": 0.0,
                 "total_topics": 0,
                 "topics_started": 0,
                 "topics_completed": 0,
                 "topics_mastered": 0,
+                "topics_with_ek_evidence": 0,
             }
 
         review_completion = ReadinessService.get_review_completion_rate(user_id)
         review_discipline = review_completion["completion_rate"]
 
-        # Weighted composite: Coverage 50%, Estimated Knowledge 30%, Review 20%
-        score = (
-            (coverage_pct * 0.50)
-            + (avg_mastery_score * 0.30)
-            + (review_discipline * 0.20)
+        score, _ = ReadinessService._composite_readiness_score(
+            coverage_pct=coverage_pct,
+            avg_mastery=avg_mastery_score,
+            review_discipline=review_discipline,
         )
 
         return {
-            "score": round(score, 1),
+            "score": score,
             "coverage_pct": round(coverage_pct, 1),
-            "avg_mastery": round(avg_mastery_score, 1),
+            "avg_mastery": (
+                round(avg_mastery_score, 1)
+                if avg_mastery_score is not None
+                else None
+            ),
+            "mastery_available": mastery_available,
             "review_discipline": round(review_discipline, 1),
             "total_topics": total_topics,
             "topics_started": topics_completed,
             "topics_completed": topics_completed,
             "topics_mastered": topics_mastered,
+            "topics_with_ek_evidence": topics_with_ek_evidence,
         }
 
     # ── Curriculum Coverage ───────────────────────────────────────────
@@ -555,21 +575,29 @@ class ReadinessService:
         today = date.today()
         next_7_end = today + timedelta(days=7)
 
+        from app.services.twin_cutover_service import topic_ek_by_orm_id
+
+        ek_map = topic_ek_by_orm_id(user_id=user_id)
+
         rows = (
             TopicProgress.query.filter(
                 TopicProgress.user_id == user_id,
                 TopicProgress.next_review_date.isnot(None),
-                TopicProgress.current_stage != TopicProgress.STAGE_MASTERED,
                 TopicProgress.next_review_date <= next_7_end,
             )
-            .with_entities(TopicProgress.next_review_date)
+            .with_entities(
+                TopicProgress.topic_id,
+                TopicProgress.next_review_date,
+            )
             .all()
         )
 
         overdue = 0
         due_today = 0
         next_7_days = 0
-        for (review_date,) in rows:
+        for topic_id, review_date in rows:
+            if ReadinessService._is_ek_mastered(ek_map.get(topic_id)):
+                continue
             if isinstance(review_date, datetime):
                 review_date = review_date.date()
             if review_date < today:
@@ -865,8 +893,9 @@ class ReadinessService:
                 "total_topics": 0,
                 "topics_completed": 0,
                 "topics_mastered": 0,
+                "topics_with_ek_evidence": 0,
                 "coverage_percentage": 0.0,
-                "avg_estimated_knowledge": 0.0,
+                "avg_estimated_knowledge": None,
             }
 
         leaf_ids = [t.id for t in leaf_topics]
@@ -885,6 +914,7 @@ class ReadinessService:
 
         topics_completed = 0
         topics_mastered = 0
+        topics_with_ek_evidence = 0
         knowledge_scores: list[float] = []
         for topic in leaf_topics:
             prog = progress_map.get(topic.id)
@@ -892,20 +922,25 @@ class ReadinessService:
                 continue
             if prog.completed:
                 topics_completed += 1
-            if prog.current_stage == TopicProgress.STAGE_MASTERED:
-                topics_mastered += 1
-            score = ek_display_0_100(ek_map.get(topic.id))
+            fact = ek_map.get(topic.id)
+            score = ek_display_0_100(fact)
             if score is not None:
+                topics_with_ek_evidence += 1
                 knowledge_scores.append(score)
+            if ReadinessService._is_ek_mastered(fact):
+                topics_mastered += 1
 
         coverage_pct = (topics_completed / total_topics) * 100.0
         avg_ek = (
-            sum(knowledge_scores) / len(knowledge_scores) if knowledge_scores else 0.0
+            sum(knowledge_scores) / len(knowledge_scores)
+            if knowledge_scores
+            else None
         )
         return {
             "total_topics": total_topics,
             "topics_completed": topics_completed,
             "topics_mastered": topics_mastered,
+            "topics_with_ek_evidence": topics_with_ek_evidence,
             "coverage_percentage": coverage_pct,
             "avg_estimated_knowledge": avg_ek,
         }
@@ -1043,15 +1078,58 @@ class ReadinessService:
         )
 
     @staticmethod
-    def _average_mastery(user_id: int) -> float:
+    def _average_mastery(user_id: int) -> float | None:
         """Calculate average Estimated Knowledge across evidence-backed topics.
 
         Args:
             user_id: The ID of the user.
 
         Returns:
-            float: Average Twin Estimated Knowledge scalar (0-100) where
-            authorised practice evidence exists.
+            float | None: Average Twin Estimated Knowledge scalar (0-100) where
+            authorised practice evidence exists; None when not yet assessed.
         """
         metrics = ReadinessService._study_progress_metrics(user_id)
-        return float(metrics["avg_estimated_knowledge"])
+        avg = metrics["avg_estimated_knowledge"]
+        return float(avg) if avg is not None else None
+
+    @staticmethod
+    def _is_ek_mastered(fact: TopicKnowledgeFact | None) -> bool:
+        """True when Twin EK meets evidence floor and mastery threshold."""
+        from app.application.student_twin.cutover import ek_display_0_100
+
+        if fact is None or not fact.has_estimated_knowledge:
+            return False
+        if int(fact.evidence_count or 0) < POLICY_V1_MIN_EVIDENCE:
+            return False
+        score = ek_display_0_100(fact)
+        return score is not None and score >= _EK_MASTERED_THRESHOLD
+
+    @staticmethod
+    def _composite_readiness_score(
+        *,
+        coverage_pct: float,
+        avg_mastery: float | None,
+        review_discipline: float,
+    ) -> tuple[float, bool]:
+        """Weighted composite with re-normalisation when mastery is unavailable.
+
+        Returns:
+            tuple of (score 0-100, mastery_available).
+        """
+        mastery_available = avg_mastery is not None
+        components: list[tuple[str, float, float]] = [
+            ("coverage", coverage_pct, _COMPOSITE_WEIGHT_COVERAGE),
+            ("review", review_discipline, _COMPOSITE_WEIGHT_REVIEW),
+        ]
+        if mastery_available:
+            components.insert(
+                1,
+                ("mastery", float(avg_mastery), _COMPOSITE_WEIGHT_MASTERY),
+            )
+        total_weight = sum(weight for _name, _value, weight in components)
+        if total_weight <= 0:
+            return 0.0, mastery_available
+        score = sum(
+            value * weight for _name, value, weight in components
+        ) / total_weight
+        return round(score, 1), mastery_available

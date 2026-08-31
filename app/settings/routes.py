@@ -275,7 +275,11 @@ def export_weekly_pdf():
     lines.append("─── Overview ─────────────────────────────────")
     lines.append(f"Overall Readiness:      {readiness['score']:.0f}%")
     lines.append(f"Curriculum Coverage:    {curriculum_coverage['coverage_percentage']:.0f}%")
-    lines.append(f"Average Estimated Knowledge: {readiness['avg_mastery']:.0f}%")
+    avg_mastery = readiness.get("avg_mastery")
+    if avg_mastery is not None:
+        lines.append(f"Average Estimated Knowledge: {avg_mastery:.0f}%")
+    else:
+        lines.append("Average Estimated Knowledge: not yet assessed")
     lines.append(f"Current Streak:         {weekly_report.get('current_streak', 0)} days")
     lines.append("")
     lines.append("─── This Week ────────────────────────────────")

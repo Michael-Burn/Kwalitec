@@ -212,7 +212,8 @@
                 </div>
                 <h2 class="command-card-title">Estimated Knowledge</h2>
             </div>
-            {% if readiness and readiness.avg_mastery is defined and readiness.topics_started and readiness.topics_started > 0 %}
+            {% set ek_topic_count = readiness.topics_with_ek_evidence if readiness.topics_with_ek_evidence is defined else 0 %}
+            {% if readiness and readiness.avg_mastery is not none and readiness.mastery_available and ek_topic_count > 0 %}
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-knowledge">{{ readiness.avg_mastery|int }}%</span>
@@ -225,7 +226,7 @@
                     <div class="progress-bar" style="width: {{ readiness.avg_mastery }}%; background: var(--color-brand);"></div>
                 </div>
                 <p class="small mt-3 mb-0" style="color: var(--color-text-secondary);">
-                    Across {{ readiness.topics_started }} topic{{ 's' if readiness.topics_started != 1 else '' }} with recorded practice.
+                    Across {{ ek_topic_count }} topic{{ 's' if ek_topic_count != 1 else '' }} with recorded practice.
                 </p>
             </div>
             {% elif readiness_narrative and readiness_narrative.can_estimate %}
