@@ -87,7 +87,7 @@ def test_product_ratings_cover_required_areas():
 
 def test_v1_readiness_snapshot_includes_dogfood_sections():
     snapshot = build_v1_readiness_snapshot()
-    assert snapshot.programme in {"V1S-005", "V1S-006"}
+    assert snapshot.programme in {"V1S-005", "V1S-006", "V1S-008"}
     assert snapshot.dogfood_progress_summary
     assert len(snapshot.dogfood_progress) >= 1
     assert len(snapshot.resolved_issues) >= 1

@@ -43,15 +43,21 @@ def _login(client, user: User) -> None:
 
 
 def _clarity_fields_present(html: str) -> None:
-    """Home OS mission panel carries clarity (DX-005A); legacy edu-field attrs optional."""
-    assert "Why this mission" in html or 'data-edu-field="mission_rationale"' in html
+    """Home OS mission hero carries clarity (DX-005A); legacy edu-field attrs optional."""
     assert (
         "Why this mission" in html
+        or "Why now" in html
+        or 'data-edu-field="mission_rationale"' in html
+    )
+    assert (
+        "Why this mission" in html
+        or "Why now" in html
         or 'data-edu-field="why_today"' in html
         or 'data-mes-field="timeliness"' in html
     )
     assert (
         "Expected outcome" in html
+        or "After this" in html
         or 'data-edu-field="completion_definition"' in html
     )
 
@@ -79,10 +85,11 @@ class TestFirstDayExperience:
         home = client.get("/student/")
         assert home.status_code == 200
         body = home.get_data(as_text=True)
-        # DX-005A Home OS: mission panel (runtime-c edu panel optional).
+        # DX-005A Home OS: mission hero (runtime-c edu panel optional).
         assert (
             'data-educational-experience="runtime-c"' in body
             or 'data-ux="mission-panel"' in body
+            or 'data-ux="mission-hero"' in body
         )
         _clarity_fields_present(body)
         assert 'data-session-control="complete_runtime_c"' in body
@@ -266,7 +273,9 @@ class TestEducationalClarityAnswers:
         assert (
             'data-edu-field="what_comes_next"' in body
             or "Expected outcome" in body
+            or "After this" in body
             or "Why this mission" in body
+            or "Why now" in body
         )
 
 

@@ -147,7 +147,7 @@ def test_presentation_student_does_not_import_archived_mission_engines():
 
 def test_v1_readiness_snapshot_includes_ownership_sections():
     snapshot = build_v1_readiness_snapshot()
-    assert snapshot.programme in {"V1S-002", "V1S-003"}
+    assert snapshot.programme in {"V1S-002", "V1S-003", "V1S-008"}
     assert len(snapshot.curriculum_authority) == len(CURRICULUM_AUTHORITY_MATRIX)
     assert len(snapshot.mission_runtime) == len(MISSION_RUNTIME_MATRIX)
     assert len(snapshot.runtime_ownership) == len(RUNTIME_OWNERSHIP_MATRIX)

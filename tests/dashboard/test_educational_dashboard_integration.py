@@ -291,14 +291,15 @@ class TestInternalAlphaDailyPath:
     def test_alpha_env_renders_ei_card_with_real_composition(
         self, logged_in_client, user, monkeypatch
     ) -> None:
-        """Internal Alpha daily path: Study Plan → Calibration → EI card.
+        """Internal Alpha daily path: Study Plan → Calibration → Baseline → EI card.
 
-        After durable Twin persistence, TwinProvider no longer fabricates a
-        cold-start Twin on the read path. The real journey births a Twin via
-        Student Calibration (beginner skip here), then Dashboard retrieves it.
+        Calibration is deprecated; twin birth runs through Baseline finalize.
+        Legacy dashboard EI card remains on the Internal Alpha soak path when
+        sole runtime is off.
         """
         reset_shared_twin_repository()
         monkeypatch.setenv("KWALITEC_EI_INTERNAL_ALPHA", "1")
+        monkeypatch.setenv("KWALITEC_V2_SOLE_RUNTIME", "0")
 
         plan = StudyPlanService.create_study_plan(
             user_id=user.id,
@@ -315,16 +316,50 @@ class TestInternalAlphaDailyPath:
         )
         assert plan.curriculum_id is not None
 
-        # Real Alpha journey: explicit beginner skip births empty-history Twin.
         cal = logged_in_client.post(
             f"/calibration/after-plan/{plan.id}",
             data={"skip_beginner": "I'm starting from scratch — skip detail"},
-            follow_redirects=False,
+            follow_redirects=True,
         )
-        assert cal.status_code == 302
-        assert "/dashboard" in cal.headers["Location"]
+        assert cal.status_code == 200
+        assert b"Baseline" in cal.data or b"baseline" in cal.data.lower()
 
-        response = logged_in_client.get("/dashboard/")
+        for path, data in (
+            ("/baseline/step/1", {"experience": "brand_new"}),
+            ("/baseline/step/2", {"position_mode": "start_beginning"}),
+            ("/baseline/step/3", {"exam_history": "first_sitting"}),
+            ("/baseline/step/4", {"learning_objective": "recommend"}),
+            ("/baseline/step/5", {"confidence": "moderate"}),
+        ):
+            step = logged_in_client.post(path, data=data, follow_redirects=True)
+            assert step.status_code == 200
+        fin = logged_in_client.post(
+            "/baseline/step/6", data={}, follow_redirects=True
+        )
+        assert fin.status_code == 200
+
+        with (
+            _patch_flags(FLAGS_ON),
+            patch(
+                "app.dashboard.routes.build_twin_provider",
+                return_value=__import__(
+                    "app.application.twin", fromlist=["TwinProvider"]
+                ).TwinProvider(
+                    source=type(
+                        "S",
+                        (),
+                        {
+                            "load": staticmethod(
+                                lambda student_id, *, context=None: _twin_for(
+                                    user.id
+                                )
+                            )
+                        },
+                    )()
+                ),
+            ),
+        ):
+            response = logged_in_client.get("/dashboard/")
         assert response.status_code == 200
         assert b'data-ei-recommendation-card="1"' in response.data
         assert b"Guidance" in response.data

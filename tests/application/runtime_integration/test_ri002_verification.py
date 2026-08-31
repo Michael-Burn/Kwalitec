@@ -31,15 +31,21 @@ from app.domain.educational_reasoning_engine.version import REASONING_VERSION
 
 AS_OF = datetime(2026, 7, 28, 12, 0, 0)
 
-# Modules that assemble student educational recommendations / framing.
-_STUDENT_SURFACE_MODULES = (
+# Legacy Runtime A / RI-002 surfaces that must still route through RIS.
+_RI002_RUNTIME_INTEGRATION_SURFACES = (
     Path("app/dashboard/routes.py"),
     Path("app/mission/routes.py"),
-    Path("app/presentation/student/views.py"),
     Path("app/presentation/session/views.py"),
     Path("app/application/student_experience/revision_service.py"),
     Path("app/infrastructure/adapters/educational_runtime_bridge/recommendation_adapter.py"),
 )
+
+# V1S-007 Runtime C canonical surfaces (Educational Runtime, not RIS).
+_RUNTIME_C_CANONICAL_SURFACES = (
+    Path("app/presentation/student/views.py"),
+)
+
+_STUDENT_SURFACE_MODULES = _RI002_RUNTIME_INTEGRATION_SURFACES + _RUNTIME_C_CANONICAL_SURFACES
 
 
 def _decision_view() -> DecisionView:
@@ -137,12 +143,18 @@ def test_fallback_telemetry_emitted_correctly(monkeypatch) -> None:
 
 
 def test_student_surfaces_route_through_runtime_integration_service() -> None:
-    """No new educational recommendation path may omit RuntimeIntegrationService."""
-    for path in _STUDENT_SURFACE_MODULES:
+    """Legacy surfaces use RIS; Runtime C Home/Journey use Educational Runtime."""
+    for path in _RI002_RUNTIME_INTEGRATION_SURFACES:
         text = path.read_text(encoding="utf-8")
         assert "runtime_integration" in text or "RuntimeIntegrationService" in text, (
             f"{path} must reference Runtime Integration"
         )
+    for path in _RUNTIME_C_CANONICAL_SURFACES:
+        text = path.read_text(encoding="utf-8")
+        assert (
+            "educational_runtime_engine" in text
+            or "EducationalExperienceService" in text
+        ), f"{path} must reference Educational Runtime (V1S-007 singularity)"
 
 
 def test_student_surfaces_do_not_import_educational_reasoning_engine() -> None:

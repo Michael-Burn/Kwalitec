@@ -78,7 +78,8 @@ def test_daily_mission_from_derived_template_and_completion_advances(ctx):
     )
     assert mission.status == "generated"
     assert mission.template_id.endswith(":learn")
-    assert "Study" in mission.title
+    assert mission.title
+    assert not mission.title.lower().startswith("study t")
     assert mission.task_descriptions
 
     # Idempotent for the same day

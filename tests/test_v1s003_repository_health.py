@@ -116,7 +116,7 @@ def test_engineering_standards_documents_exist():
 
 def test_v1_readiness_snapshot_includes_repository_health():
     snapshot = build_v1_readiness_snapshot()
-    assert snapshot.programme in {"V1S-003", "V1S-004", "V1S-005"}
+    assert snapshot.programme in {"V1S-003", "V1S-004", "V1S-005", "V1S-008"}
     assert snapshot.repository_health_summary
     assert len(snapshot.application_packages) == len(APPLICATION_PACKAGES)
     assert len(snapshot.engineering_quality) >= 4

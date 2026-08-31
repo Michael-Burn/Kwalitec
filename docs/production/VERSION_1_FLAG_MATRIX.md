@@ -30,19 +30,21 @@ This artefact **does not** flip flags. It documents current production intent.
 | `KWALITEC_EI_INTERNAL_ALPHA` | **ON** (`1`) | Indirect — Twin-first composer wiring; EI missions/explainability/progress remain OFF by code | Engineering + Product | RP-001 Alpha inventory | Unset — do **not** read as “all EI widgets ON” |
 | `KWALITEC_COMMERCIAL_LOOP` | **ON** (`1`) | Indirect — enables SR student-value bundle when child flags inherit | Product + Engineering | KWP-002 commercial profile | Set `0` / unset; redeploy |
 
-### 2.1 Deliberate hold — `SR_TWIN_DAILY_LOOP` (2026-08-30)
+### 2.1 Deliberate hold — `SR_TWIN_DAILY_LOOP` (2026-08-30, **resolved 2026-08-31**)
 
 | Field | Record |
 |-------|--------|
 | **What** | Twin daily-loop consumption / new Twin writes paused (`SR_TWIN_DAILY_LOOP=0` in `render.yaml`) |
-| **When** | 2026-08-30 |
-| **Why** | Architecture review (ADR-027) found multiple unreconciled Estimated Knowledge / mastery representations. Continuing Twin daily-loop writes only grows the volume needing eventual reconciliation; raw session evidence packages persist independently and remain replayable later. |
+| **When** | Hold recorded 2026-08-30; hold **ended 2026-08-31** (pre-deploy rigor pass) |
+| **Why (hold)** | Architecture review (ADR-027) found multiple unreconciled Estimated Knowledge / mastery representations. Continuing Twin daily-loop writes only grows the volume needing eventual reconciliation; raw session evidence packages persist independently and remain replayable later. |
+| **Why (resume)** | ADR-027 Phase 2 reconciliation is complete (Stages 1-4 committed). The Learner Twin Query Port is the canonical, unconditional Estimated Knowledge authority for Stack A and Runtime C readers. No reconciliation-in-progress reason remains to withhold new Twin writes. |
 | **Nature** | Deliberate hold — **not** a rollback of the underlying Twin capability, and **not** a change to `KWALITEC_COMMERCIAL_LOOP` or other SR_* commercial-bundle flags |
-| **Production default** | **OFF** (`0`) — explicit override; without this key the flag would inherit ON from `KWALITEC_COMMERCIAL_LOOP` |
-| **Data** | Existing Twin documents remain intact; nothing was deleted or modified. This hold affects **future writes only** |
+| **Production default (during hold)** | **OFF** (`0`) — explicit override; without this key the flag would inherit ON from `KWALITEC_COMMERCIAL_LOOP` |
+| **Production default (after resume)** | **ON** — inherits from `KWALITEC_COMMERCIAL_LOOP=1` via `_sr_bundle_flag` (explicit `SR_TWIN_DAILY_LOOP` entry removed from `render.yaml`) |
+| **Data** | Existing Twin documents remain intact; nothing was deleted or modified. The hold affected **future writes only** |
 | **Authority** | `docs/adr/ADR-027-student-knowledge-state-and-adaptive-decision-architecture.md` |
-| **Resume** | After ADR-027 reconciliation work: remove the `SR_TWIN_DAILY_LOOP` env entry (restore inheritance) or set to `1`, then redeploy |
-| **Deploy note** | Captured in version control; takes effect on production only at the next manual deploy (deploy was intentionally paused when this hold was recorded) |
+| **Resume action** | Removed `SR_TWIN_DAILY_LOOP` env entry from `render.yaml` (restore Commercial Loop inheritance); redeploy when deploys resume |
+| **Deploy note** | Hold captured in version control 2026-08-30; resume captured 2026-08-31. Takes effect on production only at the next manual deploy |
 
 ---
 

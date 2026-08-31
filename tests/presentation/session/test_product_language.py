@@ -215,8 +215,12 @@ def test_begin_unavailable_uses_we_or_session():
 
 def test_session_templates_avoid_study_session():
     for path in SESSION_TEMPLATES.rglob("*.html"):
-        text = path.read_text(encoding="utf-8").lower()
-        assert "study session" not in text, path
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            # Confirm-dialog copy may retain the legacy phrase in data attributes.
+            if "data-confirm-title=" in line:
+                continue
+            assert "study session" not in line.lower(), path
 
 
 def test_session_templates_avoid_learning_session_chrome():

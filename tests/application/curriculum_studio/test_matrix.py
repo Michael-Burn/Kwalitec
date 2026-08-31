@@ -42,8 +42,11 @@ def test_publication_checklist_matrix(mask):
     kwargs = {
         key: bool(mask & (1 << i)) for i, key in enumerate(FACT_KEYS)
     }
+    # EI-002A: intelligence certification is a separate readiness gate.
+    kwargs["intelligence_certified"] = True
     snap = studio.publication.update_facts("ws-1", **kwargs)
-    assert snap.ready_to_publish is (mask == 255)
+    ready = all(kwargs[k] for k in FACT_KEYS) and kwargs["intelligence_certified"]
+    assert snap.ready_to_publish is ready
     if mask == 255:
         assert snap.lifecycle_status == "ready"
         assert snap.blocking_codes == ()

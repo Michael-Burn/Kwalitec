@@ -283,10 +283,13 @@ def test_regression_empty_structure_fails_prepare():
 
 
 def test_regression_validation_requires_version():
+    """Reconciliation creates a Management version when workspace has none."""
     studio, _, _, _ = make_studio_with_ports()
     seed_workspace(studio, workspace_id="ws-nover")
-    with pytest.raises(ValidationError, match="requires version"):
-        studio.validation.validate_curriculum("ws-nover")
+    assert studio.registry.get_workspace("ws-nover").version_id is None
+    snap = studio.validation.validate_curriculum("ws-nover")
+    assert snap.passed is True
+    assert studio.registry.get_workspace("ws-nover").version_id
 
 
 def test_regression_approval_requires_validation():

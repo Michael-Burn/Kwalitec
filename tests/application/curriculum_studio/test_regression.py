@@ -40,7 +40,7 @@ def test_workspace_snapshot_mapping():
     ws = make_workspace(facts=make_ready_facts())
     snap = workspace_snapshot(ws)
     assert snap.ready_to_publish is True
-    assert snap.checklist_satisfied_count == 9
+    assert snap.checklist_satisfied_count == 10
 
 
 def test_workflow_snapshot_mapping():
@@ -84,7 +84,7 @@ def test_publication_snapshot_mapping():
     )
     snap = publication_snapshot(summary)
     assert snap.ready_to_publish is True
-    assert snap.checklist_item_count == 9
+    assert snap.checklist_item_count == 11
 
 
 def test_version_snapshot_mapping():
