@@ -33,7 +33,7 @@ class TestBrandThemeTokens:
             "--divider:",
         ):
             assert token in css, f"missing {token}"
-        assert "#3B4FB8" in css
+        assert "#1D3557" in css
         assert "#E8B02B" in css
         assert "#020D24" in css
 

@@ -2,6 +2,8 @@
 
 Values align with BI-000 / ``brand.css`` / ``tokens.css``. Gold is brand-only
 (achievement, logo) and must not appear as a UI chrome semantic.
+
+Light-theme defaults only; dark-mode values live in CSS ``[data-theme="dark"]``.
 """
 
 from __future__ import annotations
@@ -66,7 +68,7 @@ class SemanticColour(str, Enum):
 
 BRAND_COLOURS: Mapping[BrandColour, ColourValue] = {
     BrandColour.PRIMARY_BLUE: ColourValue(
-        "#3B4FB8", "--brand-primary-blue", "Primary Blue"
+        "#1D3557", "--brand-primary-blue", "Primary ink blue"
     ),
     BrandColour.PRIMARY_DARK: ColourValue(
         "#0D1B2A", "--brand-primary-dark", "Primary Dark"
@@ -82,36 +84,36 @@ BRAND_COLOURS: Mapping[BrandColour, ColourValue] = {
     BrandColour.DIVIDER_DARK: ColourValue("#1E2A3D", "--brand-divider", "Dark divider"),
 }
 
-# Light-theme semantic defaults (UX-001 / tokens.css).
+# Light-theme semantic defaults (tokens.css / brand.css).
 SEMANTIC_COLOURS: Mapping[SemanticColour, ColourValue] = {
-    SemanticColour.PRIMARY: ColourValue("#3B4FB8", "--primary", "Primary action"),
+    SemanticColour.PRIMARY: ColourValue("#1D3557", "--primary", "Primary action"),
     SemanticColour.PRIMARY_HOVER: ColourValue(
-        "#2F3F96", "--primary-hover", "Primary hover"
+        "#152A45", "--primary-hover", "Primary hover"
     ),
-    SemanticColour.SECONDARY: ColourValue("#475569", "--secondary", "Secondary chrome"),
-    SemanticColour.SUCCESS: ColourValue("#0F766E", "--success", "Success"),
+    SemanticColour.SECONDARY: ColourValue("#5C5650", "--secondary", "Secondary chrome"),
+    SemanticColour.SUCCESS: ColourValue("#15803D", "--success", "Success"),
     SemanticColour.WARNING: ColourValue("#A16207", "--warning", "Warning (not gold)"),
     SemanticColour.DANGER: ColourValue("#C81E1E", "--danger", "Danger"),
-    SemanticColour.INFO: ColourValue("#3B4FB8", "--info", "Info"),
-    SemanticColour.SURFACE: ColourValue("#FFFFFF", "--surface", "Surface"),
+    SemanticColour.INFO: ColourValue("#456B8A", "--info", "Info"),
+    SemanticColour.SURFACE: ColourValue("#FFFCF8", "--surface", "Surface"),
     SemanticColour.SURFACE_ALT: ColourValue(
-        "#F4F6F9", "--surface-alt", "Alternate surface"
+        "#FAF8F4", "--surface-alt", "Alternate surface"
     ),
     SemanticColour.SURFACE_ELEVATED: ColourValue(
         "#FFFFFF", "--surface-elevated", "Elevated surface"
     ),
     SemanticColour.BACKGROUND: ColourValue(
-        "#F4F6F9", "--background", "Page background"
+        "#FAF8F4", "--background", "Page background"
     ),
-    SemanticColour.BORDER: ColourValue("#D5DAE3", "--border", "Border"),
+    SemanticColour.BORDER: ColourValue("#E0DAD2", "--border", "Border"),
     SemanticColour.BORDER_SUBTLE: ColourValue(
-        "#E6E9EF", "--border-subtle", "Subtle border"
+        "#EDE8E1", "--border-subtle", "Subtle border"
     ),
-    SemanticColour.TEXT: ColourValue("#1E2430", "--text-primary", "Primary text"),
+    SemanticColour.TEXT: ColourValue("#211D19", "--text-primary", "Primary text"),
     SemanticColour.TEXT_SECONDARY: ColourValue(
-        "#4A5568", "--text-secondary", "Secondary text"
+        "#5C5650", "--text-secondary", "Secondary text"
     ),
-    SemanticColour.MUTED: ColourValue("#5C6570", "--text-muted", "Muted text"),
+    SemanticColour.MUTED: ColourValue("#7A736A", "--text-muted", "Muted text"),
     SemanticColour.TEXT_INVERSE: ColourValue(
         "#F8FAFC", "--text-inverse", "Inverse text"
     ),
@@ -123,7 +125,7 @@ SEMANTIC_COLOURS: Mapping[SemanticColour, ColourValue] = {
     ),
     SemanticColour.ON_DANGER: ColourValue("#F8FAFC", "--on-danger", "Text on danger"),
     SemanticColour.SUCCESS_BG: ColourValue(
-        "#E6F7F5", "--success-bg", "Success background"
+        "#ECFDF3", "--success-bg", "Success background"
     ),
     SemanticColour.WARNING_BG: ColourValue(
         "rgba(161, 98, 7, 0.12)", "--warning-bg", "Warning background"
@@ -132,10 +134,10 @@ SEMANTIC_COLOURS: Mapping[SemanticColour, ColourValue] = {
         "#FEF1F1", "--danger-bg", "Danger background"
     ),
     SemanticColour.INFO_BG: ColourValue(
-        "rgba(59, 79, 184, 0.1)", "--info-bg", "Info background"
+        "rgba(69, 107, 138, 0.1)", "--info-bg", "Info background"
     ),
     SemanticColour.FOCUS_RING: ColourValue(
-        "rgba(59, 79, 184, 0.28)", "--focus-ring", "Focus ring colour"
+        "rgba(29, 53, 87, 0.28)", "--focus-ring", "Focus ring colour"
     ),
 }
 

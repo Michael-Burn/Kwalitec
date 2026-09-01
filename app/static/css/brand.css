@@ -1,15 +1,14 @@
 /**
  * Kwalitec Brand Theme — BI-001
- * Single source of truth for official brand colours and semantic aliases.
- * Derived from the approved logo / BI-000 colour specification.
- *
- * Icon system: Lucide (stroke 1.75–2, 24×24 viewBox) — geometric, not rounded/cartoon.
+ * Categories: BRAND | NEUTRAL | SEMANTIC | LEARNING STATE
+ * Gold is logo/achievement only, not a UI accent.
  */
 
-:root {
-  /* Official palette */
-  --brand-blue: #3B4FB8;
-  --brand-blue-dark: #2F3F96;
+:root,
+[data-theme="light"] {
+  /* BRAND */
+  --brand-blue: #1D3557;
+  --brand-blue-dark: #152A45;
   --brand-navy: #0A1628;
   --brand-midnight: #020D24;
   --brand-primary-dark: #0D1B2A;
@@ -23,21 +22,32 @@
   --brand-primary-blue: var(--brand-blue);
   --brand-deep-navy: var(--brand-navy);
 
-  /* Surface system */
-  --surface: #ffffff;
-  --surface-alt: #f4f6f9;
-  --surface-elevated: #ffffff;
-  --text-primary: #1e2430;
-  --text-secondary: #4a5568;
-  --divider: #e6e9ef;
+  /* NEUTRAL */
+  --surface: #FFFCF8;
+  --surface-alt: #FAF8F4;
+  --surface-elevated: #FFFFFF;
+  --text-primary: #211D19;
+  --text-secondary: #5C5650;
+  --text-muted: #7A736A;
+  --divider: #EDE8E1;
 
-  /* Semantic status — gold is NOT a UI colour (UX-001); warning uses distinct amber */
-  --status-success: #0f766e;
-  --status-info: var(--brand-blue);
+  /* SEMANTIC */
+  --status-success: #15803d;
+  --status-info: #456B8A;
   --status-warning: #A16207;
   --status-danger: #c81e1e;
 
-  /* Chart palette — Brand Blue + neutrals only (no gold series) */
+  /* LEARNING STATE — typography-led; not traffic-light; not yet consumed */
+  --learning-state-not-started: #8A8278;
+  --learning-state-not-started-subtle: rgba(138, 130, 120, 0.14);
+  --learning-state-not-yet-assessed: #6B7B8C;
+  --learning-state-not-yet-assessed-subtle: rgba(107, 123, 140, 0.14);
+  --learning-state-developing: #7A6E5A;
+  --learning-state-developing-subtle: rgba(122, 110, 90, 0.14);
+  --learning-state-mastered: #4A6B5C;
+  --learning-state-mastered-subtle: rgba(74, 107, 92, 0.14);
+
+  /* Chart palette */
   --chart-blue: var(--brand-blue);
   --chart-secondary: #64748B;
   --chart-midnight: var(--brand-midnight);
@@ -45,19 +55,37 @@
 }
 
 [data-theme="dark"] {
-  --surface: #1c222d;
-  --surface-alt: #141820;
-  --surface-elevated: #242b38;
-  --text-primary: #eef1f6;
-  --text-secondary: #c2c9d4;
-  --divider: #2f3645;
+  /* BRAND — lightened ink-blue family */
+  --brand-blue: #8BA4C7;
+  --brand-blue-dark: #A3B8D9;
 
-  --status-success: #2dd4bf;
-  --status-info: #8B9CE0;
+  /* NEUTRAL — warm dark mode */
+  --surface: #242120;
+  --surface-alt: #1A1816;
+  --surface-elevated: #2E2B28;
+  --text-primary: #F5F2ED;
+  --text-secondary: #B8B0A6;
+  --text-muted: #9A9288;
+  --divider: #332F2A;
+
+  /* SEMANTIC */
+  --status-success: #4ade80;
+  --status-info: #7A9BB8;
   --status-warning: #D97706;
   --status-danger: #f87171;
 
-  --chart-blue: #8B9CE0;
+  /* LEARNING STATE */
+  --learning-state-not-started: #9A9288;
+  --learning-state-not-started-subtle: rgba(154, 146, 136, 0.18);
+  --learning-state-not-yet-assessed: #8A9BAB;
+  --learning-state-not-yet-assessed-subtle: rgba(138, 155, 171, 0.18);
+  --learning-state-developing: #A89882;
+  --learning-state-developing-subtle: rgba(168, 152, 130, 0.18);
+  --learning-state-mastered: #6B8F7E;
+  --learning-state-mastered-subtle: rgba(107, 143, 126, 0.18);
+
+  /* Chart palette */
+  --chart-blue: #8BA4C7;
   --chart-secondary: #94A3B8;
   --chart-midnight: #A8B0BD;
   --chart-grey: #8B93A7;

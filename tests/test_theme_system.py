@@ -70,9 +70,9 @@ class TestThemeAssets:
         dark_block_start = css.index('[data-theme="dark"]')
         dark_block = css[dark_block_start : dark_block_start + 2200]
         assert "--chrome:" in dark_block
-        assert "--brand: #A5B4F0" in dark_block
+        assert "--brand: #A3B8D9" in dark_block
         assert "--brand: #0f131a" not in dark_block
-        assert "--on-primary: #0f131a" in dark_block
+        assert "--on-primary: #1A1816" in dark_block
         assert "--chrome-text:" in dark_block
 
     def test_app_css_avoids_pure_black_background(self):

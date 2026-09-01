@@ -40,8 +40,9 @@ def test_get_tokens_returns_canonical_catalogue() -> None:
 
 
 def test_brand_primary_blue_matches_bi000() -> None:
-    assert BRAND_COLOURS[BrandColour.PRIMARY_BLUE].hex.upper() == "#3B4FB8"
-    assert SEMANTIC_COLOURS[SemanticColour.PRIMARY].hex.upper() == "#3B4FB8"
+    assert BRAND_COLOURS[BrandColour.PRIMARY_BLUE].hex.upper() == "#1D3557"
+    assert SEMANTIC_COLOURS[SemanticColour.PRIMARY].hex.upper() == "#1D3557"
+    assert SEMANTIC_COLOURS[SemanticColour.INFO].hex.upper() == "#456B8A"
 
 
 def test_gold_is_not_a_ui_chrome_semantic() -> None:
@@ -121,7 +122,7 @@ def test_css_custom_properties_are_complete() -> None:
     assert "--font-page" in props
     assert "--font-display" in props
     assert "--opacity-disabled" in props
-    assert props["--primary"].upper() == "#3B4FB8"
+    assert props["--primary"].upper() == "#1D3557"
     assert props["--font-page"] == "1.5rem"
     assert props["--font-display"] == "2rem"
 

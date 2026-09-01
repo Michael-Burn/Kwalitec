@@ -4,65 +4,81 @@
  * Do not invent colours, spacing, type, or radii outside this file.
  * Canonical product type: 32 / 24 / 18 / 16 / 14 / 12
  * Canonical product spacing: 4 / 8 / 16 / 24 / 32 / 48 / 64
+ *
+ * Colour categories: BRAND | NEUTRAL | SEMANTIC | LEARNING STATE (see brand.css)
  */
 
 :root,
 [data-theme="light"] {
   color-scheme: light;
 
-  --background: var(--surface-alt, #f4f6f9);
-  --surface: #ffffff;
-  --surface-elevated: #ffffff;
+  /* NEUTRAL — page canvas, surfaces, text, borders */
+  --background: var(--surface-alt, #FAF8F4);
+  --surface: #FFFCF8;
+  --surface-elevated: #FFFFFF;
   --surface-primary: var(--surface);
   --surface-secondary: var(--background);
-  --surface-overlay: rgba(13, 27, 42, 0.48);
-  --border: #d5dae3;
+  --surface-overlay: rgba(33, 29, 25, 0.48);
+  --border: #E0DAD2;
   --border-primary: var(--border);
-  --border-subtle: var(--divider, #e6e9ef);
+  --border-subtle: var(--divider, #EDE8E1);
 
-  --primary: var(--brand-blue, #3B4FB8);
-  --primary-hover: var(--brand-blue-dark, #2F3F96);
+  /* BRAND — primary actions, links, focus, selected nav */
+  --primary: var(--brand-blue, #1D3557);
+  --primary-hover: var(--brand-blue-dark, #152A45);
   --accent-primary: var(--primary);
-  --accent-secondary: var(--brand-muted, var(--brand-blue, #3B4FB8));
-  --secondary: #475569;
+  --accent-secondary: var(--brand-muted, var(--brand-blue, #1D3557));
+  --secondary: #5C5650;
 
-  --text-primary: #1e2430;
-  --text-secondary: #3d4654;
-  --text-muted: #4a5568;
+  --text-primary: #211D19;
+  --text-secondary: #5C5650;
+  --text-muted: #7A736A;
   --text-inverse: #f8fafc;
   --on-primary: #f8fafc;
   --on-success: #f8fafc;
   --link: var(--primary);
   --link-hover: var(--primary-hover);
 
-  --success: var(--status-success, #0f766e);
-  --success-bg: #e6f7f5;
-  --warning: #A16207;
+  /* SEMANTIC — system conditions only */
+  --success: var(--status-success, #15803d);
+  --success-bg: #ECFDF3;
+  --warning: var(--status-warning, #A16207);
   --warning-bg: rgba(161, 98, 7, 0.12);
   --danger: var(--status-danger, #c81e1e);
   --danger-bg: #fef1f1;
-  --info: var(--brand-blue, #3B4FB8);
-  --info-bg: rgba(59, 79, 184, 0.1);
+  --info: var(--status-info, #456B8A);
+  --info-bg: rgba(69, 107, 138, 0.1);
 
-  --shadow: 0 1px 2px rgba(13, 27, 42, 0.05), 0 2px 10px rgba(13, 27, 42, 0.07);
-  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.05);
+  --shadow: 0 1px 2px rgba(33, 29, 25, 0.05), 0 2px 10px rgba(33, 29, 25, 0.07);
+  --shadow-sm: 0 1px 2px rgba(33, 29, 25, 0.05);
   --shadow-md: var(--shadow);
-  --shadow-lg: 0 4px 18px rgba(13, 27, 42, 0.09), 0 2px 4px rgba(13, 27, 42, 0.04);
-  --shadow-xl: 0 10px 32px rgba(13, 27, 42, 0.12);
+  --shadow-lg: 0 4px 18px rgba(33, 29, 25, 0.09), 0 2px 4px rgba(33, 29, 25, 0.04);
+  --shadow-xl: 0 10px 32px rgba(33, 29, 25, 0.12);
 
+  /* BRAND — chrome shell (dark nav; unchanged structural role) */
   --chrome: var(--brand-primary-dark, #0D1B2A);
   --chrome-muted: #162536;
   --chrome-text: var(--text-inverse);
   --chrome-text-muted: rgba(248, 250, 252, 0.72);
   --chrome-text-subtle: rgba(248, 250, 252, 0.5);
   --brand: var(--brand-primary-dark, #0D1B2A);
-  --brand-muted: var(--brand-blue, #3B4FB8);
+  --brand-muted: var(--brand-blue, #1D3557);
   --brand-gold: #E8B02B;
   --brand-gold-soft: rgba(232, 176, 43, 0.16);
   --brand-gold-hover: #F0C040;
   --accent: var(--brand-navy, #0A1628);
-  --accent-soft: var(--brand-blue, #3B4FB8);
-  --focus-ring: 0 0 0 3px rgba(59, 79, 184, 0.28);
+  --accent-soft: var(--brand-blue, #1D3557);
+  --focus-ring: 0 0 0 3px rgba(29, 53, 87, 0.28);
+
+  /* LEARNING STATE aliases (reserved) */
+  --learning-not-started: var(--learning-state-not-started);
+  --learning-not-started-subtle: var(--learning-state-not-started-subtle);
+  --learning-not-yet-assessed: var(--learning-state-not-yet-assessed);
+  --learning-not-yet-assessed-subtle: var(--learning-state-not-yet-assessed-subtle);
+  --learning-developing: var(--learning-state-developing);
+  --learning-developing-subtle: var(--learning-state-developing-subtle);
+  --learning-mastered: var(--learning-state-mastered);
+  --learning-mastered-subtle: var(--learning-state-mastered-subtle);
 
   /* Legacy color-* aliases */
   --color-chrome: var(--chrome);
@@ -193,39 +209,42 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --background: #141820;
-  --surface: #1c222d;
-  --surface-elevated: #242b38;
+  /* NEUTRAL — warm dark surfaces */
+  --background: #1A1816;
+  --surface: #242120;
+  --surface-elevated: #2E2B28;
   --surface-primary: var(--surface);
   --surface-secondary: var(--background);
   --surface-overlay: rgba(0, 0, 0, 0.55);
-  --border: #3d4658;
+  --border: #3D3832;
   --border-primary: var(--border);
-  --border-subtle: #2f3645;
+  --border-subtle: #332F2A;
 
-  --primary: #8B9CE0;
-  --primary-hover: #A5B4F0;
+  /* BRAND */
+  --primary: #8BA4C7;
+  --primary-hover: #A3B8D9;
   --accent-primary: var(--primary);
   --accent-secondary: var(--brand-muted);
-  --secondary: #64748b;
+  --secondary: #9A9288;
 
-  --text-primary: #eef1f6;
-  --text-secondary: #c2c9d4;
-  --text-muted: #a8b0bd;
+  --text-primary: #F5F2ED;
+  --text-secondary: #B8B0A6;
+  --text-muted: #9A9288;
   --text-inverse: #f8fafc;
-  --on-primary: #0f131a;
-  --on-success: #0f131a;
+  --on-primary: #1A1816;
+  --on-success: #1A1816;
   --link: var(--primary);
   --link-hover: var(--primary-hover);
 
-  --success: #2dd4bf;
-  --success-bg: rgba(45, 212, 191, 0.16);
+  /* SEMANTIC */
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, 0.16);
   --warning: #D97706;
   --warning-bg: rgba(217, 119, 6, 0.18);
   --danger: #f87171;
   --danger-bg: rgba(248, 113, 113, 0.16);
-  --info: #8B9CE0;
-  --info-bg: rgba(139, 156, 224, 0.16);
+  --info: #7A9BB8;
+  --info-bg: rgba(122, 155, 184, 0.16);
 
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.28), 0 4px 14px rgba(0, 0, 0, 0.32);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
@@ -239,13 +258,13 @@
   --chrome-text: var(--text-inverse);
   --chrome-text-muted: rgba(248, 250, 252, 0.72);
   --chrome-text-subtle: rgba(248, 250, 252, 0.5);
-  --brand: #A5B4F0;
-  --brand-muted: #8B9CE0;
+  --brand: #A3B8D9;
+  --brand-muted: #8BA4C7;
   --brand-gold: #E8B02B;
   --brand-gold-soft: rgba(232, 176, 43, 0.22);
   --accent: #0A1628;
-  --accent-soft: #3B4FB8;
-  --focus-ring: 0 0 0 3px rgba(139, 156, 224, 0.35);
+  --accent-soft: #1D3557;
+  --focus-ring: 0 0 0 3px rgba(139, 164, 199, 0.35);
 
   --color-text-primary: var(--text-primary);
   --session-muted: var(--text-secondary);

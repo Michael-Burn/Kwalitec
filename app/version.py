@@ -37,7 +37,7 @@ PRODUCT_TAGLINE = PRODUCT_DESCRIPTOR
 # Bump when shipping changes under app/static/ (or blueprint static folders)
 # so browsers refetch branding, CSS, JS, and icons after deploy.
 # Override with STATIC_ASSET_VERSION env var when needed.
-_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-g5"
+_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-g6"
 STATIC_ASSET_VERSION = os.getenv(
     "STATIC_ASSET_VERSION", _DEFAULT_STATIC_ASSET_VERSION
 ).strip() or _DEFAULT_STATIC_ASSET_VERSION
