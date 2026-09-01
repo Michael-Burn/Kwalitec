@@ -160,7 +160,6 @@ class StudentHomePage:
     density_mode: str = "established"
     continuity_line: str = ""
     show_progress_strip: bool = True
-    show_tomorrow_preview: bool = True
     show_quick_actions: bool = True
     # PX-005 / PX-B-045 — calm near-exam support line (presentation only).
     exam_horizon_line: str = ""

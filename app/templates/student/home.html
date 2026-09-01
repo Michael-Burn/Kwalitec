@@ -256,29 +256,6 @@
   </details>
   {% endif %}
 
-  {% if home.show_tomorrow_preview and ws and ws.mission_composition and ws.mission_composition.tomorrow_preview and ws.mission_composition.tomorrow_preview.has_preview %}
-  {% set tomorrow = ws.mission_composition.tomorrow_preview %}
-  <details
-    class="ds-disclosure ds-os-home__tomorrow"
-    aria-labelledby="ws-tomorrow-title"
-    data-workspace-section="tomorrow-preview"
-    data-kwp="015-tomorrow-preview"
-    data-px004="secondary-tomorrow"
-    {% if open_secondary %}open{% endif %}
-  >
-    <summary class="ds-section__title" id="ws-tomorrow-title">Tomorrow</summary>
-    <div class="ds-disclosure__body">
-      <p class="ds-os-home__tomorrow-topic">{{ tomorrow.topic_title }}</p>
-      {% if tomorrow.estimated_duration_label %}
-      <p class="ds-list__meta">{{ tomorrow.estimated_duration_label }}</p>
-      {% endif %}
-      {% if tomorrow.continuity_line %}
-      <p class="ds-list__meta">{{ tomorrow.continuity_line }}</p>
-      {% endif %}
-    </div>
-  </details>
-  {% endif %}
-
   {% if home.show_quick_actions and ws and ws.quick_actions %}
   <details
     class="ds-disclosure ds-os-actions ds-os-actions--quiet"

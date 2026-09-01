@@ -487,7 +487,6 @@ def test_home_template_has_workspace_layout_markers():
         'data-workspace-section="why-this-matters"',
         'data-workspace-section="recent-progress"',
         'data-workspace-section="study-signals"',
-        'data-workspace-section="tomorrow-preview"',
         'data-workspace-section="quick-actions"',
         'data-px004="continuity"',
         "Why this topic matters",
@@ -501,6 +500,7 @@ def test_home_template_has_workspace_layout_markers():
         'data-workspace-section="current-focus"',
         'data-workspace-section="forecast"',
         'data-workspace-section="learning-journey"',
+        'data-workspace-section="tomorrow-preview"',
         "015-learning-episode",
         "checkpoint_prompt",
         "reflection_prompt",
@@ -688,7 +688,6 @@ def test_home_html_omits_empty_disclosures_and_generic_continuity(app, monkeypat
             continuity_line="",
             density_mode="day_zero",
             show_progress_strip=False,
-            show_tomorrow_preview=False,
         )
         html = render_template("student/home.html", page=page, home=home, form=None)
 

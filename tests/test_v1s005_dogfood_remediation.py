@@ -173,8 +173,8 @@ def test_home_template_has_remediation_markers():
     session_body = (
         REPO_ROOT / "app" / "templates" / "session" / "partials" / "session_body.html"
     ).read_text(encoding="utf-8")
-    # UX-001: episode / quiet / stages live on Session Overview; Home keeps tomorrow.
-    assert "015-tomorrow-preview" in home
+    # UX-001: episode / quiet / stages live on Session Overview; Home is decision-only.
+    assert "015-tomorrow-preview" not in home
     assert 'data-ux="session-briefing"' in session_body
     assert "Session stages" in session_body
     assert "015-learning-episode" not in home

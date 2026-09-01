@@ -436,7 +436,6 @@ class StudentHomeService:
             density_mode=density["density_mode"],
             continuity_line=density["continuity_line"],
             show_progress_strip=density["show_progress_strip"],
-            show_tomorrow_preview=density["show_tomorrow_preview"],
             show_quick_actions=density["show_quick_actions"],
             exam_horizon_line=exam_horizon_line,
             preparing_mission=preparing,
@@ -576,7 +575,6 @@ class StudentHomeService:
             # Empty still needs choose-exam actions; quiet/mission day-zero
             # keeps the primary CTA and folds secondary chrome.
             show_progress = False
-            show_tomorrow = False
             show_actions = state in {"empty", "quiet"}
         elif mission is not None and mission.primary_kind == "link":
             mode = "returning"
@@ -587,7 +585,6 @@ class StudentHomeService:
                 else "Continue where you left off."
             )
             show_progress = True
-            show_tomorrow = True
             show_actions = True
         elif session_count < 5:
             mode = "returning"
@@ -604,19 +601,16 @@ class StudentHomeService:
                 else "Your authorised next sitting is ready below."
             )
             show_progress = True
-            show_tomorrow = True
             show_actions = True
         else:
             mode = "established"
             show_progress = True
-            show_tomorrow = True
             show_actions = True
 
         return {
             "density_mode": mode,
             "continuity_line": continuity,
             "show_progress_strip": show_progress,
-            "show_tomorrow_preview": show_tomorrow,
             "show_quick_actions": show_actions,
         }
 

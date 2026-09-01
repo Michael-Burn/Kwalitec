@@ -52,12 +52,12 @@ def test_home_template_is_decision_only():
     assert 'data-workspace-section="why-this-matters"' in text
     assert 'data-workspace-section="recent-progress"' in text
     assert 'data-workspace-section="study-signals"' in text
-    assert 'data-workspace-section="tomorrow-preview"' in text
     assert 'data-workspace-section="quick-actions"' in text
     for removed in (
         "explanation_card",
         "readiness_card",
         "015-learning-episode",
+        "015-tomorrow-preview",
         "Why this Session?",
         "Learning Episode",
         "Current Focus",
@@ -67,6 +67,7 @@ def test_home_template_is_decision_only():
         'data-workspace-section="learning-journey"',
         'data-workspace-section="morning-brief"',
         'data-workspace-section="current-focus"',
+        'data-workspace-section="tomorrow-preview"',
     ):
         assert removed not in text
 

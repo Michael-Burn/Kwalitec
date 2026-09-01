@@ -720,17 +720,11 @@ def _session_plan(
     # Prefer authored Learning Episode objective over raw mission dump (KWP-015).
     authored_objective = ""
     authored_duration = ""
-    after = ""
     if composition and composition.has_composition:
         primary = composition.episodes[0] if composition.episodes else None
         if primary and primary.learning_objective:
             authored_objective = primary.learning_objective
         authored_duration = (composition.total_duration_label or "").strip()
-        if composition.tomorrow_preview and composition.tomorrow_preview.has_preview:
-            after = (
-                f"Next: {composition.tomorrow_preview.topic_title}–"
-                f"{composition.tomorrow_preview.continuity_line}"
-            ).strip("–")
 
     if mission is None and not authored_objective:
         return None
@@ -748,7 +742,7 @@ def _session_plan(
     )
     duration = mission_duration or authored_duration
     status = (mission.status_label or "").strip() if mission else ""
-    after_completion = after or (
+    after_completion = (
         (mission.after_completion or "").strip() if mission else ""
     )
     if not objective and not duration:

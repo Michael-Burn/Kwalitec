@@ -290,11 +290,11 @@ def test_product_language_includes_authoring_terms() -> None:
         assert term in APPROVED_TERMS
 
 
-def test_home_template_surfaces_tomorrow_not_episodes() -> None:
+def test_home_template_excludes_tomorrow_and_episodes() -> None:
     text = HOME_TMPL.read_text(encoding="utf-8")
     # UX-001: Learning Episode detail moved to Session Overview.
     assert "015-learning-episode" not in text
-    assert "015-tomorrow-preview" in text
+    assert "015-tomorrow-preview" not in text
     assert "015-extra-study" not in text
     assert "Learning Episode" not in text
     assert "Success looks like" not in text
