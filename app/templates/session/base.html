@@ -5,6 +5,8 @@
 {% block extra_head %}
 {# Operational template invariants (tests):
    session/base.html references fonts.css, tokens.css, and session.css (legacy name). #}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<link href="{{ versioned_static('css/katex-theme.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block student_main_modifier %}{% endblock %}
@@ -20,5 +22,8 @@
 
 {% block extra_scripts %}
 <script src="{{ versioned_static('js/confirm-modal.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" defer></script>
+<script src="{{ versioned_static('js/katex-auto-render.js') }}" defer></script>
 <script src="{{ versioned_static('js/session/study_session_eos.js') }}" defer></script>
 {% endblock %}

@@ -26,6 +26,7 @@ from app.presentation.session.dto.study_session import (
     SessionPersistentContext,
     StudySessionPage,
 )
+from app.presentation.session.math_markup import apply_math_markup
 from app.presentation.session.view_models import SessionPageViewModel
 
 _PAGE_TITLE = "Session"
@@ -238,7 +239,8 @@ class StudySessionService:
         meta_duration = _compact_duration_label(estimated_time_label)
         meta_mode = _meta_mode_label(surface, page)
 
-        return StudySessionPage(
+        return apply_math_markup(
+            StudySessionPage(
             page_title=page_title,
             surface=surface.value,
             context=context,
@@ -330,6 +332,7 @@ class StudySessionService:
             topic_display=topic_display,
             meta_duration=meta_duration,
             meta_mode=meta_mode,
+            )
         )
 
     @staticmethod

@@ -1,0 +1,23 @@
+/**
+ * KaTeX theme alignment for Kwalitec light / dark appearance.
+ * CDN katex.min.css supplies layout; this file supplies colour inheritance.
+ */
+
+.ds-session-page .katex {
+  color: inherit;
+  font-size: 1.05em;
+}
+
+[data-theme="dark"] .katex {
+  color: var(--text-primary, #e8eaed);
+}
+
+[data-theme="dark"] .katex .mord,
+[data-theme="dark"] .katex .mop,
+[data-theme="dark"] .katex .mbin,
+[data-theme="dark"] .katex .mrel,
+[data-theme="dark"] .katex .mopen,
+[data-theme="dark"] .katex .mclose,
+[data-theme="dark"] .katex .mpunct {
+  color: inherit;
+}
