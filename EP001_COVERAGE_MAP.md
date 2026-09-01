@@ -29,7 +29,7 @@ EP-001 reports two facts that must not be conflated:
 | View | Meaning | Current headline |
 |------|---------|------------------|
 | **A — Approver credit (CE-001 Published)** | Volume ≥ `approved` by human Publication Approver | **72 / 72 (100% Approver numerator)** — prior 63 + CS1-017 Rho LIVE Verified (9 Learning LOs 1.1.1–2.1.2) |
-| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **110 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon** + **3 Zeta** + **3 Eta** + **3 Theta** + **7 Iota** + **7 Kappa** + **9 Lambda** + **6 Mu** + **6 Nu** + **11 Xi** + **10 Omicron**; EA-006 orphan superseded) |
+| **B — Live loader inventory** | Packages under `educational_packages/cs1/` with `status: publication_approved` | **130 packages** (8 Alpha/Beta + **5 Gamma** + **27 Delta** + **5 Epsilon** + **3 Zeta** + **3 Eta** + **3 Theta** + **7 Iota** + **7 Kappa** + **9 Lambda** + **6 Mu** + **6 Nu** + **11 Xi** + **10 Omicron** + **10 Pi** + **10 Rho**; EA-006 orphan superseded; Rho catalogue LIVE via RO-015) |
 
 **Publication honesty gap:** CS1-001 and CS1-002 Volume dossiers remain `publication_ready` (Approver unsigned), while eight Alpha/Beta packages still load as `publication_approved`. CS1-004 Gamma, CS1-003 Delta, CS1-005 Epsilon, CS1-006 Zeta, and CS1-007 Eta hold Approver credit **and** LIVE package-path verification. CS1-008 Theta holds Approver credit **and** LIVE package-path verification (RO-006 / PB-008).
 
@@ -45,7 +45,7 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 **Wave 12:** CS1-014 Xi **LIVE Verified** (RO-012) for Continuity Front join Topic **4.2** (4.2.1–4.2.10 + Rev) · Published coverage **HELD 63 / 72** · Student Reliance through Topic **4.2** · PB-014 **PASS**.  
 **Wave 13:** CS1-015 Omicron **LIVE Verified** (RO-013) for Continuity Front join Topic **5.1** (5.1.1–5.1.9 + Rev) · Published coverage **HELD 63 / 72** · Student Reliance through Topic **5.1** · PB-015 **PASS**.  
 **Wave 14:** CS1-016 Pi **LIVE-complete** (RO-014 / PB-016) for Memory Front / spine re-audit (hinges 2.1.3…5.1.1 + Rev) · Published coverage **HELD 63 / 72** · Student Reliance through Topic **5.1** · PB-016 **PASS**.  
-**Wave 15:** CS1-017 Rho **LIVE-complete (RO-015)** for Publication Front / Wave 0 residual (1.1.1…2.1.2 + Rev) · Published coverage **72 / 72 Approver numerator** · Student Reliance through Topic **5.1 HELD** · PB-017 authorised · not executed.
+**Wave 15:** CS1-017 Rho **LIVE-complete (RO-015)** for Publication Front / Wave 0 residual (1.1.1…2.1.2 + Rev) · Published coverage **72 / 72 Approver numerator** · Student Reliance through Topic **5.1 HELD** · PB-017 **PASS**.
 
 ---
 
@@ -56,14 +56,14 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 | Official topics | **14** | Sections 1–5 |
 | Official LOs | **72** | Primary grain |
 | **Published (Approver credit)** | **72 / 72 (100% Approver numerator)** | CS1-004 · 2.1.3–2.1.6 + CS1-005 · 2.2.1–2.2.4 + CS1-006 · 2.3.1–2.3.2 + CS1-007 · 2.4.1–2.4.2 + CS1-008 · 2.5.1–2.5.2 + CS1-009 · 2.6.1–2.6.6 + CS1-010 · 3.1.1–3.1.6 + CS1-011 · 3.2.1–3.2.8 + CS1-012 · 3.3.1–3.3.5 + CS1-003 · 4.1.1–5.1.9 — **Wave 10 LIVE** |
-| Awaiting Approval (Gate CG PASS · Volume `publication_ready`) | **9 / 72 (12.5%)** | CS1-001 + CS1-002 Learning LOs (Approver unsigned); Rho catalogue Under Authoring for same grain — **no Approver Δ** |
-| Under Review / Under Authoring | **0 / 72** Approver grain | Wave 15 Rho LIVE-complete (RO-015); PB-017 authorised · not executed |
-| Live loader packages (`publication_approved`) | **120** | Alpha 4 + Beta 4 + Gamma 5 + Delta 27 + Epsilon 5 + Zeta 3 + Eta 3 + Theta 3 + Iota 7 + Kappa 7 + Lambda 9 + Mu 6 + Nu 6 + Xi 11 + Omicron 10 + Pi 10 (orphan superseded); Rho catalogue **not** LIVE |
+| Awaiting Approval (Gate CG PASS · Volume `publication_ready`) | **0 / 72 (0%)** | Grain closed: 1.1.1–2.1.2 now Approver-credited via CS1-017 Rho (RO-015). Legacy CS1-001 / CS1-002 Alpha/Beta bodies remain unmodified honesty-gap inventory |
+| Under Review / Under Authoring | **0 / 72** Approver grain | Wave 15 Rho LIVE-complete (RO-015 / PB-017 **PASS**) |
+| Live loader packages (`publication_approved`) | **130** | Alpha 4 + Beta 4 + Gamma 5 + Delta 27 + Epsilon 5 + Zeta 3 + Eta 3 + Theta 3 + Iota 7 + Kappa 7 + Lambda 9 + Mu 6 + Nu 6 + Xi 11 + Omicron 10 + Pi 10 + Rho 10 (orphan superseded); Rho **LIVE** (RO-015) |
 | Missing | **0 / 72** | First-pass spine Missing LOs absorbed through Wave 10 LIVE (3.3) |
-| Continuity Front (Approver / LIVE) | **Closed through 5.1** / CO-R1 | RO-001 · RO-003…RO-014 |
-| Continuity Front (catalogue / pipeline) | **Publication Front Rho Under Authoring** (after Memory Front LIVE) | EP-015 |
+| Continuity Front (Approver / LIVE) | **Closed through 5.1** / CO-R1 | RO-001 · RO-003…RO-015 |
+| Continuity Front (catalogue / pipeline) | **Publication Front Rho LIVE** (RO-015 / PB-017 PASS) | EP-015 |
 | Trust Remediation Front | **4.1 → 4.2 → 5.1** | Wave 2 **LIVE Verified** (RO-002) — Missing* cleared for 4.2; Omicron does not absorb whole-Delta |
-| Pipeline | **Rho Under Authoring** (9 Learning + Rev) | Wave 15; Approver numerator **HELD**; Student Reliance through Topic **5.1**; Publication Front Approver residual open |
+| Pipeline | **Rho LIVE-complete** (9 Learning + Rev) | Wave 15; Approver numerator **72 / 72** after RO-015; Student Reliance through Topic **5.1**; Publication Front Approver residual closed (RO-015); Wave 16 not started |
 
 ---
 
@@ -96,9 +96,9 @@ Orphan `4.2` is **superseded** by Campaign Delta (RO-002); Missing* for 4.2 clea
 
 | Topic | Title | LOs | Approver status | Live loader note |
 |-------|-------|----:|-----------------|------------------|
-| 1.1 | Purpose and function of data analysis | 4 | Awaiting Approval | Alpha packages live |
-| 1.2 | Exploratory data analysis | 3 | Awaiting Approval | Alpha + Beta PCA live |
-| 2.1 | Univariate distributions / generation | 6 | Partial (**2.1.3–2.1.6 Published**; 2.1.1–2.1.2 AA) | Beta + **Gamma LIVE** |
+| 1.1 | Purpose and function of data analysis | 4 | **Published** (CS1-017 · RO-015) | Alpha packages live + **Rho LIVE** |
+| 1.2 | Exploratory data analysis | 3 | **Published** (CS1-017 · RO-015) | Alpha + Beta PCA + **Rho LIVE** |
+| 2.1 | Univariate distributions / generation | 6 | **Published** (2.1.3–2.1.6 CS1-004 · RO-001; 2.1.1–2.1.2 CS1-017 · RO-015) | Beta + **Gamma LIVE** + **Rho LIVE** |
 | 2.2 | Jointly distributed RVs | 4 | **Published** (CS1-005 / RO-003) | LIVE CE-D1…CE-D4 |
 | 2.3 | Expectations / conditional expectations | 2 | **Published** (CS1-006 / RO-004) | LIVE CZ-D1…CZ-D2 |
 | 2.4 | Generating functions | 2 | **Published** (CS1-007 / RO-005) | LIVE CH-D1…CH-D2 |
@@ -120,15 +120,15 @@ Statuses: **Published** (Approver) · **Awaiting Approval** · **Under Authoring
 
 | LO | Description (short) | Approver status | Live |
 |----|---------------------|-----------------|------|
-| 1.1.1 | Aims of a data analysis | Awaiting Approval | Yes (Alpha D1) |
-| 1.1.2 | Stages and tools | Awaiting Approval | Yes |
-| 1.1.3 | Sources / large data sets | Awaiting Approval | Yes |
-| 1.1.4 | Reproducible research | Awaiting Approval | Yes |
-| 1.2.1 | Summary statistics / EDA visuals | Awaiting Approval | Yes (Alpha D2) |
-| 1.2.2 | Correlation measures | Awaiting Approval | Yes (Alpha D3) |
-| 1.2.3 | Principal component analysis | Awaiting Approval | Yes (Beta D1) |
-| 2.1.1 | Discrete distributions | Awaiting Approval | Yes (Beta D2) |
-| 2.1.2 | Continuous distributions | Awaiting Approval | Yes (Beta D3) |
+| 1.1.1 | Aims of a data analysis | **Published** (CS1-017 · RO-015) | Yes (Alpha D1) |
+| 1.1.2 | Stages and tools | **Published** (CS1-017 · RO-015) | Yes |
+| 1.1.3 | Sources / large data sets | **Published** (CS1-017 · RO-015) | Yes |
+| 1.1.4 | Reproducible research | **Published** (CS1-017 · RO-015) | Yes |
+| 1.2.1 | Summary statistics / EDA visuals | **Published** (CS1-017 · RO-015) | Yes (Alpha D2) |
+| 1.2.2 | Correlation measures | **Published** (CS1-017 · RO-015) | Yes (Alpha D3) |
+| 1.2.3 | Principal component analysis | **Published** (CS1-017 · RO-015) | Yes (Beta D1) |
+| 2.1.1 | Discrete distributions | **Published** (CS1-017 · RO-015) | Yes (Beta D2) |
+| 2.1.2 | Continuous distributions | **Published** (CS1-017 · RO-015) | Yes (Beta D3) |
 | 2.1.3 | Probabilities and quantiles | **Published** (CS1-004 · RO-001) | Yes (CG-D1) |
 | 2.1.4 | Poisson process / exponential | **Published** (CS1-004 · RO-001) | Yes (CG-D2) |
 | 2.1.5 | Generation (inverse transform) | **Published** (CS1-004 · RO-001) | Yes (CG-D3) |
@@ -227,9 +227,9 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 | Metric | Value | Notes |
 |--------|-------|-------|
 | **Certified Educational Coverage (%)** | **100% Approver numerator** (72 / 72) — **ADVANCED** | Approver-credited Published Learning LOs after RO-015 LIVE Verified — not a “100% CS1” slogan |
-| **Continuity Front** | LIVE closed through Topic **5.1** / CO-R1 | Student Continuity Front through Topic 5.1 — **HELD**; Memory Front Pi LIVE; Publication Front Rho Under Authoring |
-| **Student Reliance Coverage** | Contiguous first-pass CF reliance through Topic **5.1** = **63** Learning LOs LIVE (Gamma→Omicron CF-join); Trust Front independent **24** LOs (Delta); Alpha/Beta live without Approver credit (honesty gap); Pi LIVE (no Approver Δ); Rho catalogue not LIVE (no Approver Δ) | EA-008 |
-| **Until-examination status** | **NOT CLAIMED** | Open — Publication Front Approver residual + spine re-audit human PASS unfinished |
+| **Continuity Front** | LIVE closed through Topic **5.1** / CO-R1 | Student Continuity Front through Topic 5.1, **HELD**; Memory Front Pi LIVE; Publication Front Rho **LIVE** (RO-015) |
+| **Student Reliance Coverage** | Contiguous first-pass CF reliance through Topic **5.1** = **63** Learning LOs LIVE (Gamma→Omicron CF-join); Trust Front independent **24** LOs (Delta); Alpha/Beta bodies remain unmodified honesty-gap inventory; Pi LIVE (no Approver Δ); Rho Publication Front **LIVE** (RO-015; 1.1.1–2.1.2 now Approver-credited, +9 Approver Δ) | EA-008 |
+| **Until-examination status** | **NOT CLAIMED** | Open: first-pass spine PASS and until-exam trust not claimed (Publication Front Approver residual closed via RO-015) |
 
 **Definition:** Student Reliance Coverage reports how far a diligent student may place justified primary-study reliance on LIVE-certified, Approver-credited Continuity Front guidance without meeting Missing content — distinct from raw Approver % (includes non-contiguous Trust Front) and from until-exam trust.
 
@@ -259,12 +259,12 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 
 | Section | LOs | Published | Awaiting Approval | Under Authoring | Missing | Live orphan note |
 |--------:|----:|----------:|------------------:|----------------:|--------:|------------------|
-| 1 | 7 | 0 | 7 | 0 | 0 | Alpha/Beta live; Rho catalogue Under Authoring (no Approver Δ) |
-| 2 | 22 | **20** | 2 | 0 | 0 | Gamma–Iota LIVE; Rho 2.1.1–2.1.2 catalogue Under Authoring (no Approver Δ) |
+| 1 | 7 | **7** | 0 | 0 | 0 | Alpha/Beta live; Rho Publication Front **LIVE** (RO-015) |
+| 2 | 22 | **22** | 0 | 0 | 0 | Gamma–Iota LIVE; Rho 2.1.1–2.1.2 **LIVE** (RO-015) |
 | 3 | 19 | **19** | 0 | **0** | **0** | Kappa+Lambda+Mu LIVE 3.1–3.3 |
 | 4 | 15 | **15** | 0 | **0** | 0 | orphan superseded (RO-002); Xi LIVE (no Approver Δ) |
 | 5 | 9 | **9** | 0 | **0** | 0 | Delta LIVE; Omicron CF-join LIVE (RO-013; no Approver Δ); Pi Memory Front LIVE (RO-014; no Approver Δ) |
-| **Total** | **72** | **63** | **9** | **0** | **0** | — |
+| **Total** | **72** | **72** | **0** | **0** | **0** | — |
 
 ---
 
@@ -273,18 +273,18 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 1. Re-measure when Volume Approver signs (Awaiting Approval / Under Authoring → Published).  
 2. Re-measure when Wave packages certify / approve / go LIVE.  
 3. Never move Missing* to Published without Campaign Gate CG + Approver.  
-4. Continuity Front LIVE closed through Topic 5.1 / CO-R1 (RO-013); Published Coverage **HELD** 63 / 72 (no Approver double-count of 4.1, 4.2, or 5.1).  
+4. Continuity Front LIVE closed through Topic 5.1 / CO-R1 (RO-013); Publication Front LIVE via Rho (RO-015); Published Coverage **72 / 72 Approver numerator** (no Approver double-count of 4.1, 4.2, or 5.1).  
 5. Keep LO universe pinned to CS1 2026 JSON.  
 6. Refresh Student Reliance Coverage Register whenever Continuity Front or Approver credit moves.  
-7. Certified Educational Coverage **HELD** at 63 / 72; Student Reliance through Topic **5.1** after RO-014 / PB-016 — no Approver double-count of Memory Front hinges.  
-8. Wave 15 Publication Front catalogue Under Authoring — does not move Approver credit or Student Reliance.
+7. Certified Educational Coverage **72 / 72 Approver numerator** after Rho LIVE (RO-015 / PB-017 PASS); Student Reliance through Topic **5.1** (Publication Front does not invent Topic 5.2); no Approver double-count of Memory Front hinges.  
+8. Wave 15 Publication Front Rho **LIVE-complete (RO-015 / PB-017 PASS)**: Approver numerator advanced 63 to 72; Student Reliance held through Topic 5.1; Educational Content Freeze declared.
 
 ---
 
 ## 9. Closing
 
-Wave 1–14 LIVE Approver credit stands at **63 / 72 (87.5%)** — **HELD**. Campaign Mu / CS1-012 is **LIVE Verified** for 3.3.1–3.3.5 + CM-R1. Campaign Nu / CS1-013 is **LIVE Verified** for Continuity Front join Topic **4.1** (CN-D1…CN-R1; no Approver Δ). Campaign Xi / CS1-014 is **LIVE Verified** for Continuity Front join Topic **4.2** (CX-D1…CX-R1; no Approver Δ). Campaign Omicron / CS1-015 is **LIVE Verified** for Continuity Front join Topic **5.1** (CO-D1…CO-R1; no Approver Δ). Campaign Pi / CS1-016 is **LIVE Verified** for Memory Front / spine re-audit (CP-D1…CP-R1; no Approver Δ). Campaign Rho / CS1-017 is **Under Authoring** for Publication Front / Wave 0 residual (CR-D1…CR-R1; no Approver Δ). Student Continuity Front / Student Reliance Coverage through Topic **5.1** — **HELD**. PB-012 **PASS**. PB-013 **PASS**. PB-014 **PASS**. PB-015 **PASS**. PB-016 **PASS**. Wave 14 **LIVE-complete (RO-014 / PB-016)**. Wave 15 **Under Authoring**. HR-015 not started. Publication Front Approver honesty gap remains open (not cleared by catalogue). No forged seals. Until-exam trust not claimed. No 100% Approver-credit claim.
+Wave 1–15 LIVE Approver credit stands at **72 / 72 (100% Approver numerator)**. Campaign Mu / CS1-012 is **LIVE Verified** for 3.3.1–3.3.5 + CM-R1. Campaign Nu / CS1-013 is **LIVE Verified** for Continuity Front join Topic **4.1** (CN-D1…CN-R1; no Approver Δ). Campaign Xi / CS1-014 is **LIVE Verified** for Continuity Front join Topic **4.2** (CX-D1…CX-R1; no Approver Δ). Campaign Omicron / CS1-015 is **LIVE Verified** for Continuity Front join Topic **5.1** (CO-D1…CO-R1; no Approver Δ). Campaign Pi / CS1-016 is **LIVE Verified** for Memory Front / spine re-audit (CP-D1…CP-R1; no Approver Δ). Campaign Rho / CS1-017 is **LIVE Verified** for Publication Front / Wave 0 residual (CR-D1…CR-R1; RO-015 PASS with package-path residual), moving Approver credit for 1.1.1–2.1.2 (Approver numerator 63 to 72). Student Continuity Front / Student Reliance Coverage through Topic **5.1** remains **HELD**. PB-012 **PASS**. PB-013 **PASS**. PB-014 **PASS**. PB-015 **PASS**. PB-016 **PASS**. PB-017 **PASS**. Wave 14 **LIVE-complete (RO-014 / PB-016)**. Wave 15 **LIVE-complete (RO-015 / PB-017)**. HR-015 complete. Legacy CS1-001 / CS1-002 Alpha/Beta bodies remain unmodified honesty-gap inventory. No forged seals. Until-exam trust not claimed. First-pass spine PASS not claimed. "100% CS1" commercial slogan not claimed. Educational Content Freeze declared (PB-017 exit).
 
-**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md` · `EP009_COVERAGE_UPDATE.md` · `EP010_WAVE10_PLAN.md` · `EP010_COVERAGE_UPDATE.md` · `EP011_WAVE11_PLAN.md` · `EP011_COVERAGE_UPDATE.md` · `EP012_WAVE12_PLAN.md` · `EP012_COVERAGE_UPDATE.md` · `EP013_WAVE13_PLAN.md` · `EP013_COVERAGE_UPDATE.md` · `EP014_WAVE14_PLAN.md` · `EP014_COVERAGE_UPDATE.md` · `EP015_WAVE15_PLAN.md` · `EP015_COVERAGE_UPDATE.md` · `RO010_*` · `RO011_*` · `RO012_*` · `RO013_*` · `RO014_*` · `PB012_*` · `PB013_*` · `PB014_*` · `PB015_*` · `PB016_*` · `CE001_CATALOGUE_COVERAGE.md`
+**Companions:** `EP001_GOVERNANCE.md` · `EP001_PRODUCTION_ROADMAP.md` · `EP001_WAVE1_PLAN.md` · `EP001_WAVE2_PLAN.md` · `EP003_WAVE3_PLAN.md` · `EP003_COVERAGE_UPDATE.md` · `EP004_WAVE4_PLAN.md` · `EP004_COVERAGE_UPDATE.md` · `EP005_WAVE5_PLAN.md` · `EP005_COVERAGE_UPDATE.md` · `EP006_WAVE6_PLAN.md` · `EP006_COVERAGE_UPDATE.md` · `EP007_WAVE7_PLAN.md` · `EP007_COVERAGE_UPDATE.md` · `EP008_WAVE8_PLAN.md` · `EP008_COVERAGE_UPDATE.md` · `EP009_WAVE9_PLAN.md` · `EP009_COVERAGE_UPDATE.md` · `EP010_WAVE10_PLAN.md` · `EP010_COVERAGE_UPDATE.md` · `EP011_WAVE11_PLAN.md` · `EP011_COVERAGE_UPDATE.md` · `EP012_WAVE12_PLAN.md` · `EP012_COVERAGE_UPDATE.md` · `EP013_WAVE13_PLAN.md` · `EP013_COVERAGE_UPDATE.md` · `EP014_WAVE14_PLAN.md` · `EP014_COVERAGE_UPDATE.md` · `EP015_WAVE15_PLAN.md` · `EP015_COVERAGE_UPDATE.md` · `RO010_*` · `RO011_*` · `RO012_*` · `RO013_*` · `RO014_*` · `RO015_*` · `PB012_*` · `PB013_*` · `PB014_*` · `PB015_*` · `PB016_*` · `PB017_*` · `CE001_CATALOGUE_COVERAGE.md`
 
 Signed notionally: Editorial Director · EP-001 · Coverage Map · 2026-08-04
