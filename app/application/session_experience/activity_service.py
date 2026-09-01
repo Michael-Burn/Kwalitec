@@ -199,7 +199,11 @@ def _build_activity(
         ),
         scored_correct=_optional_bool(opaque.get("scored_correct")),
         response_type=str(opaque.get("response_type") or ""),
+        submitted_response=str(
+            opaque.get("submitted_response") or opaque.get("response") or ""
+        ),
         choices=_parse_choices(opaque.get("choices")),
+        requires_response=bool(opaque.get("requires_response", True)),
     )
 
 

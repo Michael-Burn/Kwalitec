@@ -61,7 +61,9 @@ class ActivityProjection:
     next_action: str = ""
     scored_correct: bool | None = None
     response_type: str = ""
+    submitted_response: str = ""
     choices: tuple[tuple[str, str], ...] = ()
+    requires_response: bool = True
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)
 
     @classmethod
@@ -89,7 +91,9 @@ class ActivityProjection:
         next_action: str = "",
         scored_correct: bool | None = None,
         response_type: str = "",
+        submitted_response: str = "",
         choices: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
+        requires_response: bool = True,
         metadata: list[tuple[str, str]] | tuple[tuple[str, str], ...] | None = None,
     ) -> ActivityProjection:
         """Build an activity projection from opaque port facts."""
@@ -131,7 +135,9 @@ class ActivityProjection:
             next_action=(next_action or "").strip(),
             scored_correct=scored_correct,
             response_type=(response_type or "").strip().lower(),
+            submitted_response=(submitted_response or "").strip(),
             choices=cleaned_choices,
+            requires_response=bool(requires_response),
             metadata=tuple(metadata or ()),
         )
 

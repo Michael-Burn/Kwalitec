@@ -94,7 +94,9 @@ def activity_snapshot(activity: ActivityProjection) -> ActivitySnapshot:
         next_action=activity.next_action,
         scored_correct=activity.scored_correct,
         response_type=activity.response_type,
+        submitted_response=activity.submitted_response,
         choices=activity.choices,
+        requires_response=activity.requires_response,
         metadata=activity.metadata,
     )
 

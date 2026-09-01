@@ -20,6 +20,55 @@ Several board trackers are dated **2026-07-26–28**. Post-August engineering (R
 
 ---
 
+## 0. Standing rules (always apply)
+
+These are hard constraints for every mode and every task. They outrank convenience and default tooling behaviour. If a request cannot be met without breaking one, stop and say so.
+
+### 0.1 Non-negotiable house rules
+
+1. **No em dashes anywhere in the app.** Do not use the em dash character in code, comments, templates, copy, docstrings, commit messages, or user-facing strings. Use a comma, a colon, parentheses, or two sentences instead.
+2. **Any change under `app/static/` must bump `STATIC_ASSET_VERSION`.** The fingerprint lives in `app/version.py` (`_DEFAULT_STATIC_ASSET_VERSION`). If you touch a CSS, JS, image, font, or other file under `app/static/`, bump that value in the same change so cache-busting URLs (`?v=...`) update. A static edit without a version bump is an incomplete change.
+3. **No production database, browser, or log access.** Do not connect to, query, inspect, or drive the production Postgres, the live site, or production logs. Reason about production only from committed code, migrations, and evidence files in the repo. If a question genuinely needs production data, ask the human to run it and paste the result.
+4. **Local pytest is the trust signal for correctness, not CI.** CI currently has an unrelated billing issue, so a red or missing CI run is not evidence of a defect. Verify with `python -m pytest tests/` (plus `ruff check`) locally and report the actual local result. Never claim something passes without running the local suite.
+5. **Deploy is manual via the Render dashboard only, never automated.** Do not add, re-enable, or script auto-deploy, deploy hooks, GitHub deploy actions, or `render.yaml` autoDeploy. Do not run deploy commands. When work is ready to ship, hand off with a note that a human deploys it from the Render dashboard.
+6. **Do not defer or deprioritize work just because it is large.** Size alone is not a reason to split, postpone, or shelve a piece of work. Defer only for a substantive reason (a blocking dependency, a frozen area such as EF-001, missing evidence, an explicit human decision) and state that reason explicitly.
+
+### 0.2 Agent discipline (from `.cursor/rules/12-agent-discipline.mdc`)
+
+**Before any code edit**
+- Never start editing without an explicit Goal and Touch List (exact files/folders). If the request does not include one, ask. Do not infer scope by exploring the codebase yourself.
+- Work out the Touch List and approach in Plan mode before switching to Agent mode. Do not jump straight to Agent mode for anything non-trivial.
+- Use Ask mode (no edits) for any question that does not require a file change: "where does X live", "explain Y", "what does this do".
+
+**While editing**
+- Only touch files in the stated Touch List. If you notice a related issue outside it, flag it in your response. Do not fix it unprompted.
+- Do not run repo-wide searches "just to be safe" when the relevant file or service is already named in `CLAUDE.md`, `ARCHITECTURE.md`, or the brief.
+- Reuse existing services and helpers (`CurriculumService`, `RecommendationService`, etc.) rather than duplicating their logic.
+- Never modify migrations, production config, secrets, or `.env` files unless they are explicitly named in the Touch List.
+
+**Invariant checks (apply automatically, every edit)**
+- No business, planning, mastery, or recommendation logic in routes.
+- No `flask.request` or `session` access inside services. Pass explicit arguments.
+- No curriculum traversal outside `CurriculumService` / engine canonical helpers (`load_auto()`, `get_topics_flat()`, `get_sections()`, and similar).
+- Curriculum V1 (flat) and V2 (hierarchical) must both stay loadable. Do not add a hard requirement for sections.
+- No LLM calls inside deterministic cores (planning, readiness, recommendations).
+- New student-facing UI goes under `presentation/student/` or `presentation/session/`. Never extend `dashboard/`, `mission/`, or `analytics/`.
+- No `db.create_all()` or ad-hoc DDL outside Alembic migrations.
+- No new Educational Framework (EA/EO/TV/EJ/EW) design work. EF-001 is frozen.
+
+**After editing**
+- Run the relevant tests (`python -m pytest tests/`, `ruff check`) and report actual pass or fail. Never claim success without running them.
+- Only commit when explicitly instructed. Use any mandated commit message verbatim.
+
+**Debug mode**
+- Stay scoped to reproducing and fixing the specific failing test or bug named. Do not refactor surrounding code while debugging unless asked.
+
+**Reporting / status requests**
+- For "what is the current state" asks, cite file paths, commit hashes, or command output for every claim. Write "Evidence currently unavailable" rather than guessing.
+- Never state or imply Version 1 readiness, KSI or CRI values, or gate status (G1 to G12). Those are owned by `knowledge/product/` board programmes, not engineering output.
+
+---
+
 ## 1. Role and operating contract
 
 ### 1.1 Division of labour

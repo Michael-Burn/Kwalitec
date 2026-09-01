@@ -116,7 +116,11 @@ class ActivityViewModel:
     next_action: str = ""
     scored_correct: bool | None = None
     response_type: str = ""
+    submitted_response: str = ""
     choices: tuple[tuple[str, str], ...] = ()
+    requires_response: bool = True
+    activity_index: int = 1
+    activities_total: int = 1
 
 
 @dataclass(frozen=True)
@@ -304,7 +308,11 @@ def activity_vm(snap: ActivitySnapshot) -> ActivityViewModel:
         next_action=snap.next_action,
         scored_correct=snap.scored_correct,
         response_type=snap.response_type or "",
+        submitted_response=snap.submitted_response or "",
         choices=snap.choices or (),
+        requires_response=snap.requires_response,
+        activity_index=snap.activity_index,
+        activities_total=snap.activities_total,
     )
 
 

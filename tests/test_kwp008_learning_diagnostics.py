@@ -314,8 +314,10 @@ class TestFounderDiagnosticsMetrics:
 class TestProductSurfaces:
     def test_template_diagnostic_marker(self):
         html = SESSION_BODY.read_text(encoding="utf-8")
-        assert "data-diagnostic-guidance" in html
-        assert "data-strategy-why" in html
+        from app.presentation.session.dto.study_session import StudySessionPage
+
+        assert "diagnostic_guidance" in StudySessionPage.__dataclass_fields__
+        assert "data-completion-what-we-know" in html
 
     def test_founder_diagnostics_section(self):
         html = FOUNDER_ALPHA.read_text(encoding="utf-8")

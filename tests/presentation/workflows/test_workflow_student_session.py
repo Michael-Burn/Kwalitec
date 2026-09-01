@@ -5,6 +5,7 @@ from __future__ import annotations
 import pytest
 
 from app.domain.session_experience.session_workspace import SessionSurface
+from app.presentation.session.messages import FLASH_SUCCESS
 from app.presentation.session.navigation import page_meta
 from app.presentation.session.view_models import FORBIDDEN_LEARNER_TERMS
 from tests.presentation.workflows.helpers import (
@@ -133,7 +134,62 @@ def test_finish_flash_mentions_home_updates(student_client, app):
         follow_redirects=True,
     )
     html = response.get_data(as_text=True).lower()
-    assert "session complete" in html or "home" in html
+    assert "session complete" in html or "home" in html or "return home" in html
+
+
+def test_stage_transitions_do_not_flash_success_banners(student_client, app):
+    """Forward session progress uses chrome only — no green transition toasts."""
+    wire_session(app, activity_engine=FakeActivityEnginePort(activities=1))
+    student_client.get("/session/sess-noflash/overview")
+    begin = student_client.post(
+        "/session/sess-noflash/begin",
+        data={"session_id": "sess-noflash", "submit": "Start Session"},
+        follow_redirects=True,
+    )
+    begin_html = begin.get_data(as_text=True)
+    assert FLASH_SUCCESS["begun"] not in begin_html
+    assert "ds-flash--success" not in begin_html
+
+    student_client.post(
+        "/session/sess-noflash/activity/answer",
+        data={
+            "session_id": "sess-noflash",
+            "activity_id": "act-1",
+            "response": "Equity method applies under significant influence.",
+            "submit": "Submit Answer",
+        },
+        follow_redirects=True,
+    )
+    advance = student_client.post(
+        "/session/sess-noflash/activity/advance",
+        data={"session_id": "sess-noflash", "submit": "Continue"},
+        follow_redirects=True,
+    )
+    advance_html = advance.get_data(as_text=True)
+    assert FLASH_SUCCESS["activities_complete"] not in advance_html
+    assert "ds-flash--success" not in advance_html
+
+    summary = student_client.post(
+        "/session/sess-noflash/reflection/continue",
+        data={"session_id": "sess-noflash", "submit": "Continue to Summary"},
+        follow_redirects=True,
+    )
+    summary_html = summary.get_data(as_text=True)
+    assert FLASH_SUCCESS["reflection_recorded"] not in summary_html
+    assert "ds-flash--success" not in summary_html
+
+    complete = student_client.post(
+        "/session/sess-noflash/complete",
+        data={
+            "session_id": "sess-noflash",
+            "completion_status": "yes",
+            "submit": "Finish Session",
+        },
+        follow_redirects=True,
+    )
+    complete_html = complete.get_data(as_text=True)
+    assert FLASH_SUCCESS["completed"] not in complete_html
+    assert "ds-flash--success" not in complete_html
 
 
 def test_session_chrome_has_brand_exit(student_client):
@@ -174,14 +230,12 @@ def test_forbidden_terms_absent_from_session(student_client):
 
 
 def test_progress_chrome_lists_linear_steps(student_client):
-    """DX-005C: progress is a calm journey indicator, not destination nav."""
+    """Session position cue is quiet orientation, not destination nav."""
     html = student_client.get("/session/sess-steps/overview").get_data(as_text=True)
     assert "Session" in html
-    assert "ds-stage-indicator" in html
-    assert "Overview" in html
-    assert "Activity" in html
-    assert "Reflection" in html
-    assert "Summary" in html
+    assert "ds-session-position" in html
+    assert "Objective" in html or "data-session-position" in html
+    assert "ds-stage-indicator" not in html
     assert "ds-session-card--overview" in html
     assert "ds-btn--primary" in html
     assert "session-flow" not in html

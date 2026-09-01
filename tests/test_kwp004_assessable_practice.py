@@ -322,10 +322,12 @@ class TestStudentFeedbackSurface:
     def test_session_body_has_model_answer_and_common_mistake(self):
         text = SESSION_BODY.read_text(encoding="utf-8")
         assert "model_answer" in text
-        assert "common_mistake" in text
+        assert "feedback_what_to_understand" in text
         assert "feedback_next_action" in text
         assert "Model answer" in text
-        assert "Common mistake" in text
+        assert "What to understand" in text
+        # Choice-aware copy is assembled into what_to_understand (not a
+        # separate Common mistake label) under the Practice contract.
 
 
 # ---------------------------------------------------------------------------

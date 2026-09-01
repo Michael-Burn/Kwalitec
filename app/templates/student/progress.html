@@ -1,0 +1,94 @@
+{% extends "student/base.html" %}
+{% from "design_system/macros.html" import ds_button %}
+{% set title = progress.page_title if progress else 'Progress' %}
+
+{% block page_header %}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content"
+  aria-labelledby="student-progress-title"
+  data-honest-progress="page"
+>
+  <header class="ds-page-header">
+    <h1 id="student-progress-title" class="ds-page-header__title student-page-title">
+      {{ progress.page_title }}
+    </h1>
+    <p class="ds-page-header__support">
+      A plain summary of study consistency and genuine progress.
+    </p>
+  </header>
+
+  <section class="ds-section" aria-labelledby="progress-streak-title">
+    <h2 id="progress-streak-title" class="ds-section__title">Streak</h2>
+    <ul class="ds-list">
+      <li>
+        <div class="ds-list__row">
+          <span>Current streak</span>
+          <span class="ds-list__meta" data-honest-progress="current-streak">{{ progress.current_streak_days }}</span>
+        </div>
+      </li>
+      <li>
+        <div class="ds-list__row">
+          <span>Longest streak</span>
+          <span class="ds-list__meta" data-honest-progress="longest-streak">{{ progress.longest_streak_days }}</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="ds-section" aria-labelledby="progress-coverage-title">
+    <h2 id="progress-coverage-title" class="ds-section__title">Syllabus covered</h2>
+    {% if progress.syllabus_coverage_label %}
+    <p class="ds-list__meta" data-honest-progress="coverage">{{ progress.syllabus_coverage_label }}</p>
+    {% if progress.syllabus_coverage_percent is not none %}
+    <div
+      class="ds-os-progress__track"
+      role="progressbar"
+      aria-valuenow="{{ progress.syllabus_coverage_percent }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="{{ progress.syllabus_coverage_label }}"
+    >
+      <div class="ds-os-progress__fill" style="width: {{ progress.syllabus_coverage_percent }}%"></div>
+    </div>
+    {% endif %}
+    {% else %}
+    <p class="ds-list__meta" role="status" data-honest-progress="coverage-empty">No syllabus coverage recorded yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="ds-section" aria-labelledby="progress-mastery-title">
+    <h2 id="progress-mastery-title" class="ds-section__title">Topics mastered</h2>
+    <p class="ds-list__meta" data-honest-progress="mastery-count">{{ progress.topics_mastered_count }}</p>
+  </section>
+
+  <section class="ds-section" aria-labelledby="progress-milestones-title">
+    <h2 id="progress-milestones-title" class="ds-section__title">Milestones reached</h2>
+    {% if progress.milestones %}
+    <ul class="ds-list" data-honest-progress="milestones">
+      {% for row in progress.milestones %}
+      <li>
+        <div class="ds-list__row">
+          <span>{{ row.label }}</span>
+          <span class="ds-list__meta">{{ row.shown_at_label }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="ds-list__meta" role="status" data-honest-progress="milestones-empty">
+      {{ progress.empty_milestones_message }}
+    </p>
+    {% endif %}
+  </section>
+
+  <p class="ds-list__meta">
+    {{ ds_button('Return Home', href=url_for('student.home'), variant='ghost') }}
+  </p>
+</article>
+{% endblock %}

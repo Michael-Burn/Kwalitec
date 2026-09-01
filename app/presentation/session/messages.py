@@ -2,6 +2,10 @@
 
 Presentation messaging only — no educational authority.
 Aligned with knowledge/version2/PRODUCT_LANGUAGE_GUIDE.md.
+
+Stage-transition success keys (begun, activities_complete, ready_to_finish,
+reflection_recorded, completed) remain registered product language but are not
+flashed on redirect: the session chrome and next surface carry orientation.
 """
 
 from __future__ import annotations

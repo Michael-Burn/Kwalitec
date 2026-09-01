@@ -68,5 +68,11 @@ def apply_math_markup(page: StudySessionPage) -> StudySessionPage:
         model_answer=prepare_math_markup(page.model_answer),
         common_mistake=prepare_math_markup(page.common_mistake),
         feedback_next_action=prepare_math_markup(page.feedback_next_action),
+        feedback_what_happened=prepare_math_markup(page.feedback_what_happened),
+        feedback_what_it_means=prepare_math_markup(page.feedback_what_it_means),
+        feedback_what_to_understand=prepare_math_markup(
+            page.feedback_what_to_understand
+        ),
+        submitted_response=prepare_math_markup(page.submitted_response),
         practice_choices=choices,
     )

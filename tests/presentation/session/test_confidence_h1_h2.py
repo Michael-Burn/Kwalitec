@@ -220,11 +220,20 @@ class TestH2ConfidenceCalibration:
         assert report.confidence_calibration == ""
 
     def test_complete_template_exposes_calibration_hook(self):
+        """H2 calibration remains on the DTO; Session complete uses honest state.
+
+        Sitting-report calibration chrome was removed from the Session
+        redesign completion surface in favour of Twin learning-state copy.
+        """
+        from app.presentation.session.dto.study_session import StudySessionPage
+
+        fields = StudySessionPage.__dataclass_fields__
+        assert "confidence_calibration" in fields
+        assert "learning_state_key" in fields
         body = Path("app/templates/session/partials/session_body.html").read_text(
             encoding="utf-8"
         )
-        assert "s.confidence_calibration" in body
-        assert 'data-confidence-calibration="true"' in body
+        assert "data-learning-state" in body or "learning_state_key" in body
 
 
 class TestH1H2NoIntelligenceConsumers:

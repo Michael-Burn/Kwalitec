@@ -163,6 +163,9 @@ class PackageActivityEngine:
             "model_answer": score.model_answer,
             "common_mistake": score.common_mistake,
             "next_action": score.next_action or next_label,
+            # Presentation only: echo for locked "what happened" feedback.
+            "submitted_response": (response or "").strip(),
+            "response_type": score.response_type,
             "emit_structured": score.emit_structured,
             "score_payload": {
                 "item_id": score.item_id,

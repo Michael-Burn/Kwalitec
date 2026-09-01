@@ -110,12 +110,12 @@ class TestAccessibilityFoundation:
         assert "bootstrap.Modal" in js
 
     def test_session_timer_live_region_throttled(self):
+        """Timer chrome removed; throttle logic remains in session EOS JS."""
         body = (
             ROOT / "app/templates/session/partials/session_body.html"
         ).read_text(encoding="utf-8")
-        assert "data-session-timer-live" in body
-        assert 'role="status"' in body
-        assert 'aria-live="polite"' in body
+        assert "data-session-timer-live" not in body
+        assert "ds-session-position" in body
         js = (ROOT / "app/static/js/session/study_session_eos.js").read_text(
             encoding="utf-8"
         )

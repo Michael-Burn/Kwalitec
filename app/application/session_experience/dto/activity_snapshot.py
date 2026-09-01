@@ -33,5 +33,7 @@ class ActivitySnapshot:
     next_action: str = ""
     scored_correct: bool | None = None
     response_type: str = ""
+    submitted_response: str = ""
     choices: tuple[tuple[str, str], ...] = ()
+    requires_response: bool = True
     metadata: tuple[tuple[str, str], ...] = field(default_factory=tuple)

@@ -9,7 +9,7 @@ from __future__ import annotations
 import logging
 
 from flask import abort, flash, redirect, render_template, url_for
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 from app.application.session_experience.exceptions import (
     PortUnavailable,
@@ -184,7 +184,6 @@ def begin(session_id: str):
         logger.warning("Begin session failed: %s", exc)
         flash(FLASH_WARNING["begin_failed"], "warning")
         return redirect(url_for("session.overview", session_id=session_id))
-    flash(FLASH_SUCCESS["begun"], "success")
     return redirect(url_for("session.activity", session_id=session_id))
 
 
@@ -271,7 +270,6 @@ def finish_start(session_id: str):
         logger.warning("Request finish failed: %s", exc)
         flash(FLASH_WARNING["complete_failed"], "warning")
         return redirect(url_for("session.activity", session_id=session_id))
-    flash(FLASH_SUCCESS["ready_to_finish"], "success")
     return redirect(url_for("session.summary", session_id=session_id))
 
 
@@ -356,7 +354,6 @@ def advance(session_id: str):
         flash(FLASH_WARNING["continue_failed"], "warning")
         return redirect(url_for("session.activity", session_id=session_id))
     if nxt is None:
-        flash(FLASH_SUCCESS["activities_complete"], "success")
         return redirect(url_for("session.reflection", session_id=session_id))
     return redirect(url_for("session.activity", session_id=session_id))
 
@@ -432,7 +429,6 @@ def reflection_continue(session_id: str):
         resource_id=session_id,
         path=f"/session/{session_id}/reflection/continue",
     )
-    flash(FLASH_SUCCESS["reflection_recorded"], "success")
     return redirect(url_for("session.summary", session_id=session_id))
 
 
@@ -484,6 +480,15 @@ def complete(session_id: str):
     form = CompleteSessionForm()
     form.session_id.data = session_id
     study = _study_session.build_page(page)
+    subject_code = ""
+    if page.overview and page.overview.subject_code:
+        subject_code = page.overview.subject_code
+    study = _study_session.enrich_completion(
+        study,
+        user_id=int(current_user.id),
+        topic_id="",
+        subject_code=subject_code,
+    )
     return render_template(
         "session/complete.html",
         title=study.page_title,
@@ -546,7 +551,6 @@ def finish(session_id: str):
             return redirect(url_for("session.summary", session_id=session_id))
         flash(FLASH_WARNING["complete_failed"], "warning")
         return redirect(url_for(redirect_surface, session_id=session_id))
-    flash(FLASH_SUCCESS["completed"], "success")
     return redirect(url_for("session.complete", session_id=session_id))
 
 

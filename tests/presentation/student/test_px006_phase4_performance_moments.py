@@ -100,9 +100,10 @@ class TestPx006MotionSystem:
         body = (
             ROOT / "app/templates/session/partials/session_body.html"
         ).read_text(encoding="utf-8")
-        assert "success-reward" in body
-        assert 'data-px006="celebration"' in body
-        assert "SESSION_COMPLETE_SUPPORT" in body or SESSION_COMPLETE_SUPPORT
+        # Session redesign: calm honest completion, not celebration theatre.
+        assert "data-completion-what-happened" in body
+        assert "data-session-milestone" in body
+        assert 'data-px006="celebration"' not in body
 
 
 class TestPx006PremiumMoments:
@@ -183,8 +184,10 @@ class TestPx006PremiumMoments:
         macros = (
             ROOT / "app/templates/design_system/macros.html"
         ).read_text(encoding="utf-8")
-        assert "Recent study rhythm" in macros
+        assert "Streak" in macros
         assert "Study streak" not in macros
+        assert "don't break" not in macros.lower()
+        assert "Recent study rhythm" not in macros
 
     def test_preference_stickiness_copy(self) -> None:
         settings = (

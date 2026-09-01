@@ -313,6 +313,8 @@ class SessionActivityAdapter:
             "next_action",
             "next_action_label",
             "scored_correct",
+            "submitted_response",
+            "response_type",
             "emit_structured",
             "score_payload",
         ):

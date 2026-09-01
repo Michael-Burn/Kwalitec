@@ -117,6 +117,8 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
         "student.knowledge_graph",
     ):
         return ExperienceSurface.HOME
+    if endpoint == "student.progress":
+        return ExperienceSurface.PROFILE
     for surface, ep in SURFACE_ENDPOINTS.items():
         if ep == endpoint:
             return surface

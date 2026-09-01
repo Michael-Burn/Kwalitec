@@ -49,6 +49,12 @@
       {{ home.diligence_line }}
     </p>
     {% endif %}
+    <p class="ds-list__meta ds-os-home__greeting-support" data-honest-progress="streak" role="status">
+      Streak · {{ home.current_streak_days }}
+      {% if home.progress_href %}
+      <a class="ds-os-home__progress-link" href="{{ home.progress_href }}">Progress</a>
+      {% endif %}
+    </p>
   </header>
 
   {# ——— Empty: no exam / no plan ——— #}

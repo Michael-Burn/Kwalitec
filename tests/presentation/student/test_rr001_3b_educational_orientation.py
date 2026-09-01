@@ -8,6 +8,7 @@ recommendation, Mission Intelligence, or curriculum behaviour.
 from __future__ import annotations
 
 from dataclasses import replace
+from types import SimpleNamespace
 
 from flask import render_template
 
@@ -123,7 +124,7 @@ def test_session_reflection_framing_aligns_with_architecture(app, ctx):
     )
 
     study = StudySessionPage(
-        page_title="Session reflection",
+        page_title="Today: Cash flow",
         surface="reflection",
         context=SessionPersistentContext(
             subject="Cash flow",
@@ -146,11 +147,11 @@ def test_session_reflection_framing_aligns_with_architecture(app, ctx):
         blocking_issue="",
         exit_href="/student/",
         exit_label="Exit",
-        content_title="Session reflection",
-        content_body="What felt clearer?",
+        content_title="",
+        content_body="",
         content_support="",
-        answer_prompt="",
-        show_answer_input=False,
+        answer_prompt="What felt clearer?",
+        show_answer_input=True,
         feedback_outcome="",
         feedback_explanation="",
         disclosures=(),
@@ -158,16 +159,39 @@ def test_session_reflection_framing_aligns_with_architecture(app, ctx):
         session_id="s-rr13b",
         activity_id="",
         mission_id="",
+        stage_position_label="Reflection",
+        content_stage="reflection",
+    )
+
+    class _Field:
+        name = "reflection_note"
+        id = "reflection_note"
+
+        def __call__(self, **kwargs):
+            return ""
+
+    form = SimpleNamespace(
+        hidden_tag=lambda: "",
+        session_id=lambda: "",
+        reflection_note=_Field(),
+        confidence_rating=SimpleNamespace(
+            name="confidence_rating",
+            data=None,
+            choices=(),
+        ),
     )
     with app.test_request_context("/session/s-rr13b/reflection"):
         html = render_template(
             "session/reflection.html",
             page=None,
             study=study,
-            form=None,
+            form=form,
         )
-    assert "Session reflection" in html
+    assert "ds-learning-task" not in html
+    assert "A moment to reflect" not in html
     assert "What felt clearer?" in html
+    assert "Reflection" in html
+    assert 'class="ds-session-reflection__prompt"' in html
     assert (
         ReflectionProjection(
             session_id="s-rr13b",

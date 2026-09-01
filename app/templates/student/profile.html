@@ -93,6 +93,14 @@
                         {{ ds_button('Adjust', href=url_for('study_plan.index'), variant='secondary') }}
                         {% endif %}
                     </div>
+
+                    <div class="ds-os-settings-hub__row">
+                        <div class="ds-os-settings-hub__row-copy">
+                            <p class="ds-os-settings-hub__row-label">Progress</p>
+                            <p class="ds-os-settings-hub__row-desc">Streak, syllabus coverage, and milestones reached.</p>
+                        </div>
+                        {{ ds_button('View', href=url_for('student.progress'), variant='secondary') }}
+                    </div>
                 </div>
             </section>
 

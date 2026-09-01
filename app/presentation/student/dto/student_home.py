@@ -170,3 +170,6 @@ class StudentHomePage:
     milestone_acknowledgement: str = ""
     # PX-006 / PX-B-047 — calm diligence reinforcement (no streak punishment).
     diligence_line: str = ""
+    # Honest Progress: qualifying study day streak (plain count, including 0).
+    current_streak_days: int = 0
+    progress_href: str = ""

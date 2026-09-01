@@ -345,5 +345,5 @@ def test_overview_template_structure(app, client, ctx, user):
     assert "design_system.css" in html or "ds-page" in html
     assert "Study Sensei" not in html
     assert "Readiness estimate" not in html
-    assert "ds-stage-indicator" in html
+    assert "ds-session-position" in html
     assert "study session" not in html.lower()

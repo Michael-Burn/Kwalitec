@@ -63,9 +63,12 @@ class StudentHomeService:
         show_revision_acknowledgement: bool = False,
         revision_ack_title: str = "",
         revision_ack_body: str = "",
+        current_streak_days: int = 0,
+        progress_href: str = "",
     ) -> StudentHomePage:
         """Assemble command-centre sections from existing Experience VMs."""
         choose_exam_href = url_for("study_plan.index")
+        streak_days = max(0, int(current_streak_days or 0))
         if page is None or page.home is None:
             return StudentHomePage(
                 mission=None,
@@ -87,6 +90,8 @@ class StudentHomeService:
                 empty_action_href=choose_exam_href,
                 page_question=_PAGE_QUESTION,
                 greeting=_DEFAULT_GREETING,
+                current_streak_days=streak_days,
+                progress_href=progress_href,
             )
 
         home = page.home
@@ -102,6 +107,7 @@ class StudentHomeService:
             examination=examination,
             journey=journey,
             profile=profile,
+            current_streak_days=streak_days,
         )
         # Exam countdown lives in the signal strip — avoid a duplicate widget.
         deadlines = self._deadlines(
@@ -164,6 +170,8 @@ class StudentHomeService:
                 insights=insights,
                 syllabus_position=syllabus_position,
                 history=history,
+                current_streak_days=streak_days,
+                progress_href=progress_href,
                 ),
             )
 
@@ -202,6 +210,8 @@ class StudentHomeService:
                 insights=insights,
                 syllabus_position=syllabus_position,
                 history=history,
+                current_streak_days=streak_days,
+                progress_href=progress_href,
                 ),
             )
 
@@ -225,6 +235,8 @@ class StudentHomeService:
                 insights=insights,
                 syllabus_position=syllabus_position,
                 history=history,
+                current_streak_days=streak_days,
+                progress_href=progress_href,
                 ),
             )
 
@@ -249,6 +261,8 @@ class StudentHomeService:
                 insights=insights,
                 syllabus_position=syllabus_position,
                 history=history,
+                current_streak_days=streak_days,
+                progress_href=progress_href,
                 ),
             )
 
@@ -273,6 +287,8 @@ class StudentHomeService:
             insights=(),
             syllabus_position="",
             history=history,
+            current_streak_days=streak_days,
+            progress_href=progress_href,
             ),
         )
 
@@ -298,6 +314,8 @@ class StudentHomeService:
         insights: tuple[HomeInsightRow, ...] = (),
         syllabus_position: str = "",
         history: HistoryPageViewModel | None = None,
+        current_streak_days: int = 0,
+        progress_href: str = "",
     ) -> StudentHomePage:
         section_title = self._mission_section_title(mission)
         quick_actions = self._quick_actions(
@@ -424,6 +442,8 @@ class StudentHomeService:
             preparing_mission=preparing,
             milestone_acknowledgement=milestone_acknowledgement,
             diligence_line=diligence_line,
+            current_streak_days=max(0, int(current_streak_days or 0)),
+            progress_href=progress_href,
         )
 
     def _forecast_insight(
@@ -898,6 +918,7 @@ class StudentHomeService:
         examination: HomeExamination | None,
         journey: JourneyPageViewModel | None,
         profile: ProfilePageViewModel | None,
+        current_streak_days: int = 0,
     ) -> HomeStudySignals | None:
         """Compact orientation strip — no duplicate exam/deadline widgets."""
         subject = ""
@@ -908,27 +929,8 @@ class StudentHomeService:
         if not subject and not self._has_study_plan_signal(home):
             return None
 
-        streak = ""
-        if profile and (profile.streak_label or "").strip():
-            streak = profile.streak_label.strip()
-            if streak == "0 days" or streak.lower() in {
-                "no streak yet",
-                "0 day streak",
-            }:
-                # PX-B-047 — empty rhythm is calm, not punitive.
-                try:
-                    from app.application.student_experience.student_microcopy import (
-                        DILIGENCE_EMPTY_STREAK,
-                    )
-
-                    streak = DILIGENCE_EMPTY_STREAK
-                except Exception:
-                    streak = "Study rhythm builds as you show up"
-            elif (
-                not streak.lower().endswith("streak")
-                and "rhythm" not in streak.lower()
-            ):
-                streak = f"{streak} streak"
+        # Honest Progress: plain qualifying-day streak (including 0).
+        streak = str(max(0, int(current_streak_days or 0)))
 
         progress_label = ""
         progress_percent: int | None = None

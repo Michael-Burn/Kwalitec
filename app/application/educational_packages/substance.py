@@ -113,7 +113,8 @@ def _activities(
             supporting_material="",
             hints=tuple(reading.misconception_watch[:2])
             or ("Sketch Family / η / Link before deep reading.",),
-            answer_prompt="What did you extract from the CMP setup?",
+            answer_prompt="",
+            requires_response=False,
             objective_ids=objective_ids,
             syllabus_refs=syllabus,
             metadata=(
@@ -141,9 +142,6 @@ def _activities(
             for step in real.steps
             if step.attempt_cue
         ) or (real.attempt_before_reveal,)
-        example_answer_prompt = (
-            "Which calculated quantity will you reuse in the checks?"
-        )
     else:
         example_title = "Structure walkthrough: Family → η → link"
         example_prompt = (
@@ -156,9 +154,6 @@ def _activities(
             for pp in reading.pause_points
             if pp.get("cue")
         ) or (reading.attempt_before_reveal,)
-        example_answer_prompt = (
-            "Which pause-point note will you reuse in the checks?"
-        )
     activities.append(
         EducationalActivitySpec(
             activity_id="act-example-1",
@@ -170,7 +165,8 @@ def _activities(
             # continue") so the template does not render it a second time.
             supporting_material="",
             hints=example_hints,
-            answer_prompt=example_answer_prompt,
+            answer_prompt="",
+            requires_response=False,
             objective_ids=objective_ids[:1] if objective_ids else (),
             syllabus_refs=syllabus,
             metadata=(

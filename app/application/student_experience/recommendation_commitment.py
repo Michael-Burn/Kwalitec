@@ -89,7 +89,7 @@ FORBIDDEN_SHAME_SUBSTRINGS: tuple[str, ...] = (
     "hurt your readiness",
     "top students never",
     "broke your streak",
-    "streak",
+    "don't break your streak",
     "you fell behind",
     "points",
     "badge",

@@ -155,14 +155,30 @@ def home():
             )
     # RR-001.1 / JR-07: syllabus-complete revision acknowledgement remains
     # reachable as the L0 Primary (Continue) under DX-005A.
+    from app.presentation.student.services.honest_progress_service import (
+        HonestProgressService,
+    )
     from app.services.learning_lifecycle_service import LearningLifecycleService
 
     lifecycle = LearningLifecycleService.resolve(current_user.id)
+    progress_svc = HonestProgressService()
+    streak_days = progress_svc.streak_stats(
+        user_id=current_user.id
+    ).current_streak_days
+    try:
+        progress_href = url_for("student.progress")
+    except Exception:  # noqa: BLE001
+        progress_href = "/student/progress"
     home = StudentHomeService().build_home(
         page,
         show_revision_acknowledgement=lifecycle.show_completion_acknowledgement,
         revision_ack_title=getattr(lifecycle, "acknowledgement_title", "") or "",
         revision_ack_body=getattr(lifecycle, "acknowledgement_body", "") or "",
+        current_streak_days=streak_days,
+        progress_href=progress_href,
+    )
+    progress_svc.announce_new_milestones_on_home(
+        user_id=current_user.id,
     )
     return render_template(
         "student/home.html",
@@ -171,6 +187,26 @@ def home():
         home=home,
         form=form,
         complete_form=complete_form,
+    )
+
+
+@student_bp.get("/progress")
+@login_required
+def progress():
+    """Honest Progress summary: streak, coverage, mastery, milestones."""
+    from app.presentation.student.services.honest_progress_service import (
+        HonestProgressService,
+    )
+
+    page = load_page(ExperienceSurface.PROFILE)
+    progress_page = HonestProgressService().build_progress_page(
+        user_id=current_user.id,
+    )
+    return render_template(
+        "student/progress.html",
+        title=progress_page.page_title,
+        page=page,
+        progress=progress_page,
     )
 
 

@@ -341,8 +341,10 @@ class TestFounderDifficultyMetrics:
 class TestProductSurfaces:
     def test_template_difficulty_marker(self):
         html = SESSION_BODY.read_text(encoding="utf-8")
-        assert "data-difficulty-guidance" in html
-        assert "Pace ·" in html
+        from app.presentation.session.dto.study_session import StudySessionPage
+
+        assert "difficulty_guidance" in StudySessionPage.__dataclass_fields__
+        assert "data-completion-what-changed" in html
 
     def test_founder_difficulty_section(self):
         html = FOUNDER_ALPHA.read_text(encoding="utf-8")

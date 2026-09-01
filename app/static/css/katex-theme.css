@@ -8,6 +8,12 @@
   font-size: 1.05em;
 }
 
+.ds-session-math-plane .katex-display,
+.ds-session-derivation-step .katex-display {
+  margin: 0.75em 0;
+  overflow-x: auto;
+}
+
 [data-theme="dark"] .katex {
   color: var(--text-primary, #e8eaed);
 }

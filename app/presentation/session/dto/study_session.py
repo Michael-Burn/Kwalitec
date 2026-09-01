@@ -157,3 +157,21 @@ class StudySessionPage:
     topic_display: str = ""
     meta_duration: str = ""
     meta_mode: str = ""
+    # Session redesign — content stage density + honest feedback / completion
+    content_stage: str = ""
+    # content_stage: overview | read | worked_example | practice |
+    #                 reflection | summary | complete
+    stage_position_label: str = ""
+    stage_step_label: str = ""
+    submitted_response: str = ""
+    feedback_what_happened: str = ""
+    feedback_what_it_means: str = ""
+    feedback_what_to_understand: str = ""
+    feedback_locked: bool = False
+    learning_state_key: str = ""
+    # learning_state_key: developing | mastered | not_yet_enough_evidence | ""
+    learning_state_label: str = ""
+    what_changed_label: str = ""
+    session_milestone_label: str = ""
+    completion_what_happened: str = ""
+    completion_what_we_know: str = ""

@@ -216,6 +216,6 @@ class TestSessionActivation:
         body = (SESSION_TEMPLATES / "partials" / "session_body.html").read_text(
             encoding="utf-8"
         )
-        assert "data-completion-moment" in body
-        assert "data-journey-update" in body
-        assert "Learning Insights" in body
+        assert "data-completion-what-happened" in body
+        assert "data-completion-what-changed" in body
+        assert "data-session-milestone" in body

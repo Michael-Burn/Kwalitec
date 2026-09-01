@@ -45,6 +45,8 @@ def render_student_home(
     page_home: HomePageViewModel | None,
     *,
     form=None,
+    current_streak_days: int = 0,
+    progress_href: str = "",
     **template_kwargs,
 ):
     """Render student/home.html with DX-005A ``home`` DTO projection."""
@@ -59,7 +61,11 @@ def render_student_home(
         educational=None,
     )
     with app.test_request_context("/student/"):
-        home = StudentHomeService().build_home(page)
+        home = StudentHomeService().build_home(
+            page,
+            current_streak_days=current_streak_days,
+            progress_href=progress_href or "/student/progress",
+        )
         return render_template(
             "student/home.html",
             page=page,

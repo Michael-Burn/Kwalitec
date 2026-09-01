@@ -183,14 +183,13 @@ class TestCompletionViewModelSittingReport:
 class TestPresentationSurfaces:
     def test_session_body_has_sitting_report_and_assessment_mode(self):
         body = SESSION_BODY.read_text(encoding="utf-8")
-        assert 'data-sitting-report="true"' in body
-        assert 'data-assessment-mode="true"' in body
-        assert "Needs reinforcement" in body
-        assert "Learning Insights" in body
-        assert "data-progress-explanation" in body
+        # Session redesign completion: honest what happened / what we know /
+        # what changed (Sitting Report KPI dump removed from L0 chrome).
+        assert "data-completion-what-happened" in body
+        assert "data-completion-what-we-know" in body
+        assert "data-completion-what-changed" in body
         assert "student.history" in body
         for banned in ("Twin", "Evidence Authority", "Educational+", "FSM", "Runtime"):
-            # Allow comments / attributes that are student-safe product labels only.
             assert f">{banned}" not in body or banned in {
                 # none expected as visible labels
             }

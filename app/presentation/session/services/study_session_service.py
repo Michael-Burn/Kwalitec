@@ -31,14 +31,6 @@ from app.presentation.session.view_models import SessionPageViewModel
 
 _PAGE_TITLE = "Session"
 _SYLLABUS_CODE_IN_TEXT = re.compile(r"Syllabus\s+(\d+(?:\.\d+)*)", re.IGNORECASE)
-# Concise journey labels for the stage indicator (SURFACE_LABELS stay product-long).
-_STAGE_INDICATOR_LABELS = {
-    "Session Overview": "Overview",
-    "Learning Activity": "Activity",
-    "Reflection": "Reflection",
-    "Session Summary": "Summary",
-    "Sitting Report": "Summary",
-}
 
 
 class StudySessionService:
@@ -202,20 +194,8 @@ class StudySessionService:
                 page
             )
 
-        workflow_steps: tuple[str, ...] = ()
-        workflow_step_index = 0
         page_eyebrow = (page.shell.page_eyebrow or "").strip()
         estimated_time_label = ""
-        if page.shell.steps:
-            workflow_steps = tuple(
-                _STAGE_INDICATOR_LABELS.get(step.label, step.label)
-                for step in page.shell.steps
-            )
-            active = next((s for s in page.shell.steps if s.is_active), None)
-            if active:
-                workflow_step_index = max(0, active.step_number - 1)
-            elif surface is SessionSurface.COMPLETE:
-                workflow_step_index = max(0, len(workflow_steps) - 1)
         if surface is SessionSurface.OVERVIEW and page.overview:
             estimated_time_label = (
                 page.overview.estimated_duration_label or ""
@@ -238,6 +218,34 @@ class StudySessionService:
         context_eyebrow = _context_eyebrow(subject_code, topic_display)
         meta_duration = _compact_duration_label(estimated_time_label)
         meta_mode = _meta_mode_label(surface, page)
+
+        content_stage = _content_stage_key(surface, page)
+        stage_position_label = _stage_position_label(content_stage)
+        stage_step_label = _stage_step_label(surface, page)
+        submitted_response = str(content.get("submitted_response") or "")
+        feedback_parts = _practice_feedback_parts(
+            outcome=str(content.get("feedback_outcome") or ""),
+            explanation=str(content.get("feedback_explanation") or ""),
+            common_mistake=str(content.get("common_mistake") or ""),
+            submitted_response=submitted_response,
+            response_type=str(content.get("response_type") or ""),
+            scored_correct=content.get("scored_correct"),
+            practice_choices=tuple(content.get("practice_choices") or ()),
+        )
+        completion_what_happened = ""
+        completion_what_we_know = ""
+        what_changed_label = ""
+        learning_state_key = ""
+        learning_state_label = ""
+        if surface is SessionSurface.COMPLETE:
+            topic_name = topic_display or "today's topic"
+            completion_what_happened = (
+                f"Session completed on {topic_name}."
+            )
+            what_changed_label = (
+                (progress_explanation or journey_update or "").strip()
+                or "Your practice on this topic was recorded."
+            )
 
         return apply_math_markup(
             StudySessionPage(
@@ -273,14 +281,7 @@ class StudySessionService:
             mission_id=(page.overview.mission_id if page.overview else "") or "",
             confidence_prompt=str(content.get("confidence_prompt") or ""),
             reading_progress_percent=reading_progress,
-            show_pause=product
-            and surface
-            in {
-                SessionSurface.OVERVIEW,
-                SessionSurface.ACTIVITY,
-                SessionSurface.REFLECTION,
-            }
-            and surface is not SessionSurface.OVERVIEW,
+            show_pause=False,
             finish_review_required=product and surface is SessionSurface.SUMMARY,
             lifecycle_label=lifecycle,
             checklist=checklist,
@@ -324,15 +325,78 @@ class StudySessionService:
             difficulty_guidance=difficulty_guidance,
             difficulty_explanation=difficulty_explanation,
             effectiveness_feedback=effectiveness_feedback,
-            workflow_steps=workflow_steps,
-            workflow_step_index=workflow_step_index,
+            workflow_steps=(),
+            workflow_step_index=0,
             page_eyebrow=page_eyebrow,
             estimated_time_label=estimated_time_label,
             context_eyebrow=context_eyebrow,
             topic_display=topic_display,
             meta_duration=meta_duration,
             meta_mode=meta_mode,
+            content_stage=content_stage,
+            stage_position_label=stage_position_label,
+            stage_step_label=stage_step_label,
+            submitted_response=submitted_response,
+            feedback_what_happened=feedback_parts["what_happened"],
+            feedback_what_it_means=feedback_parts["what_it_means"],
+            feedback_what_to_understand=feedback_parts["what_to_understand"],
+            feedback_locked=bool(feedback_parts["what_it_means"]),
+            learning_state_key=learning_state_key,
+            learning_state_label=learning_state_label,
+            what_changed_label=what_changed_label,
+            session_milestone_label="",
+            completion_what_happened=completion_what_happened,
+            completion_what_we_know=completion_what_we_know,
             )
+        )
+
+    def enrich_completion(
+        self,
+        study: StudySessionPage,
+        *,
+        user_id: int,
+        topic_id: str = "",
+        subject_code: str = "",
+    ) -> StudySessionPage:
+        """Attach Twin learning state and one-shot Honest Progress milestones.
+
+        Presentation only. Uses existing Twin query and milestone detector;
+        does not invent a second milestone mechanism.
+        """
+        from dataclasses import replace
+
+        if study.surface != "complete":
+            return study
+
+        state_key, state_label = _topic_learning_state(
+            user_id=user_id,
+            subject_code=subject_code,
+            topic_id=topic_id,
+            topic_title=study.topic_display,
+        )
+        what_we_know = state_label
+        milestone_label = ""
+        try:
+            from app.presentation.student.services.honest_progress_service import (
+                HonestProgressService,
+            )
+
+            service = HonestProgressService()
+            announced = service.consume_new_milestones(
+                user_id=user_id,
+                flash_messages=False,
+            )
+            if announced:
+                milestone_label = announced[0]
+        except Exception:  # noqa: BLE001 - fail-open for completion chrome
+            milestone_label = ""
+
+        return replace(
+            study,
+            learning_state_key=state_key,
+            learning_state_label=state_label,
+            completion_what_we_know=what_we_know,
+            session_milestone_label=milestone_label,
         )
 
     @staticmethod
@@ -533,14 +597,16 @@ class StudySessionService:
                 )
             elif stage == "read":
                 activity = "Reading"
-                expected = "Study the reading, then note one key idea"
-                instruction = "Read carefully, then capture what stood out."
+                expected = "Complete today's reading guidance"
+                instruction = (
+                    "Work through the CMP guidance, then continue to the worked example."
+                )
                 next_milestone = "Worked example"
             elif stage == "worked_example":
                 activity = "Worked example"
-                expected = "Follow the method, then note the step you will reuse"
+                expected = "Follow the method before practice"
                 instruction = (
-                    "Stay with the worked example before moving to practice."
+                    "Review the worked example, then continue to Knowledge Checks."
                 )
                 next_milestone = "Practice"
             elif stage == "practice":
@@ -620,6 +686,9 @@ class StudySessionService:
             if page.activity.has_explanation:
                 label = page.activity.next_action_label or "Continue"
                 return label, "advance_form", True, ""
+            if not page.activity.requires_response:
+                label = page.activity.next_action_label or "Continue"
+                return label, "advance_form", True, ""
             return "Submit Answer", "answer_form", True, ""
 
         if surface is SessionSurface.REFLECTION and page.reflection:
@@ -681,6 +750,8 @@ class StudySessionService:
             "practice_prompt": "",
             "response_type": "",
             "practice_choices": (),
+            "submitted_response": "",
+            "scored_correct": None,
         }
 
         if surface is SessionSurface.OVERVIEW and page.overview:
@@ -725,7 +796,7 @@ class StudySessionService:
                 "body": body,
                 "support": support,
                 "answer_prompt": act.answer_prompt or "Your answer",
-                "show_answer_input": not act.has_explanation,
+                "show_answer_input": act.requires_response and not act.has_explanation,
                 "feedback_outcome": feedback_outcome,
                 "feedback_explanation": feedback_explanation,
                 "model_answer": model_answer if act.has_explanation else "",
@@ -736,27 +807,25 @@ class StudySessionService:
                 "practice_prompt": practice_prompt,
                 "response_type": (act.response_type or "").strip().lower(),
                 "practice_choices": tuple(act.choices or ()),
+                "submitted_response": (
+                    (act.submitted_response or "").strip()
+                    if act.has_explanation
+                    else ""
+                ),
+                "scored_correct": (
+                    act.scored_correct if act.has_explanation else None
+                ),
             }
 
         if surface is SessionSurface.REFLECTION and page.reflection:
-            from app.application.student_experience.student_microcopy import (
-                REFLECTION_VALUE_FRAMING,
-                REFLECTION_VALUE_TITLE,
-            )
-
             prompt = (page.reflection.reflection_prompt or "").strip()
             confidence_prompt = (page.reflection.confidence_prompt or "").strip()
-            support = ""
-            if page.reflection.key_insight:
-                support = page.reflection.key_insight
-            else:
-                support = REFLECTION_VALUE_FRAMING
-            # Show the question once as the textarea label; keep L1 framing lean.
+            # Chrome label + reflection form question only — no stacked headings.
             return {
                 **empty,
-                "title": REFLECTION_VALUE_TITLE,
+                "title": "",
                 "body": "",
-                "support": support,
+                "support": "",
                 "answer_prompt": prompt or "Your reflection",
                 "confidence_prompt": confidence_prompt,
                 "show_answer_input": True,
@@ -1000,6 +1069,161 @@ def _activity_stage_key(activity: object) -> str:
         or ""
     )
     return str(stage).strip().lower().replace(" ", "_")
+
+
+def _content_stage_key(
+    surface: SessionSurface, page: SessionPageViewModel
+) -> str:
+    """Map surface + activity type to a density stage key."""
+    if surface is SessionSurface.OVERVIEW:
+        return "overview"
+    if surface is SessionSurface.REFLECTION:
+        return "reflection"
+    if surface is SessionSurface.SUMMARY:
+        return "summary"
+    if surface is SessionSurface.COMPLETE:
+        return "complete"
+    if surface is SessionSurface.ACTIVITY and page.activity:
+        if _is_reading_activity(page.activity):
+            return "read"
+        stage = _activity_stage_key(page.activity)
+        if stage == "worked_example":
+            return "worked_example"
+        if stage == "practice":
+            return "practice"
+        return "practice" if stage else "activity"
+    return surface.value
+
+
+def _stage_position_label(content_stage: str) -> str:
+    """Quiet position cue (never a performance measure)."""
+    labels = {
+        "overview": "Objective",
+        "read": "Read",
+        "worked_example": "Worked example",
+        "practice": "Practice",
+        "activity": "Activity",
+        "reflection": "Reflection",
+        "summary": "Summary",
+        "complete": "Complete",
+    }
+    return labels.get(content_stage, "Session")
+
+
+def _stage_step_label(
+    surface: SessionSurface,
+    page: SessionPageViewModel,
+) -> str:
+    """Honest position within the session activity sequence (not a mastery measure)."""
+    if surface is SessionSurface.ACTIVITY and page.activity:
+        index = int(page.activity.activity_index or 0)
+        total = int(page.activity.activities_total or 0)
+        if index >= 1 and total >= 1:
+            return f"Step {index} of {total}"
+    return ""
+
+
+def _practice_feedback_parts(
+    *,
+    outcome: str,
+    explanation: str,
+    common_mistake: str,
+    submitted_response: str,
+    response_type: str,
+    scored_correct: object,
+    practice_choices: tuple[tuple[str, str], ...] = (),
+) -> dict[str, str]:
+    """Build the three-part honest practice feedback structure."""
+    if not (outcome or explanation or common_mistake):
+        return {
+            "what_happened": "",
+            "what_it_means": "",
+            "what_to_understand": "",
+        }
+
+    shown = (submitted_response or "").strip()
+    if shown and response_type == "mcq" and practice_choices:
+        for cid, label in practice_choices:
+            if shown == cid or shown.lower() == label.lower():
+                shown = label
+                break
+    what_happened = (
+        f"You answered: {shown}" if shown else "You submitted a response."
+    )
+
+    rt = (response_type or "").strip().lower()
+    correct = scored_correct is True
+    incorrect = scored_correct is False
+    if correct:
+        what_it_means = "Correct"
+    elif incorrect and rt in {"short_structured", "short", "text", "written"}:
+        what_it_means = (
+            "Insufficient evidence to judge this answer confidently "
+            "(keyword matching is limited)."
+        )
+    elif incorrect:
+        what_it_means = "Incorrect"
+    else:
+        what_it_means = (outcome or "Reviewed").strip() or "Reviewed"
+
+    # Choice-aware pilot lands in common_mistake for mapped distractors.
+    if incorrect and common_mistake.strip():
+        what_to_understand = common_mistake.strip()
+    else:
+        what_to_understand = (explanation or "").strip()
+
+    return {
+        "what_happened": what_happened,
+        "what_it_means": what_it_means,
+        "what_to_understand": what_to_understand,
+    }
+
+
+def _topic_learning_state(
+    *,
+    user_id: int,
+    subject_code: str,
+    topic_id: str,
+    topic_title: str = "",
+) -> tuple[str, str]:
+    """Honest Twin-backed learning state for completion chrome."""
+    code = (subject_code or "").strip().upper()
+    tid = (topic_id or "").strip()
+    title = (topic_title or "").strip() or "this topic"
+    if not code:
+        return (
+            "not_yet_enough_evidence",
+            f"Not yet enough evidence to estimate knowledge for {title}.",
+        )
+    try:
+        from app.application.learner_progress.milestones import is_ek_mastered
+        from app.services.twin_cutover_service import learner_twin_query
+
+        twin = learner_twin_query()
+        fact = None
+        if tid:
+            fact = twin.topic_knowledge(
+                user_id=user_id, subject_code=code, topic_id=tid
+            )
+        if fact is None or not fact.has_estimated_knowledge:
+            return (
+                "not_yet_enough_evidence",
+                f"Not yet enough evidence to estimate knowledge for {title}.",
+            )
+        if is_ek_mastered(fact):
+            return (
+                "mastered",
+                f"Estimated knowledge for {title} is mastered.",
+            )
+        return (
+            "developing",
+            f"Estimated knowledge for {title} is developing.",
+        )
+    except Exception:  # noqa: BLE001
+        return (
+            "not_yet_enough_evidence",
+            f"Not yet enough evidence to estimate knowledge for {title}.",
+        )
 
 
 def _is_reading_activity(activity: object) -> bool:

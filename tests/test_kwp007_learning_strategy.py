@@ -280,8 +280,12 @@ class TestFounderStrategyMetrics:
 class TestProductSurfaceMarkers:
     def test_session_template_has_strategy_block(self):
         text = SESSION_BODY.read_text(encoding="utf-8")
-        assert 'data-learning-strategy="true"' in text
-        assert "data-strategy-why" in text
+        # Strategy DTO fields remain; Session redesign completion uses honest
+        # what-changed copy rather than a strategy chrome block.
+        from app.presentation.session.dto.study_session import StudySessionPage
+
+        assert "strategy_title" in StudySessionPage.__dataclass_fields__
+        assert "data-completion-what-changed" in text
 
     def test_founder_template_has_strategy_section(self):
         text = FOUNDER_ALPHA.read_text(encoding="utf-8")

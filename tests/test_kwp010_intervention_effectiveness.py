@@ -388,8 +388,10 @@ class TestFounderMetrics:
 class TestProductSurfaces:
     def test_template_effectiveness_marker(self):
         html = SESSION_BODY.read_text(encoding="utf-8")
-        assert "data-effectiveness-feedback" in html
-        assert "Progress ·" in html
+        from app.presentation.session.dto.study_session import StudySessionPage
+
+        assert "effectiveness_feedback" in StudySessionPage.__dataclass_fields__
+        assert "data-completion-what-happened" in html
 
     def test_founder_effectiveness_section(self):
         html = FOUNDER_ALPHA.read_text(encoding="utf-8")

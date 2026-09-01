@@ -447,7 +447,8 @@ class EducationalSubstancePlanner:
                     f"Focus on how the learning objectives connect to {topic_title}."
                 ),
                 hints=("Underline the objective that feels least clear.",),
-                answer_prompt="What stood out from the reading?",
+                answer_prompt="",
+                requires_response=False,
                 objective_ids=objective_ids,
                 syllabus_refs=syllabus,
                 metadata=(
@@ -495,7 +496,8 @@ class EducationalSubstancePlanner:
                         "Stay with the method — do not jump ahead to practice yet."
                     ),
                     hints=("Name the step that felt most transferable.",),
-                    answer_prompt="Which method step will you reuse?",
+                    answer_prompt="",
+                    requires_response=False,
                     objective_ids=objective_ids[:1] if objective_ids else (),
                     syllabus_refs=syllabus,
                     metadata=(

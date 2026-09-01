@@ -102,7 +102,10 @@ class TestPx005IdentityMicrocopy:
         service = (
             ROOT / "app/presentation/session/services/study_session_service.py"
         ).read_text(encoding="utf-8")
-        assert "REFLECTION_VALUE_FRAMING" in service
+        # Reflection L1 uses chrome + form prompt only — no stacked framing copy.
+        assert "REFLECTION_VALUE_FRAMING" not in service
+        assert "REFLECTION_VALUE_TITLE" not in service
+        assert '"support": ""' in service or "'support': ''" in service
 
 
 class TestPx005Reliability:

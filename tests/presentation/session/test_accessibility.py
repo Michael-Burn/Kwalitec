@@ -30,7 +30,8 @@ def test_pages_extend_base(filename):
 def test_session_body_has_one_h1_marker():
     text = BODY.read_text(encoding="utf-8")
     assert 'id="session-page-title"' in text
-    assert "ds-page-header__title" in text
+    assert text.count("id=\"session-page-title\"") == 1
+    assert "visually-hidden" in text
 
 
 def test_base_has_banner_main():
@@ -56,8 +57,8 @@ def test_primary_has_accessible_group():
 
 def test_session_context_labelled():
     text = BODY.read_text(encoding="utf-8")
-    assert "ds_session_context" in text
-    assert "ds_learning_task" in text
+    assert "ds-session-chrome" in text or "ds-session-position" in text
+    assert "ds-session-position__stage" in text
 
 
 def test_disclosures_use_details():
