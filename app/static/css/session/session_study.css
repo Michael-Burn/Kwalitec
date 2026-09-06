@@ -199,6 +199,10 @@ body:has(.ds-session-page) .student-main {
 .ds-session-content__body[data-content-structured="true"]
   > .ds-session-more-guidance {
   margin-top: var(--space-4);
+}
+
+.ds-session-content__body[data-content-structured="true"]
+  > .ds-session-more-guidance[open] {
   gap: var(--space-4);
 }
 

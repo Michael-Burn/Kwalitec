@@ -428,7 +428,7 @@ def test_content_stage_keys_from_activity_vm():
 
 def test_static_asset_version_bumped_for_session_css():
     version = (ROOT / "app/version.py").read_text(encoding="utf-8")
-    assert 'APP_VERSION}-g15"' in version or "-g15" in version
+    assert 'APP_VERSION}-g16"' in version or "-g16" in version
 
 
 def test_reflection_stage_consolidated_headings(app):
@@ -679,3 +679,114 @@ def test_short_answer_field_has_format_hint_and_compact_size(app):
         or "placeholder=&#34;e.g. a value, symbol, or brief phrase&#34;" in html
     )
     assert "not a full explanation" in html
+
+
+def test_more_guidance_omitted_when_sections_have_no_content(app):
+    """Empty label-only more sections must not render a More guidance box."""
+    study = _base_page(
+        content_stage="read",
+        stage_position_label="Read",
+        content_title="Reading",
+        content_sections=(
+            ContentSection(
+                label="Focus questions",
+                paragraphs=(),
+                bullets=("What is the core move?",),
+            ),
+        ),
+        content_sections_more=(
+            ContentSection(label="Misconception watch", paragraphs=(), bullets=()),
+            ContentSection(label="When you finish", paragraphs=(), bullets=()),
+        ),
+    )
+    html = _render(app, study)
+    assert 'data-ux="reading-more-guidance"' not in html
+    assert "More guidance" not in html
+    assert "Focus questions" in html
+
+
+def test_more_guidance_renders_when_sections_have_content(app):
+    study = _base_page(
+        content_stage="read",
+        stage_position_label="Read",
+        content_title="Reading",
+        content_sections=(
+            ContentSection(
+                label="Focus questions",
+                paragraphs=(),
+                bullets=("What is the core move?",),
+            ),
+        ),
+        content_sections_more=(
+            ContentSection(
+                label="Misconception watch",
+                paragraphs=(),
+                bullets=("Watch for treating z as t.",),
+            ),
+        ),
+    )
+    html = _render(app, study)
+    assert 'data-ux="reading-more-guidance"' in html
+    assert "More guidance" in html
+    assert "Watch for treating z as t." in html
+
+
+def test_empty_disclosure_body_does_not_render_affordance(app):
+    from app.presentation.session.dto.study_session import SessionDisclosure
+
+    study = _base_page(
+        content_stage="practice",
+        disclosures=(
+            SessionDisclosure(title="Hint", body="", open=False),
+            SessionDisclosure(
+                title="Hint", body="• Start from the definition.", open=False
+            ),
+        ),
+    )
+    html = _render(app, study)
+    assert html.count("<summary>Hint</summary>") == 1
+    assert "Start from the definition." in html
+
+
+def test_reflection_service_page_omits_canned_confidence_disclosures(app):
+    """Concept confidence / Suggested improvement are not student-facing today."""
+    from app.application.session_experience.dto.reflection_snapshot import (
+        ReflectionSnapshot,
+    )
+    from app.application.session_experience.facade import SessionFlowSnapshot
+    from app.domain.session_experience.session_workspace import (
+        SessionWorkspace,
+        SessionWorkspaceStatus,
+    )
+    from app.presentation.session.view_models import page_from_flow
+
+    workspace = SessionWorkspace.create(
+        workspace_id="ws-1",
+        student_id="1",
+        session_id="sess-1",
+        status=SessionWorkspaceStatus.ACTIVE,
+        active_surface=SessionSurface.REFLECTION,
+        topic_title="Probability",
+    )
+    reflection_flow = SessionFlowSnapshot(
+        workspace=workspace,
+        surface=SessionSurface.REFLECTION.value,
+        reflection=ReflectionSnapshot(
+            session_id="sess-1",
+            reflection_prompt="What mattered in this practice?",
+            topic_title="Probability",
+            next_action_label="Finish Session",
+            concept_confidence="Growing comfort with Probability",
+            suggested_improvement="Revisit borderline cases",
+        ),
+    )
+    with app.test_request_context("/session/sess-1/"):
+        page = StudySessionService().build_page(page_from_flow(reflection_flow))
+    titles = {d.title for d in page.disclosures}
+    assert "Concept confidence" not in titles
+    assert "Suggested improvement" not in titles
+    html = _render(app, page)
+    assert "Concept confidence" not in html
+    assert "Suggested improvement" not in html
+    assert "Growing comfort" not in html
+    assert "Revisit borderline" not in html

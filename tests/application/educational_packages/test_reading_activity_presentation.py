@@ -5,6 +5,7 @@ from __future__ import annotations
 from app.application.educational_packages.loader import find_package_by_id
 from app.application.educational_packages.substance import substance_from_package
 from app.presentation.session.content_sections import (
+    ContentSection,
     parse_session_content_body,
     present_practice_content,
     present_reading_content,
@@ -95,7 +96,23 @@ def test_present_reading_content_trims_to_essentials() -> None:
     ]
 
 
-def test_present_practice_content_shows_question_once() -> None:
+def test_present_reading_content_drops_empty_more_sections() -> None:
+    sections = (
+        ContentSection(
+            label="Focus questions",
+            paragraphs=(),
+            bullets=("What is the core move?",),
+        ),
+        ContentSection(label="Misconception watch", paragraphs=(), bullets=()),
+        ContentSection(
+            label="When you finish",
+            paragraphs=(),
+            bullets=("Close the CMP.",),
+        ),
+    )
+    presented = present_reading_content(sections)
+    assert [s.label for s in presented.more] == ["When you finish"]
+
     presented = present_practice_content(
         prompt="Closed-book. Name today's stop condition.",
         body="Checkpoint refuse/warrant for 2.6.5.",

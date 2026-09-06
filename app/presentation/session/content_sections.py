@@ -116,7 +116,8 @@ def present_reading_content(
                 )
             continue
         if section.label in _READING_MORE_LABELS:
-            more.append(section)
+            if section.paragraphs or section.bullets:
+                more.append(section)
         elif section.label in _READING_PRIMARY_LABELS:
             primary.append(section)
         else:
@@ -175,7 +176,8 @@ def present_worked_example_content(
         if section.label in _WORKED_EXAMPLE_MORE_LABELS or section.label.startswith(
             "Worked solution"
         ):
-            more.append(section)
+            if section.paragraphs or section.bullets:
+                more.append(section)
         elif section.label in _WORKED_EXAMPLE_PRIMARY_LABELS:
             primary.append(section)
         else:

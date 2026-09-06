@@ -372,10 +372,13 @@
 {%- endmacro %}
 
 {% macro ds_disclosure(title, body='', open=false) -%}
+{# Omit entirely when there is no body: never show an empty affordance. #}
+{% if title and body %}
 <details class="ds-disclosure"{% if open %} open{% endif %}>
   <summary>{{ title }}</summary>
-  {% if body %}<div class="ds-disclosure__body">{{ body }}</div>{% endif %}
+  <div class="ds-disclosure__body">{{ body }}</div>
 </details>
+{% endif %}
 {%- endmacro %}
 
 {% macro ds_blocking_findings(findings, title='Blocking findings') -%}

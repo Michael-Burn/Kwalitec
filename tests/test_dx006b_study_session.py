@@ -222,7 +222,11 @@ def test_reflection_and_complete_primaries(app):
     assert reflection.primary_label == "Continue to Summary"
     assert reflection.answer_prompt == "What mattered in this practice?"
     assert reflection.content_body == ""
-    assert any(d.title == "Concept confidence" for d in reflection.disclosures)
+    # Canned concept_confidence / suggested_improvement must not surface.
+    assert not any(
+        d.title in {"Concept confidence", "Suggested improvement"}
+        for d in reflection.disclosures
+    )
     assert complete.primary_kind == "complete_form"
     assert complete.primary_label == "Return Home"
     assert "Probability" in complete.page_title or "Probability" in (

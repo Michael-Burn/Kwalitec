@@ -2091,14 +2091,24 @@ a.ds-list__row:hover {
 }
 
 .ds-session-briefing {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  /* Do not set display:flex on the closed <details> itself: browsers then
+     still lay out non-summary children, which shows as a large empty box
+     (More guidance / Session details). Flex only when open. */
   margin: var(--space-4) 0;
   padding: var(--space-4);
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+}
+
+.ds-session-briefing[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ds-session-briefing:not([open]) > :not(summary) {
+  display: none;
 }
 
 .ds-session-briefing > summary {
@@ -2179,6 +2189,10 @@ a.ds-list__row:hover {
   > .ds-session-briefing {
   /* Nested "More guidance" — same Session details pattern, slightly denser. */
   margin: var(--space-2) 0 0;
+}
+
+.ds-session-content__body[data-content-structured="true"]
+  > .ds-session-briefing[open] {
   gap: var(--space-3);
 }
 

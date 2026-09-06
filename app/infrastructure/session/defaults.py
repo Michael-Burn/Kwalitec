@@ -63,10 +63,9 @@ def default_reflection(
         "student_id": student_id,
         "session_id": session_id,
         "key_insight": f"Focused practice on {topic} strengthens recall",
-        "concept_confidence": f"Growing comfort with {topic}",
-        "suggested_improvement": (
-            f"Revisit borderline cases in {topic} next session"
-        ),
+        # Empty: not evidence-backed; do not invent confidence / improvement copy.
+        "concept_confidence": "",
+        "suggested_improvement": "",
         "reflection_prompt": f"What still feels unclear about {topic}?",
         "confidence_prompt": "",
         "topic_title": topic,

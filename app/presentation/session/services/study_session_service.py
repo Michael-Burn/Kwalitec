@@ -891,23 +891,10 @@ class StudySessionService:
                     )
                 )
 
-        if surface is SessionSurface.REFLECTION and page.reflection:
-            if page.reflection.concept_confidence:
-                items.append(
-                    SessionDisclosure(
-                        title="Concept confidence",
-                        body=page.reflection.concept_confidence,
-                        open=False,
-                    )
-                )
-            if page.reflection.suggested_improvement:
-                items.append(
-                    SessionDisclosure(
-                        title="Suggested improvement",
-                        body=page.reflection.suggested_improvement,
-                        open=False,
-                    )
-                )
+        # Reflection: do not surface concept_confidence / suggested_improvement.
+        # Those fields are canned topic templates today, not student self-report
+        # and not deterministic evidence. Real confidence input is the optional
+        # confidence_prompt + rating on the reflection form.
 
         if surface is SessionSurface.OVERVIEW and page.overview:
             if page.overview.learning_goal:

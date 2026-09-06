@@ -291,10 +291,18 @@
         {% endif %}
       </div>
       {% endfor %}
-      {% if s.content_sections_more %}
+      {# Only render when at least one more-section has real body content. #}
+      {% set ns_more = namespace(has_content=false) %}
+      {% for section in s.content_sections_more %}
+        {% if section.paragraphs or section.bullets %}
+          {% set ns_more.has_content = true %}
+        {% endif %}
+      {% endfor %}
+      {% if ns_more.has_content %}
       <details class="ds-session-briefing ds-session-more-guidance" data-ux="reading-more-guidance">
         <summary class="ds-section__title">More guidance</summary>
         {% for section in s.content_sections_more %}
+        {% if section.paragraphs or section.bullets %}
         {% set more_block_class = 'ds-session-more-guidance__block' %}
         {% if section.label and section.label.startswith('Worked solution') %}
           {% set more_block_class = more_block_class ~ ' ds-session-more-guidance__step' %}
@@ -318,6 +326,7 @@
           </ul>
           {% endif %}
         </div>
+        {% endif %}
         {% endfor %}
       </details>
       {% endif %}

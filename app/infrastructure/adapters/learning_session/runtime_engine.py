@@ -935,27 +935,21 @@ class LearningSessionRuntimeEngine:
             objectives = self._learning_objectives_from_sequence(
                 student_id=student_id, session_id=session_id
             )
-            lead = objectives[0] if objectives else ""
             insight = (
                 f"You worked through reading, examples, and practice on {topic}."
             )
-            confidence = (
-                f"Growing comfort with {lead}"
-                if lead
-                else f"Growing comfort with {topic}"
-            )
-            improvement = (
-                f"Revisit the learning objective that still feels unclear in {topic}."
-            )
+            # concept_confidence / suggested_improvement left empty: prior
+            # canned "Growing comfort with …" / "Revisit …" strings were not
+            # evidence-backed and must not appear as student-facing guidance.
             prompt = pack_prompt or (
                 f"After reading, examples, and practice on {topic}, "
-                "what still feels unclear — and what will you try next?"
+                "what still feels unclear, and what will you try next?"
             )
             stored_rating = record.get("confidence_rating")
             return {
                 "key_insight": insight,
-                "concept_confidence": confidence,
-                "suggested_improvement": improvement,
+                "concept_confidence": "",
+                "suggested_improvement": "",
                 "reflection_prompt": prompt,
                 "confidence_prompt": pack_confidence,
                 "confidence_rating": stored_rating,
