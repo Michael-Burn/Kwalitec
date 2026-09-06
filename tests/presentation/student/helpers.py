@@ -17,6 +17,7 @@ from tests.application.student_experience.helpers import make_experience
 
 STUDENT_ROUTES = (
     ("student.home", "/student/"),
+    ("student.study", "/student/study"),
     ("student.journey", "/student/journey"),
     ("student.revision", "/student/revision"),
     ("student.history", "/student/history"),

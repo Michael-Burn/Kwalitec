@@ -1,0 +1,128 @@
+/**
+ * Study Curriculum view.
+ * Loaded only from student/study.html so it sits outside the student.css
+ * byte budget. Tokens only: brand / neutral / semantic / learning-state.
+ * Learning states are text and icon, not traffic-light backgrounds.
+ */
+
+.ds-os-study {
+  max-width: 40rem;
+}
+
+.ds-os-study__continue {
+  margin: 0 0 var(--space-4);
+}
+
+.ds-os-study__coverage {
+  margin: 0;
+  font-size: var(--font-base);
+  color: var(--text-primary);
+}
+
+.ds-os-study__section {
+  gap: var(--space-3);
+}
+
+.ds-os-study__topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-os-study__topic {
+  margin: 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ds-os-study__topic--quiet {
+  color: var(--text-muted);
+}
+
+.ds-os-study__topic--quiet .ds-os-study__topic-title {
+  color: var(--text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+.ds-os-study__details {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+}
+
+.ds-os-study__summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ds-os-study__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ds-os-study__topic-title {
+  font-size: var(--font-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.ds-os-study__state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+}
+
+.ds-os-study__state-icon {
+  display: inline-flex;
+  color: inherit;
+}
+
+.ds-os-study__state-icon svg {
+  display: block;
+}
+
+.ds-os-study__state--not_started {
+  color: var(--learning-not-started);
+}
+
+.ds-os-study__state--not_yet_assessed {
+  color: var(--learning-not-yet-assessed);
+}
+
+.ds-os-study__state--developing {
+  color: var(--learning-developing);
+}
+
+.ds-os-study__state--mastered {
+  color: var(--learning-mastered);
+}
+
+.ds-os-study__why-label {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+.ds-os-study__why {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-support);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-os-study * {
+    transition: none;
+  }
+}

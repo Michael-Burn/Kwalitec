@@ -68,7 +68,7 @@ def build_navigation(
     """Return the canonical student nav tree with active highlighting.
 
     Feature mode (default / flag off):
-        Home · Journey · Revision · History · Settings · Study Plan · Help
+        Home · Study · Syllabus · Revision · History · Settings · Choose Exam · Help
 
     Unified journey mode (``ENABLE_UNIFIED_JOURNEY``):
         Today · Planning · Exam Readiness · Revision · Archive · Onboarding · Help
@@ -116,6 +116,8 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
         "student.tutor_explain_mission",
         "student.knowledge_graph",
     ):
+        return ExperienceSurface.HOME
+    if endpoint == "student.study":
         return ExperienceSurface.HOME
     if endpoint == "student.progress":
         return ExperienceSurface.PROFILE
@@ -174,6 +176,7 @@ def _build_feature_navigation(
     include_system: bool,
 ) -> tuple[StudentNavItem, ...]:
     active = _resolve(active_surface) if active_surface else None
+    study_active = active_endpoint == "student.study"
     items: list[StudentNavItem] = []
     for surface in CANONICAL_SURFACES:
         items.append(
@@ -181,9 +184,18 @@ def _build_feature_navigation(
                 surface=surface.value,
                 label=SURFACE_LABELS[surface],
                 endpoint=SURFACE_ENDPOINTS[surface],
-                active=active is surface,
+                active=(active is surface) and not study_active,
             )
         )
+        if surface is ExperienceSurface.HOME:
+            items.append(
+                StudentNavItem(
+                    surface="study",
+                    label="Study",
+                    endpoint="student.study",
+                    active=study_active,
+                )
+            )
     if include_system:
         for surface_key, label, endpoint in SYSTEM_NAV_ITEMS:
             items.append(

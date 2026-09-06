@@ -27,7 +27,7 @@ def test_endpoint_for_each_surface(surface):
 @pytest.mark.parametrize("surface", list(CANONICAL_SURFACES))
 def test_build_navigation_active(surface):
     nav = build_navigation(surface)
-    assert len(nav) == 7
+    assert len(nav) == 8
     active = [item for item in nav if item.active]
     assert len(active) == 1
     assert active[0].surface == surface.value
@@ -77,6 +77,7 @@ def test_navigation_labels_student_facing():
     labels = {item.label for item in nav}
     assert labels == {
         "Home",
+        "Study",
         "Syllabus",
         "Revision",
         "History",
@@ -86,11 +87,20 @@ def test_navigation_labels_student_facing():
     }
 
 
+def test_build_navigation_for_request_study_active():
+    nav = build_navigation_for_request("student.study")
+    active = [item for item in nav if item.active]
+    assert len(active) == 1
+    assert active[0].endpoint == "student.study"
+    assert active[0].label == "Study"
+
+
 def test_primary_nav_without_system_items():
     nav = build_navigation("home", include_system=False)
-    assert len(nav) == 5
+    assert len(nav) == 6
     assert {item.label for item in nav} == {
         "Home",
+        "Study",
         "Syllabus",
         "Revision",
         "History",

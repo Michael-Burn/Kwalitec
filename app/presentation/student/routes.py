@@ -401,6 +401,54 @@ def knowledge_graph():
     )
 
 
+@student_bp.get("/study")
+@login_required
+def study():
+    """Study Curriculum: syllabus map with honest per-topic learning states."""
+    from app.presentation.student.services.student_home_service import (
+        home_resume_continue_href,
+    )
+    from app.presentation.student.services.student_study_curriculum_service import (
+        StudentStudyCurriculumPresentationService,
+    )
+
+    page = load_page(ExperienceSurface.HOME)
+    subject_code = ""
+    subject_label = ""
+    continue_href = ""
+    if page.home:
+        subject_label = (page.home.examination_label or "").strip()
+        edu = page.home.educational
+        if edu and getattr(edu, "active", False):
+            subject_code = (edu.subject_code or "").strip()
+            subject_label = subject_label or (
+                edu.examination_label or ""
+            ).strip()
+        href = home_resume_continue_href(page.home)
+        if href:
+            continue_href = href
+    if not subject_code:
+        try:
+            from app.services.twin_cutover_service import subject_code_for_user
+
+            subject_code = (subject_code_for_user(current_user.id) or "").strip()
+        except Exception:  # noqa: BLE001 — presentation fallback
+            logger.warning("study_curriculum_subject_failed", exc_info=True)
+            subject_code = ""
+
+    study_page = StudentStudyCurriculumPresentationService().build(
+        user_id=current_user.id,
+        subject_code=subject_code,
+        subject_label=subject_label,
+        continue_href=continue_href,
+    )
+    return render_template(
+        "student/study.html",
+        title=study_page.page_title,
+        study=study_page,
+    )
+
+
 @student_bp.get("/journey")
 @login_required
 def journey():

@@ -53,6 +53,26 @@ _PAGE_QUESTION = "What should I do now?"
 _DEFAULT_GREETING = "Welcome back."
 
 
+def home_resume_continue_href(home: HomePageViewModel | None) -> str | None:
+    """Deep-link Continue used by Home. Never starts or recommends a session.
+
+    Matches Home's resume / finish-open-session cases: an existing session_id
+    plus session_control of resume, or guided finish, links to Session
+    overview. Absence means there is nothing to continue.
+    """
+    if home is None:
+        return None
+    session_id = (home.session_id or "").strip()
+    if not session_id:
+        return None
+    control = (home.session_control or "").strip()
+    if control == "resume":
+        return url_for("session.overview", session_id=session_id)
+    if bool(home.guided_session_active) and control == "finish":
+        return url_for("session.overview", session_id=session_id)
+    return None
+
+
 class StudentHomeService:
     """Build the SOP-001 Student Home command centre from experience VMs."""
 
@@ -673,6 +693,7 @@ class StudentHomeService:
             if parts and parts[0].isdigit():
                 return int(parts[0])
         return None
+
     def _select_mission(self, home: HomePageViewModel) -> HomeMission | None:
         """Selection algorithm per DX-005A Architecture §5 (unchanged)."""
         subject = self._subject_name(home)
@@ -691,7 +712,8 @@ class StudentHomeService:
             rec_key = home.commitment.recommendation_key
 
         # 1. Open session → Continue (deep link, no re-commit).
-        if home.session_control == "resume" and session_id:
+        resume_href = home_resume_continue_href(home)
+        if home.session_control == "resume" and resume_href:
             resume_label = (
                 home.session_control_label
                 or home.primary_cta_label
@@ -708,7 +730,7 @@ class StudentHomeService:
                 after_completion=after,
                 primary_label=resume_label,
                 primary_kind="link",
-                primary_href=url_for("session.overview", session_id=session_id),
+                primary_href=resume_href,
                 duration_label=duration,
                 mission_id=mission_id,
                 session_id=session_id,
@@ -721,7 +743,7 @@ class StudentHomeService:
         if (
             home.guided_session_active
             and home.session_control == "finish"
-            and session_id
+            and resume_href
         ):
             return HomeMission(
                 subject_name=subject or "Current subject",
@@ -731,7 +753,7 @@ class StudentHomeService:
                 after_completion=after,
                 primary_label="Continue",
                 primary_kind="link",
-                primary_href=url_for("session.overview", session_id=session_id),
+                primary_href=resume_href,
                 duration_label=duration,
                 mission_id=mission_id,
                 session_id=session_id,

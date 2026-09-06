@@ -184,6 +184,7 @@ STUDENT_NAV_LABELS: tuple[str, ...] = (
     # "History" (not "Analytics") — see TERMINOLOGY_STANDARD.md.
     # DX-005B / DX-006B Phase 5: discovery label is Choose Exam.
     "Home",
+    "Study",
     "Journey",
     "Revision",
     "History",

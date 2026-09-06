@@ -275,9 +275,10 @@ def test_profile_vm_falls_back_when_no_active_plan_or_non_numeric_id():
 def test_shell_vm_navigation():
     shell = shell_vm(active_surface="home", page_title="Home")
     assert shell.active_surface == "home"
-    assert len(shell.navigation) == 7
+    assert len(shell.navigation) == 8
     assert sum(1 for n in shell.navigation if n.active) == 1
     assert shell.navigation[0].label == "Home"
+    assert shell.navigation[1].label == "Study"
 
 
 @pytest.mark.parametrize(

@@ -428,7 +428,7 @@ def test_content_stage_keys_from_activity_vm():
 
 def test_static_asset_version_bumped_for_session_css():
     version = (ROOT / "app/version.py").read_text(encoding="utf-8")
-    assert 'APP_VERSION}-g11"' in version or "-g11" in version
+    assert 'APP_VERSION}-g12"' in version or "-g12" in version
 
 
 def test_reflection_stage_consolidated_headings(app):

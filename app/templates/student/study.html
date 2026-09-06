@@ -1,0 +1,101 @@
+{% extends "student/base.html" %}
+{% set title = study.page_title if study else 'Study' %}
+{% from "design_system/macros.html" import ds_button, ds_empty_operational %}
+{% from "partials/icons.html" import icon %}
+
+{% block page_header %}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+<link href="{{ versioned_static('css/student/study.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-study"
+  aria-labelledby="student-study-title"
+  data-study-curriculum="page"
+>
+  <header class="ds-page-header">
+    <h1 id="student-study-title" class="ds-page-header__title student-page-title">
+      {{ study.page_title }}
+    </h1>
+    <p class="ds-page-header__support">{{ study.page_question }}</p>
+  </header>
+
+  {% if study.continue_href %}
+  <p class="ds-os-study__continue">
+    <a
+      class="ds-btn ds-btn--ghost"
+      href="{{ study.continue_href }}"
+      data-study-continue="true"
+      data-session-resume="true"
+    >{{ study.continue_label }}</a>
+  </p>
+  {% endif %}
+
+  {% if study.empty_reason and not study.sections %}
+    {{ ds_empty_operational(
+      study.empty_reason,
+      study.empty_action_label,
+      study.empty_action_href,
+      title='Syllabus not ready',
+      explanation='Study shows your published syllabus once an exam is chosen.'
+    ) }}
+  {% else %}
+
+  {% if study.subject_label %}
+  <p class="ds-os-exam__label">{{ study.subject_label }}</p>
+  {% endif %}
+
+  {% if study.coverage_label %}
+  <section class="ds-section" aria-labelledby="study-coverage-title">
+    <h2 id="study-coverage-title" class="ds-section__title">Syllabus covered</h2>
+    <p class="ds-os-study__coverage" data-study-coverage="true">{{ study.coverage_label }}</p>
+  </section>
+  {% endif %}
+
+  {% for section in study.sections %}
+  <section
+    class="ds-section ds-os-study__section"
+    aria-labelledby="study-section-{{ loop.index }}"
+    data-study-section="{{ section.section_id }}"
+  >
+    <h2 id="study-section-{{ loop.index }}" class="ds-section__title">{{ section.title }}</h2>
+    <ul class="ds-os-study__topics">
+      {% for topic in section.topics %}
+      <li
+        class="ds-os-study__topic{% if topic.is_quiet %} ds-os-study__topic--quiet{% endif %}"
+        data-study-topic="{{ topic.topic_id }}"
+        data-learning-state="{{ topic.state }}"
+      >
+        <details class="ds-disclosure ds-os-study__details">
+          <summary class="ds-os-study__summary">
+            <span class="ds-os-study__topic-title">{{ topic.title }}</span>
+            <span class="ds-os-study__state ds-os-study__state--{{ topic.state }}">
+              {% if topic.state_icon %}
+              <span class="ds-os-study__state-icon" aria-hidden="true">{{ icon(topic.state_icon, size=16) }}</span>
+              {% endif %}
+              <span class="ds-os-study__state-label">{{ topic.state_label }}</span>
+            </span>
+          </summary>
+          {% if topic.why_it_matters %}
+          <div class="ds-disclosure__body" data-study-why="{{ topic.topic_id }}">
+            <p class="ds-os-study__why-label">Why this topic matters</p>
+            <p class="ds-os-study__why">{{ topic.why_it_matters }}</p>
+          </div>
+          {% else %}
+          <div class="ds-disclosure__body">
+            <p class="ds-list__meta">Part of your published syllabus.</p>
+          </div>
+          {% endif %}
+        </details>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+
+  {% endif %}
+</article>
+{% endblock %}
