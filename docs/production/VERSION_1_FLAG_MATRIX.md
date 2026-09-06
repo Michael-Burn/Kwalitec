@@ -67,8 +67,14 @@ This artefact **does not** flip flags. It documents current production intent.
 | `ANALYTICS_EVENTS_V1` / `KWALITEC_ANALYTICS_EVENTS_V1` | **OFF** | No UI — emit only | Release | EP-002 go-live checklist + cron/worker | Unset |
 | Advisory / recovery / simulation / trials / evidence review family | **OFF** | Mostly non-student or advisory | Architecture | Per programme soak | Unset each flag |
 | Runtime C / founder-student bridge family | **OFF** | Yes if ON | Architecture | Platform integration soak | Unset |
-| `KWALITEC_ADR027_M0_DECISION_BOUNDARY` | **OFF** (unset; never set in `render.yaml` for this merge) | Indirect: Decision Engine path for Runtime C daily sitting when ON | Architecture | ADR-027 M0 dual-path suite green; deliberate soak | Unset / `0`; redeploy returns to inlined `generate_daily_mission` selection |
+| `KWALITEC_ADR027_M0_DECISION_BOUNDARY` | **OFF** in production (unset; never set in `render.yaml`). Local soak may set `=1` in `.env` only. | Indirect: Decision Engine path for Runtime C daily sitting when ON | Architecture | ADR-027 M0 dual-path suite green; deliberate local soak | Unset / `0`; redeploy returns to inlined `generate_daily_mission` selection |
 | Stack A Twin cutover | **Permanent and unconditional** (not flag-gated) | Learner Twin Query Port is the Estimated Knowledge authority for Stack A and Runtime C readers; retired Stack A EK columns are not written | Architecture | ADR-027 Phase 2 Stage 4 permanent cutover | Code rollback only; `SR_TWIN_DAILY_LOOP` remains a separate operator control |
+
+#### Local M0 activation expectation (ADR-027)
+
+M0 activation is not expected to produce any visible change in student experience; the first genuinely adaptive decision requires an evidence threshold (already established elsewhere in this project) that will likely take multiple real days of studying to reach given how this subject's content is structured; continued ordinary sequential behavior during this period is the correct, expected, successful state, not a sign that anything is broken.
+
+While the local flag is ON, Runtime C daily sittings route through `SittingDecisionOrchestrator` / Policy V0 and emit `DECISION_RECORDED` with `SAFE_FALLBACK` (never `ADAPTIVE` under Policy V0). Production remains OFF until a deliberate soak decision updates this matrix and `render.yaml` is still not the place to enable it casually.
 
 ### 3.1 Stack C founder sandbox retention (ADR-027 Phase 2 Stage 3)
 

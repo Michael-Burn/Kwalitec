@@ -172,6 +172,8 @@ Introduce env flag (proposed): `KWALITEC_ADR027_M0_DECISION_BOUNDARY`
 
 Document the flag in `docs/production/VERSION_1_FLAG_MATRIX.md` when implementation is accepted (out of scope for this proposal file’s acceptance).
 
+**Local activation expectation:** M0 activation is not expected to produce any visible change in student experience; the first genuinely adaptive decision requires an evidence threshold (already established elsewhere in this project) that will likely take multiple real days of studying to reach given how this subject's content is structured; continued ordinary sequential behavior during this period is the correct, expected, successful state, not a sign that anything is broken.
+
 ---
 
 ## 4. Policy V0 — verbatim behavioural wrap
