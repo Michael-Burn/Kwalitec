@@ -980,6 +980,20 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/study_curriculum",
+        layer="application",
+        responsibility=(
+            "Study Curriculum four-state join of Twin EK and Study Progress"
+        ),
+        owner="Study Curriculum",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Read-only assembler: one knowledge_snapshot and one "
+            "get_study_progress per invocation. Does not write Twin state."
+        ),
+    ),
+    PackageEntry(
         path="app/application/student_curriculum_binding",
         layer="application",
         responsibility="Student ↔ curriculum binding",
