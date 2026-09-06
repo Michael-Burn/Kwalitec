@@ -202,7 +202,9 @@ def test_home_signals_use_plain_streak_number(app, ctx):
     )
     page_home = home_vm(snap, unified_journey=False)
     html = render_student_home(app, page_home, current_streak_days=0)
-    assert 'data-honest-progress="signals-streak"' in html
+    assert 'data-honest-progress="streak"' in html
+    assert "Streak · 0" in html
+    assert 'data-honest-progress="signals-streak"' not in html
     assert "Study rhythm builds as you show up" not in html
     assert "Recent study rhythm" not in html
 

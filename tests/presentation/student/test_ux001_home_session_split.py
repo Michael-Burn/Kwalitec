@@ -49,10 +49,8 @@ def test_home_template_is_decision_only():
     assert "ds_mission_hero" in text
     assert 'data-workspace-section="greeting"' in text
     assert 'data-workspace-section="todays-mission"' in text
-    assert 'data-workspace-section="why-this-matters"' in text
-    assert 'data-workspace-section="recent-progress"' in text
-    assert 'data-workspace-section="study-signals"' in text
-    assert 'data-workspace-section="quick-actions"' in text
+    assert 'data-home="decision-surface"' in text
+    assert 'data-home-secondary="study"' in text
     for removed in (
         "explanation_card",
         "readiness_card",
@@ -62,6 +60,14 @@ def test_home_template_is_decision_only():
         "Learning Episode",
         "Current Focus",
         "Morning Brief",
+        "Why this topic matters",
+        "Recent progress",
+        "Syllabus covered",
+        "Quick Actions",
+        'data-workspace-section="why-this-matters"',
+        'data-workspace-section="recent-progress"',
+        'data-workspace-section="study-signals"',
+        'data-workspace-section="quick-actions"',
         'data-workspace-section="session-plan"',
         'data-workspace-section="forecast"',
         'data-workspace-section="learning-journey"',

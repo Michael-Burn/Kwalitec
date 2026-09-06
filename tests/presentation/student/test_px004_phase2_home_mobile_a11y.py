@@ -18,12 +18,15 @@ class TestHomeComposition:
         assert "data-density=" in html
         assert 'data-student-cta="primary"' in html or "Choose an exam" in html
 
-    def test_home_secondary_uses_disclosure(self):
+    def test_home_secondary_is_quiet_study_path(self):
         home = (ROOT / "app/templates/student/home.html").read_text(encoding="utf-8")
-        assert 'data-px004="secondary-progress"' in home
-        assert 'data-px004="secondary-actions"' in home
-        assert "<details" in home
-        assert "show_progress_strip" in home
+        assert 'data-home="decision-surface"' in home
+        assert 'data-home-secondary="study"' in home
+        assert 'data-home-action="study"' in home
+        assert "ds-btn--ghost" in home
+        assert 'data-px004="secondary-progress"' not in home
+        assert "Quick Actions" not in home
+        assert "<details" not in home
 
     def test_density_helper_day_zero(self):
         from app.presentation.student.services.student_home_service import (

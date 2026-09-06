@@ -101,8 +101,12 @@ def test_home_command_centre_sections(app, ctx):
         or "Good evening" in html
     )
     assert "Today's Session" in html or "Today's Mission" in html or "ds-mission-hero" in html or "ds-mission-panel" in html
-    # UX-001: Study Health is not a Home card; progress strip carries orientation.
-    assert "Exam countdown" in html or "Upcoming" in html or "Syllabus covered" in html or "Progress" in html
+    # Decision surface: orientation lives in greeting streak + quiet Study path,
+    # not a Syllabus covered / countdown dashboard strip.
+    assert "Streak" in html or 'data-honest-progress="streak"' in html
+    assert 'data-home-secondary="study"' in html or 'href="/student/study"' in html
+    assert "Syllabus covered" not in html
+    assert "Quick Actions" not in html
     assert "Today&#39;s Mission" in html or "Continue Session" in html or "Today's Mission" in html
     assert "ds-os-home" in html
     assert 'data-dashboard-panel="readiness"' not in html

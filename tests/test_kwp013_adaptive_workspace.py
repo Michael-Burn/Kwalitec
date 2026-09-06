@@ -484,17 +484,21 @@ def test_home_template_has_workspace_layout_markers():
         'data-kwp="013"',
         'data-workspace-section="greeting"',
         'data-workspace-section="todays-mission"',
+        'data-home="decision-surface"',
+        'data-home-secondary="study"',
+        'data-px004="continuity"',
+    ):
+        assert marker in text
+    # Home is a decision surface: dashboard disclosures stay off.
+    for removed in (
         'data-workspace-section="why-this-matters"',
         'data-workspace-section="recent-progress"',
         'data-workspace-section="study-signals"',
         'data-workspace-section="quick-actions"',
-        'data-px004="continuity"',
         "Why this topic matters",
         "Recent progress",
-    ):
-        assert marker in text
-    # UX-001: Session/Journey-exclusive overload stays off Home default view.
-    for removed in (
+        "Syllabus covered",
+        "Quick Actions",
         'data-workspace-section="morning-brief"',
         'data-workspace-section="session-plan"',
         'data-workspace-section="current-focus"',
@@ -508,14 +512,13 @@ def test_home_template_has_workspace_layout_markers():
         assert removed not in text
 
 
-def test_home_html_shows_continuity_and_disclosures_when_supported(app, monkeypatch):
-    """Returning student with history: continuity + two disclosures appear."""
+def test_home_html_shows_continuity_without_dashboard_disclosures(app, monkeypatch):
+    """Returning student with history: continuity appears; dashboard chrome does not."""
     from dataclasses import replace
 
     from flask import render_template
 
     from app.presentation.student.dto.adaptive_workspace import (
-        AdaptiveStudyWorkspace,
         WorkspaceCurrentFocus,
         WorkspaceMorningBrief,
         WorkspaceProgressNarrative,
@@ -568,8 +571,6 @@ def test_home_html_shows_continuity_and_disclosures_when_supported(app, monkeypa
     with app.test_request_context("/student/"):
         page = _page(_start_home(), history=history)
         built = StudentHomeService().build_home(page)
-        # Inject curriculum_why (engine-dependent) while keeping real continuity
-        # and memory-backed progress from composition.
         assert built.workspace is not None
         focus = built.workspace.current_focus or WorkspaceCurrentFocus(
             topic_title="Annuities",
@@ -613,12 +614,16 @@ def test_home_html_shows_continuity_and_disclosures_when_supported(app, monkeypa
     assert 'data-px004="continuity"' in html
     assert "Yesterday" in html and "Discount Factors" in html
     assert "Yesterday&#39;s session strengthened Discount Factors." in html
-    assert 'data-workspace-section="why-this-matters"' in html
-    assert "Why this topic matters" in html
-    assert "Annuities relies heavily on Discount Factors" in html
-    assert 'data-workspace-section="recent-progress"' in html
-    assert "probability distributions" in html.lower()
-    # Session-exclusive fields remain absent from Home HTML.
+    assert 'data-home-secondary="study"' in html
+    assert 'href="/student/study"' in html
+    # Dashboard disclosures remain absent even when workspace carries them.
+    assert 'data-workspace-section="why-this-matters"' not in html
+    assert "Why this topic matters" not in html
+    assert "Annuities relies heavily on Discount Factors" not in html
+    assert 'data-workspace-section="recent-progress"' not in html
+    assert "probability distributions" not in html.lower()
+    assert "Quick Actions" not in html
+    assert "Syllabus covered" not in html
     assert 'data-workspace-section="session-plan"' not in html
     assert 'data-workspace-section="forecast"' not in html
     assert 'data-workspace-section="learning-journey"' not in html
@@ -658,7 +663,6 @@ def test_home_html_omits_empty_disclosures_and_generic_continuity(app, monkeypat
         page = _page(_start_home())
         built = StudentHomeService().build_home(page)
         assert built.workspace is not None
-        # Explicit empty curriculum_why + non-home-worthy progress + generic momentum.
         focus = WorkspaceCurrentFocus(
             topic_title="Annuities",
             guidance="Practice steadily.",
@@ -694,12 +698,11 @@ def test_home_html_omits_empty_disclosures_and_generic_continuity(app, monkeypat
     assert 'data-workspace-section="why-this-matters"' not in html
     assert "Why this topic matters" not in html
     assert 'data-workspace-section="recent-progress"' not in html
-    # No continuity paragraph when line is empty (greeting support fallback may
-    # still show mission-ready copy — that is not the educational continuity line).
     assert 'data-px004="continuity"' not in html
     assert "You are building exam readiness step by step." not in html
     assert "Steady gains this week" not in html
-
+    assert "Quick Actions" not in html
+    assert "Syllabus covered" not in html
 
 def test_founder_workspace_metrics_and_template():
     snap = StudyWorkspaceMetrics.from_event_counts(

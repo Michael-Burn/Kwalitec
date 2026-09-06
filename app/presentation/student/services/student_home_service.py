@@ -40,7 +40,6 @@ from app.presentation.student.view_models import (
 )
 
 _QUEUE_MAX = 5
-_QUICK_ACTION_MAX = 3
 _DEADLINE_MAX = 4
 
 _EMPTY_REASON = "No exam selected yet. Choose an exam to begin studying."
@@ -51,6 +50,10 @@ _DAY_COMPLETE_MESSAGE = (
 _QUIET_REASON = "A session will be ready when today's focus is available."
 _PAGE_QUESTION = "What should I do now?"
 _DEFAULT_GREETING = "Welcome back."
+# Runtime C Learning Mode is unconditionally sequential today (no review /
+# consolidation register on this runtime). Honest Home copy only.
+_SEQUENTIAL_WHY_NOW = "Next in your study plan."
+_STUDY_LINK_LABEL = "Study"
 
 
 def home_resume_continue_href(home: HomePageViewModel | None) -> str | None:
@@ -96,13 +99,7 @@ class StudentHomeService:
                 recent_progress=(),
                 examination=None,
                 study_health=None,
-                quick_actions=(
-                    HomeQuickAction(
-                        label=_EMPTY_ACTION_LABEL,
-                        href=choose_exam_href,
-                        detail="Begin by selecting your examination",
-                    ),
-                ),
+                quick_actions=(),
                 deadlines=(),
                 state="empty",
                 empty_reason=_EMPTY_REASON,
@@ -112,6 +109,8 @@ class StudentHomeService:
                 greeting=_DEFAULT_GREETING,
                 current_streak_days=streak_days,
                 progress_href=progress_href,
+                study_href="",
+                study_link_label=_STUDY_LINK_LABEL,
             )
 
         home = page.home
@@ -338,14 +337,12 @@ class StudentHomeService:
         progress_href: str = "",
     ) -> StudentHomePage:
         section_title = self._mission_section_title(mission)
-        quick_actions = self._quick_actions(
-            home,
-            revision=revision,
-            queue=queue,
-            mission=mission,
-            state=state,
-            force_choose_exam=force_choose_exam_action or state in {"empty", "quiet"},
-        )
+        # Home is a decision surface: no Quick Actions wall. Empty/quiet keep
+        # Choose Exam on the primary empty CTA only.
+        quick_actions: tuple[HomeQuickAction, ...] = ()
+        study_href = ""
+        if state != "empty":
+            study_href = url_for("student.study")
         tutor_available = bool(home.tutor_available)
         tutor_href = ""
         if tutor_available or state == "mission":
@@ -463,6 +460,8 @@ class StudentHomeService:
             diligence_line=diligence_line,
             current_streak_days=max(0, int(current_streak_days or 0)),
             progress_href=progress_href,
+            study_href=study_href,
+            study_link_label=_STUDY_LINK_LABEL,
         )
 
     def _forecast_insight(
@@ -1200,97 +1199,6 @@ class StudentHomeService:
             unique.append(row)
         return tuple(unique[:_DEADLINE_MAX])
 
-    def _quick_actions(
-        self,
-        home: HomePageViewModel,
-        *,
-        revision: RevisionPageViewModel | None,
-        queue: tuple[HomeQueueRow, ...],
-        mission: HomeMission | None,
-        state: str,
-        force_choose_exam: bool,
-    ) -> tuple[HomeQuickAction, ...]:
-        """Contextual actions only — never a shell-nav duplicate wall."""
-        actions: list[HomeQuickAction] = []
-        choose_exam_href = url_for("study_plan.index")
-
-        if force_choose_exam or state == "empty":
-            actions.append(
-                HomeQuickAction(
-                    label=_EMPTY_ACTION_LABEL,
-                    href=choose_exam_href,
-                    detail="Select an examination to unlock today's Session",
-                )
-            )
-            return tuple(actions[:_QUICK_ACTION_MAX])
-
-        for row in queue:
-            if not row.href:
-                continue
-            if (
-                mission
-                and mission.primary_kind == "link"
-                and row.title == ("Resume Session")
-            ):
-                continue
-            actions.append(
-                HomeQuickAction(
-                    label=row.title,
-                    href=row.href,
-                    detail=(row.status_label or row.meta_label or "").strip(),
-                )
-            )
-
-        if (
-            revision is not None
-            and revision.has_revision
-            and revision.primary is not None
-            and not any(a.label == "Revision Due" for a in actions)
-            and (mission is None or mission.primary_kind != "link")
-        ):
-            focus = revision.primary.topic_title or "Supporting revision"
-            actions.append(
-                HomeQuickAction(
-                    label="Revision Due",
-                    href=url_for("student.revision"),
-                    detail=focus,
-                )
-            )
-
-        if state == "quiet":
-            actions.append(
-                HomeQuickAction(
-                    label=_EMPTY_ACTION_LABEL,
-                    href=choose_exam_href,
-                    detail="Adjust exam selection if your plan feels stuck",
-                )
-            )
-
-        # UX-001 — contextual Tutor / Knowledge Map without cloning shell nav.
-        if state == "mission" and len(actions) < _QUICK_ACTION_MAX:
-            if not any(a.label == "Ask Tutor" for a in actions):
-                actions.append(
-                    HomeQuickAction(
-                        label="Ask Tutor",
-                        href=url_for("student.tutor"),
-                        detail="Why this Session was chosen",
-                    )
-                )
-        if (
-            state in {"mission", "quiet", "day_complete"}
-            and len(actions) < _QUICK_ACTION_MAX
-        ):
-            if not any(a.label == "Curriculum Map" for a in actions):
-                actions.append(
-                    HomeQuickAction(
-                        label="Curriculum Map",
-                        href=url_for("student.knowledge_graph"),
-                        detail="See your syllabus hierarchy",
-                    )
-                )
-
-        return tuple(actions[:_QUICK_ACTION_MAX])
-
     def _learning_queue(
         self,
         home: HomePageViewModel,
@@ -1381,32 +1289,16 @@ class StudentHomeService:
     def _why_now(home: HomePageViewModel) -> str:
         """Exactly one operational why-now line (≤140 chars preferred).
 
-        MISSION-002: prefer mission rationale (why_recommended) over journey
-        timeliness so "Why this mission" describes the mission topic.
-        EA-006: prefer certified educational package why_now when present.
+        Runtime C Learning Mode is always sequential today: use the honest
+        study-plan line. Do not surface general per-topic curriculum rationale
+        (that lives on Study) or deferred multi-register provenance.
         """
-        try:
-            from app.application.educational_packages.composition_overlay import (
-                why_now_for_topic,
-            )
-
-            edu = home.educational
-            pack_why = why_now_for_topic(
-                topic_id=getattr(edu, "today_topic_id", "") if edu else "",
-                topic_code=getattr(edu, "today_topic_code", "") if edu else "",
-                topic_title=(
-                    (getattr(edu, "today_topic_title", "") if edu else "")
-                    or (home.primary_mission_title or "")
-                ),
-                subject_id=getattr(edu, "subject_code", "") if edu else "",
-            )
-            if pack_why:
-                return pack_why[:140]
-        except Exception:  # noqa: BLE001 — presentation must stay resilient
-            pass
-        candidates: list[str] = []
         if home.session_control == "resume":
-            candidates.append("Open session: continue where you left off")
+            return "Open session: continue where you left off"
+        edu = home.educational
+        if edu is not None and getattr(edu, "active", False):
+            return _SEQUENTIAL_WHY_NOW
+        candidates: list[str] = []
         if home.explanation and home.explanation.why_recommended:
             candidates.append(home.explanation.why_recommended.strip())
         if home.explanation and home.explanation.timeliness_line:

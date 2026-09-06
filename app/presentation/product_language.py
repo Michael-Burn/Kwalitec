@@ -183,11 +183,13 @@ STUDENT_NAV_LABELS: tuple[str, ...] = (
     # PX-002A T1-1 / terminology standard: "Home" (not "Dashboard") and
     # "History" (not "Analytics") — see TERMINOLOGY_STANDARD.md.
     # DX-005B / DX-006B Phase 5: discovery label is Choose Exam.
+    # Redesign chrome: Study + Syllabus + Stats alongside canonical surfaces.
     "Home",
     "Study",
-    "Journey",
+    "Syllabus",
     "Revision",
     "History",
+    "Stats",
     "Settings",
     "Choose Exam",
     "Help",

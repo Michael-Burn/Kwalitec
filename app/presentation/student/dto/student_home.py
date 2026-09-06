@@ -172,3 +172,6 @@ class StudentHomePage:
     # Honest Progress: qualifying study day streak (plain count, including 0).
     current_streak_days: int = 0
     progress_href: str = ""
+    # Quiet secondary path to Study (syllabus map). Not a Quick Actions wall.
+    study_href: str = ""
+    study_link_label: str = "Study"

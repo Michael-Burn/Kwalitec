@@ -391,10 +391,14 @@ def test_integration_mission_matches_progress_and_home_why(
     home = page.home
     assert home is not None
     why_now = StudentHomeService._why_now(home)
-    assert "1.1" in why_now or "Data Analysis" in why_now
+    # Home decision surface: Runtime C is sequential today. Topic identity
+    # stays on the mission title, not in why_now provenance theatre.
+    assert why_now == "Next in your study plan."
     assert "4.2" not in why_now
     assert not contains_internal_node_identifier(why_now)
-    assert not contains_internal_node_identifier(home.primary_mission_title or "")
+    title = home.primary_mission_title or ""
+    assert "1.1" in title or "Data Analysis" in title
+    assert not contains_internal_node_identifier(title)
 
 
 def test_integration_mid_progress_coherence(ctx, mission002_user):
