@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pytest
+from flask import render_template
 
 from app.domain.student_experience.experience_workspace import (
     CANONICAL_SURFACES,
@@ -15,6 +16,43 @@ from app.presentation.student.navigation import (
     endpoint_for,
     surface_for_endpoint,
 )
+
+# Intentional feature-mode destinations (Part 1: no fully redundant removals).
+_FEATURE_NAV_LABELS = {
+    "Home",
+    "Study",
+    "Syllabus",
+    "Revision",
+    "History",
+    "Stats",
+    "Settings",
+    "Choose Exam",
+    "Help",
+}
+
+_FEATURE_NAV_ORDER = (
+    "Home",
+    "Study",
+    "Syllabus",
+    "Revision",
+    "History",
+    "Stats",
+    "Settings",
+    "Choose Exam",
+    "Help",
+)
+
+_FEATURE_NAV_GROUPS = {
+    "Home": "primary",
+    "Study": "primary",
+    "Syllabus": "primary",
+    "Revision": "reinforce",
+    "History": "reinforce",
+    "Stats": "account",
+    "Settings": "account",
+    "Choose Exam": "system",
+    "Help": "system",
+}
 
 
 @pytest.mark.parametrize("surface", list(ExperienceSurface))
@@ -75,17 +113,23 @@ def test_build_navigation_for_request_settings_maps_to_profile():
 def test_navigation_labels_student_facing():
     nav = build_navigation("home")
     labels = {item.label for item in nav}
-    assert labels == {
-        "Home",
-        "Study",
-        "Syllabus",
-        "Revision",
-        "History",
-        "Stats",
-        "Settings",
-        "Choose Exam",
-        "Help",
-    }
+    assert labels == _FEATURE_NAV_LABELS
+
+
+def test_navigation_has_no_duplicate_labels():
+    nav = build_navigation("home")
+    labels = [item.label for item in nav]
+    assert len(labels) == len(set(labels))
+    assert labels == list(_FEATURE_NAV_ORDER)
+
+
+def test_navigation_groups_are_intentional():
+    nav = build_navigation("home")
+    by_label = {item.label: item.group for item in nav}
+    assert by_label == _FEATURE_NAV_GROUPS
+    # Revision and History remain reachable primary destinations.
+    assert by_label["Revision"] == "reinforce"
+    assert by_label["History"] == "reinforce"
 
 
 def test_build_navigation_for_request_study_active():
@@ -94,6 +138,7 @@ def test_build_navigation_for_request_study_active():
     assert len(active) == 1
     assert active[0].endpoint == "student.study"
     assert active[0].label == "Study"
+    assert active[0].group == "primary"
 
 
 def test_build_navigation_for_request_stats_active():
@@ -103,6 +148,7 @@ def test_build_navigation_for_request_stats_active():
     assert active[0].endpoint == "student.progress"
     assert active[0].label == "Stats"
     assert active[0].surface == "progress"
+    assert active[0].group == "account"
 
 
 def test_primary_nav_without_system_items():
@@ -117,3 +163,23 @@ def test_primary_nav_without_system_items():
         "Stats",
         "Settings",
     }
+    assert all(item.group != "system" for item in nav)
+
+
+def test_navigation_template_renders_group_separators(app, ctx):
+    nav = build_navigation("home")
+    with app.test_request_context("/student/"):
+        html = render_template(
+            "student/components/navigation.html",
+            page=None,
+            eos_navigation=nav,
+        )
+    assert 'data-nav-group="primary"' in html
+    assert 'data-nav-group="reinforce"' in html
+    assert 'data-nav-group="account"' in html
+    assert 'data-nav-group="system"' in html
+    assert 'data-nav-separator="primary-reinforce"' in html
+    assert 'data-nav-separator="reinforce-account"' in html
+    assert 'data-nav-separator="account-system"' in html
+    assert "Revision" in html
+    assert "History" in html

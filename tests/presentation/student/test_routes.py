@@ -172,3 +172,22 @@ def test_url_for_student_endpoints(experience_app):
         assert url_for("student.revision") == "/student/revision"
         assert url_for("student.history") == "/student/history"
         assert url_for("student.profile") == "/student/profile"
+
+
+def test_partially_redundant_routes_still_resolve_not_redirect(student_client):
+    """Journey and Curriculum Map stay live (Part 1: partially redundant only)."""
+    for path in ("/student/journey", "/student/knowledge-graph"):
+        response = student_client.get(path, follow_redirects=False)
+        assert response.status_code == 200, path
+        assert response.status_code != 302
+
+
+def test_revision_and_history_remain_reachable(student_client):
+    """Revision and History remain non-redundant primary destinations."""
+    for path in ("/student/revision", "/student/history"):
+        response = student_client.get(path, follow_redirects=False)
+        assert response.status_code == 200, path
+    html = student_client.get("/student/").get_data(as_text=True)
+    assert 'href="/student/revision"' in html
+    assert 'href="/student/history"' in html
+    assert 'data-nav-group="reinforce"' in html

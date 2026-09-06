@@ -22,14 +22,27 @@
         Menu
     </button>
     <ul class="student-nav-list" id="student-nav-list" role="list">
+        {% set ns = namespace(prev_group='') %}
         {% for item in nav_items %}
-        <li class="student-nav-item">
+        {% set item_group = item.group if item.group is defined and item.group else '' %}
+        {% if item_group and ns.prev_group and item_group != ns.prev_group %}
+        <li
+            class="student-nav-item student-nav-item--separator"
+            role="separator"
+            aria-hidden="true"
+            data-nav-separator="{{ ns.prev_group }}-{{ item_group }}"
+        ></li>
+        {% endif %}
+        <li class="student-nav-item" data-nav-group="{{ item_group }}">
             <a
                 class="student-nav-link{% if item.active %} is-active{% endif %}"
                 href="{{ url_for(item.endpoint) }}"
                 {% if item.active %}aria-current="page"{% endif %}
             >{{ item.label }}</a>
         </li>
+        {% if item_group %}
+        {% set ns.prev_group = item_group %}
+        {% endif %}
         {% endfor %}
     </ul>
 </nav>

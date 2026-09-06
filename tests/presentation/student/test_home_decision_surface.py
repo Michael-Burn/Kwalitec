@@ -203,6 +203,10 @@ def test_home_study_secondary_points_to_study_not_knowledge_graph(app, ctx):
         )
     assert built.study_href == "/student/study"
     assert 'data-home-action="study"' in html
+    assert 'data-home-secondary="study"' in html
+    assert "ds-os-home__secondary" in html
+    assert "ds-os-home__secondary-label" in html
+    assert "Syllabus map" in html
     assert "knowledge_graph" not in html
     assert "Curriculum Map" not in html
     assert built.quick_actions == ()

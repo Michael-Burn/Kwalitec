@@ -1869,6 +1869,8 @@ def shell_vm(
                     label=item.label,
                     endpoint=item.endpoint,
                     active=item.surface in active_keys,
+                    journey_stage=item.journey_stage,
+                    group=item.group,
                 )
                 for item in nav
             )

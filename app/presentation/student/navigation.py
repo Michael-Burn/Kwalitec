@@ -34,6 +34,9 @@ class StudentNavItem:
     endpoint: str
     active: bool = False
     journey_stage: str = ""
+    # Presentation cluster for intentional chrome grouping (not educational authority).
+    # primary | reinforce | account | system
+    group: str = ""
 
 
 SURFACE_ENDPOINTS: dict[ExperienceSurface, str] = {
@@ -42,6 +45,22 @@ SURFACE_ENDPOINTS: dict[ExperienceSurface, str] = {
     ExperienceSurface.REVISION: "student.revision",
     ExperienceSurface.HISTORY: "student.history",
     ExperienceSurface.PROFILE: "student.profile",
+}
+
+# Feature-mode nav clusters (honest IA: learning, reinforce/record, account, system).
+_NAV_GROUP_PRIMARY = "primary"
+_NAV_GROUP_REINFORCE = "reinforce"
+_NAV_GROUP_ACCOUNT = "account"
+_NAV_GROUP_SYSTEM = "system"
+
+_FEATURE_SURFACE_GROUPS: dict[str, str] = {
+    ExperienceSurface.HOME.value: _NAV_GROUP_PRIMARY,
+    "study": _NAV_GROUP_PRIMARY,
+    ExperienceSurface.JOURNEY.value: _NAV_GROUP_PRIMARY,
+    ExperienceSurface.REVISION.value: _NAV_GROUP_REINFORCE,
+    ExperienceSurface.HISTORY.value: _NAV_GROUP_REINFORCE,
+    "progress": _NAV_GROUP_ACCOUNT,
+    ExperienceSurface.PROFILE.value: _NAV_GROUP_ACCOUNT,
 }
 
 # System destinations that complete the single OS nav tree (Phase 1).
@@ -182,12 +201,14 @@ def _build_feature_navigation(
     stats_active = active_endpoint == "student.progress"
     items: list[StudentNavItem] = []
     for surface in CANONICAL_SURFACES:
+        surface_key = surface.value
         items.append(
             StudentNavItem(
-                surface=surface.value,
+                surface=surface_key,
                 label=SURFACE_LABELS[surface],
                 endpoint=SURFACE_ENDPOINTS[surface],
                 active=(active is surface) and not study_active and not stats_active,
+                group=_FEATURE_SURFACE_GROUPS[surface_key],
             )
         )
         if surface is ExperienceSurface.HOME:
@@ -197,6 +218,7 @@ def _build_feature_navigation(
                     label="Study",
                     endpoint="student.study",
                     active=study_active,
+                    group=_NAV_GROUP_PRIMARY,
                 )
             )
         if surface is ExperienceSurface.HISTORY:
@@ -206,6 +228,7 @@ def _build_feature_navigation(
                     label="Stats",
                     endpoint="student.progress",
                     active=stats_active,
+                    group=_NAV_GROUP_ACCOUNT,
                 )
             )
     if include_system:
@@ -221,6 +244,7 @@ def _build_feature_navigation(
                             endpoint.rsplit(".", 1)[0]
                         )
                     ),
+                    group=_NAV_GROUP_SYSTEM,
                 )
             )
     return tuple(items)
@@ -247,6 +271,15 @@ def _build_journey_navigation(
     elif active_surface:
         resolved_stage = stage_for_surface(active_surface)
 
+    # Unified chrome uses the same cluster vocabulary so separators stay safe.
+    _unified_groups = {
+        JourneyStage.DAILY_MISSION: _NAV_GROUP_PRIMARY,
+        JourneyStage.PLANNING: _NAV_GROUP_PRIMARY,
+        JourneyStage.EXAM_READINESS: _NAV_GROUP_PRIMARY,
+        JourneyStage.REVISION_MODE: _NAV_GROUP_REINFORCE,
+        JourneyStage.LEARNING_ARCHIVE: _NAV_GROUP_REINFORCE,
+        JourneyStage.ONBOARDING: _NAV_GROUP_ACCOUNT,
+    }
     items: list[StudentNavItem] = []
     for stage in PRIMARY_NAV_STAGES:
         endpoint = endpoint_for_stage(stage)
@@ -257,6 +290,7 @@ def _build_journey_navigation(
                 endpoint=endpoint,
                 active=resolved_stage is stage,
                 journey_stage=stage.value,
+                group=_unified_groups.get(stage, _NAV_GROUP_PRIMARY),
             )
         )
     if include_system:
@@ -272,6 +306,7 @@ def _build_journey_navigation(
                             endpoint.rsplit(".", 1)[0]
                         )
                     ),
+                    group=_NAV_GROUP_SYSTEM,
                 )
             )
     return tuple(items)

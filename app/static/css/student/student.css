@@ -179,6 +179,19 @@
   box-shadow: 0 0 0 3px rgba(139, 156, 224, 0.45);
 }
 
+/* Intentional cluster separators (primary | reinforce | account | system). */
+.student-nav-item--separator {
+  flex: 0 0 auto;
+  width: 1px;
+  align-self: stretch;
+  min-height: 1.25rem;
+  margin: 0 var(--student-space-1);
+  padding: 0;
+  list-style: none;
+  background: color-mix(in srgb, var(--chrome-text, #f8fafc) 22%, transparent);
+  pointer-events: none;
+}
+
 .student-main {
   flex: 1;
   width: 100%;
@@ -355,6 +368,14 @@ button.student-signout {
   .student-nav-link {
     display: block;
     width: 100%;
+  }
+
+  .student-nav-item--separator {
+    width: auto;
+    height: 1px;
+    min-height: 0;
+    align-self: stretch;
+    margin: var(--student-space-1) 0;
   }
 
   .student-topbar .appearance-switcher {

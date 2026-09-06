@@ -203,15 +203,16 @@
   </div>
   {% endif %}
 
-  {# ——— Quiet secondary: Study (syllabus map). Not a returning dashboard. ——— #}
+  {# ——— Quiet secondary: Study (syllabus map). Tied to mission composition. ——— #}
   {% if home.study_href %}
-  <p class="ds-list__meta ds-os-home__secondary" data-home-secondary="study">
+  <div class="ds-os-home__secondary" data-home-secondary="study">
+    <p class="ds-os-home__secondary-label">Syllabus map</p>
     <a
       class="ds-btn ds-btn--ghost"
       href="{{ home.study_href }}"
       data-home-action="study"
     >{{ home.study_link_label or 'Study' }}</a>
-  </p>
+  </div>
   {% endif %}
 
   {% endif %}{# end non-empty #}
