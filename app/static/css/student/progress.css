@@ -1,0 +1,57 @@
+/**
+ * Stats (Honest Progress) view.
+ * Loaded only from student/progress.html so it sits outside the student.css
+ * byte budget. Tokens only: brand / neutral / semantic / learning-state.
+ * Learning states are text and icon, not traffic-light backgrounds.
+ */
+
+.ds-os-stats {
+  max-width: 40rem;
+}
+
+.ds-os-stats__coverage {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-base);
+  color: var(--text-primary);
+}
+
+.ds-os-stats__state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+}
+
+.ds-os-stats__state-icon {
+  display: inline-flex;
+  color: inherit;
+}
+
+.ds-os-stats__state-icon svg {
+  display: block;
+}
+
+.ds-os-stats__state--not_started {
+  color: var(--learning-not-started);
+}
+
+.ds-os-stats__state--not_yet_assessed {
+  color: var(--learning-not-yet-assessed);
+}
+
+.ds-os-stats__state--developing {
+  color: var(--learning-developing);
+}
+
+.ds-os-stats__state--mastered {
+  color: var(--learning-mastered);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-os-stats * {
+    transition: none;
+  }
+}

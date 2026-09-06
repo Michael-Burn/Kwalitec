@@ -68,7 +68,8 @@ def build_navigation(
     """Return the canonical student nav tree with active highlighting.
 
     Feature mode (default / flag off):
-        Home · Study · Syllabus · Revision · History · Settings · Choose Exam · Help
+        Home · Study · Syllabus · Revision · History · Stats · Settings
+        · Choose Exam · Help
 
     Unified journey mode (``ENABLE_UNIFIED_JOURNEY``):
         Today · Planning · Exam Readiness · Revision · Archive · Onboarding · Help
@@ -119,8 +120,9 @@ def surface_for_endpoint(endpoint: str | None) -> ExperienceSurface:
         return ExperienceSurface.HOME
     if endpoint == "student.study":
         return ExperienceSurface.HOME
+    # Stats is a top-level destination (Study-style synthetic item), not Settings.
     if endpoint == "student.progress":
-        return ExperienceSurface.PROFILE
+        return ExperienceSurface.HOME
     for surface, ep in SURFACE_ENDPOINTS.items():
         if ep == endpoint:
             return surface
@@ -177,6 +179,7 @@ def _build_feature_navigation(
 ) -> tuple[StudentNavItem, ...]:
     active = _resolve(active_surface) if active_surface else None
     study_active = active_endpoint == "student.study"
+    stats_active = active_endpoint == "student.progress"
     items: list[StudentNavItem] = []
     for surface in CANONICAL_SURFACES:
         items.append(
@@ -184,7 +187,7 @@ def _build_feature_navigation(
                 surface=surface.value,
                 label=SURFACE_LABELS[surface],
                 endpoint=SURFACE_ENDPOINTS[surface],
-                active=(active is surface) and not study_active,
+                active=(active is surface) and not study_active and not stats_active,
             )
         )
         if surface is ExperienceSurface.HOME:
@@ -194,6 +197,15 @@ def _build_feature_navigation(
                     label="Study",
                     endpoint="student.study",
                     active=study_active,
+                )
+            )
+        if surface is ExperienceSurface.HISTORY:
+            items.append(
+                StudentNavItem(
+                    surface="progress",
+                    label="Stats",
+                    endpoint="student.progress",
+                    active=stats_active,
                 )
             )
     if include_system:

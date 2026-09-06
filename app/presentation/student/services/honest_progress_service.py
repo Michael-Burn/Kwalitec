@@ -1,8 +1,8 @@
-"""Honest Progress presentation service.
+"""Honest Progress / Stats presentation service.
 
-Read-only assembly over QualifyingStudyDayQueryPort, LearnerTwinQueryPort,
-Study Progress, and the append-only milestones-shown store. Does not write
-Twin state, Study Progress, or ADR-027 decision artefacts.
+Read-only assembly over QualifyingStudyDayQueryPort, the Study Curriculum
+assembler, Study Progress, and the append-only milestones-shown store. Does
+not write Twin state, Study Progress, or ADR-027 decision artefacts.
 """
 
 from __future__ import annotations
@@ -17,12 +17,12 @@ from app.application.learner_progress.milestone_detector import (
 )
 from app.application.learner_progress.milestones import (
     SectionProgressSpec,
-    is_ek_mastered,
 )
 from app.application.learner_progress.query import (
     QualifyingStudyDayQueryPort,
     StreakStats,
 )
+from app.application.study_curriculum.states import TopicLearningState
 from app.infrastructure.adapters.learner_progress.query_adapter import (
     qualifying_study_day_query,
 )
@@ -31,16 +31,36 @@ from app.infrastructure.adapters.learner_progress.shown_milestones_persistence i
 )
 from app.presentation.student.dto.honest_progress import (
     HonestProgressPage,
+    LearningStateCountRow,
     ProgressMilestoneRow,
 )
 
 logger = logging.getLogger(__name__)
 
 _EMPTY_MILESTONES = "No milestones reached yet."
+_PAGE_TITLE = "Stats"
+_STATE_LABELS: dict[TopicLearningState, str] = {
+    TopicLearningState.NOT_STARTED: "Not started",
+    TopicLearningState.NOT_YET_ASSESSED: "Not yet assessed",
+    TopicLearningState.DEVELOPING: "Developing",
+    TopicLearningState.MASTERED: "Mastered",
+}
+_STATE_ICONS: dict[TopicLearningState, str] = {
+    TopicLearningState.NOT_STARTED: "",
+    TopicLearningState.NOT_YET_ASSESSED: "clock",
+    TopicLearningState.DEVELOPING: "journey",
+    TopicLearningState.MASTERED: "topics",
+}
+_STATE_ORDER: tuple[TopicLearningState, ...] = (
+    TopicLearningState.NOT_STARTED,
+    TopicLearningState.NOT_YET_ASSESSED,
+    TopicLearningState.DEVELOPING,
+    TopicLearningState.MASTERED,
+)
 
 
 class HonestProgressService:
-    """Present honest streak, one-shot milestones, and Progress page facts."""
+    """Present honest streak, one-shot milestones, and Stats page facts."""
 
     def __init__(
         self,
@@ -49,11 +69,15 @@ class HonestProgressService:
         shown_store: MilestonesShownPersistence | None = None,
         twin_query=None,
         detector: LearnerProgressMilestoneDetector | None = None,
+        assembler=None,
+        study_progress=None,
     ) -> None:
         self._study_day_query = study_day_query or qualifying_study_day_query()
         self._shown = shown_store or MilestonesShownPersistence()
         self._twin_query = twin_query
         self._detector = detector
+        self._assembler = assembler
+        self._study_progress = study_progress
 
     def streak_stats(self, *, user_id: int, as_of: date | None = None) -> StreakStats:
         """Current and longest streak from the qualifying study day port."""
@@ -142,11 +166,21 @@ class HonestProgressService:
         user_id: int,
         as_of: date | None = None,
     ) -> HonestProgressPage:
-        """Assemble the dedicated Progress page from read-only ports."""
+        """Assemble the dedicated Stats page from read-only ports."""
         day = as_of or date.today()
         streak = self.streak_stats(user_id=user_id, as_of=day)
-        coverage_percent, coverage_label = self._syllabus_coverage(user_id)
-        mastered = self._topics_mastered_count(user_id)
+        covered, total, coverage_percent, coverage_label = self._syllabus_coverage(
+            user_id
+        )
+        learning_counts = self._learning_state_counts(user_id)
+        mastered = next(
+            (
+                row.count
+                for row in learning_counts
+                if row.state == TopicLearningState.MASTERED.value
+            ),
+            0,
+        )
         shown = self._shown.list_shown(learner_id=str(user_id))
         rows = tuple(
             ProgressMilestoneRow(
@@ -162,11 +196,14 @@ class HonestProgressService:
         except Exception:  # noqa: BLE001
             href = "/student/progress"
         return HonestProgressPage(
-            page_title="Progress",
+            page_title=_PAGE_TITLE,
             current_streak_days=streak.current_streak_days,
             longest_streak_days=streak.longest_streak_days,
             syllabus_coverage_percent=coverage_percent,
             syllabus_coverage_label=coverage_label,
+            covered_count=covered,
+            topic_count=total,
+            learning_state_counts=learning_counts,
             topics_mastered_count=mastered,
             milestones=rows,
             empty_milestones_message=_EMPTY_MILESTONES,
@@ -201,17 +238,14 @@ class HonestProgressService:
         self, *, user_id: int, subject_code: str
     ) -> frozenset[str]:
         try:
-            from app.application.educational_runtime_engine.service import (
-                EducationalRuntimeEngineService,
-            )
-
-            progress = EducationalRuntimeEngineService().get_study_progress(
+            progress = self._study_progress_service()
+            snap = progress.get_study_progress(
                 user_id=user_id,
                 subject_code=subject_code,
             )
             return frozenset(
                 str(tid).strip()
-                for tid in (progress.completed_topic_ids or ())
+                for tid in (snap.completed_topic_ids or ())
                 if str(tid).strip()
             )
         except Exception:  # noqa: BLE001
@@ -273,44 +307,78 @@ class HonestProgressService:
             )
         return tuple(sections), topic_titles
 
+    def _study_progress_service(self):
+        if self._study_progress is not None:
+            return self._study_progress
+        from app.application.educational_runtime_engine.service import (
+            EducationalRuntimeEngineService,
+        )
+
+        return EducationalRuntimeEngineService()
+
     def _syllabus_coverage(
         self, user_id: int
-    ) -> tuple[int | None, str]:
+    ) -> tuple[int, int, int | None, str]:
+        """Reuse Runtime C ``get_study_progress`` coverage (same as Study/Home)."""
         subject_code = self._resolve_subject_code(user_id)
         if not subject_code:
-            return None, ""
+            return 0, 0, None, ""
         try:
-            from app.application.educational_runtime_engine.service import (
-                EducationalRuntimeEngineService,
-            )
-
-            progress = EducationalRuntimeEngineService().get_study_progress(
+            snap = self._study_progress_service().get_study_progress(
                 user_id=user_id,
                 subject_code=subject_code,
             )
-            ratio = float(progress.coverage_ratio or 0.0)
+            total = len(snap.topic_ids or ())
+            covered = len(snap.completed_topic_ids or ())
+            ratio = float(snap.coverage_ratio or 0.0)
             percent = int(round(max(0.0, min(1.0, ratio)) * 100))
-            label = f"{percent}% of syllabus covered"
-            return percent, label
+            label = f"{covered} of {total} topics covered" if total else ""
+            return covered, total, percent if total else None, label
         except Exception:  # noqa: BLE001
             logger.warning("honest_progress_coverage_failed", exc_info=True)
-            return None, ""
+            return 0, 0, None, ""
 
-    def _topics_mastered_count(self, user_id: int) -> int:
+    def _learning_state_counts(
+        self, user_id: int
+    ) -> tuple[LearningStateCountRow, ...]:
+        """Aggregate four-state counts from the Study Curriculum assembler."""
+        empty = tuple(
+            LearningStateCountRow(
+                state=state.value,
+                state_label=_STATE_LABELS[state],
+                state_icon=_STATE_ICONS[state],
+                count=0,
+            )
+            for state in _STATE_ORDER
+        )
         subject_code = self._resolve_subject_code(user_id)
         if not subject_code:
-            return 0
+            return empty
         try:
-            twin = self._twin_query
-            if twin is None:
-                from app.services.twin_cutover_service import learner_twin_query
+            assembler = self._assembler
+            if assembler is None:
+                from app.infrastructure.adapters.study_curriculum.runtime_query import (
+                    curriculum_learning_state_assembler,
+                )
 
-                twin = learner_twin_query()
-            facts = twin.topics_with_estimated_knowledge(
-                user_id=user_id,
-                subject_code=subject_code,
+                assembler = curriculum_learning_state_assembler()
+            snapshot = assembler.assemble(
+                user_id=user_id, subject_code=subject_code
             )
-            return sum(1 for fact in facts if is_ek_mastered(fact))
+            tallies = {state: 0 for state in _STATE_ORDER}
+            for row in snapshot.topics or ():
+                state = row.state
+                if state in tallies:
+                    tallies[state] += 1
+            return tuple(
+                LearningStateCountRow(
+                    state=state.value,
+                    state_label=_STATE_LABELS[state],
+                    state_icon=_STATE_ICONS[state],
+                    count=tallies[state],
+                )
+                for state in _STATE_ORDER
+            )
         except Exception:  # noqa: BLE001
-            logger.warning("honest_progress_mastery_failed", exc_info=True)
-            return 0
+            logger.warning("honest_progress_learning_states_failed", exc_info=True)
+            return empty

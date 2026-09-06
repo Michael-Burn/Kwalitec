@@ -16,7 +16,7 @@ from app.presentation.student.navigation import (
 
 def test_feature_navigation_unchanged_when_flag_off():
     nav = build_navigation("home", unified_journey=False)
-    assert len(nav) == 8
+    assert len(nav) == 9
     labels = [item.label for item in nav]
     assert labels == [
         "Home",
@@ -24,6 +24,7 @@ def test_feature_navigation_unchanged_when_flag_off():
         "Syllabus",
         "Revision",
         "History",
+        "Stats",
         "Settings",
         "Choose Exam",
         "Help",

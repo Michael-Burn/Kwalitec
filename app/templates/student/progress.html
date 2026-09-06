@@ -1,18 +1,21 @@
 {% extends "student/base.html" %}
 {% from "design_system/macros.html" import ds_button %}
-{% set title = progress.page_title if progress else 'Progress' %}
+{% from "partials/icons.html" import icon %}
+{% set title = progress.page_title if progress else 'Stats' %}
 
 {% block page_header %}{% endblock %}
 
 {% block extra_head %}
 <link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+<link href="{{ versioned_static('css/student/progress.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <article
-  class="ds-page ds-container ds-container--content"
+  class="ds-page ds-container ds-container--content ds-os-stats"
   aria-labelledby="student-progress-title"
   data-honest-progress="page"
+  data-stats-page="true"
 >
   <header class="ds-page-header">
     <h1 id="student-progress-title" class="ds-page-header__title student-page-title">
@@ -23,8 +26,12 @@
     </p>
   </header>
 
-  <section class="ds-section" aria-labelledby="progress-streak-title">
-    <h2 id="progress-streak-title" class="ds-section__title">Streak</h2>
+  <section
+    class="ds-section"
+    aria-labelledby="progress-consistency-title"
+    data-stats-section="consistency"
+  >
+    <h2 id="progress-consistency-title" class="ds-section__title">Consistency</h2>
     <ul class="ds-list">
       <li>
         <div class="ds-list__row">
@@ -41,10 +48,41 @@
     </ul>
   </section>
 
-  <section class="ds-section" aria-labelledby="progress-coverage-title">
-    <h2 id="progress-coverage-title" class="ds-section__title">Syllabus covered</h2>
+  <section
+    class="ds-section"
+    aria-labelledby="progress-learning-title"
+    data-stats-section="learning"
+  >
+    <h2 id="progress-learning-title" class="ds-section__title">Learning</h2>
+    <ul class="ds-list" data-honest-progress="learning-states">
+      {% for row in progress.learning_state_counts %}
+      <li>
+        <div class="ds-list__row">
+          <span class="ds-os-stats__state ds-os-stats__state--{{ row.state }}">
+            {% if row.state_icon %}
+            <span class="ds-os-stats__state-icon" aria-hidden="true">{{ icon(row.state_icon, size=16) }}</span>
+            {% endif %}
+            <span class="ds-os-stats__state-label">{{ row.state_label }}</span>
+          </span>
+          <span
+            class="ds-list__meta"
+            data-honest-progress="state-count"
+            data-learning-state="{{ row.state }}"
+          >{{ row.count }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section
+    class="ds-section"
+    aria-labelledby="progress-curriculum-title"
+    data-stats-section="curriculum"
+  >
+    <h2 id="progress-curriculum-title" class="ds-section__title">Curriculum</h2>
     {% if progress.syllabus_coverage_label %}
-    <p class="ds-list__meta" data-honest-progress="coverage">{{ progress.syllabus_coverage_label }}</p>
+    <p class="ds-os-stats__coverage" data-honest-progress="coverage">{{ progress.syllabus_coverage_label }}</p>
     {% if progress.syllabus_coverage_percent is not none %}
     <div
       class="ds-os-progress__track"
@@ -62,13 +100,12 @@
     {% endif %}
   </section>
 
-  <section class="ds-section" aria-labelledby="progress-mastery-title">
-    <h2 id="progress-mastery-title" class="ds-section__title">Topics mastered</h2>
-    <p class="ds-list__meta" data-honest-progress="mastery-count">{{ progress.topics_mastered_count }}</p>
-  </section>
-
-  <section class="ds-section" aria-labelledby="progress-milestones-title">
-    <h2 id="progress-milestones-title" class="ds-section__title">Milestones reached</h2>
+  <section
+    class="ds-section"
+    aria-labelledby="progress-milestones-title"
+    data-stats-section="milestones"
+  >
+    <h2 id="progress-milestones-title" class="ds-section__title">Milestones</h2>
     {% if progress.milestones %}
     <ul class="ds-list" data-honest-progress="milestones">
       {% for row in progress.milestones %}

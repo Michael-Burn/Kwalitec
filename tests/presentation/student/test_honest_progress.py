@@ -1,18 +1,29 @@
-"""Honest Progress presentation: Home streak, one-shot milestones, Progress page."""
+"""Honest Progress / Stats presentation: streak, milestones, Stats page."""
 
 from __future__ import annotations
 
 import ast
+import re
 from datetime import date
 from pathlib import Path
 from unittest.mock import MagicMock
 
-from flask import get_flashed_messages
+from flask import get_flashed_messages, render_template
 
 from app.application.learner_progress.index_document import merge_qualifying_date
 from app.application.learner_progress.milestones import EarnedMilestone, MilestoneKind
 from app.application.learner_progress.query import StreakStats
+from app.application.progress_engine.dto import (
+    CurriculumPosition,
+    ProgressProjection,
+    StudyProgress,
+)
 from app.application.student_experience.dto.home_snapshot import HomeSnapshot
+from app.application.study_curriculum.states import TopicLearningState
+from app.application.study_curriculum.types import (
+    CurriculumLearningSnapshot,
+    TopicCurriculumState,
+)
 from app.infrastructure.adapters.learner_progress import (
     qualifying_study_day_persistence as qsd_persist,
 )
@@ -26,6 +37,9 @@ from app.infrastructure.session.store import SessionDocumentStore
 from app.presentation.student.services.honest_progress_service import (
     HonestProgressService,
 )
+from app.presentation.student.services.student_study_curriculum_service import (
+    StudentStudyCurriculumPresentationService,
+)
 from app.presentation.student.view_models import home_vm
 from tests.presentation.student.helpers import render_student_home
 
@@ -38,6 +52,11 @@ FORBIDDEN_IMPORT_FRAGMENTS = (
 )
 
 AS_OF = date(2026, 8, 31)
+TOPIC_MASTERED = "CS1-A-T01"
+TOPIC_DEVELOPING = "CS1-A-T02"
+TOPIC_NOT_YET = "CS1-A-T03"
+TOPIC_NOT_STARTED = "CS1-A-T04"
+TOPIC_EXTRA_MASTERED = "CS1-A-T05"
 
 
 def _repo_root() -> Path:
@@ -61,6 +80,101 @@ def _empty_home_html(app, *, streak: int = 0) -> str:
     )
 
 
+def _topic_row(topic_id: str, state: TopicLearningState) -> TopicCurriculumState:
+    return TopicCurriculumState(
+        topic_id=topic_id,
+        topic_code=topic_id,
+        title=f"Title {topic_id}",
+        section_id="S1",
+        section_title="Section 1",
+        state=state,
+        last_practised_at=None,
+        reached=state is not TopicLearningState.NOT_STARTED,
+    )
+
+
+def _snapshot_with_states() -> CurriculumLearningSnapshot:
+    return CurriculumLearningSnapshot(
+        user_id=11,
+        subject_code="CS1",
+        curriculum_identity="CS1:test",
+        topics=(
+            _topic_row(TOPIC_MASTERED, TopicLearningState.MASTERED),
+            _topic_row(TOPIC_EXTRA_MASTERED, TopicLearningState.MASTERED),
+            _topic_row(TOPIC_DEVELOPING, TopicLearningState.DEVELOPING),
+            _topic_row(TOPIC_NOT_YET, TopicLearningState.NOT_YET_ASSESSED),
+            _topic_row(TOPIC_NOT_STARTED, TopicLearningState.NOT_STARTED),
+        ),
+    )
+
+
+def _study_progress(
+    *,
+    topic_ids: tuple[str, ...],
+    completed: tuple[str, ...] = (),
+) -> StudyProgress:
+    completed_set = frozenset(completed)
+    incomplete = tuple(tid for tid in topic_ids if tid not in completed_set)
+    ratio = (len(completed) / len(topic_ids)) if topic_ids else 0.0
+    current = incomplete[0] if incomplete else None
+    position = CurriculumPosition(
+        curriculum_identity="CS1:test",
+        current_topic_id=current,
+        current_topic_index=(
+            topic_ids.index(current) if current in topic_ids else None
+        ),
+        topic_count=len(topic_ids),
+        completed_count=len(completed),
+        remaining_count=len(incomplete),
+        coverage_ratio=ratio,
+        journey_stage="in_progress",
+        syllabus_complete=not incomplete,
+    )
+    return StudyProgress(
+        curriculum_identity="CS1:test",
+        topic_ids=topic_ids,
+        completed_topic_ids=completed,
+        incomplete_topic_ids=incomplete,
+        current_topic_id=current,
+        coverage_ratio=ratio,
+        journey_stage=position.journey_stage,
+        syllabus_complete=position.syllabus_complete,
+        completed_objective_ids=(),
+        remaining_objective_ids=(),
+        position=position,
+        projection=ProgressProjection(
+            remaining_topic_ids=incomplete,
+            next_topic_id=current,
+            estimated_topics_remaining=len(incomplete),
+            twin_present=False,
+        ),
+    )
+
+
+class _FakeAssembler:
+    def __init__(self, snapshot: CurriculumLearningSnapshot) -> None:
+        self._snapshot = snapshot
+        self.calls = 0
+        self.kwargs: list[dict] = []
+
+    def assemble(
+        self, *, user_id: int, subject_code: str
+    ) -> CurriculumLearningSnapshot:
+        self.calls += 1
+        self.kwargs.append({"user_id": user_id, "subject_code": subject_code})
+        return self._snapshot
+
+
+class _FakeProgress:
+    def __init__(self, progress: StudyProgress) -> None:
+        self._progress = progress
+        self.calls = 0
+
+    def get_study_progress(self, *, user_id: int, subject_code: str) -> StudyProgress:
+        self.calls += 1
+        return self._progress
+
+
 def test_home_header_renders_zero_streak_without_error(app, ctx):
     html = _empty_home_html(app, streak=0)
     assert 'data-honest-progress="streak"' in html
@@ -69,6 +183,7 @@ def test_home_header_renders_zero_streak_without_error(app, ctx):
     assert "broken" not in html.lower()
     assert "—" not in html
     assert 'href="/student/progress"' in html
+    assert ">Stats<" in html
 
 
 def test_home_header_renders_genuine_streak(app, ctx):
@@ -160,6 +275,7 @@ def test_progress_page_zero_data(app, ctx, student_client):
     assert 'data-honest-progress="milestones-empty"' in html
     assert "No milestones reached yet." in html
     assert "—" not in html
+    assert "Stats" in html
 
 
 def test_progress_page_with_genuine_data(app, ctx):
@@ -177,17 +293,25 @@ def test_progress_page_with_genuine_data(app, ctx):
         shown_at=AS_OF,
     )
     query = QualifyingStudyDayQueryAdapter(index=index)
-    twin = MagicMock()
-    twin.topics_with_estimated_knowledge.return_value = ()
+    assembler = _FakeAssembler(_snapshot_with_states())
+    progress = _study_progress(
+        topic_ids=(
+            TOPIC_MASTERED,
+            TOPIC_EXTRA_MASTERED,
+            TOPIC_DEVELOPING,
+            TOPIC_NOT_YET,
+            TOPIC_NOT_STARTED,
+        ),
+        completed=(TOPIC_MASTERED, TOPIC_EXTRA_MASTERED),
+    )
     svc = HonestProgressService(
         study_day_query=query,
         shown_store=shown,
-        twin_query=twin,
+        assembler=assembler,
+        study_progress=_FakeProgress(progress),
     )
-    svc._resolve_subject_code = lambda _uid: ""  # type: ignore[method-assign]
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
     with app.test_request_context("/student/progress"):
-        from flask import render_template
-
         page = svc.build_progress_page(user_id=11, as_of=AS_OF)
         html = render_template(
             "student/progress.html",
@@ -195,14 +319,215 @@ def test_progress_page_with_genuine_data(app, ctx):
             page=None,
             title=page.page_title,
         )
+    assert page.page_title == "Stats"
     assert page.current_streak_days == 2
     assert page.longest_streak_days == 2
-    assert page.topics_mastered_count == 0
+    assert page.topics_mastered_count == 2
     assert len(page.milestones) == 1
     assert page.milestones[0].label == "7-day study streak reached"
     assert "7-day study streak reached" in html
     assert "2026-08-31" in html
     assert 'data-honest-progress="current-streak"' in html
+    assert assembler.calls == 1
+
+
+def test_learning_state_counts_come_from_study_assembler(app, ctx):
+    """Four-state aggregates must call the same assembler Study uses."""
+    snapshot = _snapshot_with_states()
+    assembler = _FakeAssembler(snapshot)
+    progress = _study_progress(
+        topic_ids=tuple(t.topic_id for t in snapshot.topics),
+        completed=(TOPIC_MASTERED, TOPIC_EXTRA_MASTERED),
+    )
+    svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=0,
+                    longest_streak_days=0,
+                    qualifying_dates=(),
+                )
+            )
+        ),
+        shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
+        assembler=assembler,
+        study_progress=_FakeProgress(progress),
+    )
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+    with app.test_request_context("/student/progress"):
+        page = svc.build_progress_page(user_id=11, as_of=AS_OF)
+    assert assembler.calls == 1
+    assert assembler.kwargs == [{"user_id": 11, "subject_code": "CS1"}]
+    by_state = {row.state: row.count for row in page.learning_state_counts}
+    assert by_state == {
+        "not_started": 1,
+        "not_yet_assessed": 1,
+        "developing": 1,
+        "mastered": 2,
+    }
+    assert page.topics_mastered_count == 2
+
+
+def test_mastered_count_matches_study_over_full_syllabus(app, ctx):
+    """Previous Twin-only mastery count is replaced by assembler full-syllabus count."""
+    snapshot = _snapshot_with_states()
+    assembler = _FakeAssembler(snapshot)
+    progress = _study_progress(
+        topic_ids=tuple(t.topic_id for t in snapshot.topics),
+        completed=(TOPIC_MASTERED, TOPIC_EXTRA_MASTERED),
+    )
+    twin = MagicMock()
+    twin.topics_with_estimated_knowledge.return_value = ()
+
+    stats_svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=0,
+                    longest_streak_days=0,
+                    qualifying_dates=(),
+                )
+            )
+        ),
+        shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
+        twin_query=twin,
+        assembler=assembler,
+        study_progress=_FakeProgress(progress),
+    )
+    stats_svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+
+    study_svc = StudentStudyCurriculumPresentationService(
+        assembler=_FakeAssembler(snapshot),
+        study_progress=_FakeProgress(progress),
+        why_lookup=lambda _code: {},
+    )
+    with app.test_request_context("/student/progress"):
+        stats_page = stats_svc.build_progress_page(user_id=11, as_of=AS_OF)
+    study_page = study_svc.build(user_id=11, subject_code="CS1")
+    study_mastered = sum(
+        1
+        for section in study_page.sections
+        for topic in section.topics
+        if topic.state == TopicLearningState.MASTERED.value
+    )
+    assert stats_page.topics_mastered_count == study_mastered == 2
+    assert twin.topics_with_estimated_knowledge.call_count == 0
+
+
+def test_stats_section_order_matches_specification(app, ctx):
+    snapshot = _snapshot_with_states()
+    progress = _study_progress(
+        topic_ids=tuple(t.topic_id for t in snapshot.topics),
+        completed=(TOPIC_MASTERED,),
+    )
+    svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=1,
+                    longest_streak_days=1,
+                    qualifying_dates=(AS_OF,),
+                )
+            )
+        ),
+        shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
+        assembler=_FakeAssembler(snapshot),
+        study_progress=_FakeProgress(progress),
+    )
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+    with app.test_request_context("/student/progress"):
+        page = svc.build_progress_page(user_id=11, as_of=AS_OF)
+        html = render_template(
+            "student/progress.html",
+            progress=page,
+            page=None,
+            title=page.page_title,
+        )
+    order = re.findall(r'data-stats-section="([^"]+)"', html)
+    assert order == ["consistency", "learning", "curriculum", "milestones"]
+
+
+def test_milestone_entries_still_name_topics_after_reorder(app, ctx):
+    store = SessionDocumentStore()
+    shown = MilestonesShownPersistence(store=store)
+    topic_label = "Estimated knowledge mastered for Conditional probability"
+    shown.record_shown(
+        learner_id="11",
+        milestone_id="topic_ek_CS1-A-T01",
+        label=topic_label,
+        shown_at=AS_OF,
+    )
+    snapshot = _snapshot_with_states()
+    progress = _study_progress(
+        topic_ids=tuple(t.topic_id for t in snapshot.topics),
+        completed=(TOPIC_MASTERED,),
+    )
+    svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=0,
+                    longest_streak_days=0,
+                    qualifying_dates=(),
+                )
+            )
+        ),
+        shown_store=shown,
+        assembler=_FakeAssembler(snapshot),
+        study_progress=_FakeProgress(progress),
+    )
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+    with app.test_request_context("/student/progress"):
+        page = svc.build_progress_page(user_id=11, as_of=AS_OF)
+        html = render_template(
+            "student/progress.html",
+            progress=page,
+            page=None,
+            title=page.page_title,
+        )
+    assert page.milestones[0].label == topic_label
+    assert "Conditional probability" in html
+    assert 'data-stats-section="milestones"' in html
+
+
+def test_coverage_matches_existing_study_progress_formula(app, ctx):
+    snapshot = _snapshot_with_states()
+    topic_ids = tuple(t.topic_id for t in snapshot.topics)
+    completed = (TOPIC_MASTERED, TOPIC_EXTRA_MASTERED)
+    progress = _study_progress(topic_ids=topic_ids, completed=completed)
+    fake_progress = _FakeProgress(progress)
+    svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=0,
+                    longest_streak_days=0,
+                    qualifying_dates=(),
+                )
+            )
+        ),
+        shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
+        assembler=_FakeAssembler(snapshot),
+        study_progress=fake_progress,
+    )
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+    study_svc = StudentStudyCurriculumPresentationService(
+        assembler=_FakeAssembler(snapshot),
+        study_progress=_FakeProgress(progress),
+        why_lookup=lambda _code: {},
+    )
+    with app.test_request_context("/student/progress"):
+        stats_page = svc.build_progress_page(user_id=11, as_of=AS_OF)
+    study_page = study_svc.build(user_id=11, subject_code="CS1")
+    assert fake_progress.calls >= 1
+    assert stats_page.covered_count == study_page.covered_count == 2
+    assert stats_page.topic_count == study_page.topic_count == 5
+    assert stats_page.syllabus_coverage_label == study_page.coverage_label
+    assert stats_page.syllabus_coverage_label == "2 of 5 topics covered"
+    expected_percent = int(
+        round(max(0.0, min(1.0, float(progress.coverage_ratio or 0.0))) * 100)
+    )
+    assert stats_page.syllabus_coverage_percent == expected_percent == 40
 
 
 def test_honest_progress_modules_do_not_import_content_authoring_paths():
@@ -234,4 +559,10 @@ def test_honest_progress_modules_do_not_import_content_authoring_paths():
 def test_progress_route_reachable(student_client):
     response = student_client.get("/student/progress")
     assert response.status_code == 200
-    assert b"Progress" in response.data
+    html = response.get_data(as_text=True)
+    assert "Stats" in html
+    assert 'data-stats-section="consistency"' in html
+    assert re.search(
+        r'class="student-nav-link is-active"[^>]*>Stats</a>',
+        html,
+    )

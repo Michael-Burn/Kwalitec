@@ -198,19 +198,19 @@ def home():
 @student_bp.get("/progress")
 @login_required
 def progress():
-    """Honest Progress summary: streak, coverage, mastery, milestones."""
+    """Stats summary: consistency, learning, curriculum, milestones."""
     from app.presentation.student.services.honest_progress_service import (
         HonestProgressService,
     )
 
-    page = load_page(ExperienceSurface.PROFILE)
+    # Match Study: omit page shell so eos_navigation highlights Stats via
+    # build_navigation_for_request(student.progress), not Home.
     progress_page = HonestProgressService().build_progress_page(
         user_id=current_user.id,
     )
     return render_template(
         "student/progress.html",
         title=progress_page.page_title,
-        page=page,
         progress=progress_page,
     )
 
