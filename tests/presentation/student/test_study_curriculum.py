@@ -102,7 +102,9 @@ def _row(
     section_id: str = "S1",
     section_title: str = "Section 1",
     title: str | None = None,
+    reached: bool | None = None,
 ) -> TopicCurriculumState:
+    default_reached = state is not TopicLearningState.NOT_STARTED
     return TopicCurriculumState(
         topic_id=topic_id,
         topic_code=topic_id,
@@ -113,6 +115,7 @@ def _row(
         last_practised_at=(
             FIXED if state is not TopicLearningState.NOT_STARTED else None
         ),
+        reached=default_reached if reached is None else reached,
     )
 
 
@@ -249,24 +252,62 @@ def test_study_template_renders_four_states_and_coverage(app, ctx):
     assert "—" not in html
 
 
-def test_topics_are_not_actionable_to_start_a_session(app, ctx):
+def test_practiced_unreached_topic_has_no_study_action(app, ctx):
+    snapshot = CurriculumLearningSnapshot(
+        user_id=1,
+        subject_code="CS1",
+        curriculum_identity="CS1:test",
+        topics=(
+            _row(
+                TOPIC_NOT_YET_ASSESSED,
+                TopicLearningState.NOT_YET_ASSESSED,
+                reached=False,
+            ),
+        ),
+    )
+    progress = _progress(
+        topic_ids=(TOPIC_NOT_YET_ASSESSED,),
+        completed=(),
+        current_topic_id="other",
+    )
+    page = StudentStudyCurriculumPresentationService(
+        assembler=_FakeAssembler(snapshot),
+        study_progress=_FakeProgress(progress),
+        why_lookup=lambda _code: {},
+    ).build(user_id=1, subject_code="CS1")
+    topic = page.sections[0].topics[0]
+    assert topic.can_study is False
+    assert topic.unavailable_reason == (
+        "Available once you reach it in your learning path."
+    )
+    html = _render_study(app, page)
+    assert f'data-study-action="{TOPIC_NOT_YET_ASSESSED}"' not in html
+    assert f'data-study-unavailable="{TOPIC_NOT_YET_ASSESSED}"' in html
+
+
+def test_reached_topics_are_actionable_unreached_are_quiet(app, ctx):
     page = _build_mixed_page()
     html = _render_study(app, page)
-    assert "student.start_session" not in html
-    assert "/student/start-session" not in html
-    assert 'action="' not in html.lower() or "start_session" not in html
+    assert "Study this topic" in html
+    assert "student.start_study_topic" in html or "/student/study/start" in html
+    assert "Available once you reach it in your learning path." in html
     assert "Start Today's Session" not in html
     assert "Begin Session" not in html
-    for topic_id in (
+    assert "student.start_session" not in html
+    assert "requires Topics" not in html
+    assert "unlock" not in html.lower()
+    assert "padlock" not in html.lower()
+    reached_ids = (
         TOPIC_MASTERED,
+        TOPIC_COMPLETE_DEVELOPING,
         TOPIC_DEVELOPING,
         TOPIC_NOT_YET_ASSESSED,
-        TOPIC_NOT_STARTED,
-        TOPIC_COMPLETE_DEVELOPING,
-    ):
-        assert f'data-study-topic="{topic_id}"' in html
+    )
+    for topic_id in reached_ids:
+        assert f'data-study-action="{topic_id}"' in html
+    assert f'data-study-unavailable="{TOPIC_NOT_STARTED}"' in html
+    assert f'data-study-action="{TOPIC_NOT_STARTED}"' not in html
     assert "<details" in html
-    assert 'href="/session/' not in html
 
 
 def test_continue_link_uses_home_resume_href_not_new_decision(app, ctx):

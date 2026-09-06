@@ -89,6 +89,25 @@
             <p class="ds-list__meta">Part of your published syllabus.</p>
           </div>
           {% endif %}
+          {% if topic.can_study %}
+          <form
+            class="ds-os-study__action"
+            method="post"
+            action="{{ url_for('student.start_study_topic') }}"
+            data-study-action="{{ topic.topic_id }}"
+          >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="topic_id" value="{{ topic.topic_id }}">
+            {% if study.subject_code %}
+            <input type="hidden" name="subject_code" value="{{ study.subject_code }}">
+            {% endif %}
+            {{ ds_button(topic.study_action_label, type='submit', variant='secondary') }}
+          </form>
+          {% elif topic.unavailable_reason %}
+          <p class="ds-os-study__unavailable" data-study-unavailable="{{ topic.topic_id }}">
+            {{ topic.unavailable_reason }}
+          </p>
+          {% endif %}
         </details>
       </li>
       {% endfor %}

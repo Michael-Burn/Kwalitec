@@ -328,11 +328,18 @@ def _build_learning_session(
         topics = (topics_raw,)
     else:
         topics = tuple(str(t) for t in topics_raw)
-    mid = (
-        mission_id
-        or opaque.get("mission_id")
-        or mission_doc.get("mission_id")
-    )
+    origin = str(opaque.get("session_origin") or "").strip()
+    # Opaque session_origin lives on the session document. Do not import
+    # learning_session here (authority boundary). Student-selected sittings
+    # must not inherit today's mission id from the daily-mission document.
+    if origin == "student_selected":
+        mid = opaque.get("mission_id") or ""
+    else:
+        mid = (
+            mission_id
+            or opaque.get("mission_id")
+            or mission_doc.get("mission_id")
+        )
     experience_id = str(
         opaque.get("experience_session_id") or f"es-{session_id}"
     )
@@ -418,12 +425,14 @@ def _overview_with_substance(
     subject_code = str(
         opaque.get("subject_code") or opaque.get("subject_id") or ""
     ).strip()
+    origin = str(opaque.get("session_origin") or "").strip()
     if (
         not objectives
         and not substance
         and explanation is None
         and not pack_id
         and not subject_code
+        and not origin
     ):
         return snap
     return replace(
@@ -433,6 +442,7 @@ def _overview_with_substance(
         explanation=explanation,
         educational_package_id=pack_id or snap.educational_package_id,
         subject_code=subject_code or snap.subject_code,
+        session_origin=origin or snap.session_origin,
     )
 
 

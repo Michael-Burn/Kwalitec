@@ -33,7 +33,10 @@ from app.application.study_curriculum import (
     CurriculumLearningStateAssembler,
     TopicLearningState,
 )
-from app.application.study_curriculum.assembler import resolve_topic_learning_state
+from app.application.study_curriculum.assembler import (
+    resolve_topic_learning_state,
+    topic_has_been_reached,
+)
 from app.application.study_curriculum.states import TopicLearningState as StateEnum
 
 FIXED = datetime(2026, 9, 6, 8, 0, tzinfo=UTC)
@@ -425,6 +428,9 @@ def test_blocked_incomplete_topic_before_current_is_not_started():
         completed=(),
         current_topic_id=current,
     )
+    assert topic_has_been_reached(blocked, progress) is False
+    assert topic_has_been_reached(current, progress) is True
+    assert topic_has_been_reached(later, progress) is False
     assert (
         resolve_topic_learning_state(
             topic_id=blocked, progress=progress, fact=None
@@ -464,6 +470,7 @@ def test_practiced_future_topic_is_not_yet_assessed_not_not_started():
         )
         is TopicLearningState.NOT_YET_ASSESSED
     )
+    assert topic_has_been_reached(future, progress) is False
 
 
 def test_topic_learning_state_enum_values_are_stable():

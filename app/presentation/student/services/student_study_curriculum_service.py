@@ -13,6 +13,7 @@ from collections.abc import Callable, Mapping
 
 from flask import url_for
 
+from app.application.learning_session.session_origin import UNREACHED_TOPIC_COPY
 from app.application.study_curriculum.states import TopicLearningState
 from app.application.study_curriculum.types import (
     CurriculumLearningSnapshot,
@@ -75,6 +76,7 @@ class StudentStudyCurriculumPresentationService:
             page_question=_PAGE_QUESTION,
             surface="study",
             subject_label=subject_label,
+            subject_code="",
             coverage_label="",
             covered_count=0,
             topic_count=0,
@@ -105,6 +107,7 @@ class StudentStudyCurriculumPresentationService:
             page_question=_PAGE_QUESTION,
             surface="study",
             subject_label=subject_label or code,
+            subject_code=code,
             coverage_label=coverage_label,
             covered_count=covered,
             topic_count=total,
@@ -222,6 +225,7 @@ def _topic_view(
     why_by_topic: Mapping[str, str],
 ) -> StudyTopicView:
     state = row.state
+    reached = bool(row.reached)
     return StudyTopicView(
         topic_id=row.topic_id,
         topic_code=row.topic_code,
@@ -231,6 +235,9 @@ def _topic_view(
         state_icon=_STATE_ICONS.get(state, ""),
         why_it_matters=(why_by_topic.get(row.topic_id) or "").strip(),
         is_quiet=state is TopicLearningState.NOT_STARTED,
+        can_study=reached,
+        unavailable_reason="" if reached else UNREACHED_TOPIC_COPY,
+        study_action_label="Study this topic" if reached else "",
     )
 
 

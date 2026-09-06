@@ -951,6 +951,13 @@ class StudySessionService:
             return empty
 
         why = (overview.why_studying or "").strip()
+        from app.application.learning_session.session_origin import (
+            STUDENT_SELECTED_WHY,
+            is_student_selected_origin,
+        )
+
+        if is_student_selected_origin(overview.session_origin):
+            why = STUDENT_SELECTED_WHY
         expected = (overview.expected_improvement_label or "").strip()
         objectives = tuple(overview.learning_objectives or ())
         stages: tuple[str, ...] = ()

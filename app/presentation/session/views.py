@@ -231,6 +231,17 @@ def _apply_ri001_session_briefing(
     """Overlay Study Session Experience Model framing when Preferred Authority wins."""
     if page.overview is None:
         return page
+    from app.application.learning_session.session_origin import (
+        STUDENT_SELECTED_WHY,
+        is_student_selected_origin,
+    )
+
+    if is_student_selected_origin(page.overview.session_origin):
+        overview = replace(
+            page.overview,
+            why_studying=STUDENT_SELECTED_WHY,
+        )
+        return replace(page, overview=overview)
     briefing = _ri001_session_briefing(int(current_user.id))
     if not briefing:
         return page

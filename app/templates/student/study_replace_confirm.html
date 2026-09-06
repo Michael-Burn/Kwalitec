@@ -1,0 +1,49 @@
+{% extends "student/base.html" %}
+{% set title = title or 'Start this session?' %}
+{% from "design_system/macros.html" import ds_button %}
+
+{% block page_header %}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<article
+  class="ds-page ds-container ds-container--content ds-os-study"
+  aria-labelledby="study-replace-title"
+  data-study-replace-confirm="true"
+>
+  <header class="ds-page-header">
+    <h1 id="study-replace-title" class="ds-page-header__title student-page-title">
+      Start this session?
+    </h1>
+    <p class="ds-page-header__support">
+      You have an unfinished session. Starting this will replace your current resume point. It won't be deleted, but you won't be able to resume it from here.
+    </p>
+  </header>
+
+  <form
+    class="ds-os-study__action"
+    method="post"
+    action="{{ url_for('student.start_study_topic') }}"
+    data-study-replace-form="true"
+  >
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="topic_id" value="{{ form.topic_id.data }}">
+    {% if form.subject_code.data %}
+    <input type="hidden" name="subject_code" value="{{ form.subject_code.data }}">
+    {% endif %}
+    <input type="hidden" name="confirm_replace" value="1">
+    <div class="ds-primary-strip" role="group" aria-label="Primary actions">
+      {{ ds_button('Start this session', type='submit', variant='primary') }}
+      {{ ds_button(
+        'Go back',
+        href=url_for('student.study'),
+        variant='ghost',
+        attrs='data-study-replace-back="true"'
+      ) }}
+    </div>
+  </form>
+</article>
+{% endblock %}

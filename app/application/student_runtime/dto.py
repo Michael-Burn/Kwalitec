@@ -22,3 +22,4 @@ class SessionBindingResult:
     resumed: bool
     phase: str
     authority: str = "learning_session_runtime"
+    session_origin: str = ""

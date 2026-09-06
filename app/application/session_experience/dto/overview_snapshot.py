@@ -45,3 +45,4 @@ class OverviewSnapshot:
     # Sitting package identity for Overview briefing authoring (EA-006 overlay).
     educational_package_id: str = ""
     subject_code: str = ""
+    session_origin: str = ""

@@ -19,6 +19,7 @@ class TopicCurriculumState:
     section_title: str | None
     state: TopicLearningState
     last_practised_at: datetime | None
+    reached: bool = False
 
 
 @dataclass(frozen=True)

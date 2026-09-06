@@ -208,6 +208,46 @@ def start_todays_session(
     )
 
 
+def start_student_selected_topic(
+    *,
+    topic_id: str,
+    subject_code: str = "",
+    replace_unfinished: bool = False,
+):
+    """Start a genuine Session for a reached topic chosen on Study.
+
+    Does not accept or complete today's daily mission. The reached gate is
+    enforced in StudentRuntimeCoordinator. ``replace_unfinished`` is set
+    only after the student confirms replacing the current resume pointer.
+    """
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.application.student_runtime import StudentRuntimeCoordinator
+    from app.infrastructure.adapters.learning_session.persistence import (
+        LearningSessionPersistenceAdapter,
+    )
+    from app.presentation.session.factory import get_session_experience_composition
+
+    flags = resolve_v2_feature_flags()
+    user_id = current_user.id
+    session_composition = get_session_experience_composition()
+    store = session_composition.store if session_composition is not None else None
+    persistence = LearningSessionPersistenceAdapter(store=store)
+    overview_writer = (
+        session_composition.runtime if session_composition is not None else None
+    )
+    coordinator = StudentRuntimeCoordinator(
+        persistence=persistence,
+        session_overview_writer=overview_writer,
+        flags=flags,
+    )
+    return coordinator.start_student_selected_session(
+        user_id=user_id,
+        topic_id=topic_id,
+        subject_code=subject_code,
+        replace_unfinished=replace_unfinished,
+    )
+
+
 def _try_runtime_c_session_start(
     sid: str,
     *,

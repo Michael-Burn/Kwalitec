@@ -30,7 +30,9 @@ from app.application.learning_session.runtime import (
 from app.application.student_runtime.dto import SessionBindingResult
 from app.application.student_runtime.exceptions import (
     MissionNotAcceptable,
+    OpenSessionReplacementRequired,
     SessionSpineUnavailable,
+    TopicNotReached,
 )
 from app.domain.educational_runtime_engine.student_facing_identity import (
     format_learning_objective_label,
@@ -279,6 +281,339 @@ class StudentRuntimeCoordinator:
             authority=_AUTHORITY,
         )
 
+    def start_student_selected_session(
+        self,
+        *,
+        user_id: int,
+        topic_id: str,
+        subject_code: str = "",
+        replace_unfinished: bool = False,
+    ) -> SessionBindingResult:
+        """Create a genuine session for a reached topic the student chose.
+
+        Enforces the sequential reached gate server-side. Does not create or
+        accept a daily RuntimeMissionInstance, so completing this sitting
+        cannot mark today's recommended mission complete or emit
+        TOPIC_COMPLETED. Reuses package composition for the chosen topic
+        (not the campaign pointer). Does not consult the Decision Engine.
+
+        If an unfinished sitting already occupies the single open-session
+        pointer, requires ``replace_unfinished=True`` before creating a new
+        sitting. Same-topic student-selected resume is not a replacement.
+        """
+        if not self.session_primary_enabled():
+            raise SessionSpineUnavailable("SR_SESSION_PRIMARY is off")
+
+        tid = (topic_id or "").strip()
+        if not tid:
+            raise TopicNotReached("topic_id required")
+
+        enrolment = self._enrolment_for_user(
+            user_id=user_id, subject_code=subject_code
+        )
+        if enrolment is None:
+            raise SessionSpineUnavailable("no active enrolment for this student")
+
+        subject = str(enrolment.subject_code or "").strip()
+        curriculum_identity = str(enrolment.curriculum_identity or "").strip()
+        progress = self._engine.get_study_progress(
+            user_id=user_id,
+            subject_code=subject,
+        )
+        from app.application.study_curriculum.assembler import topic_has_been_reached
+
+        if tid not in progress.topic_ids or not topic_has_been_reached(
+            tid, progress
+        ):
+            raise TopicNotReached(
+                "available once you reach it in your learning path"
+            )
+
+        title, topic_code = self._topic_identity(
+            curriculum_identity=curriculum_identity,
+            topic_id=tid,
+        )
+        sid = str(user_id)
+        store = self._require_persistence()
+        existing = self.find_open_session(sid)
+        if existing is not None and existing.topic_id == tid:
+            record = store.load(session_id=existing.session_id) or {}
+            from app.application.learning_session.session_origin import (
+                is_student_selected_origin,
+            )
+
+            if is_student_selected_origin(
+                str(record.get("session_origin") or "")
+            ):
+                return existing
+
+        minutes = 30
+        substance_flag = self._substance_enabled()
+        substance = None
+        objectives = None
+        pack_id = ""
+        if substance_flag:
+            substance = self._plan_substance_for_selected_topic(
+                curriculum_identity=curriculum_identity,
+                topic_id=tid,
+                topic_title=title,
+                topic_code=topic_code,
+                session_minutes=minutes,
+            )
+            if substance is None:
+                raise SessionSpineUnavailable(
+                    "certified CMP guidance is unavailable for this topic"
+                )
+            subject_for_guard = (curriculum_identity or "").split(":")[0].strip()
+            from app.application.educational_packages.guard import (
+                certified_guidance_enforced,
+            )
+
+            if certified_guidance_enforced(subject_for_guard) and (
+                substance.source or ""
+            ).strip() != "educational_package":
+                raise SessionSpineUnavailable(
+                    "certified CMP guidance is required; fallback substance refused"
+                )
+            topic_l = (substance.topic_title or "").strip().lower()
+            if topic_l == "core methods":
+                raise SessionSpineUnavailable(
+                    "session substance resolved to placeholder Core methods"
+                )
+            if substance.topic_title:
+                title = substance.topic_title.strip() or title
+            if substance.learning_objectives:
+                from app.domain.learning_journey.entities.learning_objective import (
+                    LearningObjective,
+                    ObjectiveKind,
+                )
+
+                objectives = tuple(
+                    LearningObjective.create(
+                        obj.objective_id[:64],
+                        curriculum_identity,
+                        tid,
+                        ObjectiveKind.UNDERSTAND,
+                        title=obj.text[:200],
+                        sequence_index=index,
+                    )
+                    for index, obj in enumerate(substance.learning_objectives)
+                )
+
+        from app.application.learning_session.session_origin import (
+            SESSION_ORIGIN_STUDENT_SELECTED,
+            is_student_selected_origin,
+        )
+
+        open_now = self.find_open_session(sid)
+        if open_now is not None:
+            record_now = store.load(session_id=open_now.session_id) or {}
+            if open_now.topic_id == tid and is_student_selected_origin(
+                str(record_now.get("session_origin") or "")
+            ):
+                return open_now
+            if not replace_unfinished:
+                raise OpenSessionReplacementRequired(
+                    "unfinished session would be replaced",
+                    session_id=open_now.session_id,
+                    topic_id=str(open_now.topic_id or ""),
+                )
+
+        session_id = f"lsr-{self._id_factory()}"
+        journey = self._journey_for_selected_topic(
+            sid,
+            topic_id=tid,
+            curriculum_identity=curriculum_identity,
+            topic_title=title,
+            session_id=session_id,
+        )
+        handle = self._lsr.create_session(
+            journey,
+            topic_id=tid,
+            objectives=objectives,
+            estimated_effort=_effort_from_minutes(minutes),
+            session_id=session_id,
+        )
+        handle = self._lsr.prepare_session(handle)
+        handle = self._lsr.start_session(handle)
+
+        store.save_binding(
+            student_id=sid,
+            mission_instance_id="",
+            handle=handle,
+            topic_title=title,
+            topic_id=tid,
+            estimated_minutes=minutes,
+            curriculum_identity=curriculum_identity,
+            educational_package_id=pack_id,
+            session_origin=SESSION_ORIGIN_STUDENT_SELECTED,
+        )
+        if substance is not None:
+            self._provision_substance_sequence(
+                student_id=sid,
+                session_id=session_id,
+                substance=substance,
+            )
+            from app.infrastructure.adapters.learning_session import (
+                package_activity_engine as pkg_engine,
+            )
+
+            pack_id = pkg_engine._package_id_from_substance(substance) or pack_id
+            if pack_id:
+                store.save_binding(
+                    student_id=sid,
+                    mission_instance_id="",
+                    handle=handle,
+                    topic_title=title,
+                    topic_id=tid,
+                    estimated_minutes=minutes,
+                    curriculum_identity=curriculum_identity,
+                    educational_package_id=pack_id,
+                    session_origin=SESSION_ORIGIN_STUDENT_SELECTED,
+                )
+        self._provision_overview(
+            student_id=sid,
+            session_id=session_id,
+            mission_id="",
+            topic_title=title,
+            estimated_minutes=minutes,
+            substance=substance,
+            educational_package_id=pack_id,
+            subject_code=subject,
+            session_origin=SESSION_ORIGIN_STUDENT_SELECTED,
+        )
+        return SessionBindingResult(
+            session_id=session_id,
+            mission_instance_id="",
+            student_id=sid,
+            topic_title=title,
+            topic_id=tid,
+            estimated_minutes=minutes,
+            resumed=False,
+            phase=str(handle.phase.value),
+            authority=_AUTHORITY,
+            session_origin=SESSION_ORIGIN_STUDENT_SELECTED,
+        )
+
+    def _enrolment_for_user(
+        self, *, user_id: int, subject_code: str = ""
+    ):
+        from app.application.educational_experience import (
+            EducationalExperienceService,
+        )
+
+        service = EducationalExperienceService()
+        code = (subject_code or "").strip().upper()
+        if code:
+            return service._resolve_enrolment(user_id, code)
+        return service.find_enrolment_for_experience(user_id)
+
+    def _topic_identity(
+        self, *, curriculum_identity: str, topic_id: str
+    ) -> tuple[str, str]:
+        from app.application.educational_engine_foundation.service import (
+            EducationalEngineFoundationService,
+        )
+
+        identity = (curriculum_identity or "").strip()
+        subject = identity.split(":")[0].strip() if identity else ""
+        snapshot = None
+        foundation = EducationalEngineFoundationService()
+        if ":" in identity:
+            _subject, version = identity.split(":", 1)
+            snapshot = foundation.derive_version(subject, version.strip())
+        if snapshot is None and subject:
+            snapshot = foundation.derive_active(subject)
+        if snapshot is None:
+            return topic_id, ""
+        for topic in snapshot.topics or ():
+            if not isinstance(topic, dict):
+                continue
+            if str(topic.get("topic_id") or "").strip() != topic_id:
+                continue
+            title = str(
+                topic.get("title") or topic.get("text") or topic_id
+            ).strip()
+            code = str(
+                topic.get("code") or topic.get("topic_code") or ""
+            ).strip()
+            return title or topic_id, code
+        return topic_id, ""
+
+    def _journey_for_selected_topic(
+        self,
+        student_id: str,
+        *,
+        topic_id: str,
+        curriculum_identity: str,
+        topic_title: str,
+        session_id: str,
+    ):
+        from app.domain.learning_journey.entities.learning_journey import (
+            LearningJourney,
+        )
+        from app.domain.learning_journey.entities.learning_objective import (
+            LearningObjective,
+            ObjectiveKind,
+        )
+        from app.domain.learning_journey.value_objects.journey_state import (
+            JourneyState,
+        )
+
+        journey_id = f"jrn-sel-{session_id}"
+        objective = LearningObjective.create(
+            f"obj-{topic_id}"[:64],
+            curriculum_identity,
+            topic_id,
+            ObjectiveKind.UNDERSTAND,
+            title=(topic_title or "Study this topic")[:200],
+            sequence_index=0,
+        )
+        return LearningJourney.create(
+            journey_id,
+            student_id,
+            topic_id,
+            curriculum_identity,
+            state=JourneyState.ACTIVE,
+            objectives=(objective,),
+        )
+
+    def _plan_substance_for_selected_topic(
+        self,
+        *,
+        curriculum_identity: str,
+        topic_id: str,
+        topic_title: str,
+        topic_code: str,
+        session_minutes: int | None,
+    ):
+        from app.application.educational_packages.loader import (
+            find_educational_package,
+        )
+        from app.application.learning_session.substance_planner import (
+            EducationalSubstancePlanner,
+        )
+
+        subject_id = (curriculum_identity or "").split(":")[0].strip()
+        pack = find_educational_package(
+            topic_id=topic_id,
+            topic_code=topic_code,
+            topic_title=topic_title,
+            subject_id=subject_id,
+        )
+        pack_id = pack.package_id if pack is not None else ""
+        pack_title = ""
+        if pack is not None:
+            pack_title = str(getattr(pack, "display_title", "") or "")
+        return EducationalSubstancePlanner().plan_for_topic(
+            curriculum_identity=curriculum_identity,
+            topic_id=topic_id,
+            topic_title=topic_title or pack_title,
+            session_minutes=session_minutes,
+            educational_package_id=pack_id,
+            use_campaign_resolution=False,
+        )
+
     def resume_session(
         self,
         *,
@@ -474,6 +809,7 @@ class StudentRuntimeCoordinator:
         substance: Any | None = None,
         educational_package_id: str = "",
         subject_code: str = "",
+        session_origin: str = "",
     ) -> None:
         writer = self._overview_writer
         if writer is None:
@@ -481,11 +817,13 @@ class StudentRuntimeCoordinator:
         learning_objectives: list[str] = []
         activity_count = 3
         substance_status = "incomplete"
-        why = (
-            f"Today's Mission focuses on {topic_title}."
-            if topic_title
-            else "Today's Mission is ready."
+        from app.application.learning_session.session_origin import (
+            is_student_selected_origin,
+            why_studying_for_origin,
         )
+
+        origin = (session_origin or "").strip()
+        why = why_studying_for_origin(origin, topic_title=topic_title)
         objective = f"Strengthen {topic_title}" if topic_title else "Today's study"
         pack_id = (educational_package_id or "").strip()
         if substance is not None:
@@ -500,7 +838,7 @@ class StudentRuntimeCoordinator:
             else:
                 substance_status = "package"
             rationale = (getattr(substance, "educational_rationale", "") or "").strip()
-            if rationale:
+            if rationale and not is_student_selected_origin(origin):
                 why = rationale
             if substance.learning_objectives:
                 objective = format_learning_objective_label(
@@ -538,6 +876,7 @@ class StudentRuntimeCoordinator:
             "substance": substance_status,
             "educational_package_id": pack_id,
             "subject_id": (subject_code or "").strip(),
+            "session_origin": origin,
         }
         writer.put_overview(student_id, session_id=session_id, document=document)
 

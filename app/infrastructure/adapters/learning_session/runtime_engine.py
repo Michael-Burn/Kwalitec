@@ -220,10 +220,18 @@ class LearningSessionRuntimeEngine:
         subject_id = str(
             (record.get("curriculum_identity") or "").split(":")[0]
         ).strip()
+        from app.application.learning_session.session_origin import (
+            why_studying_for_origin,
+        )
+
+        origin = str(record.get("session_origin") or "").strip()
         return {
             "objective": f"Strengthen {topic}",
             "learning_goal": topic,
-            "why_studying": f"Today's Mission focuses on {topic}.",
+            "why_studying": why_studying_for_origin(
+                origin, topic_title=topic
+            ),
+            "session_origin": origin,
             "estimated_minutes": minutes,
             "activity_count": activity_count,
             "topics": (topic,),
@@ -768,7 +776,14 @@ class LearningSessionRuntimeEngine:
                     )
                     or None,
                 )
-                if validation.may_complete_mission:
+                from app.application.learning_session.session_origin import (
+                    is_student_selected_origin,
+                )
+
+                student_selected = is_student_selected_origin(
+                    str(record.get("session_origin") or "")
+                )
+                if validation.may_complete_mission and not student_selected:
                     mission_completed = self._complete_mission_if_authorised(
                         student_id=student_id,
                         mission_instance_id=str(
@@ -1321,6 +1336,7 @@ class LearningSessionRuntimeEngine:
             session_metadata={
                 "estimated_minutes": record.get("estimated_minutes"),
                 "phase": record.get("phase"),
+                "session_origin": str(record.get("session_origin") or ""),
             },
         )
         package = self._evidence_gate.assert_session_may_complete(package)

@@ -90,6 +90,7 @@ class OverviewViewModel:
     # Sitting package identity for Overview briefing authoring.
     educational_package_id: str = ""
     subject_code: str = ""
+    session_origin: str = ""
 
 
 @dataclass(frozen=True)
@@ -274,6 +275,7 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         explanation=explanation_vm(snap.explanation),
         educational_package_id=snap.educational_package_id or "",
         subject_code=snap.subject_code or "",
+        session_origin=snap.session_origin or "",
     )
 
 

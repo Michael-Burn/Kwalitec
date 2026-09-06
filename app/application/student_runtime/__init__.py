@@ -10,14 +10,18 @@ from app.application.student_runtime.coordinator import StudentRuntimeCoordinato
 from app.application.student_runtime.dto import SessionBindingResult
 from app.application.student_runtime.exceptions import (
     MissionNotAcceptable,
+    OpenSessionReplacementRequired,
     SessionSpineUnavailable,
     StudentRuntimeError,
+    TopicNotReached,
 )
 
 __all__ = [
     "MissionNotAcceptable",
+    "OpenSessionReplacementRequired",
     "SessionBindingResult",
     "SessionSpineUnavailable",
     "StudentRuntimeCoordinator",
     "StudentRuntimeError",
+    "TopicNotReached",
 ]

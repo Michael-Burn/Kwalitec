@@ -57,6 +57,7 @@ class EducationalSubstancePlanner:
         educational_package_id: str = "",
         completed_package_ids: frozenset[str] | set[str] | None = None,
         last_completed_package_id: str = "",
+        use_campaign_resolution: bool = True,
     ) -> EducationalSessionSubstance | None:
         """Resolve package substance for a mission topic.
 
@@ -64,6 +65,10 @@ class EducationalSubstancePlanner:
         should fall back honestly rather than inventing \"Core methods\".
         For subjects with live publication_approved inventory (PB-002 F7),
         never fall through to the LO-shell path.
+
+        ``use_campaign_resolution`` follows the sequential campaign pointer
+        (today's next package). Student-selected sittings pass False so
+        composition matches the chosen topic, not today's recommendation.
         """
         from app.application.curriculum_intelligence.objective_chunk import (
             select_objectives_for_session,
@@ -81,6 +86,7 @@ class EducationalSubstancePlanner:
             educational_package_id=educational_package_id,
             completed_package_ids=completed_package_ids,
             last_completed_package_id=last_completed_package_id,
+            use_campaign_resolution=use_campaign_resolution,
         )
         if pack_substance is not None:
             return pack_substance
@@ -184,6 +190,7 @@ class EducationalSubstancePlanner:
         educational_package_id: str = "",
         completed_package_ids: frozenset[str] | set[str] | None = None,
         last_completed_package_id: str = "",
+        use_campaign_resolution: bool = True,
     ) -> EducationalSessionSubstance | None:
         """Prefer a publication-approved educational package when one matches."""
         try:
@@ -205,7 +212,7 @@ class EducationalSubstancePlanner:
         pid = (educational_package_id or "").strip()
         if pid:
             pack = find_package_by_id(pid)
-        if pack is None:
+        if pack is None and use_campaign_resolution:
             # Resolve syllabus code from title when topic_id is a published node-*.
             code_hint = ""
             title = (topic_title or "").strip()

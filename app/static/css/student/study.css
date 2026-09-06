@@ -121,6 +121,17 @@
   line-height: 1.5;
 }
 
+.ds-os-study__action {
+  margin: 0 0 var(--space-3);
+}
+
+.ds-os-study__unavailable {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-support);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ds-os-study * {
     transition: none;

@@ -25,6 +25,15 @@ class StartSessionForm(FlaskForm):
     submit = SubmitField("Start Today's Session")
 
 
+class StudyTopicSessionForm(FlaskForm):
+    """Study Curriculum: start a student-selected session on a reached topic."""
+
+    topic_id = HiddenField(validators=[Optional(), Length(max=128)])
+    subject_code = HiddenField(validators=[Optional(), Length(max=64)])
+    confirm_replace = HiddenField(validators=[Optional(), Length(max=8)])
+    submit = SubmitField("Study this topic")
+
+
 class CompleteRuntimeMissionForm(FlaskForm):
     """PR-001B — mark today's Runtime C mission complete from Home.
 

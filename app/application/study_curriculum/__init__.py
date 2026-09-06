@@ -9,6 +9,7 @@ from __future__ import annotations
 from app.application.study_curriculum.assembler import (
     CurriculumLearningStateAssembler,
     resolve_topic_learning_state,
+    topic_has_been_reached,
 )
 from app.application.study_curriculum.states import (
     EVIDENCE_RELIABILITY_FLOOR,
@@ -28,4 +29,5 @@ __all__ = [
     "TopicCurriculumState",
     "TopicLearningState",
     "resolve_topic_learning_state",
+    "topic_has_been_reached",
 ]

@@ -31,8 +31,13 @@ from app.presentation.student.forms import (
     ExplainMissionTutorForm,
     ReflectionAckForm,
     StartSessionForm,
+    StudyTopicSessionForm,
 )
-from app.presentation.student.views import load_page, start_todays_session
+from app.presentation.student.views import (
+    load_page,
+    start_student_selected_topic,
+    start_todays_session,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -446,7 +451,104 @@ def study():
         "student/study.html",
         title=study_page.page_title,
         study=study_page,
+        study_topic_form=StudyTopicSessionForm(),
     )
+
+
+@student_bp.post("/study/start")
+@login_required
+def start_study_topic():
+    """Start a genuine Session on a reached topic the student chose."""
+    form = StudyTopicSessionForm()
+    if not form.validate_on_submit():
+        flash("We could not start that topic. Please try again.", "warning")
+        return redirect(url_for("student.study"))
+    topic_id = (form.topic_id.data or "").strip()
+    subject_code = (form.subject_code.data or "").strip()
+    confirm_replace = (form.confirm_replace.data or "").strip().lower() in {
+        "1",
+        "yes",
+        "true",
+        "on",
+    }
+    if not topic_id:
+        flash("Choose a topic from your syllabus to study.", "warning")
+        return redirect(url_for("student.study"))
+    try:
+        from app.application.student_runtime.exceptions import (
+            MissionNotAcceptable,
+            OpenSessionReplacementRequired,
+            SessionSpineUnavailable,
+            StudentRuntimeError,
+            TopicNotReached,
+        )
+
+        binding = start_student_selected_topic(
+            topic_id=topic_id,
+            subject_code=subject_code,
+            replace_unfinished=confirm_replace,
+        )
+    except TopicNotReached:
+        flash(
+            "Available once you reach it in your learning path.",
+            "warning",
+        )
+        return redirect(url_for("student.study"))
+    except OpenSessionReplacementRequired:
+        confirm_form = StudyTopicSessionForm(formdata=None)
+        confirm_form.topic_id.data = topic_id
+        confirm_form.subject_code.data = subject_code
+        confirm_form.confirm_replace.data = "1"
+        return render_template(
+            "student/study_replace_confirm.html",
+            title="Start this session?",
+            form=confirm_form,
+        )
+    except EducationalPrerequisiteMissing as exc:
+        logger.warning(
+            "Study topic session educational readiness: %s missing=%s",
+            exc,
+            getattr(exc, "missing_prerequisite", None),
+        )
+        flash(
+            "Your curriculum is not ready for study yet. Return to Home "
+            "when your subjects are available.",
+            "warning",
+        )
+        return redirect(url_for("student.study"))
+    except (
+        PortUnavailable,
+        StudentExperienceError,
+        MissionNotAcceptable,
+        SessionSpineUnavailable,
+        StudentRuntimeError,
+    ) as exc:
+        logger.warning("Study topic session failed: %s", exc)
+        msg = str(exc).lower()
+        if "certified cmp" in msg or "guidance" in msg:
+            flash(
+                "This topic does not yet have certified CMP guidance. "
+                "No session was started.",
+                "warning",
+            )
+        else:
+            flash(
+                "We could not start a session for that topic. Please try again.",
+                "warning",
+            )
+        return redirect(url_for("student.study"))
+
+    topic = binding.topic_title or "your topic"
+    if binding.session_id:
+        flash(
+            f"Session ready. {topic}. Review the objective, then begin.",
+            "success",
+        )
+        return redirect(
+            url_for("session.overview", session_id=binding.session_id)
+        )
+    flash("Session started. Continue from Home when you are ready.", "success")
+    return redirect(url_for("student.home"))
 
 
 @student_bp.get("/journey")

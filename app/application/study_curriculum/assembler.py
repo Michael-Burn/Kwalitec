@@ -50,9 +50,10 @@ def _has_practice_signal(fact: TopicKnowledgeFact | None) -> bool:
     return fact.last_practised_at is not None
 
 
-def _plan_has_reached(topic_id: str, progress: StudyProgress) -> bool:
-    """True when Study Progress has completed the topic or it is current.
+def topic_has_been_reached(topic_id: str, progress: StudyProgress) -> bool:
+    """True when the sequential path has introduced this topic.
 
+    Reached means: in ``completed_topic_ids``, or equal to ``current_topic_id``.
     Incomplete topics after current, and incomplete topics still blocked on
     prerequisites (incomplete but not current), have not been reached.
     ``get_study_progress`` expresses current as the first eligible incomplete
@@ -61,6 +62,11 @@ def _plan_has_reached(topic_id: str, progress: StudyProgress) -> bool:
     if topic_id in progress.completed_topic_ids:
         return True
     return bool(progress.current_topic_id) and topic_id == progress.current_topic_id
+
+
+def _plan_has_reached(topic_id: str, progress: StudyProgress) -> bool:
+    """Compatibility alias for ``topic_has_been_reached``."""
+    return topic_has_been_reached(topic_id, progress)
 
 
 def resolve_topic_learning_state(
@@ -196,6 +202,7 @@ class CurriculumLearningStateAssembler:
                     last_practised_at=(
                         fact.last_practised_at if fact is not None else None
                     ),
+                    reached=topic_has_been_reached(topic_id, progress),
                 )
             )
         return CurriculumLearningSnapshot(

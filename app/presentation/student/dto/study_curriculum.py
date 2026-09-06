@@ -17,6 +17,9 @@ class StudyTopicView:
     state_icon: str
     why_it_matters: str
     is_quiet: bool
+    can_study: bool = False
+    unavailable_reason: str = ""
+    study_action_label: str = ""
 
 
 @dataclass(frozen=True)
@@ -36,6 +39,7 @@ class StudentStudyCurriculumPage:
     page_question: str
     surface: str
     subject_label: str
+    subject_code: str
     coverage_label: str
     covered_count: int
     topic_count: int
