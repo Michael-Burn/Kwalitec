@@ -603,12 +603,12 @@ def test_more_guidance_panel_uses_step_and_outcome_spacing_classes(app):
         content_title="Worked example",
         content_sections_more=(
             ContentSection(
-                label="Worked solution — Step 1",
+                label="Worked solution, Step 1",
                 paragraphs=("Set up the likelihood.",),
                 bullets=(),
             ),
             ContentSection(
-                label="Worked solution — Step 2",
+                label="Worked solution, Step 2",
                 paragraphs=("Differentiate and solve.",),
                 bullets=(),
             ),
@@ -630,8 +630,12 @@ def test_more_guidance_panel_uses_step_and_outcome_spacing_classes(app):
     assert "ds-session-more-guidance__step" in html
     assert "ds-session-more-guidance__outcome" in html
     assert "ds-session-more-guidance__pitfall" in html
-    assert "Worked solution — Step 1" in html
+    assert "Worked solution, Step 1" in html
     assert "Final answer" in html
+    # Session chrome is a single banner; expanding More guidance must not
+    # re-include or duplicate it in the activity body HTML.
+    assert html.count('class="ds-session-chrome"') == 1
+    assert html.count('role="banner"') == 1
 
 
 def test_short_answer_field_has_format_hint_and_compact_size(app):

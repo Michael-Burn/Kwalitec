@@ -142,6 +142,82 @@ def test_package_without_worked_example_keeps_structure_scaffold() -> None:
     assert dict(example.metadata).get("worked_example_kind") == "scaffold"
 
 
+def test_given_values_join_uses_colon_not_em_dash_for_representative_package() -> None:
+    """Screenshot defect: Given values joined value and note with an em dash.
+
+    Representative package from the capture (Task A / observed-data summary).
+    """
+    reset_educational_package_cache()
+    pack = find_package_by_id("CS1-EP001-PKG-1.1-PURPOSE-FUNCTION")
+    if pack is None:
+        # Stable filename fallback if id naming differs.
+        loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT / "cs1")
+        packs = [
+            p
+            for p in loader.all_approved()
+            if p.package_id and "1.1" in p.package_id and p.worked_example
+        ]
+        assert packs, "Expected CS1 1.1 purpose/function package"
+        pack = packs[0]
+    assert pack.worked_example is not None
+    assert pack.worked_example.given
+    substance = substance_from_package(
+        pack,
+        curriculum_identity="CS1:em-dash-repro",
+        topic_id=pack.topic_code,
+    )
+    example = next(
+        a for a in substance.activities if a.stage is EducationalStage.WORKED_EXAMPLE
+    )
+    em_dash = "\u2014"
+    assert em_dash not in example.body
+    assert "Given values:" in example.body
+    # First given item with a note must use colon join, not em dash.
+    first = pack.worked_example.given[0]
+    assert first.note
+    expected = f"{first.symbol} = {first.value}: {first.note}"
+    assert expected in example.body
+    assert f"{first.symbol} = {first.value}{em_dash}" not in example.body
+    assert "Worked solution, Step 1:" in example.body
+    assert f"Worked solution {em_dash} Step" not in example.body
+
+
+def test_live_cs1_worked_example_bodies_contain_no_em_dash_joins() -> None:
+    """Catalogue-wide: every live CS1 WE body uses colon joins, never em dash."""
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT)
+    approved = loader.all_approved()
+    assert len(approved) == 130
+    em_dash = "\u2014"
+    bodies_checked = 0
+    given_lines_with_notes = 0
+    for pack in approved:
+        we = pack.worked_example
+        if we is None or not we.steps:
+            continue
+        substance = substance_from_package(
+            pack,
+            curriculum_identity="CS1:em-dash-scan",
+            topic_id=pack.topic_code or "t",
+        )
+        example = next(
+            a
+            for a in substance.activities
+            if a.stage is EducationalStage.WORKED_EXAMPLE
+        )
+        bodies_checked += 1
+        assert em_dash not in example.body, pack.package_id
+        for g in we.given:
+            if not g.note:
+                continue
+            given_lines_with_notes += 1
+            assert f"{g.symbol} = {g.value}: {g.note}" in example.body, pack.package_id
+        assert "Worked solution, Step 1:" in example.body, pack.package_id
+    assert bodies_checked == 130
+    # Live catalogue: every given item carries a note (374 across 130 packages).
+    assert given_lines_with_notes == 374
+
+
 def test_live_pilot_loads_and_inventory_gate() -> None:
     reset_educational_package_cache()
     pilot = find_package_by_id(PILOT_PACKAGE_ID)

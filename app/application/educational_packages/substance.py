@@ -342,7 +342,8 @@ def _real_worked_example_body(example: WorkedExample) -> str:
     if example.given:
         lines.append("Given values:")
         for g in example.given:
-            note = f" — {g.note}" if g.note else ""
+            # Colon separator (no em dash): symbol = value: note
+            note = f": {g.note}" if g.note else ""
             lines.append(f"• {g.symbol} = {g.value}{note}")
         lines.append("")
 
@@ -356,7 +357,7 @@ def _real_worked_example_body(example: WorkedExample) -> str:
 
     for index, step in enumerate(example.steps, start=1):
         # Keep header under parse_session_content_body's 60-char limit.
-        lines.append(f"Worked solution — Step {index}:")
+        lines.append(f"Worked solution, Step {index}:")
         if step.label:
             lines.append(step.label)
         if step.explanation:
