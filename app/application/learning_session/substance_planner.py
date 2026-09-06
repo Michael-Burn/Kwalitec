@@ -208,11 +208,22 @@ class EducationalSubstancePlanner:
             return None
 
         subject_id = (curriculum_identity or "").split(":")[0].strip()
-        pack = None
         pid = (educational_package_id or "").strip()
+        # Known package id is authoritative. Never fall through to campaign or
+        # title-keyword matching, which can silently bind a different package.
         if pid:
             pack = find_package_by_id(pid)
-        if pack is None and use_campaign_resolution:
+            if pack is None:
+                return None
+            return substance_from_package(
+                pack,
+                curriculum_identity=curriculum_identity,
+                topic_id=topic_id,
+                objective_ids=objective_ids,
+            )
+
+        pack = None
+        if use_campaign_resolution:
             # Resolve syllabus code from title when topic_id is a published node-*.
             code_hint = ""
             title = (topic_title or "").strip()

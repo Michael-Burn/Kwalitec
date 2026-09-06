@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -119,7 +120,7 @@ class EducationalPackageLoader:
             if subject and pack.subject_id.upper() != subject:
                 # Soft filter — unknown subject still allows code/title match.
                 if code and pack.topic_code != code and tid not in pack.topic_aliases:
-                    if not any(k in title for k in pack.topic_title_keywords):
+                    if not _title_matches_keywords(title, pack.topic_title_keywords):
                         continue
             if tid and (
                 tid == pack.topic_code
@@ -130,7 +131,7 @@ class EducationalPackageLoader:
             if code and pack.topic_code == code:
                 return pack
         for pack in self.all_approved():
-            if title and any(k in title for k in pack.topic_title_keywords):
+            if title and _title_matches_keywords(title, pack.topic_title_keywords):
                 return pack
         return None
 
@@ -177,6 +178,38 @@ def _normalize_code(code: str) -> str:
     if head and head[0].isdigit():
         return head
     return text
+
+
+# Keywords shorter than this are ignored (defense against single-char tokens).
+_MIN_KEYWORD_LEN = 3
+
+
+def _title_matches_keywords(title: str, keywords: tuple[str, ...] | list[str]) -> bool:
+    """True when any usable keyword matches as a whole word/phrase in title.
+
+    Title is expected already lowercased by the caller. Unanchored substring
+    matching is forbidden: a keyword like ``t`` must not match inside
+    ``today's topic``.
+    """
+    if not title:
+        return False
+    for raw in keywords or ():
+        keyword = str(raw or "").strip().lower()
+        if len(keyword) < _MIN_KEYWORD_LEN:
+            continue
+        if _whole_word_in_title(keyword, title):
+            return True
+    return False
+
+
+def _whole_word_in_title(keyword: str, title: str) -> bool:
+    """Match keyword as a whole word or hyphenated/spaced phrase in title."""
+    # Allow alphanumeric boundaries only so hyphenated forms (t-statistic)
+    # and apostrophes (Student's) still match the stem token.
+    pattern = (
+        r"(?<![a-z0-9])" + re.escape(keyword) + r"(?![a-z0-9])"
+    )
+    return re.search(pattern, title) is not None
 
 
 def _parse_optional_float(raw: Any) -> float | None:

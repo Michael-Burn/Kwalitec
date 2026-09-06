@@ -28,9 +28,7 @@
     "mean",
     "variance",
     "sample",
-    "mean",
-    "population",
-    "n"
+    "population"
   ],
   "golden_id": "GOLDEN-CS1009-CS1-2.6-MEAN-VAR-SAMPLE",
   "mode": "learning",

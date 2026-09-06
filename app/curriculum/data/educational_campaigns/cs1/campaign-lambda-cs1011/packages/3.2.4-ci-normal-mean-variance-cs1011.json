@@ -30,8 +30,7 @@
     "variance",
     "confidence",
     "interval",
-    "chi-square",
-    "t"
+    "chi-square"
   ],
   "golden_id": "GOLDEN-CS1011-CS1-3.2-CI-NORMAL-MEAN-VARIANCE",
   "mode": "learning",

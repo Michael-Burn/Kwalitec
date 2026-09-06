@@ -922,8 +922,9 @@ class LearningSessionRuntimeEngine:
                 pack = None
                 pkg_id = str(record.get("educational_package_id") or "").strip()
                 if pkg_id:
+                    # Known id is authoritative; do not title-match a foreign pack.
                     pack = find_package_by_id(pkg_id)
-                if pack is None:
+                else:
                     pack = find_educational_package(topic_title=topic)
                 if pack is not None:
                     pack_prompt = pack.reflection_prompt or pack.reflection_framing

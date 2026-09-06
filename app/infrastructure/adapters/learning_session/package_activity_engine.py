@@ -294,12 +294,17 @@ class PackageActivityEngine:
         except (TypeError, ValueError):
             minutes = None
 
+        educational_package_id = str(
+            record.get("educational_package_id") or ""
+        ).strip()
+
         substance = self._planner.plan_for_topic(
             curriculum_identity=curriculum_identity,
             topic_id=topic_id,
             topic_title=title,
             objective_ids=objective_ids,
             session_minutes=minutes,
+            educational_package_id=educational_package_id,
         )
         if substance is None:
             return None

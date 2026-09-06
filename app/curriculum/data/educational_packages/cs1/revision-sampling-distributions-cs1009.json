@@ -37,7 +37,7 @@
     "mean",
     "variance",
     "t-statistic",
-    "F",
+    "f-distribution",
     "Normal"
   ],
   "golden_id": "GOLDEN-CS1009-CS1-CI-R1-SAMPLING-DISTRIBUTIONS",
