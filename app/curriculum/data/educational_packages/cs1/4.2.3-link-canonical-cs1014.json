@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force link vs canonical-link discrimination and refuse treating factor coding as today's LO.",
     "educational_intent": "Produce a cognitive move from moments/scale to lawful link and canonical link under CMP.",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
-    "concept_focus": "g(μ)=η → link role → canonical link as natural-parameter pairing per family.",
+    "concept_focus": "$g(\\mu)=\\eta$ → link role → canonical link as natural-parameter pairing per family.",
     "prior_bridge": "Yesterday you evaluated mean/variance/scale (4.2.2). Today continues Topic 4.2 at link functions.",
     "why_now": "4.2.3 is contiguous after moments. Without link, the linear predictor has no mean map.",
     "expected_benefit": "You will be able to explain the link and canonical link for GLM families and refuse software-default myths.",
@@ -239,7 +239,7 @@
         "note": "Poisson linear predictor"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write η = logit(μ) and μ = e^η before substituting.",
+    "attempt_before_reveal": "CMP closed. Write $\\eta = \\operatorname{logit}(\\mu)$ and $\\mu = e^{\\eta}$ before substituting.",
     "steps": [
       {
         "id": "S1",
@@ -252,7 +252,7 @@
       {
         "id": "S2",
         "label": "Poisson canonical log link",
-        "attempt_cue": "Compute μ = exp(0.5).",
+        "attempt_cue": "Compute $\\mu = \\exp(0.5)$.",
         "explanation": "For Poisson, the canonical link is log, so the mean is the exponential of the linear predictor.",
         "calculation": "$\\mu = e^{0.5} \\approx 1.6487$",
         "result": "$\\mu \\approx 1.6487$"
@@ -267,7 +267,7 @@
       }
     ],
     "final_answer": "$\\operatorname{logit}(0.8) \\approx 1.3863$; Poisson $\\mu = e^{0.5} \\approx 1.6487$. Canonical links: logit (binomial), log (Poisson).",
-    "common_pitfall": "Using the identity link for Poisson (μ = η = 0.5) or reporting logit(0.8) = 0.8/0.2 = 4 without taking the logarithm.",
+    "common_pitfall": "Using the identity link for Poisson ($\\mu = \\eta = 0.5$) or reporting $\\operatorname{logit}(0.8) = 0.8/0.2 = 4$ without taking the logarithm.",
     "syllabus_ref": "4.2.3"
   }
 }

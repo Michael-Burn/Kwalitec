@@ -170,7 +170,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Each sample variance contributes a chi-square component with n_i-1 degrees of freedom, producing the stated F ratio.",
+      "explanation": "Each sample variance contributes a chi-square component with $n_{i}-1$ degrees of freedom, producing the stated F ratio.",
       "model_answer": "$S_{1}^{2}/S_{2}^{2}\\sim F_{n_{1}-1,n_{2}-1}$ under equal variances.",
       "common_mistake": "Applying a t law to variance ratios or using n rather than n-1 degrees of freedom.",
       "success_criteria": [
@@ -239,12 +239,12 @@
         "note": "equal population variances"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form the ratio of sample variances and attach F(df₁, df₂) with df = n − 1 for each sample.",
+    "attempt_before_reveal": "CMP closed. Form the ratio of sample variances and attach $F(\\mathrm{df}_{1}, \\mathrm{df}_{2})$ with $\\mathrm{df} = n - 1$ for each sample.",
     "steps": [
       {
         "id": "S1",
         "label": "Form the variance ratio",
-        "attempt_cue": "Compute F = S₁² / S₂².",
+        "attempt_cue": "Compute $F = S_{1}^{2} / S_{2}^{2}$.",
         "explanation": "For independent Normal samples, the ratio of unbiased sample variances is the natural comparison of scale under equal-variance nulls.",
         "calculation": "F = 20 / 10 = 2",
         "result": "F = 2"
@@ -253,7 +253,7 @@
         "id": "S2",
         "label": "State the null F distribution",
         "attempt_cue": "Name degrees of freedom for numerator and denominator.",
-        "explanation": "Under σ₁² = σ₂², F ~ F(n₁ − 1, n₂ − 1) = F(9, 7).",
+        "explanation": "Under $\\sigma_{1}^{2} = \\sigma_{2}^{2}$, $F \\sim F(n_{1} - 1, n_{2} - 1) = F(9, 7)$.",
         "calculation": "$\\mathrm{df}_{1} = 10 - 1 = 9$; $\\mathrm{df}_{2} = 8 - 1 = 7$; $F \\sim F(9, 7)$",
         "result": "F ~ F(9, 7) under the null"
       },

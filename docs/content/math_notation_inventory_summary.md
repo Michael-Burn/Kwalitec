@@ -1,8 +1,8 @@
 # Mathematical Notation Inventory Summary
 
-**Generated:** 2026-09-07T18:54:52Z
+**Generated:** 2026-09-07T19:29:54Z
 **Standard:** `docs/content/MATHEMATICAL_NOTATION_STANDARD.md`
-**Content fingerprint:** `9270f4793d6f3a3fdda0f6ad72b610d663365a6e157307a7c9eafc9b02c4763e`
+**Content fingerprint:** `ff4a1114c7708c2cf7ed746b5e88407ffac91160863524c86ec7243a68b489e1`
 **Live packages scanned:** 130
 
 ## Totals
@@ -10,13 +10,13 @@
 | Category | Count |
 |---|---:|
 | Mathish strings inventoried | 2203 |
-| Already compliant | 1627 |
-| Needs migration | 304 |
-| Migrated (dollar-delimited) | 1608 |
-| Correctly excluded | 272 |
-| Needs manual review (flag) | 343 |
-| Confident automated (no flag) | 1860 |
-| Packages with migration backlog | 47 |
+| Already compliant | 1664 |
+| Needs migration | 261 |
+| Migrated (dollar-delimited) | 1645 |
+| Correctly excluded | 278 |
+| Needs manual review (flag) | 300 |
+| Confident automated (no flag) | 1903 |
+| Packages with migration backlog | 36 |
 
 ## Limits of automation
 
@@ -75,4 +75,4 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 - `revision-regression-glm-cs1003.json`: backlog 8 (tier-1 0, manual-review 6, compliant 0, excluded 3)
 - `1.2.2-eda-association-ep001.json`: backlog 7 (tier-1 0, manual-review 2, compliant 0, excluded 1)
 - `2.1.2-continuous-cs1002.json`: backlog 6 (tier-1 0, manual-review 2, compliant 0, excluded 1)
-- `4.2.3-link-canonical-cs1003.json`: backlog 6 (tier-1 0, manual-review 9, compliant 9, excluded 3)
+- `5.1.4-loss-estimators-cs1003.json`: backlog 6 (tier-1 0, manual-review 0, compliant 0, excluded 0)

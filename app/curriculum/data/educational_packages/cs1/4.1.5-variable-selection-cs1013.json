@@ -239,12 +239,12 @@
         "note": "larger explanatory set"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write R²_adj for each model before comparing; do not select on raw R² alone.",
+    "attempt_before_reveal": "CMP closed. Write $R^{2}_{\\mathrm{adj}}$ for each model before comparing; do not select on raw $R^{2}$ alone.",
     "steps": [
       {
         "id": "S1",
         "label": "Adjusted R² for Model A",
-        "attempt_cue": "Substitute n = 50, p = 2, R² = 0.60 into the formula.",
+        "attempt_cue": "Substitute $n = 50$, $p = 2$, $R^{2} = 0.60$ into the formula.",
         "explanation": "Adjusted R² penalises extra parameters so that raw R² inflation from adding variables is not automatic preference.",
         "calculation": "$R^{2}_{\\mathrm{adj},A} = 1 - (1 - 0.60) \\times 49 / 47 = 1 - 0.40 \\times 49/47 = 1 - 19.6/47 \\approx 0.5830$",
         "result": "$R^{2}_{\\mathrm{adj},A} \\approx 0.5830$"
@@ -252,7 +252,7 @@
       {
         "id": "S2",
         "label": "Adjusted R² for Model B",
-        "attempt_cue": "Substitute n = 50, p = 5, R² = 0.62.",
+        "attempt_cue": "Substitute $n = 50$, $p = 5$, $R^{2} = 0.62$.",
         "explanation": "The larger model starts with higher raw R² but faces a heavier penalty.",
         "calculation": "$R^{2}_{\\mathrm{adj},B} = 1 - (1 - 0.62) \\times 49 / 44 = 1 - 0.38 \\times 49/44 = 1 - 18.62/44 \\approx 0.5768$",
         "result": "$R^{2}_{\\mathrm{adj},B} \\approx 0.5768$"
@@ -267,7 +267,7 @@
       }
     ],
     "final_answer": "$R^{2}_{\\mathrm{adj},A} \\approx 0.5830$; $R^{2}_{\\mathrm{adj},B} \\approx 0.5768$; select Model A. More variables is not automatically better.",
-    "common_pitfall": "Choosing Model B solely because raw R² = 0.62 exceeds 0.60, and ignoring that adjusted R² falls after the extra three variables.",
+    "common_pitfall": "Choosing Model B solely because raw $R^{2} = 0.62$ exceeds $0.60$, and ignoring that adjusted $R^{2}$ falls after the extra three variables.",
     "syllabus_ref": "4.1.5"
   }
 }

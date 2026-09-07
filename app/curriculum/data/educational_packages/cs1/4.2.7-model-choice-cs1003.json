@@ -239,7 +239,7 @@
       {
         "id": "S1",
         "label": "Deviance difference",
-        "attempt_cue": "Compute D_R − D_F.",
+        "attempt_cue": "Compute $D_{R} - D_{F}$.",
         "explanation": "For nested GLMs the deviance difference is the likelihood-ratio statistic for the omitted terms.",
         "calculation": "$\\Delta D = 50.0 - 40.0 = 10.0$",
         "result": "$\\Delta D = 10.0$"
@@ -248,7 +248,7 @@
         "id": "S2",
         "label": "Compare with critical value",
         "attempt_cue": "Compare 10.0 with 5.991 on 2 df.",
-        "explanation": "Reject the reduced model at α = 0.05 if ΔD exceeds the critical value.",
+        "explanation": "Reject the reduced model at $\\alpha = 0.05$ if $\\Delta D$ exceeds the critical value.",
         "calculation": "10.0 > 5.991 ⇒ reject reduced model",
         "result": "Reject reduced model at $\\alpha = 0.05$"
       },
@@ -262,7 +262,7 @@
       }
     ],
     "final_answer": "$\\Delta D = 10.0$ on 2 df $> 5.991$; reject the reduced model at $\\alpha = 0.05$ and retain region.",
-    "common_pitfall": "Comparing D_F alone to the critical value, or reversing the subtraction as D_F − D_R.",
+    "common_pitfall": "Comparing $D_{F}$ alone to the critical value, or reversing the subtraction as $D_{F} - D_{R}$.",
     "syllabus_ref": "4.2.7"
   }
 }

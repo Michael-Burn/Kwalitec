@@ -168,7 +168,7 @@
       "accepted_keywords": [],
       "explanation": "Factor indicator plus age-by-region interaction encodes level effects and slope change. Constant shift alone is not a full interaction story.",
       "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{South}} + \\beta_{3} x I_{\\mathrm{South}}$. Refuse no-factor eta and interaction-as-main.",
-      "common_mistake": "Accepting η = β₀ + β₁ x only or treating interaction as another main effect.",
+      "common_mistake": "Accepting $\\eta = \\beta_{0} + \\beta_{1} x$ only or treating interaction as another main effect.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -235,7 +235,7 @@
       {
         "id": "S1",
         "label": "Coastal and high-rise",
-        "attempt_cue": "Set C = 1, H = 1 and evaluate η, then μ.",
+        "attempt_cue": "Set $C = 1$, $H = 1$ and evaluate $\\eta$, then $\\mu$.",
         "explanation": "All main effects and the interaction are active when both indicators equal 1.",
         "calculation": "$\\eta = -1.5 + 0.4 + 0.25 + 0.15 = -0.7$; $\\mu = e^{-0.7} \\approx 0.4966$",
         "result": "Coastal & high-rise: $\\eta = -0.7$, $\\mu \\approx 0.4966$"

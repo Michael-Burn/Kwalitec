@@ -222,6 +222,38 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "knowledge_checks[1].explanation",
             "f2de1c8e9ff25fed",
         ),
+        # Wave 7 leftovers: exp() software brand, χ²/LRT topic, fit-measure path,
+        # Family/η/Link sketch columns (not live math in these fields).
+        (
+            "4.2.1-exponential-family-cs1003.json",
+            "knowledge_checks[0].explanation",
+            "206e61ffbb954598",
+        ),
+        (
+            "4.2.1-exponential-family-cs1003.json",
+            "knowledge_checks[1].explanation",
+            "f2de1c8e9ff25fed",
+        ),
+        (
+            "4.2.7-model-choice-cs1014.json",
+            "reading_guidance.out_of_scope_today[1]",
+            "0de776128df469d8",
+        ),
+        (
+            "4.1.5-variable-selection-cs1003.json",
+            "mission.concept_focus",
+            "e93d97704a81d974",
+        ),
+        (
+            "4.1.5-variable-selection-cs1013.json",
+            "mission.concept_focus",
+            "e93d97704a81d974",
+        ),
+        (
+            "4.2.3-link-canonical-cs1003.json",
+            "mission.task_descriptions[0]",
+            "189f5bd5e2eb5799",
+        ),
     }
 )
 

@@ -243,13 +243,13 @@
         "note": "5% critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form ΔD = D_R − D_F and compare with χ²_{ν, 0.95}.",
+    "attempt_before_reveal": "CMP closed. Form $\\Delta D = D_{R} - D_{F}$ and compare with $\\chi^{2}_{\\nu, 0.95}$.",
     "steps": [
       {
         "id": "S1",
         "label": "Deviance difference",
         "attempt_cue": "Subtract full deviance from reduced deviance.",
-        "explanation": "For nested GLMs, the analysis of deviance uses ΔD = D_reduced − D_full, which is approximately χ² under H₀ with df equal to the number of extra parameters.",
+        "explanation": "For nested GLMs, the analysis of deviance uses $\\Delta D = D_{\\mathrm{reduced}} - D_{\\mathrm{full}}$, which is approximately $\\chi^{2}$ under $H_{0}$ with df equal to the number of extra parameters.",
         "calculation": "$\\Delta D = 42.0 - 33.8 = 8.2$",
         "result": "$\\Delta D = 8.2$ on 2 df"
       },
@@ -271,7 +271,7 @@
       }
     ],
     "final_answer": "$\\Delta D = 8.2$ on 2 df $> 5.991$; reject the reduced model at $\\alpha = 0.05$ and retain vehicle-type.",
-    "common_pitfall": "Comparing D_F = 33.8 alone with χ²_{2, 0.95} instead of the nested difference ΔD = 8.2, or using |D_F − D_R| with the wrong sign convention while forgetting nesting.",
+    "common_pitfall": "Comparing $D_{F} = 33.8$ alone with $\\chi^{2}_{2, 0.95}$ instead of the nested difference $\\Delta D = 8.2$, or using $|D_{F} - D_{R}|$ with the wrong sign convention while forgetting nesting.",
     "syllabus_ref": "4.2.7"
   }
 }

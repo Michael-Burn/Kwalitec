@@ -42,7 +42,7 @@
     "tutor_intent": "Today I will force link vs η discrimination and one canonical pairing with mean-range warrant. Refuse software-default links.",
     "educational_intent": "Complete GLM structure chain under Gate CG membership (absorb day 3/3).",
     "learning_objective": "Explain the link function and the canonical link function for the distributions in 4.2.1.",
-    "concept_focus": "g(μ)=η → canonical pairing → refuse default-without-warrant.",
+    "concept_focus": "$g(\\mu)=\\eta$ → canonical pairing → refuse default-without-warrant.",
     "prior_bridge": "Yesterday mean/variance (4.2.2). Today closes structure: link/canonical. Absorbs EA-006 excellence into Delta.",
     "why_now": "With family and moments in place, choose the link and canonical link that map the mean correctly.",
     "expected_benefit": "Study Progress for link literacy. Not full deviance/model choice yet.",
@@ -239,16 +239,16 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Canonical logit at μ = 0.25",
-        "attempt_cue": "Evaluate ln(μ/(1 − μ)).",
+        "label": "Canonical logit at $\\mu = 0.25$",
+        "attempt_cue": "Evaluate $\\ln(\\mu/(1 - \\mu))$.",
         "explanation": "The binomial canonical link is the logit.",
         "calculation": "$\\eta = \\ln(0.25/0.75) = \\ln(1/3) \\approx -1.0986$",
         "result": "$\\operatorname{logit}(0.25) \\approx -1.0986$"
       },
       {
         "id": "S2",
-        "label": "Poisson mean from η = 1.2",
-        "attempt_cue": "Invert the log link: μ = e^η.",
+        "label": "Poisson mean from $\\eta = 1.2$",
+        "attempt_cue": "Invert the log link: $\\mu = e^{\\eta}$.",
         "explanation": "The Poisson canonical link is the log, so the mean is the exponential of the linear predictor.",
         "calculation": "$\\mu = e^{1.2} \\approx 3.3201$",
         "result": "$\\mu \\approx 3.3201$"

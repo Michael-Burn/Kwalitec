@@ -36,7 +36,7 @@
     "mission_id": "msn-cs1003-cs1-5.1-credibility-premium",
     "display_title": "Use the credibility premium formula and factor",
     "mission_purpose": "Today's Mission exists to explain the credibility premium formula and the role of the credibility factor. Bridging Bayesian language into actuarial credibility.",
-    "tutor_intent": "Today I will force Z·observation + (1−Z)·prior-mean structure and refuse Z=1 always.",
+    "tutor_intent": "Today I will force $Z\\cdot\\text{observation} + (1-Z)\\cdot\\text{prior-mean}$ structure and refuse $Z=1$ always.",
     "educational_intent": "Produce credibility-premium literacy.",
     "learning_objective": "Explain the credibility premium formula and the role played by the credibility factor.",
     "concept_focus": "Individual experience + collateral mean → credibility factor Z → credibility premium.",
@@ -168,9 +168,9 @@
       "accepted_keywords": [
         "1110"
       ],
-      "explanation": "P = 0.55 × 1200 + 0.45 × 1000 = 660 + 450 = 1110. Z = 0.55 weights individual experience; (1 - Z) weights the hypothetical mean.",
+      "explanation": "$P = 0.55 \\times 1200 + 0.45 \\times 1000 = 660 + 450 = 1110$. $Z = 0.55$ weights individual experience; $(1 - Z)$ weights the hypothetical mean.",
       "model_answer": "1110",
-      "common_mistake": "Swapping the weights to get 0.55 × 1000 + 0.45 × 1200 = 1090, or taking full credibility P = 1200.",
+      "common_mistake": "Swapping the weights to get $0.55 \\times 1000 + 0.45 \\times 1200 = 1090$, or taking full credibility $P = 1200$.",
       "success_criteria": [
         "Enters a value within 0.5 of 1110.",
         "Uses Z on X̄ and (1 - Z) on μ."
@@ -243,7 +243,7 @@
       }
     ],
     "final_answer": "Credibility premium P = £1110; Z = 0.55 weights individual experience.",
-    "common_pitfall": "Swapping the weights so that Z multiplies μ, or treating Z as a probability that must equal X̄/μ.",
+    "common_pitfall": "Swapping the weights so that $Z$ multiplies $\\mu$, or treating $Z$ as a probability that must equal $\\bar{X}/\\mu$.",
     "syllabus_ref": "5.1.6"
   }
 }
