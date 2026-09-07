@@ -36,7 +36,7 @@
     "mission_id": "msn-cs1003-cs1-5.1-bayes-theorem",
     "display_title": "Apply Bayes' theorem to simple conditional probabilities",
     "mission_purpose": "Today's Mission exists to use Bayes' theorem for simple conditional probabilities (opening Bayesian foundations after GLM Revision) without claiming conjugate/posterior mastery yet.",
-    "tutor_intent": "Today I will force Bayes update arithmetic on a simple table and refuse confusing P(A|B) with P(B|A).",
+    "tutor_intent": "Today I will force Bayes update arithmetic on a simple table and refuse confusing $P(A|B)$ with $P(B|A)$.",
     "educational_intent": "Produce Bayes' theorem competence as 5.1 entry.",
     "learning_objective": "Use Bayes' theorem to calculate simple conditional probabilities.",
     "concept_focus": "Prior odds/likelihood → posterior → refuse inverse-probability confusion.",
@@ -47,7 +47,7 @@
     "success_criteria": [
       "Closed-book, state Bayes' theorem in words or symbols.",
       "Compute one simple posterior probability from given pieces.",
-      "Refuse confusing P(A|B) with P(B|A)."
+      "Refuse confusing $P(A|B)$ with $P(B|A)$."
     ],
     "task_descriptions": [
       "Sketch prior → likelihood → posterior before CMP.",
@@ -147,7 +147,7 @@
         },
         {
           "id": "d",
-          "label": "Bayes equates P(A|B) with P(B|A) automatically, so prior and likelihood need not be combined.",
+          "label": "Bayes equates $P(A|B)$ with $P(B|A)$ automatically, so prior and likelihood need not be combined.",
           "misconception_tag": "inverse_collapse"
         }
       ],
@@ -158,7 +158,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.1-cp-01",
       "title": "Checkpoint: 5.1.1",
-      "prompt": "Closed-book. Which statement correctly refuses treating P(disease|positive) as equal to P(positive|disease) without calculation?",
+      "prompt": "Closed-book. Which statement correctly refuses treating $P(disease|positive)$ as equal to $P(positive|disease)$ without calculation?",
       "response_type": "mcq",
       "body": "Refuse inverse confusion; state what Bayes requires.",
       "hints": [
@@ -168,7 +168,7 @@
       "accepted_keywords": [],
       "explanation": "Inverse probability confusion ignores base rates; Bayes combines prior and likelihood.",
       "model_answer": "Refuse equating the inverse conditionals; combine prior (base rate) with likelihood.",
-      "common_mistake": "Accepting P(disease|positive) = P(positive|disease) without Bayes.",
+      "common_mistake": "Accepting $P(disease|positive) = P(positive|disease)$ without Bayes.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -186,7 +186,7 @@
         },
         {
           "id": "c",
-          "label": "Refuse only when base rates are unknown; if prevalence is known, P(disease|positive) equals P(positive|disease) automatically.",
+          "label": "Refuse only when base rates are unknown; if prevalence is known, $P(disease|positive)$ equals $P(positive|disease)$ automatically.",
           "misconception_tag": "base_rate_makes_equal"
         },
         {
@@ -217,46 +217,46 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Bayes update for a lapse-screen flag",
-    "problem_statement": "In a personal-lines renewals book, P(Lapse) = 0.08. A screening rule flags positive with P(+|Lapse) = 0.85 and P(+|not Lapse) = 0.20. A randomly chosen policy is flagged positive. Compute P(+) and then P(Lapse|+).",
+    "problem_statement": "In a personal-lines renewals book, $P(Lapse)$ = 0.08. A screening rule flags positive with $P(+|Lapse)$ = 0.85 and $P(+|not Lapse)$ = 0.20. A randomly chosen policy is flagged positive. Compute $P(+)$ and then $P(Lapse|+)$.",
     "given": [
       {
-        "symbol": "P(L)",
+        "symbol": "$P(L)$",
         "value": "0.08",
         "note": "prior lapse probability"
       },
       {
-        "symbol": "P(+|L)",
+        "symbol": "$P(+|L)$",
         "value": "0.85",
         "note": "true-positive rate"
       },
       {
-        "symbol": "P(+|not L)",
+        "symbol": "$P(+|not L)$",
         "value": "0.20",
         "note": "false-positive rate"
       },
       {
-        "symbol": "P(not L)",
+        "symbol": "$P(not L)$",
         "value": "0.92",
         "note": "prior non-lapse probability"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form P(+) by the law of total probability before applying Bayes' theorem.",
+    "attempt_before_reveal": "CMP closed. Form $P(+)$ by the law of total probability before applying Bayes' theorem.",
     "steps": [
       {
         "id": "S1",
         "label": "Marginal probability of a positive flag",
-        "attempt_cue": "Compute P(+) = P(+|L)P(L) + P(+|not L)P(not L).",
+        "attempt_cue": "Compute $P(+) = P(+|L) P(L)$ + $P(+|not L) P(not L)$.",
         "explanation": "The flag can arise from true lapses and from false positives among non-lapses.",
-        "calculation": "P(+) = 0.85 × 0.08 + 0.20 × 0.92 = 0.068 + 0.184 = 0.252",
-        "result": "P(+) = 0.252"
+        "calculation": "$P(+) = 0.85 \\times 0.08 + 0.20 \\times 0.92 = 0.068 + 0.184 = 0.252$",
+        "result": "$P(+) = 0.252$"
       },
       {
         "id": "S2",
         "label": "Posterior probability of lapse",
-        "attempt_cue": "Compute P(L|+) = P(+|L)P(L) / P(+).",
+        "attempt_cue": "Compute $P(L|+) = P(+|L) P(L)$ / $P(+)$.",
         "explanation": "Bayes' theorem updates the prior using the likelihood of the observed flag.",
-        "calculation": "P(L|+) = 0.068 / 0.252 = 68/252 = 17/63 ≈ 0.2698",
-        "result": "P(Lapse|+) ≈ 0.2698"
+        "calculation": "$P(L|+) = 0.068 / 0.252 = 68/252 = 17/63 \\approx 0.2698$",
+        "result": "$P(Lapse|+) \\approx 0.2698$"
       },
       {
         "id": "S3",
@@ -267,8 +267,8 @@
         "result": "Screen raises probability; does not prove lapse"
       }
     ],
-    "final_answer": "P(+) = 0.252; P(Lapse|+) ≈ 0.2698.",
-    "common_pitfall": "Reporting P(+|Lapse) = 0.85 as if it were P(Lapse|+), ignoring the base rate and false-positive contribution.",
+    "final_answer": "$P(+) = 0.252$; $P(Lapse|+) \\approx 0.2698.$",
+    "common_pitfall": "Reporting $P(+|Lapse)$ = 0.85 as if it were $P(Lapse|+)$, ignoring the base rate and false-positive contribution.",
     "syllabus_ref": "5.1.1"
   }
 }

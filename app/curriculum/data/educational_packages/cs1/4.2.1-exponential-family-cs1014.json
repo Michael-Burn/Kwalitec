@@ -151,7 +151,7 @@
         },
         {
           "id": "d",
-          "label": "Any continuous response is automatically in the exponential family because the density can be written with an exp() somewhere.",
+          "label": "Any continuous response is automatically in the exponential family because the density can be written with an $\\exp()$ somewhere.",
           "misconception_tag": "exp_anywhere"
         }
       ],
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Example: Poisson (counts with E[Y]=Var[Y]=μ); binomial (bounded proportion or count responses); Normal (continuous responses with constant variance). Each has an exponential-family density usable as a GLM response. Package name is not GLM; a GLM response sits in an exponential family with later eta and link.",
+          "label": "Example: Poisson (counts with $E[Y]$=Var[Y]=$\\mu$); binomial (bounded proportion or count responses); $Normal (continuous responses with constant variance)$. Each has an exponential-family density usable as a GLM response. Package name is not GLM; a GLM response sits in an exponential family with later eta and link.",
           "misconception_tag": ""
         },
         {
@@ -195,7 +195,7 @@
         },
         {
           "id": "d",
-          "label": "Poisson belongs because the pmf contains exp(); that single algebraic feature is the family definition without mean-variance structure.",
+          "label": "Poisson belongs because the pmf contains $\\exp()$; that single algebraic feature is the family definition without mean-variance structure.",
           "misconception_tag": "exp_anywhere"
         }
       ],
@@ -226,21 +226,21 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Poisson natural parameter from claim frequency",
-    "problem_statement": "Weekly claim counts on a small commercial book are modelled as Poisson(λ). For λ = 4, write the pmf in exponential-family form exp{yθ − b(θ)} / a(φ) × c(y, φ) (with φ = 1), identify the natural parameter θ, and evaluate θ numerically. Also state why the Normal distribution is a special case within the same GLM exponential family, not a rival outside it.",
+    "problem_statement": "Weekly claim counts on a small commercial book are modelled as $\\mathrm{Poisson}(\\lambda)$. For $\\lambda = 4$, write the pmf in exponential-family form $\\exp\\{y\\theta - b(\\theta)\\} / a(\\varphi) \\times c(y, \\varphi)$ (with $\\varphi = 1$), identify the natural parameter $\\theta$, and evaluate $\\theta$ numerically. Also state why the Normal distribution is a special case within the same GLM exponential family, not a rival outside it.",
     "given": [
       {
         "symbol": "Y",
-        "value": "Poisson(λ)",
+        "value": "$Poisson(\\lambda)$",
         "note": "claim count response"
       },
       {
-        "symbol": "λ",
+        "symbol": "$\\lambda$",
         "value": "4",
         "note": "mean frequency for this evaluation"
       },
       {
         "symbol": "pmf",
-        "value": "e^{−λ} λ^y / y!",
+        "value": "$e^{-\\lambda} \\lambda^y / y!$",
         "note": "Poisson probability mass function"
       }
     ],
@@ -251,27 +251,27 @@
         "label": "Exponential-family rewrite",
         "attempt_cue": "Take the log of the Poisson pmf and regroup the y-dependent term.",
         "explanation": "Members of the exponential family admit a linear natural parameter multiplying y. For Poisson, that term is y ln λ.",
-        "calculation": "f(y) = exp{y ln λ − λ − ln(y!)};  θ = ln λ,  b(θ) = e^θ (= λ)",
-        "result": "θ = ln λ"
+        "calculation": "$f(y) = exp{y \\ln \\lambda - \\lambda - \\ln(y!)}$; $\\theta = \\ln \\lambda, b(\\theta) = e^\\theta (= \\lambda)$",
+        "result": "$\\theta = \\ln \\lambda$"
       },
       {
         "id": "S2",
         "label": "Numeric natural parameter at λ = 4",
         "attempt_cue": "Evaluate θ = ln 4.",
         "explanation": "Substituting the given mean frequency produces a concrete natural parameter.",
-        "calculation": "θ = ln 4 ≈ 1.3863",
-        "result": "θ ≈ 1.3863"
+        "calculation": "$\\theta = \\ln 4 \\approx 1.3863$",
+        "result": "$\\theta \\approx 1.3863$"
       },
       {
         "id": "S3",
         "label": "Normal as a special case",
         "attempt_cue": "State where Normal sits relative to Binomial, Poisson, exponential, and gamma.",
         "explanation": "Binomial, Poisson, exponential, gamma, and Normal are all exponential-family GLM responses. Normal is the continuous identity-link special case, not an exclusion from the family.",
-        "calculation": "Normal ∈ exponential family (alongside Poisson, etc.)",
+        "calculation": "$Normal ∈ exponential family (alongside Poisson, etc.)$",
         "result": "Normal is inside the family, not outside it"
       }
     ],
-    "final_answer": "θ = ln λ = ln 4 ≈ 1.3863; Poisson is exponential-family with b(θ) = e^θ. Normal is a member of the same family, not a rival outside it.",
+    "final_answer": "$\\theta = \\ln\\lambda = \\ln 4 \\approx 1.3863$; Poisson is exponential-family with $b(\\theta) = e^{\\theta}$. Normal is a member of the same family, not a rival outside it.",
     "common_pitfall": "Reporting θ = λ = 4 (the mean) instead of the natural parameter ln λ, or claiming Normal is excluded from the GLM exponential family.",
     "syllabus_ref": "4.2.1"
   }

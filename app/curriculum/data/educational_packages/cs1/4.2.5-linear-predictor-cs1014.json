@@ -126,7 +126,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "η = Xβ is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
-      "model_answer": "η = X beta; examples with x and with factor or polynomial terms.",
+      "model_answer": "$\\eta = X\\beta$; examples with $x$ and with factor or polynomial terms.",
       "common_mistake": "Equating link with eta or forbidding polynomial terms in GLM eta.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -135,7 +135,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "The linear predictor η is typically X beta on the scale linked to the mean. Example simple: η = β₀ + β₁ x. Example with structure: eta includes factor indicators or polynomial powers such as x squared.",
+          "label": "The linear predictor $\\eta$ is typically $X\\beta$ on the scale linked to the mean. Example simple: $\\eta = \\beta_{0} + \\beta_{1} x$. Example with structure: eta includes factor indicators or polynomial powers such as x squared.",
           "misconception_tag": ""
         },
         {
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps μ to η; they are distinct objects.",
-      "model_answer": "η = β₀ + β₁ x + β₂ x^2 + β₃ I_Plus. Link maps μ to η.",
+      "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$. Link maps $\\mu$ to $\\eta$.",
       "common_mistake": "Treating link as eta or placing polynomial terms only in mu.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "η = β₀ + β₁ x + β₂ x squared + β₃ I_Plus with Standard baseline. η = Xβ is the linear predictor; the link g maps mean μ to η (for example log(μ)=η for Poisson log link).",
+          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$ with Standard baseline. $\\eta = X\\beta$ is the linear predictor; the link $g$ maps mean $\\mu$ to $\\eta$ (for example $\\log(\\mu)=\\eta$ for Poisson log link).",
           "misconception_tag": ""
         },
         {
@@ -189,12 +189,12 @@
         },
         {
           "id": "c",
-          "label": "η = log(mu) = β₀ + β₁ x only; quadratic and factor terms belong in mu, not in eta.",
+          "label": "$\\eta = \\log(\\mu) = \\beta_{0} + \\beta_{1} x$ only; quadratic and factor terms belong in $\\mu$, not in $\\eta$.",
           "misconception_tag": "structure_in_mu"
         },
         {
           "id": "d",
-          "label": "η = β₀ + β₁ x + β₂ I_Plus only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
+          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{Plus}}$ only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
           "misconception_tag": "poly_normal_only"
         }
       ],
@@ -225,16 +225,16 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Linear predictor with covariate and quadratic term",
-    "problem_statement": "A severity GLM (gamma, log link) uses linear predictor η = β₀ + β₁x + β₂x² with fitted coefficients β₀ = 1.0, β₁ = 0.2, β₂ = −0.01. For a risk with x = 10 (age proxy), compute η and the mean severity μ = e^η.",
+    "problem_statement": "A severity GLM (gamma, log link) uses linear predictor $\\eta = \\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$ with fitted coefficients $\\beta_{0} = 1.0$, $\\beta_{1} = 0.2$, $\\beta_{2} = -0.01$. For a risk with $x = 10$ (age proxy), compute $\\eta$ and the mean severity $\\mu = e^{\\eta}$.",
     "given": [
       {
-        "symbol": "η",
-        "value": "β₀ + β₁x + β₂x²",
+        "symbol": "$η$",
+        "value": "$\\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$",
         "note": "polynomial linear predictor"
       },
       {
-        "symbol": "(β₀, β₁, β₂)",
-        "value": "(1.0, 0.2, −0.01)",
+        "symbol": "$(\\beta_{0}, \\beta_{1}, \\beta_{2})$",
+        "value": "$(1.0, 0.2, -0.01)$",
         "note": "fitted coefficients"
       },
       {
@@ -250,27 +250,27 @@
         "label": "Write η as xᵀβ",
         "attempt_cue": "Confirm the linear predictor is linear in parameters, not in x.",
         "explanation": "The linear predictor η = xᵀβ may include powers or factors; 'linear' refers to parameters β, not to the raw covariate.",
-        "calculation": "η = 1.0 + 0.2x − 0.01x²  (linear in β₀, β₁, β₂)",
-        "result": "η linear in β; quadratic in x"
+        "calculation": "$η = 1.0 + 0.2x - 0.01x^{2} (linear in \\beta_{0}, \\beta_{1}, \\beta_{2})$",
+        "result": "$η linear in \\beta$; $quadratic in x$"
       },
       {
         "id": "S2",
         "label": "Evaluate η at x = 10",
         "attempt_cue": "Substitute x = 10.",
         "explanation": "Plug the covariate value into the polynomial predictor.",
-        "calculation": "η = 1.0 + 0.2 × 10 − 0.01 × 100 = 1.0 + 2.0 − 1.0 = 2.0",
-        "result": "η = 2.0"
+        "calculation": "$η = 1.0 + 0.2 \\times 10 - 0.01 \\times 100 = 1.0 + 2.0 - 1.0 = 2.0$",
+        "result": "$η = 2.0$"
       },
       {
         "id": "S3",
         "label": "Mean on the response scale",
         "attempt_cue": "Apply the log link inverse μ = e^η.",
         "explanation": "The mean lives on the response scale after inverting the link.",
-        "calculation": "μ = e^{2.0} ≈ 7.3891",
-        "result": "μ ≈ 7.3891"
+        "calculation": "$\\mu = e^{2.0} \\approx 7.3891$",
+        "result": "$\\mu \\approx 7.3891$"
       }
     ],
-    "final_answer": "η(10) = 2.0; μ = e^{2} ≈ 7.3891 on the severity scale.",
+    "final_answer": "$\\eta(10) = 2.0$; $\\mu = e^{2} \\approx 7.3891$ on the severity scale.",
     "common_pitfall": "Calling a quadratic model 'nonlinear regression' because of x², or reporting η = 2.0 as the mean severity without exponentiating.",
     "syllabus_ref": "4.2.5"
   }

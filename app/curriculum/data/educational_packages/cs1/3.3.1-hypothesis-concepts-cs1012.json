@@ -129,9 +129,9 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Keep Type I/II in the reject-true-null / fail-to-reject-false-null directions. A p-value is a tail probability under H₀, not P(H₀|data) and not P(H₁). Power is P(reject H₀ | H₁ true).",
-      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; p-value = extreme-tail probability under H₀; power = P(reject | H₁).",
-      "common_mistake": "Swapping Type I/II, or reading the p-value as P(H₀|data) or P(H₁).",
+      "explanation": "Keep Type I/II in the reject-true-null / fail-to-reject-false-null directions. A p-value is a tail probability under $H_{0}$, not $P(H_{0}|\\text{data})$ and not $P(H_{1})$. Power is $P(\\text{reject }H_{0} \\mid H_{1}\\text{ true})$.",
+      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; p-value = extreme-tail probability under $H_{0}$; power = $P(\\text{reject} \\mid H_{1})$.",
+      "common_mistake": "Swapping Type I/II, or reading the p-value as $P(H_{0}|data)$ or $P(H_{1})$.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -165,7 +165,7 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. Disease screening: H₀ = no disease, H₁ = disease present. Which statement is correct?",
+      "prompt": "Closed-book. Disease screening: $H_{0}$ = no disease, $H_{1}$ = disease present. Which statement is correct?",
       "response_type": "mcq",
       "body": "HT vocabulary on a vignette; refuse cookbook-test-as-concepts.",
       "hints": [
@@ -174,7 +174,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "In this framing, false positive = Type I and false negative = Type II. p-value and power keep their usual frequentist meanings. Software theatre does not replace the concepts.",
-      "model_answer": "Type I = false positive; Type II = false negative; p-value under H₀; power = 1−β; concepts ≠ cookbook click.",
+      "model_answer": "Type I = false positive; Type II = false negative; p-value under $H_{0}$; power = $1-\\beta$; concepts $\\neq$ cookbook click.",
       "common_mistake": "Swapping Type I/II, or treating a software z-test as the concepts.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -183,7 +183,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Type I error is a false positive (declare disease when healthy). Type II error is a false negative (miss disease when present). A p-value is the probability under H₀ of a result at least as extreme as observed; power is P(reject H₀ | H₁ true). Running a software z-test does not by itself replace this vocabulary.",
+          "label": "Type I error is a false positive (declare disease when healthy). Type II error is a false negative (miss disease when present). A p-value is the probability under $H_{0}$ of a result at least as extreme as observed; power is $P(\\text{reject }H_{0} \\mid H_{1}\\text{ true})$. Running a software z-test does not by itself replace this vocabulary.",
           "misconception_tag": ""
         },
         {
@@ -224,11 +224,11 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Two-sided p-value for a claim-mean z-test",
-    "problem_statement": "A pricing team tests H₀: μ = £10,000 vs H₁: μ ≠ £10,000 for mean claim cost at significance level α = 0.05. The test statistic is z = 2.1 under H₀ (standard Normal). Compute the two-sided p-value and state the decision. Use Φ(2.1) = 0.9821.",
+    "problem_statement": "A pricing team tests $H_{0}\\colon \\mu$ = £10,000 vs $H_{1}\\colon \\mu \\neq$ £10,000 for mean claim cost at significance level $\\alpha = 0.05$. The test statistic is $z = 2.1$ under $H_{0}$ (standard Normal). Compute the two-sided p-value and state the decision. Use $\\Phi(2.1)$ = 0.9821.",
     "given": [
       {
-        "symbol": "H₀",
-        "value": "μ = 10000",
+        "symbol": "$H_{0}$",
+        "value": "$\\mu = 10000$",
         "note": "null mean claim cost (£)"
       },
       {
@@ -237,32 +237,32 @@
         "note": "observed test statistic"
       },
       {
-        "symbol": "Φ(2.1)",
+        "symbol": "$\\Phi(2.1)$",
         "value": "0.9821",
         "note": "standard Normal CDF"
       },
       {
-        "symbol": "α",
+        "symbol": "$\\alpha$",
         "value": "0.05",
         "note": "significance level"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write the two-sided p-value as 2[1 − Φ(|z|)] before substituting.",
+    "attempt_before_reveal": "CMP closed. Write the two-sided p-value as $2[1 - \\Phi(|z|)]$ before substituting.",
     "steps": [
       {
         "id": "S1",
         "label": "Upper-tail probability",
-        "attempt_cue": "Compute 1 − Φ(2.1).",
-        "explanation": "For a continuous symmetric null, the one-sided tail is 1 − Φ(|z|).",
-        "calculation": "1 − 0.9821 = 0.0179",
-        "result": "1 − Φ(2.1) = 0.0179"
+        "attempt_cue": "Compute $1 - \\Phi(2.1)$.",
+        "explanation": "For a continuous symmetric null, the one-sided tail is $1 - \\Phi(|z|)$.",
+        "calculation": "$1 - 0.9821 = 0.0179$",
+        "result": "$1 - \\Phi(2.1) = 0.0179$"
       },
       {
         "id": "S2",
         "label": "Two-sided p-value",
         "attempt_cue": "Double the one-sided tail.",
         "explanation": "A two-sided alternative charges both tails; the p-value is twice the one-sided tail probability.",
-        "calculation": "p = 2 × 0.0179 = 0.0358",
+        "calculation": "$p = 2 \\times 0.0179 = 0.0358$",
         "result": "p = 0.0358"
       },
       {
@@ -270,11 +270,11 @@
         "label": "Decision at α = 0.05",
         "attempt_cue": "Compare p with α.",
         "explanation": "Reject H₀ when p ≤ α. Here p = 0.0358 < 0.05.",
-        "calculation": "0.0358 < 0.05  ⇒  reject H₀",
-        "result": "Reject H₀ at 5%"
+        "calculation": "$0.0358 < 0.05 \\Rightarrow reject H_{0}$",
+        "result": "Reject $H_{0}$ at 5%."
       }
     ],
-    "final_answer": "Two-sided p-value = 0.0358; reject H₀: μ = £10,000 at α = 0.05.",
+    "final_answer": "$Two-sided p-value = 0.0358$; $reject H_{0}: \\mu = £10,000 at \\alpha = 0.05.$",
     "common_pitfall": "Reporting only the one-sided tail 0.0179 as the p-value for a two-sided alternative, or comparing z to α directly (2.1 vs 0.05).",
     "syllabus_ref": "3.3.1"
   }

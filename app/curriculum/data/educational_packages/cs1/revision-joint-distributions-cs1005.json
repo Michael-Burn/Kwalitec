@@ -40,10 +40,10 @@
   "mission": {
     "mission_id": "msn-cs1005-cs1-ce-r1-joint-distributions",
     "display_title": "Retrieve joint-distribution hinges (2.2)",
-    "mission_purpose": "Today's Mission exists to protect memory of Campaign Epsilon (retrieving marginal/conditional distributions, independence conditions, covariance/correlation/E[g(X,Y)], and mean/variance of linear combinations) so 2.2 does not evaporate before conditional expectation (2.3).",
+    "mission_purpose": "Today's Mission exists to protect memory of Campaign Epsilon (retrieving marginal/conditional distributions, independence conditions, covariance/correlation/$E[g(X,Y)]$, and mean/variance of linear combinations) so 2.2 does not evaporate before conditional expectation (2.3).",
     "tutor_intent": "Today I will run closed-book retrieval across Epsilon's Learning hinges. Not a passive CMP re-read and not a first-pass 2.3 lesson.",
     "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: marginal/conditional → independence → dependence measures → linear combinations.",
-    "learning_objective": "Retrieve and connect (1) marginal/conditional from a joint, (2) independence conditions, (3) covariance/correlation/E[g(X,Y)], and (4) mean and variance of a linear combination.",
+    "learning_objective": "Retrieve and connect (1) marginal/conditional from a joint, (2) independence conditions, (3) covariance/correlation/$E[g(X,Y)]$, and (4) mean and variance of a linear combination.",
     "concept_focus": "Campaign chain retrieval: joint → marginal/conditional → independence → cov/corr → linear combinations.",
     "prior_bridge": "Yesterday you finished mean and variance of linear combinations (2.2.4). Today is Revision mode: return to 2.2.1–2.2.4 under closed-book retrieval. No new first-pass LO.",
     "why_now": "You've just finished joint distributions; revisit it closed-book now so it stays usable before conditional expectation.",
@@ -52,7 +52,7 @@
     "success_criteria": [
       "Closed-book, outline marginal or conditional from a joint.",
       "Restate an independence condition (joint factorisation or equivalent).",
-      "State covariance or correlation role + one E[g(X,Y)] idea.",
+      "State covariance or correlation role + one $E[g(X,Y)]$ idea.",
       "Give mean and variance form for a linear combination (with dependence note).",
       "Refuse Chapter 2 complete / spine / until-exam claims."
     ],
@@ -82,7 +82,7 @@
     "focus_questions": [
       "Can you form a marginal or conditional from a joint?",
       "Can you state an independence condition?",
-      "Can you place covariance/correlation and E[g(X,Y)]?",
+      "Can you place covariance/correlation and $E[g(X,Y)]$?",
       "Can you give mean/variance of a linear combination with a dependence note?",
       "What claim must you refuse (Chapter 2 complete / spine / until-exam)?"
     ],
@@ -142,7 +142,7 @@
         },
         {
           "id": "b",
-          "label": "Cov(X, Y) = 0 in every case.",
+          "label": "$\\operatorname{Cov}(X, Y)$ = 0 in every case.",
           "misconception_tag": "uncorrelated_as_independent"
         },
         {
@@ -152,7 +152,7 @@
         },
         {
           "id": "d",
-          "label": "E[X] = E[Y].",
+          "label": "$E[X] = E[Y]$.",
           "misconception_tag": "equal_means_as_independence"
         }
       ],
@@ -163,7 +163,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-ce-r1-cp-01",
       "title": "Checkpoint: CE-R1",
-      "prompt": "Closed-book. For random variables X and Y with finite variances, what is Var(aX + bY)?",
+      "prompt": "Closed-book. For random variables X and Y with finite variances, what is $\\operatorname{Var}(aX + bY)$?",
       "response_type": "mcq",
       "body": "Select the correct expression.",
       "hints": [
@@ -172,7 +172,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Variance scales quadratically, and the cross-product contributes twice the covariance term.",
-      "model_answer": "Var(aX+bY) = a²Var(X) + b²Var(Y) + 2abCov(X,Y).",
+      "model_answer": "$\\operatorname{Var}(aX+bY) = a^{2}\\operatorname{Var}(X) + b^{2}\\operatorname{Var}(Y) + 2ab\\operatorname{Cov}(X,Y)$.",
       "common_mistake": "Omitting covariance without establishing zero covariance.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -181,22 +181,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "a squared Var(X) + b squared Var(Y) + 2ab Cov(X, Y).",
+          "label": "a squared $\\operatorname{Var}(X)$ + b squared $\\operatorname{Var}(Y)$ + 2ab $\\operatorname{Cov}(X, Y)$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "a Var(X) + b Var(Y).",
+          "label": "a $\\operatorname{Var}(X)$ + b $\\operatorname{Var}(Y)$.",
           "misconception_tag": "variance_scaling_error"
         },
         {
           "id": "c",
-          "label": "a squared Var(X) + b squared Var(Y) in all cases.",
+          "label": "a squared $\\operatorname{Var}(X)$ + b squared $\\operatorname{Var}(Y)$ in all cases.",
           "misconception_tag": "covariance_omitted"
         },
         {
           "id": "d",
-          "label": "a squared Var(X) + b squared Var(Y) + ab Cov(X, Y).",
+          "label": "a squared $\\operatorname{Var}(X)$ + b squared $\\operatorname{Var}(Y)$ + ab $\\operatorname{Cov}(X, Y)$.",
           "misconception_tag": "covariance_factor_error"
         }
       ],
@@ -221,8 +221,8 @@
   },
   "published_at": "2026-08-01",
   "worked_example": {
-    "title": "Retrieve independence factorisation and Var(aX+bY)",
-    "problem_statement": "Closed-book retrieval. State the joint-factorisation condition for independence of discrete random variables X and Y. Then, for finite variances, write Var(aX + bY), and refuse omitting the covariance term without warrant.",
+    "title": "Retrieve independence factorisation and $\\operatorname{Var}(aX+bY)$",
+    "problem_statement": "Closed-book retrieval. State the joint-factorisation condition for independence of discrete random variables X and Y. Then, for finite variances, write $\\operatorname{Var}(aX + bY)$, and refuse omitting the covariance term without warrant.",
     "given": [
       {
         "symbol": "independence ask",
@@ -231,7 +231,7 @@
       },
       {
         "symbol": "linear combination",
-        "value": "Var(aX + bY)",
+        "value": "$\\operatorname{Var}(aX + bY)$",
         "note": "with possible dependence"
       }
     ],
@@ -242,28 +242,28 @@
         "label": "Retrieve the independence condition",
         "attempt_cue": "Write the factorisation that must hold everywhere.",
         "explanation": "Discrete X and Y are independent if and only if p_{X,Y}(x,y) = p_X(x)p_Y(y) for every pair in the joint support.",
-        "calculation": "Independence ⇔ p(x,y) = p_X(x)p_Y(y) for all pairs",
+        "calculation": "$Independence ⇔ p(x,y) = p_X(x)p_Y(y) for all pairs$",
         "result": "Joint factorisation condition retrieved"
       },
       {
         "id": "S2",
-        "label": "Write Var(aX + bY)",
+        "label": "Write $\\operatorname{Var}(aX + bY)$",
         "attempt_cue": "Expand including the covariance term.",
-        "explanation": "Variance scales with the square of coefficients, and the cross term contributes 2ab Cov(X,Y).",
-        "calculation": "Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y)",
+        "explanation": "Variance scales with the square of coefficients, and the cross term contributes 2ab $\\operatorname{Cov}(X,Y)$.",
+        "calculation": "$\\operatorname{Var}(aX+bY) = a^{2}\\operatorname{Var}(X) + b^{2}\\operatorname{Var}(Y) + 2ab \\operatorname{Cov}(X,Y)$",
         "result": "Full variance formula retrieved"
       },
       {
         "id": "S3",
         "label": "Refuse Cov=0 and independence collapse",
         "attempt_cue": "Name two refused shortcuts.",
-        "explanation": "Zero covariance is not a general proof of independence. Omitting 2ab Cov(X,Y) is valid only when Cov(X,Y) = 0 is established.",
+        "explanation": "Zero covariance is not a general proof of independence. Omitting 2ab $\\operatorname{Cov}(X,Y)$ is valid only when $\\operatorname{Cov}(X,Y)$ = 0 is established.",
         "calculation": "Refuse Cov=0 ⇒ independent in general; refuse dropping Cov without warrant",
         "result": "Both shortcuts refused"
       }
     ],
-    "final_answer": "Independence requires p(x,y) = p_X(x)p_Y(y) for every pair. Var(aX+bY) = a²Var(X) + b²Var(Y) + 2ab Cov(X,Y). Refuse treating Cov = 0 as a general independence proof or dropping the covariance term without warrant.",
-    "common_pitfall": "Equating zero covariance with independence, or writing Var(aX+bY) = a²Var(X) + b²Var(Y) in all cases without checking Cov(X,Y).",
+    "final_answer": "Independence requires $p(x,y) = p_{X}(x)p_{Y}(y)$ for every pair. $\\operatorname{Var}(aX+bY) = a^{2}\\operatorname{Var}(X) + b^{2}\\operatorname{Var}(Y) + 2ab\\operatorname{Cov}(X,Y)$. Refuse treating $\\operatorname{Cov} = 0$ as a general independence proof or dropping the covariance term without warrant.",
+    "common_pitfall": "Equating zero covariance with independence, or writing $\\operatorname{Var}(aX+bY) = a^{2}\\operatorname{Var}(X) + b^{2}\\operatorname{Var}(Y)$ in all cases without checking $\\operatorname{Cov}(X,Y)$.",
     "syllabus_ref": "2.2.2 / 2.2.4"
   }
 }

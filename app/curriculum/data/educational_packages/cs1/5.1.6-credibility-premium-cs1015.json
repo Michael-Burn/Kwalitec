@@ -124,7 +124,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Standard form blends individual and collateral means with Z on individual experience. Full credibility always or reversed weights are wrong.",
-      "model_answer": "Premium = Z X̄ + (1-Z) mu; Z weights individual experience.",
+      "model_answer": "Premium = Z $\\bar{X}$ + (1-Z) mu; Z weights individual experience.",
       "common_mistake": "Always taking Z=1 or reversing weights on individual versus collateral.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Credibility premium = Z times X̄ + (1 minus Z) times μ, where Z weights the individual experience X̄ versus the collateral or manual mean μ.",
+          "label": "Credibility premium = Z times $\\bar{X}$ + (1 minus Z) times $\\mu$, where Z weights the individual experience $\\bar{X}$ versus the collateral or manual mean $\\mu$.",
           "misconception_tag": ""
         },
         {
@@ -159,7 +159,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.6-cp-01",
       "title": "Checkpoint: credibility premium",
-      "prompt": "Closed-book. A risk's sample mean claim cost is X̄ = 800, the hypothetical mean is μ = 600, and the credibility factor is Z = 0.4. Enter the credibility premium P = Z X̄ + (1 - Z)μ.",
+      "prompt": "Closed-book. A risk's sample mean claim cost is $\\bar{X}$ = 800, the hypothetical mean is $\\mu$ = 600, and the credibility factor is Z = 0.4. Enter the credibility premium P = Z $\\bar{X}$ + (1 - Z)$\\mu$.",
       "response_type": "numeric",
       "body": "Evaluate the credibility premium with the given Z.",
       "hints": [
@@ -203,15 +203,15 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Credibility premium with given Z",
-    "problem_statement": "A risk's sample mean claim cost is X̄ = £800. The hypothetical mean for the risk class is μ = £600. The credibility factor is Z = 0.4. Compute the credibility premium P = Z X̄ + (1 − Z)μ and state what Z weights.",
+    "problem_statement": "A risk's sample mean claim cost is $\\bar{X}$ = £800. The hypothetical mean for the risk class is $\\mu$ = £600. The credibility factor is $Z = 0.4$. Compute the credibility premium $P = Z\\bar{X} + (1 - Z)\\mu$ and state what $Z$ weights.",
     "given": [
       {
-        "symbol": "X̄",
+        "symbol": "$\\bar{X}$",
         "value": "800",
         "note": "individual experience mean (£)"
       },
       {
-        "symbol": "μ",
+        "symbol": "$\\mu$",
         "value": "600",
         "note": "class hypothetical mean (£)"
       },
@@ -228,15 +228,15 @@
         "label": "Complementary weight",
         "attempt_cue": "Compute 1 − Z.",
         "explanation": "The formula blends individual experience with the class mean.",
-        "calculation": "1 − Z = 1 − 0.4 = 0.6",
-        "result": "1 − Z = 0.6"
+        "calculation": "$1 - Z = 1 - 0.4 = 0.6$",
+        "result": "$1 - Z = 0.6$"
       },
       {
         "id": "S2",
         "label": "Credibility premium",
         "attempt_cue": "Evaluate Z X̄ + (1 − Z)μ.",
         "explanation": "Z weights the individual mean; (1 − Z) weights the class mean.",
-        "calculation": "P = 0.4 × 800 + 0.6 × 600 = 320 + 360 = 680",
+        "calculation": "$P = 0.4 \\times 800 + 0.6 \\times 600 = 320 + 360 = 680$",
         "result": "P = £680"
       },
       {
@@ -244,8 +244,8 @@
         "label": "Role of Z",
         "attempt_cue": "State what larger Z means.",
         "explanation": "Larger Z places more weight on the risk's own experience X̄.",
-        "calculation": "Z weights individual experience; here 40% on X̄, 60% on μ",
-        "result": "Z = weight on X̄"
+        "calculation": "$Z$ weights individual experience; here $40\\%$ on $\\bar{X}$, $60\\%$ on $\\mu$",
+        "result": "$Z = weight on \\bar{X}$"
       }
     ],
     "final_answer": "Credibility premium P = £680; Z = 0.4 weights individual experience.",

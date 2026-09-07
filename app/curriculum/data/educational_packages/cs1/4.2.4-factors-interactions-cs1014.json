@@ -150,7 +150,7 @@
         },
         {
           "id": "d",
-          "label": "Writing η = β₀ + β₁ x with no factor indicators already explains categorical region levels completely.",
+          "label": "Writing $\\eta = \\beta_{0} + \\beta_{1} x$ with no factor indicators already explains categorical region levels completely.",
           "misconception_tag": "no_factors_finishes"
         }
       ],
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Factor indicator plus age-by-region interaction encodes level effects and slope change. Constant shift alone is not a full interaction story.",
-      "model_answer": "η = β₀ + β₁ x + β₂ I_South + β₃ x I_South. Refuse no-factor eta and interaction-as-main.",
+      "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{South}} + \\beta_{3} x I_{\\mathrm{South}}$. Refuse no-factor eta and interaction-as-main.",
       "common_mistake": "Accepting η = β₀ + β₁ x only or treating interaction as another main effect.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,17 +179,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "η = β₀ + β₁ x + β₂ I_South + β₃ x times I_South with North baseline. Factors encode categorical levels; an interaction changes the age slope by region. It is not merely another additive main effect.",
+          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{South}} + \\beta_{3} x\\times I_{\\mathrm{South}}$ with North baseline. Factors encode categorical levels; an interaction changes the age slope by region. It is not merely another additive main effect.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "η = β₀ + β₁ x finishes explaining factors and interactions because region is known to the modeller.",
+          "label": "$\\eta = \\beta_{0} + \\beta_{1} x$ finishes explaining factors and interactions because region is known to the modeller.",
           "misconception_tag": "no_factors_finishes"
         },
         {
           "id": "c",
-          "label": "η = β₀ + β₁ x + β₂ I_South only; the interaction is unnecessary because South adds a constant shift equal to an interaction.",
+          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{South}}$ only; the interaction is unnecessary because South adds a constant shift equal to an interaction.",
           "misconception_tag": "interaction_as_main"
         },
         {
@@ -225,11 +225,11 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Factor and interaction linear predictor for claim frequency",
-    "problem_statement": "A Poisson log-link frequency GLM uses two binary factors: Male (1 if male, else 0) and Young (1 if age under 25, else 0), plus their interaction. The fitted linear predictor is η = −2.0 + 0.5 Male + 0.3 Young + 0.2 Male×Young.\nCompute η for (a) male and young, (b) female and not young. Also compute the implied mean frequency μ = e^η for (a).",
+    "problem_statement": "A Poisson log-link frequency GLM uses two binary factors: Male (1 if male, else 0) and Young (1 if age under 25, else 0), plus their interaction. The fitted linear predictor is $\\eta = -2.0 + 0.5\\,\\mathrm{Male} + 0.3\\,\\mathrm{Young} + 0.2\\,\\mathrm{Male}\\times\\mathrm{Young}$.\nCompute $\\eta$ for (a) male and young, (b) female and not young. Also compute the implied mean frequency $\\mu = e^{\\eta}$ for (a).",
     "given": [
       {
-        "symbol": "η",
-        "value": "−2.0 + 0.5 M + 0.3 Y + 0.2 M×Y",
+        "symbol": "$η$",
+        "value": "$-2.0 + 0.5 M + 0.3 Y + 0.2 M\\times Y$",
         "note": "fitted linear predictor"
       },
       {
@@ -245,27 +245,27 @@
         "label": "Male and young",
         "attempt_cue": "Set M = 1, Y = 1 and include the interaction.",
         "explanation": "A factor marks categorical levels via indicators. An interaction adds a joint effect beyond the main effects.",
-        "calculation": "η = −2.0 + 0.5 + 0.3 + 0.2 = −1.0",
-        "result": "η = −1.0"
+        "calculation": "$η = -2.0 + 0.5 + 0.3 + 0.2 = -1.0$",
+        "result": "$η = -1.0$"
       },
       {
         "id": "S2",
         "label": "Female and not young",
         "attempt_cue": "Set M = 0, Y = 0.",
         "explanation": "With both indicators off, only the intercept remains.",
-        "calculation": "η = −2.0 + 0 + 0 + 0 = −2.0",
-        "result": "η = −2.0"
+        "calculation": "$η = -2.0 + 0 + 0 + 0 = -2.0$",
+        "result": "$η = -2.0$"
       },
       {
         "id": "S3",
         "label": "Mean frequency for male and young",
         "attempt_cue": "Convert η = −1.0 through the log link.",
         "explanation": "Under a log link, μ = e^η is the modelled mean count rate.",
-        "calculation": "μ = e^{−1.0} ≈ 0.3679",
-        "result": "μ ≈ 0.3679"
+        "calculation": "$\\mu = e^{-1.0} \\approx 0.3679$",
+        "result": "$\\mu \\approx 0.3679$"
       }
     ],
-    "final_answer": "Male & young: η = −1.0, μ ≈ 0.3679. Female & not young: η = −2.0. The interaction term 0.2 applies only when both factors are active.",
+    "final_answer": "Male & young: $\\eta = -1.0$, $\\mu \\approx 0.3679$. Female & not young: $\\eta = -2.0$. The interaction term 0.2 applies only when both factors are active.",
     "common_pitfall": "Adding the interaction 0.2 for male-not-young or female-young (where M×Y = 0), or treating factors as continuous covariates without indicator coding.",
     "syllabus_ref": "4.2.4"
   }

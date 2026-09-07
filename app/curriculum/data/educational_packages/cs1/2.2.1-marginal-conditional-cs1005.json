@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.1-cp-01",
       "title": "Checkpoint: 2.2.1",
-      "prompt": "Closed-book. Joint PMF: P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40. Which statement is correct?",
+      "prompt": "Closed-book. Joint PMF: $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Which statement is correct?",
       "response_type": "mcq",
       "body": "Compute one marginal and one conditional probability.",
       "hints": [
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Sum the X=1 row for the marginal, then divide the (1,1) cell by that row total.",
-      "model_answer": "P(X=1)=0.70; P(Y=1|X=1)=0.40/0.70≈0.571.",
+      "model_answer": "$P(X=1)=0.70$; $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
       "common_mistake": "Using a single joint cell as a marginal or failing to normalise a conditional.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,22 +179,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "P(X=1)=0.30+0.40=0.70, and P(Y=1|X=1)=0.40/0.70≈0.571.",
+          "label": "$P(X=1)=0.30+0.40=0.70$, and $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "P(X=1)=0.40 because the largest cell in the X=1 row is the marginal.",
+          "label": "$P(X=1)$=0.40 because the largest cell in the X=1 row is the marginal.",
           "misconception_tag": "largest_cell_as_marginal"
         },
         {
           "id": "c",
-          "label": "P(Y=1|X=1)=0.40 because the joint cell is already conditional.",
+          "label": "$P(Y=1|X=1)$=0.40 because the joint cell is already conditional.",
           "misconception_tag": "conditional_without_normalise"
         },
         {
           "id": "d",
-          "label": "P(X=1)=0.70 and P(Y=1|X=1)=0.60 because P(Y=1) is the conditional numerator.",
+          "label": "$P(X=1)$=0.70 and $P(Y=1|X=1)$=0.60 because $P(Y=1)$ is the conditional numerator.",
           "misconception_tag": "wrong_conditional_numerator"
         }
       ],
@@ -220,25 +220,25 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Marginal and conditional from a flood-wind property table",
-    "problem_statement": "A property book records indicators (X, Y) with joint PMF P(0,0) = 0.55, P(0,1) = 0.15, P(1,0) = 0.20, P(1,1) = 0.10, where X = 1 if a flood claim occurs and Y = 1 if a wind claim occurs in the same year. Compute P(Y = 1) and P(X = 1 | Y = 1).",
+    "problem_statement": "A property book records indicators (X, Y) with joint PMF $P(0,0)$ = 0.55, $P(0,1)$ = 0.15, $P(1,0)$ = 0.20, $P(1,1)$ = 0.10, where X = 1 if a flood claim occurs and Y = 1 if a wind claim occurs in the same year. Compute $P(Y = 1)$ and $P(X = 1 | Y = 1)$.",
     "given": [
       {
-        "symbol": "P(0,0)",
+        "symbol": "$P(0,0)$",
         "value": "0.55",
         "note": "no flood, no wind"
       },
       {
-        "symbol": "P(0,1)",
+        "symbol": "$P(0,1)$",
         "value": "0.15",
         "note": "no flood, wind"
       },
       {
-        "symbol": "P(1,0)",
+        "symbol": "$P(1,0)$",
         "value": "0.20",
         "note": "flood, no wind"
       },
       {
-        "symbol": "P(1,1)",
+        "symbol": "$P(1,1)$",
         "value": "0.10",
         "note": "flood and wind"
       }
@@ -247,31 +247,31 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Form the marginal P(Y = 1)",
+        "label": "Form the marginal $P(Y = 1)$",
         "attempt_cue": "Add the joint probabilities with Y = 1.",
-        "explanation": "The marginal for Y = 1 sums over X: P(Y = 1) = P(0,1) + P(1,1).",
-        "calculation": "P(Y = 1) = 0.15 + 0.10 = 0.25",
-        "result": "P(Y = 1) = 0.25"
+        "explanation": "The marginal for Y = 1 sums over X: $P(Y = 1) = P(0,1)$ + $P(1,1)$.",
+        "calculation": "$P(Y = 1) = 0.15 + 0.10 = 0.25$",
+        "result": "$P(Y = 1) = 0.25$"
       },
       {
         "id": "S2",
-        "label": "Form the conditional P(X = 1 | Y = 1)",
-        "attempt_cue": "Divide P(1,1) by P(Y = 1).",
+        "label": "Form the conditional $P(X = 1 | Y = 1)$",
+        "attempt_cue": "Divide $P(1,1)$ by $P(Y = 1)$.",
         "explanation": "Conditional probability renormalises the joint cell by the matching marginal.",
-        "calculation": "P(X = 1 | Y = 1) = 0.10 / 0.25 = 0.40",
-        "result": "P(X = 1 | Y = 1) = 0.40"
+        "calculation": "$P(X = 1 | Y = 1) = 0.10 / 0.25 = 0.40$",
+        "result": "$P(X = 1 | Y = 1) = 0.40$"
       },
       {
         "id": "S3",
         "label": "Refuse joint-as-marginal",
-        "attempt_cue": "State why P(1,1) = 0.10 is not P(Y = 1).",
+        "attempt_cue": "State why $P(1,1)$ = 0.10 is not $P(Y = 1)$.",
         "explanation": "A single joint cell is not a marginal. Marginals sum across the other variable; conditionals divide by that sum.",
-        "calculation": "0.10 is P(X=1, Y=1), not P(Y=1)",
-        "result": "Joint cell ≠ marginal or conditional"
+        "calculation": "$0.10 is P(X=1, Y=1), not P(Y=1)$",
+        "result": "Joint cell $\\neq$ marginal or conditional"
       }
     ],
-    "final_answer": "P(Y = 1) = 0.25; P(X = 1 | Y = 1) = 0.40. The joint table is not interchangeable with its margins or conditionals without these moves.",
-    "common_pitfall": "Reporting P(Y = 1) = 0.10 because that is the flood-and-wind cell, or taking P(X = 1 | Y = 1) = 0.10 without dividing by the marginal 0.25.",
+    "final_answer": "$P(Y = 1) = 0.25$; $P(X = 1 \\mid Y = 1) = 0.40$. The joint table is not interchangeable with its margins or conditionals without these moves.",
+    "common_pitfall": "Reporting $P(Y = 1)$ = 0.10 because that is the flood-and-wind cell, or taking $P(X = 1 | Y = 1)$ = 0.10 without dividing by the marginal 0.25.",
     "syllabus_ref": "2.2.1"
   }
 }

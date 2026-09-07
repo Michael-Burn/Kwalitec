@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Raw moments are derivatives at zero, or equivalently factorial-scaled Taylor coefficients.",
-      "model_answer": "M^{(r)}(0)=E[X^r]; in particular M'(0)=E[X].",
+      "model_answer": "M^{(r)}(0)=$E[X^r]$; in particular M'(0)=$E[X]$.",
       "common_mistake": "Stopping at the MGF definition or evaluating the derivative at the wrong point.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,22 +136,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "If M_X(t) exists around zero, its Taylor expansion has E[X^r] as the coefficient multiplied by r!, equivalently M_X^{(r)}(0)=E[X^r].",
+          "label": "If $M_{X}(t)$ exists around zero, its Taylor expansion has $E[X^{r}]$ as the coefficient multiplied by $r!$, equivalently $M_{X}^{(r)}(0)=E[X^{r}]$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "M_X(0)=E[X], so evaluating the MGF once at zero gives the first moment.",
+          "label": "$M_{X}(0)=E[X]$, so evaluating the MGF once at zero gives the first moment.",
           "misconception_tag": "mgf_value_as_mean"
         },
         {
           "id": "c",
-          "label": "M_X'(1)=E[X] for every distribution because moments are evaluated at t=1.",
+          "label": "$M_{X}'(1)=E[X]$ for every distribution because moments are evaluated at $t=1$.",
           "misconception_tag": "derivative_at_one"
         },
         {
           "id": "d",
-          "label": "Writing M_X(t)=E[e^{tX}] completes moment extraction without differentiation or coefficient matching.",
+          "label": "Writing $M_{X}(t)=E[e^{tX}]$ completes moment extraction without differentiation or coefficient matching.",
           "misconception_tag": "definition_finishes_extraction"
         }
       ],
@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.2-cp-01",
       "title": "Checkpoint: 2.4.2",
-      "prompt": "Closed-book. For Poisson X, M_X(t)=exp(λ(e^t-1)). Which statement correctly obtains E[X]?",
+      "prompt": "Closed-book. For Poisson $X$, $M_{X}(t)=\\exp(\\lambda(e^{t}-1))$. Which statement correctly obtains $E[X]$?",
       "response_type": "mcq",
       "body": "Differentiate the MGF at zero.",
       "hints": [
@@ -171,7 +171,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Differentiate using the chain rule and set t=0. The value M(0)=1 is normalisation, not the mean.",
-      "model_answer": "M'(0)=λ.",
+      "model_answer": "M'(0)=$\\lambda$.",
       "common_mistake": "Using M(0) as the mean or writing the MGF without extracting a derivative.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "M_X'(t)=λe^t exp(λ(e^t-1)), so M_X'(0)=λ=E[X].",
+          "label": "$M_{X}'(t)=\\lambda e^{t}\\exp(\\lambda(e^{t}-1))$, so $M_{X}'(0)=\\lambda=E[X]$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "M_X(0)=1, so E[X]=1 for every Poisson distribution.",
+          "label": "$M_{X}(0)=1$, so $E[X]=1$ for every Poisson distribution.",
           "misconception_tag": "mgf_value_as_mean"
         },
         {
           "id": "c",
-          "label": "M_X'(0)=e^λ because differentiating removes the inner e^t-1 term.",
+          "label": "$M_{X}'(0)=e^{\\lambda}$ because differentiating removes the inner $e^{t}-1$ term.",
           "misconception_tag": "chain_rule_omitted"
         },
         {
           "id": "d",
-          "label": "The formula M_X(t)=E[e^{tX}] already states the mean, so no derivative is needed.",
+          "label": "The formula $M_{X}(t)=E[e^{tX}]$ already states the mean, so no derivative is needed.",
           "misconception_tag": "definition_finishes_extraction"
         }
       ],
@@ -221,16 +221,16 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Mean and variance from the Poisson CGF",
-    "problem_statement": "For X ~ Poisson(λ = 2), the cumulant generating function is C_X(t) = 2(e^t − 1). Obtain E[X] and Var(X) by differentiating the CGF at t = 0. Confirm that stopping at writing down C_X(t) without differentiation does not extract the moments.",
+    "problem_statement": "For $X \\sim \\mathrm{Poisson}(\\lambda = 2)$, the cumulant generating function is $C_{X}(t) = 2(e^{t} - 1)$. Obtain $E[X]$ and $\\operatorname{Var}(X)$ by differentiating the CGF at $t = 0$. Confirm that stopping at writing down $C_{X}(t)$ without differentiation does not extract the moments.",
     "given": [
       {
-        "symbol": "C_X(t)",
-        "value": "2(e^t − 1)",
+        "symbol": "$C_X(t)$",
+        "value": "$2(e^t - 1)$",
         "note": "CGF for Poisson(λ = 2)"
       },
       {
         "symbol": "extraction rule",
-        "value": "E[X] = C'(0); Var(X) = C''(0)",
+        "value": "$E[X] = C'(0)$; $\\operatorname{Var}(X) = C''(0)$",
         "note": "first two cumulants"
       }
     ],
@@ -242,7 +242,7 @@
         "attempt_cue": "Compute C'(t) and evaluate at 0.",
         "explanation": "C'(t) = 2e^t, so the first cumulant at the origin is the mean.",
         "calculation": "C'(t) = 2e^t; C'(0) = 2e^0 = 2",
-        "result": "E[X] = 2"
+        "result": "$E[X] = 2$"
       },
       {
         "id": "S2",
@@ -250,18 +250,18 @@
         "attempt_cue": "Compute C''(t) and evaluate at 0.",
         "explanation": "For this CGF, C''(t) = 2e^t as well, so the second cumulant equals the mean, as required for Poisson.",
         "calculation": "C''(t) = 2e^t; C''(0) = 2",
-        "result": "Var(X) = 2"
+        "result": "$\\operatorname{Var}(X) = 2$"
       },
       {
         "id": "S3",
         "label": "Refuse definition-as-extraction",
         "attempt_cue": "State why writing C_X(t) = 2(e^t − 1) alone does not give the moments.",
         "explanation": "Having the generating function is not the same as extracting moments. Differentiation (or series expansion) at t = 0 is the extraction step.",
-        "calculation": "C_X(t) known ≠ moments extracted until C'(0), C''(0) evaluated",
+        "calculation": "$C_X(t) known \\neq moments extracted until C'(0), C''(0) evaluated$",
         "result": "Must differentiate (or expand) to extract"
       }
     ],
-    "final_answer": "E[X] = C'(0) = 2; Var(X) = C''(0) = 2. Writing the CGF without differentiation does not extract the moments.",
+    "final_answer": "$E[X] = C'(0) = 2$; $\\operatorname{Var}(X) = C''(0) = 2$. Writing the CGF without differentiation does not extract the moments.",
     "common_pitfall": "Treating the presence of C_X(t) = 2(e^t − 1) as already giving the moments, or evaluating C(0) = 0 and calling that the mean.",
     "syllabus_ref": "2.4.2"
   }
