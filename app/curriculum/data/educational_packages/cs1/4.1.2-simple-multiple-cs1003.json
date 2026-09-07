@@ -250,7 +250,7 @@
       {
         "id": "S2",
         "label": "Evaluate the simple fit",
-        "attempt_cue": "Substitute x₁ = 5 into Ŷ_s.",
+        "attempt_cue": "Substitute $x_{1} = 5$ into $\\hat{Y}_{s}$.",
         "explanation": "The simple model ignores x₂ even if that covariate is available.",
         "calculation": "$\\hat{Y}_{s} = 3.5 + 0.8 \\times 5 = 3.5 + 4.0 = 7.5$",
         "result": "Ŷ_s = 7.5 (£00)"
@@ -258,14 +258,14 @@
       {
         "id": "S3",
         "label": "Evaluate the multiple fit",
-        "attempt_cue": "Substitute x₁ = 5 and x₂ = 3 into Ŷ_m.",
+        "attempt_cue": "Substitute $x_{1} = 5$ and $x_{2} = 3$ into $\\hat{Y}_{m}$.",
         "explanation": "The multiple model adjusts the trip-length contribution and adds the destination-risk term jointly.",
         "calculation": "$\\hat{Y}_{m} = 2.0 + 0.6 \\times 5 + 0.4 \\times 3 = 2.0 + 3.0 + 1.2 = 6.2$",
         "result": "Ŷ_m = 6.2 (£00)"
       }
     ],
     "final_answer": "Ŷ_s = 7.5 (£00) is simple (one X); Ŷ_m = 6.2 (£00) is multiple (two X's). Least-squares estimation is a separate step from writing the model form.",
-    "common_pitfall": "Calling Ŷ_m 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same (x₁, x₂).",
+    "common_pitfall": "Calling $\\hat{Y}_{m}$ 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same $(x_{1}, x_{2})$.",
     "syllabus_ref": "4.1.2"
   }
 }

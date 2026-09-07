@@ -171,7 +171,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "With σ unknown, the mean CI uses t_{n−1}. The variance CI inverts the chi-square pivot for (n−1)s²/σ². Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
+      "explanation": "With $\\sigma$ unknown, the mean CI uses $t_{n-1}$. The variance CI inverts the chi-square pivot for $\\frac{(n-1)s^{2}}{\\sigma^{2}}$. Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
       "model_answer": "t interval for $\\mu$; chi-square interval for $\\sigma^{2}$; both required.",
       "common_mistake": "Using z with unknown σ, skipping the variance CI, or forcing a Normal-mean SE onto σ².",
       "success_criteria": [
@@ -273,7 +273,7 @@
       }
     ],
     "final_answer": "95% CI for $\\mu$: (£96.8035, £103.1965).",
-    "common_pitfall": "Using z = 1.96 instead of t_{15,0.975} = 2.131 when σ is estimated from the sample, which understates the half-width (2.94 vs 3.1965).",
+    "common_pitfall": "Using $z = 1.96$ instead of $t_{15,0.975} = 2.131$ when $\\sigma$ is estimated from the sample, which understates the half-width (2.94 vs 3.1965).",
     "syllabus_ref": "3.2.4"
   }
 }

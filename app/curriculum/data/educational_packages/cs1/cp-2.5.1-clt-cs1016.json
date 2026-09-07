@@ -240,7 +240,7 @@
       {
         "id": "S2",
         "label": "Standardise and evaluate the lower tail",
-        "attempt_cue": "Form z = (1150 − 1200)/50, then convert with Φ.",
+        "attempt_cue": "Form $z = \\frac{1150 - 1200}{50}$, then convert with $\\Phi$.",
         "explanation": "The probability is the lower Normal tail at $z = -1$, equal to $1 - \\Phi(1)$.",
         "calculation": "$z = (1150 - 1200)/50 = -1$; $P(\\bar{X} < 1150) \\approx \\Phi(-1) = 1 - \\Phi(1) \\approx 1 - 0.841 = 0.159$",
         "result": "$P \\approx 0.159$"
@@ -248,7 +248,7 @@
       {
         "id": "S3",
         "label": "Refuse $\\sigma$ in place of $\\frac{\\sigma}{\\sqrt{n}}$",
-        "attempt_cue": "State why using sd = 300 for X̄ is wrong.",
+        "attempt_cue": "State why using $\\operatorname{sd} = 300$ for $\\bar{X}$ is wrong.",
         "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by $\\sqrt{n}$. Using the population sd as if it were $\\operatorname{sd}(\\bar{X})$ ignores that reduction.",
         "calculation": "$\\operatorname{sd}(\\bar{X})$ = 50, not $\\sigma$ = 300",
         "result": "Must divide $\\sigma$ by $\\sqrt{n}$"

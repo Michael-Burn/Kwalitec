@@ -251,7 +251,7 @@
       {
         "id": "S2",
         "label": "Pearson χ²",
-        "attempt_cue": "Sum (O − E)²/E over the four cells.",
+        "attempt_cue": "Sum $(O - E)^{2}/E$ over the four cells.",
         "explanation": "Same Pearson form as GOF, applied to the contingency table.",
         "calculation": "$(20-15)^{2}/15 + (30-35)^{2}/35 + (10-15)^{2}/15 + (40-35)^{2}/35 = 25/15 + 25/35 + 25/15 + 25/35 = 50/15 + 50/35 = 10/3 + 10/7 = 100/21 \\approx 4.762$",
         "result": "$\\chi^{2} = 100/21 \\approx 4.762$"
@@ -260,13 +260,13 @@
         "id": "S3",
         "label": "Decision",
         "attempt_cue": "Compare 4.762 with 3.841.",
-        "explanation": "Reject independence when χ² exceeds the df = 1 critical value.",
+        "explanation": "Reject independence when $\\chi^{2}$ exceeds the $\\mathrm{df} = 1$ critical value.",
         "calculation": "4.762 > 3.841  ⇒  reject independence",
         "result": "Reject independence at 5%"
       }
     ],
     "final_answer": "$\\chi^{2} = 100/21 \\approx 4.762$ on 1 df; reject independence of channel and fraud flag at $\\alpha = 0.05$.",
-    "common_pitfall": "Using E_{ij} = n/4 = 25 (ignoring unequal margins) or forgetting to square (O − E) before dividing by E.",
+    "common_pitfall": "Using $E_{ij} = \\frac{n}{4} = 25$ (ignoring unequal margins) or forgetting to square $(O - E)$ before dividing by $E$.",
     "syllabus_ref": "3.3.5"
   }
 }

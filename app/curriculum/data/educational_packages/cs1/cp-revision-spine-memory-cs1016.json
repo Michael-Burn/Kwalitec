@@ -260,7 +260,7 @@
         "id": "S1",
         "label": "Separate MoM rule from sampling distribution",
         "attempt_cue": "What does the estimating equation define, versus what distribution describes?",
-        "explanation": "Solving sample mean = m(θ) defines an estimator. Its sampling distribution describes the values of that estimator over repeated samples.",
+        "explanation": "Solving $\\text{sample mean} = m(\\theta)$ defines an estimator. Its sampling distribution describes the values of that estimator over repeated samples.",
         "calculation": "Estimating equation $\\neq$ sampling distribution",
         "result": "Construction and sampling law distinguished"
       },

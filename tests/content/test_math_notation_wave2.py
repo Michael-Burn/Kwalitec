@@ -304,9 +304,9 @@ def test_wave2_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 1409
-    assert checked["totals"]["migrated"] == 511
-    assert checked["totals"]["needs_migration"] == 1409
+    assert checked["totals"]["remaining_backlog"] == 1391
+    assert checked["totals"]["migrated"] == 529
+    assert checked["totals"]["needs_migration"] == 1391
     assert live["totals"] == checked["totals"]
 
     wave2_files = set(wave2.WAVE2_FILES)
@@ -322,11 +322,181 @@ def test_wave2_ledger_backlog_and_migration_status() -> None:
                 assert "dollar_delimited" in item["signals"]
             if item["category"] == "needs_migration" and item["needs_manual_review"]:
                 still_pending_review += 1
-    assert migrated == 204
-    assert still_pending_review == 18
+    assert migrated == 222
+    assert still_pending_review == 0
 
 
 def test_wave2_packages_disjoint_from_wave1() -> None:
     import math_notation_wave1 as wave1
 
     assert set(wave2.WAVE2_FILES).isdisjoint(set(wave1.WAVE1_FILES))
+
+
+# Locked Wave 2 leftover migrations (manual-review close-out).
+_WAVE2_LEFTOVER_MIGRATIONS = (
+    (
+        "3.2.4-ci-normal-mean-variance-cs1011.json",
+        "knowledge_checks[1].explanation",
+        r"With $\sigma$ unknown, the mean CI uses $t_{n-1}$. The variance CI "
+        r"inverts the chi-square pivot for $\frac{(n-1)s^{2}}{\sigma^{2}}$. "
+        "Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
+    ),
+    (
+        "3.2.4-ci-normal-mean-variance-cs1011.json",
+        "worked_example.common_pitfall",
+        r"Using $z = 1.96$ instead of $t_{15,0.975} = 2.131$ when $\sigma$ is "
+        "estimated from the sample, which understates the half-width "
+        "(2.94 vs 3.1965).",
+    ),
+    (
+        "3.3.4-chi-square-gof-cs1012.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute each $(O_{i} - 20)^{2}/20$.",
+    ),
+    (
+        "3.3.4-chi-square-gof-cs1012.json",
+        "worked_example.steps[0].explanation",
+        r"Each category contributes $(O - E)^{2}/E$ to the Pearson statistic.",
+    ),
+    (
+        "3.3.4-chi-square-gof-cs1012.json",
+        "worked_example.steps[2].explanation",
+        r"Reject $H_{0}$ for large $\chi^{2}$; here $2.9 < 9.488$.",
+    ),
+    (
+        "3.3.4-chi-square-gof-cs1012.json",
+        "worked_example.common_pitfall",
+        r"Using $\mathrm{df} = 5$ (forgetting $-1$ for the multinomial "
+        r"constraint) or comparing $\chi^{2}$ to a Normal $z$ critical value.",
+    ),
+    (
+        "5.1.8-empirical-bayes-cs1015.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute $\hat{Z} = \frac{n}{n+\hat{k}}$.",
+    ),
+    (
+        "5.1.8-empirical-bayes-cs1015.json",
+        "worked_example.common_pitfall",
+        r"Using the fully Bayesian $k = 3$ from a different exercise instead of "
+        r"the collective estimate $\hat{k} = 10$, which would incorrectly give "
+        r"$Z = \frac{5}{8}$ and a different premium.",
+    ),
+    (
+        "5.1.8-empirical-bayes-cs1003.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute $\hat{Z} = \frac{n}{n+\hat{k}}$.",
+    ),
+    (
+        "cp-2.5.1-clt-cs1016.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Form $z = \frac{1150 - 1200}{50}$, then convert with $\Phi$.",
+    ),
+    (
+        "cp-2.5.1-clt-cs1016.json",
+        "worked_example.steps[2].attempt_cue",
+        r"State why using $\operatorname{sd} = 300$ for $\bar{X}$ is wrong.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1003.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Substitute $x_{1} = 5$ into $\hat{Y}_{s}$.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1003.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Substitute $x_{1} = 5$ and $x_{2} = 3$ into $\hat{Y}_{m}$.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1003.json",
+        "worked_example.common_pitfall",
+        r"Calling $\hat{Y}_{m}$ 'simple' because it is still linear in the "
+        r"parameters, or assuming the two fitted values must coincide at the "
+        r"same $(x_{1}, x_{2})$.",
+    ),
+    (
+        "3.3.5-contingency-independence-cs1012.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Sum $(O - E)^{2}/E$ over the four cells.",
+    ),
+    (
+        "3.3.5-contingency-independence-cs1012.json",
+        "worked_example.steps[2].explanation",
+        r"Reject independence when $\chi^{2}$ exceeds the $\mathrm{df} = 1$ "
+        "critical value.",
+    ),
+    (
+        "3.3.5-contingency-independence-cs1012.json",
+        "worked_example.common_pitfall",
+        r"Using $E_{ij} = \frac{n}{4} = 25$ (ignoring unequal margins) or "
+        r"forgetting to square $(O - E)$ before dividing by $E$.",
+    ),
+    (
+        "cp-revision-spine-memory-cs1016.json",
+        "worked_example.steps[0].explanation",
+        r"Solving $\text{sample mean} = m(\theta)$ defines an estimator. Its "
+        "sampling distribution describes the values of that estimator over "
+        "repeated samples.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE2_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE2_LEFTOVER_MIGRATIONS],
+)
+def test_wave2_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    from math_notation_wave1 import get_path
+
+    text = get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+def test_wave2_leftover_knowledge_check_scoring_unaffected() -> None:
+    """Only KC field touched in leftovers is explanation; scoring keys unchanged."""
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    target = "3.2.4-ci-normal-mean-variance-cs1011.json"
+    by_id = {
+        r["item_id"]: r for r in snapshot["items"] if r["package_file"] == target
+    }
+    assert by_id
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    pack = next(p for p in loader.all_approved() if Path(p.source_path).name == target)
+    substance = substance_from_package(
+        pack, curriculum_identity="CS1:wave2", topic_id=pack.topic_code
+    )
+    practice = [
+        a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+    ]
+    assert practice
+    for act in practice:
+        item = act.scoreable
+        assert item is not None
+        expected = by_id[item.item_id]
+        assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+        assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+        exp_tol = expected["numeric_tolerance"]
+        if exp_tol is None:
+            assert item.answer_key.numeric_tolerance is None
+        else:
+            assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+        choice_ids = [c[0] if not isinstance(c, str) else c for c in item.choices]
+        assert choice_ids == expected["choice_ids"]
+        for probe in expected["verdicts"]:
+            result = score_practice_response(item, probe["response"])
+            assert result.scored is probe["scored"]
+            assert result.correct is probe["correct"]
+            assert result.matched_key == probe["matched_key"]

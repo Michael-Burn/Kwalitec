@@ -234,7 +234,7 @@
       {
         "id": "S1",
         "label": "Estimated credibility factor",
-        "attempt_cue": "Compute Ẑ = n/(n+k̂).",
+        "attempt_cue": "Compute $\\hat{Z} = \\frac{n}{n+\\hat{k}}$.",
         "explanation": "Empirical Bayes plugs estimated structurals into the same Bühlmann Z formula.",
         "calculation": "Ẑ = 3/(3+6) = 3/9 = 1/3",
         "result": "Ẑ = 1/3"

@@ -247,8 +247,8 @@
       {
         "id": "S1",
         "label": "Squared Pearson residuals",
-        "attempt_cue": "Compute each (Oᵢ − 20)²/20.",
-        "explanation": "Each category contributes (O − E)²/E to the Pearson statistic.",
+        "attempt_cue": "Compute each $(O_{i} - 20)^{2}/20$.",
+        "explanation": "Each category contributes $(O - E)^{2}/E$ to the Pearson statistic.",
         "calculation": "$(-2)^{2}/20 + 2^{2}/20 + 0/20 + (-5)^{2}/20 + 5^{2}/20 = 4/20 + 4/20 + 0 + 25/20 + 25/20$",
         "result": "0.2 + 0.2 + 0 + 1.25 + 1.25"
       },
@@ -264,13 +264,13 @@
         "id": "S3",
         "label": "Decision",
         "attempt_cue": "Compare 2.9 with 9.488.",
-        "explanation": "Reject H₀ for large χ²; here 2.9 < 9.488.",
+        "explanation": "Reject $H_{0}$ for large $\\chi^{2}$; here $2.9 < 9.488$.",
         "calculation": "2.9 < 9.488 $\\Rightarrow$ do not reject $H_{0}$",
         "result": "Do not reject equal shares at 5%"
       }
     ],
     "final_answer": "$\\chi^{2}$ = 2.9 on 4 df; do not reject $H_{0}$ at $\\alpha$ = 0.05.",
-    "common_pitfall": "Using df = 5 (forgetting −1 for the multinomial constraint) or comparing χ² to a Normal z critical value.",
+    "common_pitfall": "Using $\\mathrm{df} = 5$ (forgetting $-1$ for the multinomial constraint) or comparing $\\chi^{2}$ to a Normal $z$ critical value.",
     "syllabus_ref": "3.3.4"
   }
 }
