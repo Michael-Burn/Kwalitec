@@ -138,12 +138,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "Form a CI for a binomial probability p and a CI for a Poisson mean λ, using a Normal approximation (with the appropriate variance function) when that approximation is justified.",
+          "label": "Form a CI for a binomial probability p and a CI for a Poisson mean $\\lambda$, using a Normal approximation (with the appropriate variance function) when that approximation is justified.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "A binomial CI for p is enough; the Poisson mean uses the identical formula after renaming p as λ, including the p(1−p) variance.",
+          "label": "A binomial CI for $p$ is enough; the Poisson mean uses the identical formula after renaming $p$ as $\\lambda$, including the $p(1-p)$ variance.",
           "misconception_tag": "binomial_stands_for_poisson"
         },
         {
@@ -172,8 +172,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Bernoulli variance is p(1−p)/n; Poisson mean variance is λ/n (per observation in the usual sample-mean form). Swapping those variance functions, or dropping Poisson entirely, is wrong.",
-      "model_answer": "p̂ ± z√(p̂(1−p̂)/n) and λ̂ ± z√(λ̂/n); both required.",
+      "explanation": "Bernoulli variance is $\\frac{p(1-p)}{n}$; Poisson mean variance is $\\frac{\\lambda}{n}$ (per observation in the usual sample-mean form). Swapping those variance functions, or dropping Poisson entirely, is wrong.",
+      "model_answer": "$\\hat{p} \\pm z\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$ and $\\hat{\\lambda} \\pm z\\sqrt{\\frac{\\hat{\\lambda}}{n}}$; both required.",
       "common_mistake": "Reusing Bernoulli variance for Poisson, or treating one discrete CI as enough.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -182,22 +182,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂/n) (or an equivalent total-count form with matching variance). Both are required; one does not replace the other.",
+          "label": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$. Poisson: $\\hat{\\lambda} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{\\lambda}}{n}}$ (or an equivalent total-count form with matching variance). Both are required; one does not replace the other.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂(1−p̂)/n). The Poisson interval is the same expression with λ̂ written in place of p̂ and with variance p̂(1−p̂)/n kept unchanged.",
+          "label": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$. The Poisson interval is the same expression with $\\hat{\\lambda}$ written in place of $\\hat{p}$ and with variance $\\frac{\\hat{p}(1-\\hat{p})}{n}$ kept unchanged.",
           "misconception_tag": "reuse_bern_variance"
         },
         {
           "id": "c",
-          "label": "Binomial: p̂ ± z_{1−α/2} √(p̂/n). Poisson: λ̂ ± z_{1−α/2} √(λ̂(1−λ̂)/n).",
+          "label": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}}{n}}$. Poisson: $\\hat{\\lambda} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{\\lambda}(1-\\hat{\\lambda})}{n}}$.",
           "misconception_tag": "variances_swapped"
         },
         {
           "id": "d",
-          "label": "Only the binomial form is required; Poisson means are handled by transforming to a Normal mean interval for x̄ with variance s²/n from continuous data.",
+          "label": "Only the binomial form is required; Poisson means are handled by transforming to a Normal mean interval for $\\bar{x}$ with variance $\\frac{s^{2}}{n}$ from continuous data.",
           "misconception_tag": "binomial_only"
         }
       ],
@@ -223,7 +223,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Approximate 95% CI for a claim frequency proportion",
-    "problem_statement": "In a sample of n = 100 policies, x = 22 produce at least one claim in the year. Using the Normal approximation with p̂ = x/n, construct an approximate 95% confidence interval for the claim incidence probability p.",
+    "problem_statement": "In a sample of $n = 100$ policies, $x = 22$ produce at least one claim in the year. Using the Normal approximation with $\\hat{p} = \\frac{x}{n}$, construct an approximate 95% confidence interval for the claim incidence probability $p$.",
     "given": [
       {
         "symbol": "n",
@@ -241,35 +241,35 @@
         "note": "standard Normal quantile"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write p̂ ± 1.96 √[p̂(1−p̂)/n] before substituting.",
+    "attempt_before_reveal": "CMP closed. Write $\\hat{p} \\pm 1.96 \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$ before substituting.",
     "steps": [
       {
         "id": "S1",
         "label": "Sample proportion",
-        "attempt_cue": "Compute p̂ = x/n.",
+        "attempt_cue": "Compute $\\hat{p} = \\frac{x}{n}$.",
         "explanation": "The MLE / MoM estimator of a Bernoulli probability is the sample proportion.",
-        "calculation": "p̂ = 22/100 = 0.22",
-        "result": "p̂ = 0.22"
+        "calculation": "$\\hat{p} = \\frac{22}{100} = 0.22$",
+        "result": "$\\hat{p} = 0.22$"
       },
       {
         "id": "S2",
         "label": "Estimated SE",
-        "attempt_cue": "Compute √[0.22 × 0.78 / 100].",
-        "explanation": "Binomial/Bernoulli variance p(1−p)/n is plugged in at p̂.",
-        "calculation": "√(0.22 × 0.78 / 100) = √0.001716 ≈ 0.041425",
-        "result": "SÊ ≈ 0.041425"
+        "attempt_cue": "Compute $\\sqrt{0.22 \\times 0.78 / 100}$.",
+        "explanation": "Binomial/Bernoulli variance $\\frac{p(1-p)}{n}$ is plugged in at $\\hat{p}$.",
+        "calculation": "$\\sqrt{0.22 \\times 0.78 / 100} = \\sqrt{0.001716} \\approx 0.041425$",
+        "result": "$S\\hat{E} \\approx 0.041425$"
       },
       {
         "id": "S3",
         "label": "Interval",
         "attempt_cue": "Compute 0.22 ± 1.96 × 0.041425.",
         "explanation": "Wald interval for a proportion.",
-        "calculation": "1.96 × 0.041425 ≈ 0.08119;  0.22 − 0.08119 ≈ 0.13881;  0.22 + 0.08119 ≈ 0.30119",
+        "calculation": "$1.96 \\times 0.041425 \\approx 0.08119$; $0.22 - 0.08119 \\approx 0.13881$; $0.22 + 0.08119 \\approx 0.30119$",
         "result": "(0.13881, 0.30119)"
       }
     ],
     "final_answer": "Approximate 95% CI for p: (0.13881, 0.30119).",
-    "common_pitfall": "Using √[p̂/n] = √0.0022 (Poisson-style) instead of √[p̂(1−p̂)/n], or forgetting the (1−p̂) factor.",
+    "common_pitfall": "Using $\\sqrt{\\frac{\\hat{p}}{n}} = \\sqrt{0.0022}$ (Poisson-style) instead of $\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$, or forgetting the $(1-\\hat{p})$ factor.",
     "syllabus_ref": "3.2.5"
   }
 }

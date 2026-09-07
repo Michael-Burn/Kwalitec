@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force Normal-sample laws for X̄ and S² (χ² form as CMP). Refuse treating moment results alone as the distributional laws.",
     "educational_intent": "Produce distributional warrants for sample mean and sample variance under Normal random samples.",
     "learning_objective": "State basic sampling distributions for the sample mean and variance for random samples from a normal distribution.",
-    "concept_focus": "Iid Normal sample → X̄ ~ Normal(μ, σ²/n) → (n−1)S²/σ² ~ χ²_{n−1} → refuse treating this as the t-statistic.",
+    "concept_focus": "Iid Normal sample → $\\bar{X} \\sim \\operatorname{Normal}(\\mu, \\frac{\\sigma^{2}}{n})$ → $\\frac{(n-1)S^{2}}{\\sigma^{2}} \\sim \\chi^{2}_{n-1}$ → refuse treating this as the t-statistic.",
     "prior_bridge": "Yesterday you expressed E/Var of the sample mean and E of sample variance (2.6.3). Today specialises to Normal-sample distributional laws.",
     "why_now": "2.6.4 is the distributional hinge before student-t when σ is unknown.",
     "expected_benefit": "You will be able to state the Normal and χ² sampling laws for X̄ and S² under Normal samples, without jumping to t.",
@@ -118,7 +118,7 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.4-ar-01",
       "title": "Active Recall: 2.6.4",
-      "prompt": "Closed-book. For an iid sample from N(μ,σ²), which exact sampling laws are correct?",
+      "prompt": "Closed-book. For an iid sample from $N(\\mu,\\sigma^{2})$, which exact sampling laws are correct?",
       "response_type": "mcq",
       "body": "Select the Normal mean and sample-variance laws.",
       "hints": [
@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Normal sampling gives exact laws for the mean and scaled variance, plus their independence.",
-      "model_answer": "X̄~N(μ,σ²/n); (n-1)S²/σ²~χ²_{n-1}; independence.",
+      "model_answer": "$\\bar{X}\\sim N(\\mu,\\frac{\\sigma^{2}}{n})$; $\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim \\chi^{2}_{n-1}$; independence.",
       "common_mistake": "Missing the n-1 scale or forgetting the special Normal-sample independence result.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,22 +136,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "X̄~N(μ,σ²/n), (n-1)S²/σ²~χ²_{n-1}, and X̄ is independent of S².",
+          "label": "$\\bar{X}\\sim N(\\mu,\\frac{\\sigma^{2}}{n})$, $\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim \\chi^{2}_{n-1}$, and $\\bar{X}$ is independent of $S^{2}$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "X̄~N(μ,σ²) because taking a mean does not change variance.",
+          "label": "$\\bar{X}\\sim N(\\mu,\\sigma^{2})$ because taking a mean does not change variance.",
           "misconception_tag": "mean_variance_not_scaled"
         },
         {
           "id": "c",
-          "label": "S²/σ²~χ²_n because no scaling by n-1 is required.",
+          "label": "$\\frac{S^{2}}{\\sigma^{2}} \\sim \\chi^{2}_{n}$ because no scaling by $n-1$ is required.",
           "misconception_tag": "chi_square_scaling_missing"
         },
         {
           "id": "d",
-          "label": "X̄ and S² are necessarily dependent for Normal samples because both use the same observations.",
+          "label": "$\\bar{X}$ and $S^{2}$ are necessarily dependent for Normal samples because both use the same observations.",
           "misconception_tag": "normal_independence_denied"
         }
       ],
@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.4-cp-01",
       "title": "Checkpoint: 2.6.4",
-      "prompt": "Closed-book. An iid sample of size n comes from N(μ,σ²). Which statement correctly identifies the exact laws without prematurely using t?",
+      "prompt": "Closed-book. An iid sample of size n comes from $N(\\mu,\\sigma^{2})$. Which statement correctly identifies the exact laws without prematurely using t?",
       "response_type": "mcq",
       "body": "Choose the exact component distributions.",
       "hints": [
@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "X̄~N(μ,σ²/n) and (n-1)S²/σ²~χ²_{n-1}, independently. A t law follows only after combining these when σ is unknown.",
+          "label": "$\\bar{X}\\sim N(\\mu,\\frac{\\sigma^{2}}{n})$ and $\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim \\chi^{2}_{n-1}$, independently. A t law follows only after combining these when $\\sigma$ is unknown.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "X̄~t_{n-1} before standardisation because every Normal sample mean has a t distribution.",
+          "label": "$\\bar{X}\\sim t_{n-1}$ before standardisation because every Normal sample mean has a t distribution.",
           "misconception_tag": "t_too_early"
         },
         {
           "id": "c",
-          "label": "(n-1)S²/σ²~N(0,1) because sample variance is an average.",
+          "label": "$\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim N(0,1)$ because sample variance is an average.",
           "misconception_tag": "variance_as_normal"
         },
         {
           "id": "d",
-          "label": "The two exact laws finish all t-statistic work even when S has not replaced σ in a standardised mean.",
+          "label": "The two exact laws finish all t-statistic work even when S has not replaced $\\sigma$ in a standardised mean.",
           "misconception_tag": "normal_laws_finish_t"
         }
       ],
@@ -221,11 +221,11 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Normal laws for X̄ and for (n−1)S²/σ²",
-    "problem_statement": "A random sample of size n = 16 is drawn from Normal(μ = 100, σ² = 25). State the exact sampling distribution of X̄ and of (n − 1)S²/σ². Explain why writing the t-statistic is a different object from these two laws.",
+    "problem_statement": "A random sample of size n = 16 is drawn from $Normal(\\mu = 100, \\sigma^{2} = 25)$. State the exact sampling distribution of $\\bar{X}$ and of $\\frac{(n-1)S^{2}}{\\sigma^{2}}$. Explain why writing the t-statistic is a different object from these two laws.",
     "given": [
       {
         "symbol": "parent",
-        "value": "Normal(μ = 100, σ² = 25)",
+        "value": "$Normal(\\mu = 100, \\sigma^{2} = 25)$",
         "note": "iid Normal sample"
       },
       {
@@ -234,34 +234,34 @@
         "note": "sample size"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write the Normal law for X̄ with variance σ²/n, then the chi-square law for the scaled sample variance, and keep t separate.",
+    "attempt_before_reveal": "CMP closed. Write the Normal law for $\\bar{X}$ with variance $\\frac{\\sigma^{2}}{n}$, then the chi-square law for the scaled sample variance, and keep t separate.",
     "steps": [
       {
         "id": "S1",
         "label": "Sampling distribution of X̄",
         "attempt_cue": "Name the Normal parameters for X̄.",
-        "explanation": "For iid Normal observations, the sample mean is exactly Normal with mean μ and variance σ²/n.",
-        "calculation": "X̄ ~ Normal(100, 25/16) = Normal(100, 1.5625)",
-        "result": "X̄ ~ Normal(100, 1.5625)"
+        "explanation": "For iid Normal observations, the sample mean is exactly Normal with mean $\\mu$ and variance $\\frac{\\sigma^{2}}{n}$.",
+        "calculation": "$\\bar{X} \\sim \\operatorname{Normal}(100, \\frac{25}{16}) = \\operatorname{Normal}(100, 1.5625)$",
+        "result": "$\\bar{X} \\sim \\operatorname{Normal}(100, 1.5625)$"
       },
       {
         "id": "S2",
         "label": "Sampling distribution of the scaled sample variance",
         "attempt_cue": "State the chi-square law and its degrees of freedom.",
         "explanation": "Independently of X̄, (n − 1)S²/σ² follows χ² with n − 1 degrees of freedom.",
-        "calculation": "(16 − 1)S²/25 = 15 S²/25 ~ χ²_15",
-        "result": "15 S²/25 ~ χ²_15"
+        "calculation": "$\\frac{(16 - 1)S^{2}}{25} = \\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$",
+        "result": "$\\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$"
       },
       {
         "id": "S3",
         "label": "Refuse treating this as the t-statistic",
         "attempt_cue": "Name what extra ratio creates t.",
-        "explanation": "The t-statistic replaces σ with S in the studentised mean and uses the ratio of the Normal and chi-square pieces. Stating the separate Normal and χ² laws is not yet writing t = (X̄ − μ)/(S/√n).",
-        "calculation": "t uses (X̄ − μ)/(S/√n); that is not either law alone",
-        "result": "Normal and χ² laws ≠ the t-statistic"
+        "explanation": "The t-statistic replaces $\\sigma$ with $S$ in the studentised mean and uses the ratio of the Normal and chi-square pieces. Stating the separate Normal and $\\chi^{2}$ laws is not yet writing $t = \\frac{\\bar{X} - \\mu}{S/\\sqrt{n}}$.",
+        "calculation": "$t = \\frac{\\bar{X} - \\mu}{S/\\sqrt{n}}$; that is not either law alone",
+        "result": "Normal and $\\chi^{2}$ laws $\\neq$ the t-statistic"
       }
     ],
-    "final_answer": "X̄ ~ Normal(100, 1.5625); 15 S²/25 ~ χ²_15. The t-statistic is a further ratio that replaces σ by S, not either of these laws alone.",
+    "final_answer": "$\\bar{X} \\sim \\operatorname{Normal}(100, 1.5625)$; $\\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$. The t-statistic is a further ratio that replaces $\\sigma$ by $S$, not either of these laws alone.",
     "common_pitfall": "Writing X̄ ~ Normal(100, 25) without dividing by n, or labelling (n − 1)S²/σ² ~ χ²_{n−1} as the t-statistic.",
     "syllabus_ref": "2.6.4"
   }

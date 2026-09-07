@@ -36,21 +36,21 @@
     "mission_id": "msn-cs1009-cs1-2.6-mean-var-sample",
     "display_title": "Relate sample-mean and sample-variance moments to the population",
     "mission_purpose": "Today's Mission exists to express the mean and variance of a sample mean and the mean of a sample variance in terms of population mean, variance and sample size. Without claiming Normal-sample distributional laws (2.6.4) finished.",
-    "tutor_intent": "Today I will force the candidate through E[X̄], Var(X̄), and E[S²] warrants. Refuse treating sampling-distribution vocabulary alone as having the formulas.",
+    "tutor_intent": "Today I will force the candidate through $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ warrants. Refuse treating sampling-distribution vocabulary alone as having the formulas.",
     "educational_intent": "Produce executable population-parameter expressions for E/Var of the sample mean and E of the sample variance.",
     "learning_objective": "Express the mean and variance of a sample mean and the mean of a sample variance in terms of the population mean, variance and sample size.",
-    "concept_focus": "Population μ, σ², n → E[X̄]=μ → Var(X̄)=σ²/n → E[S²]=σ² → refuse jumping to Normal laws or t.",
+    "concept_focus": "Population $\\mu$, $\\sigma^{2}$, n → $E[\\bar{X}]=\\mu$ → $\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$ → $E[S^{2}]=\\sigma^{2}$ → refuse jumping to Normal laws or t.",
     "prior_bridge": "Yesterday you described the sampling distribution of a statistic (2.6.2). Today gives the key moment results for sample mean and sample variance.",
     "why_now": "2.6.3 supplies the moment hinge before Normal-sample distributional results.",
-    "expected_benefit": "You will be able to write E[X̄], Var(X̄), and E[S²] correctly in terms of μ, σ², and n.",
+    "expected_benefit": "You will be able to write $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ correctly in terms of $\\mu$, $\\sigma^{2}$, and n.",
     "explainability": "Campaign Iota Day 3 focuses LO 2.6.3.",
     "success_criteria": [
-      "Closed-book, state E[X̄] and Var(X̄) in population terms (CMP form).",
-      "State E[S²] (or CMP-equivalent mean of sample variance) warrant.",
+      "Closed-book, state $E[\\bar{X}]$ and $\\operatorname{Var}(\\bar{X})$ in population terms (CMP form).",
+      "State $E[S^{2}]$ (or CMP-equivalent mean of sample variance) warrant.",
       "Refuse treating these moment results as finishing Normal sampling laws / t / F."
     ],
     "task_descriptions": [
-      "Sketch μ,σ²,n → E/Var of X̄ and E[S²] before CMP.",
+      "Sketch $\\mu$,$\\sigma^{2}$,n → E/Var of $\\bar{X}$ and $E[S^{2}]$ before CMP.",
       "Guided Reading through CMP 2.6.3.",
       "Knowledge Checks: moment results + refuse Normal-law swallow."
     ],
@@ -79,8 +79,8 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for writing Var(X̄)=σ² without /n.",
-      "Watch for confusing E[S²] with σ² without CMP degrees-of-freedom care.",
+      "Watch for writing $\\operatorname{Var}(\\bar{X})=\\sigma^{2}$ without /n.",
+      "Watch for confusing $E[S^{2}]$ with $\\sigma^{2}$ without CMP degrees-of-freedom care.",
       "Watch for jumping to t / F as today's primary."
     ],
     "open_point": "CMP · Syllabus 2.6.3 mean/variance of sample mean and mean of sample variance",
@@ -116,7 +116,7 @@
       "kind": "active_recall",
       "item_id": "cs1009-2.6.3-ar-01",
       "title": "Active Recall: 2.6.3",
-      "prompt": "Closed-book. For an iid sample with population mean μ and variance σ², which statement about X̄ and S² is correct?",
+      "prompt": "Closed-book. For an iid sample with population mean $\\mu$ and variance $\\sigma^{2}$, which statement about $\\bar{X}$ and $S^{2}$ is correct?",
       "response_type": "mcq",
       "body": "Select the sample-statistic moments.",
       "hints": [
@@ -124,8 +124,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "The sample mean is unbiased with variance σ²/n, and the usual S² is unbiased for population variance.",
-      "model_answer": "E[X̄]=μ; Var(X̄)=σ²/n; E[S²]=σ².",
+      "explanation": "The sample mean is unbiased with variance $\\frac{\\sigma^{2}}{n}$, and the usual $S^{2}$ is unbiased for population variance.",
+      "model_answer": "$E[\\bar{X}]=\\mu$; $\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$; $E[S^{2}]=\\sigma^{2}$.",
       "common_mistake": "Confusing population variance, variance of the sample mean, and the target of S².",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,22 +134,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[X̄]=μ, Var(X̄)=σ²/n, and for the usual denominator n-1 sample variance, E[S²]=σ².",
+          "label": "$E[\\bar{X}]=\\mu$, $\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$, and for the usual denominator $n-1$ sample variance, $E[S^{2}]=\\sigma^{2}$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[X̄]=μ/n because averaging divides the expected value by n.",
+          "label": "$E[\\bar{X}]=\\mu$/n because averaging divides the expected value by n.",
           "misconception_tag": "mean_divided_by_n"
         },
         {
           "id": "c",
-          "label": "Var(X̄)=σ² because averaging independent observations does not reduce variance.",
+          "label": "$\\operatorname{Var}(\\bar{X})=\\sigma^{2}$ because averaging independent observations does not reduce variance.",
           "misconception_tag": "variance_not_divided_by_n"
         },
         {
           "id": "d",
-          "label": "E[S²]=σ²/n because sample variance estimates the variance of X̄ rather than the population variance.",
+          "label": "$E[S^{2}]=\\frac{\\sigma^{2}}{n}$ because sample variance estimates the variance of $\\bar{X}$ rather than the population variance.",
           "misconception_tag": "sample_variance_targets_mean_variance"
         }
       ],
@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.3-cp-01",
       "title": "Checkpoint: 2.6.3",
-      "prompt": "Closed-book. Which statement correctly summarises the distribution-free moment results for X̄ and unbiased S²?",
+      "prompt": "Closed-book. Which statement correctly summarises the distribution-free moment results for $\\bar{X}$ and unbiased $S^{2}$?",
       "response_type": "mcq",
       "body": "Identify what the moment identities do and do not establish.",
       "hints": [
@@ -178,22 +178,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[X̄]=μ, Var(X̄)=σ²/n, and E[S²]=σ². These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
+          "label": "$E[\\bar{X}]=\\mu$, $\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$, and $E[S^{2}]=\\sigma^{2}$. These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Var(X̄)=σ²/n proves X̄ is exactly Normal for every parent population and every n.",
+          "label": "$\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$ proves $\\bar{X}$ is exactly Normal for every parent population and every n.",
           "misconception_tag": "moments_imply_normality"
         },
         {
           "id": "c",
-          "label": "E[S²]=σ² proves (X̄-μ)/(S/√n) is t distributed without any population assumptions.",
+          "label": "$E[S^{2}]=\\sigma^{2}$ proves ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$) is t distributed without any population assumptions.",
           "misconception_tag": "unbiasedness_implies_t"
         },
         {
           "id": "d",
-          "label": "E[X̄]=μ means X̄ equals μ in every sample, so sampling variability is zero.",
+          "label": "$E[\\bar{X}]=\\mu$ means $\\bar{X}$ equals $\\mu$ in every sample, so sampling variability is zero.",
           "misconception_tag": "unbiased_means_exact"
         }
       ],
@@ -219,15 +219,15 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Mean and variance of X̄ and mean of S²",
-    "problem_statement": "A population has mean μ = 12 and variance σ² = 36. A random sample of size n = 9 is drawn. Express E[X̄], Var(X̄), and E[S²] in terms of μ, σ², and n, and evaluate each numerically. Do not invoke Normal sampling laws or the t-statistic.",
+    "problem_statement": "A population has mean $\\mu = 12$ and variance $\\sigma^{2} = 36$. A random sample of size $n = 9$ is drawn. Express $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ in terms of $\\mu$, $\\sigma^{2}$, and $n$, and evaluate each numerically. Do not invoke Normal sampling laws or the t-statistic.",
     "given": [
       {
-        "symbol": "μ",
+        "symbol": "$\\mu$",
         "value": "12",
         "note": "population mean"
       },
       {
-        "symbol": "σ²",
+        "symbol": "$\\sigma^{2}$",
         "value": "36",
         "note": "population variance"
       },
@@ -237,35 +237,35 @@
         "note": "sample size"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Use E[X̄] = μ, Var(X̄) = σ²/n, and E[S²] = σ² for the unbiased sample variance.",
+    "attempt_before_reveal": "CMP closed. Use $E[\\bar{X}] = \\mu$, $\\operatorname{Var}(\\bar{X}) = \\frac{\\sigma^{2}}{n}$, and $E[S^{2}] = \\sigma^{2}$ for the unbiased sample variance.",
     "steps": [
       {
         "id": "S1",
         "label": "Mean of the sample mean",
-        "attempt_cue": "State and evaluate E[X̄].",
+        "attempt_cue": "State and evaluate $E[\\bar{X}]$.",
         "explanation": "For a random sample with finite mean, the sample mean is unbiased for μ.",
-        "calculation": "E[X̄] = μ = 12",
-        "result": "E[X̄] = 12"
+        "calculation": "$E[\\bar{X}] = \\mu = 12$",
+        "result": "$E[\\bar{X}] = 12$"
       },
       {
         "id": "S2",
         "label": "Variance of the sample mean",
-        "attempt_cue": "State and evaluate Var(X̄).",
-        "explanation": "Independence in the random sample gives Var(X̄) = σ²/n.",
-        "calculation": "Var(X̄) = 36 / 9 = 4",
-        "result": "Var(X̄) = 4"
+        "attempt_cue": "State and evaluate $\\operatorname{Var}(\\bar{X})$.",
+        "explanation": "Independence in the random sample gives $\\operatorname{Var}(\\bar{X}) = \\frac{\\sigma^{2}}{n}$.",
+        "calculation": "$\\operatorname{Var}(\\bar{X}) = \\frac{36}{9} = 4$",
+        "result": "$\\operatorname{Var}(\\bar{X}) = 4$"
       },
       {
         "id": "S3",
         "label": "Mean of S² and refuse Normal/t jump",
-        "attempt_cue": "State E[S²] and name what this LO does not yet require.",
-        "explanation": "For the usual unbiased sample variance, E[S²] = σ². This identity does not by itself give Normal laws for X̄ or the t-statistic; those need extra distributional assumptions treated in later LOs.",
-        "calculation": "E[S²] = σ² = 36",
-        "result": "E[S²] = 36; no Normal/t claim required here"
+        "attempt_cue": "State $E[S^{2}]$ and name what this LO does not yet require.",
+        "explanation": "For the usual unbiased sample variance, $E[S^{2}] = \\sigma^{2}$. This identity does not by itself give Normal laws for $\\bar{X}$ or the t-statistic; those need extra distributional assumptions treated in later LOs.",
+        "calculation": "$E[S^{2}] = \\sigma^{2} = 36$",
+        "result": "$E[S^{2}] = 36$; no Normal/t claim required here"
       }
     ],
-    "final_answer": "E[X̄] = 12; Var(X̄) = 4; E[S²] = 36. These moment identities do not yet invoke Normal sampling laws or t.",
-    "common_pitfall": "Writing Var(X̄) = σ² = 36 instead of σ²/n = 4, or jumping to X̄ ~ Normal or a t pivot before this LO asks for it.",
+    "final_answer": "$E[\\bar{X}] = 12$; $\\operatorname{Var}(\\bar{X}) = 4$; $E[S^{2}] = 36$. These moment identities do not yet invoke Normal sampling laws or t.",
+    "common_pitfall": "Writing $\\operatorname{Var}(\\bar{X}) = \\sigma^{2} = 36$ instead of $\\frac{\\sigma^{2}}{n} = 4$, or jumping to $\\bar{X} \\sim \\operatorname{Normal}$ or a t pivot before this LO asks for it.",
     "syllabus_ref": "2.6.3"
   }
 }

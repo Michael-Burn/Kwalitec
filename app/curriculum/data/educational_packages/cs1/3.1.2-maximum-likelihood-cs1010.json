@@ -162,23 +162,23 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.2-cp-01",
       "title": "Checkpoint: Exponential rate MLE",
-      "prompt": "Closed-book. Four independent claim settlement delays (months) are modelled as Exponential with rate λ (pdf f(x) = λ e^{−λx} for x > 0): 2, 3, 1, 4. Enter the maximum-likelihood estimate of λ.",
+      "prompt": "Closed-book. Four independent claim settlement delays (months) are modelled as Exponential with rate $\\lambda$ (pdf $f(x) = \\lambda e^{-\\lambda x}$ for $x > 0$): 2, 3, 1, 4. Enter the maximum-likelihood estimate of $\\lambda$.",
       "response_type": "numeric",
-      "body": "Compute λ̂_MLE from the four observations.",
+      "body": "Compute $\\hat{\\lambda}_{\\mathrm{MLE}}$ from the four observations.",
       "hints": [
-        "Form ℓ(λ) = n ln λ − λ Σxᵢ, then solve the score equation.",
-        "For the rate parametrisation, λ̂ = n / Σxᵢ, not the sample mean."
+        "Form $\\ell(\\lambda) = n \\ln \\lambda - \\lambda \\sum x_{i}$, then solve the score equation.",
+        "For the rate parametrisation, $\\hat{\\lambda} = \\frac{n}{\\sum x_{i}}$, not the sample mean."
       ],
       "accepted_keywords": [
         "0.4"
       ],
       "numeric_tolerance": 0.001,
-      "explanation": "Σxᵢ = 2+3+1+4 = 10 and n = 4, so λ̂_MLE = n/Σxᵢ = 4/10 = 0.4 per month. The sample mean x̄ = 2.5 is the MLE of the mean, not of the rate.",
+      "explanation": "$\\sum x_{i} = 2+3+1+4 = 10$ and $n = 4$, so $\\hat{\\lambda}_{\\mathrm{MLE}} = \\frac{n}{\\sum x_{i}} = \\frac{4}{10} = 0.4$ per month. The sample mean $\\bar{x} = 2.5$ is the MLE of the mean, not of the rate.",
       "model_answer": "0.4",
-      "common_mistake": "Reporting x̄ = 2.5 (or Σxᵢ/n) when the question asks for the rate λ̂ = n/Σxᵢ = 0.4.",
+      "common_mistake": "Reporting $\\bar{x} = 2.5$ (or $\\frac{\\sum x_{i}}{n}$) when the question asks for the rate $\\hat{\\lambda} = \\frac{n}{\\sum x_{i}} = 0.4$.",
       "success_criteria": [
         "Enters a value within 0.001 of 0.4.",
-        "Uses n/Σxᵢ for the rate, not the sample mean."
+        "Uses $\\frac{n}{\\sum x_{i}}$ for the rate, not the sample mean."
       ]
     }
   ],
@@ -201,10 +201,10 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "MLE for Exponential claim waiting times",
-    "problem_statement": "Four independent claim settlement delays (months) are modelled as Exponential with rate λ (pdf f(x) = λ e^{−λx} for x > 0): 2, 3, 1, 4. Find the maximum-likelihood estimate of λ.",
+    "problem_statement": "Four independent claim settlement delays (months) are modelled as Exponential with rate $\\lambda$ (pdf $f(x) = \\lambda e^{-\\lambda x}$ for $x > 0$): 2, 3, 1, 4. Find the maximum-likelihood estimate of $\\lambda$.",
     "given": [
       {
-        "symbol": "x₁…x₄",
+        "symbol": "$x_{1}\\ldots x₄$",
         "value": "2, 3, 1, 4",
         "note": "settlement delays (months)"
       },
@@ -214,40 +214,40 @@
         "note": "sample size"
       },
       {
-        "symbol": "f(x|λ)",
-        "value": "λ e^{−λx}",
+        "symbol": "$f(x|\\lambda)$",
+        "value": "$\\lambda e^{-\\lambda x}$",
         "note": "Exponential rate pdf"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write the log-likelihood ℓ(λ) before differentiating.",
+    "attempt_before_reveal": "CMP closed. Write the log-likelihood $\\ell(\\lambda)$ before differentiating.",
     "steps": [
       {
         "id": "S1",
         "label": "Form the likelihood and log-likelihood",
-        "attempt_cue": "Write L(λ) = λⁿ exp(−λ Σxᵢ) and ℓ(λ) = n ln λ − λ Σxᵢ.",
+        "attempt_cue": "Write $L(\\lambda) = \\lambda^{n} \\exp(-\\lambda \\sum x_{i})$ and $\\ell(\\lambda) = n \\ln \\lambda - \\lambda \\sum x_{i}$.",
         "explanation": "Independence multiplies the densities. The log turns the product into a sum that is easy to differentiate.",
-        "calculation": "Σxᵢ = 2+3+1+4 = 10;  ℓ(λ) = 4 ln λ − 10λ",
-        "result": "ℓ(λ) = 4 ln λ − 10λ"
+        "calculation": "$\\sum x_{i} = 2+3+1+4 = 10$; $\\ell(\\lambda) = 4 \\ln \\lambda - 10\\lambda$",
+        "result": "$\\ell(\\lambda) = 4 \\ln \\lambda - 10\\lambda$"
       },
       {
         "id": "S2",
         "label": "Differentiate and solve the score equation",
-        "attempt_cue": "Set dℓ/dλ = 0 and solve for λ.",
-        "explanation": "The MLE solves the score equation. For Exponential rate, this yields λ̂ = n / Σxᵢ = 1/x̄.",
-        "calculation": "dℓ/dλ = 4/λ − 10 = 0  ⇒  λ̂ = 4/10 = 0.4",
-        "result": "λ̂_MLE = 0.4"
+        "attempt_cue": "Set $\\frac{d\\ell}{d\\lambda} = 0$ and solve for $\\lambda$.",
+        "explanation": "The MLE solves the score equation. For Exponential rate, this yields $\\hat{\\lambda} = \\frac{n}{\\sum x_{i}} = \\frac{1}{\\bar{x}}$.",
+        "calculation": "$\\frac{d\\ell}{d\\lambda} = \\frac{4}{\\lambda} - 10 = 0 \\Rightarrow \\hat{\\lambda} = \\frac{4}{10} = 0.4$",
+        "result": "$\\hat{\\lambda}_{\\mathrm{MLE}} = 0.4$"
       },
       {
         "id": "S3",
         "label": "Confirm it is a maximum",
-        "attempt_cue": "Check the second derivative sign at λ̂.",
-        "explanation": "d²ℓ/dλ² = −n/λ² < 0 for λ > 0, so the critical point is a maximum.",
-        "calculation": "d²ℓ/dλ² = −4/λ² < 0 at λ̂ = 0.4",
-        "result": "λ̂_MLE = 0.4 (maximum)"
+        "attempt_cue": "Check the second derivative sign at $\\hat{\\lambda}$.",
+        "explanation": "$\\frac{d^{2}\\ell}{d\\lambda^{2}} = -\\frac{n}{\\lambda^{2}} < 0$ for $\\lambda > 0$, so the critical point is a maximum.",
+        "calculation": "$\\frac{d^{2}\\ell}{d\\lambda^{2}} = -\\frac{4}{\\lambda^{2}} < 0$ at $\\hat{\\lambda} = 0.4$",
+        "result": "$\\hat{\\lambda}_{\\mathrm{MLE}} = 0.4$ (maximum)"
       }
     ],
-    "final_answer": "λ̂_MLE = 4/10 = 0.4 per month.",
-    "common_pitfall": "Reporting the MLE of the mean μ̂ = x̄ = 2.5 when the question asked for the rate λ, or writing λ̂ = Σxᵢ/n = 2.5 instead of n/Σxᵢ.",
+    "final_answer": "$\\hat{\\lambda}_{\\mathrm{MLE}} = \\frac{4}{10} = 0.4$ per month.",
+    "common_pitfall": "Reporting the MLE of the mean $\\hat{\\mu} = \\bar{x} = 2.5$ when the question asked for the rate $\\lambda$, or writing $\\hat{\\lambda} = \\frac{\\sum x_{i}}{n} = 2.5$ instead of $\\frac{n}{\\sum x_{i}}$.",
     "syllabus_ref": "3.1.2"
   }
 }

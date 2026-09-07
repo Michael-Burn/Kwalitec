@@ -128,8 +128,8 @@
       ],
       "accepted_keywords": [],
       "explanation": "The theorem concerns the distribution of the standardised sum or mean, not individual observations, under stated conditions.",
-      "model_answer": "For iid finite-variance data, X̄≈N(μ,σ²/n) for large n.",
-      "common_mistake": "Applying the CLT to one observation or forgetting the √n reduction in standard deviation.",
+      "model_answer": "For iid finite-variance data, $\\bar{X} \\approx N(\\mu,\\frac{\\sigma^{2}}{n})$ for large n.",
+      "common_mistake": "Applying the CLT to one observation or forgetting the $\\sqrt{n}$ reduction in standard deviation.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -137,7 +137,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "For iid observations with finite mean μ and variance σ², the standardised sample mean approaches N(0,1), so X̄ is approximately N(μ,σ²/n) for large n.",
+          "label": "For iid observations with finite mean $\\mu$ and variance $\\sigma^{2}$, the standardised sample mean approaches $N(0,1)$, so $\\bar{X}$ is approximately $N(\\mu,\\frac{\\sigma^{2}}{n})$ for large n.",
           "misconception_tag": ""
         },
         {
@@ -152,7 +152,7 @@
         },
         {
           "id": "d",
-          "label": "The sample mean has variance σ² rather than σ²/n because averaging changes only its mean.",
+          "label": "The sample mean has variance $\\sigma^{2}$ rather than $\\frac{\\sigma^{2}}{n}$ because averaging changes only its mean.",
           "misconception_tag": "variance_not_reduced"
         }
       ],
@@ -163,22 +163,22 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.1-cp-01",
       "title": "Checkpoint: CLT probability for sample mean",
-      "prompt": "Closed-book. Pet-insurance claim severities are iid with mean μ = 180 and standard deviation σ = 60. A sample of n = 36 claims is drawn. Using the CLT and Φ(1) ≈ 0.841, approximate P(X̄ < 170). Enter the probability as a decimal.",
+      "prompt": "Closed-book. Pet-insurance claim severities are iid with mean $\\mu = 180$ and standard deviation $\\sigma = 60$. A sample of $n = 36$ claims is drawn. Using the CLT and $\\Phi(1) \\approx 0.841$, approximate $P(\\bar{X} < 170)$. Enter the probability as a decimal.",
       "response_type": "numeric",
       "body": "Standardise the sample mean under the CLT and evaluate the lower tail.",
       "hints": [
-        "First form sd(X̄) = σ/√n, then z = (170 - 180)/sd(X̄).",
-        "Use Φ(-1) = 1 - Φ(1) with Φ(1) ≈ 0.841."
+        "First form $\\operatorname{sd}(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}}$, then z = (170 - 180)/$\\operatorname{sd}(\\bar{X})$.",
+        "Use $\\Phi(-1) = 1 - \\Phi(1)$ with $\\Phi(1) \\approx 0.841$."
       ],
       "accepted_keywords": [
         "0.159"
       ],
-      "explanation": "sd(X̄) = σ/√n = 60/√36 = 10, so z = (170 - 180)/10 = -1 and P(X̄ < 170) ≈ Φ(-1) = 1 - Φ(1) ≈ 1 - 0.841 = 0.159.",
+      "explanation": "$\\operatorname{sd}(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}} = \\frac{60}{\\sqrt{36}} = 10$, so $z = \\frac{170 - 180}{10} = -1$ and $P(\\bar{X} < 170) \\approx \\Phi(-1) = 1 - \\Phi(1) \\approx 1 - 0.841 = 0.159$.",
       "model_answer": "0.159",
-      "common_mistake": "Using σ = 60 instead of σ/√n = 10 so that z = -1/6, or reporting Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+      "common_mistake": "Using $\\sigma = 60$ instead of $\\frac{\\sigma}{\\sqrt{n}} = 10$ so that $z = -\\frac{1}{6}$, or reporting $\\Phi(1) \\approx 0.841$ as the lower-tail probability itself.",
       "success_criteria": [
         "Enters a value within 0.001 of 0.159.",
-        "Uses σ/√n when standardising, and converts Φ(1) to the lower tail."
+        "Uses $\\frac{\\sigma}{\\sqrt{n}}$ when standardising, and converts $\\Phi(1)$ to the lower tail."
       ],
       "numeric_tolerance": 0.001
     }
@@ -202,17 +202,17 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "CLT probability for a mean pet-insurance severity",
-    "problem_statement": "Pet-insurance claim severities are iid with mean μ = 180 and standard deviation σ = 60. A sample of n = 36 claims is drawn. Using the CLT, approximate P(X̄ < 170). Use Φ(1) ≈ 0.841.",
+    "problem_statement": "Pet-insurance claim severities are iid with mean $\\mu = 180$ and standard deviation $\\sigma = 60$. A sample of $n = 36$ claims is drawn. Using the CLT, approximate $P(\\bar{X} < 170)$. Use $\\Phi(1) \\approx 0.841$.",
     "given": [
       {
-        "symbol": "μ",
+        "symbol": "$\\mu$",
         "value": "180",
         "note": "population mean severity (£)"
       },
       {
-        "symbol": "σ",
+        "symbol": "$\\sigma$",
         "value": "60",
-        "note": "population sd (£)"
+        "note": "population $sd (£)$"
       },
       {
         "symbol": "n",
@@ -220,40 +220,40 @@
         "note": "sample size"
       },
       {
-        "symbol": "Φ(1)",
-        "value": "≈ 0.841",
+        "symbol": "$\\Phi(1)$",
+        "value": "$\\approx 0.841$",
         "note": "standard Normal CDF at 1"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form the sampling sd σ/√n first, then standardise 170 before reading Φ.",
+    "attempt_before_reveal": "CMP closed. Form the sampling sd $\\frac{\\sigma}{\\sqrt{n}}$ first, then standardise 170 before reading $\\Phi$.",
     "steps": [
       {
         "id": "S1",
         "label": "Standard error of the sample mean",
-        "attempt_cue": "Compute σ/√n.",
-        "explanation": "Under the CLT for iid observations, X̄ is approximately Normal with mean μ and sd σ/√n.",
-        "calculation": "σ/√n = 60 / √36 = 60 / 6 = 10",
-        "result": "sd(X̄) = 10"
+        "attempt_cue": "Compute $\\frac{\\sigma}{\\sqrt{n}}$.",
+        "explanation": "Under the CLT for iid observations, $\\bar{X}$ is approximately Normal with mean $\\mu$ and sd $\\frac{\\sigma}{\\sqrt{n}}$.",
+        "calculation": "$\\frac{\\sigma}{\\sqrt{n}} = \\frac{60}{\\sqrt{36}} = \\frac{60}{6} = 10$",
+        "result": "$\\operatorname{sd}(\\bar{X}) = 10$"
       },
       {
         "id": "S2",
         "label": "Standardise and evaluate the lower tail",
         "attempt_cue": "Form z = (170 − 180)/10, then convert with Φ.",
-        "explanation": "The probability is the lower Normal tail at z = −1, equal to 1 − Φ(1).",
-        "calculation": "z = (170 − 180)/10 = −1; P(X̄ < 170) ≈ Φ(−1) = 1 − Φ(1) ≈ 1 − 0.841 = 0.159",
-        "result": "P ≈ 0.159"
+        "explanation": "The probability is the lower Normal tail at $z = -1$, equal to $1 - \\Phi(1)$.",
+        "calculation": "$z = \\frac{170 - 180}{10} = -1$; $P(\\bar{X} < 170) \\approx \\Phi(-1) = 1 - \\Phi(1) \\approx 1 - 0.841 = 0.159$",
+        "result": "$P \\approx 0.159$"
       },
       {
         "id": "S3",
-        "label": "Refuse σ in place of σ/√n",
+        "label": "Refuse $\\sigma$ in place of $\\frac{\\sigma}{\\sqrt{n}}$",
         "attempt_cue": "State why using sd = 60 for X̄ is wrong.",
-        "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by √n. Using the population sd as if it were sd(X̄) ignores that reduction.",
-        "calculation": "sd(X̄) = 10, not σ = 60",
-        "result": "Must divide σ by √n"
+        "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by $\\sqrt{n}$. Using the population sd as if it were $\\operatorname{sd}(\\bar{X})$ ignores that reduction.",
+        "calculation": "$\\operatorname{sd}(\\bar{X}) = 10, not \\sigma = 60$",
+        "result": "$Must divide \\sigma by \\sqrt{n}$"
       }
     ],
-    "final_answer": "X̄ ≈ Normal(180, 10); z = −1; P(X̄ < 170) ≈ 0.159. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
-    "common_pitfall": "Using X̄ ≈ Normal(180, 60) and computing z = (170 − 180)/60 = −1/6, or reading Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+    "final_answer": "$\\bar{X} \\approx \\operatorname{Normal}(180, 10)$; $z = -1$; $P(\\bar{X} < 170) \\approx 0.159$. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
+    "common_pitfall": "Using $\\bar{X} \\approx \\operatorname{Normal}(180, 60)$ and computing $z = \\frac{170 - 180}{60} = -\\frac{1}{6}$, or reading $\\Phi(1) \\approx 0.841$ as the lower-tail probability itself.",
     "syllabus_ref": "2.5.1"
   }
 }

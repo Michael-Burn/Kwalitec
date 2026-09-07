@@ -1,9 +1,10 @@
 """Prepare session-facing text for KaTeX auto-render.
 
-Educational packages store mathematics as plain Unicode / actuarial notation
-(P(A|B), E[X], μ, σ²) with occasional bare LaTeX fragments (e^{−λx}) but
-without standard delimiters. This module wraps only those bare fragments at
-presentation time so authored JSON stays unchanged.
+Educational packages store mathematics as Unicode / actuarial notation, with
+Wave 1 (and later) migrated strings wrapping real LaTeX in $...$ delimiters.
+This module leaves genuine $...$ / $$...$$ content unchanged so KaTeX
+auto-render can typeset it, and wraps only remaining bare superscript
+fragments (e^{−λx}) at presentation time.
 """
 
 from __future__ import annotations

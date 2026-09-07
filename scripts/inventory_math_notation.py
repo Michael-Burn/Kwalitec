@@ -375,6 +375,13 @@ def build_inventory(catalogue_dir: Path) -> dict[str, Any]:
                 continue
             category, needs_review, reason, signals = classify_string(field_path, text)
             tier = _risk_tier(field_path, text, signals)
+            # Dollar-delimited LaTeX that fully covers the string is a completed
+            # migration (Wave 1 onward). Bare-LaTeX-only compliance stays pending
+            # until an authoring wave records it.
+            if category == "already_compliant" and "dollar_delimited" in signals:
+                status = "migrated"
+            else:
+                status = "pending"
             item = InventoryItem(
                 package_id=package_id,
                 package_file=path.name,
@@ -386,7 +393,7 @@ def build_inventory(catalogue_dir: Path) -> dict[str, Any]:
                 needs_manual_review=needs_review,
                 reason_code=reason,
                 risk_tier=tier,
-                migration_status="pending",
+                migration_status=status,
                 signals=tuple(signals),
             )
             pkg_items.append(item)
@@ -452,6 +459,9 @@ def build_inventory(catalogue_dir: Path) -> dict[str, Any]:
             "needs_manual_review": manual_review_count,
             "confident_automated": len(items) - manual_review_count,
             "remaining_backlog": category_counts["needs_migration"],
+            "migrated": sum(
+                1 for item in items if item.migration_status == "migrated"
+            ),
             "packages_with_migration_backlog": sum(
                 1 for row in packages_out if row["counts"]["needs_migration"] > 0
             ),
@@ -591,6 +601,7 @@ def render_summary_markdown(payload: dict[str, Any]) -> str:
         f"| Mathish strings inventoried | {totals['mathish_strings']} |",
         f"| Already compliant | {totals['already_compliant']} |",
         f"| Needs migration | {totals['needs_migration']} |",
+        f"| Migrated (dollar-delimited) | {totals.get('migrated', 0)} |",
         f"| Correctly excluded | {totals['correctly_excluded']} |",
         f"| Needs manual review (flag) | {totals['needs_manual_review']} |",
         f"| Confident automated (no flag) | {totals['confident_automated']} |",

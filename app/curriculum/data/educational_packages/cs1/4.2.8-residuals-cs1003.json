@@ -123,7 +123,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Pearson scales by fitted variance; deviance residual comes from deviance contributions. LRT is a formal test, not the residual definition.",
-      "model_answer": "Pearson: standardised (y-μ̂)/sqrt(Var); deviance: signed deviance contribution.",
+      "model_answer": "Pearson: standardised $\\frac{y-\\hat{\\mu}}{\\sqrt{\\operatorname{Var}}}$; deviance: signed deviance contribution.",
       "common_mistake": "Collapsing residuals into LRT or omitting variance scaling.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -132,7 +132,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: (y minus μ̂) over sqrt(Var̂(Y)). Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
+          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$. Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
           "misconception_tag": ""
         },
         {
@@ -142,7 +142,7 @@
         },
         {
           "id": "c",
-          "label": "Pearson and deviance residuals equal (y minus μ̂) with no variance scaling in GLMs.",
+          "label": "Pearson and deviance residuals equal (y minus $\\hat{\\mu}$) with no variance scaling in GLMs.",
           "misconception_tag": "raw_only_residual"
         },
         {
@@ -176,7 +176,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Pearson residual: (y minus μ̂) over sqrt(Var̂(Y)), a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
+          "label": "Pearson residual: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$, a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
           "misconception_tag": ""
         },
         {
@@ -186,7 +186,7 @@
         },
         {
           "id": "c",
-          "label": "Pearson residual equals y minus μ̂; deviance residual equals log(y/μ̂) with no further definition.",
+          "label": "Pearson residual equals y minus $\\hat{\\mu}$; deviance residual equals log(y/$\\hat{\\mu}$) with no further definition.",
           "misconception_tag": "raw_only_residual"
         },
         {
@@ -217,16 +217,16 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Pearson and deviance residuals for a Poisson count",
-    "problem_statement": "One commercial policy has observed claim count y = 3 and fitted Poisson mean μ̂ = 6. Compute the Pearson residual r_P = (y − μ̂) / √V(μ̂) with V(μ) = μ. Then compute the Poisson deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)] and the deviance residual r_D = sign(y − μ̂) √d.",
+    "problem_statement": "One commercial policy has observed claim count $y = 3$ and fitted Poisson mean $\\hat{\\mu} = 6$. Compute the Pearson residual $r_{P} = \\frac{y - \\hat{\\mu}}{\\sqrt{V(\\hat{\\mu})}}$ with $V(\\mu) = \\mu$. Then compute the Poisson deviance contribution $d = 2[y \\ln(y/\\hat{\\mu}) - (y - \\hat{\\mu})]$ and the deviance residual $r_{D} = \\operatorname{sign}(y - \\hat{\\mu})\\sqrt{d}$.",
     "given": [
       {
-        "symbol": "y, μ̂",
+        "symbol": "$y$, $\\hat{\\mu}$",
         "value": "3, 6",
         "note": "observed count and fitted mean"
       },
       {
-        "symbol": "V(μ)",
-        "value": "μ",
+        "symbol": "$V(\\mu)$",
+        "value": "$\\mu$",
         "note": "Poisson variance function"
       }
     ],
@@ -235,30 +235,30 @@
       {
         "id": "S1",
         "label": "Pearson residual",
-        "attempt_cue": "Compute (y − μ̂)/√μ̂.",
+        "attempt_cue": "Compute $\\frac{y - \\hat{\\mu}}{\\sqrt{\\hat{\\mu}}}$.",
         "explanation": "Pearson residuals standardise the raw residual by the model standard deviation.",
-        "calculation": "r_P = (3 − 6)/√6 = −3/√6 = −√(9/6) = −√1.5 ≈ −1.2247",
-        "result": "r_P ≈ −1.2247"
+        "calculation": "$r_{P} = \\frac{3 - 6}{\\sqrt{6}} = -\\frac{3}{\\sqrt{6}} = -\\sqrt{\\frac{9}{6}} = -\\sqrt{1.5} \\approx -1.2247$",
+        "result": "$r_{P} \\approx -1.2247$"
       },
       {
         "id": "S2",
         "label": "Deviance contribution",
         "attempt_cue": "Substitute into the Poisson deviance formula.",
-        "explanation": "The deviance contribution is always non-negative; the residual takes the sign of y − μ̂.",
-        "calculation": "d = 2[3 ln(3/6) − (3 − 6)] = 2[3 ln(0.5) + 3] ≈ 2[−2.0794 + 3] = 2 × 0.9206 ≈ 1.8411",
-        "result": "d ≈ 1.8411"
+        "explanation": "The deviance contribution is always non-negative; the residual takes the sign of $y - \\hat{\\mu}$.",
+        "calculation": "$d = 2[3 \\ln(\\frac{3}{6}) - (3 - 6)] = 2[3 \\ln(0.5) + 3] \\approx 2[-2.0794 + 3] = 2 \\times 0.9206 \\approx 1.8411$",
+        "result": "$d \\approx 1.8411$"
       },
       {
         "id": "S3",
         "label": "Deviance residual",
-        "attempt_cue": "Apply sign(y − μ̂) √d.",
-        "explanation": "Because y < μ̂ the deviance residual is negative.",
-        "calculation": "r_D = −√1.8411 ≈ −1.3569",
-        "result": "r_D ≈ −1.3569"
+        "attempt_cue": "Apply $\\operatorname{sign}(y - \\hat{\\mu})\\sqrt{d}$.",
+        "explanation": "Because y < $\\hat{\\mu}$ the deviance residual is negative.",
+        "calculation": "$r_{D} = -\\sqrt{1.8411} \\approx -1.3569$",
+        "result": "$r_{D} \\approx -1.3569$"
       }
     ],
-    "final_answer": "Pearson residual r_P ≈ −1.2247; deviance residual r_D ≈ −1.3569.",
-    "common_pitfall": "Dropping the sign when forming the deviance residual, or using √V(μ) = μ instead of √μ for Poisson.",
+    "final_answer": "Pearson residual $r_{P} \\approx -1.2247$; deviance residual $r_{D} \\approx -1.3569$.",
+    "common_pitfall": "Dropping the sign when forming the deviance residual, or using $\\sqrt{V(\\mu)} = \\mu$ instead of $\\sqrt{\\mu}$ for Poisson.",
     "syllabus_ref": "4.2.8"
   }
 }

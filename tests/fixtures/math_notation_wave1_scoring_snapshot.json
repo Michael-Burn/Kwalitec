@@ -1,0 +1,1245 @@
+{
+  "packages": [
+    "4.1.3-least-squares-cs1003.json",
+    "4.1.3-least-squares-cs1013.json",
+    "4.2.8-residuals-cs1014.json",
+    "4.2.8-residuals-cs1003.json",
+    "2.6.3-mean-var-sample-cs1009.json",
+    "2.6.5-t-statistic-cs1009.json",
+    "3.1.2-maximum-likelihood-cs1010.json",
+    "3.2.5-ci-binomial-poisson-cs1011.json",
+    "2.5.1-clt-cs1008.json",
+    "2.6.4-normal-sample-mean-var-cs1009.json",
+    "3.1.4-comparison-mse-cs1010.json",
+    "3.1.1-method-of-moments-cs1010.json"
+  ],
+  "items": [
+    {
+      "package_file": "4.1.3-least-squares-cs1003.json",
+      "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+      "item_id": "cs1003-4.1.3-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.1.3-least-squares-cs1003.json",
+      "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+      "item_id": "cs1003-4.1.3-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.1.3-least-squares-cs1013.json",
+      "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+      "item_id": "cs1013-4.1.3-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.1.3-least-squares-cs1013.json",
+      "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+      "item_id": "cs1013-4.1.3-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.8-residuals-cs1014.json",
+      "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+      "item_id": "cs1014-4.2.8-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.8-residuals-cs1014.json",
+      "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+      "item_id": "cs1014-4.2.8-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.8-residuals-cs1003.json",
+      "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+      "item_id": "cs1003-4.2.8-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.8-residuals-cs1003.json",
+      "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+      "item_id": "cs1003-4.2.8-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.3-mean-var-sample-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+      "item_id": "cs1009-2.6.3-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.3-mean-var-sample-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+      "item_id": "cs1009-2.6.3-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.5-t-statistic-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+      "item_id": "cs1009-2.6.5-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.5-t-statistic-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+      "item_id": "cs1009-2.6.5-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.2-maximum-likelihood-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+      "item_id": "cs1010-3.1.2-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.2-maximum-likelihood-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD",
+      "item_id": "cs1010-3.1.2-cp-01",
+      "response_type": "numeric",
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.4"
+      ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
+      "verdicts": [
+        {
+          "response": "0.4",
+          "correct": true,
+          "scored": true,
+          "matched_key": "0.4"
+        },
+        {
+          "response": "10.4",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "not-a-number",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "0",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+      "item_id": "cs1011-3.2.5-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+      "item_id": "cs1011-3.2.5-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.5.1-clt-cs1008.json",
+      "package_id": "CS1-EP001-PKG-2.5-CLT",
+      "item_id": "cs1008-2.5.1-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.5.1-clt-cs1008.json",
+      "package_id": "CS1-EP001-PKG-2.5-CLT",
+      "item_id": "cs1008-2.5.1-cp-01",
+      "response_type": "numeric",
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.159"
+      ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
+      "verdicts": [
+        {
+          "response": "0.159",
+          "correct": true,
+          "scored": true,
+          "matched_key": "0.159"
+        },
+        {
+          "response": "10.159",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "not-a-number",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "0",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+      "item_id": "cs1009-2.6.4-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+      "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+      "item_id": "cs1009-2.6.4-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.4-comparison-mse-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+      "item_id": "cs1010-3.1.4-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.4-comparison-mse-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+      "item_id": "cs1010-3.1.4-cp-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.1-method-of-moments-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+      "item_id": "cs1010-3.1.1-ar-01",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "z",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "a ",
+          "correct": true,
+          "scored": true,
+          "matched_key": "a"
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.1-method-of-moments-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS",
+      "item_id": "cs1010-3.1.1-cp-01",
+      "response_type": "numeric",
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "2200"
+      ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
+      "verdicts": [
+        {
+          "response": "2200",
+          "correct": true,
+          "scored": true,
+          "matched_key": "2200"
+        },
+        {
+          "response": "2210.0",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "not-a-number",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        },
+        {
+          "response": "0",
+          "correct": false,
+          "scored": true,
+          "matched_key": ""
+        }
+      ]
+    }
+  ]
+}

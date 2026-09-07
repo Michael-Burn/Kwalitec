@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.4-cp-01",
       "title": "Checkpoint: 3.1.4",
-      "prompt": "Closed-book. Two estimators of θ: θ̂₁ is unbiased with Var=2/n; θ̂₂ has Bias=0.5/√n and Var=0.5/n. Which statement is correct?",
+      "prompt": "Closed-book. Two estimators of $\\theta$: $\\hat{\\theta}_{1}$ is unbiased with $\\operatorname{Var}=\\frac{2}{n}$; $\\hat{\\theta}_{2}$ has $\\operatorname{Bias}=\\frac{0.5}{\\sqrt{n}}$ and $\\operatorname{Var}=\\frac{0.5}{n}$. Which statement is correct?",
       "response_type": "mcq",
       "body": "Compute MSE for both and refuse definition-as-comparison.",
       "hints": [
@@ -170,9 +170,9 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "MSE₁=2/n. Bias² for θ̂₂ is (0.5/√n)²=0.25/n, so MSE₂=0.75/n < 2/n. Prefer θ̂₂. Squaring 0.5/√n incorrectly as 0.25/√n is algebraically wrong. Unbiasedness does not override a worse MSE.",
-      "model_answer": "MSE₁=2/n; MSE₂=0.75/n; prefer θ̂₂. Definitions alone are not a comparison.",
-      "common_mistake": "Dropping the bias² term, preferring unbiasedness over MSE, or mishandling (0.5/√n)².",
+      "explanation": "$\\mathrm{MSE}_{1}=\\frac{2}{n}$. $\\mathrm{Bias}^{2}$ for $\\hat{\\theta}_{2}$ is $(\\frac{0.5}{\\sqrt{n}})^{2}=\\frac{0.25}{n}$, so $\\mathrm{MSE}_{2}=\\frac{0.75}{n} < \\frac{2}{n}$. Prefer $\\hat{\\theta}_{2}$. Squaring $\\frac{0.5}{\\sqrt{n}}$ incorrectly as $\\frac{0.25}{\\sqrt{n}}$ is algebraically wrong. Unbiasedness does not override a worse MSE.",
+      "model_answer": "$MSE_{1}=\\frac{2}{n}$; $MSE_{2}=\\frac{0.75}{n}$; prefer $\\hat{\\theta}_{2}$. Definitions alone are not a comparison.",
+      "common_mistake": "Dropping the $\\mathrm{bias}^{2}$ term, preferring unbiasedness over MSE, or mishandling $(\\frac{0.5}{\\sqrt{n}})^{2}$.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "MSE₁=2/n and MSE₂=(0.5/√n)² + 0.5/n = 0.75/n. Prefer θ̂₂ on MSE. Naming the definitions of bias and MSE is not itself a comparison of these two estimators.",
+          "label": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=(\\frac{0.5}{\\sqrt{n}})^{2}$ + $\\frac{0.5}{n} = \\frac{0.75}{n}$. Prefer $\\hat{\\theta}_{2}$ on MSE. Naming the definitions of bias and MSE is not itself a comparison of these two estimators.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "MSE₁=2/n and MSE₂=0.5/n (ignore squared bias). Prefer θ̂₂, and because θ̂₁ is unbiased the comparison is optional.",
+          "label": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=\\frac{0.5}{n}$ (ignore squared bias). Prefer $\\hat{\\theta}_{2}$, and because $\\hat{\\theta}_{1}$ is unbiased the comparison is optional.",
           "misconception_tag": "drop_bias_term"
         },
         {
           "id": "c",
-          "label": "MSE₁=2/n and MSE₂=0.25/n + 0.5/n = 0.75/n, but prefer θ̂₁ because any unbiased estimator beats any biased one on MSE.",
+          "label": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=\\frac{0.25}{n}$ + $\\frac{0.5}{n} = \\frac{0.75}{n}$, but prefer $\\hat{\\theta}_{1}$ because any unbiased estimator beats any biased one on MSE.",
           "misconception_tag": "unbiased_always_wins"
         },
         {
           "id": "d",
-          "label": "MSE₂=(0.5/√n)² + 0.5/n = 0.25/√n + 0.5/n. Prefer θ̂₁ because 0.25/√n dominates 2/n for large n.",
+          "label": "$MSE_{2}=(\\frac{0.5}{\\sqrt{n}})^{2}$ + $\\frac{0.5}{n} = \\frac{0.25}{\\sqrt{n}}$ + $\\frac{0.5}{n}$. Prefer $\\hat{\\theta}_{1}$ because $\\frac{0.25}{\\sqrt{n}}$ dominates $\\frac{2}{n}$ for large n.",
           "misconception_tag": "bias_square_error"
         }
       ],
@@ -221,25 +221,25 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Compare two premium estimators by MSE",
-    "problem_statement": "An insurer compares two estimators of mean annual premium μ (£). Estimator T₁ has Bias(T₁) = 0 and Var(T₁) = 9. Estimator T₂ has Bias(T₂) = 1 and Var(T₂) = 4. Compute both MSEs and select the estimator with smaller MSE.",
+    "problem_statement": "An insurer compares two estimators of mean annual premium $\\mu$ (£). Estimator $T_{1}$ has $\\operatorname{Bias}(T_{1}) = 0$ and $\\operatorname{Var}(T_{1}) = 9$. Estimator $T_{2}$ has $\\operatorname{Bias}(T_{2}) = 1$ and $\\operatorname{Var}(T_{2}) = 4$. Compute both MSEs and select the estimator with smaller MSE.",
     "given": [
       {
-        "symbol": "Bias(T₁)",
+        "symbol": "$\\operatorname{Bias}(T_{1})$",
         "value": "0",
         "note": "bias of T₁"
       },
       {
-        "symbol": "Var(T₁)",
+        "symbol": "$\\operatorname{Var}(T_{1})$",
         "value": "9",
         "note": "variance of T₁"
       },
       {
-        "symbol": "Bias(T₂)",
+        "symbol": "$\\operatorname{Bias}(T_{2})$",
         "value": "1",
         "note": "bias of T₂"
       },
       {
-        "symbol": "Var(T₂)",
+        "symbol": "$\\operatorname{Var}(T_{2})$",
         "value": "4",
         "note": "variance of T₂"
       }
@@ -249,29 +249,29 @@
       {
         "id": "S1",
         "label": "MSE of T₁",
-        "attempt_cue": "Substitute Bias(T₁) and Var(T₁) into the MSE identity.",
-        "explanation": "MSE(T₁) = Var(T₁) + [Bias(T₁)]² collapses to variance when Bias = 0.",
-        "calculation": "MSE(T₁) = 9 + 0² = 9",
-        "result": "MSE(T₁) = 9"
+        "attempt_cue": "Substitute $\\operatorname{Bias}(T_{1})$ and $\\operatorname{Var}(T_{1})$ into the MSE identity.",
+        "explanation": "$\\operatorname{MSE}(T_{1}) = \\operatorname{Var}(T_{1}) + [\\operatorname{Bias}(T_{1})]^{2}$ collapses to variance when Bias $= 0$.",
+        "calculation": "$\\operatorname{MSE}(T_{1}) = 9 + 0^{2} = 9$",
+        "result": "$\\operatorname{MSE}(T_{1}) = 9$"
       },
       {
         "id": "S2",
         "label": "MSE of T₂",
-        "attempt_cue": "Substitute Bias(T₂) = 1 and Var(T₂) = 4.",
+        "attempt_cue": "Substitute $\\operatorname{Bias}(T_{2})$ = 1 and $\\operatorname{Var}(T_{2})$ = 4.",
         "explanation": "Squared bias is added in full; do not omit the Bias² term.",
-        "calculation": "MSE(T₂) = 4 + 1² = 4 + 1 = 5",
-        "result": "MSE(T₂) = 5"
+        "calculation": "$\\operatorname{MSE}(T_{2}) = 4 + 1^{2} = 4 + 1 = 5$",
+        "result": "$\\operatorname{MSE}(T_{2}) = 5$"
       },
       {
         "id": "S3",
         "label": "Select by MSE",
         "attempt_cue": "Compare 9 and 5.",
         "explanation": "Under an MSE comparison rule, prefer the smaller value.",
-        "calculation": "5 < 9  ⇒  prefer T₂",
-        "result": "T₂ has smaller MSE"
+        "calculation": "$5 < 9 \\Rightarrow$ prefer $T_{2}$",
+        "result": "$T_{2}$ has smaller MSE"
       }
     ],
-    "final_answer": "MSE(T₁) = 9; MSE(T₂) = 5. Prefer T₂ on MSE.",
+    "final_answer": "$\\operatorname{MSE}(T_{1}) = 9$; $\\operatorname{MSE}(T_{2}) = 5$. Prefer $T_{2}$ on MSE.",
     "common_pitfall": "Comparing variances alone (9 vs 4) and declaring T₂ better without adding Bias², or refusing T₂ because Bias ≠ 0 despite MSE(T₂) = 5 < 9.",
     "syllabus_ref": "3.1.4"
   }

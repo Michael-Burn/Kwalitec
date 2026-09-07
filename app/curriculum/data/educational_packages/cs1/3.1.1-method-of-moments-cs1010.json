@@ -142,7 +142,7 @@
         },
         {
           "id": "b",
-          "label": "Any closed-form formula for an estimator θ̂ is automatically a method-of-moments estimator.",
+          "label": "Any closed-form formula for an estimator $\\hat{\\theta}$ is automatically a method-of-moments estimator.",
           "misconception_tag": "any_formula_is_mom"
         },
         {
@@ -163,17 +163,17 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.1-cp-01",
       "title": "Checkpoint: Exponential MoM mean",
-      "prompt": "Closed-book. Five independent claim sizes (£) are modelled as Exponential with unknown mean μ: 2400, 1600, 3200, 1800, 2000. Enter the method-of-moments estimate of μ.",
+      "prompt": "Closed-book. Five independent claim sizes (£) are modelled as Exponential with unknown mean $\\mu$: 2400, 1600, 3200, 1800, 2000. Enter the method-of-moments estimate of $\\mu$.",
       "response_type": "numeric",
-      "body": "Evaluate μ̂_MoM = x̄ on the stated sample.",
+      "body": "Evaluate $\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$ on the stated sample.",
       "hints": [
-        "For Exponential mean μ, the first-moment equation gives μ̂_MoM = x̄.",
+        "For Exponential mean $\\mu$, the first-moment equation gives $\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$.",
         "Sum the five claims and divide by n = 5."
       ],
       "accepted_keywords": [
         "2200"
       ],
-      "explanation": "E[X] = μ implies μ̂_MoM = x̄. The sample mean is (2400 + 1600 + 3200 + 1800 + 2000)/5 = 11000/5 = 2200, so μ̂_MoM = £2200.",
+      "explanation": "$E[X] = \\mu$ implies $\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$. The sample mean is (2400 + 1600 + 3200 + 1800 + 2000)/5 = 11000/5 = 2200, so $\\hat{\\mu}_{\\mathrm{MoM}}$ = £2200.",
       "model_answer": "2200",
       "common_mistake": "Reporting the rate 1/2200 when the question asks for the mean μ, or reporting the sum 11000 instead of the sample mean.",
       "success_criteria": [
@@ -202,10 +202,10 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "MoM mean claim severity (Exponential)",
-    "problem_statement": "A motor book records five independent claim sizes (£): 2400, 1600, 3200, 1800, 2000. Model each claim as Exponential with unknown mean μ (so E[X] = μ). Construct the method-of-moments estimator of μ and evaluate it on this sample.",
+    "problem_statement": "A motor book records five independent claim sizes (£): 2400, 1600, 3200, 1800, 2000. Model each claim as Exponential with unknown mean $\\mu$ (so $E[X] = \\mu$). Construct the method-of-moments estimator of $\\mu$ and evaluate it on this sample.",
     "given": [
       {
-        "symbol": "x₁…x₅",
+        "symbol": "$x_{1},\\ldots,x_{5}$",
         "value": "2400, 1600, 3200, 1800, 2000",
         "note": "claim sizes (£)"
       },
@@ -215,8 +215,8 @@
         "note": "sample size"
       },
       {
-        "symbol": "E[X]",
-        "value": "μ",
+        "symbol": "$E[X]$",
+        "value": "$\\mu$",
         "note": "Exponential mean parameter"
       }
     ],
@@ -225,10 +225,10 @@
       {
         "id": "S1",
         "label": "Write the first-moment equation",
-        "attempt_cue": "Equate E[X] to the sample mean and solve for μ.",
-        "explanation": "Method of moments equates the population moment E[X] = μ to the sample moment x̄, then solves for the parameter.",
-        "calculation": "E[X] = μ  ⇒  μ̂_MoM = x̄",
-        "result": "μ̂_MoM = x̄"
+        "attempt_cue": "Equate $E[X]$ to the sample mean and solve for $\\mu$.",
+        "explanation": "Method of moments equates the population moment $E[X] = \\mu$ to the sample moment $\\bar{x}$, then solves for the parameter.",
+        "calculation": "$E[X] = \\mu \\Rightarrow \\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$",
+        "result": "$\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$"
       },
       {
         "id": "S2",
@@ -236,19 +236,19 @@
         "attempt_cue": "Add the five claim sizes and divide by 5.",
         "explanation": "The first sample moment is the ordinary arithmetic mean.",
         "calculation": "(2400 + 1600 + 3200 + 1800 + 2000) / 5 = 11000 / 5 = 2200",
-        "result": "x̄ = 2200"
+        "result": "$\\bar{x} = 2200$"
       },
       {
         "id": "S3",
         "label": "State the MoM estimate",
-        "attempt_cue": "Substitute x̄ into μ̂_MoM.",
+        "attempt_cue": "Substitute $\\bar{x}$ into $\\hat{\\mu}_{\\mathrm{MoM}}$.",
         "explanation": "For the Exponential mean parameter, MoM and the sample mean coincide.",
-        "calculation": "μ̂_MoM = 2200",
-        "result": "μ̂_MoM = 2200 (£)"
+        "calculation": "$\\hat{\\mu}_{\\mathrm{MoM}} = 2200$",
+        "result": "$\\hat{\\mu}_{\\mathrm{MoM}} = 2200$ (£)"
       }
     ],
-    "final_answer": "μ̂_MoM = x̄ = £2200 for this sample.",
-    "common_pitfall": "Using the Exponential rate parameter λ = 1/μ and reporting λ̂ = 2200 (or 1/5) instead of solving the moment equation for the mean parameter actually requested.",
+    "final_answer": "$\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x} = £2200$ for this sample.",
+    "common_pitfall": "Using the Exponential rate parameter $\\lambda = \\frac{1}{\\mu}$ and reporting $\\hat{\\lambda} = 2200$ (or $\\frac{1}{5}$) instead of solving the moment equation for the mean parameter actually requested.",
     "syllabus_ref": "3.1.1"
   }
 }

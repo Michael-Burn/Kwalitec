@@ -63,12 +63,12 @@ def test_bayes_worked_example_probability_strings_unchanged() -> None:
     assert prepare_math_markup(calc) == calc
 
 
-def test_mle_numeric_checkpoint_prompt_gets_latex_wrapping() -> None:
+def test_mle_numeric_checkpoint_prompt_already_delimited() -> None:
+    """Wave 1 migrated the CS1010 MLE prompt; wrapper must pass $...$ through."""
     pkg = _load_package("3.1.2-maximum-likelihood-cs1010.json")
     cp = next(k for k in pkg["knowledge_checks"] if k["response_type"] == "numeric")
-    marked = prepare_math_markup(cp["prompt"])
-    assert "$e^{−λx}$" in marked
-    assert "λ e^{−λx}" not in marked.replace("$e^{−λx}$", "")
+    assert r"e^{-\lambda x}" in cp["prompt"]
+    assert prepare_math_markup(cp["prompt"]) == cp["prompt"]
 
 
 def test_linear_combination_worked_example_multi_step_plain() -> None:

@@ -1,8 +1,8 @@
 # Mathematical Notation Inventory Summary
 
-**Generated:** 2026-09-06T18:18:04Z
+**Generated:** 2026-09-07T09:34:11Z
 **Standard:** `docs/content/MATHEMATICAL_NOTATION_STANDARD.md`
-**Content fingerprint:** `b260a506b3205d16543790e33b7588568941e825d0cefd72a070f3fb7bf431dd`
+**Content fingerprint:** `b4f6336728635649597f703c404a327c562d2a6249622cc2854397aedaa2c065`
 **Live packages scanned:** 130
 
 ## Totals
@@ -10,12 +10,13 @@
 | Category | Count |
 |---|---:|
 | Mathish strings inventoried | 2203 |
-| Already compliant | 19 |
-| Needs migration | 1928 |
+| Already compliant | 311 |
+| Needs migration | 1636 |
+| Migrated (dollar-delimited) | 292 |
 | Correctly excluded | 256 |
 | Needs manual review (flag) | 486 |
 | Confident automated (no flag) | 1717 |
-| Packages with migration backlog | 120 |
+| Packages with migration backlog | 117 |
 
 ## Limits of automation
 
@@ -25,20 +26,20 @@ Semantic role (live mathematical object vs prose mention) cannot be decided by p
 
 Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.
 
-**Wave 1:** Highest-risk compound calculation boards (12 packages, 315 needs_migration strings).
+**Wave 1:** Highest-risk compound calculation boards (12 packages, 222 needs_migration strings).
 
-- `4.1.3-least-squares-cs1003.json` (`CS1-EP001-PKG-4.1-LEAST-SQUARES`): 24 migrate, 10 tier-1, 0 manual-review flags
-- `4.1.3-least-squares-cs1013.json` (`CS1-EP001-PKG-CN-4.1-LEAST-SQUARES`): 23 migrate, 9 tier-1, 0 manual-review flags
-- `4.2.8-residuals-cs1014.json` (`CS1-EP001-PKG-CX-4.2-RESIDUALS`): 28 migrate, 8 tier-1, 5 manual-review flags
-- `4.2.8-residuals-cs1003.json` (`CS1-EP001-PKG-4.2-RESIDUALS`): 22 migrate, 8 tier-1, 1 manual-review flags
-- `2.6.3-mean-var-sample-cs1009.json` (`CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE`): 38 migrate, 7 tier-1, 4 manual-review flags
-- `2.6.5-t-statistic-cs1009.json` (`CS1-EP001-PKG-2.6-T-STATISTIC`): 27 migrate, 7 tier-1, 11 manual-review flags
-- `3.1.2-maximum-likelihood-cs1010.json` (`CS1-EP001-PKG-3.1-MAXIMUM-LIKELIHOOD`): 25 migrate, 7 tier-1, 0 manual-review flags
-- `3.2.5-ci-binomial-poisson-cs1011.json` (`CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON`): 20 migrate, 7 tier-1, 2 manual-review flags
-- `2.5.1-clt-cs1008.json` (`CS1-EP001-PKG-2.5-CLT`): 32 migrate, 6 tier-1, 2 manual-review flags
-- `2.6.4-normal-sample-mean-var-cs1009.json` (`CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR`): 31 migrate, 5 tier-1, 13 manual-review flags
-- `3.1.4-comparison-mse-cs1010.json` (`CS1-EP001-PKG-3.1-COMPARISON-MSE`): 25 migrate, 5 tier-1, 9 manual-review flags
-- `3.1.1-method-of-moments-cs1010.json` (`CS1-EP001-PKG-3.1-METHOD-OF-MOMENTS`): 20 migrate, 5 tier-1, 3 manual-review flags
+- `3.2.4-ci-normal-mean-variance-cs1011.json` (`CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE`): 19 migrate, 5 tier-1, 8 manual-review flags
+- `3.3.4-chi-square-gof-cs1012.json` (`CS1-EP001-PKG-3.3-CHI-SQUARE-GOF`): 19 migrate, 4 tier-1, 7 manual-review flags
+- `cp-3.1.1-estimators-cs1016.json` (`CS1-EP001-PKG-CP-3.1-ESTIMATORS`): 17 migrate, 4 tier-1, 3 manual-review flags
+- `3.1.6-bootstrap-estimator-cs1010.json` (`CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR`): 16 migrate, 4 tier-1, 4 manual-review flags
+- `5.1.8-empirical-bayes-cs1015.json` (`CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES`): 14 migrate, 4 tier-1, 4 manual-review flags
+- `5.1.8-empirical-bayes-cs1003.json` (`CS1-EP001-PKG-5.1-EMPIRICAL-BAYES`): 13 migrate, 4 tier-1, 2 manual-review flags
+- `cp-2.5.1-clt-cs1016.json` (`CS1-EP001-PKG-CP-2.5-CLT`): 31 migrate, 3 tier-1, 2 manual-review flags
+- `3.1.3-efficiency-bias-consistency-mse-cs1010.json` (`CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE`): 23 migrate, 3 tier-1, 0 manual-review flags
+- `3.1.5-asymptotic-mle-cs1010.json` (`CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE`): 20 migrate, 3 tier-1, 1 manual-review flags
+- `4.1.2-simple-multiple-cs1003.json` (`CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE`): 20 migrate, 3 tier-1, 5 manual-review flags
+- `3.3.5-contingency-independence-cs1012.json` (`CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE`): 19 migrate, 3 tier-1, 5 manual-review flags
+- `cp-revision-spine-memory-cs1016.json` (`CS1-EP001-PKG-REV-SPINE-MEMORY-PI`): 11 migrate, 3 tier-1, 1 manual-review flags
 
 ## How to refresh
 
@@ -50,18 +51,6 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 
 ## Per-package backlog (top 25 by tier-1 then backlog)
 
-- `4.1.3-least-squares-cs1003.json`: backlog 24 (tier-1 10, manual-review 0, compliant 0, excluded 0)
-- `4.1.3-least-squares-cs1013.json`: backlog 23 (tier-1 9, manual-review 0, compliant 0, excluded 0)
-- `4.2.8-residuals-cs1014.json`: backlog 28 (tier-1 8, manual-review 5, compliant 0, excluded 0)
-- `4.2.8-residuals-cs1003.json`: backlog 22 (tier-1 8, manual-review 1, compliant 0, excluded 0)
-- `2.6.3-mean-var-sample-cs1009.json`: backlog 38 (tier-1 7, manual-review 4, compliant 0, excluded 3)
-- `2.6.5-t-statistic-cs1009.json`: backlog 27 (tier-1 7, manual-review 11, compliant 0, excluded 8)
-- `3.1.2-maximum-likelihood-cs1010.json`: backlog 25 (tier-1 7, manual-review 0, compliant 0, excluded 0)
-- `3.2.5-ci-binomial-poisson-cs1011.json`: backlog 20 (tier-1 7, manual-review 2, compliant 0, excluded 1)
-- `2.5.1-clt-cs1008.json`: backlog 32 (tier-1 6, manual-review 2, compliant 0, excluded 0)
-- `2.6.4-normal-sample-mean-var-cs1009.json`: backlog 31 (tier-1 5, manual-review 13, compliant 0, excluded 6)
-- `3.1.4-comparison-mse-cs1010.json`: backlog 25 (tier-1 5, manual-review 9, compliant 0, excluded 7)
-- `3.1.1-method-of-moments-cs1010.json`: backlog 20 (tier-1 5, manual-review 3, compliant 0, excluded 2)
 - `3.2.4-ci-normal-mean-variance-cs1011.json`: backlog 19 (tier-1 5, manual-review 8, compliant 0, excluded 6)
 - `3.3.4-chi-square-gof-cs1012.json`: backlog 19 (tier-1 4, manual-review 7, compliant 0, excluded 3)
 - `cp-3.1.1-estimators-cs1016.json`: backlog 17 (tier-1 4, manual-review 3, compliant 0, excluded 3)
@@ -75,3 +64,15 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 - `3.3.5-contingency-independence-cs1012.json`: backlog 19 (tier-1 3, manual-review 5, compliant 0, excluded 2)
 - `cp-revision-spine-memory-cs1016.json`: backlog 11 (tier-1 3, manual-review 1, compliant 0, excluded 0)
 - `4.2.6-deviance-estimation-cs1014.json`: backlog 17 (tier-1 2, manual-review 3, compliant 0, excluded 1)
+- `3.2.7-ci-paired-means-cs1011.json`: backlog 16 (tier-1 2, manual-review 1, compliant 0, excluded 0)
+- `4.2.6-deviance-estimation-cs1003.json`: backlog 16 (tier-1 2, manual-review 4, compliant 0, excluded 0)
+- `3.2.3-ci-given-sampling-distribution-cs1011.json`: backlog 15 (tier-1 2, manual-review 6, compliant 0, excluded 5)
+- `4.1.2-simple-multiple-cs1013.json`: backlog 15 (tier-1 2, manual-review 4, compliant 0, excluded 1)
+- `5.1.3-posterior-simple-cs1003.json`: backlog 11 (tier-1 2, manual-review 1, compliant 0, excluded 0)
+- `5.1.9-bayes-vs-eb-cs1015.json`: backlog 10 (tier-1 2, manual-review 5, compliant 0, excluded 3)
+- `revision-sampling-distributions-cs1009.json`: backlog 9 (tier-1 2, manual-review 3, compliant 0, excluded 3)
+- `revision-linear-regression-cs1013.json`: backlog 7 (tier-1 2, manual-review 7, compliant 0, excluded 6)
+- `revision-central-limit-theorem-cs1008.json`: backlog 6 (tier-1 2, manual-review 0, compliant 0, excluded 0)
+- `4.2.2-mean-variance-cs1003.json`: backlog 29 (tier-1 1, manual-review 11, compliant 0, excluded 5)
+- `3.2.6-ci-two-sample-cs1011.json`: backlog 19 (tier-1 1, manual-review 4, compliant 0, excluded 1)
+- `3.2.2-prediction-interval-cs1011.json`: backlog 18 (tier-1 1, manual-review 2, compliant 0, excluded 2)
