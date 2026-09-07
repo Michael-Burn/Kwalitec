@@ -1,8 +1,8 @@
 # Mathematical Notation Inventory Summary
 
-**Generated:** 2026-09-07T18:32:39Z
+**Generated:** 2026-09-07T18:54:52Z
 **Standard:** `docs/content/MATHEMATICAL_NOTATION_STANDARD.md`
-**Content fingerprint:** `9f2ceb027ce66f59a25cb5c372edeee9b6a3da4c1532787f242cc6f631650ec3`
+**Content fingerprint:** `9270f4793d6f3a3fdda0f6ad72b610d663365a6e157307a7c9eafc9b02c4763e`
 **Live packages scanned:** 130
 
 ## Totals
@@ -10,13 +10,13 @@
 | Category | Count |
 |---|---:|
 | Mathish strings inventoried | 2203 |
-| Already compliant | 1497 |
-| Needs migration | 434 |
-| Migrated (dollar-delimited) | 1478 |
+| Already compliant | 1627 |
+| Needs migration | 304 |
+| Migrated (dollar-delimited) | 1608 |
 | Correctly excluded | 272 |
 | Needs manual review (flag) | 343 |
 | Confident automated (no flag) | 1860 |
-| Packages with migration backlog | 48 |
+| Packages with migration backlog | 47 |
 
 ## Limits of automation
 
@@ -26,20 +26,20 @@ Semantic role (live mathematical object vs prose mention) cannot be decided by p
 
 Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.
 
-**Wave 1:** Highest-backlog migration boards (no tier-1 remaining) (12 packages, 173 needs_migration strings).
+**Wave 1:** Highest-backlog migration boards (no tier-1 remaining) (12 packages, 135 needs_migration strings).
 
-- `4.2.3-link-canonical-cs1014.json` (`CS1-EP001-PKG-CX-4.2-LINK-CANONICAL`): 16 migrate, 0 tier-1, 7 manual-review flags
-- `2.6.6-f-distribution-cs1009.json` (`CS1-EP001-PKG-2.6-F-DISTRIBUTION`): 15 migrate, 0 tier-1, 6 manual-review flags
-- `3.2.1-confidence-interval-parameter-cs1011.json` (`CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER`): 15 migrate, 0 tier-1, 3 manual-review flags
-- `4.2.1-exponential-family-cs1003.json` (`CS1-EP001-PKG-4.2-EXPONENTIAL-FAMILY`): 15 migrate, 0 tier-1, 6 manual-review flags
-- `4.2.7-model-choice-cs1014.json` (`CS1-EP001-PKG-CX-4.2-MODEL-CHOICE`): 15 migrate, 0 tier-1, 5 manual-review flags
-- `4.1.5-variable-selection-cs1003.json` (`CS1-EP001-PKG-4.1-VARIABLE-SELECTION`): 14 migrate, 0 tier-1, 12 manual-review flags
-- `4.2.4-factors-interactions-cs1003.json` (`CS1-EP001-PKG-4.2-FACTORS-INTERACTIONS`): 14 migrate, 0 tier-1, 6 manual-review flags
-- `4.2.3-link-canonical-cs1003.json` (`CS1-EP001-PKG-4.2-LINK-CANONICAL`): 14 migrate, 0 tier-1, 9 manual-review flags
-- `4.2.7-model-choice-cs1003.json` (`CS1-EP001-PKG-4.2-MODEL-CHOICE`): 14 migrate, 0 tier-1, 5 manual-review flags
-- `5.1.6-credibility-premium-cs1003.json` (`CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM`): 14 migrate, 0 tier-1, 11 manual-review flags
-- `4.1.5-variable-selection-cs1013.json` (`CS1-EP001-PKG-CN-4.1-VARIABLE-SELECTION`): 14 migrate, 0 tier-1, 13 manual-review flags
-- `2.2.2-independence-cs1005.json` (`CS1-EP001-PKG-2.2-INDEPENDENCE`): 13 migrate, 0 tier-1, 0 manual-review flags
+- `2.6.2-sampling-distribution-statistic-cs1009.json` (`CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC`): 13 migrate, 0 tier-1, 2 manual-review flags
+- `3.3.3-permutation-tests-cs1012.json` (`CS1-EP001-PKG-3.3-PERMUTATION-TESTS`): 13 migrate, 0 tier-1, 7 manual-review flags
+- `2.1.5-inverse-transform-cs1004.json` (`CS1-EP001-PKG-2.1-INVERSE-TRANSFORM`): 12 migrate, 0 tier-1, 5 manual-review flags
+- `5.1.5-credible-intervals-cs1015.json` (`CS1-EP001-PKG-CO-5.1-CREDIBLE-INTERVALS`): 12 migrate, 0 tier-1, 7 manual-review flags
+- `cp-3.2.1-ci-sample-cs1016.json` (`CS1-EP001-PKG-CP-3.2-CI-SAMPLE`): 12 migrate, 0 tier-1, 3 manual-review flags
+- `3.2.8-bootstrap-confidence-interval-cs1011.json` (`CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL`): 11 migrate, 0 tier-1, 5 manual-review flags
+- `5.1.7-bayesian-credibility-cs1015.json` (`CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY`): 11 migrate, 0 tier-1, 6 manual-review flags
+- `cr-2.1.1-discrete-cs1017.json` (`CS1-EP001-PKG-CR-2.1-DISCRETE`): 11 migrate, 0 tier-1, 1 manual-review flags
+- `5.1.7-bayesian-credibility-cs1003.json` (`CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY`): 10 migrate, 0 tier-1, 3 manual-review flags
+- `5.1.4-loss-estimators-cs1015.json` (`CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS`): 10 migrate, 0 tier-1, 2 manual-review flags
+- `cp-3.3.1-hypothesis-testing-cs1016.json` (`CS1-EP001-PKG-CP-3.3-HYPOTHESIS-TESTING`): 10 migrate, 0 tier-1, 4 manual-review flags
+- `cr-1.2.2-correlation-cs1017.json` (`CS1-EP001-PKG-CR-1.2-CORRELATION`): 10 migrate, 0 tier-1, 2 manual-review flags
 
 ## How to refresh
 
@@ -51,18 +51,6 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 
 ## Per-package backlog (top 25 by tier-1 then backlog)
 
-- `4.2.3-link-canonical-cs1014.json`: backlog 16 (tier-1 0, manual-review 7, compliant 0, excluded 4)
-- `2.6.6-f-distribution-cs1009.json`: backlog 15 (tier-1 0, manual-review 6, compliant 0, excluded 2)
-- `3.2.1-confidence-interval-parameter-cs1011.json`: backlog 15 (tier-1 0, manual-review 3, compliant 0, excluded 2)
-- `4.2.1-exponential-family-cs1003.json`: backlog 15 (tier-1 0, manual-review 6, compliant 0, excluded 1)
-- `4.2.7-model-choice-cs1014.json`: backlog 15 (tier-1 0, manual-review 5, compliant 0, excluded 1)
-- `4.1.5-variable-selection-cs1003.json`: backlog 14 (tier-1 0, manual-review 12, compliant 0, excluded 7)
-- `4.2.4-factors-interactions-cs1003.json`: backlog 14 (tier-1 0, manual-review 6, compliant 0, excluded 4)
-- `4.2.3-link-canonical-cs1003.json`: backlog 14 (tier-1 0, manual-review 9, compliant 1, excluded 3)
-- `4.2.7-model-choice-cs1003.json`: backlog 14 (tier-1 0, manual-review 5, compliant 0, excluded 2)
-- `5.1.6-credibility-premium-cs1003.json`: backlog 14 (tier-1 0, manual-review 11, compliant 0, excluded 7)
-- `4.1.5-variable-selection-cs1013.json`: backlog 14 (tier-1 0, manual-review 13, compliant 0, excluded 8)
-- `2.2.2-independence-cs1005.json`: backlog 13 (tier-1 0, manual-review 0, compliant 0, excluded 0)
 - `2.6.2-sampling-distribution-statistic-cs1009.json`: backlog 13 (tier-1 0, manual-review 2, compliant 0, excluded 2)
 - `3.3.3-permutation-tests-cs1012.json`: backlog 13 (tier-1 0, manual-review 7, compliant 0, excluded 3)
 - `2.1.5-inverse-transform-cs1004.json`: backlog 12 (tier-1 0, manual-review 5, compliant 5, excluded 0)
@@ -76,3 +64,15 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 - `cp-3.3.1-hypothesis-testing-cs1016.json`: backlog 10 (tier-1 0, manual-review 4, compliant 0, excluded 2)
 - `cr-1.2.2-correlation-cs1017.json`: backlog 10 (tier-1 0, manual-review 2, compliant 0, excluded 1)
 - `2.1.4-poisson-process-cs1004.json`: backlog 9 (tier-1 0, manual-review 4, compliant 1, excluded 3)
+- `5.1.2-prior-posterior-cs1015.json`: backlog 9 (tier-1 0, manual-review 6, compliant 0, excluded 4)
+- `revision-distributions-generation-cs1004.json`: backlog 9 (tier-1 0, manual-review 6, compliant 1, excluded 3)
+- `revision-glm-cs1014.json`: backlog 9 (tier-1 0, manual-review 6, compliant 0, excluded 1)
+- `2.1.1-discrete-cs1002.json`: backlog 8 (tier-1 0, manual-review 1, compliant 0, excluded 0)
+- `2.1.6-software-generation-cs1004.json`: backlog 8 (tier-1 0, manual-review 2, compliant 0, excluded 1)
+- `5.1.2-prior-posterior-cs1003.json`: backlog 8 (tier-1 0, manual-review 7, compliant 0, excluded 4)
+- `cr-2.1.2-continuous-cs1017.json`: backlog 8 (tier-1 0, manual-review 2, compliant 0, excluded 1)
+- `revision-estimators-cs1010.json`: backlog 8 (tier-1 0, manual-review 2, compliant 0, excluded 0)
+- `revision-regression-glm-cs1003.json`: backlog 8 (tier-1 0, manual-review 6, compliant 0, excluded 3)
+- `1.2.2-eda-association-ep001.json`: backlog 7 (tier-1 0, manual-review 2, compliant 0, excluded 1)
+- `2.1.2-continuous-cs1002.json`: backlog 6 (tier-1 0, manual-review 2, compliant 0, excluded 1)
+- `4.2.3-link-canonical-cs1003.json`: backlog 6 (tier-1 0, manual-review 9, compliant 9, excluded 3)

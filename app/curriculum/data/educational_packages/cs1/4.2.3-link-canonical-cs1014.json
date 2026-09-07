@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Link maps μ to η; canonical is family-specific natural parameter link. Software default needs a warrant, and link is not eta itself.",
-      "model_answer": "Link maps μ to η; canonical examples logit (binomial), log (Poisson).",
+      "model_answer": "Link maps $\\mu$ to $\\eta$; canonical examples logit (binomial), log (Poisson).",
       "common_mistake": "Treating software default as canonical or equating link with eta.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,7 +136,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A link function connects the mean response mu to the linear predictor η. A canonical link is the natural family link equating eta with the natural parameter. Binomial: logit; Poisson: log.",
+          "label": "A link function connects the mean response mu to the linear predictor $\\eta$. A canonical link is the natural family link equating eta with the natural parameter. Binomial: logit; Poisson: log.",
           "misconception_tag": ""
         },
         {
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Binomial: logit (μ in (0,1) and logit maps to the real line for eta). Gamma: reciprocal (negative-reciprocal canonical form as in CMP) because μ greater than 0 maps the positive mean onto the η scale for the gamma exponential-family form. A software default needs a warrant; canonical means the link equating eta with the natural parameter.",
+          "label": "Binomial: logit ($\\mu$ in $(0,1)$ and logit maps to the real line for eta). Gamma: reciprocal (negative-reciprocal canonical form as in CMP) because $\\mu$ greater than 0 maps the positive mean onto the $\\eta$ scale for the gamma exponential-family form. A software default needs a warrant; canonical means the link equating eta with the natural parameter.",
           "misconception_tag": ""
         },
         {
@@ -226,15 +226,15 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Logit and log canonical links with numeric η",
-    "problem_statement": "A GLM uses a link g so that η = g(μ) = xᵀβ.\n(a) For a binomial probability μ = 0.8, compute the canonical logit link η = ln(μ/(1 − μ)).\n(b) For a Poisson mean with linear predictor η = 0.5, compute μ = e^η under the canonical log link.\nState why logit and log are the canonical links for binomial and Poisson respectively.",
+    "problem_statement": "A GLM uses a link $g$ so that $\\eta = g(\\mu) = x^{\\mathrm{T}}\\beta$.\n(a) For a binomial probability $\\mu = 0.8$, compute the canonical logit link $\\eta = \\ln(\\mu/(1 - \\mu))$.\n(b) For a Poisson mean with linear predictor $\\eta = 0.5$, compute $\\mu = e^{\\eta}$ under the canonical log link.\nState why logit and log are the canonical links for binomial and Poisson respectively.",
     "given": [
       {
-        "symbol": "μ_binom",
+        "symbol": "$\\mu_{\\mathrm{binom}}$",
         "value": "0.8",
         "note": "binomial mean probability"
       },
       {
-        "symbol": "η_pois",
+        "symbol": "$\\eta_{\\mathrm{pois}}$",
         "value": "0.5",
         "note": "Poisson linear predictor"
       }
@@ -246,16 +246,16 @@
         "label": "Binomial canonical logit",
         "attempt_cue": "Compute ln(0.8/0.2).",
         "explanation": "The link maps the mean μ to the linear predictor η. For binomial, the canonical link is the logit.",
-        "calculation": "η = ln(0.8/0.2) = ln 4 ≈ 1.3863",
-        "result": "η ≈ 1.3863"
+        "calculation": "$\\eta = \\ln(0.8/0.2) = \\ln 4 \\approx 1.3863$",
+        "result": "$\\eta \\approx 1.3863$"
       },
       {
         "id": "S2",
         "label": "Poisson canonical log link",
         "attempt_cue": "Compute μ = exp(0.5).",
         "explanation": "For Poisson, the canonical link is log, so the mean is the exponential of the linear predictor.",
-        "calculation": "μ = e^{0.5} ≈ 1.6487",
-        "result": "μ ≈ 1.6487"
+        "calculation": "$\\mu = e^{0.5} \\approx 1.6487$",
+        "result": "$\\mu \\approx 1.6487$"
       },
       {
         "id": "S3",
@@ -263,10 +263,10 @@
         "attempt_cue": "Name the canonical links without inventing a third 'default'.",
         "explanation": "Canonical means the link equates η with the natural parameter of the exponential family: logit for binomial, log for Poisson.",
         "calculation": "Canonical: logit (binomial), log (Poisson)",
-        "result": "Link maps μ → η; canonical as above"
+        "result": "Link maps $\\mu \\rightarrow \\eta$; canonical as above"
       }
     ],
-    "final_answer": "logit(0.8) ≈ 1.3863; Poisson μ = e^{0.5} ≈ 1.6487. Canonical links: logit (binomial), log (Poisson).",
+    "final_answer": "$\\operatorname{logit}(0.8) \\approx 1.3863$; Poisson $\\mu = e^{0.5} \\approx 1.6487$. Canonical links: logit (binomial), log (Poisson).",
     "common_pitfall": "Using the identity link for Poisson (μ = η = 0.5) or reporting logit(0.8) = 0.8/0.2 = 4 without taking the logarithm.",
     "syllabus_ref": "4.2.3"
   }

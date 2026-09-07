@@ -157,7 +157,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.7-cp-01",
       "title": "Checkpoint: 4.2.7",
-      "prompt": "Closed-book. Nested GLMs M_reduced subset M_full. Which statement is correct?",
+      "prompt": "Closed-book. Nested GLMs $M_{\\mathrm{reduced}} \\subset M_{\\mathrm{full}}$. Which statement is correct?",
       "response_type": "mcq",
       "body": "Outline deviance difference choice; refuse residual plot.",
       "hints": [
@@ -175,7 +175,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Compare deviance (or −2Δℓ) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
+          "label": "Compare deviance (or $-2\\Delta\\ell$) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
           "misconception_tag": ""
         },
         {
@@ -185,7 +185,7 @@
         },
         {
           "id": "c",
-          "label": "Choose M_full whenever any single added p-value is below 0.05; deviance difference is redundant if significance exists.",
+          "label": "Choose $M_{\\mathrm{full}}$ whenever any single added p-value is below 0.05; deviance difference is redundant if significance exists.",
           "misconception_tag": "p_only_choice"
         },
         {
@@ -216,20 +216,20 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Nested GLM choice by deviance difference (flood region)",
-    "problem_statement": "Two nested Poisson GLMs are fitted to the same flood claim-count data. The reduced model (no region factor) has deviance D_R = 50.0 on more residual df. The fuller model (with region) has D_F = 40.0. The region factor uses ν = 2 degrees of freedom. Compute ΔD = D_R − D_F and compare with χ²_{2,0.95} = 5.991 at α = 0.05.",
+    "problem_statement": "Two nested Poisson GLMs are fitted to the same flood claim-count data. The reduced model (no region factor) has deviance $D_{R} = 50.0$ on more residual df. The fuller model (with region) has $D_{F} = 40.0$. The region factor uses $\\nu = 2$ degrees of freedom. Compute $\\Delta D = D_{R} - D_{F}$ and compare with $\\chi^{2}_{2,0.95} = 5.991$ at $\\alpha = 0.05$.",
     "given": [
       {
-        "symbol": "D_R, D_F",
+        "symbol": "$D_{R}$, $D_{F}$",
         "value": "50.0, 40.0",
         "note": "reduced and fuller deviance"
       },
       {
-        "symbol": "ν",
+        "symbol": "$\\nu$",
         "value": "2",
         "note": "df for the nested comparison"
       },
       {
-        "symbol": "χ²_{2,0.95}",
+        "symbol": "$\\chi^{2}_{2,0.95}$",
         "value": "5.991",
         "note": "critical value"
       }
@@ -241,8 +241,8 @@
         "label": "Deviance difference",
         "attempt_cue": "Compute D_R − D_F.",
         "explanation": "For nested GLMs the deviance difference is the likelihood-ratio statistic for the omitted terms.",
-        "calculation": "ΔD = 50.0 − 40.0 = 10.0",
-        "result": "ΔD = 10.0"
+        "calculation": "$\\Delta D = 50.0 - 40.0 = 10.0$",
+        "result": "$\\Delta D = 10.0$"
       },
       {
         "id": "S2",
@@ -250,7 +250,7 @@
         "attempt_cue": "Compare 10.0 with 5.991 on 2 df.",
         "explanation": "Reject the reduced model at α = 0.05 if ΔD exceeds the critical value.",
         "calculation": "10.0 > 5.991 ⇒ reject reduced model",
-        "result": "Reject reduced model at α = 0.05"
+        "result": "Reject reduced model at $\\alpha = 0.05$"
       },
       {
         "id": "S3",
@@ -261,7 +261,7 @@
         "result": "Prefer the fuller model with region"
       }
     ],
-    "final_answer": "ΔD = 10.0 on 2 df > 5.991; reject the reduced model at α = 0.05 and retain region.",
+    "final_answer": "$\\Delta D = 10.0$ on 2 df $> 5.991$; reject the reduced model at $\\alpha = 0.05$ and retain region.",
     "common_pitfall": "Comparing D_F alone to the critical value, or reversing the subtraction as D_F − D_R.",
     "syllabus_ref": "4.2.7"
   }

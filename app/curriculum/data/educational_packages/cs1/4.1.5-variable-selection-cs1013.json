@@ -221,7 +221,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Choose explanatory set by adjusted R²",
-    "problem_statement": "Two nested severity regressions are fitted on the same n = 50 policies.\nModel A uses p = 2 explanatory variables and has R² = 0.60.\nModel B uses p = 5 explanatory variables and has R² = 0.62.\nCompute adjusted R² for each model using R²_adj = 1 − (1 − R²)(n − 1)/(n − p − 1), and select the model preferred by adjusted R².",
+    "problem_statement": "Two nested severity regressions are fitted on the same $n = 50$ policies.\nModel A uses $p = 2$ explanatory variables and has $R^{2} = 0.60$.\nModel B uses $p = 5$ explanatory variables and has $R^{2} = 0.62$.\nCompute adjusted $R^{2}$ for each model using $R^{2}_{\\mathrm{adj}} = 1 - (1 - R^{2})(n - 1)/(n - p - 1)$, and select the model preferred by adjusted $R^{2}$.",
     "given": [
       {
         "symbol": "n",
@@ -230,12 +230,12 @@
       },
       {
         "symbol": "Model A",
-        "value": "p = 2, R² = 0.60",
+        "value": "$p = 2$, $R^{2} = 0.60$",
         "note": "smaller explanatory set"
       },
       {
         "symbol": "Model B",
-        "value": "p = 5, R² = 0.62",
+        "value": "$p = 5$, $R^{2} = 0.62$",
         "note": "larger explanatory set"
       }
     ],
@@ -246,27 +246,27 @@
         "label": "Adjusted R² for Model A",
         "attempt_cue": "Substitute n = 50, p = 2, R² = 0.60 into the formula.",
         "explanation": "Adjusted R² penalises extra parameters so that raw R² inflation from adding variables is not automatic preference.",
-        "calculation": "R²_adj,A = 1 − (1 − 0.60) × 49 / 47 = 1 − 0.40 × 49/47 = 1 − 19.6/47 ≈ 0.5830",
-        "result": "R²_adj,A ≈ 0.5830"
+        "calculation": "$R^{2}_{\\mathrm{adj},A} = 1 - (1 - 0.60) \\times 49 / 47 = 1 - 0.40 \\times 49/47 = 1 - 19.6/47 \\approx 0.5830$",
+        "result": "$R^{2}_{\\mathrm{adj},A} \\approx 0.5830$"
       },
       {
         "id": "S2",
         "label": "Adjusted R² for Model B",
         "attempt_cue": "Substitute n = 50, p = 5, R² = 0.62.",
         "explanation": "The larger model starts with higher raw R² but faces a heavier penalty.",
-        "calculation": "R²_adj,B = 1 − (1 − 0.62) × 49 / 44 = 1 − 0.38 × 49/44 = 1 − 18.62/44 ≈ 0.5768",
-        "result": "R²_adj,B ≈ 0.5768"
+        "calculation": "$R^{2}_{\\mathrm{adj},B} = 1 - (1 - 0.62) \\times 49 / 44 = 1 - 0.38 \\times 49/44 = 1 - 18.62/44 \\approx 0.5768$",
+        "result": "$R^{2}_{\\mathrm{adj},B} \\approx 0.5768$"
       },
       {
         "id": "S3",
         "label": "Select by adjusted R²",
         "attempt_cue": "Compare the two adjusted values.",
         "explanation": "Prefer the larger adjusted R². Here Model A wins despite smaller raw R².",
-        "calculation": "0.5830 > 0.5768 ⇒ prefer Model A on adjusted R²",
+        "calculation": "$0.5830 > 0.5768 \\Rightarrow$ prefer Model A on adjusted $R^{2}$",
         "result": "Prefer Model A (p = 2)"
       }
     ],
-    "final_answer": "R²_adj,A ≈ 0.5830; R²_adj,B ≈ 0.5768; select Model A. More variables is not automatically better.",
+    "final_answer": "$R^{2}_{\\mathrm{adj},A} \\approx 0.5830$; $R^{2}_{\\mathrm{adj},B} \\approx 0.5768$; select Model A. More variables is not automatically better.",
     "common_pitfall": "Choosing Model B solely because raw R² = 0.62 exceeds 0.60, and ignoring that adjusted R² falls after the extra three variables.",
     "syllabus_ref": "4.1.5"
   }

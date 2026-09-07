@@ -219,25 +219,25 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Test independence on a theft-fire joint table",
-    "problem_statement": "A household book records indicators (X, Y) with joint PMF P(0,0) = 0.50, P(0,1) = 0.10, P(1,0) = 0.20, P(1,1) = 0.20, where X = 1 if a theft claim occurs and Y = 1 if a fire claim occurs in the same year. Compute the marginals, check whether X and Y are independent, and refuse equating zero covariance with independence in general.",
+    "problem_statement": "A household book records indicators (X, Y) with joint PMF $P(0,0)$ = 0.50, $P(0,1)$ = 0.10, $P(1,0)$ = 0.20, $P(1,1)$ = 0.20, where X = 1 if a theft claim occurs and Y = 1 if a fire claim occurs in the same year. Compute the marginals, check whether X and Y are independent, and refuse equating zero covariance with independence in general.",
     "given": [
       {
-        "symbol": "P(0,0)",
+        "symbol": "$P(0,0)$",
         "value": "0.50",
         "note": "no theft, no fire"
       },
       {
-        "symbol": "P(0,1)",
+        "symbol": "$P(0,1)$",
         "value": "0.10",
         "note": "no theft, fire"
       },
       {
-        "symbol": "P(1,0)",
+        "symbol": "$P(1,0)$",
         "value": "0.20",
         "note": "theft, no fire"
       },
       {
-        "symbol": "P(1,1)",
+        "symbol": "$P(1,1)$",
         "value": "0.20",
         "note": "theft and fire"
       }
@@ -247,17 +247,17 @@
       {
         "id": "S1",
         "label": "Form the marginals",
-        "attempt_cue": "Sum rows/columns for P(X) and P(Y).",
-        "explanation": "P(X=0) = 0.50+0.10 = 0.60; P(X=1) = 0.20+0.20 = 0.40; P(Y=0) = 0.50+0.20 = 0.70; P(Y=1) = 0.10+0.20 = 0.30.",
-        "calculation": "P(X=0)=0.60, P(X=1)=0.40, P(Y=0)=0.70, P(Y=1)=0.30",
+        "attempt_cue": "Sum rows/columns for $P(X)$ and $P(Y)$.",
+        "explanation": "$P(X=0) = 0.50+0.10 = 0.60$; $P(X=1) = 0.20+0.20 = 0.40$; $P(Y=0) = 0.50+0.20 = 0.70$; $P(Y=1) = 0.10+0.20 = 0.30$.",
+        "calculation": "$P(X=0)=0.60$, $P(X=1)=0.40$, $P(Y=0)=0.70$, $P(Y=1)=0.30$",
         "result": "Marginals: (0.60, 0.40) and (0.70, 0.30)"
       },
       {
         "id": "S2",
         "label": "Check the factorisation",
-        "attempt_cue": "Compare P(0,0) with P(X=0)P(Y=0), and at least one other cell.",
-        "explanation": "Independence requires P(x,y) = P(X=x)P(Y=y) for every cell. Here P(X=0)P(Y=0) = 0.60×0.70 = 0.42, but P(0,0) = 0.50 ≠ 0.42, so X and Y are not independent.",
-        "calculation": "0.60×0.70 = 0.42 ≠ 0.50 = P(0,0) → not independent",
+        "attempt_cue": "Compare $P(0,0)$ with $P(X=0)P(Y=0)$, and at least one other cell.",
+        "explanation": "Independence requires $P(x,y) = P(X=x)P(Y=y)$ for every cell. Here $P(X=0)P(Y=0) = 0.60\\times 0.70 = 0.42$, but $P(0,0) = 0.50 \\neq 0.42$, so $X$ and $Y$ are not independent.",
+        "calculation": "$0.60\\times 0.70 = 0.42 \\neq 0.50 = P(0,0)$ $\\rightarrow$ not independent",
         "result": "X and Y are dependent"
       },
       {
@@ -269,8 +269,8 @@
         "result": "Refuse Cov=0 as a general independence proof"
       }
     ],
-    "final_answer": "Marginals are P(X=0)=0.60, P(X=1)=0.40, P(Y=0)=0.70, P(Y=1)=0.30. Since 0.60×0.70 = 0.42 ≠ P(0,0) = 0.50, X and Y are not independent. Zero covariance would not by itself prove independence in general.",
-    "common_pitfall": "Declaring independence from a quick look at the table, or treating Cov(X, Y) = 0 as a general proof of independence without checking joint factorisation.",
+    "final_answer": "Marginals are $P(X=0)=0.60$, $P(X=1)=0.40$, $P(Y=0)=0.70$, $P(Y=1)=0.30$. Since $0.60\\times 0.70 = 0.42 \\neq P(0,0) = 0.50$, $X$ and $Y$ are not independent. Zero covariance would not by itself prove independence in general.",
+    "common_pitfall": "Declaring independence from a quick look at the table, or treating $\\operatorname{Cov}(X, Y) = 0$ as a general proof of independence without checking joint factorisation.",
     "syllabus_ref": "2.2.2"
   }
 }
