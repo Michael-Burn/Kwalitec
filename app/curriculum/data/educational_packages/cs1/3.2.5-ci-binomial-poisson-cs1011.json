@@ -233,7 +233,7 @@
       {
         "symbol": "x",
         "value": "22",
-        "note": "policies with ≥1 claim"
+        "note": "policies with $\\ge 1$ claim"
       },
       {
         "symbol": "z_{0.975}",

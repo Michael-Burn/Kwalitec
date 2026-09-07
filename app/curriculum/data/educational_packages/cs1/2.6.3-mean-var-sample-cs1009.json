@@ -257,7 +257,7 @@
       },
       {
         "id": "S3",
-        "label": "Mean of S² and refuse Normal/t jump",
+        "label": "Mean of $S^{2}$ and refuse Normal/t jump",
         "attempt_cue": "State $E[S^{2}]$ and name what this LO does not yet require.",
         "explanation": "For the usual unbiased sample variance, $E[S^{2}] = \\sigma^{2}$. This identity does not by itself give Normal laws for $\\bar{X}$ or the t-statistic; those need extra distributional assumptions treated in later LOs.",
         "calculation": "$E[S^{2}] = \\sigma^{2} = 36$",

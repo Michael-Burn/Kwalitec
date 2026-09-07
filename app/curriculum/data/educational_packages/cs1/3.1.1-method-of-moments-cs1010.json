@@ -175,7 +175,7 @@
       ],
       "explanation": "$E[X] = \\mu$ implies $\\hat{\\mu}_{\\mathrm{MoM}} = \\bar{x}$. The sample mean is (2400 + 1600 + 3200 + 1800 + 2000)/5 = 11000/5 = 2200, so $\\hat{\\mu}_{\\mathrm{MoM}}$ = £2200.",
       "model_answer": "2200",
-      "common_mistake": "Reporting the rate 1/2200 when the question asks for the mean μ, or reporting the sum 11000 instead of the sample mean.",
+      "common_mistake": "Reporting the rate $\\frac{1}{2200}$ when the question asks for the mean $\\mu$, or reporting the sum 11000 instead of the sample mean.",
       "success_criteria": [
         "Enters a value within 0.5 of 2200.",
         "Uses the sample mean as MoM for the Exponential mean parameter."

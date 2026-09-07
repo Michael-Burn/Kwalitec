@@ -52,7 +52,7 @@
       "Refuse treating this LO as having finished the t-statistic."
     ],
     "task_descriptions": [
-      "Sketch Normal sample → X̄ / S² laws before CMP.",
+      "Sketch Normal sample → $\\bar{X}$ / $S^{2}$ laws before CMP.",
       "Guided Reading through CMP 2.6.4.",
       "Knowledge Checks: Normal laws + refuse t swallow."
     ],
@@ -81,7 +81,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for using t when σ is known / when today only asks Normal laws.",
+      "Watch for using $t$ when $\\sigma$ is known / when today only asks Normal laws.",
       "Watch for skipping χ² / variance result the CMP requires.",
       "Watch for CI construction as today's primary."
     ],
@@ -220,7 +220,7 @@
   },
   "published_at": "2026-08-02",
   "worked_example": {
-    "title": "Normal laws for X̄ and for (n−1)S²/σ²",
+    "title": "Normal laws for $\\bar{X}$ and for $\\frac{(n-1)S^{2}}{\\sigma^{2}}$",
     "problem_statement": "A random sample of size n = 16 is drawn from $Normal(\\mu = 100, \\sigma^{2} = 25)$. State the exact sampling distribution of $\\bar{X}$ and of $\\frac{(n-1)S^{2}}{\\sigma^{2}}$. Explain why writing the t-statistic is a different object from these two laws.",
     "given": [
       {
@@ -248,7 +248,7 @@
         "id": "S2",
         "label": "Sampling distribution of the scaled sample variance",
         "attempt_cue": "State the chi-square law and its degrees of freedom.",
-        "explanation": "Independently of X̄, (n − 1)S²/σ² follows χ² with n − 1 degrees of freedom.",
+        "explanation": "Independently of $\\bar{X}$, $\\frac{(n-1)S^{2}}{\\sigma^{2}}$ follows $\\chi^{2}$ with $n-1$ degrees of freedom.",
         "calculation": "$\\frac{(16 - 1)S^{2}}{25} = \\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$",
         "result": "$\\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$"
       },
@@ -262,7 +262,7 @@
       }
     ],
     "final_answer": "$\\bar{X} \\sim \\operatorname{Normal}(100, 1.5625)$; $\\frac{15 S^{2}}{25} \\sim \\chi^{2}_{15}$. The t-statistic is a further ratio that replaces $\\sigma$ by $S$, not either of these laws alone.",
-    "common_pitfall": "Writing X̄ ~ Normal(100, 25) without dividing by n, or labelling (n − 1)S²/σ² ~ χ²_{n−1} as the t-statistic.",
+    "common_pitfall": "Writing $\\bar{X} \\sim \\operatorname{Normal}(100, 25)$ without dividing by $n$, or labelling $\\frac{(n-1)S^{2}}{\\sigma^{2}} \\sim \\chi^{2}_{n-1}$ as the t-statistic.",
     "syllabus_ref": "2.6.4"
   }
 }

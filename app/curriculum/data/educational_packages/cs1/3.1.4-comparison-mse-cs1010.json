@@ -244,7 +244,7 @@
         "note": "variance of T₂"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Before uncovering, write MSE = Var + Bias² for each estimator.",
+    "attempt_before_reveal": "CMP closed. Before uncovering, write $\\operatorname{MSE} = \\operatorname{Var} + \\operatorname{Bias}^{2}$ for each estimator.",
     "steps": [
       {
         "id": "S1",
@@ -272,7 +272,7 @@
       }
     ],
     "final_answer": "$\\operatorname{MSE}(T_{1}) = 9$; $\\operatorname{MSE}(T_{2}) = 5$. Prefer $T_{2}$ on MSE.",
-    "common_pitfall": "Comparing variances alone (9 vs 4) and declaring T₂ better without adding Bias², or refusing T₂ because Bias ≠ 0 despite MSE(T₂) = 5 < 9.",
+    "common_pitfall": "Comparing variances alone (9 vs 4) and declaring $T_{2}$ better without adding $\\operatorname{Bias}^{2}$, or refusing $T_{2}$ because $\\operatorname{Bias} \\neq 0$ despite $\\operatorname{MSE}(T_{2}) = 5 < 9$.",
     "syllabus_ref": "3.1.4"
   }
 }

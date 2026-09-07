@@ -44,7 +44,7 @@
     "concept_focus": "Normal sample · unknown $\\sigma$ → $t=\\frac{\\bar{X}-\\mu}{S/\\sqrt{n}}$ → $t_{n-1}$ → refuse z-with-S and F swallow.",
     "prior_bridge": "Yesterday you stated Normal sampling distributions for mean and variance (2.6.4). Today forms the t-statistic when σ is unknown.",
     "why_now": "2.6.5 is contiguous after Normal laws; F for variance ratios waits for day six.",
-    "expected_benefit": "You will be able to form the t-statistic with its degrees of freedom when σ is unknown, and refuse using a Normal/z form with S.",
+    "expected_benefit": "You will be able to form the t-statistic with its degrees of freedom when $\\sigma$ is unknown, and refuse using a Normal/z form with $S$.",
     "explainability": "Campaign Iota Day 5 focuses LO 2.6.5.",
     "success_criteria": [
       "Closed-book, write the t-statistic for Normal samples (CMP form).",
@@ -256,7 +256,7 @@
       {
         "id": "S2",
         "label": "Evaluate t and degrees of freedom",
-        "attempt_cue": "Compute (X̄ − μ₀)/SE and df.",
+        "attempt_cue": "Compute $\\frac{\\bar{X} - \\mu_{0}}{\\mathrm{SE}}$ and $\\mathrm{df}$.",
         "explanation": "Under Normal sampling and H₀, t follows Student-t with n − 1 degrees of freedom.",
         "calculation": "$t = \\frac{105 - 100}{2} = 2.5$; $df = 16 - 1 = 15$",
         "result": "t = 2.5 on 15 df"
@@ -271,7 +271,7 @@
       }
     ],
     "final_answer": "$t = 2.5$ on 15 degrees of freedom. With $\\sigma$ unknown, the correct pivot is $t$, not a $z$ that plugs in $S$, and not an $F$ variance-ratio statistic.",
-    "common_pitfall": "Computing z = (105 − 100)/(8/4) = 2.5 and treating it as standard Normal because the arithmetic matches t, or reaching for an F statistic when the question is about a single mean.",
+    "common_pitfall": "Computing $z = \\frac{105 - 100}{8/4} = 2.5$ and treating it as standard Normal because the arithmetic matches $t$, or reaching for an $F$ statistic when the question is about a single mean.",
     "syllabus_ref": "2.6.5"
   }
 }

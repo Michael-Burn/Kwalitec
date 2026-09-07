@@ -134,6 +134,54 @@ _NARRATIVE_PATH = re.compile(
 
 Category = str  # already_compliant | needs_migration | correctly_excluded
 
+# Human-reviewed Wave 1 leftovers: prose exclusions locked by semantic-role review.
+# Keys are (package_file, field_path, text_hash). Hash mismatch means content moved;
+# do not silently keep the old decision.
+_MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
+    {
+        (
+            "4.2.8-residuals-cs1014.json",
+            "mission.mission_purpose",
+            "850bd0e8b1a91fe3",
+        ),
+        (
+            "4.2.8-residuals-cs1014.json",
+            "reading_guidance.misconception_watch[1]",
+            "ee133dda448be2f9",
+        ),
+        (
+            "4.2.8-residuals-cs1014.json",
+            "reading_guidance.stop_condition",
+            "aa084b69b59b2958",
+        ),
+        (
+            "4.2.8-residuals-cs1014.json",
+            "reading_guidance.out_of_scope_today[0]",
+            "0de776128df469d8",
+        ),
+        (
+            "4.2.8-residuals-cs1014.json",
+            "reading_guidance.exit_line",
+            "ad996a45339ce1a2",
+        ),
+        (
+            "4.2.8-residuals-cs1003.json",
+            "reading_guidance.out_of_scope_today[0]",
+            "020e0de14be38996",
+        ),
+        (
+            "2.6.4-normal-sample-mean-var-cs1009.json",
+            "mission.success_criteria[1]",
+            "63dc8ebf902f3ff4",
+        ),
+        (
+            "2.6.4-normal-sample-mean-var-cs1009.json",
+            "reading_guidance.misconception_watch[1]",
+            "af83592dd55596ca",
+        ),
+    }
+)
+
 
 @dataclass(frozen=True)
 class InventoryItem:
@@ -374,21 +422,30 @@ def build_inventory(catalogue_dir: Path) -> dict[str, Any]:
             if not is_mathish(text):
                 continue
             category, needs_review, reason, signals = classify_string(field_path, text)
+            field_norm = _normalise_path(field_path)
+            text_hash = _text_hash(text)
+            if (path.name, field_norm, text_hash) in _MANUAL_PROSE_EXCLUSIONS:
+                category = "correctly_excluded"
+                needs_review = False
+                reason = "manual_review_prose_exclusion"
             tier = _risk_tier(field_path, text, signals)
             # Dollar-delimited LaTeX that fully covers the string is a completed
             # migration (Wave 1 onward). Bare-LaTeX-only compliance stays pending
-            # until an authoring wave records it.
+            # until an authoring wave records it. Manual prose exclusions are
+            # recorded as correctly_excluded (not a migration backlog item).
             if category == "already_compliant" and "dollar_delimited" in signals:
                 status = "migrated"
+            elif reason == "manual_review_prose_exclusion":
+                status = "correctly_excluded"
             else:
                 status = "pending"
             item = InventoryItem(
                 package_id=package_id,
                 package_file=path.name,
-                field_path=_normalise_path(field_path),
+                field_path=field_norm,
                 field_group=_field_group(field_path),
                 text=text,
-                text_hash=_text_hash(text),
+                text_hash=text_hash,
                 category=category,
                 needs_manual_review=needs_review,
                 reason_code=reason,

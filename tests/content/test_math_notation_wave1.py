@@ -60,6 +60,7 @@ _KNOWN_COMMANDS = frozenset(
         "times",
         "leq",
         "geq",
+        "ge",
         "neq",
         "Rightarrow",
         "ldots",
@@ -296,14 +297,15 @@ def test_wave1_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 1636
-    assert checked["totals"]["migrated"] == 292
-    assert checked["totals"]["needs_migration"] == 1636
+    assert checked["totals"]["remaining_backlog"] == 1613
+    assert checked["totals"]["migrated"] == 307
+    assert checked["totals"]["needs_migration"] == 1613
     assert live["totals"] == checked["totals"]
 
     original_wave1 = set(wave1.WAVE1_FILES)
     migrated = 0
     still_pending_review = 0
+    manual_excluded = 0
     for row in live["packages"]:
         if row["package_file"] not in original_wave1:
             continue
@@ -314,5 +316,235 @@ def test_wave1_ledger_backlog_and_migration_status() -> None:
                 assert "dollar_delimited" in item["signals"]
             if item["category"] == "needs_migration" and item["needs_manual_review"]:
                 still_pending_review += 1
-    assert migrated == 292
-    assert still_pending_review == 23
+            if item["migration_status"] == "correctly_excluded":
+                manual_excluded += 1
+                assert item["category"] == "correctly_excluded"
+                assert item["needs_manual_review"] is False
+                assert item["reason_code"] == "manual_review_prose_exclusion"
+    assert migrated == 307
+    assert still_pending_review == 0
+    assert manual_excluded == 8
+
+
+# Locked Wave 1 leftover migrations (manual-review close-out).
+_WAVE1_LEFTOVER_MIGRATIONS = (
+    (
+        "2.6.3-mean-var-sample-cs1009.json",
+        "worked_example.steps[2].label",
+        "Mean of $S^{2}$ and refuse Normal/t jump",
+    ),
+    (
+        "2.6.5-t-statistic-cs1009.json",
+        "mission.expected_benefit",
+        "You will be able to form the t-statistic with its degrees of freedom when "
+        r"$\sigma$ is unknown, and refuse using a Normal/z form with $S$.",
+    ),
+    (
+        "2.6.5-t-statistic-cs1009.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Compute $\frac{\bar{X} - \mu_{0}}{\mathrm{SE}}$ and $\mathrm{df}$.",
+    ),
+    (
+        "2.6.5-t-statistic-cs1009.json",
+        "worked_example.common_pitfall",
+        r"Computing $z = \frac{105 - 100}{8/4} = 2.5$ and treating it as standard "
+        r"Normal because the arithmetic matches $t$, or reaching for an $F$ "
+        "statistic when the question is about a single mean.",
+    ),
+    (
+        "3.2.5-ci-binomial-poisson-cs1011.json",
+        "worked_example.given[1].note",
+        r"policies with $\ge 1$ claim",
+    ),
+    (
+        "2.5.1-clt-cs1008.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Form $z = \frac{170 - 180}{10}$, then convert with $\Phi$.",
+    ),
+    (
+        "2.5.1-clt-cs1008.json",
+        "worked_example.steps[2].attempt_cue",
+        r"State why using $\operatorname{sd} = 60$ for $\bar{X}$ is wrong.",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "mission.task_descriptions[0]",
+        r"Sketch Normal sample → $\bar{X}$ / $S^{2}$ laws before CMP.",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "reading_guidance.misconception_watch[0]",
+        r"Watch for using $t$ when $\sigma$ is known / when today only asks "
+        "Normal laws.",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "worked_example.title",
+        r"Normal laws for $\bar{X}$ and for $\frac{(n-1)S^{2}}{\sigma^{2}}$",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "worked_example.steps[1].explanation",
+        r"Independently of $\bar{X}$, $\frac{(n-1)S^{2}}{\sigma^{2}}$ follows "
+        r"$\chi^{2}$ with $n-1$ degrees of freedom.",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "worked_example.common_pitfall",
+        r"Writing $\bar{X} \sim \operatorname{Normal}(100, 25)$ without dividing "
+        r"by $n$, or labelling $\frac{(n-1)S^{2}}{\sigma^{2}} \sim \chi^{2}_{n-1}$ "
+        "as the t-statistic.",
+    ),
+    (
+        "3.1.4-comparison-mse-cs1010.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Before uncovering, write $\operatorname{MSE} = "
+        r"\operatorname{Var} + \operatorname{Bias}^{2}$ for each estimator.",
+    ),
+    (
+        "3.1.4-comparison-mse-cs1010.json",
+        "worked_example.common_pitfall",
+        r"Comparing variances alone (9 vs 4) and declaring $T_{2}$ better without "
+        r"adding $\operatorname{Bias}^{2}$, or refusing $T_{2}$ because "
+        r"$\operatorname{Bias} \neq 0$ despite $\operatorname{MSE}(T_{2}) = 5 < 9$.",
+    ),
+    (
+        "3.1.1-method-of-moments-cs1010.json",
+        "knowledge_checks[1].common_mistake",
+        r"Reporting the rate $\frac{1}{2200}$ when the question asks for the mean "
+        r"$\mu$, or reporting the sum 11000 instead of the sample mean.",
+    ),
+)
+
+# Locked Wave 1 leftover prose exclusions (byte-identical; not converted).
+_WAVE1_LEFTOVER_EXCLUSIONS = (
+    (
+        "4.2.8-residuals-cs1014.json",
+        "mission.mission_purpose",
+        "Today's Mission exists to explain Pearson and deviance residuals and "
+        "their use. Without pretending χ² / LRT acceptability tests (4.2.9) are "
+        "finished.",
+    ),
+    (
+        "4.2.8-residuals-cs1014.json",
+        "reading_guidance.misconception_watch[1]",
+        "Watch for jumping into formal χ²/LRT (4.2.9) as today's finish.",
+    ),
+    (
+        "4.2.8-residuals-cs1014.json",
+        "reading_guidance.stop_condition",
+        "Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT "
+        "acceptability tests 4.2.9)",
+    ),
+    (
+        "4.2.8-residuals-cs1014.json",
+        "reading_guidance.out_of_scope_today[0]",
+        "χ² / LRT acceptability tests as primary (4.2.9)",
+    ),
+    (
+        "4.2.8-residuals-cs1014.json",
+        "reading_guidance.exit_line",
+        "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at "
+        "CMP · Syllabus 4.2.8 Pearson and deviance residuals. Kwalitec is the "
+        "guide; the CMP is the authoritative material (do not treat this activity "
+        "body as a substitute textbook. Hunt with the focus questions; watch the "
+        "misconception list. Ignore items in out_of_scope_today. Stop when: "
+        "Through the CMP treatment of Syllabus 4.2.8 (stop before χ² / LRT "
+        "acceptability tests 4.2.9). Then close the CMP and return here) next "
+        "in-app activity: Worked-example re-entry (CMP closed), then Knowledge "
+        "Checks.",
+    ),
+    (
+        "4.2.8-residuals-cs1003.json",
+        "reading_guidance.out_of_scope_today[0]",
+        "χ²/LRT primary (4.2.9)",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "mission.success_criteria[1]",
+        "State the sampling result for sample variance / χ² form as CMP directs.",
+    ),
+    (
+        "2.6.4-normal-sample-mean-var-cs1009.json",
+        "reading_guidance.misconception_watch[1]",
+        "Watch for skipping χ² / variance result the CMP requires.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE1_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE1_LEFTOVER_MIGRATIONS],
+)
+def test_wave1_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE1_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE1_LEFTOVER_EXCLUSIONS],
+)
+def test_wave1_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+
+
+def test_wave1_leftover_knowledge_check_scoring_unaffected() -> None:
+    """Only KC field touched in leftovers is common_mistake; scoring keys unchanged."""
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    target = "3.1.1-method-of-moments-cs1010.json"
+    by_id = {
+        r["item_id"]: r for r in snapshot["items"] if r["package_file"] == target
+    }
+    assert by_id
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    pack = next(p for p in loader.all_approved() if Path(p.source_path).name == target)
+    substance = substance_from_package(
+        pack, curriculum_identity="CS1:wave1", topic_id=pack.topic_code
+    )
+    practice = [
+        a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+    ]
+    seen: set[str] = set()
+    for act in practice:
+        item = act.scoreable
+        assert item is not None
+        expected = by_id[item.item_id]
+        seen.add(item.item_id)
+        assert item.response_type == expected["response_type"]
+        assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+        assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+        exp_tol = expected["numeric_tolerance"]
+        if exp_tol is None:
+            assert item.answer_key.numeric_tolerance is None
+        else:
+            assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+        choice_ids = [c[0] if not isinstance(c, str) else c for c in item.choices]
+        assert choice_ids == expected["choice_ids"]
+        for probe in expected["verdicts"]:
+            result = score_practice_response(item, probe["response"])
+            assert result.scored is probe["scored"]
+            assert result.correct is probe["correct"]
+            assert result.matched_key == probe["matched_key"]
+    assert seen == set(by_id)
