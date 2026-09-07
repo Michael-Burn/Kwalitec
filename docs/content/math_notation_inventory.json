@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-07T17:02:07Z",
+  "generated_at": "2026-09-07T17:28:11Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 1236,
-    "needs_migration": 700,
+    "already_compliant": 1251,
+    "needs_migration": 685,
     "correctly_excluded": 267,
-    "needs_manual_review": 402,
-    "confident_automated": 1801,
-    "remaining_backlog": 700,
-    "migrated": 1217,
-    "packages_with_migration_backlog": 65
+    "needs_manual_review": 387,
+    "confident_automated": 1816,
+    "remaining_backlog": 685,
+    "migrated": 1232,
+    "packages_with_migration_backlog": 60
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 1236,
+    "fully_covered_by_current_typesetting": 1251,
     "math_object_field": 492,
     "isolated_symbol_in_narrative_ambiguous": 188,
-    "narrative_with_inline_math_ambiguous": 147,
+    "narrative_with_inline_math_ambiguous": 132,
     "mathish_role_unclear": 67,
     "actuarial_expression": 50,
     "compound_structure": 11,
@@ -27,25 +27,25 @@
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "equationish": 1474,
-    "dollar_delimited": 1217,
-    "greek": 538,
+    "equationish": 1473,
+    "dollar_delimited": 1232,
     "actuarial_fn": 532,
-    "unicode_ops": 309,
-    "ascii_approx": 184,
-    "bare_latex": 183,
+    "greek": 529,
+    "unicode_ops": 304,
+    "bare_latex": 186,
+    "ascii_approx": 183,
     "compound": 34,
     "root": 7
   },
   "by_risk_tier_needs_migration": {
     "1": 0,
     "2": 112,
-    "3": 497,
+    "3": 482,
     "4": 91
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
-    "needs_manual_review_count": 402
+    "needs_manual_review_count": 387
   },
   "wave_recommendation": {
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
@@ -147,8 +147,8 @@
     },
     "later_waves": {
       "label": "Non-tier-1 backlog (actuarial functions, simple variables, KC options, narrative inline math)",
-      "package_count": 65,
-      "needs_migration_strings": 700
+      "package_count": 60,
+      "needs_migration_strings": 685
     }
   },
   "packages": [
@@ -14191,558 +14191,6 @@
       ]
     },
     {
-      "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-      "package_file": "4.2.2-mean-variance-cs1014.json",
-      "topic_code": "4.2",
-      "campaign_id": "CS1-EP001-CAMPAIGN-XI",
-      "counts": {
-        "mathish_strings": 31,
-        "already_compliant": 21,
-        "needs_migration": 7,
-        "correctly_excluded": 3,
-        "needs_manual_review": 10,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 7,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "mission.concept_focus",
-          "field_group": "mission.concept_focus",
-          "text": "Family → E(Y) → $\\operatorname{Var}(Y)$ → variance function $V(\\mu)$ → scale parameter.",
-          "text_hash": "0d7a3d4aa94edd82",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[0].explanation",
-          "field_group": "knowledge_checks[].explanation",
-          "text": "Family structure specifies mean, variance, V(mu), and scale. The link maps μ to η and is a separate object from the response variance structure.",
-          "text_hash": "59cc70bcf7a6d46d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[0].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "Mean, variance, $V(mu)$, scale. Poisson: $E[Y]$=Var[Y]=lambda.",
-          "text_hash": "e57036bafd475282",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[0].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Mean, variance, variance function $V(mu)$, and scale (dispersion). Example: Poisson with mean lambda has $E[Y]$=Var[Y]=lambda and $V(\\mu)=\\mu$ with scale often 1.",
-          "text_hash": "0fa35c4e5f5c0c36",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[0].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "For every GLM response, Var[Y] equals $\\sigma^{2}$ constant independent of mu; $V(\\mu)$=1 always.",
-          "text_hash": "a6789d632054a06e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[0].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Mean and variance are defined only after writing the linear predictor $\\eta$; family structure is secondary.",
-          "text_hash": "404401d356edf947",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].body",
-          "field_group": "knowledge_checks[].body",
-          "text": "State $E[Y]$, Var[Y], $V(mu)$; refuse link-as-structure.",
-          "text_hash": "e2505de26c1b20be",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].explanation",
-          "field_group": "knowledge_checks[].explanation",
-          "text": "Poisson has mean-variance equality; Normal has constant variance with scale σ². Link choice does not replace these family facts.",
-          "text_hash": "4f845b3459569cc4",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "Poisson $V(\\mu)=\\mu$; Normal $V(\\mu)$=1, scale $\\sigma^{2}$. Refuse link-as-structure.",
-          "text_hash": "b963d5c98cf38694",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Poisson: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\mu$, $V(\\mu)=\\mu$ (scale typically 1). Normal: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\sigma^{2}$, $V(\\mu)=1$ with scale $\\sigma^{2}$. The link maps $\\mu$ to $\\eta$; this question requires the mean, variance, and scale structure of the response family.",
-          "text_hash": "1badb7751503f7a8",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Choosing the logit link finishes stating $E[Y]$, Var[Y], $V(mu)$, and scale for Poisson and Normal.",
-          "text_hash": "5df0f9fccdfd8abb",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Poisson: $E[Y]=\\mu$, Var[Y]=$\\sigma^{2}$ constant; Normal: $E[Y]=\\mu$, Var[Y]=$\\mu$ because both GLM families share the same variance function.",
-          "text_hash": "71bba5d03be58b98",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$V(mu)$ is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=$\\mu$.",
-          "text_hash": "421df14088b66d3b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.title",
-          "field_group": "worked_example.title",
-          "text": "Mean, variance, V(μ), and scale for three families",
-          "text_hash": "e3e7ed2ad38c7d5e",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "For three candidate GLM responses, evaluate mean, variance, variance function $V(\\mu)$, and scale $\\varphi$ where relevant:\n(1) Poisson with $\\lambda = 5$;\n(2) $\\mathrm{Binomial}(n = 10, p = 0.3)$;\n(3) Gamma with mean $\\mu = 10$ and shape $\\alpha = 4$ (so $\\operatorname{Var} = \\mu^{2}/\\alpha$).",
-          "text_hash": "dd4362b4b8e3b794",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$\\lambda = 5$",
-          "text_hash": "76a066a55e3d7edd",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.given[2].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$\\mu = 10, \\alpha = 4$",
-          "text_hash": "b179152176a2a119",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. For each family write $E[Y]$, $\\operatorname{Var}[Y]$, $V(\\mu)$, and $\\varphi$ before substituting numbers.",
-          "text_hash": "dc1c5c423e9bccc0",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[0].label",
-          "field_group": "worked_example.steps[].label",
-          "text": "Poisson(λ = 5)",
-          "text_hash": "38a7618f4bc1eb34",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[0].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Use $E[Y] = \\operatorname{Var}[Y] = \\lambda$ and $V(\\mu) = \\mu$ with $\\varphi = 1$.",
-          "text_hash": "fb25c5654d7ee95f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[0].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Poisson equates mean and variance; the variance function is V(μ) = μ.",
-          "text_hash": "a682f7e72f5e94e8",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$E = 5$; $Var = 5$; $V(\\mu) = \\mu$; $\\phi = 1$",
-          "text_hash": "f95425983612eb52",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[1].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute $np$ and $np(1 - p)$; note $V(\\mu) = \\mu(1 - \\mu/n)$ with $\\varphi = 1$.",
-          "text_hash": "16aaf4c6690574b6",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "compound",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[1].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Binomial mean is np and variance is np(1-p); here that yields mean 3 and variance 2.1, with scale φ = 1.",
-          "text_hash": "e67984efc3071788",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$E = 10 \\times 0.3 = 3$; $Var = 10 \\times 0.3 \\times 0.7 = 2.1$; $\\phi = 1$",
-          "text_hash": "08724cc883fea7c9",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[2].label",
-          "field_group": "worked_example.steps[].label",
-          "text": "Gamma(μ = 10, α = 4)",
-          "text_hash": "392a8558d8b1fd9f",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[2].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Use Var = μ²/α and identify V(μ) = μ² with scale related to 1/α.",
-          "text_hash": "e8c4de5bb7cf2903",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Gamma has variance function V(μ) = μ². With shape α = 4, Var = 100/4 = 25.",
-          "text_hash": "3ff05206bd659e57",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$E = 10$; $Var = 10^{2}/4 = 25$; $V(\\mu) = \\mu^{2}$",
-          "text_hash": "3fe1912b96705ade",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "$Poisson: E = Var = 5, V(\\mu) = \\mu. Binomial: E = 3, Var = 2.1. Gamma: E = 10, Var = 25, V(\\mu) = \\mu^{2}.$",
-          "text_hash": "239922326663b134",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
-          "package_file": "4.2.2-mean-variance-cs1014.json",
-          "field_path": "worked_example.common_pitfall",
-          "field_group": "worked_example.common_pitfall",
-          "text": "Using Var = μ for the Binomial or Gamma case, or forgetting that Poisson's mean-variance equality is a special property, not a universal GLM rule.",
-          "text_hash": "b23f347f755a2a77",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
       "package_id": "CS1-CS1002-PKG-2.1-CONTINUOUS",
       "package_file": "2.1.2-continuous-cs1002.json",
       "topic_code": "2.1",
@@ -14993,592 +14441,6 @@
           "migration_status": "pending",
           "signals": [
             "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-      "package_file": "2.4.1-mgf-cgf-cs1007.json",
-      "topic_code": "2.4",
-      "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
-      "counts": {
-        "mathish_strings": 31,
-        "already_compliant": 26,
-        "needs_migration": 5,
-        "correctly_excluded": 0,
-        "needs_manual_review": 5,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 5,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "mission.mission_purpose",
-          "field_group": "mission.mission_purpose",
-          "text": "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable (so M_X(t) and K_X(t) (or CMP equivalents) are usable objects) without pretending moment-via-GF calculation is finished.",
-          "text_hash": "6ba261e20d152316",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "mission.concept_focus",
-          "field_group": "mission.concept_focus",
-          "text": "Named family → $M_{X}(t)=E[e^{tX}]$ → CGF $C_{X}(t)=\\log M_{X}(t)$ → refuse mean/var-as-MGF.",
-          "text_hash": "b5f4f69e6640dd07",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "reading_guidance.misconception_watch[0]",
-          "field_group": "reading_guidance.misconception_watch[]",
-          "text": "Watch for equating 'I know $E[X]$ and $\\operatorname{Var}(X)$' with having an MGF/CGF.",
-          "text_hash": "93f28daca5488cb9",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[0].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "M(t)=$E[e^{tX}]$; K(t)=log M(t), where the MGF exists.",
-          "text_hash": "011bf0140dbb39d2",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Where it exists around $t=0$, $M_{X}(t)=E[e^{tX}]$ and the cumulant generating function is $K_{X}(t)=\\log M_{X}(t)$. Knowing only a mean and variance does not determine that the MGF has been obtained.",
-          "text_hash": "0b58318ea8dba6c8",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t)=E[tX]$ and $K_{X}(t)=e^{M_{X}(t)}$, so both are linear in $t$.",
-          "text_hash": "8ef92a6b85367757",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "An MGF is simply the pair ($E[X]$,$\\operatorname{Var}(X)$); no function of t is required.",
-          "text_hash": "36bac781269c3c71",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].prompt",
-          "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. If X is Poisson with parameter $\\lambda$, which MGF and CGF pair is correct?",
-          "text_hash": "de9f38ad9c8fdd96",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].explanation",
-          "field_group": "knowledge_checks[].explanation",
-          "text": "Summing $E[e^{tX}]$ under the Poisson PMF gives $\\exp(\\lambda(e^{t}-1))$; taking its logarithm gives the CGF.",
-          "text_hash": "e3d908dafb73ea9b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$M(t)=\\exp(\\lambda(e^{t}-1))$; $K(t)=\\lambda(e^{t}-1)$.",
-          "text_hash": "6d1e794641fae06c",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t)=\\exp(\\lambda(e^{t}-1))$ and $K_{X}(t)=\\lambda(e^{t}-1)$.",
-          "text_hash": "c70ed2747654c6eb",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t)=\\exp(\\lambda t)$ and $K_{X}(t)=\\lambda t$ because the mean alone determines the full Poisson MGF.",
-          "text_hash": "4568343cd9c27862",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t)=\\lambda(e^{t}-1)$ and $K_{X}(t)=\\exp(\\lambda(e^{t}-1))$, so the MGF and CGF are reversed.",
-          "text_hash": "8fc86ad1499a9adc",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t)=\\lambda$ and $K_{X}(t)=\\log\\lambda$ because Poisson mean and variance both equal $\\lambda$.",
-          "text_hash": "4c5aa132b20f6396",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "Annual claim count $X \\sim \\mathrm{Poisson}(\\lambda = 2)$. Obtain the moment generating function $M_{X}(t)$ and the cumulant generating function $C_{X}(t)$. State why writing $M_{X}(t) = 2$ does not define the MGF.",
-          "text_hash": "ad1ae62670017aa7",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$Poisson(\\lambda = 2)$",
-          "text_hash": "e6b8c71853fef5e5",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.given[1].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$M_X(t) = E[e^{tX}]$",
-          "text_hash": "a83aee9dfedd706c",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.given[2].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$C_X(t) = \\log M_X(t)$",
-          "text_hash": "72d11c6e0886a178",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Start from $E[e^{tX}]$ for the Poisson pmf, then take the log for the CGF.",
-          "text_hash": "af352723761f5aac",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[0].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
-          "text_hash": "450babfc400217f4",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "bare_latex",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[0].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
-          "text_hash": "6210bdb906461460",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "unicode_ops",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$M_X(t) = exp(2(e^t - 1))$",
-          "text_hash": "e2542d4b59cd811c",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[0].result",
-          "field_group": "worked_example.steps[].result",
-          "text": "$M_X(t) = exp(2(e^t - 1))$",
-          "text_hash": "e2542d4b59cd811c",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[1].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
-          "text_hash": "ed7564302a0ce64b",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$C_X(t) = 2(e^t - 1)$",
-          "text_hash": "575e87d1e36185c1",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[1].result",
-          "field_group": "worked_example.steps[].result",
-          "text": "$C_X(t) = 2(e^t - 1)$",
-          "text_hash": "575e87d1e36185c1",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[2].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "State why $M_{X}(t) = 2$ is wrong even though $E[X] = 2$.",
-          "text_hash": "2197f910cab20863",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "The mean $E[X] = 2$ is $M'(0)$ (or $C'(0)$), not the MGF itself. The MGF is a function of $t$, here $\\exp(2(e^{t} - 1))$, not the constant mean.",
-          "text_hash": "af60839404574e6f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$E[X] = 2 = M'(0)$; $M_{X}(t) \\neq 2$",
-          "text_hash": "9a501fe70e395287",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "$M_X(t) = exp(2(e^t - 1))$; $C_X(t) = 2(e^t - 1). The mean 2 is M'(0), not the MGF.$",
-          "text_hash": "efac75b2b51693c1",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
-          "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "worked_example.common_pitfall",
-          "field_group": "worked_example.common_pitfall",
-          "text": "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
-          "text_hash": "2f25613a41d13d11",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "bare_latex",
-            "ascii_approx",
             "equationish"
           ]
         }
@@ -16212,20 +15074,281 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+      "package_file": "4.1.1-response-explanatory-cs1003.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+          "package_file": "4.1.1-response-explanatory-cs1003.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
+          "text_hash": "bb14ed3e72bce340",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+      "package_file": "4.1.1-response-explanatory-cs1013.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+          "package_file": "4.1.1-response-explanatory-cs1013.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "ŷ(45) = 1200 + 40 × 45 = 1200 + 1800 = 3000",
+          "text_hash": "7d6b6efadda7456c",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
+      "package_file": "cp-4.1.1-linear-regression-cs1016.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-PI",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
+          "package_file": "cp-4.1.1-linear-regression-cs1016.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "ŷ(25) = 180 + 12 × 25 = 180 + 300 = 480",
+          "text_hash": "46724c2892939ffd",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+      "package_file": "cr-1.1.3-data-sources-cs1017.json",
+      "topic_code": "1.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+          "package_file": "cr-1.1.3-data-sources-cs1017.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
+          "text_hash": "d99d542d16874ab4",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+      "package_file": "cr-1.1.2-stages-tools-cs1017.json",
+      "topic_code": "1.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+          "package_file": "cr-1.1.2-stages-tools-cs1017.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
+          "text_hash": "0a449b8b41b30414",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+      "package_file": "cr-1.2.3-pca-cs1017.json",
+      "topic_code": "1.2",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 0,
+        "needs_migration": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "pending",
+      "remaining_backlog": 1,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+          "package_file": "cr-1.2.3-pca-cs1017.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Variation summary ≠ proven causal driver",
+          "text_hash": "9a0a93eaa6d61a21",
+          "category": "needs_migration",
+          "needs_manual_review": false,
+          "reason_code": "math_object_field",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
+      "package_file": "revision-pca-distributions-cs1002.json",
+      "topic_code": "CB-R1",
+      "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
+      "counts": {
+        "mathish_strings": 0,
+        "already_compliant": 0,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "no_mathish",
+      "remaining_backlog": 0,
+      "items": []
+    },
+    {
+      "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+      "package_file": "1.1-purpose-function-ep001.json",
+      "topic_code": "1.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+      "counts": {
+        "mathish_strings": 0,
+        "already_compliant": 0,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "no_mathish",
+      "remaining_backlog": 0,
+      "items": []
+    },
+    {
+      "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
+      "package_file": "1.2.1-eda-summaries-ep001.json",
+      "topic_code": "1.2",
+      "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
+      "counts": {
+        "mathish_strings": 0,
+        "already_compliant": 0,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "no_mathish",
+      "remaining_backlog": 0,
+      "items": []
+    },
+    {
       "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
       "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
       "topic_code": "2.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
         "mathish_strings": 44,
-        "already_compliant": 43,
-        "needs_migration": 1,
+        "already_compliant": 44,
+        "needs_migration": 0,
         "correctly_excluded": 0,
-        "needs_manual_review": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
+      "migration_status": "clear",
+      "remaining_backlog": 0,
       "items": [
         {
           "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
@@ -16897,16 +16020,15 @@
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
-          "text_hash": "c344bc2898b34efe",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
+          "text": "Apply linearity, then state why $\\operatorname{Corr} \\neq 0$ here does not finish an independence claim.",
+          "text_hash": "6ad3599680f29522",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops",
-            "equationish"
+            "dollar_delimited"
           ]
         },
         {
@@ -17008,14 +16130,14 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
         "mathish_strings": 35,
-        "already_compliant": 33,
-        "needs_migration": 1,
+        "already_compliant": 34,
+        "needs_migration": 0,
         "correctly_excluded": 1,
-        "needs_manual_review": 2,
+        "needs_manual_review": 1,
         "risk_tier_1_needs_migration": 0
       },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
+      "migration_status": "clear",
+      "remaining_backlog": 0,
       "items": [
         {
           "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
@@ -17523,15 +16645,15 @@
           "package_file": "2.2.4-linear-combinations-cs1005.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Variance of a linear combination needs the covariance whenever dependence is present. Here a = 2 and b = −1, so 2ab Cov = 2(2)(−1)(3) = −12.",
-          "text_hash": "56ed5504012cc1f7",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
+          "text": "Variance of a linear combination needs the covariance whenever dependence is present. Here $a = 2$ and $b = -1$, so $2ab\\operatorname{Cov} = 2(2)(-1)(3) = -12$.",
+          "text_hash": "1e079ad0069754e5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops",
+            "dollar_delimited",
             "equationish"
           ]
         },
@@ -17622,763 +16744,6 @@
           ]
         }
       ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
-      "package_file": "4.1.1-response-explanatory-cs1003.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1003.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
-          "text_hash": "bb14ed3e72bce340",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
-      "package_file": "4.1.1-response-explanatory-cs1013.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-NU",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1013.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(45) = 1200 + 40 × 45 = 1200 + 1800 = 3000",
-          "text_hash": "7d6b6efadda7456c",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
-      "package_file": "cp-4.1.1-linear-regression-cs1016.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-PI",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
-          "package_file": "cp-4.1.1-linear-regression-cs1016.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(25) = 180 + 12 × 25 = 180 + 300 = 480",
-          "text_hash": "46724c2892939ffd",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
-      "package_file": "cr-1.1.3-data-sources-cs1017.json",
-      "topic_code": "1.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
-          "package_file": "cr-1.1.3-data-sources-cs1017.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
-          "text_hash": "d99d542d16874ab4",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
-      "package_file": "cr-1.1.2-stages-tools-cs1017.json",
-      "topic_code": "1.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
-          "package_file": "cr-1.1.2-stages-tools-cs1017.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
-          "text_hash": "0a449b8b41b30414",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
-      "package_file": "cr-1.2.3-pca-cs1017.json",
-      "topic_code": "1.2",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
-          "package_file": "cr-1.2.3-pca-cs1017.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Variation summary ≠ proven causal driver",
-          "text_hash": "9a0a93eaa6d61a21",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-      "package_file": "revision-generating-functions-cs1007.json",
-      "topic_code": "CH-R1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
-      "counts": {
-        "mathish_strings": 26,
-        "already_compliant": 25,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 1,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].explanation",
-          "field_group": "knowledge_checks[].explanation",
-          "text": "The MGF is $E[exp(tX)]$, and its logarithm is the CGF.",
-          "text_hash": "f2ee575ed56fa312",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$M_{X}(t)=E[e^{tX}]$ and $K_{X}(t)=\\log M_{X}(t)$, where the MGF exists.",
-          "text_hash": "a9d7847e0cd92f10",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t) = E[\\exp(tX)]$ where finite, and $K_{X}(t) = \\log M_{X}(t)$.",
-          "text_hash": "75dc3287cd6ca929",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t) = E[tX]$, and $K_{X}(t)$ is its derivative.",
-          "text_hash": "6bb722bbd7041b35",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$M_{X}(t) = P(X \\leq t)$, and $K_{X}(t)$ is the survival function.",
-          "text_hash": "4037311114cbde52",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[0].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$K_{X}(t) = \\exp(M_{X}(t))$.",
-          "text_hash": "f0b5ee571af37c2f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$M_{X}'(0)=E[X]$ and $M_{X}''(0)=E[X^{2}]$.",
-          "text_hash": "ed32de2856b22013",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[X] = M_{X}'(0)$ and $E[X^{2}] = M_{X}''(0)$.",
-          "text_hash": "5bb4b10b597e685e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[X] = M_{X}(0)$ and $E[X^{2}] = M_{X}'(0)$.",
-          "text_hash": "37f75a8ab6e8e6ff",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Var}(X) = M_{X}''(0)$ in every case.",
-          "text_hash": "ad851da2c1088b7e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[X^{2}] = (M_{X}'(0))^{2}$.",
-          "text_hash": "45f7b45c8d97b5ae",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "Closed-book retrieval. Define the moment generating function $M_{X}(t)$ and the cumulant generating function $K_{X}(t)$. If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling $M_{X}''(0)$ the variance in every case.",
-          "text_hash": "fed569f21eecd37d",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$definition of M_X(t)$",
-          "text_hash": "719c6c04a47c2fe6",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.given[1].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$definition of K_X(t)$",
-          "text_hash": "36d9c1cfde6c49dc",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.given[2].value",
-          "field_group": "worked_example.given[].value",
-          "text": "$M_X'(0) and M_X''(0)$",
-          "text_hash": "46de726b4e0d0107",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Retrieve $M_{X} = E[e^{tX}]$, $K_{X} = \\log M_{X}$, then the derivative-at-zero rules.",
-          "text_hash": "034b740e9947e2bc",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[0].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Where finite, $M_{X}(t) = E[\\exp(tX)]$ and $K_{X}(t) = \\log M_{X}(t)$.",
-          "text_hash": "9cb9d6332df171d0",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$M_X(t)=E[exp(tX)]$; $K_X(t)=\\log M_X(t)$",
-          "text_hash": "fb3523c9ef8f6ce6",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[1].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "State M_X'(0) and M_X''(0).",
-          "text_hash": "8d180cbde7633980",
-          "category": "needs_migration",
-          "needs_manual_review": true,
-          "reason_code": "narrative_with_inline_math_ambiguous",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$E[X] = M_X'(0)$; $E[X^{2}] = M_X''(0)$",
-          "text_hash": "ba0097fb74d4bdb1",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[2].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "How do you get $\\operatorname{Var}(X)$ from these?",
-          "text_hash": "055242131d9aa0c0",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Variance is $E[X^{2}] - (E[X])^{2}$, not $M_{X}''(0)$ alone.",
-          "text_hash": "392eecf568515aa4",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "$\\operatorname{Var}(X) = M_X''(0) - [M_X'(0)]^{2}$; $refuse Var = M_X''(0) in every case$",
-          "text_hash": "9f954c34796f9c07",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.steps[2].result",
-          "field_group": "worked_example.steps[].result",
-          "text": "Raw second moment $\\neq$ variance",
-          "text_hash": "32951fb6907f59b4",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "$M_X(t) = E[exp(tX)] and K_X(t) = \\log M_X(t). E[X] = M_X'(0) and E[X^{2}] = M_X''(0). Variance subtracts the squared mean$; $M_X''(0) alone is not the variance in general.$",
-          "text_hash": "54c952f3cda03e3e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
-          "package_file": "revision-generating-functions-cs1007.json",
-          "field_path": "worked_example.common_pitfall",
-          "field_group": "worked_example.common_pitfall",
-          "text": "Calling the second MGF derivative at zero the variance without subtracting $(E[X])^{2}$, or confusing the MGF with a distribution function.",
-          "text_hash": "311f4bb4f854d9a7",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "ascii_approx",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-CS1002-PKG-REV-PCA-DISTRIBUTIONS",
-      "package_file": "revision-pca-distributions-cs1002.json",
-      "topic_code": "CB-R1",
-      "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
-      "counts": {
-        "mathish_strings": 0,
-        "already_compliant": 0,
-        "needs_migration": 0,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "no_mathish",
-      "remaining_backlog": 0,
-      "items": []
-    },
-    {
-      "package_id": "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
-      "package_file": "1.1-purpose-function-ep001.json",
-      "topic_code": "1.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
-      "counts": {
-        "mathish_strings": 0,
-        "already_compliant": 0,
-        "needs_migration": 0,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "no_mathish",
-      "remaining_backlog": 0,
-      "items": []
-    },
-    {
-      "package_id": "CS1-EP001-PKG-1.2-EDA-SUMMARIES",
-      "package_file": "1.2.1-eda-summaries-ep001.json",
-      "topic_code": "1.2",
-      "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
-      "counts": {
-        "mathish_strings": 0,
-        "already_compliant": 0,
-        "needs_migration": 0,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "no_mathish",
-      "remaining_backlog": 0,
-      "items": []
     },
     {
       "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
@@ -19757,6 +18122,592 @@
           "signals": [
             "dollar_delimited",
             "actuarial_fn",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+      "package_file": "2.4.1-mgf-cgf-cs1007.json",
+      "topic_code": "2.4",
+      "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
+      "counts": {
+        "mathish_strings": 31,
+        "already_compliant": 31,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "mission.mission_purpose",
+          "field_group": "mission.mission_purpose",
+          "text": "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable (so $M_{X}(t)$ and $K_{X}(t)$ (or CMP equivalents) are usable objects) without pretending moment-via-GF calculation is finished.",
+          "text_hash": "2b020939ac1481b0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "mission.concept_focus",
+          "field_group": "mission.concept_focus",
+          "text": "Named family → $M_{X}(t)=E[e^{tX}]$ → CGF $C_{X}(t)=\\log M_{X}(t)$ → refuse mean/var-as-MGF.",
+          "text_hash": "b5f4f69e6640dd07",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "reading_guidance.misconception_watch[0]",
+          "field_group": "reading_guidance.misconception_watch[]",
+          "text": "Watch for equating 'I know $E[X]$ and $\\operatorname{Var}(X)$' with having an MGF/CGF.",
+          "text_hash": "93f28daca5488cb9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[0].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "M(t)=$E[e^{tX}]$; K(t)=log M(t), where the MGF exists.",
+          "text_hash": "011bf0140dbb39d2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Where it exists around $t=0$, $M_{X}(t)=E[e^{tX}]$ and the cumulant generating function is $K_{X}(t)=\\log M_{X}(t)$. Knowing only a mean and variance does not determine that the MGF has been obtained.",
+          "text_hash": "0b58318ea8dba6c8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=E[tX]$ and $K_{X}(t)=e^{M_{X}(t)}$, so both are linear in $t$.",
+          "text_hash": "8ef92a6b85367757",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "An MGF is simply the pair ($E[X]$,$\\operatorname{Var}(X)$); no function of t is required.",
+          "text_hash": "36bac781269c3c71",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. If X is Poisson with parameter $\\lambda$, which MGF and CGF pair is correct?",
+          "text_hash": "de9f38ad9c8fdd96",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Summing $E[e^{tX}]$ under the Poisson PMF gives $\\exp(\\lambda(e^{t}-1))$; taking its logarithm gives the CGF.",
+          "text_hash": "e3d908dafb73ea9b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$M(t)=\\exp(\\lambda(e^{t}-1))$; $K(t)=\\lambda(e^{t}-1)$.",
+          "text_hash": "6d1e794641fae06c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\exp(\\lambda(e^{t}-1))$ and $K_{X}(t)=\\lambda(e^{t}-1)$.",
+          "text_hash": "c70ed2747654c6eb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\exp(\\lambda t)$ and $K_{X}(t)=\\lambda t$ because the mean alone determines the full Poisson MGF.",
+          "text_hash": "4568343cd9c27862",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\lambda(e^{t}-1)$ and $K_{X}(t)=\\exp(\\lambda(e^{t}-1))$, so the MGF and CGF are reversed.",
+          "text_hash": "8fc86ad1499a9adc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\lambda$ and $K_{X}(t)=\\log\\lambda$ because Poisson mean and variance both equal $\\lambda$.",
+          "text_hash": "4c5aa132b20f6396",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "Annual claim count $X \\sim \\mathrm{Poisson}(\\lambda = 2)$. Obtain the moment generating function $M_{X}(t)$ and the cumulant generating function $C_{X}(t)$. State why writing $M_{X}(t) = 2$ does not define the MGF.",
+          "text_hash": "ad1ae62670017aa7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$Poisson(\\lambda = 2)$",
+          "text_hash": "e6b8c71853fef5e5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.given[1].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$M_X(t) = E[e^{tX}]$",
+          "text_hash": "a83aee9dfedd706c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.given[2].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$C_X(t) = \\log M_X(t)$",
+          "text_hash": "72d11c6e0886a178",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. Start from $E[e^{tX}]$ for the Poisson pmf, then take the log for the CGF.",
+          "text_hash": "af352723761f5aac",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[0].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Sum $e^{tx} e^{-\\lambda} \\lambda^{x} / x!$ and recognise the series.",
+          "text_hash": "ee1e8fa47cb768e8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[0].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "For Poisson($\\lambda$), $M_{X}(t) = \\exp(\\lambda(e^{t} - 1))$. With $\\lambda = 2$ this is $\\exp(2(e^{t} - 1))$.",
+          "text_hash": "e85350f1200037cf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$M_X(t) = exp(2(e^t - 1))$",
+          "text_hash": "e2542d4b59cd811c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[0].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$M_X(t) = exp(2(e^t - 1))$",
+          "text_hash": "e2542d4b59cd811c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[1].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "The CGF is $C_{X}(t) = \\log M_{X}(t) = 2(e^{t} - 1)$.",
+          "text_hash": "93745871fc5a9c23",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$C_X(t) = 2(e^t - 1)$",
+          "text_hash": "575e87d1e36185c1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[1].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$C_X(t) = 2(e^t - 1)$",
+          "text_hash": "575e87d1e36185c1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[2].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "State why $M_{X}(t) = 2$ is wrong even though $E[X] = 2$.",
+          "text_hash": "2197f910cab20863",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "The mean $E[X] = 2$ is $M'(0)$ (or $C'(0)$), not the MGF itself. The MGF is a function of $t$, here $\\exp(2(e^{t} - 1))$, not the constant mean.",
+          "text_hash": "af60839404574e6f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E[X] = 2 = M'(0)$; $M_{X}(t) \\neq 2$",
+          "text_hash": "9a501fe70e395287",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "$M_X(t) = exp(2(e^t - 1))$; $C_X(t) = 2(e^t - 1). The mean 2 is M'(0), not the MGF.$",
+          "text_hash": "efac75b2b51693c1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "worked_example.common_pitfall",
+          "field_group": "worked_example.common_pitfall",
+          "text": "Writing $M_{X}(t) = 2$ or $M_{X}(t) = e^{2t}$ because the mean is 2, instead of $\\exp(2(e^{t} - 1))$.",
+          "text_hash": "6672114fca59ca4c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
             "equationish"
           ]
         }
@@ -37695,6 +36646,561 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+      "package_file": "4.2.2-mean-variance-cs1014.json",
+      "topic_code": "4.2",
+      "campaign_id": "CS1-EP001-CAMPAIGN-XI",
+      "counts": {
+        "mathish_strings": 31,
+        "already_compliant": 28,
+        "needs_migration": 0,
+        "correctly_excluded": 3,
+        "needs_manual_review": 3,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "mission.concept_focus",
+          "field_group": "mission.concept_focus",
+          "text": "Family → E(Y) → $\\operatorname{Var}(Y)$ → variance function $V(\\mu)$ → scale parameter.",
+          "text_hash": "0d7a3d4aa94edd82",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[0].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Family structure specifies mean, variance, V(mu), and scale. The link maps μ to η and is a separate object from the response variance structure.",
+          "text_hash": "59cc70bcf7a6d46d",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[0].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Mean, variance, $V(mu)$, scale. Poisson: $E[Y]$=Var[Y]=lambda.",
+          "text_hash": "e57036bafd475282",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[0].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Mean, variance, variance function $V(mu)$, and scale (dispersion). Example: Poisson with mean lambda has $E[Y]$=Var[Y]=lambda and $V(\\mu)=\\mu$ with scale often 1.",
+          "text_hash": "0fa35c4e5f5c0c36",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[0].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For every GLM response, Var[Y] equals $\\sigma^{2}$ constant independent of mu; $V(\\mu)$=1 always.",
+          "text_hash": "a6789d632054a06e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[0].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Mean and variance are defined only after writing the linear predictor $\\eta$; family structure is secondary.",
+          "text_hash": "404401d356edf947",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "State $E[Y]$, Var[Y], $V(mu)$; refuse link-as-structure.",
+          "text_hash": "e2505de26c1b20be",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Poisson has mean-variance equality; Normal has constant variance with scale σ². Link choice does not replace these family facts.",
+          "text_hash": "4f845b3459569cc4",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Poisson $V(\\mu)=\\mu$; Normal $V(\\mu)$=1, scale $\\sigma^{2}$. Refuse link-as-structure.",
+          "text_hash": "b963d5c98cf38694",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Poisson: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\mu$, $V(\\mu)=\\mu$ (scale typically 1). Normal: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\sigma^{2}$, $V(\\mu)=1$ with scale $\\sigma^{2}$. The link maps $\\mu$ to $\\eta$; this question requires the mean, variance, and scale structure of the response family.",
+          "text_hash": "1badb7751503f7a8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Choosing the logit link finishes stating $E[Y]$, Var[Y], $V(mu)$, and scale for Poisson and Normal.",
+          "text_hash": "5df0f9fccdfd8abb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Poisson: $E[Y]=\\mu$, Var[Y]=$\\sigma^{2}$ constant; Normal: $E[Y]=\\mu$, Var[Y]=$\\mu$ because both GLM families share the same variance function.",
+          "text_hash": "71bba5d03be58b98",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$V(mu)$ is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=$\\mu$.",
+          "text_hash": "421df14088b66d3b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.title",
+          "field_group": "worked_example.title",
+          "text": "Mean, variance, V(μ), and scale for three families",
+          "text_hash": "e3e7ed2ad38c7d5e",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "For three candidate GLM responses, evaluate mean, variance, variance function $V(\\mu)$, and scale $\\varphi$ where relevant:\n(1) Poisson with $\\lambda = 5$;\n(2) $\\mathrm{Binomial}(n = 10, p = 0.3)$;\n(3) Gamma with mean $\\mu = 10$ and shape $\\alpha = 4$ (so $\\operatorname{Var} = \\mu^{2}/\\alpha$).",
+          "text_hash": "dd4362b4b8e3b794",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$\\lambda = 5$",
+          "text_hash": "76a066a55e3d7edd",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.given[2].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$\\mu = 10, \\alpha = 4$",
+          "text_hash": "b179152176a2a119",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. For each family write $E[Y]$, $\\operatorname{Var}[Y]$, $V(\\mu)$, and $\\varphi$ before substituting numbers.",
+          "text_hash": "dc1c5c423e9bccc0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[0].label",
+          "field_group": "worked_example.steps[].label",
+          "text": "$\\mathrm{Poisson}(\\lambda = 5)$",
+          "text_hash": "fd10d9f9cd5d44d8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[0].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Use $E[Y] = \\operatorname{Var}[Y] = \\lambda$ and $V(\\mu) = \\mu$ with $\\varphi = 1$.",
+          "text_hash": "fb25c5654d7ee95f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[0].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Poisson equates mean and variance; the variance function is $V(\\mu) = \\mu$.",
+          "text_hash": "0f4be3480a03505c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E = 5$; $Var = 5$; $V(\\mu) = \\mu$; $\\phi = 1$",
+          "text_hash": "f95425983612eb52",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[1].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Compute $np$ and $np(1 - p)$; note $V(\\mu) = \\mu(1 - \\mu/n)$ with $\\varphi = 1$.",
+          "text_hash": "16aaf4c6690574b6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[1].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Binomial mean is $np$ and variance is $np(1-p)$; here that yields mean 3 and variance 2.1, with scale $\\varphi = 1$.",
+          "text_hash": "b27c4a6183b61e11",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E = 10 \\times 0.3 = 3$; $Var = 10 \\times 0.3 \\times 0.7 = 2.1$; $\\phi = 1$",
+          "text_hash": "08724cc883fea7c9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[2].label",
+          "field_group": "worked_example.steps[].label",
+          "text": "$\\mathrm{Gamma}(\\mu = 10, \\alpha = 4)$",
+          "text_hash": "39e7ef29e299e295",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[2].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Use $\\operatorname{Var} = \\mu^{2}/\\alpha$ and identify $V(\\mu) = \\mu^{2}$ with scale related to $1/\\alpha$.",
+          "text_hash": "843d47ec005660d5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Gamma has variance function $V(\\mu) = \\mu^{2}$. With shape $\\alpha = 4$, $\\operatorname{Var} = 100/4 = 25$.",
+          "text_hash": "7569d921300836b4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E = 10$; $Var = 10^{2}/4 = 25$; $V(\\mu) = \\mu^{2}$",
+          "text_hash": "3fe1912b96705ade",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "$Poisson: E = Var = 5, V(\\mu) = \\mu. Binomial: E = 3, Var = 2.1. Gamma: E = 10, Var = 25, V(\\mu) = \\mu^{2}.$",
+          "text_hash": "239922326663b134",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-MEAN-VARIANCE",
+          "package_file": "4.2.2-mean-variance-cs1014.json",
+          "field_path": "worked_example.common_pitfall",
+          "field_group": "worked_example.common_pitfall",
+          "text": "Using $\\operatorname{Var} = \\mu$ for the Binomial or Gamma case, or forgetting that Poisson's mean-variance equality is a special property, not a universal GLM rule.",
+          "text_hash": "d21fbb268565a881",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
       "package_file": "4.2.8-residuals-cs1014.json",
       "topic_code": "4.2",
@@ -39044,6 +38550,502 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+      "package_file": "revision-generating-functions-cs1007.json",
+      "topic_code": "CH-R1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
+      "counts": {
+        "mathish_strings": 26,
+        "already_compliant": 26,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "The MGF is $E[exp(tX)]$, and its logarithm is the CGF.",
+          "text_hash": "f2ee575ed56fa312",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$M_{X}(t)=E[e^{tX}]$ and $K_{X}(t)=\\log M_{X}(t)$, where the MGF exists.",
+          "text_hash": "a9d7847e0cd92f10",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t) = E[\\exp(tX)]$ where finite, and $K_{X}(t) = \\log M_{X}(t)$.",
+          "text_hash": "75dc3287cd6ca929",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t) = E[tX]$, and $K_{X}(t)$ is its derivative.",
+          "text_hash": "6bb722bbd7041b35",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t) = P(X \\leq t)$, and $K_{X}(t)$ is the survival function.",
+          "text_hash": "4037311114cbde52",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[0].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$K_{X}(t) = \\exp(M_{X}(t))$.",
+          "text_hash": "f0b5ee571af37c2f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$M_{X}'(0)=E[X]$ and $M_{X}''(0)=E[X^{2}]$.",
+          "text_hash": "ed32de2856b22013",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[X] = M_{X}'(0)$ and $E[X^{2}] = M_{X}''(0)$.",
+          "text_hash": "5bb4b10b597e685e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[X] = M_{X}(0)$ and $E[X^{2}] = M_{X}'(0)$.",
+          "text_hash": "37f75a8ab6e8e6ff",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{Var}(X) = M_{X}''(0)$ in every case.",
+          "text_hash": "ad851da2c1088b7e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[X^{2}] = (M_{X}'(0))^{2}$.",
+          "text_hash": "45f7b45c8d97b5ae",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "Closed-book retrieval. Define the moment generating function $M_{X}(t)$ and the cumulant generating function $K_{X}(t)$. If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling $M_{X}''(0)$ the variance in every case.",
+          "text_hash": "fed569f21eecd37d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$definition of M_X(t)$",
+          "text_hash": "719c6c04a47c2fe6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.given[1].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$definition of K_X(t)$",
+          "text_hash": "36d9c1cfde6c49dc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.given[2].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$M_X'(0) and M_X''(0)$",
+          "text_hash": "46de726b4e0d0107",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. Retrieve $M_{X} = E[e^{tX}]$, $K_{X} = \\log M_{X}$, then the derivative-at-zero rules.",
+          "text_hash": "034b740e9947e2bc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[0].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Where finite, $M_{X}(t) = E[\\exp(tX)]$ and $K_{X}(t) = \\log M_{X}(t)$.",
+          "text_hash": "9cb9d6332df171d0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$M_X(t)=E[exp(tX)]$; $K_X(t)=\\log M_X(t)$",
+          "text_hash": "fb3523c9ef8f6ce6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[1].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "State $M_{X}'(0)$ and $M_{X}''(0)$.",
+          "text_hash": "a26f674eb33fb166",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E[X] = M_X'(0)$; $E[X^{2}] = M_X''(0)$",
+          "text_hash": "ba0097fb74d4bdb1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[2].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "How do you get $\\operatorname{Var}(X)$ from these?",
+          "text_hash": "055242131d9aa0c0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Variance is $E[X^{2}] - (E[X])^{2}$, not $M_{X}''(0)$ alone.",
+          "text_hash": "392eecf568515aa4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\operatorname{Var}(X) = M_X''(0) - [M_X'(0)]^{2}$; $refuse Var = M_X''(0) in every case$",
+          "text_hash": "9f954c34796f9c07",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.steps[2].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "Raw second moment $\\neq$ variance",
+          "text_hash": "32951fb6907f59b4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "$M_X(t) = E[exp(tX)] and K_X(t) = \\log M_X(t). E[X] = M_X'(0) and E[X^{2}] = M_X''(0). Variance subtracts the squared mean$; $M_X''(0) alone is not the variance in general.$",
+          "text_hash": "54c952f3cda03e3e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-GENERATING-FUNCTIONS",
+          "package_file": "revision-generating-functions-cs1007.json",
+          "field_path": "worked_example.common_pitfall",
+          "field_group": "worked_example.common_pitfall",
+          "text": "Calling the second MGF derivative at zero the variance without subtracting $(E[X])^{2}$, or confusing the MGF with a distribution function.",
+          "text_hash": "311f4bb4f854d9a7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-REV-LINEAR-MODELS",
       "package_file": "revision-linear-models-cs1003.json",
       "topic_code": "CD-R1",
@@ -39918,5 +39920,5 @@
       ]
     }
   ],
-  "content_fingerprint": "dc56c21a08a79a8f531ab7f0641660fa3d4e3cdde2bf4f6537f7354698aa5993"
+  "content_fingerprint": "48767a3d204e51558ab36c97592cf190733359d19ccb778e7d74dc040088a1c8"
 }

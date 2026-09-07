@@ -249,7 +249,7 @@
       {
         "id": "S2",
         "label": "Retrieve raw-moment derivatives",
-        "attempt_cue": "State M_X'(0) and M_X''(0).",
+        "attempt_cue": "State $M_{X}'(0)$ and $M_{X}''(0)$.",
         "explanation": "The nth derivative of the MGF at zero gives the nth raw moment when the MGF exists in a neighbourhood of zero.",
         "calculation": "$E[X] = M_X'(0)$; $E[X^{2}] = M_X''(0)$",
         "result": "First two raw moments from derivatives"

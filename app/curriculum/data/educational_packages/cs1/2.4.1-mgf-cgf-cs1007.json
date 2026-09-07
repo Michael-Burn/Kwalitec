@@ -37,7 +37,7 @@
   "mission": {
     "mission_id": "msn-cs1007-cs1-2.4-mgf-cgf",
     "display_title": "Form the moment and cumulant generating functions of an RV",
-    "mission_purpose": "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable (so M_X(t) and K_X(t) (or CMP equivalents) are usable objects) without pretending moment-via-GF calculation is finished.",
+    "mission_purpose": "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable (so $M_{X}(t)$ and $K_{X}(t)$ (or CMP equivalents) are usable objects) without pretending moment-via-GF calculation is finished.",
     "tutor_intent": "Today I will force the candidate to define or interpret the MGF and CGF. And refuse treating 'I can compute ordinary moments by hand' as having generating functions.",
     "educational_intent": "Produce a cognitive move from the distribution of an RV to lawful MGF and CGF objects under CMP definitions.",
     "learning_objective": "Obtain and interpret the moment and cumulant generating functions of a random variable.",
@@ -244,8 +244,8 @@
       {
         "id": "S1",
         "label": "Derive the Poisson MGF",
-        "attempt_cue": "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
-        "explanation": "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
+        "attempt_cue": "Sum $e^{tx} e^{-\\lambda} \\lambda^{x} / x!$ and recognise the series.",
+        "explanation": "For Poisson($\\lambda$), $M_{X}(t) = \\exp(\\lambda(e^{t} - 1))$. With $\\lambda = 2$ this is $\\exp(2(e^{t} - 1))$.",
         "calculation": "$M_X(t) = exp(2(e^t - 1))$",
         "result": "$M_X(t) = exp(2(e^t - 1))$"
       },
@@ -253,7 +253,7 @@
         "id": "S2",
         "label": "Form the CGF",
         "attempt_cue": "Take the natural log of the MGF.",
-        "explanation": "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
+        "explanation": "The CGF is $C_{X}(t) = \\log M_{X}(t) = 2(e^{t} - 1)$.",
         "calculation": "$C_X(t) = 2(e^t - 1)$",
         "result": "$C_X(t) = 2(e^t - 1)$"
       },
@@ -267,7 +267,7 @@
       }
     ],
     "final_answer": "$M_X(t) = exp(2(e^t - 1))$; $C_X(t) = 2(e^t - 1). The mean 2 is M'(0), not the MGF.$",
-    "common_pitfall": "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
+    "common_pitfall": "Writing $M_{X}(t) = 2$ or $M_{X}(t) = e^{2t}$ because the mean is 2, instead of $\\exp(2(e^{t} - 1))$.",
     "syllabus_ref": "2.4.1"
   }
 }

@@ -175,82 +175,96 @@ _MEANING_SAMPLES = (
     ),
 )
 
-# Locked Wave 5 leftover prose (byte-identical; not converted).
-_LEFTOVER_EXCLUSIONS = (
+# Locked Wave 5 leftover migrations (manual-review close-out).
+_WAVE5_LEFTOVER_MIGRATIONS = (
     (
         "2.2.3-cov-corr-expectation-cs1005.json",
         "worked_example.steps[2].attempt_cue",
-        "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
+        r"Apply linearity, then state why $\operatorname{Corr} \neq 0$ here does "
+        "not finish an independence claim.",
     ),
     (
         "2.2.4-linear-combinations-cs1005.json",
         "worked_example.steps[1].explanation",
-        "Variance of a linear combination needs the covariance whenever dependence is present. Here a = 2 and b = −1, so 2ab Cov = 2(2)(−1)(3) = −12.",
+        r"Variance of a linear combination needs the covariance whenever "
+        r"dependence is present. Here $a = 2$ and $b = -1$, so "
+        r"$2ab\operatorname{Cov} = 2(2)(-1)(3) = -12$.",
     ),
     (
         "2.4.1-mgf-cgf-cs1007.json",
         "mission.mission_purpose",
-        "Today's Mission exists to obtain the moment and cumulant generating functions of a random variable (so M_X(t) and K_X(t) (or CMP equivalents) are usable objects) without pretending moment-via-GF calculation is finished.",
+        r"Today's Mission exists to obtain the moment and cumulant generating "
+        r"functions of a random variable (so $M_{X}(t)$ and $K_{X}(t)$ (or CMP "
+        "equivalents) are usable objects) without pretending moment-via-GF "
+        "calculation is finished.",
     ),
     (
         "2.4.1-mgf-cgf-cs1007.json",
         "worked_example.steps[0].attempt_cue",
-        "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
+        r"Sum $e^{tx} e^{-\lambda} \lambda^{x} / x!$ and recognise the series.",
     ),
     (
         "2.4.1-mgf-cgf-cs1007.json",
         "worked_example.steps[0].explanation",
-        "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
+        r"For Poisson($\lambda$), $M_{X}(t) = \exp(\lambda(e^{t} - 1))$. With "
+        r"$\lambda = 2$ this is $\exp(2(e^{t} - 1))$.",
     ),
     (
         "2.4.1-mgf-cgf-cs1007.json",
         "worked_example.steps[1].explanation",
-        "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
+        r"The CGF is $C_{X}(t) = \log M_{X}(t) = 2(e^{t} - 1)$.",
     ),
     (
         "2.4.1-mgf-cgf-cs1007.json",
         "worked_example.common_pitfall",
-        "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
+        r"Writing $M_{X}(t) = 2$ or $M_{X}(t) = e^{2t}$ because the mean is 2, "
+        r"instead of $\exp(2(e^{t} - 1))$.",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[0].label",
-        "Poisson(λ = 5)",
+        r"$\mathrm{Poisson}(\lambda = 5)$",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[0].explanation",
-        "Poisson equates mean and variance; the variance function is V(μ) = μ.",
+        r"Poisson equates mean and variance; the variance function is "
+        r"$V(\mu) = \mu$.",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[1].explanation",
-        "Binomial mean is np and variance is np(1-p); here that yields mean 3 and variance 2.1, with scale φ = 1.",
+        r"Binomial mean is $np$ and variance is $np(1-p)$; here that yields "
+        r"mean 3 and variance 2.1, with scale $\varphi = 1$.",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[2].label",
-        "Gamma(μ = 10, α = 4)",
+        r"$\mathrm{Gamma}(\mu = 10, \alpha = 4)$",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[2].attempt_cue",
-        "Use Var = μ²/α and identify V(μ) = μ² with scale related to 1/α.",
+        r"Use $\operatorname{Var} = \mu^{2}/\alpha$ and identify "
+        r"$V(\mu) = \mu^{2}$ with scale related to $1/\alpha$.",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.steps[2].explanation",
-        "Gamma has variance function V(μ) = μ². With shape α = 4, Var = 100/4 = 25.",
+        r"Gamma has variance function $V(\mu) = \mu^{2}$. With shape "
+        r"$\alpha = 4$, $\operatorname{Var} = 100/4 = 25$.",
     ),
     (
         "4.2.2-mean-variance-cs1014.json",
         "worked_example.common_pitfall",
-        "Using Var = μ for the Binomial or Gamma case, or forgetting that Poisson's mean-variance equality is a special property, not a universal GLM rule.",
+        r"Using $\operatorname{Var} = \mu$ for the Binomial or Gamma case, or "
+        "forgetting that Poisson's mean-variance equality is a special "
+        "property, not a universal GLM rule.",
     ),
     (
         "revision-generating-functions-cs1007.json",
         "worked_example.steps[1].attempt_cue",
-        "State M_X'(0) and M_X''(0).",
+        r"State $M_{X}'(0)$ and $M_{X}''(0)$.",
     ),
 )
 
@@ -400,9 +414,9 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 700
-    assert checked["totals"]["migrated"] == 1217
-    assert checked["totals"]["needs_migration"] == 700
+    assert checked["totals"]["remaining_backlog"] == 685
+    assert checked["totals"]["migrated"] == 1232
+    assert checked["totals"]["needs_migration"] == 685
     assert live["totals"] == checked["totals"]
 
     wave5_files = set(wave5.WAVE5_FILES)
@@ -424,8 +438,8 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 355
-    assert still_pending_review == 15
+    assert migrated == 370
+    assert still_pending_review == 0
     assert confident_backlog == 0
 
 
@@ -465,20 +479,77 @@ def test_wave5_scoring_keys_byte_identical_in_packages() -> None:
 
 @pytest.mark.parametrize(
     ("package_file", "field_path", "expected"),
-    _LEFTOVER_EXCLUSIONS,
-    ids=[f"{r[0]}:{r[1]}" for r in _LEFTOVER_EXCLUSIONS],
+    _WAVE5_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE5_LEFTOVER_MIGRATIONS],
 )
-def test_wave5_leftover_manual_review_strings_are_byte_identical(
+def test_wave5_leftover_migrations_are_valid_katex(
     package_file: str,
     field_path: str,
     expected: str,
 ) -> None:
     text = wave1.get_path(_load(package_file), field_path)
     assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+def test_wave5_leftover_partial_migrations_preserve_surrounding_prose() -> None:
+    """Items 3, 9, and 14 typeset only the live formula; prose stays intact."""
+    cases = (
+        (
+            "2.4.1-mgf-cgf-cs1007.json",
+            "mission.mission_purpose",
+            (
+                "Today's Mission exists to obtain the moment and cumulant "
+                "generating functions of a random variable (so ",
+                " (or CMP equivalents) are usable objects) without pretending "
+                "moment-via-GF calculation is finished.",
+            ),
+            (r"M_{X}(t)", r"K_{X}(t)"),
+        ),
+        (
+            "4.2.2-mean-variance-cs1014.json",
+            "worked_example.steps[0].explanation",
+            (
+                "Poisson equates mean and variance; the variance function is ",
+                "",
+            ),
+            (r"V(\mu) = \mu",),
+        ),
+        (
+            "4.2.2-mean-variance-cs1014.json",
+            "worked_example.common_pitfall",
+            (
+                "Using ",
+                " for the Binomial or Gamma case, or forgetting that Poisson's "
+                "mean-variance equality is a special property, not a universal "
+                "GLM rule.",
+            ),
+            (r"\operatorname{Var} = \mu",),
+        ),
+    )
+    for package_file, field_path, prose_parts, needles in cases:
+        text = wave1.get_path(_load(package_file), field_path)
+        for part in prose_parts:
+            if part:
+                assert part in text, f"missing prose in {package_file} {field_path}"
+        joined = " ".join(_spans(text))
+        for needle in needles:
+            assert needle in joined, (
+                f"expected typeset {needle!r} in {package_file} {field_path}"
+            )
+        for body in _spans(text):
+            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
 
 
 def test_wave5_leftover_knowledge_check_scoring_unaffected() -> None:
-    """All 24 Wave 5 KCs still match the pre-migration scoring snapshot."""
+    """No leftover fields were knowledge_checks; all Wave 5 KC scoring holds."""
+    leftover_fields = {field for _, field, _ in _WAVE5_LEFTOVER_MIGRATIONS}
+    assert not any(f.startswith("knowledge_checks") for f in leftover_fields)
     snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
     reset_educational_package_cache()
     loader = EducationalPackageLoader(

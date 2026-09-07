@@ -263,7 +263,7 @@
       {
         "id": "S3",
         "label": "Evaluate $E[X + 2Y]$ and refuse Corr=0⇒independence",
-        "attempt_cue": "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
+        "attempt_cue": "Apply linearity, then state why $\\operatorname{Corr} \\neq 0$ here does not finish an independence claim.",
         "explanation": "Linearity gives $E[X + 2Y] = E[X]$ + 2$E[Y]$ without needing the joint again. Correlation here is 0.20, not zero; even Corr = 0 would not by itself prove independence for general joint distributions.",
         "calculation": "$E[X + 2Y] = 0.50 + 2\\times 0.50 = 1.50$",
         "result": "$E[X + 2Y] = 1.50$; $\\operatorname{Corr} \\neq 0$ here (and $\\operatorname{Corr} = 0 \\neq$ independence in general)"
