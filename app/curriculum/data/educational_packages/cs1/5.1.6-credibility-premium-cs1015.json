@@ -35,7 +35,7 @@
     "mission_id": "msn-cs1015-cs1-5.1-credibility-premium",
     "display_title": "Use the credibility premium formula and factor",
     "mission_purpose": "Today's Mission exists to use the credibility premium formula and credibility factor. Without pretending Bayesian credibility approach (5.1.7) is finished.",
-    "tutor_intent": "Today I will force premium = Z·mean + (1−Z)·collateral structure and refuse 'Z finished Bayesian credibility theory'.",
+    "tutor_intent": "Today I will force $\\text{premium} = Z\\cdot\\text{mean} + (1-Z)\\cdot\\text{collateral}$ structure and refuse 'Z finished Bayesian credibility theory'.",
     "educational_intent": "Produce credibility premium/factor as the entry to credibility theory after Bayesian estimation objects.",
     "learning_objective": "Use the credibility premium formula and explain the role of the credibility factor.",
     "concept_focus": "Individual experience + collateral mean → credibility factor Z → credibility premium.",
@@ -169,9 +169,9 @@
       "accepted_keywords": [
         "680"
       ],
-      "explanation": "P = 0.4 × 800 + 0.6 × 600 = 320 + 360 = 680. Z = 0.4 weights individual experience; (1 - Z) weights the hypothetical mean.",
+      "explanation": "$P = 0.4 \\times 800 + 0.6 \\times 600 = 320 + 360 = 680$. $Z = 0.4$ weights individual experience; $(1 - Z)$ weights the hypothetical mean.",
       "model_answer": "680",
-      "common_mistake": "Swapping the weights to get 0.4 × 600 + 0.6 × 800 = 720, or taking full credibility P = 800.",
+      "common_mistake": "Swapping the weights to get $0.4 \\times 600 + 0.6 \\times 800 = 720$, or taking full credibility $P = 800$.",
       "success_criteria": [
         "Enters a value within 0.5 of 680.",
         "Uses Z on X̄ and (1 - Z) on μ."
@@ -221,7 +221,7 @@
         "note": "credibility factor"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write P = Z X̄ + (1 − Z)μ before substituting.",
+    "attempt_before_reveal": "CMP closed. Write $P = Z\\bar{X} + (1 - Z)\\mu$ before substituting.",
     "steps": [
       {
         "id": "S1",
@@ -249,7 +249,7 @@
       }
     ],
     "final_answer": "Credibility premium P = £680; Z = 0.4 weights individual experience.",
-    "common_pitfall": "Computing Z μ + (1 − Z) X̄ (swapping the weights), which would give 0.4×600 + 0.6×800 = 720 instead of 680.",
+    "common_pitfall": "Computing $Z\\mu + (1 - Z)\\bar{X}$ (swapping the weights), which would give $0.4\\times 600 + 0.6\\times 800 = 720$ instead of 680.",
     "syllabus_ref": "5.1.6"
   }
 }

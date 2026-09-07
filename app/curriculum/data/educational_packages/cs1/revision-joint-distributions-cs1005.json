@@ -241,7 +241,7 @@
         "id": "S1",
         "label": "Retrieve the independence condition",
         "attempt_cue": "Write the factorisation that must hold everywhere.",
-        "explanation": "Discrete X and Y are independent if and only if p_{X,Y}(x,y) = p_X(x)p_Y(y) for every pair in the joint support.",
+        "explanation": "Discrete X and Y are independent if and only if $p_{X,Y}(x,y) = p_{X}(x)p_{Y}(y)$ for every pair in the joint support.",
         "calculation": "$Independence ⇔ p(x,y) = p_X(x)p_Y(y) for all pairs$",
         "result": "Joint factorisation condition retrieved"
       },

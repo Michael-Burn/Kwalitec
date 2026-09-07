@@ -40,7 +40,7 @@
     "tutor_intent": "Today I will force η-form writing for simple GLM structures and refuse treating deviance as today's LO.",
     "educational_intent": "Produce a cognitive move from covariate structure to lawful linear predictor forms under CMP.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
-    "concept_focus": "η = Xβ definition → polynomial and factor forms → refuse conflating η with the link function.",
+    "concept_focus": "$\\eta = X\\beta$ definition → polynomial and factor forms → refuse conflating $\\eta$ with the link function.",
     "prior_bridge": "Yesterday you explained variables, factors and interactions (4.2.4). Today writes the linear predictor forms.",
     "why_now": "4.2.5 is contiguous after factors. Without η forms, deviance and software fit lack structure.",
     "expected_benefit": "You will be able to define the linear predictor and write its form for polynomial and factor models.",
@@ -125,7 +125,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "η = Xβ is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
+      "explanation": "$\\eta = X\\beta$ is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
       "model_answer": "$\\eta = X\\beta$; examples with $x$ and with factor or polynomial terms.",
       "common_mistake": "Equating link with eta or forbidding polynomial terms in GLM eta.",
       "success_criteria": [
@@ -243,19 +243,19 @@
         "note": "age proxy"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Evaluate η = 1.0 + 0.2x − 0.01x² at x = 10, then μ = e^η.",
+    "attempt_before_reveal": "CMP closed. Evaluate $\\eta = 1.0 + 0.2x - 0.01x^{2}$ at $x = 10$, then $\\mu = e^{\\eta}$.",
     "steps": [
       {
         "id": "S1",
         "label": "Write η as xᵀβ",
         "attempt_cue": "Confirm the linear predictor is linear in parameters, not in x.",
-        "explanation": "The linear predictor η = xᵀβ may include powers or factors; 'linear' refers to parameters β, not to the raw covariate.",
+        "explanation": "The linear predictor $\\eta = x^{\\mathrm{T}}\\beta$ may include powers or factors; 'linear' refers to parameters $\\beta$, not to the raw covariate.",
         "calculation": "$η = 1.0 + 0.2x - 0.01x^{2} (linear in \\beta_{0}, \\beta_{1}, \\beta_{2})$",
         "result": "$η linear in \\beta$; $quadratic in x$"
       },
       {
         "id": "S2",
-        "label": "Evaluate η at x = 10",
+        "label": "Evaluate $\\eta$ at $x = 10$",
         "attempt_cue": "Substitute x = 10.",
         "explanation": "Plug the covariate value into the polynomial predictor.",
         "calculation": "$η = 1.0 + 0.2 \\times 10 - 0.01 \\times 100 = 1.0 + 2.0 - 1.0 = 2.0$",
@@ -264,14 +264,14 @@
       {
         "id": "S3",
         "label": "Mean on the response scale",
-        "attempt_cue": "Apply the log link inverse μ = e^η.",
+        "attempt_cue": "Apply the log link inverse $\\mu = e^{\\eta}$.",
         "explanation": "The mean lives on the response scale after inverting the link.",
         "calculation": "$\\mu = e^{2.0} \\approx 7.3891$",
         "result": "$\\mu \\approx 7.3891$"
       }
     ],
     "final_answer": "$\\eta(10) = 2.0$; $\\mu = e^{2} \\approx 7.3891$ on the severity scale.",
-    "common_pitfall": "Calling a quadratic model 'nonlinear regression' because of x², or reporting η = 2.0 as the mean severity without exponentiating.",
+    "common_pitfall": "Calling a quadratic model 'nonlinear regression' because of $x^{2}$, or reporting $\\eta = 2.0$ as the mean severity without exponentiating.",
     "syllabus_ref": "4.2.5"
   }
 }

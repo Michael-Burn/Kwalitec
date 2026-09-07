@@ -171,7 +171,7 @@
       "accepted_keywords": [],
       "explanation": "Factor indicator plus age-by-region interaction encodes level effects and slope change. Constant shift alone is not a full interaction story.",
       "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{South}} + \\beta_{3} x I_{\\mathrm{South}}$. Refuse no-factor eta and interaction-as-main.",
-      "common_mistake": "Accepting η = β₀ + β₁ x only or treating interaction as another main effect.",
+      "common_mistake": "Accepting $\\eta = \\beta_{0} + \\beta_{1} x$ only or treating interaction as another main effect.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -235,7 +235,7 @@
       {
         "symbol": "link",
         "value": "log",
-        "note": "μ = e^η"
+        "note": "$\\mu = e^{\\eta}$"
       }
     ],
     "attempt_before_reveal": "CMP closed. Plug the factor indicators into η, remembering the interaction is zero unless both factors equal 1.",
@@ -259,14 +259,14 @@
       {
         "id": "S3",
         "label": "Mean frequency for male and young",
-        "attempt_cue": "Convert η = −1.0 through the log link.",
-        "explanation": "Under a log link, μ = e^η is the modelled mean count rate.",
+        "attempt_cue": "Convert $\\eta = -1.0$ through the log link.",
+        "explanation": "Under a log link, $\\mu = e^{\\eta}$ is the modelled mean count rate.",
         "calculation": "$\\mu = e^{-1.0} \\approx 0.3679$",
         "result": "$\\mu \\approx 0.3679$"
       }
     ],
     "final_answer": "Male & young: $\\eta = -1.0$, $\\mu \\approx 0.3679$. Female & not young: $\\eta = -2.0$. The interaction term 0.2 applies only when both factors are active.",
-    "common_pitfall": "Adding the interaction 0.2 for male-not-young or female-young (where M×Y = 0), or treating factors as continuous covariates without indicator coding.",
+    "common_pitfall": "Adding the interaction 0.2 for male-not-young or female-young (where $M\\times Y = 0$), or treating factors as continuous covariates without indicator coding.",
     "syllabus_ref": "4.2.4"
   }
 }

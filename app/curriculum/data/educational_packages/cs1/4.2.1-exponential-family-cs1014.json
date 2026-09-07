@@ -244,7 +244,7 @@
         "note": "Poisson probability mass function"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Rewrite the Poisson pmf as exp{y ln λ − λ − ln y!} and read off θ = ln λ.",
+    "attempt_before_reveal": "CMP closed. Rewrite the Poisson pmf as $\\exp\\{y \\ln\\lambda - \\lambda - \\ln y!\\}$ and read off $\\theta = \\ln\\lambda$.",
     "steps": [
       {
         "id": "S1",
@@ -256,8 +256,8 @@
       },
       {
         "id": "S2",
-        "label": "Numeric natural parameter at λ = 4",
-        "attempt_cue": "Evaluate θ = ln 4.",
+        "label": "Numeric natural parameter at $\\lambda = 4$",
+        "attempt_cue": "Evaluate $\\theta = \\ln 4$.",
         "explanation": "Substituting the given mean frequency produces a concrete natural parameter.",
         "calculation": "$\\theta = \\ln 4 \\approx 1.3863$",
         "result": "$\\theta \\approx 1.3863$"
@@ -272,7 +272,7 @@
       }
     ],
     "final_answer": "$\\theta = \\ln\\lambda = \\ln 4 \\approx 1.3863$; Poisson is exponential-family with $b(\\theta) = e^{\\theta}$. Normal is a member of the same family, not a rival outside it.",
-    "common_pitfall": "Reporting θ = λ = 4 (the mean) instead of the natural parameter ln λ, or claiming Normal is excluded from the GLM exponential family.",
+    "common_pitfall": "Reporting $\\theta = \\lambda = 4$ (the mean) instead of the natural parameter $\\ln\\lambda$, or claiming Normal is excluded from the GLM exponential family.",
     "syllabus_ref": "4.2.1"
   }
 }

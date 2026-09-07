@@ -1,5 +1,8 @@
 """Wave 6 mathematical notation migration: KaTeX validity, scoring, ledger."""
 
+# Leftover exclusion/migration strings are verbatim package text; line length is expected.
+# ruff: noqa: E501
+
 from __future__ import annotations
 
 import json
@@ -319,15 +322,16 @@ def test_wave6_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 478
-    assert checked["totals"]["migrated"] == 1439
-    assert checked["totals"]["needs_migration"] == 478
+    assert checked["totals"]["remaining_backlog"] == 434
+    assert checked["totals"]["migrated"] == 1478
+    assert checked["totals"]["needs_migration"] == 434
     assert live["totals"] == checked["totals"]
 
     wave6_files = set(wave6.WAVE6_FILES)
     migrated = 0
     still_pending_review = 0
     confident_backlog = 0
+    manual_excluded = 0
     for row in live["packages"]:
         if row["package_file"] not in wave6_files:
             continue
@@ -343,9 +347,15 @@ def test_wave6_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 207
-    assert still_pending_review == 44
+            if item["migration_status"] == "correctly_excluded":
+                manual_excluded += 1
+                assert item["category"] == "correctly_excluded"
+                assert item["needs_manual_review"] is False
+                assert item["reason_code"] == "manual_review_prose_exclusion"
+    assert migrated == 246
+    assert still_pending_review == 0
     assert confident_backlog == 0
+    assert manual_excluded == 5
 
 
 def test_wave6_packages_disjoint_from_prior_waves() -> None:
@@ -381,3 +391,399 @@ def test_wave6_scoring_keys_byte_identical_in_packages() -> None:
         assert live_tol == rec["numeric_tolerance"]
         choice_ids = [c["id"] for c in kc.get("choices") or []]
         assert choice_ids == rec["choice_ids"]
+
+
+# Locked Wave 6 leftover migrations (manual-review close-out).
+_WAVE6_LEFTOVER_MIGRATIONS = (
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "mission.concept_focus",
+        r"$\eta = X\beta$ definition → polynomial and factor forms → refuse conflating $\eta$ with the link function.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "knowledge_checks[0].explanation",
+        r"$\eta = X\beta$ is the linear predictor; the link maps mu to eta. Polynomial and factor terms can enter eta in GLMs when specified.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Evaluate $\eta = 1.0 + 0.2x - 0.01x^{2}$ at $x = 10$, then $\mu = e^{\eta}$.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "worked_example.steps[0].explanation",
+        r"The linear predictor $\eta = x^{\mathrm{T}}\beta$ may include powers or factors; 'linear' refers to parameters $\beta$, not to the raw covariate.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "worked_example.steps[1].label",
+        r"Evaluate $\eta$ at $x = 10$",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Apply the log link inverse $\mu = e^{\eta}$.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1014.json",
+        "worked_example.common_pitfall",
+        r"Calling a quadratic model 'nonlinear regression' because of $x^{2}$, or reporting $\eta = 2.0$ as the mean severity without exponentiating.",
+    ),
+    (
+        "revision-joint-distributions-cs1005.json",
+        "worked_example.steps[0].explanation",
+        r"Discrete X and Y are independent if and only if $p_{X,Y}(x,y) = p_{X}(x)p_{Y}(y)$ for every pair in the joint support.",
+    ),
+    (
+        "2.4.2-moment-via-gf-cs1007.json",
+        "worked_example.given[0].note",
+        r"CGF for $\mathrm{Poisson}(\lambda = 2)$",
+    ),
+    (
+        "2.4.2-moment-via-gf-cs1007.json",
+        "worked_example.steps[2].attempt_cue",
+        r"State why writing $C_{X}(t) = 2(e^{t} - 1)$ alone does not give the moments.",
+    ),
+    (
+        "2.4.2-moment-via-gf-cs1007.json",
+        "worked_example.common_pitfall",
+        r"Treating the presence of $C_{X}(t) = 2(e^{t} - 1)$ as already giving the moments, or evaluating $C(0) = 0$ and calling that the mean.",
+    ),
+    (
+        "3.3.1-hypothesis-concepts-cs1012.json",
+        "worked_example.steps[2].label",
+        r"Decision at $\alpha = 0.05$",
+    ),
+    (
+        "3.3.1-hypothesis-concepts-cs1012.json",
+        "worked_example.steps[2].explanation",
+        r"Reject $H_{0}$ when $p \leq \alpha$. Here $p = 0.0358 < 0.05$.",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "knowledge_checks[1].common_mistake",
+        r"Accepting $\eta = \beta_{0} + \beta_{1} x$ only or treating interaction as another main effect.",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "worked_example.given[1].note",
+        r"$\mu = e^{\eta}$",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Convert $\eta = -1.0$ through the log link.",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "worked_example.steps[2].explanation",
+        r"Under a log link, $\mu = e^{\eta}$ is the modelled mean count rate.",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "worked_example.common_pitfall",
+        r"Adding the interaction 0.2 for male-not-young or female-young (where $M\times Y = 0$), or treating factors as continuous covariates without indicator coding.",
+    ),
+    (
+        "cp-2.1.3-prob-quantiles-cs1016.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Use $F(x) = 1 - e^{-x/\theta}$ with $x = 400$ and $\theta = 800$.",
+    ),
+    (
+        "cp-2.1.3-prob-quantiles-cs1016.json",
+        "worked_example.steps[0].explanation",
+        r"For an Exponential with mean $\theta$, the CDF is $1 - e^{-x/\theta}$. The threshold is half the mean, so the exponent is $-1/2$.",
+    ),
+    (
+        "cp-2.1.3-prob-quantiles-cs1016.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Solve $1 - e^{-m/800} = 0.5$ for $m$.",
+    ),
+    (
+        "cp-2.1.3-prob-quantiles-cs1016.json",
+        "worked_example.steps[1].explanation",
+        r"The median is the 0.5-quantile. Survival equals one half when $e^{-m/\theta} = 1/2$, so $m = \theta \ln 2$.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1003.json",
+        "mission.tutor_intent",
+        r"Today I will force $\eta = X\beta$ writing for a factor model and a polynomial term. Refuse $\eta$/link conflation.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1003.json",
+        "mission.concept_focus",
+        r"$\eta = X\beta$ → polynomial / factor forms → refuse $\eta$=link conflation.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1003.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Substitute $x = 8$ into $\eta$.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1003.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Compute $\mu = e^{\eta}$.",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Rewrite the Poisson pmf as $\exp\{y \ln\lambda - \lambda - \ln y!\}$ and read off $\theta = \ln\lambda$.",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "worked_example.steps[1].label",
+        r"Numeric natural parameter at $\lambda = 4$",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Evaluate $\theta = \ln 4$.",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "worked_example.common_pitfall",
+        r"Reporting $\theta = \lambda = 4$ (the mean) instead of the natural parameter $\ln\lambda$, or claiming Normal is excluded from the GLM exponential family.",
+    ),
+    (
+        "2.1.3-prob-quantiles-cs1004.json",
+        "knowledge_checks[1].hints[0]",
+        r"Use $F(x) = 1 - e^{-x/\theta}$ with $\theta = 250$ and $x = 100$.",
+    ),
+    (
+        "2.1.3-prob-quantiles-cs1004.json",
+        "knowledge_checks[1].common_mistake",
+        r"Reporting $e^{-0.4} \approx 0.6703$ (the survival probability) instead of $1 - e^{-0.4}$, or treating $\theta = 250$ as a rate so that $F(100) = 1 - e^{-25000}$.",
+    ),
+    (
+        "2.1.3-prob-quantiles-cs1004.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Use the Exponential CDF $F(x) = 1 - e^{-x/\theta}$ and the median formula $\theta \ln 2$.",
+    ),
+    (
+        "2.1.3-prob-quantiles-cs1004.json",
+        "worked_example.steps[1].explanation",
+        r"The median $m$ satisfies $1 - e^{-m/\theta} = 0.5$, so $m = \theta \ln 2$.",
+    ),
+    (
+        "5.1.6-credibility-premium-cs1015.json",
+        "mission.tutor_intent",
+        r"Today I will force $\text{premium} = Z\cdot\text{mean} + (1-Z)\cdot\text{collateral}$ structure and refuse 'Z finished Bayesian credibility theory'.",
+    ),
+    (
+        "5.1.6-credibility-premium-cs1015.json",
+        "knowledge_checks[1].explanation",
+        r"$P = 0.4 \times 800 + 0.6 \times 600 = 320 + 360 = 680$. $Z = 0.4$ weights individual experience; $(1 - Z)$ weights the hypothetical mean.",
+    ),
+    (
+        "5.1.6-credibility-premium-cs1015.json",
+        "knowledge_checks[1].common_mistake",
+        r"Swapping the weights to get $0.4 \times 600 + 0.6 \times 800 = 720$, or taking full credibility $P = 800$.",
+    ),
+    (
+        "5.1.6-credibility-premium-cs1015.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Write $P = Z\bar{X} + (1 - Z)\mu$ before substituting.",
+    ),
+    (
+        "5.1.6-credibility-premium-cs1015.json",
+        "worked_example.common_pitfall",
+        r"Computing $Z\mu + (1 - Z)\bar{X}$ (swapping the weights), which would give $0.4\times 600 + 0.6\times 800 = 720$ instead of 680.",
+    ),
+)
+
+# Locked Wave 6 leftover prose exclusions (byte-identical; not converted).
+_WAVE6_LEFTOVER_EXCLUSIONS = (
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "mission.tutor_intent",
+        "Today I will force variable/factor/interaction discrimination and refuse treating η-form writing as today's LO.",
+    ),
+    (
+        "4.2.4-factors-interactions-cs1014.json",
+        "mission.why_now",
+        "4.2.4 is contiguous after link. Without factors/interactions, η forms lack actuarial covariate honesty.",
+    ),
+    (
+        "4.2.5-linear-predictor-cs1003.json",
+        "mission.prior_bridge",
+        "Yesterday factors/interactions (4.2.4). Today writes η forms.",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "knowledge_checks[0].explanation",
+        "GLM responses sit in named exponential families. Package name or presence of exp() does not make a GLM. Normal is one family member, not the universal definition.",
+    ),
+    (
+        "4.2.1-exponential-family-cs1014.json",
+        "knowledge_checks[1].explanation",
+        "Family membership needs the exponential-family form tied to the response structure, not software branding or exp() alone.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE6_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE6_LEFTOVER_MIGRATIONS],
+)
+def test_wave6_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE6_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE6_LEFTOVER_EXCLUSIONS],
+)
+def test_wave6_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+
+
+def test_wave6_leftover_partial_migrations_preserve_surrounding_prose() -> None:
+    """Partial leftovers typeset only the live math object; framing prose stays."""
+    cases = (
+        (
+            "4.2.5-linear-predictor-cs1014.json",
+            "mission.concept_focus",
+            (
+                " definition → polynomial and factor forms → refuse conflating ",
+                " with the link function.",
+            ),
+            (r"\eta = X\beta", r"\eta"),
+        ),
+        (
+            "2.4.2-moment-via-gf-cs1007.json",
+            "worked_example.steps[2].attempt_cue",
+            (
+                "State why writing ",
+                " alone does not give the moments.",
+            ),
+            (r"C_{X}(t) = 2(e^{t} - 1)",),
+        ),
+        (
+            "4.2.4-factors-interactions-cs1014.json",
+            "worked_example.steps[2].attempt_cue",
+            (
+                "Convert ",
+                " through the log link.",
+            ),
+            (r"\eta = -1.0",),
+        ),
+        (
+            "cp-2.1.3-prob-quantiles-cs1016.json",
+            "worked_example.steps[1].explanation",
+            (
+                "The median is the 0.5-quantile. Survival equals one half when ",
+                ", so ",
+            ),
+            (r"e^{-m/\theta} = 1/2", r"m = \theta \ln 2"),
+        ),
+        (
+            "5.1.6-credibility-premium-cs1015.json",
+            "mission.tutor_intent",
+            (
+                "Today I will force ",
+                " structure and refuse 'Z finished Bayesian credibility theory'.",
+            ),
+            (r"\text{premium} = Z\cdot\text{mean} + (1-Z)\cdot\text{collateral}",),
+        ),
+        (
+            "5.1.6-credibility-premium-cs1015.json",
+            "worked_example.common_pitfall",
+            (
+                "Computing ",
+                " (swapping the weights), which would give ",
+                " instead of 680.",
+            ),
+            (r"Z\mu + (1 - Z)\bar{X}", r"0.4\times 600 + 0.6\times 800 = 720"),
+        ),
+    )
+    for package_file, field_path, prose_parts, needles in cases:
+        text = wave1.get_path(_load(package_file), field_path)
+        for part in prose_parts:
+            assert part in text, f"missing prose in {package_file} {field_path}"
+        joined = " ".join(_spans(text))
+        for needle in needles:
+            assert needle in joined, (
+                f"expected typeset {needle!r} in {package_file} {field_path}"
+            )
+        for body in _spans(text):
+            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
+
+
+def test_wave6_leftover_knowledge_check_scoring_unaffected() -> None:
+    """Leftover KC edits are explanation/hint/common_mistake only; keys hold."""
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    targets = (
+        "4.2.5-linear-predictor-cs1014.json",
+        "4.2.4-factors-interactions-cs1014.json",
+        "4.2.1-exponential-family-cs1014.json",
+        "2.1.3-prob-quantiles-cs1004.json",
+        "5.1.6-credibility-premium-cs1015.json",
+    )
+    by_id = {
+        (r["package_file"], r["item_id"]): r
+        for r in snapshot["items"]
+        if r["package_file"] in targets
+    }
+    assert by_id
+    # Excluded KC explanations remain byte-identical (no scoring surface change).
+    for package_file, field_path, expected in _WAVE6_LEFTOVER_EXCLUSIONS:
+        if field_path.startswith("knowledge_checks"):
+            assert wave1.get_path(_load(package_file), field_path) == expected
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    seen: set[tuple[str, str]] = set()
+    for fname in targets:
+        pack = next(
+            p for p in loader.all_approved() if Path(p.source_path).name == fname
+        )
+        substance = substance_from_package(
+            pack, curriculum_identity="CS1:wave6-left", topic_id=pack.topic_code
+        )
+        practice = [
+            a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+        ]
+        for act in practice:
+            item = act.scoreable
+            assert item is not None
+            key = (fname, item.item_id)
+            expected = by_id[key]
+            seen.add(key)
+            assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+            assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+            exp_tol = expected["numeric_tolerance"]
+            if exp_tol is None:
+                assert item.answer_key.numeric_tolerance is None
+            else:
+                assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+            choice_ids = [
+                c[0] if not isinstance(c, str) else c for c in item.choices
+            ]
+            assert choice_ids == expected["choice_ids"]
+            for probe in expected["verdicts"]:
+                result = score_practice_response(item, probe["response"])
+                assert result.scored is probe["scored"]
+                assert result.correct is probe["correct"]
+                assert result.matched_key == probe["matched_key"]
+    assert seen == set(by_id)

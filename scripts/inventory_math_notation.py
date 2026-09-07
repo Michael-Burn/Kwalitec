@@ -196,6 +196,32 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "reading_guidance.exit_line",
             "128fa0d3e098e42e",
         ),
+        # Wave 6 leftovers: η-form / topic coupling, or exp() as software brand.
+        (
+            "4.2.4-factors-interactions-cs1014.json",
+            "mission.tutor_intent",
+            "e354a000f891d3af",
+        ),
+        (
+            "4.2.4-factors-interactions-cs1014.json",
+            "mission.why_now",
+            "35fb4f7db2117adb",
+        ),
+        (
+            "4.2.5-linear-predictor-cs1003.json",
+            "mission.prior_bridge",
+            "0bb776511886a9b1",
+        ),
+        (
+            "4.2.1-exponential-family-cs1014.json",
+            "knowledge_checks[0].explanation",
+            "206e61ffbb954598",
+        ),
+        (
+            "4.2.1-exponential-family-cs1014.json",
+            "knowledge_checks[1].explanation",
+            "f2de1c8e9ff25fed",
+        ),
     }
 )
 

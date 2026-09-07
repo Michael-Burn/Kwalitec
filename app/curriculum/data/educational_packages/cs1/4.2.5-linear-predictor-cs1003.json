@@ -36,10 +36,10 @@
     "mission_id": "msn-cs1003-cs1-4.2-linear-predictor",
     "display_title": "Write the linear predictor for simple GLM forms",
     "mission_purpose": "Today's Mission exists to define the linear predictor and write its form for simple models including polynomials and factors. So η is concrete.",
-    "tutor_intent": "Today I will force η = Xβ writing for a factor model and a polynomial term. Refuse η/link conflation.",
+    "tutor_intent": "Today I will force $\\eta = X\\beta$ writing for a factor model and a polynomial term. Refuse $\\eta$/link conflation.",
     "educational_intent": "Produce concrete η literacy.",
     "learning_objective": "Define the linear predictor and write its form for simple models, including polynomial models and models involving factors.",
-    "concept_focus": "η = Xβ → polynomial / factor forms → refuse η=link conflation.",
+    "concept_focus": "$\\eta = X\\beta$ → polynomial / factor forms → refuse $\\eta$=link conflation.",
     "prior_bridge": "Yesterday factors/interactions (4.2.4). Today writes η forms.",
     "why_now": "4.2.5 concretes the middle of the GLM chain before deviance.",
     "expected_benefit": "Study Progress for η forms. Not deviance estimation as primary.",
@@ -240,7 +240,7 @@
       {
         "id": "S1",
         "label": "Form the linear predictor",
-        "attempt_cue": "Substitute x = 8 into η.",
+        "attempt_cue": "Substitute $x = 8$ into $\\eta$.",
         "explanation": "The linear predictor is linear in the parameters even when it includes x² as a constructed covariate.",
         "calculation": "$η(8) = 0.5 + 0.15 \\times 8 + (-0.005) \\times 64 = 0.5 + 1.2 - 0.32 = 1.38$",
         "result": "$η = 1.38$"
@@ -248,7 +248,7 @@
       {
         "id": "S2",
         "label": "Map to the mean scale",
-        "attempt_cue": "Compute μ = e^η.",
+        "attempt_cue": "Compute $\\mu = e^{\\eta}$.",
         "explanation": "Under a log link the mean is the exponential of the linear predictor.",
         "calculation": "$\\mu = e^{1.38} \\approx 3.9749$",
         "result": "$\\mu \\approx 3.9749$"

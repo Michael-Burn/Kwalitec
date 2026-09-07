@@ -164,7 +164,7 @@
       "response_type": "numeric",
       "body": "Evaluate the Exponential CDF at the stated threshold.",
       "hints": [
-        "Use F(x) = 1 - e^{-x/θ} with θ = 250 and x = 100.",
+        "Use $F(x) = 1 - e^{-x/\\theta}$ with $\\theta = 250$ and $x = 100$.",
         "Report a decimal probability, not a percentage."
       ],
       "accepted_keywords": [
@@ -173,7 +173,7 @@
       "numeric_tolerance": 0.001,
       "explanation": "For Exponential mean $\\theta$, $P(X \\leq x) = 1 - e^{-x/\\theta}$. Here $x/\\theta = 100/250 = 0.4$, so $P(X \\leq 100) = 1 - e^{-0.4} \\approx 0.3297$. Naming the Exponential family alone does not produce this probability.",
       "model_answer": "0.3297",
-      "common_mistake": "Reporting e^{-0.4} ≈ 0.6703 (the survival probability) instead of 1 - e^{-0.4}, or treating θ = 250 as a rate so that F(100) = 1 - e^{-25000}.",
+      "common_mistake": "Reporting $e^{-0.4} \\approx 0.6703$ (the survival probability) instead of $1 - e^{-0.4}$, or treating $\\theta = 250$ as a rate so that $F(100) = 1 - e^{-25000}$.",
       "success_criteria": [
         "Enters a value within 0.001 of 0.3297.",
         "Uses the Exponential CDF with mean θ, not the survival function alone."
@@ -212,7 +212,7 @@
         "note": "for the CDF evaluation"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Use the Exponential CDF F(x) = 1 - e^{-x/θ} and the median formula θ ln 2.",
+    "attempt_before_reveal": "CMP closed. Use the Exponential CDF $F(x) = 1 - e^{-x/\\theta}$ and the median formula $\\theta \\ln 2$.",
     "steps": [
       {
         "id": "S1",
@@ -226,7 +226,7 @@
         "id": "S2",
         "label": "Evaluate the median",
         "attempt_cue": "Solve F(m) = 0.5 for m.",
-        "explanation": "The median m satisfies 1 - e^{-m/θ} = 0.5, so m = θ ln 2.",
+        "explanation": "The median $m$ satisfies $1 - e^{-m/\\theta} = 0.5$, so $m = \\theta \\ln 2$.",
         "calculation": "$m = 250 \\ln 2 \\approx 250 \\times 0.6931 = 173.29$",
         "result": "$median \\approx 173.29$"
       },

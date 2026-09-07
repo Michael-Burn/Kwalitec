@@ -247,16 +247,16 @@
       {
         "id": "S1",
         "label": "Evaluate the CDF at 400",
-        "attempt_cue": "Use F(x) = 1 − e^{−x/θ} with x = 400 and θ = 800.",
-        "explanation": "For an Exponential with mean θ, the CDF is 1 − e^{−x/θ}. The threshold is half the mean, so the exponent is −1/2.",
+        "attempt_cue": "Use $F(x) = 1 - e^{-x/\\theta}$ with $x = 400$ and $\\theta = 800$.",
+        "explanation": "For an Exponential with mean $\\theta$, the CDF is $1 - e^{-x/\\theta}$. The threshold is half the mean, so the exponent is $-1/2$.",
         "calculation": "$F(400) = 1 - e^{-400/800} = 1 - e^{-0.5} \\approx 1 - 0.6065 = 0.3935$",
         "result": "$P(X \\leq 400) \\approx 0.3935$"
       },
       {
         "id": "S2",
         "label": "Invert for the median",
-        "attempt_cue": "Solve 1 − e^{−m/800} = 0.5 for m.",
-        "explanation": "The median is the 0.5-quantile. Survival equals one half when e^{−m/θ} = 1/2, so m = θ ln 2.",
+        "attempt_cue": "Solve $1 - e^{-m/800} = 0.5$ for $m$.",
+        "explanation": "The median is the 0.5-quantile. Survival equals one half when $e^{-m/\\theta} = 1/2$, so $m = \\theta \\ln 2$.",
         "calculation": "$e^{-m/800} = 0.5 \\Rightarrow m = 800 \\ln 2 \\approx 800 \\times 0.6931 = 554.5$",
         "result": "$median \\approx £554.5$"
       },
