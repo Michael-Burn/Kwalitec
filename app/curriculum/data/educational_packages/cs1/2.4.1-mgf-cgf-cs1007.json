@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force the candidate to define or interpret the MGF and CGF. And refuse treating 'I can compute ordinary moments by hand' as having generating functions.",
     "educational_intent": "Produce a cognitive move from the distribution of an RV to lawful MGF and CGF objects under CMP definitions.",
     "learning_objective": "Obtain and interpret the moment and cumulant generating functions of a random variable.",
-    "concept_focus": "Named family → M_X(t)=E[e^{tX}] → CGF C_X(t)=log M_X(t) → refuse mean/var-as-MGF.",
+    "concept_focus": "Named family → $M_{X}(t)=E[e^{tX}]$ → CGF $C_{X}(t)=\\log M_{X}(t)$ → refuse mean/var-as-MGF.",
     "prior_bridge": "Campaign Zeta closed expectations and conditional expectations (2.3) with Revision. Today opens topic 2.4 at LO 2.4.1. The named Continuity Front after CS1-006.",
     "why_now": "Form the moment and cumulant generating functions of an RV before you extract moments from them.",
     "expected_benefit": "You will be able to write the MGF (and CGF) for a named family and refuse treating ordinary moments as a substitute for the generating function.",
@@ -81,7 +81,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating 'I know E[X] and Var(X)' with having an MGF/CGF.",
+      "Watch for equating 'I know $E[X]$ and $\\operatorname{Var}(X)$' with having an MGF/CGF.",
       "Watch for starting moment-via-differentiation drills (2.4.2) inside this sitting.",
       "Watch for CLT work (2.5) today."
     ],
@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "The MGF is an exponential expectation and the CGF is its logarithm. A few moments are not the full function.",
-      "model_answer": "M(t)=E[e^{tX}]; K(t)=log M(t), where the MGF exists.",
+      "model_answer": "M(t)=$E[e^{tX}]$; K(t)=log M(t), where the MGF exists.",
       "common_mistake": "Treating a stated mean and variance as though they were the MGF.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,17 +136,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "Where it exists around t=0, M_X(t)=E[e^{tX}] and the cumulant generating function is K_X(t)=log M_X(t). Knowing only a mean and variance does not determine that the MGF has been obtained.",
+          "label": "Where it exists around $t=0$, $M_{X}(t)=E[e^{tX}]$ and the cumulant generating function is $K_{X}(t)=\\log M_{X}(t)$. Knowing only a mean and variance does not determine that the MGF has been obtained.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "M_X(t)=E[tX] and K_X(t)=e^{M_X(t)}, so both are linear in t.",
+          "label": "$M_{X}(t)=E[tX]$ and $K_{X}(t)=e^{M_{X}(t)}$, so both are linear in $t$.",
           "misconception_tag": "definitions_reversed"
         },
         {
           "id": "c",
-          "label": "An MGF is simply the pair (E[X],Var(X)); no function of t is required.",
+          "label": "An MGF is simply the pair ($E[X]$,$\\operatorname{Var}(X)$); no function of t is required.",
           "misconception_tag": "moments_as_mgf"
         },
         {
@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.1-cp-01",
       "title": "Checkpoint: 2.4.1",
-      "prompt": "Closed-book. If X is Poisson with parameter λ, which MGF and CGF pair is correct?",
+      "prompt": "Closed-book. If X is Poisson with parameter $\\lambda$, which MGF and CGF pair is correct?",
       "response_type": "mcq",
       "body": "Identify the Poisson generating functions.",
       "hints": [
@@ -170,8 +170,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Summing E[e^{tX}] under the Poisson PMF gives exp(λ(e^t-1)); taking its logarithm gives the CGF.",
-      "model_answer": "M(t)=exp(λ(e^t-1)); K(t)=λ(e^t-1).",
+      "explanation": "Summing $E[e^{tX}]$ under the Poisson PMF gives $\\exp(\\lambda(e^{t}-1))$; taking its logarithm gives the CGF.",
+      "model_answer": "$M(t)=\\exp(\\lambda(e^{t}-1))$; $K(t)=\\lambda(e^{t}-1)$.",
       "common_mistake": "Replacing the generating function with the mean and variance or swapping MGF and CGF.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "M_X(t)=exp(λ(e^t-1)) and K_X(t)=λ(e^t-1).",
+          "label": "$M_{X}(t)=\\exp(\\lambda(e^{t}-1))$ and $K_{X}(t)=\\lambda(e^{t}-1)$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "M_X(t)=exp(λt) and K_X(t)=λt because the mean alone determines the full Poisson MGF.",
+          "label": "$M_{X}(t)=\\exp(\\lambda t)$ and $K_{X}(t)=\\lambda t$ because the mean alone determines the full Poisson MGF.",
           "misconception_tag": "mean_only_mgf"
         },
         {
           "id": "c",
-          "label": "M_X(t)=λ(e^t-1) and K_X(t)=exp(λ(e^t-1)), so the MGF and CGF are reversed.",
+          "label": "$M_{X}(t)=\\lambda(e^{t}-1)$ and $K_{X}(t)=\\exp(\\lambda(e^{t}-1))$, so the MGF and CGF are reversed.",
           "misconception_tag": "mgf_cgf_reversed"
         },
         {
           "id": "d",
-          "label": "M_X(t)=λ and K_X(t)=log λ because Poisson mean and variance both equal λ.",
+          "label": "$M_{X}(t)=\\lambda$ and $K_{X}(t)=\\log\\lambda$ because Poisson mean and variance both equal $\\lambda$.",
           "misconception_tag": "moments_as_generating_functions"
         }
       ],
@@ -221,52 +221,52 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "MGF and CGF for a Poisson claim count",
-    "problem_statement": "Annual claim count X ~ Poisson(λ = 2). Obtain the moment generating function M_X(t) and the cumulant generating function C_X(t). State why writing M_X(t) = 2 does not define the MGF.",
+    "problem_statement": "Annual claim count $X \\sim \\mathrm{Poisson}(\\lambda = 2)$. Obtain the moment generating function $M_{X}(t)$ and the cumulant generating function $C_{X}(t)$. State why writing $M_{X}(t) = 2$ does not define the MGF.",
     "given": [
       {
         "symbol": "X",
-        "value": "Poisson(λ = 2)",
+        "value": "$Poisson(\\lambda = 2)$",
         "note": "claim count"
       },
       {
         "symbol": "definition",
-        "value": "M_X(t) = E[e^{tX}]",
+        "value": "$M_X(t) = E[e^{tX}]$",
         "note": "MGF definition"
       },
       {
         "symbol": "CGF link",
-        "value": "C_X(t) = log M_X(t)",
+        "value": "$C_X(t) = \\log M_X(t)$",
         "note": "cumulant generating function"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Start from E[e^{tX}] for the Poisson pmf, then take the log for the CGF.",
+    "attempt_before_reveal": "CMP closed. Start from $E[e^{tX}]$ for the Poisson pmf, then take the log for the CGF.",
     "steps": [
       {
         "id": "S1",
         "label": "Derive the Poisson MGF",
         "attempt_cue": "Sum e^{tx} e^{-λ} λ^x / x! and recognise the series.",
         "explanation": "For Poisson(λ), M_X(t) = exp(λ(e^t − 1)). With λ = 2 this is exp(2(e^t − 1)).",
-        "calculation": "M_X(t) = exp(2(e^t − 1))",
-        "result": "M_X(t) = exp(2(e^t − 1))"
+        "calculation": "$M_X(t) = exp(2(e^t - 1))$",
+        "result": "$M_X(t) = exp(2(e^t - 1))$"
       },
       {
         "id": "S2",
         "label": "Form the CGF",
         "attempt_cue": "Take the natural log of the MGF.",
         "explanation": "The CGF is C_X(t) = log M_X(t) = 2(e^t − 1).",
-        "calculation": "C_X(t) = 2(e^t − 1)",
-        "result": "C_X(t) = 2(e^t − 1)"
+        "calculation": "$C_X(t) = 2(e^t - 1)$",
+        "result": "$C_X(t) = 2(e^t - 1)$"
       },
       {
         "id": "S3",
         "label": "Refuse mean-as-MGF",
-        "attempt_cue": "State why M_X(t) = 2 is wrong even though E[X] = 2.",
-        "explanation": "The mean E[X] = 2 is M'(0) (or C'(0)), not the MGF itself. The MGF is a function of t, here exp(2(e^t − 1)), not the constant mean.",
-        "calculation": "E[X] = 2 = M'(0); M_X(t) ≠ 2",
+        "attempt_cue": "State why $M_{X}(t) = 2$ is wrong even though $E[X] = 2$.",
+        "explanation": "The mean $E[X] = 2$ is $M'(0)$ (or $C'(0)$), not the MGF itself. The MGF is a function of $t$, here $\\exp(2(e^{t} - 1))$, not the constant mean.",
+        "calculation": "$E[X] = 2 = M'(0)$; $M_{X}(t) \\neq 2$",
         "result": "Mean is not the MGF"
       }
     ],
-    "final_answer": "M_X(t) = exp(2(e^t − 1)); C_X(t) = 2(e^t − 1). The mean 2 is M'(0), not the MGF.",
+    "final_answer": "$M_X(t) = exp(2(e^t - 1))$; $C_X(t) = 2(e^t - 1). The mean 2 is M'(0), not the MGF.$",
     "common_pitfall": "Writing M_X(t) = 2 or M_X(t) = e^{2t} because the mean is 2, instead of exp(2(e^t − 1)).",
     "syllabus_ref": "2.4.1"
   }

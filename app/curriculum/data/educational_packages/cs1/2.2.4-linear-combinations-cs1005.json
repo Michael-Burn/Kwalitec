@@ -37,17 +37,17 @@
     "mission_id": "msn-cs1005-cs1-2.2-linear-combinations",
     "display_title": "Obtain mean and variance of linear combinations",
     "mission_purpose": "Today's Mission exists to obtain the mean and variance of linear combinations of random variables (including the covariance term when variables are dependent) without claiming Chapter 2 or 2.3 complete.",
-    "tutor_intent": "Today I will force the candidate through E[aX+bY] and Var(aX+bY) with an explicit dependence note. Refuse ignoring Cov and refuse Chapter-2-complete claims.",
+    "tutor_intent": "Today I will force the candidate through $E[aX+bY]$ and $\\operatorname{Var}(aX+bY)$ with an explicit dependence note. Refuse ignoring Cov and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable mean/variance warrants for linear combinations of RVs.",
     "learning_objective": "Obtain the mean and variance of linear combinations of random variables.",
-    "concept_focus": "E[aX+bY]=aE[X]+bE[Y] → Var(aX+bY)=a²Var(X)+b²Var(Y)+2ab Cov(X,Y) → refuse dropping Cov when dependent.",
-    "prior_bridge": "Yesterday you placed Cov/Corr and E[g(X,Y)] (2.2.3). Today applies linear combination mean and variance.",
+    "concept_focus": "$E[aX+bY]=aE[X]+bE[Y]$ → $\\operatorname{Var}(aX+bY)=a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y)$ → refuse dropping Cov when dependent.",
+    "prior_bridge": "Yesterday you placed Cov/Corr and $E[g(X,Y)]$ (2.2.3). Today applies linear combination mean and variance.",
     "why_now": "2.2.4 completes topic 2.2 Learning; Revision follows before any 2.3 commission.",
     "expected_benefit": "You will be able to compute mean and variance of a linear combination, including the 2ab Cov term when X and Y are dependent.",
     "explainability": "Campaign Epsilon Day 4 focuses LO 2.2.4: terminal Learning day of CS1-005.",
     "success_criteria": [
-      "Closed-book, state E[aX+bY] in terms of E[X], E[Y].",
-      "State Var(aX+bY) including the covariance term when needed.",
+      "Closed-book, state $E[aX+bY]$ in terms of $E[X]$, $E[Y]$.",
+      "State $\\operatorname{Var}(aX+bY)$ including the covariance term when needed.",
       "Refuse Chapter 2 complete / ignoring Cov when dependent."
     ],
     "task_descriptions": [
@@ -126,7 +126,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Expectation is linear. Variance squares scale coefficients and includes the covariance cross-term.",
-      "model_answer": "E=aEX+bEY; Var=a²VarX+b²VarY+2abCov.",
+      "model_answer": "$E=aE[X]+bE[Y]$; $\\operatorname{Var}=a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)+2ab\\operatorname{Cov}$.",
       "common_mistake": "Dropping covariance without independence or failing to square variance coefficients.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -135,22 +135,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[aX+bY]=aE[X]+bE[Y], and Var(aX+bY)=a²Var(X)+b²Var(Y)+2abCov(X,Y).",
+          "label": "$E[aX+bY]=aE[X]+bE[Y]$, and $\\operatorname{Var}(aX+bY)=a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y)$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Var(aX+bY)=aVar(X)+bVar(Y)+2abCov(X,Y), because variance is linear in constants.",
+          "label": "$\\operatorname{Var}(aX+bY)$=a$\\operatorname{Var}(X)$+b$\\operatorname{Var}(Y)$+2ab$\\operatorname{Cov}(X,Y)$, because variance is linear in constants.",
           "misconception_tag": "constants_not_squared"
         },
         {
           "id": "c",
-          "label": "Var(aX+bY)=a²Var(X)+b²Var(Y) for all X and Y, because covariance never affects a linear combination.",
+          "label": "$\\operatorname{Var}(aX+bY)=a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)$ for all $X$ and $Y$, because covariance never affects a linear combination.",
           "misconception_tag": "covariance_always_dropped"
         },
         {
           "id": "d",
-          "label": "E[aX+bY]=a²E[X]+b²E[Y], matching the squared coefficients used in variance.",
+          "label": "$E[aX+bY]=a^{2}E[X]+b^{2}E[Y]$, matching the squared coefficients used in variance.",
           "misconception_tag": "expectation_coefficients_squared"
         }
       ],
@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.4-cp-01",
       "title": "Checkpoint: 2.2.4",
-      "prompt": "Closed-book. Var(X)=4, Var(Y)=9, and Cov(X,Y)=2. What is Var(2X-Y)?",
+      "prompt": "Closed-book. $\\operatorname{Var}(X)$=4, $\\operatorname{Var}(Y)$=9, and $\\operatorname{Cov}(X,Y)$=2. What is $\\operatorname{Var}(2X-Y)$?",
       "response_type": "mcq",
       "body": "Compute the variance with its covariance term.",
       "hints": [
@@ -179,22 +179,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Var(2X-Y)=2²(4)+(-1)²(9)+2(2)(-1)(2)=16+9-8=17.",
+          "label": "$\\operatorname{Var}(2X-Y)=2^{2}(4)+(-1)^{2}(9)+2(2)(-1)(2)=16+9-8=17$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Var(2X-Y)=16+9=25 because covariance is omitted whenever the variables differ.",
+          "label": "$\\operatorname{Var}(2X-Y)$=16+9=25 because covariance is omitted whenever the variables differ.",
           "misconception_tag": "covariance_dropped"
         },
         {
           "id": "c",
-          "label": "Var(2X-Y)=2(4)-9+2(2)(-1)(2)=-9 because variance follows the signs in the linear combination.",
+          "label": "$\\operatorname{Var}(2X-Y)$=2(4)-9+2(2)(-1)(2)=-9 because variance follows the signs in the linear combination.",
           "misconception_tag": "variance_not_squared"
         },
         {
           "id": "d",
-          "label": "Var(2X-Y)=16+9+8=33 because covariance always enters with a positive sign.",
+          "label": "$\\operatorname{Var}(2X-Y)$=16+9+8=33 because covariance always enters with a positive sign.",
           "misconception_tag": "cross_term_sign_ignored"
         }
       ],
@@ -220,63 +220,63 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Mean and variance of 2X − Y with nonzero covariance",
-    "problem_statement": "Portfolio losses X and Y (£000) satisfy E[X] = 10, E[Y] = 4, Var(X) = 9, Var(Y) = 4, and Cov(X, Y) = 3. For the linear combination L = 2X − Y, compute E[L] and Var(L).",
+    "problem_statement": "Portfolio losses $X$ and $Y$ (£000) satisfy $E[X] = 10$, $E[Y] = 4$, $\\operatorname{Var}(X) = 9$, $\\operatorname{Var}(Y) = 4$, and $\\operatorname{Cov}(X, Y) = 3$. For the linear combination $L = 2X - Y$, compute $E[L]$ and $\\operatorname{Var}(L)$.",
     "given": [
       {
-        "symbol": "E[X]",
+        "symbol": "$E[X]$",
         "value": "10",
         "note": "mean of X (£000)"
       },
       {
-        "symbol": "E[Y]",
+        "symbol": "$E[Y]$",
         "value": "4",
         "note": "mean of Y (£000)"
       },
       {
-        "symbol": "Var(X)",
+        "symbol": "$\\operatorname{Var}(X)$",
         "value": "9",
         "note": "variance of X"
       },
       {
-        "symbol": "Var(Y)",
+        "symbol": "$\\operatorname{Var}(Y)$",
         "value": "4",
         "note": "variance of Y"
       },
       {
-        "symbol": "Cov(X, Y)",
+        "symbol": "$\\operatorname{Cov}(X, Y)$",
         "value": "3",
         "note": "nonzero dependence"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Apply linearity for the mean, then expand Var(2X − Y) including the covariance term.",
+    "attempt_before_reveal": "CMP closed. Apply linearity for the mean, then expand $\\operatorname{Var}(2X - Y)$ including the covariance term.",
     "steps": [
       {
         "id": "S1",
-        "label": "Compute E[2X − Y]",
-        "attempt_cue": "Use E[aX + bY] = aE[X] + bE[Y] with a = 2, b = −1.",
+        "label": "Compute $E[2X - Y]$",
+        "attempt_cue": "Use $E[aX + bY] = aE[X] + bE[Y]$ with $a = 2$, $b = -1$.",
         "explanation": "Expectation is linear whether or not X and Y are dependent.",
-        "calculation": "E[L] = 2×10 + (−1)×4 = 20 − 4 = 16",
-        "result": "E[L] = 16"
+        "calculation": "$E[L] = 2\\times 10 + (-1)\\times 4 = 20 - 4 = 16$",
+        "result": "$E[L] = 16$"
       },
       {
         "id": "S2",
-        "label": "Expand Var(2X − Y)",
-        "attempt_cue": "Write a²Var(X) + b²Var(Y) + 2ab Cov(X, Y).",
+        "label": "Expand $\\operatorname{Var}(2X - Y)$",
+        "attempt_cue": "Write $a^{2}\\operatorname{Var}(X) + b^{2}\\operatorname{Var}(Y) + 2ab\\operatorname{Cov}(X, Y)$.",
         "explanation": "Variance of a linear combination needs the covariance whenever dependence is present. Here a = 2 and b = −1, so 2ab Cov = 2(2)(−1)(3) = −12.",
-        "calculation": "Var(L) = 4×9 + 1×4 + 2(2)(−1)(3) = 36 + 4 − 12 = 28",
-        "result": "Var(L) = 28"
+        "calculation": "$\\operatorname{Var}(L) = 4\\times 9 + 1\\times 4 + 2(2)(-1)(3) = 36 + 4 - 12 = 28$",
+        "result": "$\\operatorname{Var}(L) = 28$"
       },
       {
         "id": "S3",
         "label": "Refuse dropping Cov",
         "attempt_cue": "State the incorrect variance obtained if Cov is ignored.",
-        "explanation": "Dropping the covariance term as if X and Y were uncorrelated gives 36 + 4 = 40, which overstates Var(L) when Cov = 3 > 0 and the combination is 2X − Y.",
+        "explanation": "Dropping the covariance term as if $X$ and $Y$ were uncorrelated gives $36 + 4 = 40$, which overstates $\\operatorname{Var}(L)$ when $\\operatorname{Cov} = 3 > 0$ and the combination is $2X - Y$.",
         "calculation": "Without Cov: 40 (wrong); with Cov: 28",
         "result": "Must retain 2ab Cov when dependent"
       }
     ],
-    "final_answer": "E[2X − Y] = 16; Var(2X − Y) = 28. Omitting Cov(X, Y) = 3 incorrectly yields 40.",
-    "common_pitfall": "Computing Var(2X − Y) as 4Var(X) + Var(Y) = 40 and dropping the covariance term even though Cov(X, Y) = 3 is given.",
+    "final_answer": "$E[2X - Y] = 16$; $\\operatorname{Var}(2X - Y) = 28. Omitting \\operatorname{Cov}(X, Y) = 3 incorrectly yields 40.$",
+    "common_pitfall": "Computing $\\operatorname{Var}(2X - Y)$ as 4$\\operatorname{Var}(X) + \\operatorname{Var}(Y)$ = 40 and dropping the covariance term even though $\\operatorname{Cov}(X, Y)$ = 3 is given.",
     "syllabus_ref": "2.2.4"
   }
 }

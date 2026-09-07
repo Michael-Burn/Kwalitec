@@ -123,8 +123,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "The MGF is E[exp(tX)], and its logarithm is the CGF.",
-      "model_answer": "M_X(t)=E[e^(tX)] and K_X(t)=log M_X(t), where the MGF exists.",
+      "explanation": "The MGF is $E[exp(tX)]$, and its logarithm is the CGF.",
+      "model_answer": "$M_{X}(t)=E[e^{tX}]$ and $K_{X}(t)=\\log M_{X}(t)$, where the MGF exists.",
       "common_mistake": "Confusing the MGF with a distribution function or the CGF transformation.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,22 +133,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "M_X(t) = E[exp(tX)] where finite, and K_X(t) = log M_X(t).",
+          "label": "$M_{X}(t) = E[\\exp(tX)]$ where finite, and $K_{X}(t) = \\log M_{X}(t)$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "M_X(t) = E[tX], and K_X(t) is its derivative.",
+          "label": "$M_{X}(t) = E[tX]$, and $K_{X}(t)$ is its derivative.",
           "misconception_tag": "mgf_definition_error"
         },
         {
           "id": "c",
-          "label": "M_X(t) = P(X less than or equal to t), and K_X(t) is the survival function.",
+          "label": "$M_{X}(t) = P(X \\leq t)$, and $K_{X}(t)$ is the survival function.",
           "misconception_tag": "mgf_cdf_confusion"
         },
         {
           "id": "d",
-          "label": "K_X(t) = exp(M_X(t)).",
+          "label": "$K_{X}(t) = \\exp(M_{X}(t))$.",
           "misconception_tag": "cgf_transform_error"
         }
       ],
@@ -168,7 +168,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "The nth MGF derivative at zero gives the nth raw moment; variance subtracts the squared mean.",
-      "model_answer": "M_X'(0)=E[X] and M_X''(0)=E[X²].",
+      "model_answer": "$M_{X}'(0)=E[X]$ and $M_{X}''(0)=E[X^{2}]$.",
       "common_mistake": "Calling the second raw moment the variance.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -177,22 +177,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[X] = M_X'(0) and E[X squared] = M_X''(0).",
+          "label": "$E[X] = M_{X}'(0)$ and $E[X^{2}] = M_{X}''(0)$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[X] = M_X(0) and E[X squared] = M_X'(0).",
+          "label": "$E[X] = M_{X}(0)$ and $E[X^{2}] = M_{X}'(0)$.",
           "misconception_tag": "derivative_order_error"
         },
         {
           "id": "c",
-          "label": "Var(X) = M_X''(0) in every case.",
+          "label": "$\\operatorname{Var}(X) = M_{X}''(0)$ in every case.",
           "misconception_tag": "raw_second_moment_as_variance"
         },
         {
           "id": "d",
-          "label": "E[X squared] = squared M_X'(0).",
+          "label": "$E[X^{2}] = (M_{X}'(0))^{2}$.",
           "misconception_tag": "second_moment_as_squared_mean"
         }
       ],
@@ -218,32 +218,32 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Retrieve MGF/CGF definitions and first two raw moments",
-    "problem_statement": "Closed-book retrieval. Define the moment generating function M_X(t) and the cumulant generating function K_X(t). If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling M_X''(0) the variance in every case.",
+    "problem_statement": "Closed-book retrieval. Define the moment generating function $M_{X}(t)$ and the cumulant generating function $K_{X}(t)$. If the MGF exists around zero, state how the first two raw moments are obtained from derivatives, and refuse calling $M_{X}''(0)$ the variance in every case.",
     "given": [
       {
         "symbol": "MGF ask",
-        "value": "definition of M_X(t)",
+        "value": "$definition of M_X(t)$",
         "note": "where finite"
       },
       {
         "symbol": "CGF ask",
-        "value": "definition of K_X(t)",
+        "value": "$definition of K_X(t)$",
         "note": "log transform"
       },
       {
         "symbol": "moments ask",
-        "value": "M_X'(0) and M_X''(0)",
+        "value": "$M_X'(0) and M_X''(0)$",
         "note": "raw moments"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve M_X = E[e^{tX}], K_X = log M_X, then the derivative-at-zero rules.",
+    "attempt_before_reveal": "CMP closed. Retrieve $M_{X} = E[e^{tX}]$, $K_{X} = \\log M_{X}$, then the derivative-at-zero rules.",
     "steps": [
       {
         "id": "S1",
         "label": "Retrieve MGF and CGF",
         "attempt_cue": "Write both definitions.",
-        "explanation": "Where finite, M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t).",
-        "calculation": "M_X(t)=E[exp(tX)]; K_X(t)=log M_X(t)",
+        "explanation": "Where finite, $M_{X}(t) = E[\\exp(tX)]$ and $K_{X}(t) = \\log M_{X}(t)$.",
+        "calculation": "$M_X(t)=E[exp(tX)]$; $K_X(t)=\\log M_X(t)$",
         "result": "MGF and CGF defined"
       },
       {
@@ -251,20 +251,20 @@
         "label": "Retrieve raw-moment derivatives",
         "attempt_cue": "State M_X'(0) and M_X''(0).",
         "explanation": "The nth derivative of the MGF at zero gives the nth raw moment when the MGF exists in a neighbourhood of zero.",
-        "calculation": "E[X] = M_X'(0); E[X²] = M_X''(0)",
+        "calculation": "$E[X] = M_X'(0)$; $E[X^{2}] = M_X''(0)$",
         "result": "First two raw moments from derivatives"
       },
       {
         "id": "S3",
         "label": "Refuse raw-second-as-variance",
-        "attempt_cue": "How do you get Var(X) from these?",
-        "explanation": "Variance is E[X²] - (E[X])², not M_X''(0) alone.",
-        "calculation": "Var(X) = M_X''(0) - [M_X'(0)]²; refuse Var = M_X''(0) in every case",
-        "result": "Raw second moment ≠ variance"
+        "attempt_cue": "How do you get $\\operatorname{Var}(X)$ from these?",
+        "explanation": "Variance is $E[X^{2}] - (E[X])^{2}$, not $M_{X}''(0)$ alone.",
+        "calculation": "$\\operatorname{Var}(X) = M_X''(0) - [M_X'(0)]^{2}$; $refuse Var = M_X''(0) in every case$",
+        "result": "Raw second moment $\\neq$ variance"
       }
     ],
-    "final_answer": "M_X(t) = E[exp(tX)] and K_X(t) = log M_X(t). E[X] = M_X'(0) and E[X²] = M_X''(0). Variance subtracts the squared mean; M_X''(0) alone is not the variance in general.",
-    "common_pitfall": "Calling the second MGF derivative at zero the variance without subtracting (E[X])², or confusing the MGF with a distribution function.",
+    "final_answer": "$M_X(t) = E[exp(tX)] and K_X(t) = \\log M_X(t). E[X] = M_X'(0) and E[X^{2}] = M_X''(0). Variance subtracts the squared mean$; $M_X''(0) alone is not the variance in general.$",
+    "common_pitfall": "Calling the second MGF derivative at zero the variance without subtracting $(E[X])^{2}$, or confusing the MGF with a distribution function.",
     "syllabus_ref": "2.4"
   }
 }

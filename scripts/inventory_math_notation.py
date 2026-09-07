@@ -595,13 +595,17 @@ def fingerprint_payload(payload: dict[str, Any]) -> str:
 
 
 def recommend_migration_waves(packages: list[dict[str, Any]]) -> dict[str, Any]:
-    """Order-only recommendation: highest-risk compound calculation packages first."""
+    """Order-only recommendation: highest-risk compound calculation packages first.
+
+    Prefer packages with tier-1 ``needs_migration`` strings. When none remain,
+    fall through to the next 12 packages by the ledger ranking already applied
+    to ``packages`` (tier-1 count, then backlog size).
+    """
     tier1 = [
         row
         for row in packages
         if row["counts"]["risk_tier_1_needs_migration"] > 0
     ]
-    wave1 = tier1[:12]
     remaining_tier1 = tier1[12:]
     other = [
         row
@@ -609,6 +613,13 @@ def recommend_migration_waves(packages: list[dict[str, Any]]) -> dict[str, Any]:
         if row["counts"]["needs_migration"] > 0
         and row["counts"]["risk_tier_1_needs_migration"] == 0
     ]
+    if tier1:
+        wave1 = tier1[:12]
+        wave_label = "Highest-risk compound calculation boards"
+    else:
+        backlog = [row for row in packages if row["counts"]["needs_migration"] > 0]
+        wave1 = backlog[:12]
+        wave_label = "Highest-backlog migration boards (no tier-1 remaining)"
 
     def slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         return [
@@ -632,7 +643,7 @@ def recommend_migration_waves(packages: list[dict[str, Any]]) -> dict[str, Any]:
             "reclassified by manual review."
         ),
         "wave_1": {
-            "label": "Highest-risk compound calculation boards",
+            "label": wave_label,
             "packages": slim(wave1),
             "package_count": len(wave1),
             "needs_migration_strings": sum(

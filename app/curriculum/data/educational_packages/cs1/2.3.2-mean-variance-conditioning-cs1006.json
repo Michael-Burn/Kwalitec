@@ -38,16 +38,16 @@
     "mission_id": "msn-cs1006-cs1-2.3-mean-variance-conditioning",
     "display_title": "Obtain mean and variance via conditioning",
     "mission_purpose": "Today's Mission exists to obtain the mean and variance of a random variable as expectations of conditional expected values (so the tower / law of total expectation (and related variance decomposition) is usable) without claiming Chapter 2 or generating functions complete.",
-    "tutor_intent": "Today I will force the candidate through mean (and variance) via conditioning. Refuse treating yesterday's E[Y|X] as having finished the tower, and refuse Chapter-2-complete claims.",
+    "tutor_intent": "Today I will force the candidate through mean (and variance) via conditioning. Refuse treating yesterday's $E[Y|X]$ as having finished the tower, and refuse Chapter-2-complete claims.",
     "educational_intent": "Produce executable warrants for mean and variance obtained via conditioning.",
     "learning_objective": "Obtain the mean and variance of a random variable as an expectation of conditional expected values.",
-    "concept_focus": "Tower law E[Y]=E[E[Y|X]] → Var(Y)=E[Var(Y|X)]+Var(E[Y|X]) → refuse stopping at E[Y|X] alone.",
+    "concept_focus": "Tower law $E[Y]=E[E[Y|X]]$ → $\\operatorname{Var}(Y)=E[\\operatorname{Var}(Y|X)]+\\operatorname{Var}(E[Y|X])$ → refuse stopping at $E[Y|X]$ alone.",
     "prior_bridge": "Yesterday you formed conditional expectation of one RV given another (2.3.1). Today uses that object to recover mean and variance.",
     "why_now": "2.3.2 completes topic 2.3 Learning; Revision follows before any 2.4 commission.",
     "expected_benefit": "You will be able to recover an unconditional mean (and outline variance) via conditioning using the tower / law of total variance.",
     "explainability": "Campaign Zeta Day 2 focuses LO 2.3.2: terminal Learning day of CS1-006.",
     "success_criteria": [
-      "Closed-book, state how E[Y] arises from E[E[Y|X]] (or equivalent).",
+      "Closed-book, state how $E[Y]$ arises from $E[E[Y|X]]$ (or equivalent).",
       "Outline how variance uses conditioning (CMP form).",
       "Refuse Chapter 2 complete / treating 2.3.1 as having finished 2.3.2."
     ],
@@ -81,7 +81,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for stopping at E[Y|X] without the tower / total step.",
+      "Watch for stopping at $E[Y|X]$ without the tower / total step.",
       "Watch for claiming Chapter 2 / 2.4 finished.",
       "Watch for treating Revision as optional."
     ],
@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "The tower property averages conditional means. Total variance adds average within-condition variance and variance between conditional means.",
-      "model_answer": "E[Y]=E(E[Y|X]); Var(Y)=E Var(Y|X)+Var E[Y|X].",
+      "model_answer": "$E[Y]$=E($E[Y|X]$); $\\operatorname{Var}(Y)$=E $\\operatorname{Var}(Y|X)$+Var $E[Y|X]$.",
       "common_mistake": "Stopping at a conditional quantity without the outer expectation or omitting one variance component.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,22 +136,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[Y]=E[E[Y|X]], and Var(Y)=E[Var(Y|X)]+Var(E[Y|X]).",
+          "label": "$E[Y]=E[E[Y|X]]$, and $\\operatorname{Var}(Y)=E[\\operatorname{Var}(Y|X)]+\\operatorname{Var}(E[Y|X])$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[Y]=E[Y|X] for every realised X, so no outer expectation is required.",
+          "label": "$E[Y]=E[Y|X]$ for every realised X, so no outer expectation is required.",
           "misconception_tag": "tower_outer_expectation_missing"
         },
         {
           "id": "c",
-          "label": "Var(Y)=Var(E[Y|X]) only, because conditional variation disappears after conditioning.",
+          "label": "$\\operatorname{Var}(Y)=\\operatorname{Var}(E[Y|X])$ only, because conditional variation disappears after conditioning.",
           "misconception_tag": "within_group_variance_dropped"
         },
         {
           "id": "d",
-          "label": "Var(Y)=E[Var(Y|X)] only, because variation of conditional means is irrelevant.",
+          "label": "$\\operatorname{Var}(Y)=E[\\operatorname{Var}(Y|X)]$ only, because variation of conditional means is irrelevant.",
           "misconception_tag": "between_group_variance_dropped"
         }
       ],
@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.2-cp-01",
       "title": "Checkpoint: 2.3.2",
-      "prompt": "Closed-book. P(X=1)=0.4, E[Y|X=0]=10, and E[Y|X=1]=20. What is E[Y]?",
+      "prompt": "Closed-book. $P(X=1)$=0.4, $E[Y|X=0]$=10, and $E[Y|X=1]$=20. What is $E[Y]$?",
       "response_type": "mcq",
       "body": "Apply the tower property.",
       "hints": [
@@ -171,8 +171,8 @@
       ],
       "accepted_keywords": [],
       "explanation": "The outer expectation weights each conditional mean by the probability of its condition.",
-      "model_answer": "0.6×10+0.4×20=14.",
-      "common_mistake": "Stopping at E[Y|X] or averaging conditional means without probability weights.",
+      "model_answer": "$0.6\\times 10+0.4\\times 20=14.$",
+      "common_mistake": "Stopping at $E[Y|X]$ or averaging conditional means without probability weights.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[Y]=(0.6)(10)+(0.4)(20)=14.",
+          "label": "$E[Y]$=(0.6)(10)+(0.4)(20)=14.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[Y]=20 because E[Y|X=1] is the conditional mean for the event explicitly given.",
+          "label": "$E[Y]$=20 because $E[Y|X=1]$ is the conditional mean for the event explicitly given.",
           "misconception_tag": "single_condition_as_unconditional"
         },
         {
           "id": "c",
-          "label": "E[Y]=(10+20)/2=15 because conditional means always receive equal weight.",
+          "label": "$E[Y]$=(10+20)/2=15 because conditional means always receive equal weight.",
           "misconception_tag": "conditions_equally_weighted"
         },
         {
           "id": "d",
-          "label": "E[Y]=E[Y|X], so the answer remains the two-valued function 10 or 20 rather than one unconditional mean.",
+          "label": "$E[Y]=E[Y|X]$, so the answer remains the two-valued function 10 or 20 rather than one unconditional mean.",
           "misconception_tag": "outer_expectation_missing"
         }
       ],
@@ -221,58 +221,58 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Tower law and variance decomposition for claim cost",
-    "problem_statement": "A risk type indicator X equals 0 with probability 0.4 and 1 with probability 0.6. Conditional on X, claim cost Y (£00) satisfies E[Y | X = 0] = 5, E[Y | X = 1] = 12, Var(Y | X = 0) = 4, and Var(Y | X = 1) = 9. Compute E[Y] and Var(Y) using the conditioning formulae.",
+    "problem_statement": "A risk type indicator X equals 0 with probability 0.4 and 1 with probability 0.6. Conditional on X, claim cost Y (£00) satisfies $E[Y | X = 0]$ = 5, $E[Y | X = 1]$ = 12, $\\operatorname{Var}(Y | X = 0)$ = 4, and $\\operatorname{Var}(Y | X = 1)$ = 9. Compute $E[Y]$ and $\\operatorname{Var}(Y)$ using the conditioning formulae.",
     "given": [
       {
-        "symbol": "P(X = 0)",
+        "symbol": "$P(X = 0)$",
         "value": "0.4",
         "note": "low-risk type"
       },
       {
-        "symbol": "P(X = 1)",
+        "symbol": "$P(X = 1)$",
         "value": "0.6",
         "note": "high-risk type"
       },
       {
-        "symbol": "E[Y | X]",
+        "symbol": "$E[Y | X]$",
         "value": "5 if X = 0; 12 if X = 1",
         "note": "conditional means"
       },
       {
-        "symbol": "Var(Y | X)",
+        "symbol": "$\\operatorname{Var}(Y | X)$",
         "value": "4 if X = 0; 9 if X = 1",
         "note": "conditional variances"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Apply E[Y] = E[E[Y|X]], then Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+    "attempt_before_reveal": "CMP closed. Apply $E[Y] = E[E[Y|X]]$, then $\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y|X)] + \\operatorname{Var}(E[Y|X])$.",
     "steps": [
       {
         "id": "S1",
         "label": "Apply the tower law for the mean",
-        "attempt_cue": "Average the conditional means with P(X).",
+        "attempt_cue": "Average the conditional means with $P(X)$.",
         "explanation": "The law of total expectation recovers the unconditional mean from the conditional means.",
-        "calculation": "E[Y] = 0.4×5 + 0.6×12 = 2 + 7.2 = 9.2",
-        "result": "E[Y] = 9.2"
+        "calculation": "$E[Y] = 0.4\\times 5 + 0.6\\times 12 = 2 + 7.2 = 9.2$",
+        "result": "$E[Y] = 9.2$"
       },
       {
         "id": "S2",
-        "label": "Form E[Var(Y|X)] and Var(E[Y|X])",
+        "label": "Form $E[\\operatorname{Var}(Y|X)]$ and $\\operatorname{Var}(E[Y|X])$",
         "attempt_cue": "Average the conditional variances, then variance the conditional means.",
-        "explanation": "Within-group variation is E[Var(Y|X)]. Between-group variation is Var(E[Y|X]) = E[m(X)²] − (E[m(X)])² with m(X) = E[Y|X].",
-        "calculation": "E[Var(Y|X)] = 0.4×4 + 0.6×9 = 7; Var(E[Y|X]) = 0.4×25 + 0.6×144 − 9.2² = 96.4 − 84.64 = 11.76",
-        "result": "E[Var] = 7; Var(E) = 11.76"
+        "explanation": "Within-group variation is $E[\\operatorname{Var}(Y|X)]$. Between-group variation is $\\operatorname{Var}(E[Y|X]) = E[m(X)^{2}] - (E[m(X)])^{2}$ with $m(X) = E[Y|X]$.",
+        "calculation": "$E[\\operatorname{Var}(Y|X)] = 0.4\\times 4 + 0.6\\times 9 = 7$; $\\operatorname{Var}(E[Y|X]) = 0.4\\times 25 + 0.6\\times 144 - 9.2^{2} = 96.4 - 84.64 = 11.76$",
+        "result": "$E[Var] = 7$; $\\operatorname{Var}(E) = 11.76$"
       },
       {
         "id": "S3",
-        "label": "Add for Var(Y) and refuse stopping at E[Y|X]",
-        "attempt_cue": "Sum the two variance pieces and state why E[Y|X] alone is incomplete.",
-        "explanation": "Total variance is within plus between. Stopping after reporting E[Y|X] leaves both the unconditional mean (unless averaged) and the variance decomposition unfinished.",
-        "calculation": "Var(Y) = 7 + 11.76 = 18.76",
-        "result": "Var(Y) = 18.76; need both pieces"
+        "label": "Add for $\\operatorname{Var}(Y)$ and refuse stopping at $E[Y|X]$",
+        "attempt_cue": "Sum the two variance pieces and state why $E[Y|X]$ alone is incomplete.",
+        "explanation": "Total variance is within plus between. Stopping after reporting $E[Y|X]$ leaves both the unconditional mean (unless averaged) and the variance decomposition unfinished.",
+        "calculation": "$\\operatorname{Var}(Y) = 7 + 11.76 = 18.76$",
+        "result": "$\\operatorname{Var}(Y) = 18.76$; $need both pieces$"
       }
     ],
-    "final_answer": "E[Y] = 9.2; Var(Y) = 18.76, from E[Var(Y|X)] = 7 and Var(E[Y|X]) = 11.76.",
-    "common_pitfall": "Reporting only E[Y|X] = 5 or 12 as if that finished the mean, or computing Var(Y) as E[Var(Y|X)] = 7 and omitting the between-group term Var(E[Y|X]) = 11.76.",
+    "final_answer": "$E[Y] = 9.2$; $\\operatorname{Var}(Y) = 18.76, from E[\\operatorname{Var}(Y|X)] = 7 and \\operatorname{Var}(E[Y|X]) = 11.76.$",
+    "common_pitfall": "Reporting only $E[Y|X] = 5$ or $12$ as if that finished the mean, or computing $\\operatorname{Var}(Y)$ as $E[\\operatorname{Var}(Y|X)] = 7$ and omitting the between-group term $\\operatorname{Var}(E[Y|X]) = 11.76$.",
     "syllabus_ref": "2.3.2"
   }
 }

@@ -41,8 +41,8 @@
     "mission_purpose": "Today's Mission exists to protect memory of Campaign Zeta (retrieving conditional expectation of one RV given another, and mean/variance via conditioning) so 2.3 does not evaporate before generating functions (2.4).",
     "tutor_intent": "Today I will run closed-book retrieval across Zeta's Learning hinges. Not a passive CMP re-read and not a first-pass 2.4 lesson.",
     "educational_intent": "Produce retrieval strength on the Campaign Educational Objective: conditional expectation → mean/variance as expectations of conditional values.",
-    "learning_objective": "Retrieve and connect (1) conditional expectation E[Y|X=x] (or equivalent), and (2) mean and variance obtained via conditioning (tower / law of total expectation and related variance decomposition).",
-    "concept_focus": "Campaign chain retrieval: E[Y|X] → E[E[Y|X]] / Var via conditioning.",
+    "learning_objective": "Retrieve and connect (1) conditional expectation $E[Y|X=x]$ (or equivalent), and (2) mean and variance obtained via conditioning (tower / law of total expectation and related variance decomposition).",
+    "concept_focus": "Campaign chain retrieval: $E[Y|X] \\rightarrow E[E[Y|X]]$ / Var via conditioning.",
     "prior_bridge": "Yesterday you finished mean and variance via conditioning (2.3.2). Today is Revision mode: return to 2.3.1–2.3.2 under closed-book retrieval. No new first-pass LO.",
     "why_now": "You've just finished conditional expectation; revisit it closed-book now so it stays usable before generating functions.",
     "expected_benefit": "Evidence that the 2.3 chain retrieves. Revision Study Progress, not a claim that Chapter 2 or the exam journey is complete.",
@@ -53,7 +53,7 @@
       "Refuse Chapter 2 complete / spine / until-exam / MGF-as-done claims."
     ],
     "task_descriptions": [
-      "Without opening the CMP, sketch Zeta's chain: E[Y|X] → mean/variance via conditioning.",
+      "Without opening the CMP, sketch Zeta's chain: $E[Y|X]$ → mean/variance via conditioning.",
       "Complete Revision Knowledge Checks under closed-book rules.",
       "Author a revision Reflection naming the weakest link."
     ],
@@ -76,7 +76,7 @@
   "reading_guidance": {
     "lead_line": "Purpose of this revision stage: strengthen retrieval of the Campaign Zeta chain without opening a new CMP chapter first. Attempt closed-book retrieval; only then reopen the exact failed locus.",
     "focus_questions": [
-      "Can you form or interpret E[Y|X=x] (or equivalent)?",
+      "Can you form or interpret $E[Y|X=x]$ (or equivalent)?",
       "Can you obtain mean (and variance) via conditioning?",
       "What claim must you refuse (Chapter 2 complete / spine / until-exam / 2.4 done)?"
     ],
@@ -122,7 +122,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Averaging the conditional mean over X recovers the unconditional mean.",
-      "model_answer": "Compute E[Y given X], then average over X.",
+      "model_answer": "Compute $E[Y given X]$, then average over X.",
       "common_mistake": "Treating conditional expectation as the unconditional constant.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -131,22 +131,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[Y] = E[E[Y given X]].",
+          "label": "$E[Y] = E[E[Y\\text{ given }X]]$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[Y] = E[Y given X] for every realised X.",
+          "label": "$E[Y] = E[Y given X]$ for every realised X.",
           "misconception_tag": "conditional_as_constant"
         },
         {
           "id": "c",
-          "label": "E[Y] = Var(E[Y given X]).",
+          "label": "$E[Y] = \\operatorname{Var}(E[Y given X])$.",
           "misconception_tag": "mean_variance_confusion"
         },
         {
           "id": "d",
-          "label": "E[Y given X] = E[X given Y] in general.",
+          "label": "$E[Y given X] = E[X given Y]$ in general.",
           "misconception_tag": "conditional_symmetry"
         }
       ],
@@ -157,7 +157,7 @@
       "kind": "checkpoint",
       "item_id": "cs1006-cz-r1-cp-01",
       "title": "Checkpoint: CZ-R1",
-      "prompt": "Closed-book. Which formula correctly decomposes Var(Y) by conditioning on X?",
+      "prompt": "Closed-book. Which formula correctly decomposes $\\operatorname{Var}(Y)$ by conditioning on X?",
       "response_type": "mcq",
       "body": "Select the correct formula.",
       "hints": [
@@ -166,7 +166,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Total variance combines expected within-condition variance and variance between conditional means.",
-      "model_answer": "Use Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+      "model_answer": "Use $\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y|X)] + \\operatorname{Var}(E[Y|X])$.",
       "common_mistake": "Omitting either the within-condition or between-condition term.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -175,22 +175,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Var(Y) = E[Var(Y given X)] + Var(E[Y given X]).",
+          "label": "$\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y\\text{ given }X)] + \\operatorname{Var}(E[Y\\text{ given }X])$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Var(Y) = Var(Y given X) + Var(X).",
+          "label": "$\\operatorname{Var}(Y) = \\operatorname{Var}(Y given X)$ + $\\operatorname{Var}(X)$.",
           "misconception_tag": "conditional_variance_addition"
         },
         {
           "id": "c",
-          "label": "Var(Y) = E[Var(Y given X)] only.",
+          "label": "$\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y\\text{ given }X)]$ only.",
           "misconception_tag": "between_group_variance_omitted"
         },
         {
           "id": "d",
-          "label": "Var(Y) = Var(E[Y given X]) only.",
+          "label": "$\\operatorname{Var}(Y) = \\operatorname{Var}(E[Y given X])$ only.",
           "misconception_tag": "within_group_variance_omitted"
         }
       ],
@@ -216,7 +216,7 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Retrieve tower law and variance decomposition",
-    "problem_statement": "Closed-book retrieval. State the law of total expectation relating E[Y] to E[Y|X]. Then write the variance decomposition of Var(Y) by conditioning on X, and refuse treating E[Y|X] as an unconditional constant.",
+    "problem_statement": "Closed-book retrieval. State the law of total expectation relating $E[Y]$ to $E[Y|X]$. Then write the variance decomposition of $\\operatorname{Var}(Y)$ by conditioning on X, and refuse treating $E[Y|X]$ as an unconditional constant.",
     "given": [
       {
         "symbol": "mean identity",
@@ -229,35 +229,35 @@
         "note": "within + between"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]).",
+    "attempt_before_reveal": "CMP closed. Retrieve $E[Y] = E[E[Y|X]]$ and $\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y|X)] + \\operatorname{Var}(E[Y|X])$.",
     "steps": [
       {
         "id": "S1",
         "label": "Retrieve the tower law",
-        "attempt_cue": "Write E[Y] in terms of E[Y|X].",
-        "explanation": "Averaging the conditional mean over X recovers the unconditional mean: E[Y] = E[E[Y|X]].",
-        "calculation": "E[Y] = E[E[Y|X]]",
+        "attempt_cue": "Write $E[Y]$ in terms of $E[Y|X]$.",
+        "explanation": "Averaging the conditional mean over X recovers the unconditional mean: $E[Y] = E[E[Y|X]]$.",
+        "calculation": "$E[Y] = E[E[Y|X]]$",
         "result": "Tower law retrieved"
       },
       {
         "id": "S2",
         "label": "Retrieve the variance decomposition",
-        "attempt_cue": "Write Var(Y) using within- and between-condition terms.",
+        "attempt_cue": "Write $\\operatorname{Var}(Y)$ using within- and between-condition terms.",
         "explanation": "Total variance combines expected within-condition variance and variance between conditional means.",
-        "calculation": "Var(Y) = E[Var(Y|X)] + Var(E[Y|X])",
+        "calculation": "$\\operatorname{Var}(Y) = E[\\operatorname{Var}(Y|X)] + \\operatorname{Var}(E[Y|X])$",
         "result": "Variance decomposition retrieved"
       },
       {
         "id": "S3",
         "label": "Refuse conditional-as-constant",
-        "attempt_cue": "Why is E[Y] = E[Y|X] for every realised X wrong?",
-        "explanation": "E[Y|X] is a random variable (a function of X), not the unconditional constant E[Y], except in special cases.",
-        "calculation": "Refuse E[Y] = E[Y|X] for every realised X",
+        "attempt_cue": "Why is $E[Y] = E[Y|X]$ for every realised X wrong?",
+        "explanation": "$E[Y|X]$ is a random variable (a function of X), not the unconditional constant $E[Y]$, except in special cases.",
+        "calculation": "$Refuse E[Y] = E[Y|X] for every realised X$",
         "result": "Conditional-as-constant confusion refused"
       }
     ],
-    "final_answer": "E[Y] = E[E[Y|X]] and Var(Y) = E[Var(Y|X)] + Var(E[Y|X]). Refuse treating E[Y|X] as equal to the unconditional mean for every realised X.",
-    "common_pitfall": "Treating the conditional expectation E[Y|X] as an unconditional constant, or omitting either the within-condition or between-condition term in the variance decomposition.",
+    "final_answer": "$E[Y] = E[E[Y|X]] and \\operatorname{Var}(Y) = E[\\operatorname{Var}(Y|X)] + \\operatorname{Var}(E[Y|X]). Refuse treating E[Y|X] as equal to the unconditional mean for every realised X.$",
+    "common_pitfall": "Treating the conditional expectation $E[Y|X]$ as an unconditional constant, or omitting either the within-condition or between-condition term in the variance decomposition.",
     "syllabus_ref": "2.3"
   }
 }

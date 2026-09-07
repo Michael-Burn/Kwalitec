@@ -156,7 +156,9 @@ def latexify(text: str) -> str:
     s = s.replace("−", "-")
     s = s.replace("×", r"\times ")
     s = s.replace("≈", r"\approx ")
+    # NFC ≠ and NFD (= + combining solidus U+0338); NFD runs first above.
     s = s.replace("≠", r"\neq ")
+    s = s.replace("=\u0338", r"\neq ")
     s = s.replace("≤", r"\leq ")
     s = s.replace("≥", r"\geq ")
     s = s.replace("⇒", r"\Rightarrow ")

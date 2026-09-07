@@ -220,11 +220,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Retrieve OLS roles and refuse funnel residuals as fine",
-    "problem_statement": "Closed-book retrieval. In a multiple linear model Y = Xβ + ε fitted by ordinary least squares, state what Y and the columns of X are, and what OLS minimises. The residual plot then shows spread increasing markedly with fitted values. What is the warranted interpretation?",
+    "problem_statement": "Closed-book retrieval. In a multiple linear model $Y = X\\beta + \\varepsilon$ fitted by ordinary least squares, state what $Y$ and the columns of $X$ are, and what OLS minimises. The residual plot then shows spread increasing markedly with fitted values. What is the warranted interpretation?",
     "given": [
       {
         "symbol": "model",
-        "value": "Y = Xβ + ε",
+        "value": "$Y = X\\beta + \\varepsilon$",
         "note": "classical linear model"
       },
       {
@@ -240,7 +240,7 @@
         "label": "Retrieve roles and OLS criterion",
         "attempt_cue": "Name Y, X, and what OLS minimises.",
         "explanation": "Y is the response; columns of X are explanatory variables; OLS chooses β to minimise the sum of squared residuals.",
-        "calculation": "Y = response; X = explanatory columns; OLS minimises Σ(y - ŷ)²",
+        "calculation": "$Y = response$; $X = explanatory columns$; $OLS minimises \\sum(y - \\hat{y})^{2}$",
         "result": "Roles and OLS criterion retrieved"
       },
       {
@@ -256,11 +256,11 @@
         "label": "Refuse R²-as-diagnostics",
         "attempt_cue": "Can high R² dismiss the residual pattern?",
         "explanation": "A large R² does not repair a clear residual funnel. Diagnostics remain required.",
-        "calculation": "Refuse treating high R² as a substitute for residual diagnostics",
-        "result": "R² does not clear the funnel pattern"
+        "calculation": "$Refuse treating high R^{2} as a substitute for residual diagnostics$",
+        "result": "$R^{2} does not clear the funnel pattern$"
       }
     ],
-    "final_answer": "Y is the response, X holds explanatory variables, and OLS minimises residual sum of squares. A funnel residual plot casts doubt on constant variance, and high R² does not dismiss that concern.",
+    "final_answer": "$Y is the response, X holds explanatory variables, and OLS minimises residual sum of squares. A funnel residual plot casts doubt on constant variance, and high R^{2} does not dismiss that concern.$",
     "common_pitfall": "Confusing OLS with minimising fitted values, or treating a large R² as proof that a funnel-shaped residual plot can be ignored.",
     "syllabus_ref": "4.1"
   }

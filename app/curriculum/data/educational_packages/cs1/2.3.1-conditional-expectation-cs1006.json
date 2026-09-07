@@ -36,24 +36,24 @@
   "mission": {
     "mission_id": "msn-cs1006-cs1-2.3-conditional-expectation",
     "display_title": "Form the conditional expectation of one RV given another",
-    "mission_purpose": "Today's Mission exists to obtain the conditional expectation of one random variable given the value of another (so E[Y|X=x] (or equivalent) is a usable object) without pretending the tower / total-expectation mean-variance LO is finished.",
-    "tutor_intent": "Today I will force the candidate to form or interpret E[Y|X=x] from a joint or conditional setup. And refuse treating 'I can compute an ordinary expectation' as having conditional expectation.",
+    "mission_purpose": "Today's Mission exists to obtain the conditional expectation of one random variable given the value of another (so $E[Y|X=x]$ (or equivalent) is a usable object) without pretending the tower / total-expectation mean-variance LO is finished.",
+    "tutor_intent": "Today I will force the candidate to form or interpret $E[Y|X=x]$ from a joint or conditional setup. And refuse treating 'I can compute an ordinary expectation' as having conditional expectation.",
     "educational_intent": "Produce a cognitive move from joint/conditional structure to lawful conditional expectation of one RV given another.",
     "learning_objective": "Obtain and interpret the conditional expectation of one random variable given the value of another random variable.",
-    "concept_focus": "Joint/conditional → E[Y|X=x] as a function of x → refuse equating E[Y] with E[Y|X].",
+    "concept_focus": "Joint/conditional → $E[Y|X=x]$ as a function of x → refuse equating $E[Y]$ with $E[Y|X]$.",
     "prior_bridge": "Campaign Epsilon closed joint distributions through linear combinations (2.2) with Revision. Today opens topic 2.3 at LO 2.3.1. The named Continuity Front after CS1-005.",
-    "why_now": "After joints, form E[Y|X] carefully. Mean and variance via conditioning build on this next.",
-    "expected_benefit": "You will be able to compute E[Y|X=x] from a joint and interpret it as a function of x, distinct from the unconditional mean.",
+    "why_now": "After joints, form $E[Y|X]$ carefully. Mean and variance via conditioning build on this next.",
+    "expected_benefit": "You will be able to compute $E[Y|X=x]$ from a joint and interpret it as a function of x, distinct from the unconditional mean.",
     "explainability": "Assigned as Campaign Zeta Day 1 because CE-001 / EP-001 Continuity Front names 2.3 as the handoff from Epsilon.",
     "success_criteria": [
-      "Closed-book, outline what E[Y|X=x] means (or equivalent CMP form).",
+      "Closed-book, outline what $E[Y|X=x]$ means (or equivalent CMP form).",
       "Sketch how to obtain it from a joint or conditional distribution.",
       "Refuse one 'ordinary expectation finished conditional expectation' claim."
     ],
     "task_descriptions": [
       "Sketch conditional expectation as a function of the conditioning value before CMP.",
       "Complete Guided Reading through CMP treatment of Syllabus 2.3.1.",
-      "Closed-book Knowledge Checks: E[Y|X] + refuse ordinary-E collapse."
+      "Closed-book Knowledge Checks: $E[Y|X]$ + refuse ordinary-E collapse."
     ],
     "estimated_study_time_minutes": {
       "min": 55,
@@ -80,7 +80,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating E[Y] with E[Y|X=x].",
+      "Watch for equating $E[Y]$ with $E[Y|X=x]$.",
       "Watch for starting tower/total-expectation drills (2.3.2) inside this sitting.",
       "Watch for MGF work (2.4) today."
     ],
@@ -117,7 +117,7 @@
       "kind": "active_recall",
       "item_id": "cs1006-2.3.1-ar-01",
       "title": "Active Recall: 2.3.1",
-      "prompt": "Closed-book. Which statement correctly defines E[Y|X=x]?",
+      "prompt": "Closed-book. Which statement correctly defines $E[Y|X=x]$?",
       "response_type": "mcq",
       "body": "Select the meaning and construction of conditional expectation.",
       "hints": [
@@ -126,7 +126,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Conditional expectation averages Y using its distribution after fixing X=x, so its value can vary with x.",
-      "model_answer": "Expected Y under Y|X=x; a function of x and generally different from E[Y].",
+      "model_answer": "Expected Y under Y|X=x; a function of x and generally different from $E[Y]$.",
       "common_mistake": "Replacing the conditional mean with the unconditional mean or a single joint cell.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -135,17 +135,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[Y|X=x] is the expected value of Y under the conditional distribution of Y given X=x. As x varies it is a function of x, and it need not equal E[Y].",
+          "label": "$E[Y|X=x]$ is the expected value of Y under the conditional distribution of Y given X=x. As x varies it is a function of x, and it need not equal $E[Y]$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[Y|X=x] is always the unconditional mean E[Y] because expectation removes all conditioning information.",
+          "label": "$E[Y|X=x]$ is always the unconditional mean $E[Y]$ because expectation removes all conditioning information.",
           "misconception_tag": "conditional_equals_unconditional"
         },
         {
           "id": "c",
-          "label": "E[Y|X=x] is the joint probability P(X=x,Y=y) evaluated at the largest y.",
+          "label": "$E[Y|X=x]$ is the joint probability $P(X=x,Y=y)$ evaluated at the largest y.",
           "misconception_tag": "joint_cell_as_expectation"
         },
         {
@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.1-cp-01",
       "title": "Checkpoint: 2.3.1",
-      "prompt": "Closed-book. For P(0,0)=0.10, P(0,1)=0.20, P(1,0)=0.30, P(1,1)=0.40, what is E[Y|X=1]?",
+      "prompt": "Closed-book. For $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40, what is $E[Y|X=1]$?",
       "response_type": "mcq",
       "body": "Compute the conditional mean from the joint PMF.",
       "hints": [
@@ -170,8 +170,8 @@
       ],
       "accepted_keywords": [],
       "explanation": "Normalise the X=1 row, then average Y under that conditional distribution.",
-      "model_answer": "E[Y|X=1]=0.40/(0.30+0.40)≈0.571.",
-      "common_mistake": "Using E[Y] or the unnormalised joint cell instead of the conditional distribution.",
+      "model_answer": "$E[Y|X=1]=0.40/(0.30+0.40)\\approx 0.571$.",
+      "common_mistake": "Using $E[Y]$ or the unnormalised joint cell instead of the conditional distribution.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -179,22 +179,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Given X=1, P(Y=1|X=1)=0.40/0.70≈0.571, so E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)≈0.571.",
+          "label": "Given $X=1$, $P(Y=1|X=1)=0.40/0.70\\approx 0.571$, so $E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)\\approx 0.571$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[Y|X=1]=E[Y]=0.60 because conditioning does not change an expectation.",
+          "label": "$E[Y|X=1]=E[Y]$=0.60 because conditioning does not change an expectation.",
           "misconception_tag": "conditional_equals_unconditional"
         },
         {
           "id": "c",
-          "label": "E[Y|X=1]=0.40 because the joint cell P(1,1) needs no normalisation.",
+          "label": "$E[Y|X=1]$=0.40 because the joint cell $P(1,1)$ needs no normalisation.",
           "misconception_tag": "joint_cell_as_conditional_mean"
         },
         {
           "id": "d",
-          "label": "E[Y|X=1]=0.70 because the marginal P(X=1) is itself the conditional mean of Y.",
+          "label": "$E[Y|X=1]$=0.70 because the marginal $P(X=1)$ is itself the conditional mean of Y.",
           "misconception_tag": "conditioning_marginal_as_mean"
         }
       ],
@@ -220,58 +220,58 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Conditional mean severity given claim count",
-    "problem_statement": "Claim count X and severity band Y (£00) have joint PMF P(1,10) = 0.25, P(1,20) = 0.25, P(2,10) = 0.15, P(2,20) = 0.35. Compute E[Y | X = 1] and E[Y | X = 2], and state why neither equals the unconditional E[Y] as an object.",
+    "problem_statement": "Claim count X and severity band Y (£00) have joint PMF $P(1,10)$ = 0.25, $P(1,20)$ = 0.25, $P(2,10)$ = 0.15, $P(2,20)$ = 0.35. Compute $E[Y | X = 1]$ and $E[Y | X = 2]$, and state why neither equals the unconditional $E[Y]$ as an object.",
     "given": [
       {
-        "symbol": "P(1,10)",
+        "symbol": "$P(1,10)$",
         "value": "0.25",
         "note": "one claim, severity band 10"
       },
       {
-        "symbol": "P(1,20)",
+        "symbol": "$P(1,20)$",
         "value": "0.25",
         "note": "one claim, severity band 20"
       },
       {
-        "symbol": "P(2,10)",
+        "symbol": "$P(2,10)$",
         "value": "0.15",
         "note": "two claims, severity band 10"
       },
       {
-        "symbol": "P(2,20)",
+        "symbol": "$P(2,20)$",
         "value": "0.35",
         "note": "two claims, severity band 20"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form P(X = x), then weight the Y values by the conditional probabilities given X = x.",
+    "attempt_before_reveal": "CMP closed. Form $P(X = x)$, then weight the Y values by the conditional probabilities given X = x.",
     "steps": [
       {
         "id": "S1",
         "label": "Form the X margins",
         "attempt_cue": "Sum the joint cells for X = 1 and for X = 2.",
-        "explanation": "Conditional expectation renormalises the joint slice for fixed X by the marginal P(X = x).",
-        "calculation": "P(X = 1) = 0.25 + 0.25 = 0.50; P(X = 2) = 0.15 + 0.35 = 0.50",
-        "result": "P(X = 1) = P(X = 2) = 0.50"
+        "explanation": "Conditional expectation renormalises the joint slice for fixed X by the marginal $P(X = x)$.",
+        "calculation": "$P(X = 1) = 0.25 + 0.25 = 0.50$; $P(X = 2) = 0.15 + 0.35 = 0.50$",
+        "result": "$P(X = 1) = P(X = 2) = 0.50$"
       },
       {
         "id": "S2",
-        "label": "Evaluate E[Y | X = 1] and E[Y | X = 2]",
+        "label": "Evaluate $E[Y | X = 1]$ and $E[Y | X = 2]$",
         "attempt_cue": "Compute the conditional means from the renormalised joints.",
-        "explanation": "E[Y | X = x] = Σ y P(X = x, Y = y) / P(X = x).",
-        "calculation": "E[Y|X=1] = (10×0.25 + 20×0.25)/0.50 = 15; E[Y|X=2] = (10×0.15 + 20×0.35)/0.50 = 17",
-        "result": "E[Y|X=1] = 15; E[Y|X=2] = 17"
+        "explanation": "$E[Y | X = x] = \\sum$ y $P(X = x, Y = y) / P(X = x)$.",
+        "calculation": "$E[Y|X=1] = (10\\times 0.25 + 20\\times 0.25)/0.50 = 15$; $E[Y|X=2] = (10\\times 0.15 + 20\\times 0.35)/0.50 = 17$",
+        "result": "$E[Y|X=1] = 15$; $E[Y|X=2] = 17$"
       },
       {
         "id": "S3",
-        "label": "Refuse equating E[Y] with E[Y|X]",
-        "attempt_cue": "Compute E[Y] and contrast it with the conditional means as objects.",
-        "explanation": "The unconditional mean E[Y] = 10×0.40 + 20×0.60 = 16 is a single number. E[Y|X] is a random function of X (15 when X = 1, 17 when X = 2). They are related by the tower law but are not the same object.",
-        "calculation": "E[Y] = 16; E[Y|X] takes values 15 and 17",
-        "result": "E[Y] ≠ E[Y|X] as objects"
+        "label": "Refuse equating $E[Y]$ with $E[Y|X]$",
+        "attempt_cue": "Compute $E[Y]$ and contrast it with the conditional means as objects.",
+        "explanation": "The unconditional mean $E[Y] = 10\\times 0.40 + 20\\times 0.60 = 16$ is a single number. $E[Y|X]$ is a random function of $X$ (15 when $X = 1$, 17 when $X = 2$). They are related by the tower law but are not the same object.",
+        "calculation": "$E[Y] = 16$; $E[Y|X] takes values 15 and 17$",
+        "result": "$E[Y] \\neq E[Y|X]$ as objects"
       }
     ],
-    "final_answer": "E[Y | X = 1] = 15; E[Y | X = 2] = 17. Unconditional E[Y] = 16 is a number; E[Y|X] is a function of X.",
-    "common_pitfall": "Reporting E[Y | X = 1] = 10×0.25 + 20×0.25 = 7.5 without dividing by P(X = 1), or treating the unconditional mean 16 as interchangeable with E[Y|X].",
+    "final_answer": "$E[Y | X = 1] = 15$; $E[Y | X = 2] = 17. Unconditional E[Y] = 16 is a number$; $E[Y|X] is a function of X.$",
+    "common_pitfall": "Reporting $E[Y \\mid X = 1] = 10\\times 0.25 + 20\\times 0.25 = 7.5$ without dividing by $P(X = 1)$, or treating the unconditional mean 16 as interchangeable with $E[Y|X]$.",
     "syllabus_ref": "2.3.1"
   }
 }

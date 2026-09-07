@@ -224,8 +224,11 @@ def test_live_pilot_loads_and_inventory_gate() -> None:
     assert pilot is not None
     assert pilot.worked_example is not None
     assert len(pilot.worked_example.steps) == 3
-    assert pilot.worked_example.steps[0].result == "P(Alert) = 0.1428"
-    assert pilot.worked_example.steps[1].result == "P(Breach|Alert) ≈ 0.1849"
+    assert pilot.worked_example.steps[0].result == "$P(Alert) = 0.1428$"
+    assert (
+        pilot.worked_example.steps[1].result
+        == "$P(Breach|Alert) \\approx 0.1849$"
+    )
 
     substance = substance_from_package(
         pilot,

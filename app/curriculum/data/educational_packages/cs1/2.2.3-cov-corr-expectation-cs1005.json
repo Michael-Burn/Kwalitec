@@ -35,25 +35,25 @@
   "mode": "learning",
   "mission": {
     "mission_id": "msn-cs1005-cs1-2.2-cov-corr-expectation",
-    "display_title": "Use covariance, correlation, and E[g(X,Y)]",
+    "display_title": "Use covariance, correlation, and $E[g(X,Y)]$",
     "mission_purpose": "Today's Mission exists to place covariance and correlation as dependence measures and to evaluate (or set up) the expected value of a function of two jointly distributed variables. Without leaping to linear-combination variance formulas as primary.",
-    "tutor_intent": "Today I will force the candidate through Cov → Corr → E[g(X,Y)] setup. Refuse treating independence day as having finished dependence measures.",
+    "tutor_intent": "Today I will force the candidate through Cov → Corr → $E[g(X,Y)]$ setup. Refuse treating independence day as having finished dependence measures.",
     "educational_intent": "Produce method warrant for Cov/Corr and expectation of a function of two RVs.",
     "learning_objective": "Define and use covariance and correlation; evaluate (or set up) the expected value of a function of two jointly distributed random variables.",
-    "concept_focus": "Joint moments → Cov(X,Y)=E[XY]−E[X]E[Y] → Corr=Cov/(σ_X σ_Y) → E[g(X,Y)] via the joint → refuse Corr=0⇒independence.",
+    "concept_focus": "Joint moments → $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$ → $\\operatorname{Corr}=\\operatorname{Cov}/(\\sigma_{X}\\sigma_{Y})$ → $E[g(X,Y)]$ via the joint → refuse $\\operatorname{Corr}=0\\Rightarrow$independence.",
     "prior_bridge": "Yesterday you stated independence conditions (2.2.2). Today measures dependence and expectations of functions of the pair.",
     "why_now": "2.2.3 is the dependence-measure hinge before linear-combination mean/variance (2.2.4).",
-    "expected_benefit": "You will be able to set up Cov, Corr, and E[g(X,Y)] from a joint and refuse equating zero correlation with independence.",
+    "expected_benefit": "You will be able to set up Cov, Corr, and $E[g(X,Y)]$ from a joint and refuse equating zero correlation with independence.",
     "explainability": "Campaign Epsilon Day 3 focuses LO 2.2.3.",
     "success_criteria": [
       "Closed-book, state what covariance measures and how correlation relates.",
-      "Outline how to form E[g(X,Y)] from a joint.",
+      "Outline how to form $E[g(X,Y)]$ from a joint.",
       "Refuse: 'independence day finished all dependence work'."
     ],
     "task_descriptions": [
-      "Sketch Cov / Corr / E[g] chain before CMP.",
+      "Sketch Cov / Corr / $E[g]$ chain before CMP.",
       "Guided Reading through CMP 2.2.3.",
-      "Knowledge Checks: Cov/Corr + E[g] + refuse premature closure."
+      "Knowledge Checks: Cov/Corr + $E[g]$ + refuse premature closure."
     ],
     "estimated_study_time_minutes": {
       "min": 55,
@@ -81,10 +81,10 @@
     ],
     "misconception_watch": [
       "Watch for treating Corr = 0 as independence (yesterday's refuse still holds).",
-      "Watch for jumping to Var(aX+bY) formulas as today's primary LO.",
+      "Watch for jumping to $\\operatorname{Var}(aX+bY)$ formulas as today's primary LO.",
       "Watch for claiming Chapter 2 complete."
     ],
-    "open_point": "CMP · Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]",
+    "open_point": "CMP · Syllabus 2.2.3 covariance, correlation, and $E[g(X,Y)]$",
     "stop_condition": "Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4)",
     "out_of_scope_today": [
       "Linear combinations mean/variance as primary (2.2.4)",
@@ -94,7 +94,7 @@
     ],
     "annotation_task": "Before deep reading: sketch today's concept chain in notes",
     "attempt_before_reveal": "At the first worked example, cover the answer and attempt the middle step",
-    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.2.3 covariance, correlation, and E[g(X,Y)]. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
+    "exit_line": "Open your CMP (IFoA CS1 Core Reading / CMP · 2026 syllabus alignment) at CMP · Syllabus 2.2.3 covariance, correlation, and $E[g(X,Y)]$. Kwalitec is the guide; the CMP is the authoritative material (do not treat this activity body as a substitute textbook. Hunt with the focus questions; watch the misconception list. Ignore items in out_of_scope_today. Stop when: Through CMP 2.2.3 (stop before linear-combination mean/variance primary 2.2.4). Then close the CMP and return here) next in-app activity: Worked-example re-entry (CMP closed), then Knowledge Checks.",
     "return_cue": "You are finished with Guided Reading when the CMP 2.2.3 block meets the stop condition and you can answer today's focus questions from your notes. Close the CMP and return to Kwalitec. Immediate next activity: Worked-example re-entry, then Knowledge Checks (Active Recall → Checkpoint).",
     "pause_points": [
       {
@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Joint expectation weights g by joint probabilities or density. Covariance captures linear co-movement, while correlation standardises it.",
-      "model_answer": "E[g]=sum or integral of g times joint; Cov=E[XY]-EX EY; Corr=Cov/(SDX SDY).",
+      "model_answer": "$E[g]$=sum or integral of g times joint; Cov=$E[XY]$-EX EY; Corr=Cov/(SDX SDY).",
       "common_mistake": "Assuming zero covariance proves independence or reversing correlation standardisation.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,12 +134,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[g(X,Y)] is the sum or integral of g(x,y) weighted by the joint distribution. Cov(X,Y)=E[XY]-E[X]E[Y], and Corr(X,Y)=Cov(X,Y)/(SD(X)SD(Y)).",
+          "label": "$E[g(X,Y)]$ is the sum or integral of g(x,y) weighted by the joint distribution. $\\operatorname{Cov}(X,Y)=E[XY]$-$E[X] E[Y]$, and $\\operatorname{Corr}(X,Y)=\\operatorname{Cov}(X,Y)$/(SD(X)SD(Y)).",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[g(X,Y)] is found from marginal means alone for every g, so the joint distribution is unnecessary.",
+          "label": "$E[g(X,Y)]$ is found from marginal means alone for every g, so the joint distribution is unnecessary.",
           "misconception_tag": "marginals_determine_every_function"
         },
         {
@@ -160,17 +160,17 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.3-cp-01",
       "title": "Checkpoint: 2.2.3",
-      "prompt": "Closed-book. P(0,0)=0.2, P(0,1)=0.3, P(1,0)=0.1, P(1,1)=0.4. Which covariance statement is correct?",
+      "prompt": "Closed-book. $P(0,0)$=0.2, $P(0,1)$=0.3, $P(1,0)$=0.1, $P(1,1)$=0.4. Which covariance statement is correct?",
       "response_type": "mcq",
-      "body": "Compute E[X], E[Y], E[XY], and covariance.",
+      "body": "Compute $E[X]$, $E[Y]$, $E[XY]$, and covariance.",
       "hints": [
         "Select the single best statement.",
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Only cell (1,1) contributes to E[XY]. Subtracting the product of the means gives 0.05.",
-      "model_answer": "E[X]=0.5, E[Y]=0.7, E[XY]=0.4, Cov=0.05.",
-      "common_mistake": "Assuming independence from marginals or using E[XY] as covariance without centring.",
+      "explanation": "Only cell (1,1) contributes to $E[XY]$. Subtracting the product of the means gives 0.05.",
+      "model_answer": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, Cov=0.05.",
+      "common_mistake": "Assuming independence from marginals or using $E[XY]$ as covariance without centring.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -178,22 +178,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "E[X]=0.5, E[Y]=0.7, E[XY]=0.4, so Cov(X,Y)=0.4-(0.5)(0.7)=0.05.",
+          "label": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, so $\\operatorname{Cov}(X,Y)$=0.4-(0.5)(0.7)=0.05.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "E[XY]=E[X]E[Y]=0.35 by definition, so covariance must be zero before checking the joint table.",
+          "label": "$E[XY]=E[X] E[Y]$=0.35 by definition, so covariance must be zero before checking the joint table.",
           "misconception_tag": "assume_independence"
         },
         {
           "id": "c",
-          "label": "Cov(X,Y)=E[XY]=0.4 because covariance is the expected product without centring.",
+          "label": "$\\operatorname{Cov}(X,Y)=E[XY]$=0.4 because covariance is the expected product without centring.",
           "misconception_tag": "uncentred_product_as_covariance"
         },
         {
           "id": "d",
-          "label": "E[X]=0.5 and E[Y]=0.7 imply independence, so no E[XY] calculation is needed.",
+          "label": "$E[X]$=0.5 and $E[Y]$=0.7 imply independence, so no $E[XY]$ calculation is needed.",
           "misconception_tag": "marginals_imply_independence"
         }
       ],
@@ -218,59 +218,59 @@
   },
   "published_at": "2026-08-01",
   "worked_example": {
-    "title": "Covariance, correlation, and E[X+2Y] from a joint PMF",
-    "problem_statement": "Two binary indicators (X, Y) for a household have joint PMF P(0,0) = 0.30, P(0,1) = 0.20, P(1,0) = 0.20, P(1,1) = 0.30, where X = 1 if a contents claim occurs and Y = 1 if a buildings claim occurs. Compute Cov(X, Y), Corr(X, Y), and E[X + 2Y].",
+    "title": "Covariance, correlation, and $E[X+2Y]$ from a joint PMF",
+    "problem_statement": "Two binary indicators (X, Y) for a household have joint PMF $P(0,0)$ = 0.30, $P(0,1)$ = 0.20, $P(1,0)$ = 0.20, $P(1,1)$ = 0.30, where X = 1 if a contents claim occurs and Y = 1 if a buildings claim occurs. Compute $\\operatorname{Cov}(X, Y)$, $\\operatorname{Corr}(X, Y)$, and $E[X + 2Y]$.",
     "given": [
       {
-        "symbol": "P(0,0)",
+        "symbol": "$P(0,0)$",
         "value": "0.30",
         "note": "no contents, no buildings"
       },
       {
-        "symbol": "P(0,1)",
+        "symbol": "$P(0,1)$",
         "value": "0.20",
         "note": "no contents, buildings"
       },
       {
-        "symbol": "P(1,0)",
+        "symbol": "$P(1,0)$",
         "value": "0.20",
         "note": "contents, no buildings"
       },
       {
-        "symbol": "P(1,1)",
+        "symbol": "$P(1,1)$",
         "value": "0.30",
         "note": "contents and buildings"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form E[X], E[Y], and E[XY] first, then Cov, then Corr, then E[X+2Y] by linearity.",
+    "attempt_before_reveal": "CMP closed. Form $E[X]$, $E[Y]$, and $E[XY]$ first, then Cov, then Corr, then $E[X+2Y]$ by linearity.",
     "steps": [
       {
         "id": "S1",
         "label": "Compute the first moments",
-        "attempt_cue": "Find E[X], E[Y], and E[XY] from the joint table.",
-        "explanation": "For binary indicators, E[X] = P(X = 1) and E[Y] = P(Y = 1). The product moment is E[XY] = P(X = 1, Y = 1).",
-        "calculation": "E[X] = 0.20 + 0.30 = 0.50; E[Y] = 0.20 + 0.30 = 0.50; E[XY] = 0.30",
-        "result": "E[X] = 0.50; E[Y] = 0.50; E[XY] = 0.30"
+        "attempt_cue": "Find $E[X]$, $E[Y]$, and $E[XY]$ from the joint table.",
+        "explanation": "For binary indicators, $E[X] = P(X = 1)$ and $E[Y] = P(Y = 1)$. The product moment is $E[XY] = P(X = 1, Y = 1)$.",
+        "calculation": "$E[X] = 0.20 + 0.30 = 0.50$; $E[Y] = 0.20 + 0.30 = 0.50$; $E[XY] = 0.30$",
+        "result": "$E[X] = 0.50$; $E[Y] = 0.50$; $E[XY] = 0.30$"
       },
       {
         "id": "S2",
         "label": "Form Cov and Corr",
-        "attempt_cue": "Use Cov = E[XY] − E[X]E[Y] and divide by σ_X σ_Y.",
-        "explanation": "Covariance subtracts the product of means from E[XY]. Each margin is Bernoulli(0.5), so Var(X) = Var(Y) = 0.25 and σ_X = σ_Y = 0.5.",
-        "calculation": "Cov = 0.30 − 0.50×0.50 = 0.05; Corr = 0.05 / (0.5×0.5) = 0.20",
-        "result": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20"
+        "attempt_cue": "Use Cov = $E[XY] − E[X] E[Y]$ and divide by $\\sigma$_X $\\sigma$_Y.",
+        "explanation": "Covariance subtracts the product of means from $E[XY]$. Each margin is Bernoulli(0.5), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y)$ = 0.25 and $\\sigma$_X = $\\sigma$_Y = 0.5.",
+        "calculation": "$Cov = 0.30 - 0.50\\times 0.50 = 0.05$; $Corr = 0.05 / (0.5\\times 0.5) = 0.20$",
+        "result": "$\\operatorname{Cov}(X, Y) = 0.05$; $\\operatorname{Corr}(X, Y) = 0.20$"
       },
       {
         "id": "S3",
-        "label": "Evaluate E[X + 2Y] and refuse Corr=0⇒independence",
+        "label": "Evaluate $E[X + 2Y]$ and refuse Corr=0⇒independence",
         "attempt_cue": "Apply linearity, then state why Corr ≠ 0 here does not finish an independence claim.",
-        "explanation": "Linearity gives E[X + 2Y] = E[X] + 2E[Y] without needing the joint again. Correlation here is 0.20, not zero; even Corr = 0 would not by itself prove independence for general joint distributions.",
-        "calculation": "E[X + 2Y] = 0.50 + 2×0.50 = 1.50",
-        "result": "E[X + 2Y] = 1.50; Corr ≠ 0 here (and Corr = 0 ≠ independence in general)"
+        "explanation": "Linearity gives $E[X + 2Y] = E[X]$ + 2$E[Y]$ without needing the joint again. Correlation here is 0.20, not zero; even Corr = 0 would not by itself prove independence for general joint distributions.",
+        "calculation": "$E[X + 2Y] = 0.50 + 2\\times 0.50 = 1.50$",
+        "result": "$E[X + 2Y] = 1.50$; $\\operatorname{Corr} \\neq 0$ here (and $\\operatorname{Corr} = 0 \\neq$ independence in general)"
       }
     ],
-    "final_answer": "Cov(X, Y) = 0.05; Corr(X, Y) = 0.20; E[X + 2Y] = 1.50. Zero correlation is not automatic independence, and here correlation is not zero.",
-    "common_pitfall": "Computing Cov as E[XY] alone (forgetting to subtract E[X]E[Y]), or claiming that Corr = 0 would prove independence for any joint distribution.",
+    "final_answer": "$\\operatorname{Cov}(X, Y) = 0.05$; $\\operatorname{Corr}(X, Y) = 0.20$; $E[X + 2Y] = 1.50. Zero correlation is not automatic independence, and here correlation is not zero.$",
+    "common_pitfall": "Computing Cov as $E[XY]$ alone (forgetting to subtract $E[X] E[Y]$), or claiming that Corr = 0 would prove independence for any joint distribution.",
     "syllabus_ref": "2.2.3"
   }
 }
