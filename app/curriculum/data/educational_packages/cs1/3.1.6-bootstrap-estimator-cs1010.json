@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.6-cp-01",
       "title": "Checkpoint: 3.1.6",
-      "prompt": "Closed-book. You have an estimator θ̂ from a sample of size n. Which statement correctly describes using the bootstrap to estimate the standard error of θ̂?",
+      "prompt": "Closed-book. You have an estimator $\\hat{\\theta}$ from a sample of size n. Which statement correctly describes using the bootstrap to estimate the standard error of $\\hat{\\theta}$?",
       "response_type": "mcq",
       "body": "Bootstrap SE procedure; refuse asymptotics-as-bootstrap and CI-as-same.",
       "hints": [
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
-      "model_answer": "With-replacement resamples → θ̂* replicates → empirical SD as SE; distinct from asymptotics and from bootstrap CIs.",
+      "model_answer": "With-replacement resamples $\\rightarrow$ $\\hat{\\theta}^{*}$ replicates $\\rightarrow$ empirical SD as SE; distinct from asymptotics and from bootstrap CIs.",
       "common_mistake": "Calling an asymptotic plug-in or a CI half-width 'the bootstrap SE'.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,12 +179,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "Draw many resamples with replacement from the original sample, recompute θ̂* on each resample, and use the empirical standard deviation of the θ̂* values as the SE estimate. That is not the same as quoting an asymptotic Normal law, and not the same as constructing a bootstrap confidence interval.",
+          "label": "Draw many resamples with replacement from the original sample, recompute $\\hat{\\theta}^{*}$ on each resample, and use the empirical standard deviation of the $\\hat{\\theta}^{*}$ values as the SE estimate. That is not the same as quoting an asymptotic Normal law, and not the same as constructing a bootstrap confidence interval.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Compute the asymptotic variance 1/(n I(θ̂)) once; that single plug-in is the bootstrap standard error by definition.",
+          "label": "Compute the asymptotic variance $1/(n I(\\hat{\\theta}))$ once; that single plug-in is the bootstrap standard error by definition.",
           "misconception_tag": "asymptotics_as_bootstrap"
         },
         {
@@ -194,7 +194,7 @@
         },
         {
           "id": "d",
-          "label": "Resample without replacement until the resample has size n/2, compute one θ̂*, and take |θ̂* − θ̂| as the standard error.",
+          "label": "Resample without replacement until the resample has size $n/2$, compute one $\\hat{\\theta}^{*}$, and take $|\\hat{\\theta}^{*} - \\hat{\\theta}|$ as the standard error.",
           "misconception_tag": "wrong_resample_rule"
         }
       ],
@@ -220,10 +220,10 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Bootstrap SE of mean claim severity",
-    "problem_statement": "A nonparametric bootstrap of the sample mean claim severity produced B = 5 bootstrap replicates (£00): 210, 195, 220, 205, 200. Estimate the bootstrap standard error of the mean using SÊ_boot = √[(1/B) Σ(θ̂*_b − θ̄*)²], where θ̄* is the mean of the bootstrap replicates.",
+    "problem_statement": "A nonparametric bootstrap of the sample mean claim severity produced $B = 5$ bootstrap replicates (£00): 210, 195, 220, 205, 200. Estimate the bootstrap standard error of the mean using $\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{(1/B)\\sum(\\hat{\\theta}^{*}_{b}-\\bar{\\theta}^{*})^{2}}$, where $\\bar{\\theta}^{*}$ is the mean of the bootstrap replicates.",
     "given": [
       {
-        "symbol": "θ̂*_1…θ̂*_5",
+        "symbol": "$\\hat{\\theta}^{*}_{1},\\ldots,\\hat{\\theta}^{*}_{5}$",
         "value": "210, 195, 220, 205, 200",
         "note": "bootstrap means (£00)"
       },
@@ -241,27 +241,27 @@
         "attempt_cue": "Average the five bootstrap means.",
         "explanation": "θ̄* centres the bootstrap deviations used in the SE formula.",
         "calculation": "(210 + 195 + 220 + 205 + 200) / 5 = 1030 / 5 = 206",
-        "result": "θ̄* = 206"
+        "result": "$\\bar{\\theta}^{*} = 206$"
       },
       {
         "id": "S2",
         "label": "Sum of squared deviations",
-        "attempt_cue": "Compute Σ(θ̂*_b − 206)².",
+        "attempt_cue": "Compute $\\sum (\\hat{\\theta}^{*}_{b} - 206)^{2}$.",
         "explanation": "Each replicate's squared distance from θ̄* enters the bootstrap variance.",
-        "calculation": "(210−206)² + (195−206)² + (220−206)² + (205−206)² + (200−206)² = 16 + 121 + 196 + 1 + 36 = 370",
-        "result": "Σ(θ̂*_b − θ̄*)² = 370"
+        "calculation": "$(210-206)^{2} + (195-206)^{2} + (220-206)^{2} + (205-206)^{2} + (200-206)^{2} = 16 + 121 + 196 + 1 + 36 = 370$",
+        "result": "$\\sum(\\hat{\\theta}^{*}_{b} - \\bar{\\theta}^{*})^{2} = 370$"
       },
       {
         "id": "S3",
         "label": "Bootstrap SE",
-        "attempt_cue": "Take √(370/B) with B = 5.",
+        "attempt_cue": "Take $\\sqrt{370/B}$ with B = 5.",
         "explanation": "The stated bootstrap SE divides by B inside the square root.",
-        "calculation": "SÊ_boot = √(370/5) = √74 ≈ 8.602",
-        "result": "SÊ_boot ≈ 8.602 (£00)"
+        "calculation": "$\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{370/5} = \\sqrt{74} \\approx 8.602$",
+        "result": "$\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} \\approx 8.602$ (£00)"
       }
     ],
-    "final_answer": "θ̄* = 206; SÊ_boot = √74 ≈ 8.602 (£00).",
-    "common_pitfall": "Dividing by B−1 = 4 (ordinary sample SD) to get √(370/4) = √92.5 ≈ 9.62 instead of the bootstrap /B form √(370/5) = √74 required here.",
+    "final_answer": "$\\bar{\\theta}^{*} = 206$; $\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{74} \\approx 8.602$ (£00).",
+    "common_pitfall": "Dividing by $B-1 = 4$ (ordinary sample SD) to get $\\sqrt{370/4} = \\sqrt{92.5} \\approx 9.62$ instead of the bootstrap /$B$ form $\\sqrt{370/5} = \\sqrt{74}$ required here.",
     "syllabus_ref": "3.1.6"
   }
 }

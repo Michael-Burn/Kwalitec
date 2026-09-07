@@ -122,7 +122,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "EB estimates overall mean and process variance components from collective experience, then forms credibility premium. Same assumptions as fully Bayesian is incorrect.",
-      "model_answer": "Estimate structurals from collective data; premium Ẑ X̄ + (1-Ẑ) μ̂.",
+      "model_answer": "Estimate structurals from collective data; premium Ẑ $\\bar{X}$ + (1-Ẑ) $\\hat{\\mu}$.",
       "common_mistake": "Treating EB as identical assumptions or single-claim update.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -131,7 +131,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium Ẑ times X̄ + (1 minus Ẑ) times μ-hat follows after plugging estimated structural parameters into the credibility formula.",
+          "label": "Empirical Bayes estimates structural parameters from collective data rather than treating them as fully specified by a prior alone. The credibility premium Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\mu$-hat follows after plugging estimated structural parameters into the credibility formula.",
           "misconception_tag": ""
         },
         {
@@ -175,7 +175,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Estimate structural parameters (for example overall mean and process or variance components) from collective data, plug them into the credibility formula to get Ẑ and μ̂, then form Ẑ times X̄ + (1 minus Ẑ) times μ̂ for the risk. Empirical Bayes is not just another name for fully Bayesian credibility; assumptions about structural parameters differ.",
+          "label": "Estimate structural parameters (for example overall mean and process or variance components) from collective data, plug them into the credibility formula to get Ẑ and $\\hat{\\mu}$, then form Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\hat{\\mu}$ for the risk. Empirical Bayes is not just another name for fully Bayesian credibility; assumptions about structural parameters differ.",
           "misconception_tag": ""
         },
         {
@@ -216,20 +216,20 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Empirical Bayes premium with estimated structurals",
-    "problem_statement": "Under Empirical Bayes, structural parameters are estimated from collective data: μ̂ = £900 and k̂ = 6. A risk has n = 3 years with X̄ = £1200. Compute Ẑ = n/(n+k̂) and the EB credibility premium P = Ẑ X̄ + (1 − Ẑ)μ̂.",
+    "problem_statement": "Under Empirical Bayes, structural parameters are estimated from collective data: $\\hat{\\mu}$ = £900 and $\\hat{k}$ = 6. A risk has n = 3 years with $\\bar{X}$ = £1200. Compute $\\hat{Z}$ = $n/(n+\\hat{k})$ and the EB credibility premium P = $\\hat{Z} \\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$.",
     "given": [
       {
-        "symbol": "μ̂, k̂",
+        "symbol": "$\\hat{\\mu}, \\hat{k}$",
         "value": "900, 6",
         "note": "EB structural estimates"
       },
       {
-        "symbol": "n, X̄",
+        "symbol": "$n, \\bar{X}$",
         "value": "3, 1200",
         "note": "risk years and sample mean"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form Ẑ from n and k̂ before mixing X̄ with μ̂.",
+    "attempt_before_reveal": "CMP closed. Form $\\hat{Z}$ from n and $\\hat{k}$ before mixing $\\bar{X}$ with $\\hat{\\mu}$.",
     "steps": [
       {
         "id": "S1",
@@ -242,22 +242,22 @@
       {
         "id": "S2",
         "label": "EB premium",
-        "attempt_cue": "Compute Ẑ X̄ + (1 − Ẑ)μ̂.",
+        "attempt_cue": "Compute $\\hat{Z} \\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$.",
         "explanation": "The premium uses estimated μ and k in place of known prior structurals.",
-        "calculation": "P = (1/3)×1200 + (2/3)×900 = 400 + 600 = 1000",
+        "calculation": "$P = (1/3)\\times 1200 + (2/3)\\times 900 = 400 + 600 = 1000$",
         "result": "P = £1000"
       },
       {
         "id": "S3",
         "label": "What makes it Empirical Bayes",
-        "attempt_cue": "State the source of μ̂ and k̂.",
+        "attempt_cue": "State the source of $\\hat{\\mu}$ and $\\hat{k}$.",
         "explanation": "EB estimates structural parameters from collective portfolio data rather than taking them as known from a fully specified prior.",
-        "calculation": "μ̂, k̂ from collective data (not a fully specified prior)",
+        "calculation": "$\\hat{\\mu}$, $\\hat{k}$ from collective data (not a fully specified prior)",
         "result": "Empirical Bayes uses estimated structurals"
       }
     ],
     "final_answer": "Ẑ = 1/3; Empirical Bayes premium P = £1000.",
-    "common_pitfall": "Treating μ̂ and k̂ as if they were known prior structurals (fully Bayesian), or using Z = k̂/(n+k̂).",
+    "common_pitfall": "Treating $\\hat{\\mu}$ and $\\hat{k}$ as if they were known prior structurals (fully Bayesian), or using Z = $\\hat{k}/(n+\\hat{k})$.",
     "syllabus_ref": "5.1.8"
   }
 }

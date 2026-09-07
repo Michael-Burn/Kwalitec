@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "CLT targets the sample mean (or its standardised form) under IID with finite variance. Casual Normal habit, single-X claims, or requiring a Normal population misstate the theorem.",
-      "model_answer": "IID, finite mean/variance → sample mean ≈ Normal for large n.",
+      "model_answer": "IID, finite mean/variance $\\Rightarrow$ sample mean $\\approx$ Normal for large n.",
       "common_mistake": "Normal-by-habit, CLT on one observation, or population must be Normal.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "For an IID sequence with finite mean and variance, the distribution of the sample mean X̄ (equivalently a standardised X̄) approaches Normal as n grows, giving a Normal approximation for sample-mean probabilities under stated conditions.",
+          "label": "For an IID sequence with finite mean and variance, the distribution of the sample mean $\\bar{X}$ (equivalently a standardised $\\bar{X}$) approaches Normal as n grows, giving a Normal approximation for sample-mean probabilities under stated conditions.",
           "misconception_tag": ""
         },
         {
@@ -144,7 +144,7 @@
         },
         {
           "id": "c",
-          "label": "The CLT approximates the distribution of a single observation X₁ as Normal whenever the population has a finite mean, regardless of sample size.",
+          "label": "The CLT approximates the distribution of a single observation $X_{1}$ as Normal whenever the population has a finite mean, regardless of sample size.",
           "misconception_tag": "clt_on_single_observation"
         },
         {
@@ -160,22 +160,22 @@
       "kind": "checkpoint",
       "item_id": "cs1016-2.5.1-cp-01",
       "title": "Checkpoint: CLT probability for sample mean",
-      "prompt": "Closed-book. Repair costs are iid with mean μ = 1200 and standard deviation σ = 300. A sample of n = 36 repairs is drawn. Using the CLT and Φ(1) ≈ 0.841, approximate P(X̄ < 1150). Enter the probability as a decimal.",
+      "prompt": "Closed-book. Repair costs are iid with mean $\\mu = 1200$ and standard deviation $\\sigma = 300$. A sample of $n = 36$ repairs is drawn. Using the CLT and $\\Phi(1) \\approx 0.841$, approximate $P(\\bar{X} < 1150)$. Enter the probability as a decimal.",
       "response_type": "numeric",
       "body": "Standardise the sample mean under the CLT and evaluate the lower tail.",
       "hints": [
-        "First form sd(X̄) = σ/√n, then z = (1150 - 1200)/sd(X̄).",
-        "Use Φ(-1) = 1 - Φ(1) with Φ(1) ≈ 0.841."
+        "First form $\\operatorname{sd}(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}}$, then z = (1150 - 1200)/$\\operatorname{sd}(\\bar{X})$.",
+        "Use $\\Phi(-1) = 1 - \\Phi(1)$ with $\\Phi(1) \\approx 0.841$."
       ],
       "accepted_keywords": [
         "0.159"
       ],
-      "explanation": "sd(X̄) = σ/√n = 300/√36 = 50, so z = (1150 - 1200)/50 = -1 and P(X̄ < 1150) ≈ Φ(-1) = 1 - Φ(1) ≈ 1 - 0.841 = 0.159.",
+      "explanation": "$\\operatorname{sd}(\\bar{X}) = \\sigma/\\sqrt{n} = 300/\\sqrt{36} = 50$, so $z = (1150 - 1200)/50 = -1$ and $P(\\bar{X} < 1150) \\approx \\Phi(-1) = 1 - \\Phi(1) \\approx 1 - 0.841 = 0.159$.",
       "model_answer": "0.159",
-      "common_mistake": "Using σ = 300 instead of σ/√n = 50 so that z = -1/6, or reporting Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+      "common_mistake": "Using $\\sigma = 300$ instead of $\\sigma/\\sqrt{n} = 50$ so that $z = -1/6$, or reporting $\\Phi(1) \\approx 0.841$ as the lower-tail probability itself.",
       "success_criteria": [
         "Enters a value within 0.001 of 0.159.",
-        "Uses σ/√n when standardising, and converts Φ(1) to the lower tail."
+        "Uses $\\frac{\\sigma}{\\sqrt{n}}$ when standardising, and converts $\\Phi(1)$ to the lower tail."
       ],
       "numeric_tolerance": 0.001
     }
@@ -204,17 +204,17 @@
   "published_at": "2026-08-04",
   "worked_example": {
     "title": "CLT probability for a mean repair cost",
-    "problem_statement": "Repair costs are iid with mean μ = 1200 and standard deviation σ = 300. A sample of n = 36 repairs is drawn. Using the CLT, approximate P(X̄ < 1150). Use Φ(1) ≈ 0.841.",
+    "problem_statement": "Repair costs are iid with mean $\\mu = 1200$ and standard deviation $\\sigma = 300$. A sample of $n = 36$ repairs is drawn. Using the CLT, approximate $P(\\bar{X} < 1150)$. Use $\\Phi(1) \\approx 0.841$.",
     "given": [
       {
-        "symbol": "μ",
+        "symbol": "$\\mu$",
         "value": "1200",
         "note": "population mean repair cost (£)"
       },
       {
-        "symbol": "σ",
+        "symbol": "$\\sigma$",
         "value": "300",
-        "note": "population sd (£)"
+        "note": "population $sd (£)$"
       },
       {
         "symbol": "n",
@@ -222,40 +222,40 @@
         "note": "sample size"
       },
       {
-        "symbol": "Φ(1)",
-        "value": "≈ 0.841",
+        "symbol": "$\\Phi(1)$",
+        "value": "$\\approx 0.841$",
         "note": "standard Normal CDF at 1"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form the sampling sd σ/√n first, then standardise 1150 before reading Φ.",
+    "attempt_before_reveal": "CMP closed. Form the sampling sd $\\frac{\\sigma}{\\sqrt{n}}$ first, then standardise 1150 before reading $\\Phi$.",
     "steps": [
       {
         "id": "S1",
         "label": "Standard error of the sample mean",
-        "attempt_cue": "Compute σ/√n.",
-        "explanation": "Under the CLT for iid observations, X̄ is approximately Normal with mean μ and sd σ/√n.",
-        "calculation": "σ/√n = 300 / √36 = 300 / 6 = 50",
-        "result": "sd(X̄) = 50"
+        "attempt_cue": "Compute $\\frac{\\sigma}{\\sqrt{n}}$.",
+        "explanation": "Under the CLT for iid observations, $\\bar{X}$ is approximately Normal with mean $\\mu$ and sd $\\frac{\\sigma}{\\sqrt{n}}$.",
+        "calculation": "$\\frac{\\sigma}{\\sqrt{n}} = \\frac{300}{\\sqrt{36}} = \\frac{300}{6} = 50$",
+        "result": "$\\operatorname{sd}(\\bar{X}) = 50$"
       },
       {
         "id": "S2",
         "label": "Standardise and evaluate the lower tail",
         "attempt_cue": "Form z = (1150 − 1200)/50, then convert with Φ.",
-        "explanation": "The probability is the lower Normal tail at z = −1, equal to 1 − Φ(1).",
-        "calculation": "z = (1150 − 1200)/50 = −1; P(X̄ < 1150) ≈ Φ(−1) = 1 − Φ(1) ≈ 1 − 0.841 = 0.159",
-        "result": "P ≈ 0.159"
+        "explanation": "The probability is the lower Normal tail at $z = -1$, equal to $1 - \\Phi(1)$.",
+        "calculation": "$z = (1150 - 1200)/50 = -1$; $P(\\bar{X} < 1150) \\approx \\Phi(-1) = 1 - \\Phi(1) \\approx 1 - 0.841 = 0.159$",
+        "result": "$P \\approx 0.159$"
       },
       {
         "id": "S3",
-        "label": "Refuse σ in place of σ/√n",
+        "label": "Refuse $\\sigma$ in place of $\\frac{\\sigma}{\\sqrt{n}}$",
         "attempt_cue": "State why using sd = 300 for X̄ is wrong.",
-        "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by √n. Using the population sd as if it were sd(X̄) ignores that reduction.",
-        "calculation": "sd(X̄) = 50, not σ = 300",
-        "result": "Must divide σ by √n"
+        "explanation": "The CLT approximates the distribution of the sample mean, whose spread shrinks by $\\sqrt{n}$. Using the population sd as if it were $\\operatorname{sd}(\\bar{X})$ ignores that reduction.",
+        "calculation": "$\\operatorname{sd}(\\bar{X})$ = 50, not $\\sigma$ = 300",
+        "result": "Must divide $\\sigma$ by $\\sqrt{n}$"
       }
     ],
-    "final_answer": "X̄ ≈ Normal(1200, 50); z = −1; P(X̄ < 1150) ≈ 0.159. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
-    "common_pitfall": "Using X̄ ≈ Normal(1200, 300) and computing z = (1150 − 1200)/300 = −1/6, or reading Φ(1) ≈ 0.841 as the lower-tail probability itself.",
+    "final_answer": "$\\bar{X} \\approx \\operatorname{Normal}(1200, 50)$; $z = -1$; $P(\\bar{X} < 1150) \\approx 0.159$. Casual Normal use without stating the IID CLT sampling sd is not the same skill.",
+    "common_pitfall": "Using $\\bar{X} \\approx \\operatorname{Normal}(1200, 300)$ and computing $z = (1150 - 1200)/300 = -1/6$, or reading $\\Phi(1) \\approx 0.841$ as the lower-tail probability itself.",
     "syllabus_ref": "2.5.1"
   }
 }

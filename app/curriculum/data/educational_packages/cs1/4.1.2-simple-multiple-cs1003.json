@@ -116,7 +116,7 @@
       "kind": "active_recall",
       "item_id": "cs1003-4.1.2-ar-01",
       "title": "Active Recall: 4.1.2",
-      "prompt": "Closed-book. Which statement correctly writes a simple linear model for Y on X1 and a multiple linear model for Y on X1 and X2 using β notation?",
+      "prompt": "Closed-book. Which statement correctly writes a simple linear model for Y on X1 and a multiple linear model for Y on X1 and X2 using $\\beta$ notation?",
       "response_type": "mcq",
       "body": "Select the simple versus multiple LM equations.",
       "hints": [
@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Simple uses one X; multiple adds a second X term. OLS estimation is a separate step from stating the model forms.",
-      "model_answer": "Simple: Y = β0 + β1 X1 + ε. Multiple: Y = β0 + β1 X1 + β2 X2 + ε.",
+      "model_answer": "Simple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\beta_{2} X_{2} + \\varepsilon$.",
       "common_mistake": "Swapping simple and multiple forms or treating OLS as finishing model-form statement.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,22 +134,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Simple: Y = β0 + β1 X1 + ε. Multiple: Y = β0 + β1 X1 + β2 X2 + ε (or equivalent β notation).",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\beta_{2} X_{2} + \\varepsilon$ (or equivalent $\\beta$ notation).",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Simple: Y = β0 + β1 X1 + β2 X2 + ε. Multiple: Y = β0 + β1 X1 + ε, because multiple means more parameters in the least-squares criterion.",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\beta_{2} X_{2} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1} X_{1} + \\varepsilon$, because multiple means more parameters in the least-squares criterion.",
           "misconception_tag": "forms_swapped"
         },
         {
           "id": "c",
-          "label": "Both forms are Y = β̂0 + β̂1 x + ε where β̂ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
+          "label": "Both forms are Y = $\\hat{\\beta}$0 + $\\hat{\\beta}$1 x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
           "misconception_tag": "least_squares_finishes"
         },
         {
           "id": "d",
-          "label": "Simple and multiple models differ only in software menu choice; the equation Y = β0 + β1 X1 + ε covers both one and two predictors.",
+          "label": "Simple and multiple models differ only in software menu choice; the equation $Y = \\beta_{0} + \\beta_{1} X_{1} + \\varepsilon$ covers both one and two predictors.",
           "misconception_tag": "software_only"
         }
       ],
@@ -169,7 +169,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Simple uses one predictor; multiple uses both. Closed-form least squares is estimation, not the act of naming the model forms.",
-      "model_answer": "Simple: Y = β₀ + β₁ age + ε. Multiple adds β₂ sum_insured. Refuse OLS-as-form.",
+      "model_answer": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple adds $\\beta_{2}\\,\\mathrm{sum\\_insured}$. Refuse OLS-as-form.",
       "common_mistake": "Treating least-squares estimation as finishing model-form statement.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -178,17 +178,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "Simple: Y = β₀ + β₁ age + ε. Multiple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Writing least-squares formulae for β̂ is estimation, not stating the simple versus multiple linear model forms.",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Writing least-squares formulae for $\\hat{\\beta}$ is estimation, not stating the simple versus multiple linear model forms.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Simple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Multiple: Y = β₀ + β₁ age + ε, because multiple means more parameters in the criterion.",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$, because multiple means more parameters in the criterion.",
           "misconception_tag": "forms_swapped"
         },
         {
           "id": "c",
-          "label": "Both forms are Y = β̂₀ + β̂₁ x + ε where β̂ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
+          "label": "Both forms are Y = $\\hat{\\beta}_{0} + \\hat{\\beta}_{1}$ x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
           "misconception_tag": "least_squares_finishes"
         },
         {
@@ -219,20 +219,20 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Simple vs multiple fitted travel medical costs",
-    "problem_statement": "Two fitted linear models for travel medical claim cost Y (£00) are available.\nSimple: Ŷ_s = 3.5 + 0.8x₁, where x₁ is trip length in weeks.\nMultiple: Ŷ_m = 2.0 + 0.6x₁ + 0.4x₂, where x₂ is a destination risk score.\nFor a trip with x₁ = 5 and x₂ = 3, compute both fitted values and state which model form each equation represents.",
+    "problem_statement": "Two fitted linear models for travel medical claim cost Y (£00) are available.\nSimple: $\\hat{Y}_{s}$ = 3.5 + 0.8$x_{1}$, where $x_{1}$ is trip length in weeks.\nMultiple: $\\hat{Y}_{m}$ = 2.0 + 0.6$x_{1}$ + 0.4$x_{2}$, where $x_{2}$ is a destination risk score.\nFor a trip with $x_{1}$ = 5 and $x_{2}$ = 3, compute both fitted values and state which model form each equation represents.",
     "given": [
       {
         "symbol": "Ŷ_s",
-        "value": "3.5 + 0.8x₁",
+        "value": "$3.5 + 0.8x_{1}$",
         "note": "simple linear fit"
       },
       {
         "symbol": "Ŷ_m",
-        "value": "2.0 + 0.6x₁ + 0.4x₂",
+        "value": "$2.0 + 0.6x_{1} + 0.4x_{2}$",
         "note": "multiple linear fit"
       },
       {
-        "symbol": "(x₁, x₂)",
+        "symbol": "$(x_{1}, x_{2})$",
         "value": "(5, 3)",
         "note": "trip weeks and destination risk score"
       }
@@ -244,7 +244,7 @@
         "label": "Identify simple vs multiple form",
         "attempt_cue": "Count explanatory variables on the right-hand side of each equation.",
         "explanation": "Simple linear regression has one explanatory variable. Multiple linear regression has several explanatory variables entering jointly.",
-        "calculation": "Ŷ_s uses only x₁ (simple); Ŷ_m uses x₁ and x₂ (multiple)",
+        "calculation": "$\\hat{Y}_{s}$ uses only $x_{1}$ (simple); $\\hat{Y}_{m}$ uses $x_{1}$ and $x_{2}$ (multiple)",
         "result": "Simple vs multiple identified by number of X's"
       },
       {
@@ -252,7 +252,7 @@
         "label": "Evaluate the simple fit",
         "attempt_cue": "Substitute x₁ = 5 into Ŷ_s.",
         "explanation": "The simple model ignores x₂ even if that covariate is available.",
-        "calculation": "Ŷ_s = 3.5 + 0.8 × 5 = 3.5 + 4.0 = 7.5",
+        "calculation": "$\\hat{Y}_{s} = 3.5 + 0.8 \\times 5 = 3.5 + 4.0 = 7.5$",
         "result": "Ŷ_s = 7.5 (£00)"
       },
       {
@@ -260,7 +260,7 @@
         "label": "Evaluate the multiple fit",
         "attempt_cue": "Substitute x₁ = 5 and x₂ = 3 into Ŷ_m.",
         "explanation": "The multiple model adjusts the trip-length contribution and adds the destination-risk term jointly.",
-        "calculation": "Ŷ_m = 2.0 + 0.6 × 5 + 0.4 × 3 = 2.0 + 3.0 + 1.2 = 6.2",
+        "calculation": "$\\hat{Y}_{m} = 2.0 + 0.6 \\times 5 + 0.4 \\times 3 = 2.0 + 3.0 + 1.2 = 6.2$",
         "result": "Ŷ_m = 6.2 (£00)"
       }
     ],

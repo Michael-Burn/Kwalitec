@@ -149,7 +149,7 @@
         },
         {
           "id": "d",
-          "label": "Choose any convenient formula for θ̂; method of moments means having a closed form, regardless of how it was derived.",
+          "label": "Choose any convenient formula for $\\hat{\\theta}$; method of moments means having a closed form, regardless of how it was derived.",
           "misconception_tag": "any_formula"
         }
       ],
@@ -160,19 +160,19 @@
       "kind": "checkpoint",
       "item_id": "cs1016-3.1.1-cp-01",
       "title": "Checkpoint: Poisson MoM mean",
-      "prompt": "Closed-book. Six independent monthly claim counts are modelled as Poisson(λ): 2, 1, 3, 0, 4, 2. Enter the method-of-moments estimate of λ.",
+      "prompt": "Closed-book. Six independent monthly claim counts are modelled as Poisson($\\lambda$): 2, 1, 3, 0, 4, 2. Enter the method-of-moments estimate of $\\lambda$.",
       "response_type": "numeric",
-      "body": "Evaluate λ̂_MoM = x̄ on the stated sample.",
+      "body": "Evaluate $\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$ on the stated sample.",
       "hints": [
-        "For Poisson(λ), the first-moment equation gives λ̂_MoM = x̄.",
+        "For Poisson($\\lambda$), the first-moment equation gives $\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$.",
         "Sum the six counts and divide by n = 6."
       ],
       "accepted_keywords": [
         "2"
       ],
-      "explanation": "E[X] = λ implies λ̂_MoM = x̄. The sample mean is (2 + 1 + 3 + 0 + 4 + 2)/6 = 12/6 = 2, so λ̂_MoM = 2 claims per month.",
+      "explanation": "$E[X] = \\lambda$ implies $\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$. The sample mean is $(2 + 1 + 3 + 0 + 4 + 2)/6 = 12/6 = 2$, so $\\hat{\\lambda}_{\\mathrm{MoM}} = 2$ claims per month.",
       "model_answer": "2",
-      "common_mistake": "Reporting the sum Σxᵢ = 12 as λ̂, or treating a variance match as a required second MoM step for one-parameter Poisson.",
+      "common_mistake": "Reporting the sum $\\sum x_{i}$ = 12 as $\\hat{\\lambda}$, or treating a variance match as a required second MoM step for one-parameter Poisson.",
       "success_criteria": [
         "Enters a value within 0.001 of 2.",
         "Uses the sample mean as MoM for the Poisson mean λ."
@@ -204,10 +204,10 @@
   "published_at": "2026-08-04",
   "worked_example": {
     "title": "MoM for Poisson claim counts",
-    "problem_statement": "Six independent monthly claim counts on a small commercial book are modelled as Poisson(λ): 2, 1, 3, 0, 4, 2. Construct the method-of-moments estimator of λ and evaluate it on this sample.",
+    "problem_statement": "Six independent monthly claim counts on a small commercial book are modelled as Poisson($\\lambda$): 2, 1, 3, 0, 4, 2. Construct the method-of-moments estimator of $\\lambda$ and evaluate it on this sample.",
     "given": [
       {
-        "symbol": "x₁…x₆",
+        "symbol": "$x_{1},\\ldots,x_{6}$",
         "value": "2, 1, 3, 0, 4, 2",
         "note": "monthly claim counts"
       },
@@ -217,8 +217,8 @@
         "note": "months"
       },
       {
-        "symbol": "E[X]",
-        "value": "λ",
+        "symbol": "$E[X]$",
+        "value": "$\\lambda$",
         "note": "Poisson mean"
       }
     ],
@@ -227,10 +227,10 @@
       {
         "id": "S1",
         "label": "Moment equation",
-        "attempt_cue": "Write λ̂_MoM = x̄.",
-        "explanation": "Poisson has E[X] = λ, so MoM matches λ to the sample mean.",
-        "calculation": "E[X] = λ  ⇒  λ̂_MoM = x̄",
-        "result": "λ̂_MoM = x̄"
+        "attempt_cue": "Write $\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$.",
+        "explanation": "Poisson has $E[X] = \\lambda$, so MoM matches $\\lambda$ to the sample mean.",
+        "calculation": "$E[X] = \\lambda \\Rightarrow \\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$",
+        "result": "$\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x}$"
       },
       {
         "id": "S2",
@@ -238,11 +238,11 @@
         "attempt_cue": "Average the six counts.",
         "explanation": "Substitute the observed counts into x̄.",
         "calculation": "(2+1+3+0+4+2)/6 = 12/6 = 2",
-        "result": "λ̂_MoM = 2"
+        "result": "$\\hat{\\lambda}_{\\mathrm{MoM}} = 2$"
       }
     ],
-    "final_answer": "λ̂_MoM = x̄ = 2 claims per month.",
-    "common_pitfall": "Equating λ to the sample variance (here also 2 by chance) as if that were a second-moment MoM step required for one-parameter Poisson, or reporting Σxᵢ = 12 as the estimate of λ.",
+    "final_answer": "$\\hat{\\lambda}_{\\mathrm{MoM}} = \\bar{x} = 2$ claims per month.",
+    "common_pitfall": "Equating $\\lambda$ to the sample variance (here also 2 by chance) as if that were a second-moment MoM step required for one-parameter Poisson, or reporting $\\sum x_{i} = 12$ as the estimate of $\\lambda$.",
     "syllabus_ref": "3.1.1"
   }
 }

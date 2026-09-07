@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.5-cp-01",
       "title": "Checkpoint: 3.1.5",
-      "prompt": "Closed-book. Under regularity, an MLE θ̂ₙ satisfies √n (θ̂ₙ − θ) →ᵈ N(0, 1/I(θ)). Which statement is correct?",
+      "prompt": "Closed-book. Under regularity, an MLE $\\hat{\\theta}_{n}$ satisfies $\\sqrt{n} (\\hat{\\theta}_{n} - \\theta) \\xrightarrow{d} N(0, 1/I(\\theta))$. Which statement is correct?",
       "response_type": "mcq",
       "body": "Interpret the asymptotic Normal claim; refuse bootstrap-as-substitute.",
       "hints": [
@@ -169,9 +169,9 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "The √n-scaled error is asymptotically N(0, 1/I(θ)), so θ̂ₙ is approx Normal with variance 1/(n I(θ)). Bootstrap is a different tool and does not erase the asymptotic claim. Dropping √n misstates the limit.",
-      "model_answer": "Large-sample Normal law with variance ≈ 1/(n I(θ)); bootstrap ≠ asymptotic MLE theory.",
-      "common_mistake": "Treating the information variance as exact for finite n, dropping √n, or replacing asymptotics with bootstrap.",
+      "explanation": "The $\\sqrt{n}$-scaled error is asymptotically $N(0, 1/I(\\theta))$, so $\\hat{\\theta}_{n}$ is approx Normal with variance $1/(n I(\\theta))$. Bootstrap is a different tool and does not erase the asymptotic claim. Dropping $\\sqrt{n}$ misstates the limit.",
+      "model_answer": "Large-sample Normal law with variance $\\approx 1/(n I(\\theta))$; bootstrap $\\neq$ asymptotic MLE theory.",
+      "common_mistake": "Treating the information variance as exact for finite n, dropping $\\sqrt{n}$, or replacing asymptotics with bootstrap.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -179,12 +179,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "For large n, θ̂ₙ is approximately Normal about θ with variance ≈ 1/(n I(θ)), which supports large-sample standard errors and Wald-type intervals or tests. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
+          "label": "For large n, $\\hat{\\theta}_{n}$ is approximately Normal about $\\theta$ with variance $\\approx 1/(n I(\\theta))$, which supports large-sample standard errors and Wald-type intervals or tests. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "The result says Var(θ̂ₙ) = I(θ) exactly for every finite n, so no large-sample approximation is involved.",
+          "label": "The result says $\\operatorname{Var}(\\hat{\\theta}_{n})$ = $I(\\theta)$ exactly for every finite n, so no large-sample approximation is involved.",
           "misconception_tag": "finite_exact_info"
         },
         {
@@ -194,7 +194,7 @@
         },
         {
           "id": "d",
-          "label": "The result implies θ̂ₙ →ᵈ N(0, 1/I(θ)) without the √n scaling, so the variance of θ̂ₙ itself tends to 1/I(θ).",
+          "label": "The result implies $\\hat{\\theta}_{n} \\xrightarrow{d} N(0, 1/I(\\theta))$ without the $\\sqrt{n}$ scaling, so the variance of $\\hat{\\theta}_{n}$ itself tends to $1/I(\\theta)$.",
           "misconception_tag": "drop_sqrt_n"
         }
       ],
@@ -220,7 +220,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Asymptotic SE and CI for Exponential rate MLE",
-    "problem_statement": "From n = 64 independent Exponential claim delays with rate λ, the MLE is λ̂ = 0.25. Using the asymptotic Normal approximation λ̂ ≈ N(λ, λ²/n) (equivalently SE ≈ λ̂/√n), give the estimated standard error and an approximate 95% confidence interval for λ.",
+    "problem_statement": "From $n = 64$ independent Exponential claim delays with rate $\\lambda$, the MLE is $\\hat{\\lambda} = 0.25$. Using the asymptotic Normal approximation $\\hat{\\lambda} \\approx N(\\lambda, \\lambda^{2}/n)$ (equivalently $\\mathrm{SE} \\approx \\hat{\\lambda}/\\sqrt{n}$), give the estimated standard error and an approximate 95% confidence interval for $\\lambda$.",
     "given": [
       {
         "symbol": "n",
@@ -228,7 +228,7 @@
         "note": "sample size"
       },
       {
-        "symbol": "λ̂",
+        "symbol": "$\\hat{\\lambda}$",
         "value": "0.25",
         "note": "MLE of the rate"
       },
@@ -239,39 +239,39 @@
       },
       {
         "symbol": "asymptotic Var",
-        "value": "λ²/n",
+        "value": "$\\lambda^{2}/n$",
         "note": "Exp(rate) Fisher information inverse"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write SÊ = λ̂/√n before building the interval.",
+    "attempt_before_reveal": "CMP closed. Write $\\widehat{\\mathrm{SE}} = \\hat{\\lambda}/\\sqrt{n}$ before building the interval.",
     "steps": [
       {
         "id": "S1",
         "label": "Estimated asymptotic standard error",
-        "attempt_cue": "Compute λ̂/√n with √64 = 8.",
-        "explanation": "For Exponential rate, I(λ) = 1/λ² per observation, so asymptotic variance is λ²/n and SE = λ/√n, plugged in at λ̂.",
-        "calculation": "SÊ = 0.25 / √64 = 0.25 / 8 = 0.03125",
-        "result": "SÊ = 0.03125"
+        "attempt_cue": "Compute $\\hat{\\lambda}/\\sqrt{n}$ with $\\sqrt{64} = 8$.",
+        "explanation": "For Exponential rate, $I(\\lambda)$ = $1/\\lambda^{2}$ per observation, so asymptotic variance is $\\lambda^{2}/n$ and SE = $\\lambda/\\sqrt{n}$, plugged in at $\\hat{\\lambda}$.",
+        "calculation": "$\\widehat{\\mathrm{SE}} = 0.25 / \\sqrt{64} = 0.25 / 8 = 0.03125$",
+        "result": "$\\widehat{\\mathrm{SE}} = 0.03125$"
       },
       {
         "id": "S2",
         "label": "Half-width of the approximate 95% CI",
         "attempt_cue": "Multiply SÊ by 1.96.",
         "explanation": "Wald interval uses the Normal quantile times the estimated SE.",
-        "calculation": "1.96 × 0.03125 = 0.06125",
+        "calculation": "$1.96 \\times 0.03125 = 0.06125$",
         "result": "half-width = 0.06125"
       },
       {
         "id": "S3",
         "label": "Form the interval",
-        "attempt_cue": "Compute λ̂ ± 1.96 SÊ.",
+        "attempt_cue": "Compute $\\hat{\\lambda} \\pm 1.96\\,\\widehat{\\mathrm{SE}}$.",
         "explanation": "Centre at the MLE and add/subtract the half-width.",
-        "calculation": "0.25 ± 0.06125  ⇒  (0.18875, 0.31125)",
+        "calculation": "$0.25 ± 0.06125 \\Rightarrow (0.18875, 0.31125)$",
         "result": "(0.18875, 0.31125)"
       }
     ],
-    "final_answer": "SÊ = 0.03125; approximate 95% CI for λ is (0.18875, 0.31125).",
-    "common_pitfall": "Using SE = 1/(λ̂√n) = 1/(0.25×8) = 0.5 (the Exponential-mean information form) instead of SE = λ̂/√n = 0.03125 for the rate.",
+    "final_answer": "$\\widehat{\\mathrm{SE}} = 0.03125$; approximate 95% CI for $\\lambda$ is $(0.18875, 0.31125)$.",
+    "common_pitfall": "Using $\\mathrm{SE} = 1/(\\hat{\\lambda}\\sqrt{n}) = 1/(0.25\\times 8) = 0.5$ (the Exponential-mean information form) instead of $\\mathrm{SE} = \\hat{\\lambda}/\\sqrt{n} = 0.03125$ for the rate.",
     "syllabus_ref": "3.1.5"
   }
 }

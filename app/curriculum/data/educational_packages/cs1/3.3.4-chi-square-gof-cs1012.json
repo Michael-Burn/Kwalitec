@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.4-cp-01",
       "title": "Checkpoint: 3.3.4",
-      "prompt": "Closed-book. You test whether claim counts follow a Poisson distribution; λ is estimated from the same sample. Which statement is correct?",
+      "prompt": "Closed-book. You test whether claim counts follow a Poisson distribution; $\\lambda$ is estimated from the same sample. Which statement is correct?",
       "response_type": "mcq",
       "body": "Expected counts and DF adjust; refuse independence-as-GOF.",
       "hints": [
@@ -168,9 +168,9 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Fit Poisson probabilities with λ̂, form expected counts, and reduce DF by one for λ̂. Independence testing is not GOF to a named distribution.",
-      "model_answer": "E = n × Poisson probabilities at λ̂; DF = bins − 1 − 1; independence ≠ GOF.",
-      "common_mistake": "Forgetting the DF reduction for λ̂, or treating independence as GOF.",
+      "explanation": "Fit Poisson probabilities with $\\hat{\\lambda}$, form expected counts, and reduce DF by one for $\\hat{\\lambda}$. Independence testing is not GOF to a named distribution.",
+      "model_answer": "$E = n \\times$ Poisson probabilities at $\\hat{\\lambda}$; DF = bins - 1 - 1; independence $\\neq$ GOF.",
+      "common_mistake": "Forgetting the DF reduction for $\\hat{\\lambda}$, or treating independence as GOF.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -178,22 +178,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Expected frequencies are n times fitted Poisson probabilities using λ̂. Degrees of freedom are (number of bins − 1 − number of estimated parameters), so subtract 1 for λ̂. A chi-square test of independence in a two-way table is a different procedure.",
+          "label": "Expected frequencies are $n$ times fitted Poisson probabilities using $\\hat{\\lambda}$. Degrees of freedom are (number of bins - 1 - number of estimated parameters), so subtract 1 for $\\hat{\\lambda}$. A chi-square test of independence in a two-way table is a different procedure.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Expected frequencies use λ̂, but degrees of freedom stay at (bins − 1) with no reduction for estimating λ.",
+          "label": "Expected frequencies use $\\hat{\\lambda}$, but degrees of freedom stay at (bins - 1) with no reduction for estimating $\\lambda$.",
           "misconception_tag": "forget_df_adjust"
         },
         {
           "id": "c",
-          "label": "Because λ is estimated, replace GOF by a two-way independence test on a contingency table of counts.",
+          "label": "Because $\\lambda$ is estimated, replace GOF by a two-way independence test on a contingency table of counts.",
           "misconception_tag": "independence_as_gof"
         },
         {
           "id": "d",
-          "label": "Expected frequencies are n/λ̂ in every bin, regardless of the Poisson probabilities for those bins.",
+          "label": "Expected frequencies are n/$\\hat{\\lambda}$ in every bin, regardless of the Poisson probabilities for those bins.",
           "misconception_tag": "flat_expected"
         }
       ],
@@ -219,7 +219,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Chi-square GOF for equal claim-type shares",
-    "problem_statement": "n = 100 claims are classified into five product types. Under H₀ each type has probability 1/5, so expected counts are 20. Observed counts: 18, 22, 20, 15, 25. Compute Pearson's χ² and decide at α = 0.05 using χ²_{4, 0.95} = 9.488.",
+    "problem_statement": "n = 100 claims are classified into five product types. Under $H_{0}$ each type has probability $\\frac{1}{5}$, so expected counts are 20. Observed counts: 18, 22, 20, 15, 25. Compute Pearson's $\\chi^{2}$ and decide at $\\alpha$ = 0.05 using $\\chi^{2}_{4, 0.95}$ = 9.488.",
     "given": [
       {
         "symbol": "Oᵢ",
@@ -237,19 +237,19 @@
         "note": "5 − 1 categories"
       },
       {
-        "symbol": "χ²_{4,0.95}",
+        "symbol": "$\\chi^{2}_{4,0.95}$",
         "value": "9.488",
         "note": "5% critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write χ² = Σ(Oᵢ − Eᵢ)²/Eᵢ before summing.",
+    "attempt_before_reveal": "CMP closed. Write $\\chi^{2} = \\sum (O_{i}-E_{i})^{2}/E_{i}$ before summing.",
     "steps": [
       {
         "id": "S1",
         "label": "Squared Pearson residuals",
         "attempt_cue": "Compute each (Oᵢ − 20)²/20.",
         "explanation": "Each category contributes (O − E)²/E to the Pearson statistic.",
-        "calculation": "(−2)²/20 + 2²/20 + 0/20 + (−5)²/20 + 5²/20 = 4/20 + 4/20 + 0 + 25/20 + 25/20",
+        "calculation": "$(-2)^{2}/20 + 2^{2}/20 + 0/20 + (-5)^{2}/20 + 5^{2}/20 = 4/20 + 4/20 + 0 + 25/20 + 25/20$",
         "result": "0.2 + 0.2 + 0 + 1.25 + 1.25"
       },
       {
@@ -258,18 +258,18 @@
         "attempt_cue": "Add the five contributions.",
         "explanation": "The GOF statistic is the sum of the category contributions.",
         "calculation": "0.2 + 0.2 + 0 + 1.25 + 1.25 = 2.9",
-        "result": "χ² = 2.9"
+        "result": "$\\chi^{2} = 2.9$"
       },
       {
         "id": "S3",
         "label": "Decision",
         "attempt_cue": "Compare 2.9 with 9.488.",
         "explanation": "Reject H₀ for large χ²; here 2.9 < 9.488.",
-        "calculation": "2.9 < 9.488  ⇒  do not reject H₀",
+        "calculation": "2.9 < 9.488 $\\Rightarrow$ do not reject $H_{0}$",
         "result": "Do not reject equal shares at 5%"
       }
     ],
-    "final_answer": "χ² = 2.9 on 4 df; do not reject H₀ at α = 0.05.",
+    "final_answer": "$\\chi^{2}$ = 2.9 on 4 df; do not reject $H_{0}$ at $\\alpha$ = 0.05.",
     "common_pitfall": "Using df = 5 (forgetting −1 for the multinomial constraint) or comparing χ² to a Normal z critical value.",
     "syllabus_ref": "3.3.4"
   }

@@ -125,8 +125,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Independence uses E_{ij} = (row total × column total)/n in a two-way table. That is not one-sample distributional GOF.",
-      "model_answer": "Two-way cross-classification; independence null; E_{ij}=(row total×column total)/n.",
+      "explanation": "Independence uses $E_{ij} = (\\text{row total} \\times \\text{column total})/n$ in a two-way table. That is not one-sample distributional GOF.",
+      "model_answer": "Two-way cross-classification; independence null; $E_{ij}=(\\text{row total}\\times\\text{column total})/n$.",
       "common_mistake": "Treating GOF and two-way independence as the same chi-square procedure.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.5-cp-01",
       "title": "Checkpoint: 3.3.5",
-      "prompt": "Closed-book. Two-way table: rating class × claim/no-claim. Which statement is correct?",
+      "prompt": "Closed-book. Two-way table: rating class $\\times$ claim/no-claim. Which statement is correct?",
       "response_type": "mcq",
       "body": "Independence null and expected counts; refuse GOF conflation.",
       "hints": [
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Independence expected counts are products of margins over n. GOF to a named distribution is a different hypothesis and different expected count construction.",
-      "model_answer": "Independence null; E_{ij}=(row total×column total)/n; refuse GOF conflation.",
+      "model_answer": "Independence null; $E_{ij}=(\\text{row total}\\times\\text{column total})/n$; refuse GOF conflation.",
       "common_mistake": "Using GOF-style expected counts, or mangling the margin product formula.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,22 +179,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "H₀: row and column classifications are independent; E_{ij} = (row i total × column j total) / n. This is not the same as a chi-square GOF testing whether one sample follows a named distribution.",
+          "label": "$H_{0}$: row and column classifications are independent; $E_{ij} = (\\text{row i total} \\times \\text{column j total}) / n$. This is not the same as a chi-square GOF testing whether one sample follows a named distribution.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "H₀: the counts follow a Poisson distribution with mean estimated from the table total; expected counts are that fitted Poisson pmf times n.",
+          "label": "$H_{0}$: the counts follow a Poisson distribution with mean estimated from the table total; expected counts are that fitted Poisson pmf times n.",
           "misconception_tag": "gof_as_independence"
         },
         {
           "id": "c",
-          "label": "H₀: independence; expected counts equal the observed counts in every cell.",
+          "label": "$H_{0}$: independence; expected counts equal the observed counts in every cell.",
           "misconception_tag": "e_equals_o"
         },
         {
           "id": "d",
-          "label": "H₀: independence; E_{ij} = row i total + column j total, without dividing by n.",
+          "label": "$H_{0}$: independence; $E_{ij}$ = row i total + column j total, without dividing by n.",
           "misconception_tag": "sum_not_product"
         }
       ],
@@ -220,7 +220,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Chi-square test of independence in a 2×2 fraud table",
-    "problem_statement": "Claims are cross-classified by channel and fraud flag:\nOnline & Fraud 20; Online & Clean 30; Broker & Fraud 10; Broker & Clean 40. Row totals 50 and 50; column totals 30 and 70; n = 100. Test independence at α = 0.05 using χ²_{1, 0.95} = 3.841.",
+    "problem_statement": "Claims are cross-classified by channel and fraud flag:\nOnline & Fraud 20; Online & Clean 30; Broker & Fraud 10; Broker & Clean 40. Row totals 50 and 50; column totals 30 and 70; n = 100. Test independence at $\\alpha$ = 0.05 using $\\chi^{2}_{1, 0.95}$ = 3.841.",
     "given": [
       {
         "symbol": "table",
@@ -233,19 +233,19 @@
         "note": "totals"
       },
       {
-        "symbol": "χ²_{1,0.95}",
+        "symbol": "$\\chi^{2}_{1,0.95}$",
         "value": "3.841",
         "note": "5% critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Compute expected counts E_{ij} = (row × col)/n before χ².",
+    "attempt_before_reveal": "CMP closed. Compute expected counts $E_{ij} = (\\text{row} \\times \\text{col})/n$ before $\\chi^{2}$.",
     "steps": [
       {
         "id": "S1",
         "label": "Expected counts",
-        "attempt_cue": "Compute all four E_{ij} = (row total × column total)/n.",
+        "attempt_cue": "Compute all four $E_{ij} = (\\text{row total} \\times \\text{column total})/n$.",
         "explanation": "Under independence, expected cell counts factor through the margins.",
-        "calculation": "E11 = 50×30/100 = 15;  E12 = 50×70/100 = 35;  E21 = 50×30/100 = 15;  E22 = 50×70/100 = 35",
+        "calculation": "$E11 = 50\\times 30/100 = 15$; $E12 = 50\\times 70/100 = 35$; $E21 = 50\\times 30/100 = 15$; $E22 = 50\\times 70/100 = 35$",
         "result": "E = 15, 35 / 15, 35"
       },
       {
@@ -253,8 +253,8 @@
         "label": "Pearson χ²",
         "attempt_cue": "Sum (O − E)²/E over the four cells.",
         "explanation": "Same Pearson form as GOF, applied to the contingency table.",
-        "calculation": "(20−15)²/15 + (30−35)²/35 + (10−15)²/15 + (40−35)²/35 = 25/15 + 25/35 + 25/15 + 25/35 = 50/15 + 50/35 = 10/3 + 10/7 = 100/21 ≈ 4.762",
-        "result": "χ² = 100/21 ≈ 4.762"
+        "calculation": "$(20-15)^{2}/15 + (30-35)^{2}/35 + (10-15)^{2}/15 + (40-35)^{2}/35 = 25/15 + 25/35 + 25/15 + 25/35 = 50/15 + 50/35 = 10/3 + 10/7 = 100/21 \\approx 4.762$",
+        "result": "$\\chi^{2} = 100/21 \\approx 4.762$"
       },
       {
         "id": "S3",
@@ -265,7 +265,7 @@
         "result": "Reject independence at 5%"
       }
     ],
-    "final_answer": "χ² = 100/21 ≈ 4.762 on 1 df; reject independence of channel and fraud flag at α = 0.05.",
+    "final_answer": "$\\chi^{2} = 100/21 \\approx 4.762$ on 1 df; reject independence of channel and fraud flag at $\\alpha = 0.05$.",
     "common_pitfall": "Using E_{ij} = n/4 = 25 (ignoring unequal margins) or forgetting to square (O − E) before dividing by E.",
     "syllabus_ref": "3.3.5"
   }

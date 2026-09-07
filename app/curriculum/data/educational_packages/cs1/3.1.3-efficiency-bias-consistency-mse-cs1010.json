@@ -127,8 +127,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Bias is E[θ̂] − θ and MSE = variance + squared bias. Consistency is large-sample concentration on the truth, not the same as finite-sample unbiasedness. Efficiency is a comparative variance/MSE idea, not a synonym for unbiasedness.",
-      "model_answer": "Bias = E[θ̂] − θ; MSE = Var + bias²; efficiency compares variance/MSE; consistency is convergence in probability.",
+      "explanation": "Bias is $E[\\hat{\\theta}] - \\theta$ and MSE = variance + squared bias. Consistency is large-sample concentration on the truth, not the same as finite-sample unbiasedness. Efficiency is a comparative variance/MSE idea, not a synonym for unbiasedness.",
+      "model_answer": "Bias $= E[\\hat{\\theta}] - \\theta$; MSE $= \\operatorname{Var} + (\\mathrm{bias})^{2}$; efficiency compares variance or MSE; consistency is convergence in probability.",
       "common_mistake": "Equating consistency with unbiasedness, or mangling the MSE decomposition.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -137,17 +137,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "Bias is E[θ̂] − θ. Under the usual decomposition, MSE = Var(θ̂) + (bias)². Efficiency compares variance or MSE to a benchmark; consistency concerns convergence in probability to the true value as sample size grows.",
+          "label": "Bias is $E[\\hat{\\theta}] - \\theta$. Under the usual decomposition, MSE $= \\operatorname{Var}(\\hat{\\theta}) + (\\mathrm{bias})^{2}$. Efficiency compares variance or MSE to a benchmark; consistency concerns convergence in probability to the true value as sample size grows.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Bias is Var(θ̂). MSE equals the absolute bias, and consistency means the estimator is unbiased for every finite n.",
+          "label": "Bias is $\\operatorname{Var}(\\hat{\\theta})$. MSE equals the absolute bias, and consistency means the estimator is unbiased for every finite n.",
           "misconception_tag": "bias_var_swap_consistency"
         },
         {
           "id": "c",
-          "label": "MSE = Var(θ̂) − (bias)², so a larger bias always reduces MSE.",
+          "label": "MSE $= \\operatorname{Var}(\\hat{\\theta}) - (\\mathrm{bias})^{2}$, so a larger bias always reduces MSE.",
           "misconception_tag": "mse_minus_bias"
         },
         {
@@ -163,7 +163,7 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.3-cp-01",
       "title": "Checkpoint: 3.1.3",
-      "prompt": "Closed-book. Estimator A is unbiased with Var(A)=4/n. Estimator B has Bias(B)=1/n and Var(B)=1/n. Which statement is correct?",
+      "prompt": "Closed-book. Estimator A is unbiased with $\\operatorname{Var}(A)$=4/n. Estimator B has $\\operatorname{Bias}(B)$=1/n and $\\operatorname{Var}(B)$=1/n. Which statement is correct?",
       "response_type": "mcq",
       "body": "Compare MSE and refuse 'unbiased always wins' / consistency-as-unbiased.",
       "hints": [
@@ -171,8 +171,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "MSE(A)=4/n. MSE(B)=bias² + var = 1/n² + 1/n, which is about 1/n for large n and beats 4/n. A biased estimator can win on MSE. Consistency is large-sample concentration, not finite-sample unbiasedness.",
-      "model_answer": "MSE(A)=4/n; MSE(B)=1/n²+1/n; prefer B for large n on MSE; refuse unbiased-always-best and consistency=unbiasedness.",
+      "explanation": "$\\operatorname{MSE}(A)=\\frac{4}{n}$. $\\operatorname{MSE}(B)=(\\mathrm{bias})^{2} + \\mathrm{var} = \\frac{1}{n^{2}} + \\frac{1}{n}$, which is about $\\frac{1}{n}$ for large $n$ and beats $\\frac{4}{n}$. A biased estimator can win on MSE. Consistency is large-sample concentration, not finite-sample unbiasedness.",
+      "model_answer": "$\\operatorname{MSE}(A)$=$\\frac{4}{n}$; $\\operatorname{MSE}(B)$=$\\frac{1}{n^{2}}$+$\\frac{1}{n}$; prefer B for large n on MSE; refuse unbiased-always-best and consistency=unbiasedness.",
       "common_mistake": "Assuming unbiased estimators always dominate on MSE, or equating consistency with unbiasedness.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -181,7 +181,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "MSE(A)=4/n and MSE(B)=1/n² + 1/n. For large n, MSE(B)≈1/n < 4/n, so B has smaller MSE. Unbiasedness is not MSE optimality, and consistency is not the same as unbiasedness.",
+          "label": "$\\operatorname{MSE}(A)$=$\\frac{4}{n}$ and $\\operatorname{MSE}(B)$=$\\frac{1}{n^{2}}$ + $\\frac{1}{n}$. For large n, $\\operatorname{MSE}(B) \\approx \\frac{1}{n}$ < $\\frac{4}{n}$, so B has smaller MSE. Unbiasedness is not MSE optimality, and consistency is not the same as unbiasedness.",
           "misconception_tag": ""
         },
         {
@@ -191,7 +191,7 @@
         },
         {
           "id": "c",
-          "label": "MSE(A)=4/n and MSE(B)=(1/n)² = 1/n² only (variance is ignored when bias is present), so B is preferred for all n.",
+          "label": "$\\operatorname{MSE}(A)=\\frac{4}{n}$ and $\\operatorname{MSE}(B)=(\\frac{1}{n})^{2} = \\frac{1}{n^{2}}$ only (variance is ignored when bias is present), so B is preferred for all $n$.",
           "misconception_tag": "drop_variance"
         },
         {
@@ -222,45 +222,45 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Bias and MSE for two reserve estimators",
-    "problem_statement": "Two estimators of mean ultimate claim cost μ (in £000) are under review. Estimator A is unbiased with Var(A) = 25. Estimator B has E[B] = μ + 2 and Var(B) = 16. Compute Bias(B) and MSE for both estimators, and state which has smaller MSE.",
+    "problem_statement": "Two estimators of mean ultimate claim cost $\\mu$ (in £000) are under review. Estimator A is unbiased with $\\operatorname{Var}(A) = 25$. Estimator B has $E[B] = \\mu + 2$ and $\\operatorname{Var}(B) = 16$. Compute $\\operatorname{Bias}(B)$ and MSE for both estimators, and state which has smaller MSE.",
     "given": [
       {
-        "symbol": "E[A]",
-        "value": "μ",
+        "symbol": "$E[A]$",
+        "value": "$\\mu$",
         "note": "A is unbiased"
       },
       {
-        "symbol": "Var(A)",
+        "symbol": "$\\operatorname{Var}(A)$",
         "value": "25",
         "note": "variance of A"
       },
       {
-        "symbol": "E[B]",
-        "value": "μ + 2",
+        "symbol": "$E[B]$",
+        "value": "$\\mu + 2$",
         "note": "expectation of B"
       },
       {
-        "symbol": "Var(B)",
+        "symbol": "$\\operatorname{Var}(B)$",
         "value": "16",
         "note": "variance of B"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write Bias(θ̂) = E[θ̂] − θ and MSE = Var + Bias² before computing.",
+    "attempt_before_reveal": "CMP closed. Write $\\operatorname{Bias}(\\hat{\\theta}) = E[\\hat{\\theta}] - \\theta$ and $\\mathrm{MSE} = \\operatorname{Var} + \\mathrm{Bias}^{2}$ before computing.",
     "steps": [
       {
         "id": "S1",
         "label": "Compute biases",
-        "attempt_cue": "Bias(A) = E[A] − μ and Bias(B) = E[B] − μ.",
-        "explanation": "Bias is the systematic error E[θ̂] − θ. Unbiased means Bias = 0.",
-        "calculation": "Bias(A) = μ − μ = 0;  Bias(B) = (μ + 2) − μ = 2",
+        "attempt_cue": "$\\operatorname{Bias}(A) = E[A] - \\mu$ and $\\operatorname{Bias}(B) = E[B] - \\mu$.",
+        "explanation": "Bias is the systematic error $E[\\hat{\\theta}] - \\theta$. Unbiased means Bias = 0.",
+        "calculation": "$\\operatorname{Bias}(A) = \\mu - \\mu = 0$; $\\operatorname{Bias}(B) = (\\mu + 2) - \\mu = 2$",
         "result": "Bias(A) = 0; Bias(B) = 2"
       },
       {
         "id": "S2",
         "label": "Compute MSE for each estimator",
-        "attempt_cue": "Use MSE(θ̂) = Var(θ̂) + [Bias(θ̂)]².",
+        "attempt_cue": "Use $\\operatorname{MSE}(\\hat{\\theta}) = \\operatorname{Var}(\\hat{\\theta}) + [\\operatorname{Bias}(\\hat{\\theta})]^{2}$.",
         "explanation": "Mean squared error decomposes into variance plus squared bias, so a biased estimator can still win on MSE.",
-        "calculation": "MSE(A) = 25 + 0² = 25;  MSE(B) = 16 + 2² = 16 + 4 = 20",
+        "calculation": "$\\operatorname{MSE}(A) = 25 + 0^{2} = 25$; $\\operatorname{MSE}(B) = 16 + 2^{2} = 16 + 4 = 20$",
         "result": "MSE(A) = 25; MSE(B) = 20"
       },
       {
