@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1008-2.5.2-cp-01",
       "title": "Checkpoint: 2.5.2",
-      "prompt": "Closed-book. Samples come from an Exponential distribution with mean 1. What should repeated simulations show for X̄ at n=5 versus n=100?",
+      "prompt": "Closed-book. Samples come from an Exponential distribution with mean 1. What should repeated simulations show for $\\bar{X}$ at n=5 versus n=100?",
       "response_type": "mcq",
       "body": "Compare simulated sampling distributions by sample size.",
       "hints": [
@@ -170,8 +170,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "The CLT approximation improves as n grows, while the mean stays near 1 and its standard deviation shrinks as 1/√n.",
-      "model_answer": "n=5 may remain skewed; n=100 is closer to N(1,0.1²).",
+      "explanation": "The CLT approximation improves as n grows, while the mean stays near 1 and its standard deviation shrinks as 1/$\\sqrt{n}$.",
+      "model_answer": "n=5 may remain skewed; n=100 is closer to $N(1,0.1^{2})$.",
       "common_mistake": "Assuming sample means retain the parent shape or that any sample size gives exact Normality.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,12 +180,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "At n=5 the distribution of X̄ can remain noticeably right-skewed. At n=100 it should be much closer to Normal, centred near 1 with standard deviation about 1/√100=0.1.",
+          "label": "At $n=5$ the distribution of $\\bar{X}$ can remain noticeably right-skewed. At $n=100$ it should be much closer to Normal, centred near 1 with standard deviation about $1/\\sqrt{100}=0.1$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Both distributions of X̄ must be exactly Exponential with mean 1 because averaging preserves the parent family.",
+          "label": "Both distributions of $\\bar{X}$ must be exactly Exponential with mean 1 because averaging preserves the parent family.",
           "misconception_tag": "mean_distribution_equals_parent"
         },
         {
@@ -221,11 +221,11 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Compare Exponential samples with a Normal overlay",
-    "problem_statement": "Waiting times (days) follow Exponential with mean θ = 400 (so sd = 400 also). An analyst simulates samples of size n = 20 and overlays a Normal(400, 400²) density on the histogram of individual draws. Judge whether that Normal overlay is a good description of the individual-sample histogram, and state what changes if the object compared is instead the sampling distribution of X̄ at much larger n.",
+    "problem_statement": "Waiting times (days) follow Exponential with mean $\\theta = 400$ (so sd = 400 also). An analyst simulates samples of size $n = 20$ and overlays a $N(400, 400^{2})$ density on the histogram of individual draws. Judge whether that Normal overlay is a good description of the individual-sample histogram, and state what changes if the object compared is instead the sampling distribution of $\\bar{X}$ at much larger $n$.",
     "given": [
       {
         "symbol": "parent",
-        "value": "Exponential(mean θ = 400)",
+        "value": "$Exponential(mean \\theta = 400)$",
         "note": "right-skewed continuous waiting times"
       },
       {
@@ -240,7 +240,7 @@
       },
       {
         "symbol": "overlay",
-        "value": "Normal(400, 400²)",
+        "value": "$Normal(400, 400^{2})$",
         "note": "matched-mean-and-sd Normal on the histogram"
       }
     ],
@@ -251,8 +251,8 @@
         "label": "Characterise the parent shape",
         "attempt_cue": "Name the skewness feature of Exponential(400).",
         "explanation": "An Exponential waiting-time law is right-skewed and supported on (0, ∞). Matching mean and sd to a Normal does not remove that skew for individual observations.",
-        "calculation": "Parent: right-skewed, support (0, ∞); Normal overlay is symmetric on (−∞, ∞)",
-        "result": "Parent shape ≠ Normal shape"
+        "calculation": "$Parent: right-skewed, support (0, ∞)$; $Normal overlay is symmetric on (-∞, ∞)$",
+        "result": "$Parent shape ≠ Normal shape$"
       },
       {
         "id": "S2",
@@ -267,11 +267,11 @@
         "label": "Contrast with the sample-mean story",
         "attempt_cue": "State what improves when comparing sampling distributions of X̄ at large n.",
         "explanation": "The CLT concerns the sample mean, not individual draws. Histograms of X̄ from many large-n replications become closer to Normal even when the parent is Exponential; that is a different comparison from overlaying Normal on raw waiting times.",
-        "calculation": "Individual draws: Normal poor; X̄ at large n: Normal approximation may improve",
+        "calculation": "$Individual draws: Normal poor$; $\\bar{X} at large n: Normal approximation may improve$",
         "result": "Object of comparison matters (draws vs means)"
       }
     ],
-    "final_answer": "Normal(400, 400²) is a poor description of individual Exponential(400) draws at n = 20 (skew, support). Comparing sampling distributions of X̄ at large n is a different question where Normal approximation can improve.",
+    "final_answer": "$Normal(400, 400^{2}) is a poor description of individual Exponential(400) draws at n = 20 (skew, support). Comparing sampling distributions of \\bar{X} at large n is a different question where Normal approximation can improve.$",
     "common_pitfall": "Treating a matched-mean-and-sd Normal overlay as automatically adequate for skewed individual draws, or confusing that histogram comparison with a CLT statement about X̄.",
     "syllabus_ref": "2.5.2"
   }

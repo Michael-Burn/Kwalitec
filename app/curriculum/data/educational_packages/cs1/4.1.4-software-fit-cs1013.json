@@ -145,7 +145,7 @@
         },
         {
           "id": "c",
-          "label": "Mean-response and individual-response intervals are identical for a new x-star because both target E[Y | x-star].",
+          "label": "Mean-response and individual-response intervals are identical for a new x-star because both target $E[Y | x-star]$.",
           "misconception_tag": "intervals_identical"
         },
         {
@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1013-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. After fitting Y = β₀ + β₁ x in software you see β̂₁, SE(β̂₁), R-squared, and residual plots. For a new x-star, which statement is correct?",
+      "prompt": "Closed-book. After fitting Y = $\\beta_{0} + \\beta_{1}$ x in software you see $\\hat{\\beta}_{1}$, SE($\\hat{\\beta}_{1}$), R-squared, and residual plots. For a new x-star, which statement is correct?",
       "response_type": "mcq",
       "body": "Distinguish mean versus individual prediction; refuse selection.",
       "hints": [
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Mean interval targets the conditional mean; prediction adds observation noise. Variable selection and optional residuals are misconceptions.",
-      "model_answer": "Mean interval for E[Y | x-star]; prediction wider; refuse selection-as-fit and optional residuals.",
+      "model_answer": "Mean interval for $E[Y | x-star]$; prediction wider; refuse selection-as-fit and optional residuals.",
       "common_mistake": "Accepting variable selection as finishing fit, or treating residuals as optional after significance.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A mean-response interval covers E[Y | x-star]; a prediction interval covers a new observation and is typically wider (adds residual variance). Running best-subset selection is separate from post-fit inference; slope inference, GOF, prediction limits, and residual checks are all required after a fit.",
+          "label": "A mean-response interval covers $E[Y | x-star]$; a prediction interval covers a new observation and is typically wider (adds residual variance). Running best-subset selection is separate from post-fit inference; slope inference, GOF, prediction limits, and residual checks are all required after a fit.",
           "misconception_tag": ""
         },
         {
@@ -194,7 +194,7 @@
         },
         {
           "id": "d",
-          "label": "The mean-response interval and prediction interval for x-star are the same width because both estimate E[Y | x-star] only.",
+          "label": "The mean-response interval and prediction interval for x-star are the same width because both estimate $E[Y | x-star]$ only.",
           "misconception_tag": "intervals_identical"
         }
       ],
@@ -220,10 +220,10 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Slope t-test and mean vs prediction intervals",
-    "problem_statement": "Software returns slope estimate β̂₁ = 12 (£ per year of age) with SE(β̂₁) = 4. Treat the Normal approximation as adequate and use z_{0.975} = 1.96.\n(a) Compute the Wald z statistic for H₀: β₁ = 0.\n(b) Form the approximate 95% CI for β₁.\n(c) At a fixed age, the fitted mean is ŷ = 500 with SE_mean = 20 and SE_pred = 50. Compare the half-widths of the 95% mean and individual prediction intervals.",
+    "problem_statement": "Software returns slope estimate $\\hat{\\beta}_{1} = 12$ (£ per year of age) with $\\mathrm{SE}(\\hat{\\beta}_{1}) = 4$. Treat the Normal approximation as adequate and use $z_{0.975} = 1.96$.\n(a) Compute the Wald $z$ statistic for $H_{0}\\colon \\beta_{1} = 0$.\n(b) Form the approximate 95% CI for $\\beta_{1}$.\n(c) At a fixed age, the fitted mean is $\\hat{y} = 500$ with $\\mathrm{SE}_{\\mathrm{mean}} = 20$ and $\\mathrm{SE}_{\\mathrm{pred}} = 50$. Compare the half-widths of the 95% mean and individual prediction intervals.",
     "given": [
       {
-        "symbol": "β̂₁, SE(β̂₁)",
+        "symbol": "$\\hat{\\beta}_{1}, SE(\\hat{\\beta}_{1})$",
         "value": "12, 4",
         "note": "slope estimate and its SE"
       },
@@ -238,12 +238,12 @@
         "note": "mean fit and interval SEs"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form z = β̂₁/SE(β̂₁), then contrast SE_mean with SE_pred before writing intervals.",
+    "attempt_before_reveal": "CMP closed. Form z = $\\hat{\\beta}_{1}$/SE($\\hat{\\beta}_{1}$), then contrast SE_mean with SE_pred before writing intervals.",
     "steps": [
       {
         "id": "S1",
         "label": "Wald statistic for the slope",
-        "attempt_cue": "Divide β̂₁ by its standard error.",
+        "attempt_cue": "Divide $\\hat{\\beta}_{1}$ by its standard error.",
         "explanation": "Software inference on the slope starts from the estimate and its SE; under H₀: β₁ = 0 the ratio is approximately standard Normal for large samples.",
         "calculation": "z = 12 / 4 = 3",
         "result": "z = 3"
@@ -251,21 +251,21 @@
       {
         "id": "S2",
         "label": "Approximate 95% CI for β₁",
-        "attempt_cue": "Compute β̂₁ ± 1.96 × SE(β̂₁).",
+        "attempt_cue": "Compute $\\hat{\\beta}_{1} \\pm 1.96 \\times \\mathrm{SE}(\\hat{\\beta}_{1})$.",
         "explanation": "A Wald interval centres on the estimate and scales the SE by z_{0.975}.",
-        "calculation": "12 ± 1.96 × 4 = 12 ± 7.84 ⇒ (4.16, 19.84)",
-        "result": "95% CI ≈ (4.16, 19.84)"
+        "calculation": "$12 ± 1.96 \\times 4 = 12 ± 7.84 \\Rightarrow (4.16, 19.84)$",
+        "result": "95% CI $\\approx (4.16, 19.84)$"
       },
       {
         "id": "S3",
         "label": "Mean interval vs individual prediction interval",
         "attempt_cue": "Form ŷ ± 1.96 × SE for each SE, and compare widths.",
         "explanation": "Prediction of an individual response includes residual variance, so SE_pred > SE_mean and the individual interval is wider than the mean interval.",
-        "calculation": "Mean: 500 ± 1.96 × 20 = 500 ± 39.2 ⇒ (460.8, 539.2); Individual: 500 ± 1.96 × 50 = 500 ± 98 ⇒ (402, 598); half-widths 39.2 < 98",
+        "calculation": "$Mean: 500 ± 1.96 \\times 20 = 500 ± 39.2 \\Rightarrow (460.8, 539.2)$; $Individual: 500 ± 1.96 \\times 50 = 500 ± 98 \\Rightarrow (402, 598)$; $half-widths 39.2 < 98$",
         "result": "Individual interval wider than mean interval"
       }
     ],
-    "final_answer": "z = 3; 95% CI for β₁ ≈ (4.16, 19.84); mean interval (460.8, 539.2) is narrower than individual prediction interval (402, 598).",
+    "final_answer": "$z = 3$; 95% CI for $\\beta_{1} \\approx (4.16, 19.84)$; mean interval $(460.8, 539.2)$ is narrower than individual prediction interval $(402, 598)$.",
     "common_pitfall": "Reporting the mean confidence interval as if it were an individual prediction interval, or using SE_mean in place of SE_pred when predicting a single new claim.",
     "syllabus_ref": "4.1.4"
   }

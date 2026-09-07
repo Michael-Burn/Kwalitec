@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.4-cp-01",
       "title": "Checkpoint: 4.1.4",
-      "prompt": "Closed-book. After fitting Y = β₀ + β₁ x in software you see β̂₁, SE(β̂₁), R-squared, and residual plots. For a new x-star, which statement is correct?",
+      "prompt": "Closed-book. After fitting Y = $\\beta_{0} + \\beta_{1}$ x in software you see $\\hat{\\beta}_{1}$, SE($\\hat{\\beta}_{1}$), R-squared, and residual plots. For a new x-star, which statement is correct?",
       "response_type": "mcq",
       "body": "Distinguish mean versus individual prediction; refuse selection.",
       "hints": [
@@ -169,7 +169,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Mean interval targets the conditional mean; prediction adds observation noise. Fit-only and optional residuals are misconceptions.",
-      "model_answer": "Mean interval for E[Y | x*]; prediction wider; refuse fit-only and optional residuals.",
+      "model_answer": "Mean interval for $E[Y | x*]$; prediction wider; refuse fit-only and optional residuals.",
       "common_mistake": "Accepting fit as finishing inference, or treating residuals as optional after significance.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A mean-response interval covers E[Y | x*]; a prediction interval covers a new observation and is typically wider (adds residual variance). Fit alone is not enough: slope inference, goodness-of-fit, prediction limits, and residual checks are all required before trusting the fit.",
+          "label": "A mean-response interval covers $E[Y | x*]$; a prediction interval covers a new observation and is typically wider (adds residual variance). Fit alone is not enough: slope inference, goodness-of-fit, prediction limits, and residual checks are all required before trusting the fit.",
           "misconception_tag": ""
         },
         {
@@ -193,7 +193,7 @@
         },
         {
           "id": "d",
-          "label": "The mean-response interval and prediction interval for x-star are the same width because both estimate E[Y | x-star] only.",
+          "label": "The mean-response interval and prediction interval for x-star are the same width because both estimate $E[Y | x-star]$ only.",
           "misconception_tag": "intervals_identical"
         }
       ],
@@ -219,11 +219,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Slope Wald test and mean vs prediction intervals (pet book)",
-    "problem_statement": "Software returns slope estimate β̂₁ = −8 (£ per year of pet age) with SE(β̂₁) = 2.5. Treat the Normal approximation as adequate and use z_{0.975} = 1.96.\n(a) Compute the Wald z statistic for H₀: β₁ = 0.\n(b) Form the approximate 95% CI for β₁.\n(c) At a fixed pet age, the fitted mean is ŷ = 320 with SE_mean = 15 and SE_pred = 40. Compare the half-widths of the 95% mean and individual prediction intervals.",
+    "problem_statement": "Software returns slope estimate $\\hat{\\beta}_{1} = -8$ (£ per year of pet age) with $\\mathrm{SE}(\\hat{\\beta}_{1}) = 2.5$. Treat the Normal approximation as adequate and use $z_{0.975} = 1.96$.\n(a) Compute the Wald $z$ statistic for $H_{0}\\colon \\beta_{1} = 0$.\n(b) Form the approximate 95% CI for $\\beta_{1}$.\n(c) At a fixed pet age, the fitted mean is $\\hat{y} = 320$ with $\\mathrm{SE}_{\\mathrm{mean}} = 15$ and $\\mathrm{SE}_{\\mathrm{pred}} = 40$. Compare the half-widths of the 95% mean and individual prediction intervals.",
     "given": [
       {
-        "symbol": "β̂₁, SE(β̂₁)",
-        "value": "−8, 2.5",
+        "symbol": "$\\hat{\\beta}_{1}, SE(\\hat{\\beta}_{1})$",
+        "value": "$-8, 2.5$",
         "note": "slope estimate and its SE"
       },
       {
@@ -237,34 +237,34 @@
         "note": "mean fit and interval SEs"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form z = β̂₁/SE(β̂₁), then contrast SE_mean with SE_pred before writing intervals.",
+    "attempt_before_reveal": "CMP closed. Form z = $\\hat{\\beta}_{1}$/SE($\\hat{\\beta}_{1}$), then contrast SE_mean with SE_pred before writing intervals.",
     "steps": [
       {
         "id": "S1",
         "label": "Wald statistic for the slope",
-        "attempt_cue": "Divide β̂₁ by its standard error.",
+        "attempt_cue": "Divide $\\hat{\\beta}_{1}$ by its standard error.",
         "explanation": "Software inference on the slope starts from the estimate and its SE; under H₀: β₁ = 0 the ratio is approximately standard Normal for large samples.",
-        "calculation": "z = −8 / 2.5 = −3.2",
-        "result": "z = −3.2"
+        "calculation": "$z = -8 / 2.5 = -3.2$",
+        "result": "$z = -3.2$"
       },
       {
         "id": "S2",
         "label": "Approximate 95% CI for β₁",
-        "attempt_cue": "Compute β̂₁ ± 1.96 × SE(β̂₁).",
+        "attempt_cue": "Compute $\\hat{\\beta}_{1} \\pm 1.96 \\times \\mathrm{SE}(\\hat{\\beta}_{1})$.",
         "explanation": "A Wald interval centres on the estimate and scales the SE by z_{0.975}.",
-        "calculation": "−8 ± 1.96 × 2.5 = −8 ± 4.9 ⇒ (−12.9, −3.1)",
-        "result": "95% CI ≈ (−12.9, −3.1)"
+        "calculation": "$-8 ± 1.96 \\times 2.5 = -8 ± 4.9 \\Rightarrow (-12.9, -3.1)$",
+        "result": "95% CI $\\approx (-12.9, -3.1)$"
       },
       {
         "id": "S3",
         "label": "Mean interval vs individual prediction interval",
         "attempt_cue": "Form ŷ ± 1.96 × SE for each SE, and compare widths.",
         "explanation": "Prediction of an individual response includes residual variance, so SE_pred > SE_mean and the individual interval is wider than the mean interval.",
-        "calculation": "Mean: 320 ± 1.96 × 15 = 320 ± 29.4 ⇒ (290.6, 349.4); Individual: 320 ± 1.96 × 40 = 320 ± 78.4 ⇒ (241.6, 398.4); half-widths 29.4 < 78.4",
+        "calculation": "$Mean: 320 ± 1.96 \\times 15 = 320 ± 29.4 \\Rightarrow (290.6, 349.4)$; $Individual: 320 ± 1.96 \\times 40 = 320 ± 78.4 \\Rightarrow (241.6, 398.4)$; $half-widths 29.4 < 78.4$",
         "result": "Individual interval wider than mean interval"
       }
     ],
-    "final_answer": "z = −3.2; 95% CI for β₁ ≈ (−12.9, −3.1); mean interval (290.6, 349.4) is narrower than individual prediction interval (241.6, 398.4).",
+    "final_answer": "$z = -3.2$; 95% CI for $\\beta_{1} \\approx (-12.9, -3.1)$; mean interval $(290.6, 349.4)$ is narrower than individual prediction interval $(241.6, 398.4)$.",
     "common_pitfall": "Reporting the mean confidence interval as if it were an individual prediction interval, or using SE_mean in place of SE_pred when predicting a single new claim.",
     "syllabus_ref": "4.1.4"
   }

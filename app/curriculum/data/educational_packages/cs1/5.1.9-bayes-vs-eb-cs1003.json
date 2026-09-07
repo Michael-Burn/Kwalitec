@@ -218,20 +218,20 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Same risk, Bayesian vs EB premiums compared",
-    "problem_statement": "The same risk has n = 5 years and X̄ = £1100.\nFully Bayesian structurals (from a specified prior): μ = £900, k = 5.\nEmpirical Bayes structurals (from collective data): μ̂ = £950, k̂ = 15.\nCompute both credibility premiums and state why they differ.",
+    "problem_statement": "The same risk has $n = 5$ years and $\\bar{X}$ = £1100.\nFully Bayesian structurals (from a specified prior): $\\mu$ = £900, $k = 5$.\nEmpirical Bayes structurals (from collective data): $\\hat{\\mu}$ = £950, $\\hat{k} = 15$.\nCompute both credibility premiums and state why they differ.",
     "given": [
       {
-        "symbol": "n, X̄",
+        "symbol": "$n, \\bar{X}$",
         "value": "5, 1100",
         "note": "common risk experience"
       },
       {
-        "symbol": "Bayes (μ, k)",
+        "symbol": "$Bayes (\\mu, k)$",
         "value": "(900, 5)",
         "note": "specified prior structurals"
       },
       {
-        "symbol": "EB (μ̂, k̂)",
+        "symbol": "$EB (\\hat{\\mu}, \\hat{k})$",
         "value": "(950, 15)",
         "note": "estimated structurals"
       }
@@ -243,15 +243,15 @@
         "label": "Fully Bayesian premium",
         "attempt_cue": "Z = n/(n+k), then mix.",
         "explanation": "Bayesian credibility uses structurals taken as known from the prior.",
-        "calculation": "Z = 5/(5+5) = 0.5; P_B = 0.5×1100 + 0.5×900 = 550 + 450 = 1000",
+        "calculation": "$Z = 5/(5+5) = 0.5$; $P_B = 0.5\\times 1100 + 0.5\\times 900 = 550 + 450 = 1000$",
         "result": "Bayesian premium = £1000"
       },
       {
         "id": "S2",
         "label": "Empirical Bayes premium",
-        "attempt_cue": "Ẑ = n/(n+k̂), then mix with μ̂.",
+        "attempt_cue": "$\\hat{Z} = n/(n+\\hat{k})$, then mix with $\\hat{\\mu}$.",
         "explanation": "EB replaces prior structurals with estimates from collective data.",
-        "calculation": "Ẑ = 5/(5+15) = 0.25; P_EB = 0.25×1100 + 0.75×950 = 275 + 712.5 = 987.5",
+        "calculation": "$\\hat{Z} = 5/(5+15) = 0.25$; $P_EB = 0.25\\times 1100 + 0.75\\times 950 = 275 + 712.5 = 987.5$",
         "result": "EB premium = £987.5"
       },
       {
@@ -259,7 +259,7 @@
         "label": "Why the premiums differ",
         "attempt_cue": "Contrast the structural sources.",
         "explanation": "Same risk experience can produce different premiums when (μ, k) differ because Bayes uses specified prior structurals while EB uses estimated ones.",
-        "calculation": "Different (μ, k) pairs ⇒ different Z and different blend with X̄",
+        "calculation": "$Different (\\mu, k) pairs \\Rightarrow different Z and different blend with \\bar{X}$",
         "result": "Difference is structural source, not a calculation error"
       }
     ],

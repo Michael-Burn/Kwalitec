@@ -162,7 +162,7 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.10-cp-01",
       "title": "Checkpoint: log-link multiplicative factor",
-      "prompt": "Closed-book. A fitted Poisson claim-frequency GLM with log link gives β̂_urban = 0.2 for an urban indicator (baseline = rural). Enter the multiplicative effect e^{β̂_urban} on mean frequency.",
+      "prompt": "Closed-book. A fitted Poisson claim-frequency GLM with log link gives $\\hat{\\beta}$_urban = 0.2 for an urban indicator (baseline = rural). Enter the multiplicative effect $e^{\\hat{\\beta}_urban}$ on mean frequency.",
       "response_type": "numeric",
       "body": "Compute the log-link multiplicative mean factor.",
       "hints": [
@@ -206,10 +206,10 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Interpret a log-link Poisson coefficient multiplicatively",
-    "problem_statement": "A fitted Poisson claim-frequency GLM with log link gives β̂_urban = 0.2 for an urban indicator (baseline = rural). Compute the multiplicative effect e^{β̂_urban} on mean frequency, and the percentage uplift. Also, given residual deviance D = 40 on residual df = 36 and a largest |Pearson residual| of 3.1, state three output elements that must be interpreted beyond clicking Fit.",
+    "problem_statement": "A fitted Poisson claim-frequency GLM with log link gives $\\hat{\\beta}$_urban = 0.2 for an urban indicator (baseline = rural). Compute the multiplicative effect $e^{\\hat{\\beta}_urban}$ on mean frequency, and the percentage uplift. Also, given residual deviance D = 40 on residual df = 36 and a largest |Pearson residual| of 3.1, state three output elements that must be interpreted beyond clicking Fit.",
     "given": [
       {
-        "symbol": "β̂_urban",
+        "symbol": "$\\hat{\\beta}_urban$",
         "value": "0.2",
         "note": "log-link coefficient for urban"
       },
@@ -219,40 +219,40 @@
         "note": "residual deviance and df"
       },
       {
-        "symbol": "max |r_P|",
+        "symbol": "$max |r_{P}|$",
         "value": "3.1",
         "note": "largest absolute Pearson residual"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Convert β̂ through e^β before discussing diagnostics.",
+    "attempt_before_reveal": "CMP closed. Convert $\\hat{\\beta}$ through $e^{\\beta}$ before discussing diagnostics.",
     "steps": [
       {
         "id": "S1",
         "label": "Multiplicative mean effect",
         "attempt_cue": "Compute e^{0.2}.",
         "explanation": "Under a log link, a coefficient is a log mean ratio. Exponentiating yields the multiplicative effect on μ.",
-        "calculation": "e^{0.2} ≈ 1.2214",
-        "result": "urban mean ≈ 1.2214 × rural mean"
+        "calculation": "$e^{0.2} \\approx 1.2214$",
+        "result": "$urban mean \\approx 1.2214 \\times rural mean$"
       },
       {
         "id": "S2",
         "label": "Percentage uplift",
         "attempt_cue": "Convert the multiplier to a percent increase.",
         "explanation": "A factor 1.2214 is a 22.14% higher mean frequency for urban vs rural.",
-        "calculation": "(1.2214 − 1) × 100% ≈ 22.14%",
-        "result": "≈ 22.14% higher mean frequency"
+        "calculation": "$(1.2214 - 1) \\times 100\\% \\approx 22.14\\%$",
+        "result": "$\\approx 22.14\\%$ higher mean frequency"
       },
       {
         "id": "S3",
         "label": "Interpret beyond Fit",
         "attempt_cue": "Name coefficients, fit measures, and diagnostics as required outputs.",
         "explanation": "Fitting alone is incomplete: interpret coefficients on the response scale, review deviance / df, and inspect residual diagnostics (here a |r_P| of 3.1 warrants attention).",
-        "calculation": "Interpret: (1) coefficients, (2) fit measures (D = 40 on 36 df), (3) diagnostics (|r_P| = 3.1)",
+        "calculation": "$Interpret: (1) coefficients, (2) fit measures (D = 40 on 36 df), (3) diagnostics (|r_{P}| = 3.1)$",
         "result": "Coefficients + fit measures + diagnostics"
       }
     ],
-    "final_answer": "Urban mean frequency ≈ 1.2214× rural (≈ +22.14%). Also interpret deviance/df and residual diagnostics; Fit alone is incomplete.",
-    "common_pitfall": "Reading β̂ = 0.2 as a +0.2 additive increase in mean frequency on the count scale, instead of a multiplicative e^{0.2} effect under the log link.",
+    "final_answer": "Urban mean frequency $\\approx 1.2214\\times$ rural ($\\approx +22.14\\%$). Also interpret deviance/df and residual diagnostics; Fit alone is incomplete.",
+    "common_pitfall": "Reading $\\hat{\\beta}$ = 0.2 as a +0.2 additive increase in mean frequency on the count scale, instead of a multiplicative $e^{0.2}$ effect under the log link.",
     "syllabus_ref": "4.2.10"
   }
 }

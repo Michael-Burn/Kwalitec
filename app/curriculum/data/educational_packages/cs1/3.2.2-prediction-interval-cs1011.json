@@ -163,7 +163,7 @@
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.2-cp-01",
       "title": "Checkpoint: 3.2.2",
-      "prompt": "Closed-book. You fit a model to historical annual losses and need an interval for next year's loss Y_new. Which statement is correct?",
+      "prompt": "Closed-book. You fit a model to historical annual losses and need an interval for next year's loss $Y_{\\mathrm{new}}$. Which statement is correct?",
       "response_type": "mcq",
       "body": "Prediction vs parameter CI; refuse mean-CI-as-prediction.",
       "hints": [
@@ -171,8 +171,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Prediction targets Y_new; a CI for E[Y] targets the mean. Proper prediction intervals account for both parameter uncertainty and process variation.",
-      "model_answer": "Prediction interval covers Y_new; a CI for E[Y] does not substitute.",
+      "explanation": "Prediction targets $Y_{\\mathrm{new}}$; a CI for $E[Y]$ targets the mean. Proper prediction intervals account for both parameter uncertainty and process variation.",
+      "model_answer": "Prediction interval covers $Y_{\\mathrm{new}}$; a CI for $E[Y]$ does not substitute.",
       "common_mistake": "Using a mean CI as if it covered the next observation.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -181,17 +181,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "A prediction interval aims to cover the future observation Y_new (parameter uncertainty plus process/residual variation). A confidence interval for E[Y] covers only that mean parameter and does not finish the prediction-interval task.",
+          "label": "A prediction interval aims to cover the future observation $Y_{\\mathrm{new}}$ (parameter uncertainty plus process/residual variation). A confidence interval for $E[Y]$ covers only that mean parameter and does not finish the prediction-interval task.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "A confidence interval for mean loss already covers Y_new with the same coverage probability, so no separate prediction interval is needed.",
+          "label": "A confidence interval for mean loss already covers $Y_{\\mathrm{new}}$ with the same coverage probability, so no separate prediction interval is needed.",
           "misconception_tag": "mean_ci_as_prediction"
         },
         {
           "id": "c",
-          "label": "A prediction interval covers E[Y] only; covering Y_new would require a parameter confidence interval instead.",
+          "label": "A prediction interval covers $E[Y]$ only; covering $Y_{\\mathrm{new}}$ would require a parameter confidence interval instead.",
           "misconception_tag": "targets_swapped"
         },
         {
@@ -222,7 +222,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "95% prediction interval for a future claim",
-    "problem_statement": "From n = 25 independent Normal claims with known σ = £40, the sample mean is x̄ = £500. Construct a 95% prediction interval for one future independent claim Y.",
+    "problem_statement": "From n = 25 independent Normal claims with known $\\sigma$ = £40, the sample mean is $\\bar{x}$ = £500. Construct a 95% prediction interval for one future independent claim Y.",
     "given": [
       {
         "symbol": "n",
@@ -230,12 +230,12 @@
         "note": "sample size"
       },
       {
-        "symbol": "x̄",
+        "symbol": "$\\bar{x}$",
         "value": "500",
         "note": "sample mean (£)"
       },
       {
-        "symbol": "σ",
+        "symbol": "$\\sigma$",
         "value": "40",
         "note": "known SD (£)"
       },
@@ -245,35 +245,35 @@
         "note": "standard Normal quantile"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write the prediction SE σ√(1 + 1/n) before the interval.",
+    "attempt_before_reveal": "CMP closed. Write the prediction SE $\\sigma\\sqrt{1 + 1/n}$ before the interval.",
     "steps": [
       {
         "id": "S1",
         "label": "Prediction standard error",
-        "attempt_cue": "Compute σ√(1 + 1/n).",
-        "explanation": "A future observation has variance σ² plus the variance of x̄, so the prediction SE is σ√(1 + 1/n), not σ/√n.",
-        "calculation": "√(1 + 1/25) = √1.04 ≈ 1.019804;  40 × 1.019804 ≈ 40.792",
-        "result": "SE_pred ≈ 40.792"
+        "attempt_cue": "Compute $\\sigma\\sqrt{1 + 1/n}$.",
+        "explanation": "A future observation has variance $\\sigma^{2}$ plus the variance of $\\bar{x}$, so the prediction SE is $\\sigma\\sqrt{1 + 1/n}$, not $\\sigma/\\sqrt{n}$.",
+        "calculation": "$\\sqrt{1 + 1/25} = \\sqrt{1.04} \\approx 1.019804$; $40 \\times 1.019804 \\approx 40.792$",
+        "result": "$SE_pred \\approx 40.792$"
       },
       {
         "id": "S2",
         "label": "Half-width",
         "attempt_cue": "Multiply SE_pred by 1.96.",
         "explanation": "Same Normal quantile as a mean CI, but applied to the prediction SE.",
-        "calculation": "1.96 × 40.792 ≈ 79.953",
-        "result": "half-width ≈ 79.953"
+        "calculation": "$1.96 \\times 40.792 \\approx 79.953$",
+        "result": "$half-width \\approx 79.953$"
       },
       {
         "id": "S3",
         "label": "Prediction interval",
         "attempt_cue": "Compute 500 ± 79.953.",
         "explanation": "Centre at x̄; the wider SE distinguishes prediction from mean estimation.",
-        "calculation": "500 − 79.953 ≈ 420.047;  500 + 79.953 ≈ 579.953",
+        "calculation": "$500 - 79.953 \\approx 420.047$; $500 + 79.953 \\approx 579.953$",
         "result": "(420.047, 579.953)"
       }
     ],
     "final_answer": "95% prediction interval for Y: approximately (£420.05, £579.95).",
-    "common_pitfall": "Using the mean CI half-width 1.96 × 40/√25 = 15.68 instead of the prediction form 1.96 × 40√(1+1/25) ≈ 79.95.",
+    "common_pitfall": "Using the mean CI half-width $1.96 \\times 40/\\sqrt{25} = 15.68$ instead of the prediction form $1.96 \\times 40\\sqrt{1+1/25} \\approx 79.95$.",
     "syllabus_ref": "3.2.2"
   }
 }

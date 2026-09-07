@@ -189,7 +189,7 @@
         },
         {
           "id": "c",
-          "label": "Pearson chi-square equals the deviance difference between M_full and M_reduced; LRT equals the sum of squared Pearson residuals only.",
+          "label": "Pearson chi-square equals the deviance difference between $M_{\\mathrm{full}}$ and $M_{\\mathrm{reduced}}$; LRT equals the sum of squared Pearson residuals only.",
           "misconception_tag": "tests_swapped"
         },
         {
@@ -225,7 +225,7 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Pearson chi-square GOF for a Poisson GLM",
-    "problem_statement": "Three exposure groups have observed claim counts O = 8, 12, 10 and fitted expected counts E = 10, 10, 10 from a Poisson GLM. Compute Pearson's X² = Σ(O − E)²/E. Decide at α = 0.05 using χ²_{2, 0.95} = 5.991 (df = 3 − 1 for this illustrative grouped check). Also state what a nested likelihood-ratio / deviance test addresses that this aggregate Pearson check does not.",
+    "problem_statement": "Three exposure groups have observed claim counts $O = 8, 12, 10$ and fitted expected counts $E = 10, 10, 10$ from a Poisson GLM. Compute Pearson's $X^{2} = \\sum(O - E)^{2}/E$. Decide at $\\alpha = 0.05$ using $\\chi^{2}_{2, 0.95} = 5.991$ ($\\mathrm{df} = 3 - 1$ for this illustrative grouped check). Also state what a nested likelihood-ratio / deviance test addresses that this aggregate Pearson check does not.",
     "given": [
       {
         "symbol": "O",
@@ -238,7 +238,7 @@
         "note": "fitted expected counts"
       },
       {
-        "symbol": "χ²_{2,0.95}",
+        "symbol": "$\\chi^{2}_{2,0.95}$",
         "value": "5.991",
         "note": "5% critical value on 2 df"
       }
@@ -250,7 +250,7 @@
         "label": "Category contributions",
         "attempt_cue": "Compute (O − 10)²/10 for each group.",
         "explanation": "Pearson GOF aggregates standardised squared discrepancies.",
-        "calculation": "(−2)²/10 + 2²/10 + 0²/10 = 4/10 + 4/10 + 0 = 0.4 + 0.4 + 0",
+        "calculation": "$(-2)^{2}/10 + 2^{2}/10 + 0^{2}/10 = \\frac{4}{10} + \\frac{4}{10} + 0 = 0.4 + 0.4 + 0$",
         "result": "0.4 + 0.4 + 0"
       },
       {
@@ -258,19 +258,19 @@
         "label": "Sum and decide",
         "attempt_cue": "Sum to X² and compare with 5.991.",
         "explanation": "Large X² rejects aggregate adequacy of the fitted means.",
-        "calculation": "X² = 0.8;  0.8 < 5.991 ⇒ do not reject aggregate adequacy at 5%",
-        "result": "X² = 0.8; retain model on this check"
+        "calculation": "$X^{2} = 0.8$; $0.8 < 5.991 \\Rightarrow$ do not reject aggregate adequacy at 5%",
+        "result": "$X^{2} = 0.8$; $retain model on this check$"
       },
       {
         "id": "S3",
         "label": "Companion LRT role",
         "attempt_cue": "Name what the likelihood-ratio / deviance comparison tests.",
         "explanation": "Pearson chi-square asks about aggregate adequacy of fitted means. A likelihood-ratio (deviance) test compares nested model likelihoods / deviances for relative structure.",
-        "calculation": "LRT: nested likelihood or deviance comparison (not the same question as X² alone)",
+        "calculation": "$LRT: nested likelihood or deviance comparison (not the same question as X^{2} alone)$",
         "result": "Pearson = aggregate; LRT = nested comparison"
       }
     ],
-    "final_answer": "X² = 0.8 < 5.991; do not reject aggregate adequacy at α = 0.05. LRT/deviance tests nested model comparison.",
+    "final_answer": "$X^{2} = 0.8 < 5.991$; $do not reject aggregate adequacy at \\alpha = 0.05. LRT/deviance tests nested model comparison.$",
     "common_pitfall": "Treating X² = 0.8 as a nested deviance difference, or using df = 3 without recognising the constraint structure appropriate to the GOF layout.",
     "syllabus_ref": "4.2.9"
   }

@@ -223,7 +223,7 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Posterior for Exponential rate with Gamma prior",
-    "problem_statement": "Claim waiting times (months) are Exponential with rate λ. The prior is Gamma(α, β) with shape-rate parameterisation π(λ) ∝ λ^{α−1} e^{−βλ}, here α = 4, β = 6. A sample of n = 5 independent waiting times has sum Σxᵢ = 8. Obtain the posterior distribution and its mean.",
+    "problem_statement": "Claim waiting times (months) are Exponential with rate $\\lambda$. The prior is $\\mathrm{Gamma}(\\alpha, \\beta)$ with shape-rate parameterisation $\\pi(\\lambda) \\propto \\lambda^{\\alpha-1} e^{-\\beta\\lambda}$, here $\\alpha = 4$, $\\beta = 6$. A sample of $n = 5$ independent waiting times has sum $\\sum x_{i} = 8$. Obtain the posterior distribution and its mean.",
     "given": [
       {
         "symbol": "prior",
@@ -231,22 +231,22 @@
         "note": "shape-rate prior for λ"
       },
       {
-        "symbol": "n, Σxᵢ",
+        "symbol": "$n, \\sum x_{i}$",
         "value": "5, 8",
         "note": "sample size and total waiting time"
       },
       {
         "symbol": "update",
-        "value": "Gamma(α+n, β+Σxᵢ)",
+        "value": "$Gamma(\\alpha+n, \\beta+\\sum x_{i})$",
         "note": "Gamma-Exponential conjugate rule"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Update shape by +n and rate by +Σxᵢ, then mean = shape/rate.",
+    "attempt_before_reveal": "CMP closed. Update shape by +n and rate by +$\\sum x_{i}$, then mean = shape/rate.",
     "steps": [
       {
         "id": "S1",
         "label": "Likelihood structure",
-        "attempt_cue": "Recall L(λ) ∝ λ^n exp(−λ Σxᵢ) for Exponential waiting times.",
+        "attempt_cue": "Recall $L(\\lambda) \\propto \\lambda^{n} \\exp(-\\lambda \\sum x_{i})$ for Exponential waiting times.",
         "explanation": "The posterior combines prior and likelihood. For Exponential rate with a Gamma prior, the update stays Gamma.",
         "calculation": "Likelihood contributes λ^5 e^{−8λ}",
         "result": "Likelihood factor λ^5 e^{−8λ}"
@@ -255,21 +255,21 @@
         "id": "S2",
         "label": "Posterior distribution",
         "attempt_cue": "Apply α' = 4 + 5 and β' = 6 + 8.",
-        "explanation": "Conjugacy yields Gamma(α+n, β+Σxᵢ).",
-        "calculation": "λ | data ~ Gamma(9, 14)",
+        "explanation": "Conjugacy yields $\\mathrm{Gamma}(\\alpha+n, \\beta+\\sum x_{i})$.",
+        "calculation": "$\\lambda | data \\sim Gamma(9, 14)$",
         "result": "Posterior Gamma(9, 14)"
       },
       {
         "id": "S3",
         "label": "Posterior mean",
-        "attempt_cue": "For shape-rate Gamma, E[λ] = α'/β'.",
+        "attempt_cue": "For shape-rate Gamma, $E[\\lambda] = \\alpha'/\\beta'$.",
         "explanation": "A point estimate from the posterior (e.g. under squared error) is a separate loss step; here report the posterior mean.",
-        "calculation": "E[λ|data] = 9/14 ≈ 0.6429",
-        "result": "Posterior mean ≈ 0.6429"
+        "calculation": "$E[\\lambda|data] = 9/14 \\approx 0.6429$",
+        "result": "$Posterior mean \\approx 0.6429$"
       }
     ],
-    "final_answer": "Posterior is Gamma(9, 14) with mean 9/14 ≈ 0.6429 per month.",
-    "common_pitfall": "Updating only the shape (Gamma(9, 6)) or using the MLE λ̂ = n/Σxᵢ = 5/8 = 0.625 as if it were already the full posterior object.",
+    "final_answer": "$Posterior is Gamma(9, 14) with mean 9/14 \\approx 0.6429 per month.$",
+    "common_pitfall": "Updating only the shape (Gamma(9, 6)) or using the MLE $\\hat{\\lambda}$ = n/$\\sum x_{i}$ = 5/8 = 0.625 as if it were already the full posterior object.",
     "syllabus_ref": "5.1.3"
   }
 }

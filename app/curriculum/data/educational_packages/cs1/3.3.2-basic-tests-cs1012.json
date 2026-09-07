@@ -142,7 +142,7 @@
         },
         {
           "id": "b",
-          "label": "Paired data should be analysed with the independent two-sample test whenever n₁ = n₂.",
+          "label": "Paired data should be analysed with the independent two-sample test whenever $n_{1} = n_{2}$.",
           "misconception_tag": "paired_as_two_sample"
         },
         {
@@ -172,7 +172,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Basic tests follow the sampling model and design. Permutation is separate. Scrambling designs (paired vs independent, one-sample vs two-sample) produces the wrong procedure.",
-      "model_answer": "z-test for one Normal mean (σ known); two-sample proportion test; paired test on differences; permutation ≠ basic parametric.",
+      "model_answer": "z-test for one Normal mean ($\\sigma$ known); two-sample proportion test; paired test on differences; permutation $\\neq$ basic parametric.",
       "common_mistake": "Calling a permutation shuffle the basic-test requirement, or mismatching design to procedure.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -181,7 +181,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "(a) one Normal mean with σ known → one-sample Normal/z-test; (b) two independent binomial proportions → two-sample proportion test with Normal approximation; (c) paired Normal differences → paired test on differences. Permutation tests are a different approach, not a substitute for these basic parametric tests.",
+          "label": "(a) one Normal mean with $\\sigma$ known → one-sample Normal/z-test; (b) two independent binomial proportions → two-sample proportion test with Normal approximation; (c) paired Normal differences → paired test on differences. Permutation tests are a different approach, not a substitute for these basic parametric tests.",
           "misconception_tag": ""
         },
         {
@@ -222,45 +222,45 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "One-sample z-test for mean repair cost",
-    "problem_statement": "Test H₀: μ = £500 vs H₁: μ ≠ £500 for mean repair cost. A sample of n = 36 repairs has x̄ = £520. Assume Normal data with known σ = £60. Compute the z statistic and the two-sided p-value using Φ(2.0) = 0.9772. Decide at α = 0.05.",
+    "problem_statement": "Test $H_{0}\\colon \\mu$ = £500 vs $H_{1}\\colon \\mu \\neq$ £500 for mean repair cost. A sample of $n = 36$ repairs has $\\bar{x}$ = £520. Assume Normal data with known $\\sigma$ = £60. Compute the $z$ statistic and the two-sided $p$-value using $\\Phi(2.0) = 0.9772$. Decide at $\\alpha = 0.05$.",
     "given": [
       {
-        "symbol": "μ₀",
+        "symbol": "$\\mu_{0}$",
         "value": "500",
         "note": "null mean (£)"
       },
       {
-        "symbol": "n, x̄, σ",
+        "symbol": "$n, \\bar{x}, \\sigma$",
         "value": "36, 520, 60",
         "note": "sample and known SD"
       },
       {
-        "symbol": "Φ(2.0)",
+        "symbol": "$\\Phi(2.0)$",
         "value": "0.9772",
         "note": "standard Normal CDF"
       },
       {
-        "symbol": "α",
+        "symbol": "$\\alpha$",
         "value": "0.05",
         "note": "significance level"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write z = (x̄ − μ₀)/(σ/√n) before looking up the p-value.",
+    "attempt_before_reveal": "CMP closed. Write $z = (\\bar{x} - \\mu_{0})/(\\sigma/\\sqrt{n})$ before looking up the $p$-value.",
     "steps": [
       {
         "id": "S1",
         "label": "Standard error and z",
-        "attempt_cue": "Compute σ/√n and then z.",
+        "attempt_cue": "Compute $\\frac{\\sigma}{\\sqrt{n}}$ and then z.",
         "explanation": "One-sample z-test standardises the sample mean under H₀.",
-        "calculation": "σ/√n = 60/6 = 10;  z = (520 − 500)/10 = 20/10 = 2",
+        "calculation": "$\\frac{\\sigma}{\\sqrt{n}} = 60/6 = 10$; $z = (520 - 500)/10 = 20/10 = 2$",
         "result": "z = 2"
       },
       {
         "id": "S2",
         "label": "Two-sided p-value",
-        "attempt_cue": "Compute 2[1 − Φ(2)].",
+        "attempt_cue": "Compute $2\\bigl[1 - \\Phi(2)\\bigr]$.",
         "explanation": "Two-sided alternative doubles the upper tail.",
-        "calculation": "1 − 0.9772 = 0.0228;  p = 2 × 0.0228 = 0.0456",
+        "calculation": "$1 - 0.9772 = 0.0228$; $p = 2 \\times 0.0228 = 0.0456$",
         "result": "p = 0.0456"
       },
       {
@@ -268,12 +268,12 @@
         "label": "Decision",
         "attempt_cue": "Compare p with 0.05.",
         "explanation": "Reject H₀ when p ≤ α.",
-        "calculation": "0.0456 < 0.05  ⇒  reject H₀",
-        "result": "Reject H₀ at 5%"
+        "calculation": "$0.0456 < 0.05 \\Rightarrow reject H_{0}$",
+        "result": "Reject $H_{0}$ at 5%."
       }
     ],
-    "final_answer": "z = 2; p = 0.0456; reject H₀: μ = £500 at α = 0.05.",
-    "common_pitfall": "Using (x̄ − μ₀)/σ = 20/60 ≈ 0.33 instead of dividing by σ/√n = 10, which collapses the test statistic toward zero.",
+    "final_answer": "$z = 2$; $p = 0.0456$; $reject H_{0}: \\mu = £500 at \\alpha = 0.05.$",
+    "common_pitfall": "Using $(\\bar{x} - \\mu_{0})/\\sigma = 20/60 \\approx 0.33$ instead of dividing by $\\sigma/\\sqrt{n} = 10$, which collapses the test statistic toward zero.",
     "syllabus_ref": "3.3.2"
   }
 }

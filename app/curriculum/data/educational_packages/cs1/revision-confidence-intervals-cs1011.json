@@ -225,15 +225,15 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Retrieve frequentist CI meaning and a light z-interval",
-    "problem_statement": "Closed-book retrieval. After a frequentist 95% confidence interval for a fixed parameter θ has been calculated, state the correct coverage interpretation. Then, given X̄ = 42 from n = 36 observations with known σ = 12, compute the 95% z-interval for μ (use z_{0.025} = 1.96).",
+    "problem_statement": "Closed-book retrieval. After a frequentist 95% confidence interval for a fixed parameter $\\theta$ has been calculated, state the correct coverage interpretation. Then, given $\\bar{X} = 42$ from $n = 36$ observations with known $\\sigma = 12$, compute the 95% $z$-interval for $\\mu$ (use $z_{0.025} = 1.96$).",
     "given": [
       {
         "symbol": "interpretation ask",
-        "value": "frequentist 95% CI for fixed θ",
+        "value": "frequentist 95% CI for fixed $\\theta$",
         "note": "coverage hinge"
       },
       {
-        "symbol": "X̄",
+        "symbol": "$\\bar{X}$",
         "value": "42",
         "note": "sample mean"
       },
@@ -243,7 +243,7 @@
         "note": "sample size"
       },
       {
-        "symbol": "σ",
+        "symbol": "$\\sigma$",
         "value": "12",
         "note": "known population sd"
       },
@@ -253,7 +253,7 @@
         "note": "standard Normal critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve the repeated-sampling coverage reading, then form X̄ ± 1.96 σ/√n.",
+    "attempt_before_reveal": "CMP closed. Retrieve the repeated-sampling coverage reading, then form $\\bar{X} \\pm 1.96\\,\\sigma/\\sqrt{n}$.",
     "steps": [
       {
         "id": "S1",
@@ -266,9 +266,9 @@
       {
         "id": "S2",
         "label": "Compute the standard error",
-        "attempt_cue": "Evaluate σ/√n.",
-        "explanation": "With known σ, SE(X̄) = σ/√n = 12/6 = 2.",
-        "calculation": "SE = 12/√36 = 12/6 = 2",
+        "attempt_cue": "Evaluate $\\frac{\\sigma}{\\sqrt{n}}$.",
+        "explanation": "With known $\\sigma$, SE($\\bar{X}$) = $\\frac{\\sigma}{\\sqrt{n}}$ = 12/6 = 2.",
+        "calculation": "$SE = 12/\\sqrt{36} = 12/6 = 2$",
         "result": "SE = 2"
       },
       {
@@ -276,11 +276,11 @@
         "label": "Form the 95% z-interval",
         "attempt_cue": "Compute X̄ ± 1.96 SE.",
         "explanation": "The interval is 42 ± 1.96×2 = 42 ± 3.92.",
-        "calculation": "42 ± 3.92 → (38.08, 45.92)",
+        "calculation": "$42 ± 3.92 → (38.08, 45.92)$",
         "result": "95% CI = (38.08, 45.92)"
       }
     ],
-    "final_answer": "A 95% frequentist CI procedure covers θ in 95% of repeated samples under the model (not a posterior probability for fixed θ given these data). Numerically, (38.08, 45.92).",
+    "final_answer": "A 95% frequentist CI procedure covers $\\theta$ in 95% of repeated samples under the model (not a posterior probability for fixed $\\theta$ given these data). Numerically, $(38.08, 45.92)$.",
     "common_pitfall": "Saying that given these data, θ has probability 0.95 of lying in the calculated interval, which swaps a frequentist coverage statement for a posterior probability reading.",
     "syllabus_ref": "3.2.1"
   }
