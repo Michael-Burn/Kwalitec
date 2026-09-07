@@ -173,7 +173,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Estimating the unknown Normal population variance gives a t pivot with n - 1 degrees of freedom.",
-      "model_answer": "Use T = (Xbar-mu)/(S/sqrt(n)), which follows t_(n-1).",
+      "model_answer": "Use $T = (\\bar{X}-\\mu)/(S/\\sqrt{n})$, which follows $t_{n-1}$.",
       "common_mistake": "Using a standard Normal pivot when variance is estimated from the sample.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -182,7 +182,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "(sample mean minus mu)/(S divided by sqrt(n)) has a t distribution with n - 1 degrees of freedom.",
+          "label": "$(\\text{sample mean minus }\\mu)/(S\\text{ divided by }\\sqrt{n})$ has a $t$ distribution with $n - 1$ degrees of freedom.",
           "misconception_tag": ""
         },
         {
@@ -192,7 +192,7 @@
         },
         {
           "id": "c",
-          "label": "(sample mean minus mu)/(S divided by sqrt(n)) has a chi-squared distribution.",
+          "label": "$(\\text{sample mean minus }\\mu)/(S\\text{ divided by }\\sqrt{n})$ has a chi-squared distribution.",
           "misconception_tag": "pivot_distribution_confusion"
         },
         {
@@ -231,7 +231,7 @@
         "note": "repeated-sampling law"
       },
       {
-        "symbol": "Normal, σ unknown",
+        "symbol": "$Normal, \\sigma unknown$",
         "value": "inference for the mean",
         "note": "t pivot"
       }
@@ -243,15 +243,15 @@
         "label": "Define the sampling distribution",
         "attempt_cue": "What distribution does X̄ have across repeated samples?",
         "explanation": "It is the probability distribution of values the sample mean would take over repeated random samples of the same size.",
-        "calculation": "Sampling distribution = law of X̄ over repeated samples",
+        "calculation": "$Sampling distribution = law of \\bar{X} over repeated samples$",
         "result": "Definition retrieved"
       },
       {
         "id": "S2",
         "label": "Retrieve the t pivot",
         "attempt_cue": "Write T when σ is estimated by S.",
-        "explanation": "With unknown Normal variance, T = (X̄ - μ)/(S/√n) follows a t distribution with n - 1 degrees of freedom.",
-        "calculation": "T = (X̄ - μ)/(S/√n) ~ t_{n-1}",
+        "explanation": "With unknown Normal variance, T = ($\\bar{X} - \\mu$)/($\\frac{S}{\\sqrt{n}}$) follows a t distribution with n - 1 degrees of freedom.",
+        "calculation": "$T = (\\bar{X} - \\mu)/(\\frac{S}{\\sqrt{n}}) \\sim t_{n-1}$",
         "result": "t pivot with n-1 df retrieved"
       },
       {
@@ -259,11 +259,11 @@
         "label": "Refuse z-with-S shortcut",
         "attempt_cue": "Why is a standard Normal pivot wrong here?",
         "explanation": "Replacing σ by S without switching to t ignores the extra uncertainty from estimating the variance.",
-        "calculation": "Refuse treating (X̄ - μ)/S as N(0,1) in this setting",
+        "calculation": "$Refuse treating (\\bar{X} - \\mu)/S as N(0,1) in this setting$",
         "result": "z-with-S overclaim refused"
       }
     ],
-    "final_answer": "The sampling distribution of the sample mean is the distribution of X̄ over repeated samples of fixed size. For Normal data with unknown variance, use T = (X̄ - μ)/(S/√n) ~ t_{n-1}, not a standard Normal pivot with S in place of σ.",
+    "final_answer": "$The sampling distribution of the sample mean is the distribution of \\bar{X} over repeated samples of fixed size. For Normal data with unknown variance, use T = (\\bar{X} - \\mu)/(\\frac{S}{\\sqrt{n}}) \\sim t_{n-1}, not a standard Normal pivot with S in place of \\sigma.$",
     "common_pitfall": "Confusing a single observed sample mean with its sampling distribution, or using a standard Normal pivot when the Normal variance is estimated from the sample.",
     "syllabus_ref": "2.6.2 / 2.6.5"
   }

@@ -41,7 +41,7 @@
     "tutor_intent": "Today I will force mean/variance/scale statements for at least two families and refuse variance-as-optional.",
     "educational_intent": "Produce variance-function literacy for GLM families.",
     "learning_objective": "State and evaluate mean, variance, variance function and scale parameter for GLM binomial, Poisson, exponential, gamma and normal distributions.",
-    "concept_focus": "Family → E(Y) → Var(Y) → variance function V(μ) → scale parameter.",
+    "concept_focus": "Family → E(Y) → $\\operatorname{Var}(Y)$ → variance function $V(\\mu)$ → scale parameter.",
     "prior_bridge": "Yesterday you placed exponential-family responses (4.2.1). Today evaluates mean/variance language.",
     "why_now": "4.2.2 is contiguous absorb day 2/3 before link (4.2.3).",
     "expected_benefit": "You will be able to state mean, variance, variance function and scale for the standard GLM families.",
@@ -52,7 +52,7 @@
       "Refuse treating variance as optional decoration."
     ],
     "task_descriptions": [
-      "Sketch E(Y)/Var(Y) table for two families before CMP.",
+      "Sketch E(Y)/$\\operatorname{Var}(Y)$ table for two families before CMP.",
       "Guided Reading through CMP 4.2.2.",
       "Knowledge Checks: evaluate + refuse optional-variance."
     ],
@@ -126,7 +126,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Family structure specifies mean, variance, V(mu), and scale. The link maps μ to η and is a separate object from the response variance structure.",
-      "model_answer": "Mean, variance, V(mu), scale. Poisson: E[Y]=Var[Y]=lambda.",
+      "model_answer": "Mean, variance, $V(mu)$, scale. Poisson: $E[Y]$=Var[Y]=lambda.",
       "common_mistake": "Letting link choice substitute for family mean-variance structure.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -135,7 +135,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Mean, variance, variance function V(mu), and scale (dispersion). Example: Poisson with mean lambda has E[Y]=Var[Y]=lambda and V(μ)=μ with scale often 1.",
+          "label": "Mean, variance, variance function $V(mu)$, and scale (dispersion). Example: Poisson with mean lambda has $E[Y]$=Var[Y]=lambda and $V(\\mu)=\\mu$ with scale often 1.",
           "misconception_tag": ""
         },
         {
@@ -145,12 +145,12 @@
         },
         {
           "id": "c",
-          "label": "For every GLM response, Var[Y] equals σ² constant independent of mu; V(μ)=1 always.",
+          "label": "For every GLM response, Var[Y] equals $\\sigma^{2}$ constant independent of mu; $V(\\mu)$=1 always.",
           "misconception_tag": "constant_variance_all"
         },
         {
           "id": "d",
-          "label": "Mean and variance are defined only after writing the linear predictor η; family structure is secondary.",
+          "label": "Mean and variance are defined only after writing the linear predictor $\\eta$; family structure is secondary.",
           "misconception_tag": "eta_first"
         }
       ],
@@ -163,14 +163,14 @@
       "title": "Checkpoint: 4.2.2",
       "prompt": "Closed-book. For Poisson and Normal GLM responses, which statement is correct?",
       "response_type": "mcq",
-      "body": "State E[Y], Var[Y], V(mu); refuse link-as-structure.",
+      "body": "State $E[Y]$, Var[Y], $V(mu)$; refuse link-as-structure.",
       "hints": [
         "Select the single best statement.",
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
       "explanation": "Poisson has mean-variance equality; Normal has constant variance with scale σ². Link choice does not replace these family facts.",
-      "model_answer": "Poisson V(μ)=μ; Normal V(μ)=1, scale σ². Refuse link-as-structure.",
+      "model_answer": "Poisson $V(\\mu)=\\mu$; Normal $V(\\mu)$=1, scale $\\sigma^{2}$. Refuse link-as-structure.",
       "common_mistake": "Accepting link choice as finishing mean-variance structure.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,22 +179,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Poisson: E[Y]=μ, Var[Y]=μ, V(μ)=μ (scale typically 1). Normal: E[Y]=μ, Var[Y]=σ², V(μ)=1 with scale σ². The link maps μ to η; this question requires the mean, variance, and scale structure of the response family.",
+          "label": "Poisson: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\mu$, $V(\\mu)=\\mu$ (scale typically 1). Normal: $E[Y]=\\mu$, $\\operatorname{Var}[Y]=\\sigma^{2}$, $V(\\mu)=1$ with scale $\\sigma^{2}$. The link maps $\\mu$ to $\\eta$; this question requires the mean, variance, and scale structure of the response family.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Choosing the logit link finishes stating E[Y], Var[Y], V(mu), and scale for Poisson and Normal.",
+          "label": "Choosing the logit link finishes stating $E[Y]$, Var[Y], $V(mu)$, and scale for Poisson and Normal.",
           "misconception_tag": "link_finishes_mean_variance"
         },
         {
           "id": "c",
-          "label": "Poisson: E[Y]=μ, Var[Y]=σ² constant; Normal: E[Y]=μ, Var[Y]=μ because both GLM families share the same variance function.",
+          "label": "Poisson: $E[Y]=\\mu$, Var[Y]=$\\sigma^{2}$ constant; Normal: $E[Y]=\\mu$, Var[Y]=$\\mu$ because both GLM families share the same variance function.",
           "misconception_tag": "families_collapsed"
         },
         {
           "id": "d",
-          "label": "V(mu) is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=μ.",
+          "label": "$V(mu)$ is always mu for every exponential-family response; Normal and Poisson therefore share Var[Y]=$\\mu$.",
           "misconception_tag": "v_mu_universal"
         }
       ],
@@ -221,11 +221,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Mean, variance, V(μ), and scale for three families",
-    "problem_statement": "For three candidate GLM responses, evaluate mean, variance, variance function V(μ), and scale φ where relevant:\n(1) Poisson with λ = 3;\n(2) Binomial(n = 20, p = 0.4);\n(3) Gamma with mean μ = 8 and shape α = 2.",
+    "problem_statement": "For three candidate GLM responses, evaluate mean, variance, variance function $V(\\mu)$, and scale $\\varphi$ where relevant:\n(1) Poisson with $\\lambda = 3$;\n(2) Binomial($n = 20$, $p = 0.4$);\n(3) Gamma with mean $\\mu = 8$ and shape $\\alpha = 2$.",
     "given": [
       {
         "symbol": "Poisson",
-        "value": "λ = 3",
+        "value": "$\\lambda = 3$",
         "note": "count mean"
       },
       {
@@ -235,26 +235,26 @@
       },
       {
         "symbol": "Gamma",
-        "value": "μ = 8, α = 2",
+        "value": "$\\mu = 8, \\alpha = 2$",
         "note": "mean and shape"
       }
     ],
-    "attempt_before_reveal": "CMP closed. For each family write E(Y), Var(Y), then identify V(μ) and φ.",
+    "attempt_before_reveal": "CMP closed. For each family write $E(Y)$, $\\operatorname{Var}(Y)$, then identify $V(\\mu)$ and $\\varphi$.",
     "steps": [
       {
         "id": "S1",
         "label": "Poisson(λ = 3)",
         "attempt_cue": "State mean, variance, and V(μ).",
         "explanation": "For Poisson, mean equals variance and the variance function is V(μ) = μ with φ = 1.",
-        "calculation": "E = Var = 3; V(μ) = μ; φ = 1",
-        "result": "Poisson: E = Var = 3, V(μ) = μ"
+        "calculation": "$E = Var = 3$; $V(\\mu) = \\mu$; $\\phi = 1$",
+        "result": "$Poisson: E = Var = 3, V(\\mu) = \\mu$"
       },
       {
         "id": "S2",
         "label": "Binomial(n = 20, p = 0.4)",
         "attempt_cue": "Compute np and np(1 − p).",
-        "explanation": "Binomial mean is np; variance is np(1 − p); as a GLM for the count, V(μ) = μ(1 − μ/n).",
-        "calculation": "E = 20 × 0.4 = 8; Var = 20 × 0.4 × 0.6 = 4.8; V(μ) = μ(1 − μ/n)",
+        "explanation": "Binomial mean is $np$; variance is $np(1 - p)$; as a GLM for the count, $V(\\mu) = \\mu(1 - \\mu/n)$.",
+        "calculation": "$E = 20 \\times 0.4 = 8$; $Var = 20 \\times 0.4 \\times 0.6 = 4.8$; $V(\\mu) = \\mu(1 - \\frac{\\mu}{n})$",
         "result": "Binomial: E = 8, Var = 4.8"
       },
       {
@@ -262,11 +262,11 @@
         "label": "Gamma(μ = 8, α = 2)",
         "attempt_cue": "Use Var = μ²/α and V(μ) = μ².",
         "explanation": "Gamma has variance function V(μ) = μ²; with shape α the scale relates as Var = μ²/α.",
-        "calculation": "E = 8; Var = 64/2 = 32; V(μ) = μ²",
-        "result": "Gamma: E = 8, Var = 32, V(μ) = μ²"
+        "calculation": "$E = 8$; $Var = 64/2 = 32$; $V(\\mu) = \\mu^{2}$",
+        "result": "$Gamma: E = 8, Var = 32, V(\\mu) = \\mu^{2}$"
       }
     ],
-    "final_answer": "Poisson: E = Var = 3, V(μ) = μ. Binomial: E = 8, Var = 4.8. Gamma: E = 8, Var = 32, V(μ) = μ².",
+    "final_answer": "$Poisson: E = Var = 3, V(\\mu) = \\mu. Binomial: E = 8, Var = 4.8. Gamma: E = 8, Var = 32, V(\\mu) = \\mu^{2}.$",
     "common_pitfall": "Using V(μ) = μ for Gamma, or forgetting the (1 − p) factor in the Binomial variance.",
     "syllabus_ref": "4.2.2"
   }

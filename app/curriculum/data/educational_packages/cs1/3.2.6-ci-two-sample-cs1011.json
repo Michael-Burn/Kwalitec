@@ -171,7 +171,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Independent two-sample CIs need independent groups and usually target a difference of means. Pairing is a different design; equal n is not enough to justify paired analysis.",
-      "model_answer": "Target μ_A − μ_B under independent samples; refuse paired-as-equal-n.",
+      "model_answer": "Target $\\mu_{A} - \\mu_{B}$ under independent samples; refuse paired-as-equal-n.",
       "common_mistake": "Applying independent two-sample formulas to paired rows (or the reverse) because n₁=n₂.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,12 +180,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "A two-sample CI typically targets μ_A − μ_B under independent samples from the two groups. Paired before/after rows are not the same design: equal sample sizes do not turn matched pairs into an independent two-sample problem.",
+          "label": "A two-sample CI typically targets $\\mu_{A} - \\mu_{B}$ under independent samples from the two groups. Paired before/after rows are not the same design: equal sample sizes do not turn matched pairs into an independent two-sample problem.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "If n_A = n_B, analyse the data as paired differences even when there is no natural matching between A and B units.",
+          "label": "If $n_{A} = n_{B}$, analyse the data as paired differences even when there is no natural matching between A and B units.",
           "misconception_tag": "equal_n_as_paired"
         },
         {
@@ -195,7 +195,7 @@
         },
         {
           "id": "d",
-          "label": "The two-sample CI targets μ_A / μ_B only, never a difference, when the model is Normal.",
+          "label": "The two-sample CI targets $\\mu$_A / $\\mu$_B only, never a difference, when the model is Normal.",
           "misconception_tag": "ratio_only"
         }
       ],
@@ -221,15 +221,15 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "95% CI for difference of two mean claim costs",
-    "problem_statement": "Independent samples from portfolios A and B (Normal, known variances): n_A = 40, x̄_A = £8,200, σ_A = £1,200; n_B = 45, x̄_B = £7,600, σ_B = £1,100. Construct a 95% CI for μ_A − μ_B.",
+    "problem_statement": "Independent samples from portfolios A and B (Normal, known variances): $n_{A} = 40$, $\\bar{x}_{A}$ = £8,200, $\\sigma_{A}$ = £1,200; $n_{B} = 45$, $\\bar{x}_{B}$ = £7,600, $\\sigma_{B}$ = £1,100. Construct a 95% CI for $\\mu_{A} - \\mu_{B}$.",
     "given": [
       {
-        "symbol": "n_A, x̄_A, σ_A",
+        "symbol": "$n_A, \\bar{x}_A, \\sigma_A$",
         "value": "40, 8200, 1200",
         "note": "portfolio A"
       },
       {
-        "symbol": "n_B, x̄_B, σ_B",
+        "symbol": "$n_B, \\bar{x}_B, \\sigma_B$",
         "value": "45, 7600, 1100",
         "note": "portfolio B"
       },
@@ -239,35 +239,35 @@
         "note": "standard Normal quantile"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write SE = √(σ_A²/n_A + σ_B²/n_B) before the interval.",
+    "attempt_before_reveal": "CMP closed. Write $\\mathrm{SE} = \\sqrt{\\sigma_{A}^{2}/n_{A} + \\sigma_{B}^{2}/n_{B}}$ before the interval.",
     "steps": [
       {
         "id": "S1",
         "label": "Point estimate of the difference",
         "attempt_cue": "Compute x̄_A − x̄_B.",
         "explanation": "The natural centre for μ_A − μ_B is the difference of sample means.",
-        "calculation": "8200 − 7600 = 600",
-        "result": "x̄_A − x̄_B = 600"
+        "calculation": "$8200 - 7600 = 600$",
+        "result": "$\\bar{x}_A - \\bar{x}_B = 600$"
       },
       {
         "id": "S2",
         "label": "SE of the difference",
-        "attempt_cue": "Compute √(1200²/40 + 1100²/45).",
+        "attempt_cue": "Compute $\\sqrt{1200^{2}/40 + 1100^{2}/45}$.",
         "explanation": "Independence adds the variances of the two sample means.",
-        "calculation": "1200²/40 = 36000;  1100²/45 = 1210000/45 ≈ 26888.889;  √(36000 + 26888.889) = √62888.889 ≈ 250.777",
-        "result": "SE ≈ 250.777"
+        "calculation": "$1200^{2}/40 = 36000$; $1100^{2}/45 = 1210000/45 \\approx 26888.889$; $\\sqrt{36000 + 26888.889} = \\sqrt{62888.889} \\approx 250.777$",
+        "result": "$SE \\approx 250.777$"
       },
       {
         "id": "S3",
         "label": "Interval",
         "attempt_cue": "Compute 600 ± 1.96 × 250.777.",
         "explanation": "Two-sample z-interval with known variances.",
-        "calculation": "1.96 × 250.777 ≈ 491.522;  600 − 491.522 ≈ 108.478;  600 + 491.522 ≈ 1091.522",
+        "calculation": "$1.96 \\times 250.777 \\approx 491.522$; $600 - 491.522 \\approx 108.478$; $600 + 491.522 \\approx 1091.522$",
         "result": "(108.478, 1091.522)"
       }
     ],
-    "final_answer": "95% CI for μ_A − μ_B: approximately (£108.48, £1,091.52).",
-    "common_pitfall": "Pooling into √(σ²(1/n_A+1/n_B)) with a single σ, or subtracting SEs instead of adding variances under the square root.",
+    "final_answer": "95% CI for $\\mu_{A} - \\mu_{B}$: approximately (£108.48, £1,091.52).",
+    "common_pitfall": "Pooling into $\\sqrt{\\sigma^{2}(1/n_{A}+1/n_{B})}$ with a single $\\sigma$, or subtracting SEs instead of adding variances under the square root.",
     "syllabus_ref": "3.2.6"
   }
 }

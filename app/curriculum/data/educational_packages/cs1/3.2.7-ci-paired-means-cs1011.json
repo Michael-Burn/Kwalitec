@@ -171,7 +171,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Matched pairs → differences → one-sample CI for the mean difference. Equal column lengths do not justify an independent two-sample analysis of paired rows.",
-      "model_answer": "Analyse Dᵢ = Yᵢ − Xᵢ with a one-sample CI for μ_D; refuse independent two-sample on paired columns.",
+      "model_answer": "Analyse $D_{i} = Y_{i} - X_{i}$ with a one-sample CI for $\\mu_{D}$; refuse independent two-sample on paired columns.",
       "common_mistake": "Using the independent two-sample interval on paired before/after columns.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,17 +180,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "Form Dᵢ = Yᵢ − Xᵢ (or Xᵢ − Yᵢ) and build a one-sample CI for μ_D. Applying the independent two-sample formula to the before and after columns ignores pairing and uses the wrong variance structure.",
+          "label": "Form $D_{i} = Y_{i} - X_{i}$ (or $X_{i} - Y_{i}$) and build a one-sample CI for $\\mu_{D}$. Applying the independent two-sample formula to the before and after columns ignores pairing and uses the wrong variance structure.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Compute x̄ and ȳ separately and use a two-sample CI for μ_Y − μ_X that assumes independent samples, because each column has the same length.",
+          "label": "Compute $\\bar{x}$ and $\\bar{y}$ separately and use a two-sample CI for $\\mu_{Y} - \\mu_{X}$ that assumes independent samples, because each column has the same length.",
           "misconception_tag": "two_sample_on_paired"
         },
         {
           "id": "c",
-          "label": "The paired CI is formed for μ_X and μ_Y separately; no difference parameter is involved.",
+          "label": "The paired CI is formed for $\\mu$_X and $\\mu$_Y separately; no difference parameter is involved.",
           "misconception_tag": "separate_means_only"
         },
         {
@@ -221,11 +221,11 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Paired t-interval for before/after loss reduction",
-    "problem_statement": "Eight policyholders each have a before/after loss pair. Differences d = before − after (£00) are: 12, 8, −2, 15, 10, 5, 9, 7. Using t_{7, 0.975} = 2.365, construct a 95% CI for the mean difference μ_d.",
+    "problem_statement": "Eight policyholders each have a before/after loss pair. Differences $d$ = before $-$ after (£00) are: 12, 8, $-2$, 15, 10, 5, 9, 7. Using $t_{7, 0.975} = 2.365$, construct a 95% CI for the mean difference $\\mu_{d}$.",
     "given": [
       {
-        "symbol": "d₁…d₈",
-        "value": "12, 8, −2, 15, 10, 5, 9, 7",
+        "symbol": "$d_{1}\\ldots d₈$",
+        "value": "$12, 8, -2, 15, 10, 5, 9, 7$",
         "note": "paired differences (£00)"
       },
       {
@@ -246,27 +246,27 @@
         "label": "Mean difference",
         "attempt_cue": "Average the eight differences.",
         "explanation": "Paired data are analysed through the differences d_i.",
-        "calculation": "(12+8−2+15+10+5+9+7)/8 = 64/8 = 8",
-        "result": "d̄ = 8"
+        "calculation": "$(12+8-2+15+10+5+9+7)/8 = 64/8 = 8$",
+        "result": "$\\bar{d} = 8$"
       },
       {
         "id": "S2",
         "label": "Sample SD of differences",
-        "attempt_cue": "Compute s_d = √[Σ(d_i − d̄)²/(n−1)].",
+        "attempt_cue": "Compute $s_{d} = \\sqrt{\\sum(d_{i} - \\bar{d})^{2}/(n-1)}$.",
         "explanation": "The SE uses the sample SD of the paired differences, not the raw before/after series.",
-        "calculation": "Σ(d_i−8)² = 16+0+100+49+4+9+1+1 = 180;  s_d = √(180/7) = √25.714286 ≈ 5.0709",
-        "result": "s_d ≈ 5.0709"
+        "calculation": "$\\sum(d_i-8)^{2} = 16+0+100+49+4+9+1+1 = 180$; $s_d = \\sqrt{180/7} = \\sqrt{25.714286} \\approx 5.0709$",
+        "result": "$s_d \\approx 5.0709$"
       },
       {
         "id": "S3",
         "label": "SE and interval",
-        "attempt_cue": "SE = s_d/√n; then d̄ ± t × SE.",
+        "attempt_cue": "$\\mathrm{SE} = s_{d}/\\sqrt{n}$; then $\\bar{d} \\pm t \\times \\mathrm{SE}$.",
         "explanation": "One-sample t formula applied to the differences.",
-        "calculation": "SE = 5.0709/√8 ≈ 1.7928;  2.365 × 1.7928 ≈ 4.240;  8 − 4.240 ≈ 3.760;  8 + 4.240 ≈ 12.240",
+        "calculation": "$SE = 5.0709/\\sqrt{8} \\approx 1.7928$; $2.365 \\times 1.7928 \\approx 4.240$; $8 - 4.240 \\approx 3.760$; $8 + 4.240 \\approx 12.240$",
         "result": "(3.760, 12.240)"
       }
     ],
-    "final_answer": "95% CI for μ_d: approximately (3.760, 12.240) in £00.",
+    "final_answer": "95% CI for $\\mu_{d}$: approximately (3.760, 12.240) in £00.",
     "common_pitfall": "Treating the before and after samples as independent two-sample data instead of pairing, or using z = 1.96 with n = 8.",
     "syllabus_ref": "3.2.7"
   }

@@ -221,7 +221,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Retrieve OLS criterion and refuse R²-clears-curvature",
-    "problem_statement": "Closed-book retrieval. For observations (x_i, y_i), state the ordinary least squares criterion. Stepwise selection then produces a linear model with high R², but the residual plot shows clear curvature. What is the warranted conclusion?",
+    "problem_statement": "Closed-book retrieval. For observations $(x_{i}, y_{i})$, state the ordinary least squares criterion. Stepwise selection then produces a linear model with high $R^{2}$, but the residual plot shows clear curvature. What is the warranted conclusion?",
     "given": [
       {
         "symbol": "OLS ask",
@@ -230,7 +230,7 @@
       },
       {
         "symbol": "diagnostics",
-        "value": "high R² with curved residual plot",
+        "value": "$high R^{2} with curved residual plot$",
         "note": "adequacy hinge"
       }
     ],
@@ -241,7 +241,7 @@
         "label": "Retrieve the OLS criterion",
         "attempt_cue": "What sum is minimised?",
         "explanation": "OLS chooses coefficients that minimise the sum over i of (y_i - fitted y_i)².",
-        "calculation": "Minimise Σ(y_i - ŷ_i)²",
+        "calculation": "$Minimise \\sum(y_i - \\hat{y}_i)^{2}$",
         "result": "OLS criterion retrieved"
       },
       {
@@ -257,11 +257,11 @@
         "label": "Refuse R²-as-adequacy",
         "attempt_cue": "Does high R² clear the curvature?",
         "explanation": "High R² and automated selection do not establish adequacy when residuals show clear curvature. Reconsider justified transformations or nonlinear terms and validate.",
-        "calculation": "Refuse 'high R² ⇒ linear form adequate'",
-        "result": "R²-clears-curvature claim refused"
+        "calculation": "$Refuse 'high R^{2} \\Rightarrow linear form adequate'$",
+        "result": "$R^{2}-clears-curvature claim refused$"
       }
     ],
-    "final_answer": "OLS minimises Σ(y_i - ŷ_i)². Clear residual curvature signals mean misspecification; high R² from stepwise selection does not clear that concern.",
+    "final_answer": "$OLS minimises \\sum(y_i - \\hat{y}_i)^{2}. Clear residual curvature signals mean misspecification$; $high R^{2} from stepwise selection does not clear that concern.$",
     "common_pitfall": "Minimising the sum of fitted values instead of squared residuals, or treating high R² from automated selection as proof that a curved residual plot can be ignored.",
     "syllabus_ref": "4.1"
   }

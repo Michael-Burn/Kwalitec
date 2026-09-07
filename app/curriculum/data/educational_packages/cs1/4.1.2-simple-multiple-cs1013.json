@@ -141,7 +141,7 @@
         },
         {
           "id": "b",
-          "label": "Simple and multiple linear models differ only in how least-squares estimates are computed; stating Y = β₀ + β₁ x + ε is already least squares.",
+          "label": "Simple and multiple linear models differ only in how least-squares estimates are computed; stating $Y = \\beta_{0} + \\beta_{1} x + \\varepsilon$ is already least squares.",
           "misconception_tag": "least_squares_finishes"
         },
         {
@@ -171,7 +171,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Simple uses one predictor; multiple uses both. Closed-form least squares is estimation, not the act of naming the model forms.",
-      "model_answer": "Simple: Y = β₀ + β₁ age + ε. Multiple adds β₂ sum_insured. Refuse OLS-as-form.",
+      "model_answer": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple adds $\\beta_{2}\\,\\mathrm{sum\\_insured}$. Refuse OLS-as-form.",
       "common_mistake": "Treating least-squares estimation as finishing model-form statement.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -180,17 +180,17 @@
       "choices": [
         {
           "id": "a",
-          "label": "Simple: Y = β₀ + β₁ age + ε. Multiple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Writing least-squares formulae for β̂ is estimation, not stating the simple versus multiple linear model forms.",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Writing least-squares formulae for $\\hat{\\beta}$ is estimation, not stating the simple versus multiple linear model forms.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Simple: Y = β₀ + β₁ age + β₂ sum_insured + ε. Multiple: Y = β₀ + β₁ age + ε, because multiple means more parameters in the criterion.",
+          "label": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$, because multiple means more parameters in the criterion.",
           "misconception_tag": "forms_swapped"
         },
         {
           "id": "c",
-          "label": "Both forms are Y = β̂₀ + β̂₁ x + ε where β̂ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
+          "label": "Both forms are Y = $\\hat{\\beta}_{0} + \\hat{\\beta}_{1}$ x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
           "misconception_tag": "least_squares_finishes"
         },
         {
@@ -221,20 +221,20 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Simple vs multiple fitted severity values",
-    "problem_statement": "Two fitted linear models for claim severity Y (£000) are available.\nSimple: Ŷ_s = 2.0 + 0.5x₁, where x₁ is age/10.\nMultiple: Ŷ_m = 1.5 + 0.4x₁ + 0.3x₂, where x₂ is sum insured (£0000).\nFor a risk with x₁ = 4 and x₂ = 5, compute both fitted values and state which model form each equation represents.",
+    "problem_statement": "Two fitted linear models for claim severity $Y$ (£000) are available.\nSimple: $\\hat{Y}_{s} = 2.0 + 0.5x_{1}$, where $x_{1}$ is age/10.\nMultiple: $\\hat{Y}_{m} = 1.5 + 0.4x_{1} + 0.3x_{2}$, where $x_{2}$ is sum insured (£0000).\nFor a risk with $x_{1} = 4$ and $x_{2} = 5$, compute both fitted values and state which model form each equation represents.",
     "given": [
       {
         "symbol": "Ŷ_s",
-        "value": "2.0 + 0.5x₁",
+        "value": "$2.0 + 0.5x_{1}$",
         "note": "simple linear fit"
       },
       {
         "symbol": "Ŷ_m",
-        "value": "1.5 + 0.4x₁ + 0.3x₂",
+        "value": "$1.5 + 0.4x_{1} + 0.3x_{2}$",
         "note": "multiple linear fit"
       },
       {
-        "symbol": "(x₁, x₂)",
+        "symbol": "$(x_{1}, x_{2})$",
         "value": "(4, 5)",
         "note": "age/10 and sum insured (£0000)"
       }
@@ -246,7 +246,7 @@
         "label": "Identify simple vs multiple form",
         "attempt_cue": "Count explanatory variables on the right-hand side of each equation.",
         "explanation": "Simple linear regression has one explanatory variable. Multiple linear regression has several explanatory variables entering jointly.",
-        "calculation": "Ŷ_s uses only x₁ (simple); Ŷ_m uses x₁ and x₂ (multiple)",
+        "calculation": "$\\hat{Y}_{s}$ uses only $x_{1}$ (simple); $\\hat{Y}_{m}$ uses $x_{1}$ and $x_{2}$ (multiple)",
         "result": "Simple vs multiple identified by number of X's"
       },
       {
@@ -254,7 +254,7 @@
         "label": "Evaluate the simple fit",
         "attempt_cue": "Substitute x₁ = 4 into Ŷ_s.",
         "explanation": "The simple model ignores x₂ even if that covariate is available.",
-        "calculation": "Ŷ_s = 2.0 + 0.5 × 4 = 2.0 + 2.0 = 4.0",
+        "calculation": "$\\hat{Y}_s = 2.0 + 0.5 \\times 4 = 2.0 + 2.0 = 4.0$",
         "result": "Ŷ_s = 4.0 (£000)"
       },
       {
@@ -262,7 +262,7 @@
         "label": "Evaluate the multiple fit",
         "attempt_cue": "Substitute x₁ = 4 and x₂ = 5 into Ŷ_m.",
         "explanation": "The multiple model adjusts the age contribution and adds the sum-insured term jointly.",
-        "calculation": "Ŷ_m = 1.5 + 0.4 × 4 + 0.3 × 5 = 1.5 + 1.6 + 1.5 = 4.6",
+        "calculation": "$\\hat{Y}_m = 1.5 + 0.4 \\times 4 + 0.3 \\times 5 = 1.5 + 1.6 + 1.5 = 4.6$",
         "result": "Ŷ_m = 4.6 (£000)"
       }
     ],

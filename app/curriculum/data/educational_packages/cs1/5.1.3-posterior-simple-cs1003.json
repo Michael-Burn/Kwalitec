@@ -217,7 +217,7 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Posterior for Poisson rate with Gamma prior",
-    "problem_statement": "Annual flood claim counts are modelled as Poisson(λ). The prior is Gamma(α, β) with shape-rate parameterisation π(λ) ∝ λ^{α−1} e^{−βλ}, here α = 2, β = 3. A sample of n = 4 independent years has total counts Σyᵢ = 10. State the posterior distribution and its mean.",
+    "problem_statement": "Annual flood claim counts are modelled as $\\mathrm{Poisson}(\\lambda)$. The prior is $\\mathrm{Gamma}(\\alpha, \\beta)$ with shape-rate parameterisation $\\pi(\\lambda) \\propto \\lambda^{\\alpha-1} e^{-\\beta\\lambda}$, here $\\alpha = 2$, $\\beta = 3$. A sample of $n = 4$ independent years has total counts $\\sum y_{i} = 10$. State the posterior distribution and its mean.",
     "given": [
       {
         "symbol": "prior",
@@ -225,23 +225,23 @@
         "note": "shape-rate Gamma prior"
       },
       {
-        "symbol": "n, Σyᵢ",
+        "symbol": "$n, \\sum y_{i}$",
         "value": "4, 10",
         "note": "years and total claim counts"
       },
       {
         "symbol": "update",
-        "value": "Gamma(α+Σyᵢ, β+n)",
+        "value": "$Gamma(\\alpha+\\sum y_{i}, \\beta+n)$",
         "note": "Poisson-Gamma conjugacy"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Add Σyᵢ to the shape and n to the rate before forming the posterior mean.",
+    "attempt_before_reveal": "CMP closed. Add $\\sum y_{i}$ to the shape and n to the rate before forming the posterior mean.",
     "steps": [
       {
         "id": "S1",
         "label": "Identify the conjugate update",
         "attempt_cue": "Write the posterior parameter map.",
-        "explanation": "For Poisson observations with a Gamma(α, β) shape-rate prior, the posterior is Gamma(α+Σy, β+n).",
+        "explanation": "For Poisson observations with a $\\mathrm{Gamma}(\\alpha, \\beta)$ shape-rate prior, the posterior is $\\mathrm{Gamma}(\\alpha+\\sum y, \\beta+n)$.",
         "calculation": "Posterior = Gamma(2+10, 3+4) = Gamma(12, 7)",
         "result": "Posterior Gamma(12, 7)"
       },
@@ -250,8 +250,8 @@
         "label": "Posterior mean",
         "attempt_cue": "Compute α'/β'.",
         "explanation": "Under the shape-rate parameterisation the Gamma mean is shape/rate.",
-        "calculation": "Mean = 12/7 ≈ 1.7143 per year",
-        "result": "Posterior mean ≈ 1.7143"
+        "calculation": "$Mean = 12/7 \\approx 1.7143 per year$",
+        "result": "$Posterior mean \\approx 1.7143$"
       },
       {
         "id": "S3",
@@ -259,11 +259,11 @@
         "attempt_cue": "State why n enters the rate, not the shape alone.",
         "explanation": "Each observation year contributes one unit of exposure to the rate parameter; claim counts update the shape.",
         "calculation": "Shape += total counts; rate += number of years",
-        "result": "Do not add n to the shape and Σy to the rate"
+        "result": "$Do not add n to the shape and \\sum y to the rate$"
       }
     ],
-    "final_answer": "Posterior is Gamma(12, 7) with mean 12/7 ≈ 1.7143 claims per year.",
-    "common_pitfall": "Swapping the updates (adding n to the shape and Σy to the rate), or treating the Gamma as shape-scale when the brief specifies shape-rate.",
+    "final_answer": "$Posterior is Gamma(12, 7) with mean 12/7 \\approx 1.7143 claims per year.$",
+    "common_pitfall": "Swapping the updates (adding n to the shape and $\\sum$y to the rate), or treating the Gamma as shape-scale when the brief specifies shape-rate.",
     "syllabus_ref": "5.1.3"
   }
 }

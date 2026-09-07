@@ -225,20 +225,20 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Same risk, Bayesian vs EB premiums compared",
-    "problem_statement": "The same risk has n = 4 years and X̄ = £900.\nFully Bayesian structurals (from a specified prior): μ = £700, k = 6.\nEmpirical Bayes structurals (from collective data): μ̂ = £750, k̂ = 12.\nCompute both credibility premiums and explain why they differ.",
+    "problem_statement": "The same risk has $n = 4$ years and $\\bar{X}$ = £900.\nFully Bayesian structurals (from a specified prior): $\\mu$ = £700, $k = 6$.\nEmpirical Bayes structurals (from collective data): $\\hat{\\mu}$ = £750, $\\hat{k} = 12$.\nCompute both credibility premiums and explain why they differ.",
     "given": [
       {
-        "symbol": "n, X̄",
+        "symbol": "$n, \\bar{X}$",
         "value": "4, 900",
         "note": "common risk experience"
       },
       {
-        "symbol": "Bayes (μ, k)",
+        "symbol": "$Bayes (\\mu, k)$",
         "value": "(700, 6)",
         "note": "specified prior structurals"
       },
       {
-        "symbol": "EB (μ̂, k̂)",
+        "symbol": "$EB (\\hat{\\mu}, \\hat{k})$",
         "value": "(750, 12)",
         "note": "estimated structurals"
       }
@@ -250,15 +250,15 @@
         "label": "Fully Bayesian premium",
         "attempt_cue": "Z = 4/(4+6); P = Z×900 + (1−Z)×700.",
         "explanation": "Bayes uses prior-specified μ and k.",
-        "calculation": "Z = 4/10 = 0.4;  P = 0.4×900 + 0.6×700 = 360 + 420 = 780",
+        "calculation": "$Z = \\frac{4}{10} = 0.4$; $P = 0.4\\times 900 + 0.6\\times 700 = 360 + 420 = 780$",
         "result": "Bayes P = £780"
       },
       {
         "id": "S2",
         "label": "Empirical Bayes premium",
         "attempt_cue": "Ẑ = 4/(4+12); P = Ẑ×900 + (1−Ẑ)×750.",
-        "explanation": "EB uses collectively estimated μ̂ and k̂.",
-        "calculation": "Ẑ = 4/16 = 0.25;  P = 0.25×900 + 0.75×750 = 225 + 562.5 = 787.5",
+        "explanation": "EB uses collectively estimated $\\hat{\\mu}$ and $\\hat{k}$.",
+        "calculation": "$\\hat{Z} = 4/16 = 0.25$; $P = 0.25\\times 900 + 0.75\\times 750 = 225 + 562.5 = 787.5$",
         "result": "EB P = £787.5"
       },
       {
@@ -266,7 +266,7 @@
         "label": "Why the premiums differ",
         "attempt_cue": "Contrast assumption sources, not just the numeric gap.",
         "explanation": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different (μ, k) pairs produce different Z and different blends, so premiums need not match.",
-        "calculation": "780 vs 787.5 because (μ, k) ≠ (μ̂, k̂)",
+        "calculation": "$780 vs 787.5 because (\\mu, k) ≠ (\\hat{\\mu}, \\hat{k})$",
         "result": "Assumption source drives the difference"
       }
     ],

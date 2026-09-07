@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Deviance is twice the log-likelihood drop to saturated. Scale enters scaled deviance when dispersion matters. p-value chopping is not estimation.",
-      "model_answer": "Deviance 2(ℓ_sat - ℓ_model); scaled divides by scale; MLE/IWLS. Refuse p-chopping.",
+      "model_answer": "Deviance 2($\\ell$_sat - $\\ell$_model); scaled divides by scale; MLE/IWLS. Refuse p-chopping.",
       "common_mistake": "Accepting p-value chopping as deviance or estimation definition.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times ℓ_sat minus ℓ_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
+          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times $\\ell$_sat minus $\\ell$_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
           "misconception_tag": ""
         },
         {
@@ -189,7 +189,7 @@
         },
         {
           "id": "c",
-          "label": "Deviance equals sum (y minus μ̂) squared; scaled deviance adds sigma hat. GLM parameters are always OLS slopes on the link scale.",
+          "label": "Deviance equals sum (y minus $\\hat{\\mu}$) squared; scaled deviance adds sigma hat. GLM parameters are always OLS slopes on the link scale.",
           "misconception_tag": "ols_on_link"
         },
         {
@@ -225,35 +225,35 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Poisson deviance contribution and scaled deviance",
-    "problem_statement": "A Poisson GLM fitted mean for one observation is μ̂ = 4, and the observed count is y = 5. Compute the observation's deviance contribution d = 2[y ln(y/μ̂) − (y − μ̂)]. Then, if the total deviance across the sample is D = 18.4 and the scale is φ = 1, state the scaled deviance D/φ. Finally, name how GLM parameters are estimated (MLE / IWLS).",
+    "problem_statement": "A Poisson GLM fitted mean for one observation is $\\hat{\\mu} = 4$, and the observed count is $y = 5$. Compute the observation's deviance contribution $d = 2\\bigl[y \\ln(y/\\hat{\\mu}) - (y - \\hat{\\mu})\\bigr]$. Then, if the total deviance across the sample is $D = 18.4$ and the scale is $\\varphi = 1$, state the scaled deviance $D/\\varphi$. Finally, name how GLM parameters are estimated (MLE / IWLS).",
     "given": [
       {
-        "symbol": "y, μ̂",
+        "symbol": "$y$, $\\hat{\\mu}$",
         "value": "5, 4",
         "note": "one Poisson observation and its fitted mean"
       },
       {
-        "symbol": "D, φ",
+        "symbol": "$D, \\phi$",
         "value": "18.4, 1",
         "note": "total deviance and scale"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Write d = 2[y ln(y/μ̂) − (y − μ̂)] before substituting.",
+    "attempt_before_reveal": "CMP closed. Write $d = 2\\bigl[y \\ln(y/\\hat{\\mu}) - (y - \\hat{\\mu})\\bigr]$ before substituting.",
     "steps": [
       {
         "id": "S1",
         "label": "Poisson deviance contribution",
-        "attempt_cue": "Substitute y = 5 and μ̂ = 4 into the formula.",
-        "explanation": "Deviance compares the fitted model to the saturated model. For Poisson, each observation contributes 2[y ln(y/μ̂) − (y − μ̂)].",
-        "calculation": "d = 2[5 ln(5/4) − (5 − 4)] = 2[5 ln(1.25) − 1] ≈ 2[5 × 0.22314 − 1] = 2[0.1157] ≈ 0.2314",
-        "result": "d ≈ 0.2314"
+        "attempt_cue": "Substitute y = 5 and $\\hat{\\mu}$ = 4 into the formula.",
+        "explanation": "Deviance compares the fitted model to the saturated model. For Poisson, each observation contributes $2\\bigl[y \\ln(y/\\hat{\\mu}) - (y - \\hat{\\mu})\\bigr]$.",
+        "calculation": "$d = 2[5 \\ln(5/4) - (5 - 4)] = 2[5 \\ln(1.25) - 1] \\approx 2[5 \\times 0.22314 - 1] = 2[0.1157] \\approx 0.2314$",
+        "result": "$d \\approx 0.2314$"
       },
       {
         "id": "S2",
         "label": "Scaled deviance",
         "attempt_cue": "Compute D/φ.",
         "explanation": "Scaled deviance divides total deviance by the scale parameter.",
-        "calculation": "D/φ = 18.4 / 1 = 18.4",
+        "calculation": "$D/\\phi = 18.4 / 1 = 18.4$",
         "result": "Scaled deviance = 18.4"
       },
       {
@@ -261,12 +261,12 @@
         "label": "Estimation method",
         "attempt_cue": "Name the standard GLM estimation route.",
         "explanation": "GLM coefficients are estimated by maximum likelihood, typically computed via iteratively reweighted least squares (IWLS).",
-        "calculation": "Estimate β by MLE (implemented as IWLS)",
+        "calculation": "$Estimate \\beta by \\mathrm{MLE} (implemented as IWLS)$",
         "result": "MLE / IWLS"
       }
     ],
-    "final_answer": "Observation deviance ≈ 0.2314; scaled deviance = 18.4; parameters estimated by MLE (IWLS).",
-    "common_pitfall": "Using (y − μ̂)²/μ̂ as if it were the deviance contribution (that is Pearson), or dividing by φ when φ is already 1 and then treating 18.4 as something other than D itself.",
+    "final_answer": "$Observation deviance \\approx 0.2314$; $scaled deviance = 18.4$; $parameters estimated by \\mathrm{MLE} (IWLS).$",
+    "common_pitfall": "Using $(y - \\hat{\\mu})^{2}/\\hat{\\mu}$ as if it were the deviance contribution (that is Pearson), or dividing by $\\varphi$ when $\\varphi$ is already 1 and then treating 18.4 as something other than $D$ itself.",
     "syllabus_ref": "4.2.6"
   }
 }

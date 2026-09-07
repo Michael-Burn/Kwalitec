@@ -132,7 +132,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "sqrt(n)(sample mean minus mu)/sigma converges in distribution to a standard Normal variable as n grows.",
+          "label": "$\\sqrt{n}(\\text{sample mean minus }\\mu)/\\sigma$ converges in distribution to a standard Normal variable as $n$ grows.",
           "misconception_tag": ""
         },
         {
@@ -217,11 +217,11 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Retrieve the CLT for iid sums and refuse exact Normality",
-    "problem_statement": "Closed-book retrieval. Let X₁, …, Xₙ be iid with finite mean μ and finite positive variance σ². State what the central limit theorem says about the standardised sample mean. The observations are highly skewed but have finite variance: what is justified about Normal approximation for their sample mean?",
+    "problem_statement": "Closed-book retrieval. Let $X_{1}, \\ldots, X_{n}$ be iid with finite mean $\\mu$ and finite positive variance $\\sigma^{2}$. State what the central limit theorem says about the standardised sample mean. The observations are highly skewed but have finite variance: what is justified about Normal approximation for their sample mean?",
     "given": [
       {
         "symbol": "setup",
-        "value": "iid with finite μ and σ² > 0",
+        "value": "$iid with finite \\mu and \\sigma^{2} > 0$",
         "note": "CLT conditions"
       },
       {
@@ -236,8 +236,8 @@
         "id": "S1",
         "label": "Retrieve the CLT statement",
         "attempt_cue": "Write the limiting law for the standardised mean.",
-        "explanation": "The CLT states that √n (X̄ - μ)/σ converges in distribution to N(0,1) as n → ∞.",
-        "calculation": "√n (X̄ - μ)/σ →ᵈ N(0,1)",
+        "explanation": "The CLT states that $\\sqrt{n}\\,(\\bar{X} - \\mu)/\\sigma$ converges in distribution to $N(0,1)$ as $n \\to \\infty$.",
+        "calculation": "$\\sqrt{n} (\\bar{X} - \\mu)/\\sigma \\xrightarrow{d} N(0,1)$",
         "result": "Standardised-mean CLT retrieved"
       },
       {
@@ -257,7 +257,7 @@
         "result": "Exact-Normality overclaim refused"
       }
     ],
-    "final_answer": "√n (X̄ - μ)/σ converges in distribution to N(0,1). For skewed finite-variance data, a Normal approximation may be usable for sufficiently large n but is not generally exact at every finite n.",
+    "final_answer": "$\\sqrt{n} (\\bar{X} - \\mu)/\\sigma converges in distribution to N(0,1). For skewed finite-variance data, a Normal approximation may be usable for sufficiently large n but is not generally exact at every finite n.$",
     "common_pitfall": "Claiming the sample mean is exactly Normal for every n because a mean was calculated, or applying the CLT without standardisation.",
     "syllabus_ref": "2.5.1"
   }
