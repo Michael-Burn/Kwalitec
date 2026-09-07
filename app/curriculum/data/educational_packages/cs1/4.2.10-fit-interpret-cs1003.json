@@ -169,9 +169,9 @@
       "accepted_keywords": [
         "0.8607"
       ],
-      "explanation": "Under the log link, the night-shift mean frequency is e^{-0.15} ≈ 0.8607 times the day-shift baseline mean, other terms held fixed. The coefficient -0.15 is not a -15 percentage-point additive change on the frequency scale.",
+      "explanation": "Under the log link, the night-shift mean frequency is $e^{-0.15} \\approx 0.8607$ times the day-shift baseline mean, other terms held fixed. The coefficient $-0.15$ is not a $-15$ percentage-point additive change on the frequency scale.",
       "model_answer": "0.8607",
-      "common_mistake": "Reporting -0.15 or -15 as if the coefficient were an additive percentage change without exponentiating, or reporting e^{0.15} ≈ 1.1618 after dropping the minus sign.",
+      "common_mistake": "Reporting $-0.15$ or $-15$ as if the coefficient were an additive percentage change without exponentiating, or reporting $e^{0.15} \\approx 1.1618$ after dropping the minus sign.",
       "success_criteria": [
         "Enters a value within 0.001 of 0.8607.",
         "Uses e^{β̂} with the correct sign, not the raw coefficient as a percent change."
@@ -230,7 +230,7 @@
         "id": "S2",
         "label": "Percentage change",
         "attempt_cue": "Convert the multiplier to a percentage.",
-        "explanation": "Percentage change = (e^β − 1) × 100%.",
+        "explanation": "Percentage change = $(e^{\\beta} - 1) \\times 100\\%$.",
         "calculation": "$(0.8607 - 1) \\times 100\\% \\approx -13.93\\%$",
         "result": "$\\approx -13.93\\%$ vs day shift"
       },

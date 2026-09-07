@@ -172,7 +172,7 @@
       "accepted_keywords": [
         "1.2214"
       ],
-      "explanation": "Under the log link, the urban mean frequency is e^{0.2} ≈ 1.2214 times the rural baseline mean, other terms held fixed. The coefficient 0.2 is not an additive increase of 0.2 claims on the frequency scale.",
+      "explanation": "Under the log link, the urban mean frequency is $e^{0.2} \\approx 1.2214$ times the rural baseline mean, other terms held fixed. The coefficient $0.2$ is not an additive increase of $0.2$ claims on the frequency scale.",
       "model_answer": "1.2214",
       "common_mistake": "Reporting 0.2 (or +0.2 claims) as if the log-link coefficient were additive on the frequency scale, or reporting the percentage uplift 22.14 instead of the multiplicative factor 1.2214.",
       "success_criteria": [
@@ -246,7 +246,7 @@
         "id": "S3",
         "label": "Interpret beyond Fit",
         "attempt_cue": "Name coefficients, fit measures, and diagnostics as required outputs.",
-        "explanation": "Fitting alone is incomplete: interpret coefficients on the response scale, review deviance / df, and inspect residual diagnostics (here a |r_P| of 3.1 warrants attention).",
+        "explanation": "Fitting alone is incomplete: interpret coefficients on the response scale, review $\\mathrm{deviance}/\\mathrm{df}$, and inspect residual diagnostics (here a $|r_{P}|$ of 3.1 warrants attention).",
         "calculation": "$Interpret: (1) coefficients, (2) fit measures (D = 40 on 36 df), (3) diagnostics (|r_{P}| = 3.1)$",
         "result": "Coefficients + fit measures + diagnostics"
       }

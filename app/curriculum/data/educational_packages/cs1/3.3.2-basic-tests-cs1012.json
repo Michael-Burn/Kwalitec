@@ -267,7 +267,7 @@
         "id": "S3",
         "label": "Decision",
         "attempt_cue": "Compare p with 0.05.",
-        "explanation": "Reject H₀ when p ≤ α.",
+        "explanation": "Reject $H_{0}$ when $p \\leq \\alpha$.",
         "calculation": "$0.0456 < 0.05 \\Rightarrow reject H_{0}$",
         "result": "Reject $H_{0}$ at 5%."
       }

@@ -254,7 +254,7 @@
       {
         "id": "S2",
         "label": "Posterior distribution",
-        "attempt_cue": "Apply α' = 4 + 5 and β' = 6 + 8.",
+        "attempt_cue": "Apply $\\alpha' = 4 + 5$ and $\\beta' = 6 + 8$.",
         "explanation": "Conjugacy yields $\\mathrm{Gamma}(\\alpha+n, \\beta+\\sum x_{i})$.",
         "calculation": "$\\lambda | data \\sim Gamma(9, 14)$",
         "result": "Posterior Gamma(9, 14)"

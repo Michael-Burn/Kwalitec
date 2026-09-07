@@ -190,6 +190,12 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "mission.why_now",
             "c911f5a1b83f02e2",
         ),
+        # Wave 4 leftover: χ² as CMP syllabus topic name (not live math).
+        (
+            "4.2.9-goodness-tests-cs1003.json",
+            "reading_guidance.exit_line",
+            "128fa0d3e098e42e",
+        ),
     }
 )
 

@@ -275,7 +275,7 @@
         "id": "S3",
         "label": "Form the 95% z-interval",
         "attempt_cue": "Compute X̄ ± 1.96 SE.",
-        "explanation": "The interval is 42 ± 1.96×2 = 42 ± 3.92.",
+        "explanation": "The interval is $42 \\pm 1.96\\times 2 = 42 \\pm 3.92$.",
         "calculation": "$42 ± 3.92 → (38.08, 45.92)$",
         "result": "95% CI = (38.08, 45.92)"
       }

@@ -244,7 +244,7 @@
         "id": "S1",
         "label": "Wald statistic for the slope",
         "attempt_cue": "Divide $\\hat{\\beta}_{1}$ by its standard error.",
-        "explanation": "Software inference on the slope starts from the estimate and its SE; under H₀: β₁ = 0 the ratio is approximately standard Normal for large samples.",
+        "explanation": "Software inference on the slope starts from the estimate and its SE; under $H_{0}\\colon \\beta_{1} = 0$ the ratio is approximately standard Normal for large samples.",
         "calculation": "z = 12 / 4 = 3",
         "result": "z = 3"
       },

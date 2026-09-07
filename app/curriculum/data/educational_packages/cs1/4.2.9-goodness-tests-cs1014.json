@@ -243,12 +243,12 @@
         "note": "5% critical value on 2 df"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form each (O − E)²/E term, sum them, then compare with 5.991.",
+    "attempt_before_reveal": "CMP closed. Form each $(O - E)^{2}/E$ term, sum them, then compare with 5.991.",
     "steps": [
       {
         "id": "S1",
         "label": "Category contributions",
-        "attempt_cue": "Compute (O − 10)²/10 for each group.",
+        "attempt_cue": "Compute $(O - 10)^{2}/10$ for each group.",
         "explanation": "Pearson GOF aggregates standardised squared discrepancies.",
         "calculation": "$(-2)^{2}/10 + 2^{2}/10 + 0^{2}/10 = \\frac{4}{10} + \\frac{4}{10} + 0 = 0.4 + 0.4 + 0$",
         "result": "0.4 + 0.4 + 0"
@@ -271,7 +271,7 @@
       }
     ],
     "final_answer": "$X^{2} = 0.8 < 5.991$; $do not reject aggregate adequacy at \\alpha = 0.05. LRT/deviance tests nested model comparison.$",
-    "common_pitfall": "Treating X² = 0.8 as a nested deviance difference, or using df = 3 without recognising the constraint structure appropriate to the GOF layout.",
+    "common_pitfall": "Treating $X^{2} = 0.8$ as a nested deviance difference, or using $\\mathrm{df} = 3$ without recognising the constraint structure appropriate to the GOF layout.",
     "syllabus_ref": "4.2.9"
   }
 }
