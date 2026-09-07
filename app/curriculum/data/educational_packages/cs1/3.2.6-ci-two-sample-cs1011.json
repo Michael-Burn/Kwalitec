@@ -172,7 +172,7 @@
       "accepted_keywords": [],
       "explanation": "Independent two-sample CIs need independent groups and usually target a difference of means. Pairing is a different design; equal n is not enough to justify paired analysis.",
       "model_answer": "Target $\\mu_{A} - \\mu_{B}$ under independent samples; refuse paired-as-equal-n.",
-      "common_mistake": "Applying independent two-sample formulas to paired rows (or the reverse) because n₁=n₂.",
+      "common_mistake": "Applying independent two-sample formulas to paired rows (or the reverse) because $n_{1} = n_{2}$.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -244,8 +244,8 @@
       {
         "id": "S1",
         "label": "Point estimate of the difference",
-        "attempt_cue": "Compute x̄_A − x̄_B.",
-        "explanation": "The natural centre for μ_A − μ_B is the difference of sample means.",
+        "attempt_cue": "Compute $\\bar{x}_{A} - \\bar{x}_{B}$.",
+        "explanation": "The natural centre for $\\mu_{A} - \\mu_{B}$ is the difference of sample means.",
         "calculation": "$8200 - 7600 = 600$",
         "result": "$\\bar{x}_A - \\bar{x}_B = 600$"
       },

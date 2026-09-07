@@ -171,7 +171,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "From χ²_L < 2n X̄ / θ < χ²_U, taking reciprocals (and reversing inequalities) yields bounds 2n X̄ / χ²_U and 2n X̄ / χ²_L. The given pivot must be used; Normal-mean cookbooks are not a substitute.",
+      "explanation": "From $\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U}$, taking reciprocals (and reversing inequalities) yields bounds $2n \\bar{X} / \\chi^{2}_{U}$ and $2n \\bar{X} / \\chi^{2}_{L}$. The given pivot must be used; Normal-mean cookbooks are not a substitute.",
       "model_answer": "Invert $P(\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U})=1-\\alpha$ to bounds in $2n \\bar{X} / \\chi^{2}$; refuse Normal-mean template.",
       "common_mistake": "Ignoring the given χ² pivot or inverting the inequality incorrectly.",
       "success_criteria": [

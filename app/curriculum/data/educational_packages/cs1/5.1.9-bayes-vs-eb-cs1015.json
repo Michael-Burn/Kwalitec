@@ -248,7 +248,7 @@
       {
         "id": "S1",
         "label": "Fully Bayesian premium",
-        "attempt_cue": "Z = 4/(4+6); P = Z×900 + (1−Z)×700.",
+        "attempt_cue": "$Z = \\frac{4}{4+6}$; $P = Z\\times 900 + (1-Z)\\times 700$.",
         "explanation": "Bayes uses prior-specified μ and k.",
         "calculation": "$Z = \\frac{4}{10} = 0.4$; $P = 0.4\\times 900 + 0.6\\times 700 = 360 + 420 = 780$",
         "result": "Bayes P = £780"
@@ -256,7 +256,7 @@
       {
         "id": "S2",
         "label": "Empirical Bayes premium",
-        "attempt_cue": "Ẑ = 4/(4+12); P = Ẑ×900 + (1−Ẑ)×750.",
+        "attempt_cue": "$\\hat{Z} = \\frac{4}{4+12}$; $P = \\hat{Z}\\times 900 + (1-\\hat{Z})\\times 750$.",
         "explanation": "EB uses collectively estimated $\\hat{\\mu}$ and $\\hat{k}$.",
         "calculation": "$\\hat{Z} = 4/16 = 0.25$; $P = 0.25\\times 900 + 0.75\\times 750 = 225 + 562.5 = 787.5$",
         "result": "EB P = £787.5"

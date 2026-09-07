@@ -240,7 +240,7 @@
         "id": "S1",
         "label": "Retrieve the OLS criterion",
         "attempt_cue": "What sum is minimised?",
-        "explanation": "OLS chooses coefficients that minimise the sum over i of (y_i - fitted y_i)².",
+        "explanation": "OLS chooses coefficients that minimise the sum over $i$ of $(y_{i} - \\hat{y}_{i})^{2}$.",
         "calculation": "$Minimise \\sum(y_i - \\hat{y}_i)^{2}$",
         "result": "OLS criterion retrieved"
       },

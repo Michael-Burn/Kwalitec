@@ -179,6 +179,17 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "reading_guidance.misconception_watch[1]",
             "af83592dd55596ca",
         ),
+        # Wave 3 leftovers: η as syllabus topic name (not live math).
+        (
+            "4.2.6-deviance-estimation-cs1003.json",
+            "mission.prior_bridge",
+            "fd95a7a521964a4c",
+        ),
+        (
+            "4.2.6-deviance-estimation-cs1014.json",
+            "mission.why_now",
+            "c911f5a1b83f02e2",
+        ),
     }
 )
 

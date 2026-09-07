@@ -243,9 +243,9 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Poisson(λ = 3)",
+        "label": "$\\mathrm{Poisson}(\\lambda = 3)$",
         "attempt_cue": "State mean, variance, and V(μ).",
-        "explanation": "For Poisson, mean equals variance and the variance function is V(μ) = μ with φ = 1.",
+        "explanation": "For Poisson, mean equals variance and the variance function is $V(\\mu) = \\mu$ with $\\phi = 1$.",
         "calculation": "$E = Var = 3$; $V(\\mu) = \\mu$; $\\phi = 1$",
         "result": "$Poisson: E = Var = 3, V(\\mu) = \\mu$"
       },
@@ -259,15 +259,15 @@
       },
       {
         "id": "S3",
-        "label": "Gamma(μ = 8, α = 2)",
-        "attempt_cue": "Use Var = μ²/α and V(μ) = μ².",
-        "explanation": "Gamma has variance function V(μ) = μ²; with shape α the scale relates as Var = μ²/α.",
+        "label": "$\\mathrm{Gamma}(\\mu = 8, \\alpha = 2)$",
+        "attempt_cue": "Use $\\operatorname{Var} = \\mu^{2}/\\alpha$ and $V(\\mu) = \\mu^{2}$.",
+        "explanation": "Gamma has variance function $V(\\mu) = \\mu^{2}$; with shape $\\alpha$ the scale relates as $\\operatorname{Var} = \\mu^{2}/\\alpha$.",
         "calculation": "$E = 8$; $Var = 64/2 = 32$; $V(\\mu) = \\mu^{2}$",
         "result": "$Gamma: E = 8, Var = 32, V(\\mu) = \\mu^{2}$"
       }
     ],
     "final_answer": "$Poisson: E = Var = 3, V(\\mu) = \\mu. Binomial: E = 8, Var = 4.8. Gamma: E = 8, Var = 32, V(\\mu) = \\mu^{2}.$",
-    "common_pitfall": "Using V(μ) = μ for Gamma, or forgetting the (1 − p) factor in the Binomial variance.",
+    "common_pitfall": "Using $V(\\mu) = \\mu$ for Gamma, or forgetting the $(1 - p)$ factor in the Binomial variance.",
     "syllabus_ref": "4.2.2"
   }
 }

@@ -252,7 +252,7 @@
       {
         "id": "S2",
         "label": "Evaluate the simple fit",
-        "attempt_cue": "Substitute x₁ = 4 into Ŷ_s.",
+        "attempt_cue": "Substitute $x_{1} = 4$ into $\\hat{Y}_{s}$.",
         "explanation": "The simple model ignores x₂ even if that covariate is available.",
         "calculation": "$\\hat{Y}_s = 2.0 + 0.5 \\times 4 = 2.0 + 2.0 = 4.0$",
         "result": "Ŷ_s = 4.0 (£000)"
@@ -260,14 +260,14 @@
       {
         "id": "S3",
         "label": "Evaluate the multiple fit",
-        "attempt_cue": "Substitute x₁ = 4 and x₂ = 5 into Ŷ_m.",
+        "attempt_cue": "Substitute $x_{1} = 4$ and $x_{2} = 5$ into $\\hat{Y}_{m}$.",
         "explanation": "The multiple model adjusts the age contribution and adds the sum-insured term jointly.",
         "calculation": "$\\hat{Y}_m = 1.5 + 0.4 \\times 4 + 0.3 \\times 5 = 1.5 + 1.6 + 1.5 = 4.6$",
         "result": "Ŷ_m = 4.6 (£000)"
       }
     ],
     "final_answer": "Ŷ_s = 4.0 (£000) is simple (one X); Ŷ_m = 4.6 (£000) is multiple (two X's). Least-squares estimation is a separate step from writing the model form.",
-    "common_pitfall": "Calling Ŷ_m 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same (x₁, x₂).",
+    "common_pitfall": "Calling $\\hat{Y}_{m}$ 'simple' because it is still linear in the parameters, or assuming the two fitted values must coincide at the same $(x_{1}, x_{2})$.",
     "syllabus_ref": "4.1.2"
   }
 }

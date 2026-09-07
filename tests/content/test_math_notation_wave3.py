@@ -310,15 +310,16 @@ def test_wave3_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 1245
-    assert checked["totals"]["migrated"] == 675
-    assert checked["totals"]["needs_migration"] == 1245
+    assert checked["totals"]["remaining_backlog"] == 1221
+    assert checked["totals"]["migrated"] == 697
+    assert checked["totals"]["needs_migration"] == 1221
     assert live["totals"] == checked["totals"]
 
     wave3_files = set(wave3.WAVE3_FILES)
     migrated = 0
     still_pending_review = 0
     confident_backlog = 0
+    manual_excluded = 0
     for row in live["packages"]:
         if row["package_file"] not in wave3_files:
             continue
@@ -334,11 +335,248 @@ def test_wave3_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 146
-    assert still_pending_review == 24
+            if item["migration_status"] == "correctly_excluded":
+                manual_excluded += 1
+                assert item["category"] == "correctly_excluded"
+                assert item["needs_manual_review"] is False
+                assert item["reason_code"] == "manual_review_prose_exclusion"
+    assert migrated == 168
+    assert still_pending_review == 0
     assert confident_backlog == 0
+    assert manual_excluded == 2
 
 
 def test_wave3_packages_disjoint_from_wave1_and_wave2() -> None:
     assert set(wave3.WAVE3_FILES).isdisjoint(set(wave1.WAVE1_FILES))
     assert set(wave3.WAVE3_FILES).isdisjoint(set(wave2.WAVE2_FILES))
+
+
+# Locked Wave 3 leftover migrations (manual-review close-out).
+_WAVE3_LEFTOVER_MIGRATIONS = (
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.steps[0].label",
+        r"$\mathrm{Poisson}(\lambda = 3)$",
+    ),
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.steps[0].explanation",
+        r"For Poisson, mean equals variance and the variance function is "
+        r"$V(\mu) = \mu$ with $\phi = 1$.",
+    ),
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.steps[2].label",
+        r"$\mathrm{Gamma}(\mu = 8, \alpha = 2)$",
+    ),
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Use $\operatorname{Var} = \mu^{2}/\alpha$ and $V(\mu) = \mu^{2}$.",
+    ),
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.steps[2].explanation",
+        r"Gamma has variance function $V(\mu) = \mu^{2}$; with shape $\alpha$ "
+        r"the scale relates as $\operatorname{Var} = \mu^{2}/\alpha$.",
+    ),
+    (
+        "4.2.2-mean-variance-cs1003.json",
+        "worked_example.common_pitfall",
+        r"Using $V(\mu) = \mu$ for Gamma, or forgetting the $(1 - p)$ factor "
+        "in the Binomial variance.",
+    ),
+    (
+        "4.2.6-deviance-estimation-cs1003.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Compute $D/\phi$.",
+    ),
+    (
+        "4.2.6-deviance-estimation-cs1003.json",
+        "worked_example.steps[1].explanation",
+        r"With $\phi = 1$ the scaled deviance equals the total deviance.",
+    ),
+    (
+        "4.2.6-deviance-estimation-cs1003.json",
+        "worked_example.common_pitfall",
+        r"Omitting the factor of 2 in the deviance contribution, or treating "
+        r"$D/\phi$ as something other than scaled deviance when $\phi = 1$.",
+    ),
+    (
+        "3.2.6-ci-two-sample-cs1011.json",
+        "knowledge_checks[1].common_mistake",
+        r"Applying independent two-sample formulas to paired rows (or the "
+        r"reverse) because $n_{1} = n_{2}$.",
+    ),
+    (
+        "3.2.6-ci-two-sample-cs1011.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute $\bar{x}_{A} - \bar{x}_{B}$.",
+    ),
+    (
+        "3.2.6-ci-two-sample-cs1011.json",
+        "worked_example.steps[0].explanation",
+        r"The natural centre for $\mu_{A} - \mu_{B}$ is the difference of "
+        "sample means.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1013.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Substitute $x_{1} = 4$ into $\hat{Y}_{s}$.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1013.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Substitute $x_{1} = 4$ and $x_{2} = 5$ into $\hat{Y}_{m}$.",
+    ),
+    (
+        "4.1.2-simple-multiple-cs1013.json",
+        "worked_example.common_pitfall",
+        r"Calling $\hat{Y}_{m}$ 'simple' because it is still linear in the "
+        r"parameters, or assuming the two fitted values must coincide at the "
+        r"same $(x_{1}, x_{2})$.",
+    ),
+    (
+        "5.1.9-bayes-vs-eb-cs1015.json",
+        "worked_example.steps[0].attempt_cue",
+        r"$Z = \frac{4}{4+6}$; $P = Z\times 900 + (1-Z)\times 700$.",
+    ),
+    (
+        "5.1.9-bayes-vs-eb-cs1015.json",
+        "worked_example.steps[1].attempt_cue",
+        r"$\hat{Z} = \frac{4}{4+12}$; "
+        r"$P = \hat{Z}\times 900 + (1-\hat{Z})\times 750$.",
+    ),
+    (
+        "4.2.6-deviance-estimation-cs1014.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Compute $D/\phi$.",
+    ),
+    (
+        "3.2.3-ci-given-sampling-distribution-cs1011.json",
+        "knowledge_checks[1].explanation",
+        r"From $\chi^{2}_{L} < 2n \bar{X} / \theta < \chi^{2}_{U}$, taking "
+        r"reciprocals (and reversing inequalities) yields bounds "
+        r"$2n \bar{X} / \chi^{2}_{U}$ and $2n \bar{X} / \chi^{2}_{L}$. The "
+        "given pivot must be used; Normal-mean cookbooks are not a substitute.",
+    ),
+    (
+        "3.2.7-ci-paired-means-cs1011.json",
+        "worked_example.steps[0].explanation",
+        r"Paired data are analysed through the differences $d_{i}$.",
+    ),
+    (
+        "5.1.3-posterior-simple-cs1003.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Compute $\alpha'/\beta'$.",
+    ),
+    (
+        "revision-linear-regression-cs1013.json",
+        "worked_example.steps[0].explanation",
+        r"OLS chooses coefficients that minimise the sum over $i$ of "
+        r"$(y_{i} - \hat{y}_{i})^{2}$.",
+    ),
+)
+
+# Locked Wave 3 leftover prose exclusions (byte-identical; not converted).
+_WAVE3_LEFTOVER_EXCLUSIONS = (
+    (
+        "4.2.6-deviance-estimation-cs1003.json",
+        "mission.prior_bridge",
+        "Yesterday η forms (4.2.5). Today estimation/deviance language.",
+    ),
+    (
+        "4.2.6-deviance-estimation-cs1014.json",
+        "mission.why_now",
+        "4.2.6 is contiguous after η. Without deviance/estimation, model "
+        "choice and diagnostics lack a criterion.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE3_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE3_LEFTOVER_MIGRATIONS],
+)
+def test_wave3_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE3_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE3_LEFTOVER_EXCLUSIONS],
+)
+def test_wave3_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+
+
+def test_wave3_leftover_knowledge_check_scoring_unaffected() -> None:
+    """KC fields touched in leftovers are common_mistake/explanation only."""
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    targets = (
+        "3.2.6-ci-two-sample-cs1011.json",
+        "3.2.3-ci-given-sampling-distribution-cs1011.json",
+    )
+    by_id = {
+        (r["package_file"], r["item_id"]): r
+        for r in snapshot["items"]
+        if r["package_file"] in targets
+    }
+    assert by_id
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    seen: set[tuple[str, str]] = set()
+    for fname in targets:
+        pack = next(
+            p for p in loader.all_approved() if Path(p.source_path).name == fname
+        )
+        substance = substance_from_package(
+            pack, curriculum_identity="CS1:wave3", topic_id=pack.topic_code
+        )
+        practice = [
+            a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+        ]
+        for act in practice:
+            item = act.scoreable
+            assert item is not None
+            key = (fname, item.item_id)
+            expected = by_id[key]
+            seen.add(key)
+            assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+            assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+            exp_tol = expected["numeric_tolerance"]
+            if exp_tol is None:
+                assert item.answer_key.numeric_tolerance is None
+            else:
+                assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+            choice_ids = [
+                c[0] if not isinstance(c, str) else c for c in item.choices
+            ]
+            assert choice_ids == expected["choice_ids"]
+            for probe in expected["verdicts"]:
+                result = score_practice_response(item, probe["response"])
+                assert result.scored is probe["scored"]
+                assert result.correct is probe["correct"]
+                assert result.matched_key == probe["matched_key"]
+    assert seen == set(by_id)

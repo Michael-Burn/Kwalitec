@@ -251,7 +251,7 @@
       {
         "id": "S2",
         "label": "Scaled deviance",
-        "attempt_cue": "Compute D/φ.",
+        "attempt_cue": "Compute $D/\\phi$.",
         "explanation": "Scaled deviance divides total deviance by the scale parameter.",
         "calculation": "$D/\\phi = 18.4 / 1 = 18.4$",
         "result": "Scaled deviance = 18.4"

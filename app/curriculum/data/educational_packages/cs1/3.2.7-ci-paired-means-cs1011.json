@@ -245,7 +245,7 @@
         "id": "S1",
         "label": "Mean difference",
         "attempt_cue": "Average the eight differences.",
-        "explanation": "Paired data are analysed through the differences d_i.",
+        "explanation": "Paired data are analysed through the differences $d_{i}$.",
         "calculation": "$(12+8-2+15+10+5+9+7)/8 = 64/8 = 8$",
         "result": "$\\bar{d} = 8$"
       },

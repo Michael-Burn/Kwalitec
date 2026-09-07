@@ -248,7 +248,7 @@
       {
         "id": "S2",
         "label": "Posterior mean",
-        "attempt_cue": "Compute α'/β'.",
+        "attempt_cue": "Compute $\\alpha'/\\beta'$.",
         "explanation": "Under the shape-rate parameterisation the Gamma mean is shape/rate.",
         "calculation": "$Mean = 12/7 \\approx 1.7143 per year$",
         "result": "$Posterior mean \\approx 1.7143$"
