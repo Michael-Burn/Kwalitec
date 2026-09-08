@@ -250,14 +250,14 @@
         "id": "S1",
         "label": "Characterise the parent shape",
         "attempt_cue": "Name the skewness feature of Exponential(400).",
-        "explanation": "An Exponential waiting-time law is right-skewed and supported on (0, ∞). Matching mean and sd to a Normal does not remove that skew for individual observations.",
+        "explanation": "An Exponential waiting-time law is right-skewed and supported on $(0, \\infty)$. Matching mean and sd to a Normal does not remove that skew for individual observations.",
         "calculation": "$Parent: right-skewed, support (0, ∞)$; $Normal overlay is symmetric on (-∞, ∞)$",
         "result": "$Parent shape ≠ Normal shape$"
       },
       {
         "id": "S2",
         "label": "Judge the n = 20 individual-sample overlay",
-        "attempt_cue": "Decide whether Normal(400, 400²) describes the histogram of draws.",
+        "attempt_cue": "Decide whether $Normal(400, 400^{2})$ describes the histogram of draws.",
         "explanation": "At n = 20, simulated individual draws still show the Exponential skew and a hard floor at 0. A matched Normal puts mass on negative values and understates the right tail, so the overlay is a poor description of the sample histogram.",
         "calculation": "Judgement: poor fit of Normal overlay to individual Exponential draws at n = 20",
         "result": "Normal overlay fails for individual draws"

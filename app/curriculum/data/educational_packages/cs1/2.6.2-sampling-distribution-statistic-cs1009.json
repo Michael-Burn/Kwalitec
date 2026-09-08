@@ -243,7 +243,7 @@
         "note": "one observed sample mean"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of X̄, then classify 78.",
+    "attempt_before_reveal": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of $\\bar{X}$, then classify 78.",
     "steps": [
       {
         "id": "S1",

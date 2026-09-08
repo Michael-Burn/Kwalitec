@@ -256,7 +256,7 @@
       {
         "id": "S2",
         "label": "Half-width of the approximate 95% CI",
-        "attempt_cue": "Multiply SÊ by 1.96.",
+        "attempt_cue": "Multiply $\\widehat{\\mathrm{SE}}$ by $1.96$.",
         "explanation": "Wald interval uses the Normal quantile times the estimated SE.",
         "calculation": "$1.96 \\times 0.03125 = 0.06125$",
         "result": "half-width = 0.06125"

@@ -218,7 +218,7 @@
   },
   "published_at": "2026-08-02",
   "worked_example": {
-    "title": "Mean and variance of X̄ and mean of S²",
+    "title": "Mean and variance of $\\bar{X}$ and mean of $S^{2}$",
     "problem_statement": "A population has mean $\\mu = 12$ and variance $\\sigma^{2} = 36$. A random sample of size $n = 9$ is drawn. Express $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ in terms of $\\mu$, $\\sigma^{2}$, and $n$, and evaluate each numerically. Do not invoke Normal sampling laws or the t-statistic.",
     "given": [
       {

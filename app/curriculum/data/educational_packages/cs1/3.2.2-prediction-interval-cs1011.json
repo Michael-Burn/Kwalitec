@@ -266,8 +266,8 @@
       {
         "id": "S3",
         "label": "Prediction interval",
-        "attempt_cue": "Compute 500 ± 79.953.",
-        "explanation": "Centre at x̄; the wider SE distinguishes prediction from mean estimation.",
+        "attempt_cue": "Compute $500 \\pm 79.953$.",
+        "explanation": "Centre at $\\bar{x}$; the wider SE distinguishes prediction from mean estimation.",
         "calculation": "$500 - 79.953 \\approx 420.047$; $500 + 79.953 \\approx 579.953$",
         "result": "(420.047, 579.953)"
       }

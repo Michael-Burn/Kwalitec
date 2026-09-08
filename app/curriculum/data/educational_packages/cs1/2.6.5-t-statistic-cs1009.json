@@ -257,7 +257,7 @@
         "id": "S2",
         "label": "Evaluate t and degrees of freedom",
         "attempt_cue": "Compute $\\frac{\\bar{X} - \\mu_{0}}{\\mathrm{SE}}$ and $\\mathrm{df}$.",
-        "explanation": "Under Normal sampling and H₀, t follows Student-t with n − 1 degrees of freedom.",
+        "explanation": "Under Normal sampling and $H_{0}$, t follows Student-t with $n - 1$ degrees of freedom.",
         "calculation": "$t = \\frac{105 - 100}{2} = 2.5$; $df = 16 - 1 = 15$",
         "result": "t = 2.5 on 15 df"
       },

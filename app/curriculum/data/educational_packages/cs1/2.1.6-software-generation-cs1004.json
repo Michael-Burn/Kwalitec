@@ -228,7 +228,7 @@
       {
         "symbol": "continuous family",
         "value": "Exponential(mean $\\theta = 5$)",
-        "note": "waiting times in days; support (0, ∞)"
+        "note": "waiting times in days; support $(0, \\infty)$"
       },
       {
         "symbol": "n",

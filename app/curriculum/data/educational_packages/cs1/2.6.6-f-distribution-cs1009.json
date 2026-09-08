@@ -267,7 +267,7 @@
       }
     ],
     "final_answer": "F = 2 ~ F(9, 7) under equal variances. A t-statistic for a mean is the wrong tool for a two-sample variance comparison.",
-    "common_pitfall": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as n₁ and n₂ instead of n₁ − 1 and n₂ − 1.",
+    "common_pitfall": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as $n_{1}$ and $n_{2}$ instead of $n_{1} - 1$ and $n_{2} - 1$.",
     "syllabus_ref": "2.6.6"
   }
 }

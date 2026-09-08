@@ -224,7 +224,7 @@
       {
         "symbol": "generative story",
         "value": "strictly positive, right-skewed severities; approximately Normal on the log scale",
-        "note": "continuous support on (0, ∞)"
+        "note": "continuous support on $(0, \\infty)$"
       },
       {
         "symbol": "ln(X)",

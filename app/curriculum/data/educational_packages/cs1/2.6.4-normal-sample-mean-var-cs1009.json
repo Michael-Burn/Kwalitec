@@ -238,8 +238,8 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Sampling distribution of X̄",
-        "attempt_cue": "Name the Normal parameters for X̄.",
+        "label": "Sampling distribution of $\\bar{X}$",
+        "attempt_cue": "Name the Normal parameters for $\\bar{X}$.",
         "explanation": "For iid Normal observations, the sample mean is exactly Normal with mean $\\mu$ and variance $\\frac{\\sigma^{2}}{n}$.",
         "calculation": "$\\bar{X} \\sim \\operatorname{Normal}(100, \\frac{25}{16}) = \\operatorname{Normal}(100, 1.5625)$",
         "result": "$\\bar{X} \\sim \\operatorname{Normal}(100, 1.5625)$"

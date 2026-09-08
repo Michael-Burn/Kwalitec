@@ -232,13 +232,13 @@
         "note": "fixed observation interval"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Link process rate × time to the Poisson count mean, then name the interarrival family.",
+    "attempt_before_reveal": "CMP closed. Link process $\\mathrm{rate} \\times \\mathrm{time}$ to the Poisson count mean, then name the interarrival family.",
     "steps": [
       {
         "id": "S1",
         "label": "Name the count distribution",
-        "attempt_cue": "State N(t) for a Poisson process with rate λ.",
-        "explanation": "In a homogeneous Poisson process with rate λ, the count in an interval of length t is Poisson with mean λt.",
+        "attempt_cue": "State $N(t)$ for a Poisson process with rate $\\lambda$.",
+        "explanation": "In a homogeneous Poisson process with rate $\\lambda$, the count in an interval of length t is Poisson with mean $\\lambda t$.",
         "calculation": "$N(4) \\sim \\mathrm{Poisson}(\\lambda t = 1.5 \\times 4 = 6)$",
         "result": "N(4) ~ Poisson(6)"
       },

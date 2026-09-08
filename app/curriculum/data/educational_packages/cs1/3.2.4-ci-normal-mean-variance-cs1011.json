@@ -129,7 +129,7 @@
       "accepted_keywords": [],
       "explanation": "Normal mean and Normal variance intervals use different pivots (t/z versus chi-square). One does not stand in for the other, and binomial recipes are a different setting.",
       "model_answer": "Mean CI via Normal/t pivot; variance CI via chi-square pivot on $s^{2}$.",
-      "common_mistake": "Treating the mean CI as enough, or reusing the mean formula for σ².",
+      "common_mistake": "Treating the mean CI as enough, or reusing the mean formula for $\\sigma^{2}$.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -173,7 +173,7 @@
       "accepted_keywords": [],
       "explanation": "With $\\sigma$ unknown, the mean CI uses $t_{n-1}$. The variance CI inverts the chi-square pivot for $\\frac{(n-1)s^{2}}{\\sigma^{2}}$. Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
       "model_answer": "t interval for $\\mu$; chi-square interval for $\\sigma^{2}$; both required.",
-      "common_mistake": "Using z with unknown σ, skipping the variance CI, or forcing a Normal-mean SE onto σ².",
+      "common_mistake": "Using $z$ with unknown $\\sigma$, skipping the variance CI, or forcing a Normal-mean SE onto $\\sigma^{2}$.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -251,7 +251,7 @@
         "id": "S1",
         "label": "Standard error",
         "attempt_cue": "Compute $s/\\sqrt{n}$ with $\\sqrt{16}$ = 4.",
-        "explanation": "With σ unknown, replace σ by s in the SE of the mean.",
+        "explanation": "With $\\sigma$ unknown, replace $\\sigma$ by $s$ in the SE of the mean.",
         "calculation": "6 / 4 = 1.5",
         "result": "SE = 1.5"
       },
@@ -266,8 +266,8 @@
       {
         "id": "S3",
         "label": "Interval",
-        "attempt_cue": "Compute 100 ± 3.1965.",
-        "explanation": "Centre at x̄.",
+        "attempt_cue": "Compute $100 \\pm 3.1965$.",
+        "explanation": "Centre at $\\bar{x}$.",
         "calculation": "$100 - 3.1965 = 96.8035$; $100 + 3.1965 = 103.1965$",
         "result": "(96.8035, 103.1965)"
       }

@@ -233,7 +233,7 @@
         "note": "number of bootstrap replicates"
       }
     ],
-    "attempt_before_reveal": "CMP closed. First compute θ̄*, then the average squared deviation.",
+    "attempt_before_reveal": "CMP closed. First compute $\\bar{\\theta}^{*}$, then the average squared deviation.",
     "steps": [
       {
         "id": "S1",

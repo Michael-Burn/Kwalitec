@@ -173,7 +173,7 @@
       "accepted_keywords": [],
       "explanation": "From $\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U}$, taking reciprocals (and reversing inequalities) yields bounds $2n \\bar{X} / \\chi^{2}_{U}$ and $2n \\bar{X} / \\chi^{2}_{L}$. The given pivot must be used; Normal-mean cookbooks are not a substitute.",
       "model_answer": "Invert $P(\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U})=1-\\alpha$ to bounds in $2n \\bar{X} / \\chi^{2}$; refuse Normal-mean template.",
-      "common_mistake": "Ignoring the given χ² pivot or inverting the inequality incorrectly.",
+      "common_mistake": "Ignoring the given $\\chi^{2}$ pivot or inverting the inequality incorrectly.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -240,12 +240,12 @@
         "note": "standard Normal quantile"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Invert θ̂ ~ N(θ, 0.01²) into θ̂ ± 1.96 × 0.01.",
+    "attempt_before_reveal": "CMP closed. Invert $\\hat{\\theta} \\sim N(\\theta, 0.01^{2})$ into $\\hat{\\theta} \\pm 1.96 \\times 0.01$.",
     "steps": [
       {
         "id": "S1",
         "label": "Identify the pivot half-width",
-        "attempt_cue": "Compute 1.96 × 0.01.",
+        "attempt_cue": "Compute $1.96 \\times 0.01$.",
         "explanation": "When the sampling distribution is given as Normal with known SD, the CI is the estimate plus/minus z times that SD.",
         "calculation": "$1.96 \\times 0.01 = 0.0196$",
         "result": "half-width = 0.0196"
@@ -253,8 +253,8 @@
       {
         "id": "S2",
         "label": "Form the interval",
-        "attempt_cue": "Compute 0.42 ± 0.0196.",
-        "explanation": "Centre at the observed θ̂.",
+        "attempt_cue": "Compute $0.42 \\pm 0.0196$.",
+        "explanation": "Centre at the observed $\\hat{\\theta}$.",
         "calculation": "$0.42 - 0.0196 = 0.4004$; $0.42 + 0.0196 = 0.4396$",
         "result": "(0.4004, 0.4396)"
       }

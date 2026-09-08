@@ -1,35 +1,35 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T06:06:26Z",
+  "generated_at": "2026-09-08T06:31:25Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 1931,
+    "already_compliant": 1970,
     "needs_migration": 0,
-    "correctly_excluded": 272,
-    "needs_manual_review": 239,
-    "confident_automated": 1964,
+    "correctly_excluded": 233,
+    "needs_manual_review": 175,
+    "confident_automated": 2028,
     "remaining_backlog": 0,
-    "migrated": 1912,
+    "migrated": 1951,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 1931,
-    "isolated_symbol_in_narrative_ambiguous": 172,
-    "mathish_role_unclear": 67,
-    "manual_review_prose_exclusion": 32,
+    "fully_covered_by_current_typesetting": 1970,
+    "isolated_symbol_in_narrative_ambiguous": 131,
+    "manual_review_prose_exclusion": 57,
+    "mathish_role_unclear": 44,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 1912,
-    "equationish": 1466,
+    "dollar_delimited": 1951,
+    "equationish": 1482,
     "actuarial_fn": 502,
-    "ascii_approx": 232,
+    "ascii_approx": 234,
     "bare_latex": 195,
-    "greek": 189,
-    "unicode_ops": 51,
+    "greek": 177,
+    "unicode_ops": 38,
     "compound": 26
   },
   "by_risk_tier_needs_migration": {
@@ -40,7 +40,7 @@
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
-    "needs_manual_review_count": 239
+    "needs_manual_review_count": 175
   },
   "wave_recommendation": {
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
@@ -103,10 +103,10 @@
       "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
       "counts": {
         "mathish_strings": 7,
-        "already_compliant": 6,
+        "already_compliant": 7,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -135,15 +135,15 @@
           "package_file": "2.1.2-continuous-cs1002.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "continuous support on (0, ∞)",
-          "text_hash": "f77653e2126aff9c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "continuous support on $(0, \\infty)$",
+          "text_hash": "0cb46530d61f72ab",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -440,10 +440,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-ALPHA",
       "counts": {
         "mathish_strings": 8,
-        "already_compliant": 7,
+        "already_compliant": 8,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -488,15 +488,15 @@
           "package_file": "1.2.2-eda-association-ep001.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compare |r| and |ρ| in light of the scatter.",
-          "text_hash": "855f97937404232a",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compare $|r|$ and $|\\rho|$ in light of the scatter.",
+          "text_hash": "48466db88f938458",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -916,10 +916,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
       "counts": {
         "mathish_strings": 13,
-        "already_compliant": 10,
+        "already_compliant": 13,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -965,15 +965,15 @@
           "package_file": "2.1.4-poisson-process-cs1004.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Link process rate × time to the Poisson count mean, then name the interarrival family.",
-          "text_hash": "183efdd762733d82",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Link process $\\mathrm{rate} \\times \\mathrm{time}$ to the Poisson count mean, then name the interarrival family.",
+          "text_hash": "adee259a5145da7f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -981,15 +981,15 @@
           "package_file": "2.1.4-poisson-process-cs1004.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "State N(t) for a Poisson process with rate λ.",
-          "text_hash": "f2ec98937151a714",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "State $N(t)$ for a Poisson process with rate $\\lambda$.",
+          "text_hash": "db8e68e29c91f4d3",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -997,15 +997,15 @@
           "package_file": "2.1.4-poisson-process-cs1004.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "In a homogeneous Poisson process with rate λ, the count in an interval of length t is Poisson with mean λt.",
-          "text_hash": "8cfd05aeab3ee0c7",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "In a homogeneous Poisson process with rate $\\lambda$, the count in an interval of length t is Poisson with mean $\\lambda t$.",
+          "text_hash": "c98e6ca99ec832a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -1163,7 +1163,7 @@
         "already_compliant": 19,
         "needs_migration": 0,
         "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -1288,10 +1288,10 @@
           "text": "Uses the Exponential CDF with mean θ, not the survival function alone.",
           "text_hash": "30950f69381731dc",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -1533,10 +1533,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
       "counts": {
         "mathish_strings": 9,
-        "already_compliant": 8,
+        "already_compliant": 9,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -1635,15 +1635,15 @@
           "package_file": "2.1.6-software-generation-cs1004.json",
           "field_path": "worked_example.given[1].note",
           "field_group": "worked_example.given[].note",
-          "text": "waiting times in days; support (0, ∞)",
-          "text_hash": "c7a0707f859f8920",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "waiting times in days; support $(0, \\infty)$",
+          "text_hash": "95438b80e27ef36a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -2741,10 +2741,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
         "mathish_strings": 35,
-        "already_compliant": 34,
+        "already_compliant": 35,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -3019,15 +3019,15 @@
           "package_file": "2.2.4-linear-combinations-cs1005.json",
           "field_path": "worked_example.title",
           "field_group": "worked_example.title",
-          "text": "Mean and variance of 2X − Y with nonzero covariance",
-          "text_hash": "dee29f00f7df2cd6",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Mean and variance of $2X - Y$ with nonzero covariance",
+          "text_hash": "19d59675c8940a6a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -6773,10 +6773,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-THETA",
       "counts": {
         "mathish_strings": 18,
-        "already_compliant": 12,
+        "already_compliant": 14,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "correctly_excluded": 4,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -6790,10 +6790,10 @@
           "text": "The object to compare is the repeated-sampling distribution of X̄, and changing n reveals convergence behaviour.",
           "text_hash": "15a06912b1d32401",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -6940,15 +6940,15 @@
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "An Exponential waiting-time law is right-skewed and supported on (0, ∞). Matching mean and sd to a Normal does not remove that skew for individual observations.",
-          "text_hash": "c83c4d27e51db6bf",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "An Exponential waiting-time law is right-skewed and supported on $(0, \\infty)$. Matching mean and sd to a Normal does not remove that skew for individual observations.",
+          "text_hash": "cf210171100c0a63",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -6990,14 +6990,18 @@
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Decide whether Normal(400, 400²) describes the histogram of draws.",
-          "text_hash": "ae071374bada6bc7",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Decide whether $Normal(400, 400^{2})$ describes the histogram of draws.",
+          "text_hash": "aae1ee1184bf0162",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
@@ -7007,10 +7011,10 @@
           "text": "State what improves when comparing sampling distributions of X̄ at large n.",
           "text_hash": "edd50eeed653fce5",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -7021,10 +7025,10 @@
           "text": "The CLT concerns the sample mean, not individual draws. Histograms of X̄ from many large-n replications become closer to Normal even when the parent is Exponential; that is a different comparison from overlaying Normal on raw waiting times.",
           "text_hash": "69a59249e57372a9",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -7069,10 +7073,10 @@
           "text": "Treating a matched-mean-and-sd Normal overlay as automatically adequate for skewed individual draws, or confusing that histogram comparison with a CLT statement about X̄.",
           "text_hash": "f82f9818f4ba47e8",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         }
       ]
@@ -7084,10 +7088,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 17,
-        "already_compliant": 15,
+        "already_compliant": 16,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -7101,10 +7105,10 @@
           "text": "Two independent Normal samples → variance ratio → F(df₁, df₂) → refuse using t for that job.",
           "text_hash": "a781d2156a054c93",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -7367,15 +7371,16 @@
           "package_file": "2.6.6-f-distribution-cs1009.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as n₁ and n₂ instead of n₁ − 1 and n₂ − 1.",
-          "text_hash": "8d32ceed33c0852c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Using t with pooled sd to compare variances, or assigning F degrees of freedom as $n_{1}$ and $n_{2}$ instead of $n_{1} - 1$ and $n_{2} - 1$.",
+          "text_hash": "f3dd70a3ec703d36",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited",
+            "equationish"
           ]
         }
       ]
@@ -7387,10 +7392,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 41,
-        "already_compliant": 38,
+        "already_compliant": 39,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -7607,10 +7612,10 @@
           "text": "Confusing population variance, variance of the sample mean, and the target of S².",
           "text_hash": "85b393cfdb887532",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -7783,14 +7788,17 @@
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
           "field_path": "worked_example.title",
           "field_group": "worked_example.title",
-          "text": "Mean and variance of X̄ and mean of S²",
-          "text_hash": "fa15c01ccd4bc500",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Mean and variance of $\\bar{X}$ and mean of $S^{2}$",
+          "text_hash": "66e92bd2f24608a9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
@@ -7889,10 +7897,10 @@
           "text": "For a random sample with finite mean, the sample mean is unbiased for μ.",
           "text_hash": "744c66e7554738a3",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -8141,10 +8149,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 37,
-        "already_compliant": 29,
+        "already_compliant": 31,
         "needs_migration": 0,
-        "correctly_excluded": 8,
-        "needs_manual_review": 6,
+        "correctly_excluded": 6,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -8158,10 +8166,10 @@
           "text": "Today I will force Normal-sample laws for X̄ and S² (χ² form as CMP). Refuse treating moment results alone as the distributional laws.",
           "text_hash": "2b234a78662b402f",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -8192,10 +8200,10 @@
           "text": "2.6.4 is the distributional hinge before student-t when σ is unknown.",
           "text_hash": "fb326ae6b58362cb",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -8208,10 +8216,10 @@
           "text": "You will be able to state the Normal and χ² sampling laws for X̄ and S² under Normal samples, without jumping to t.",
           "text_hash": "a58b461cbf5a4a43",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -8224,10 +8232,10 @@
           "text": "Closed-book, state the sampling distribution of X̄ for Normal samples (CMP form).",
           "text_hash": "2db0fa18652228eb",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -8571,28 +8579,32 @@
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
           "field_path": "worked_example.steps[0].label",
           "field_group": "worked_example.steps[].label",
-          "text": "Sampling distribution of X̄",
-          "text_hash": "8a26d82a7e34a279",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Sampling distribution of $\\bar{X}$",
+          "text_hash": "f69f961409080f00",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Name the Normal parameters for X̄.",
-          "text_hash": "e0c3841f1805b8b4",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Name the Normal parameters for $\\bar{X}$.",
+          "text_hash": "b4541e3cb4183379",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
@@ -8812,10 +8824,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 15,
-        "already_compliant": 13,
+        "already_compliant": 14,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -8912,14 +8924,16 @@
           "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of X̄, then classify 78.",
-          "text_hash": "1c1031f9b69d8dfb",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "CMP closed. Define the sampling distribution over repeated samples, then compute mean and variance of $\\bar{X}$, then classify 78.",
+          "text_hash": "ab9d06d192837fb4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
@@ -8929,10 +8943,10 @@
           "text": "The sampling distribution of the sample mean is the probability distribution of values X̄ would take over repeated random samples of the same size.",
           "text_hash": "d24a48891bc30ed6",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -9089,10 +9103,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 35,
-        "already_compliant": 27,
+        "already_compliant": 28,
         "needs_migration": 0,
-        "correctly_excluded": 8,
-        "needs_manual_review": 8,
+        "correctly_excluded": 7,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -9106,10 +9120,10 @@
           "text": "Today I will force the candidate through the t construction (unknown σ). Refuse treating Normal X̄ laws with known σ as having finished t.",
           "text_hash": "a0ec87d7b2bb9cad",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9122,10 +9136,10 @@
           "text": "Produce the cognitive move from Normal sample with unknown σ to the t-statistic and its sampling distribution (CMP).",
           "text_hash": "515c265c2ea8f8db",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9155,10 +9169,10 @@
           "text": "Yesterday you stated Normal sampling distributions for mean and variance (2.6.4). Today forms the t-statistic when σ is unknown.",
           "text_hash": "df27117e0df77154",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9188,10 +9202,10 @@
           "text": "Sketch unknown-σ → t before CMP.",
           "text_hash": "5c9dfe1b6dfb76d1",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9204,10 +9218,10 @@
           "text": "Watch for using z when S replaces σ without naming t.",
           "text_hash": "d25e2fbbc18ca906",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9537,10 +9551,10 @@
           "text": "With σ unknown, the studentised mean uses the sample sd in the denominator.",
           "text_hash": "705da76fcc2dbc96",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9584,15 +9598,16 @@
           "package_file": "2.6.5-t-statistic-cs1009.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Under Normal sampling and H₀, t follows Student-t with n − 1 degrees of freedom.",
-          "text_hash": "3d3ce743e056acb7",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Under Normal sampling and $H_{0}$, t follows Student-t with $n - 1$ degrees of freedom.",
+          "text_hash": "f6956cc429e1c0bb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -9620,10 +9635,10 @@
           "text": "Using S inside a Normal z formula pretends σ is known. The t law accounts for estimating σ. An F comparison of two sample variances is a different sampling problem from this one-sample mean pivot.",
           "text_hash": "2c6b7fed16dd5c3c",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -9688,10 +9703,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
         "mathish_strings": 21,
-        "already_compliant": 20,
+        "already_compliant": 21,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -9961,14 +9976,16 @@
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Multiply SÊ by 1.96.",
-          "text_hash": "3ab234459e45595a",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Multiply $\\widehat{\\mathrm{SE}}$ by $1.96$.",
+          "text_hash": "146bc9ebdbc493cc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
@@ -10063,10 +10080,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
         "mathish_strings": 20,
-        "already_compliant": 16,
+        "already_compliant": 17,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 4,
+        "correctly_excluded": 3,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -10096,10 +10113,10 @@
           "text": "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
           "text_hash": "8976e55ba7026f52",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -10212,15 +10229,16 @@
           "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. First compute θ̄*, then the average squared deviation.",
-          "text_hash": "1368cbece7254204",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "CMP closed. First compute $\\bar{\\theta}^{*}$, then the average squared deviation.",
+          "text_hash": "071bd11cd6a855f6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -10231,10 +10249,10 @@
           "text": "θ̄* centres the bootstrap deviations used in the SE formula.",
           "text_hash": "a6ef428640b644d1",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -10282,10 +10300,10 @@
           "text": "Each replicate's squared distance from θ̄* enters the bootstrap variance.",
           "text_hash": "755e3c5c2e07e93d",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -10420,10 +10438,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
         "mathish_strings": 32,
-        "already_compliant": 25,
+        "already_compliant": 32,
         "needs_migration": 0,
-        "correctly_excluded": 7,
-        "needs_manual_review": 7,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -10608,14 +10626,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "bias of T₁",
-          "text_hash": "7a16a922d0519b36",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "bias of $T_{1}$",
+          "text_hash": "5ef389679912e834",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10639,14 +10660,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.given[1].note",
           "field_group": "worked_example.given[].note",
-          "text": "variance of T₁",
-          "text_hash": "602e54cd1663d77d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "variance of $T_{1}$",
+          "text_hash": "aa2b5dc3e07f0746",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10670,14 +10694,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.given[2].note",
           "field_group": "worked_example.given[].note",
-          "text": "bias of T₂",
-          "text_hash": "d7959115cf3f9d0e",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "bias of $T_{2}$",
+          "text_hash": "39c91bc5c3d6f10b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10701,14 +10728,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.given[3].note",
           "field_group": "worked_example.given[].note",
-          "text": "variance of T₂",
-          "text_hash": "36d1ea1aad66c3b8",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "variance of $T_{2}$",
+          "text_hash": "17d2b73e1f09bc89",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10732,14 +10762,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.steps[0].label",
           "field_group": "worked_example.steps[].label",
-          "text": "MSE of T₁",
-          "text_hash": "f576fd013bea5cab",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "MSE of $T_{1}$",
+          "text_hash": "195a224123f829f7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10815,14 +10848,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.steps[1].label",
           "field_group": "worked_example.steps[].label",
-          "text": "MSE of T₂",
-          "text_hash": "2e91f6b2b8bae329",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "MSE of $T_{2}$",
+          "text_hash": "9b79e9a0dbcb3c11",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -10846,14 +10882,17 @@
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Squared bias is added in full; do not omit the Bias² term.",
-          "text_hash": "b93c42fed8484c4c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Squared bias is added in full; do not omit the $\\mathrm{Bias}^{2}$ term.",
+          "text_hash": "7d92a661732c8f74",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
@@ -11834,10 +11873,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
         "mathish_strings": 22,
-        "already_compliant": 20,
+        "already_compliant": 22,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -11848,15 +11887,15 @@
           "package_file": "3.1.1-method-of-moments-cs1010.json",
           "field_path": "mission.success_criteria[2]",
           "field_group": "mission.success_criteria[]",
-          "text": "Refuse one 'any formula for θ̂ is MoM' claim.",
-          "text_hash": "e36a7fc256194861",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Refuse one 'any formula for $\\hat{\\theta}$ is MoM' claim.",
+          "text_hash": "c6c0d39e55460268",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -12032,15 +12071,15 @@
           "package_file": "3.1.1-method-of-moments-cs1010.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Before uncovering, write the first population moment in terms of μ and the matching sample moment.",
-          "text_hash": "dcdd1687439e3ea5",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Before uncovering, write the first population moment in terms of $\\mu$ and the matching sample moment.",
+          "text_hash": "141ac2f9217b7d05",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -12860,10 +12899,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
         "mathish_strings": 20,
-        "already_compliant": 15,
+        "already_compliant": 20,
         "needs_migration": 0,
-        "correctly_excluded": 5,
-        "needs_manual_review": 5,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -12946,15 +12985,16 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "knowledge_checks[1].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
-          "text": "Ignoring the given χ² pivot or inverting the inequality incorrectly.",
-          "text_hash": "1d59ce721d95352e",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Ignoring the given $\\chi^{2}$ pivot or inverting the inequality incorrectly.",
+          "text_hash": "94a78e43cd075ff8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -13084,16 +13124,17 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Invert θ̂ ~ N(θ, 0.01²) into θ̂ ± 1.96 × 0.01.",
-          "text_hash": "aaf1d6146bb308ce",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "CMP closed. Invert $\\hat{\\theta} \\sim N(\\theta, 0.01^{2})$ into $\\hat{\\theta} \\pm 1.96 \\times 0.01$.",
+          "text_hash": "81e61f03d63c208b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
           ]
         },
         {
@@ -13101,15 +13142,15 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 1.96 × 0.01.",
-          "text_hash": "fe62f5ecd551fa3d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $1.96 \\times 0.01$.",
+          "text_hash": "c8bcf0552d38d459",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -13134,15 +13175,15 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 0.42 ± 0.0196.",
-          "text_hash": "75676536074d0f0c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $0.42 \\pm 0.0196$.",
+          "text_hash": "d06119e39cb2d76b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -13150,15 +13191,15 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Centre at the observed θ̂.",
-          "text_hash": "07ad87b1cd1d2f34",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Centre at the observed $\\hat{\\theta}$.",
+          "text_hash": "7fd83bf6c3de3752",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -13221,10 +13262,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
         "mathish_strings": 25,
-        "already_compliant": 19,
+        "already_compliant": 24,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -13252,15 +13293,16 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "knowledge_checks[0].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
-          "text": "Treating the mean CI as enough, or reusing the mean formula for σ².",
-          "text_hash": "7fdd27dce466e3d0",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Treating the mean CI as enough, or reusing the mean formula for $\\sigma^{2}$.",
+          "text_hash": "f20a9d61c219a19b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -13370,15 +13412,16 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "knowledge_checks[1].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
-          "text": "Using z with unknown σ, skipping the variance CI, or forcing a Normal-mean SE onto σ².",
-          "text_hash": "93af0e31f8431cbd",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Using $z$ with unknown $\\sigma$, skipping the variance CI, or forcing a Normal-mean SE onto $\\sigma^{2}$.",
+          "text_hash": "f4d076822f97d5f0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -13522,15 +13565,15 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "With σ unknown, replace σ by s in the SE of the mean.",
-          "text_hash": "011a7b99dcc15c37",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "With $\\sigma$ unknown, replace $\\sigma$ by $s$ in the SE of the mean.",
+          "text_hash": "4f398feffff57ec7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -13541,10 +13584,10 @@
           "text": "The t quantile (not 1.96) accounts for estimating σ.",
           "text_hash": "f8af4f1a02f0f156",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -13571,15 +13614,15 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 100 ± 3.1965.",
-          "text_hash": "035bd899d05cee2d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $100 \\pm 3.1965$.",
+          "text_hash": "995a53472f16a235",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -13587,14 +13630,16 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Centre at x̄.",
-          "text_hash": "72b60ed108a87964",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Centre at $\\bar{x}$.",
+          "text_hash": "619ee2e5b13bc610",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
@@ -14307,10 +14352,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
         "mathish_strings": 17,
-        "already_compliant": 15,
+        "already_compliant": 16,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -14340,10 +14385,10 @@
           "text": "Frequentist coverage is about the procedure and the parameter μ, not about the next observation. Treating μ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
           "text_hash": "796bfc2174a996bf",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -14518,15 +14563,15 @@
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 12000 ± 588.",
-          "text_hash": "b4c0133ff65be0a8",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $12000 \\pm 588$.",
+          "text_hash": "2fcca58c2759d95d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -14605,10 +14650,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
         "mathish_strings": 20,
-        "already_compliant": 18,
+        "already_compliant": 20,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -14894,15 +14939,15 @@
           "package_file": "3.2.2-prediction-interval-cs1011.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 500 ± 79.953.",
-          "text_hash": "b94ce7e96c0bcdc5",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $500 \\pm 79.953$.",
+          "text_hash": "6b2b9e2827329cf1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -14910,14 +14955,16 @@
           "package_file": "3.2.2-prediction-interval-cs1011.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Centre at x̄; the wider SE distinguishes prediction from mean estimation.",
-          "text_hash": "77912c958ec633e6",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Centre at $\\bar{x}$; the wider SE distinguishes prediction from mean estimation.",
+          "text_hash": "d4b111d21ae4e843",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
@@ -39944,5 +39991,5 @@
       ]
     }
   ],
-  "content_fingerprint": "60960fa74fcf528c6ec2404b0516550d31c039e01c051ec9d4699f6bc8d1c613"
+  "content_fingerprint": "07db19a82caa2ad80a6bca2b2395550c4734754549203ee6b1d33eaffa9269b3"
 }

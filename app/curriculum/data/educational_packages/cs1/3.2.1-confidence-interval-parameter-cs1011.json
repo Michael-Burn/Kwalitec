@@ -266,7 +266,7 @@
       {
         "id": "S3",
         "label": "Interval endpoints",
-        "attempt_cue": "Compute 12000 ± 588.",
+        "attempt_cue": "Compute $12000 \\pm 588$.",
         "explanation": "Centre at $\\bar{x}$ and add/subtract the half-width.",
         "calculation": "$12000 - 588 = 11412$;  $12000 + 588 = 12588$",
         "result": "(11412, 12588)"

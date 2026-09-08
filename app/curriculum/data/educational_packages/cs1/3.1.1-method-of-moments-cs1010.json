@@ -49,7 +49,7 @@
     "success_criteria": [
       "Closed-book, state the method-of-moments construction move in CMP-usable form.",
       "Name how sample moments replace population moments.",
-      "Refuse one 'any formula for θ̂ is MoM' claim."
+      "Refuse one 'any formula for $\\hat{\\theta}$ is MoM' claim."
     ],
     "task_descriptions": [
       "Sketch population moments → sample moments → estimator before CMP.",
@@ -220,7 +220,7 @@
         "note": "Exponential mean parameter"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Before uncovering, write the first population moment in terms of μ and the matching sample moment.",
+    "attempt_before_reveal": "CMP closed. Before uncovering, write the first population moment in terms of $\\mu$ and the matching sample moment.",
     "steps": [
       {
         "id": "S1",

@@ -219,7 +219,7 @@
   },
   "published_at": "2026-08-01",
   "worked_example": {
-    "title": "Mean and variance of 2X − Y with nonzero covariance",
+    "title": "Mean and variance of $2X - Y$ with nonzero covariance",
     "problem_statement": "Portfolio losses $X$ and $Y$ (£000) satisfy $E[X] = 10$, $E[Y] = 4$, $\\operatorname{Var}(X) = 9$, $\\operatorname{Var}(Y) = 4$, and $\\operatorname{Cov}(X, Y) = 3$. For the linear combination $L = 2X - Y$, compute $E[L]$ and $\\operatorname{Var}(L)$.",
     "given": [
       {

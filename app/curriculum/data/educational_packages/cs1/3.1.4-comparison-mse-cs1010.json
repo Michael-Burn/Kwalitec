@@ -226,29 +226,29 @@
       {
         "symbol": "$\\operatorname{Bias}(T_{1})$",
         "value": "0",
-        "note": "bias of T₁"
+        "note": "bias of $T_{1}$"
       },
       {
         "symbol": "$\\operatorname{Var}(T_{1})$",
         "value": "9",
-        "note": "variance of T₁"
+        "note": "variance of $T_{1}$"
       },
       {
         "symbol": "$\\operatorname{Bias}(T_{2})$",
         "value": "1",
-        "note": "bias of T₂"
+        "note": "bias of $T_{2}$"
       },
       {
         "symbol": "$\\operatorname{Var}(T_{2})$",
         "value": "4",
-        "note": "variance of T₂"
+        "note": "variance of $T_{2}$"
       }
     ],
     "attempt_before_reveal": "CMP closed. Before uncovering, write $\\operatorname{MSE} = \\operatorname{Var} + \\operatorname{Bias}^{2}$ for each estimator.",
     "steps": [
       {
         "id": "S1",
-        "label": "MSE of T₁",
+        "label": "MSE of $T_{1}$",
         "attempt_cue": "Substitute $\\operatorname{Bias}(T_{1})$ and $\\operatorname{Var}(T_{1})$ into the MSE identity.",
         "explanation": "$\\operatorname{MSE}(T_{1}) = \\operatorname{Var}(T_{1}) + [\\operatorname{Bias}(T_{1})]^{2}$ collapses to variance when Bias $= 0$.",
         "calculation": "$\\operatorname{MSE}(T_{1}) = 9 + 0^{2} = 9$",
@@ -256,9 +256,9 @@
       },
       {
         "id": "S2",
-        "label": "MSE of T₂",
+        "label": "MSE of $T_{2}$",
         "attempt_cue": "Substitute $\\operatorname{Bias}(T_{2})$ = 1 and $\\operatorname{Var}(T_{2})$ = 4.",
-        "explanation": "Squared bias is added in full; do not omit the Bias² term.",
+        "explanation": "Squared bias is added in full; do not omit the $\\mathrm{Bias}^{2}$ term.",
         "calculation": "$\\operatorname{MSE}(T_{2}) = 4 + 1^{2} = 4 + 1 = 5$",
         "result": "$\\operatorname{MSE}(T_{2}) = 5$"
       },
