@@ -13,6 +13,8 @@ Educational law lives in [`KWALITEC_EDUCATIONAL_CONSTITUTION.md`](../../educatio
 Document hierarchy: [`knowledge/GOVERNANCE.md`](../../GOVERNANCE.md).  
 Founder-operated approval authority (capacities; evidence unchanged): [`../gp001_founder_governance_model/FOUNDER_GOVERNANCE_MODEL.md`](../gp001_founder_governance_model/FOUNDER_GOVERNANCE_MODEL.md).
 
+**Present product vs Vision:** Language below is north-star constitution. It is not a claim that live Learning Mode already runs adaptive personalisation or spaced-repetition scheduling. Current live study direction is syllabus-order Learning Mode unless a later programme enables and discloses Adaptive Engine / Policy V1 authority.
+
 ---
 
 ## WHY KWALITEC EXISTS

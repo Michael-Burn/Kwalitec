@@ -217,3 +217,62 @@ class TestStudentFacingCommunicationSurfaces:
         assert info.label == "Coming Soon"
         assert info.allows_plan_creation is False
         assert info.explanation
+
+    def test_student_facing_copy_does_not_claim_live_adaptive_or_spaced(self):
+        """Identity honesty: Learning Mode is syllabus-order; no live SR/adaptive sell.
+
+        Scans student-facing templates (Education OS + Session + shared auth/
+        settings/study_plan) and presentation Python that can emit student
+        copy. Package/module names and Jinja imports under adaptive_assessment
+        are excluded from the claim patterns below.
+        """
+        forbidden_claims = (
+            "spaced repetition",
+            "Spaced repetition",
+            "adaptive learning",
+            "Adaptive Learning",
+            "adaptive personalisation",
+            "adaptive personalization",
+            "personalised for you",
+            "personalized for you",
+            "adapts to your",
+            "Personalised recommendations",
+            "Personalized recommendations",
+        )
+        template_dirs = (
+            "student",
+            "session",
+            "auth",
+            "settings",
+            "study_plan",
+            "layouts",
+            "partials",
+            "dashboard",
+            "mission",
+            "analytics",
+        )
+        corpus_parts: list[str] = []
+        for relative in template_dirs:
+            root = TEMPLATE_ROOT / relative
+            if not root.exists():
+                continue
+            for path in root.rglob("*.html"):
+                corpus_parts.append(path.read_text(encoding="utf-8"))
+        presentation_roots = (
+            REPO_ROOT / "app" / "presentation" / "student",
+            REPO_ROOT / "app" / "presentation" / "session",
+            REPO_ROOT / "app" / "brand_identity.py",
+        )
+        for root in presentation_roots:
+            if root.is_file():
+                corpus_parts.append(root.read_text(encoding="utf-8"))
+                continue
+            if not root.exists():
+                continue
+            for path in root.rglob("*.py"):
+                corpus_parts.append(path.read_text(encoding="utf-8"))
+        corpus = "\n".join(corpus_parts)
+        for claim in forbidden_claims:
+            assert claim not in corpus, (
+                f"Student-facing overclaim still present: {claim!r}"
+            )

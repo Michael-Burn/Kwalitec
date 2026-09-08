@@ -111,7 +111,7 @@ Daily product expression: help the student take the **highest-value next action*
 
 ## 2. What Kwalitec is
 
-Kwalitec is a **commercial adaptive learning product** for demanding professional examinations (actuarial first: IFoA, SOA, and similar; other professions later).
+Kwalitec is a **commercial curriculum-guided learning product** for demanding professional examinations (actuarial first: IFoA, SOA, and similar; other professions later).
 
 **Thesis:** *Reduce decisions. Increase learning.*
 
@@ -136,10 +136,11 @@ Core recommendations are **explainable and reproducible**. Same inputs → same 
 |---|---|
 | Curriculum Intelligence | Official syllabuses as source of truth (JSON → engine → DB) |
 | Study Plan Wizard | Exam-date-driven plans across available days |
-| Daily Mission / Session | Prioritized study session from urgency, readiness, workload |
-| Adaptive Learning | Mastery / spaced signals from real attempts |
+| Learning Mode progression | Syllabus-order topic selection (first incomplete leaf); Consolidation Mission checkpoints at exam-proximity cadence (not spaced-repetition scheduling; Policy V1 adaptivity remains flag-gated OFF) |
+| Daily Mission / Session | Study session for the Learning Mode (or Revision) topic |
+| Mastery scoring | Estimated Knowledge from authorised attempts when session evidence write-through is on (production companion often OFF) |
 | Exam Readiness | Coverage, pace, risk signals (deterministic) |
-| Recommendations | Explainable “study next” (Decision Journal audits accept/dismiss) |
+| Recommendations | Explainable “study next” (Decision Journal audits accept/dismiss); Adaptive Engine Authority defaults OFF |
 | Coach (supporting) | Presentation / trust surface — **not** ranking authority |
 | Founder Command Centre | Operator / founder surfaces at `/founder` |
 

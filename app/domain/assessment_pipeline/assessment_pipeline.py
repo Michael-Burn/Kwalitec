@@ -145,8 +145,8 @@ def suggested_next_action_for_event(event: AssessmentEvent) -> str:
         )
     if event.event_type == AssessmentEventType.MISSION_COMPLETION:
         return (
-            "Continue with the next Adaptive Mission generated from updated "
-            "Student Digital Twin state."
+            "Continue with the next curriculum-aligned mission generated from "
+            "updated learner state when that path is enabled."
         )
     if event.event_type == AssessmentEventType.REFLECTION_SUBMISSION:
         return (
@@ -155,7 +155,7 @@ def suggested_next_action_for_event(event: AssessmentEvent) -> str:
         )
     if performance in {"correct", "strong", "adequate", "completed"}:
         return (
-            f"Proceed to spaced practice or the next curriculum-aligned activity "
+            f"Proceed to scheduled review or the next curriculum-aligned activity "
             f"for {concept}."
         )
     return (

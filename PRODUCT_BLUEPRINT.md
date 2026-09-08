@@ -127,10 +127,10 @@ Reliability, accuracy, transparency, and consistency — students trust Kwalitec
 
 ## What Kwalitec is
 
-- an educational intelligence platform;
+- an educational intelligence platform (curriculum-first, deterministic cores);
 - an evidence-driven study companion;
-- a personalised decision-support system;
-- a Digital Twin of the student's educational journey;
+- explainable next-action decision support from syllabus structure, plan, and recorded evidence (live Learning Mode is syllabus-order progression; Adaptive Engine / personalisation authority remains flag-gated OFF);
+- a Digital Twin architecture for learner state (packages exist; live student UX remains Stage A / Runtime C until Twin authority is explicitly enabled);
 - the product surface of the Educational Operating System (EOS).
 
 ## What Kwalitec is not

@@ -14,7 +14,7 @@ Companion briefs: [`Executive_Summary.md`](Executive_Summary.md) · [`Release_Ti
 
 # 1 Executive Summary
 
-Kwalitec is a commercial adaptive learning product for professional-exam candidates. Vision 2030 defines the north star as materially higher exam pass probability for consistent users, expressed daily as: *what is the highest-value thing this student should do next?* Educational philosophy measures learning over activity; AI must be explainable and evidence-based; absence of evidence remains unknown.
+Kwalitec is a commercial curriculum-guided learning product for professional-exam candidates. Vision 2030 defines the north star as materially higher exam pass probability for consistent users, expressed daily as: *what is the highest-value thing this student should do next?* Educational philosophy measures learning over activity; AI must be explainable and evidence-based; absence of evidence remains unknown. Live Learning Mode is syllabus-order progression; Adaptive Engine Authority and Policy V1 personalisation remain flag-gated OFF.
 
 **Target users:** Primary — students preparing for IFoA, SOA, CAA, CAS and related qualifications. Secondary — training providers and employers. Public registration is not exposed.
 

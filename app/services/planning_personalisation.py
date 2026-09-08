@@ -477,7 +477,7 @@ def _adapt_revision_timing(
         topic = str(review.get("topic_name") or "").strip()
         next_note = (
             f"Start with review{f' ({topic})' if topic else ''} first — "
-            "your revision adherence supports protecting spaced repetition."
+            "your revision adherence supports protecting scheduled review."
         )
         # Reinforce primary action only when review is already first educationally.
         if review_idx == 0:

@@ -32,7 +32,7 @@ This knowledge base complements (does not replace):
 
 ## Purpose
 
-Kwalitec is a commercial adaptive learning product. Core behaviour must stay:
+Kwalitec is a commercial curriculum-guided learning product. Core behaviour must stay:
 
 - **Curriculum-first** — syllabus structure drives planning and recommendations
 - **Deterministic** — same inputs produce the same outputs

@@ -6,14 +6,18 @@ SDT-001 → SDT-003, or AME-001.
 
 ## Long-term principle
 
-Kwalitec now closes the adaptive learning loop:
+When Twin authority and Adaptive Mission integration are enabled, Kwalitec is
+designed to close this learning loop:
 
 1. **Curriculum Intelligence** — WHAT should be learned
 2. **Student Digital Twin** — WHO is learning
 3. **Learning Graph** — HOW knowledge is interconnected
 4. **Educational Reasoning** — WHY educational state changes
-5. **Adaptive Mission Engine** — WHAT to do today
+5. **Adaptive Mission Engine** — WHAT to do today (not the live Learning Mode director today)
 6. **Assessment Pipeline** — evidence from learner activity back into the Twin
+
+Live Learning Mode today remains syllabus-order topic selection; Adaptive Engine /
+Policy V1 personalisation remains flag-gated OFF.
 
 The Assessment Pipeline must **never** perform educational reasoning itself.
 It records educational evidence and delegates learner-state updates to

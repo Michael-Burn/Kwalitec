@@ -733,7 +733,7 @@ def _change_reasoning(
         )
     slot_names = [str(s.get("slot") or "") for s in slots]
     if "review" in slot_names:
-        return "Includes due review to protect spaced repetition."
+        return "Includes a due review topic to protect scheduled revision."
     if "weak" in slot_names or "recovery" in slot_names:
         return "Prioritises a weaker topic for readiness gain per study hour."
     score = _score_value(readiness)

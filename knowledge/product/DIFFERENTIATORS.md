@@ -30,7 +30,7 @@ Question banks may exist *inside* Kwalitec as instruments; they are not the prod
 
 | Flashcard apps | Kwalitec |
 |---|---|
-| Card decks and spaced repetition as the whole product | Spaced revision as one strategy inside curriculum-bound missions |
+| Card decks and spaced repetition as the whole product | Curriculum-bound missions with syllabus order as the live Learning Mode director; spaced / due-review scheduling is designed for Revision / Policy V1 paths, not claimed as today’s study director |
 | Weak binding to official exam weights / sections | Section → topic → LO hierarchy and exam weighting |
 | Memory of cards ≠ exam readiness honesty | Readiness intelligence with uncertainty and drivers |
 | Engagement streaks | Sustainable progress and burnout awareness |

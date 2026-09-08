@@ -9,7 +9,7 @@
 
 ## What Kwalitec is
 
-Kwalitec is an adaptive learning companion for students preparing for professional qualification examinations (IFoA, SOA, CAA, CAS, and related bodies). It exists to improve study decisions — structure, consistency, objective feedback, personalised guidance, and confidence — not to replace teachers or textbooks.
+Kwalitec is a curriculum-guided study companion for students preparing for professional qualification examinations (IFoA, SOA, CAA, CAS, and related bodies). It exists to improve study decisions — structure, consistency, objective feedback, explainable next-action guidance, and confidence — not to replace teachers or textbooks. Live Learning Mode follows syllabus-order progression; Adaptive Engine / spaced-repetition scheduling as the daily study director is not live.
 
 **North star (Vision 2030):** Students who consistently use Kwalitec should have a materially higher probability of passing their examinations than students who do not.
 

@@ -11,7 +11,7 @@
     ``knowledge/architecture/ep002_2_shared_foundation_di/MISSION_OPTIMIZER_DECISION.md``.
 
 Each daily mission includes three topic types:
-- One review topic (spaced repetition)
+- One review topic (due-review schedule when dates exist)
 - One weak topic (targeted improvement)
 - One curriculum progression topic (forward momentum)
 
@@ -164,7 +164,7 @@ class MissionOptimizer:
                 "stage": rp.current_stage,
                 "reason": f"Due for review (scheduled {rp.next_review_date})",
                 "expected_benefit": (
-                    "Maintain spaced repetition schedule and prevent knowledge decay."
+                    "Complete due review and reduce knowledge decay risk."
                 ),
             }
 

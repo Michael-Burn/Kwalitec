@@ -1,6 +1,6 @@
 # Curriculum Intelligence Engine
 
-The **Curriculum Engine** is the central source of truth for every educational feature in Kwalitec — Study Planning, Adaptive Learning, Mission Generation, Exam Readiness, Recommendations, Analytics, and Dashboard.
+The **Curriculum Engine** is the central source of truth for every educational feature in Kwalitec — Study Planning, Learning Mode progression, Mission Generation, Exam Readiness, Recommendations, Analytics, and Dashboard. Adaptive Learning / Adaptive Engine packages consume the same curriculum when their flags are enabled; they are not the live Learning Mode study director.
 
 Supports both **V1 (flat topics)** and **V2 (hierarchical: Section → Topic → Learning Objective)** formats with automatic detection.
 

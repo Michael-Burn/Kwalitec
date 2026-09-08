@@ -16,7 +16,7 @@ This standard is the permanent engineering contract for Kwalitec development. It
 
 ## Engineering philosophy
 
-Kwalitec is a commercial adaptive learning product. Prefer disciplined, explainable engineering over cleverness.
+Kwalitec is a commercial curriculum-guided learning product. Prefer disciplined, explainable engineering over cleverness.
 
 | Value | Meaning |
 |---|---|

@@ -132,7 +132,8 @@ def _today_missions(
     recovering = _recovery_active(inputs)
     missed = int(inputs.mission_missed_count or 0)
 
-    # Review slot — spaced repetition from Canonical next_review_date.
+    # Review slot — due topics from Canonical next_review_date (Stage A / Twin
+    # adaptive plan path when enabled; not live Learning Mode topic selection).
     due = [row for row in topics if _is_due_for_review(row, plan_date)]
     due.sort(
         key=lambda r: (
@@ -152,7 +153,7 @@ def _today_missions(
                 reason=f"Due for review (scheduled {row.next_review_date})",
                 priority="high",
                 expected_benefit=(
-                    "Maintain spaced repetition and prevent knowledge decay."
+                    "Complete due review and reduce knowledge decay risk."
                 ),
             )
         )

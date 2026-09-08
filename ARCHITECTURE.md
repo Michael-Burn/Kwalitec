@@ -599,9 +599,11 @@ provides a simple projection for future integration.
 
 ## Assessment & Learning Feedback Pipeline (AP-001)
 
-Closes the adaptive learning loop: learner activity becomes structured
+Architecture package that closes an assessment → Twin evidence loop when Twin /
+Adaptive Mission paths are enabled: learner activity becomes structured
 educational evidence that updates the Student Digital Twin. Never performs
 educational reasoning — delegates Twin updates to `StudentReasoningService`.
+This is not the live Learning Mode study director (syllabus-order progression).
 
 ```
 Learner Activity
@@ -630,10 +632,14 @@ than inventing parallel learner state. No LLM. Student dashboard unchanged.
 
 ## Evidence-Backed Intelligent Tutor (TUTOR-001)
 
-Transforms educational intelligence into personalised, explainable guidance.
-The Tutor **explains** decisions already produced by Educational Reasoning,
-the Student Digital Twin, Learning Graph, Adaptive Missions, and Assessment
-Feedback — it never becomes another reasoning engine.
+Transforms educational intelligence into explainable guidance when Twin /
+Reasoning / Adaptive Mission inputs are available. The Tutor **explains**
+decisions already produced by Educational Reasoning, the Student Digital Twin,
+Learning Graph, Adaptive Missions, and Assessment Feedback — it never becomes
+another reasoning engine. Live student Home/Session under Runtime C still
+primarily follows Learning Mode syllabus-order selection until Twin-first
+cutover; do not read this section as a claim that Adaptive Missions personalise
+today’s enrolled student path.
 
 ```
 Student Question

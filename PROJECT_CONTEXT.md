@@ -6,7 +6,7 @@ This document is the primary orientation guide for developers and AI agents work
 
 ## Purpose
 
-Kwalitec is an adaptive learning platform for demanding professional examinations (actuarial, legal, medical, engineering, and similar qualifications).
+Kwalitec is a curriculum-guided learning platform for demanding professional examinations (actuarial, legal, medical, engineering, and similar qualifications).
 
 Its product thesis is simple:
 

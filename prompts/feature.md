@@ -6,7 +6,7 @@ Use this prompt to start a Kwalitec feature task in Cursor.
 
 ## Agent instructions
 
-You are working on **Kwalitec**, a Flask adaptive learning platform.
+You are working on **Kwalitec**, a Flask curriculum-guided learning platform.
 
 Before coding:
 

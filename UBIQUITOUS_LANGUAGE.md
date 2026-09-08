@@ -11,7 +11,7 @@
 
 # Introduction
 
-Kwalitec is a commercial adaptive learning product. Its intelligence — planning, missions, readiness, recommendations, predictions — only works if every participant means the same thing by the same words.
+Kwalitec is a commercial curriculum-guided learning product. Its intelligence — planning, missions, readiness, recommendations, predictions — only works if every participant means the same thing by the same words.
 
 A **ubiquitous language** is the shared vocabulary of the domain. It binds product intent to engineering reality. Without it, “mastery” becomes a progress bar in one place and a spaced-repetition score in another; “mission” means a daily plan to product and a database row to engineering; “student model” and “digital twin” compete as if they were different systems.
 
@@ -773,6 +773,8 @@ Learning Evidence, Knowledge State, Mastery, Adaptive Plan, Goal
 
 ## Adaptive Plan
 
+**Status (live product):** Target vocabulary for regenerable planning intelligence. Live student study plans today are Study Plan Wizard artefacts plus Learning Mode syllabus-order topic selection. Do not use “Adaptive Plan” in student-facing copy until Adaptive Engine / Twin-first planning authority is live and disclosed.
+
 **Definition**  
 A regenerable study schedule derived from Digital Twin + Curriculum + constraints (Available Study Time, Target Sitting, Motivation guardrails). Planning is a consequence of intelligence, not the authoritative learner model. Includes catch-up and intensity modes as Twin/Planning domain flags.
 
@@ -789,7 +791,7 @@ Recovery Plan, Goal, Available Study Time, Mission, Curriculum, Digital Twin
 **Common Misunderstandings**  
 - Adaptive Plan ≠ Digital Twin.  
 - Stale week grids must not override Twin Knowledge.  
-- “Study Plan” in product language maps to Adaptive Plan / Planning artefacts — prefer Adaptive Plan when emphasising regenerable intelligence.
+- “Study Plan” in product language maps to Adaptive Plan / Planning artefacts when emphasising regenerable intelligence — prefer “Study Plan” in student UI until Adaptive Plan authority is live.
 
 ---
 

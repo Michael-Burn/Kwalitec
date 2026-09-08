@@ -11,7 +11,7 @@ This document maps product concepts to architectural layers so agents know **wha
 
 > **Reduce decisions. Increase learning.**
 
-Kwalitec is an adaptive learning platform for demanding professional examinations. It answers *what to study next* deterministically from performance history, available time, and exam deadlines — not from opaque AI.
+Kwalitec is a curriculum-guided learning platform for demanding professional examinations. It answers *what to study next* deterministically from syllabus order, recorded evidence, available time, and exam deadlines — not from opaque AI. Live Learning Mode is syllabus-order progression; Adaptive Engine / Policy V1 personalisation remains flag-gated OFF.
 
 | Layer | Role |
 |---|---|
