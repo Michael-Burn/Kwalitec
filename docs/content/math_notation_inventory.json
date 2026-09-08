@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T07:05:34Z",
+  "generated_at": "2026-09-08T07:33:30Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 2011,
+    "already_compliant": 2047,
     "needs_migration": 0,
-    "correctly_excluded": 192,
-    "needs_manual_review": 115,
-    "confident_automated": 2088,
+    "correctly_excluded": 156,
+    "needs_manual_review": 53,
+    "confident_automated": 2150,
     "remaining_backlog": 0,
-    "migrated": 1992,
+    "migrated": 2028,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2011,
-    "isolated_symbol_in_narrative_ambiguous": 92,
-    "manual_review_prose_exclusion": 76,
-    "mathish_role_unclear": 23,
+    "fully_covered_by_current_typesetting": 2047,
+    "manual_review_prose_exclusion": 102,
+    "isolated_symbol_in_narrative_ambiguous": 35,
+    "mathish_role_unclear": 18,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 1992,
-    "equationish": 1498,
+    "dollar_delimited": 2028,
+    "equationish": 1507,
     "actuarial_fn": 502,
     "ascii_approx": 234,
     "bare_latex": 195,
-    "greek": 155,
-    "unicode_ops": 27,
-    "compound": 26
+    "greek": 131,
+    "compound": 26,
+    "unicode_ops": 19
   },
   "by_risk_tier_needs_migration": {
     "1": 0,
@@ -40,7 +40,7 @@
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
-    "needs_manual_review_count": 115
+    "needs_manual_review_count": 53
   },
   "wave_recommendation": {
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
@@ -19611,10 +19611,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 19,
-        "already_compliant": 13,
+        "already_compliant": 14,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 5,
+        "correctly_excluded": 5,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -19628,10 +19628,10 @@
           "text": "Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
           "text_hash": "6a8a2be04405f57a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -19644,10 +19644,10 @@
           "text": "You will be able to apply Pearson's χ² and likelihood-ratio tests to judge acceptability of a fitted GLM.",
           "text_hash": "71fc73824e8413d8",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -19660,10 +19660,10 @@
           "text": "Closed-book, name Pearson χ² and likelihood-ratio tests in GLM context.",
           "text_hash": "d044bd2f5e463730",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -19676,10 +19676,10 @@
           "text": "CMP · Syllabus 4.2.9 Pearson χ² and likelihood-ratio tests",
           "text_hash": "9292bc19e1670df9",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -19778,14 +19778,17 @@
           "package_file": "4.2.9-goodness-tests-cs1003.json",
           "field_path": "worked_example.steps[0].label",
           "field_group": "worked_example.steps[].label",
-          "text": "Pearson X²",
-          "text_hash": "7f9a473aba8ca066",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Pearson $X^{2}$",
+          "text_hash": "d2c2d7c2a438ee52",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-4.2-GOODNESS-TESTS",
@@ -19952,10 +19955,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 30,
-        "already_compliant": 18,
+        "already_compliant": 24,
         "needs_migration": 0,
-        "correctly_excluded": 12,
-        "needs_manual_review": 11,
+        "correctly_excluded": 6,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -19969,10 +19972,10 @@
           "text": "Today's Mission exists to define the linear predictor and write its form for simple models including polynomials and factors. So η is concrete.",
           "text_hash": "904f284c9f3d7b44",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -20002,10 +20005,10 @@
           "text": "Produce concrete η literacy.",
           "text_hash": "6fa1a434e60cbb8e",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -20052,10 +20055,10 @@
           "text": "Study Progress for η forms. Not deviance estimation as primary.",
           "text_hash": "6a94f3654d2378f1",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -20065,15 +20068,15 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "mission.success_criteria[0]",
           "field_group": "mission.success_criteria[]",
-          "text": "Closed-book, write η for a simple continuous model and a factor model.",
-          "text_hash": "877815aae2860885",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Closed-book, write $\\eta$ for a simple continuous model and a factor model.",
+          "text_hash": "24ca6d3d71b8cdcb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -20084,10 +20087,10 @@
           "text": "Refuse conflating η with the link.",
           "text_hash": "75cd12a0775b8ac1",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -20100,10 +20103,10 @@
           "text": "Write two η sketches before CMP.",
           "text_hash": "e4367b29d24bcd40",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -20232,15 +20235,16 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Compute x² first, then form η before exponentiating.",
-          "text_hash": "4f2ed2e77be08073",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "CMP closed. Compute $x^{2}$ first, then form $\\eta$ before exponentiating.",
+          "text_hash": "cb90a9ca54dc76be",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -20265,14 +20269,17 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "The linear predictor is linear in the parameters even when it includes x² as a constructed covariate.",
-          "text_hash": "621f4ef6233456a0",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "The linear predictor is linear in the parameters even when it includes $x^{2}$ as a constructed covariate.",
+          "text_hash": "80c81762cdd0d765",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
@@ -20368,15 +20375,15 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "State what η is versus μ.",
-          "text_hash": "6d981d9c7358bbc2",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "State what $\\eta$ is versus $\\mu$.",
+          "text_hash": "b7d064a98a3f2848",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -20384,15 +20391,15 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "η is the linear predictor on the link scale; μ is the mean on the response scale after the inverse link.",
-          "text_hash": "97e7881107abcf7b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "$\\eta$ is the linear predictor on the link scale; $\\mu$ is the mean on the response scale after the inverse link.",
+          "text_hash": "95a770c149946e20",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -20455,15 +20462,16 @@
           "package_file": "4.2.5-linear-predictor-cs1003.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Reporting η as the mean severity, or dropping the quadratic term when x² is part of the specified linear predictor.",
-          "text_hash": "4cddac5879358cb9",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Reporting $\\eta$ as the mean severity, or dropping the quadratic term when $x^{2}$ is part of the specified linear predictor.",
+          "text_hash": "16eaeffdce1d1dda",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         }
       ]
@@ -21403,10 +21411,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 16,
-        "already_compliant": 14,
+        "already_compliant": 15,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -21420,10 +21428,10 @@
           "text": "Knowledge Checks: Δ deviance + refuse kitchen-sink.",
           "text_hash": "c1b59a72d6edc28e",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -21552,15 +21560,15 @@
           "package_file": "4.2.7-model-choice-cs1003.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Form ΔD before comparing to the chi-square critical value.",
-          "text_hash": "e1300a9dc00ea9b3",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Form $\\Delta D$ before comparing to the chi-square critical value.",
+          "text_hash": "7d74bd57e260ec84",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -22836,10 +22844,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 21,
-        "already_compliant": 14,
+        "already_compliant": 21,
         "needs_migration": 0,
-        "correctly_excluded": 7,
-        "needs_manual_review": 7,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -22918,15 +22926,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "knowledge_checks[1].hints[0]",
           "field_group": "knowledge_checks[].hints[]",
-          "text": "Compute 1 - Z first, then blend X̄ and μ.",
-          "text_hash": "2aec1f0a38038c17",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $1 - Z$ first, then blend $\\bar{X}$ and $\\mu$.",
+          "text_hash": "0e8f5f0c9bc1a258",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -22934,14 +22942,16 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "knowledge_checks[1].hints[1]",
           "field_group": "knowledge_checks[].hints[]",
-          "text": "Z weights the individual experience X̄.",
-          "text_hash": "57a75a4b2b69c7f4",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "$Z$ weights the individual experience $\\bar{X}$.",
+          "text_hash": "a21d382ce5acdb6a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-5.1-CREDIBILITY-PREMIUM",
@@ -22982,15 +22992,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "knowledge_checks[1].success_criteria[1]",
           "field_group": "knowledge_checks[].success_criteria[]",
-          "text": "Uses Z on X̄ and (1 - Z) on μ.",
-          "text_hash": "af8956f26496840b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Uses $Z$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$.",
+          "text_hash": "02f3e11001352575",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -23047,15 +23057,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Form the convex combination with weights Z and 1 − Z.",
-          "text_hash": "12c90fa67b763f0d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Form the convex combination with weights $Z$ and $1 - Z$.",
+          "text_hash": "f3ffdc09a50b2014",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23063,15 +23073,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 1 − Z.",
-          "text_hash": "7022285cbdfccc72",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $1 - Z$.",
+          "text_hash": "716623458606e30a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23113,16 +23123,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute Z X̄ + (1 − Z)μ.",
-          "text_hash": "7a64271539f530c1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $Z\\bar{X} + (1 - Z)\\mu$.",
+          "text_hash": "adaad21df17e3f93",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23147,15 +23156,15 @@
           "package_file": "5.1.6-credibility-premium-cs1003.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Z is the weight on the risk's own experience X̄; 1 − Z weights the class hypothetical mean.",
-          "text_hash": "4d5c56041a65a3d7",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "$Z$ is the weight on the risk's own experience $\\bar{X}$; $1 - Z$ weights the class hypothetical mean.",
+          "text_hash": "d2afeb9bfca13458",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23968,10 +23977,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 12,
-        "already_compliant": 8,
+        "already_compliant": 12,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 4,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -24031,15 +24040,15 @@
           "package_file": "5.1.2-prior-posterior-cs1003.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "conjugate prior for θ",
-          "text_hash": "23b82c1fef2d5668",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "conjugate prior for $\\theta$",
+          "text_hash": "768fc4439ff5ca4a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -24114,15 +24123,15 @@
           "package_file": "5.1.2-prior-posterior-cs1003.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Update α and β with the Binomial counts.",
-          "text_hash": "c697c0a1b24af957",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Update $\\alpha$ and $\\beta$ with the Binomial counts.",
+          "text_hash": "3ccef7b81e46bab1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -24130,15 +24139,15 @@
           "package_file": "5.1.2-prior-posterior-cs1003.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Conjugacy adds successes to α and failures to β.",
-          "text_hash": "fd17b582348100c0",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Conjugacy adds successes to $\\alpha$ and failures to $\\beta$.",
+          "text_hash": "30acab50028e6808",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -24163,16 +24172,15 @@
           "package_file": "5.1.2-prior-posterior-cs1003.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Updating as Beta(α+n, β+s) or forgetting to add failures n − s to β.",
-          "text_hash": "8cdce5098e50a87d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Updating as $\\mathrm{Beta}(\\alpha+n, \\beta+s)$ or forgetting to add failures $n - s$ to $\\beta$.",
+          "text_hash": "42eb748fe3d9bcea",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited"
           ]
         }
       ]
@@ -27075,10 +27083,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 18,
-        "already_compliant": 12,
+        "already_compliant": 16,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -27092,10 +27100,10 @@
           "text": "Credible interval is posterior probability for θ. Repeated-sampling coverage slogan is the frequentist confidence interval reading unless carefully distinguished.",
           "text_hash": "18fbbf9f0fa33751",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -27223,15 +27231,15 @@
           "package_file": "5.1.5-credible-intervals-cs1015.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "posterior for θ",
-          "text_hash": "f3d75b296c0f234c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "posterior for $\\theta$",
+          "text_hash": "92919e8d2cc6c747",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -27239,15 +27247,15 @@
           "package_file": "5.1.5-credible-intervals-cs1015.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Form mean ± 1.96 × posterior SD, and phrase it as a posterior probability statement.",
-          "text_hash": "8cdddcd05740a971",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Form $\\mathrm{mean} \\pm 1.96 \\times \\mathrm{posterior SD}$, and phrase it as a posterior probability statement.",
+          "text_hash": "7cf832863dcef25c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -27255,15 +27263,15 @@
           "package_file": "5.1.5-credible-intervals-cs1015.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 100 ± 1.96 × 5.",
-          "text_hash": "3ea1c123614c76e1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $100 \\pm 1.96 \\times 5$.",
+          "text_hash": "230ca7d960305061",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -27309,10 +27317,10 @@
           "text": "Unlike a frequentist CI, the credible interval places probability on θ given the data and prior.",
           "text_hash": "c1d7c2ea228c31b9",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -27375,15 +27383,16 @@
           "package_file": "5.1.5-credible-intervals-cs1015.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Interpreting (90.2, 109.8) as a frequentist confidence interval ('95% of samples cover θ') instead of a posterior probability statement for θ.",
-          "text_hash": "0c15c8690d17cd8f",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Interpreting $(90.2, 109.8)$ as a frequentist confidence interval ('95% of samples cover θ') instead of a posterior probability statement for θ.",
+          "text_hash": "97ccdb7abf30abce",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "greek",
+            "dollar_delimited"
           ]
         }
       ]
@@ -27675,10 +27684,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 10,
+        "already_compliant": 11,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -27753,15 +27762,15 @@
           "package_file": "5.1.4-loss-estimators-cs1015.json",
           "field_path": "worked_example.given[1].note",
           "field_group": "worked_example.given[].note",
-          "text": "π(θ|data)",
-          "text_hash": "8b7935b44bfb24ed",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "$\\pi(\\theta \\mid \\mathrm{data})$",
+          "text_hash": "f8db0eed76adfac5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -27873,10 +27882,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 16,
-        "already_compliant": 15,
+        "already_compliant": 16,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -27906,15 +27915,15 @@
           "package_file": "5.1.3-posterior-simple-cs1015.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "shape-rate prior for λ",
-          "text_hash": "1c600cf3bd344393",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "shape-rate prior for $\\lambda$",
+          "text_hash": "478ae75d97a3dd2d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -28170,10 +28179,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 13,
-        "already_compliant": 9,
+        "already_compliant": 11,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 4,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -28233,15 +28242,15 @@
           "package_file": "5.1.2-prior-posterior-cs1015.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "prior for θ",
-          "text_hash": "4a1395759d86fa6d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "prior for $\\theta$",
+          "text_hash": "379570f09f47685f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -28302,10 +28311,10 @@
           "text": "The prior is the distribution of θ before seeing the new sample.",
           "text_hash": "879cc7780dbef166",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -28333,15 +28342,15 @@
           "package_file": "5.1.2-prior-posterior-cs1015.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Update to Beta(2+3, 8+10−3).",
-          "text_hash": "e4b04a1061bce658",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Update to $\\mathrm{Beta}(2+3, 8+10-3)$.",
+          "text_hash": "10390706f89c805c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -28368,10 +28377,10 @@
           "text": "The posterior is the distribution of θ after combining prior and likelihood.",
           "text_hash": "32bc2ca6782a31a8",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -32150,7 +32159,7 @@
         "already_compliant": 16,
         "needs_migration": 0,
         "correctly_excluded": 2,
-        "needs_manual_review": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -32164,10 +32173,10 @@
           "text": "Produce a cognitive move from η forms to lawful deviance and parameter estimation under CMP.",
           "text_hash": "5951edeff6525b49",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -32828,10 +32837,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
         "mathish_strings": 26,
-        "already_compliant": 20,
+        "already_compliant": 21,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 4,
+        "correctly_excluded": 5,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -32879,10 +32888,10 @@
           "text": "Refuse one 'I wrote η, so I finished today's LO' claim.",
           "text_hash": "8fdce784e0df1ba0",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -32895,10 +32904,10 @@
           "text": "Closed-book Knowledge Checks: factors + refuse η swallow.",
           "text_hash": "e150e3a4eb22441f",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -32911,10 +32920,10 @@
           "text": "Watch for jumping to full η polynomial forms (4.2.5) as today's finish.",
           "text_hash": "aa1f4fe5d6cf8c8a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33095,15 +33104,15 @@
           "package_file": "4.2.4-factors-interactions-cs1014.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Plug the factor indicators into η, remembering the interaction is zero unless both factors equal 1.",
-          "text_hash": "884b10069f6d76f1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Plug the factor indicators into $\\eta$, remembering the interaction is zero unless both factors equal 1.",
+          "text_hash": "e82bbbe351775a59",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -33613,10 +33622,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
         "mathish_strings": 18,
-        "already_compliant": 11,
+        "already_compliant": 14,
         "needs_migration": 0,
-        "correctly_excluded": 7,
-        "needs_manual_review": 7,
+        "correctly_excluded": 4,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -33630,10 +33639,10 @@
           "text": "Today I will force χ² vs LRT acceptability discrimination and refuse treating full software interpretation as today's LO.",
           "text_hash": "5353541931cf459e",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33646,10 +33655,10 @@
           "text": "Fitted GLM → Pearson χ² acceptability test → likelihood-ratio test.",
           "text_hash": "6a8a2be04405f57a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33662,10 +33671,10 @@
           "text": "You will be able to apply Pearson's χ² and likelihood-ratio tests to judge acceptability of a fitted GLM.",
           "text_hash": "71fc73824e8413d8",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33678,10 +33687,10 @@
           "text": "Sketch χ² vs LRT before CMP.",
           "text_hash": "90e60739d9216c77",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33691,15 +33700,16 @@
           "package_file": "4.2.9-goodness-tests-cs1014.json",
           "field_path": "reading_guidance.misconception_watch[0]",
           "field_group": "reading_guidance.misconception_watch[]",
-          "text": "Watch for treating a non-significant χ² as automatic model perfection.",
-          "text_hash": "6672ee626e25a53f",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Watch for treating a non-significant $\\chi^{2}$ as automatic model perfection.",
+          "text_hash": "04ec3fcc9e029d6b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -33815,28 +33825,34 @@
           "package_file": "4.2.9-goodness-tests-cs1014.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Sum to X² and compare with 5.991.",
-          "text_hash": "8f761d9c4ec5b87d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Sum to $X^{2}$ and compare with $5.991$.",
+          "text_hash": "b72e920d09b3832a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-GOODNESS-TESTS",
           "package_file": "4.2.9-goodness-tests-cs1014.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Large X² rejects aggregate adequacy of the fitted means.",
-          "text_hash": "0cd38a28468c6684",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "text": "Large $X^{2}$ rejects aggregate adequacy of the fitted means.",
+          "text_hash": "43d9130e9d1f24a9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-GOODNESS-TESTS",
@@ -33933,10 +33949,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
         "mathish_strings": 33,
-        "already_compliant": 25,
+        "already_compliant": 29,
         "needs_migration": 0,
-        "correctly_excluded": 8,
-        "needs_manual_review": 8,
+        "correctly_excluded": 4,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -33950,10 +33966,10 @@
           "text": "Today I will force η-form writing for simple GLM structures and refuse treating deviance as today's LO.",
           "text_hash": "ad3aaa9480b8a618",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33983,10 +33999,10 @@
           "text": "4.2.5 is contiguous after factors. Without η forms, deviance and software fit lack structure.",
           "text_hash": "b44f5bf1fa4e4232",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -33996,15 +34012,15 @@
           "package_file": "4.2.5-linear-predictor-cs1014.json",
           "field_path": "mission.success_criteria[0]",
           "field_group": "mission.success_criteria[]",
-          "text": "Closed-book, define the linear predictor η.",
-          "text_hash": "1e24e792bca7cdc5",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Closed-book, define the linear predictor $\\eta$.",
+          "text_hash": "f6e76709b6445a05",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -34015,10 +34031,10 @@
           "text": "Sketch η forms before CMP.",
           "text_hash": "09627fe48ea18fda",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -34031,10 +34047,10 @@
           "text": "Closed-book Knowledge Checks: η forms + refuse deviance swallow.",
           "text_hash": "e653a3ef1b8d122a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -34044,15 +34060,15 @@
           "package_file": "4.2.5-linear-predictor-cs1014.json",
           "field_path": "reading_guidance.misconception_watch[0]",
           "field_group": "reading_guidance.misconception_watch[]",
-          "text": "Watch for equating η with μ without the link.",
-          "text_hash": "cd11b81d14f15056",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Watch for equating $\\eta$ with $\\mu$ without the link.",
+          "text_hash": "88c4226b9e9c61a9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -34111,15 +34127,15 @@
           "package_file": "4.2.5-linear-predictor-cs1014.json",
           "field_path": "knowledge_checks[1].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Specified eta includes x, x squared, and cover indicator. Link maps μ to η; they are distinct objects.",
-          "text_hash": "708f08161eaddf6c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Specified eta includes x, x squared, and cover indicator. Link maps $\\mu$ to $\\eta$; they are distinct objects.",
+          "text_hash": "d2c299cfa100046b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -34300,15 +34316,16 @@
           "package_file": "4.2.5-linear-predictor-cs1014.json",
           "field_path": "worked_example.steps[0].label",
           "field_group": "worked_example.steps[].label",
-          "text": "Write η as xᵀβ",
-          "text_hash": "5054515f1b68046e",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Write $\\eta$ as $x^{\\mathrm{T}}\\beta$",
+          "text_hash": "8fcdac3a1660c637",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -35427,10 +35444,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
         "mathish_strings": 16,
-        "already_compliant": 14,
+        "already_compliant": 15,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 1,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -35646,15 +35663,16 @@
           "package_file": "4.2.7-model-choice-cs1014.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Reject the reduced model when ΔD exceeds the χ² critical value.",
-          "text_hash": "6d0763c6e5011ccc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
+          "text": "Reject the reduced model when $\\Delta D$ exceeds the $\\chi^{2}$ critical value.",
+          "text_hash": "45783ac66676dec4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -40025,5 +40043,5 @@
       ]
     }
   ],
-  "content_fingerprint": "66ad0532050967bb82c1b07573d832825118b5247afd4f4086aea32ca111e4c9"
+  "content_fingerprint": "41750f5ecb1046a31cceca09007d5b9422e36a8d5c59a497333e577a87c590dc"
 }

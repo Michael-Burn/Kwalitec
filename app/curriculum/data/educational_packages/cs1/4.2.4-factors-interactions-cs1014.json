@@ -238,7 +238,7 @@
         "note": "$\\mu = e^{\\eta}$"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Plug the factor indicators into η, remembering the interaction is zero unless both factors equal 1.",
+    "attempt_before_reveal": "CMP closed. Plug the factor indicators into $\\eta$, remembering the interaction is zero unless both factors equal 1.",
     "steps": [
       {
         "id": "S1",

@@ -257,7 +257,7 @@
         "id": "S2",
         "label": "Compare with critical value",
         "attempt_cue": "Compare 8.2 with 5.991.",
-        "explanation": "Reject the reduced model when ΔD exceeds the χ² critical value.",
+        "explanation": "Reject the reduced model when $\\Delta D$ exceeds the $\\chi^{2}$ critical value.",
         "calculation": "$8.2 > 5.991 \\Rightarrow$ reject $H_{0}$ (reduced model insufficient)",
         "result": "Reject reduced model at 5%"
       },

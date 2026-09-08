@@ -228,7 +228,7 @@
       {
         "symbol": "prior",
         "value": "Gamma(4, 6)",
-        "note": "shape-rate prior for λ"
+        "note": "shape-rate prior for $\\lambda$"
       },
       {
         "symbol": "$n, \\sum x_{i}$",

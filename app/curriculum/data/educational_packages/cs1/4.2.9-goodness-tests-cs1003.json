@@ -239,7 +239,7 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Pearson X²",
+        "label": "Pearson $X^{2}$",
         "attempt_cue": "Sum $(O - E)^{2}/E$ over the three groups.",
         "explanation": "Pearson's statistic aggregates standardised squared discrepancies between observed and fitted counts.",
         "calculation": "$X^{2} = (15-12)^{2}/12 + (9-12)^{2}/12 + (12-12)^{2}/12 = 9/12 + 9/12 + 0 = 1.5$",

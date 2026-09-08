@@ -46,7 +46,7 @@
     "expected_benefit": "You will be able to define the linear predictor and write its form for polynomial and factor models.",
     "explainability": "Assigned as Campaign Xi Day 5 because Continuity Front law keeps deviance/estimation as tomorrow.",
     "success_criteria": [
-      "Closed-book, define the linear predictor η.",
+      "Closed-book, define the linear predictor $\\eta$.",
       "Write or state one simple form and one form involving a factor or polynomial.",
       "Refuse one 'I computed deviance, so I finished today's LO' claim."
     ],
@@ -80,7 +80,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for equating η with μ without the link.",
+      "Watch for equating $\\eta$ with $\\mu$ without the link.",
       "Watch for jumping into deviance calculation (4.2.6) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
@@ -169,7 +169,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps μ to η; they are distinct objects.",
+      "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps $\\mu$ to $\\eta$; they are distinct objects.",
       "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$. Link maps $\\mu$ to $\\eta$.",
       "common_mistake": "Treating link as eta or placing polynomial terms only in mu.",
       "success_criteria": [
@@ -247,7 +247,7 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Write η as xᵀβ",
+        "label": "Write $\\eta$ as $x^{\\mathrm{T}}\\beta$",
         "attempt_cue": "Confirm the linear predictor is linear in parameters, not in x.",
         "explanation": "The linear predictor $\\eta = x^{\\mathrm{T}}\\beta$ may include powers or factors; 'linear' refers to parameters $\\beta$, not to the raw covariate.",
         "calculation": "$η = 1.0 + 0.2x - 0.01x^{2} (linear in \\beta_{0}, \\beta_{1}, \\beta_{2})$",

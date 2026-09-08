@@ -221,7 +221,7 @@
       {
         "symbol": "prior",
         "value": "Beta(3, 5)",
-        "note": "conjugate prior for θ"
+        "note": "conjugate prior for $\\theta$"
       },
       {
         "symbol": "data",
@@ -247,8 +247,8 @@
       {
         "id": "S2",
         "label": "Posterior parameters",
-        "attempt_cue": "Update α and β with the Binomial counts.",
-        "explanation": "Conjugacy adds successes to α and failures to β.",
+        "attempt_cue": "Update $\\alpha$ and $\\beta$ with the Binomial counts.",
+        "explanation": "Conjugacy adds successes to $\\alpha$ and failures to $\\beta$.",
         "calculation": "Posterior $= \\mathrm{Beta}(3+4, 5+12-4) = \\mathrm{Beta}(7, 13)$",
         "result": "Posterior Beta(7, 13)"
       },
@@ -262,7 +262,7 @@
       }
     ],
     "final_answer": "Prior Beta(3, 5) with mean 0.375; posterior Beta(7, 13) with mean 0.35.",
-    "common_pitfall": "Updating as Beta(α+n, β+s) or forgetting to add failures n − s to β.",
+    "common_pitfall": "Updating as $\\mathrm{Beta}(\\alpha+n, \\beta+s)$ or forgetting to add failures $n - s$ to $\\beta$.",
     "syllabus_ref": "5.1.2"
   }
 }

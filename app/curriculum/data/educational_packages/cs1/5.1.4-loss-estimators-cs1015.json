@@ -234,7 +234,7 @@
       {
         "symbol": "posterior probs",
         "value": "0.20, 0.50, 0.30",
-        "note": "π(θ|data)"
+        "note": "$\\pi(\\theta \\mid \\mathrm{data})$"
       }
     ],
     "attempt_before_reveal": "CMP closed. Recall squared-error → posterior mean; absolute-error → posterior median.",

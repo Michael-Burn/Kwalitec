@@ -162,8 +162,8 @@
       "response_type": "numeric",
       "body": "Evaluate the credibility premium with the given Z.",
       "hints": [
-        "Compute 1 - Z first, then blend X̄ and μ.",
-        "Z weights the individual experience X̄."
+        "Compute $1 - Z$ first, then blend $\\bar{X}$ and $\\mu$.",
+        "$Z$ weights the individual experience $\\bar{X}$."
       ],
       "accepted_keywords": [
         "1110"
@@ -173,7 +173,7 @@
       "common_mistake": "Swapping the weights to get $0.55 \\times 1000 + 0.45 \\times 1200 = 1090$, or taking full credibility $P = 1200$.",
       "success_criteria": [
         "Enters a value within 0.5 of 1110.",
-        "Uses Z on X̄ and (1 - Z) on μ."
+        "Uses $Z$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$."
       ],
       "numeric_tolerance": 0.5
     }
@@ -215,12 +215,12 @@
         "note": "credibility factor"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form the convex combination with weights Z and 1 − Z.",
+    "attempt_before_reveal": "CMP closed. Form the convex combination with weights $Z$ and $1 - Z$.",
     "steps": [
       {
         "id": "S1",
         "label": "Complementary weight",
-        "attempt_cue": "Compute 1 − Z.",
+        "attempt_cue": "Compute $1 - Z$.",
         "explanation": "Credibility premiums are weighted averages of individual and collective means.",
         "calculation": "$1 - Z = 0.45$",
         "result": "$1 - Z = 0.45$"
@@ -228,7 +228,7 @@
       {
         "id": "S2",
         "label": "Credibility premium",
-        "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
+        "attempt_cue": "Compute $Z\\bar{X} + (1 - Z)\\mu$.",
         "explanation": "Substitute the given values into the standard credibility formula.",
         "calculation": "$P = 0.55 \\times 1200 + 0.45 \\times 1000 = 660 + 450 = 1110$",
         "result": "P = £1110"
@@ -237,7 +237,7 @@
         "id": "S3",
         "label": "Interpret Z",
         "attempt_cue": "State what Z multiplies.",
-        "explanation": "Z is the weight on the risk's own experience X̄; 1 − Z weights the class hypothetical mean.",
+        "explanation": "$Z$ is the weight on the risk's own experience $\\bar{X}$; $1 - Z$ weights the class hypothetical mean.",
         "calculation": "$Z weights \\bar{X}$; $(1 - Z) weights \\mu$",
         "result": "Z = 0.55 weights individual experience"
       }

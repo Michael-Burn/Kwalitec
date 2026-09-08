@@ -1,9 +1,11 @@
-"""Wave 11: catalogue-wide manual-review close-out (batches 1–2).
+"""Wave 11: catalogue-wide manual-review close-out (batches 1–3).
 
 Applies the locked classifications from
-``docs/handoff/MATH_NOTATION_WAVE11_MANUAL_REVIEW.md`` (batch 1: 64 of 239)
-and ``docs/handoff/MATH_NOTATION_WAVE11_BATCH2_MANUAL_REVIEW.md`` (batch 2:
-60 of the 175 remaining after batch 1).
+``docs/handoff/MATH_NOTATION_WAVE11_MANUAL_REVIEW.md`` (batch 1: 64 of 239),
+``docs/handoff/MATH_NOTATION_WAVE11_BATCH2_MANUAL_REVIEW.md`` (batch 2:
+60 of the 175 remaining after batch 1), and
+``docs/handoff/MATH_NOTATION_WAVE11_BATCH3_MANUAL_REVIEW.md`` (batch 3:
+62 of the 115 remaining after batch 2).
 
 This module is the locked record of package files and field paths touched by
 each batch. Application of package text and ``_MANUAL_PROSE_EXCLUSIONS`` is done
@@ -60,10 +62,7 @@ WAVE11_BATCH2_FILES: tuple[str, ...] = (
     "4.2.4-factors-interactions-cs1003.json",
 )
 
-# Packages that still carry needs_manual_review after batches 1–2 (remainder).
-WAVE11_REMAINDER_START_PACKAGE = "4.2.4-factors-interactions-cs1014.json"
-
-WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = (
+WAVE11_BATCH3_FILES: tuple[str, ...] = (
     "4.2.4-factors-interactions-cs1014.json",
     "4.2.5-linear-predictor-cs1003.json",
     "4.2.5-linear-predictor-cs1014.json",
@@ -78,6 +77,12 @@ WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = (
     "5.1.4-loss-estimators-cs1015.json",
     "5.1.5-credible-intervals-cs1015.json",
     "5.1.6-credibility-premium-cs1003.json",
+)
+
+# Packages that still carry needs_manual_review after batches 1–3 (remainder).
+WAVE11_REMAINDER_START_PACKAGE = "5.1.6-credibility-premium-cs1015.json"
+
+WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = (
     "5.1.6-credibility-premium-cs1015.json",
     "5.1.7-bayesian-credibility-cs1003.json",
     "5.1.7-bayesian-credibility-cs1015.json",

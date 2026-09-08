@@ -234,7 +234,7 @@
         "note": "critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form ΔD before comparing to the chi-square critical value.",
+    "attempt_before_reveal": "CMP closed. Form $\\Delta D$ before comparing to the chi-square critical value.",
     "steps": [
       {
         "id": "S1",

@@ -80,7 +80,7 @@
       "What will you practise in Knowledge Checks after the CMP?"
     ],
     "misconception_watch": [
-      "Watch for treating a non-significant χ² as automatic model perfection.",
+      "Watch for treating a non-significant $\\chi^{2}$ as automatic model perfection.",
       "Watch for jumping into full software interpretation (4.2.10) as today's finish.",
       "Watch for Trust Front 5.1 absorb claims."
     ],
@@ -256,8 +256,8 @@
       {
         "id": "S2",
         "label": "Sum and decide",
-        "attempt_cue": "Sum to X² and compare with 5.991.",
-        "explanation": "Large X² rejects aggregate adequacy of the fitted means.",
+        "attempt_cue": "Sum to $X^{2}$ and compare with $5.991$.",
+        "explanation": "Large $X^{2}$ rejects aggregate adequacy of the fitted means.",
         "calculation": "$X^{2} = 0.8$; $0.8 < 5.991 \\Rightarrow$ do not reject aggregate adequacy at 5%",
         "result": "$X^{2} = 0.8$; $retain model on this check$"
       },

@@ -228,7 +228,7 @@
       {
         "symbol": "posterior",
         "value": "$N(100, 5^{2})$",
-        "note": "posterior for θ"
+        "note": "posterior for $\\theta$"
       },
       {
         "symbol": "z_{0.975}",
@@ -236,12 +236,12 @@
         "note": "central 95% Normal quantile"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Form mean ± 1.96 × posterior SD, and phrase it as a posterior probability statement.",
+    "attempt_before_reveal": "CMP closed. Form $\\mathrm{mean} \\pm 1.96 \\times \\mathrm{posterior SD}$, and phrase it as a posterior probability statement.",
     "steps": [
       {
         "id": "S1",
         "label": "Central 95% endpoints",
-        "attempt_cue": "Compute 100 ± 1.96 × 5.",
+        "attempt_cue": "Compute $100 \\pm 1.96 \\times 5$.",
         "explanation": "A credible interval is built from the posterior distribution, not from a sampling distribution of an estimator.",
         "calculation": "$100 \\pm 1.96 \\times 5 = 100 \\pm 9.8 \\Rightarrow (90.2, 109.8)$",
         "result": "(90.2, 109.8)"
@@ -264,7 +264,7 @@
       }
     ],
     "final_answer": "Central 95% credible interval (90.2, 109.8); $P(90.2 < \\theta < 109.8 \\mid \\mathrm{data}) = 0.95$.",
-    "common_pitfall": "Interpreting (90.2, 109.8) as a frequentist confidence interval ('95% of samples cover θ') instead of a posterior probability statement for θ.",
+    "common_pitfall": "Interpreting $(90.2, 109.8)$ as a frequentist confidence interval ('95% of samples cover θ') instead of a posterior probability statement for θ.",
     "syllabus_ref": "5.1.5"
   }
 }

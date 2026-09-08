@@ -228,7 +228,7 @@
       {
         "symbol": "prior",
         "value": "Beta(2, 8)",
-        "note": "prior for θ"
+        "note": "prior for $\\theta$"
       },
       {
         "symbol": "data",
@@ -254,7 +254,7 @@
       {
         "id": "S2",
         "label": "Posterior parameters",
-        "attempt_cue": "Update to Beta(2+3, 8+10−3).",
+        "attempt_cue": "Update to $\\mathrm{Beta}(2+3, 8+10-3)$.",
         "explanation": "A conjugate prior keeps the same distributional family after updating. Naming conjugacy is not itself the posterior calculation.",
         "calculation": "Posterior = Beta(5, 15)",
         "result": "$\\theta \\mid \\mathrm{data} \\sim \\mathrm{Beta}(5, 15)$"
