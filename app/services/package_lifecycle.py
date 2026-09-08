@@ -431,6 +431,21 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/spacing_scheduler",
+        layer="application",
+        responsibility=(
+            "Canonical time-based spacing due state for reviewable packages"
+        ),
+        owner="Spacing Scheduler",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Isolated capability: due/not-due from elapsed time only. "
+            "Does not encode weakness or mastery. Not yet wired to Revision "
+            "or the daily study composer."
+        ),
+    ),
+    PackageEntry(
         path="app/application/curriculum_intelligence",
         layer="application",
         responsibility="Certified packages + CertifiedMissionEngine",
