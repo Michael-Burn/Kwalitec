@@ -82,7 +82,7 @@
     "misconception_watch": [
       "Watch for confusing a statistic with a parameter.",
       "Watch for treating one realised statistic as its sampling distribution.",
-      "Watch for jumping to Var(X̄)=σ²/n as today's only content without the concept."
+      "Watch for jumping to $\\operatorname{Var}(\\bar{X})=\\sigma^{2}/n$ as today's only content without the concept."
     ],
     "open_point": "CMP · Syllabus 2.6.2 sampling distribution of a statistic",
     "stop_condition": "Through CMP 2.6.2 (stop before mean/variance formulas 2.6.3)",
@@ -220,15 +220,15 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Separate a realised mean from its sampling distribution",
-    "problem_statement": "A population of claim costs has mean μ = 80 and variance σ² = 400. A random sample of size n = 16 yields a realised sample mean x̄ = 78. State what the sampling distribution of the sample mean is, give E[X̄] and Var(X̄), and decide whether 78 is that sampling distribution.",
+    "problem_statement": "A population of claim costs has mean $\\mu$ = 80 and variance $\\sigma^{2}$ = 400. A random sample of size n = 16 yields a realised sample mean $\\bar{x}$ = 78. State what the sampling distribution of the sample mean is, give $E[\\bar{X}]$ and $\\operatorname{Var}(\\bar{X})$, and decide whether 78 is that sampling distribution.",
     "given": [
       {
-        "symbol": "μ",
+        "symbol": "$\\mu$",
         "value": "80",
         "note": "population mean"
       },
       {
-        "symbol": "σ²",
+        "symbol": "$\\sigma^{2}$",
         "value": "400",
         "note": "population variance"
       },
@@ -238,7 +238,7 @@
         "note": "sample size"
       },
       {
-        "symbol": "realised x̄",
+        "symbol": "realised $\\bar{x}$",
         "value": "78",
         "note": "one observed sample mean"
       }
@@ -250,27 +250,27 @@
         "label": "Define the sampling distribution",
         "attempt_cue": "Say what distribution the sample mean has across repeated samples.",
         "explanation": "The sampling distribution of the sample mean is the probability distribution of values X̄ would take over repeated random samples of the same size.",
-        "calculation": "Sampling distribution = law of X̄ over repeated samples of size 16",
+        "calculation": "Sampling distribution = law of $\\bar{X}$ over repeated samples of size 16",
         "result": "Sampling distribution defined over repeated samples"
       },
       {
         "id": "S2",
-        "label": "Compute E[X̄] and Var(X̄)",
-        "attempt_cue": "Use E[X̄] = μ and Var(X̄) = σ²/n.",
-        "explanation": "For a random sample from a population with mean μ and variance σ², E[X̄] = μ and Var(X̄) = σ²/n.",
-        "calculation": "E[X̄] = 80; Var(X̄) = 400/16 = 25",
-        "result": "E[X̄] = 80; Var(X̄) = 25"
+        "label": "Compute $E[\\bar{X}]$ and $\\operatorname{Var}(\\bar{X})$",
+        "attempt_cue": "Use $E[\\bar{X}] = \\mu$ and $\\operatorname{Var}(\\bar{X}) = \\sigma^{2}/n$.",
+        "explanation": "For a random sample from a population with mean $\\mu$ and variance $\\sigma^{2}$, $E[\\bar{X}] = \\mu$ and $\\operatorname{Var}(\\bar{X}) = \\sigma^{2}/n$.",
+        "calculation": "$E[\\bar{X}] = 80$; $\\operatorname{Var}(\\bar{X}) = 400/16 = 25$",
+        "result": "$E[\\bar{X}] = 80$; $\\operatorname{Var}(\\bar{X}) = 25$"
       },
       {
         "id": "S3",
         "label": "Classify the realised value 78",
         "attempt_cue": "Is 78 the sampling distribution or one draw from it?",
         "explanation": "The number 78 is one realised value of the statistic, not the sampling distribution itself.",
-        "calculation": "78 = one realised X̄; refuse equating it with the sampling distribution",
+        "calculation": "$78$ = one realised $\\bar{X}$; refuse equating it with the sampling distribution",
         "result": "78 is a realised statistic, not the sampling distribution"
       }
     ],
-    "final_answer": "The sampling distribution of X̄ is the distribution of the sample mean over repeated samples of size 16; E[X̄] = 80 and Var(X̄) = 25. The observed 78 is one realised value, not that distribution.",
+    "final_answer": "The sampling distribution of $\\bar{X}$ is the distribution of the sample mean over repeated samples of size 16; $E[\\bar{X}] = 80$ and $\\operatorname{Var}(\\bar{X}) = 25$. The observed 78 is one realised value, not that distribution.",
     "common_pitfall": "Treating the single observed sample mean 78 as 'the sampling distribution' of the mean, rather than as one realisation from the repeated-sampling distribution.",
     "syllabus_ref": "2.6.2"
   }

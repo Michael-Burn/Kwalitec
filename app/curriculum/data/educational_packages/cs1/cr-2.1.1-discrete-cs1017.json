@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Family choice follows the data-generating story, not integer typing alone. Normal-for-counts or interchangeable families are mismatches.",
-      "model_answer": "Match generative story to family; discrete ≠ interchangeable.",
+      "model_answer": "Match generative story to family; discrete $\\neq$ interchangeable.",
       "common_mistake": "Normal for counts, ignoring without-replacement structure, or integer implies Poisson.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -185,7 +185,7 @@
         },
         {
           "id": "b",
-          "label": "Normal(μ, σ²) fits best because the sample mean and variance can always be matched for any count variable.",
+          "label": "$\\mathrm{Normal}(\\mu, \\sigma^{2})$ fits best because the sample mean and variance can always be matched for any count variable.",
           "misconception_tag": "normal_for_counts"
         },
         {
@@ -226,7 +226,7 @@
   "published_at": "2026-08-04",
   "worked_example": {
     "title": "Select Poisson for rare annual claim counts",
-    "problem_statement": "For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Choose the matching discrete family. As a light numeric check, if λ = 0.4 under that family, compute P(X = 0).",
+    "problem_statement": "For a single policy, model the number of claims in a fixed year with a constant rare-event rate and independent increments. Choose the matching discrete family. As a light numeric check, if $\\lambda$ = 0.4 under that family, compute $P(X = 0)$.",
     "given": [
       {
         "symbol": "generative story",
@@ -234,12 +234,12 @@
         "note": "count support, non-negative integers"
       },
       {
-        "symbol": "λ",
+        "symbol": "$\\lambda$",
         "value": "0.4",
         "note": "illustrative Poisson mean rate (per year)"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating $P(X = 0)$.",
     "steps": [
       {
         "id": "S1",
@@ -251,11 +251,11 @@
       },
       {
         "id": "S2",
-        "label": "Light numeric illustration P(X = 0)",
+        "label": "Light numeric illustration $P(X = 0)$",
         "attempt_cue": "For Poisson(λ = 0.4), evaluate e^{−λ}.",
-        "explanation": "Under Poisson(λ), P(X = 0) = e^{−λ}. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
-        "calculation": "P(X = 0) = e^{−0.4} ≈ 0.6703",
-        "result": "P(X = 0) ≈ 0.6703"
+        "explanation": "Under Poisson($\\lambda$), $P(X = 0) = e^{-\\lambda}$. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+        "calculation": "$P(X = 0) = e^{-0.4} \\approx 0.6703$",
+        "result": "$P(X = 0) \\approx 0.6703$"
       },
       {
         "id": "S3",
@@ -266,7 +266,7 @@
         "result": "Poisson retained; mismatched families refused"
       }
     ],
-    "final_answer": "Choose Poisson for the rare-event fixed-year count story; with λ = 0.4, P(X = 0) ≈ 0.6703. Refuse Normal or hypergeometric for this generative story.",
+    "final_answer": "Choose Poisson for the rare-event fixed-year count story; with $\\lambda = 0.4$, $P(X = 0) \\approx 0.6703$. Refuse Normal or hypergeometric for this generative story.",
     "common_pitfall": "Defaulting to a Normal model for claim counts because it is familiar, or picking hypergeometric without a without-replacement finite-population draw story.",
     "syllabus_ref": "2.1.1"
   }

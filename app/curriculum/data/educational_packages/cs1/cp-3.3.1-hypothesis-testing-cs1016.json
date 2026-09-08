@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Keep null/alternative and Type I/II in their standard directions. Regression fitting is a different topic; Type I and Type II are not the same event.",
-      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; power = P(reject | H₁).",
+      "model_answer": "Null vs alternative; Type I = false reject; Type II = false retain; power = $P(\\text{reject} \\mid H_{1})$.",
       "common_mistake": "Swapping Type I/II, or displacing HT vocabulary into regression.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1016-3.3.1-cp-01",
       "title": "Checkpoint: 3.3.1",
-      "prompt": "Closed-book. Fraud flag: H₀ = genuine claim, H₁ = fraudulent. Which statement is correct?",
+      "prompt": "Closed-book. Fraud flag: $H_{0}$ = genuine claim, $H_{1}$ = fraudulent. Which statement is correct?",
       "response_type": "mcq",
       "body": "Type I/II, p-value, power; refuse cookbook-as-concepts and regression.",
       "hints": [
@@ -169,7 +169,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "False fraud flag = Type I; missed fraud = Type II. Keep p-value and power in frequentist form. Neither software theatre nor regression fitting substitutes for the concepts.",
-      "model_answer": "Type I = false fraud flag; Type II = missed fraud; p-value under H₀; power = 1−β; refuse cookbook-as-concepts and regression conflation.",
+      "model_answer": "Type I = false fraud flag; Type II = missed fraud; p-value under $H_{0}$; power = $1-\\beta$; refuse cookbook-as-concepts and regression conflation.",
       "common_mistake": "Swapping Type I/II, or treating a z-test click / regression fit as HT concepts.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Type I: flag fraud when the claim is genuine. Type II: miss fraud when it is present. A p-value is the probability under H₀ of data at least as extreme as observed; power is P(reject H₀ | H₁ true). A software z-test click does not replace this vocabulary, and linear regression is a different topic.",
+          "label": "Type I: flag fraud when the claim is genuine. Type II: miss fraud when it is present. A p-value is the probability under $H_{0}$ of data at least as extreme as observed; power is $P(\\text{reject }H_{0} \\mid H_{1}\\text{ true})$. A software z-test click does not replace this vocabulary, and linear regression is a different topic.",
           "misconception_tag": ""
         },
         {
@@ -224,10 +224,10 @@
   "published_at": "2026-08-04",
   "worked_example": {
     "title": "Type I / Type II counts from a fraud screen",
-    "problem_statement": "A fraud screen is run on 1,000 claims. Truth vs decision: 200 truly fraudulent claims, of which 40 are missed (flagged clean); 800 truly clean claims, of which 24 are falsely flagged as fraud. Taking H₀: claim is clean, compute the empirical Type I error rate and Type II error rate from these counts.",
+    "problem_statement": "A fraud screen is run on 1,000 claims. Truth vs decision: 200 truly fraudulent claims, of which 40 are missed (flagged clean); 800 truly clean claims, of which 24 are falsely flagged as fraud. Taking $H_{0}$: claim is clean, compute the empirical Type I error rate and Type II error rate from these counts.",
     "given": [
       {
-        "symbol": "n_clean",
+        "symbol": "$n_{\\mathrm{clean}}$",
         "value": "800",
         "note": "truly clean claims"
       },
@@ -237,7 +237,7 @@
         "note": "clean flagged as fraud"
       },
       {
-        "symbol": "n_fraud",
+        "symbol": "$n_{\\mathrm{fraud}}$",
         "value": "200",
         "note": "truly fraudulent claims"
       },
@@ -270,7 +270,7 @@
         "label": "Power (optional check)",
         "attempt_cue": "Power = 1 − Type II rate.",
         "explanation": "Power is the probability of correctly flagging fraud.",
-        "calculation": "1 − 0.20 = 0.80",
+        "calculation": "$1 - 0.20 = 0.80$",
         "result": "Power = 0.80"
       }
     ],

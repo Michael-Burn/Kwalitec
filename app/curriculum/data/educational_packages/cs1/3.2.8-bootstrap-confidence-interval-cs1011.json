@@ -180,22 +180,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Resample with replacement, recompute the statistic on each resample, then take the α/2 and 1−α/2 quantiles of those replicates as interval endpoints. Estimating a bootstrap standard error alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
+          "label": "Resample with replacement, recompute the statistic on each resample, then take the $\\alpha/2$ and $1-\\alpha/2$ quantiles of those replicates as interval endpoints. Estimating a bootstrap standard error alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Compute a bootstrap SE and report (θ̂ − SE, θ̂ + SE) only; quantile endpoints from replicates are never used.",
+          "label": "Compute a bootstrap SE and report ($\\hat{\\theta} - \\mathrm{SE}$, $\\hat{\\theta} + \\mathrm{SE}$) only; quantile endpoints from replicates are never used.",
           "misconception_tag": "se_only_as_ci"
         },
         {
           "id": "c",
-          "label": "A bootstrap CI is completed by rejecting H₀ whenever θ̂ falls outside a fixed null value, without forming interval endpoints.",
+          "label": "A bootstrap CI is completed by rejecting $H_{0}$ whenever $\\hat{\\theta}$ falls outside a fixed null value, without forming interval endpoints.",
           "misconception_tag": "ht_as_ci"
         },
         {
           "id": "d",
-          "label": "Draw one bootstrap resample, compute θ̂*, and report the singleton interval [θ̂*, θ̂*].",
+          "label": "Draw one bootstrap resample, compute $\\hat{\\theta}^{*}$, and report the singleton interval [$\\hat{\\theta}^{*}$, $\\hat{\\theta}^{*}$].",
           "misconception_tag": "singleton_interval"
         }
       ],
@@ -221,10 +221,10 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Percentile bootstrap CI for mean severity",
-    "problem_statement": "A nonparametric bootstrap of mean claim severity produced B = 10 bootstrap means (£), already sorted: 1900, 1950, 1980, 2000, 2010, 2030, 2050, 2080, 2100, 2150. Using the percentile method with α = 0.05, form an approximate 90% CI by taking the order statistics at indices ⌊α(B+1)⌋ = ⌊0.55⌋ → 1 (use 1st) and ⌈(1−α)(B+1)⌉ = ⌈10.45⌉ → 11 (clamp to 10th).",
+    "problem_statement": "A nonparametric bootstrap of mean claim severity produced $B = 10$ bootstrap means (£), already sorted: 1900, 1950, 1980, 2000, 2010, 2030, 2050, 2080, 2100, 2150. Using the percentile method with $\\alpha = 0.05$, form an approximate 90% CI by taking the order statistics at indices $\\lfloor\\alpha(B+1)\\rfloor = \\lfloor 0.55\\rfloor \\rightarrow 1$ (use 1st) and $\\lceil(1-\\alpha)(B+1)\\rceil = \\lceil 10.45\\rceil \\rightarrow 11$ (clamp to 10th).",
     "given": [
       {
-        "symbol": "θ̂*_{(1)}…θ̂*_{(10)}",
+        "symbol": "$\\hat{\\theta}^{*}_{(1)}\\ldots\\hat{\\theta}^{*}_{(10)}$",
         "value": "1900, 1950, 1980, 2000, 2010, 2030, 2050, 2080, 2100, 2150",
         "note": "sorted bootstrap means (£)"
       },
@@ -234,7 +234,7 @@
         "note": "bootstrap replicates"
       },
       {
-        "symbol": "α",
+        "symbol": "$\\alpha$",
         "value": "0.05",
         "note": "for a 90% percentile interval"
       }
@@ -246,7 +246,7 @@
         "label": "Lower index",
         "attempt_cue": "Evaluate ⌊α(B+1)⌋ and map to an order statistic.",
         "explanation": "The percentile method reads quantiles from the ordered bootstrap replicates rather than using a Normal SE.",
-        "calculation": "⌊0.05 × 11⌋ = ⌊0.55⌋ = 0 → use the 1st order statistic",
+        "calculation": "$\\lfloor 0.05 \\times 11\\rfloor = \\lfloor 0.55\\rfloor = 0 \\rightarrow$ use the 1st order statistic",
         "result": "lower index = 1"
       },
       {
@@ -254,7 +254,7 @@
         "label": "Upper index",
         "attempt_cue": "Evaluate ⌈(1−α)(B+1)⌉ and clamp to B if needed.",
         "explanation": "Symmetric upper quantile for the same α.",
-        "calculation": "⌈0.95 × 11⌉ = ⌈10.45⌉ = 11 → clamp to 10",
+        "calculation": "$\\lceil 0.95 \\times 11\\rceil = \\lceil 10.45\\rceil = 11 \\rightarrow$ clamp to 10",
         "result": "upper index = 10"
       },
       {
@@ -262,7 +262,7 @@
         "label": "Read the interval",
         "attempt_cue": "Take θ̂*_{(1)} and θ̂*_{(10)}.",
         "explanation": "Endpoints are the selected order statistics themselves.",
-        "calculation": "θ̂*_{(1)} = 1900;  θ̂*_{(10)} = 2150",
+        "calculation": "$\\hat{\\theta}^{*}_{(1)} = 1900$; $\\hat{\\theta}^{*}_{(10)} = 2150$",
         "result": "(1900, 2150)"
       }
     ],

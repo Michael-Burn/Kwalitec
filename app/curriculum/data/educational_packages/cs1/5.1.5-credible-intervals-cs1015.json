@@ -124,7 +124,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Credible interval is posterior probability for θ. Repeated-sampling coverage slogan is the frequentist confidence interval reading unless carefully distinguished.",
-      "model_answer": "Posterior probability statement for θ using posterior distribution.",
+      "model_answer": "Posterior probability statement for $\\theta$ using posterior distribution.",
       "common_mistake": "Reading credible interval with frequentist repeated-coverage language only.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A credible interval is a posterior probability statement about the parameter θ given the observed data, typically constructed from the posterior distribution (for example equal-tailed quantiles).",
+          "label": "A credible interval is a posterior probability statement about the parameter $\\theta$ given the observed data, typically constructed from the posterior distribution (for example equal-tailed quantiles).",
           "misconception_tag": ""
         },
         {
@@ -159,7 +159,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.5-cp-01",
       "title": "Checkpoint: 5.1.5",
-      "prompt": "Closed-book. Posterior for risk parameter θ is Normal(0.10, 0.02 squared). Which statement is correct?",
+      "prompt": "Closed-book. Posterior for risk parameter $\\theta$ is Normal(0.10, 0.02 squared). Which statement is correct?",
       "response_type": "mcq",
       "body": "Construct 95% equal-tailed interval; refuse frequentist reading.",
       "hints": [
@@ -177,7 +177,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Approximate 95% equal-tailed credible interval: 0.10 plus or minus 1.96 times 0.02 gives about (0.0608, 0.1392). That frequentist repeated-sampling coverage slogan is the confidence-interval reading; a credible interval is a posterior probability statement about θ given the data.",
+          "label": "Approximate 95% equal-tailed credible interval: 0.10 plus or minus 1.96 times 0.02 gives about (0.0608, 0.1392). That frequentist repeated-sampling coverage slogan is the confidence-interval reading; a credible interval is a posterior probability statement about $\\theta$ given the data.",
           "misconception_tag": ""
         },
         {
@@ -223,11 +223,11 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Normal posterior 95% credible interval",
-    "problem_statement": "After observing claim experience, the posterior for mean ultimate cost θ (£000) is Normal with mean 100 and standard deviation 5: θ | data ~ N(100, 5²). Using z_{0.975} = 1.96, construct a central 95% credible interval for θ. State what probability statement the interval makes.",
+    "problem_statement": "After observing claim experience, the posterior for mean ultimate cost $\\theta$ (£000) is Normal with mean 100 and standard deviation 5: $\\theta \\mid \\mathrm{data} \\sim N(100, 5^{2})$. Using $z_{0.975} = 1.96$, construct a central 95% credible interval for $\\theta$. State what probability statement the interval makes.",
     "given": [
       {
         "symbol": "posterior",
-        "value": "N(100, 5²)",
+        "value": "$N(100, 5^{2})$",
         "note": "posterior for θ"
       },
       {
@@ -243,15 +243,15 @@
         "label": "Central 95% endpoints",
         "attempt_cue": "Compute 100 ± 1.96 × 5.",
         "explanation": "A credible interval is built from the posterior distribution, not from a sampling distribution of an estimator.",
-        "calculation": "100 ± 1.96 × 5 = 100 ± 9.8 ⇒ (90.2, 109.8)",
+        "calculation": "$100 \\pm 1.96 \\times 5 = 100 \\pm 9.8 \\Rightarrow (90.2, 109.8)$",
         "result": "(90.2, 109.8)"
       },
       {
         "id": "S2",
         "label": "Posterior probability statement",
-        "attempt_cue": "Write P(90.2 < θ < 109.8 | data) = 0.95.",
+        "attempt_cue": "Write $P(90.2 < \\theta < 109.8 \\mid \\mathrm{data}) = 0.95$.",
         "explanation": "Unlike a frequentist CI, the credible interval places probability on θ given the data and prior.",
-        "calculation": "P(90.2 < θ < 109.8 | data) = 0.95",
+        "calculation": "$P(90.2 < \\theta < 109.8 \\mid \\mathrm{data}) = 0.95$",
         "result": "95% posterior probability content"
       },
       {
@@ -259,11 +259,11 @@
         "label": "Object used",
         "attempt_cue": "Name the posterior distribution as the object.",
         "explanation": "Credible intervals use the posterior; they are not confidence intervals.",
-        "calculation": "Interval derived from π(θ|data) = N(100, 25)",
+        "calculation": "Interval derived from $\\pi(\\theta \\mid \\mathrm{data}) = N(100, 25)$",
         "result": "Uses posterior, not sampling SE alone"
       }
     ],
-    "final_answer": "Central 95% credible interval (90.2, 109.8); P(90.2 < θ < 109.8 | data) = 0.95.",
+    "final_answer": "Central 95% credible interval (90.2, 109.8); $P(90.2 < \\theta < 109.8 \\mid \\mathrm{data}) = 0.95$.",
     "common_pitfall": "Interpreting (90.2, 109.8) as a frequentist confidence interval ('95% of samples cover θ') instead of a posterior probability statement for θ.",
     "syllabus_ref": "5.1.5"
   }

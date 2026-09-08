@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.3-cp-01",
       "title": "Checkpoint: 3.3.3",
-      "prompt": "Closed-book. Under H₀ of no treatment effect, treatment labels are exchangeable across units. Which statement is correct?",
+      "prompt": "Closed-book. Under $H_{0}$ of no treatment effect, treatment labels are exchangeable across units. Which statement is correct?",
       "response_type": "mcq",
       "body": "Permutation move; refuse Normal-cookbook and GOF conflation.",
       "hints": [
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Shuffle or reassign labels under H₀, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution. That is not a Normal two-sample z-test by another name, and not a chi-square GOF to a named distribution.",
+          "label": "Shuffle or reassign labels under $H_{0}$, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution. That is not a Normal two-sample z-test by another name, and not a chi-square GOF to a named distribution.",
           "misconception_tag": ""
         },
         {
@@ -194,7 +194,7 @@
         },
         {
           "id": "d",
-          "label": "Resample with replacement to form a percentile confidence interval; reject H₀ if zero is outside that interval, and call the procedure a permutation test.",
+          "label": "Resample with replacement to form a percentile confidence interval; reject $H_{0}$ if zero is outside that interval, and call the procedure a permutation test.",
           "misconception_tag": "bootstrap_ci_as_permutation"
         }
       ],
@@ -220,7 +220,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Exact permutation test for two claim groups",
-    "problem_statement": "Small claim samples (£00): Group A = {10, 12, 14}, Group B = {8, 9, 11}. Test H₀: the two groups share the same distribution, using the two-sided permutation statistic |x̄_A − x̄_B|. Enumerate all C(6,3) = 20 assignments of three labels to A. The observed |x̄_A − x̄_B| equals 8/3. Exactly 4 of the 20 permutations have |diff| ≥ 8/3. Report the exact permutation p-value.",
+    "problem_statement": "Small claim samples (£00): Group A = {10, 12, 14}, Group B = {8, 9, 11}. Test $H_{0}$: the two groups share the same distribution, using the two-sided permutation statistic $|\\bar{x}_{A} - \\bar{x}_{B}|$. Enumerate all C(6,3) = 20 assignments of three labels to A. The observed $|\\bar{x}_{A} - \\bar{x}_{B}|$ equals 8/3. Exactly 4 of the 20 permutations have |diff| $\\geq 8/3$. Report the exact permutation p-value.",
     "given": [
       {
         "symbol": "A",
@@ -250,8 +250,8 @@
         "label": "Observed difference",
         "attempt_cue": "Compute |mean(A) − mean(B)|.",
         "explanation": "The permutation test needs the observed value of the chosen statistic.",
-        "calculation": "x̄_A = 36/3 = 12;  x̄_B = 28/3 ≈ 9.333;  |12 − 28/3| = 8/3 ≈ 2.667",
-        "result": "|x̄_A − x̄_B| = 8/3"
+        "calculation": "$\\bar{x}_A = 36/3 = 12$; $\\bar{x}_B = 28/3 \\approx 9.333$; $|12 - 28/3| = 8/3 \\approx 2.667$",
+        "result": "$|\\bar{x}_A - \\bar{x}_B| = 8/3$"
       },
       {
         "id": "S2",
@@ -266,11 +266,11 @@
         "label": "Decision at α = 0.05",
         "attempt_cue": "Compare p with 0.05.",
         "explanation": "Do not reject H₀ when p > α.",
-        "calculation": "0.2 > 0.05  ⇒  do not reject H₀",
-        "result": "Do not reject H₀ at 5%"
+        "calculation": "$0.2 > 0.05 \\Rightarrow$ do not reject $H_{0}$",
+        "result": "Do not reject $H_{0}$ at 5%"
       }
     ],
-    "final_answer": "Observed |x̄_A − x̄_B| = 8/3; exact permutation p-value = 0.2; do not reject H₀ at α = 0.05.",
+    "final_answer": "Observed $|\\bar{x}_{A} - \\bar{x}_{B}| = 8/3$; exact permutation p-value = 0.2; do not reject $H_{0}$ at $\\alpha = 0.05$.",
     "common_pitfall": "Computing a two-sample t p-value on n = 3 per group and treating it as the permutation p-value, or reporting 4/C(6,3) incorrectly as 4/15 by mixing combinations with permutations of a different size.",
     "syllabus_ref": "3.3.3"
   }

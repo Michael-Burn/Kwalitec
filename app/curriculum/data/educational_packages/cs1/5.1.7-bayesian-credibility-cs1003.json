@@ -123,7 +123,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Bayesian credibility requires prior-to-posterior structure that justifies μ and Z. Empty formula or EB conflation are wrong.",
-      "model_answer": "Prior, update to posterior, credibility premium Z X̄ + (1-Z) μ from structure.",
+      "model_answer": "Prior, update to posterior, credibility premium Z $\\bar{X}$ + (1-Z) $\\mu$ from structure.",
       "common_mistake": "Writing the blend formula without a Bayesian warrant or collapsing into Empirical Bayes.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -132,12 +132,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times X̄ + (1 minus Z) times μ with Z and μ determined from the prior structure.",
+          "label": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with Z and $\\mu$ determined from the prior structure.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Write Z times X̄ + (1 minus Z) times μ with no Bayesian story; the blend formula alone defines Bayesian credibility.",
+          "label": "Write Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with no Bayesian story; the blend formula alone defines Bayesian credibility.",
           "misconception_tag": "empty_formula"
         },
         {
@@ -147,7 +147,7 @@
         },
         {
           "id": "d",
-          "label": "Bayesian credibility uses only the sample mean X̄ with Z = 1 always; the prior enters only in Empirical Bayes.",
+          "label": "Bayesian credibility uses only the sample mean $\\bar{X}$ with Z = 1 always; the prior enters only in Empirical Bayes.",
           "misconception_tag": "full_credibility_always"
         }
       ],
@@ -158,7 +158,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times X̄ + (1 minus Z) times μ. Which statement is correct?",
+      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$. Which statement is correct?",
       "response_type": "mcq",
       "body": "State what prior supplies; refuse EB conflation.",
       "hints": [
@@ -176,7 +176,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed X̄. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
+          "label": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed $\\bar{X}$. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
           "misconception_tag": ""
         },
         {
@@ -217,7 +217,7 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Bühlmann Z from prior structure, then premium",
-    "problem_statement": "In a Bayesian credibility (Bühlmann) setting, the expected process variance is EVPV = 200 and the variance of hypothetical means is VHM = 50, so k = EVPV/VHM = 4. A risk has n = 8 observation years with X̄ = £950 and hypothetical mean μ = £800. Compute Z = n/(n+k) and the Bayesian credibility premium.",
+    "problem_statement": "In a Bayesian credibility (Bühlmann) setting, the expected process variance is EVPV = 200 and the variance of hypothetical means is VHM = 50, so k = EVPV/VHM = 4. A risk has n = 8 observation years with $\\bar{X}$ = £950 and hypothetical mean $\\mu$ = £800. Compute Z = n/(n+k) and the Bayesian credibility premium.",
     "given": [
       {
         "symbol": "EVPV, VHM",
@@ -230,7 +230,7 @@
         "note": "EVPV/VHM"
       },
       {
-        "symbol": "n, X̄, μ",
+        "symbol": "$n, \\bar{X}, \\mu$",
         "value": "8, 950, 800",
         "note": "years, sample mean, hypothetical mean"
       }
@@ -250,7 +250,7 @@
         "label": "Bayesian credibility premium",
         "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
         "explanation": "With Z in hand the premium is the usual credibility mixture.",
-        "calculation": "P = (2/3)×950 + (1/3)×800 = 1900/3 + 800/3 = 2700/3 = 900",
+        "calculation": "$P = (2/3)\\times 950 + (1/3)\\times 800 = 1900/3 + 800/3 = 2700/3 = 900$",
         "result": "P = £900"
       },
       {

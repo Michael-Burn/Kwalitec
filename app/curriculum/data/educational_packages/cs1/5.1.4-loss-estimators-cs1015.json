@@ -160,7 +160,7 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.4-cp-01",
       "title": "Checkpoint: 5.1.4",
-      "prompt": "Closed-book. Posterior for θ is available. Which statement is correct?",
+      "prompt": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
       "response_type": "mcq",
       "body": "Name estimators under losses; refuse interval collapse.",
       "hints": [
@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for θ. Different objects.",
+          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
           "misconception_tag": ""
         },
         {
@@ -224,10 +224,10 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Squared-error vs absolute-error Bayes estimates",
-    "problem_statement": "A discrete posterior for a reserve parameter θ (£000) places probabilities 0.20, 0.50, 0.30 on the values 1, 2, 3 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
+    "problem_statement": "A discrete posterior for a reserve parameter $\\theta$ (£000) places probabilities 0.20, 0.50, 0.30 on the values 1, 2, 3 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
     "given": [
       {
-        "symbol": "θ values",
+        "symbol": "$\\theta$ values",
         "value": "1, 2, 3",
         "note": "support (£000)"
       },
@@ -242,18 +242,18 @@
       {
         "id": "S1",
         "label": "Squared-error estimate (posterior mean)",
-        "attempt_cue": "Compute Σ θ π(θ|data).",
+        "attempt_cue": "Compute $\\sum \\theta\\,\\pi(\\theta \\mid \\mathrm{data})$.",
         "explanation": "Under squared-error loss, the Bayes estimator is the posterior mean.",
-        "calculation": "δ_SE = 1×0.20 + 2×0.50 + 3×0.30 = 0.2 + 1.0 + 0.9 = 2.1",
-        "result": "δ_SE = 2.1"
+        "calculation": "$\\delta_{\\mathrm{SE}} = 1\\times 0.20 + 2\\times 0.50 + 3\\times 0.30 = 0.2 + 1.0 + 0.9 = 2.1$",
+        "result": "$\\delta_{\\mathrm{SE}} = 2.1$"
       },
       {
         "id": "S2",
         "label": "Absolute-error estimate (posterior median)",
         "attempt_cue": "Find the smallest θ with cumulative posterior probability ≥ 0.5.",
         "explanation": "Under absolute-error loss, the Bayes estimator is a posterior median.",
-        "calculation": "F(1) = 0.20 < 0.5; F(2) = 0.20+0.50 = 0.70 ≥ 0.5 ⇒ median = 2",
-        "result": "δ_AE = 2"
+        "calculation": "$F(1) = 0.20 < 0.5$; $F(2) = 0.20+0.50 = 0.70 \\geq 0.5 \\Rightarrow$ median $= 2$",
+        "result": "$\\delta_{\\mathrm{AE}} = 2$"
       },
       {
         "id": "S3",
