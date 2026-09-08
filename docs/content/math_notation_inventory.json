@@ -1,35 +1,35 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T04:26:48Z",
+  "generated_at": "2026-09-08T06:06:26Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 1919,
+    "already_compliant": 1931,
     "needs_migration": 0,
-    "correctly_excluded": 284,
-    "needs_manual_review": 255,
-    "confident_automated": 1948,
+    "correctly_excluded": 272,
+    "needs_manual_review": 239,
+    "confident_automated": 1964,
     "remaining_backlog": 0,
-    "migrated": 1900,
+    "migrated": 1912,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 1919,
-    "isolated_symbol_in_narrative_ambiguous": 188,
+    "fully_covered_by_current_typesetting": 1931,
+    "isolated_symbol_in_narrative_ambiguous": 172,
     "mathish_role_unclear": 67,
-    "manual_review_prose_exclusion": 28,
+    "manual_review_prose_exclusion": 32,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 1900,
+    "dollar_delimited": 1912,
     "equationish": 1466,
     "actuarial_fn": 502,
     "ascii_approx": 232,
-    "greek": 195,
     "bare_latex": 195,
-    "unicode_ops": 57,
+    "greek": 189,
+    "unicode_ops": 51,
     "compound": 26
   },
   "by_risk_tier_needs_migration": {
@@ -40,7 +40,7 @@
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
-    "needs_manual_review_count": 255
+    "needs_manual_review_count": 239
   },
   "wave_recommendation": {
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
@@ -23133,10 +23133,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 5,
+        "already_compliant": 9,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -23183,15 +23183,15 @@
           "package_file": "5.1.5-credible-intervals-cs1003.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "posterior for θ",
-          "text_hash": "f3d75b296c0f234c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "posterior for $\\theta$",
+          "text_hash": "92919e8d2cc6c747",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -23199,15 +23199,15 @@
           "package_file": "5.1.5-credible-intervals-cs1003.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
-          "text_hash": "665552b72e0168bc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Form $\\mathrm{mean} \\pm 1.96 \\times \\mathrm{sd}$; interpret as a posterior probability statement.",
+          "text_hash": "31fbfdd0d52fa5e7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23215,15 +23215,15 @@
           "package_file": "5.1.5-credible-intervals-cs1003.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 250 ± 1.96 × 8.",
-          "text_hash": "cac2218beff75285",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $250 \\pm 1.96 \\times 8$.",
+          "text_hash": "f64ab8e416e72352",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23251,10 +23251,10 @@
           "text": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
           "text_hash": "4f17559c4949c18b",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -23285,10 +23285,10 @@
           "text": "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
           "text_hash": "c89f3c24538e84fa",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -23316,15 +23316,15 @@
           "package_file": "5.1.5-credible-intervals-cs1003.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
-          "text_hash": "12cdab6ac5202341",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using $\\pm \\mathrm{sd}$ instead of $\\pm 1.96\\,\\mathrm{sd}$ for 95%.",
+          "text_hash": "e43f18ca3ac5df65",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         }
       ]
@@ -36122,10 +36122,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 5,
+        "already_compliant": 9,
         "needs_migration": 0,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -36169,15 +36169,15 @@
           "package_file": "revision-bayesian-cs1015.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
-          "text_hash": "eaf7102eedcded0c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Retrieve $\\mathrm{posterior} \\propto \\mathrm{likelihood} \\times \\mathrm{prior}$, then form $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$, then refuse coverage-language swap.",
+          "text_hash": "19c956d539ea7a31",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -36185,15 +36185,15 @@
           "package_file": "revision-bayesian-cs1015.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Write posterior(θ|y) up to a constant.",
-          "text_hash": "957be2234c5632ee",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Write $\\mathrm{posterior}(\\theta \\mid y)$ up to a constant.",
+          "text_hash": "2b184540473ac097",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -36204,10 +36204,10 @@
           "text": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
           "text_hash": "fbabb85dae6dd5b4",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -36233,15 +36233,15 @@
           "package_file": "revision-bayesian-cs1015.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Use mean ± 1.96 sd for a Normal posterior.",
-          "text_hash": "c8be36f3da07e51d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Use $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$ for a Normal posterior.",
+          "text_hash": "3a35f927ef9c9be8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -36249,15 +36249,15 @@
           "package_file": "revision-bayesian-cs1015.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
-          "text_hash": "0d1c05ac5d49e8e1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "For a Normal posterior, a central 95% credible interval is $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$.",
+          "text_hash": "3f4b68c864fa2a7f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -36285,10 +36285,10 @@
           "text": "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
           "text_hash": "9496b64331833e62",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -39183,10 +39183,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 6,
-        "already_compliant": 2,
+        "already_compliant": 6,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 4,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -39230,15 +39230,15 @@
           "package_file": "revision-midspine-cs1003.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
-          "text_hash": "69325d99a39060a2",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Apply Beta-Binomial conjugacy: add successes to $\\alpha$ and failures to $\\beta$.",
+          "text_hash": "803b46313b91e6d0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -39246,15 +39246,15 @@
           "package_file": "revision-midspine-cs1003.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
-          "text_hash": "d7509f21ffb3950c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Beta-Binomial conjugacy adds observed successes to $\\alpha$ and observed failures to $\\beta$.",
+          "text_hash": "32feeecf46f5595a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -39262,15 +39262,15 @@
           "package_file": "revision-midspine-cs1003.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
-          "text_hash": "dcf22245cf597dbc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Adding $n$ to $\\alpha$ and $x$ to $\\beta$ (or adding successes to both parameters) breaks conjugacy. Failures are $n - x$, not $x$.",
+          "text_hash": "ed71d7c970fff242",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -39278,15 +39278,15 @@
           "package_file": "revision-midspine-cs1003.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
-          "text_hash": "a3ad2c5feeadf87b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Updating $\\mathrm{Beta}(\\alpha, \\beta)$ by adding the sample size to $\\alpha$ and the success count to $\\beta$, or claiming empirical Bayes uses no prior.",
+          "text_hash": "9d2740f6d2e76087",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         }
       ]
@@ -39944,5 +39944,5 @@
       ]
     }
   ],
-  "content_fingerprint": "69a01d3819644deee1aec160ef5f720da76d5c9879a437798ff28acffa9bcf0f"
+  "content_fingerprint": "60960fa74fcf528c6ec2404b0516550d31c039e01c051ec9d4699f6bc8d1c613"
 }

@@ -288,6 +288,28 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "mission.concept_focus",
             "9f53a348764e212f",
         ),
+        # Wave 10 leftovers: θ named only in Bayesian vs frequentist interpretive
+        # contrast (not a live expression to compute in these fields).
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.steps[1].explanation",
+            "4f17559c4949c18b",
+        ),
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.steps[2].explanation",
+            "c89f3c24538e84fa",
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.steps[0].explanation",
+            "fbabb85dae6dd5b4",
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.steps[2].explanation",
+            "9496b64331833e62",
+        ),
     }
 )
 

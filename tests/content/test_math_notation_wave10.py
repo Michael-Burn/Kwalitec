@@ -190,23 +190,72 @@ _MEANING_SAMPLES = (
     ),
 )
 
-# Untouched Wave 10 correctly_excluded + needs_manual_review leftovers.
-_WAVE10_MANUAL_REVIEW_LEFTOVERS = (
+# Locked Wave 10 leftover migrations (manual-review close-out).
+_WAVE10_LEFTOVER_MIGRATIONS = (
     (
         "5.1.5-credible-intervals-cs1003.json",
         "worked_example.given[0].note",
-        "posterior for θ",
+        r"posterior for $\theta$",
     ),
     (
         "5.1.5-credible-intervals-cs1003.json",
         "worked_example.attempt_before_reveal",
-        "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
+        r"CMP closed. Form $\mathrm{mean} \pm 1.96 \times \mathrm{sd}$; interpret as a posterior probability statement.",
     ),
     (
         "5.1.5-credible-intervals-cs1003.json",
         "worked_example.steps[0].attempt_cue",
-        "Compute 250 ± 1.96 × 8.",
+        r"Compute $250 \pm 1.96 \times 8$.",
     ),
+    (
+        "5.1.5-credible-intervals-cs1003.json",
+        "worked_example.common_pitfall",
+        r"Narrating the credible interval as if it had frequentist confidence-interval coverage, or using $\pm \mathrm{sd}$ instead of $\pm 1.96\,\mathrm{sd}$ for 95%.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Retrieve $\mathrm{posterior} \propto \mathrm{likelihood} \times \mathrm{prior}$, then form $\mathrm{mean} \pm 1.96\,\mathrm{sd}$, then refuse coverage-language swap.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Write $\mathrm{posterior}(\theta \mid y)$ up to a constant.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Use $\mathrm{mean} \pm 1.96\,\mathrm{sd}$ for a Normal posterior.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[1].explanation",
+        r"For a Normal posterior, a central 95% credible interval is $\mathrm{mean} \pm 1.96\,\mathrm{sd}$.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Apply Beta-Binomial conjugacy: add successes to $\alpha$ and failures to $\beta$.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.steps[0].explanation",
+        r"Beta-Binomial conjugacy adds observed successes to $\alpha$ and observed failures to $\beta$.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.steps[1].explanation",
+        r"Adding $n$ to $\alpha$ and $x$ to $\beta$ (or adding successes to both parameters) breaks conjugacy. Failures are $n - x$, not $x$.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.common_pitfall",
+        r"Updating $\mathrm{Beta}(\alpha, \beta)$ by adding the sample size to $\alpha$ and the success count to $\beta$, or claiming empirical Bayes uses no prior.",
+    ),
+)
+
+# Locked Wave 10 leftover prose exclusions (byte-identical; not converted).
+_WAVE10_LEFTOVER_EXCLUSIONS = (
     (
         "5.1.5-credible-intervals-cs1003.json",
         "worked_example.steps[1].explanation",
@@ -218,59 +267,14 @@ _WAVE10_MANUAL_REVIEW_LEFTOVERS = (
         "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
     ),
     (
-        "5.1.5-credible-intervals-cs1003.json",
-        "worked_example.common_pitfall",
-        "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
-    ),
-    (
-        "revision-bayesian-cs1015.json",
-        "worked_example.attempt_before_reveal",
-        "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
-    ),
-    (
-        "revision-bayesian-cs1015.json",
-        "worked_example.steps[0].attempt_cue",
-        "Write posterior(θ|y) up to a constant.",
-    ),
-    (
         "revision-bayesian-cs1015.json",
         "worked_example.steps[0].explanation",
         "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
     ),
     (
         "revision-bayesian-cs1015.json",
-        "worked_example.steps[1].attempt_cue",
-        "Use mean ± 1.96 sd for a Normal posterior.",
-    ),
-    (
-        "revision-bayesian-cs1015.json",
-        "worked_example.steps[1].explanation",
-        "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
-    ),
-    (
-        "revision-bayesian-cs1015.json",
         "worked_example.steps[2].explanation",
         "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
-    ),
-    (
-        "revision-midspine-cs1003.json",
-        "worked_example.attempt_before_reveal",
-        "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
-    ),
-    (
-        "revision-midspine-cs1003.json",
-        "worked_example.steps[0].explanation",
-        "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
-    ),
-    (
-        "revision-midspine-cs1003.json",
-        "worked_example.steps[1].explanation",
-        "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
-    ),
-    (
-        "revision-midspine-cs1003.json",
-        "worked_example.common_pitfall",
-        "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
     ),
 )
 
@@ -422,7 +426,7 @@ def test_wave10_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 1900
+    assert checked["totals"]["migrated"] == 1912
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["packages_with_migration_backlog"] == 0
     assert live["totals"] == checked["totals"]
@@ -431,6 +435,7 @@ def test_wave10_ledger_backlog_and_migration_status() -> None:
     migrated = 0
     still_pending_review_nm = 0
     confident_backlog = 0
+    manual_excluded = 0
     pending_manual_excluded = 0
     for row in live["packages"]:
         if row["package_file"] not in wave10_files:
@@ -447,15 +452,21 @@ def test_wave10_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
+            if item["migration_status"] == "correctly_excluded":
+                manual_excluded += 1
+                assert item["category"] == "correctly_excluded"
+                assert item["needs_manual_review"] is False
+                assert item["reason_code"] == "manual_review_prose_exclusion"
             if (
                 item["category"] == "correctly_excluded"
                 and item["needs_manual_review"]
             ):
                 pending_manual_excluded += 1
-    assert migrated == 29
+    assert migrated == 41
     assert still_pending_review_nm == 0
     assert confident_backlog == 0
-    assert pending_manual_excluded == 16
+    assert manual_excluded == 4
+    assert pending_manual_excluded == 0
 
 
 def test_wave10_catalogue_needs_migration_is_zero() -> None:
@@ -464,7 +475,8 @@ def test_wave10_catalogue_needs_migration_is_zero() -> None:
     assert live["totals"]["needs_migration"] == 0
     assert live["totals"]["remaining_backlog"] == 0
     assert live["totals"]["packages_with_migration_backlog"] == 0
-    assert live["totals"]["needs_manual_review"] == 255
+    assert live["totals"]["needs_manual_review"] == 239
+    assert live["totals"]["migrated"] == 1912
 
 
 def test_wave10_packages_disjoint_from_prior_waves() -> None:
@@ -507,22 +519,181 @@ def test_wave10_scoring_keys_byte_identical_in_packages() -> None:
 
 
 @pytest.mark.parametrize(
-    ("package_file", "field_path", "original"),
-    _WAVE10_MANUAL_REVIEW_LEFTOVERS,
-    ids=[f"{p}:{f}" for p, f, _ in _WAVE10_MANUAL_REVIEW_LEFTOVERS],
+    ("package_file", "field_path", "expected"),
+    _WAVE10_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE10_LEFTOVER_MIGRATIONS],
 )
-def test_wave10_manual_review_leftovers_are_byte_identical(
+def test_wave10_leftover_migrations_are_valid_katex(
     package_file: str,
     field_path: str,
-    original: str,
+    expected: str,
 ) -> None:
-    """Needs-manual-review leftovers were not converted in this pass."""
-    pkg = _load(package_file)
-    assert wave1.get_path(pkg, field_path) == original
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE10_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE10_LEFTOVER_EXCLUSIONS],
+)
+def test_wave10_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+    live = inventory.build_inventory(PACKAGES)
+    matches = [
+        item
+        for row in live["packages"]
+        if row["package_file"] == package_file
+        for item in row["items"]
+        if item["field_path"] == field_path and item["text"] == expected
+    ]
+    assert len(matches) == 1
+    assert matches[0]["needs_manual_review"] is False
+    assert matches[0]["migration_status"] == "correctly_excluded"
+    assert matches[0]["reason_code"] == "manual_review_prose_exclusion"
+
+
+def test_wave10_leftover_partial_migrations_preserve_surrounding_prose() -> None:
+    """Partial leftovers typeset only the live math object; framing prose stays."""
+    cases = (
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.given[0].note",
+            ("posterior for ",),
+            (r"\theta",),
+        ),
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Form ",
+                "; interpret as a posterior probability statement.",
+            ),
+            (r"\mathrm{mean} \pm 1.96 \times \mathrm{sd}",),
+        ),
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.steps[0].attempt_cue",
+            ("Compute ",),
+            (r"250 \pm 1.96 \times 8",),
+        ),
+        (
+            "5.1.5-credible-intervals-cs1003.json",
+            "worked_example.common_pitfall",
+            (
+                "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ",
+                " instead of ",
+                " for 95%.",
+            ),
+            (r"\pm \mathrm{sd}", r"\pm 1.96\,\mathrm{sd}"),
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Retrieve ",
+                ", then form ",
+                ", then refuse coverage-language swap.",
+            ),
+            (
+                r"\mathrm{posterior} \propto \mathrm{likelihood} \times \mathrm{prior}",
+                r"\mathrm{mean} \pm 1.96\,\mathrm{sd}",
+            ),
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.steps[0].attempt_cue",
+            ("Write ", " up to a constant."),
+            (r"\mathrm{posterior}(\theta \mid y)",),
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.steps[1].attempt_cue",
+            ("Use ", " for a Normal posterior."),
+            (r"\mathrm{mean} \pm 1.96\,\mathrm{sd}",),
+        ),
+        (
+            "revision-bayesian-cs1015.json",
+            "worked_example.steps[1].explanation",
+            ("For a Normal posterior, a central 95% credible interval is ",),
+            (r"\mathrm{mean} \pm 1.96\,\mathrm{sd}",),
+        ),
+        (
+            "revision-midspine-cs1003.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Apply Beta-Binomial conjugacy: add successes to ",
+                " and failures to ",
+                ".",
+            ),
+            (r"\alpha", r"\beta"),
+        ),
+        (
+            "revision-midspine-cs1003.json",
+            "worked_example.steps[0].explanation",
+            (
+                "Beta-Binomial conjugacy adds observed successes to ",
+                " and observed failures to ",
+                ".",
+            ),
+            (r"\alpha", r"\beta"),
+        ),
+        (
+            "revision-midspine-cs1003.json",
+            "worked_example.steps[1].explanation",
+            (
+                "Adding ",
+                " to ",
+                " and ",
+                " to ",
+                " (or adding successes to both parameters) breaks conjugacy. Failures are ",
+                ", not ",
+                ".",
+            ),
+            (r"n", r"\alpha", r"x", r"\beta", r"n - x"),
+        ),
+        (
+            "revision-midspine-cs1003.json",
+            "worked_example.common_pitfall",
+            (
+                "Updating ",
+                " by adding the sample size to ",
+                " and the success count to ",
+                ", or claiming empirical Bayes uses no prior.",
+            ),
+            (r"\mathrm{Beta}(\alpha, \beta)", r"\alpha", r"\beta"),
+        ),
+    )
+    for package_file, field_path, prose_parts, needles in cases:
+        text = wave1.get_path(_load(package_file), field_path)
+        for part in prose_parts:
+            assert part in text, f"missing prose in {package_file} {field_path}"
+        joined = " ".join(_spans(text))
+        for needle in needles:
+            assert needle in joined, (
+                f"expected typeset {needle!r} in {package_file} {field_path}"
+            )
+        for body in _spans(text):
+            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
 
 
 def test_wave10_leftover_knowledge_check_scoring_unaffected() -> None:
     """No leftover fields were knowledge_checks; all Wave 10 KC scoring holds."""
+    leftover_fields = {field for _, field, _ in _WAVE10_LEFTOVER_MIGRATIONS}
+    leftover_fields |= {field for _, field, _ in _WAVE10_LEFTOVER_EXCLUSIONS}
+    assert not any(f.startswith("knowledge_checks") for f in leftover_fields)
     snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
     reset_educational_package_cache()
     loader = EducationalPackageLoader(

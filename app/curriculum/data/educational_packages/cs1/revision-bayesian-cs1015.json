@@ -258,12 +258,12 @@
         "note": "central 95% Normal critical value"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
+    "attempt_before_reveal": "CMP closed. Retrieve $\\mathrm{posterior} \\propto \\mathrm{likelihood} \\times \\mathrm{prior}$, then form $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$, then refuse coverage-language swap.",
     "steps": [
       {
         "id": "S1",
         "label": "Retrieve posterior proportionality",
-        "attempt_cue": "Write posterior(θ|y) up to a constant.",
+        "attempt_cue": "Write $\\mathrm{posterior}(\\theta \\mid y)$ up to a constant.",
         "explanation": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
         "calculation": "$\\mathrm{posterior}(\\theta \\mid y) \\propto \\mathrm{likelihood}(y \\mid \\theta) \\times \\mathrm{prior}(\\theta)$",
         "result": "Posterior proportionality retrieved"
@@ -271,8 +271,8 @@
       {
         "id": "S2",
         "label": "Compute the 95% credible interval",
-        "attempt_cue": "Use mean ± 1.96 sd for a Normal posterior.",
-        "explanation": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
+        "attempt_cue": "Use $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$ for a Normal posterior.",
+        "explanation": "For a Normal posterior, a central 95% credible interval is $\\mathrm{mean} \\pm 1.96\\,\\mathrm{sd}$.",
         "calculation": "$60 \\pm 1.96\\times 4 = 60 \\pm 7.84 \\rightarrow (52.16, 67.84)$",
         "result": "95% credible interval = (52.16, 67.84)"
       },

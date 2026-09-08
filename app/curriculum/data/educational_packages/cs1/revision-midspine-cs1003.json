@@ -250,13 +250,13 @@
         "note": "conjugate Beta prior"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
+    "attempt_before_reveal": "CMP closed. Apply Beta-Binomial conjugacy: add successes to $\\alpha$ and failures to $\\beta$.",
     "steps": [
       {
         "id": "S1",
         "label": "State the conjugate update",
         "attempt_cue": "Write the posterior Beta parameters.",
-        "explanation": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
+        "explanation": "Beta-Binomial conjugacy adds observed successes to $\\alpha$ and observed failures to $\\beta$.",
         "calculation": "Posterior = Beta(4+2, 6+(8-2)) = Beta(6, 12)",
         "result": "Posterior Beta(6, 12)"
       },
@@ -264,7 +264,7 @@
         "id": "S2",
         "label": "Refuse a wrong update",
         "attempt_cue": "Name one incorrect parameter update students use.",
-        "explanation": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
+        "explanation": "Adding $n$ to $\\alpha$ and $x$ to $\\beta$ (or adding successes to both parameters) breaks conjugacy. Failures are $n - x$, not $x$.",
         "calculation": "Refuse Beta(4+8, 6+2) and similar swapped updates",
         "result": "Wrong update rules refused"
       },
@@ -278,7 +278,7 @@
       }
     ],
     "final_answer": "Posterior is Beta(6, 12). Refuse swapped success/failure updates. Empirical Bayes plugs in estimated hyperparameters; full Bayes models their uncertainty.",
-    "common_pitfall": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
+    "common_pitfall": "Updating $\\mathrm{Beta}(\\alpha, \\beta)$ by adding the sample size to $\\alpha$ and the success count to $\\beta$, or claiming empirical Bayes uses no prior.",
     "syllabus_ref": "5.1.2"
   }
 }
