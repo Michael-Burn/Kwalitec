@@ -30,6 +30,9 @@ for _key in _SR_COMMERCIAL_MASTERS:
     os.environ[_key] = "0"
 for _key in _SR_BUNDLE_FLAGS:
     os.environ.pop(_key, None)
+# Local ``.env`` may set ``KWALITEC_V2_DURABLE_STORE=1`` for real Flask runs.
+# Keep the pytest baseline OFF unless a test opts in explicitly.
+os.environ["KWALITEC_V2_DURABLE_STORE"] = "0"
 
 from app import create_app  # noqa: E402
 from app.extensions import db as _db  # noqa: E402

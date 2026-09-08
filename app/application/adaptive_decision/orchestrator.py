@@ -56,13 +56,15 @@ def _default_engine(
         from app.application.adaptive_decision.policy_v1 import (
             PolicyV1AdaptiveDecisionEngine,
         )
-        from app.infrastructure.adapters.student_twin.query_adapter import (
-            DailyLoopLearnerTwinQueryAdapter,
+        from app.infrastructure.adapters.student_twin.cutover_bridge import (
+            learner_twin_query,
         )
 
+        # Same factory as other Twin readers; must not construct a bare
+        # DailyLoopLearnerTwinQueryAdapter() with a separate empty store.
         return PolicyV1AdaptiveDecisionEngine(
             runtime=runtime,
-            twin=DailyLoopLearnerTwinQueryAdapter(),
+            twin=learner_twin_query(),
         )
     return PolicyV0AdaptiveDecisionEngine(runtime=runtime)
 

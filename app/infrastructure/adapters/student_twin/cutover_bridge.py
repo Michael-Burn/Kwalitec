@@ -12,15 +12,28 @@ from typing import Any
 from app.application.student_twin.canonical_topic_id import CanonicalTopicId
 from app.application.student_twin.cutover import ek_display_0_100
 from app.application.student_twin.query import TopicKnowledgeFact
+from app.infrastructure.adapters.student_twin.daily_loop_persistence import (
+    DailyLoopTwinPersistence,
+)
 from app.infrastructure.adapters.student_twin.query_adapter import (
     DailyLoopLearnerTwinQueryAdapter,
 )
+from app.infrastructure.composition import build_session_document_store
 from app.models.curriculum import Topic
 
 
 def learner_twin_query() -> DailyLoopLearnerTwinQueryAdapter:
-    """Return the Stage 1 DailyLoop Learner Twin query adapter."""
-    return DailyLoopLearnerTwinQueryAdapter()
+    """Return the Stage 1 DailyLoop Learner Twin query adapter.
+
+    Uses the same SessionDocumentStore factory as session/Twin writes
+    (``build_session_document_store``), so Policy V1 and other readers see
+    durable evidence when ``KWALITEC_V2_DURABLE_STORE`` is on.
+    """
+    return DailyLoopLearnerTwinQueryAdapter(
+        persistence=DailyLoopTwinPersistence(
+            store=build_session_document_store()
+        )
+    )
 
 
 def subject_code_for_user(user_id: int) -> str | None:
