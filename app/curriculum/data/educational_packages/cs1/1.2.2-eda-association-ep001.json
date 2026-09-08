@@ -263,7 +263,7 @@
       }
     ],
     "final_answer": "Prefer Spearman $\\rho = 0.52$ (monotone, skewed, outlier-prone) over Pearson $r = 0.25$. A large coefficient still does not prove causation.",
-    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = 0.52 as proof that higher mileage causes higher claim severity.",
+    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman $\\rho = 0.52$ as proof that higher mileage causes higher claim severity.",
     "syllabus_ref": "1.2.2"
   }
 }

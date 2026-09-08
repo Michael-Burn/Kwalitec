@@ -336,15 +336,16 @@ def test_wave9_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 53
-    assert checked["totals"]["migrated"] == 1850
-    assert checked["totals"]["needs_migration"] == 53
+    assert checked["totals"]["remaining_backlog"] == 29
+    assert checked["totals"]["migrated"] == 1871
+    assert checked["totals"]["needs_migration"] == 29
     assert live["totals"] == checked["totals"]
 
     wave9_files = set(wave9.WAVE9_FILES)
     migrated = 0
     still_pending_review = 0
     confident_backlog = 0
+    manual_excluded = 0
     for row in live["packages"]:
         if row["package_file"] not in wave9_files:
             continue
@@ -360,9 +361,15 @@ def test_wave9_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 73
-    assert still_pending_review == 24
+            if item["migration_status"] == "correctly_excluded":
+                manual_excluded += 1
+                assert item["category"] == "correctly_excluded"
+                assert item["needs_manual_review"] is False
+                assert item["reason_code"] == "manual_review_prose_exclusion"
+    assert migrated == 94
+    assert still_pending_review == 0
     assert confident_backlog == 0
+    assert manual_excluded == 3
 
 
 def test_wave9_packages_disjoint_from_prior_waves() -> None:
@@ -403,27 +410,342 @@ def test_wave9_scoring_keys_byte_identical_in_packages() -> None:
         assert choice_ids == rec["choice_ids"]
 
 
-def test_wave9_manual_review_strings_untouched() -> None:
-    """The 24 flagged strings remain byte-identical to the pre-migration originals."""
-    # Spot-check a few representative leftovers still lack dollar delimiters
-    # where the proposal document left them for human review.
-    leftovers = (
+# Locked Wave 9 leftover migrations (manual-review close-out).
+_WAVE9_LEFTOVER_MIGRATIONS = (
+    (
+        "2.1.4-poisson-process-cs1004.json",
+        "worked_example.steps[2].explanation",
+        r"Interarrival waiting times are Exponential with the same rate $\lambda = 1.5$. The Poisson count and the Exponential wait are linked but not the same object.",
+    ),
+    (
+        "5.1.2-prior-posterior-cs1015.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Apply $\alpha' = \alpha + s$ and $\beta' = \beta + n - s$ before computing means.",
+    ),
+    (
+        "5.1.2-prior-posterior-cs1015.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute $\alpha/(\alpha + \beta)$ for $\mathrm{Beta}(2, 8)$.",
+    ),
+    (
+        "revision-distributions-generation-cs1004.json",
+        "worked_example.steps[0].explanation",
+        r"For Exponential rate $\lambda$, $X = -\ln(1-U)/\lambda$ (equivalently $-\ln(U)/\lambda$).",
+    ),
+    (
+        "revision-distributions-generation-cs1004.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Substitute $U = 0.3$ and $\lambda = 2$.",
+    ),
+    (
+        "revision-distributions-generation-cs1004.json",
+        "worked_example.steps[1].explanation",
+        r"With $U = 0.3$ and $\lambda = 2$, $X = -\ln(0.7)/2$.",
+    ),
+    (
+        "revision-glm-cs1014.json",
+        "worked_example.given[0].note",
+        r"$g(\mu) = \eta$",
+    ),
+    (
+        "revision-glm-cs1014.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Retrieve $g(\mu) = \eta = X\beta$, then the nested deviance-difference test idea.",
+    ),
+    (
+        "revision-glm-cs1014.json",
+        "worked_example.steps[0].explanation",
+        r"The link maps the conditional mean $\mu$ to the linear predictor through $g(\mu) = \eta = X\beta$. It is not a device that forces every residual to be Normal.",
+    ),
+    (
+        "2.1.1-discrete-cs1002.json",
+        "worked_example.steps[1].attempt_cue",
+        r"For $\mathrm{Binomial}(30, 0.1)$, evaluate $(1-p)^{n}$.",
+    ),
+    (
+        "2.1.6-software-generation-cs1004.json",
+        "worked_example.steps[2].explanation",
+        r"A sample mean near $\lambda$ is consistent with $\mathrm{Poisson}(3)$ but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
+    ),
+    (
+        "5.1.2-prior-posterior-cs1003.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Apply $\alpha' = \alpha + s$ and $\beta' = \beta + n - s$ before computing means.",
+    ),
+    (
+        "5.1.2-prior-posterior-cs1003.json",
+        "worked_example.steps[0].attempt_cue",
+        r"Compute $\alpha/(\alpha+\beta)$.",
+    ),
+    (
+        "5.1.2-prior-posterior-cs1003.json",
+        "worked_example.steps[0].explanation",
+        r"The Beta mean is $\alpha/(\alpha+\beta)$.",
+    ),
+    (
+        "cr-2.1.2-continuous-cs1017.json",
+        "worked_example.given[1].note",
+        r"Exponential mean $\theta = 6$",
+    ),
+    (
+        "revision-estimators-cs1010.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Retrieve the two estimating principles, then use $\mathrm{MSE} = \operatorname{Var} + \mathrm{Bias}^{2}$.",
+    ),
+    (
+        "revision-estimators-cs1010.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Apply $\mathrm{MSE} = \operatorname{Var} + \mathrm{Bias}^{2}$.",
+    ),
+    (
+        "revision-regression-glm-cs1003.json",
+        "worked_example.steps[0].explanation",
+        r"The response family specifies mean-variance behaviour, $\eta = X\beta$ is the linear predictor, and the link satisfies $g(\mu) = \eta$.",
+    ),
+    (
+        "revision-regression-glm-cs1003.json",
+        "worked_example.steps[1].explanation",
+        r"The Poisson canonical link is logarithmic: $\log(\mu) = \eta$.",
+    ),
+    (
+        "1.2.2-eda-association-ep001.json",
+        "worked_example.common_pitfall",
+        r"Defaulting to Pearson because it is the familiar default, or treating Spearman $\rho = 0.52$ as proof that higher mileage causes higher claim severity.",
+    ),
+    (
+        "2.1.2-continuous-cs1002.json",
+        "worked_example.steps[1].explanation",
+        r"If $\ln(X)$ is $\mathrm{Normal}(\mu, \sigma)$, the median of $X$ is $e^{\mu}$ because the Normal median equals $\mu$. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+    ),
+)
+
+# Locked Wave 9 leftover prose exclusions (byte-identical; not converted).
+_WAVE9_LEFTOVER_EXCLUSIONS = (
+    (
+        "revision-glm-cs1014.json",
+        "mission.learning_objective",
+        "Retrieve and connect (1) exponential-family responses, (2) mean/variance/variance function/scale, (3) link and canonical link, (4) variables/factors/interactions, (5) linear predictor forms, (6) deviance and estimation, (7) analysis-of-deviance model choice, (8) Pearson and deviance residuals, (9) χ² and LRT acceptability, and (10) fit and interpret a GLM.",
+    ),
+    (
+        "revision-glm-cs1014.json",
+        "mission.concept_focus",
+        "Campaign chain retrieval: family → moments → link → factors → η → deviance → choice → residuals → tests → fit/interpret.",
+    ),
+    (
+        "revision-regression-glm-cs1003.json",
+        "mission.concept_focus",
+        "LM → Family/η/link → deviance/choice/residuals/tests → fit/interpret.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE9_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE9_LEFTOVER_MIGRATIONS],
+)
+def test_wave9_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE9_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE9_LEFTOVER_EXCLUSIONS],
+)
+def test_wave9_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+
+
+def test_wave9_leftover_partial_migrations_preserve_surrounding_prose() -> None:
+    """Partial leftovers typeset only the live math object; framing prose stays."""
+    cases = (
         (
             "2.1.4-poisson-process-cs1004.json",
             "worked_example.steps[2].explanation",
-            "Interarrival waiting times are Exponential with the same rate λ = 1.5. The Poisson count and the Exponential wait are linked but not the same object.",
+            (
+                "Interarrival waiting times are Exponential with the same rate ",
+                ". The Poisson count and the Exponential wait are linked but not the same object.",
+            ),
+            (r"\lambda = 1.5",),
+        ),
+        (
+            "revision-distributions-generation-cs1004.json",
+            "worked_example.steps[0].explanation",
+            (
+                "For Exponential rate ",
+                " (equivalently ",
+                ").",
+            ),
+            (r"\lambda", r"X = -\ln(1-U)/\lambda", r"-\ln(U)/\lambda"),
         ),
         (
             "revision-glm-cs1014.json",
-            "mission.concept_focus",
-            "Campaign chain retrieval: family → moments → link → factors → η → deviance → choice → residuals → tests → fit/interpret.",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Retrieve ",
+                ", then the nested deviance-difference test idea.",
+            ),
+            (r"g(\mu) = \eta = X\beta",),
+        ),
+        (
+            "revision-glm-cs1014.json",
+            "worked_example.steps[0].explanation",
+            (
+                "The link maps the conditional mean ",
+                " to the linear predictor through ",
+                ". It is not a device that forces every residual to be Normal.",
+            ),
+            (r"\mu", r"g(\mu) = \eta = X\beta"),
+        ),
+        (
+            "2.1.6-software-generation-cs1004.json",
+            "worked_example.steps[2].explanation",
+            (
+                "A sample mean near ",
+                " is consistent with ",
+                " but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
+            ),
+            (r"\lambda", r"\mathrm{Poisson}(3)"),
+        ),
+        (
+            "5.1.2-prior-posterior-cs1003.json",
+            "worked_example.steps[0].explanation",
+            ("The Beta mean is ",),
+            (r"\alpha/(\alpha+\beta)",),
+        ),
+        (
+            "cr-2.1.2-continuous-cs1017.json",
+            "worked_example.given[1].note",
+            ("Exponential mean ",),
+            (r"\theta = 6",),
+        ),
+        (
+            "revision-estimators-cs1010.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Retrieve the two estimating principles, then use ",
+                ".",
+            ),
+            (r"\mathrm{MSE} = \operatorname{Var} + \mathrm{Bias}^{2}",),
+        ),
+        (
+            "revision-regression-glm-cs1003.json",
+            "worked_example.steps[0].explanation",
+            (
+                "The response family specifies mean-variance behaviour, ",
+                " is the linear predictor, and the link satisfies ",
+                ".",
+            ),
+            (r"\eta = X\beta", r"g(\mu) = \eta"),
+        ),
+        (
+            "revision-regression-glm-cs1003.json",
+            "worked_example.steps[1].explanation",
+            ("The Poisson canonical link is logarithmic: ",),
+            (r"\log(\mu) = \eta",),
         ),
         (
             "1.2.2-eda-association-ep001.json",
             "worked_example.common_pitfall",
-            "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = 0.52 as proof that higher mileage causes higher claim severity.",
+            (
+                "Defaulting to Pearson because it is the familiar default, or treating Spearman ",
+                " as proof that higher mileage causes higher claim severity.",
+            ),
+            (r"\rho = 0.52",),
+        ),
+        (
+            "2.1.2-continuous-cs1002.json",
+            "worked_example.steps[1].explanation",
+            (
+                "If ",
+                " is ",
+                ", the median of ",
+                " is ",
+                " because the Normal median equals ",
+                ". The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+            ),
+            (r"\ln(X)", r"\mathrm{Normal}(\mu, \sigma)", r"e^{\mu}", r"\mu"),
         ),
     )
-    for package_file, field_path, expected in leftovers:
+    for package_file, field_path, prose_parts, needles in cases:
         text = wave1.get_path(_load(package_file), field_path)
-        assert text == expected
+        for part in prose_parts:
+            assert part in text, f"missing prose in {package_file} {field_path}"
+        joined = " ".join(_spans(text))
+        for needle in needles:
+            assert needle in joined, (
+                f"expected typeset {needle!r} in {package_file} {field_path}"
+            )
+        for body in _spans(text):
+            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
+
+    # Item 17: Exponential mean stays prose; only θ = 6 is typeset.
+    note = wave1.get_path(
+        _load("cr-2.1.2-continuous-cs1017.json"),
+        "worked_example.given[1].note",
+    )
+    assert note == r"Exponential mean $\theta = 6$"
+
+
+def test_wave9_leftover_knowledge_check_scoring_unaffected() -> None:
+    """No leftover fields were knowledge_checks; all Wave 9 KC scoring holds."""
+    leftover_fields = {field for _, field, _ in _WAVE9_LEFTOVER_MIGRATIONS}
+    assert not any(f.startswith("knowledge_checks") for f in leftover_fields)
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    by_id = {(r["package_file"], r["item_id"]): r for r in snapshot["items"]}
+    seen: set[tuple[str, str]] = set()
+    for fname in snapshot["packages"]:
+        pack = next(
+            p for p in loader.all_approved() if Path(p.source_path).name == fname
+        )
+        substance = substance_from_package(
+            pack, curriculum_identity="CS1:wave9-left", topic_id=pack.topic_code
+        )
+        practice = [
+            a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+        ]
+        for act in practice:
+            item = act.scoreable
+            assert item is not None
+            key = (fname, item.item_id)
+            expected = by_id[key]
+            seen.add(key)
+            assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+            assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+            exp_tol = expected["numeric_tolerance"]
+            if exp_tol is None:
+                assert item.answer_key.numeric_tolerance is None
+            else:
+                assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+            choice_ids = [
+                c[0] if not isinstance(c, str) else c for c in item.choices
+            ]
+            assert choice_ids == expected["choice_ids"]
+            for probe in expected["verdicts"]:
+                result = score_practice_response(item, probe["response"])
+                assert result.scored is probe["scored"]
+                assert result.correct is probe["correct"]
+                assert result.matched_key == probe["matched_key"]
+    assert seen == set(by_id)

@@ -414,9 +414,9 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 53
-    assert checked["totals"]["migrated"] == 1850
-    assert checked["totals"]["needs_migration"] == 53
+    assert checked["totals"]["remaining_backlog"] == 29
+    assert checked["totals"]["migrated"] == 1871
+    assert checked["totals"]["needs_migration"] == 29
     assert live["totals"] == checked["totals"]
 
     wave5_files = set(wave5.WAVE5_FILES)

@@ -263,7 +263,7 @@
         "id": "S3",
         "label": "Refuse mean-near-target as sole proof",
         "attempt_cue": "Decide whether sample mean 3.1 alone proves the Poisson call was correct.",
-        "explanation": "A sample mean near λ is consistent with Poisson(3) but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
+        "explanation": "A sample mean near $\\lambda$ is consistent with $\\mathrm{Poisson}(3)$ but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
         "calculation": "$3.1 \\approx 3$ is consistent, not a proof of correct generation",
         "result": "Mean proximity alone does not certify the sampler"
       }

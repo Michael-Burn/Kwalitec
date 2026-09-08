@@ -247,7 +247,7 @@
       {
         "symbol": "link ask",
         "value": "role of g in a GLM",
-        "note": "g(μ) = η"
+        "note": "$g(\\mu) = \\eta$"
       },
       {
         "symbol": "nested models",
@@ -255,13 +255,13 @@
         "note": "deviance difference"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve g(μ) = η = Xβ, then the nested deviance-difference test idea.",
+    "attempt_before_reveal": "CMP closed. Retrieve $g(\\mu) = \\eta = X\\beta$, then the nested deviance-difference test idea.",
     "steps": [
       {
         "id": "S1",
         "label": "Retrieve the link role",
         "attempt_cue": "What does g map?",
-        "explanation": "The link maps the conditional mean μ to the linear predictor through g(μ) = η = Xβ. It is not a device that forces every residual to be Normal.",
+        "explanation": "The link maps the conditional mean $\\mu$ to the linear predictor through $g(\\mu) = \\eta = X\\beta$. It is not a device that forces every residual to be Normal.",
         "calculation": "$g(\\mu) = \\eta = X\\beta$",
         "result": "Link role retrieved"
       },

@@ -271,6 +271,23 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "mission.concept_focus",
             "727493caa693dc03",
         ),
+        # Wave 9 leftovers: χ² as syllabus checklist topic; η as schematic
+        # campaign/revision path waypoint (not live math in these fields).
+        (
+            "revision-glm-cs1014.json",
+            "mission.learning_objective",
+            "3ddf965eabfeabe1",
+        ),
+        (
+            "revision-glm-cs1014.json",
+            "mission.concept_focus",
+            "bc9127f81da35a77",
+        ),
+        (
+            "revision-regression-glm-cs1003.json",
+            "mission.concept_focus",
+            "9f53a348764e212f",
+        ),
     }
 )
 

@@ -246,7 +246,7 @@
         "id": "S2",
         "label": "Light numeric illustration of the median",
         "attempt_cue": "For ln(X) ~ Normal(6, 1), state median(X).",
-        "explanation": "If ln(X) is Normal(μ, σ), the median of X is e^μ because the Normal median equals μ. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+        "explanation": "If $\\ln(X)$ is $\\mathrm{Normal}(\\mu, \\sigma)$, the median of $X$ is $e^{\\mu}$ because the Normal median equals $\\mu$. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
         "calculation": "$\\mathrm{median}(X) = e^{6} \\approx 403.43$",
         "result": "$\\mathrm{median}(X) \\approx 403.43$"
       },

@@ -254,7 +254,7 @@
         "id": "S3",
         "label": "Name the interarrival distribution",
         "attempt_cue": "State the waiting-time law and refuse count/wait collapse.",
-        "explanation": "Interarrival waiting times are Exponential with the same rate λ = 1.5. The Poisson count and the Exponential wait are linked but not the same object.",
+        "explanation": "Interarrival waiting times are Exponential with the same rate $\\lambda = 1.5$. The Poisson count and the Exponential wait are linked but not the same object.",
         "calculation": "Waiting time ~ Exponential(rate 1.5); refuse equating count with wait",
         "result": "Interarrival = Exponential(rate 1.5)"
       }

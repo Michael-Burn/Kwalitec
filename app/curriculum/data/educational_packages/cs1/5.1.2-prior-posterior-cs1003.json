@@ -234,13 +234,13 @@
         "note": "Beta-Binomial conjugacy"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Apply α' = α + s and β' = β + n − s before computing means.",
+    "attempt_before_reveal": "CMP closed. Apply $\\alpha' = \\alpha + s$ and $\\beta' = \\beta + n - s$ before computing means.",
     "steps": [
       {
         "id": "S1",
         "label": "Prior mean",
-        "attempt_cue": "Compute α/(α+β).",
-        "explanation": "The Beta mean is α/(α+β).",
+        "attempt_cue": "Compute $\\alpha/(\\alpha+\\beta)$.",
+        "explanation": "The Beta mean is $\\alpha/(\\alpha+\\beta)$.",
         "calculation": "Prior mean = 3/(3+5) = 3/8 = 0.375",
         "result": "Prior mean = 0.375"
       },

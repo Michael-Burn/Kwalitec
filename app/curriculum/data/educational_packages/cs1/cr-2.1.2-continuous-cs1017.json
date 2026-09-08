@@ -238,7 +238,7 @@
       {
         "symbol": "mean waiting time",
         "value": "6 months",
-        "note": "Exponential mean θ = 6"
+        "note": "Exponential mean $\\theta = 6$"
       }
     ],
     "attempt_before_reveal": "CMP closed. Match support and memorylessness to a named continuous family before evaluating the survival probability.",

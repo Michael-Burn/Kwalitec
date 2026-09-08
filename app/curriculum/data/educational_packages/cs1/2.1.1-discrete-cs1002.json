@@ -245,7 +245,7 @@
       {
         "id": "S2",
         "label": "Light numeric illustration $P(X = 0)$",
-        "attempt_cue": "For Binomial(30, 0.1), evaluate (1-p)^n.",
+        "attempt_cue": "For $\\mathrm{Binomial}(30, 0.1)$, evaluate $(1-p)^{n}$.",
         "explanation": "Under $\\mathrm{Binomial}(n, p)$, $P(X = 0) = (1-p)^{n}$. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
         "calculation": "$P(X = 0) = (0.9)^{30} \\approx 0.0424$",
         "result": "$P(X = 0) \\approx 0.0424$"

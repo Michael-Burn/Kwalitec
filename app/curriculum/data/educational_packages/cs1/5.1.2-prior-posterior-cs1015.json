@@ -241,12 +241,12 @@
         "note": "Beta-Binomial conjugate rule"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Apply α' = α + s and β' = β + n − s before computing means.",
+    "attempt_before_reveal": "CMP closed. Apply $\\alpha' = \\alpha + s$ and $\\beta' = \\beta + n - s$ before computing means.",
     "steps": [
       {
         "id": "S1",
         "label": "Prior mean",
-        "attempt_cue": "Compute α/(α + β) for Beta(2, 8).",
+        "attempt_cue": "Compute $\\alpha/(\\alpha + \\beta)$ for $\\mathrm{Beta}(2, 8)$.",
         "explanation": "The prior is the distribution of θ before seeing the new sample.",
         "calculation": "$E[\\theta]_{\\mathrm{prior}} = 2/(2+8) = 2/10 = 0.2$",
         "result": "Prior mean = 0.2"

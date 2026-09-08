@@ -242,7 +242,7 @@
         "note": "given"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Retrieve the two estimating principles, then use MSE = Var + Bias².",
+    "attempt_before_reveal": "CMP closed. Retrieve the two estimating principles, then use $\\mathrm{MSE} = \\operatorname{Var} + \\mathrm{Bias}^{2}$.",
     "steps": [
       {
         "id": "S1",
@@ -255,7 +255,7 @@
       {
         "id": "S2",
         "label": "Compute MSE",
-        "attempt_cue": "Apply MSE = Var + Bias².",
+        "attempt_cue": "Apply $\\mathrm{MSE} = \\operatorname{Var} + \\mathrm{Bias}^{2}$.",
         "explanation": "Mean squared error combines variance and squared bias.",
         "calculation": "$\\mathrm{MSE}(T) = 7 + 3^{2} = 7 + 9 = 16$",
         "result": "MSE(T) = 16"

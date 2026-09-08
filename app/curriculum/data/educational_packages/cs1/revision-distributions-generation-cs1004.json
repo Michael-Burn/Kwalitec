@@ -241,15 +241,15 @@
         "id": "S1",
         "label": "State the inverse-transform formula",
         "attempt_cue": "Write X in terms of U and λ.",
-        "explanation": "For Exponential rate λ, X = -ln(1-U)/λ (equivalently -ln(U)/λ).",
+        "explanation": "For Exponential rate $\\lambda$, $X = -\\ln(1-U)/\\lambda$ (equivalently $-\\ln(U)/\\lambda$).",
         "calculation": "$X = -\\ln(1-U)/\\lambda$",
         "result": "Inverse-transform formula stated"
       },
       {
         "id": "S2",
         "label": "Evaluate at U = 0.3",
-        "attempt_cue": "Substitute U = 0.3 and λ = 2.",
-        "explanation": "With U = 0.3 and λ = 2, X = -ln(0.7)/2.",
+        "attempt_cue": "Substitute $U = 0.3$ and $\\lambda = 2$.",
+        "explanation": "With $U = 0.3$ and $\\lambda = 2$, $X = -\\ln(0.7)/2$.",
         "calculation": "$X = -\\ln(0.7)/2 \\approx 0.3567/2 = 0.1783$",
         "result": "$X \\approx 0.1783$"
       },
