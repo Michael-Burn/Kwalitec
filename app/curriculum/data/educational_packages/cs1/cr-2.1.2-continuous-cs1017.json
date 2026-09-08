@@ -187,7 +187,7 @@
         },
         {
           "id": "b",
-          "label": "Normal(μ, σ²) is appropriate because the central limit theorem always makes waiting times Normal regardless of support.",
+          "label": "$\\mathrm{Normal}(\\mu, \\sigma^{2})$ is appropriate because the central limit theorem always makes waiting times Normal regardless of support.",
           "misconception_tag": "clt_on_waiting_times"
         },
         {
@@ -228,7 +228,7 @@
   "published_at": "2026-08-04",
   "worked_example": {
     "title": "Select Exponential for memoryless waiting times",
-    "problem_statement": "Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Choose the matching continuous family. As a light numeric check, if the mean waiting time is 6 months, compute P(T > 6).",
+    "problem_statement": "Inter-claim waiting times are strictly positive and, under a constant hazard story, memoryless. Choose the matching continuous family. As a light numeric check, if the mean waiting time is 6 months, compute $P(T > 6)$.",
     "given": [
       {
         "symbol": "generative story",
@@ -253,11 +253,11 @@
       },
       {
         "id": "S2",
-        "label": "Light numeric illustration P(T > 6)",
+        "label": "Light numeric illustration $P(T > 6)$",
         "attempt_cue": "For Exponential mean 6, evaluate the survival at t = 6.",
-        "explanation": "With mean θ = 6, P(T > t) = e^{−t/θ}. At the mean, survival equals e^{−1}. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
-        "calculation": "P(T > 6) = e^{−6/6} = e^{−1} ≈ 0.3679",
-        "result": "P(T > 6) ≈ 0.3679"
+        "explanation": "With mean $\\theta = 6$, $P(T > t) = e^{-t/\\theta}$. At the mean, survival equals $e^{-1}$. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
+        "calculation": "$P(T > 6) = e^{-6/6} = e^{-1} \\approx 0.3679$",
+        "result": "$P(T > 6) \\approx 0.3679$"
       },
       {
         "id": "S3",
@@ -268,7 +268,7 @@
         "result": "Exponential retained; Normal default refused"
       }
     ],
-    "final_answer": "Choose Exponential for positive memoryless waiting times; with mean 6 months, P(T > 6) ≈ 0.3679. Refuse Normal-by-default for this story.",
+    "final_answer": "Choose Exponential for positive memoryless waiting times; with mean 6 months, $P(T > 6) \\approx 0.3679$. Refuse Normal-by-default for this story.",
     "common_pitfall": "Defaulting to a Normal waiting-time model because it is familiar, ignoring that waiting times are strictly positive and memoryless under constant hazard.",
     "syllabus_ref": "2.1.2"
   }

@@ -159,7 +159,7 @@
       "kind": "checkpoint",
       "item_id": "cs1004-2.1f-cp-01",
       "title": "Checkpoint: refuse Chapter 2 complete",
-      "prompt": "Closed-book. You simulate Poisson(λ=3) counts and Exponential waiting times with mean 2. Which statement is correct?",
+      "prompt": "Closed-book. You simulate $\\mathrm{Poisson}(\\lambda=3)$ counts and Exponential waiting times with mean 2. Which statement is correct?",
       "response_type": "mcq",
       "body": "Choose the valid simulation and sanity-check conclusion.",
       "hints": [
@@ -187,7 +187,7 @@
         },
         {
           "id": "c",
-          "label": "Poisson draws should average near 2 and Exponential draws near 3 because λ is a waiting-time mean.",
+          "label": "Poisson draws should average near 2 and Exponential draws near 3 because $\\lambda$ is a waiting-time mean.",
           "misconception_tag": "parameters_swapped"
         },
         {
@@ -218,16 +218,16 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Generate and sanity-check Poisson and Exponential draws",
-    "problem_statement": "An analyst needs software samples from two univariate families before any joint modelling: (i) annual claim counts as Poisson(λ = 3); (ii) inter-claim waiting times (days) as Exponential with mean θ = 5. Describe the generation plan for n = 50 draws of each family, state one sanity check for each sample, and decide whether a mean of 3.1 on the Poisson sample alone proves the software call was correct.",
+    "problem_statement": "An analyst needs software samples from two univariate families before any joint modelling: (i) annual claim counts as $\\mathrm{Poisson}(\\lambda = 3)$; (ii) inter-claim waiting times (days) as Exponential with mean $\\theta = 5$. Describe the generation plan for $n = 50$ draws of each family, state one sanity check for each sample, and decide whether a mean of 3.1 on the Poisson sample alone proves the software call was correct.",
     "given": [
       {
         "symbol": "discrete family",
-        "value": "Poisson(λ = 3)",
+        "value": "$\\mathrm{Poisson}(\\lambda = 3)$",
         "note": "claim counts; support {0, 1, 2, …}"
       },
       {
         "symbol": "continuous family",
-        "value": "Exponential(mean θ = 5)",
+        "value": "Exponential(mean $\\theta = 5$)",
         "note": "waiting times in days; support (0, ∞)"
       },
       {
@@ -256,7 +256,7 @@
         "label": "Run one sanity check per sample",
         "attempt_cue": "State a support check and a rough mean check.",
         "explanation": "A usable check compares sample behaviour with the family's support and first moment. Poisson draws must be non-negative integers with sample mean near 3; Exponential draws must be strictly positive with sample mean near 5.",
-        "calculation": "Poisson: all ≥ 0 integers, mean ≈ 3; Exponential: all > 0, mean ≈ 5",
+        "calculation": "Poisson: all $\\geq 0$ integers, mean $\\approx 3$; Exponential: all $> 0$, mean $\\approx 5$",
         "result": "Support + rough mean check for each family"
       },
       {
@@ -264,7 +264,7 @@
         "label": "Refuse mean-near-target as sole proof",
         "attempt_cue": "Decide whether sample mean 3.1 alone proves the Poisson call was correct.",
         "explanation": "A sample mean near λ is consistent with Poisson(3) but does not by itself prove the call, the seed, or the parameterisation. Generation without a support/parameter check, and without refusing overclaim that univariate sampling finishes joint work, is incomplete.",
-        "calculation": "3.1 ≈ 3 is consistent, not a proof of correct generation",
+        "calculation": "$3.1 \\approx 3$ is consistent, not a proof of correct generation",
         "result": "Mean proximity alone does not certify the sampler"
       }
     ],

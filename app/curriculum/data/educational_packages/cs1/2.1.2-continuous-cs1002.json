@@ -219,7 +219,7 @@
   },
   "worked_example": {
     "title": "Select Lognormal for positive right-skewed severities",
-    "problem_statement": "Individual claim severities are strictly positive and strongly right-skewed on the raw scale, with a roughly symmetric shape after taking logs. Choose the matching continuous family. As a light numeric check, if ln(X) ~ Normal(μ = 6, σ = 1), compute the median of X.",
+    "problem_statement": "Individual claim severities are strictly positive and strongly right-skewed on the raw scale, with a roughly symmetric shape after taking logs. Choose the matching continuous family. As a light numeric check, if $\\ln(X) \\sim \\mathrm{Normal}(\\mu = 6, \\sigma = 1)$, compute the median of $X$.",
     "given": [
       {
         "symbol": "generative story",
@@ -228,7 +228,7 @@
       },
       {
         "symbol": "ln(X)",
-        "value": "Normal(μ = 6, σ = 1)",
+        "value": "$\\mathrm{Normal}(\\mu = 6, \\sigma = 1)$",
         "note": "illustrative log-scale law"
       }
     ],
@@ -247,8 +247,8 @@
         "label": "Light numeric illustration of the median",
         "attempt_cue": "For ln(X) ~ Normal(6, 1), state median(X).",
         "explanation": "If ln(X) is Normal(μ, σ), the median of X is e^μ because the Normal median equals μ. The numeric check illustrates the chosen family; family selection remains the LO hinge.",
-        "calculation": "median(X) = e^6 ≈ 403.43",
-        "result": "median(X) ≈ 403.43"
+        "calculation": "$\\mathrm{median}(X) = e^{6} \\approx 403.43$",
+        "result": "$\\mathrm{median}(X) \\approx 403.43$"
       },
       {
         "id": "S3",
@@ -259,7 +259,7 @@
         "result": "Lognormal retained; Normal default refused"
       }
     ],
-    "final_answer": "Choose Lognormal for positive right-skewed severities that are Normal on the log scale; with ln(X) ~ Normal(6, 1), median(X) = e^6 ≈ 403.43. Refuse Normal-by-default on the raw severity scale.",
+    "final_answer": "Choose Lognormal for positive right-skewed severities that are Normal on the log scale; with $\\ln(X) \\sim \\mathrm{Normal}(6, 1)$, $\\mathrm{median}(X) = e^{6} \\approx 403.43$. Refuse Normal-by-default on the raw severity scale.",
     "common_pitfall": "Defaulting to a Normal severity model because it is familiar, ignoring that claim sizes are strictly positive and right-skewed on the raw scale.",
     "syllabus_ref": "2.1.2"
   }

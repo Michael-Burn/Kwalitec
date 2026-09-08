@@ -183,12 +183,12 @@
       "choices": [
         {
           "id": "a",
-          "label": "MSE(T) = Var(T) + Bias(T) squared.",
+          "label": "$\\mathrm{MSE}(T) = \\operatorname{Var}(T) + \\mathrm{Bias}(T)^{2}$.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "MSE(T) = Var(T) + Bias(T).",
+          "label": "$\\mathrm{MSE}(T) = \\operatorname{Var}(T) + \\mathrm{Bias}(T)$.",
           "misconception_tag": "unsquared_bias"
         },
         {
@@ -198,7 +198,7 @@
         },
         {
           "id": "d",
-          "label": "MSE(T) = Var(T) for every estimator.",
+          "label": "$\\mathrm{MSE}(T) = \\operatorname{Var}(T)$ for every estimator.",
           "misconception_tag": "bias_omitted"
         }
       ],
@@ -224,7 +224,7 @@
   "published_at": "2026-08-02",
   "worked_example": {
     "title": "Retrieve MoM vs MLE and evaluate MSE from bias and variance",
-    "problem_statement": "Closed-book retrieval. Distinguish method of moments from maximum likelihood in one sentence each. An estimator T of θ has Bias(T) = 3 and Var(T) = 7. Compute MSE(T), and refuse treating unbiasedness alone as minimum MSE.",
+    "problem_statement": "Closed-book retrieval. Distinguish method of moments from maximum likelihood in one sentence each. An estimator $T$ of $\\theta$ has $\\mathrm{Bias}(T) = 3$ and $\\operatorname{Var}(T) = 7$. Compute $\\mathrm{MSE}(T)$, and refuse treating unbiasedness alone as minimum MSE.",
     "given": [
       {
         "symbol": "MoM vs MLE",
@@ -237,7 +237,7 @@
         "note": "given"
       },
       {
-        "symbol": "Var(T)",
+        "symbol": "$\\operatorname{Var}(T)$",
         "value": "7",
         "note": "given"
       }
@@ -257,7 +257,7 @@
         "label": "Compute MSE",
         "attempt_cue": "Apply MSE = Var + Bias².",
         "explanation": "Mean squared error combines variance and squared bias.",
-        "calculation": "MSE(T) = 7 + 3² = 7 + 9 = 16",
+        "calculation": "$\\mathrm{MSE}(T) = 7 + 3^{2} = 7 + 9 = 16$",
         "result": "MSE(T) = 16"
       },
       {

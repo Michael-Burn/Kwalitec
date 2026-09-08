@@ -230,11 +230,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Retrieve GLM Family-eta-link and Poisson log link",
-    "problem_statement": "Closed-book retrieval. State what the sequence Family → η → link means in a generalised linear model. For a Poisson GLM, name the canonical link and state what deviance compares.",
+    "problem_statement": "Closed-book retrieval. State what the sequence Family $\\rightarrow \\eta \\rightarrow$ link means in a generalised linear model. For a Poisson GLM, name the canonical link and state what deviance compares.",
     "given": [
       {
         "symbol": "GLM skeleton",
-        "value": "Family → η → link",
+        "value": "Family $\\rightarrow \\eta \\rightarrow$ link",
         "note": "structure hinge"
       },
       {
@@ -250,7 +250,7 @@
         "label": "Retrieve Family → η → link",
         "attempt_cue": "What does each piece specify?",
         "explanation": "The response family specifies mean-variance behaviour, η = Xβ is the linear predictor, and the link satisfies g(μ) = η.",
-        "calculation": "Family = mean-variance; η = Xβ; g(μ) = η",
+        "calculation": "Family = mean-variance; $\\eta = X\\beta$; $g(\\mu) = \\eta$",
         "result": "GLM skeleton retrieved"
       },
       {
@@ -258,7 +258,7 @@
         "label": "Name the Poisson canonical link",
         "attempt_cue": "State g(μ) for Poisson.",
         "explanation": "The Poisson canonical link is logarithmic: log(μ) = η.",
-        "calculation": "Canonical link: log(μ) = η",
+        "calculation": "Canonical link: $\\log(\\mu) = \\eta$",
         "result": "Poisson log link named"
       },
       {
@@ -270,7 +270,7 @@
         "result": "Deviance role retrieved; RSS collapse refused"
       }
     ],
-    "final_answer": "Family specifies mean-variance behaviour, η = Xβ is the linear predictor, and g(μ) = η is the link. For Poisson, the canonical link is log(μ) = η, and deviance compares fitted and saturated models through likelihoods.",
+    "final_answer": "Family specifies mean-variance behaviour, $\\eta = X\\beta$ is the linear predictor, and $g(\\mu) = \\eta$ is the link. For Poisson, the canonical link is $\\log(\\mu) = \\eta$, and deviance compares fitted and saturated models through likelihoods.",
     "common_pitfall": "Treating the link as a transformation of the raw observations, or treating GLM deviance as ordinary residual sum of squares in every model.",
     "syllabus_ref": "4.2"
   }

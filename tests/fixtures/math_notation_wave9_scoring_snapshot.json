@@ -1,0 +1,810 @@
+{
+  "packages": [
+    "2.1.4-poisson-process-cs1004.json",
+    "5.1.2-prior-posterior-cs1015.json",
+    "revision-distributions-generation-cs1004.json",
+    "revision-glm-cs1014.json",
+    "2.1.1-discrete-cs1002.json",
+    "2.1.6-software-generation-cs1004.json",
+    "5.1.2-prior-posterior-cs1003.json",
+    "cr-2.1.2-continuous-cs1017.json",
+    "revision-estimators-cs1010.json",
+    "revision-regression-glm-cs1003.json",
+    "1.2.2-eda-association-ep001.json",
+    "2.1.2-continuous-cs1002.json"
+  ],
+  "items": [
+    {
+      "package_file": "2.1.4-poisson-process-cs1004.json",
+      "item_id": "cs1004-2.1d-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.4-poisson-process-cs1004.json",
+      "item_id": "cs1004-2.1d-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.2-prior-posterior-cs1015.json",
+      "item_id": "cs1015-5.1.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.2-prior-posterior-cs1015.json",
+      "item_id": "cs1015-5.1.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-distributions-generation-cs1004.json",
+      "item_id": "cs1004-cgr1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-distributions-generation-cs1004.json",
+      "item_id": "cs1004-cgr1-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-glm-cs1014.json",
+      "item_id": "cs1014-cx-r1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-glm-cs1014.json",
+      "item_id": "cs1014-cx-r1-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.1-discrete-cs1002.json",
+      "item_id": "cs1002-2.1a-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.1-discrete-cs1002.json",
+      "item_id": "cs1002-2.1a-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.6-software-generation-cs1004.json",
+      "item_id": "cs1004-2.1f-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.6-software-generation-cs1004.json",
+      "item_id": "cs1004-2.1f-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.2-prior-posterior-cs1003.json",
+      "item_id": "cs1003-5.1.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.2-prior-posterior-cs1003.json",
+      "item_id": "cs1003-5.1.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cr-2.1.2-continuous-cs1017.json",
+      "item_id": "cs1017-2.1.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cr-2.1.2-continuous-cs1017.json",
+      "item_id": "cs1017-2.1.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-estimators-cs1010.json",
+      "item_id": "cs1010-ck-r1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-estimators-cs1010.json",
+      "item_id": "cs1010-ck-r1-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-regression-glm-cs1003.json",
+      "item_id": "cs1003-cd-r2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "revision-regression-glm-cs1003.json",
+      "item_id": "cs1003-cd-r2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "1.2.2-eda-association-ep001.json",
+      "item_id": "ep001-1.2b-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "1.2.2-eda-association-ep001.json",
+      "item_id": "ep001-1.2b-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.2-continuous-cs1002.json",
+      "item_id": "cs1002-2.1b-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.2-continuous-cs1002.json",
+      "item_id": "cs1002-2.1b-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    }
+  ]
+}

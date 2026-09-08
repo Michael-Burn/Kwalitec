@@ -217,7 +217,7 @@
   },
   "worked_example": {
     "title": "Choose Spearman for monotone nonlinear mileage association",
-    "problem_statement": "For annual mileage versus claim severity, severity is skewed with outliers and the scatter looks roughly increasing but nonlinear. Software reports Pearson r = 0.25 and Spearman ρ = 0.52. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
+    "problem_statement": "For annual mileage versus claim severity, severity is skewed with outliers and the scatter looks roughly increasing but nonlinear. Software reports Pearson $r = 0.25$ and Spearman $\\rho = 0.52$. Which correlation measure should you prefer for describing the association, and what must you still refuse?",
     "given": [
       {
         "symbol": "scatter pattern",
@@ -230,7 +230,7 @@
         "note": "linear correlation"
       },
       {
-        "symbol": "Spearman ρ",
+        "symbol": "Spearman $\\rho$",
         "value": "0.52",
         "note": "rank correlation"
       }
@@ -250,19 +250,19 @@
         "label": "Read the two reported coefficients",
         "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
         "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone increase under skew and outliers.",
-        "calculation": "|ρ| = 0.52 > |r| = 0.25; rank measure captures monotone association better here",
-        "result": "Report Spearman ρ = 0.52 as the preferred description"
+        "calculation": "$|\\rho| = 0.52 > |r| = 0.25$; rank measure captures monotone association better here",
+        "result": "Report Spearman $\\rho = 0.52$ as the preferred description"
       },
       {
         "id": "S3",
         "label": "Refuse causation from correlation",
         "attempt_cue": "State what a large coefficient still does not prove.",
         "explanation": "A large correlation coefficient does not prove that changing mileage causes severity to change.",
-        "calculation": "Association ≠ causation (even if |ρ| is large)",
+        "calculation": "Association $\\neq$ causation (even if $|\\rho|$ is large)",
         "result": "Refuse causal claim from correlation alone"
       }
     ],
-    "final_answer": "Prefer Spearman ρ = 0.52 (monotone, skewed, outlier-prone) over Pearson r = 0.25. A large coefficient still does not prove causation.",
+    "final_answer": "Prefer Spearman $\\rho = 0.52$ (monotone, skewed, outlier-prone) over Pearson $r = 0.25$. A large coefficient still does not prove causation.",
     "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = 0.52 as proof that higher mileage causes higher claim severity.",
     "syllabus_ref": "1.2.2"
   }

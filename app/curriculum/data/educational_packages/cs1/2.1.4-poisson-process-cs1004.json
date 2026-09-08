@@ -219,10 +219,10 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Poisson process count in a fixed window",
-    "problem_statement": "Claims arrive as a homogeneous Poisson process with rate λ = 1.5 claims per day. For a 4-day window, name the distribution of the claim count N(4), compute P(N(4) = 0), and state the distribution of the waiting time until the next claim.",
+    "problem_statement": "Claims arrive as a homogeneous Poisson process with rate $\\lambda = 1.5$ claims per day. For a 4-day window, name the distribution of the claim count $N(4)$, compute $P(N(4) = 0)$, and state the distribution of the waiting time until the next claim.",
     "given": [
       {
-        "symbol": "λ",
+        "symbol": "$\\lambda$",
         "value": "1.5 per day",
         "note": "homogeneous Poisson process rate"
       },
@@ -239,16 +239,16 @@
         "label": "Name the count distribution",
         "attempt_cue": "State N(t) for a Poisson process with rate λ.",
         "explanation": "In a homogeneous Poisson process with rate λ, the count in an interval of length t is Poisson with mean λt.",
-        "calculation": "N(4) ~ Poisson(λt = 1.5 × 4 = 6)",
+        "calculation": "$N(4) \\sim \\mathrm{Poisson}(\\lambda t = 1.5 \\times 4 = 6)$",
         "result": "N(4) ~ Poisson(6)"
       },
       {
         "id": "S2",
-        "label": "Compute P(N(4) = 0)",
+        "label": "Compute $P(N(4) = 0)$",
         "attempt_cue": "Evaluate e^{-6}.",
-        "explanation": "For Poisson(6), P(N = 0) = e^{-6}.",
-        "calculation": "P(N(4) = 0) = e^{-6} ≈ 0.0025",
-        "result": "P(N(4) = 0) ≈ 0.0025"
+        "explanation": "For Poisson(6), $P(N = 0) = e^{-6}$.",
+        "calculation": "$P(N(4) = 0) = e^{-6} \\approx 0.0025$",
+        "result": "$P(N(4) = 0) \\approx 0.0025$"
       },
       {
         "id": "S3",
@@ -259,7 +259,7 @@
         "result": "Interarrival = Exponential(rate 1.5)"
       }
     ],
-    "final_answer": "N(4) ~ Poisson(6) with P(N(4) = 0) ≈ 0.0025; waiting time until the next claim is Exponential(rate 1.5). Refuse collapsing the count and the wait into one label.",
+    "final_answer": "$N(4) \\sim \\mathrm{Poisson}(6)$ with $P(N(4) = 0) \\approx 0.0025$; waiting time until the next claim is Exponential(rate 1.5). Refuse collapsing the count and the wait into one label.",
     "common_pitfall": "Calling both the 4-day count and the waiting time 'Poisson' (or both 'Exponential'), collapsing the process-count link into a single mislabelled object.",
     "syllabus_ref": "2.1.4"
   }

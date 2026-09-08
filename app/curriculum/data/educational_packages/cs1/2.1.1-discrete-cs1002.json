@@ -219,7 +219,7 @@
   },
   "worked_example": {
     "title": "Select Binomial for fixed independent inspection trials",
-    "problem_statement": "A manufacturer independently inspects n = 30 items, each with the same probability p of being defective. Choose the matching discrete family for the number of defectives. As a light numeric check, if p = 0.1 under that family, compute P(X = 0).",
+    "problem_statement": "A manufacturer independently inspects $n = 30$ items, each with the same probability $p$ of being defective. Choose the matching discrete family for the number of defectives. As a light numeric check, if $p = 0.1$ under that family, compute $P(X = 0)$.",
     "given": [
       {
         "symbol": "generative story",
@@ -232,7 +232,7 @@
         "note": "illustrative success probability"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating P(X = 0).",
+    "attempt_before_reveal": "CMP closed. Match the generative story to a named discrete family before evaluating $P(X = 0)$.",
     "steps": [
       {
         "id": "S1",
@@ -244,11 +244,11 @@
       },
       {
         "id": "S2",
-        "label": "Light numeric illustration P(X = 0)",
+        "label": "Light numeric illustration $P(X = 0)$",
         "attempt_cue": "For Binomial(30, 0.1), evaluate (1-p)^n.",
-        "explanation": "Under Binomial(n, p), P(X = 0) = (1-p)^n. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
-        "calculation": "P(X = 0) = (0.9)^30 ≈ 0.0424",
-        "result": "P(X = 0) ≈ 0.0424"
+        "explanation": "Under $\\mathrm{Binomial}(n, p)$, $P(X = 0) = (1-p)^{n}$. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
+        "calculation": "$P(X = 0) = (0.9)^{30} \\approx 0.0424$",
+        "result": "$P(X = 0) \\approx 0.0424$"
       },
       {
         "id": "S3",
@@ -259,7 +259,7 @@
         "result": "Binomial retained; hypergeometric refused"
       }
     ],
-    "final_answer": "Choose Binomial(30, p) for the fixed independent inspection story; with p = 0.1, P(X = 0) ≈ 0.0424. Refuse hypergeometric for this generative story.",
+    "final_answer": "Choose $\\mathrm{Binomial}(30, p)$ for the fixed independent inspection story; with $p = 0.1$, $P(X = 0) \\approx 0.0424$. Refuse hypergeometric for this generative story.",
     "common_pitfall": "Choosing hypergeometric because the number of inspections is fixed, without a without-replacement finite-population draw story, or defaulting to Poisson whenever the response is a count.",
     "syllabus_ref": "2.1.1"
   }
