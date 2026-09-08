@@ -247,7 +247,7 @@
         "note": "fraud flagged clean"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Recall Type I = reject H₀ when H₀ true; Type II = fail to reject H₀ when H₀ false, with H₀: clean.",
+    "attempt_before_reveal": "CMP closed. Recall Type I = reject $H_{0}$ when $H_{0}$ true; Type II = fail to reject $H_{0}$ when $H_{0}$ false, with $H_{0}$: clean.",
     "steps": [
       {
         "id": "S1",
@@ -268,7 +268,7 @@
       {
         "id": "S3",
         "label": "Power (optional check)",
-        "attempt_cue": "Power = 1 − Type II rate.",
+        "attempt_cue": "$\\operatorname{Power} = 1 - \\text{Type II rate}$.",
         "explanation": "Power is the probability of correctly flagging fraud.",
         "calculation": "$1 - 0.20 = 0.80$",
         "result": "Power = 0.80"

@@ -260,7 +260,7 @@
       {
         "id": "S3",
         "label": "Read the interval",
-        "attempt_cue": "Take θ̂*_{(1)} and θ̂*_{(10)}.",
+        "attempt_cue": "Take $\\hat{\\theta}^{*}_{(1)}$ and $\\hat{\\theta}^{*}_{(10)}$.",
         "explanation": "Endpoints are the selected order statistics themselves.",
         "calculation": "$\\hat{\\theta}^{*}_{(1)} = 1900$; $\\hat{\\theta}^{*}_{(10)} = 2150$",
         "result": "(1900, 2150)"

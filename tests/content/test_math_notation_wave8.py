@@ -333,9 +333,9 @@ def test_wave8_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
-    assert checked["totals"]["remaining_backlog"] == 147
-    assert checked["totals"]["migrated"] == 1759
-    assert checked["totals"]["needs_migration"] == 147
+    assert checked["totals"]["remaining_backlog"] == 126
+    assert checked["totals"]["migrated"] == 1777
+    assert checked["totals"]["needs_migration"] == 126
     assert live["totals"] == checked["totals"]
 
     wave8_files = set(wave8.WAVE8_FILES)
@@ -363,10 +363,10 @@ def test_wave8_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 114
-    assert still_pending_review == 21
+    assert migrated == 132
+    assert still_pending_review == 0
     assert confident_backlog == 0
-    assert manual_excluded == 0
+    assert manual_excluded == 3
 
 
 def test_wave8_packages_disjoint_from_prior_waves() -> None:
@@ -406,4 +406,315 @@ def test_wave8_scoring_keys_byte_identical_in_packages() -> None:
         assert choice_ids == rec["choice_ids"]
 
 
+# Locked Wave 8 leftover migrations (manual-review close-out).
+_WAVE8_LEFTOVER_MIGRATIONS = (
+    (
+        "3.3.3-permutation-tests-cs1012.json",
+        "worked_example.given[3].note",
+        r"permutations with $|\mathrm{diff}| \geq \text{observed}$",
+    ),
+    (
+        "3.3.3-permutation-tests-cs1012.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Compute the observed $|\bar{x}_{A} - \bar{x}_{B}|$, then form $p = (\#\text{ extreme})/20$.",
+    ),
+    (
+        "3.3.3-permutation-tests-cs1012.json",
+        "worked_example.steps[2].label",
+        r"Decision at $\alpha = 0.05$",
+    ),
+    (
+        "3.3.3-permutation-tests-cs1012.json",
+        "worked_example.steps[2].explanation",
+        r"Do not reject $H_{0}$ when $p > \alpha$.",
+    ),
+    (
+        "2.1.5-inverse-transform-cs1004.json",
+        "worked_example.given[1].note",
+        r"smallest y with $F(y) \geq U$",
+    ),
+    (
+        "2.1.5-inverse-transform-cs1004.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Invert the Exponential CDF for (a); find the smallest support point with $F(y) \geq U$ for (b).",
+    ),
+    (
+        "2.1.5-inverse-transform-cs1004.json",
+        "worked_example.steps[0].explanation",
+        r"For Exponential rate $\lambda$, $F(x) = 1 - e^{-\lambda x}$, so $x = -\ln(1-U)/\lambda$.",
+    ),
+    (
+        "2.1.5-inverse-transform-cs1004.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Find the smallest y with $F(y) \geq 0.55$.",
+    ),
+    (
+        "2.1.5-inverse-transform-cs1004.json",
+        "worked_example.steps[1].explanation",
+        r"$F(1) = 0.3 < 0.55$, so $y = 1$ is too small. $F(2) = 0.8 \geq 0.55$, so the inverse-transform draw is $Y = 2$.",
+    ),
+    (
+        "5.1.5-credible-intervals-cs1015.json",
+        "knowledge_checks[1].explanation",
+        r"$\mathrm{Normal}(0.10, 0.02^{2})$ gives equal-tailed interval $\approx (0.0608, 0.1392)$. Frequentist coverage language misstates credible intervals.",
+    ),
+    (
+        "3.2.8-bootstrap-confidence-interval-cs1011.json",
+        "worked_example.steps[2].attempt_cue",
+        r"Take $\hat{\theta}^{*}_{(1)}$ and $\hat{\theta}^{*}_{(10)}$.",
+    ),
+    (
+        "5.1.7-bayesian-credibility-cs1015.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Confirm $k = 120/40$, then $Z = n/(n+k)$, then $P = Z\bar{X} + (1 - Z)\mu$.",
+    ),
+    (
+        "5.1.7-bayesian-credibility-cs1015.json",
+        "worked_example.common_pitfall",
+        r"Using $Z = k/(n+k) = 1/3$ (the weight on $\mu$) as if it were the credibility factor on $\bar{X}$, which swaps the blend to £750.",
+    ),
+    (
+        "cr-2.1.1-discrete-cs1017.json",
+        "worked_example.steps[1].attempt_cue",
+        r"For Poisson($\lambda = 0.4$), evaluate $e^{-\lambda}$.",
+    ),
+    (
+        "5.1.4-loss-estimators-cs1015.json",
+        "worked_example.steps[1].attempt_cue",
+        r"Find the smallest $\theta$ with cumulative posterior probability $\geq 0.5$.",
+    ),
+    (
+        "cp-3.3.1-hypothesis-testing-cs1016.json",
+        "worked_example.attempt_before_reveal",
+        r"CMP closed. Recall Type I = reject $H_{0}$ when $H_{0}$ true; Type II = fail to reject $H_{0}$ when $H_{0}$ false, with $H_{0}$: clean.",
+    ),
+    (
+        "cp-3.3.1-hypothesis-testing-cs1016.json",
+        "worked_example.steps[2].attempt_cue",
+        r"$\operatorname{Power} = 1 - \text{Type II rate}$.",
+    ),
+    (
+        "cr-1.2.2-correlation-cs1017.json",
+        "worked_example.common_pitfall",
+        r"Defaulting to Pearson because it is the familiar default, or treating Spearman $\rho = -0.55$ as proof that more years licensed causes lower claim frequency.",
+    ),
+)
+
+# Locked Wave 8 leftover prose exclusions (byte-identical; not converted).
+_WAVE8_LEFTOVER_EXCLUSIONS = (
+    (
+        "5.1.7-bayesian-credibility-cs1015.json",
+        "mission.concept_focus",
+        "Bayesian credibility with known structural/prior parameters → Z and μ → credibility premium.",
+    ),
+    (
+        "5.1.7-bayesian-credibility-cs1015.json",
+        "worked_example.steps[0].explanation",
+        "The Bayesian approach supplies structural parameters (including μ and k) from an explicit prior/process model.",
+    ),
+    (
+        "5.1.7-bayesian-credibility-cs1003.json",
+        "mission.concept_focus",
+        "Bayesian credibility with known structural/prior parameters → Z and μ → credibility premium.",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE8_LEFTOVER_MIGRATIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE8_LEFTOVER_MIGRATIONS],
+)
+def test_wave8_leftover_migrations_are_valid_katex(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert text.count("$") % 2 == 0
+    assert _spans(text), (
+        f"expected dollar-delimited math in {package_file} {field_path}"
+    )
+    for body in _spans(text):
+        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+
+
+@pytest.mark.parametrize(
+    ("package_file", "field_path", "expected"),
+    _WAVE8_LEFTOVER_EXCLUSIONS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE8_LEFTOVER_EXCLUSIONS],
+)
+def test_wave8_leftover_exclusions_are_byte_identical(
+    package_file: str,
+    field_path: str,
+    expected: str,
+) -> None:
+    text = wave1.get_path(_load(package_file), field_path)
+    assert text == expected
+    assert "$" not in text
+
+
+def test_wave8_leftover_partial_migrations_preserve_surrounding_prose() -> None:
+    """Partial leftovers typeset only the live math object; framing prose stays."""
+    cases = (
+        (
+            "3.3.3-permutation-tests-cs1012.json",
+            "worked_example.given[3].note",
+            ("permutations with ",),
+            (r"\mathrm{diff}", r"\geq \text{observed}"),
+        ),
+        (
+            "3.3.3-permutation-tests-cs1012.json",
+            "worked_example.steps[2].label",
+            ("Decision at ",),
+            (r"\alpha = 0.05",),
+        ),
+        (
+            "2.1.5-inverse-transform-cs1004.json",
+            "worked_example.given[1].note",
+            ("smallest y with ",),
+            (r"F(y) \geq U",),
+        ),
+        (
+            "2.1.5-inverse-transform-cs1004.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Invert the Exponential CDF for (a); find the smallest support point with ",
+                " for (b).",
+            ),
+            (r"F(y) \geq U",),
+        ),
+        (
+            "2.1.5-inverse-transform-cs1004.json",
+            "worked_example.steps[1].attempt_cue",
+            ("Find the smallest y with ",),
+            (r"F(y) \geq 0.55",),
+        ),
+        (
+            "5.1.5-credible-intervals-cs1015.json",
+            "knowledge_checks[1].explanation",
+            (
+                " gives equal-tailed interval ",
+                ". Frequentist coverage language misstates credible intervals.",
+            ),
+            (r"\mathrm{Normal}(0.10, 0.02^{2})", r"\approx (0.0608, 0.1392)"),
+        ),
+        (
+            "5.1.7-bayesian-credibility-cs1015.json",
+            "worked_example.common_pitfall",
+            (
+                "Using ",
+                " (the weight on ",
+                ") as if it were the credibility factor on ",
+                ", which swaps the blend to £750.",
+            ),
+            (r"Z = k/(n+k) = 1/3", r"\mu", r"\bar{X}"),
+        ),
+        (
+            "5.1.4-loss-estimators-cs1015.json",
+            "worked_example.steps[1].attempt_cue",
+            ("Find the smallest ", " with cumulative posterior probability ",),
+            (r"\theta", r"\geq 0.5"),
+        ),
+        (
+            "cp-3.3.1-hypothesis-testing-cs1016.json",
+            "worked_example.attempt_before_reveal",
+            (
+                "CMP closed. Recall Type I = reject ",
+                " when ",
+                " true; Type II = fail to reject ",
+                " when ",
+                " false, with ",
+                ": clean.",
+            ),
+            (r"H_{0}",),
+        ),
+        (
+            "cr-1.2.2-correlation-cs1017.json",
+            "worked_example.common_pitfall",
+            (
+                "Defaulting to Pearson because it is the familiar default, or treating Spearman ",
+                " as proof that more years licensed causes lower claim frequency.",
+            ),
+            (r"\rho = -0.55",),
+        ),
+    )
+    for package_file, field_path, prose_parts, needles in cases:
+        text = wave1.get_path(_load(package_file), field_path)
+        for part in prose_parts:
+            assert part in text, f"missing prose in {package_file} {field_path}"
+        joined = " ".join(_spans(text))
+        for needle in needles:
+            assert needle in joined, (
+                f"expected typeset {needle!r} in {package_file} {field_path}"
+            )
+        for body in _spans(text):
+            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
+
+    # Items 18–20: mixed English/symbol definitions must not force whole sentences
+    # into a single raw LaTeX blob (Power/Type I follow MSE-style operatorname).
+    power = wave1.get_path(
+        _load("cp-3.3.1-hypothesis-testing-cs1016.json"),
+        "worked_example.steps[2].attempt_cue",
+    )
+    assert power == r"$\operatorname{Power} = 1 - \text{Type II rate}$."
+    assert "Recall Type I = reject" in wave1.get_path(
+        _load("cp-3.3.1-hypothesis-testing-cs1016.json"),
+        "worked_example.attempt_before_reveal",
+    )
+    assert "cumulative posterior probability" in wave1.get_path(
+        _load("5.1.4-loss-estimators-cs1015.json"),
+        "worked_example.steps[1].attempt_cue",
+    )
+
+
+def test_wave8_leftover_knowledge_check_scoring_unaffected() -> None:
+    """Leftover KC edit is explanation only; scoring keys and verdicts hold."""
+    snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
+    targets = ("5.1.5-credible-intervals-cs1015.json",)
+    by_id = {
+        (r["package_file"], r["item_id"]): r
+        for r in snapshot["items"]
+        if r["package_file"] in targets
+    }
+    assert by_id
+    reset_educational_package_cache()
+    loader = EducationalPackageLoader(
+        root=REPO_ROOT / "app/curriculum/data/educational_packages"
+    )
+    seen: set[tuple[str, str]] = set()
+    for fname in targets:
+        pack = next(
+            p for p in loader.all_approved() if Path(p.source_path).name == fname
+        )
+        substance = substance_from_package(
+            pack, curriculum_identity="CS1:wave8-left", topic_id=pack.topic_code
+        )
+        practice = [
+            a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+        ]
+        for act in practice:
+            item = act.scoreable
+            assert item is not None
+            key = (fname, item.item_id)
+            expected = by_id[key]
+            seen.add(key)
+            assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+            assert list(item.answer_key.accepted) == expected["accepted_keywords"]
+            exp_tol = expected["numeric_tolerance"]
+            if exp_tol is None:
+                assert item.answer_key.numeric_tolerance is None
+            else:
+                assert item.answer_key.numeric_tolerance == pytest.approx(exp_tol)
+            choice_ids = [
+                c[0] if not isinstance(c, str) else c for c in item.choices
+            ]
+            assert choice_ids == expected["choice_ids"]
+            for probe in expected["verdicts"]:
+                result = score_practice_response(item, probe["response"])
+                assert result.scored is probe["scored"]
+                assert result.correct is probe["correct"]
+                assert result.matched_key == probe["matched_key"]
+    assert seen == set(by_id)
 

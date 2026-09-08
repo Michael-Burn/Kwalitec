@@ -254,6 +254,23 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "mission.task_descriptions[0]",
             "189f5bd5e2eb5799",
         ),
+        # Wave 8 leftovers: Z/μ as concept-focus path landmarks, or μ/k named
+        # only inside explanatory "including …" prose (not live formulas).
+        (
+            "5.1.7-bayesian-credibility-cs1015.json",
+            "mission.concept_focus",
+            "727493caa693dc03",
+        ),
+        (
+            "5.1.7-bayesian-credibility-cs1015.json",
+            "worked_example.steps[0].explanation",
+            "76726aae6ef329b9",
+        ),
+        (
+            "5.1.7-bayesian-credibility-cs1003.json",
+            "mission.concept_focus",
+            "727493caa693dc03",
+        ),
     }
 )
 

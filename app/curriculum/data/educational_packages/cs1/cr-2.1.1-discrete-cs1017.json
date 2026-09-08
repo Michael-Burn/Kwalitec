@@ -252,7 +252,7 @@
       {
         "id": "S2",
         "label": "Light numeric illustration $P(X = 0)$",
-        "attempt_cue": "For Poisson(λ = 0.4), evaluate e^{−λ}.",
+        "attempt_cue": "For Poisson($\\lambda = 0.4$), evaluate $e^{-\\lambda}$.",
         "explanation": "Under Poisson($\\lambda$), $P(X = 0) = e^{-\\lambda}$. The numeric check confirms the chosen family is usable, not a substitute for the family-selection judgment.",
         "calculation": "$P(X = 0) = e^{-0.4} \\approx 0.6703$",
         "result": "$P(X = 0) \\approx 0.6703$"

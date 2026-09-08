@@ -240,10 +240,10 @@
       {
         "symbol": "# extreme",
         "value": "4",
-        "note": "permutations with |diff| ≥ observed"
+        "note": "permutations with $|\\mathrm{diff}| \\geq \\text{observed}$"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Compute the observed |x̄_A − x̄_B|, then form p = (# extreme)/20.",
+    "attempt_before_reveal": "CMP closed. Compute the observed $|\\bar{x}_{A} - \\bar{x}_{B}|$, then form $p = (\\#\\text{ extreme})/20$.",
     "steps": [
       {
         "id": "S1",
@@ -263,9 +263,9 @@
       },
       {
         "id": "S3",
-        "label": "Decision at α = 0.05",
+        "label": "Decision at $\\alpha = 0.05$",
         "attempt_cue": "Compare p with 0.05.",
-        "explanation": "Do not reject H₀ when p > α.",
+        "explanation": "Do not reject $H_{0}$ when $p > \\alpha$.",
         "calculation": "$0.2 > 0.05 \\Rightarrow$ do not reject $H_{0}$",
         "result": "Do not reject $H_{0}$ at 5%"
       }

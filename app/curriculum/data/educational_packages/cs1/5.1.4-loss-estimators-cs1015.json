@@ -250,7 +250,7 @@
       {
         "id": "S2",
         "label": "Absolute-error estimate (posterior median)",
-        "attempt_cue": "Find the smallest θ with cumulative posterior probability ≥ 0.5.",
+        "attempt_cue": "Find the smallest $\\theta$ with cumulative posterior probability $\\geq 0.5$.",
         "explanation": "Under absolute-error loss, the Bayes estimator is a posterior median.",
         "calculation": "$F(1) = 0.20 < 0.5$; $F(2) = 0.20+0.50 = 0.70 \\geq 0.5 \\Rightarrow$ median $= 2$",
         "result": "$\\delta_{\\mathrm{AE}} = 2$"

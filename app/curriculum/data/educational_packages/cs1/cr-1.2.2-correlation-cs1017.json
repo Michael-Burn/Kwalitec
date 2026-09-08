@@ -271,7 +271,7 @@
       }
     ],
     "final_answer": "Prefer Spearman $\\rho = -0.55$ (monotone, skewed, outlier-prone) over Pearson $r = -0.28$. A large coefficient still does not prove causation.",
-    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman ρ = −0.55 as proof that more years licensed causes lower claim frequency.",
+    "common_pitfall": "Defaulting to Pearson because it is the familiar default, or treating Spearman $\\rho = -0.55$ as proof that more years licensed causes lower claim frequency.",
     "syllabus_ref": "1.2.2"
   }
 }

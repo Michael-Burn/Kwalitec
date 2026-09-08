@@ -1,8 +1,8 @@
 # Mathematical Notation Inventory Summary
 
-**Generated:** 2026-09-08T02:21:37Z
+**Generated:** 2026-09-08T03:11:52Z
 **Standard:** `docs/content/MATHEMATICAL_NOTATION_STANDARD.md`
-**Content fingerprint:** `dc9a7e89b701a56a9e4842f7e0a6874d89cc800795d609d39f2cb897be463726`
+**Content fingerprint:** `88bb3693da4837262a517354fdc086efed2b8e6d4d634c1a88af1d491cca2694`
 **Live packages scanned:** 130
 
 ## Totals
@@ -10,13 +10,13 @@
 | Category | Count |
 |---|---:|
 | Mathish strings inventoried | 2203 |
-| Already compliant | 1778 |
-| Needs migration | 147 |
-| Migrated (dollar-delimited) | 1759 |
-| Correctly excluded | 278 |
-| Needs manual review (flag) | 300 |
-| Confident automated (no flag) | 1903 |
-| Packages with migration backlog | 34 |
+| Already compliant | 1796 |
+| Needs migration | 126 |
+| Migrated (dollar-delimited) | 1777 |
+| Correctly excluded | 281 |
+| Needs manual review (flag) | 279 |
+| Confident automated (no flag) | 1924 |
+| Packages with migration backlog | 24 |
 
 ## Limits of automation
 
@@ -64,15 +64,14 @@ Ledger JSON: `docs/content/math_notation_inventory.json`.
 - `1.2.2-eda-association-ep001.json`: backlog 7 (tier-1 0, manual-review 2, compliant 0, excluded 1)
 - `2.1.2-continuous-cs1002.json`: backlog 6 (tier-1 0, manual-review 2, compliant 0, excluded 1)
 - `5.1.4-loss-estimators-cs1003.json`: backlog 6 (tier-1 0, manual-review 0, compliant 0, excluded 0)
-- `2.1.5-inverse-transform-cs1004.json`: backlog 5 (tier-1 0, manual-review 5, compliant 12, excluded 0)
 - `5.1.5-credible-intervals-cs1003.json`: backlog 5 (tier-1 0, manual-review 6, compliant 0, excluded 6)
 - `revision-bayesian-cs1015.json`: backlog 5 (tier-1 0, manual-review 6, compliant 0, excluded 6)
-- `3.3.3-permutation-tests-cs1012.json`: backlog 4 (tier-1 0, manual-review 7, compliant 9, excluded 3)
-- `5.1.7-bayesian-credibility-cs1015.json`: backlog 4 (tier-1 0, manual-review 6, compliant 7, excluded 2)
 - `revision-hypothesis-testing-cs1012.json`: backlog 4 (tier-1 0, manual-review 0, compliant 0, excluded 0)
-- `cp-3.3.1-hypothesis-testing-cs1016.json`: backlog 2 (tier-1 0, manual-review 4, compliant 8, excluded 2)
 - `revision-midspine-cs1003.json`: backlog 2 (tier-1 0, manual-review 4, compliant 0, excluded 4)
 - `1.2.3-pca-cs1002.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
-- `3.2.8-bootstrap-confidence-interval-cs1011.json`: backlog 1 (tier-1 0, manual-review 5, compliant 10, excluded 4)
 - `4.1.1-response-explanatory-cs1003.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
-- `5.1.7-bayesian-credibility-cs1003.json`: backlog 1 (tier-1 0, manual-review 3, compliant 9, excluded 2)
+- `4.1.1-response-explanatory-cs1013.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
+- `cp-4.1.1-linear-regression-cs1016.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
+- `cr-1.1.3-data-sources-cs1017.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
+- `cr-1.1.2-stages-tools-cs1017.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)
+- `cr-1.2.3-pca-cs1017.json`: backlog 1 (tier-1 0, manual-review 0, compliant 0, excluded 0)

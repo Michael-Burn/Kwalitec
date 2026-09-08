@@ -167,7 +167,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Normal(0.10, 0.02^2) gives equal-tailed interval ≈ (0.0608, 0.1392). Frequentist coverage language misstates credible intervals.",
+      "explanation": "$\\mathrm{Normal}(0.10, 0.02^{2})$ gives equal-tailed interval $\\approx (0.0608, 0.1392)$. Frequentist coverage language misstates credible intervals.",
       "model_answer": "Approx (0.0608, 0.1392). Credible is posterior probability for theta.",
       "common_mistake": "Using frequentist coverage reading or wrong interval width rule.",
       "success_criteria": [
