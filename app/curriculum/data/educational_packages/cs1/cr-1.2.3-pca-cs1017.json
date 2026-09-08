@@ -252,7 +252,7 @@
         "label": "Separate summary from causation",
         "attempt_cue": "Say whether PC1 proves a causal risk driver.",
         "explanation": "Summarising shared variation does not by itself prove that PC1 is a causal risk driver. Causal claims need external subject-matter warrants beyond the eigenstructure.",
-        "calculation": "Variation summary ≠ proven causal driver",
+        "calculation": "Variation summary $\\neq$ proven causal driver",
         "result": "Refuse causal identity for PC1 alone"
       },
       {

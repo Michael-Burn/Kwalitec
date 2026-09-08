@@ -260,7 +260,7 @@
         "label": "Pair a tool class and refuse open-notebook-as-done",
         "attempt_cue": "Name a tool class for explore, and reject 'opened a notebook' as finishing the path.",
         "explanation": "Summary statistics and exploratory visualisations (or data-wrangling scripts) serve clean/explore. Opening a notebook and loading packages does not finish the staged path.",
-        "calculation": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
+        "calculation": "Tool class for explore: summaries / exploratory plots; notebook-open $\\neq$ path complete",
         "result": "Explore ↔ summaries/plots; stages still required"
       }
     ],

@@ -257,7 +257,7 @@
         "label": "Note large-set constraints without equating volume to quality",
         "attempt_cue": "State one scale issue and refuse 'larger n ⇒ better data'.",
         "explanation": "Extremely large sets can still need sampling or distributed tooling. Large n does not repair non-representativeness by itself.",
-        "calculation": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
+        "calculation": "Large $n \\neq$ automatic fitness; scale may still require sampling/tooling",
         "result": "Volume is not automatically better data"
       },
       {

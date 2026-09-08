@@ -29,7 +29,9 @@ def test_inventory_builds_against_live_catalogue(live_payload: dict) -> None:
     totals = live_payload["totals"]
     assert live_payload["live_package_count"] >= 130
     assert totals["mathish_strings"] > 0
-    assert totals["needs_migration"] > 0
+    # Wave 10 closed the confident migration backlog catalogue-wide.
+    assert totals["needs_migration"] == 0
+    assert totals["remaining_backlog"] == 0
     assert totals["already_compliant"] + totals["needs_migration"] + totals[
         "correctly_excluded"
     ] == totals["mathish_strings"]
@@ -60,9 +62,12 @@ def test_checked_in_ledger_matches_live_catalogue(live_payload: dict) -> None:
 
 def test_wave_recommendation_present(live_payload: dict) -> None:
     wave = live_payload["wave_recommendation"]["wave_1"]
-    assert wave["package_count"] > 0
-    assert wave["needs_migration_strings"] > 0
-    assert "compound" in wave["label"].lower() or "tier" in wave["label"].lower()
+    # After Wave 10, no confident needs_migration packages remain.
+    assert wave["package_count"] == 0
+    assert wave["needs_migration_strings"] == 0
+    assert "compound" in wave["label"].lower() or "tier" in wave["label"].lower() or (
+        "backlog" in wave["label"].lower()
+    )
 
 
 def test_cli_runs_cleanly(tmp_path: Path) -> None:

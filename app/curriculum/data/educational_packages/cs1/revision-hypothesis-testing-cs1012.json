@@ -250,19 +250,19 @@
         "label": "Interpret a very small p-value",
         "attempt_cue": "What is warranted?",
         "explanation": "The data are difficult to reconcile with the null under the test assumptions. That can support rejecting the null at an appropriate level after checking assumptions.",
-        "calculation": "Small p ⇒ evidence against H₀ under assumptions (not automatic proof)",
+        "calculation": "Small $p \\Rightarrow$ evidence against $H_{0}$ under assumptions (not automatic proof)",
         "result": "Evidence-against-null reading"
       },
       {
         "id": "S3",
         "label": "Refuse proof and importance overclaims",
         "attempt_cue": "Name one refused overclaim.",
-        "explanation": "A small p-value does not prove the alternative with probability one, does not equal P(H₀ true), and does not by itself measure practical importance.",
-        "calculation": "Refuse P(H₀ true) reading and proof/importance collapse",
+        "explanation": "A small p-value does not prove the alternative with probability one, does not equal $P(H_{0}\\ \\mathrm{true})$, and does not by itself measure practical importance.",
+        "calculation": "Refuse $P(H_{0}\\ \\mathrm{true})$ reading and proof/importance collapse",
         "result": "Overclaims refused"
       }
     ],
-    "final_answer": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not P(H₀ true), and not a measure of practical importance by itself.",
+    "final_answer": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not $P(H_{0}\\ \\mathrm{true})$, and not a measure of practical importance by itself.",
     "common_pitfall": "Interpreting the p-value as the probability that the null is true, or treating statistical significance as proof of the alternative and as substantive importance.",
     "syllabus_ref": "3.3.1"
   }

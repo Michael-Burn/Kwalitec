@@ -237,11 +237,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Retrieve Beta-Binomial conjugate update",
-    "problem_statement": "Closed-book retrieval of one Bayes hinge. If X | θ ~ Binomial(n = 8, θ) and θ has prior Beta(α, β) = Beta(4, 6), state the posterior after observing X = 2, and refuse one wrong update rule.",
+    "problem_statement": "Closed-book retrieval of one Bayes hinge. If $X \\mid \\theta \\sim \\mathrm{Binomial}(n = 8, \\theta)$ and $\\theta$ has prior $\\mathrm{Beta}(\\alpha, \\beta) = \\mathrm{Beta}(4, 6)$, state the posterior after observing $X = 2$, and refuse one wrong update rule.",
     "given": [
       {
         "symbol": "likelihood",
-        "value": "X | θ ~ Binomial(8, θ)",
+        "value": "$X \\mid \\theta \\sim \\mathrm{Binomial}(8, \\theta)$",
         "note": "observed X = 2"
       },
       {

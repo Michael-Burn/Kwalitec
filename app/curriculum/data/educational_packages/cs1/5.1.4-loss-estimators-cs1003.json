@@ -158,7 +158,7 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.4-cp-01",
       "title": "Checkpoint: 5.1.4",
-      "prompt": "Closed-book. Posterior for θ is available. Which statement is correct?",
+      "prompt": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
       "response_type": "mcq",
       "body": "Name estimators under losses; refuse mode-default and interval collapse.",
       "hints": [
@@ -176,7 +176,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for θ. Different objects.",
+          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
           "misconception_tag": ""
         },
         {
@@ -217,10 +217,10 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Squared-error vs absolute-error Bayes estimates",
-    "problem_statement": "A discrete posterior for an IBNR reserve parameter θ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
+    "problem_statement": "A discrete posterior for an IBNR reserve parameter $\\theta$ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
     "given": [
       {
-        "symbol": "θ values",
+        "symbol": "$\\theta$ values",
         "value": "4, 5, 7",
         "note": "support of the posterior"
       },
@@ -237,7 +237,7 @@
         "label": "Squared-error Bayes estimate",
         "attempt_cue": "Compute the posterior mean.",
         "explanation": "Under squared-error loss the Bayes estimate is the posterior mean.",
-        "calculation": "E[θ|data] = 4×0.15 + 5×0.55 + 7×0.30 = 0.6 + 2.75 + 2.1 = 5.45",
+        "calculation": "$E[\\theta \\mid \\mathrm{data}] = 4\\times 0.15 + 5\\times 0.55 + 7\\times 0.30 = 0.6 + 2.75 + 2.1 = 5.45$",
         "result": "Squared-error estimate = 5.45"
       },
       {
@@ -253,7 +253,7 @@
         "label": "Contrast the two answers",
         "attempt_cue": "State why mean and median need not coincide.",
         "explanation": "The distribution is asymmetric (mass on 7 pulls the mean above 5), so the two loss functions disagree.",
-        "calculation": "Mean 5.45 ≠ median 5 because of right-tail mass at 7",
+        "calculation": "Mean $5.45 \\neq$ median $5$ because of right-tail mass at $7$",
         "result": "Loss function choice changes the point estimate"
       }
     ],

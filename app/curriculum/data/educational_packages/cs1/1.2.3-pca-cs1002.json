@@ -244,7 +244,7 @@
         "label": "Separate summary from pricing readiness",
         "attempt_cue": "Say whether PC1-PC3 alone prove ready-made latent pricing factors.",
         "explanation": "Summarising shared variation does not by itself prove that the leading components are the true latent risk drivers, nor that originals can be dropped without checking loadings, interpretability, and model residual behaviour.",
-        "calculation": "Variation summary ≠ proven latent pricing factors without further warrants",
+        "calculation": "Variation summary $\\neq$ proven latent pricing factors without further warrants",
         "result": "Refuse automatic latent-factor identity"
       },
       {

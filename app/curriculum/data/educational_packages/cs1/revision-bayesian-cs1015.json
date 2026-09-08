@@ -240,11 +240,11 @@
   "published_at": "2026-08-03",
   "worked_example": {
     "title": "Retrieve posterior proportionality and a Normal credible interval",
-    "problem_statement": "Closed-book retrieval. Write the Bayesian posterior for θ after observing data y up to proportionality. Then, if the posterior for θ is Normal with mean 60 and standard deviation 4, compute a central 95% credible interval (use z_{0.025} = 1.96), and refuse a frequentist repeated-sampling reading of that interval.",
+    "problem_statement": "Closed-book retrieval. Write the Bayesian posterior for $\\theta$ after observing data $y$ up to proportionality. Then, if the posterior for $\\theta$ is Normal with mean 60 and standard deviation 4, compute a central 95% credible interval (use $z_{0.025} = 1.96$), and refuse a frequentist repeated-sampling reading of that interval.",
     "given": [
       {
         "symbol": "Bayes update",
-        "value": "posterior ∝ likelihood × prior",
+        "value": "$\\mathrm{posterior} \\propto \\mathrm{likelihood} \\times \\mathrm{prior}$",
         "note": "definition hinge"
       },
       {
@@ -265,7 +265,7 @@
         "label": "Retrieve posterior proportionality",
         "attempt_cue": "Write posterior(θ|y) up to a constant.",
         "explanation": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
-        "calculation": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ)",
+        "calculation": "$\\mathrm{posterior}(\\theta \\mid y) \\propto \\mathrm{likelihood}(y \\mid \\theta) \\times \\mathrm{prior}(\\theta)$",
         "result": "Posterior proportionality retrieved"
       },
       {
@@ -273,7 +273,7 @@
         "label": "Compute the 95% credible interval",
         "attempt_cue": "Use mean ± 1.96 sd for a Normal posterior.",
         "explanation": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
-        "calculation": "60 ± 1.96×4 = 60 ± 7.84 → (52.16, 67.84)",
+        "calculation": "$60 \\pm 1.96\\times 4 = 60 \\pm 7.84 \\rightarrow (52.16, 67.84)$",
         "result": "95% credible interval = (52.16, 67.84)"
       },
       {
@@ -285,7 +285,7 @@
         "result": "Credible-vs-confidence confusion refused"
       }
     ],
-    "final_answer": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ). The Normal(60, 4²) central 95% credible interval is (52.16, 67.84), meaning posterior probability 0.95 under the model, prior, and data - not frequentist repeated-sampling coverage.",
+    "final_answer": "$\\mathrm{posterior}(\\theta \\mid y) \\propto \\mathrm{likelihood}(y \\mid \\theta) \\times \\mathrm{prior}(\\theta)$. The $\\mathrm{Normal}(60, 4^{2})$ central 95% credible interval is $(52.16, 67.84)$, meaning posterior probability 0.95 under the model, prior, and data - not frequentist repeated-sampling coverage.",
     "common_pitfall": "Adding prior and likelihood instead of multiplying, or giving a frequentist repeated-sampling coverage interpretation to a Bayesian credible interval.",
     "syllabus_ref": "5.1.1 / 5.1.5"
   }

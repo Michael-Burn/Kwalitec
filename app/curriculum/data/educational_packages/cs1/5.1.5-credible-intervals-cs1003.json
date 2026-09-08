@@ -216,11 +216,11 @@
   "published_at": "2026-08-01",
   "worked_example": {
     "title": "Normal posterior 95% credible interval",
-    "problem_statement": "After observing claim experience, the posterior for mean ultimate cost θ (£000) is Normal with mean 250 and standard deviation 8: θ | data ~ N(250, 8²). Using z_{0.975} = 1.96, construct a central 95% credible interval for θ.",
+    "problem_statement": "After observing claim experience, the posterior for mean ultimate cost $\\theta$ (£000) is Normal with mean 250 and standard deviation 8: $\\theta \\mid \\mathrm{data} \\sim N(250, 8^{2})$. Using $z_{0.975} = 1.96$, construct a central 95% credible interval for $\\theta$.",
     "given": [
       {
         "symbol": "posterior",
-        "value": "N(250, 8²)",
+        "value": "$N(250, 8^{2})$",
         "note": "posterior for θ"
       },
       {
@@ -236,7 +236,7 @@
         "label": "Central 95% endpoints",
         "attempt_cue": "Compute 250 ± 1.96 × 8.",
         "explanation": "For a Normal posterior a central credible interval uses the usual Normal quantiles.",
-        "calculation": "250 ± 1.96 × 8 = 250 ± 15.68 ⇒ (234.32, 265.68)",
+        "calculation": "$250 \\pm 1.96 \\times 8 = 250 \\pm 15.68 \\Rightarrow (234.32, 265.68)$",
         "result": "Interval (234.32, 265.68)"
       },
       {
@@ -244,7 +244,7 @@
         "label": "Posterior probability interpretation",
         "attempt_cue": "Write the probability statement conditional on the data.",
         "explanation": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
-        "calculation": "P(234.32 < θ < 265.68 | data) = 0.95",
+        "calculation": "$P(234.32 < \\theta < 265.68 \\mid \\mathrm{data}) = 0.95$",
         "result": "Posterior probability 0.95"
       },
       {
@@ -256,7 +256,7 @@
         "result": "Do not narrate as frequentist coverage"
       }
     ],
-    "final_answer": "Central 95% credible interval (234.32, 265.68); P(234.32 < θ < 265.68 | data) = 0.95.",
+    "final_answer": "Central 95% credible interval $(234.32, 265.68)$; $P(234.32 < \\theta < 265.68 \\mid \\mathrm{data}) = 0.95$.",
     "common_pitfall": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
     "syllabus_ref": "5.1.5"
   }

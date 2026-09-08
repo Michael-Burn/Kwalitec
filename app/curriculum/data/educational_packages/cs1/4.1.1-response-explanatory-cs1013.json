@@ -251,7 +251,7 @@
         "label": "Evaluate the fitted mean at age 45",
         "attempt_cue": "Substitute x = 45 into ŷ = 1200 + 40x.",
         "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
-        "calculation": "ŷ(45) = 1200 + 40 × 45 = 1200 + 1800 = 3000",
+        "calculation": "$\\hat{y}(45) = 1200 + 40 \\times 45 = 1200 + 1800 = 3000$",
         "result": "ŷ = £3000"
       },
       {

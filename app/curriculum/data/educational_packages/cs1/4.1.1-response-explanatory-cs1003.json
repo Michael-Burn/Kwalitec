@@ -247,7 +247,7 @@
         "label": "Evaluate the fitted mean at x = 8",
         "attempt_cue": "Substitute x = 8 into ŷ = 2500 + 150x.",
         "explanation": "Once roles are fixed, the fitted line gives the modelled mean response at a chosen X value.",
-        "calculation": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
+        "calculation": "$\\hat{y}(8) = 2500 + 150 \\times 8 = 2500 + 1200 = 3700$",
         "result": "ŷ = £3700"
       },
       {

@@ -1,6 +1,6 @@
-"""Wave 5 mathematical notation migration: KaTeX validity, scoring, ledger."""
+"""Wave 10 mathematical notation migration: KaTeX validity, scoring, ledger."""
 
-# Leftover exclusion strings are verbatim package text; line length is expected.
+# Representative samples use verbatim package text; line length is expected.
 # ruff: noqa: E501
 
 from __future__ import annotations
@@ -30,14 +30,19 @@ import math_notation_wave2 as wave2  # noqa: E402
 import math_notation_wave3 as wave3  # noqa: E402
 import math_notation_wave4 as wave4  # noqa: E402
 import math_notation_wave5 as wave5  # noqa: E402
+import math_notation_wave6 as wave6  # noqa: E402
+import math_notation_wave7 as wave7  # noqa: E402
+import math_notation_wave8 as wave8  # noqa: E402
+import math_notation_wave9 as wave9  # noqa: E402
+import math_notation_wave10 as wave10  # noqa: E402
 
 PACKAGES = REPO_ROOT / "app/curriculum/data/educational_packages/cs1"
 LEDGER = REPO_ROOT / "docs/content/math_notation_inventory.json"
 SCORING_SNAPSHOT = (
-    REPO_ROOT / "tests/fixtures/math_notation_wave5_scoring_snapshot.json"
+    REPO_ROOT / "tests/fixtures/math_notation_wave10_scoring_snapshot.json"
 )
 
-# KaTeX 0.16.x control words used in Waves 1–5 authored math.
+# KaTeX 0.16.x control words used in Waves 1–10 authored math.
 _KNOWN_COMMANDS = frozenset(
     {
         "frac",
@@ -60,6 +65,8 @@ _KNOWN_COMMANDS = frozenset(
         "varepsilon",
         "ell",
         "eta",
+        "nu",
+        "Delta",
         "pi",
         "sum",
         "ln",
@@ -75,6 +82,7 @@ _KNOWN_COMMANDS = frozenset(
         "Rightarrow",
         "rightarrow",
         "xrightarrow",
+        "leftrightarrow",
         "ldots",
         "colon",
         "left",
@@ -93,6 +101,13 @@ _KNOWN_COMMANDS = frozenset(
         "propto",
         "infty",
         "mid",
+        "subset",
+        "lfloor",
+        "rfloor",
+        "lceil",
+        "rceil",
+        "rho",
+        "delta",
     }
 )
 
@@ -102,169 +117,160 @@ _CONTROL = re.compile(r"\\([A-Za-z]+)")
 # Representative (package, path, must-contain) meaning checks across all 12 packages.
 _MEANING_SAMPLES = (
     (
-        "revision-linear-models-cs1003.json",
+        "5.1.4-loss-estimators-cs1003.json",
+        "worked_example.steps[0].calculation",
+        (r"E[\theta \mid \mathrm{data}]", r"5.45"),
+        "Bayes mean under squared-error loss",
+    ),
+    (
+        "5.1.5-credible-intervals-cs1003.json",
+        "worked_example.final_answer",
+        (r"234.32", r"265.68", r"\theta", r"0.95"),
+        "central 95% credible interval",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[0].calculation",
+        (r"\propto", r"\theta \mid y", r"\mathrm{prior}"),
+        "posterior proportionality",
+    ),
+    (
+        "revision-hypothesis-testing-cs1012.json",
+        "worked_example.final_answer",
+        (r"P(H_{0}\ \mathrm{true})",),
+        "refuse P(H0 true) reading",
+    ),
+    (
+        "revision-midspine-cs1003.json",
         "worked_example.given[0].value",
-        (r"X\beta", r"\varepsilon"),
-        "OLS linear model board",
+        (r"X \mid \theta", r"\mathrm{Binomial}(8, \theta)"),
+        "Beta-Binomial midspine hinge",
     ),
     (
-        "2.2.3-cov-corr-expectation-cs1005.json",
-        "worked_example.title",
-        (r"E[X+2Y]",),
-        "cov-corr joint expectation title",
+        "1.2.3-pca-cs1002.json",
+        "worked_example.steps[1].calculation",
+        (r"\neq",),
+        "PCA variation not latent pricing",
     ),
     (
-        "2.3.1-conditional-expectation-cs1006.json",
-        "knowledge_checks[1].model_answer",
-        (r"E[Y|X=1]", r"\approx", "0.571"),
-        "conditional expectation model answer",
+        "4.1.1-response-explanatory-cs1003.json",
+        "worked_example.steps[1].calculation",
+        (r"\hat{y}(8)", r"3700"),
+        "linear predictor at x=8",
     ),
     (
-        "2.3.2-mean-variance-conditioning-cs1006.json",
-        "worked_example.attempt_before_reveal",
-        (r"E[E[Y|X]]", r"\operatorname{Var}(Y)"),
-        "tower law and total variance",
+        "4.1.1-response-explanatory-cs1013.json",
+        "worked_example.steps[1].calculation",
+        (r"\hat{y}(45)", r"3000"),
+        "linear predictor at x=45",
     ),
     (
-        "cp-5.1.1-bayes-theorem-cs1016.json",
-        "knowledge_checks[1].model_answer",
-        (r"P(+)", r"P(D|+)", r"\approx"),
-        "Bayes evidence and posterior",
+        "cp-4.1.1-linear-regression-cs1016.json",
+        "worked_example.steps[1].calculation",
+        (r"\hat{y}(25)", r"480"),
+        "linear predictor at x=25",
     ),
     (
-        "2.2.4-linear-combinations-cs1005.json",
-        "worked_example.problem_statement",
-        (r"E[X]", r"\operatorname{Var}(X)", r"\operatorname{Cov}"),
-        "linear combination moments setup",
+        "cr-1.1.3-data-sources-cs1017.json",
+        "worked_example.steps[1].calculation",
+        (r"n \neq",),
+        "large n not automatic fitness",
     ),
     (
-        "5.1.1-bayes-theorem-cs1015.json",
-        "knowledge_checks[1].model_answer",
-        (r"P(\mathrm{flag})", r"P(\mathrm{fraud}|"),
-        "fraud flag Bayes model answer",
+        "cr-1.1.2-stages-tools-cs1017.json",
+        "worked_example.steps[2].calculation",
+        (r"\neq", "path complete"),
+        "notebook-open not path complete",
     ),
     (
-        "2.4.1-mgf-cgf-cs1007.json",
-        "worked_example.problem_statement",
-        (r"\mathrm{Poisson}", r"M_{X}(t)", r"C_{X}(t)"),
-        "Poisson MGF/CGF problem",
-    ),
-    (
-        "cp-2.2.1-marginal-conditional-cs1016.json",
-        "knowledge_checks[1].model_answer",
-        (r"P(X=1)", r"P(Y=1|X=1)"),
-        "marginal then conditional",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.problem_statement",
-        (r"V(\mu)", r"\varphi", r"\mu^{2}/\alpha"),
-        "GLM mean-variance families",
-    ),
-    (
-        "revision-conditional-expectations-cs1006.json",
-        "worked_example.attempt_before_reveal",
-        (r"E[E[Y|X]]", r"\operatorname{Var}(E[Y|X])"),
-        "revision tower and total variance",
-    ),
-    (
-        "revision-generating-functions-cs1007.json",
-        "worked_example.steps[0].explanation",
-        (r"M_{X}(t)", r"E[\exp(tX)]", r"K_{X}(t)"),
-        "MGF and CGF definitions",
+        "cr-1.2.3-pca-cs1017.json",
+        "worked_example.steps[1].calculation",
+        (r"\neq", "causal"),
+        "PCA variation not causal driver",
     ),
 )
 
-# Locked Wave 5 leftover migrations (manual-review close-out).
-_WAVE5_LEFTOVER_MIGRATIONS = (
+# Untouched Wave 10 correctly_excluded + needs_manual_review leftovers.
+_WAVE10_MANUAL_REVIEW_LEFTOVERS = (
     (
-        "2.2.3-cov-corr-expectation-cs1005.json",
-        "worked_example.steps[2].attempt_cue",
-        r"Apply linearity, then state why $\operatorname{Corr} \neq 0$ here does "
-        "not finish an independence claim.",
+        "5.1.5-credible-intervals-cs1003.json",
+        "worked_example.given[0].note",
+        "posterior for θ",
     ),
     (
-        "2.2.4-linear-combinations-cs1005.json",
-        "worked_example.steps[1].explanation",
-        r"Variance of a linear combination needs the covariance whenever "
-        r"dependence is present. Here $a = 2$ and $b = -1$, so "
-        r"$2ab\operatorname{Cov} = 2(2)(-1)(3) = -12$.",
+        "5.1.5-credible-intervals-cs1003.json",
+        "worked_example.attempt_before_reveal",
+        "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
     ),
     (
-        "2.4.1-mgf-cgf-cs1007.json",
-        "mission.mission_purpose",
-        r"Today's Mission exists to obtain the moment and cumulant generating "
-        r"functions of a random variable (so $M_{X}(t)$ and $K_{X}(t)$ (or CMP "
-        "equivalents) are usable objects) without pretending moment-via-GF "
-        "calculation is finished.",
-    ),
-    (
-        "2.4.1-mgf-cgf-cs1007.json",
+        "5.1.5-credible-intervals-cs1003.json",
         "worked_example.steps[0].attempt_cue",
-        r"Sum $e^{tx} e^{-\lambda} \lambda^{x} / x!$ and recognise the series.",
+        "Compute 250 ± 1.96 × 8.",
     ),
     (
-        "2.4.1-mgf-cgf-cs1007.json",
-        "worked_example.steps[0].explanation",
-        r"For Poisson($\lambda$), $M_{X}(t) = \exp(\lambda(e^{t} - 1))$. With "
-        r"$\lambda = 2$ this is $\exp(2(e^{t} - 1))$.",
-    ),
-    (
-        "2.4.1-mgf-cgf-cs1007.json",
+        "5.1.5-credible-intervals-cs1003.json",
         "worked_example.steps[1].explanation",
-        r"The CGF is $C_{X}(t) = \log M_{X}(t) = 2(e^{t} - 1)$.",
+        "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
     ),
     (
-        "2.4.1-mgf-cgf-cs1007.json",
-        "worked_example.common_pitfall",
-        r"Writing $M_{X}(t) = 2$ or $M_{X}(t) = e^{2t}$ because the mean is 2, "
-        r"instead of $\exp(2(e^{t} - 1))$.",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.steps[0].label",
-        r"$\mathrm{Poisson}(\lambda = 5)$",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.steps[0].explanation",
-        r"Poisson equates mean and variance; the variance function is "
-        r"$V(\mu) = \mu$.",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.steps[1].explanation",
-        r"Binomial mean is $np$ and variance is $np(1-p)$; here that yields "
-        r"mean 3 and variance 2.1, with scale $\varphi = 1$.",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.steps[2].label",
-        r"$\mathrm{Gamma}(\mu = 10, \alpha = 4)$",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
-        "worked_example.steps[2].attempt_cue",
-        r"Use $\operatorname{Var} = \mu^{2}/\alpha$ and identify "
-        r"$V(\mu) = \mu^{2}$ with scale related to $1/\alpha$.",
-    ),
-    (
-        "4.2.2-mean-variance-cs1014.json",
+        "5.1.5-credible-intervals-cs1003.json",
         "worked_example.steps[2].explanation",
-        r"Gamma has variance function $V(\mu) = \mu^{2}$. With shape "
-        r"$\alpha = 4$, $\operatorname{Var} = 100/4 = 25$.",
+        "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
     ),
     (
-        "4.2.2-mean-variance-cs1014.json",
+        "5.1.5-credible-intervals-cs1003.json",
         "worked_example.common_pitfall",
-        r"Using $\operatorname{Var} = \mu$ for the Binomial or Gamma case, or "
-        "forgetting that Poisson's mean-variance equality is a special "
-        "property, not a universal GLM rule.",
+        "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
     ),
     (
-        "revision-generating-functions-cs1007.json",
+        "revision-bayesian-cs1015.json",
+        "worked_example.attempt_before_reveal",
+        "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[0].attempt_cue",
+        "Write posterior(θ|y) up to a constant.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[0].explanation",
+        "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
         "worked_example.steps[1].attempt_cue",
-        r"State $M_{X}'(0)$ and $M_{X}''(0)$.",
+        "Use mean ± 1.96 sd for a Normal posterior.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[1].explanation",
+        "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
+    ),
+    (
+        "revision-bayesian-cs1015.json",
+        "worked_example.steps[2].explanation",
+        "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.attempt_before_reveal",
+        "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.steps[0].explanation",
+        "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.steps[1].explanation",
+        "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
+    ),
+    (
+        "revision-midspine-cs1003.json",
+        "worked_example.common_pitfall",
+        "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
     ),
 )
 
@@ -304,20 +310,22 @@ def _assert_valid_latex(body: str, *, where: str) -> None:
         )
 
 
-def test_wave5_dollar_delimiters_pass_through_markup() -> None:
-    for fname in wave5.WAVE5_FILES:
+def test_wave10_dollar_delimiters_pass_through_markup() -> None:
+    for fname in wave10.WAVE10_FILES:
         pkg = _load(fname)
         we = pkg.get("worked_example") or {}
-        calc = (we.get("steps") or [{}])[0].get("calculation") or ""
-        if "$" in calc:
-            assert prepare_math_markup(calc) == calc
+        for step in we.get("steps") or []:
+            calc = step.get("calculation") or ""
+            if "$" in calc:
+                assert prepare_math_markup(calc) == calc
+                break
 
 
-def test_wave5_migrated_math_is_syntactically_valid_katex() -> None:
-    """Every $...$ span in the 12 Wave 5 packages is valid KaTeX source."""
+def test_wave10_migrated_math_is_syntactically_valid_katex() -> None:
+    """Every $...$ span in the 12 Wave 10 packages is valid KaTeX source."""
     span_count = 0
     packages_with_spans = set()
-    for fname in wave5.WAVE5_FILES:
+    for fname in wave10.WAVE10_FILES:
         pkg = _load(fname)
 
         def walk(obj: object, path: str = "$") -> None:
@@ -336,8 +344,8 @@ def test_wave5_migrated_math_is_syntactically_valid_katex() -> None:
                     _assert_valid_latex(body, where=f"{fname}:{path}")
 
         walk(pkg)
-    assert span_count >= 400
-    assert packages_with_spans == set(wave5.WAVE5_FILES)
+    assert span_count >= 30
+    assert packages_with_spans == set(wave10.WAVE10_FILES)
 
 
 @pytest.mark.parametrize(
@@ -345,7 +353,7 @@ def test_wave5_migrated_math_is_syntactically_valid_katex() -> None:
     _MEANING_SAMPLES,
     ids=[row[3] for row in _MEANING_SAMPLES],
 )
-def test_wave5_sample_latex_matches_intended_meaning(
+def test_wave10_sample_latex_matches_intended_meaning(
     package_file: str,
     field_path: str,
     needles: tuple[str, ...],
@@ -353,16 +361,15 @@ def test_wave5_sample_latex_matches_intended_meaning(
 ) -> None:
     pkg = _load(package_file)
     text = wave1.get_path(pkg, field_path)
-    joined = " ".join(_spans(text)) if _spans(text) else text
     for needle in needles:
-        assert needle in text or needle in joined, (
+        assert needle in text, (
             f"{label}: expected {needle!r} in {package_file} {field_path}: {text}"
         )
     for body in _spans(text):
         _assert_valid_latex(body, where=f"{label}:{field_path}")
 
 
-def test_wave5_scoring_matches_pre_migration_snapshot() -> None:
+def test_wave10_scoring_matches_pre_migration_snapshot() -> None:
     """Scoring keys and verdicts are unchanged for every KC in the 12 packages."""
     snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
     reset_educational_package_cache()
@@ -379,7 +386,7 @@ def test_wave5_scoring_matches_pre_migration_snapshot() -> None:
             p for p in loader.all_approved() if Path(p.source_path).name == fname
         )
         substance = substance_from_package(
-            pack, curriculum_identity="CS1:wave5", topic_id=pack.topic_code
+            pack, curriculum_identity="CS1:wave10", topic_id=pack.topic_code
         )
         practice = [
             a for a in substance.activities if a.stage is EducationalStage.PRACTICE
@@ -410,21 +417,23 @@ def test_wave5_scoring_matches_pre_migration_snapshot() -> None:
     assert len(seen) == 24
 
 
-def test_wave5_ledger_backlog_and_migration_status() -> None:
+def test_wave10_ledger_backlog_and_migration_status() -> None:
     checked = json.loads(LEDGER.read_text(encoding="utf-8"))
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["migrated"] == 1900
     assert checked["totals"]["needs_migration"] == 0
+    assert checked["totals"]["packages_with_migration_backlog"] == 0
     assert live["totals"] == checked["totals"]
 
-    wave5_files = set(wave5.WAVE5_FILES)
+    wave10_files = set(wave10.WAVE10_FILES)
     migrated = 0
-    still_pending_review = 0
+    still_pending_review_nm = 0
     confident_backlog = 0
+    pending_manual_excluded = 0
     for row in live["packages"]:
-        if row["package_file"] not in wave5_files:
+        if row["package_file"] not in wave10_files:
             continue
         for item in row["items"]:
             if item["migration_status"] == "migrated":
@@ -432,26 +441,46 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "already_compliant"
                 assert "dollar_delimited" in item["signals"]
             if item["category"] == "needs_migration" and item["needs_manual_review"]:
-                still_pending_review += 1
+                still_pending_review_nm += 1
             if (
                 item["category"] == "needs_migration"
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 370
-    assert still_pending_review == 0
+            if (
+                item["category"] == "correctly_excluded"
+                and item["needs_manual_review"]
+            ):
+                pending_manual_excluded += 1
+    assert migrated == 29
+    assert still_pending_review_nm == 0
     assert confident_backlog == 0
+    assert pending_manual_excluded == 16
 
 
-def test_wave5_packages_disjoint_from_prior_waves() -> None:
-    assert set(wave5.WAVE5_FILES).isdisjoint(set(wave1.WAVE1_FILES))
-    assert set(wave5.WAVE5_FILES).isdisjoint(set(wave2.WAVE2_FILES))
-    assert set(wave5.WAVE5_FILES).isdisjoint(set(wave3.WAVE3_FILES))
-    assert set(wave5.WAVE5_FILES).isdisjoint(set(wave4.WAVE4_FILES))
+def test_wave10_catalogue_needs_migration_is_zero() -> None:
+    """Final-wave close-out: no confident needs_migration remains anywhere."""
+    live = inventory.build_inventory(PACKAGES)
+    assert live["totals"]["needs_migration"] == 0
+    assert live["totals"]["remaining_backlog"] == 0
+    assert live["totals"]["packages_with_migration_backlog"] == 0
+    assert live["totals"]["needs_manual_review"] == 255
 
 
-def test_wave5_scoring_keys_byte_identical_in_packages() -> None:
-    """Scoring-key fields in Wave 5 packages match the pre-migration snapshot."""
+def test_wave10_packages_disjoint_from_prior_waves() -> None:
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave1.WAVE1_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave2.WAVE2_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave3.WAVE3_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave4.WAVE4_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave5.WAVE5_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave6.WAVE6_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave7.WAVE7_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave8.WAVE8_FILES))
+    assert set(wave10.WAVE10_FILES).isdisjoint(set(wave9.WAVE9_FILES))
+
+
+def test_wave10_scoring_keys_byte_identical_in_packages() -> None:
+    """Scoring-key fields in Wave 10 packages match the pre-migration snapshot."""
     snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
     for rec in snapshot["items"]:
         pkg = _load(rec["package_file"])
@@ -478,78 +507,22 @@ def test_wave5_scoring_keys_byte_identical_in_packages() -> None:
 
 
 @pytest.mark.parametrize(
-    ("package_file", "field_path", "expected"),
-    _WAVE5_LEFTOVER_MIGRATIONS,
-    ids=[f"{p}:{f}" for p, f, _ in _WAVE5_LEFTOVER_MIGRATIONS],
+    ("package_file", "field_path", "original"),
+    _WAVE10_MANUAL_REVIEW_LEFTOVERS,
+    ids=[f"{p}:{f}" for p, f, _ in _WAVE10_MANUAL_REVIEW_LEFTOVERS],
 )
-def test_wave5_leftover_migrations_are_valid_katex(
+def test_wave10_manual_review_leftovers_are_byte_identical(
     package_file: str,
     field_path: str,
-    expected: str,
+    original: str,
 ) -> None:
-    text = wave1.get_path(_load(package_file), field_path)
-    assert text == expected
-    assert text.count("$") % 2 == 0
-    assert _spans(text), (
-        f"expected dollar-delimited math in {package_file} {field_path}"
-    )
-    for body in _spans(text):
-        _assert_valid_latex(body, where=f"{package_file}:{field_path}")
+    """Needs-manual-review leftovers were not converted in this pass."""
+    pkg = _load(package_file)
+    assert wave1.get_path(pkg, field_path) == original
 
 
-def test_wave5_leftover_partial_migrations_preserve_surrounding_prose() -> None:
-    """Items 3, 9, and 14 typeset only the live formula; prose stays intact."""
-    cases = (
-        (
-            "2.4.1-mgf-cgf-cs1007.json",
-            "mission.mission_purpose",
-            (
-                "Today's Mission exists to obtain the moment and cumulant "
-                "generating functions of a random variable (so ",
-                " (or CMP equivalents) are usable objects) without pretending "
-                "moment-via-GF calculation is finished.",
-            ),
-            (r"M_{X}(t)", r"K_{X}(t)"),
-        ),
-        (
-            "4.2.2-mean-variance-cs1014.json",
-            "worked_example.steps[0].explanation",
-            (
-                "Poisson equates mean and variance; the variance function is ",
-                "",
-            ),
-            (r"V(\mu) = \mu",),
-        ),
-        (
-            "4.2.2-mean-variance-cs1014.json",
-            "worked_example.common_pitfall",
-            (
-                "Using ",
-                " for the Binomial or Gamma case, or forgetting that Poisson's "
-                "mean-variance equality is a special property, not a universal "
-                "GLM rule.",
-            ),
-            (r"\operatorname{Var} = \mu",),
-        ),
-    )
-    for package_file, field_path, prose_parts, needles in cases:
-        text = wave1.get_path(_load(package_file), field_path)
-        for part in prose_parts:
-            if part:
-                assert part in text, f"missing prose in {package_file} {field_path}"
-        joined = " ".join(_spans(text))
-        for needle in needles:
-            assert needle in joined, (
-                f"expected typeset {needle!r} in {package_file} {field_path}"
-            )
-        for body in _spans(text):
-            _assert_valid_latex(body, where=f"partial:{package_file}:{field_path}")
-
-
-def test_wave5_leftover_knowledge_check_scoring_unaffected() -> None:
-    """No leftover fields were knowledge_checks; all Wave 5 KC scoring holds."""
-    leftover_fields = {field for _, field, _ in _WAVE5_LEFTOVER_MIGRATIONS}
-    assert not any(f.startswith("knowledge_checks") for f in leftover_fields)
+def test_wave10_leftover_knowledge_check_scoring_unaffected() -> None:
+    """No leftover fields were knowledge_checks; all Wave 10 KC scoring holds."""
     snapshot = json.loads(SCORING_SNAPSHOT.read_text(encoding="utf-8"))
     reset_educational_package_cache()
     loader = EducationalPackageLoader(
@@ -561,14 +534,17 @@ def test_wave5_leftover_knowledge_check_scoring_unaffected() -> None:
             p for p in loader.all_approved() if Path(p.source_path).name == fname
         )
         substance = substance_from_package(
-            pack, curriculum_identity="CS1:wave5-left", topic_id=pack.topic_code
+            pack, curriculum_identity="CS1:wave10-kc", topic_id=pack.topic_code
         )
-        for act in substance.activities:
-            if act.stage is not EducationalStage.PRACTICE or act.scoreable is None:
-                continue
+        practice = [
+            a for a in substance.activities if a.stage is EducationalStage.PRACTICE
+        ]
+        for act in practice:
             item = act.scoreable
+            assert item is not None
             expected = by_id[(fname, item.item_id)]
             assert item.answer_key.correct_choice_id == expected["correct_choice_id"]
+            assert list(item.answer_key.accepted) == expected["accepted_keywords"]
             for probe in expected["verdicts"]:
                 result = score_practice_response(item, probe["response"])
                 assert result.scored is probe["scored"]

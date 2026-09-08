@@ -1,44 +1,42 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T04:04:50Z",
+  "generated_at": "2026-09-08T04:26:48Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 1890,
-    "needs_migration": 29,
+    "already_compliant": 1919,
+    "needs_migration": 0,
     "correctly_excluded": 284,
     "needs_manual_review": 255,
     "confident_automated": 1948,
-    "remaining_backlog": 29,
-    "migrated": 1871,
-    "packages_with_migration_backlog": 12
+    "remaining_backlog": 0,
+    "migrated": 1900,
+    "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 1890,
+    "fully_covered_by_current_typesetting": 1919,
     "isolated_symbol_in_narrative_ambiguous": 188,
     "mathish_role_unclear": 67,
-    "math_object_field": 28,
     "manual_review_prose_exclusion": 28,
-    "prose_mention_cue": 1,
-    "actuarial_expression": 1
+    "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 1871,
-    "equationish": 1464,
+    "dollar_delimited": 1900,
+    "equationish": 1466,
     "actuarial_fn": 502,
-    "ascii_approx": 229,
-    "greek": 208,
+    "ascii_approx": 232,
+    "greek": 195,
     "bare_latex": 195,
-    "unicode_ops": 71,
+    "unicode_ops": 57,
     "compound": 26
   },
   "by_risk_tier_needs_migration": {
     "1": 0,
-    "2": 5,
-    "3": 18,
-    "4": 6
+    "2": 0,
+    "3": 0,
+    "4": 0
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
@@ -48,94 +46,9 @@
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
     "wave_1": {
       "label": "Highest-backlog migration boards (no tier-1 remaining)",
-      "packages": [
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "needs_migration": 6,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "needs_migration": 5,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 6
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "needs_migration": 5,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 6
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-          "package_file": "revision-hypothesis-testing-cs1012.json",
-          "needs_migration": 4,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "needs_migration": 2,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 4
-        },
-        {
-          "package_id": "CS1-CS1002-PKG-1.2-PCA",
-          "package_file": "1.2.3-pca-cs1002.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1003.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1013.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
-          "package_file": "cp-4.1.1-linear-regression-cs1016.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
-          "package_file": "cr-1.1.3-data-sources-cs1017.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
-          "package_file": "cr-1.1.2-stages-tools-cs1017.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
-          "package_file": "cr-1.2.3-pca-cs1017.json",
-          "needs_migration": 1,
-          "risk_tier_1_needs_migration": 0,
-          "needs_manual_review": 0
-        }
-      ],
-      "package_count": 12,
-      "needs_migration_strings": 29
+      "packages": [],
+      "package_count": 0,
+      "needs_migration_strings": 0
     },
     "wave_2_candidates": {
       "label": "Remaining tier-1 compound packages",
@@ -144,721 +57,11 @@
     },
     "later_waves": {
       "label": "Non-tier-1 backlog (actuarial functions, simple variables, KC options, narrative inline math)",
-      "package_count": 12,
-      "needs_migration_strings": 29
+      "package_count": 0,
+      "needs_migration_strings": 0
     }
   },
   "packages": [
-    {
-      "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-      "package_file": "5.1.4-loss-estimators-cs1003.json",
-      "topic_code": "5.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
-      "counts": {
-        "mathish_strings": 6,
-        "already_compliant": 0,
-        "needs_migration": 6,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 6,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "knowledge_checks[1].prompt",
-          "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Posterior for θ is available. Which statement is correct?",
-          "text_hash": "524b6aab2e1ccce5",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for θ. Different objects.",
-          "text_hash": "051342d1f40a39d5",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "A discrete posterior for an IBNR reserve parameter θ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
-          "text_hash": "458ee6aa32659524",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "worked_example.given[0].symbol",
-          "field_group": "worked_example.given[].symbol",
-          "text": "θ values",
-          "text_hash": "7ec65a5cd85dedf5",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "E[θ|data] = 4×0.15 + 5×0.55 + 7×0.30 = 0.6 + 2.75 + 2.1 = 5.45",
-          "text_hash": "e5685a2d0005b11c",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 2,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "unicode_ops",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
-          "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Mean 5.45 ≠ median 5 because of right-tail mass at 7",
-          "text_hash": "4e980385944d4683",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-      "package_file": "5.1.5-credible-intervals-cs1003.json",
-      "topic_code": "5.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
-      "counts": {
-        "mathish_strings": 11,
-        "already_compliant": 0,
-        "needs_migration": 5,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 5,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "After observing claim experience, the posterior for mean ultimate cost θ (£000) is Normal with mean 250 and standard deviation 8: θ | data ~ N(250, 8²). Using z_{0.975} = 1.96, construct a central 95% credible interval for θ.",
-          "text_hash": "f09ab30ab1f17fe3",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "N(250, 8²)",
-          "text_hash": "e801c22965b2ef96",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.given[0].note",
-          "field_group": "worked_example.given[].note",
-          "text": "posterior for θ",
-          "text_hash": "f3d75b296c0f234c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
-          "text_hash": "665552b72e0168bc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.steps[0].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 250 ± 1.96 × 8.",
-          "text_hash": "cac2218beff75285",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "250 ± 1.96 × 8 = 250 ± 15.68 ⇒ (234.32, 265.68)",
-          "text_hash": "27d2ba786e3ca36e",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.steps[1].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
-          "text_hash": "4f17559c4949c18b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "P(234.32 < θ < 265.68 | data) = 0.95",
-          "text_hash": "f047f31af6004261",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 2,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
-          "text_hash": "c89f3c24538e84fa",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "Central 95% credible interval (234.32, 265.68); P(234.32 < θ < 265.68 | data) = 0.95.",
-          "text_hash": "289cef04448d03c9",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 2,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
-          "package_file": "5.1.5-credible-intervals-cs1003.json",
-          "field_path": "worked_example.common_pitfall",
-          "field_group": "worked_example.common_pitfall",
-          "text": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
-          "text_hash": "12cdab6ac5202341",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-      "package_file": "revision-bayesian-cs1015.json",
-      "topic_code": "CO-R1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
-      "counts": {
-        "mathish_strings": 11,
-        "already_compliant": 0,
-        "needs_migration": 5,
-        "correctly_excluded": 6,
-        "needs_manual_review": 6,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 5,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "Closed-book retrieval. Write the Bayesian posterior for θ after observing data y up to proportionality. Then, if the posterior for θ is Normal with mean 60 and standard deviation 4, compute a central 95% credible interval (use z_{0.025} = 1.96), and refuse a frequentist repeated-sampling reading of that interval.",
-          "text_hash": "48824b33445ce413",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "posterior ∝ likelihood × prior",
-          "text_hash": "cd7b23fd0a3954d8",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
-          "text_hash": "eaf7102eedcded0c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[0].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Write posterior(θ|y) up to a constant.",
-          "text_hash": "957be2234c5632ee",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[0].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
-          "text_hash": "fbabb85dae6dd5b4",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[0].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ)",
-          "text_hash": "ba58d9809520ac99",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[1].attempt_cue",
-          "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Use mean ± 1.96 sd for a Normal posterior.",
-          "text_hash": "c8be36f3da07e51d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[1].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
-          "text_hash": "0d1c05ac5d49e8e1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "60 ± 1.96×4 = 60 ± 7.84 → (52.16, 67.84)",
-          "text_hash": "30cca9c3eb624cf1",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
-          "text_hash": "9496b64331833e62",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
-          "package_file": "revision-bayesian-cs1015.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "posterior(θ|y) ∝ likelihood(y|θ) × prior(θ). The Normal(60, 4²) central 95% credible interval is (52.16, 67.84), meaning posterior probability 0.95 under the model, prior, and data - not frequentist repeated-sampling coverage.",
-          "text_hash": "53d1408b3795f37f",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "unicode_ops"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-      "package_file": "revision-hypothesis-testing-cs1012.json",
-      "topic_code": "CM-R1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-MU",
-      "counts": {
-        "mathish_strings": 4,
-        "already_compliant": 0,
-        "needs_migration": 4,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 4,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-          "package_file": "revision-hypothesis-testing-cs1012.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Small p ⇒ evidence against H₀ under assumptions (not automatic proof)",
-          "text_hash": "18605a32019d7dcd",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": []
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-          "package_file": "revision-hypothesis-testing-cs1012.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "A small p-value does not prove the alternative with probability one, does not equal P(H₀ true), and does not by itself measure practical importance.",
-          "text_hash": "de96fc715e464edb",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "actuarial_expression",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-          "package_file": "revision-hypothesis-testing-cs1012.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Refuse P(H₀ true) reading and proof/importance collapse",
-          "text_hash": "77f9c0a380e16562",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 2,
-          "migration_status": "pending",
-          "signals": [
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
-          "package_file": "revision-hypothesis-testing-cs1012.json",
-          "field_path": "worked_example.final_answer",
-          "field_group": "worked_example.final_answer",
-          "text": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not P(H₀ true), and not a measure of practical importance by itself.",
-          "text_hash": "e788c05ee1f64724",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 2,
-          "migration_status": "pending",
-          "signals": [
-            "actuarial_fn"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-      "package_file": "revision-midspine-cs1003.json",
-      "topic_code": "CD-R3",
-      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
-      "counts": {
-        "mathish_strings": 6,
-        "already_compliant": 0,
-        "needs_migration": 2,
-        "correctly_excluded": 4,
-        "needs_manual_review": 4,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 2,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.problem_statement",
-          "field_group": "worked_example.problem_statement",
-          "text": "Closed-book retrieval of one Bayes hinge. If X | θ ~ Binomial(n = 8, θ) and θ has prior Beta(α, β) = Beta(4, 6), state the posterior after observing X = 2, and refuse one wrong update rule.",
-          "text_hash": "ab877553face519a",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "greek",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.given[0].value",
-          "field_group": "worked_example.given[].value",
-          "text": "X | θ ~ Binomial(8, θ)",
-          "text_hash": "b813633ef29b063f",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.attempt_before_reveal",
-          "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
-          "text_hash": "69325d99a39060a2",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.steps[0].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
-          "text_hash": "d7509f21ffb3950c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.steps[1].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
-          "text_hash": "dcf22245cf597dbc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
-          "package_file": "revision-midspine-cs1003.json",
-          "field_path": "worked_example.common_pitfall",
-          "field_group": "worked_example.common_pitfall",
-          "text": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
-          "text_hash": "a3ad2c5feeadf87b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
-          "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": [
-            "greek"
-          ]
-        }
-      ]
-    },
     {
       "package_id": "CS1-CS1002-PKG-1.2-PCA",
       "package_file": "1.2.3-pca-cs1002.json",
@@ -866,240 +69,29 @@
       "campaign_id": "CS1-CS1002-CAMPAIGN-BETA",
       "counts": {
         "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
+      "migration_status": "clear",
+      "remaining_backlog": 0,
       "items": [
         {
           "package_id": "CS1-CS1002-PKG-1.2-PCA",
           "package_file": "1.2.3-pca-cs1002.json",
           "field_path": "worked_example.steps[1].calculation",
           "field_group": "worked_example.steps[].calculation",
-          "text": "Variation summary ≠ proven latent pricing factors without further warrants",
-          "text_hash": "d624fe7e90a57cb6",
-          "category": "needs_migration",
+          "text": "Variation summary $\\neq$ proven latent pricing factors without further warrants",
+          "text_hash": "58a93f1eb04e2689",
+          "category": "already_compliant",
           "needs_manual_review": false,
-          "reason_code": "math_object_field",
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
-      "package_file": "4.1.1-response-explanatory-cs1003.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1003.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(8) = 2500 + 150 × 8 = 2500 + 1200 = 3700",
-          "text_hash": "bb14ed3e72bce340",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
-      "package_file": "4.1.1-response-explanatory-cs1013.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-NU",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
-          "package_file": "4.1.1-response-explanatory-cs1013.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(45) = 1200 + 40 × 45 = 1200 + 1800 = 3000",
-          "text_hash": "7d6b6efadda7456c",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
-      "package_file": "cp-4.1.1-linear-regression-cs1016.json",
-      "topic_code": "4.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-PI",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
-          "package_file": "cp-4.1.1-linear-regression-cs1016.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "ŷ(25) = 180 + 12 × 25 = 180 + 300 = 480",
-          "text_hash": "46724c2892939ffd",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
-      "package_file": "cr-1.1.3-data-sources-cs1017.json",
-      "topic_code": "1.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
-          "package_file": "cr-1.1.3-data-sources-cs1017.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Large n ≠ automatic fitness; scale may still require sampling/tooling",
-          "text_hash": "d99d542d16874ab4",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
-      "package_file": "cr-1.1.2-stages-tools-cs1017.json",
-      "topic_code": "1.1",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
-          "package_file": "cr-1.1.2-stages-tools-cs1017.json",
-          "field_path": "worked_example.steps[2].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Tool class for explore: summaries / exploratory plots; notebook-open ≠ path complete",
-          "text_hash": "0a449b8b41b30414",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
-          ]
-        }
-      ]
-    },
-    {
-      "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
-      "package_file": "cr-1.2.3-pca-cs1017.json",
-      "topic_code": "1.2",
-      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
-      "counts": {
-        "mathish_strings": 1,
-        "already_compliant": 0,
-        "needs_migration": 1,
-        "correctly_excluded": 0,
-        "needs_manual_review": 0,
-        "risk_tier_1_needs_migration": 0
-      },
-      "migration_status": "pending",
-      "remaining_backlog": 1,
-      "items": [
-        {
-          "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
-          "package_file": "cr-1.2.3-pca-cs1017.json",
-          "field_path": "worked_example.steps[1].calculation",
-          "field_group": "worked_example.steps[].calculation",
-          "text": "Variation summary ≠ proven causal driver",
-          "text_hash": "9a0a93eaa6d61a21",
-          "category": "needs_migration",
-          "needs_manual_review": false,
-          "reason_code": "math_object_field",
-          "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "unicode_ops",
-            "equationish"
+            "dollar_delimited"
           ]
         }
       ]
@@ -18202,6 +17194,41 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+      "package_file": "4.1.1-response-explanatory-cs1003.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-4.1-RESPONSE-EXPLANATORY",
+          "package_file": "4.1.1-response-explanatory-cs1003.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{y}(8) = 2500 + 150 \\times 8 = 2500 + 1200 = 3700$",
+          "text_hash": "635ff3d142b0fec6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
       "package_file": "4.1.2-simple-multiple-cs1003.json",
       "topic_code": "4.1",
@@ -24100,6 +23127,209 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+      "package_file": "5.1.5-credible-intervals-cs1003.json",
+      "topic_code": "5.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+      "counts": {
+        "mathish_strings": 11,
+        "already_compliant": 5,
+        "needs_migration": 0,
+        "correctly_excluded": 6,
+        "needs_manual_review": 6,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "After observing claim experience, the posterior for mean ultimate cost $\\theta$ (£000) is Normal with mean 250 and standard deviation 8: $\\theta \\mid \\mathrm{data} \\sim N(250, 8^{2})$. Using $z_{0.975} = 1.96$, construct a central 95% credible interval for $\\theta$.",
+          "text_hash": "c42cf387dfd94892",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$N(250, 8^{2})$",
+          "text_hash": "b517697e2a034f07",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.given[0].note",
+          "field_group": "worked_example.given[].note",
+          "text": "posterior for θ",
+          "text_hash": "f3d75b296c0f234c",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. Form mean ± 1.96 × sd; interpret as a posterior probability statement.",
+          "text_hash": "665552b72e0168bc",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.steps[0].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Compute 250 ± 1.96 × 8.",
+          "text_hash": "cac2218beff75285",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$250 \\pm 1.96 \\times 8 = 250 \\pm 15.68 \\Rightarrow (234.32, 265.68)$",
+          "text_hash": "b4ce259020c07ce2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.steps[1].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "A credible interval is a posterior probability statement about θ, not a frequentist coverage claim about repeated sampling of the interval.",
+          "text_hash": "4f17559c4949c18b",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$P(234.32 < \\theta < 265.68 \\mid \\mathrm{data}) = 0.95$",
+          "text_hash": "1e05a0b9e212bacb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Credible intervals condition on the data and treat θ as random under the posterior; confidence intervals are pre-data coverage procedures.",
+          "text_hash": "c89f3c24538e84fa",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "Central 95% credible interval $(234.32, 265.68)$; $P(234.32 < \\theta < 265.68 \\mid \\mathrm{data}) = 0.95$.",
+          "text_hash": "610c37bfa53d9daf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "worked_example.common_pitfall",
+          "field_group": "worked_example.common_pitfall",
+          "text": "Narrating the credible interval as if it had frequentist confidence-interval coverage, or using ± sd instead of ± 1.96 sd for 95%.",
+          "text_hash": "12cdab6ac5202341",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
       "package_file": "5.1.8-empirical-bayes-cs1003.json",
       "topic_code": "5.1",
@@ -24341,6 +23571,122 @@
           "signals": [
             "dollar_delimited",
             "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+      "package_file": "5.1.4-loss-estimators-cs1003.json",
+      "topic_code": "5.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+      "counts": {
+        "mathish_strings": 6,
+        "already_compliant": 6,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
+          "text_hash": "dfdd9e4592c6b915",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
+          "text_hash": "972c27456e40632c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "A discrete posterior for an IBNR reserve parameter $\\theta$ (£000) places probabilities 0.15, 0.55, 0.30 on the values 4, 5, 7 respectively. Find the Bayes estimate under squared-error loss and under absolute-error loss.",
+          "text_hash": "dc4eaefb9db0c81b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "worked_example.given[0].symbol",
+          "field_group": "worked_example.given[].symbol",
+          "text": "$\\theta$ values",
+          "text_hash": "951b6b32c05ab7b4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$E[\\theta \\mid \\mathrm{data}] = 4\\times 0.15 + 5\\times 0.55 + 7\\times 0.30 = 0.6 + 2.75 + 2.1 = 5.45$",
+          "text_hash": "9e398390448f2c2d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
+          "package_file": "5.1.4-loss-estimators-cs1003.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Mean $5.45 \\neq$ median $5$ because of right-tail mass at $7$",
+          "text_hash": "7a4be43e79fe431b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
           ]
         }
       ]
@@ -25160,6 +24506,41 @@
           "field_group": "worked_example.common_pitfall",
           "text": "Using $\\frac{S_{xy}}{S_{yy}}$ for the slope, or reporting the residual as $\\hat{y} - y$ instead of the convention $e = y - \\hat{y}$.",
           "text_hash": "fe4ccb02aa25bbf8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+      "package_file": "4.1.1-response-explanatory-cs1013.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-NU",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-RESPONSE-EXPLANATORY",
+          "package_file": "4.1.1-response-explanatory-cs1013.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{y}(45) = 1200 + 40 \\times 45 = 1200 + 1800 = 3000$",
+          "text_hash": "80f4c12385446326",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -31264,6 +30645,41 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
+      "package_file": "cp-4.1.1-linear-regression-cs1016.json",
+      "topic_code": "4.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-PI",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CP-4.1-LINEAR-REGRESSION",
+          "package_file": "cp-4.1.1-linear-regression-cs1016.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{y}(25) = 180 + 12 \\times 25 = 180 + 300 = 480$",
+          "text_hash": "4eaf88993a3877bc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
       "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
       "topic_code": "5.1",
@@ -31909,6 +31325,41 @@
       "items": []
     },
     {
+      "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+      "package_file": "cr-1.1.3-data-sources-cs1017.json",
+      "topic_code": "1.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.1-DATA-SOURCES",
+          "package_file": "cr-1.1.3-data-sources-cs1017.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Large $n \\neq$ automatic fitness; scale may still require sampling/tooling",
+          "text_hash": "7774109fdb69c279",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-CR-1.1-REPRODUCIBLE",
       "package_file": "cr-1.1.4-reproducible-cs1017.json",
       "topic_code": "1.1",
@@ -31924,6 +31375,41 @@
       "migration_status": "no_mathish",
       "remaining_backlog": 0,
       "items": []
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+      "package_file": "cr-1.1.2-stages-tools-cs1017.json",
+      "topic_code": "1.1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.1-STAGES-TOOLS",
+          "package_file": "cr-1.1.2-stages-tools-cs1017.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Tool class for explore: summaries / exploratory plots; notebook-open $\\neq$ path complete",
+          "text_hash": "3807b97d6e96783d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        }
+      ]
     },
     {
       "package_id": "CS1-EP001-PKG-CR-1.2-CORRELATION",
@@ -32145,6 +31631,40 @@
       "migration_status": "no_mathish",
       "remaining_backlog": 0,
       "items": []
+    },
+    {
+      "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+      "package_file": "cr-1.2.3-pca-cs1017.json",
+      "topic_code": "1.2",
+      "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
+      "counts": {
+        "mathish_strings": 1,
+        "already_compliant": 1,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-CR-1.2-PCA",
+          "package_file": "cr-1.2.3-pca-cs1017.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Variation summary $\\neq$ proven causal driver",
+          "text_hash": "20b24f9ddef6d7df",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        }
+      ]
     },
     {
       "package_id": "CS1-EP001-PKG-CR-2.1-CONTINUOUS",
@@ -36596,6 +36116,204 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+      "package_file": "revision-bayesian-cs1015.json",
+      "topic_code": "CO-R1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
+      "counts": {
+        "mathish_strings": 11,
+        "already_compliant": 5,
+        "needs_migration": 0,
+        "correctly_excluded": 6,
+        "needs_manual_review": 6,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "Closed-book retrieval. Write the Bayesian posterior for $\\theta$ after observing data $y$ up to proportionality. Then, if the posterior for $\\theta$ is Normal with mean 60 and standard deviation 4, compute a central 95% credible interval (use $z_{0.025} = 1.96$), and refuse a frequentist repeated-sampling reading of that interval.",
+          "text_hash": "64028bc20b4ad6e8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$\\mathrm{posterior} \\propto \\mathrm{likelihood} \\times \\mathrm{prior}$",
+          "text_hash": "c1de682d7b202df0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. Retrieve posterior ∝ likelihood × prior, then form mean ± 1.96 sd, then refuse coverage-language swap.",
+          "text_hash": "eaf7102eedcded0c",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[0].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Write posterior(θ|y) up to a constant.",
+          "text_hash": "957be2234c5632ee",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[0].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Bayes' theorem multiplies prior by likelihood (and normalises over θ).",
+          "text_hash": "fbabb85dae6dd5b4",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[0].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\mathrm{posterior}(\\theta \\mid y) \\propto \\mathrm{likelihood}(y \\mid \\theta) \\times \\mathrm{prior}(\\theta)$",
+          "text_hash": "d810c5fb15a22d49",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[1].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Use mean ± 1.96 sd for a Normal posterior.",
+          "text_hash": "c8be36f3da07e51d",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[1].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "For a Normal posterior, a central 95% credible interval is mean ± 1.96 sd.",
+          "text_hash": "0d1c05ac5d49e8e1",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "unicode_ops"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$60 \\pm 1.96\\times 4 = 60 \\pm 7.84 \\rightarrow (52.16, 67.84)$",
+          "text_hash": "93aab054adf8096e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Given the model, prior, and data, posterior probability that θ lies in the interval is 0.95. That is not the frequentist claim that 95% of repeated-sample intervals cover θ.",
+          "text_hash": "9496b64331833e62",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-BAYESIAN-OMICRON",
+          "package_file": "revision-bayesian-cs1015.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "$\\mathrm{posterior}(\\theta \\mid y) \\propto \\mathrm{likelihood}(y \\mid \\theta) \\times \\mathrm{prior}(\\theta)$. The $\\mathrm{Normal}(60, 4^{2})$ central 95% credible interval is $(52.16, 67.84)$, meaning posterior probability 0.95 under the model, prior, and data - not frequentist repeated-sampling coverage.",
+          "text_hash": "64ee4b56c20ac5fa",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-REV-CENTRAL-LIMIT-THEOREM",
       "package_file": "revision-central-limit-theorem-cs1008.json",
       "topic_code": "CT-R1",
@@ -38540,6 +38258,95 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+      "package_file": "revision-hypothesis-testing-cs1012.json",
+      "topic_code": "CM-R1",
+      "campaign_id": "CS1-EP001-CAMPAIGN-MU",
+      "counts": {
+        "mathish_strings": 4,
+        "already_compliant": 4,
+        "needs_migration": 0,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+          "package_file": "revision-hypothesis-testing-cs1012.json",
+          "field_path": "worked_example.steps[1].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Small $p \\Rightarrow$ evidence against $H_{0}$ under assumptions (not automatic proof)",
+          "text_hash": "8e872d235f758ef7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+          "package_file": "revision-hypothesis-testing-cs1012.json",
+          "field_path": "worked_example.steps[2].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "A small p-value does not prove the alternative with probability one, does not equal $P(H_{0}\\ \\mathrm{true})$, and does not by itself measure practical importance.",
+          "text_hash": "76141fe3eb37f213",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+          "package_file": "revision-hypothesis-testing-cs1012.json",
+          "field_path": "worked_example.steps[2].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "Refuse $P(H_{0}\\ \\mathrm{true})$ reading and proof/importance collapse",
+          "text_hash": "ac9d80212db1d0e4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-HYPOTHESIS-TESTING",
+          "package_file": "revision-hypothesis-testing-cs1012.json",
+          "field_path": "worked_example.final_answer",
+          "field_group": "worked_example.final_answer",
+          "text": "A p-value is a null-conditional tail probability measuring extremeness of the observed statistic. A very small p-value is evidence against the null under the assumptions, not proof of the alternative, not $P(H_{0}\\ \\mathrm{true})$, and not a measure of practical importance by itself.",
+          "text_hash": "3759ed9bfe387ecf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-REV-JOINT-DISTRIBUTIONS",
       "package_file": "revision-joint-distributions-cs1005.json",
       "topic_code": "CE-R1",
@@ -39370,6 +39177,121 @@
       ]
     },
     {
+      "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+      "package_file": "revision-midspine-cs1003.json",
+      "topic_code": "CD-R3",
+      "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
+      "counts": {
+        "mathish_strings": 6,
+        "already_compliant": 2,
+        "needs_migration": 0,
+        "correctly_excluded": 4,
+        "needs_manual_review": 4,
+        "risk_tier_1_needs_migration": 0
+      },
+      "migration_status": "clear",
+      "remaining_backlog": 0,
+      "items": [
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.problem_statement",
+          "field_group": "worked_example.problem_statement",
+          "text": "Closed-book retrieval of one Bayes hinge. If $X \\mid \\theta \\sim \\mathrm{Binomial}(n = 8, \\theta)$ and $\\theta$ has prior $\\mathrm{Beta}(\\alpha, \\beta) = \\mathrm{Beta}(4, 6)$, state the posterior after observing $X = 2$, and refuse one wrong update rule.",
+          "text_hash": "62578b6d71380af7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.given[0].value",
+          "field_group": "worked_example.given[].value",
+          "text": "$X \\mid \\theta \\sim \\mathrm{Binomial}(8, \\theta)$",
+          "text_hash": "98e05e179b27d230",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.attempt_before_reveal",
+          "field_group": "worked_example.attempt_before_reveal",
+          "text": "CMP closed. Apply Beta-Binomial conjugacy: add successes to α and failures to β.",
+          "text_hash": "69325d99a39060a2",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.steps[0].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Beta-Binomial conjugacy adds observed successes to α and observed failures to β.",
+          "text_hash": "d7509f21ffb3950c",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.steps[1].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Adding n to α and x to β (or adding successes to both parameters) breaks conjugacy. Failures are n - x, not x.",
+          "text_hash": "dcf22245cf597dbc",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-MIDSPINE",
+          "package_file": "revision-midspine-cs1003.json",
+          "field_path": "worked_example.common_pitfall",
+          "field_group": "worked_example.common_pitfall",
+          "text": "Updating Beta(α, β) by adding the sample size to α and the success count to β, or claiming empirical Bayes uses no prior.",
+          "text_hash": "a3ad2c5feeadf87b",
+          "category": "correctly_excluded",
+          "needs_manual_review": true,
+          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "risk_tier": 4,
+          "migration_status": "pending",
+          "signals": [
+            "greek"
+          ]
+        }
+      ]
+    },
+    {
       "package_id": "CS1-EP001-PKG-REV-PUBLICATION-FRONT-RHO",
       "package_file": "cr-revision-publication-front-cs1017.json",
       "topic_code": "CR-R1",
@@ -40022,5 +39944,5 @@
       ]
     }
   ],
-  "content_fingerprint": "0b08648e0917c25d2d5834964dde8d6bb2b7cb47855982492b6a530cf08e9c1e"
+  "content_fingerprint": "69a01d3819644deee1aec160ef5f720da76d5c9879a437798ff28acffa9bcf0f"
 }
