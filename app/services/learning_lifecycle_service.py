@@ -331,52 +331,48 @@ class LearningLifecycleService:
 
     @staticmethod
     def weakest_completed_topic_label(user_id: int) -> str | None:
-        """Return a deterministic weak-topic label among completed topics, if any."""
-        from app.services.adaptive_learning_service import AdaptiveLearningService
+        """Return a weak-topic label among completed topics with reliable EK.
+
+        Only considers Twin Estimated Knowledge that meets the project
+        evidence-reliability floor (``POLICY_V1_MIN_EVIDENCE``). Returns
+        ``None`` when no completed topic can be honestly distinguished as
+        weaker; never fabricates a "weakest" claim from syllabus order alone.
+        """
+        from app.application.adaptive_decision.types import POLICY_V1_MIN_EVIDENCE
+        from app.application.student_twin.cutover import ek_display_0_100
+        from app.models.topic_progress import TopicProgress
         from app.services.planning_service import PlanningService
+        from app.services.twin_cutover_service import topic_ek_by_orm_id
 
         plan = StudyPlanService.get_user_active_plan(user_id)
-        weak = AdaptiveLearningService.get_weak_topics(user_id, threshold=70.0)
-        for progress in weak:
-            if not progress.completed:
-                continue
-            topic = progress.topic
-            if topic is None:
-                continue
-            code = (
-                PlanningService._resolve_official_topic_code(plan, topic)
-                if plan is not None
-                else None
-            )
-            return PlanningService._topic_study_label(topic, topic_code=code)
-
-        # Fall back to any completed topic with the lowest mastery among completed.
-        from app.application.student_twin.cutover import ek_display_0_100
-        from app.services.twin_cutover_service import (
-            topic_ek_by_orm_id,
-        )
-        from app.models.topic_progress import TopicProgress
-
         completed_rows = TopicProgress.query.filter(
             TopicProgress.user_id == user_id,
             TopicProgress.completed.is_(True),
         ).all()
         if not completed_rows:
             return None
+
         ek_map = topic_ek_by_orm_id(user_id=user_id)
-        ranked = sorted(
-            completed_rows,
-            key=lambda row: (
-                ek_display_0_100(ek_map.get(row.topic_id))
-                if ek_map.get(row.topic_id) is not None
-                else 999.0,
-                row.topic_id,
-            ),
-        )
-        completed = ranked[0] if ranked else None
-        if completed is None or completed.topic is None:
+        eligible: list[tuple[float, TopicProgress]] = []
+        for row in completed_rows:
+            fact = ek_map.get(row.topic_id)
+            if fact is None or not fact.has_estimated_knowledge:
+                continue
+            if int(fact.evidence_count or 0) < POLICY_V1_MIN_EVIDENCE:
+                continue
+            score = ek_display_0_100(fact)
+            if score is None:
+                continue
+            eligible.append((score, row))
+
+        if not eligible:
             return None
-        topic = completed.topic
+
+        eligible.sort(key=lambda item: (item[0], item[1].topic_id))
+        weakest = eligible[0][1]
+        if weakest.topic is None:
+            return None
+        topic = weakest.topic
         code = (
             PlanningService._resolve_official_topic_code(plan, topic)
             if plan is not None

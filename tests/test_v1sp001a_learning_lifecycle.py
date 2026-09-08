@@ -197,6 +197,106 @@ class TestRevisionMissions:
         assert "chapter 1" not in blob
         assert not mission.title.lower().startswith("study topic one")
 
+    def test_weakest_topic_kind_without_evidence_does_not_name_topic_one(
+        self, db, user
+    ):
+        """Pinned to a weakest_topic rotation date with no Twin EK.
+
+        Proves the honesty rematerialization, not luck from today's kind.
+        """
+        curriculum, topics = _make_curriculum(
+            "CM1", ["Topic One Intro", "Topic Two", "Topic Three"]
+        )
+        plan = _make_active_plan(
+            user.id, curriculum=curriculum, current_stage="Chapter 1"
+        )
+        _complete_all_topics(user.id, topics)
+
+        # Find a date whose ordinal maps to weakest_topic (index 2 of 5).
+        target = date.today()
+        while target.toordinal() % 5 != 2:
+            target += timedelta(days=1)
+
+        mission = PlanningService._generate_revision_mission_for_date(
+            user.id, plan, target
+        )
+        assert mission is not None
+        assert mission.title.startswith("Revision:")
+        assert "Weakest Topic" not in mission.title
+        blob = (
+            mission.title
+            + " "
+            + " ".join(t.description or "" for t in mission.tasks)
+        ).lower()
+        assert "topic one intro" not in blob
+        assert "weakest" not in blob
+        # Next non-comparative kind after weakest_topic is formulae.
+        assert "Formulae" in mission.title
+
+    def test_weakest_topic_kind_with_evidence_names_real_weakest(
+        self, db, user, monkeypatch
+    ):
+        """When Twin EK differentiates topics, weakest_topic stays honest."""
+        from app.application.adaptive_decision.types import POLICY_V1_MIN_EVIDENCE
+        from app.application.student_twin.query import TopicKnowledgeFact
+
+        curriculum, topics = _make_curriculum(
+            "CM1", ["Topic One Intro", "Topic Two", "Topic Three"]
+        )
+        plan = _make_active_plan(user.id, curriculum=curriculum)
+        _complete_all_topics(user.id, topics)
+
+        ek_map = {
+            topics[0].id: TopicKnowledgeFact(
+                topic_id=str(topics[0].id),
+                has_estimated_knowledge=True,
+                estimated_knowledge=0.80,
+                estimated_mastery=0.80,
+                evidence_count=POLICY_V1_MIN_EVIDENCE,
+                last_practised_at=None,
+            ),
+            topics[1].id: TopicKnowledgeFact(
+                topic_id=str(topics[1].id),
+                has_estimated_knowledge=True,
+                estimated_knowledge=0.25,
+                estimated_mastery=0.25,
+                evidence_count=POLICY_V1_MIN_EVIDENCE,
+                last_practised_at=None,
+            ),
+            topics[2].id: TopicKnowledgeFact(
+                topic_id=str(topics[2].id),
+                has_estimated_knowledge=True,
+                estimated_knowledge=0.70,
+                estimated_mastery=0.70,
+                evidence_count=POLICY_V1_MIN_EVIDENCE,
+                last_practised_at=None,
+            ),
+        }
+        monkeypatch.setattr(
+            "app.services.twin_cutover_service.topic_ek_by_orm_id",
+            lambda **kwargs: ek_map,
+        )
+
+        target = date.today()
+        while target.toordinal() % 5 != 2:
+            target += timedelta(days=1)
+
+        mission = PlanningService._generate_revision_mission_for_date(
+            user.id, plan, target
+        )
+        assert mission is not None
+        assert "Weakest Topic" in mission.title
+        blob = (
+            mission.title
+            + " "
+            + " ".join(
+                (t.title or "") + " " + (t.description or "")
+                for t in mission.tasks
+            )
+        ).lower()
+        assert "topic two" in blob
+        assert "topic one intro" not in blob
+
     def test_learning_student_still_gets_topic_mission(self, db, user):
         curriculum, topics = _make_curriculum("CM1", ["First Topic", "Second Topic"])
         _make_active_plan(user.id, curriculum=curriculum)

@@ -432,7 +432,11 @@ class PlanningService:
 
     @staticmethod
     def _weak_topic_label_from_canonical(user_id: int) -> str | None:
-        """Prefer Canonical revision priorities for Revision mission copy."""
+        """Prefer Canonical revision priorities for Revision mission copy.
+
+        Only accepts a measured mastery score. Priorities without mastery
+        (syllabus-order fillers) must not be presented as "weakest".
+        """
         plan = PlanningService.build_daily_study_plan(user_id)
         if not plan:
             return None
@@ -440,6 +444,10 @@ class PlanningService:
         if not priorities:
             return None
         top = priorities[0]
+        if not isinstance(top, dict):
+            return None
+        if top.get("mastery_score") is None:
+            return None
         name = str(top.get("topic_name") or "").strip()
         return name or None
 
@@ -829,6 +837,9 @@ class PlanningService:
 
         Never selects unread syllabus topics. Never falls back to Topic 1 /
         ``current_stage`` learning copy. Uses fixed rule rotation by date.
+        When the rotated kind is ``weakest_topic`` but no topic has reliable
+        comparative Estimated Knowledge, rematerializes to the next
+        non-comparative revision kind instead of fabricating a weakest claim.
         """
         day_type = PlanningService._get_day_type(target_date)
         study_minutes = (
@@ -846,6 +857,18 @@ class PlanningService:
             weak_label = LearningLifecycleService.weakest_completed_topic_label(
                 user_id
             )
+        # Honesty alignment with ADR-027 safe-fallback: never claim "weakest"
+        # without reliable comparative evidence. Rematerialize to a
+        # non-comparative revision kind instead of fabricating Topic 1.
+        if kind == "weakest_topic" and weak_label is None:
+            kind_index = target_date.toordinal() % len(_REVISION_MISSION_KINDS)
+            for offset in range(1, len(_REVISION_MISSION_KINDS)):
+                alt = _REVISION_MISSION_KINDS[
+                    (kind_index + offset) % len(_REVISION_MISSION_KINDS)
+                ]
+                if alt != "weakest_topic":
+                    kind = alt
+                    break
         title, tasks_data = PlanningService._revision_mission_content(
             kind=kind,
             study_minutes=study_minutes,
