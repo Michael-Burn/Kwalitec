@@ -260,8 +260,8 @@
       {
         "id": "S2",
         "label": "Half-width and interval",
-        "attempt_cue": "Compute 450 ± 1.96 × 5.",
-        "explanation": "95% z-interval centres at x̄.",
+        "attempt_cue": "Compute $450 \\pm 1.96 \\times 5$.",
+        "explanation": "95% z-interval centres at $\\bar{x}$.",
         "calculation": "$1.96 \\times 5 = 9.8$; $450 - 9.8 = 440.2$; $450 + 9.8 = 459.8$",
         "result": "(440.2, 459.8)"
       }

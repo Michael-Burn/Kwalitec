@@ -265,13 +265,13 @@
         "id": "S3",
         "label": "Why the premiums differ",
         "attempt_cue": "Contrast assumption sources, not just the numeric gap.",
-        "explanation": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different (μ, k) pairs produce different Z and different blends, so premiums need not match.",
+        "explanation": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different $(\\mu, k)$ pairs produce different $Z$ and different blends, so premiums need not match.",
         "calculation": "$780 vs 787.5 because (\\mu, k) ≠ (\\hat{\\mu}, \\hat{k})$",
         "result": "Assumption source drives the difference"
       }
     ],
     "final_answer": "Bayesian premium £780; EB premium £787.5. They differ because Bayes uses specified prior structurals while EB uses estimated ones.",
-    "common_pitfall": "Assuming the two approaches must produce identical premiums whenever X̄ and n match, or mixing Bayes μ with EB k̂ in one formula.",
+    "common_pitfall": "Assuming the two approaches must produce identical premiums whenever $\\bar{X}$ and $n$ match, or mixing Bayes $\\mu$ with EB $\\hat{k}$ in one formula.",
     "syllabus_ref": "5.1.9"
   }
 }

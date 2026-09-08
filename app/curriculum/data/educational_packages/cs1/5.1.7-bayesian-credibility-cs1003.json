@@ -248,7 +248,7 @@
       {
         "id": "S2",
         "label": "Bayesian credibility premium",
-        "attempt_cue": "Compute Z X̄ + (1 − Z)μ.",
+        "attempt_cue": "Compute $Z\\bar{X} + (1 - Z)\\mu$.",
         "explanation": "With Z in hand the premium is the usual credibility mixture.",
         "calculation": "$P = (2/3)\\times 950 + (1/3)\\times 800 = 1900/3 + 800/3 = 2700/3 = 900$",
         "result": "P = £900"

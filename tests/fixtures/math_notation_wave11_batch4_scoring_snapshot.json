@@ -1,0 +1,268 @@
+{
+  "packages": [
+    "5.1.6-credibility-premium-cs1015.json",
+    "5.1.7-bayesian-credibility-cs1003.json",
+    "cp-3.1.1-estimators-cs1016.json",
+    "cp-3.2.1-ci-sample-cs1016.json"
+  ],
+  "items": [
+    {
+      "package_file": "5.1.6-credibility-premium-cs1015.json",
+      "item_id": "cs1015-5.1.6-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.6-credibility-premium-cs1015.json",
+      "item_id": "cs1015-5.1.6-cp-01",
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "680"
+      ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
+      "verdicts": [
+        {
+          "response": "680",
+          "scored": true,
+          "correct": true,
+          "matched_key": "680"
+        },
+        {
+          "response": "___not_a_match___",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+      "item_id": "cs1003-5.1.7-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+      "item_id": "cs1003-5.1.7-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cp-3.1.1-estimators-cs1016.json",
+      "item_id": "cs1016-3.1.1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cp-3.1.1-estimators-cs1016.json",
+      "item_id": "cs1016-3.1.1-cp-01",
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "2"
+      ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
+      "verdicts": [
+        {
+          "response": "2",
+          "scored": true,
+          "correct": true,
+          "matched_key": "2"
+        },
+        {
+          "response": "___not_a_match___",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cp-3.2.1-ci-sample-cs1016.json",
+      "item_id": "cs1016-3.2.1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "cp-3.2.1-ci-sample-cs1016.json",
+      "item_id": "cs1016-3.2.1-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    }
+  ]
+}

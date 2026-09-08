@@ -1,36 +1,34 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T07:33:30Z",
+  "generated_at": "2026-09-08T08:20:49Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
     "mathish_strings": 2203,
-    "already_compliant": 2047,
+    "already_compliant": 2074,
     "needs_migration": 0,
-    "correctly_excluded": 156,
-    "needs_manual_review": 53,
-    "confident_automated": 2150,
+    "correctly_excluded": 129,
+    "needs_manual_review": 0,
+    "confident_automated": 2203,
     "remaining_backlog": 0,
-    "migrated": 2028,
+    "migrated": 2055,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2047,
-    "manual_review_prose_exclusion": 102,
-    "isolated_symbol_in_narrative_ambiguous": 35,
-    "mathish_role_unclear": 18,
+    "fully_covered_by_current_typesetting": 2074,
+    "manual_review_prose_exclusion": 128,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2028,
+    "dollar_delimited": 2055,
     "equationish": 1507,
     "actuarial_fn": 502,
     "ascii_approx": 234,
     "bare_latex": 195,
-    "greek": 131,
+    "greek": 115,
     "compound": 26,
-    "unicode_ops": 19
+    "unicode_ops": 11
   },
   "by_risk_tier_needs_migration": {
     "1": 0,
@@ -40,7 +38,7 @@
   },
   "limits_of_automation": {
     "note": "Semantic role (live mathematical object vs prose mention) cannot be decided by pattern matching in every case. Strings with needs_manual_review=true must be human-checked before a wave marks them done or skips them.",
-    "needs_manual_review_count": 53
+    "needs_manual_review_count": 0
   },
   "wave_recommendation": {
     "principle": "Order only: tackle highest-risk compound calculations first for immediate student benefit. This does not narrow ultimate scope; every needs_migration string remains in backlog until migrated or reclassified by manual review.",
@@ -22447,10 +22445,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 10,
-        "already_compliant": 8,
+        "already_compliant": 10,
         "needs_migration": 0,
-        "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -22579,15 +22577,15 @@
           "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Same risk experience can produce different premiums when (μ, k) differ because Bayes uses specified prior structurals while EB uses estimated ones.",
-          "text_hash": "27524b7b9fbcb4b9",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Same risk experience can produce different premiums when $(\\mu, k)$ differ because Bayes uses specified prior structurals while EB uses estimated ones.",
+          "text_hash": "9e2094afb9003bac",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -22611,14 +22609,16 @@
           "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Forcing the two premiums to match by reusing one Z for both structural pairs, or claiming EB and Bayes must always agree for the same X̄.",
-          "text_hash": "dff85a6808546dbb",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Forcing the two premiums to match by reusing one $Z$ for both structural pairs, or claiming EB and Bayes must always agree for the same $\\bar{X}$.",
+          "text_hash": "4a802f853051789e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         }
       ]
     },
@@ -22629,10 +22629,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 12,
-        "already_compliant": 9,
+        "already_compliant": 10,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 2,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -22663,10 +22663,10 @@
           "text": "Bayesian credibility requires prior-to-posterior structure that justifies μ and Z. Empty formula or EB conflation are wrong.",
           "text_hash": "1edc40af66bad6df",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -22806,16 +22806,15 @@
           "package_file": "5.1.7-bayesian-credibility-cs1003.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute Z X̄ + (1 − Z)μ.",
-          "text_hash": "7a64271539f530c1",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $Z\\bar{X} + (1 - Z)\\mu$.",
+          "text_hash": "adaad21df17e3f93",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -23415,7 +23414,7 @@
         "already_compliant": 13,
         "needs_migration": 0,
         "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -23575,10 +23574,10 @@
           "text": "The premium uses estimated μ and k in place of known prior structurals.",
           "text_hash": "2ef1615733506bca",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -26222,10 +26221,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 13,
-        "already_compliant": 10,
+        "already_compliant": 12,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -26321,10 +26320,10 @@
           "text": "Bayes uses prior-specified μ and k.",
           "text_hash": "3c516825ff8827a9",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -26401,15 +26400,15 @@
           "package_file": "5.1.9-bayes-vs-eb-cs1015.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different (μ, k) pairs produce different Z and different blends, so premiums need not match.",
-          "text_hash": "d002bcc6e1c5cb6f",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Bayes assumes a specified prior structure; EB estimates structurals from collective data. Different $(\\mu, k)$ pairs produce different $Z$ and different blends, so premiums need not match.",
+          "text_hash": "b41781b44ab72421",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -26434,15 +26433,15 @@
           "package_file": "5.1.9-bayes-vs-eb-cs1015.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Assuming the two approaches must produce identical premiums whenever X̄ and n match, or mixing Bayes μ with EB k̂ in one formula.",
-          "text_hash": "5b2845a21797edcc",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Assuming the two approaches must produce identical premiums whenever $\\bar{X}$ and $n$ match, or mixing Bayes $\\mu$ with EB $\\hat{k}$ in one formula.",
+          "text_hash": "937ed5238fc08663",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         }
       ]
@@ -26454,10 +26453,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 13,
-        "already_compliant": 9,
+        "already_compliant": 10,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 2,
+        "correctly_excluded": 3,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -26616,16 +26615,15 @@
           "package_file": "5.1.7-bayesian-credibility-cs1015.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Evaluate Z X̄ + (1 − Z)μ.",
-          "text_hash": "77dfe49457ff45bb",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Evaluate $Z\\bar{X} + (1 - Z)\\mu$.",
+          "text_hash": "82a74fa5e50fc355",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -26636,10 +26634,10 @@
           "text": "The premium blends experience with the prior mean μ.",
           "text_hash": "64765b2b04de83fc",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -26687,10 +26685,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
         "mathish_strings": 23,
-        "already_compliant": 16,
+        "already_compliant": 23,
         "needs_migration": 0,
-        "correctly_excluded": 7,
-        "needs_manual_review": 7,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -26769,15 +26767,15 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "knowledge_checks[1].hints[0]",
           "field_group": "knowledge_checks[].hints[]",
-          "text": "Compute 1 - Z first, then blend X̄ and μ.",
-          "text_hash": "2aec1f0a38038c17",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $1 - Z$ first, then blend $\\bar{X}$ and $\\mu$.",
+          "text_hash": "0e8f5f0c9bc1a258",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -26785,14 +26783,16 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "knowledge_checks[1].hints[1]",
           "field_group": "knowledge_checks[].hints[]",
-          "text": "Z weights the individual experience X̄.",
-          "text_hash": "57a75a4b2b69c7f4",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "$Z$ weights the individual experience $\\bar{X}$.",
+          "text_hash": "a21d382ce5acdb6a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
@@ -26833,15 +26833,15 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "knowledge_checks[1].success_criteria[1]",
           "field_group": "knowledge_checks[].success_criteria[]",
-          "text": "Uses Z on X̄ and (1 - Z) on μ.",
-          "text_hash": "af8956f26496840b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Uses $Z$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$.",
+          "text_hash": "02f3e11001352575",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -26915,15 +26915,15 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 1 − Z.",
-          "text_hash": "7022285cbdfccc72",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $1 - Z$.",
+          "text_hash": "716623458606e30a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -26965,16 +26965,15 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Evaluate Z X̄ + (1 − Z)μ.",
-          "text_hash": "77dfe49457ff45bb",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Evaluate $Z\\bar{X} + (1 - Z)\\mu$.",
+          "text_hash": "82a74fa5e50fc355",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek",
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -26982,15 +26981,15 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Z weights the individual mean; (1 − Z) weights the class mean.",
-          "text_hash": "1771fd3b35aa6d20",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "$Z$ weights the individual mean; $(1 - Z)$ weights the class mean.",
+          "text_hash": "b2341292526327d8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -27015,14 +27014,16 @@
           "package_file": "5.1.6-credibility-premium-cs1015.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Larger Z places more weight on the risk's own experience X̄.",
-          "text_hash": "40df45e9e2ea3eb2",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Larger $Z$ places more weight on the risk's own experience $\\bar{X}$.",
+          "text_hash": "050592e813793135",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CO-5.1-CREDIBILITY-PREMIUM",
@@ -27407,7 +27408,7 @@
         "already_compliant": 14,
         "needs_migration": 0,
         "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -27568,10 +27569,10 @@
           "text": "The premium formula matches classical credibility, with estimated Z and μ.",
           "text_hash": "d52aee59b0e1bc75",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -27617,10 +27618,10 @@
           "text": "EB estimates μ and k from data; a fully Bayesian analysis would take them from an explicit prior structure.",
           "text_hash": "7ad083fc35a14933",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -29909,10 +29910,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-PI",
       "counts": {
         "mathish_strings": 20,
-        "already_compliant": 17,
+        "already_compliant": 19,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -30027,10 +30028,10 @@
           "text": "Uses the sample mean as MoM for the Poisson mean λ.",
           "text_hash": "b2ff3bd05e063014",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -30106,15 +30107,15 @@
           "package_file": "cp-3.1.1-estimators-cs1016.json",
           "field_path": "worked_example.attempt_before_reveal",
           "field_group": "worked_example.attempt_before_reveal",
-          "text": "CMP closed. Equate the Poisson mean λ to the sample mean before computing.",
-          "text_hash": "31a2f3db9e215f8d",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "CMP closed. Equate the Poisson mean $\\lambda$ to the sample mean before computing.",
+          "text_hash": "caf85a13607f6ed0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -30192,14 +30193,16 @@
           "package_file": "cp-3.1.1-estimators-cs1016.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Substitute the observed counts into x̄.",
-          "text_hash": "975e9dda2c06b529",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "Substitute the observed counts into $\\bar{x}$.",
+          "text_hash": "98cfacbfabba67fa",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CP-3.1-ESTIMATORS",
@@ -30261,10 +30264,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-PI",
       "counts": {
         "mathish_strings": 15,
-        "already_compliant": 12,
+        "already_compliant": 14,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -30294,10 +30297,10 @@
           "text": "Coverage is about μ and the procedure. Prediction readings and 'midpoint probability' misstate frequentist CIs; HT is a related but distinct task.",
           "text_hash": "19342e68b67a567f",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -30438,15 +30441,15 @@
           "package_file": "cp-3.2.1-ci-sample-cs1016.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute 450 ± 1.96 × 5.",
-          "text_hash": "f25cc30251a393c7",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $450 \\pm 1.96 \\times 5$.",
+          "text_hash": "d3d90473f6193f69",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -30454,14 +30457,16 @@
           "package_file": "cp-3.2.1-ci-sample-cs1016.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "95% z-interval centres at x̄.",
-          "text_hash": "2db9b6c53c21803b",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "95% z-interval centres at $\\bar{x}$.",
+          "text_hash": "dd19af07ca8e507b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-CP-3.2-CI-SAMPLE",
@@ -30525,7 +30530,7 @@
         "already_compliant": 10,
         "needs_migration": 0,
         "correctly_excluded": 2,
-        "needs_manual_review": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -30677,10 +30682,10 @@
           "text": "Type I error is a false rejection of H₀. With H₀: clean, that is flagging a clean claim as fraud.",
           "text_hash": "fed8f734598ac8f0",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -30691,10 +30696,10 @@
           "text": "Type II error is failing to reject H₀ when the claim is fraudulent (H₀ false).",
           "text_hash": "6d947f5606654d27",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -31507,10 +31512,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 10,
+        "already_compliant": 11,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -31604,15 +31609,15 @@
           "package_file": "cr-1.2.2-correlation-cs1017.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compare |r| and |ρ| in light of the scatter.",
-          "text_hash": "855f97937404232a",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compare $|r|$ and $|\\rho|$ in light of the scatter.",
+          "text_hash": "48466db88f938458",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -31762,10 +31767,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-RHO",
       "counts": {
         "mathish_strings": 9,
-        "already_compliant": 8,
+        "already_compliant": 9,
         "needs_migration": 0,
-        "correctly_excluded": 1,
-        "needs_manual_review": 1,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -31812,15 +31817,15 @@
           "package_file": "cr-2.1.2-continuous-cs1017.json",
           "field_path": "worked_example.given[0].note",
           "field_group": "worked_example.given[].note",
-          "text": "continuous support on (0, ∞)",
-          "text_hash": "f77653e2126aff9c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "continuous support on $(0, \\infty)$",
+          "text_hash": "0cb46530d61f72ab",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -37034,10 +37039,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
         "mathish_strings": 14,
-        "already_compliant": 11,
+        "already_compliant": 12,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 2,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -37134,10 +37139,10 @@
           "text": "The construction procedure covers the fixed parameter θ in 95% of repeated samples under the model. It does not assign posterior probability 0.95 to θ given these data.",
           "text_hash": "241baed1c323723a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -37197,15 +37202,15 @@
           "package_file": "revision-confidence-intervals-cs1011.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Compute X̄ ± 1.96 SE.",
-          "text_hash": "62c541db1f212aec",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Compute $\\bar{X} \\pm 1.96\\,\\mathrm{SE}$.",
+          "text_hash": "4ebf2b5f3d712704",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "unicode_ops"
+            "dollar_delimited"
           ]
         },
         {
@@ -37266,10 +37271,10 @@
           "text": "Saying that given these data, θ has probability 0.95 of lying in the calculated interval, which swaps a frequentist coverage statement for a posterior probability reading.",
           "text_hash": "e6e2c29a0c018bf6",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -37283,10 +37288,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
       "counts": {
         "mathish_strings": 13,
-        "already_compliant": 10,
+        "already_compliant": 12,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -37351,15 +37356,15 @@
           "package_file": "revision-distributions-generation-cs1004.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Write X in terms of U and λ.",
-          "text_hash": "5f4a5d76cf1d174f",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Write $X$ in terms of $U$ and $\\lambda$.",
+          "text_hash": "1f2db2803cc2d0ed",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -37473,10 +37478,10 @@
           "text": "Applying the CDF rather than its inverse does not produce an Exponential(λ) draw. The method maps Uniform probability through the quantile function.",
           "text_hash": "84f34f2fd0f99d2e",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -37504,15 +37509,15 @@
           "package_file": "revision-distributions-generation-cs1004.json",
           "field_path": "worked_example.common_pitfall",
           "field_group": "worked_example.common_pitfall",
-          "text": "Generating Exponential draws by applying the CDF to U instead of the inverse CDF, or multiplying by λ instead of dividing by λ in the quantile formula.",
-          "text_hash": "e0e5a3446487331a",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Generating Exponential draws by applying the CDF to $U$ instead of the inverse CDF, or multiplying by $\\lambda$ instead of dividing by $\\lambda$ in the quantile formula.",
+          "text_hash": "ebcb71de30244d4c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         }
       ]
@@ -38178,7 +38183,7 @@
         "already_compliant": 7,
         "needs_migration": 0,
         "correctly_excluded": 3,
-        "needs_manual_review": 1,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -38226,10 +38231,10 @@
           "text": "Can you state family → link → η → deviance → residuals → tests → fit?",
           "text_hash": "c91803453404282a",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -38860,10 +38865,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 6,
+        "already_compliant": 7,
         "needs_migration": 0,
-        "correctly_excluded": 5,
-        "needs_manual_review": 5,
+        "correctly_excluded": 4,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -38908,15 +38913,15 @@
           "package_file": "revision-linear-models-cs1003.json",
           "field_path": "worked_example.steps[0].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Y is the response; columns of X are explanatory variables; OLS chooses β to minimise the sum of squared residuals.",
-          "text_hash": "ec94b975850138b9",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "$Y$ is the response; columns of $X$ are explanatory variables; OLS chooses $\\beta$ to minimise the sum of squared residuals.",
+          "text_hash": "1f4d6c9c7a08d7bd",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -38945,10 +38950,10 @@
           "text": "Refuse R²-as-diagnostics",
           "text_hash": "be596d6f34d43069",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -38959,10 +38964,10 @@
           "text": "Can high R² dismiss the residual pattern?",
           "text_hash": "0a8f49ceae237acb",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -38973,10 +38978,10 @@
           "text": "A large R² does not repair a clear residual funnel. Diagnostics remain required.",
           "text_hash": "f0551fe0e99df120",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39040,10 +39045,10 @@
           "text": "Confusing OLS with minimising fitted values, or treating a large R² as proof that a funnel-shaped residual plot can be ignored.",
           "text_hash": "b711586c9072977c",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         }
       ]
@@ -39058,7 +39063,7 @@
         "already_compliant": 7,
         "needs_migration": 0,
         "correctly_excluded": 6,
-        "needs_manual_review": 6,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -39072,10 +39077,10 @@
           "text": "Retrieve OLS criterion and refuse R²-clears-curvature",
           "text_hash": "dc56d413f598b0ff",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39121,10 +39126,10 @@
           "text": "CMP closed. Retrieve the residual-sum-of-squares criterion, then interpret curvature despite high R².",
           "text_hash": "b3e843de9c53dcdc",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39171,10 +39176,10 @@
           "text": "Refuse R²-as-adequacy",
           "text_hash": "370d4998dc592df7",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39185,10 +39190,10 @@
           "text": "Does high R² clear the curvature?",
           "text_hash": "2f0b6dd99aad7408",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39199,10 +39204,10 @@
           "text": "High R² and automated selection do not establish adequacy when residuals show clear curvature. Reconsider justified transformations or nonlinear terms and validate.",
           "text_hash": "89092b86db54f0c0",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         },
         {
@@ -39267,10 +39272,10 @@
           "text": "Minimising the sum of fitted values instead of squared residuals, or treating high R² from automated selection as proof that a curved residual plot can be ignored.",
           "text_hash": "5433ef6890d8567c",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": []
         }
       ]
@@ -39431,10 +39436,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
         "mathish_strings": 11,
-        "already_compliant": 7,
+        "already_compliant": 8,
         "needs_migration": 0,
-        "correctly_excluded": 4,
-        "needs_manual_review": 3,
+        "correctly_excluded": 3,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -39465,10 +39470,10 @@
           "text": "Retrieve Family → η → link.",
           "text_hash": "7262df8552206a39",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -39513,10 +39518,10 @@
           "text": "Retrieve Family → η → link",
           "text_hash": "0245739386418143",
           "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "needs_manual_review": false,
+          "reason_code": "manual_review_prose_exclusion",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "correctly_excluded",
           "signals": [
             "greek"
           ]
@@ -39560,15 +39565,15 @@
           "package_file": "revision-regression-glm-cs1003.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "State g(μ) for Poisson.",
-          "text_hash": "0807879bd6b95c77",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "State $g(\\mu)$ for Poisson.",
+          "text_hash": "12ee76452613d912",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -39631,10 +39636,10 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
         "mathish_strings": 12,
-        "already_compliant": 9,
+        "already_compliant": 12,
         "needs_migration": 0,
-        "correctly_excluded": 3,
-        "needs_manual_review": 3,
+        "correctly_excluded": 0,
+        "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
       "migration_status": "clear",
@@ -39712,14 +39717,16 @@
           "package_file": "revision-sampling-distributions-cs1009.json",
           "field_path": "worked_example.steps[0].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "What distribution does X̄ have across repeated samples?",
-          "text_hash": "8a4af4d59b121783",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "mathish_role_unclear",
+          "text": "What distribution does $\\bar{X}$ have across repeated samples?",
+          "text_hash": "1e3715cb2fa5c407",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
-          "signals": []
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
         },
         {
           "package_id": "CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS",
@@ -39743,15 +39750,15 @@
           "package_file": "revision-sampling-distributions-cs1009.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Write T when σ is estimated by S.",
-          "text_hash": "5b725c36ec400e8c",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Write $T$ when $\\sigma$ is estimated by $S$.",
+          "text_hash": "3a6b8c29d62ac834",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -39793,15 +39800,15 @@
           "package_file": "revision-sampling-distributions-cs1009.json",
           "field_path": "worked_example.steps[2].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Replacing σ by S without switching to t ignores the extra uncertainty from estimating the variance.",
-          "text_hash": "4c89fb020c0fb92e",
-          "category": "correctly_excluded",
-          "needs_manual_review": true,
-          "reason_code": "isolated_symbol_in_narrative_ambiguous",
+          "text": "Replacing $\\sigma$ by $S$ without switching to t ignores the extra uncertainty from estimating the variance.",
+          "text_hash": "aeaa72fdd0afa30a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "pending",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
@@ -40043,5 +40050,5 @@
       ]
     }
   ],
-  "content_fingerprint": "41750f5ecb1046a31cceca09007d5b9422e36a8d5c59a497333e577a87c590dc"
+  "content_fingerprint": "a769f5c99ae18b9ea9ac131a919da2515a436b26e9ef46f81b6cdf9d63a96827"
 }

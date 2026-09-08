@@ -258,13 +258,13 @@
         "id": "S3",
         "label": "Why the premiums differ",
         "attempt_cue": "Contrast the structural sources.",
-        "explanation": "Same risk experience can produce different premiums when (μ, k) differ because Bayes uses specified prior structurals while EB uses estimated ones.",
+        "explanation": "Same risk experience can produce different premiums when $(\\mu, k)$ differ because Bayes uses specified prior structurals while EB uses estimated ones.",
         "calculation": "$Different (\\mu, k) pairs \\Rightarrow different Z and different blend with \\bar{X}$",
         "result": "Difference is structural source, not a calculation error"
       }
     ],
     "final_answer": "Bayesian premium £1000; EB premium £987.5. They differ because Bayes uses specified prior structurals while EB uses estimated structurals.",
-    "common_pitfall": "Forcing the two premiums to match by reusing one Z for both structural pairs, or claiming EB and Bayes must always agree for the same X̄.",
+    "common_pitfall": "Forcing the two premiums to match by reusing one $Z$ for both structural pairs, or claiming EB and Bayes must always agree for the same $\\bar{X}$.",
     "syllabus_ref": "5.1.9"
   }
 }

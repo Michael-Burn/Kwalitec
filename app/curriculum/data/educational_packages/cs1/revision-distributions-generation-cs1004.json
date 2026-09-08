@@ -240,7 +240,7 @@
       {
         "id": "S1",
         "label": "State the inverse-transform formula",
-        "attempt_cue": "Write X in terms of U and λ.",
+        "attempt_cue": "Write $X$ in terms of $U$ and $\\lambda$.",
         "explanation": "For Exponential rate $\\lambda$, $X = -\\ln(1-U)/\\lambda$ (equivalently $-\\ln(U)/\\lambda$).",
         "calculation": "$X = -\\ln(1-U)/\\lambda$",
         "result": "Inverse-transform formula stated"
@@ -263,7 +263,7 @@
       }
     ],
     "final_answer": "Use $X = -\\ln(1-U)/\\lambda$; at $U = 0.3$ and $\\lambda = 2$, $X \\approx 0.1783$. Refuse setting $X = F(U)$ in place of the inverse CDF.",
-    "common_pitfall": "Generating Exponential draws by applying the CDF to U instead of the inverse CDF, or multiplying by λ instead of dividing by λ in the quantile formula.",
+    "common_pitfall": "Generating Exponential draws by applying the CDF to $U$ instead of the inverse CDF, or multiplying by $\\lambda$ instead of dividing by $\\lambda$ in the quantile formula.",
     "syllabus_ref": "2.1.5"
   }
 }

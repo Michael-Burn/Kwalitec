@@ -822,8 +822,8 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["needs_manual_review"] == 53
-    assert checked["totals"]["migrated"] == 2028
+    assert checked["totals"]["needs_manual_review"] == 0
+    assert checked["totals"]["migrated"] == 2055
     assert live["totals"] == checked["totals"]
 
     pending = [
@@ -832,18 +832,8 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         for item in row["items"]
         if item["needs_manual_review"]
     ]
-    assert len(pending) == 53
-    pending_packages = sorted({pkg for pkg, _ in pending})
-    assert wave11.WAVE11_REMAINDER_START_PACKAGE in pending_packages
-    assert pending_packages[0] == wave11.WAVE11_REMAINDER_START_PACKAGE
-    assert pending_packages == list(wave11.WAVE11_REMAINDER_PACKAGES)
-    assert len(pending_packages) == 19
-    closed = (
-        set(wave11.WAVE11_BATCH1_FILES)
-        | set(wave11.WAVE11_BATCH2_FILES)
-        | set(wave11.WAVE11_BATCH3_FILES)
-    )
-    assert closed.isdisjoint(set(pending_packages))
+    assert pending == []
+    assert list(wave11.WAVE11_REMAINDER_PACKAGES) == []
 
     batch1_manual = 0
     batch1_migrated_new = 0

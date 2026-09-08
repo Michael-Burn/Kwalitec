@@ -233,7 +233,7 @@
       {
         "symbol": "generative story",
         "value": "strictly positive waiting times; constant hazard; memoryless",
-        "note": "continuous support on (0, ∞)"
+        "note": "continuous support on $(0, \\infty)$"
       },
       {
         "symbol": "mean waiting time",

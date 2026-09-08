@@ -256,7 +256,7 @@
       {
         "id": "S2",
         "label": "Read the two reported coefficients",
-        "attempt_cue": "Compare |r| and |ρ| in light of the scatter.",
+        "attempt_cue": "Compare $|r|$ and $|\\rho|$ in light of the scatter.",
         "explanation": "The weaker Pearson value is expected when the relationship is not linear. The stronger Spearman value better reflects the monotone decrease under skew and outliers.",
         "calculation": "$|\\rho| = 0.55 > |r| = 0.28$; rank measure captures monotone association better here",
         "result": "Report Spearman $\\rho = -0.55$ as the preferred description"

@@ -222,7 +222,7 @@
         "note": "Poisson mean"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Equate the Poisson mean λ to the sample mean before computing.",
+    "attempt_before_reveal": "CMP closed. Equate the Poisson mean $\\lambda$ to the sample mean before computing.",
     "steps": [
       {
         "id": "S1",
@@ -236,7 +236,7 @@
         "id": "S2",
         "label": "Evaluate on the sample",
         "attempt_cue": "Average the six counts.",
-        "explanation": "Substitute the observed counts into x̄.",
+        "explanation": "Substitute the observed counts into $\\bar{x}$.",
         "calculation": "(2+1+3+0+4+2)/6 = 12/6 = 2",
         "result": "$\\hat{\\lambda}_{\\mathrm{MoM}} = 2$"
       }

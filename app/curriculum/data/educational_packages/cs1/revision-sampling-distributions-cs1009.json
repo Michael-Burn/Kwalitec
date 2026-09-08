@@ -241,7 +241,7 @@
       {
         "id": "S1",
         "label": "Define the sampling distribution",
-        "attempt_cue": "What distribution does X̄ have across repeated samples?",
+        "attempt_cue": "What distribution does $\\bar{X}$ have across repeated samples?",
         "explanation": "It is the probability distribution of values the sample mean would take over repeated random samples of the same size.",
         "calculation": "$Sampling distribution = law of \\bar{X} over repeated samples$",
         "result": "Definition retrieved"
@@ -249,7 +249,7 @@
       {
         "id": "S2",
         "label": "Retrieve the t pivot",
-        "attempt_cue": "Write T when σ is estimated by S.",
+        "attempt_cue": "Write $T$ when $\\sigma$ is estimated by $S$.",
         "explanation": "With unknown Normal variance, T = ($\\bar{X} - \\mu$)/($\\frac{S}{\\sqrt{n}}$) follows a t distribution with n - 1 degrees of freedom.",
         "calculation": "$T = (\\bar{X} - \\mu)/(\\frac{S}{\\sqrt{n}}) \\sim t_{n-1}$",
         "result": "t pivot with n-1 df retrieved"
@@ -258,7 +258,7 @@
         "id": "S3",
         "label": "Refuse z-with-S shortcut",
         "attempt_cue": "Why is a standard Normal pivot wrong here?",
-        "explanation": "Replacing σ by S without switching to t ignores the extra uncertainty from estimating the variance.",
+        "explanation": "Replacing $\\sigma$ by $S$ without switching to t ignores the extra uncertainty from estimating the variance.",
         "calculation": "$Refuse treating (\\bar{X} - \\mu)/S as N(0,1) in this setting$",
         "result": "z-with-S overclaim refused"
       }

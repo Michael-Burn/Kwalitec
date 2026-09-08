@@ -256,7 +256,7 @@
       {
         "id": "S2",
         "label": "Name the Poisson canonical link",
-        "attempt_cue": "State g(μ) for Poisson.",
+        "attempt_cue": "State $g(\\mu)$ for Poisson.",
         "explanation": "The Poisson canonical link is logarithmic: $\\log(\\mu) = \\eta$.",
         "calculation": "Canonical link: $\\log(\\mu) = \\eta$",
         "result": "Poisson log link named"

@@ -163,8 +163,8 @@
       "response_type": "numeric",
       "body": "Evaluate the credibility premium with the given Z.",
       "hints": [
-        "Compute 1 - Z first, then blend X̄ and μ.",
-        "Z weights the individual experience X̄."
+        "Compute $1 - Z$ first, then blend $\\bar{X}$ and $\\mu$.",
+        "$Z$ weights the individual experience $\\bar{X}$."
       ],
       "accepted_keywords": [
         "680"
@@ -174,7 +174,7 @@
       "common_mistake": "Swapping the weights to get $0.4 \\times 600 + 0.6 \\times 800 = 720$, or taking full credibility $P = 800$.",
       "success_criteria": [
         "Enters a value within 0.5 of 680.",
-        "Uses Z on X̄ and (1 - Z) on μ."
+        "Uses $Z$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$."
       ],
       "numeric_tolerance": 0.5
     }
@@ -226,7 +226,7 @@
       {
         "id": "S1",
         "label": "Complementary weight",
-        "attempt_cue": "Compute 1 − Z.",
+        "attempt_cue": "Compute $1 - Z$.",
         "explanation": "The formula blends individual experience with the class mean.",
         "calculation": "$1 - Z = 1 - 0.4 = 0.6$",
         "result": "$1 - Z = 0.6$"
@@ -234,8 +234,8 @@
       {
         "id": "S2",
         "label": "Credibility premium",
-        "attempt_cue": "Evaluate Z X̄ + (1 − Z)μ.",
-        "explanation": "Z weights the individual mean; (1 − Z) weights the class mean.",
+        "attempt_cue": "Evaluate $Z\\bar{X} + (1 - Z)\\mu$.",
+        "explanation": "$Z$ weights the individual mean; $(1 - Z)$ weights the class mean.",
         "calculation": "$P = 0.4 \\times 800 + 0.6 \\times 600 = 320 + 360 = 680$",
         "result": "P = £680"
       },
@@ -243,7 +243,7 @@
         "id": "S3",
         "label": "Role of Z",
         "attempt_cue": "State what larger Z means.",
-        "explanation": "Larger Z places more weight on the risk's own experience X̄.",
+        "explanation": "Larger $Z$ places more weight on the risk's own experience $\\bar{X}$.",
         "calculation": "$Z$ weights individual experience; here $40\\%$ on $\\bar{X}$, $60\\%$ on $\\mu$",
         "result": "$Z = weight on \\bar{X}$"
       }

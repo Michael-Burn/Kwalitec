@@ -239,7 +239,7 @@
         "id": "S1",
         "label": "Retrieve roles and OLS criterion",
         "attempt_cue": "Name Y, X, and what OLS minimises.",
-        "explanation": "Y is the response; columns of X are explanatory variables; OLS chooses β to minimise the sum of squared residuals.",
+        "explanation": "$Y$ is the response; columns of $X$ are explanatory variables; OLS chooses $\\beta$ to minimise the sum of squared residuals.",
         "calculation": "$Y = response$; $X = explanatory columns$; $OLS minimises \\sum(y - \\hat{y})^{2}$",
         "result": "Roles and OLS criterion retrieved"
       },

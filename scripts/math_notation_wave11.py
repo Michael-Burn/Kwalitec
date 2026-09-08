@@ -1,11 +1,13 @@
-"""Wave 11: catalogue-wide manual-review close-out (batches 1–3).
+"""Wave 11: catalogue-wide manual-review close-out (batches 1–4).
 
 Applies the locked classifications from
 ``docs/handoff/MATH_NOTATION_WAVE11_MANUAL_REVIEW.md`` (batch 1: 64 of 239),
 ``docs/handoff/MATH_NOTATION_WAVE11_BATCH2_MANUAL_REVIEW.md`` (batch 2:
-60 of the 175 remaining after batch 1), and
+60 of the 175 remaining after batch 1),
 ``docs/handoff/MATH_NOTATION_WAVE11_BATCH3_MANUAL_REVIEW.md`` (batch 3:
-62 of the 115 remaining after batch 2).
+62 of the 115 remaining after batch 2), and
+``docs/handoff/MATH_NOTATION_WAVE11_BATCH4_MANUAL_REVIEW.md`` (batch 4:
+53 of the 53 remaining after batch 3; final close-out).
 
 This module is the locked record of package files and field paths touched by
 each batch. Application of package text and ``_MANUAL_PROSE_EXCLUSIONS`` is done
@@ -79,10 +81,7 @@ WAVE11_BATCH3_FILES: tuple[str, ...] = (
     "5.1.6-credibility-premium-cs1003.json",
 )
 
-# Packages that still carry needs_manual_review after batches 1–3 (remainder).
-WAVE11_REMAINDER_START_PACKAGE = "5.1.6-credibility-premium-cs1015.json"
-
-WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = (
+WAVE11_BATCH4_FILES: tuple[str, ...] = (
     "5.1.6-credibility-premium-cs1015.json",
     "5.1.7-bayesian-credibility-cs1003.json",
     "5.1.7-bayesian-credibility-cs1015.json",
@@ -103,3 +102,7 @@ WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = (
     "revision-regression-glm-cs1003.json",
     "revision-sampling-distributions-cs1009.json",
 )
+
+# After batch 4, the catalogue-wide needs_manual_review population is empty.
+WAVE11_REMAINDER_START_PACKAGE = ""
+WAVE11_REMAINDER_PACKAGES: tuple[str, ...] = ()
