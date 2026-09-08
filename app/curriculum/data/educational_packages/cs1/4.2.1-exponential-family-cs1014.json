@@ -250,7 +250,7 @@
         "id": "S1",
         "label": "Exponential-family rewrite",
         "attempt_cue": "Take the log of the Poisson pmf and regroup the y-dependent term.",
-        "explanation": "Members of the exponential family admit a linear natural parameter multiplying y. For Poisson, that term is y ln λ.",
+        "explanation": "Members of the exponential family admit a linear natural parameter multiplying y. For Poisson, that term is $y \\ln \\lambda$.",
         "calculation": "$f(y) = exp{y \\ln \\lambda - \\lambda - \\ln(y!)}$; $\\theta = \\ln \\lambda, b(\\theta) = e^\\theta (= \\lambda)$",
         "result": "$\\theta = \\ln \\lambda$"
       },

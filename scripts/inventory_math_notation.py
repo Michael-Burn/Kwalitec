@@ -438,6 +438,113 @@ _MANUAL_PROSE_EXCLUSIONS: frozenset[tuple[str, str, str]] = frozenset(
             "worked_example.steps[1].explanation",
             "f8af4f1a02f0f156",
         ),
+        # Wave 11 batch 2: catalogue-wide correctly_excluded + needs_manual_review
+        # population; human-confirmed prose (mission chrome, topic naming, Adjusted
+        # R² definitional / title / shallow-reading warnings, η-path naming).
+        # Package text left byte-identical.
+        (
+            "3.2.8-bootstrap-confidence-interval-cs1011.json",
+            "worked_example.steps[1].explanation",
+            "e574ba840d1a8773",
+        ),
+        (
+            "3.3.3-permutation-tests-cs1012.json",
+            "mission.expected_benefit",
+            "49e78cc085239211",
+        ),
+        (
+            "3.3.4-chi-square-gof-cs1012.json",
+            "worked_example.given[1].note",
+            "e0e643306e949bc4",
+        ),
+        (
+            "4.1.2-simple-multiple-cs1003.json",
+            "mission.tutor_intent",
+            "6d18ab9ce5d660fa",
+        ),
+        (
+            "4.1.2-simple-multiple-cs1003.json",
+            "worked_example.steps[1].explanation",
+            "b634424b1b0599a5",
+        ),
+        (
+            "4.1.2-simple-multiple-cs1013.json",
+            "worked_example.steps[1].explanation",
+            "b634424b1b0599a5",
+        ),
+        (
+            "4.1.5-variable-selection-cs1003.json",
+            "worked_example.steps[0].explanation",
+            "4236c6d9b2193709",
+        ),
+        (
+            "4.1.5-variable-selection-cs1003.json",
+            "worked_example.steps[1].explanation",
+            "eb1db30be32b673b",
+        ),
+        (
+            "4.1.5-variable-selection-cs1003.json",
+            "worked_example.title",
+            "3348db1563001010",
+        ),
+        (
+            "4.1.5-variable-selection-cs1013.json",
+            "reading_guidance.misconception_watch[0]",
+            "ed39868ad44be55b",
+        ),
+        (
+            "4.1.5-variable-selection-cs1013.json",
+            "worked_example.steps[0].explanation",
+            "4236c6d9b2193709",
+        ),
+        (
+            "4.1.5-variable-selection-cs1013.json",
+            "worked_example.steps[1].explanation",
+            "eb1db30be32b673b",
+        ),
+        (
+            "4.1.5-variable-selection-cs1013.json",
+            "worked_example.title",
+            "e3efed11d28cfd95",
+        ),
+        (
+            "4.2.10-fit-interpret-cs1014.json",
+            "worked_example.steps[0].explanation",
+            "bfde6d4ecd12006a",
+        ),
+        (
+            "4.2.3-link-canonical-cs1003.json",
+            "mission.mission_purpose",
+            "121aa25710223ead",
+        ),
+        (
+            "4.2.3-link-canonical-cs1003.json",
+            "mission.tutor_intent",
+            "1ab193c64bec7608",
+        ),
+        (
+            "4.2.4-factors-interactions-cs1003.json",
+            "mission.prior_bridge",
+            "b223902b5fd0d4bc",
+        ),
+        (
+            "4.2.4-factors-interactions-cs1003.json",
+            "mission.why_now",
+            "9611f05915b22e9c",
+        ),
+        (
+            "4.2.4-factors-interactions-cs1003.json",
+            "reading_guidance.out_of_scope_today[0]",
+            "e3c12d64d00bf922",
+        ),
+        # Wave 11 batch 2 partial migrate with confirmed residual prose θ:
+        # exp{...} is $-wrapped; "before naming θ" stays prose (θ is a naming
+        # checkpoint, not a live evaluation object in this field).
+        (
+            "4.2.1-exponential-family-cs1003.json",
+            "worked_example.attempt_before_reveal",
+            "b2f8201f6fa8b6ba",
+        ),
     }
 )
 
@@ -684,9 +791,17 @@ def build_inventory(catalogue_dir: Path) -> dict[str, Any]:
             field_norm = _normalise_path(field_path)
             text_hash = _text_hash(text)
             if (path.name, field_norm, text_hash) in _MANUAL_PROSE_EXCLUSIONS:
-                category = "correctly_excluded"
-                needs_review = False
-                reason = "manual_review_prose_exclusion"
+                if "dollar_delimited" in signals:
+                    # Partial migration with human-confirmed residual prose
+                    # symbol(s): live math is already $-wrapped; leftover greek
+                    # or ops were reviewed as non-math in this field.
+                    category = "already_compliant"
+                    needs_review = False
+                    reason = "fully_covered_by_current_typesetting"
+                else:
+                    category = "correctly_excluded"
+                    needs_review = False
+                    reason = "manual_review_prose_exclusion"
             tier = _risk_tier(field_path, text, signals)
             # Dollar-delimited LaTeX that fully covers the string is a completed
             # migration (Wave 1 onward). Bare-LaTeX-only compliance stays pending

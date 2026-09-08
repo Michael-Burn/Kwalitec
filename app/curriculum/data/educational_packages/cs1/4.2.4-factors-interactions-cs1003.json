@@ -230,7 +230,7 @@
         "note": "Poisson log link"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Plug indicator patterns into η before exponentiating; check when C×H is nonzero.",
+    "attempt_before_reveal": "CMP closed. Plug indicator patterns into $\\eta$ before exponentiating; check when $C \\times H$ is nonzero.",
     "steps": [
       {
         "id": "S1",

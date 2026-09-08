@@ -241,7 +241,7 @@
         "note": "Bernoulli pmf"
       }
     ],
-    "attempt_before_reveal": "CMP closed. Rewrite the pmf as exp{y logit(p) + ln(1 − p)} before naming θ.",
+    "attempt_before_reveal": "CMP closed. Rewrite the pmf as $\\exp\\{y \\operatorname{logit}(p) + \\ln(1 - p)\\}$ before naming θ.",
     "steps": [
       {
         "id": "S1",

@@ -250,7 +250,7 @@
       },
       {
         "id": "S2",
-        "label": "Approximate 95% CI for β₁",
+        "label": "Approximate 95% CI for $\\beta_{1}$",
         "attempt_cue": "Compute $\\hat{\\beta}_{1} \\pm 1.96 \\times \\mathrm{SE}(\\hat{\\beta}_{1})$.",
         "explanation": "A Wald interval centres on the estimate and scales the SE by z_{0.975}.",
         "calculation": "$12 ± 1.96 \\times 4 = 12 ± 7.84 \\Rightarrow (4.16, 19.84)$",
@@ -259,7 +259,7 @@
       {
         "id": "S3",
         "label": "Mean interval vs individual prediction interval",
-        "attempt_cue": "Form ŷ ± 1.96 × SE for each SE, and compare widths.",
+        "attempt_cue": "Form $\\hat{y} \\pm 1.96 \\times \\mathrm{SE}$ for each SE, and compare widths.",
         "explanation": "Prediction of an individual response includes residual variance, so SE_pred > SE_mean and the individual interval is wider than the mean interval.",
         "calculation": "$Mean: 500 ± 1.96 \\times 20 = 500 ± 39.2 \\Rightarrow (460.8, 539.2)$; $Individual: 500 ± 1.96 \\times 50 = 500 ± 98 \\Rightarrow (402, 598)$; $half-widths 39.2 < 98$",
         "result": "Individual interval wider than mean interval"

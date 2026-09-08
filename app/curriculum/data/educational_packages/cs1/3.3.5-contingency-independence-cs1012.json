@@ -219,7 +219,7 @@
   },
   "published_at": "2026-08-02",
   "worked_example": {
-    "title": "Chi-square test of independence in a 2×2 fraud table",
+    "title": "Chi-square test of independence in a $2 \\times 2$ fraud table",
     "problem_statement": "Claims are cross-classified by channel and fraud flag:\nOnline & Fraud 20; Online & Clean 30; Broker & Fraud 10; Broker & Clean 40. Row totals 50 and 50; column totals 30 and 70; n = 100. Test independence at $\\alpha$ = 0.05 using $\\chi^{2}_{1, 0.95}$ = 3.841.",
     "given": [
       {
@@ -250,7 +250,7 @@
       },
       {
         "id": "S2",
-        "label": "Pearson χ²",
+        "label": "Pearson $\\chi^{2}$",
         "attempt_cue": "Sum $(O - E)^{2}/E$ over the four cells.",
         "explanation": "Same Pearson form as GOF, applied to the contingency table.",
         "calculation": "$(20-15)^{2}/15 + (30-35)^{2}/35 + (10-15)^{2}/15 + (40-35)^{2}/35 = 25/15 + 25/35 + 25/15 + 25/35 = 50/15 + 50/35 = 10/3 + 10/7 = 100/21 \\approx 4.762$",

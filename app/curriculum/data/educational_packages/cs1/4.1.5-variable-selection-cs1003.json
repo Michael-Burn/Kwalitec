@@ -240,7 +240,7 @@
     "steps": [
       {
         "id": "S1",
-        "label": "Adjusted R² for Model A",
+        "label": "$R^{2}_{\\mathrm{adj}}$ for Model A",
         "attempt_cue": "Substitute $n = 60$, $p = 3$, $R^{2} = 0.55$ into the formula.",
         "explanation": "Adjusted R² penalises extra parameters so that raw R² inflation from adding variables is not automatic preference.",
         "calculation": "$R^{2}_{\\mathrm{adj},A} = 1 - (1 - 0.55) \\times 59 / 56 = 1 - 0.45 \\times 59/56 = 1 - 26.55/56 \\approx 0.5259$",
@@ -248,7 +248,7 @@
       },
       {
         "id": "S2",
-        "label": "Adjusted R² for Model B",
+        "label": "$R^{2}_{\\mathrm{adj}}$ for Model B",
         "attempt_cue": "Substitute $n = 60$, $p = 6$, $R^{2} = 0.58$.",
         "explanation": "The larger model starts with higher raw R² but faces a heavier penalty.",
         "calculation": "$R^{2}_{\\mathrm{adj},B} = 1 - (1 - 0.58) \\times 59 / 53 = 1 - 0.42 \\times 59/53 = 1 - 24.78/53 \\approx 0.5325$",
@@ -256,9 +256,9 @@
       },
       {
         "id": "S3",
-        "label": "Select by adjusted R²",
+        "label": "Select by $R^{2}_{\\mathrm{adj}}$",
         "attempt_cue": "Compare the two adjusted values.",
-        "explanation": "Prefer the larger adjusted R². Here Model B wins after the penalty.",
+        "explanation": "Prefer the larger $R^{2}_{\\mathrm{adj}}$. Here Model B wins after the penalty.",
         "calculation": "$0.5325 > 0.5259 \\Rightarrow$ prefer Model B on adjusted $R^{2}$",
         "result": "Prefer Model B (p = 6)"
       }

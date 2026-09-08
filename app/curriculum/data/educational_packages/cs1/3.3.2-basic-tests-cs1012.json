@@ -251,7 +251,7 @@
         "id": "S1",
         "label": "Standard error and z",
         "attempt_cue": "Compute $\\frac{\\sigma}{\\sqrt{n}}$ and then z.",
-        "explanation": "One-sample z-test standardises the sample mean under H₀.",
+        "explanation": "One-sample z-test standardises the sample mean under $H_{0}$.",
         "calculation": "$\\frac{\\sigma}{\\sqrt{n}} = 60/6 = 10$; $z = (520 - 500)/10 = 20/10 = 2$",
         "result": "z = 2"
       },

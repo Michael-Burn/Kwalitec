@@ -126,7 +126,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Link maps μ to η; canonical is family-specific natural parameter link. Software default needs a warrant, and link is not eta itself.",
+      "explanation": "Link maps $\\mu$ to $\\eta$; canonical is family-specific natural parameter link. Software default needs a warrant, and link is not eta itself.",
       "model_answer": "Link maps $\\mu$ to $\\eta$; canonical examples logit (binomial), log (Poisson).",
       "common_mistake": "Treating software default as canonical or equating link with eta.",
       "success_criteria": [
@@ -225,7 +225,7 @@
   },
   "published_at": "2026-08-03",
   "worked_example": {
-    "title": "Logit and log canonical links with numeric η",
+    "title": "Logit and log canonical links with numeric $\\eta$",
     "problem_statement": "A GLM uses a link $g$ so that $\\eta = g(\\mu) = x^{\\mathrm{T}}\\beta$.\n(a) For a binomial probability $\\mu = 0.8$, compute the canonical logit link $\\eta = \\ln(\\mu/(1 - \\mu))$.\n(b) For a Poisson mean with linear predictor $\\eta = 0.5$, compute $\\mu = e^{\\eta}$ under the canonical log link.\nState why logit and log are the canonical links for binomial and Poisson respectively.",
     "given": [
       {
@@ -245,7 +245,7 @@
         "id": "S1",
         "label": "Binomial canonical logit",
         "attempt_cue": "Compute ln(0.8/0.2).",
-        "explanation": "The link maps the mean μ to the linear predictor η. For binomial, the canonical link is the logit.",
+        "explanation": "The link maps the mean $\\mu$ to the linear predictor $\\eta$. For binomial, the canonical link is the logit.",
         "calculation": "$\\eta = \\ln(0.8/0.2) = \\ln 4 \\approx 1.3863$",
         "result": "$\\eta \\approx 1.3863$"
       },

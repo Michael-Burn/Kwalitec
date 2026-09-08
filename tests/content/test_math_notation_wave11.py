@@ -1,4 +1,7 @@
-"""Wave 11 batch 1 mathematical notation: KaTeX, exclusions, scoring, ledger."""
+"""Wave 11 batch 1 mathematical notation: KaTeX, exclusions, scoring, ledger.
+
+Batch 2 coverage lives in ``test_math_notation_wave11_batch2.py``.
+"""
 
 # Representative samples use verbatim package text; line length is expected.
 # ruff: noqa: E501
@@ -819,8 +822,8 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["needs_manual_review"] == 175
-    assert checked["totals"]["migrated"] == 1951
+    assert checked["totals"]["needs_manual_review"] == 115
+    assert checked["totals"]["migrated"] == 1992
     assert live["totals"] == checked["totals"]
 
     pending = [
@@ -829,18 +832,19 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         for item in row["items"]
         if item["needs_manual_review"]
     ]
-    assert len(pending) == 175
+    assert len(pending) == 115
     pending_packages = sorted({pkg for pkg, _ in pending})
     assert wave11.WAVE11_REMAINDER_START_PACKAGE in pending_packages
     assert pending_packages[0] == wave11.WAVE11_REMAINDER_START_PACKAGE
-    assert len(pending_packages) == 55
-    batch1 = set(wave11.WAVE11_BATCH1_FILES)
-    assert batch1.isdisjoint(set(pending_packages))
+    assert pending_packages == list(wave11.WAVE11_REMAINDER_PACKAGES)
+    assert len(pending_packages) == 33
+    closed = set(wave11.WAVE11_BATCH1_FILES) | set(wave11.WAVE11_BATCH2_FILES)
+    assert closed.isdisjoint(set(pending_packages))
 
     batch1_manual = 0
     batch1_migrated_new = 0
     for row in live["packages"]:
-        if row["package_file"] not in batch1:
+        if row["package_file"] not in set(wave11.WAVE11_BATCH1_FILES):
             continue
         for item in row["items"]:
             if item["needs_manual_review"]:

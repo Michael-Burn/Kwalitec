@@ -268,14 +268,14 @@
       {
         "id": "S3",
         "label": "Decision at $\\alpha = 0.05$",
-        "attempt_cue": "Compare p with α.",
+        "attempt_cue": "Compare $p$ with $\\alpha$.",
         "explanation": "Reject $H_{0}$ when $p \\leq \\alpha$. Here $p = 0.0358 < 0.05$.",
         "calculation": "$0.0358 < 0.05 \\Rightarrow reject H_{0}$",
         "result": "Reject $H_{0}$ at 5%."
       }
     ],
     "final_answer": "$Two-sided p-value = 0.0358$; $reject H_{0}: \\mu = £10,000 at \\alpha = 0.05.$",
-    "common_pitfall": "Reporting only the one-sided tail 0.0179 as the p-value for a two-sided alternative, or comparing z to α directly (2.1 vs 0.05).",
+    "common_pitfall": "Reporting only the one-sided tail 0.0179 as the p-value for a two-sided alternative, or comparing $z$ to $\\alpha$ directly ($2.1$ vs $0.05$).",
     "syllabus_ref": "3.3.1"
   }
 }

@@ -244,7 +244,7 @@
       {
         "id": "S1",
         "label": "Lower index",
-        "attempt_cue": "Evaluate ⌊α(B+1)⌋ and map to an order statistic.",
+        "attempt_cue": "Evaluate $\\lfloor\\alpha(B+1)\\rfloor$ and map to an order statistic.",
         "explanation": "The percentile method reads quantiles from the ordered bootstrap replicates rather than using a Normal SE.",
         "calculation": "$\\lfloor 0.05 \\times 11\\rfloor = \\lfloor 0.55\\rfloor = 0 \\rightarrow$ use the 1st order statistic",
         "result": "lower index = 1"
@@ -252,7 +252,7 @@
       {
         "id": "S2",
         "label": "Upper index",
-        "attempt_cue": "Evaluate ⌈(1−α)(B+1)⌉ and clamp to B if needed.",
+        "attempt_cue": "Evaluate $\\lceil(1-\\alpha)(B+1)\\rceil$ and clamp to B if needed.",
         "explanation": "Symmetric upper quantile for the same α.",
         "calculation": "$\\lceil 0.95 \\times 11\\rceil = \\lceil 10.45\\rceil = 11 \\rightarrow$ clamp to 10",
         "result": "upper index = 10"
@@ -267,7 +267,7 @@
       }
     ],
     "final_answer": "Approximate 90% percentile bootstrap CI: (£1,900, £2,150).",
-    "common_pitfall": "Building a Wald interval from the bootstrap SE instead of reading percentile order statistics, or taking the 2nd and 9th values without applying the α(B+1) index rule given in the problem.",
+    "common_pitfall": "Building a Wald interval from the bootstrap SE instead of reading percentile order statistics, or taking the 2nd and 9th values without applying the $\\alpha(B+1)$ index rule given in the problem.",
     "syllabus_ref": "3.2.8"
   }
 }

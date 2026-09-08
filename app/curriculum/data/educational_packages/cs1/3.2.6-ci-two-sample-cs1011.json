@@ -260,7 +260,7 @@
       {
         "id": "S3",
         "label": "Interval",
-        "attempt_cue": "Compute 600 ± 1.96 × 250.777.",
+        "attempt_cue": "Compute $600 \\pm 1.96 \\times 250.777$.",
         "explanation": "Two-sample z-interval with known variances.",
         "calculation": "$1.96 \\times 250.777 \\approx 491.522$; $600 - 491.522 \\approx 108.478$; $600 + 491.522 \\approx 1091.522$",
         "result": "(108.478, 1091.522)"

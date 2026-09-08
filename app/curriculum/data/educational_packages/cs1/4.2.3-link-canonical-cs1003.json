@@ -221,7 +221,7 @@
   "absorption_note": "EA-006 structure absorb day 3/3. Grandfather excellence now Campaign member",
   "published_at": "2026-08-01",
   "worked_example": {
-    "title": "Logit and log canonical links with numeric η",
+    "title": "Logit and log canonical links with numeric $\\eta$",
     "problem_statement": "A GLM uses a link $g$ so that $\\eta = g(\\mu) = x^{\\mathrm{T}}\\beta$.\n(a) For a binomial probability $\\mu = 0.25$, compute the canonical logit link $\\eta = \\ln(\\mu/(1 - \\mu))$.\n(b) For a Poisson mean with linear predictor $\\eta = 1.2$, compute $\\mu = e^{\\eta}$.\nState the canonical links for binomial and Poisson.",
     "given": [
       {

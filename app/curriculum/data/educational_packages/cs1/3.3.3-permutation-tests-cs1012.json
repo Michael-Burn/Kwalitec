@@ -248,7 +248,7 @@
       {
         "id": "S1",
         "label": "Observed difference",
-        "attempt_cue": "Compute |mean(A) − mean(B)|.",
+        "attempt_cue": "Compute $|\\mathrm{mean}(A) - \\mathrm{mean}(B)|$.",
         "explanation": "The permutation test needs the observed value of the chosen statistic.",
         "calculation": "$\\bar{x}_A = 36/3 = 12$; $\\bar{x}_B = 28/3 \\approx 9.333$; $|12 - 28/3| = 8/3 \\approx 2.667$",
         "result": "$|\\bar{x}_A - \\bar{x}_B| = 8/3$"
@@ -257,7 +257,7 @@
         "id": "S2",
         "label": "Exact p-value",
         "attempt_cue": "Divide the number of extreme permutations by 20.",
-        "explanation": "Under H₀ every assignment of three labels to A is equally likely; the p-value is the proportion at least as extreme as observed.",
+        "explanation": "Under $H_{0}$ every assignment of three labels to A is equally likely; the p-value is the proportion at least as extreme as observed.",
         "calculation": "p = 4/20 = 0.2",
         "result": "p = 0.2"
       },

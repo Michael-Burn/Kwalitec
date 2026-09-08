@@ -234,7 +234,7 @@
       {
         "symbol": "df",
         "value": "4",
-        "note": "5 − 1 categories"
+        "note": "$5 - 1$ categories"
       },
       {
         "symbol": "$\\chi^{2}_{4,0.95}$",
@@ -254,7 +254,7 @@
       },
       {
         "id": "S2",
-        "label": "Sum to χ²",
+        "label": "Sum to $\\chi^{2}$",
         "attempt_cue": "Add the five contributions.",
         "explanation": "The GOF statistic is the sum of the category contributions.",
         "calculation": "0.2 + 0.2 + 0 + 1.25 + 1.25 = 2.9",

@@ -1,0 +1,207 @@
+{
+  "packages": [
+    "4.2.2-mean-variance-cs1003.json",
+    "4.2.2-mean-variance-cs1014.json",
+    "4.2.3-link-canonical-cs1014.json"
+  ],
+  "items": [
+    {
+      "package_file": "4.2.2-mean-variance-cs1003.json",
+      "item_id": "cs1003-4.2.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1003.json",
+      "item_id": "cs1003-4.2.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1014.json",
+      "item_id": "cs1014-4.2.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1014.json",
+      "item_id": "cs1014-4.2.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.3-link-canonical-cs1014.json",
+      "item_id": "cs1014-4.2.3-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.3-link-canonical-cs1014.json",
+      "item_id": "cs1014-4.2.3-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    }
+  ]
+}

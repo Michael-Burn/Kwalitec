@@ -262,7 +262,7 @@
       {
         "id": "S3",
         "label": "Interval",
-        "attempt_cue": "Compute 0.22 ± 1.96 × 0.041425.",
+        "attempt_cue": "Compute $0.22 \\pm 1.96 \\times 0.041425$.",
         "explanation": "Wald interval for a proportion.",
         "calculation": "$1.96 \\times 0.041425 \\approx 0.08119$; $0.22 - 0.08119 \\approx 0.13881$; $0.22 + 0.08119 \\approx 0.30119$",
         "result": "(0.13881, 0.30119)"

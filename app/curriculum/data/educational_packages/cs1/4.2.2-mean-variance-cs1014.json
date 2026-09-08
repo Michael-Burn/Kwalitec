@@ -125,7 +125,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Family structure specifies mean, variance, V(mu), and scale. The link maps μ to η and is a separate object from the response variance structure.",
+      "explanation": "Family structure specifies mean, variance, $V(\\mu)$, and scale. The link maps $\\mu$ to $\\eta$ and is a separate object from the response variance structure.",
       "model_answer": "Mean, variance, $V(mu)$, scale. Poisson: $E[Y]$=Var[Y]=lambda.",
       "common_mistake": "Letting link choice substitute for family mean-variance structure.",
       "success_criteria": [
@@ -169,7 +169,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Poisson has mean-variance equality; Normal has constant variance with scale σ². Link choice does not replace these family facts.",
+      "explanation": "Poisson has mean-variance equality; Normal has constant variance with scale $\\sigma^{2}$. Link choice does not replace these family facts.",
       "model_answer": "Poisson $V(\\mu)=\\mu$; Normal $V(\\mu)$=1, scale $\\sigma^{2}$. Refuse link-as-structure.",
       "common_mistake": "Accepting link choice as finishing mean-variance structure.",
       "success_criteria": [
@@ -224,7 +224,7 @@
   },
   "published_at": "2026-08-03",
   "worked_example": {
-    "title": "Mean, variance, V(μ), and scale for three families",
+    "title": "Mean, variance, $V(\\mu)$, and scale for three families",
     "problem_statement": "For three candidate GLM responses, evaluate mean, variance, variance function $V(\\mu)$, and scale $\\varphi$ where relevant:\n(1) Poisson with $\\lambda = 5$;\n(2) $\\mathrm{Binomial}(n = 10, p = 0.3)$;\n(3) Gamma with mean $\\mu = 10$ and shape $\\alpha = 4$ (so $\\operatorname{Var} = \\mu^{2}/\\alpha$).",
     "given": [
       {
