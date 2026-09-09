@@ -153,7 +153,8 @@
           "misconception_tag": "software_only_method"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO03"
     },
     {
       "episode_id": "lep-cs1004-2.1c-cp-01",
@@ -177,7 +178,8 @@
       "success_criteria": [
         "Enters a value within 0.001 of 0.3297.",
         "Uses the Exponential CDF with mean θ, not the survival function alone."
-      ]
+      ],
+      "objective_id": "CS1-B-T01-LO03"
     }
   ],
   "reflection": {

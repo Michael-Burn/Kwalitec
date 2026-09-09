@@ -423,6 +423,7 @@ def _scoreable_from_check(
             accepted=check.accepted_keywords or ("explain", "link"),
         )
         choices = ()
+    authored_objective = str(check.objective_id or "").strip()
     return ScoreablePracticeItem(
         item_id=check.item_id or check.episode_id,
         prompt=check.prompt,
@@ -437,6 +438,7 @@ def _scoreable_from_check(
         model_answer=check.model_answer,
         common_mistake=check.common_mistake,
         next_action="Continue to the next Knowledge Check or Reflection.",
+        objective_ids=(authored_objective,) if authored_objective else (),
         topic_id=pack.topic_code,
         topic_keywords=pack.topic_title_keywords,
         choices=choices,

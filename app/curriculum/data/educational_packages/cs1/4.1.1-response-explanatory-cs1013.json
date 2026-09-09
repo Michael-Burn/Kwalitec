@@ -157,7 +157,8 @@
           "misconception_tag": "model_form_first"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO01"
     },
     {
       "episode_id": "lep-cs1013-4.1.1-cp-01",
@@ -201,7 +202,8 @@
           "misconception_tag": "model_form_first"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO01"
     }
   ],
   "reflection": {

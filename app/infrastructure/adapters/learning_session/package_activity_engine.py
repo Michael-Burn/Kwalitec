@@ -24,6 +24,9 @@ from app.application.learning_session.scoreable_practice import (
 from app.application.learning_session.substance_planner import (
     EducationalSubstancePlanner,
 )
+from app.application.objective_evidence.recorder import (
+    ObjectiveAssessmentEvidenceRecorder,
+)
 from app.infrastructure.adapters.learning_session.persistence import (
     LearningSessionPersistenceAdapter,
 )
@@ -45,12 +48,19 @@ class PackageActivityEngine:
         store: SessionDocumentStore | None = None,
         persistence: LearningSessionPersistenceAdapter | None = None,
         planner: EducationalSubstancePlanner | None = None,
+        objective_evidence_recorder: ObjectiveAssessmentEvidenceRecorder
+        | None = None,
     ) -> None:
         self._store = store or SessionDocumentStore()
         self._persistence = persistence or LearningSessionPersistenceAdapter(
             store=self._store
         )
         self._planner = planner or EducationalSubstancePlanner()
+        # Assessment Evidence write path only; never read by Twin / Policy /
+        # Spacing / Decision Engine. Untagged items produce no rows.
+        self._objective_evidence_recorder = (
+            objective_evidence_recorder or ObjectiveAssessmentEvidenceRecorder()
+        )
 
     def get_current_activity_opaque(
         self,
@@ -106,6 +116,20 @@ class PackageActivityEngine:
         topic = str(seq.get("topic_title") or topic_title or "today's topic")
         scoreable = ScoreablePracticeItem.from_opaque(item.get("scoreable"))
         score = score_practice_response(scoreable, response)
+        # OEA Phase 2: durable Assessment Evidence for authored objective tags
+        # only. No Twin / Spacing / Policy V1 / Decision Engine notification.
+        package_id = str(
+            seq.get("educational_package_id")
+            or item.get("package_id")
+            or ""
+        ).strip()
+        self._objective_evidence_recorder.record_if_tagged(
+            student_id=student_id,
+            session_id=session_id,
+            package_id=package_id,
+            scoreable=scoreable,
+            score=score,
+        )
         explanation = _explanation_for_stage(
             stage,
             topic=topic,

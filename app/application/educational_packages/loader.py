@@ -373,6 +373,7 @@ def _parse_package(
                 numeric_tolerance=_parse_optional_float(
                     item.get("numeric_tolerance")
                 ),
+                objective_id=str(item.get("objective_id") or "").strip(),
             )
         )
 
@@ -461,4 +462,5 @@ def _parse_package(
             for t in (raw.get("return_targets") or ())
             if str(t).strip()
         ),
+        topic_focus_lo=str(raw.get("topic_focus_lo") or "").strip(),
     )

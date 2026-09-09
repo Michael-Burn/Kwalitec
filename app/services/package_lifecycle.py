@@ -599,6 +599,21 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         notes="On mission spine (derive step).",
     ),
     PackageEntry(
+        path="app/application/objective_evidence",
+        layer="application",
+        responsibility=(
+            "Canonical LO identity + append-only Assessment Evidence "
+            "(OEA Phase 1-2)"
+        ),
+        owner="Objective Evidence Architecture",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Write-only Assessment Evidence path; unread by Twin / Spacing / "
+            "Policy V1 / Decision Engine in this wave."
+        ),
+    ),
+    PackageEntry(
         path="app/application/educational_quality",
         layer="application",
         responsibility="Educational quality certification",

@@ -153,7 +153,8 @@
           "misconception_tag": "any_formula"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO01"
     },
     {
       "episode_id": "lep-cs1016-3.1.1-cp-01",
@@ -177,7 +178,8 @@
         "Enters a value within 0.001 of 2.",
         "Uses the sample mean as MoM for the Poisson mean λ."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "objective_id": "CS1-C-T01-LO01"
     }
   ],
   "reflection": {

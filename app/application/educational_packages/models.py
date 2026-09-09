@@ -37,6 +37,8 @@ class KnowledgeCheck:
     correct_choice_id: str = ""
     # Numeric scoring — optional; None → scorer default 1e-6.
     numeric_tolerance: float | None = None
+    # Authored curriculum LO id (OEA Phase 2 sample). Empty when untagged.
+    objective_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -153,6 +155,8 @@ class CertifiedEducationalPackage:
     worked_example: WorkedExample | None = None
     # Revision block scope (syllabus LO / topic codes). Empty for non-revision.
     return_targets: tuple[str, ...] = ()
+    # Syllabus LO code this package focuses (e.g. "2.1.4"). Empty when unset.
+    topic_focus_lo: str = ""
 
     @property
     def is_publication_approved(self) -> bool:
