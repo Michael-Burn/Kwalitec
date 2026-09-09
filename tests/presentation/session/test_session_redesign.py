@@ -200,6 +200,58 @@ def test_practice_stage_mle_numeric_is_maximally_focused(app):
     assert "ds-stage-indicator" not in html
 
 
+@pytest.mark.parametrize(
+    "package_file",
+    [
+        "2.2.4-linear-combinations-cs1005.json",
+        "2.3.2-mean-variance-conditioning-cs1006.json",
+        "2.3.1-conditional-expectation-cs1006.json",
+    ],
+)
+def test_item7_converted_checkpoints_render_numeric_input(app, package_file: str):
+    """Item-7 conversions: practice stage uses decimal input, not MCQ radios."""
+    pkg = _load_package(package_file)
+    cp = next(k for k in pkg["knowledge_checks"] if k["kind"] == "checkpoint")
+    assert cp["response_type"] == "numeric"
+    assert "choices" not in cp
+    assert "correct_choice_id" not in cp
+    assert cp["accepted_keywords"]
+    assert cp.get("numeric_tolerance") is not None
+
+    study = _base_page(
+        content_stage="practice",
+        stage_position_label="Practice",
+        content_title=cp["title"],
+        content_intro_line=cp["prompt"],
+        response_type="numeric",
+        show_answer_input=True,
+        primary_kind="answer_form",
+        primary_label="Submit answer",
+        answer_prompt="Your numeric answer",
+    )
+
+    class _Field:
+        name = "response"
+        id = "response"
+
+        def __call__(self, **kwargs):
+            return ""
+
+    answer_form = SimpleNamespace(
+        hidden_tag=lambda: "",
+        session_id=lambda: "",
+        activity_id=lambda: "",
+        response=_Field(),
+        choice=SimpleNamespace(name="choice"),
+    )
+    html = _render(app, study, answer_form=answer_form)
+    assert 'inputmode="decimal"' in html
+    assert 'class="ds-input"' in html
+    assert "ds-exam-row" not in html
+    assert 'type="radio"' not in html
+    assert "practice_choices" not in html or cp["prompt"] in html
+
+
 def test_css_declares_session_measure_and_learning_state_tokens():
     css = (ROOT / "app/static/css/session/session_study.css").read_text(
         encoding="utf-8"

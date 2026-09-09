@@ -161,44 +161,24 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.4-cp-01",
       "title": "Checkpoint: 2.2.4",
-      "prompt": "Closed-book. $\\operatorname{Var}(X)$=4, $\\operatorname{Var}(Y)$=9, and $\\operatorname{Cov}(X,Y)$=2. What is $\\operatorname{Var}(2X-Y)$?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. $\\operatorname{Var}(X)$=4, $\\operatorname{Var}(Y)$=9, and $\\operatorname{Cov}(X,Y)$=2. Compute $\\operatorname{Var}(2X-Y)$. Enter the numeric value.",
+      "response_type": "numeric",
       "body": "Compute the variance with its covariance term.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Expand $a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y)$ with $a=2$ and $b=-1$.",
+        "The cross-term $2ab\\operatorname{Cov}$ is negative here because $b=-1$."
       ],
-      "accepted_keywords": [],
-      "explanation": "With a=2 and b=-1, the cross-term is negative: 2abCov=-8.",
-      "model_answer": "16+9-8=17.",
+      "accepted_keywords": [
+        "17"
+      ],
+      "numeric_tolerance": 0.5,
+      "explanation": "With a=2 and b=-1, the cross-term is negative: 2abCov=-8. So $\\operatorname{Var}(2X-Y)=2^{2}(4)+(-1)^{2}(9)+2(2)(-1)(2)=16+9-8=17$.",
+      "model_answer": "17",
       "common_mistake": "Dropping covariance for dependent variables or losing the negative coefficient in the cross-term.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$\\operatorname{Var}(2X-Y)=2^{2}(4)+(-1)^{2}(9)+2(2)(-1)(2)=16+9-8=17$.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$\\operatorname{Var}(2X-Y)$=16+9=25 because covariance is omitted whenever the variables differ.",
-          "misconception_tag": "covariance_dropped"
-        },
-        {
-          "id": "c",
-          "label": "$\\operatorname{Var}(2X-Y)$=2(4)-9+2(2)(-1)(2)=-9 because variance follows the signs in the linear combination.",
-          "misconception_tag": "variance_not_squared"
-        },
-        {
-          "id": "d",
-          "label": "$\\operatorname{Var}(2X-Y)$=16+9+8=33 because covariance always enters with a positive sign.",
-          "misconception_tag": "cross_term_sign_ignored"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.5 of 17.",
+        "Retains the signed covariance cross-term in $\\operatorname{Var}(2X-Y)$."
+      ]
     }
   ],
   "reflection": {

@@ -161,44 +161,24 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.1-cp-01",
       "title": "Checkpoint: 2.3.1",
-      "prompt": "Closed-book. For $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40, what is $E[Y|X=1]$?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. For $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40, compute $E[Y|X=1]$. Enter the value as a decimal (not a fraction).",
+      "response_type": "numeric",
       "body": "Compute the conditional mean from the joint PMF.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Normalise the $X=1$ row by $P(X=1)=0.30+0.40$, then average Y under that conditional distribution.",
+        "Report a decimal such as 0.571, not a fraction such as 4/7."
       ],
-      "accepted_keywords": [],
-      "explanation": "Normalise the X=1 row, then average Y under that conditional distribution.",
-      "model_answer": "$E[Y|X=1]=0.40/(0.30+0.40)\\approx 0.571$.",
+      "accepted_keywords": [
+        "0.571"
+      ],
+      "numeric_tolerance": 0.001,
+      "explanation": "Normalise the X=1 row, then average Y under that conditional distribution. Given $X=1$, $P(Y=1|X=1)=0.40/0.70\\approx 0.571$, so $E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)\\approx 0.571$.",
+      "model_answer": "0.571",
       "common_mistake": "Using $E[Y]$ or the unnormalised joint cell instead of the conditional distribution.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Given $X=1$, $P(Y=1|X=1)=0.40/0.70\\approx 0.571$, so $E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)\\approx 0.571$.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$E[Y|X=1]=E[Y]$=0.60 because conditioning does not change an expectation.",
-          "misconception_tag": "conditional_equals_unconditional"
-        },
-        {
-          "id": "c",
-          "label": "$E[Y|X=1]$=0.40 because the joint cell $P(1,1)$ needs no normalisation.",
-          "misconception_tag": "joint_cell_as_conditional_mean"
-        },
-        {
-          "id": "d",
-          "label": "$E[Y|X=1]$=0.70 because the marginal $P(X=1)$ is itself the conditional mean of Y.",
-          "misconception_tag": "conditioning_marginal_as_mean"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a decimal within 0.001 of 0.571.",
+        "Forms $E[Y|X=1]$ from the normalised $X=1$ slice, not from $E[Y]$ or a raw joint cell."
+      ]
     }
   ],
   "reflection": {

@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-08T08:20:49Z",
+  "generated_at": "2026-09-09T12:45:59Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2203,
-    "already_compliant": 2074,
+    "mathish_strings": 2199,
+    "already_compliant": 2070,
     "needs_migration": 0,
     "correctly_excluded": 129,
     "needs_manual_review": 0,
-    "confident_automated": 2203,
+    "confident_automated": 2199,
     "remaining_backlog": 0,
-    "migrated": 2055,
+    "migrated": 2051,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2074,
+    "fully_covered_by_current_typesetting": 2070,
     "manual_review_prose_exclusion": 128,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2055,
-    "equationish": 1507,
-    "actuarial_fn": 502,
+    "dollar_delimited": 2051,
+    "equationish": 1502,
+    "actuarial_fn": 499,
     "ascii_approx": 234,
-    "bare_latex": 195,
+    "bare_latex": 196,
     "greek": 115,
     "compound": 26,
     "unicode_ops": 11
@@ -2931,8 +2931,8 @@
           "package_file": "2.2.4-linear-combinations-cs1005.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. $\\operatorname{Var}(X)$=4, $\\operatorname{Var}(Y)$=9, and $\\operatorname{Cov}(X,Y)$=2. What is $\\operatorname{Var}(2X-Y)$?",
-          "text_hash": "06e58672e1316f71",
+          "text": "Closed-book. $\\operatorname{Var}(X)$=4, $\\operatorname{Var}(Y)$=9, and $\\operatorname{Cov}(X,Y)$=2. Compute $\\operatorname{Var}(2X-Y)$. Enter the numeric value.",
+          "text_hash": "250bf9f7c317a09f",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -2946,10 +2946,45 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
           "package_file": "2.2.4-linear-combinations-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Var}(2X-Y)=2^{2}(4)+(-1)^{2}(9)+2(2)(-1)(2)=16+9-8=17$.",
-          "text_hash": "0eac35a06fb9ad94",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Expand $a^{2}\\operatorname{Var}(X)+b^{2}\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y)$ with $a=2$ and $b=-1$.",
+          "text_hash": "ca81ba018970aec8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+          "package_file": "2.2.4-linear-combinations-cs1005.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "The cross-term $2ab\\operatorname{Cov}$ is negative here because $b=-1$.",
+          "text_hash": "0b25476fb4585e87",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
+          "package_file": "2.2.4-linear-combinations-cs1005.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "With a=2 and b=-1, the cross-term is negative: 2abCov=-8. So $\\operatorname{Var}(2X-Y)=2^{2}(4)+(-1)^{2}(9)+2(2)(-1)(2)=16+9-8=17$.",
+          "text_hash": "45f506d5f8c65d12",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -2964,52 +2999,17 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
           "package_file": "2.2.4-linear-combinations-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Var}(2X-Y)$=16+9=25 because covariance is omitted whenever the variables differ.",
-          "text_hash": "c4065cd03039a489",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Retains the signed covariance cross-term in $\\operatorname{Var}(2X-Y)$.",
+          "text_hash": "64b6fabb6c027042",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
+          "risk_tier": 4,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
-          "package_file": "2.2.4-linear-combinations-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Var}(2X-Y)$=2(4)-9+2(2)(-1)(2)=-9 because variance follows the signs in the linear combination.",
-          "text_hash": "1f00e4d8cf73ceea",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-LINEAR-COMBINATIONS",
-          "package_file": "2.2.4-linear-combinations-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Var}(2X-Y)$=16+9+8=33 because covariance always enters with a positive sign.",
-          "text_hash": "ed14de22584d826f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
+            "dollar_delimited"
           ]
         },
         {
@@ -3804,8 +3804,8 @@
       "topic_code": "2.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-ZETA",
       "counts": {
-        "mathish_strings": 40,
-        "already_compliant": 40,
+        "mathish_strings": 38,
+        "already_compliant": 38,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -4051,8 +4051,8 @@
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. For $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40, what is $E[Y|X=1]$?",
-          "text_hash": "bca3d5a11219c614",
+          "text": "Closed-book. For $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40, compute $E[Y|X=1]$. Enter the value as a decimal (not a fraction).",
+          "text_hash": "622d95cb3b554962",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4067,14 +4067,32 @@
         {
           "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$E[Y|X=1]=0.40/(0.30+0.40)\\approx 0.571$.",
-          "text_hash": "869a68617c7a4ea5",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Normalise the $X=1$ row by $P(X=1)=0.30+0.40$, then average Y under that conditional distribution.",
+          "text_hash": "5a0b95f18dc3fe3f",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
+          "package_file": "2.3.1-conditional-expectation-cs1006.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Normalise the X=1 row, then average Y under that conditional distribution. Given $X=1$, $P(Y=1|X=1)=0.40/0.70\\approx 0.571$, so $E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)\\approx 0.571$.",
+          "text_hash": "d078c0fe094b5ab6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -4102,68 +4120,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Given $X=1$, $P(Y=1|X=1)=0.40/0.70\\approx 0.571$, so $E[Y|X=1]=0(0.30/0.70)+1(0.40/0.70)\\approx 0.571$.",
-          "text_hash": "7e800e57ff253673",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Forms $E[Y|X=1]$ from the normalised $X=1$ slice, not from $E[Y]$ or a raw joint cell.",
+          "text_hash": "1b492185b975c79f",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
-          "package_file": "2.3.1-conditional-expectation-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y|X=1]=E[Y]$=0.60 because conditioning does not change an expectation.",
-          "text_hash": "c09f893ee1326b44",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
-          "package_file": "2.3.1-conditional-expectation-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y|X=1]$=0.40 because the joint cell $P(1,1)$ needs no normalisation.",
-          "text_hash": "746221ee382a9b26",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-CONDITIONAL-EXPECTATION",
-          "package_file": "2.3.1-conditional-expectation-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y|X=1]$=0.70 because the marginal $P(X=1)$ is itself the conditional mean of Y.",
-          "text_hash": "b40f8cb2cbe388d5",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -4532,8 +4496,8 @@
       "topic_code": "2.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-ZETA",
       "counts": {
-        "mathish_strings": 36,
-        "already_compliant": 36,
+        "mathish_strings": 34,
+        "already_compliant": 34,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -4707,8 +4671,8 @@
           "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. $P(X=1)$=0.4, $E[Y|X=0]$=10, and $E[Y|X=1]$=20. What is $E[Y]$?",
-          "text_hash": "cd9e3444b1904df6",
+          "text": "Closed-book. $P(X=1)$=0.4, $E[Y|X=0]$=10, and $E[Y|X=1]$=20. Compute $E[Y]$. Enter the numeric value.",
+          "text_hash": "ddfabd725a7e65ae",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4723,10 +4687,10 @@
         {
           "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
           "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$0.6\\times 10+0.4\\times 20=14.$",
-          "text_hash": "af8708fa6bbacb77",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Use $E[Y]=E[E[Y|X]]$: weight each conditional mean by $P(X)$.",
+          "text_hash": "2bee1efef3dbef72",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4734,6 +4698,43 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "With $P(X=1)=0.4$, take $P(X=0)=0.6$.",
+          "text_hash": "4b9823d24e833bb3",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
+          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "The outer expectation weights each conditional mean by the probability of its condition: $E[Y]=(0.6)(10)+(0.4)(20)=14$.",
+          "text_hash": "67da77431710278e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
             "equationish"
           ]
         },
@@ -4752,78 +4753,6 @@
           "signals": [
             "dollar_delimited",
             "actuarial_fn"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
-          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y]$=(0.6)(10)+(0.4)(20)=14.",
-          "text_hash": "5d38bd365d991e1d",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
-          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y]$=20 because $E[Y|X=1]$ is the conditional mean for the event explicitly given.",
-          "text_hash": "5bfd75d8988565b4",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
-          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y]$=(10+20)/2=15 because conditional means always receive equal weight.",
-          "text_hash": "4606f1622a6f1e5b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.3-MEAN-VARIANCE-CONDITIONING",
-          "package_file": "2.3.2-mean-variance-conditioning-cs1006.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[Y]=E[Y|X]$, so the answer remains the two-valued function 10 or 20 rather than one unconditional mean.",
-          "text_hash": "c3fe169dd33c530f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
           ]
         },
         {
@@ -40050,5 +39979,5 @@
       ]
     }
   ],
-  "content_fingerprint": "a769f5c99ae18b9ea9ac131a919da2515a436b26e9ef46f81b6cdf9d63a96827"
+  "content_fingerprint": "bbcb6985bd966bb320462dce2cf01535568f54d08e2e8cac71212acb287d27e6"
 }

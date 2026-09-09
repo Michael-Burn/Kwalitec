@@ -162,44 +162,24 @@
       "kind": "checkpoint",
       "item_id": "cs1006-2.3.2-cp-01",
       "title": "Checkpoint: 2.3.2",
-      "prompt": "Closed-book. $P(X=1)$=0.4, $E[Y|X=0]$=10, and $E[Y|X=1]$=20. What is $E[Y]$?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. $P(X=1)$=0.4, $E[Y|X=0]$=10, and $E[Y|X=1]$=20. Compute $E[Y]$. Enter the numeric value.",
+      "response_type": "numeric",
       "body": "Apply the tower property.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Use $E[Y]=E[E[Y|X]]$: weight each conditional mean by $P(X)$.",
+        "With $P(X=1)=0.4$, take $P(X=0)=0.6$."
       ],
-      "accepted_keywords": [],
-      "explanation": "The outer expectation weights each conditional mean by the probability of its condition.",
-      "model_answer": "$0.6\\times 10+0.4\\times 20=14.$",
+      "accepted_keywords": [
+        "14"
+      ],
+      "numeric_tolerance": 0.5,
+      "explanation": "The outer expectation weights each conditional mean by the probability of its condition: $E[Y]=(0.6)(10)+(0.4)(20)=14$.",
+      "model_answer": "14",
       "common_mistake": "Stopping at $E[Y|X]$ or averaging conditional means without probability weights.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$E[Y]$=(0.6)(10)+(0.4)(20)=14.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$E[Y]$=20 because $E[Y|X=1]$ is the conditional mean for the event explicitly given.",
-          "misconception_tag": "single_condition_as_unconditional"
-        },
-        {
-          "id": "c",
-          "label": "$E[Y]$=(10+20)/2=15 because conditional means always receive equal weight.",
-          "misconception_tag": "conditions_equally_weighted"
-        },
-        {
-          "id": "d",
-          "label": "$E[Y]=E[Y|X]$, so the answer remains the two-valued function 10 or 20 rather than one unconditional mean.",
-          "misconception_tag": "outer_expectation_missing"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.5 of 14.",
+        "Applies the tower property with probability weights, not an unweighted average of conditional means."
+      ]
     }
   ],
   "reflection": {

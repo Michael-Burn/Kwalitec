@@ -368,7 +368,7 @@ _MCQ_CONVERTED_STEMS = (
 )
 
 # Numeric checkpoint conversions: Checkpoint only → numeric; AR stays MCQ.
-# Pilot (2) + final catalogue-scoped batch (8).
+# Prior live 10 + item-7 content wave (3 Batch 5 checkpoints).
 _NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
     {
         "2.1.3-prob-quantiles-cs1004",
@@ -381,6 +381,9 @@ _NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
         "4.2.10-fit-interpret-cs1003",
         "5.1.6-credibility-premium-cs1003",
         "5.1.6-credibility-premium-cs1015",
+        "2.2.4-linear-combinations-cs1005",
+        "2.3.1-conditional-expectation-cs1006",
+        "2.3.2-mean-variance-conditioning-cs1006",
     }
 )
 
@@ -463,7 +466,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch6a_seen == 30
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
-    assert numeric_pilot_seen == 10  # one numeric checkpoint per converted package
+    assert numeric_pilot_seen == 13  # one numeric checkpoint per converted package
 
     # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")

@@ -34,6 +34,9 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1015-5.1.6-cp-01", "680", 0.5),
     ("cs1016-2.5.1-cp-01", "0.159", 0.001),
     ("cs1016-3.1.1-cp-01", "2", 0.001),
+    ("cs1005-2.2.4-cp-01", "17", 0.5),
+    ("cs1006-2.3.2-cp-01", "14", 0.5),
+    ("cs1006-2.3.1-cp-01", "0.571", 0.001),
 )
 
 
@@ -231,12 +234,12 @@ class TestParseNumberRejectsAmbiguousShapes:
 
 
 class TestLiveNumericCheckpointsUnchanged:
-    """All 10 live numeric checkpoints: clean decimals/integers only."""
+    """All 13 live numeric checkpoints: clean decimals/integers only."""
 
     def setup_method(self) -> None:
         reset_educational_package_cache()
 
-    def test_ten_live_numeric_checkpoints_exist(self) -> None:
+    def test_thirteen_live_numeric_checkpoints_exist(self) -> None:
         loader = EducationalPackageLoader()
         found: dict[str, tuple[str, float | None]] = {}
         for pack in loader.all_approved():
@@ -246,7 +249,7 @@ class TestLiveNumericCheckpointsUnchanged:
                         check.accepted_keywords[0],
                         check.numeric_tolerance,
                     )
-        assert len(found) == 10
+        assert len(found) == 13
         for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
             assert item_id in found
             assert found[item_id][0] == accepted
@@ -264,7 +267,7 @@ class TestLiveNumericCheckpointsUnchanged:
     ) -> None:
         """Exact / within-tol / outside-tol outcomes for real keys.
 
-        All 10 accepted values are clean decimals or integers with no
+        All 13 accepted values are clean decimals or integers with no
         punctuation this fix changes. Snapshot expectations match the
         pre-fix scorer on these probes.
         """
@@ -312,3 +315,88 @@ class TestLiveNumericCheckpointsUnchanged:
             assert mangled.scored is True
             assert mangled.correct is False
             assert mangled.feedback_outcome == "Incorrect"
+
+
+# ---------------------------------------------------------------------------
+# Item-7 content wave: 3 Batch 5 MCQ → numeric conversions
+# ---------------------------------------------------------------------------
+
+ITEM7_NUMERIC_CONVERSIONS = (
+    ("cs1005-2.2.4-cp-01", "17", 0.5),
+    ("cs1006-2.3.2-cp-01", "14", 0.5),
+    ("cs1006-2.3.1-cp-01", "0.571", 0.001),
+)
+
+
+def _scoreable_by_item_id(item_id: str) -> ScoreablePracticeItem:
+    loader = EducationalPackageLoader()
+    for pack in loader.all_approved():
+        substance = substance_from_package(
+            pack,
+            curriculum_identity=f"CS1:{pack.topic_code}",
+            topic_id=pack.topic_code,
+        )
+        for act in substance.activities:
+            if (
+                act.stage is EducationalStage.PRACTICE
+                and act.scoreable is not None
+                and act.scoreable.item_id == item_id
+            ):
+                return act.scoreable
+    raise AssertionError(f"scoreable item not found: {item_id}")
+
+
+class TestItem7NumericConversions:
+    """The 3 newly converted checkpoints score on the live numeric contract."""
+
+    def setup_method(self) -> None:
+        reset_educational_package_cache()
+
+    @pytest.mark.parametrize(
+        ("item_id", "accepted", "tolerance"),
+        ITEM7_NUMERIC_CONVERSIONS,
+    )
+    def test_converted_item_scores_exact_within_and_outside_tolerance(
+        self,
+        item_id: str,
+        accepted: str,
+        tolerance: float,
+    ) -> None:
+        item = _scoreable_by_item_id(item_id)
+        assert item.response_type is PracticeResponseType.NUMERIC
+        assert item.answer_key.accepted == (accepted,)
+        assert item.answer_key.numeric_tolerance == pytest.approx(tolerance)
+        assert item.choices == ()
+        assert item.answer_key.correct_choice_id == ""
+
+        expected = float(accepted)
+        exact = score_practice_response(item, accepted)
+        assert exact.scored is True and exact.correct is True
+        assert exact.feedback_outcome == "Correct"
+
+        near = score_practice_response(item, str(expected + tolerance * 0.5))
+        assert near.scored is True and near.correct is True
+
+        far = score_practice_response(item, str(expected + tolerance * 2 + 0.01))
+        assert far.scored is True and far.correct is False
+        assert far.feedback_outcome == "Incorrect"
+
+    def test_fraction_derived_item_rejects_fraction_input_as_non_match(self) -> None:
+        """4/7 ≈ 0.571, but the scorer does not evaluate fractions.
+
+        After the parser fix, \"4/7\" is unparseable and scores Incorrect
+        (genuine non-match), never coerced toward 0.571 or any other key.
+        """
+        item = _scoreable_by_item_id("cs1006-2.3.1-cp-01")
+        assert _parse_number("4/7") is None
+
+        fraction = score_practice_response(item, "4/7")
+        assert fraction.scored is True
+        assert fraction.correct is False
+        assert fraction.feedback_outcome == "Incorrect"
+        assert fraction.matched_key == ""
+        assert fraction.marks_awarded == 0.0
+
+        decimal = score_practice_response(item, "0.571")
+        assert decimal.correct is True
+        assert decimal.feedback_outcome == "Correct"

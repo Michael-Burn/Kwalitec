@@ -115,7 +115,7 @@ _MEANING_SAMPLES = (
     ),
     (
         "2.3.1-conditional-expectation-cs1006.json",
-        "knowledge_checks[1].model_answer",
+        "knowledge_checks[1].explanation",
         (r"E[Y|X=1]", r"\approx", "0.571"),
         "conditional expectation model answer",
     ),
@@ -415,7 +415,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2055
+    assert checked["totals"]["migrated"] == 2051
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -438,7 +438,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 375
+    assert migrated == 371
     assert still_pending_review == 0
     assert confident_backlog == 0
 
