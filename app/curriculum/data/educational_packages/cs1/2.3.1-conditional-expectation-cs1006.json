@@ -237,7 +237,7 @@
         "id": "S2",
         "label": "Evaluate $E[Y | X = 1]$ and $E[Y | X = 2]$",
         "attempt_cue": "Compute the conditional means from the renormalised joints.",
-        "explanation": "$E[Y | X = x] = \\sum$ y $P(X = x, Y = y) / P(X = x)$.",
+        "explanation": "$E[Y \\mid X = x] = \\sum_{y} y\\, P(X = x, Y = y) / P(X = x)$.",
         "calculation": "$E[Y|X=1] = (10\\times 0.25 + 20\\times 0.25)/0.50 = 15$; $E[Y|X=2] = (10\\times 0.15 + 20\\times 0.35)/0.50 = 17$",
         "result": "$E[Y|X=1] = 15$; $E[Y|X=2] = 17$"
       },
@@ -246,11 +246,11 @@
         "label": "Refuse equating $E[Y]$ with $E[Y|X]$",
         "attempt_cue": "Compute $E[Y]$ and contrast it with the conditional means as objects.",
         "explanation": "The unconditional mean $E[Y] = 10\\times 0.40 + 20\\times 0.60 = 16$ is a single number. $E[Y|X]$ is a random function of $X$ (15 when $X = 1$, 17 when $X = 2$). They are related by the tower law but are not the same object.",
-        "calculation": "$E[Y] = 16$; $E[Y|X] takes values 15 and 17$",
+        "calculation": "$E[Y] = 16$; $E[Y|X]$ takes values 15 and 17",
         "result": "$E[Y] \\neq E[Y|X]$ as objects"
       }
     ],
-    "final_answer": "$E[Y | X = 1] = 15$; $E[Y | X = 2] = 17. Unconditional E[Y] = 16 is a number$; $E[Y|X] is a function of X.$",
+    "final_answer": "$E[Y | X = 1] = 15$; $E[Y | X = 2] = 17$. Unconditional $E[Y] = 16$ is a number; $E[Y|X]$ is a function of $X$.",
     "common_pitfall": "Reporting $E[Y \\mid X = 1] = 10\\times 0.25 + 20\\times 0.25 = 7.5$ without dividing by $P(X = 1)$, or treating the unconditional mean 16 as interchangeable with $E[Y|X]$.",
     "syllabus_ref": "2.3.1"
   }

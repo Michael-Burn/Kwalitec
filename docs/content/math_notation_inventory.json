@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-09T12:45:59Z",
+  "generated_at": "2026-09-09T20:02:42Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
@@ -24,7 +24,7 @@
     "dollar_delimited": 2051,
     "equationish": 1502,
     "actuarial_fn": 499,
-    "ascii_approx": 234,
+    "ascii_approx": 235,
     "bare_latex": 196,
     "greek": 115,
     "compound": 26,
@@ -2293,8 +2293,8 @@
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
           "field_path": "worked_example.steps[1].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "Use Cov = $E[XY] − E[X] E[Y]$ and divide by $\\sigma$_X $\\sigma$_Y.",
-          "text_hash": "2532d5b1c4a9f273",
+          "text": "Use Cov = $E[XY] − E[X] E[Y]$ and divide by $\\sigma_{X} \\sigma_{Y}$.",
+          "text_hash": "069f585cd0fbd2fb",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -2312,8 +2312,8 @@
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "Covariance subtracts the product of means from $E[XY]$. Each margin is Bernoulli(0.5), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y)$ = 0.25 and $\\sigma$_X = $\\sigma$_Y = 0.5.",
-          "text_hash": "1f11f673207197f1",
+          "text": "Covariance subtracts the product of means from $E[XY]$. Each margin is Bernoulli(0.5), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y)$ = 0.25 and $\\sigma_{X} = \\sigma_{Y} = 0.5$.",
+          "text_hash": "a79bbba0c37ea104",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4316,8 +4316,8 @@
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
           "field_path": "worked_example.steps[1].explanation",
           "field_group": "worked_example.steps[].explanation",
-          "text": "$E[Y | X = x] = \\sum$ y $P(X = x, Y = y) / P(X = x)$.",
-          "text_hash": "4c5f1e20edd3dbb2",
+          "text": "$E[Y \\mid X = x] = \\sum_{y} y\\, P(X = x, Y = y) / P(X = x)$.",
+          "text_hash": "91f3f3b759ff5c56",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4326,6 +4326,7 @@
           "signals": [
             "dollar_delimited",
             "actuarial_fn",
+            "ascii_approx",
             "equationish"
           ]
         },
@@ -4422,8 +4423,8 @@
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
           "field_path": "worked_example.steps[2].calculation",
           "field_group": "worked_example.steps[].calculation",
-          "text": "$E[Y] = 16$; $E[Y|X] takes values 15 and 17$",
-          "text_hash": "a57099442b48b95d",
+          "text": "$E[Y] = 16$; $E[Y|X]$ takes values 15 and 17",
+          "text_hash": "4edf2cdd0556f225",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -4457,8 +4458,8 @@
           "package_file": "2.3.1-conditional-expectation-cs1006.json",
           "field_path": "worked_example.final_answer",
           "field_group": "worked_example.final_answer",
-          "text": "$E[Y | X = 1] = 15$; $E[Y | X = 2] = 17. Unconditional E[Y] = 16 is a number$; $E[Y|X] is a function of X.$",
-          "text_hash": "a234165f760620b8",
+          "text": "$E[Y | X = 1] = 15$; $E[Y | X = 2] = 17$. Unconditional $E[Y] = 16$ is a number; $E[Y|X]$ is a function of $X$.",
+          "text_hash": "80e8304f1d6300d6",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -34886,8 +34887,8 @@
           "package_file": "4.2.2-mean-variance-cs1014.json",
           "field_path": "knowledge_checks[0].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "Mean, variance, variance function $V(mu)$, and scale (dispersion). Example: Poisson with mean lambda has $E[Y]$=Var[Y]=lambda and $V(\\mu)=\\mu$ with scale often 1.",
-          "text_hash": "0fa35c4e5f5c0c36",
+          "text": "Mean, variance, variance function $V(\\mu)$, and scale (dispersion). Example: Poisson with mean $\\lambda$ has $E[Y]=\\operatorname{Var}[Y]=\\lambda$ and $V(\\mu)=\\mu$ with scale often 1.",
+          "text_hash": "4a3bd135313d84ab",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -39979,5 +39980,5 @@
       ]
     }
   ],
-  "content_fingerprint": "bbcb6985bd966bb320462dce2cf01535568f54d08e2e8cac71212acb287d27e6"
+  "content_fingerprint": "94b08449fd20def5aacb8d59ff4bc58ad12bef704a3e8d6ab862df74d3724032"
 }

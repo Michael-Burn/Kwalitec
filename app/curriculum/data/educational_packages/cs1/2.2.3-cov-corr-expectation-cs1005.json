@@ -255,8 +255,8 @@
       {
         "id": "S2",
         "label": "Form Cov and Corr",
-        "attempt_cue": "Use Cov = $E[XY] − E[X] E[Y]$ and divide by $\\sigma$_X $\\sigma$_Y.",
-        "explanation": "Covariance subtracts the product of means from $E[XY]$. Each margin is Bernoulli(0.5), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y)$ = 0.25 and $\\sigma$_X = $\\sigma$_Y = 0.5.",
+        "attempt_cue": "Use Cov = $E[XY] − E[X] E[Y]$ and divide by $\\sigma_{X} \\sigma_{Y}$.",
+        "explanation": "Covariance subtracts the product of means from $E[XY]$. Each margin is Bernoulli(0.5), so $\\operatorname{Var}(X) = \\operatorname{Var}(Y)$ = 0.25 and $\\sigma_{X} = \\sigma_{Y} = 0.5$.",
         "calculation": "$Cov = 0.30 - 0.50\\times 0.50 = 0.05$; $Corr = 0.05 / (0.5\\times 0.5) = 0.20$",
         "result": "$\\operatorname{Cov}(X, Y) = 0.05$; $\\operatorname{Corr}(X, Y) = 0.20$"
       },

@@ -135,7 +135,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Mean, variance, variance function $V(mu)$, and scale (dispersion). Example: Poisson with mean lambda has $E[Y]$=Var[Y]=lambda and $V(\\mu)=\\mu$ with scale often 1.",
+          "label": "Mean, variance, variance function $V(\\mu)$, and scale (dispersion). Example: Poisson with mean $\\lambda$ has $E[Y]=\\operatorname{Var}[Y]=\\lambda$ and $V(\\mu)=\\mu$ with scale often 1.",
           "misconception_tag": ""
         },
         {
