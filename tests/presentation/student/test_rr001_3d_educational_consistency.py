@@ -207,20 +207,25 @@ def test_session_completion_omits_readiness_kpi(app, ctx):
 
 def test_revision_template_declares_mission_primacy(app, ctx):
     """PX-001: primacy is product law in constants — UI guides, does not lecture."""
+    from app.application.student_experience.dto.revision_snapshot import (
+        RevisionItemSnapshot,
+    )
     from app.presentation.product_language import REVISION_MISSION_PRIMACY_SENTENCE
 
     assert "not a second Mission" in REVISION_MISSION_PRIMACY_SENTENCE
     snap = RevisionSnapshot(
         student_id="stu-rr13d-rev",
-        primary=RevisionOptionSnapshot(
-            option_id="rev-1",
-            topic_title="Cash flow revision",
-            priority_label="High",
-            estimated_study_minutes=20,
-            expected_benefit="Strengthen cash flow recall",
-            is_primary=True,
+        due_now=(
+            RevisionItemSnapshot(
+                package_id="rev-1",
+                title="Cash flow revision",
+                explanation=(
+                    "due because last completed 7 days ago, "
+                    "current interval is 7 days"
+                ),
+                status="due",
+            ),
         ),
-        alternatives=(),
         has_revision=True,
         option_count=1,
     )
@@ -230,15 +235,16 @@ def test_revision_template_declares_mission_primacy(app, ctx):
     )
     with app.test_request_context("/student/revision"):
         html = render_template("student/revision.html", page=page, form=None)
-    assert "Strengthen what you practised." in html
+    assert "Return to packages when the schedule says they are due." in html
     assert "Cash flow revision" in html
     assert "Today's best revision" not in html
-    assert "Begin Revision" in html or "ds-os-recommend" in html
+    assert "due because last completed 7 days ago" in html
+    assert "Due now" in html
+
 
 def test_revision_empty_teaches_mission_next_step(app, ctx):
     proj = RevisionProjection.create("stu-empty")
-    assert "Mission" in proj.empty_message
-    assert "today's session" not in proj.empty_message.lower()
+    assert "Nothing is due for review yet" in proj.empty_message
     page = SimpleNamespace(
         shell=SimpleNamespace(page_title="Revision", navigation=()),
         revision=revision_vm(
@@ -254,10 +260,8 @@ def test_revision_empty_teaches_mission_next_step(app, ctx):
     )
     with app.test_request_context("/student/revision"):
         html = render_template("student/revision.html", page=page, form=None)
-    assert (
-        "Return to today's Mission" in html or "Return to today&#39;s Mission" in html
-    )
-    assert "Nothing to revise yet" in html
+    assert "Nothing is due for review yet" in html
+    assert "Due now" in html
     assert "Quick Check" not in html
     assert "Mission tip" not in html
 

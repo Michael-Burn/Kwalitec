@@ -131,22 +131,48 @@ def test_start_session_opaque_engine_missing_experience_id(
     assert "/session/sess-29" in response.headers.get("Location", "")
 
 
-def test_begin_revision_post(student_client, experience_app):
-    mission = FakeMissionPort()
-    wire_experience(experience_app, mission=mission)
-    response = student_client.post(
-        "/student/revision/begin",
-        data={
-            "option_id": "r1",
-            "mission_id": "m1",
-            "session_id": "sess-1",
-            "submit": "Begin Revision",
-        },
-        follow_redirects=False,
+def test_begin_revision_post(student_client, experience_app, monkeypatch, user):
+    from datetime import date, timedelta
+    from types import SimpleNamespace
+
+    from app.application.spacing_scheduler import (
+        get_spacing_scheduler,
+        reset_canonical_spacing_scheduler_for_tests,
     )
-    assert response.status_code in {302, 303}
-    location = response.headers.get("Location", "")
-    assert "/session/" in location
+
+    reset_canonical_spacing_scheduler_for_tests()
+    try:
+        pkg = "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION"
+        get_spacing_scheduler().record_completed_exposure(
+            learner_id=str(user.id),
+            package_id=pkg,
+            completed_on=date.today() - timedelta(days=1),
+        )
+        monkeypatch.setattr(
+            "app.presentation.student.routes.start_student_selected_topic",
+            lambda **kwargs: SimpleNamespace(
+                session_id="sess-1",
+                topic_title="Revision topic",
+                student_id=str(user.id),
+            ),
+        )
+        monkeypatch.setattr(
+            "app.presentation.student.routes.get_experience_composition",
+            lambda: None,
+        )
+        response = student_client.post(
+            "/student/revision/begin",
+            data={
+                "package_id": pkg,
+                "submit": "Begin",
+            },
+            follow_redirects=False,
+        )
+        assert response.status_code in {302, 303}
+        location = response.headers.get("Location", "")
+        assert "/session/" in location
+    finally:
+        reset_canonical_spacing_scheduler_for_tests()
 
 
 def test_start_session_unavailable_port(student_client, experience_app):

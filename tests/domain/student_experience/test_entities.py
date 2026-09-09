@@ -135,7 +135,7 @@ def test_revision_alternatives(n):
 def test_revision_empty_message():
     proj = RevisionProjection.create("stu-1")
     assert not proj.has_revision
-    assert "revision" in proj.empty_message.lower()
+    assert "due for review" in proj.empty_message.lower()
 
 
 @pytest.mark.parametrize("minutes", range(0, 12))

@@ -16,8 +16,8 @@ def test_start_session_form_fields(experience_app):
 def test_begin_revision_form_fields(experience_app):
     with experience_app.test_request_context():
         form = BeginRevisionForm()
-        assert "option_id" in form._fields
-        assert form.submit.label.text == "Begin Revision"
+        assert "package_id" in form._fields
+        assert form.submit.label.text == "Begin"
 
 
 def test_start_session_submit_label(experience_app):

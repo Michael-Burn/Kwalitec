@@ -219,6 +219,17 @@ class JourneyPageViewModel:
 
 
 @dataclass(frozen=True)
+class RevisionItemViewModel:
+    package_id: str = ""
+    title: str = ""
+    explanation: str = ""
+    status: str = ""
+    next_due_on: str = ""
+    last_completed_on: str = ""
+    interval_days: int | None = None
+
+
+@dataclass(frozen=True)
 class RevisionOptionViewModel:
     option_id: str = ""
     topic_title: str = ""
@@ -227,16 +238,20 @@ class RevisionOptionViewModel:
     expected_benefit: str = ""
     explanation: ExplanationViewModel | None = None
     is_primary: bool = False
+    package_id: str = ""
 
 
 @dataclass(frozen=True)
 class RevisionPageViewModel:
+    due_now: tuple[RevisionItemViewModel, ...] = ()
+    upcoming: tuple[RevisionItemViewModel, ...] = ()
+    recently_reviewed: tuple[RevisionItemViewModel, ...] = ()
     primary: RevisionOptionViewModel | None = None
     alternatives: tuple[RevisionOptionViewModel, ...] = ()
     empty_message: str = ""
     has_revision: bool = False
     option_count: int = 0
-    primary_cta_label: str = "Begin Revision"
+    primary_cta_label: str = "Begin"
     primary_cta_enabled: bool = False
 
 
@@ -1503,19 +1518,25 @@ def journey_card_vm(snap: JourneySnapshot) -> JourneyCardViewModel:
 
 def revision_vm(snap: RevisionSnapshot) -> RevisionPageViewModel:
     primary = _revision_option_vm(snap.primary) if snap.primary else None
+    due_now = tuple(_revision_item_vm(i) for i in snap.due_now)
     return RevisionPageViewModel(
+        due_now=due_now,
+        upcoming=tuple(_revision_item_vm(i) for i in snap.upcoming),
+        recently_reviewed=tuple(
+            _revision_item_vm(i) for i in snap.recently_reviewed
+        ),
         primary=primary,
         alternatives=tuple(_revision_option_vm(o) for o in snap.alternatives),
         empty_message=snap.empty_message
         or (
-            "No revision support is ready yet. Follow today's Mission on "
-            "Home: Revision will appear when there is something worth "
-            "strengthening."
+            "Nothing is due for review yet. Packages return here after you "
+            "complete them and enough time has passed."
         ),
         has_revision=snap.has_revision,
         option_count=snap.option_count,
-        primary_cta_label="Begin Revision",
-        primary_cta_enabled=snap.has_revision and primary is not None,
+        primary_cta_label="Begin",
+        primary_cta_enabled=bool(due_now)
+        or (snap.has_revision and primary is not None),
     )
 
 
@@ -2003,6 +2024,18 @@ def _topic_vm(topic: JourneyTopicSnapshot) -> JourneyTopicViewModel:
     )
 
 
+def _revision_item_vm(item) -> RevisionItemViewModel:
+    return RevisionItemViewModel(
+        package_id=item.package_id,
+        title=item.title,
+        explanation=item.explanation,
+        status=item.status,
+        next_due_on=item.next_due_on,
+        last_completed_on=item.last_completed_on,
+        interval_days=item.interval_days,
+    )
+
+
 def _revision_option_vm(
     option: RevisionOptionSnapshot,
 ) -> RevisionOptionViewModel:
@@ -2014,6 +2047,7 @@ def _revision_option_vm(
         expected_benefit=option.expected_benefit,
         explanation=explanation_vm(option.explanation),
         is_primary=option.is_primary,
+        package_id=option.package_id or option.option_id,
     )
 
 

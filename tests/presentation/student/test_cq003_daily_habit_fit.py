@@ -124,8 +124,15 @@ def test_home_resume_without_unified_journey(app, ctx):
 
 
 def test_begin_revision_lands_on_overview(
-    student_client, experience_app, monkeypatch
+    student_client, experience_app, monkeypatch, user
 ):
+    from datetime import date, timedelta
+
+    from app.application.spacing_scheduler import (
+        get_spacing_scheduler,
+        reset_canonical_spacing_scheduler_for_tests,
+    )
+
     begin = MagicMock()
     monkeypatch.setattr(
         "app.presentation.session.views.begin_session",
@@ -134,27 +141,35 @@ def test_begin_revision_lands_on_overview(
     handle = SimpleNamespace(
         session_id="sess-rev-1",
         topic_title="Revision topic",
-        student_id="1",
+        student_id=str(user.id),
     )
-    monkeypatch.setattr(
-        "app.presentation.student.routes.start_todays_session",
-        lambda **kwargs: handle,
-    )
-    monkeypatch.setattr(
-        "app.presentation.student.routes.get_experience_composition",
-        lambda: None,
-    )
-    resp = student_client.post(
-        "/student/revision/begin",
-        data={
-            "mission_id": "m1",
-            "session_id": "sess-rev-1",
-            "option_id": "opt-1",
-        },
-        follow_redirects=False,
-    )
-    assert resp.status_code == 302
-    assert resp.headers["Location"].endswith("/session/sess-rev-1/") or resp.headers[
-        "Location"
-    ].endswith("/session/sess-rev-1/overview")
-    begin.assert_not_called()
+    reset_canonical_spacing_scheduler_for_tests()
+    try:
+        pkg = "CS1-EP001-PKG-1.1-PURPOSE-FUNCTION"
+        get_spacing_scheduler().record_completed_exposure(
+            learner_id=str(user.id),
+            package_id=pkg,
+            completed_on=date.today() - timedelta(days=1),
+        )
+        monkeypatch.setattr(
+            "app.presentation.student.routes.start_student_selected_topic",
+            lambda **kwargs: handle,
+        )
+        monkeypatch.setattr(
+            "app.presentation.student.routes.get_experience_composition",
+            lambda: None,
+        )
+        resp = student_client.post(
+            "/student/revision/begin",
+            data={
+                "package_id": pkg,
+            },
+            follow_redirects=False,
+        )
+        assert resp.status_code == 302
+        assert resp.headers["Location"].endswith("/session/sess-rev-1/") or resp.headers[
+            "Location"
+        ].endswith("/session/sess-rev-1/overview")
+        begin.assert_not_called()
+    finally:
+        reset_canonical_spacing_scheduler_for_tests()

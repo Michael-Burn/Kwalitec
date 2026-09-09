@@ -440,9 +440,9 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         lifecycle=LIFECYCLE_ACTIVE,
         recommendation="retain",
         notes=(
-            "Isolated capability: due/not-due from elapsed time only. "
-            "Does not encode weakness or mastery. Not yet wired to Revision "
-            "or the daily study composer."
+            "Canonical time-based spacing due state for reviewable packages. "
+            "Revision queries due status only through this service. "
+            "Does not encode weakness or mastery."
         ),
     ),
     PackageEntry(

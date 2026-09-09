@@ -308,6 +308,31 @@ class FakeOrchestratorPort:
         return {"activity_id": activity_id, "acknowledged": True}
 
 
+def _spacing_with_due_packages(
+    learner_id: str,
+    *,
+    count: int = 1,
+    as_of=None,
+):
+    """Build an in-memory Spacing Scheduler with ``count`` due packages."""
+    from datetime import date, timedelta
+
+    from app.application.spacing_scheduler import (
+        InMemorySpacingStateStore,
+        SpacingSchedulerService,
+    )
+
+    as_of = as_of or date.today()
+    spacing = SpacingSchedulerService(store=InMemorySpacingStateStore())
+    for i in range(max(0, count)):
+        spacing.record_completed_exposure(
+            learner_id=learner_id,
+            package_id=f"PKG-REV-TEST-{i}",
+            completed_on=as_of - timedelta(days=1 + i),
+        )
+    return spacing
+
+
 def make_experience(**kwargs) -> StudentExperienceService:
     twin = kwargs.pop("student_twin", FakeTwinPort())
     adaptive = kwargs.pop("adaptive_decision", FakeAdaptivePort())

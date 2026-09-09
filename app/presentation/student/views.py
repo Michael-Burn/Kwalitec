@@ -213,12 +213,15 @@ def start_student_selected_topic(
     topic_id: str,
     subject_code: str = "",
     replace_unfinished: bool = False,
+    educational_package_id: str = "",
 ):
     """Start a genuine Session for a reached topic chosen on Study.
 
     Does not accept or complete today's daily mission. The reached gate is
     enforced in StudentRuntimeCoordinator. ``replace_unfinished`` is set
     only after the student confirms replacing the current resume pointer.
+    When ``educational_package_id`` is set (Revision Begin), that package
+    is used for substance instead of campaign resolution.
     """
     from app.application.config.v2_flags import resolve_v2_feature_flags
     from app.application.student_runtime import StudentRuntimeCoordinator
@@ -245,6 +248,7 @@ def start_student_selected_topic(
         topic_id=topic_id,
         subject_code=subject_code,
         replace_unfinished=replace_unfinished,
+        educational_package_id=educational_package_id,
     )
 
 

@@ -23,12 +23,22 @@ def test_home_calls_twin_and_adaptive():
     assert any(c.startswith("recommend:") for c in adaptive.calls)
 
 
-def test_revision_calls_adaptive_only_for_options():
+def test_revision_does_not_call_adaptive_for_options():
     adaptive = FakeAdaptivePort()
-    exp = make_experience(adaptive_decision=adaptive)
+    from tests.application.student_experience.helpers import (
+        _spacing_with_due_packages,
+    )
+
+    spacing = _spacing_with_due_packages("stu-1", count=1)
     before = list(adaptive.calls)
-    exp.get_revision("stu-1")
-    assert any(c.startswith("revision:") for c in adaptive.calls[len(before):])
+    exp = make_experience(
+        adaptive_decision=adaptive, spacing_scheduler=spacing
+    )
+    snap = exp.get_revision("stu-1")
+    assert snap.has_revision
+    assert not any(
+        c.startswith("revision:") for c in adaptive.calls[len(before) :]
+    )
 
 
 def test_journey_calls_journey_port():

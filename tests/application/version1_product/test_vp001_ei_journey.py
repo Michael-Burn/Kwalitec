@@ -175,13 +175,13 @@ def test_end_to_end_ei_journey_without_manual_intervention(app, db, ctx) -> None
     assert after.experience is not None
 
 
-def test_revision_service_prefers_educational_intelligence(app, db, ctx) -> None:
+def test_revision_service_uses_spacing_scheduler_not_adaptive(app, db, ctx) -> None:
     user = _make_user()
-    edition_id = _publish_edition(job_id="job-vp001-rev")
-    onboard_after_enrolment(
-        student_id=user.id,
-        subject_code="CS1",
-        edition_id=edition_id,
+    from datetime import date, timedelta
+
+    from app.application.spacing_scheduler import (
+        InMemorySpacingStateStore,
+        SpacingSchedulerService,
     )
 
     adaptive = MagicMock()
@@ -189,7 +189,17 @@ def test_revision_service_prefers_educational_intelligence(app, db, ctx) -> None
     adaptive.get_revision_options.return_value = [
         {"option_id": "runtime-a", "title": "Should not win"}
     ]
-    snap = RevisionService(adaptive_decision=adaptive).revision(str(user.id))
+    spacing = SpacingSchedulerService(store=InMemorySpacingStateStore())
+    spacing.record_completed_exposure(
+        learner_id=str(user.id),
+        package_id="CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+        completed_on=date.today() - timedelta(days=1),
+    )
+    snap = RevisionService(
+        adaptive_decision=adaptive,
+        spacing_scheduler=spacing,
+        as_of_factory=date.today,
+    ).revision(str(user.id))
     assert snap.has_revision
     assert snap.primary is not None
     assert snap.primary.option_id != "runtime-a"
@@ -227,9 +237,12 @@ def test_session_views_call_evidence_hook(app, db, ctx) -> None:
 
 
 def test_vp001_surface_modules_reference_runtime_integration() -> None:
-    """Revision + Session production paths must reference RIS (inventory gate)."""
+    """Session production paths must reference RIS (inventory gate).
+
+    Revision now owns Spacing Scheduler state only (roadmap item 3) and is
+    intentionally excluded from this Preferred-Authority inventory check.
+    """
     modules = (
-        Path("app/application/student_experience/revision_service.py"),
         Path("app/presentation/session/views.py"),
         Path("app/infrastructure/adapters/learner_lifecycle/enrolment_hook.py"),
         Path("app/infrastructure/adapters/learner_lifecycle/evidence_hook.py"),

@@ -75,10 +75,25 @@ def test_seeded_journey_projection(learner_id):
 
 @pytest.mark.parametrize("learner_id", LEARNERS)
 def test_seeded_revision_projection(learner_id):
+    from datetime import date, timedelta
+
+    from app.application.spacing_scheduler import (
+        InMemorySpacingStateStore,
+        SpacingSchedulerService,
+    )
+
     _, service = make_seeded_service(learner_id)
+    spacing = SpacingSchedulerService(store=InMemorySpacingStateStore())
+    spacing.record_completed_exposure(
+        learner_id=learner_id,
+        package_id="CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+        completed_on=date.today() - timedelta(days=1),
+    )
+    service._revision._spacing = spacing
     revision = service.get_revision(learner_id)
     assert revision.student_id == learner_id
     assert revision.has_revision is True
+    assert revision.due_now
 
 
 @pytest.mark.parametrize("learner_id", LEARNERS)

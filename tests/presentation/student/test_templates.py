@@ -78,10 +78,14 @@ def test_journey_has_progress(student_client):
     assert 'role="progressbar"' in html or "student-progress" in html
 
 
-def test_revision_has_priority_or_benefit(student_client):
+def test_revision_has_due_sections_or_honest_empty(student_client):
     html = student_client.get("/student/revision").get_data(as_text=True)
     lowered = html.lower()
-    assert "priority" in lowered or "benefit" in lowered or "revision" in lowered
+    assert "due now" in lowered
+    assert "upcoming" in lowered
+    assert "recently reviewed" in lowered
+    assert "highest-value" not in lowered
+    assert "highest value" not in lowered
 
 
 def test_history_focuses_on_progress_not_logs(student_client):

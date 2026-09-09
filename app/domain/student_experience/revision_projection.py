@@ -1,29 +1,61 @@
-"""Revision projection — today's highest-value revision options.
+"""Revision projection — Spacing Scheduler sections for the Revision surface.
 
-Consumes Adaptive Decision outputs only (via application ports).
-Never calculates revision priority or educational ROI.
+Consumes only canonical Spacing Scheduler board entries. Never calculates
+due dates, priority, or educational ROI.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from app.domain.student_experience.recommendation_explanation import (
-    RecommendationExplanation,
-)
+
+@dataclass(frozen=True)
+class RevisionItem:
+    """One package entry for a Revision section."""
+
+    package_id: str
+    title: str
+    explanation: str = ""
+    status: str = ""
+    next_due_on: str = ""
+    last_completed_on: str = ""
+    interval_days: int | None = None
+
+    @classmethod
+    def create(
+        cls,
+        package_id: str,
+        title: str,
+        *,
+        explanation: str = "",
+        status: str = "",
+        next_due_on: str = "",
+        last_completed_on: str = "",
+        interval_days: int | None = None,
+    ) -> RevisionItem:
+        return cls(
+            package_id=_require_non_empty(package_id, "package_id"),
+            title=_require_non_empty(title, "title"),
+            explanation=(explanation or "").strip(),
+            status=(status or "").strip(),
+            next_due_on=(next_due_on or "").strip(),
+            last_completed_on=(last_completed_on or "").strip(),
+            interval_days=interval_days,
+        )
 
 
 @dataclass(frozen=True)
 class RevisionOption:
-    """One student-facing revision candidate."""
+    """Compatibility option for Home consumers (oldest due package)."""
 
     option_id: str
     topic_title: str
     priority_label: str = ""
     estimated_study_minutes: int | None = None
     expected_benefit: str = ""
-    explanation: RecommendationExplanation | None = None
+    explanation: object | None = None
     is_primary: bool = False
+    package_id: str = ""
 
     @classmethod
     def create(
@@ -34,10 +66,10 @@ class RevisionOption:
         priority_label: str = "",
         estimated_study_minutes: int | None = None,
         expected_benefit: str = "",
-        explanation: RecommendationExplanation | None = None,
+        explanation: object | None = None,
         is_primary: bool = False,
+        package_id: str = "",
     ) -> RevisionOption:
-        """Build a revision option."""
         minutes = estimated_study_minutes
         if minutes is not None and minutes < 0:
             raise ValueError("estimated_study_minutes must be non-negative")
@@ -49,6 +81,7 @@ class RevisionOption:
             expected_benefit=(expected_benefit or "").strip(),
             explanation=explanation,
             is_primary=bool(is_primary),
+            package_id=(package_id or "").strip(),
         )
 
 
@@ -57,42 +90,56 @@ class RevisionProjection:
     """Domain projection for the Revision experience."""
 
     student_id: str
+    due_now: tuple[RevisionItem, ...] = field(default_factory=tuple)
+    upcoming: tuple[RevisionItem, ...] = field(default_factory=tuple)
+    recently_reviewed: tuple[RevisionItem, ...] = field(default_factory=tuple)
+    empty_message: str = ""
     primary: RevisionOption | None = None
     alternatives: tuple[RevisionOption, ...] = field(default_factory=tuple)
-    empty_message: str = ""
 
     @classmethod
     def create(
         cls,
         student_id: str,
         *,
+        due_now: list[RevisionItem] | tuple[RevisionItem, ...] | None = None,
+        upcoming: list[RevisionItem] | tuple[RevisionItem, ...] | None = None,
+        recently_reviewed: (
+            list[RevisionItem] | tuple[RevisionItem, ...] | None
+        ) = None,
+        empty_message: str = "",
         primary: RevisionOption | None = None,
         alternatives: list[RevisionOption] | tuple[RevisionOption, ...] | None = None,
-        empty_message: str = "",
     ) -> RevisionProjection:
-        """Build a revision projection."""
+        due = tuple(due_now or ())
+        up = tuple(upcoming or ())
+        recent = tuple(recently_reviewed or ())
         alts = tuple(alternatives or ())
-        if primary is None and not alts:
+        if not due and not up and not recent:
             msg = (empty_message or "").strip() or (
-                "No revision support is ready right now. Follow today's "
-                "Mission on Home: Revision will appear when there is "
-                "something worth strengthening."
+                "Nothing is due for review yet. Packages return here after "
+                "you complete them and enough time has passed."
             )
         else:
             msg = (empty_message or "").strip()
         return cls(
             student_id=_require_non_empty(student_id, "student_id"),
+            due_now=due,
+            upcoming=up,
+            recently_reviewed=recent,
+            empty_message=msg,
             primary=primary,
             alternatives=alts,
-            empty_message=msg,
         )
 
     @property
     def has_revision(self) -> bool:
-        return self.primary is not None
+        return bool(self.due_now) or self.primary is not None
 
     @property
     def option_count(self) -> int:
+        if self.due_now:
+            return len(self.due_now)
         return (1 if self.primary else 0) + len(self.alternatives)
 
 

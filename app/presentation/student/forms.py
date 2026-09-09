@@ -46,12 +46,13 @@ class CompleteRuntimeMissionForm(FlaskForm):
 
 
 class BeginRevisionForm(FlaskForm):
-    """Primary Revision CTA — begin the highest-value revision option."""
+    """Revision CTA — begin a due package from the Spacing Scheduler."""
 
+    package_id = HiddenField(validators=[Optional()])
     option_id = HiddenField(validators=[Optional()])
     mission_id = HiddenField(validators=[Optional()])
     session_id = HiddenField(validators=[Optional()])
-    submit = SubmitField("Begin Revision")
+    submit = SubmitField("Begin")
 
 
 class DeferCommitmentForm(FlaskForm):

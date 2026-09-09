@@ -41,11 +41,17 @@ def test_journey_projection_fields():
 
 
 def test_revision_projection_fields():
-    exp = make_experience()
+    from tests.application.student_experience.helpers import (
+        _spacing_with_due_packages,
+    )
+
+    spacing = _spacing_with_due_packages("stu-1", count=2)
+    exp = make_experience(spacing_scheduler=spacing)
     rev = exp.get_revision("stu-1")
     assert rev.has_revision
     assert rev.primary is not None
     assert rev.option_count == 2
+    assert len(rev.due_now) == 2
 
 
 def test_history_projection_fields():
@@ -82,7 +88,12 @@ def test_dashboard_active_surface():
 
 
 def test_dashboard_all_surfaces():
-    exp = make_experience()
+    from tests.application.student_experience.helpers import (
+        _spacing_with_due_packages,
+    )
+
+    spacing = _spacing_with_due_packages("stu-1", count=1)
+    exp = make_experience(spacing_scheduler=spacing)
     dash = exp.get_dashboard("stu-1", include_all_surfaces=True)
     assert dash.home and dash.journey and dash.revision
     assert dash.history and dash.profile
@@ -114,10 +125,12 @@ def test_port_unavailable_journey():
         exp.get_journey("stu-1")
 
 
-def test_port_unavailable_revision():
+def test_revision_empty_without_spacing_state():
+    """Revision no longer depends on Adaptive Decision availability."""
     exp = make_experience(adaptive_decision=FakeAdaptivePort(available=False))
-    with pytest.raises(PortUnavailable):
-        exp.get_revision("stu-1")
+    rev = exp.get_revision("stu-1")
+    assert rev.has_revision is False
+    assert "due for review" in rev.empty_message.lower()
 
 
 def test_port_unavailable_mission_start():

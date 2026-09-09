@@ -90,29 +90,12 @@ def test_journey_progress_matrix(ratio_i):
 
 
 @pytest.mark.parametrize("n_alts", range(0, 6))
-def test_revision_alternative_counts(n_alts):
-    adaptive = FakeAdaptivePort()
+def test_revision_due_counts(n_alts):
+    from tests.application.student_experience.helpers import (
+        _spacing_with_due_packages,
+    )
 
-    def patched(student_id):
-        primary = {
-            "option_id": "r0",
-            "topic_title": "Primary",
-            "priority_label": "high",
-            "estimated_minutes": 20,
-            "expected_benefit": "Benefit",
-        }
-        alts = tuple(
-            {
-                "option_id": f"r{i+1}",
-                "topic_title": f"Alt {i+1}",
-                "priority_label": "medium",
-                "estimated_minutes": 15,
-                "expected_benefit": "Alt benefit",
-            }
-            for i in range(n_alts)
-        )
-        return (primary, *alts)
-
-    adaptive.get_revision_options = patched  # type: ignore[method-assign]
-    snap = make_experience(adaptive_decision=adaptive).get_revision("stu-1")
+    spacing = _spacing_with_due_packages("stu-1", count=1 + n_alts)
+    snap = make_experience(spacing_scheduler=spacing).get_revision("stu-1")
     assert snap.option_count == 1 + n_alts
+    assert len(snap.due_now) == 1 + n_alts

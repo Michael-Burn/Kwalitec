@@ -26,11 +26,29 @@ def test_home_requires_twin_and_adaptive_ports():
         svc.home("stu-1")
 
 
-def test_revision_only_uses_adaptive():
-    svc = RevisionService(adaptive_decision=FakeAdaptivePort())
+def test_revision_only_uses_spacing_scheduler():
+    from datetime import date, timedelta
+
+    from app.application.spacing_scheduler import (
+        InMemorySpacingStateStore,
+        SpacingSchedulerService,
+    )
+
+    store = InMemorySpacingStateStore()
+    spacing = SpacingSchedulerService(store=store)
+    spacing.record_completed_exposure(
+        learner_id="stu-1",
+        package_id="CS1-EP001-PKG-1.1-PURPOSE-FUNCTION",
+        completed_on=date.today() - timedelta(days=1),
+    )
+    svc = RevisionService(
+        spacing_scheduler=spacing,
+        as_of_factory=date.today,
+        adaptive_decision=FakeAdaptivePort(),
+    )
     snap = svc.revision("stu-1")
     assert snap.has_revision
-    # Ensure no twin dependency on RevisionService signature
+    assert snap.due_now
     params = inspect.signature(RevisionService.__init__).parameters
     assert "student_twin" not in params
 

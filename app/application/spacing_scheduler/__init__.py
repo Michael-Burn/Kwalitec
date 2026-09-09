@@ -6,6 +6,10 @@ the daily study composer, or the Adaptive Decision Engine.
 
 from __future__ import annotations
 
+from app.application.spacing_scheduler.board import (
+    SpacingBoardEntry,
+    SpacingRevisionBoard,
+)
 from app.application.spacing_scheduler.service import (
     SpacingSchedulerService,
     get_spacing_scheduler,
@@ -30,7 +34,9 @@ __all__ = [
     "ReviewableUnitId",
     "SchedulingDecision",
     "SchedulingStatus",
+    "SpacingBoardEntry",
     "SpacingIntervalPolicy",
+    "SpacingRevisionBoard",
     "SpacingSchedulerService",
     "SpacingState",
     "SpacingStateStore",

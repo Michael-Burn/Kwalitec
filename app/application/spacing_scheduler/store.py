@@ -16,6 +16,9 @@ class SpacingStateStore(Protocol):
     def put(self, state: SpacingState) -> None:
         """Upsert canonical state for the learner/unit pair."""
 
+    def list_for_learner(self, learner_id: str) -> tuple[SpacingState, ...]:
+        """Return every stored state for the learner (any order)."""
+
 
 class InMemorySpacingStateStore:
     """Process-local store used until a durable adapter is wired."""
@@ -28,6 +31,12 @@ class InMemorySpacingStateStore:
 
     def put(self, state: SpacingState) -> None:
         self._rows[(state.learner_id, state.unit_id)] = state
+
+    def list_for_learner(self, learner_id: str) -> tuple[SpacingState, ...]:
+        lid = learner_id.strip()
+        return tuple(
+            state for (learner, _), state in self._rows.items() if learner == lid
+        )
 
     def clear(self) -> None:
         self._rows.clear()

@@ -194,35 +194,34 @@ def test_history_is_definitive_archive(app, ctx):
     assert "ds-os-history" in html
 
 
-def test_revision_recommends_rather_than_lists(app, ctx):
+def test_revision_shows_spacing_sections(app, ctx):
+    from app.application.student_experience.dto.revision_snapshot import (
+        RevisionItemSnapshot,
+    )
+
     snap = RevisionSnapshot(
         student_id="stu-sop",
         has_revision=True,
         option_count=2,
-        primary=RevisionOptionSnapshot(
-            option_id="r1",
-            topic_title="Discounting",
-            priority_label="Weak topic",
-            estimated_study_minutes=20,
-            expected_benefit="Restore exam-critical fluency",
-            is_primary=True,
-            explanation=ExplanationSnapshot(
-                summary="Revise discounting",
-                why_recommended="Recent practice showed forgotten concepts.",
-                confidence_label="Suggested",
-                expected_benefit="Restore exam-critical fluency",
-                is_complete=True,
+        due_now=(
+            RevisionItemSnapshot(
+                package_id="r1",
+                title="Discounting",
+                explanation=(
+                    "due because last completed 7 days ago, "
+                    "current interval is 7 days"
+                ),
+                status="due",
+            ),
+            RevisionItemSnapshot(
+                package_id="r2",
+                title="Annuities",
+                explanation="overdue by 2 days",
+                status="overdue",
             ),
         ),
-        alternatives=(
-            RevisionOptionSnapshot(
-                option_id="r2",
-                topic_title="Annuities",
-                priority_label="Overdue review",
-                estimated_study_minutes=15,
-                expected_benefit="Prevent decay",
-            ),
-        ),
+        upcoming=(),
+        recently_reviewed=(),
     )
     page = StudentPageViewModel(
         shell=_shell("Revision", "revision", "What deserves my attention?"),
@@ -234,10 +233,12 @@ def test_revision_recommends_rather_than_lists(app, ctx):
             page=page,
             form=None,
         )
-    assert "Strengthen what you practised." in html
+    assert "Return to packages when the schedule says they are due." in html
     assert "Discounting" in html
-    assert "Also deserves attention" in html
+    assert "Due now" in html
+    assert "Also deserves attention" not in html
     assert "ds-os-revision" in html
+    assert "due because last completed 7 days ago" in html
 
 
 def test_design_system_os_styles_use_semantic_tokens():

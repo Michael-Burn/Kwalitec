@@ -577,11 +577,11 @@ def journey():
 @student_bp.get("/revision")
 @login_required
 def revision():
-    """Revision — highest-value revision from Adaptive Decision."""
+    """Revision — packages due, upcoming, or recently reviewed from spacing."""
     page = load_page(ExperienceSurface.REVISION)
     form = BeginRevisionForm()
-    if page.revision and page.revision.primary:
-        form.option_id.data = page.revision.primary.option_id
+    if page.revision and page.revision.due_now:
+        form.package_id.data = page.revision.due_now[0].package_id
     return render_template(
         "student/revision.html",
         title=page.shell.page_title,
@@ -1164,54 +1164,154 @@ def acknowledge_revision():
 @student_bp.post("/revision/begin")
 @login_required
 def begin_revision():
-    """Primary Revision CTA — begin revision via session start."""
+    """Begin a due package via the Study session spine (package-aware)."""
+    from datetime import date
+
+    from app.application.educational_packages.loader import find_package_by_id
+    from app.application.spacing_scheduler import (
+        SchedulingStatus,
+        get_spacing_scheduler,
+    )
+    from app.application.student_runtime.exceptions import (
+        MissionNotAcceptable,
+        OpenSessionReplacementRequired,
+        SessionSpineUnavailable,
+        StudentRuntimeError,
+        TopicNotReached,
+    )
+
     form = BeginRevisionForm()
     if not form.validate_on_submit():
         flash("We couldn't begin revision. Please try again.", "warning")
         return redirect(url_for("student.revision"))
-    mission_id = (form.mission_id.data or "").strip() or None
-    session_id = (form.session_id.data or "").strip() or None
-    try:
-        handle = start_todays_session(
-            mission_id=mission_id, session_id=session_id
+
+    package_id = (form.package_id.data or form.option_id.data or "").strip()
+    if not package_id:
+        flash("Choose a due package to begin.", "warning")
+        return redirect(url_for("student.revision"))
+
+    sid = str(current_user.id)
+    scheduler = get_spacing_scheduler()
+    decision = scheduler.evaluate(
+        learner_id=sid,
+        package_id=package_id,
+        as_of=date.today(),
+    )
+    if decision.status not in {SchedulingStatus.DUE, SchedulingStatus.OVERDUE}:
+        flash(
+            "That package is not due for review yet. Return when it appears "
+            "under Due now.",
+            "warning",
         )
-    except Exception as exc:
-        from app.application.educational_runtime_engine import (
-            EducationalPrerequisiteMissing,
+        return redirect(url_for("student.revision"))
+
+    pack = find_package_by_id(package_id)
+    if pack is None:
+        flash("We could not find that package. Please try again.", "warning")
+        return redirect(url_for("student.revision"))
+
+    topic_id = str(getattr(pack, "topic_code", "") or "").strip()
+    subject_code = str(getattr(pack, "subject_id", "") or "").strip()
+    try:
+        from app.application.educational_engine_foundation import (
+            EducationalEngineFoundationService,
+        )
+        from app.application.educational_experience import (
+            EducationalExperienceService,
         )
 
-        if isinstance(exc, EducationalPrerequisiteMissing):
-            logger.warning("Begin revision educational readiness: %s", exc)
-            flash(
-                "Your curriculum is not ready for revision yet. Return here "
-                "when your subjects are available.",
-                "warning",
+        enrolment = EducationalExperienceService().find_enrolment_for_experience(
+            current_user.id
+        )
+        if enrolment is not None:
+            subject_code = subject_code or str(enrolment.subject_code or "").strip()
+            identity = str(enrolment.curriculum_identity or "").strip()
+            foundation = EducationalEngineFoundationService()
+            snapshot = None
+            if ":" in identity:
+                _subj, version = identity.split(":", 1)
+                snapshot = foundation.derive_version(
+                    subject_code or _subj, version.strip()
+                )
+            if snapshot is None and subject_code:
+                snapshot = foundation.derive_active(subject_code)
+            pack_code = str(getattr(pack, "topic_code", "") or "").strip()
+            if snapshot is not None and pack_code:
+                for topic in snapshot.topics or ():
+                    if not isinstance(topic, dict):
+                        continue
+                    code = str(
+                        topic.get("topic_code") or topic.get("code") or ""
+                    ).strip()
+                    if code == pack_code:
+                        topic_id = (
+                            str(topic.get("topic_id") or "").strip() or topic_id
+                        )
+                        break
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Revision topic resolve failed: %s", exc)
+
+    if not topic_id:
+        topic_id = package_id
+
+    try:
+        binding = start_student_selected_topic(
+            topic_id=topic_id,
+            subject_code=subject_code,
+            educational_package_id=package_id,
+            replace_unfinished=False,
+        )
+    except OpenSessionReplacementRequired:
+        try:
+            binding = start_student_selected_topic(
+                topic_id=topic_id,
+                subject_code=subject_code,
+                educational_package_id=package_id,
+                replace_unfinished=True,
             )
-            return redirect(url_for("student.revision"))
-        if isinstance(exc, PortUnavailable):
-            flash(
-                "Revision is temporarily unavailable. Please try again shortly.",
-                "warning",
-            )
-            return redirect(url_for("student.revision"))
-        if isinstance(exc, StudentExperienceError):
-            logger.warning("Begin revision failed: %s", exc)
+        except Exception as exc:
+            logger.warning("Begin revision replace failed: %s", exc)
             flash(
                 "We couldn't begin revision. Please try again from this page.",
                 "warning",
             )
             return redirect(url_for("student.revision"))
-        raise
+    except TopicNotReached:
+        flash(
+            "That package's topic is not reachable in your path yet.",
+            "warning",
+        )
+        return redirect(url_for("student.revision"))
+    except EducationalPrerequisiteMissing as exc:
+        logger.warning("Begin revision educational readiness: %s", exc)
+        flash(
+            "Your curriculum is not ready for revision yet. Return here "
+            "when your subjects are available.",
+            "warning",
+        )
+        return redirect(url_for("student.revision"))
+    except (
+        PortUnavailable,
+        StudentExperienceError,
+        MissionNotAcceptable,
+        SessionSpineUnavailable,
+        StudentRuntimeError,
+    ) as exc:
+        logger.warning("Begin revision failed: %s", exc)
+        flash(
+            "We couldn't begin revision. Please try again from this page.",
+            "warning",
+        )
+        return redirect(url_for("student.revision"))
 
     composition = get_experience_composition()
     if composition is not None:
         composition.emit_revision_started(
-            str(handle.student_id),
-            option_id=(form.option_id.data or "").strip() or None,
+            sid,
+            option_id=package_id,
         )
-    topic = handle.topic_title or "selected topic"
-    # UX-001: land on Overview briefing; Begin Session starts practice.
-    target_session_id = handle.session_id or session_id
+    topic = getattr(binding, "topic_title", None) or pack.display_title or "package"
+    target_session_id = getattr(binding, "session_id", None)
     if target_session_id:
         flash(
             f"Revision ready. {topic}. Review today's objective, then begin.",

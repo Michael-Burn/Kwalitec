@@ -74,6 +74,7 @@ class StudentExperienceService:
         learning_orchestrator: LearningOrchestratorPort | None = None,
         registry: ExperienceRegistry | None = None,
         history_read: Any | None = None,
+        spacing_scheduler: Any | None = None,
     ) -> None:
         self._registry = registry or ExperienceRegistry()
         self._ports = {
@@ -104,9 +105,7 @@ class StudentExperienceService:
             educational_state=self._educational_state,
         )
         self._revision = RevisionService(
-            adaptive_decision=adaptive_decision,
-            explanation=self._explanation,
-            educational_state=self._educational_state,
+            spacing_scheduler=spacing_scheduler,
         )
         self._history = HistoryService(
             student_twin=student_twin,

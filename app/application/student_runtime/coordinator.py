@@ -288,6 +288,7 @@ class StudentRuntimeCoordinator:
         topic_id: str,
         subject_code: str = "",
         replace_unfinished: bool = False,
+        educational_package_id: str = "",
     ) -> SessionBindingResult:
         """Create a genuine session for a reached topic the student chose.
 
@@ -297,6 +298,9 @@ class StudentRuntimeCoordinator:
         TOPIC_COMPLETED. Reuses package composition for the chosen topic
         (not the campaign pointer). Does not consult the Decision Engine.
 
+        When ``educational_package_id`` is provided (Revision Begin), that
+        package is used for substance rather than campaign matching.
+
         If an unfinished sitting already occupies the single open-session
         pointer, requires ``replace_unfinished=True`` before creating a new
         sitting. Same-topic student-selected resume is not a replacement.
@@ -305,6 +309,7 @@ class StudentRuntimeCoordinator:
             raise SessionSpineUnavailable("SR_SESSION_PRIMARY is off")
 
         tid = (topic_id or "").strip()
+        forced_pack = (educational_package_id or "").strip()
         if not tid:
             raise TopicNotReached("topic_id required")
 
@@ -351,7 +356,7 @@ class StudentRuntimeCoordinator:
         substance_flag = self._substance_enabled()
         substance = None
         objectives = None
-        pack_id = ""
+        pack_id = forced_pack
         if substance_flag:
             substance = self._plan_substance_for_selected_topic(
                 curriculum_identity=curriculum_identity,
@@ -359,6 +364,7 @@ class StudentRuntimeCoordinator:
                 topic_title=title,
                 topic_code=topic_code,
                 session_minutes=minutes,
+                educational_package_id=forced_pack,
             )
             if substance is None:
                 raise SessionSpineUnavailable(
@@ -586,22 +592,28 @@ class StudentRuntimeCoordinator:
         topic_title: str,
         topic_code: str,
         session_minutes: int | None,
+        educational_package_id: str = "",
     ):
         from app.application.educational_packages.loader import (
             find_educational_package,
+            find_package_by_id,
         )
         from app.application.learning_session.substance_planner import (
             EducationalSubstancePlanner,
         )
 
         subject_id = (curriculum_identity or "").split(":")[0].strip()
-        pack = find_educational_package(
-            topic_id=topic_id,
-            topic_code=topic_code,
-            topic_title=topic_title,
-            subject_id=subject_id,
-        )
-        pack_id = pack.package_id if pack is not None else ""
+        forced = (educational_package_id or "").strip()
+        if forced:
+            pack = find_package_by_id(forced)
+        else:
+            pack = find_educational_package(
+                topic_id=topic_id,
+                topic_code=topic_code,
+                topic_title=topic_title,
+                subject_id=subject_id,
+            )
+        pack_id = pack.package_id if pack is not None else forced
         pack_title = ""
         if pack is not None:
             pack_title = str(getattr(pack, "display_title", "") or "")
@@ -611,7 +623,7 @@ class StudentRuntimeCoordinator:
             topic_title=topic_title or pack_title,
             session_minutes=session_minutes,
             educational_package_id=pack_id,
-            use_campaign_resolution=False,
+            use_campaign_resolution=not bool(forced),
         )
 
     def resume_session(

@@ -27,6 +27,7 @@ from app.application.student_experience.dto.profile_snapshot import (
     StudyPreferencesSnapshot,
 )
 from app.application.student_experience.dto.revision_snapshot import (
+    RevisionItemSnapshot,
     RevisionOptionSnapshot,
     RevisionSnapshot,
 )
@@ -41,6 +42,7 @@ from app.domain.student_experience.recommendation_explanation import (
     RecommendationExplanation,
 )
 from app.domain.student_experience.revision_projection import (
+    RevisionItem,
     RevisionOption,
     RevisionProjection,
 )
@@ -139,21 +141,43 @@ def journey_snapshot(projection: JourneyProjection) -> JourneySnapshot:
     )
 
 
+def _revision_item_snapshot(item: RevisionItem) -> RevisionItemSnapshot:
+    return RevisionItemSnapshot(
+        package_id=item.package_id,
+        title=item.title,
+        explanation=item.explanation,
+        status=item.status,
+        next_due_on=item.next_due_on,
+        last_completed_on=item.last_completed_on,
+        interval_days=item.interval_days,
+    )
+
+
 def _revision_option_snapshot(option: RevisionOption) -> RevisionOptionSnapshot:
+    explanation = option.explanation
+    expl_snap = None
+    if isinstance(explanation, RecommendationExplanation):
+        expl_snap = explanation_snapshot(explanation)
     return RevisionOptionSnapshot(
         option_id=option.option_id,
         topic_title=option.topic_title,
         priority_label=option.priority_label,
         estimated_study_minutes=option.estimated_study_minutes,
         expected_benefit=option.expected_benefit,
-        explanation=explanation_snapshot(option.explanation),
+        explanation=expl_snap,
         is_primary=option.is_primary,
+        package_id=option.package_id or option.option_id,
     )
 
 
 def revision_snapshot(projection: RevisionProjection) -> RevisionSnapshot:
     return RevisionSnapshot(
         student_id=projection.student_id,
+        due_now=tuple(_revision_item_snapshot(i) for i in projection.due_now),
+        upcoming=tuple(_revision_item_snapshot(i) for i in projection.upcoming),
+        recently_reviewed=tuple(
+            _revision_item_snapshot(i) for i in projection.recently_reviewed
+        ),
         primary=(
             None
             if projection.primary is None

@@ -4,15 +4,19 @@ Canonical source of truth for time-based review due status. Callers must
 use this service (or ``get_spacing_scheduler``) rather than inventing due
 dates from ``TopicProgress.next_review_date`` or MissionOptimizer slots.
 
-Isolation note: this milestone does not wire Revision or the daily study
-composer. Persistence defaults to an in-process store so the capability
-can be proven correct alone.
+Revision reads due status only through this facade (via
+``revision_board``). Persistence defaults to an in-process store until a
+durable adapter is wired.
 """
 
 from __future__ import annotations
 
 from datetime import date
 
+from app.application.spacing_scheduler.board import (
+    SpacingRevisionBoard,
+    build_revision_board,
+)
 from app.application.spacing_scheduler.store import (
     InMemorySpacingStateStore,
     SpacingStateStore,
@@ -108,6 +112,10 @@ class SpacingSchedulerService:
         unit = ReviewableUnitId(package_id=package_id)
         return self._store.get(learner_id, unit.package_id)
 
+    def list_states_for_learner(self, *, learner_id: str) -> tuple[SpacingState, ...]:
+        """Return every stored spacing state for the learner."""
+        return self._store.list_for_learner(learner_id.strip())
+
     def evaluate(
         self,
         *,
@@ -125,6 +133,26 @@ class SpacingSchedulerService:
             unit_id=unit.package_id,
             as_of=as_of,
             state=state,
+        )
+
+    def revision_board(
+        self,
+        *,
+        learner_id: str,
+        as_of: date,
+        **kwargs: object,
+    ) -> SpacingRevisionBoard:
+        """Build Revision Due now / Upcoming / Recently reviewed sections.
+
+        Due status comes only from ``evaluate`` over stored canonical state.
+        """
+        reject_forbidden_kwargs(kwargs)
+        lid = learner_id.strip()
+        return build_revision_board(
+            learner_id=lid,
+            as_of=as_of,
+            states=self.list_states_for_learner(learner_id=lid),
+            evaluate=self.evaluate,
         )
 
     def explain(

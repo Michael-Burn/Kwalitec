@@ -78,7 +78,12 @@ def test_open_workspace_reuse():
 
 
 def test_full_happy_path():
-    exp = make_experience()
+    from tests.application.student_experience.helpers import (
+        _spacing_with_due_packages,
+    )
+
+    spacing = _spacing_with_due_packages("stu-1", count=1)
+    exp = make_experience(spacing_scheduler=spacing)
     exp.open_workspace("stu-1", display_name="Alex")
     home = exp.get_home("stu-1")
     assert home.has_recommendation

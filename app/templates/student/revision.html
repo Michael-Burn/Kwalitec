@@ -1,7 +1,6 @@
 {% extends "student/base.html" %}
 {% set title = page.shell.page_title %}
-{% from "design_system/macros.html" import ds_button, ds_empty_operational %}
-{% from "student/components/explanation_card.html" import explanation_card %}
+{% from "design_system/macros.html" import ds_button %}
 
 {% block extra_head %}
 <link href="{{ versioned_static('css/design_system.css') }}" rel="stylesheet">
@@ -13,124 +12,104 @@
 <article
   class="ds-page ds-container ds-container--content ds-os-revision"
   aria-labelledby="student-revision-title"
-  data-sop="recommendations"
 >
   <header class="ds-page-header">
     <h1 id="student-revision-title" class="ds-page-header__title student-page-title">{{ page.shell.page_title }}</h1>
-    <p class="ds-page-header__support">Strengthen what you practised.</p>
+    <p class="ds-page-header__support">Return to packages when the schedule says they are due.</p>
   </header>
 
 {% if page.revision %}
 {% set revision = page.revision %}
 
-{% if revision.has_revision and revision.primary %}
-{% set primary = revision.primary %}
-
-  <section
-    class="ds-os-recommend"
-    aria-labelledby="revision-title"
-    data-sop-section="primary-recommendation"
-  >
-    <h2 id="revision-title" class="ds-os-recommend__title">{{ primary.topic_title }}</h2>
-
-    <dl class="ds-os-recommend__meta">
-      {% if primary.time_label %}
-      <div>
-        <dt>Time</dt>
-        <dd>{{ primary.time_label }}</dd>
-      </div>
-      {% endif %}
-      {% if primary.expected_benefit %}
-      <div>
-        <dt>Outcome</dt>
-        <dd>{{ primary.expected_benefit }}</dd>
-      </div>
-      {% endif %}
-    </dl>
-
-    {% if primary.explanation and primary.explanation.why_recommended %}
-    <p class="ds-os-recommend__why" data-sop-section="weak-topics">
-      {{ primary.explanation.why_recommended }}
+  <section class="ds-section" aria-labelledby="revision-due-now-title">
+    <h2 id="revision-due-now-title" class="ds-section__title">Due now</h2>
+    {% if revision.due_now %}
+    <ul class="ds-stack" role="list">
+      {% for item in revision.due_now %}
+      <li class="ds-panel" data-revision-section="due-now" data-package-id="{{ item.package_id }}">
+        <h3 class="ds-os-path__subtitle">{{ item.title }}</h3>
+        {% if item.explanation %}
+        <p class="ds-list__meta" data-spacing-explanation="true">{{ item.explanation }}</p>
+        {% endif %}
+        {% if form and loop.first and revision.primary_cta_enabled %}
+        <form method="post" action="{{ url_for('student.begin_revision') }}" class="ds-primary-strip">
+          {{ form.hidden_tag() }}
+          <input type="hidden" name="package_id" value="{{ item.package_id }}">
+          <button type="submit" class="ds-btn ds-btn--primary" data-student-cta="primary">
+            {{ revision.primary_cta_label }}
+          </button>
+        </form>
+        {% elif form and revision.primary_cta_enabled %}
+        <form method="post" action="{{ url_for('student.begin_revision') }}">
+          {{ form.hidden_tag() }}
+          <input type="hidden" name="package_id" value="{{ item.package_id }}">
+          <button type="submit" class="ds-btn ds-btn--secondary">
+            {{ revision.primary_cta_label }}
+          </button>
+        </form>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="ds-empty-operational__reason" role="status" data-revision-empty="due-now">
+      {{ revision.empty_message }}
+    </p>
+    <p class="ds-list__meta">
+      {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='secondary') }}
     </p>
     {% endif %}
+  </section>
 
-    {% if form and revision.primary_cta_enabled %}
-    <form method="post" action="{{ url_for('student.begin_revision') }}" class="ds-primary-strip">
-      {{ form.hidden_tag() }}
-      {{ form.option_id() }}
-      {{ form.mission_id() }}
-      {{ form.session_id() }}
-      <button type="submit" class="ds-btn ds-btn--primary" data-student-cta="primary">
-        {{ revision.primary_cta_label }}
-      </button>
-    </form>
+  <section class="ds-section" aria-labelledby="revision-upcoming-title">
+    <h2 id="revision-upcoming-title" class="ds-section__title">Upcoming</h2>
+    {% if revision.upcoming %}
+    <ul class="ds-stack" role="list">
+      {% for item in revision.upcoming %}
+      <li class="ds-panel" data-revision-section="upcoming" data-package-id="{{ item.package_id }}">
+        <h3 class="ds-os-path__subtitle">{{ item.title }}</h3>
+        {% if item.next_due_on %}
+        <p class="ds-list__meta">Next due {{ item.next_due_on }}</p>
+        {% endif %}
+        {% if item.explanation %}
+        <p class="ds-list__meta" data-spacing-explanation="true">{{ item.explanation }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="ds-list__meta" data-revision-empty="upcoming">No upcoming reviews scheduled yet.</p>
     {% endif %}
   </section>
 
-  {% if primary.explanation and primary.explanation.has_content %}
-  <details class="ds-disclosure" data-ux="revision-detail">
-    <summary>Why this topic</summary>
-    {{ explanation_card(primary.explanation) }}
-  </details>
-  {% endif %}
-
-  {% if revision.alternatives %}
-  <section class="ds-section" aria-labelledby="alt-revision-title" data-sop-section="also-deserves-attention">
-    <h2 id="alt-revision-title" class="ds-section__title">Also deserves attention</h2>
-    <div class="ds-stack">
-      {% for option in revision.alternatives %}
-      <article class="ds-panel ds-os-recommend-alt" data-mes-field="revision_alternative">
-        <h3 class="ds-os-path__subtitle">{{ option.topic_title }}</h3>
-        <dl class="ds-os-recommend__meta">
-          {% if option.priority_label %}
-          <div>
-            <dt>Priority</dt>
-            <dd>{{ option.priority_label }}</dd>
-          </div>
-          {% endif %}
-          {% if option.time_label %}
-          <div>
-            <dt>Time</dt>
-            <dd>{{ option.time_label }}</dd>
-          </div>
-          {% endif %}
-          {% if option.expected_benefit %}
-          <div>
-            <dt>Benefit</dt>
-            <dd>{{ option.expected_benefit }}</dd>
-          </div>
-          {% endif %}
-        </dl>
-        {% if option.explanation and option.explanation.has_content %}
-        {{ explanation_card(option.explanation) }}
-        {% elif option.explanation and option.explanation.why_recommended %}
-        <p class="ds-list__meta" data-mes-field="why_recommended">
-          {{ option.explanation.why_recommended }}
-        </p>
+  <section class="ds-section" aria-labelledby="revision-recent-title">
+    <h2 id="revision-recent-title" class="ds-section__title">Recently reviewed</h2>
+    {% if revision.recently_reviewed %}
+    <ul class="ds-stack" role="list">
+      {% for item in revision.recently_reviewed %}
+      <li class="ds-panel" data-revision-section="recently-reviewed" data-package-id="{{ item.package_id }}">
+        <h3 class="ds-os-path__subtitle">{{ item.title }}</h3>
+        {% if item.last_completed_on %}
+        <p class="ds-list__meta">Last completed {{ item.last_completed_on }}</p>
         {% endif %}
-      </article>
+        {% if item.explanation %}
+        <p class="ds-list__meta" data-spacing-explanation="true">{{ item.explanation }}</p>
+        {% endif %}
+      </li>
       {% endfor %}
-    </div>
+    </ul>
+    {% else %}
+    <p class="ds-list__meta" data-revision-empty="recently-reviewed">No completed packages have entered the review schedule yet.</p>
+    {% endif %}
   </section>
-  {% endif %}
 
 {% else %}
-  {{ ds_empty_operational(
-    'Finish today’s Session first: Revision will suggest follow-up after practice.',
-    "Return to today's Mission",
-    url_for('student.home'),
-    title='Nothing to revise yet',
-    explanation='Finish today’s Session first: Revision will suggest follow-up after practice.'
-  ) }}
-{% endif %}
-{% else %}
-  {{ ds_empty_operational(
-    'Practice a topic in a Session, then return here for follow-up.',
-    "Return to today's Mission",
-    url_for('student.home'),
-    title='Revision opens after practice',
-    explanation='Practice a topic in a Session, then return here for follow-up.'
-  ) }}
+  <p class="ds-empty-operational__reason" role="status">
+    Nothing is due for review yet. Packages return here after you complete them and enough time has passed.
+  </p>
+  <p class="ds-list__meta">
+    {{ ds_button("Return to today's Mission", href=url_for('student.home'), variant='secondary') }}
+  </p>
 {% endif %}
 </article>
 {% endblock %}
