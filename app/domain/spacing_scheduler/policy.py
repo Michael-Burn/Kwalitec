@@ -56,6 +56,21 @@ class SpacingIntervalPolicy:
             return self._clamp(self._previous_ladder_step(prior))
         raise ValueError(f"unsupported exposure_kind: {exposure_kind}")
 
+    def apply_ladder_step_delta(self, interval_days: int, delta: int) -> int:
+        """Apply a calendar-only one-step ladder nudge, then clamp.
+
+        ``delta`` must be in ``{-1, 0, +1}``. This is not a performance signal:
+        callers that want metacognitive influence must translate outside the
+        scheduler and pass only this integer.
+        """
+        if delta not in (-1, 0, 1):
+            raise ValueError("ladder_step_delta must be -1, 0, or 1")
+        if delta == 0:
+            return self._clamp(interval_days)
+        if delta == 1:
+            return self._clamp(self._next_ladder_step(interval_days))
+        return self._clamp(self._previous_ladder_step(interval_days))
+
     def _next_ladder_step(self, current: int) -> int:
         for step in self.interval_ladder_days:
             if step > current:

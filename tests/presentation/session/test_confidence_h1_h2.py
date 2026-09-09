@@ -261,6 +261,11 @@ class TestH1H2NoIntelligenceConsumers:
         Path("app/infrastructure/adapters/learning_session/runtime_engine.py"),
         Path("app/infrastructure/adapters/learning_session/persistence.py"),
         Path("app/infrastructure/session/defaults.py"),
+        # Sole named exception: Domain H rating → calendar ladder delta only.
+        Path(
+            "app/application/educational_runtime_engine/"
+            "confidence_ladder_adapter.py"
+        ),
     }
 
     def test_session_confidence_rating_stays_out_of_intelligence_cores(self):
@@ -308,6 +313,23 @@ class TestH1H2NoIntelligenceConsumers:
             "Domain H session confidence_rating leaked into intelligence "
             f"cores: {hits}"
         )
+
+    def test_named_spacing_adapter_is_only_new_domain_h_exception(self):
+        """Only the ladder adapter is the new Domain H scheduling exception."""
+        adapter = Path(
+            "app/application/educational_runtime_engine/"
+            "confidence_ladder_adapter.py"
+        )
+        assert adapter in self._ALLOWED_READERS
+        src = adapter.read_text(encoding="utf-8")
+        assert "confidence_rating" in src
+        assert "ladder_step_delta" in src
+        # Must not import Twin / recommendation / Decision Engine surfaces.
+        assert "student_twin" not in src
+        assert "recommendation_service" not in src
+        assert "decision_journal" not in src
+        assert "progress_engine" not in src
+
 
     def test_reflection_emit_does_not_pass_rating_to_evidence(self):
         """Engine reflection emit payload must not include confidence_rating."""

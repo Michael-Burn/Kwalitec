@@ -34,9 +34,15 @@ class SpacingScheduler:
         unit_id: str,
         completed_on: date,
         prior: SpacingState | None,
+        ladder_step_delta: int = 0,
         **kwargs: object,
     ) -> SpacingState:
-        """Record a completed exposure and produce the next spacing state."""
+        """Record a completed exposure and produce the next spacing state.
+
+        ``ladder_step_delta`` is a calendar-only extra ladder step in
+        ``{-1, 0, +1}``, applied after the normal exposure-kind move and
+        clamped to the policy ladder. It must not carry performance meaning.
+        """
         reject_forbidden_kwargs(kwargs)
         if kwargs:
             raise TypeError(
@@ -62,6 +68,10 @@ class SpacingScheduler:
                 exposure_kind=kind,
             )
             cycle = prior.review_cycle_count + 1
+
+        interval = self._policy.apply_ladder_step_delta(
+            interval, ladder_step_delta
+        )
 
         return SpacingState(
             learner_id=learner_id.strip(),

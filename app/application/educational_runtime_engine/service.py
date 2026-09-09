@@ -1514,6 +1514,7 @@ class EducationalRuntimeEngineService:
                 user_id=user_id,
                 package_id=pack_id,
                 completed_on=mission.mission_date,
+                mission_instance_id=mission.mission_instance_id,
             )
         return self.get_journey(user_id=user_id, subject_code=enrolment.subject_code)
 
@@ -1887,21 +1888,33 @@ class EducationalRuntimeEngineService:
         user_id: int,
         package_id: str,
         completed_on: date,
+        mission_instance_id: str = "",
     ) -> None:
         """Consume Runtime C MISSION_COMPLETED into the Spacing Scheduler.
 
         Evidence remains canonical on the event spine; the scheduler only
-        interprets a completed package id + calendar date.
+        interprets a completed package id + calendar date, plus an optional
+        calendar-only ``ladder_step_delta``. Domain H confidence is translated
+        outside the scheduler by ``confidence_ladder_adapter`` and never
+        passed as a performance signal.
         """
         pid = (package_id or "").strip()
         if not pid:
             return
+        from app.application.educational_runtime_engine import (
+            confidence_ladder_adapter as _confidence_ladder,
+        )
         from app.application.spacing_scheduler import get_spacing_scheduler
 
+        delta = _confidence_ladder.ladder_step_delta_for_completed_sitting(
+            user_id=user_id,
+            mission_instance_id=mission_instance_id,
+        )
         get_spacing_scheduler().record_completed_exposure(
             learner_id=str(user_id),
             package_id=pid,
             completed_on=completed_on,
+            ladder_step_delta=delta,
         )
 
     def _completed_educational_package_ids(

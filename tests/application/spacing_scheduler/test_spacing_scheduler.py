@@ -184,7 +184,35 @@ def test_canonical_source_returns_same_state_from_any_caller() -> None:
 def test_interface_cannot_accept_or_produce_performance_signals(
     service: SpacingSchedulerService,
 ) -> None:
-    """Requirement 4: structural refusal of mastery/weakness-style signals."""
+    """Requirement 4: structural refusal of mastery/weakness-style signals.
+
+    Roadmap item 5 must not carve exceptions: ``confidence`` and every other
+    forbidden name remain rejected on record/evaluate exactly as before.
+    ``ladder_step_delta`` is a calendar-only param and is not a forbidden name.
+    """
+    expected_forbidden = frozenset(
+        {
+            "mastery",
+            "mastery_score",
+            "estimated_knowledge",
+            "estimated_mastery",
+            "weak",
+            "weakness",
+            "weak_score",
+            "accuracy",
+            "performance",
+            "priority",
+            "priority_score",
+            "urgency",
+            "confidence",
+            "score",
+            "roi",
+        }
+    )
+    assert FORBIDDEN_SIGNAL_NAMES == expected_forbidden
+    assert "confidence" in FORBIDDEN_SIGNAL_NAMES
+    assert "ladder_step_delta" not in FORBIDDEN_SIGNAL_NAMES
+
     public_types = (SpacingState, SchedulingDecision, ReviewableUnitId)
     for cls in public_types:
         names = {f.name.lower() for f in fields(cls)}
@@ -200,30 +228,46 @@ def test_interface_cannot_accept_or_produce_performance_signals(
         params = set(inspect.signature(method).parameters)
         assert not (params & FORBIDDEN_SIGNAL_NAMES), method_name
 
-    with pytest.raises(TypeError, match="performance signals"):
-        service.record_completed_exposure(
-            learner_id=LEARNER,
-            package_id=PACKAGE_A,
-            completed_on=date(2026, 9, 1),
-            mastery_score=42.0,
-        )
-
-    with pytest.raises(TypeError, match="performance signals"):
-        service.evaluate(
-            learner_id=LEARNER,
-            package_id=PACKAGE_A,
-            as_of=date(2026, 9, 1),
-            weakness=True,
-        )
-
-    with pytest.raises(TypeError, match="performance signals"):
-        SpacingScheduler().apply_completed_exposure(
-            learner_id=LEARNER,
-            unit_id=PACKAGE_A,
-            completed_on=date(2026, 9, 1),
-            prior=None,
-            accuracy=0.9,
-        )
+    forbidden_kwargs = {
+        "mastery": 0.5,
+        "mastery_score": 42.0,
+        "estimated_knowledge": 0.4,
+        "estimated_mastery": 0.4,
+        "weak": True,
+        "weakness": True,
+        "weak_score": 0.2,
+        "accuracy": 0.9,
+        "performance": 0.8,
+        "priority": 1,
+        "priority_score": 1.0,
+        "urgency": 1,
+        "confidence": 4,
+        "score": 10,
+        "roi": 0.1,
+    }
+    for name, value in forbidden_kwargs.items():
+        with pytest.raises(TypeError, match="performance signals"):
+            service.record_completed_exposure(
+                learner_id=LEARNER,
+                package_id=PACKAGE_A,
+                completed_on=date(2026, 9, 1),
+                **{name: value},
+            )
+        with pytest.raises(TypeError, match="performance signals"):
+            service.evaluate(
+                learner_id=LEARNER,
+                package_id=PACKAGE_A,
+                as_of=date(2026, 9, 1),
+                **{name: value},
+            )
+        with pytest.raises(TypeError, match="performance signals"):
+            SpacingScheduler().apply_completed_exposure(
+                learner_id=LEARNER,
+                unit_id=PACKAGE_A,
+                completed_on=date(2026, 9, 1),
+                prior=None,
+                **{name: value},
+            )
 
     # Decision payloads expose only time/interval facts.
     service.record_completed_exposure(
@@ -239,6 +283,69 @@ def test_interface_cannot_accept_or_produce_performance_signals(
     decision_fields = {f.name.lower() for f in fields(decision)}
     assert not (decision_fields & FORBIDDEN_SIGNAL_NAMES)
     assert "explanation" in decision_fields
+
+
+@pytest.mark.parametrize(
+    ("delta", "expected_interval"),
+    [
+        (-1, 1),  # initial 1, then one step shorter, clamped at min
+        (0, 1),
+        (1, 3),  # initial 1, then one step longer → 3
+    ],
+)
+def test_ladder_step_delta_applies_after_exposure_kind_and_clamps(
+    service: SpacingSchedulerService,
+    delta: int,
+    expected_interval: int,
+) -> None:
+    """Calendar-only nudge after normal ladder move; respects ladder bounds."""
+    completed_on = date(2026, 9, 1)
+    state = service.record_completed_exposure(
+        learner_id=LEARNER,
+        package_id=PACKAGE_A,
+        completed_on=completed_on,
+        ladder_step_delta=delta,
+    )
+    assert state.current_interval_days == expected_interval
+    assert state.next_due_on == completed_on + timedelta(days=expected_interval)
+
+
+def test_ladder_step_delta_clamps_at_ladder_max(
+    service: SpacingSchedulerService,
+) -> None:
+    """+1 at the top of the ladder must not invent days beyond the ladder."""
+    day = date(2026, 9, 1)
+    # Climb to the top of the default ladder (1 → 3 → 7 → 14 → 30).
+    for days in (0, 1, 3, 7, 14):
+        service.record_completed_exposure(
+            learner_id=LEARNER,
+            package_id=PACKAGE_A,
+            completed_on=day + timedelta(days=days),
+        )
+    top = service.get_state(learner_id=LEARNER, package_id=PACKAGE_A)
+    assert top is not None
+    assert top.current_interval_days == 30
+
+    nudged = service.record_completed_exposure(
+        learner_id=LEARNER,
+        package_id=PACKAGE_A,
+        completed_on=day + timedelta(days=30),
+        ladder_step_delta=1,
+    )
+    assert nudged.current_interval_days == 30
+    assert nudged.next_due_on == day + timedelta(days=60)
+
+
+def test_invalid_ladder_step_delta_rejected(
+    service: SpacingSchedulerService,
+) -> None:
+    with pytest.raises(ValueError, match="ladder_step_delta"):
+        service.record_completed_exposure(
+            learner_id=LEARNER,
+            package_id=PACKAGE_A,
+            completed_on=date(2026, 9, 1),
+            ladder_step_delta=2,
+        )
 
 
 def test_every_scheduling_decision_explains_itself(

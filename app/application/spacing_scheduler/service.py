@@ -62,6 +62,7 @@ class SpacingSchedulerService:
         learner_id: str,
         package_id: str,
         completed_on: date,
+        ladder_step_delta: int = 0,
         **kwargs: object,
     ) -> SpacingState:
         """Hook for a genuine package completion.
@@ -70,6 +71,10 @@ class SpacingSchedulerService:
         ``MISSION_COMPLETED`` with a non-empty ``educational_package_id``.
         This method does not call Runtime C; callers supply the completed
         package id and calendar date.
+
+        ``ladder_step_delta`` is a calendar-only extra ladder step in
+        ``{-1, 0, +1}``. Callers that translate metacognition must do so
+        outside this facade; forbidden performance names remain rejected.
         """
         reject_forbidden_kwargs(kwargs)
         unit = ReviewableUnitId(package_id=package_id)
@@ -79,6 +84,7 @@ class SpacingSchedulerService:
             unit_id=unit.package_id,
             completed_on=completed_on,
             prior=prior,
+            ladder_step_delta=ladder_step_delta,
         )
         self._store.put(state)
         return state
