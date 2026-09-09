@@ -429,11 +429,40 @@ def _normalise(value: str, *, case_sensitive: bool) -> str:
     return text.strip()
 
 
+# Single unambiguous number: optional sign, integer or decimal (optional
+# thousands commas in groups of three), optional scientific exponent.
+# Rejects fractions, units, currency, mixed punctuation, and other shapes
+# that the previous strip-then-float path silently mangled into a different
+# number (e.g. "1/2" -> 12.0).
+_NUMBER_SHAPE = re.compile(
+    r"""
+    ^
+    [+-]?
+    (?:
+        (?: \d{1,3} (?:, \d{3} )+ | \d+ )
+        (?: \. \d* )?
+      | \. \d+
+    )
+    (?: [eE] [+-]? \d+ )?
+    $
+    """,
+    re.VERBOSE,
+)
+
+
 def _parse_number(value: str) -> float | None:
-    cleaned = (value or "").strip().replace(",", "")
-    cleaned = re.sub(r"[^0-9eE.+-]", "", cleaned)
-    if not cleaned:
+    """Parse a single unambiguous number, or return None.
+
+    Accepts integers, decimals, optional leading/trailing sign, scientific
+    notation, and comma thousands separators (``1,000``). Returns None for
+    empty input and for ambiguous or non-numeric shapes (fractions, letters,
+    units, currency, multiple punctuation, European-style ``1,2``, etc.)
+    instead of stripping characters into a plausible but unrelated float.
+    """
+    text = (value or "").strip()
+    if not text or _NUMBER_SHAPE.fullmatch(text) is None:
         return None
+    cleaned = text.replace(",", "")
     try:
         return float(cleaned)
     except ValueError:
