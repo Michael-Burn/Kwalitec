@@ -56,6 +56,10 @@ class MissionInstanceSnapshot:
     quality: MissionQualityEnvelope | None = None
     # PB-002: publication_approved package selected for this sitting
     educational_package_id: str = ""
+    # Locked composer reason (sequential / spaced_review / …)
+    composer_selection_reason: str = ""
+    # Scheduler plain-language explanation when reason is spaced_review
+    selection_explanation: str = ""
 
 
 @dataclass(frozen=True)
@@ -162,3 +166,7 @@ class SittingExecutionSpec:
     curriculum_provenance: dict | None = None
     calibration_notes: tuple[str, ...] = ()
     selection_trace: dict = field(default_factory=dict)
+    # Locked composer reason for this daily sitting (see selection_reasons.py)
+    composer_selection_reason: str = ""
+    # Spacing Scheduler explanation when composer chose spaced_review
+    selection_explanation: str = ""

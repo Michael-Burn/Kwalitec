@@ -50,8 +50,8 @@ _DAY_COMPLETE_MESSAGE = (
 _QUIET_REASON = "A session will be ready when today's focus is available."
 _PAGE_QUESTION = "What should I do now?"
 _DEFAULT_GREETING = "Welcome back."
-# Runtime C Learning Mode is unconditionally sequential today (no review /
-# consolidation register on this runtime). Honest Home copy only.
+# Runtime C Learning Mode is sequential unless Spacing Scheduler marks a
+# package due (composer_selection_reason=spaced_review).
 _SEQUENTIAL_WHY_NOW = "Next in your study plan."
 _STUDY_LINK_LABEL = "Study"
 
@@ -1289,14 +1289,22 @@ class StudentHomeService:
     def _why_now(home: HomePageViewModel) -> str:
         """Exactly one operational why-now line (≤140 chars preferred).
 
-        Runtime C Learning Mode is always sequential today: use the honest
-        study-plan line. Do not surface general per-topic curriculum rationale
-        (that lives on Study) or deferred multi-register provenance.
+        Sequential sittings use the study-plan line. Spaced-review sittings
+        surface the Spacing Scheduler's own plain-language explanation.
         """
         if home.session_control == "resume":
             return "Open session: continue where you left off"
         edu = home.educational
         if edu is not None and getattr(edu, "active", False):
+            reason = str(
+                getattr(edu, "composer_selection_reason", "") or ""
+            ).strip()
+            expl = str(getattr(edu, "selection_explanation", "") or "").strip()
+            if reason == "spaced_review" and expl:
+                return expl[:140]
+            why_mission = str(getattr(edu, "why_this_mission", "") or "").strip()
+            if reason == "spaced_review" and why_mission:
+                return why_mission[:140]
             return _SEQUENTIAL_WHY_NOW
         candidates: list[str] = []
         if home.explanation and home.explanation.why_recommended:

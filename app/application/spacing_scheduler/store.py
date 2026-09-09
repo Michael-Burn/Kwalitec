@@ -21,7 +21,11 @@ class SpacingStateStore(Protocol):
 
 
 class InMemorySpacingStateStore:
-    """Process-local store used until a durable adapter is wired."""
+    """Process-local store for isolated unit tests.
+
+    Production canonical construction uses
+    ``SessionDocumentSpacingStateStore`` via ``build_spacing_state_store``.
+    """
 
     def __init__(self) -> None:
         self._rows: dict[tuple[str, str], SpacingState] = {}

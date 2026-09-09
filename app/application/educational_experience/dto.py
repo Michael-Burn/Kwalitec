@@ -55,6 +55,8 @@ class MissionEducationSnapshot:
     review_point: str
     judgement: str
     educational_package_id: str = ""
+    composer_selection_reason: str = ""
+    selection_explanation: str = ""
 
 
 @dataclass(frozen=True)

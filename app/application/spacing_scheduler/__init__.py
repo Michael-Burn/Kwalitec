@@ -1,7 +1,8 @@
 """Spacing Scheduler application package — canonical due-state authority.
 
-Sole lawful entry for time-based review scheduling. Does not touch Revision,
-the daily study composer, or the Adaptive Decision Engine.
+Sole lawful entry for time-based review scheduling. Revision and the daily
+study composer must read due status only through this facade. Does not own
+the Adaptive Decision Engine.
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from app.application.spacing_scheduler.board import (
 )
 from app.application.spacing_scheduler.service import (
     SpacingSchedulerService,
+    discard_canonical_spacing_scheduler_for_tests,
     get_spacing_scheduler,
     reset_canonical_spacing_scheduler_for_tests,
 )
@@ -40,6 +42,7 @@ __all__ = [
     "SpacingSchedulerService",
     "SpacingState",
     "SpacingStateStore",
+    "discard_canonical_spacing_scheduler_for_tests",
     "get_spacing_scheduler",
     "reset_canonical_spacing_scheduler_for_tests",
 ]

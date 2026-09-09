@@ -192,6 +192,8 @@ class EducationalExperienceViewModel:
     feasibility_label: str = ""
     exam_date_label: str = ""
     syllabus_complete: bool = False
+    composer_selection_reason: str = ""
+    selection_explanation: str = ""
 
 
 @dataclass(frozen=True)

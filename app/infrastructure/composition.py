@@ -95,6 +95,25 @@ def build_session_document_store(
     return SessionDocumentStore(backing_repository_factory=_session_repo_factory(store))
 
 
+def build_spacing_state_store(
+    *,
+    flags: Version2FeatureFlags | None = None,
+    document_store: SessionDocumentStore | None = None,
+):
+    """Build the Spacing Scheduler store over ``SessionDocumentStore``.
+
+    Same durable gate as Twin/session (``KWALITEC_V2_DURABLE_STORE``). When
+    durable is on, independent wrappers share SQL rows in
+    ``v2_aggregate_documents`` under namespace ``spacing.state``.
+    """
+    from app.infrastructure.adapters.spacing_scheduler.document_store import (
+        SessionDocumentSpacingStateStore,
+    )
+
+    store = document_store or build_session_document_store(flags=flags)
+    return SessionDocumentSpacingStateStore(store=store)
+
+
 def _session_repo_factory(experience_store: ExperienceProjectionStore):
     """Route session namespaces through a dedicated LearningSession aggregate."""
 

@@ -284,6 +284,24 @@ def logged_in_client(client, ctx, user):
     return client
 
 
+@pytest.fixture(autouse=True)
+def _reset_canonical_spacing_scheduler():
+    """Keep process-canonical spacing state from leaking across tests.
+
+    Completions write the shared Spacing Scheduler store. With durable OFF
+    (pytest baseline), that is an in-process document map that DB truncation
+    does not clear. With durable ON (opt-in tests), clear() also removes
+    spacing-namespace SQL rows; the DB truncate fixture covers the rest.
+    """
+    from app.application.spacing_scheduler import (
+        reset_canonical_spacing_scheduler_for_tests,
+    )
+
+    reset_canonical_spacing_scheduler_for_tests()
+    yield
+    reset_canonical_spacing_scheduler_for_tests()
+
+
 @pytest.fixture(scope="function")
 def subject(ctx, user):
     return _make_subject(user.id)

@@ -5,8 +5,9 @@ use this service (or ``get_spacing_scheduler``) rather than inventing due
 dates from ``TopicProgress.next_review_date`` or MissionOptimizer slots.
 
 Revision reads due status only through this facade (via
-``revision_board``). Persistence defaults to an in-process store until a
-durable adapter is wired.
+``revision_board``). Persistence uses the same ``SessionDocumentStore``
+composition path as Twin evidence: durable SQL when
+``KWALITEC_V2_DURABLE_STORE`` is on, process-local memory otherwise.
 """
 
 from __future__ import annotations
@@ -17,10 +18,7 @@ from app.application.spacing_scheduler.board import (
     SpacingRevisionBoard,
     build_revision_board,
 )
-from app.application.spacing_scheduler.store import (
-    InMemorySpacingStateStore,
-    SpacingStateStore,
-)
+from app.application.spacing_scheduler.store import SpacingStateStore
 from app.domain.spacing_scheduler.policy import SpacingIntervalPolicy
 from app.domain.spacing_scheduler.scheduler import SpacingScheduler
 from app.domain.spacing_scheduler.types import (
@@ -35,8 +33,8 @@ class SpacingSchedulerService:
     """Application entry for recording exposures and querying due status.
 
     All reads and writes of spacing due-state for a given store instance
-    go through this service so Revision and the daily loop can later share
-    one authority without recalculating intervals independently.
+    go through this service so Revision and the daily loop share one
+    authority without recalculating intervals independently.
     """
 
     def __init__(
@@ -48,6 +46,11 @@ class SpacingSchedulerService:
     ) -> None:
         self._store = store
         self._scheduler = scheduler or SpacingScheduler(policy)
+
+    @property
+    def store(self) -> SpacingStateStore:
+        """The backing store for this service instance."""
+        return self._store
 
     @property
     def policy(self) -> SpacingIntervalPolicy:
@@ -172,11 +175,11 @@ class SpacingSchedulerService:
         ).explanation
 
 
-# Process-wide default store: one canonical in-memory source until a
-# durable adapter replaces it. Tests that need isolation should inject
-# their own store rather than clearing the shared default casually.
-_CANONICAL_STORE = InMemorySpacingStateStore()
-_CANONICAL_SERVICE = SpacingSchedulerService(store=_CANONICAL_STORE)
+# Process-canonical service: one shared instance per durable-mode setting.
+# Durable ON: wrappers share SQL via build_session_document_store.
+# Durable OFF: this singleton keeps Revision / composer / writes on one map.
+_canonical_service: SpacingSchedulerService | None = None
+_canonical_durable: bool | None = None
 
 
 def get_spacing_scheduler() -> SpacingSchedulerService:
@@ -184,10 +187,45 @@ def get_spacing_scheduler() -> SpacingSchedulerService:
 
     Every caller that wants the shared authority must go through this
     function (or an explicitly injected service wrapping the same store).
+    Rebuilds when ``KWALITEC_V2_DURABLE_STORE`` flips so tests can opt in
+    without inheriting an import-time in-memory store.
     """
-    return _CANONICAL_SERVICE
+    global _canonical_service, _canonical_durable
+
+    from app.application.config.v2_flags import resolve_v2_feature_flags
+    from app.infrastructure.composition import build_spacing_state_store
+
+    durable = resolve_v2_feature_flags().ENABLE_DURABLE_STORE
+    if _canonical_service is None or _canonical_durable != durable:
+        _canonical_durable = durable
+        _canonical_service = SpacingSchedulerService(
+            store=build_spacing_state_store()
+        )
+    return _canonical_service
+
+
+def discard_canonical_spacing_scheduler_for_tests() -> None:
+    """Drop the process singleton without clearing backing data.
+
+    Used to simulate a process restart while durable SQL rows remain.
+    """
+    global _canonical_service, _canonical_durable
+    _canonical_service = None
+    _canonical_durable = None
 
 
 def reset_canonical_spacing_scheduler_for_tests() -> None:
-    """Clear the process-canonical store (tests only)."""
-    _CANONICAL_STORE.clear()
+    """Clear the process-canonical store and drop the singleton (tests only).
+
+    In-memory mode clears the process-local document map. Durable SQL mode
+    only drops the singleton: table truncation in the ``db`` fixture owns
+    SQL isolation, and clear() would otherwise need an app context that
+    may already be torn down.
+    """
+    global _canonical_service, _canonical_durable
+    if _canonical_service is not None and _canonical_durable is not True:
+        clear = getattr(_canonical_service.store, "clear", None)
+        if callable(clear):
+            clear()
+    _canonical_service = None
+    _canonical_durable = None

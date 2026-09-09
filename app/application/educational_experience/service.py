@@ -569,6 +569,14 @@ class EducationalExperienceService:
                 or ""
             )
         )
+        composer_reason = str(
+            getattr(mission, "composer_selection_reason", "") or ""
+        ).strip()
+        selection_explanation = sanitize_student_text(
+            str(getattr(mission, "selection_explanation", "") or "")
+        )
+        if composer_reason == "spaced_review" and selection_explanation:
+            why = selection_explanation
         evidence_raw = explanation.get("supporting_evidence") or ()
         if isinstance(evidence_raw, str):
             evidence = tuple(
@@ -632,6 +640,8 @@ class EducationalExperienceService:
             educational_package_id=str(
                 getattr(mission, "educational_package_id", "") or ""
             ).strip(),
+            composer_selection_reason=composer_reason,
+            selection_explanation=selection_explanation,
         )
 
     def _journey_education(

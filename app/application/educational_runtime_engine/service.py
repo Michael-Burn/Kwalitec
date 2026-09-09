@@ -56,6 +56,10 @@ from app.application.educational_runtime_engine.exceptions import (
     StudyPlanInstanceNotFound,
     SyllabusAlreadyComplete,
 )
+from app.application.educational_runtime_engine.selection_reasons import (
+    SELECTION_REASON_SEQUENTIAL,
+    SELECTION_REASON_SPACED_REVIEW,
+)
 from app.application.progress_engine import (
     ProgressEngine,
     StudyProgress,
@@ -577,21 +581,31 @@ class EducationalRuntimeEngineService:
             return None
 
         # PX-B-005 / PX-B-006: retire wrong-package or completed-learning blocking
-        # revision, then allow regeneration.
+        # revision, then allow regeneration. Due review (Spacing Scheduler)
+        # outranks sequential when something is genuinely due; tip-front still
+        # outranks both.
         owed = None
         if memory_pack is not None:
             owed = memory_pack
         else:
-            from app.application.educational_packages.selection import (
-                resolve_active_educational_package,
+            due_pack, _due_expl = self._due_review_package_for_day(
+                user_id=user_id,
+                subject_code=enrolment.subject_code,
+                as_of=day,
             )
+            if due_pack is not None:
+                owed = due_pack
+            else:
+                from app.application.educational_packages.selection import (
+                    resolve_active_educational_package,
+                )
 
-            owed = resolve_active_educational_package(
-                subject_id=enrolment.subject_code,
-                syllabus_topic_code=progress.current_topic_id or "",
-                completed_package_ids=completed_packs,
-                last_completed_package_id=last_pack_id,
-            )
+                owed = resolve_active_educational_package(
+                    subject_id=enrolment.subject_code,
+                    syllabus_topic_code=progress.current_topic_id or "",
+                    completed_package_ids=completed_packs,
+                    last_completed_package_id=last_pack_id,
+                )
         existing_pack = self._educational_package_id_for_mission(
             existing.mission_instance_id
         )
@@ -705,6 +719,14 @@ class EducationalRuntimeEngineService:
         else:
             plan = self._require_active_plan(enrolment)
 
+        due_pack, due_explanation = (None, "")
+        if memory_pack is None:
+            due_pack, due_explanation = self._due_review_package_for_day(
+                user_id=user_id,
+                subject_code=enrolment.subject_code,
+                as_of=day,
+            )
+
         package = self._authority.get_active(enrolment.subject_code)
         package_dict = package.package if package is not None else {}
         preferred_topic = progress.current_topic_id
@@ -713,6 +735,10 @@ class EducationalRuntimeEngineService:
         ):
             preferred_topic = self._topic_id_for_package_code(
                 artefacts, memory_pack.topic_code
+            ) or preferred_topic
+        elif due_pack is not None:
+            preferred_topic = self._topic_id_for_package_code(
+                artefacts, due_pack.topic_code
             ) or preferred_topic
         certified_spec = self._select_certified_mission(
             package_dict,
@@ -723,12 +749,14 @@ class EducationalRuntimeEngineService:
             curriculum_identity=enrolment.curriculum_identity,
         )
         # MISSION-002: mission topic must match progress current topic,
-        # except post-tip Memory/Publication Front sittings (CP/CR package topic).
+        # except post-tip Memory/Publication Front sittings (CP/CR package topic)
+        # and Spacing Scheduler due-review sittings for a prior package.
         topic_id = preferred_topic or progress.current_topic_id
         if (
             certified_spec is not None
             and certified_spec.topic_id == progress.current_topic_id
             and memory_pack is None
+            and due_pack is None
         ):
             topic_id = certified_spec.topic_id
         template = self._mission_template_for_topic(artefacts, topic_id)
@@ -747,7 +775,7 @@ class EducationalRuntimeEngineService:
         )
         completed = set(progress.completed_topic_ids)
         missing = [pid for pid in required if pid not in completed]
-        if missing:
+        if missing and due_pack is None:
             raise IllegalRuntimeState(
                 f"cannot generate mission for {template.topic_id}; "
                 f"unsatisfied prerequisites: {missing}"
@@ -757,6 +785,7 @@ class EducationalRuntimeEngineService:
             certified_spec.objective_ids
             if certified_spec is not None
             and certified_spec.topic_id == template.topic_id
+            and due_pack is None
             else template.objective_ids
         )
         mastered = set(
@@ -794,7 +823,13 @@ class EducationalRuntimeEngineService:
         )
 
         pack = memory_pack
-        if pack is None and certified_guidance_enforced(enrolment.subject_code):
+        composer_selection_reason = SELECTION_REASON_SEQUENTIAL
+        selection_explanation = ""
+        if pack is None and due_pack is not None:
+            pack = due_pack
+            composer_selection_reason = SELECTION_REASON_SPACED_REVIEW
+            selection_explanation = due_explanation
+        elif pack is None and certified_guidance_enforced(enrolment.subject_code):
             pack = resolve_active_educational_package(
                 subject_id=enrolment.subject_code,
                 syllabus_topic_code=human_code or template.topic_code,
@@ -812,7 +847,7 @@ class EducationalRuntimeEngineService:
         provenance: dict[str, Any] | None = None
         calibration: tuple[str, ...] = ()
         certified_mission_id: str | None = None
-        if certified_spec is not None:
+        if certified_spec is not None and due_pack is None:
             certified_mission_id = certified_spec.mission_id
             selection_reasons = tuple(
                 r.value for r in certified_spec.selection_reasons
@@ -848,13 +883,20 @@ class EducationalRuntimeEngineService:
             selection_reasons=selection_reasons,
             curriculum_provenance=provenance,
             calibration_notes=calibration,
+            composer_selection_reason=composer_selection_reason,
+            selection_explanation=selection_explanation,
             selection_trace={
                 "preferred_topic": preferred_topic,
                 "memory_pack_id": (
                     memory_pack.package_id if memory_pack is not None else None
                 ),
+                "due_pack_id": (
+                    due_pack.package_id if due_pack is not None else None
+                ),
                 "owed_pack_id": pack.package_id if pack is not None else None,
                 "progress_current_topic_id": progress.current_topic_id,
+                "composer_selection_reason": composer_selection_reason,
+                "selection_explanation": selection_explanation,
                 "adaptive_attempted": False,
             },
         )
@@ -999,6 +1041,12 @@ class EducationalRuntimeEngineService:
                 )
             if spec.calibration_notes:
                 payload["calibration_notes"] = list(spec.calibration_notes)
+        if spec.composer_selection_reason:
+            payload["composer_selection_reason"] = spec.composer_selection_reason
+        if spec.selection_explanation:
+            payload["selection_explanation"] = spec.selection_explanation
+        if spec.selection_reasons and "selection_reasons" not in payload:
+            payload["selection_reasons"] = list(spec.selection_reasons)
         self._append_event(
             event_type=EducationalEventType.MISSION_GENERATED,
             user_id=spec.user_id,
@@ -1461,6 +1509,12 @@ class EducationalRuntimeEngineService:
             plan.current_topic_id = mission.topic_id
 
         db.session.commit()
+        if pack_id:
+            self._record_spacing_exposure_for_completion(
+                user_id=user_id,
+                package_id=pack_id,
+                completed_on=mission.mission_date,
+            )
         return self.get_journey(user_id=user_id, subject_code=enrolment.subject_code)
 
     # ── Progress / readiness / EK projections ─────────────────────────────
@@ -1797,6 +1851,58 @@ class EducationalRuntimeEngineService:
             )
             or ""
         ).strip()
+
+    def _due_review_package_for_day(
+        self,
+        *,
+        user_id: int,
+        subject_code: str,
+        as_of: date,
+    ) -> tuple[Any, str]:
+        """Return the first due package for this subject, or (None, "").
+
+        Due status comes only from ``get_spacing_scheduler().revision_board``.
+        Oldest due first (board ordering). Does not invent due dates.
+        """
+        from app.application.educational_packages.loader import find_package_by_id
+        from app.application.spacing_scheduler import get_spacing_scheduler
+
+        board = get_spacing_scheduler().revision_board(
+            learner_id=str(user_id),
+            as_of=as_of,
+        )
+        sid = (subject_code or "").strip().upper()
+        for entry in board.due_now:
+            pack = find_package_by_id(entry.package_id)
+            if pack is None:
+                continue
+            if str(getattr(pack, "subject_id", "") or "").strip().upper() != sid:
+                continue
+            return pack, str(entry.explanation or "").strip()
+        return None, ""
+
+    def _record_spacing_exposure_for_completion(
+        self,
+        *,
+        user_id: int,
+        package_id: str,
+        completed_on: date,
+    ) -> None:
+        """Consume Runtime C MISSION_COMPLETED into the Spacing Scheduler.
+
+        Evidence remains canonical on the event spine; the scheduler only
+        interprets a completed package id + calendar date.
+        """
+        pid = (package_id or "").strip()
+        if not pid:
+            return
+        from app.application.spacing_scheduler import get_spacing_scheduler
+
+        get_spacing_scheduler().record_completed_exposure(
+            learner_id=str(user_id),
+            package_id=pid,
+            completed_on=completed_on,
+        )
 
     def _completed_educational_package_ids(
         self, *, user_id: int, curriculum_identity: str
@@ -2428,6 +2534,12 @@ class EducationalRuntimeEngineService:
         educational_package_id = str(
             generated_payload.get("educational_package_id") or ""
         ).strip()
+        composer_selection_reason = str(
+            generated_payload.get("composer_selection_reason") or ""
+        ).strip()
+        selection_explanation = str(
+            generated_payload.get("selection_explanation") or ""
+        ).strip()
         return MissionInstanceSnapshot(
             mission_instance_id=row.mission_instance_id,
             plan_instance_id=row.plan_instance_id,
@@ -2444,6 +2556,8 @@ class EducationalRuntimeEngineService:
             completed_at=row.completed_at,
             quality=quality,
             educational_package_id=educational_package_id,
+            composer_selection_reason=composer_selection_reason,
+            selection_explanation=selection_explanation,
         )
 
     def _previous_completed_topic(

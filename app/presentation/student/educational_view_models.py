@@ -72,6 +72,12 @@ def educational_vm(
         feasibility_label=pacing.feasibility_label,
         exam_date_label=pacing.exam_date_label,
         syllabus_complete=snap.syllabus_complete,
+        composer_selection_reason=(
+            mission.composer_selection_reason if mission else ""
+        ),
+        selection_explanation=(
+            mission.selection_explanation if mission else ""
+        ),
     )
 
 
