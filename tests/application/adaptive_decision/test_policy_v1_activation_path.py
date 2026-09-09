@@ -53,6 +53,10 @@ from app.application.student_twin.query import (
 from app.domain.educational_runtime_engine.events import EducationalEventType
 from app.domain.spacing_scheduler.types import FORBIDDEN_SIGNAL_NAMES
 from app.models.educational_runtime_engine import RuntimeEducationalEvent
+from tests.application.adaptive_decision.test_policy_v1 import (
+    _SAMPLING_TOPIC_ID,
+    _cs1_canonical,
+)
 from tests.application.educational_runtime_engine.helpers import (
     make_user,
     publish_subject,
@@ -208,15 +212,14 @@ def test_evidence_sufficient_produces_explainable_adaptive_decision(
         exam_date=date(2026, 8, 20),
     )
     facts = {
-        "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-        "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-        "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
     }
-    twin = _StubTwin(facts=facts, covered={"2.6.1", "2.6.2", "2.6.3"})
+    twin = _StubTwin(facts=facts, covered={_SAMPLING_TOPIC_ID})
     engine = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     engine._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     orch = SittingDecisionOrchestrator(runtime=runtime, engine=engine)
@@ -268,16 +271,15 @@ def test_adaptive_decision_survives_process_restart(
     )
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-            "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-            "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+            _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
         },
-        covered={"2.6.1", "2.6.2", "2.6.3"},
+        covered={_SAMPLING_TOPIC_ID},
     )
     engine = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     engine._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     orch = SittingDecisionOrchestrator(runtime=runtime, engine=engine)
@@ -374,16 +376,15 @@ def test_policy_v1_never_treats_due_as_weak_and_keeps_reasons_distinct(
     )
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-            "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-            "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+            _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
         },
-        covered={"2.6.1", "2.6.2", "2.6.3"},
+        covered={_SAMPLING_TOPIC_ID},
     )
     v1 = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     decision = v1.decide_daily_sitting(
@@ -441,15 +442,15 @@ def test_below_threshold_evidence_explains_partial_count(
     )
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.2, evidence=1),
-            "2.6.2": _fact("2.6.2", ek=0.3, evidence=2),
+            _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.2, evidence=2),
         },
-        covered={"2.6.1", "2.6.2"},
+        covered={_SAMPLING_TOPIC_ID},
     )
     v1 = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     decision = v1.decide_daily_sitting(

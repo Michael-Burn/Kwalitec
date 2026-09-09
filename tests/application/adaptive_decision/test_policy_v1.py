@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 import json
+import re
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
@@ -33,6 +34,10 @@ from app.application.adaptive_decision.types import (
     DailySittingRequest,
 )
 from app.application.config.v2_flags import resolve_v2_feature_flags
+from app.application.educational_engine_foundation.dto import (
+    EducationalArtefactSnapshot,
+    ProgressModelSnapshot,
+)
 from app.application.educational_packages.loader import (
     packages_for_subject,
     reset_educational_package_cache,
@@ -40,6 +45,7 @@ from app.application.educational_packages.loader import (
 from app.application.educational_runtime_engine.service import (
     EducationalRuntimeEngineService,
 )
+from app.application.student_twin.canonical_topic_id import CanonicalTopicId
 from app.application.student_twin.query import (
     LearnerKnowledgeSnapshot,
     TopicKnowledgeFact,
@@ -56,6 +62,74 @@ from tests.application.educational_runtime_engine.helpers import (
     make_user,
     publish_subject,
 )
+
+# Published Twin key for sampling-distributions return_targets 2.6.1–2.6.6.
+_SAMPLING_TOPIC_ID = "CS1-B-T06"
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_CS1_SYLLABUS = (
+    _REPO_ROOT / "app" / "curriculum" / "data" / "ifoa" / "cs1" / "2026.json"
+)
+
+
+class _FakeFoundation:
+    def __init__(self, snapshot: EducationalArtefactSnapshot | None) -> None:
+        self._snapshot = snapshot
+
+    def derive_active(self, subject_code: str):
+        return self._snapshot
+
+
+def _cs1_syllabus_artefacts() -> EducationalArtefactSnapshot:
+    """Build foundation artefacts from the live CS1 syllabus taxonomy."""
+    data = json.loads(_CS1_SYLLABUS.read_text(encoding="utf-8"))
+    topics: list[dict] = []
+    objectives: list[dict] = []
+    progress_topics: list[dict] = []
+    topic_ids: list[str] = []
+    for sec in data.get("sections") or ():
+        for topic in sec.get("topics") or ():
+            tid = str(topic.get("id") or "").strip()
+            code = str(topic.get("code") or "").strip()
+            if not tid:
+                continue
+            topic_ids.append(tid)
+            topics.append(
+                {
+                    "topic_id": tid,
+                    "code": code,
+                    "title": str(topic.get("title") or "").strip(),
+                }
+            )
+            progress_topics.append({"topic_id": tid, "topic_code": code})
+            for lo in topic.get("learning_objectives") or ():
+                locode = str(lo.get("code") or "").strip()
+                if not locode:
+                    continue
+                objectives.append(
+                    {
+                        "objective_id": str(lo.get("id") or locode).strip(),
+                        "code": locode,
+                        "number": locode,
+                        "topic_id": str(lo.get("topic_id") or tid).strip(),
+                        "text": str(lo.get("description") or "").strip(),
+                    }
+                )
+    return EducationalArtefactSnapshot(
+        curriculum_identity="ifoa:cs1:2026",
+        subject_code="CS1",
+        version_label="2026",
+        topics=tuple(topics),
+        objectives=tuple(objectives),
+        progress_model=ProgressModelSnapshot(
+            curriculum_identity="ifoa:cs1:2026",
+            topic_ids=tuple(topic_ids),
+            topics=tuple(progress_topics),
+        ),
+    )
+
+
+def _cs1_canonical() -> CanonicalTopicId:
+    return CanonicalTopicId(foundation=_FakeFoundation(_cs1_syllabus_artefacts()))
 
 
 @dataclass
@@ -151,6 +225,31 @@ def test_cs1_revision_packages_expose_return_targets():
     )
 
 
+def test_all_live_return_targets_resolve_to_published_topic_ids():
+    """Every authored return_target across the 19 revision packages resolves."""
+    reset_educational_package_cache()
+    canonical = _cs1_canonical()
+    packs = packages_for_subject("CS1", mode="revision")
+    assert len(packs) == 19
+    failures: list[tuple[str, str]] = []
+    resolved: dict[str, str] = {}
+    for pack in packs:
+        for target in pack.return_targets:
+            pub = canonical.resolve_from_runtime_topic_id(
+                target, subject_code="CS1"
+            )
+            if not pub:
+                failures.append((pack.package_id, target))
+                continue
+            resolved[target] = pub
+            assert CanonicalTopicId.is_hygienic_twin_key(pub), pub
+            assert pub.startswith("CS1-"), pub
+    assert failures == []
+    assert resolved
+    assert resolved["2.6.1"] == _SAMPLING_TOPIC_ID
+    assert resolved["1.1"] == "CS1-A-T01"
+
+
 # ---------------------------------------------------------------------------
 # Cadence (continuous interpolation)
 # ---------------------------------------------------------------------------
@@ -211,16 +310,16 @@ def test_cadence_is_strictly_tighter_as_exam_nears():
 
 
 def test_block_weakness_score_sampling_distributions_worked_example():
-    """Matches ADR027_PHASE3 verification §3 synthetic table → ≈0.252."""
+    """Matches ADR027_PHASE3 verification mean on the real Twin key space.
+
+    Facts are keyed by the published Twin topic id (CS1-B-T06), not LO codes.
+    Multiple LO return_targets resolve onto the same Twin fact; mean is that EK.
+    """
     facts = {
-        "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-        "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-        "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
-        "2.6.4": _fact("2.6.4", ek=0.098, evidence=1),
-        "2.6.5": _fact("2.6.5", ek=None, evidence=0),
-        # 2.6.6 uncovered — absent from covered set
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
     }
-    covered = {"2.6.1", "2.6.2", "2.6.3", "2.6.4", "2.6.5"}
+    covered = {_SAMPLING_TOPIC_ID}
+    canonical = _cs1_canonical()
     score = block_weakness_score(
         return_targets=(
             "2.6.1",
@@ -232,21 +331,45 @@ def test_block_weakness_score_sampling_distributions_worked_example():
         ),
         facts_by_topic=facts,
         covered=covered,
+        subject_code="CS1",
+        canonical=canonical,
     )
-    assert score == pytest.approx((0.410 + 0.092 + 0.254) / 3)
+    # Three eligible LOs in the original worked example each carried distinct
+    # EK; with topic-level Twin keys they share one fact. Mean is that EK.
+    assert score == pytest.approx(0.252)
+
+
+def test_block_weakness_score_resolves_lo_codes_to_published_twin_keys():
+    """Regression: LO-shaped return_targets hit Twin facts keyed by topic id."""
+    facts = {
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.41, evidence=5),
+    }
+    # Wrong key space (pre-fix bug): LO-shaped Twin keys must not be required.
+    assert "2.6.1" not in facts
+    score = block_weakness_score(
+        return_targets=("2.6.1", "2.6.2", "2.6.3"),
+        facts_by_topic=facts,
+        covered={_SAMPLING_TOPIC_ID},
+        subject_code="CS1",
+        canonical=_cs1_canonical(),
+    )
+    assert score == pytest.approx(0.41)
 
 
 def test_study_progress_complete_without_twin_evidence_excluded():
     """Covered + zero Twin evidence never enters the block score."""
+    # Two LOs under different topics so coverage/evidence stay distinguishable.
     facts = {
-        "2.6.1": _fact("2.6.1", ek=None, evidence=0),
-        "2.6.2": _fact("2.6.2", ek=0.5, evidence=3),
+        "CS1-A-T01": _fact("CS1-A-T01", ek=None, evidence=0),
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.5, evidence=3),
     }
-    covered = {"2.6.1", "2.6.2"}
+    covered = {"CS1-A-T01", _SAMPLING_TOPIC_ID}
     score = block_weakness_score(
-        return_targets=("2.6.1", "2.6.2"),
+        return_targets=("1.1.1", "2.6.1"),
         facts_by_topic=facts,
         covered=covered,
+        subject_code="CS1",
+        canonical=_cs1_canonical(),
     )
     assert score == pytest.approx(0.5)
 
@@ -259,23 +382,24 @@ def test_select_weakest_revision_package_picks_sampling_over_stronger():
         for p in packs
         if p.package_id == "CS1-EP001-PKG-REV-SAMPLING-DISTRIBUTIONS"
     )
-    # Give sampling the worked-example weak eligible set; give every other
-    # package either no eligible topics or a higher (stronger) score.
+    canonical = _cs1_canonical()
+    # Sampling is weak on its published Twin topic; another package is strong.
     facts = {
-        "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-        "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-        "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
     }
-    covered = {"2.6.1", "2.6.2", "2.6.3"}
-    # Seed one other package's first target as strong so it is scorable but loses.
+    covered = {_SAMPLING_TOPIC_ID}
     other = next(
         p
         for p in packs
         if p.package_id != sampling.package_id and p.return_targets
     )
-    other_t = other.return_targets[0]
-    facts[other_t] = _fact(other_t, ek=0.90, evidence=5)
-    covered.add(other_t)
+    other_pub = canonical.resolve_from_runtime_topic_id(
+        other.return_targets[0], subject_code="CS1"
+    )
+    assert other_pub is not None
+    if other_pub != _SAMPLING_TOPIC_ID:
+        facts[other_pub] = _fact(other_pub, ek=0.90, evidence=5)
+        covered.add(other_pub)
 
     twin = _StubTwin(facts=facts, covered=covered)
     snap = twin.knowledge_snapshot(user_id=1, subject_code="CS1")
@@ -285,12 +409,59 @@ def test_select_weakest_revision_package_picks_sampling_over_stronger():
         twin=twin,
         user_id=1,
         subject_code="CS1",
+        canonical=canonical,
     )
     assert chosen is not None
     pack, score, eligible = chosen
     assert pack.package_id == sampling.package_id
-    assert score == pytest.approx((0.410 + 0.092 + 0.254) / 3)
-    assert set(eligible) == {"2.6.1", "2.6.2", "2.6.3"}
+    assert score == pytest.approx(0.252)
+    assert set(eligible) == {
+        "2.6.1",
+        "2.6.2",
+        "2.6.3",
+        "2.6.4",
+        "2.6.5",
+        "2.6.6",
+    }
+
+
+def test_insufficient_evidence_unchanged_when_twin_keys_are_correct():
+    """Honest SAFE_FALLBACK: covered published topic, evidence below floor."""
+    reset_educational_package_cache()
+    packs = packages_for_subject("CS1", mode="revision")
+    twin = _StubTwin(
+        facts={
+            _SAMPLING_TOPIC_ID: _fact(
+                _SAMPLING_TOPIC_ID, ek=0.1, evidence=2
+            ),
+        },
+        covered={_SAMPLING_TOPIC_ID},
+    )
+    snap = twin.knowledge_snapshot(user_id=1, subject_code="CS1")
+    chosen = select_weakest_revision_package(
+        packages=packs,
+        snapshot=snap,
+        twin=twin,
+        user_id=1,
+        subject_code="CS1",
+        canonical=_cs1_canonical(),
+    )
+    assert chosen is None
+
+
+def test_policy_v1_unit_tests_use_published_topic_id_fact_keys():
+    """Guard: weakness-scoring fixtures must not plant LO-shaped Twin keys."""
+    source = Path(__file__).read_text(encoding="utf-8")
+    # Detect fact dict entries keyed by LO codes (digit.digit.digit) that call
+    # _fact with the same LO string. That pattern masked the Twin key bug.
+    lo_fact_key = re.compile(
+        r'''["'](\d+\.\d+\.\d+)["']\s*:\s*_fact\(\s*["']\1["']'''
+    )
+    offenders = lo_fact_key.findall(source)
+    assert offenders == [], (
+        "Policy V1 tests still plant Twin facts under LO codes: "
+        f"{offenders}"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -406,6 +577,7 @@ def test_zero_evidence_review_day_safe_fallback_matches_v0(ctx, runtime):
         runtime=runtime,
         twin=_StubTwin(facts={}, covered=set()),
         v0=v0,
+        canonical=_cs1_canonical(),
     )
     # Force review day via watermark without Twin evidence.
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
@@ -455,10 +627,19 @@ def test_not_review_day_defers_to_v0(ctx, runtime):
     day = date(2026, 8, 1)
     v0 = PolicyV0AdaptiveDecisionEngine(runtime=runtime)
     twin = _StubTwin(
-        facts={"2.6.1": _fact("2.6.1", ek=0.1, evidence=5)},
-        covered={"2.6.1"},
+        facts={
+            _SAMPLING_TOPIC_ID: _fact(
+                _SAMPLING_TOPIC_ID, ek=0.1, evidence=5
+            )
+        },
+        covered={_SAMPLING_TOPIC_ID},
     )
-    v1 = PolicyV1AdaptiveDecisionEngine(runtime=runtime, twin=twin, v0=v0)
+    v1 = PolicyV1AdaptiveDecisionEngine(
+        runtime=runtime,
+        twin=twin,
+        v0=v0,
+        canonical=_cs1_canonical(),
+    )
     v1._topics_since_last_review = lambda request: 0  # type: ignore[method-assign]
     request = DailySittingRequest(
         user_id=user.id,
@@ -493,15 +674,16 @@ def test_adaptive_recorded_only_when_evidence_backed_selection(
     enrolment = journey.enrolment
     day = date(2026, 8, 1)
     facts = {
-        "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-        "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-        "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
     }
-    twin = _StubTwin(
-        facts=facts, covered={"2.6.1", "2.6.2", "2.6.3"}
-    )
+    twin = _StubTwin(facts=facts, covered={_SAMPLING_TOPIC_ID})
     v0 = PolicyV0AdaptiveDecisionEngine(runtime=runtime)
-    v1 = PolicyV1AdaptiveDecisionEngine(runtime=runtime, twin=twin, v0=v0)
+    v1 = PolicyV1AdaptiveDecisionEngine(
+        runtime=runtime,
+        twin=twin,
+        v0=v0,
+        canonical=_cs1_canonical(),
+    )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     request = DailySittingRequest(
         user_id=user.id,
@@ -520,7 +702,7 @@ def test_adaptive_recorded_only_when_evidence_backed_selection(
     assert REASON_POLICY_V1_BLOCK_WEAKNESS in decision.reason_codes
     assert decision.selection_trace.get("adaptive_selected") is True
     assert decision.selection_trace.get("weakness_score") == pytest.approx(
-        (0.410 + 0.092 + 0.254) / 3
+        0.252
     )
 
 
@@ -535,15 +717,17 @@ def test_adaptive_never_when_covered_but_below_evidence_floor(ctx, runtime):
     enrolment = journey.enrolment
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.1, evidence=2),
-            "2.6.2": _fact("2.6.2", ek=0.2, evidence=1),
+            _SAMPLING_TOPIC_ID: _fact(
+                _SAMPLING_TOPIC_ID, ek=0.1, evidence=2
+            ),
         },
-        covered={"2.6.1", "2.6.2"},
+        covered={_SAMPLING_TOPIC_ID},
     )
     v1 = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     decision = v1.decide_daily_sitting(
@@ -604,17 +788,14 @@ def test_orchestrator_materialises_adaptive_under_policy_v1(
         exam_date=date(2026, 8, 20),
     )
     facts = {
-        "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-        "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-        "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+        _SAMPLING_TOPIC_ID: _fact(_SAMPLING_TOPIC_ID, ek=0.252, evidence=5),
     }
-    twin = _StubTwin(
-        facts=facts, covered={"2.6.1", "2.6.2", "2.6.3"}
-    )
+    twin = _StubTwin(facts=facts, covered={_SAMPLING_TOPIC_ID})
     engine = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     engine._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     orch = SittingDecisionOrchestrator(runtime=runtime, engine=engine)

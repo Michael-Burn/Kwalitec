@@ -63,6 +63,7 @@ from app.application.educational_runtime_engine.selection_reasons import (
     SELECTION_REASON_ADAPTIVE_REVIEW,
     SELECTION_REASON_SPACED_REVIEW,
 )
+from app.application.student_twin.canonical_topic_id import CanonicalTopicId
 from app.domain.educational_runtime_engine.events import EducationalEventType
 from app.domain.spacing_scheduler.types import SchedulingStatus
 from app.models.educational_runtime_engine import RuntimeEducationalEvent
@@ -113,22 +114,61 @@ def _arbitration_trace(result: ArbitrationResult) -> dict[str, Any]:
     }
 
 
+def _resolve_return_target_twin_key(
+    return_target: str,
+    *,
+    subject_code: str,
+    canonical: CanonicalTopicId,
+) -> str | None:
+    """Map an authored return_target (LO or topic code) to a Twin topic key.
+
+    Authored packages keep syllabus LO codes (e.g. ``2.6.1``). Twin facts and
+    Runtime C coverage use published topic ids (e.g. ``CS1-B-T06``).
+    """
+    token = (return_target or "").strip()
+    if not token:
+        return None
+    return canonical.resolve_from_runtime_topic_id(
+        token, subject_code=subject_code
+    )
+
+
 def block_weakness_score(
     *,
     return_targets: tuple[str, ...] | list[str],
     facts_by_topic: dict[str, TopicKnowledgeFact],
     covered: set[str] | frozenset[str],
     min_evidence: int = POLICY_V1_MIN_EVIDENCE,
+    subject_code: str | None = None,
+    canonical: CanonicalTopicId | None = None,
 ) -> float | None:
     """Mean EK over covered targets with enough Twin evidence.
+
+    When ``canonical`` and ``subject_code`` are provided, each return_target is
+    resolved to its published Twin topic id before the facts lookup. Callers
+    that already pass published ids may omit resolution.
+
+    ``covered`` must use the same key space as the Twin lookup (published
+    topic ids after resolution).
 
     Returns None when no target meets the bar (package is unscorable).
     Does not consult Spacing Scheduler due status.
     """
+    resolver = canonical
     eligible: list[float] = []
     for tid in return_targets:
-        key = (tid or "").strip()
-        if not key or key not in covered:
+        raw = (tid or "").strip()
+        if not raw:
+            continue
+        if resolver is not None and subject_code is not None:
+            key = _resolve_return_target_twin_key(
+                raw, subject_code=subject_code, canonical=resolver
+            )
+            if not key:
+                continue
+        else:
+            key = raw
+        if key not in covered:
             continue
         fact = facts_by_topic.get(key)
         if fact is None:
@@ -154,39 +194,53 @@ def select_weakest_revision_package(
     user_id: int,
     subject_code: str,
     min_evidence: int = POLICY_V1_MIN_EVIDENCE,
+    canonical: CanonicalTopicId | None = None,
 ) -> tuple[CertifiedEducationalPackage, float, tuple[str, ...]] | None:
     """Pick the revision package with the lowest block weakness score.
 
     Coverage is checked via ``twin.topic_covered`` (Study Progress fact through
     the Twin port). EK and evidence_count come from the snapshot, filtered
-    locally by each package's return_targets.
+    locally by each package's return_targets after LO→published-topic
+    resolution.
     """
+    resolver = canonical or CanonicalTopicId()
     facts_by_topic = {f.topic_id: f for f in snapshot.topics}
     best: tuple[CertifiedEducationalPackage, float, tuple[str, ...]] | None = None
     for pack in packages:
         targets = tuple(pack.return_targets or ())
         if not targets:
             continue
-        covered = {
-            t
-            for t in targets
+        # Resolve against the package's authored subject (syllabus owner).
+        resolve_subject = (pack.subject_id or subject_code or "").strip()
+        resolved: list[tuple[str, str]] = []
+        for t in targets:
+            pub = _resolve_return_target_twin_key(
+                t, subject_code=resolve_subject, canonical=resolver
+            )
+            if pub:
+                resolved.append((t, pub))
+        if not resolved:
+            continue
+        covered_pubs = {
+            pub
+            for _orig, pub in resolved
             if twin.topic_covered(
-                user_id=user_id, subject_code=subject_code, topic_id=t
+                user_id=user_id, subject_code=subject_code, topic_id=pub
             )
         }
         score = block_weakness_score(
-            return_targets=targets,
+            return_targets=tuple(pub for _orig, pub in resolved),
             facts_by_topic=facts_by_topic,
-            covered=covered,
+            covered=covered_pubs,
             min_evidence=min_evidence,
         )
         if score is None:
             continue
         eligible_ids = tuple(
-            t
-            for t in targets
-            if t in covered
-            and (fact := facts_by_topic.get(t)) is not None
+            orig
+            for orig, pub in resolved
+            if pub in covered_pubs
+            and (fact := facts_by_topic.get(pub)) is not None
             and fact.has_estimated_knowledge
             and fact.evidence_count >= min_evidence
             and fact.estimated_knowledge is not None
@@ -206,13 +260,18 @@ def max_covered_return_target_evidence(
     twin: LearnerTwinQueryPort,
     user_id: int,
     subject_code: str,
+    canonical: CanonicalTopicId | None = None,
 ) -> int:
     """Highest Twin evidence_count among covered revision return_targets."""
+    resolver = canonical or CanonicalTopicId()
     facts_by_topic = {f.topic_id: f for f in snapshot.topics}
     best = 0
     for pack in packages:
+        resolve_subject = (pack.subject_id or subject_code or "").strip()
         for tid in pack.return_targets or ():
-            key = (tid or "").strip()
+            key = _resolve_return_target_twin_key(
+                tid, subject_code=resolve_subject, canonical=resolver
+            )
             if not key:
                 continue
             if not twin.topic_covered(
@@ -235,6 +294,7 @@ class PolicyV1AdaptiveDecisionEngine:
         runtime: EducationalRuntimeEngineService | None = None,
         twin: LearnerTwinQueryPort,
         v0: PolicyV0AdaptiveDecisionEngine | None = None,
+        canonical: CanonicalTopicId | None = None,
     ) -> None:
         if runtime is None:
             from app.application.educational_runtime_engine.service import (
@@ -245,6 +305,7 @@ class PolicyV1AdaptiveDecisionEngine:
         self._runtime = runtime
         self._twin = twin
         self._v0 = v0 or PolicyV0AdaptiveDecisionEngine(runtime=runtime)
+        self._canonical = canonical or CanonicalTopicId()
 
     def decide_daily_sitting(
         self, request: DailySittingRequest
@@ -301,6 +362,7 @@ class PolicyV1AdaptiveDecisionEngine:
                 twin=self._twin,
                 user_id=request.user_id,
                 subject_code=request.subject_code,
+                canonical=self._canonical,
             )
             explanation = explain_insufficient_evidence(
                 max_evidence_observed=max_ev,
@@ -463,6 +525,7 @@ class PolicyV1AdaptiveDecisionEngine:
             twin=self._twin,
             user_id=request.user_id,
             subject_code=request.subject_code,
+            canonical=self._canonical,
         )
 
     def _topics_since_last_review(self, request: DailySittingRequest) -> int:

@@ -45,6 +45,7 @@ from app.application.student_twin.query import (
     TopicKnowledgeFact,
 )
 from app.domain.spacing_scheduler.types import SchedulingStatus
+from tests.application.adaptive_decision.test_policy_v1 import _cs1_canonical
 from tests.application.educational_runtime_engine.helpers import (
     make_user,
     publish_subject,
@@ -251,16 +252,15 @@ def test_overdue_protected_always_wins_over_adaptive(ctx, runtime, monkeypatch):
     )
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-            "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-            "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+            "CS1-B-T06": _fact("CS1-B-T06", ek=0.252, evidence=5),
         },
-        covered={"2.6.1", "2.6.2", "2.6.3"},
+        covered={"CS1-B-T06"},
     )
     v1 = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     decision = v1.decide_daily_sitting(
@@ -337,16 +337,15 @@ def test_due_protected_always_wins_over_adaptive_in_v1(ctx, runtime, monkeypatch
     )
     twin = _StubTwin(
         facts={
-            "2.6.1": _fact("2.6.1", ek=0.410, evidence=5),
-            "2.6.2": _fact("2.6.2", ek=0.092, evidence=4),
-            "2.6.3": _fact("2.6.3", ek=0.254, evidence=3),
+            "CS1-B-T06": _fact("CS1-B-T06", ek=0.252, evidence=5),
         },
-        covered={"2.6.1", "2.6.2", "2.6.3"},
+        covered={"CS1-B-T06"},
     )
     v1 = PolicyV1AdaptiveDecisionEngine(
         runtime=runtime,
         twin=twin,
         v0=PolicyV0AdaptiveDecisionEngine(runtime=runtime),
+        canonical=_cs1_canonical(),
     )
     v1._topics_since_last_review = lambda request: 10  # type: ignore[method-assign]
     decision = v1.decide_daily_sitting(

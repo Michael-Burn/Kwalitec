@@ -31,18 +31,41 @@ def _cs1_artefacts() -> EducationalArtefactSnapshot:
             "code": "1.2",
             "title": "Moments",
         },
+        {
+            "topic_id": "CS1-B-T06",
+            "code": "2.6",
+            "title": "Sampling distributions",
+        },
+    )
+    objectives = (
+        {
+            "objective_id": "CS1-B-T06-LO01",
+            "code": "2.6.1",
+            "number": "2.6.1",
+            "topic_id": "CS1-B-T06",
+            "text": "Random samples from a population",
+        },
+        {
+            "objective_id": "CS1-A-T01-LO01",
+            "code": "1.1.1",
+            "number": "1.1.1",
+            "topic_id": "CS1-A-T01",
+            "text": "Aims of a data analysis",
+        },
     )
     return EducationalArtefactSnapshot(
         curriculum_identity="ifoa:cs1:2026",
         subject_code="CS1",
         version_label="2026",
         topics=topics,
+        objectives=objectives,
         progress_model=ProgressModelSnapshot(
             curriculum_identity="ifoa:cs1:2026",
-            topic_ids=("CS1-A-T01", "CS1-A-T02"),
+            topic_ids=("CS1-A-T01", "CS1-A-T02", "CS1-B-T06"),
             topics=(
                 {"topic_id": "CS1-A-T01", "topic_code": "1.1"},
                 {"topic_id": "CS1-A-T02", "topic_code": "1.2"},
+                {"topic_id": "CS1-B-T06", "topic_code": "2.6"},
             ),
         ),
     )
@@ -60,6 +83,19 @@ def test_resolve_from_runtime_topic_code():
     helper = CanonicalTopicId(foundation=_FakeFoundation(_cs1_artefacts()))
     assert (
         helper.resolve_from_runtime_topic_id("1.1", subject_code="CS1")
+        == "CS1-A-T01"
+    )
+
+
+def test_resolve_from_runtime_lo_code_to_parent_topic():
+    """LO-shaped syllabus codes map to the parent published topic id."""
+    helper = CanonicalTopicId(foundation=_FakeFoundation(_cs1_artefacts()))
+    assert (
+        helper.resolve_from_runtime_topic_id("2.6.1", subject_code="CS1")
+        == "CS1-B-T06"
+    )
+    assert (
+        helper.resolve_from_runtime_topic_id("1.1.1", subject_code="CS1")
         == "CS1-A-T01"
     )
 

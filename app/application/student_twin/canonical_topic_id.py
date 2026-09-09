@@ -47,7 +47,10 @@ class CanonicalTopicId:
         *,
         subject_code: str,
     ) -> str | None:
-        """Validate or map a Runtime C / session topic id to published form.
+        """Validate or map a Runtime C / session / syllabus code to published form.
+
+        Accepts published topic ids, topic-level syllabus codes (e.g. ``1.1``),
+        and learning-objective codes (e.g. ``2.6.1`` → parent topic id).
 
         Returns None for blank, node- style, unresolved, or pure-int keys
         that cannot be mapped through artefacts.
@@ -72,6 +75,12 @@ class CanonicalTopicId:
         mapped = by_code.get(token)
         if mapped is not None:
             return mapped
+
+        # Syllabus LO codes (e.g. "2.6.1") map to parent published topic ids.
+        by_lo = self._topic_id_by_objective_code(artefacts)
+        mapped_lo = by_lo.get(token)
+        if mapped_lo is not None:
+            return mapped_lo
         return None
 
     def resolve_from_orm_topic(
@@ -191,6 +200,24 @@ class CanonicalTopicId:
                 code = str(raw.get("topic_code") or raw.get("code") or "").strip()
                 if published and code and code not in mapping:
                     mapping[code] = published
+        return mapping
+
+    @staticmethod
+    def _topic_id_by_objective_code(
+        artefacts: EducationalArtefactSnapshot,
+    ) -> dict[str, str]:
+        """Map syllabus LO codes (and objective numbers) to published topic ids."""
+        mapping: dict[str, str] = {}
+        for raw in artefacts.objectives:
+            if not isinstance(raw, dict):
+                continue
+            published = str(raw.get("topic_id") or "").strip()
+            if not published:
+                continue
+            for field in ("code", "number"):
+                token = str(raw.get(field) or "").strip()
+                if token and token not in mapping:
+                    mapping[token] = published
         return mapping
 
     @staticmethod
