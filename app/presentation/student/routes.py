@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from flask import flash, redirect, render_template, url_for
+from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from app.application.educational_runtime_engine import (
@@ -185,6 +185,17 @@ def home():
     progress_svc.announce_new_milestones_on_home(
         user_id=current_user.id,
     )
+    if home.state == "day_complete" and home.show_continuation_invite:
+        from app.services.presentation_telemetry_service import (
+            EVENT_CONTINUATION_PROMPT_SHOWN,
+        )
+
+        PresentationTelemetryService.record(
+            EVENT_CONTINUATION_PROMPT_SHOWN,
+            user_id=current_user.id,
+            path="/student/",
+            context={"surface": "home"},
+        )
     return render_template(
         "student/home.html",
         title=home.page_title,
@@ -416,6 +427,24 @@ def study():
     from app.presentation.student.services.student_study_curriculum_service import (
         StudentStudyCurriculumPresentationService,
     )
+
+    continue_study = str(request.args.get("continue_study") or "").strip() in {
+        "1",
+        "true",
+        "yes",
+    }
+    if continue_study:
+        from app.services.presentation_telemetry_service import (
+            EVENT_CONTINUATION_SELECTED,
+            PresentationTelemetryService,
+        )
+
+        PresentationTelemetryService.record(
+            EVENT_CONTINUATION_SELECTED,
+            user_id=current_user.id,
+            path="/student/study",
+            context={"surface": "study"},
+        )
 
     page = load_page(ExperienceSurface.HOME)
     subject_code = ""

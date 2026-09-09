@@ -107,6 +107,22 @@
   {% if home.milestone_acknowledgement %}
   <p class="ds-list__meta" role="status" data-px006="cf-milestone">{{ home.milestone_acknowledgement }}</p>
   {% endif %}
+  {% if home.show_continuation_invite and m.primary_kind == 'link' and m.primary_href %}
+  <p class="ds-list__meta" role="status" data-continuation-prompt="true">{{ home.continuation_prompt }}</p>
+  <div
+    class="ds-primary-strip"
+    role="group"
+    aria-label="Continue studying"
+    data-sop-section="continue-studying"
+  >
+    <a
+      class="ds-btn ds-btn--primary ds-btn--with-arrow"
+      href="{{ m.primary_href }}"
+      data-student-cta="continuation"
+      data-home-action="continue-studying"
+    >{{ m.primary_label }}<span class="ds-btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+  {% endif %}
   </div>
 
   {# ——— 2. Today's Mission + Primary CTA (always first composition after greeting) ——— #}
@@ -204,7 +220,7 @@
   {% endif %}
 
   {# ——— Quiet secondary: Study (syllabus map). Tied to mission composition. ——— #}
-  {% if home.study_href %}
+  {% if home.study_href and not home.show_continuation_invite %}
   <div class="ds-os-home__secondary" data-home-secondary="study">
     <p class="ds-os-home__secondary-label">Syllabus map</p>
     <a

@@ -829,6 +829,6 @@ def _objective_label(objective_id: str, lookup: dict[str, dict]) -> str:
 
 def _minutes_label(minutes: int) -> str:
     """PX-B-035: share Home/Mission duration wording with presentation formatter."""
-    from app.presentation.formatting import format_minutes
+    from app.presentation.formatting import format_duration_estimate
 
-    return format_minutes(max(0, int(minutes or 0)) or None)
+    return format_duration_estimate(max(0, int(minutes or 0)) or None)

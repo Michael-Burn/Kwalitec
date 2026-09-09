@@ -27,11 +27,11 @@ def format_minutes(minutes: int | None) -> str:
 
 
 def format_duration_estimate(minutes: int | None) -> str:
-    """Format a duration with an "About" qualifier, e.g. "About 45 minutes"."""
+    """Format a planning-estimate duration, e.g. "About 45 minutes planned"."""
     label = format_minutes(minutes)
     if not label or label == "Less than a minute":
         return label
-    return f"About {label}"
+    return f"About {label} planned"
 
 
 def format_remaining_minutes(minutes: int | None) -> str:

@@ -106,7 +106,7 @@ def test_start_mission_uses_start_form(app, ctx):
     assert "Lease liability" in page.mission.objective
 
 
-def test_day_complete_has_no_primary(app, ctx):
+def test_day_complete_offers_continuation_invite(app, ctx):
     home = home_vm(
         HomeSnapshot(
             student_id="1",
@@ -122,8 +122,13 @@ def test_day_complete_has_no_primary(app, ctx):
         page = StudentHomeService().build_home(_page(home))
     assert page.state == "day_complete"
     assert page.mission is not None
-    assert page.mission.primary_kind == "none"
-    assert "tomorrow" in page.day_complete_message.lower()
+    assert page.mission.primary_kind == "link"
+    assert page.mission.primary_label == "Choose a topic"
+    assert "continue_study=1" in (page.mission.primary_href or "")
+    assert page.show_continuation_invite is True
+    assert page.continuation_prompt == "Want to keep studying?"
+    assert "recommended session is finished" in page.day_complete_message.lower()
+    assert page.study_href == ""
 
 
 def test_recent_progress_relocated_to_history(app, ctx):

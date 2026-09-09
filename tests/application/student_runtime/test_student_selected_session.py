@@ -213,6 +213,46 @@ def test_reached_topic_launches_playable_session_with_student_selected_origin(ct
     assert "Today's Mission" not in str(overview.get("why_studying") or "")
 
 
+def test_student_selected_session_uses_resolved_preferred_minutes(ctx):
+    from app.models.study_plan import StudyPlan
+
+    subject = publish_subject("SEL45", title="Preferred Minutes")
+    user = make_user("sel-preferred-mins@example.com")
+    _enrol_runtime_c(user, subject)
+    EducationalExperienceService().load_for_user(user.id)
+    _progress, current, _unreached = _progress_topics(user.id, subject)
+    assert current
+
+    plan = StudyPlan(
+        user_id=user.id,
+        exam_name="IFoA CS1",
+        exam_sitting="April 2027",
+        exam_date=date.today() + timedelta(days=120),
+        weekday_study_minutes=90,
+        weekend_study_minutes=120,
+        current_stage="Learning",
+        study_preference="Mixed",
+        target_grade="Pass",
+        preferred_session_minutes=45,
+        active=True,
+    )
+    from app.extensions import db
+
+    db.session.add(plan)
+    db.session.commit()
+
+    coordinator, persistence, _, _store = _coordinator()
+    binding = coordinator.start_student_selected_session(
+        user_id=user.id,
+        topic_id=current,
+        subject_code=subject,
+    )
+    assert binding.estimated_minutes == 45
+    record = persistence.load(session_id=binding.session_id)
+    assert record is not None
+    assert int(record.get("estimated_minutes") or 0) == 45
+
+
 def test_completing_generates_twin_evidence_through_normal_path(ctx, monkeypatch):
     subject = publish_subject("SEL3", title="Twin Evidence")
     user = make_user("sel-twin@example.com")

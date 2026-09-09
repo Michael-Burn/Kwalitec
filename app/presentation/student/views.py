@@ -243,13 +243,35 @@ def start_student_selected_topic(
         session_overview_writer=overview_writer,
         flags=flags,
     )
-    return coordinator.start_student_selected_session(
+    binding = coordinator.start_student_selected_session(
         user_id=user_id,
         topic_id=topic_id,
         subject_code=subject_code,
         replace_unfinished=replace_unfinished,
         educational_package_id=educational_package_id,
     )
+    try:
+        from app.services.presentation_telemetry_service import (
+            EVENT_SECOND_SESSION_STARTED,
+            PresentationTelemetryService,
+            todays_daily_mission_is_completed,
+        )
+
+        if todays_daily_mission_is_completed(user_id) and not binding.resumed:
+            PresentationTelemetryService.record(
+                EVENT_SECOND_SESSION_STARTED,
+                user_id=user_id,
+                resource_type="session",
+                resource_id=binding.session_id,
+                path="/student/study/start",
+                context={
+                    "session_id": binding.session_id or "",
+                    "topic_id": binding.topic_id or "",
+                },
+            )
+    except Exception:  # noqa: BLE001 — telemetry fail-open
+        logger.warning("second_session_started_telemetry_failed", exc_info=True)
+    return binding
 
 
 def _try_runtime_c_session_start(

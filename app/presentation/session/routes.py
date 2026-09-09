@@ -523,7 +523,7 @@ def finish(session_id: str):
         notes = None
         redirect_surface = "session.complete"
     try:
-        complete_and_return(
+        snap = complete_and_return(
             session_id=session_id,
             finish_verdict=verdict,
             finish_notes=notes,
@@ -551,6 +551,62 @@ def finish(session_id: str):
             return redirect(url_for("session.summary", session_id=session_id))
         flash(FLASH_WARNING["complete_failed"], "warning")
         return redirect(url_for(redirect_surface, session_id=session_id))
+
+    try:
+        from flask_login import current_user
+
+        from app.application.learning_session.session_origin import (
+            is_student_selected_origin,
+        )
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+        from app.presentation.session.factory import (
+            get_session_experience_composition,
+        )
+        from app.services.presentation_telemetry_service import (
+            EVENT_DAILY_MISSION_COMPLETED,
+            EVENT_SECOND_SESSION_COMPLETED,
+            PresentationTelemetryService,
+            todays_daily_mission_is_completed,
+        )
+
+        meta = dict(getattr(snap, "metadata", ()) or ())
+        mission_done = str(meta.get("mission_completed") or "").lower() == "true"
+        composition = get_session_experience_composition()
+        store = composition.store if composition is not None else None
+        record = LearningSessionPersistenceAdapter(store=store).load(
+            session_id=session_id
+        ) or {}
+        overview_origin = str(record.get("session_origin") or "")
+        mission_id = str(record.get("mission_instance_id") or "")
+
+        if mission_done and not is_student_selected_origin(overview_origin):
+            PresentationTelemetryService.record(
+                EVENT_DAILY_MISSION_COMPLETED,
+                user_id=current_user.id,
+                resource_type="session",
+                resource_id=session_id,
+                path=f"/session/{session_id}/complete",
+                context={
+                    "session_id": session_id,
+                    "mission_id": mission_id,
+                },
+            )
+        elif is_student_selected_origin(overview_origin) and (
+            todays_daily_mission_is_completed(current_user.id)
+        ):
+            PresentationTelemetryService.record(
+                EVENT_SECOND_SESSION_COMPLETED,
+                user_id=current_user.id,
+                resource_type="session",
+                resource_id=session_id,
+                path=f"/session/{session_id}/complete",
+                context={"session_id": session_id},
+            )
+    except Exception:  # noqa: BLE001 — telemetry fail-open
+        logger.warning("continuation_completion_telemetry_failed", exc_info=True)
+
     return redirect(url_for("session.complete", session_id=session_id))
 
 

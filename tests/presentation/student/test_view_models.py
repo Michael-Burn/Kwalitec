@@ -61,6 +61,24 @@ def test_format_minutes(minutes, expected):
 
 
 @pytest.mark.parametrize(
+    ("minutes", "expected"),
+    [
+        (None, ""),
+        (0, "Less than a minute"),
+        (1, "About 1 minute planned"),
+        (25, "About 25 minutes planned"),
+        (60, "About 1 hour planned"),
+        (90, "About 1 hour 30 min planned"),
+        (120, "About 2 hours planned"),
+    ],
+)
+def test_format_duration_estimate_is_planning_estimate(minutes, expected):
+    from app.presentation.formatting import format_duration_estimate
+
+    assert format_duration_estimate(minutes) == expected
+
+
+@pytest.mark.parametrize(
     ("value", "expected"),
     [
         (None, ""),

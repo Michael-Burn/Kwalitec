@@ -352,7 +352,20 @@ class StudentRuntimeCoordinator:
             ):
                 return existing
 
-        minutes = 30
+        from datetime import date
+
+        from app.application.student_experience.session_duration import (
+            resolve_planned_session_minutes,
+        )
+        from app.services.study_plan_service import StudyPlanService
+
+        plan = StudyPlanService.get_user_active_plan(user_id)
+        resolved = resolve_planned_session_minutes(
+            plan, mission_date=date.today()
+        )
+        minutes = (
+            int(resolved) if resolved is not None and resolved > 0 else 30
+        )
         substance_flag = self._substance_enabled()
         substance = None
         objectives = None

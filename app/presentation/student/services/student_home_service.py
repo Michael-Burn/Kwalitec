@@ -45,8 +45,10 @@ _DEADLINE_MAX = 4
 _EMPTY_REASON = "No exam selected yet. Choose an exam to begin studying."
 _EMPTY_ACTION_LABEL = "Choose Exam"
 _DAY_COMPLETE_MESSAGE = (
-    "Today's Session is finished. Return tomorrow to continue."
+    "Today's recommended session is finished."
 )
+_CONTINUATION_PROMPT = "Want to keep studying?"
+_CONTINUATION_CTA_LABEL = "Choose a topic"
 _QUIET_REASON = "A session will be ready when today's focus is available."
 _PAGE_QUESTION = "What should I do now?"
 _DEFAULT_GREETING = "Welcome back."
@@ -201,14 +203,18 @@ class StudentHomeService:
             and home.session_control != "resume"
         ):
             subject = self._subject_name(home)
+            continuation_href = url_for(
+                "student.study", continue_study=1
+            )
             mission = HomeMission(
                 subject_name=subject or "Today's study",
                 objective="Complete for today",
                 status_label="Complete for today",
                 why_now="",
                 after_completion="",
-                primary_label="",
-                primary_kind="none",
+                primary_label=_CONTINUATION_CTA_LABEL,
+                primary_kind="link",
+                primary_href=continuation_href,
                 title="Complete for today",
             )
             return self._with_workspace(
@@ -341,7 +347,14 @@ class StudentHomeService:
         # Choose Exam on the primary empty CTA only.
         quick_actions: tuple[HomeQuickAction, ...] = ()
         study_href = ""
-        if state != "empty":
+        continuation_prompt = ""
+        show_continuation_invite = False
+        if state == "day_complete" and mission is not None and (
+            mission.primary_kind == "link" and (mission.primary_href or "").strip()
+        ):
+            continuation_prompt = _CONTINUATION_PROMPT
+            show_continuation_invite = True
+        elif state != "empty":
             study_href = url_for("student.study")
         tutor_available = bool(home.tutor_available)
         tutor_href = ""
@@ -462,6 +475,8 @@ class StudentHomeService:
             progress_href=progress_href,
             study_href=study_href,
             study_link_label=_STUDY_LINK_LABEL,
+            continuation_prompt=continuation_prompt,
+            show_continuation_invite=show_continuation_invite,
         )
 
     def _forecast_insight(

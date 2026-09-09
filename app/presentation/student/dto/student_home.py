@@ -175,3 +175,6 @@ class StudentHomePage:
     # Quiet secondary path to Study (syllabus map). Not a Quick Actions wall.
     study_href: str = ""
     study_link_label: str = "Study"
+    # Post-daily-mission invitation (presentation only; not a recommendation).
+    continuation_prompt: str = ""
+    show_continuation_invite: bool = False

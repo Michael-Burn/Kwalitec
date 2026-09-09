@@ -46,6 +46,12 @@ EVENT_LEARNING_EPISODE_STARTED = "learning_episode_started"
 EVENT_LEARNING_EPISODE_COMPLETED = "learning_episode_completed"
 EVENT_LEARNING_EPISODE_ABANDONED = "learning_episode_abandoned"
 EVENT_EPISODE_REFLECTION_COMPLETED = "episode_reflection_completed"
+# Post-daily-mission student-directed continuation (factual funnel only).
+EVENT_DAILY_MISSION_COMPLETED = "daily_mission_completed"
+EVENT_CONTINUATION_PROMPT_SHOWN = "continuation_prompt_shown"
+EVENT_CONTINUATION_SELECTED = "continuation_selected"
+EVENT_SECOND_SESSION_STARTED = "second_session_started"
+EVENT_SECOND_SESSION_COMPLETED = "second_session_completed"
 
 ALLOWED_EVENTS = frozenset(
     {
@@ -76,6 +82,11 @@ ALLOWED_EVENTS = frozenset(
         EVENT_LEARNING_EPISODE_COMPLETED,
         EVENT_LEARNING_EPISODE_ABANDONED,
         EVENT_EPISODE_REFLECTION_COMPLETED,
+        EVENT_DAILY_MISSION_COMPLETED,
+        EVENT_CONTINUATION_PROMPT_SHOWN,
+        EVENT_CONTINUATION_SELECTED,
+        EVENT_SECOND_SESSION_STARTED,
+        EVENT_SECOND_SESSION_COMPLETED,
     }
 )
 
@@ -176,3 +187,18 @@ class PresentationTelemetryService:
             .all()
         )
         return [(str(event_type), int(count)) for event_type, count in rows]
+
+
+def todays_daily_mission_is_completed(user_id: int) -> bool:
+    """True when today's recommended Runtime mission row is COMPLETED."""
+    from datetime import date
+
+    from app.domain.educational_runtime_engine.state import MissionStatus
+    from app.models.educational_runtime_engine import RuntimeMissionInstance
+
+    row = RuntimeMissionInstance.query.filter_by(
+        user_id=int(user_id),
+        mission_date=date.today(),
+        status=MissionStatus.COMPLETED.value,
+    ).first()
+    return row is not None
