@@ -33,16 +33,140 @@ from app.infrastructure.adapters.learning_session.persistence import (
     LearningSessionPersistenceAdapter,
 )
 from app.infrastructure.session.store import SessionDocumentStore
+from app.presentation.session.services.study_session_service import (
+    _practice_feedback_parts,
+)
+from tests.presentation.session.test_session_redesign import _base_page, _render
 
 LIVE_PACKAGE_ROOT = Path("app/curriculum/data/educational_packages")
 
-# (package stem under cs1/, item_id)
-_PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
+# Original four pilot items (must remain byte-identical in feedback map).
+_ORIGINAL_PILOT_PACKAGES: tuple[tuple[str, str], ...] = (
     ("3.1.3-efficiency-bias-consistency-mse-cs1010", "cs1010-3.1.3-cp-01"),
     ("4.2.1-exponential-family-cs1014", "cs1014-4.2.1-ar-01"),
     ("cr-2.1.2-continuous-cs1017", "cs1017-2.1.2-cp-01"),
     ("revision-estimators-cs1010", "cs1010-ck-r1-cp-01"),
 )
+
+# Editorially reviewed expansion (2026-09-09).
+_EXPANSION_PACKAGES: tuple[tuple[str, str], ...] = (
+    ("5.1.1-bayes-theorem-cs1003", "cs1003-5.1.1-ar-01"),
+    ("5.1.1-bayes-theorem-cs1003", "cs1003-5.1.1-cp-01"),
+    ("5.1.1-bayes-theorem-cs1015", "cs1015-5.1.1-ar-01"),
+    ("5.1.1-bayes-theorem-cs1015", "cs1015-5.1.1-cp-01"),
+    ("revision-bayesian-cs1015", "cs1015-co-r1-ar-01"),
+    ("revision-bayesian-cs1015", "cs1015-co-r1-cp-01"),
+    ("3.1.3-efficiency-bias-consistency-mse-cs1010", "cs1010-3.1.3-ar-01"),
+    ("3.1.4-comparison-mse-cs1010", "cs1010-3.1.4-ar-01"),
+    ("3.1.4-comparison-mse-cs1010", "cs1010-3.1.4-cp-01"),
+    ("4.2.1-exponential-family-cs1014", "cs1014-4.2.1-cp-01"),
+)
+
+_PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
+    *_ORIGINAL_PILOT_PACKAGES,
+    *_EXPANSION_PACKAGES,
+)
+
+_ORIGINAL_PILOT_FEEDBACK: dict[tuple[str, str], str] = {
+    (
+        "cs1010-3.1.3-cp-01",
+        "b",
+    ): (
+        "That choice treats unbiasedness as an MSE guarantee. "
+        "MSE(A)=4/n while MSE(B)=1/n²+1/n≈1/n for large n, so the biased "
+        "estimator can win on MSE. Unbiasedness is not optimality."
+    ),
+    (
+        "cs1010-3.1.3-cp-01",
+        "c",
+    ): (
+        "That choice drops Var(B) from the MSE and keeps only bias². "
+        "MSE is variance plus squared bias, so MSE(B)=1/n²+1/n, not 1/n² alone."
+    ),
+    (
+        "cs1010-3.1.3-cp-01",
+        "d",
+    ): (
+        "That choice equates consistency with Bias=0 for every finite n. "
+        "Consistency is large-sample concentration in probability; a biased "
+        "estimator can still be consistent and can still beat an unbiased one "
+        "on MSE."
+    ),
+    (
+        "cs1014-4.2.1-ar-01",
+        "b",
+    ): (
+        "That choice collapses GLM into renamed OLS. A GLM needs a named "
+        "exponential-family response (and a link); package naming alone does "
+        "not define the model class."
+    ),
+    (
+        "cs1014-4.2.1-ar-01",
+        "c",
+    ): (
+        "That choice treats Normal as the only GLM response. Poisson and "
+        "binomial are standard exponential-family GLM members; Normal with "
+        "identity link is a special case inside the family list, not the "
+        "whole definition."
+    ),
+    (
+        "cs1014-4.2.1-ar-01",
+        "d",
+    ): (
+        "That choice treats any exp() in a density as exponential-family "
+        "membership. Family membership is a specific exponential-family "
+        "structure for named responses, not the mere presence of an "
+        "exponential symbol."
+    ),
+    (
+        "cs1017-2.1.2-cp-01",
+        "b",
+    ): (
+        "That choice misuses the CLT to force Normal waiting times. The CLT "
+        "is about sample means for large n, not a licence to ignore strictly "
+        "positive, memoryless waiting-time support—which points first to "
+        "exponential."
+    ),
+    (
+        "cs1017-2.1.2-cp-01",
+        "c",
+    ): (
+        "That choice forces a Beta model because times are 'between zero and "
+        "one.' Waiting times here are unbounded positive durations under "
+        "constant hazard; Beta support on (0,1) does not match that story."
+    ),
+    (
+        "cs1017-2.1.2-cp-01",
+        "d",
+    ): (
+        "That choice wrongly bans lognormal for every waiting-time problem "
+        "and ties memorylessness to discrete data. Memoryless continuous "
+        "waiting under constant hazard selects exponential first; lognormal "
+        "is a different positive-support model, not ruled out by a "
+        "discrete-data claim."
+    ),
+    (
+        "cs1010-ck-r1-cp-01",
+        "b",
+    ): (
+        "That choice adds Bias(T) without squaring. MSE is variance plus "
+        "squared bias, so the bias term must be Bias(T)²."
+    ),
+    (
+        "cs1010-ck-r1-cp-01",
+        "c",
+    ): (
+        "That choice keeps only Bias(T)² and drops variance. An estimator's "
+        "MSE always includes both Var(T) and Bias(T)²."
+    ),
+    (
+        "cs1010-ck-r1-cp-01",
+        "d",
+    ): (
+        "That choice sets MSE equal to variance for every estimator. That "
+        "holds only when bias is zero; in general MSE = Var(T) + Bias(T)²."
+    ),
+}
 
 
 def setup_function() -> None:
@@ -77,9 +201,29 @@ def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
     raise AssertionError(f"unknown prototype item_id {item_id}")
 
 
-def test_prototype_allowlist_is_exactly_four_items() -> None:
+def test_prototype_allowlist_is_exactly_fourteen_items() -> None:
     assert PROTOTYPE_ITEM_IDS == {want for _, want in _PROTOTYPE_PACKAGES}
-    assert len(PROTOTYPE_ITEM_IDS) == 4
+    assert len(PROTOTYPE_ITEM_IDS) == 14
+    assert len(_ORIGINAL_PILOT_PACKAGES) == 4
+    assert len(_EXPANSION_PACKAGES) == 10
+
+
+def test_original_four_pilot_items_unaffected() -> None:
+    """Expansion must not alter the original four items' authored copy."""
+    original_ids = {want for _, want in _ORIGINAL_PILOT_PACKAGES}
+    assert original_ids <= PROTOTYPE_ITEM_IDS
+    for key, text in _ORIGINAL_PILOT_FEEDBACK.items():
+        assert PROTOTYPE_CHOICE_FEEDBACK[key] == text
+    for item_id in sorted(original_ids):
+        item = _scoreable_for(item_id)
+        correct_id = item.answer_key.correct_choice_id
+        for choice in item.choices:
+            cid = choice[0]
+            if cid == correct_id:
+                continue
+            scored = score_practice_response(item, cid)
+            assert scored.correct is False
+            assert scored.common_mistake == _ORIGINAL_PILOT_FEEDBACK[(item_id, cid)]
 
 
 def test_wrong_answers_on_same_item_yield_distinct_choice_aware_feedback() -> None:
@@ -100,6 +244,29 @@ def test_wrong_answers_on_same_item_yield_distinct_choice_aware_feedback() -> No
     # Distinct from the bundled generic common_mistake.
     assert bad_b.common_mistake != item.common_mistake
     assert bad_c.common_mistake != item.common_mistake
+
+
+def test_expansion_items_yield_specific_choice_aware_feedback() -> None:
+    """Each of the 10 expansion items returns approved copy per distractor."""
+    for _, item_id in _EXPANSION_PACKAGES:
+        item = _scoreable_for(item_id)
+        assert item.response_type is PracticeResponseType.MCQ
+        correct_id = item.answer_key.correct_choice_id
+        assert correct_id == "a"
+        seen: set[str] = set()
+        for choice in item.choices:
+            cid = choice[0]
+            if cid == correct_id:
+                continue
+            assert cid in {"b", "c", "d"}
+            scored = score_practice_response(item, cid)
+            assert scored.scored is True and scored.correct is False
+            expected = PROTOTYPE_CHOICE_FEEDBACK[(item_id, cid)]
+            assert scored.common_mistake == expected
+            assert scored.common_mistake != item.common_mistake
+            assert expected not in seen
+            seen.add(expected)
+        assert len(seen) == 3
 
 
 def test_correct_answer_path_unaffected() -> None:
@@ -221,3 +388,44 @@ def test_all_prototype_items_have_authored_feedback_for_distractors() -> None:
             assert text != item.common_mistake
             assert tag  # every distractor carries a misconception_tag
             assert tag not in text  # slug not echoed to the student
+
+
+def test_expansion_items_live_render_in_session_feedback(app) -> None:
+    """At least two expansion items display choice-aware copy in session HTML."""
+    samples = (
+        ("cs1003-5.1.1-ar-01", "b"),
+        ("cs1010-3.1.4-cp-01", "c"),
+    )
+    for item_id, choice_id in samples:
+        item = _scoreable_for(item_id)
+        scored = score_practice_response(item, choice_id)
+        assert scored.correct is False
+        expected = PROTOTYPE_CHOICE_FEEDBACK[(item_id, choice_id)]
+        assert scored.common_mistake == expected
+
+        parts = _practice_feedback_parts(
+            outcome=scored.feedback_outcome,
+            explanation=scored.explanation,
+            common_mistake=scored.common_mistake,
+            submitted_response=choice_id,
+            response_type="mcq",
+            scored_correct=False,
+            practice_choices=tuple((c[0], c[1]) for c in item.choices),
+        )
+        assert parts["what_to_understand"] == expected
+
+        study = _base_page(
+            content_stage="practice",
+            stage_position_label="Practice",
+            feedback_what_happened=parts["what_happened"],
+            feedback_what_it_means=parts["what_it_means"],
+            feedback_what_to_understand=parts["what_to_understand"],
+            feedback_locked=True,
+            submitted_response=choice_id,
+            response_type="mcq",
+            show_answer_input=False,
+            common_mistake=scored.common_mistake,
+        )
+        html = _render(app, study)
+        assert 'data-feedback-what-to-understand="true"' in html
+        assert expected in html

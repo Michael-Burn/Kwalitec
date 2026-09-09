@@ -7,6 +7,10 @@ student-facing mistake copy and the analytics tag for allowlisted items
 (and resolves the tag for logging whenever a selected choice is known).
 
 Do not expand ``PROTOTYPE_ITEM_IDS`` without an explicit editorial review.
+
+Editorial review record (2026-09-09): ten additional items below were
+reviewed and approved before wiring (Bayes cluster, MSE AR/CP siblings,
+GLM CP sibling). Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -18,13 +22,24 @@ from app.application.learning_session.scoreable_practice import (
 )
 
 # Live Knowledge Check item_ids only — Batch 1 estimators (numeric),
-# Batch 2 GLM, Batch 3 Rho conceptual vignette, Batch 6B revision.
+# Batch 2 GLM, Batch 3 Rho conceptual vignette, Batch 6B revision,
+# plus editorially reviewed expansion (Bayes / MSE / GLM siblings).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
         "cs1014-4.2.1-ar-01",  # Batch 2 — exponential-family GLM
         "cs1017-2.1.2-cp-01",  # Batch 3 — Rho continuous waiting times
         "cs1010-ck-r1-cp-01",  # Batch 6B — revision MSE identity
+        "cs1003-5.1.1-ar-01",  # Expansion: Bayes theorem AR (cs1003)
+        "cs1003-5.1.1-cp-01",  # Expansion: Bayes theorem CP (cs1003)
+        "cs1015-5.1.1-ar-01",  # Expansion: Bayes theorem AR (cs1015)
+        "cs1015-5.1.1-cp-01",  # Expansion: Bayes theorem CP (cs1015)
+        "cs1015-co-r1-ar-01",  # Expansion: Bayesian revision AR
+        "cs1015-co-r1-cp-01",  # Expansion: Bayesian revision CP
+        "cs1010-3.1.3-ar-01",  # Expansion: efficiency / bias / MSE AR
+        "cs1010-3.1.4-ar-01",  # Expansion: MSE comparison AR
+        "cs1010-3.1.4-cp-01",  # Expansion: MSE comparison CP
+        "cs1014-4.2.1-cp-01",  # Expansion: exponential-family GLM CP
     }
 )
 
@@ -132,6 +147,263 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice sets MSE equal to variance for every estimator. That "
         "holds only when bias is zero; in general MSE = Var(T) + Bias(T)²."
+    ),
+    # --- cs1003-5.1.1-ar-01 ---
+    (
+        "cs1003-5.1.1-ar-01",
+        "b",
+    ): (
+        "That choice discards the prior once data arrive. Bayes forms the "
+        "posterior from prior times likelihood (then normalises); the prior "
+        "is not dropped after observing data."
+    ),
+    (
+        "cs1003-5.1.1-ar-01",
+        "c",
+    ): (
+        "That choice keeps only the prior and parks likelihood in "
+        "frequentist tests. Bayes updates by multiplying prior by "
+        "likelihood, then normalising."
+    ),
+    (
+        "cs1003-5.1.1-ar-01",
+        "d",
+    ): (
+        "That choice equates P(A given B) with P(B given A) and skips the "
+        "prior-likelihood product. Those conditionals are not the same; "
+        "Bayes combines prior and likelihood into a normalised posterior."
+    ),
+    # --- cs1003-5.1.1-cp-01 ---
+    (
+        "cs1003-5.1.1-cp-01",
+        "b",
+    ): (
+        "That choice treats positive tests and disease status as "
+        "interchangeable labels. P(disease given positive) is not equal to "
+        "P(positive given disease); Bayes combines base rate with "
+        "likelihood."
+    ),
+    (
+        "cs1003-5.1.1-cp-01",
+        "c",
+    ): (
+        "That choice claims a known base rate makes the two conditionals "
+        "equal. Knowing prevalence does not equate them; Bayes still "
+        "multiplies prior by likelihood and normalises."
+    ),
+    (
+        "cs1003-5.1.1-cp-01",
+        "d",
+    ): (
+        "That choice replaces the prior with the likelihood alone and "
+        "claims that equates the conditionals. Bayes keeps the prior, "
+        "multiplies by likelihood, and normalises; that does not make the "
+        "two conditionals equal."
+    ),
+    # --- cs1015-5.1.1-ar-01 ---
+    (
+        "cs1015-5.1.1-ar-01",
+        "b",
+    ): (
+        "That choice treats conditioning as symmetric and sets P(A given B) "
+        "equal to P(B given A). Those conditionals are not equal; Bayes "
+        "uses prior, likelihood, and evidence together."
+    ),
+    (
+        "cs1015-5.1.1-ar-01",
+        "c",
+    ): (
+        "That choice sets the posterior equal to the likelihood and drops "
+        "the base rate. Bayes needs P(A) and the normalising evidence "
+        "P(B), not likelihood alone."
+    ),
+    (
+        "cs1015-5.1.1-ar-01",
+        "d",
+    ): (
+        "That choice updates from the prior alone. A conditional update "
+        "needs prior, likelihood, and evidence, not the prior by itself."
+    ),
+    # --- cs1015-5.1.1-cp-01 ---
+    (
+        "cs1015-5.1.1-cp-01",
+        "b",
+    ): (
+        "That choice sets P(fraud given flag) equal to P(flag given fraud), "
+        "which is 0.90. The likelihood is not the posterior; with prior "
+        "0.02, Bayes gives about 0.269 after normalising by P(flag) = 0.067."
+    ),
+    (
+        "cs1015-5.1.1-cp-01",
+        "c",
+    ): (
+        "That choice leaves the posterior at the prior 0.02 after a flag. "
+        "Data update the prior through likelihood and evidence; the prior "
+        "alone is not P(fraud given flag)."
+    ),
+    (
+        "cs1015-5.1.1-cp-01",
+        "d",
+    ): (
+        "That choice takes P(flag given genuine) = 0.05 as the posterior. "
+        "That false-flag rate is not P(fraud given flag); Bayes multiplies "
+        "prior by likelihood and divides by P(flag) = 0.067."
+    ),
+    # --- cs1015-co-r1-ar-01 ---
+    (
+        "cs1015-co-r1-ar-01",
+        "b",
+    ): (
+        "That choice adds prior and likelihood and writes likelihood of "
+        "theta given y. Bayes multiplies likelihood of y given theta by "
+        "prior of theta; it does not add them."
+    ),
+    (
+        "cs1015-co-r1-ar-01",
+        "c",
+    ): (
+        "That choice drops the prior and skips normalisation. The posterior "
+        "is proportional to likelihood times prior, then normalised over "
+        "theta."
+    ),
+    (
+        "cs1015-co-r1-ar-01",
+        "d",
+    ): (
+        "That choice reverses the conditional roles, using prior of y and "
+        "likelihood of theta. Posterior of theta given y uses likelihood "
+        "of y given theta times prior of theta."
+    ),
+    # --- cs1015-co-r1-cp-01 ---
+    (
+        "cs1015-co-r1-cp-01",
+        "b",
+    ): (
+        "That choice gives a frequentist coverage reading to a credible "
+        "interval. A 95% credible interval is a posterior probability "
+        "statement given the model, prior, and data, not repeated-sample "
+        "coverage of a fixed theta."
+    ),
+    (
+        "cs1015-co-r1-cp-01",
+        "c",
+    ): (
+        "That choice treats the interval as a prediction band for future "
+        "observations. The credible interval is about the parameter theta, "
+        "not about where future data will fall."
+    ),
+    (
+        "cs1015-co-r1-cp-01",
+        "d",
+    ): (
+        "That choice claims the probability does not depend on prior or "
+        "likelihood. A credible interval is defined from the posterior, "
+        "which depends on both."
+    ),
+    # --- cs1010-3.1.3-ar-01 ---
+    (
+        "cs1010-3.1.3-ar-01",
+        "b",
+    ): (
+        "That choice sets bias equal to variance, MSE equal to absolute "
+        "bias, and consistency equal to finite-n unbiasedness. Bias is the "
+        "expected value of theta-hat minus theta; MSE is variance plus "
+        "squared bias; consistency is large-sample concentration in "
+        "probability."
+    ),
+    (
+        "cs1010-3.1.3-ar-01",
+        "c",
+    ): (
+        "That choice writes MSE as variance minus squared bias. MSE is "
+        "variance plus squared bias; a larger bias cannot cut MSE by that "
+        "subtraction."
+    ),
+    (
+        "cs1010-3.1.3-ar-01",
+        "d",
+    ): (
+        "That choice treats efficiency and consistency as synonyms for "
+        "unbiasedness. Unbiasedness does not imply either; efficiency "
+        "compares variance or MSE, and consistency is convergence in "
+        "probability."
+    ),
+    # --- cs1010-3.1.4-ar-01 ---
+    (
+        "cs1010-3.1.4-ar-01",
+        "b",
+    ): (
+        "That choice stops at unbiasedness and skips MSE. Prefer the "
+        "smaller MSE; a biased estimator can win when variance reduction "
+        "outweighs squared bias."
+    ),
+    (
+        "cs1010-3.1.4-ar-01",
+        "c",
+    ): (
+        "That choice prefers larger bias as if it always cuts variance "
+        "enough to cut MSE. Larger bias does not automatically improve "
+        "MSE; compare variance plus squared bias."
+    ),
+    (
+        "cs1010-3.1.4-ar-01",
+        "d",
+    ): (
+        "That choice replaces MSE comparison with an asymptotic Normality "
+        "check. Asymptotic Normality is a different criterion; comparison "
+        "here is by MSE."
+    ),
+    # --- cs1010-3.1.4-cp-01 ---
+    (
+        "cs1010-3.1.4-cp-01",
+        "b",
+    ): (
+        "That choice drops squared bias from MSE of theta-hat-2 and treats "
+        "the comparison as optional because theta-hat-1 is unbiased. MSE "
+        "of theta-hat-2 is 0.25/n plus 0.5/n equals 0.75/n; compare full "
+        "MSEs, and unbiasedness does not waive that."
+    ),
+    (
+        "cs1010-3.1.4-cp-01",
+        "c",
+    ): (
+        "That choice computes MSE of theta-hat-2 as 0.75/n correctly but "
+        "still prefers the unbiased estimator. Smaller MSE wins; "
+        "theta-hat-2 beats theta-hat-1 even though it is biased."
+    ),
+    (
+        "cs1010-3.1.4-cp-01",
+        "d",
+    ): (
+        "That choice squares 0.5 over root n as 0.25 over root n instead of "
+        "0.25/n. Correctly, bias squared is 0.25/n so MSE of theta-hat-2 "
+        "is 0.75/n, which is less than 2/n; prefer theta-hat-2."
+    ),
+    # --- cs1014-4.2.1-cp-01 ---
+    (
+        "cs1014-4.2.1-cp-01",
+        "b",
+    ): (
+        "That choice collapses GLM into renamed OLS. A GLM needs a named "
+        "exponential-family response (and a link); package naming alone "
+        "does not define the model class."
+    ),
+    (
+        "cs1014-4.2.1-cp-01",
+        "c",
+    ): (
+        "That choice treats Normal as the only exponential-family GLM "
+        "response. Poisson and binomial are standard members; Normal is "
+        "one case inside the family list, not the whole definition."
+    ),
+    (
+        "cs1014-4.2.1-cp-01",
+        "d",
+    ): (
+        "That choice treats any exp() in a Poisson pmf as the family "
+        "definition. Family membership needs the exponential-family "
+        "structure tied to the response, not the mere presence of an "
+        "exponential symbol."
     ),
 }
 
