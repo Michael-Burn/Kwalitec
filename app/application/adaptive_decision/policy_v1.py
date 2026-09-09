@@ -2,10 +2,16 @@
 
 On review days (continuous exam-proximity cadence), scores every revision-mode
 package for the subject by average Twin Estimated Knowledge over covered
-return_targets with evidence_count >= 3. Lowest score wins → ADAPTIVE.
+return_targets with evidence_count >= 3. Lowest score becomes an adaptive
+candidate.
 
 When it is not a review day, or no package meets the evidence bar, defers to
 Policy V0 and records SAFE_FALLBACK (or BLOCKED) exactly as V0 does.
+
+Protected spaced-review precedence (overdue > due > adaptive > sequential) is
+owned by ``adaptive_decision.arbitration``, not by this engine's weakness
+scoring and not by the Spacing Scheduler. Policy V1 never reinterprets due as
+weak; it only produces an adaptive candidate and delegates arbitration.
 
 Does not import Runtime A PlanningService. Reads EK only via LearnerTwinQueryPort.
 Does not write Study Progress.
@@ -19,10 +25,25 @@ from dataclasses import replace
 from datetime import date
 from typing import TYPE_CHECKING, Any
 
+from app.application.adaptive_decision.arbitration import (
+    PrecedenceWinner,
+    arbitrate_sitting_precedence,
+    protected_status_from_value,
+)
+from app.application.adaptive_decision.explain import (
+    explain_adaptive_block_weakness,
+    explain_blocked_carrier,
+    explain_insufficient_evidence,
+    explain_not_review_day,
+    explain_protected_spaced_review,
+)
 from app.application.adaptive_decision.policy_v0 import (
     PolicyV0AdaptiveDecisionEngine,
 )
-from app.application.adaptive_decision.review_cadence import is_review_day
+from app.application.adaptive_decision.review_cadence import (
+    continuous_review_cadence,
+    is_review_day,
+)
 from app.application.adaptive_decision.types import (
     INTENT_DAILY_SITTING,
     POLICY_V1_ID,
@@ -38,10 +59,16 @@ from app.application.educational_packages.loader import (
     find_package_by_id,
     packages_for_subject,
 )
+from app.application.educational_runtime_engine.selection_reasons import (
+    SELECTION_REASON_ADAPTIVE_REVIEW,
+    SELECTION_REASON_SPACED_REVIEW,
+)
 from app.domain.educational_runtime_engine.events import EducationalEventType
+from app.domain.spacing_scheduler.types import SchedulingStatus
 from app.models.educational_runtime_engine import RuntimeEducationalEvent
 
 if TYPE_CHECKING:
+    from app.application.adaptive_decision.arbitration import ArbitrationResult
     from app.application.educational_packages.models import (
         CertifiedEducationalPackage,
     )
@@ -59,6 +86,33 @@ def _new_decision_id() -> str:
     return f"dec_{uuid.uuid4().hex[:16]}"
 
 
+def _carrier_protected_status(carrier: SittingDecision) -> SchedulingStatus | None:
+    """Read Spacing Scheduler lifecycle state from the V0/composer carrier."""
+    if (
+        carrier.composer_selection_reason != SELECTION_REASON_SPACED_REVIEW
+        and (carrier.selection_trace or {}).get("composer_selection_reason")
+        != SELECTION_REASON_SPACED_REVIEW
+    ):
+        return None
+    trace = carrier.selection_trace or {}
+    status = protected_status_from_value(trace.get("spacing_status"))
+    if status is not None:
+        return status
+    # Backward-compatible: spaced_review without status is treated as due.
+    return SchedulingStatus.DUE
+
+
+def _arbitration_trace(result: ArbitrationResult) -> dict[str, Any]:
+    return {
+        "arbitration_winner": result.winner.value,
+        "arbitration_labels": [label.value for label in result.labels],
+        "arbitration_reason": result.reason_code,
+        "protected_spacing_status": (
+            result.protected_status.value if result.protected_status else None
+        ),
+    }
+
+
 def block_weakness_score(
     *,
     return_targets: tuple[str, ...] | list[str],
@@ -69,6 +123,7 @@ def block_weakness_score(
     """Mean EK over covered targets with enough Twin evidence.
 
     Returns None when no target meets the bar (package is unscorable).
+    Does not consult Spacing Scheduler due status.
     """
     eligible: list[float] = []
     for tid in return_targets:
@@ -143,6 +198,34 @@ def select_weakest_revision_package(
     return best
 
 
+def max_covered_return_target_evidence(
+    *,
+    packages: tuple[CertifiedEducationalPackage, ...]
+    | list[CertifiedEducationalPackage],
+    snapshot: LearnerKnowledgeSnapshot,
+    twin: LearnerTwinQueryPort,
+    user_id: int,
+    subject_code: str,
+) -> int:
+    """Highest Twin evidence_count among covered revision return_targets."""
+    facts_by_topic = {f.topic_id: f for f in snapshot.topics}
+    best = 0
+    for pack in packages:
+        for tid in pack.return_targets or ():
+            key = (tid or "").strip()
+            if not key:
+                continue
+            if not twin.topic_covered(
+                user_id=user_id, subject_code=subject_code, topic_id=key
+            ):
+                continue
+            fact = facts_by_topic.get(key)
+            if fact is None:
+                continue
+            best = max(best, int(fact.evidence_count or 0))
+    return best
+
+
 class PolicyV1AdaptiveDecisionEngine:
     """AdaptiveDecisionEngine: review-day block weakness, else Policy V0."""
 
@@ -171,57 +254,149 @@ class PolicyV1AdaptiveDecisionEngine:
             exam_date=request.exam_date, mission_date=request.mission_date
         )
         topics_since = self._topics_since_last_review(request)
+        cadence = (
+            continuous_review_cadence(days_remaining)
+            if days_remaining is not None
+            else None
+        )
         review = is_review_day(
             days_remaining=days_remaining,
             topics_since_last_review=topics_since,
         )
         if not review:
             decision = self._v0.decide_daily_sitting(request)
+            explanation = explain_not_review_day(
+                topics_since_last_review=topics_since,
+                days_remaining=days_remaining,
+                cadence_threshold=cadence,
+            )
+            arbitration = arbitrate_sitting_precedence(
+                protected_status=_carrier_protected_status(decision),
+                has_adaptive_candidate=False,
+            )
             return _retag_v0_fallback(
                 decision,
                 reason=REASON_POLICY_V1_NOT_REVIEW_DAY,
+                decision_explanation=explanation,
                 selection_trace_extra={
                     "policy_v1_review_day": False,
                     "days_remaining": days_remaining,
                     "topics_since_last_review": topics_since,
+                    "cadence_threshold": cadence,
+                    "decision_explanation": explanation,
+                    **_arbitration_trace(arbitration),
                 },
             )
 
         selected = self._try_select_revision_block(request)
         if selected is None:
             decision = self._v0.decide_daily_sitting(request)
+            packs = packages_for_subject(request.subject_code, mode="revision")
+            snapshot = self._twin.knowledge_snapshot(
+                user_id=request.user_id, subject_code=request.subject_code
+            )
+            max_ev = max_covered_return_target_evidence(
+                packages=packs,
+                snapshot=snapshot,
+                twin=self._twin,
+                user_id=request.user_id,
+                subject_code=request.subject_code,
+            )
+            explanation = explain_insufficient_evidence(
+                max_evidence_observed=max_ev,
+            )
+            arbitration = arbitrate_sitting_precedence(
+                protected_status=_carrier_protected_status(decision),
+                has_adaptive_candidate=False,
+            )
             return _retag_v0_fallback(
                 decision,
                 reason=REASON_POLICY_V1_INSUFFICIENT_EVIDENCE,
+                decision_explanation=explanation,
                 selection_trace_extra={
                     "policy_v1_review_day": True,
                     "days_remaining": days_remaining,
                     "topics_since_last_review": topics_since,
+                    "cadence_threshold": cadence,
                     "adaptive_attempted": True,
                     "adaptive_selected": False,
+                    "max_covered_return_target_evidence": max_ev,
+                    "decision_explanation": explanation,
+                    **_arbitration_trace(arbitration),
                 },
             )
 
         pack, score, eligible = selected
         carrier = self._v0.decide_daily_sitting(request)
         if carrier.outcome == DecisionOutcome.BLOCKED:
-            # No materialisable sitting scaffold; honest fallback to V0 block.
+            explanation = explain_blocked_carrier(package_id=pack.package_id)
             return _retag_v0_fallback(
                 carrier,
                 reason=REASON_POLICY_V1_INSUFFICIENT_EVIDENCE,
+                decision_explanation=explanation,
                 selection_trace_extra={
                     "policy_v1_review_day": True,
                     "days_remaining": days_remaining,
                     "topics_since_last_review": topics_since,
+                    "cadence_threshold": cadence,
                     "adaptive_attempted": True,
                     "adaptive_selected": False,
                     "blocked_carrier": True,
                     "would_have_selected_package_id": pack.package_id,
                     "would_have_weakness_score": score,
+                    "decision_explanation": explanation,
+                },
+            )
+
+        # Precedence lives in arbitration (not in weakness scoring).
+        protected = _carrier_protected_status(carrier)
+        arbitration = arbitrate_sitting_precedence(
+            protected_status=protected,
+            has_adaptive_candidate=True,
+        )
+        if arbitration.winner in {
+            PrecedenceWinner.OVERDUE,
+            PrecedenceWinner.DUE,
+        }:
+            due_pid = (
+                carrier.educational_package_id
+                or (carrier.selection_trace or {}).get("due_pack_id")
+                or ""
+            )
+            lifecycle = (
+                arbitration.protected_status.value
+                if arbitration.protected_status is not None
+                else "due"
+            )
+            explanation = explain_protected_spaced_review(
+                package_id=str(due_pid or ""),
+                lifecycle=lifecycle,
+            )
+            return _retag_v0_fallback(
+                carrier,
+                reason=arbitration.reason_code,
+                decision_explanation=explanation,
+                selection_trace_extra={
+                    "policy_v1_review_day": True,
+                    "days_remaining": days_remaining,
+                    "topics_since_last_review": topics_since,
+                    "cadence_threshold": cadence,
+                    "adaptive_attempted": True,
+                    "adaptive_selected": False,
+                    "deferred_to_spaced_due": True,
+                    "would_have_selected_package_id": pack.package_id,
+                    "would_have_weakness_score": score,
+                    "decision_explanation": explanation,
+                    **_arbitration_trace(arbitration),
                 },
             )
 
         decision_id = _new_decision_id()
+        explanation = explain_adaptive_block_weakness(
+            package_id=pack.package_id,
+            weakness_score=score,
+            eligible_count=len(eligible),
+        )
         trace = dict(carrier.selection_trace or {})
         trace.update(
             {
@@ -230,10 +405,15 @@ class PolicyV1AdaptiveDecisionEngine:
                 "policy_v1_review_day": True,
                 "days_remaining": days_remaining,
                 "topics_since_last_review": topics_since,
+                "cadence_threshold": cadence,
                 "weakness_score": score,
                 "eligible_return_targets": list(eligible),
                 "selected_package_id": pack.package_id,
                 "return_targets": list(pack.return_targets or ()),
+                "composer_selection_reason": SELECTION_REASON_ADAPTIVE_REVIEW,
+                "selection_explanation": explanation,
+                "decision_explanation": explanation,
+                **_arbitration_trace(arbitration),
             }
         )
         return SittingDecision(
@@ -247,7 +427,10 @@ class PolicyV1AdaptiveDecisionEngine:
             educational_package_mode=(pack.mode or "revision").strip().lower(),
             certified_mission_id=carrier.certified_mission_id,
             objective_ids=tuple(carrier.objective_ids),
-            reason_codes=(REASON_POLICY_V1_BLOCK_WEAKNESS,),
+            reason_codes=(
+                REASON_POLICY_V1_BLOCK_WEAKNESS,
+                arbitration.reason_code,
+            ),
             block_reason=None,
             selection_trace=trace,
             template_id=carrier.template_id,
@@ -260,6 +443,9 @@ class PolicyV1AdaptiveDecisionEngine:
             curriculum_identity=carrier.curriculum_identity
             or request.curriculum_identity,
             withhold_message=None,
+            composer_selection_reason=SELECTION_REASON_ADAPTIVE_REVIEW,
+            selection_explanation=explanation,
+            decision_explanation=explanation,
         )
 
     def _try_select_revision_block(
@@ -358,15 +544,23 @@ def _retag_v0_fallback(
     decision: SittingDecision,
     *,
     reason: str,
+    decision_explanation: str,
     selection_trace_extra: dict[str, Any],
 ) -> SittingDecision:
     """Keep V0 outcome/fields; stamp policy_v1 id and fallback reason honesty."""
     trace = dict(decision.selection_trace or {})
     trace.update(selection_trace_extra)
     reasons = tuple(decision.reason_codes) + (reason,)
+    # Preserve spaced_review explanation from V0; otherwise use Policy V1 prose.
+    selection_explanation = decision.selection_explanation or ""
+    if decision.composer_selection_reason != SELECTION_REASON_SPACED_REVIEW:
+        selection_explanation = decision_explanation
     return replace(
         decision,
         policy_id=POLICY_V1_ID,
         reason_codes=reasons,
         selection_trace=trace,
+        decision_explanation=decision_explanation,
+        selection_explanation=selection_explanation,
+        composer_selection_reason=decision.composer_selection_reason,
     )

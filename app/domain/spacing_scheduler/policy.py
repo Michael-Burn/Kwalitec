@@ -17,12 +17,19 @@ class SpacingIntervalPolicy:
 
     Defaults follow a simple widening ladder after on-time completions and
     a one-step retreat after late or missed reviews. All values are days.
+
+    ``overdue_after_days`` is the configurable calendar threshold: once
+    ``as_of`` is at least this many days past ``next_due_on``, evaluate
+    reports OVERDUE instead of DUE. Default 1 preserves day-after-due
+    overdue. This is a calendar fact only, never a mastery judgement.
     """
 
     initial_interval_days: int = 1
     interval_ladder_days: tuple[int, ...] = (1, 3, 7, 14, 30)
     min_interval_days: int = 1
     max_interval_days: int = 60
+    # Calendar-only: days past next_due_on before status becomes OVERDUE.
+    overdue_after_days: int = 1
 
     def __post_init__(self) -> None:
         if self.initial_interval_days < 1:
@@ -35,6 +42,8 @@ class SpacingIntervalPolicy:
             raise ValueError("interval_ladder_days must be non-empty")
         if any(d < 1 for d in self.interval_ladder_days):
             raise ValueError("interval_ladder_days entries must be >= 1")
+        if self.overdue_after_days < 1:
+            raise ValueError("overdue_after_days must be >= 1")
 
     def interval_after(
         self,

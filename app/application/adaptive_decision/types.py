@@ -29,6 +29,12 @@ REASON_POLICY_V0_CAMPAIGN_ORDER = "policy_v0_campaign_order"
 REASON_POLICY_V1_BLOCK_WEAKNESS = "policy_v1_block_weakness"
 REASON_POLICY_V1_INSUFFICIENT_EVIDENCE = "policy_v1_insufficient_evidence"
 REASON_POLICY_V1_NOT_REVIEW_DAY = "policy_v1_not_review_day"
+# Legacy alias kept for audit continuity; new code uses arbitration reasons.
+REASON_POLICY_V1_DEFERRED_TO_SPACED_DUE = "policy_v1_deferred_to_spaced_due"
+REASON_ARBITRATION_OVERDUE_PROTECTED = "arbitration_overdue_protected"
+REASON_ARBITRATION_DUE_PROTECTED = "arbitration_due_protected"
+REASON_ARBITRATION_ADAPTIVE_SELECTED = "arbitration_adaptive_selected"
+REASON_ARBITRATION_SEQUENTIAL = "arbitration_sequential"
 
 # Twin evidence floor for acting on Estimated Knowledge (ADR-027 Phase 3).
 POLICY_V1_MIN_EVIDENCE = 3
@@ -78,3 +84,9 @@ class SittingDecision:
     plan_instance_id: str | None = None
     curriculum_identity: str | None = None
     withhold_message: str | None = None
+    # Locked composer reason (sequential / spaced_review / adaptive_review / …)
+    composer_selection_reason: str = ""
+    # Plain-language explanation for this sitting (scheduler or Policy V1)
+    selection_explanation: str = ""
+    # Always-set operator/audit plain-language explanation of the engine decision
+    decision_explanation: str = ""

@@ -162,6 +162,8 @@ class SpacingScheduler:
 
         days_since = (as_of - state.last_completed_on).days
         delta = (state.next_due_on - as_of).days
+        days_past_due = (as_of - state.next_due_on).days
+        overdue_after = self._policy.overdue_after_days
         if as_of < state.next_due_on:
             status = SchedulingStatus.NOT_DUE
             days_until = delta
@@ -174,7 +176,8 @@ class SpacingScheduler:
                 f"current interval is {state.current_interval_days} day"
                 f"{'' if state.current_interval_days == 1 else 's'})"
             )
-        elif as_of == state.next_due_on:
+        elif days_past_due < overdue_after:
+            # On the due date (and any grace days before overdue_after_days).
             status = SchedulingStatus.DUE
             days_until = 0
             days_overdue = 0
@@ -187,7 +190,7 @@ class SpacingScheduler:
         else:
             status = SchedulingStatus.OVERDUE
             days_until = None
-            days_overdue = (as_of - state.next_due_on).days
+            days_overdue = days_past_due
             explanation = (
                 f"overdue by {days_overdue} day"
                 f"{'' if days_overdue == 1 else 's'} "

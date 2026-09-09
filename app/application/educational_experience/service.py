@@ -577,6 +577,8 @@ class EducationalExperienceService:
         )
         if composer_reason == "spaced_review" and selection_explanation:
             why = selection_explanation
+        elif composer_reason == "adaptive_review" and selection_explanation:
+            why = selection_explanation
         evidence_raw = explanation.get("supporting_evidence") or ()
         if isinstance(evidence_raw, str):
             evidence = tuple(

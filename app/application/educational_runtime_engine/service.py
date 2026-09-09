@@ -588,7 +588,7 @@ class EducationalRuntimeEngineService:
         if memory_pack is not None:
             owed = memory_pack
         else:
-            due_pack, _due_expl = self._due_review_package_for_day(
+            due_pack, _due_expl, _due_status = self._due_review_package_for_day(
                 user_id=user_id,
                 subject_code=enrolment.subject_code,
                 as_of=day,
@@ -719,12 +719,14 @@ class EducationalRuntimeEngineService:
         else:
             plan = self._require_active_plan(enrolment)
 
-        due_pack, due_explanation = (None, "")
+        due_pack, due_explanation, due_spacing_status = (None, "", "")
         if memory_pack is None:
-            due_pack, due_explanation = self._due_review_package_for_day(
-                user_id=user_id,
-                subject_code=enrolment.subject_code,
-                as_of=day,
+            due_pack, due_explanation, due_spacing_status = (
+                self._due_review_package_for_day(
+                    user_id=user_id,
+                    subject_code=enrolment.subject_code,
+                    as_of=day,
+                )
             )
 
         package = self._authority.get_active(enrolment.subject_code)
@@ -893,6 +895,7 @@ class EducationalRuntimeEngineService:
                 "due_pack_id": (
                     due_pack.package_id if due_pack is not None else None
                 ),
+                "spacing_status": due_spacing_status or None,
                 "owed_pack_id": pack.package_id if pack is not None else None,
                 "progress_current_topic_id": progress.current_topic_id,
                 "composer_selection_reason": composer_selection_reason,
@@ -1859,11 +1862,13 @@ class EducationalRuntimeEngineService:
         user_id: int,
         subject_code: str,
         as_of: date,
-    ) -> tuple[Any, str]:
-        """Return the first due package for this subject, or (None, "").
+    ) -> tuple[Any, str, str]:
+        """Return the first protected review package for this subject.
 
+        Prefers overdue over due via ``board.due_now`` (overdue first).
+        Returns ``(pack, explanation, spacing_status)`` or ``(None, "", "")``.
         Due status comes only from ``get_spacing_scheduler().revision_board``.
-        Oldest due first (board ordering). Does not invent due dates.
+        Does not invent due dates or arbitrate against adaptive selection.
         """
         from app.application.educational_packages.loader import find_package_by_id
         from app.application.spacing_scheduler import get_spacing_scheduler
@@ -1879,8 +1884,9 @@ class EducationalRuntimeEngineService:
                 continue
             if str(getattr(pack, "subject_id", "") or "").strip().upper() != sid:
                 continue
-            return pack, str(entry.explanation or "").strip()
-        return None, ""
+            status = str(entry.decision.status.value or "").strip()
+            return pack, str(entry.explanation or "").strip(), status
+        return None, "", ""
 
     def _record_spacing_exposure_for_completion(
         self,

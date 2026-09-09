@@ -1,7 +1,8 @@
 """ADR-027 M0 / Phase 3 Adaptive Decision package.
 
 SittingDecisionOrchestrator coordinates Policy V0 or Policy V1 decisions and
-Runtime C materialisation. Runtime C must not import this package.
+Runtime C materialisation. Same-day spaced vs adaptive precedence lives in
+``arbitration``. Runtime C must not import this package.
 """
 
 from __future__ import annotations

@@ -132,6 +132,16 @@ class PolicyV0AdaptiveDecisionEngine:
                 curriculum_identity=request.curriculum_identity,
             )
 
+        composer_reason = str(
+            getattr(spec, "composer_selection_reason", "")
+            or (spec.selection_trace or {}).get("composer_selection_reason")
+            or ""
+        ).strip()
+        selection_explanation = str(
+            getattr(spec, "selection_explanation", "")
+            or (spec.selection_trace or {}).get("selection_explanation")
+            or ""
+        ).strip()
         return SittingDecision(
             outcome=DecisionOutcome.SAFE_FALLBACK,
             intent=INTENT_DAILY_SITTING,
@@ -157,6 +167,13 @@ class PolicyV0AdaptiveDecisionEngine:
             enrolment_id=spec.enrolment_id,
             plan_instance_id=spec.plan_instance_id,
             curriculum_identity=spec.curriculum_identity,
+            composer_selection_reason=composer_reason,
+            selection_explanation=selection_explanation,
+            decision_explanation=(
+                selection_explanation
+                or "Policy V0 selected today's sitting via campaign order "
+                "(no adaptive policy)."
+            ),
         )
 
 

@@ -28,6 +28,9 @@
       {% for item in revision.due_now %}
       <li class="ds-panel" data-revision-section="due-now" data-package-id="{{ item.package_id }}">
         <h3 class="ds-os-path__subtitle">{{ item.title }}</h3>
+        {% if item.status == 'overdue' %}
+        <p class="ds-list__meta" data-revision-status="overdue">Overdue</p>
+        {% endif %}
         {% if item.explanation %}
         <p class="ds-list__meta" data-spacing-explanation="true">{{ item.explanation }}</p>
         {% endif %}

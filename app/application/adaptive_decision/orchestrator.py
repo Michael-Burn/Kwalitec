@@ -195,6 +195,21 @@ def _spec_from_decision(
         curriculum_provenance=decision.curriculum_provenance,
         calibration_notes=tuple(decision.calibration_notes),
         selection_trace=dict(decision.selection_trace),
+        composer_selection_reason=(
+            decision.composer_selection_reason
+            or str(
+                (decision.selection_trace or {}).get("composer_selection_reason")
+                or ""
+            )
+        ).strip(),
+        selection_explanation=(
+            decision.selection_explanation
+            or decision.decision_explanation
+            or str(
+                (decision.selection_trace or {}).get("selection_explanation")
+                or ""
+            )
+        ).strip(),
     )
 
 

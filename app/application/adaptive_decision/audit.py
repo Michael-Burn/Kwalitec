@@ -55,6 +55,9 @@ def record_decision_recorded(
         "mission_instance_id": mission_instance_id,
         "flag_enabled": flag_enabled,
         "selection_trace": dict(decision.selection_trace or {}),
+        "composer_selection_reason": decision.composer_selection_reason,
+        "selection_explanation": decision.selection_explanation,
+        "decision_explanation": decision.decision_explanation,
     }
     row = RuntimeEducationalEvent(
         event_id=_new_id("evt"),

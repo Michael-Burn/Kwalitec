@@ -1291,6 +1291,7 @@ class StudentHomeService:
 
         Sequential sittings use the study-plan line. Spaced-review sittings
         surface the Spacing Scheduler's own plain-language explanation.
+        Adaptive-review sittings surface Policy V1's decision explanation.
         """
         if home.session_control == "resume":
             return "Open session: continue where you left off"
@@ -1302,8 +1303,12 @@ class StudentHomeService:
             expl = str(getattr(edu, "selection_explanation", "") or "").strip()
             if reason == "spaced_review" and expl:
                 return expl[:140]
+            if reason == "adaptive_review" and expl:
+                return expl[:140]
             why_mission = str(getattr(edu, "why_this_mission", "") or "").strip()
             if reason == "spaced_review" and why_mission:
+                return why_mission[:140]
+            if reason == "adaptive_review" and why_mission:
                 return why_mission[:140]
             return _SEQUENTIAL_WHY_NOW
         candidates: list[str] = []

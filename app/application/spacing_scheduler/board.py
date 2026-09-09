@@ -1,8 +1,9 @@
 """Revision board projection from canonical Spacing Scheduler state.
 
-Groups stored states into Due now / Upcoming / Recently reviewed using only
-``SpacingScheduler.evaluate`` decisions. Does not invent due dates, priority
-scores, or performance judgements.
+Groups stored states into Overdue / Due / Upcoming / Recently reviewed using
+only ``SpacingScheduler.evaluate`` decisions. Does not invent due dates,
+priority scores, performance judgements, or arbitration against adaptive
+selection.
 """
 
 from __future__ import annotations
@@ -35,17 +36,32 @@ class SpacingBoardEntry:
 
 @dataclass(frozen=True, slots=True)
 class SpacingRevisionBoard:
-    """Honest Revision sections sourced only from canonical spacing state."""
+    """Honest Revision sections sourced only from canonical spacing state.
+
+    Lifecycle states ``overdue`` and ``due`` are distinct calendar outputs.
+    ``due_now`` remains the combined actionable list (overdue first, then due)
+    so Revision and the daily composer can keep treating both as "show this".
+    """
 
     as_of: date
     learner_id: str
-    due_now: tuple[SpacingBoardEntry, ...]
+    overdue: tuple[SpacingBoardEntry, ...]
+    due: tuple[SpacingBoardEntry, ...]
     upcoming: tuple[SpacingBoardEntry, ...]
     recently_reviewed: tuple[SpacingBoardEntry, ...]
 
     @property
+    def due_now(self) -> tuple[SpacingBoardEntry, ...]:
+        """Actionable reviews: overdue first, then on-time due."""
+        return self.overdue + self.due
+
+    @property
     def has_due(self) -> bool:
         return bool(self.due_now)
+
+    @property
+    def has_overdue(self) -> bool:
+        return bool(self.overdue)
 
 
 def build_revision_board(
@@ -55,10 +71,11 @@ def build_revision_board(
     states: tuple[SpacingState, ...] | list[SpacingState],
     evaluate,
 ) -> SpacingRevisionBoard:
-    """Partition learner states into the three Revision sections.
+    """Partition learner states into lifecycle sections.
 
     Ordering (locked):
-    - Due now: oldest ``next_due_on`` first (due and overdue).
+    - Overdue: oldest ``next_due_on`` first.
+    - Due: oldest ``next_due_on`` first (on-time due, not yet overdue).
     - Upcoming: soonest ``next_due_on`` first (not yet due).
     - Recently reviewed: most recent ``last_completed_on`` first.
 
@@ -66,6 +83,7 @@ def build_revision_board(
     so due status is never recalculated outside the canonical engine.
     """
     lid = learner_id.strip()
+    overdue: list[SpacingBoardEntry] = []
     due: list[SpacingBoardEntry] = []
     upcoming: list[SpacingBoardEntry] = []
     recent: list[SpacingBoardEntry] = []
@@ -78,11 +96,14 @@ def build_revision_board(
         )
         entry = SpacingBoardEntry(state=state, decision=decision)
         recent.append(entry)
-        if decision.status in {SchedulingStatus.DUE, SchedulingStatus.OVERDUE}:
+        if decision.status is SchedulingStatus.OVERDUE:
+            overdue.append(entry)
+        elif decision.status is SchedulingStatus.DUE:
             due.append(entry)
         elif decision.status is SchedulingStatus.NOT_DUE:
             upcoming.append(entry)
 
+    overdue.sort(key=lambda e: e.state.next_due_on)
     due.sort(key=lambda e: e.state.next_due_on)
     upcoming.sort(key=lambda e: e.state.next_due_on)
     recent.sort(key=lambda e: e.state.last_completed_on, reverse=True)
@@ -90,7 +111,8 @@ def build_revision_board(
     return SpacingRevisionBoard(
         as_of=as_of,
         learner_id=lid,
-        due_now=tuple(due),
+        overdue=tuple(overdue),
+        due=tuple(due),
         upcoming=tuple(upcoming),
         recently_reviewed=tuple(recent),
     )
