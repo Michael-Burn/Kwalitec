@@ -377,15 +377,16 @@ def knowledge_graph():
             examination_label = examination_label or (
                 edu.examination_label or ""
             ).strip()
-            current_topic_id = (edu.today_topic_code or "").strip()
+            # Graph nodes are keyed by stable topic id, not syllabus code.
+            current_topic_id = (edu.today_topic_id or "").strip()
     if page.journey:
         examination_label = examination_label or (
             page.journey.examination_label or ""
         ).strip()
         if page.journey.current:
-            current_topic_id = current_topic_id or (
+            current_topic_id = (
                 page.journey.current.topic_id or ""
-            ).strip()
+            ).strip() or current_topic_id
         completed = tuple(
             (t.topic_id or "").strip()
             for t in (page.journey.completed or ())

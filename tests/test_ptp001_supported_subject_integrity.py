@@ -29,11 +29,13 @@ class TestSubjectSupportResolution:
         assert "loader" not in info.explanation.lower()
         assert "verified" in info.explanation.lower() or "ready" in info.title.lower()
 
-    def test_supported_cm1_and_cb2(self):
+    def test_cm1_and_cb2_are_coming_soon(self):
         for paper in ("CM1", "CB2"):
             info = SubjectSupportService.resolve("IFoA", paper)
-            assert info.status is SupportStatus.SUPPORTED
-            assert info.allows_plan_creation is True
+            assert info.status is SupportStatus.COMING_SOON
+            assert info.label == "Coming Soon"
+            assert info.allows_plan_creation is False
+            assert "coming soon" in info.title.lower()
 
     def test_coming_soon_cm2(self):
         info = SubjectSupportService.resolve("IFoA", "CM2")
@@ -42,7 +44,7 @@ class TestSubjectSupportResolution:
         assert info.allows_plan_creation is False
         assert "coming soon" in info.title.lower()
         assert info.alternatives
-        assert any("CS1" in label or "CM1" in label for _k, label in info.alternatives)
+        assert any("CS1" in label for _k, label in info.alternatives)
 
     def test_not_supported_cfa(self):
         info = SubjectSupportService.resolve("CFA", "Level I")
@@ -58,20 +60,15 @@ class TestSubjectSupportResolution:
         assert info.status is SupportStatus.NOT_SUPPORTED
         assert info.allows_plan_creation is False
 
-    def test_list_supported_includes_version1_papers(self):
+    def test_list_supported_includes_cs1_only(self):
         supported = SubjectSupportService.list_supported_examinations()
         papers = {(o.upper(), p.upper()) for o, p in supported}
-        assert ("IFOA", "CS1") in papers
-        assert ("IFOA", "CM1") in papers
-        assert ("IFOA", "CB2") in papers
+        assert papers == {("IFOA", "CS1")}
 
     def test_category_summary_ifoa_partial(self):
         summary = SubjectSupportService.category_summary("IFoA")
         assert summary.status is SupportStatus.SUPPORTED
-        assert (
-            "CS1" in summary.supported_paper_codes
-            or "CM1" in summary.supported_paper_codes
-        )
+        assert "CS1" in summary.supported_paper_codes
         assert "Partially" in summary.label or summary.label == "Ready"
 
     def test_category_summary_cfa_not_supported(self):

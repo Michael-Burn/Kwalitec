@@ -48,8 +48,10 @@ _COMING_SOON_PAPERS: dict[str, frozenset[str]] = {
     "IFoA": frozenset(
         {
             "CS2",
+            "CM1",
             "CM2",
             "CB1",
+            "CB2",
             "CB3",
             "CP1",
             "CP2",

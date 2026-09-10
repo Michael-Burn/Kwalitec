@@ -81,6 +81,40 @@ class TestSubjectCatalogue:
                 COMING_SOON_MESSAGE[:40] in e.preparation_message for e in coming
             )
 
+    def test_cm1_and_cb2_appear_as_coming_soon_not_ready(self, app):
+        """Founder preference: removed syllabi stay visible under Coming Soon."""
+        from app.application.platform_integration.discovery import (
+            PublishedSubjectDiscoveryService,
+        )
+        from app.application.platform_integration.flags import (
+            FounderStudentBridgeFlags,
+        )
+
+        with app.app_context():
+            discovery = PublishedSubjectDiscoveryService(
+                flags=FounderStudentBridgeFlags(
+                    ENABLE_PUBLISHED_SUBJECT_DISCOVERY=False
+                )
+            )
+            entries = SubjectCatalogueService(discovery=discovery).list_entries(
+                include_coming_soon=True
+            )
+            by_paper = {e.paper: e for e in entries}
+            for paper in ("CM1", "CB2"):
+                assert paper in by_paper
+                entry = by_paper[paper]
+                assert entry.availability is CatalogueAvailability.COMING_SOON
+                assert entry.availability_label == "Coming Soon"
+                assert entry.selectable is False
+            ready_papers = {
+                e.paper
+                for e in entries
+                if e.availability is CatalogueAvailability.READY
+            }
+            assert "CM1" not in ready_papers
+            assert "CB2" not in ready_papers
+            assert "CS1" in ready_papers
+
     def test_catalogue_omits_unavailable(self, app):
         from app.application.platform_integration.discovery import (
             PublishedSubjectDiscoveryService,
