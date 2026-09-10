@@ -55,6 +55,16 @@ found no numeric conversion candidates. Copy is frozen as approved;
 mechanism unchanged. Item 26 twin feedback states the correct fact that
 raw R-squared never decreases when variables are added, correcting the
 source distractor's inverted claim rather than propagating it.
+
+Editorial review record (2026-09-10): forty-eight CAF Final Wave items were
+reviewed and approved before wiring (CR Publication Front 1.1/1.2 + revision,
+sampling 2.6 including companions, CLT/MGF cluster, and misc revision/
+companion packages). This closes the choice-aware feedback content expansion
+for this programme. Two superseded outside-named leftovers (ea005-4.2-ar-01,
+ea005-4.2-cp-01) remain intentionally unwired, matching the session policy
+of excluding superseded package content from live CAF counts. No conflicting
+CPs in this draft; Part 3 found no numeric conversion candidates. Copy is
+frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -73,7 +83,9 @@ from app.application.learning_session.scoreable_practice import (
 # CAF Wave 3 remaining P1 / P2 / P3-through-4.2.3;
 # CAF Wave 4 remaining P3 from 4.2.4 + entire P4 univariate 2.1;
 # CAF Wave 5 remaining P5 joint/conditional + P6 CI/HT through companions;
-# CAF Wave 6 P6 revisions + 4.1 linear regression + purpose/EDA Continuity Front).
+# CAF Wave 6 P6 revisions + 4.1 linear regression + purpose/EDA Continuity Front;
+# CAF Final Wave CR Publication Front + sampling 2.6 + CLT/MGF + misc
+# revisions/companions; superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -261,6 +273,54 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "ep001-ca-r1-ar-01",  # CAF Wave 6: revision-purpose-eda-ep001
         "ep001-ca-r1-cp-01",  # CAF Wave 6: revision-purpose-eda-ep001
         "ep001-ca-r1-cp-02",  # CAF Wave 6: revision-purpose-eda-ep001
+        "cs1017-1.1.1-ar-01",  # CAF Final Wave: cr-1.1.1-aims-analysis-cs1017
+        "cs1017-1.1.1-cp-01",  # CAF Final Wave: cr-1.1.1-aims-analysis-cs1017
+        "cs1017-1.1.2-ar-01",  # CAF Final Wave: cr-1.1.2-stages-tools-cs1017
+        "cs1017-1.1.2-cp-01",  # CAF Final Wave: cr-1.1.2-stages-tools-cs1017
+        "cs1017-1.1.3-ar-01",  # CAF Final Wave: cr-1.1.3-data-sources-cs1017
+        "cs1017-1.1.3-cp-01",  # CAF Final Wave: cr-1.1.3-data-sources-cs1017
+        "cs1017-1.1.4-ar-01",  # CAF Final Wave: cr-1.1.4-reproducible-cs1017
+        "cs1017-1.1.4-cp-01",  # CAF Final Wave: cr-1.1.4-reproducible-cs1017
+        "cs1017-1.2.1-ar-01",  # CAF Final Wave: cr-1.2.1-eda-summaries-cs1017
+        "cs1017-1.2.1-cp-01",  # CAF Final Wave: cr-1.2.1-eda-summaries-cs1017
+        "cs1017-1.2.2-ar-01",  # CAF Final Wave: cr-1.2.2-correlation-cs1017
+        "cs1017-1.2.2-cp-01",  # CAF Final Wave: cr-1.2.2-correlation-cs1017
+        "cs1017-1.2.3-ar-01",  # CAF Final Wave: cr-1.2.3-pca-cs1017
+        "cs1017-1.2.3-cp-01",  # CAF Final Wave: cr-1.2.3-pca-cs1017
+        "cs1017-cr-r1-ar-01",  # CAF Final Wave: cr-revision-publication-front-cs1017
+        "cs1017-cr-r1-cp-01",  # CAF Final Wave: cr-revision-publication-front-cs1017
+        "cs1009-2.6.1-ar-01",  # CAF Final Wave: 2.6.1-random-samples-cs1009
+        "cs1009-2.6.1-cp-01",  # CAF Final Wave: 2.6.1-random-samples-cs1009
+        "cs1016-2.6.1-ar-01",  # CAF Final Wave: cp-2.6.1-random-samples-cs1016
+        "cs1016-2.6.1-cp-01",  # CAF Final Wave: cp-2.6.1-random-samples-cs1016
+        "cs1009-2.6.2-ar-01",  # CAF Final Wave: 2.6.2-sampling-distribution-cs1009
+        "cs1009-2.6.2-cp-01",  # CAF Final Wave: 2.6.2-sampling-distribution-cs1009
+        "cs1009-2.6.3-ar-01",  # CAF Final Wave: 2.6.3-mean-var-sample-cs1009
+        "cs1009-2.6.3-cp-01",  # CAF Final Wave: 2.6.3-mean-var-sample-cs1009
+        "cs1009-2.6.4-ar-01",  # CAF Final Wave: 2.6.4-normal-sample-mean-var-cs1009
+        "cs1009-2.6.4-cp-01",  # CAF Final Wave: 2.6.4-normal-sample-mean-var-cs1009
+        "cs1009-2.6.5-ar-01",  # CAF Final Wave: 2.6.5-t-statistic-cs1009
+        "cs1009-2.6.5-cp-01",  # CAF Final Wave: 2.6.5-t-statistic-cs1009
+        "cs1009-2.6.6-ar-01",  # CAF Final Wave: 2.6.6-f-distribution-cs1009
+        "cs1009-2.6.6-cp-01",  # CAF Final Wave: 2.6.6-f-distribution-cs1009
+        "cs1007-2.4.1-ar-01",  # CAF Final Wave: 2.4.1-mgf-cgf-cs1007
+        "cs1007-2.4.1-cp-01",  # CAF Final Wave: 2.4.1-mgf-cgf-cs1007
+        "cs1007-2.4.2-ar-01",  # CAF Final Wave: 2.4.2-moment-via-gf-cs1007
+        "cs1007-2.4.2-cp-01",  # CAF Final Wave: 2.4.2-moment-via-gf-cs1007
+        "cs1008-2.5.1-ar-01",  # CAF Final Wave: 2.5.1-clt-cs1008
+        "cs1016-2.5.1-ar-01",  # CAF Final Wave: cp-2.5.1-clt-cs1016
+        "cs1008-2.5.2-ar-01",  # CAF Final Wave: 2.5.2-simulated-sample-normal-cs1008
+        "cs1008-2.5.2-cp-01",  # CAF Final Wave: 2.5.2-simulated-sample-normal-cs1008
+        "cs1008-ct-r1-ar-01",  # CAF Final Wave: revision-central-limit-theorem-cs1008
+        "cs1008-ct-r1-cp-01",  # CAF Final Wave: revision-central-limit-theorem-cs1008
+        "cs1007-ch-r1-ar-01",  # CAF Final Wave: revision-generating-functions-cs1007
+        "cs1007-ch-r1-cp-01",  # CAF Final Wave: revision-generating-functions-cs1007
+        "cs1016-cp-r1-ar-01",  # CAF Final Wave: cp-revision-spine-memory-cs1016
+        "cs1016-cp-r1-cp-01",  # CAF Final Wave: cp-revision-spine-memory-cs1016
+        "cs1002-cb-r1-ar-01",  # CAF Final Wave: revision-pca-distributions-cs1002
+        "cs1002-cb-r1-cp-01",  # CAF Final Wave: revision-pca-distributions-cs1002
+        "cs1002-cb-r1-cp-02",  # CAF Final Wave: revision-pca-distributions-cs1002
+        "cs1002-cb-r1-cp-03",  # CAF Final Wave: revision-pca-distributions-cs1002
     }
 )
 
@@ -4449,6 +4509,1061 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice says no correlation measure can describe a nonlinear monotone relationship. "
         "Spearman and Kendall are built for monotone association without requiring linearity."
+    ),
+    # --- cs1017-1.1.1-ar-01 ---
+    (
+        "cs1017-1.1.1-ar-01",
+        "b",
+    ): (
+        "That choice collapses descriptive, inferential, and predictive into one EDA label. "
+        "Aims differ by target: summarise observed data, generalise to a population quantity, or forecast future outcomes."
+    ),
+    (
+        "cs1017-1.1.1-ar-01",
+        "c",
+    ): (
+        "That choice swaps inferential with forecasting and descriptive with hypothesis testing. "
+        "Inferential targets parameters under uncertainty; predictive targets future values; descriptive summarises what was observed."
+    ),
+    (
+        "cs1017-1.1.1-ar-01",
+        "d",
+    ): (
+        "That choice reverses the aims: predictive as last-year summary and inferential as histogram-only work. "
+        "Keep each aim matched to its target."
+    ),
+    # --- cs1017-1.1.1-cp-01 ---
+    (
+        "cs1017-1.1.1-cp-01",
+        "b",
+    ): (
+        "That choice calls histogram, CI, and forecast all descriptive because each uses historical claims. "
+        "Shared history does not erase aim: A summarises, B targets a parameter, C forecasts."
+    ),
+    (
+        "cs1017-1.1.1-cp-01",
+        "c",
+    ): (
+        "That choice labels A predictive, B descriptive, and C inferential. "
+        "Histogram work is descriptive; a mean CI is inferential; next-year severity is predictive."
+    ),
+    (
+        "cs1017-1.1.1-cp-01",
+        "d",
+    ): (
+        "That choice merges B and C as inferential because both use models or intervals. "
+        "A forecast targets a future value; a CI targets a parameter."
+    ),
+    # --- cs1017-1.1.2-ar-01 ---
+    (
+        "cs1017-1.1.2-ar-01",
+        "b",
+    ): (
+        "That choice treats opening a notebook and loading packages as finishing analysis stages. "
+        "Tools serve named stages; they do not replace aim → data → explore → analyse → communicate."
+    ),
+    (
+        "cs1017-1.1.2-ar-01",
+        "c",
+    ): (
+        "That choice communicates first, then obtains data, then defines the aim. "
+        "Stage order starts with the aim and ends with communication, not the reverse."
+    ),
+    (
+        "cs1017-1.1.2-ar-01",
+        "d",
+    ): (
+        "That choice collapses clean/explore with final inference because any plot appears. "
+        "Exploratory plots sit in explore; inference is a later analyse stage."
+    ),
+    # --- cs1017-1.1.2-cp-01 ---
+    (
+        "cs1017-1.1.2-cp-01",
+        "b",
+    ): (
+        "That choice ends the reserves path in clean/explore once plots appear. "
+        "Plots support exploration; they do not complete inference or communication."
+    ),
+    (
+        "cs1017-1.1.2-cp-01",
+        "c",
+    ): (
+        "That choice treats successful package load as analysis complete. "
+        "Loading tools is not a staged path and does not replace ordered stages."
+    ),
+    (
+        "cs1017-1.1.2-cp-01",
+        "d",
+    ): (
+        "That choice communicates before defining the aim. "
+        "Stakeholder output still needs a defined aim before data, exploration, and analysis."
+    ),
+    # --- cs1017-1.1.3-ar-01 ---
+    (
+        "cs1017-1.1.3-ar-01",
+        "b",
+    ): (
+        "That choice treats a larger file as automatically better and representative. "
+        "Volume does not remove selection, coverage, or measurement concerns."
+    ),
+    (
+        "cs1017-1.1.3-ar-01",
+        "c",
+    ): (
+        "That choice postpones source trust until modelling is finished. "
+        "Source origin and quality shape bias and coverage during exploration, not only after a model."
+    ),
+    (
+        "cs1017-1.1.3-ar-01",
+        "d",
+    ): (
+        "That choice says extreme volume always removes sampling and compute constraints. "
+        "Large sets often add storage, compute, or sampling needs rather than erase them."
+    ),
+    # --- cs1017-1.1.3-cp-01 ---
+    (
+        "cs1017-1.1.3-cp-01",
+        "b",
+    ): (
+        "That choice crowns the administrative extract for having more rows and skips source comparison. "
+        "Bias and coverage still differ by mechanism; row count is not a quality certificate."
+    ),
+    (
+        "cs1017-1.1.3-cp-01",
+        "c",
+    ): (
+        "That choice treats both sources as equally trustworthy in EDA because trust waits for the final model. "
+        "Compare selection, response bias, completeness, and measurement error up front."
+    ),
+    (
+        "cs1017-1.1.3-cp-01",
+        "d",
+    ): (
+        "That choice claims a large survey file removes bias because every respondent row is present. "
+        "Including every row in a voluntary file does not fix selection or response bias."
+    ),
+    # --- cs1017-1.1.4-ar-01 ---
+    (
+        "cs1017-1.1.4-ar-01",
+        "b",
+    ): (
+        "That choice reduces reproducibility to re-running one local notebook cell. "
+        "Reconstruction needs shared data identity, scripted paths, and documented environment, not a private one-off rerun."
+    ),
+    (
+        "cs1017-1.1.4-ar-01",
+        "c",
+    ): (
+        "That choice treats the author’s memory of steps as enough. "
+        "Memory is not a reconstructible artefact for others or a future you."
+    ),
+    (
+        "cs1017-1.1.4-ar-01",
+        "d",
+    ): (
+        "That choice confines reproducibility to published papers. "
+        "Internal pricing and reserves work need the same reconstructible artefacts."
+    ),
+    # --- cs1017-1.1.4-cp-01 ---
+    (
+        "cs1017-1.1.4-cp-01",
+        "b",
+    ): (
+        "That choice treats a second local cell run as proof of reproducibility. "
+        "Duplicate output on one laptop is not reconstruction from shared inputs and steps."
+    ),
+    (
+        "cs1017-1.1.4-cp-01",
+        "c",
+    ): (
+        "That choice replaces documentation with email comments. "
+        "Email notes are not versioned data, scripted code, and environment records others can rerun."
+    ),
+    (
+        "cs1017-1.1.4-cp-01",
+        "d",
+    ): (
+        "That choice treats a dated notebook filename as versioning and makes data identity optional. "
+        "A filename date does not identify the extract or the executable path."
+    ),
+    # --- cs1017-1.2.1-ar-01 ---
+    (
+        "cs1017-1.2.1-ar-01",
+        "b",
+    ): (
+        "That choice always leads with the sample mean and a pie chart for any numeric column. "
+        "Tool choice must match variable type and the exploratory question, not a fixed mean-and-pie habit."
+    ),
+    (
+        "cs1017-1.2.1-ar-01",
+        "c",
+    ): (
+        "That choice drops exploratory plots once correlations are computed. "
+        "Coefficients do not replace shape and association visuals."
+    ),
+    (
+        "cs1017-1.2.1-ar-01",
+        "d",
+    ): (
+        "That choice defaults every frequency exploration to a pie chart. "
+        "Pies are a narrow part-to-whole display, not the default for count shape and tails."
+    ),
+    # --- cs1017-1.2.1-cp-01 ---
+    (
+        "cs1017-1.2.1-cp-01",
+        "b",
+    ): (
+        "That choice summarises zero-inflated claim counts with the mean alone. "
+        "A single mean hides mass at zero and the right tail that the frequency aim needs."
+    ),
+    (
+        "cs1017-1.2.1-cp-01",
+        "c",
+    ): (
+        "That choice uses a pie of policy segments to show zero-inflation. "
+        "Pies do not reveal zero mass and tail shape in the count distribution."
+    ),
+    (
+        "cs1017-1.2.1-cp-01",
+        "d",
+    ): (
+        "That choice skips shape plots and jumps to correlation with premium. "
+        "Association coefficients do not replace frequency-shape diagnostics."
+    ),
+    # --- cs1017-1.2.2-ar-01 ---
+    (
+        "cs1017-1.2.2-ar-01",
+        "b",
+    ): (
+        "That choice treats Pearson, Spearman, and Kendall as the same formula under three names. "
+        "They measure different association structures (linear versus rank/monotone)."
+    ),
+    (
+        "cs1017-1.2.2-ar-01",
+        "c",
+    ): (
+        "That choice reads a significant Pearson correlation as proof that changing X causes Y. "
+        "Association is not causation."
+    ),
+    (
+        "cs1017-1.2.2-ar-01",
+        "d",
+    ): (
+        "That choice assigns Kendall only to PCA inputs and Pearson only after PCA scores. "
+        "Correlation choice is about association type, not a PCA pipeline rule."
+    ),
+    # --- cs1017-1.2.2-cp-01 ---
+    (
+        "cs1017-1.2.2-cp-01",
+        "b",
+    ): (
+        "That choice forces Pearson whenever a scatter is drawn. "
+        "With monotone nonlinear shape and outliers, rank measures are the better association tools here."
+    ),
+    (
+        "cs1017-1.2.2-cp-01",
+        "c",
+    ): (
+        "That choice treats a strong negative Spearman as proof that reducing years licensed reduces frequency. "
+        "Rank association still does not prove causation."
+    ),
+    (
+        "cs1017-1.2.2-cp-01",
+        "d",
+    ): (
+        "That choice picks Kendall because it supposedly measures variance explained by PC1. "
+        "Kendall is a bivariate rank association measure, not a PCA variance summary."
+    ),
+    # --- cs1017-1.2.3-ar-01 ---
+    (
+        "cs1017-1.2.3-ar-01",
+        "b",
+    ): (
+        "That choice has PCA select the single causal factor behind rating variables. "
+        "PCA summarises shared variation; it does not prove a causal driver."
+    ),
+    (
+        "cs1017-1.2.3-ar-01",
+        "c",
+    ): (
+        "That choice lets PCA replace correlation analysis because components look like causal scores. "
+        "Components still need external warrant; they do not retire association checks."
+    ),
+    (
+        "cs1017-1.2.3-ar-01",
+        "d",
+    ): (
+        "That choice equates PC1 with the sample mean vector of the originals. "
+        "A principal component is a weighted combination ordered by explained variation, not the mean vector."
+    ),
+    # --- cs1017-1.2.3-cp-01 ---
+    (
+        "cs1017-1.2.3-cp-01",
+        "b",
+    ): (
+        "That choice accepts PC1 as the true latent risk score and auto-decline warrant. "
+        "PC1 may summarise shared variation; causal underwriting policy needs external subject-matter warrant."
+    ),
+    (
+        "cs1017-1.2.3-cp-01",
+        "c",
+    ): (
+        "That choice lets largest-variance PC1 replace correlation analysis and hypothesis testing. "
+        "Variance rank is not a substitute for those checks."
+    ),
+    (
+        "cs1017-1.2.3-cp-01",
+        "d",
+    ): (
+        "That choice equates PC1 with the average of standardised factors and with portfolio mean premium. "
+        "Averaging standardised inputs is not the same as a validated premium or risk driver."
+    ),
+    # --- cs1017-cr-r1-ar-01 ---
+    (
+        "cs1017-cr-r1-ar-01",
+        "b",
+    ): (
+        "That choice makes claim count continuous because a year is continuous, then forces Normal. "
+        "The recorded variable is a non-negative integer count, not a continuous calendar length."
+    ),
+    (
+        "cs1017-cr-r1-ar-01",
+        "c",
+    ): (
+        "That choice calls the count categorical because zeros appear. "
+        "Zero is a legitimate count value, not a reason to reclassify as categories."
+    ),
+    (
+        "cs1017-cr-r1-ar-01",
+        "d",
+    ): (
+        "That choice forces Exponential because claims occur over time. "
+        "Waiting times can be Exponential; the recorded annual claim count is still a discrete count."
+    ),
+    # --- cs1017-cr-r1-cp-01 ---
+    (
+        "cs1017-cr-r1-cp-01",
+        "b",
+    ): (
+        "That choice reads the curved scatter as proof that more advertising causes more sales. "
+        "The plot supports association, not causal attribution."
+    ),
+    (
+        "cs1017-cr-r1-cp-01",
+        "c",
+    ): (
+        "That choice forces Pearson correlation to zero because the pattern is curved. "
+        "Curvature can still show association; Pearson may be a poor summary, not automatically zero."
+    ),
+    (
+        "cs1017-cr-r1-cp-01",
+        "d",
+    ): (
+        "That choice says a scatter cannot evidence association between continuous variables. "
+        "A scatter is exactly a descriptive association display."
+    ),
+    # --- cs1009-2.6.1-ar-01 ---
+    (
+        "cs1009-2.6.1-ar-01",
+        "b",
+    ): (
+        "That choice calls any n observations a random sample once mean and variance can be computed. "
+        "Calculable summaries do not create a sampling model or population warrant."
+    ),
+    (
+        "cs1009-2.6.1-ar-01",
+        "c",
+    ): (
+        "That choice treats equality of sample mean and population mean as proof of randomness. "
+        "A lucky mean match does not certify the selection mechanism."
+    ),
+    (
+        "cs1009-2.6.1-ar-01",
+        "d",
+    ): (
+        "That choice says sampling design becomes irrelevant after an estimator formula is chosen. "
+        "Estimators presuppose a sampling story; they do not repair a broken one."
+    ),
+    # --- cs1009-2.6.1-cp-01 ---
+    (
+        "cs1009-2.6.1-cp-01",
+        "b",
+    ): (
+        "That choice treats n=40 as enough for a random sample of the whole book. "
+        "Large n does not fix one-client consecutive selection and dependence."
+    ),
+    (
+        "cs1009-2.6.1-cp-01",
+        "c",
+    ): (
+        "That choice validates randomness when the extract mean is close to the book mean. "
+        "Mean proximity is not a sampling-mechanism certificate."
+    ),
+    (
+        "cs1009-2.6.1-cp-01",
+        "d",
+    ): (
+        "That choice expects a later t statistic to correct client-level selection bias. "
+        "A pivot assumes a sampling warrant; it does not create one."
+    ),
+    # --- cs1016-2.6.1-ar-01 ---
+    (
+        "cs1016-2.6.1-ar-01",
+        "b",
+    ): (
+        "That choice treats any collected n observations as a random sample because data exist. "
+        "Having a pile of rows is not an iid population draw."
+    ),
+    (
+        "cs1016-2.6.1-ar-01",
+        "c",
+    ): (
+        "That choice verifies the sampling model when the sample mean equals the population mean. "
+        "Equality of means does not prove the selection mechanism."
+    ),
+    (
+        "cs1016-2.6.1-ar-01",
+        "d",
+    ): (
+        "That choice makes sampling vocabulary optional and applies estimator formulas to any spreadsheet column. "
+        "Estimators require a population and sampling model first."
+    ),
+    # --- cs1016-2.6.1-cp-01 ---
+    (
+        "cs1016-2.6.1-cp-01",
+        "b",
+    ): (
+        "That choice uses n=40 as a rule-of-thumb proof of randomness regardless of selection. "
+        "Threshold n does not override one-client clustering and selection bias."
+    ),
+    (
+        "cs1016-2.6.1-cp-01",
+        "c",
+    ): (
+        "That choice validates the extract as random when mean claim size is near the book average. "
+        "A close mean does not repair the selection mechanism."
+    ),
+    (
+        "cs1016-2.6.1-cp-01",
+        "d",
+    ): (
+        "That choice postpones random-sample language until an estimator is chosen. "
+        "Sampling warrant comes before estimator construction, not after."
+    ),
+    # --- cs1009-2.6.2-ar-01 ---
+    (
+        "cs1009-2.6.2-ar-01",
+        "b",
+    ): (
+        "That choice treats a statistic as a fixed population parameter and its sampling distribution as that same constant. "
+        "A statistic is a sample function; the parameter is a population quantity."
+    ),
+    (
+        "cs1009-2.6.2-ar-01",
+        "c",
+    ): (
+        "That choice equates the sampling distribution with the single realised sample mean you hold. "
+        "One realised value is a draw from the repeated-sample law, not the law itself."
+    ),
+    (
+        "cs1009-2.6.2-ar-01",
+        "d",
+    ): (
+        "That choice collapses realised statistic and sampling distribution whenever n>30. "
+        "Large n does not turn one number into a distribution."
+    ),
+    # --- cs1009-2.6.2-cp-01 ---
+    (
+        "cs1009-2.6.2-cp-01",
+        "b",
+    ): (
+        "That choice accepts that the sampling distribution equals the current sample mean. "
+        "Refuse: a realised statistic is one draw, not the repeated-sample distribution."
+    ),
+    (
+        "cs1009-2.6.2-cp-01",
+        "c",
+    ): (
+        "That choice accepts the collapse for large n only. "
+        "Sample size does not turn a realised mean into its sampling distribution."
+    ),
+    (
+        "cs1009-2.6.2-cp-01",
+        "d",
+    ): (
+        "That choice equates parameters with sampling distributions once a mean is computed. "
+        "Parameters, realised statistics, and sampling distributions remain distinct objects."
+    ),
+    # --- cs1009-2.6.3-ar-01 ---
+    (
+        "cs1009-2.6.3-ar-01",
+        "b",
+    ): (
+        "That choice sets \\(E[\\bar X]=\\mu/n\\) because averaging seems to divide the mean. "
+        "Averaging preserves the mean; it does not divide \\(\\mu\\) by n."
+    ),
+    (
+        "cs1009-2.6.3-ar-01",
+        "c",
+    ): (
+        "That choice keeps \\(\\mathrm{Var}(\\bar X)=\\sigma^2\\) after averaging. "
+        "Independent averaging reduces variance to \\(\\sigma^2/n\\)."
+    ),
+    (
+        "cs1009-2.6.3-ar-01",
+        "d",
+    ): (
+        "That choice sets \\(E[S^2]=\\sigma^2/n\\) as if \\(S^2\\) estimated \\(\\mathrm{Var}(\\bar X)\\). "
+        "Usual \\(S^2\\) targets population variance \\(\\sigma^2\\), not the variance of the mean."
+    ),
+    # --- cs1009-2.6.3-cp-01 ---
+    (
+        "cs1009-2.6.3-cp-01",
+        "b",
+    ): (
+        "That choice reads \\(\\mathrm{Var}(\\bar X)=\\sigma^2/n\\) as proof that \\(\\bar X\\) is exactly Normal for every parent and every n. "
+        "Moments do not by themselves give exact Normal laws."
+    ),
+    (
+        "cs1009-2.6.3-cp-01",
+        "c",
+    ): (
+        "That choice jumps from \\(E[S^2]=\\sigma^2\\) to a t law with no population assumptions. "
+        "Unbiasedness of \\(S^2\\) does not create the Normal-sample t pivot."
+    ),
+    (
+        "cs1009-2.6.3-cp-01",
+        "d",
+    ): (
+        "That choice reads \\(E[\\bar X]=\\mu\\) as \\(\\bar X=\\mu\\) in every sample. "
+        "Unbiasedness is about expectation across samples, not zero sampling variability."
+    ),
+    # --- cs1009-2.6.4-ar-01 ---
+    (
+        "cs1009-2.6.4-ar-01",
+        "b",
+    ): (
+        "That choice leaves \\(\\bar X\\sim N(\\mu,\\sigma^2)\\) without the \\(1/n\\) variance scale. "
+        "Averaging scales variance by \\(1/n\\)."
+    ),
+    (
+        "cs1009-2.6.4-ar-01",
+        "c",
+    ): (
+        "That choice uses \\(S^2/\\sigma^2\\sim\\chi^2_n\\) and drops the \\(n-1\\) scaling. "
+        "The chi-square law uses \\((n-1)S^2/\\sigma^2\\) with \\(n-1\\) degrees of freedom."
+    ),
+    (
+        "cs1009-2.6.4-ar-01",
+        "d",
+    ): (
+        "That choice forces dependence of \\(\\bar X\\) and \\(S^2\\) because both use the same observations. "
+        "Under Normal sampling they are independent despite sharing the sample."
+    ),
+    # --- cs1009-2.6.4-cp-01 ---
+    (
+        "cs1009-2.6.4-cp-01",
+        "b",
+    ): (
+        "That choice gives \\(\\bar X\\) a \\(t_{n-1}\\) law before studentising. "
+        "The mean itself is Normal; t appears after dividing by \\(S/\\sqrt{n}\\)."
+    ),
+    (
+        "cs1009-2.6.4-cp-01",
+        "c",
+    ): (
+        "That choice treats \\((n-1)S^2/\\sigma^2\\) as \\(N(0,1)\\). "
+        "Scaled sample variance is chi-square, not standard Normal."
+    ),
+    (
+        "cs1009-2.6.4-cp-01",
+        "d",
+    ): (
+        "That choice treats the Normal and chi-square component laws as finishing t work before S replaces \\(\\sigma\\). "
+        "The t pivot is the combination after studentising with S."
+    ),
+    # --- cs1009-2.6.5-ar-01 ---
+    (
+        "cs1009-2.6.5-ar-01",
+        "b",
+    ): (
+        "That choice uses \\(T=(\\bar X-\\mu)/S\\) with \\(t_n\\) and drops \\(\\sqrt{n}\\). "
+        "The standard error is \\(S/\\sqrt{n}\\), and the df are \\(n-1\\)."
+    ),
+    (
+        "cs1009-2.6.5-ar-01",
+        "c",
+    ): (
+        "That choice keeps an exact \\(N(0,1)\\) law after replacing \\(\\sigma\\) by S. "
+        "Estimating \\(\\sigma\\) produces a t law, not an exact z law."
+    ),
+    (
+        "cs1009-2.6.5-ar-01",
+        "d",
+    ): (
+        "That choice reserves t only for comparing two sample variances. "
+        "One-sample mean inference with unknown \\(\\sigma\\) is a primary t use; variance ratios use F."
+    ),
+    # --- cs1009-2.6.5-cp-01 ---
+    (
+        "cs1009-2.6.5-cp-01",
+        "b",
+    ): (
+        "That choice keeps an exact \\(N(0,1)\\) pivot after using S in place of \\(\\sigma\\). "
+        "With unknown \\(\\sigma\\), \\((\\bar X-\\mu)/(S/\\sqrt{n})\\) is \\(t_{n-1}\\), not z."
+    ),
+    (
+        "cs1009-2.6.5-cp-01",
+        "c",
+    ): (
+        "That choice treats S itself as the standard error in \\((\\bar X-\\mu)/S\\). "
+        "The standard error still divides by \\(\\sqrt{n}\\)."
+    ),
+    (
+        "cs1009-2.6.5-cp-01",
+        "d",
+    ): (
+        "That choice gives \\(S_1^2/S_2^2\\) a \\(t_{n-1}\\) law. "
+        "Variance ratios use F, not t; t supports mean pivots."
+    ),
+    # --- cs1009-2.6.6-ar-01 ---
+    (
+        "cs1009-2.6.6-ar-01",
+        "b",
+    ): (
+        "That choice defines F as a two-sample mean difference over a pooled SE. "
+        "That construction is a two-sample t pattern, not an F variance-ratio law."
+    ),
+    (
+        "cs1009-2.6.6-ar-01",
+        "c",
+    ): (
+        "That choice gives F a single degrees-of-freedom parameter because sample sizes must match. "
+        "F has separate numerator and denominator df."
+    ),
+    (
+        "cs1009-2.6.6-ar-01",
+        "d",
+    ): (
+        "That choice claims any variance ratio is exactly F even under dependence or non-Normal parents. "
+        "The exact F law needs independence and Normal-sample conditions."
+    ),
+    # --- cs1009-2.6.6-cp-01 ---
+    (
+        "cs1009-2.6.6-cp-01",
+        "b",
+    ): (
+        "That choice assigns \\(S_1^2/S_2^2\\) a \\(t_{n_1+n_2-2}\\) law. "
+        "Shared use of sample variances does not turn a variance ratio into t."
+    ),
+    (
+        "cs1009-2.6.6-cp-01",
+        "c",
+    ): (
+        "That choice uses \\(F_{n_1,n_2}\\) without reducing for estimated means. "
+        "Each sample variance contributes \\(n_i-1\\) degrees of freedom."
+    ),
+    (
+        "cs1009-2.6.6-cp-01",
+        "d",
+    ): (
+        "That choice treats the variance ratio as standard Normal because its expectation is near one. "
+        "Near-one expectation is not an \\(N(0,1)\\) law."
+    ),
+    # --- cs1007-2.4.1-ar-01 ---
+    (
+        "cs1007-2.4.1-ar-01",
+        "b",
+    ): (
+        "That choice sets \\(M_X(t)=E[tX]\\) and \\(K_X(t)=e^{M_X(t)}\\). "
+        "The MGF is \\(E[e^{tX}]\\); the CGF is \\(\\log M_X(t)\\), not an exponential of the MGF."
+    ),
+    (
+        "cs1007-2.4.1-ar-01",
+        "c",
+    ): (
+        "That choice replaces the MGF by the pair \\((E[X],\\mathrm{Var}(X))\\). "
+        "A few moments are not the generating function of t."
+    ),
+    (
+        "cs1007-2.4.1-ar-01",
+        "d",
+    ): (
+        "That choice asserts every random variable has a finite MGF for all real t. "
+        "Existence in a neighbourhood of 0 is a real condition, not automatic."
+    ),
+    # --- cs1007-2.4.1-cp-01 ---
+    (
+        "cs1007-2.4.1-cp-01",
+        "b",
+    ): (
+        "That choice uses \\(M(t)=\\exp(\\lambda t)\\) and \\(K(t)=\\lambda t\\) from the mean alone. "
+        "The Poisson MGF carries \\(e^t\\) inside the exponential, not a linear \\(\\lambda t\\) form."
+    ),
+    (
+        "cs1007-2.4.1-cp-01",
+        "c",
+    ): (
+        "That choice swaps MGF and CGF: puts \\(\\lambda(e^t-1)\\) as M and the exponential as K. "
+        "Logarithm converts M to K, not the reverse."
+    ),
+    (
+        "cs1007-2.4.1-cp-01",
+        "d",
+    ): (
+        "That choice sets \\(M=\\lambda\\) and \\(K=\\log\\lambda\\) from mean=variance=\\(\\lambda\\). "
+        "Moments are not the generating functions."
+    ),
+    # --- cs1007-2.4.2-ar-01 ---
+    (
+        "cs1007-2.4.2-ar-01",
+        "b",
+    ): (
+        "That choice reads \\(M_X(0)=E[X]\\). \\(M_X(0)=1\\); the mean is the first derivative at 0."
+    ),
+    (
+        "cs1007-2.4.2-ar-01",
+        "c",
+    ): (
+        "That choice evaluates \\(M_X'(1)=E[X]\\). Raw moments use derivatives at \\(t=0\\), not at "
+        "\\(t=1\\)."
+    ),
+    (
+        "cs1007-2.4.2-ar-01",
+        "d",
+    ): (
+        "That choice stops after writing \\(M_X(t)=E[e^{tX}]\\). "
+        "Definition alone does not extract moments; differentiate or match Taylor coefficients."
+    ),
+    # --- cs1007-2.4.2-cp-01 ---
+    (
+        "cs1007-2.4.2-cp-01",
+        "b",
+    ): (
+        "That choice equates \\(M(0)=1\\) with \\(E[X]=1\\) for every Poisson. "
+        "\\(M(0)=1\\) is normalisation; the mean is \\(M'(0)=\\lambda\\)."
+    ),
+    (
+        "cs1007-2.4.2-cp-01",
+        "c",
+    ): (
+        "That choice claims \\(M'(0)=e^\\lambda\\) after dropping the chain-rule \\(\\lambda e^t\\) factor. "
+        "Differentiate the composition carefully, then set \\(t=0\\)."
+    ),
+    (
+        "cs1007-2.4.2-cp-01",
+        "d",
+    ): (
+        "That choice treats the MGF definition as already stating the mean. You still need "
+        "\\(M'(0)\\)."
+    ),
+    # --- cs1008-2.5.1-ar-01 ---
+    (
+        "cs1008-2.5.1-ar-01",
+        "b",
+    ): (
+        "That choice applies the CLT to each individual observation as n grows. "
+        "The theorem targets the standardised sample mean (or sum), not single \\(X_i\\)."
+    ),
+    (
+        "cs1008-2.5.1-ar-01",
+        "c",
+    ): (
+        "That choice requires an already-Normal parent. "
+        "Finite mean and variance with iid sampling are the usual conditions; Normality of the parent is not required."
+    ),
+    (
+        "cs1008-2.5.1-ar-01",
+        "d",
+    ): (
+        "That choice keeps \\(\\mathrm{Var}(\\bar X)=\\sigma^2\\) after averaging. "
+        "Averaging reduces variance to \\(\\sigma^2/n\\)."
+    ),
+    # --- cs1016-2.5.1-ar-01 ---
+    (
+        "cs1016-2.5.1-ar-01",
+        "b",
+    ): (
+        "That choice declares every insurance quantity Normal without IID conditions or a theorem statement. "
+        "Casual Normal habit is not the CLT."
+    ),
+    (
+        "cs1016-2.5.1-ar-01",
+        "c",
+    ): (
+        "That choice applies the CLT to a single observation \\(X_1\\) from a finite-mean population. "
+        "The approximation is for the sample mean (or its standardised form) as n grows."
+    ),
+    (
+        "cs1016-2.5.1-ar-01",
+        "d",
+    ): (
+        "That choice allows the CLT only for already-Normal populations. "
+        "Non-Normal parents with finite variance still support a Normal approximation for \\(\\bar X\\) at large n."
+    ),
+    # --- cs1008-2.5.2-ar-01 ---
+    (
+        "cs1008-2.5.2-ar-01",
+        "b",
+    ): (
+        "That choice simulates one parent draw and compares it to a Normal density. "
+        "CLT checks need the empirical distribution of repeated sample means."
+    ),
+    (
+        "cs1008-2.5.2-ar-01",
+        "c",
+    ): (
+        "That choice treats stating the theorem as the same as an empirical simulation comparison. "
+        "A theorem statement is not a Monte Carlo check across sample sizes."
+    ),
+    (
+        "cs1008-2.5.2-ar-01",
+        "d",
+    ): (
+        "That choice says a skewed parent forever blocks approximately Normal means. "
+        "Skewed finite-variance parents can still yield approximately Normal means as n grows."
+    ),
+    # --- cs1008-2.5.2-cp-01 ---
+    (
+        "cs1008-2.5.2-cp-01",
+        "b",
+    ): (
+        "That choice keeps \\(\\bar X\\) exactly Exponential with mean 1 at every n. "
+        "Averaging changes the sampling distribution; it does not preserve the parent family."
+    ),
+    (
+        "cs1008-2.5.2-cp-01",
+        "c",
+    ): (
+        "That choice keeps n=100 means as skewed as single Exponential draws. "
+        "Larger n should move the mean’s distribution closer to Normal."
+    ),
+    (
+        "cs1008-2.5.2-cp-01",
+        "d",
+    ): (
+        "That choice makes n=5 exactly Normal by the CLT and n=100 Exponential again. "
+        "Approximation typically improves as n grows, not the reverse."
+    ),
+    # --- cs1008-ct-r1-ar-01 ---
+    (
+        "cs1008-ct-r1-ar-01",
+        "b",
+    ): (
+        "That choice makes the sample mean equal \\(\\mu\\) with probability 1 at every finite n. "
+        "The CLT is a limiting distributional statement, not exact equality for finite n."
+    ),
+    (
+        "cs1008-ct-r1-ar-01",
+        "c",
+    ): (
+        "That choice makes each \\(X_i\\) become Normal as n grows. "
+        "The limit concerns the centred and scaled mean, not individual observations."
+    ),
+    (
+        "cs1008-ct-r1-ar-01",
+        "d",
+    ): (
+        "That choice sends the unstandardised sum to standard Normal without centring or scaling. "
+        "The CLT uses proper centring and \\(\\sqrt{n}\\) scaling."
+    ),
+    # --- cs1008-ct-r1-cp-01 ---
+    (
+        "cs1008-ct-r1-cp-01",
+        "b",
+    ): (
+        "That choice calls every sample mean exactly Normal because a mean was calculated. "
+        "Exact Normality of \\(\\bar X\\) needs stronger model conditions; CLT is approximate at finite n."
+    ),
+    (
+        "cs1008-ct-r1-cp-01",
+        "c",
+    ): (
+        "That choice bans the CLT for every skewed distribution. "
+        "Finite-variance skewed parents can still satisfy the CLT, often needing larger n."
+    ),
+    (
+        "cs1008-ct-r1-cp-01",
+        "d",
+    ): (
+        "That choice says increasing n reduces skewness of the original observations. "
+        "Larger n changes the sampling distribution of the mean, not the shape of each \\(X_i\\)."
+    ),
+    # --- cs1007-ch-r1-ar-01 ---
+    (
+        "cs1007-ch-r1-ar-01",
+        "b",
+    ): (
+        "That choice sets \\(M_X(t)=E[tX]\\) and makes K its derivative. "
+        "The MGF is \\(E[\\exp(tX)]\\); the CGF is \\(\\log M\\), not \\(M'\\)."
+    ),
+    (
+        "cs1007-ch-r1-ar-01",
+        "c",
+    ): (
+        "That choice confuses the MGF with a CDF and the CGF with a survival function. "
+        "Generating functions are exponential expectations and their logs, not distribution functions."
+    ),
+    (
+        "cs1007-ch-r1-ar-01",
+        "d",
+    ): (
+        "That choice sets \\(K_X(t)=\\exp(M_X(t))\\). "
+        "The CGF is the logarithm of the MGF, not an exponential of it."
+    ),
+    # --- cs1007-ch-r1-cp-01 ---
+    (
+        "cs1007-ch-r1-cp-01",
+        "b",
+    ): (
+        "That choice reads \\(E[X]=M(0)\\) and \\(E[X^2]=M'(0)\\). "
+        "\\(M(0)=1\\); the first two raw moments are the first two derivatives at 0."
+    ),
+    (
+        "cs1007-ch-r1-cp-01",
+        "c",
+    ): (
+        "That choice equates \\(\\mathrm{Var}(X)\\) with \\(M''(0)\\) in every case. "
+        "\\(M''(0)\\) is \\(E[X^2]\\); variance still subtracts \\((E[X])^2\\)."
+    ),
+    (
+        "cs1007-ch-r1-cp-01",
+        "d",
+    ): (
+        "That choice sets \\(E[X^2]=(M'(0))^2\\). Squaring the mean gives \\((E[X])^2\\), not the "
+        "second raw moment."
+    ),
+    # --- cs1016-cp-r1-ar-01 ---
+    (
+        "cs1016-cp-r1-ar-01",
+        "b",
+    ): (
+        "That choice makes unbiased T exactly Normal for every n. "
+        "Unbiasedness fixes the mean; it does not give the finite-sample law."
+    ),
+    (
+        "cs1016-cp-r1-ar-01",
+        "c",
+    ): (
+        "That choice scales the variance as about \\(9n\\). "
+        "The asymptotic Normal limit with variance 9 for the \\(\\sqrt{n}\\) scale matches \\(\\mathrm{Var}(T)\\approx 9/n\\), not \\(9n\\)."
+    ),
+    (
+        "cs1016-cp-r1-ar-01",
+        "d",
+    ): (
+        "That choice sends T to \\(N(0,9)\\) without centring or scaling. "
+        "The stated limit is for \\(\\sqrt{n}(T-\\theta)\\), not for raw T."
+    ),
+    # --- cs1016-cp-r1-cp-01 ---
+    (
+        "cs1016-cp-r1-cp-01",
+        "b",
+    ): (
+        "That choice equates the MoM estimating equation with the sampling distribution. "
+        "The equation defines the estimator; the sampling distribution is the law of that estimator over repeated samples."
+    ),
+    (
+        "cs1016-cp-r1-cp-01",
+        "c",
+    ): (
+        "That choice gives the estimator zero variance because the sample moment is observed. "
+        "Observing one sample does not erase sampling variability across samples."
+    ),
+    (
+        "cs1016-cp-r1-cp-01",
+        "d",
+    ): (
+        "That choice claims MoM and MLE share the same finite-sample distribution by construction. "
+        "Matching moments does not guarantee MLE’s finite-sample law."
+    ),
+    # --- cs1002-cb-r1-ar-01 ---
+    (
+        "cs1002-cb-r1-ar-01",
+        "b",
+    ): (
+        "That choice has PCA identify which observed variables causally determine a response. "
+        "PCA is unsupervised variance summarisation, not causal attribution."
+    ),
+    (
+        "cs1002-cb-r1-ar-01",
+        "c",
+    ): (
+        "That choice says PCA keeps every original variable unchanged while reducing dimension. "
+        "Dimension reduction works through new linear combinations, not by leaving all originals untouched as the reduced set."
+    ),
+    (
+        "cs1002-cb-r1-ar-01",
+        "d",
+    ): (
+        "That choice has PCA maximise each original variable’s variance separately. "
+        "Components maximise variance of linear combinations under orthogonality constraints."
+    ),
+    # --- cs1002-cb-r1-cp-01 ---
+    (
+        "cs1002-cb-r1-cp-01",
+        "b",
+    ): (
+        "That choice picks Hypergeometric because the number of inspections is fixed. "
+        "Fixed n with independent equal-p trials is Binomial; Hypergeometric needs sampling without replacement from a finite population of defectives."
+    ),
+    (
+        "cs1002-cb-r1-cp-01",
+        "c",
+    ): (
+        "That choice uses Poisson with parameter p and ignores n=40. "
+        "A Poisson count needs a rate/mean on the count scale, not the Bernoulli p alone."
+    ),
+    (
+        "cs1002-cb-r1-cp-01",
+        "d",
+    ): (
+        "That choice picks Geometric because each item is defective or not. "
+        "Geometric waits for the first success; here the count of defectives in 40 trials is Binomial."
+    ),
+    # --- cs1002-cb-r1-cp-02 ---
+    (
+        "cs1002-cb-r1-cp-02",
+        "b",
+    ): (
+        "That choice defaults waiting time to Normal because it is continuous. "
+        "Continuity alone does not choose Normal; Poisson-process interarrivals are Exponential."
+    ),
+    (
+        "cs1002-cb-r1-cp-02",
+        "c",
+    ): (
+        "That choice keeps a Poisson count law for the waiting time. "
+        "Poisson counts events in an interval; the wait to the next event is Exponential."
+    ),
+    (
+        "cs1002-cb-r1-cp-02",
+        "d",
+    ): (
+        "That choice uses Uniform on the next unit interval because hazard is constant. "
+        "Constant hazard is the Exponential memoryless property, not a Uniform waiting time."
+    ),
+    # --- cs1002-cb-r1-cp-03 ---
+    (
+        "cs1002-cb-r1-cp-03",
+        "b",
+    ): (
+        "That choice claims Pearson measures every monotone relationship exactly. "
+        "Pearson targets linear association; monotone nonlinear structure is why rank measures are used here."
+    ),
+    (
+        "cs1002-cb-r1-cp-03",
+        "c",
+    ): (
+        "That choice treats significant rank correlation as proof of causation. "
+        "Association, even ranked, is not a causal warrant."
+    ),
+    (
+        "cs1002-cb-r1-cp-03",
+        "d",
+    ): (
+        "That choice forces correlation to zero whenever the relationship is nonlinear. "
+        "Nonlinear monotone association can still be strong on a rank scale."
     ),
 
 }
