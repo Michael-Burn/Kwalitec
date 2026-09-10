@@ -311,21 +311,18 @@
     {
       "package_file": "5.1.8-empirical-bayes-cs1015.json",
       "item_id": "cs1015-5.1.8-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "566.67"
       ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "566.67",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "566.67"
         },
         {
           "response": "b",
@@ -377,21 +374,18 @@
     {
       "package_file": "5.1.8-empirical-bayes-cs1003.json",
       "item_id": "cs1003-5.1.8-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "1000"
       ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "1000",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "1000"
         },
         {
           "response": "b",

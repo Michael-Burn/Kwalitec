@@ -446,21 +446,18 @@
     {
       "package_file": "5.1.7-bayesian-credibility-cs1015.json",
       "item_id": "cs1015-5.1.7-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "800"
       ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "800",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "800"
         },
         {
           "response": "b",
@@ -578,21 +575,18 @@
     {
       "package_file": "5.1.7-bayesian-credibility-cs1003.json",
       "item_id": "cs1003-5.1.7-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "900"
       ],
+      "numeric_tolerance": 0.5,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "900",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "900"
         },
         {
           "response": "b",

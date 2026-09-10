@@ -16,6 +16,12 @@ Editorial review record (2026-09-10): ten additional CAF Wave 1 items
 were reviewed and approved before wiring (revision estimators AR,
 continuous waiting AR, prior/posterior AR/CP twins, posterior-simple
 AR/CP twins). Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-10): four Bayesian-credibility /
+Empirical Bayes active-recall items (cs1003/cs1015 5.1.7 and 5.1.8)
+were reviewed and approved before wiring as the choice-aware half of
+the coordinated NUM Wave 2 / CAF credibility wave. Copy is frozen as
+approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -29,7 +35,8 @@ from app.application.learning_session.scoreable_practice import (
 # Live Knowledge Check item_ids only — Batch 1 estimators (numeric),
 # Batch 2 GLM, Batch 3 Rho conceptual vignette, Batch 6B revision,
 # plus editorially reviewed expansions (Bayes / MSE / GLM siblings;
-# CAF Wave 1 prior/posterior / posterior-simple / estimators AR).
+# CAF Wave 1 prior/posterior / posterior-simple / estimators AR;
+# NUM Wave 2 / CAF credibility AR siblings).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -56,6 +63,10 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1003-5.1.3-cp-01",  # CAF Wave 1: posterior-simple CP (cs1003)
         "cs1015-5.1.3-ar-01",  # CAF Wave 1: posterior-simple AR (cs1015)
         "cs1015-5.1.3-cp-01",  # CAF Wave 1: posterior-simple CP (cs1015)
+        "cs1003-5.1.7-ar-01",  # NUM/CAF Wave 2: Bayesian credibility AR (cs1003)
+        "cs1015-5.1.7-ar-01",  # NUM/CAF Wave 2: Bayesian credibility AR (cs1015)
+        "cs1003-5.1.8-ar-01",  # NUM/CAF Wave 2: Empirical Bayes AR (cs1003)
+        "cs1015-5.1.8-ar-01",  # NUM/CAF Wave 2: Empirical Bayes AR (cs1015)
     }
 )
 
@@ -683,6 +694,110 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice treats having Beta(5,9) as finishing the "
         "squared-error point estimator. Beta(5,9) is the posterior "
         "distribution; a loss-based point estimate is a further step."
+    ),
+    # --- cs1003-5.1.7-ar-01 ---
+    (
+        "cs1003-5.1.7-ar-01",
+        "b",
+    ): (
+        "That choice treats the blend formula as Bayesian credibility by "
+        "itself. Bayesian credibility needs a prior or structural story "
+        "that warrants mu and Z, then the premium."
+    ),
+    (
+        "cs1003-5.1.7-ar-01",
+        "c",
+    ): (
+        "That choice collapses Bayesian credibility into finishing "
+        "Empirical Bayes. A shared numeric premium does not make the "
+        "approaches the same; Bayes treats structurals as known from the "
+        "prior, EB estimates them from data."
+    ),
+    (
+        "cs1003-5.1.7-ar-01",
+        "d",
+    ): (
+        "That choice forces full credibility and parks the prior in "
+        "Empirical Bayes alone. In simple Bayesian credibility the prior "
+        "structure supplies mu and Z; Z need not be 1."
+    ),
+    # --- cs1015-5.1.7-ar-01 ---
+    (
+        "cs1015-5.1.7-ar-01",
+        "b",
+    ): (
+        "That choice treats a shared numeric premium as finishing "
+        "Empirical Bayes. Bayesian credibility and Empirical Bayes differ "
+        "in how structural parameters are obtained, even when both "
+        "produce a premium."
+    ),
+    (
+        "cs1015-5.1.7-ar-01",
+        "c",
+    ): (
+        "That choice reserves mu and Z for Empirical Bayes alone. In "
+        "simple Bayesian credibility the prior or structural distribution "
+        "supplies mu and Z theoretically."
+    ),
+    (
+        "cs1015-5.1.7-ar-01",
+        "d",
+    ): (
+        "That choice drops the credibility premium form. In simple cases "
+        "the premium object is Z times X-bar plus one minus Z times mu, "
+        "with Z and mu from the prior structure."
+    ),
+    # --- cs1003-5.1.8-ar-01 ---
+    (
+        "cs1003-5.1.8-ar-01",
+        "b",
+    ): (
+        "That choice equates Empirical Bayes with a fully specified "
+        "Bayesian prior. EB estimates structurals from collective data; "
+        "full Bayes treats them as given by the prior."
+    ),
+    (
+        "cs1003-5.1.8-ar-01",
+        "c",
+    ): (
+        "That choice reduces Empirical Bayes to a single-claim Bayes "
+        "update. EB uses collective experience to estimate structurals "
+        "before forming the credibility premium."
+    ),
+    (
+        "cs1003-5.1.8-ar-01",
+        "d",
+    ): (
+        "That choice forces Z equal to one whenever data appear. EB still "
+        "forms Z-hat as n over n plus k-hat, and the blend Z-hat times "
+        "X-bar plus one minus Z-hat times mu-hat; full credibility is not "
+        "automatic."
+    ),
+    # --- cs1015-5.1.8-ar-01 (content twin of cs1003-5.1.8-ar-01) ---
+    (
+        "cs1015-5.1.8-ar-01",
+        "b",
+    ): (
+        "That choice equates Empirical Bayes with a fully specified "
+        "Bayesian prior. EB estimates structurals from collective data; "
+        "full Bayes treats them as given by the prior."
+    ),
+    (
+        "cs1015-5.1.8-ar-01",
+        "c",
+    ): (
+        "That choice reduces Empirical Bayes to a single-claim Bayes "
+        "update. EB uses collective experience to estimate structurals "
+        "before forming the credibility premium."
+    ),
+    (
+        "cs1015-5.1.8-ar-01",
+        "d",
+    ): (
+        "That choice forces Z equal to one whenever data appear. EB still "
+        "forms Z-hat as n over n plus k-hat, and the blend Z-hat times "
+        "X-bar plus one minus Z-hat times mu-hat; full credibility is not "
+        "automatic."
     ),
 }
 

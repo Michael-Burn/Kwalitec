@@ -159,44 +159,24 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.7-cp-01",
       "title": "Checkpoint: 5.1.7",
-      "prompt": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "State what prior supplies; refuse EB conflation.",
+      "prompt": "Closed-book. In a Bayesian credibility (Bühlmann) setting, $k = \\mathrm{EVPV}/\\mathrm{VHM} = 3$. A risk has $n = 6$ observation years with $\\bar{X}$ = 850 and prior mean $\\mu$ = 700. Enter the Bayesian credibility premium $P = Z\\bar{X} + (1 - Z)\\mu$ where $Z = n/(n+k)$.",
+      "response_type": "numeric",
+      "body": "Compute Z from n and k, then evaluate the Bayesian credibility premium.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Form $Z = n/(n+k)$ before blending $\\bar{X}$ and $\\mu$.",
+        "$Z$ weights the individual experience $\\bar{X}$; $(1 - Z)$ weights $\\mu$."
       ],
-      "accepted_keywords": [],
-      "explanation": "Known structural parameters from prior theory yield mu and Z. EB estimates structural parameters from collective experience.",
-      "model_answer": "Prior supplies mean and variance components for mu and Z. EB estimates structurals from data.",
-      "common_mistake": "Accepting Bayesian credibility as finishing Empirical Bayes.",
+      "accepted_keywords": [
+        "800"
+      ],
+      "explanation": "$Z = 6/(6+3) = 2/3$, so $P = (2/3)\\times 850 + (1/3)\\times 700 = 800$. Structural $k$ comes from the known prior EVPV and VHM.",
+      "model_answer": "800",
+      "common_mistake": "Using $Z = k/(n+k) = 1/3$ (swapping weights) to get 750, or taking full credibility $P = 850$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.5 of 800.",
+        "Uses $Z = n/(n+k)$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed $\\bar{X}$. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Applying Bayesian credibility finishes the Empirical Bayes approach.",
-          "misconception_tag": "bayesian_finishes_eb"
-        },
-        {
-          "id": "c",
-          "label": "mu and Z must be estimated from collective data even in the fully Bayesian setup; prior structure supplies nothing.",
-          "misconception_tag": "eb_only_supplies"
-        },
-        {
-          "id": "d",
-          "label": "Structural parameters are always user-chosen constants unrelated to any prior; Z equals 1 by definition.",
-          "misconception_tag": "arbitrary_z"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.5
     }
   ],
   "reflection": {

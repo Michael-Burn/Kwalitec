@@ -389,6 +389,11 @@ _NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
         "cp-2.2.1-marginal-conditional-cs1016",
         "2.2.3-cov-corr-expectation-cs1005",
         "cp-2.1.3-prob-quantiles-cs1016",
+        # NUM Wave 2: Bayesian credibility / Empirical Bayes
+        "5.1.7-bayesian-credibility-cs1003",
+        "5.1.7-bayesian-credibility-cs1015",
+        "5.1.8-empirical-bayes-cs1003",
+        "5.1.8-empirical-bayes-cs1015",
     }
 )
 
@@ -471,7 +476,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch6a_seen == 30
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
-    assert numeric_pilot_seen == 17  # one numeric checkpoint per converted package
+    assert numeric_pilot_seen == 21  # one numeric checkpoint per converted package
 
     # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")

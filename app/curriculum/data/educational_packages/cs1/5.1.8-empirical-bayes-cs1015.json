@@ -159,44 +159,24 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. Which statement correctly outlines the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown?",
-      "response_type": "mcq",
-      "body": "Outline EB premium; refuse contrast-as-finished.",
+      "prompt": "Closed-book. Under Empirical Bayes, structural parameters are estimated from collective data: $\\hat{\\mu}$ = 500 and $\\hat{k}$ = 10. A risk has $n = 5$ years with $\\bar{X}$ = 700. Enter the EB credibility premium $P = \\hat{Z}\\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$ where $\\hat{Z} = n/(n+\\hat{k})$. Give your answer to 2 decimal places.",
+      "response_type": "numeric",
+      "body": "Compute $\\hat{Z}$ from $n$ and $\\hat{k}$, then evaluate the EB credibility premium.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Form $\\hat{Z} = n/(n+\\hat{k})$ before blending $\\bar{X}$ and $\\hat{\\mu}$.",
+        "$\\hat{Z}$ weights the individual experience $\\bar{X}$; $(1 - \\hat{Z})$ weights $\\hat{\\mu}$."
       ],
-      "accepted_keywords": [],
-      "explanation": "EB pipeline: estimate structurals, plug into credibility form, compute premium. That calculation differs from the contrast LO about assumptions.",
-      "model_answer": "Estimate structurals from collective data; plug into Z and mu; form premium.",
-      "common_mistake": "Treating one EB premium calculation as finishing Bayes versus EB contrast.",
+      "accepted_keywords": [
+        "566.67"
+      ],
+      "explanation": "$\\hat{Z} = 5/(5+10) = 1/3$, so $P = (1/3)\\times 700 + (2/3)\\times 500 = 1700/3 \\approx 566.67$. Structurals $\\hat{\\mu}$ and $\\hat{k}$ are collective estimates, not a fully specified prior.",
+      "model_answer": "566.67",
+      "common_mistake": "Using $\\hat{Z} = \\hat{k}/(n+\\hat{k}) = 2/3$ (swapping weights) to get about 633.33, taking full credibility $P = 700$, or substituting a Bayesian $k$ from a different exercise for $\\hat{k} = 10$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.5 of 566.67.",
+        "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Estimate structural parameters (for example overall mean and process or variance components) from the collective data, plug them into the credibility formula to get Ẑ and $\\hat{\\mu}$, then form Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\mu$-hat for the risk. Computing one EB premium is not the same task as contrasting assumption sets of Bayes versus EB.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.",
-          "misconception_tag": "eb_premium_finishes_contrast"
-        },
-        {
-          "id": "c",
-          "label": "Empirical Bayes requires a fully specified prior before any data; collective estimation is unnecessary.",
-          "misconception_tag": "prior_required_first"
-        },
-        {
-          "id": "d",
-          "label": "Structural parameters are set to sample proportions only; no credibility formula is used afterward.",
-          "misconception_tag": "no_credibility_formula"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.5
     }
   ],
   "reflection": {

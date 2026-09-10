@@ -157,44 +157,24 @@
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.8-cp-01",
       "title": "Checkpoint: 5.1.8",
-      "prompt": "Closed-book. Which statement correctly outlines the Empirical Bayes move to obtain a credibility premium when structural parameters are unknown?",
-      "response_type": "mcq",
-      "body": "Outline EB premium; refuse EB-as-Bayesian identity.",
+      "prompt": "Closed-book. Under Empirical Bayes, structural parameters are estimated from collective data: $\\hat{\\mu}$ = 900 and $\\hat{k}$ = 6. A risk has $n = 3$ years with $\\bar{X}$ = 1200. Enter the EB credibility premium $P = \\hat{Z}\\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$ where $\\hat{Z} = n/(n+\\hat{k})$.",
+      "response_type": "numeric",
+      "body": "Compute $\\hat{Z}$ from $n$ and $\\hat{k}$, then evaluate the EB credibility premium.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Form $\\hat{Z} = n/(n+\\hat{k})$ before blending $\\bar{X}$ and $\\hat{\\mu}$.",
+        "$\\hat{Z}$ weights the individual experience $\\bar{X}$; $(1 - \\hat{Z})$ weights $\\hat{\\mu}$."
       ],
-      "accepted_keywords": [],
-      "explanation": "EB estimates structural parameters from collective experience. It is not identical to full Bayes with a given prior.",
-      "model_answer": "Estimate structurals from collective data; plug into credibility form. EB differs from full Bayes in assumptions.",
-      "common_mistake": "Equating EB with full Bayes or stopping at one premium without noting assumption difference.",
+      "accepted_keywords": [
+        "1000"
+      ],
+      "explanation": "$\\hat{Z} = 3/(3+6) = 1/3$, so $P = (1/3)\\times 1200 + (2/3)\\times 900 = 1000$. Structurals $\\hat{\\mu}$ and $\\hat{k}$ are collective estimates, not a fully specified prior.",
+      "model_answer": "1000",
+      "common_mistake": "Using $\\hat{Z} = \\hat{k}/(n+\\hat{k}) = 2/3$ (swapping weights) to get 1100, or taking full credibility $P = 1200$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.5 of 1000.",
+        "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Estimate structural parameters (for example overall mean and process or variance components) from collective data, plug them into the credibility formula to get Ẑ and $\\hat{\\mu}$, then form Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\hat{\\mu}$ for the risk. Empirical Bayes is not just another name for fully Bayesian credibility; assumptions about structural parameters differ.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Empirical Bayes is just another name for Bayesian credibility; both treat the prior as fully specified before any data.",
-          "misconception_tag": "eb_is_bayesian"
-        },
-        {
-          "id": "c",
-          "label": "Computing one EB premium finishes explaining how Bayesian and Empirical Bayes differ in assumptions.",
-          "misconception_tag": "eb_premium_finishes_contrast"
-        },
-        {
-          "id": "d",
-          "label": "Empirical Bayes requires a fully specified prior before any data; collective estimation is unnecessary.",
-          "misconception_tag": "prior_required_first"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.5
     }
   ],
   "reflection": {

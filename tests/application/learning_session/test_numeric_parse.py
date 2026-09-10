@@ -42,6 +42,11 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1016-2.2.1-cp-01", "0.571", 0.001),
     ("cs1005-2.2.3-cp-01", "0.05", 0.001),
     ("cs1016-2.1.3-cp-01", "0.135", 0.001),
+    # NUM Wave 2: Bayesian credibility / Empirical Bayes
+    ("cs1003-5.1.7-cp-01", "900", 0.5),
+    ("cs1015-5.1.7-cp-01", "800", 0.5),
+    ("cs1003-5.1.8-cp-01", "1000", 0.5),
+    ("cs1015-5.1.8-cp-01", "566.67", 0.5),
 )
 
 
@@ -239,12 +244,12 @@ class TestParseNumberRejectsAmbiguousShapes:
 
 
 class TestLiveNumericCheckpointsUnchanged:
-    """All 17 live numeric checkpoints: clean decimals/integers only."""
+    """All 21 live numeric checkpoints: clean decimals/integers only."""
 
     def setup_method(self) -> None:
         reset_educational_package_cache()
 
-    def test_seventeen_live_numeric_checkpoints_exist(self) -> None:
+    def test_twenty_one_live_numeric_checkpoints_exist(self) -> None:
         loader = EducationalPackageLoader()
         found: dict[str, tuple[str, float | None]] = {}
         for pack in loader.all_approved():
@@ -254,7 +259,7 @@ class TestLiveNumericCheckpointsUnchanged:
                         check.accepted_keywords[0],
                         check.numeric_tolerance,
                     )
-        assert len(found) == 17
+        assert len(found) == 21
         for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
             assert item_id in found
             assert found[item_id][0] == accepted
@@ -272,7 +277,7 @@ class TestLiveNumericCheckpointsUnchanged:
     ) -> None:
         """Exact / within-tol / outside-tol outcomes for real keys.
 
-        All 17 accepted values are clean decimals or integers with no
+        All 21 accepted values are clean decimals or integers with no
         punctuation this fix changes. Snapshot expectations match the
         pre-fix scorer on these probes.
         """
@@ -341,6 +346,17 @@ NUM_WAVE1_NUMERIC_CONVERSIONS = (
     ("cs1016-2.2.1-cp-01", "0.571", 0.001),
     ("cs1005-2.2.3-cp-01", "0.05", 0.001),
     ("cs1016-2.1.3-cp-01", "0.135", 0.001),
+)
+
+# ---------------------------------------------------------------------------
+# NUM Wave 2: Bayesian credibility / Empirical Bayes (4 MCQ → numeric)
+# ---------------------------------------------------------------------------
+
+NUM_WAVE2_NUMERIC_CONVERSIONS = (
+    ("cs1003-5.1.7-cp-01", "900", 0.5),
+    ("cs1015-5.1.7-cp-01", "800", 0.5),
+    ("cs1003-5.1.8-cp-01", "1000", 0.5),
+    ("cs1015-5.1.8-cp-01", "566.67", 0.5),
 )
 
 
@@ -474,3 +490,64 @@ class TestNumWave1NumericConversions:
             assert result.correct is False
             assert result.feedback_outcome == "Incorrect"
         assert score_practice_response(item, "0.135").correct is True
+
+
+class TestNumWave2NumericConversions:
+    """NUM Wave 2: 4 Bayesian/EB checkpoints score on the live numeric contract."""
+
+    def setup_method(self) -> None:
+        reset_educational_package_cache()
+
+    @pytest.mark.parametrize(
+        ("item_id", "accepted", "tolerance"),
+        NUM_WAVE2_NUMERIC_CONVERSIONS,
+    )
+    def test_converted_item_scores_exact_within_and_outside_tolerance(
+        self,
+        item_id: str,
+        accepted: str,
+        tolerance: float,
+    ) -> None:
+        item = _scoreable_by_item_id(item_id)
+        assert item.response_type is PracticeResponseType.NUMERIC
+        assert item.answer_key.accepted == (accepted,)
+        assert item.answer_key.numeric_tolerance == pytest.approx(tolerance)
+        assert item.choices == ()
+        assert item.answer_key.correct_choice_id == ""
+
+        expected = float(accepted)
+        exact = score_practice_response(item, accepted)
+        assert exact.scored is True and exact.correct is True
+        assert exact.feedback_outcome == "Correct"
+
+        near = score_practice_response(item, str(expected + tolerance * 0.5))
+        assert near.scored is True and near.correct is True
+
+        far = score_practice_response(item, str(expected + tolerance * 2 + 0.01))
+        assert far.scored is True and far.correct is False
+        assert far.feedback_outcome == "Incorrect"
+
+    def test_eb_decimal_item_rejects_fraction_input(self) -> None:
+        """The string \"1700/3\" is unparseable; the scorer does not evaluate fractions."""
+        item = _scoreable_by_item_id("cs1015-5.1.8-cp-01")
+        assert _parse_number("1700/3") is None
+        fraction = score_practice_response(item, "1700/3")
+        assert fraction.scored is True
+        assert fraction.correct is False
+        assert fraction.feedback_outcome == "Incorrect"
+
+    def test_eb_premium_currency_tolerance_accepts_reasonable_rounding(self) -> None:
+        """1700/3 and common roundings must score Correct under currency-like 0.5 tol.
+
+        Accepted key stays 566.67. With the old 0.001 tolerance, the true value
+        1700/3 ≈ 566.666… and roundings such as 566.667 / 566.7 fell outside
+        the band. Currency-like 0.5 matches the three sibling premiums.
+        """
+        item = _scoreable_by_item_id("cs1015-5.1.8-cp-01")
+        assert item.answer_key.accepted == ("566.67",)
+        assert item.answer_key.numeric_tolerance == pytest.approx(0.5)
+        for response in (str(1700 / 3), "566.67", "566.667", "566.7"):
+            result = score_practice_response(item, response)
+            assert result.scored is True
+            assert result.correct is True
+            assert result.feedback_outcome == "Correct"

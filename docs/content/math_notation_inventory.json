@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-10T09:41:14Z",
+  "generated_at": "2026-09-10T10:21:20Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2190,
-    "already_compliant": 2061,
+    "mathish_strings": 2210,
+    "already_compliant": 2081,
     "needs_migration": 0,
     "correctly_excluded": 129,
     "needs_manual_review": 0,
-    "confident_automated": 2190,
+    "confident_automated": 2210,
     "remaining_backlog": 0,
-    "migrated": 2043,
+    "migrated": 2063,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2061,
+    "fully_covered_by_current_typesetting": 2081,
     "manual_review_prose_exclusion": 128,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2043,
-    "equationish": 1493,
+    "dollar_delimited": 2063,
+    "equationish": 1513,
     "actuarial_fn": 491,
     "ascii_approx": 235,
     "bare_latex": 195,
@@ -22486,8 +22486,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 12,
-        "already_compliant": 10,
+        "mathish_strings": 16,
+        "already_compliant": 14,
         "needs_migration": 0,
         "correctly_excluded": 2,
         "needs_manual_review": 0,
@@ -22599,8 +22599,42 @@
           "package_file": "5.1.7-bayesian-credibility-cs1003.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$. Which statement is correct?",
-          "text_hash": "dcb4160928e0396e",
+          "text": "Closed-book. In a Bayesian credibility (Bühlmann) setting, $k = \\mathrm{EVPV}/\\mathrm{VHM} = 4$. A risk has $n = 8$ observation years with $\\bar{X}$ = 950 and hypothetical mean $\\mu$ = 800. Enter the Bayesian credibility premium $P = Z\\bar{X} + (1 - Z)\\mu$ where $Z = n/(n+k)$.",
+          "text_hash": "f000adcef20b1b60",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Form $Z = n/(n+k)$ before blending $\\bar{X}$ and $\\mu$.",
+          "text_hash": "89cedea01a47f672",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "$Z$ weights the individual experience $\\bar{X}$; $(1 - Z)$ weights $\\mu$.",
+          "text_hash": "867f9a7afc97deb7",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -22613,17 +22647,52 @@
         {
           "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
           "package_file": "5.1.7-bayesian-credibility-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed $\\bar{X}$. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
-          "text_hash": "a8e71108ecd71185",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$Z = 8/(8+4) = 2/3$, so $P = (2/3)\\times 950 + (1/3)\\times 800 = 900$. Structural $k$ comes from the known prior EVPV and VHM.",
+          "text_hash": "8fa79c867864bf03",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $Z = k/(n+k) = 1/3$ (swapping weights) to get 850, or taking full credibility $P = 950$.",
+          "text_hash": "d748139a1561f1f8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1003.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $Z = n/(n+k)$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$.",
+          "text_hash": "ff33a0ea2581d028",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -23268,8 +23337,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 14,
-        "already_compliant": 13,
+        "mathish_strings": 20,
+        "already_compliant": 19,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -23313,17 +23382,118 @@
         {
           "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
           "package_file": "5.1.8-empirical-bayes-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Estimate structural parameters (for example overall mean and process or variance components) from collective data, plug them into the credibility formula to get Ẑ and $\\hat{\\mu}$, then form Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\hat{\\mu}$ for the risk. Empirical Bayes is not just another name for fully Bayesian credibility; assumptions about structural parameters differ.",
-          "text_hash": "a8da468192bc5f87",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Under Empirical Bayes, structural parameters are estimated from collective data: $\\hat{\\mu}$ = 900 and $\\hat{k}$ = 6. A risk has $n = 3$ years with $\\bar{X}$ = 1200. Enter the EB credibility premium $P = \\hat{Z}\\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$ where $\\hat{Z} = n/(n+\\hat{k})$.",
+          "text_hash": "e6dea9bb2879d778",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Compute $\\hat{Z}$ from $n$ and $\\hat{k}$, then evaluate the EB credibility premium.",
+          "text_hash": "b03de4dae5f332a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
             "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Form $\\hat{Z} = n/(n+\\hat{k})$ before blending $\\bar{X}$ and $\\hat{\\mu}$.",
+          "text_hash": "3b9f3d82c290f164",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "$\\hat{Z}$ weights the individual experience $\\bar{X}$; $(1 - \\hat{Z})$ weights $\\hat{\\mu}$.",
+          "text_hash": "011d1c2f0b96837f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\hat{Z} = 3/(3+6) = 1/3$, so $P = (1/3)\\times 1200 + (2/3)\\times 900 = 1000$. Structurals $\\hat{\\mu}$ and $\\hat{k}$ are collective estimates, not a fully specified prior.",
+          "text_hash": "475b10700cb92502",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $\\hat{Z} = \\hat{k}/(n+\\hat{k}) = 2/3$ (swapping weights) to get 1100, or taking full credibility $P = 1200$.",
+          "text_hash": "41d4a174e64d6750",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1003.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$.",
+          "text_hash": "7bf471c12d698a78",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -26310,8 +26480,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
-        "mathish_strings": 13,
-        "already_compliant": 10,
+        "mathish_strings": 17,
+        "already_compliant": 14,
         "needs_migration": 0,
         "correctly_excluded": 3,
         "needs_manual_review": 0,
@@ -26374,8 +26544,42 @@
           "package_file": "5.1.7-bayesian-credibility-cs1015.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. In a simple Bayesian credibility setup with known structural parameters, the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$. Which statement is correct?",
-          "text_hash": "dcb4160928e0396e",
+          "text": "Closed-book. In a Bayesian credibility (Bühlmann) setting, $k = \\mathrm{EVPV}/\\mathrm{VHM} = 3$. A risk has $n = 6$ observation years with $\\bar{X}$ = 850 and prior mean $\\mu$ = 700. Enter the Bayesian credibility premium $P = Z\\bar{X} + (1 - Z)\\mu$ where $Z = n/(n+k)$.",
+          "text_hash": "1ee3915c493e7285",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1015.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Form $Z = n/(n+k)$ before blending $\\bar{X}$ and $\\mu$.",
+          "text_hash": "89cedea01a47f672",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1015.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "$Z$ weights the individual experience $\\bar{X}$; $(1 - Z)$ weights $\\mu$.",
+          "text_hash": "867f9a7afc97deb7",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -26388,17 +26592,52 @@
         {
           "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
           "package_file": "5.1.7-bayesian-credibility-cs1015.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "The prior or known structural distribution supplies the overall mean and variance components so mu and Z are determined theoretically, then combined with observed $\\bar{X}$. Empirical Bayes estimates those structural parameters from data; a different approach from treating them as known in the Bayesian calculation.",
-          "text_hash": "a8e71108ecd71185",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$Z = 6/(6+3) = 2/3$, so $P = (2/3)\\times 850 + (1/3)\\times 700 = 800$. Structural $k$ comes from the known prior EVPV and VHM.",
+          "text_hash": "f793fe5613bfcadb",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1015.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $Z = k/(n+k) = 1/3$ (swapping weights) to get 750, or taking full credibility $P = 850$.",
+          "text_hash": "900534fe2b861627",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-BAYESIAN-CREDIBILITY",
+          "package_file": "5.1.7-bayesian-credibility-cs1015.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $Z = n/(n+k)$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$.",
+          "text_hash": "ff33a0ea2581d028",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -27262,8 +27501,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-OMICRON",
       "counts": {
-        "mathish_strings": 16,
-        "already_compliant": 14,
+        "mathish_strings": 22,
+        "already_compliant": 20,
         "needs_migration": 0,
         "correctly_excluded": 2,
         "needs_manual_review": 0,
@@ -27307,17 +27546,118 @@
         {
           "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
           "package_file": "5.1.8-empirical-bayes-cs1015.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Estimate structural parameters (for example overall mean and process or variance components) from the collective data, plug them into the credibility formula to get Ẑ and $\\hat{\\mu}$, then form Ẑ times $\\bar{X}$ + (1 minus Ẑ) times $\\mu$-hat for the risk. Computing one EB premium is not the same task as contrasting assumption sets of Bayes versus EB.",
-          "text_hash": "59260fd1bde1109a",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Under Empirical Bayes, structural parameters are estimated from collective data: $\\hat{\\mu}$ = 500 and $\\hat{k}$ = 10. A risk has $n = 5$ years with $\\bar{X}$ = 700. Enter the EB credibility premium $P = \\hat{Z}\\bar{X} + (1 - \\hat{Z})\\hat{\\mu}$ where $\\hat{Z} = n/(n+\\hat{k})$. Give your answer to 2 decimal places.",
+          "text_hash": "561450a8e7cf53f3",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Compute $\\hat{Z}$ from $n$ and $\\hat{k}$, then evaluate the EB credibility premium.",
+          "text_hash": "b03de4dae5f332a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
             "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Form $\\hat{Z} = n/(n+\\hat{k})$ before blending $\\bar{X}$ and $\\hat{\\mu}$.",
+          "text_hash": "3b9f3d82c290f164",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "$\\hat{Z}$ weights the individual experience $\\bar{X}$; $(1 - \\hat{Z})$ weights $\\hat{\\mu}$.",
+          "text_hash": "011d1c2f0b96837f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\hat{Z} = 5/(5+10) = 1/3$, so $P = (1/3)\\times 700 + (2/3)\\times 500 = 1700/3 \\approx 566.67$. Structurals $\\hat{\\mu}$ and $\\hat{k}$ are collective estimates, not a fully specified prior.",
+          "text_hash": "143292549238f308",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $\\hat{Z} = \\hat{k}/(n+\\hat{k}) = 2/3$ (swapping weights) to get about 633.33, taking full credibility $P = 700$, or substituting a Bayesian $k$ from a different exercise for $\\hat{k} = 10$.",
+          "text_hash": "eda298a9e4beca88",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CO-5.1-EMPIRICAL-BAYES",
+          "package_file": "5.1.8-empirical-bayes-cs1015.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$.",
+          "text_hash": "7bf471c12d698a78",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -39819,5 +40159,5 @@
       ]
     }
   ],
-  "content_fingerprint": "8d8fc16386d18d55b563e597287aac7291cac9b2e26063cad458a75b31c2ff94"
+  "content_fingerprint": "c7431cd8abaf64e38206253d2d5582aacce6119a67b98630cb578ae7d815f130"
 }
