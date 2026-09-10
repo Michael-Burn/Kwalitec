@@ -111,6 +111,11 @@ class SessionActivityAdapter:
                 )
                 self._store.save(self.NS_CURRENT, self._key(sid, sess), enriched)
                 return deepcopy(enriched)
+            # PackageActivityEngine returned None (certified guidance withheld
+            # or package unresolved). Do not silently invent default_activity
+            # "Today's topic" method-steps as if they were real content.
+            if getattr(self._engine, "ENGINE_ID", None) == "package_activity_engine":
+                return None
         seq = self._ensure_sequence(sid, sess)
         index = int(seq.get("index") or 1)
         total = int(seq.get("total") or self._activity_count)

@@ -332,6 +332,29 @@ class PackageActivityEngine:
         )
         if substance is None:
             return None
+        # Safety net: never provision a mission_facts synthetic shell when
+        # certified packages exist for this subject (PB-002 F7 extension).
+        subject = (curriculum_identity or "").split(":")[0].strip()
+        from app.application.educational_packages.guard import (
+            certified_guidance_enforced,
+        )
+
+        source = (substance.source or "").strip()
+        if source == "mission_facts" and (
+            certified_guidance_enforced(subject)
+            or EducationalSubstancePlanner._refuse_placeholder_mission_facts(
+                subject_id=subject, topic_title=substance.topic_title or title
+            )
+        ):
+            return None
+        topic_l = (substance.topic_title or "").strip().lower()
+        if topic_l in {"today's topic", "core methods"} and (
+            certified_guidance_enforced(subject)
+            or EducationalSubstancePlanner._refuse_placeholder_mission_facts(
+                subject_id=subject, topic_title=substance.topic_title or title
+            )
+        ):
+            return None
         return self.provision_sequence(
             student_id, session_id=session_id, substance=substance
         )

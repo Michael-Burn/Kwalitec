@@ -172,9 +172,10 @@ class StudentRuntimeCoordinator:
                     "certified CMP guidance is required; fallback substance refused"
                 )
             topic_l = (substance.topic_title or "").strip().lower()
-            if topic_l == "core methods":
+            if topic_l in {"core methods", "today's topic"}:
                 raise SessionSpineUnavailable(
-                    "session substance resolved to placeholder Core methods"
+                    "session substance resolved to placeholder "
+                    f"{substance.topic_title.strip() or topic_l}"
                 )
             if substance.topic_title:
                 title = substance.topic_title.strip() or title
@@ -395,9 +396,10 @@ class StudentRuntimeCoordinator:
                     "certified CMP guidance is required; fallback substance refused"
                 )
             topic_l = (substance.topic_title or "").strip().lower()
-            if topic_l == "core methods":
+            if topic_l in {"core methods", "today's topic"}:
                 raise SessionSpineUnavailable(
-                    "session substance resolved to placeholder Core methods"
+                    "session substance resolved to placeholder "
+                    f"{substance.topic_title.strip() or topic_l}"
                 )
             if substance.topic_title:
                 title = substance.topic_title.strip() or title
@@ -989,11 +991,16 @@ class StudentRuntimeCoordinator:
     def _open_session_is_placeholder(
         self, *, student_id: str, session_id: str
     ) -> bool:
-        """True when a sitting still carries the Phase-I Core methods stub."""
+        """True when a sitting still carries a Phase-I placeholder shell.
+
+        Detects both the historic ``Core methods`` stub and the later
+        ``Today's topic`` stale-shell marker so existing sittings are
+        superseded rather than treated as valid completed content.
+        """
         store = self._require_persistence()
         record = store.load(session_id=session_id.strip()) or {}
         topic = str(record.get("topic_title") or "").strip().lower()
-        if "core methods" in topic:
+        if "core methods" in topic or topic == "today's topic":
             return True
         seq = store.store.get(
             "activity.sequence",
@@ -1004,12 +1011,14 @@ class StudentRuntimeCoordinator:
                 "runtime.overview",
                 f"{student_id.strip()}::{session_id.strip()}",
             )
-            blob = str(overview or "")
-            return "core methods" in blob.lower()
-        blob = str(seq.get("topic_title") or "") + str(
-            seq.get("activities") or ()
-        )
-        return "core methods" in blob.lower()
+            blob = str(overview or "").lower()
+            return "core methods" in blob or "today's topic" in blob
+        blob = (
+            str(seq.get("topic_title") or "")
+            + str(seq.get("activities") or ())
+            + str(seq.get("source") or "")
+        ).lower()
+        return "core methods" in blob or "today's topic" in blob
 
     def _open_session_is_oversized(
         self, *, student_id: str, session_id: str

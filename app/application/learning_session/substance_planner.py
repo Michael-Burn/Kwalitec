@@ -94,6 +94,13 @@ class EducationalSubstancePlanner:
         subject_id = (curriculum_identity or "").split(":")[0].strip()
         if certified_guidance_enforced(subject_id):
             return None
+        # Legacy Experience Mission / empty-identity path: never invent a
+        # mission_facts "Today's topic" shell when dogfood subjects have live
+        # certified packages that should have been used via Runtime C.
+        if self._refuse_placeholder_mission_facts(
+            subject_id=subject_id, topic_title=topic_title
+        ):
+            return None
 
         snapshot = self._resolve_snapshot(curriculum_identity)
         preferred = tuple(
@@ -269,7 +276,18 @@ class EducationalSubstancePlanner:
         educational_rationale: str,
         objective_ids: tuple[str, ...],
     ) -> EducationalSessionSubstance | None:
-        """Honest fallback when package store is unavailable but mission facts exist."""
+        """Honest fallback when package store is unavailable but mission facts exist.
+
+        Refuses placeholder \"Today's topic\" / \"Core methods\" shells when
+        dogfood subjects have live certified packages (legacy empty-identity
+        path). ``plan_for_topic`` already withholds the full LO-shell path when
+        ``certified_guidance_enforced`` for a known subject identity.
+        """
+        subject_id = (curriculum_identity or "").split(":")[0].strip()
+        if self._refuse_placeholder_mission_facts(
+            subject_id=subject_id, topic_title=topic_title
+        ):
+            return None
         title = (topic_title or "").strip()
         if not title and not task_descriptions:
             return None
@@ -313,6 +331,36 @@ class EducationalSubstancePlanner:
             educational_rationale=educational_rationale,
             task_descriptions=task_descriptions,
             source="mission_facts",
+        )
+
+    @staticmethod
+    def _refuse_placeholder_mission_facts(
+        *, subject_id: str, topic_title: str
+    ) -> bool:
+        """True when a synthetic Today's topic / Core methods shell must be withheld.
+
+        Empty curriculum identity on the legacy Experience Mission path still
+        invents placeholder titles. When dogfood subjects have live certified
+        packages, that shell must not be served as if it were real content.
+        """
+        from app.application.educational_packages.guard import (
+            certified_guidance_enforced,
+        )
+        from app.application.platform_integration.flags import (
+            DOGFOOD_CURRICULUM_SUBJECTS,
+        )
+
+        title_l = (topic_title or "").strip().lower()
+        placeholder = title_l in {"", "today's topic", "core methods"}
+        if not placeholder:
+            return False
+        if subject_id and certified_guidance_enforced(subject_id):
+            return True
+        if subject_id:
+            return False
+        return any(
+            certified_guidance_enforced(code)
+            for code in DOGFOOD_CURRICULUM_SUBJECTS
         )
 
     def _resolve_snapshot(

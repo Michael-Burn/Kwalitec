@@ -26,6 +26,7 @@ from app.application.platform_integration.exceptions import (
 )
 from app.application.platform_integration.flags import (
     FounderStudentBridgeFlags,
+    effective_runtime_c_allowlist,
     resolve_founder_student_bridge_flags,
 )
 from app.application.platform_integration.routing import RuntimeRoutingService
@@ -77,14 +78,21 @@ class FounderStudentEnrolmentBridge:
     def should_use_bridge(
         self, *, category_code: str, subject_code: str
     ) -> bool:
-        """True when the selection may need Runtime C routing evaluation."""
+        """True when the selection may need Runtime C routing evaluation.
+
+        Uses the same effective Runtime C allowlist as
+        ``RuntimeRoutingService.resolve`` (explicit allowlist ∪ dogfood
+        subjects when enrolment is on). A narrower static-only check would
+        silently skip the bridge for CS1/CB2/CM1 catalogue selections even
+        when resolve would select published curriculum.
+        """
         flags = self._resolve_flags()
         if not flags.ENABLE_RUNTIME_C_ENROLMENT:
             return False
         if (category_code or "").strip() == PUBLISHED_CATEGORY_CODE:
             return True
         code = (subject_code or "").strip().upper()
-        return code in flags.RUNTIME_C_SUBJECT_ALLOWLIST
+        return code in effective_runtime_c_allowlist(flags)
 
     def enrol(
         self,
