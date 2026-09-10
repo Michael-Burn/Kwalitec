@@ -46,6 +46,15 @@ reviewed and approved before wiring (entire remaining P5 joint/conditional
 companion packages). No conflicting CPs in this draft; Part 3 found no
 numeric conversion candidates. Copy is frozen as approved; mechanism
 unchanged.
+
+Editorial review record (2026-09-10): forty-three CAF Wave 6 items were
+reviewed and approved before wiring (remaining P6 revision packages,
+entire 4.1 linear regression cluster, and purpose/EDA Continuity Front
+through purpose/EDA revision). No conflicting CPs in this draft; Part 3
+found no numeric conversion candidates. Copy is frozen as approved;
+mechanism unchanged. Item 26 twin feedback states the correct fact that
+raw R-squared never decreases when variables are added, correcting the
+source distractor's inverted claim rather than propagating it.
 """
 
 from __future__ import annotations
@@ -63,7 +72,8 @@ from app.application.learning_session.scoreable_practice import (
 # NUM Wave 2 / CAF credibility AR siblings;
 # CAF Wave 3 remaining P1 / P2 / P3-through-4.2.3;
 # CAF Wave 4 remaining P3 from 4.2.4 + entire P4 univariate 2.1;
-# CAF Wave 5 remaining P5 joint/conditional + P6 CI/HT through companions).
+# CAF Wave 5 remaining P5 joint/conditional + P6 CI/HT through companions;
+# CAF Wave 6 P6 revisions + 4.1 linear regression + purpose/EDA Continuity Front).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -208,6 +218,49 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1016-3.2.1-cp-01",  # CAF Wave 5: cp-3.2.1-ci-sample-cs1016
         "cs1016-3.3.1-ar-01",  # CAF Wave 5: cp-3.3.1-hypothesis-testing-cs1016
         "cs1016-3.3.1-cp-01",  # CAF Wave 5: cp-3.3.1-hypothesis-testing-cs1016
+        "cs1011-cl-r1-ar-01",  # CAF Wave 6: revision-confidence-intervals-cs1011
+        "cs1011-cl-r1-cp-01",  # CAF Wave 6: revision-confidence-intervals-cs1011
+        "cs1012-cm-r1-ar-01",  # CAF Wave 6: revision-hypothesis-testing-cs1012
+        "cs1012-cm-r1-cp-01",  # CAF Wave 6: revision-hypothesis-testing-cs1012
+        "cs1009-ci-r1-ar-01",  # CAF Wave 6: revision-sampling-distributions-cs1009
+        "cs1009-ci-r1-cp-01",  # CAF Wave 6: revision-sampling-distributions-cs1009
+        "cs1003-4.1.1-ar-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1003
+        "cs1003-4.1.1-cp-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1003
+        "cs1013-4.1.1-cp-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1013
+        "cs1013-4.1.1-ar-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1013
+        "cs1003-4.1.2-ar-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1003
+        "cs1003-4.1.2-cp-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1003
+        "cs1013-4.1.2-cp-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1013
+        "cs1013-4.1.2-ar-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1013
+        "cs1003-4.1.3-ar-01",  # CAF Wave 6: 4.1.3-least-squares-cs1003
+        "cs1003-4.1.3-cp-01",  # CAF Wave 6: 4.1.3-least-squares-cs1003
+        "cs1013-4.1.3-cp-01",  # CAF Wave 6: 4.1.3-least-squares-cs1013
+        "cs1013-4.1.3-ar-01",  # CAF Wave 6: 4.1.3-least-squares-cs1013
+        "cs1003-4.1.4-ar-01",  # CAF Wave 6: 4.1.4-software-inference-cs1003
+        "cs1003-4.1.4-cp-01",  # CAF Wave 6: 4.1.4-software-inference-cs1003
+        "cs1013-4.1.4-ar-01",  # CAF Wave 6: 4.1.4-software-fit-cs1013
+        "cs1013-4.1.4-cp-01",  # CAF Wave 6: 4.1.4-software-fit-cs1013
+        "cs1003-4.1.5-ar-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1003
+        "cs1013-4.1.5-ar-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1013
+        "cs1003-4.1.5-cp-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1003
+        "cs1013-4.1.5-cp-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1013
+        "cs1016-4.1.1-ar-01",  # CAF Wave 6: cp-4.1.1-linear-regression-cs1016
+        "cs1016-4.1.1-cp-01",  # CAF Wave 6: cp-4.1.1-linear-regression-cs1016
+        "cs1003-cd-r1-ar-01",  # CAF Wave 6: revision-linear-models-cs1003
+        "cs1003-cd-r1-cp-01",  # CAF Wave 6: revision-linear-models-cs1003
+        "cs1013-cn-r1-ar-01",  # CAF Wave 6: revision-linear-regression-cs1013
+        "cs1013-cn-r1-cp-01",  # CAF Wave 6: revision-linear-regression-cs1013
+        "ep001-1.1-ar-01",  # CAF Wave 6: 1.1-purpose-function-ep001
+        "ep001-1.1-cp-01",  # CAF Wave 6: 1.1-purpose-function-ep001
+        "ep001-1.2a-ar-01",  # CAF Wave 6: 1.2.1-eda-summaries-ep001
+        "ep001-1.2a-cp-01",  # CAF Wave 6: 1.2.1-eda-summaries-ep001
+        "ep001-1.2b-ar-01",  # CAF Wave 6: 1.2.2-eda-association-ep001
+        "ep001-1.2b-cp-01",  # CAF Wave 6: 1.2.2-eda-association-ep001
+        "cs1002-1.2c-ar-01",  # CAF Wave 6: 1.2.3-pca-cs1002
+        "cs1002-1.2c-cp-01",  # CAF Wave 6: 1.2.3-pca-cs1002
+        "ep001-ca-r1-ar-01",  # CAF Wave 6: revision-purpose-eda-ep001
+        "ep001-ca-r1-cp-01",  # CAF Wave 6: revision-purpose-eda-ep001
+        "ep001-ca-r1-cp-02",  # CAF Wave 6: revision-purpose-eda-ep001
     }
 )
 
@@ -3449,6 +3502,953 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice equates HT foundations with fitting a linear regression of loss on covariates. "
         "Regression fitting is a different topic from Type I/II, p-value, and power."
+    ),
+
+    # --- cs1011-cl-r1-ar-01 ---
+    (
+        "cs1011-cl-r1-ar-01",
+        "b",
+    ): (
+        "That choice treats the realised interval as a 0.95 probability that fixed theta lies inside it given these data. "
+        "Frequentist coverage is about the procedure under repeated samples, not a posterior probability for a fixed parameter."
+    ),
+    (
+        "cs1011-cl-r1-ar-01",
+        "c",
+    ): (
+        "That choice puts ninety-five percent of sample values inside the interval. "
+        "A parameter CI targets the unknown parameter, not the fraction of observations that fall inside the band."
+    ),
+    (
+        "cs1011-cl-r1-ar-01",
+        "d",
+    ): (
+        "That choice turns the confidence level into a probability that the statistical model is true. "
+        "Coverage concerns how often intervals capture the parameter under the assumed model, not a probability that the model itself is true."
+    ),
+    # --- cs1011-cl-r1-cp-01 ---
+    (
+        "cs1011-cl-r1-cp-01",
+        "b",
+    ): (
+        "That choice makes the prediction interval narrower because only one future value is considered. "
+        "Predicting one future response adds observation-level noise, so the interval is typically wider than a mean-response CI at the same x."
+    ),
+    (
+        "cs1011-cl-r1-cp-01",
+        "c",
+    ): (
+        "That choice treats the two intervals as always identical. "
+        "A mean-response CI targets E[Y|x]; a prediction interval also carries future residual variance and is typically wider."
+    ),
+    (
+        "cs1011-cl-r1-cp-01",
+        "d",
+    ): (
+        "That choice puts future observation noise into the mean-response CI and removes it from the prediction interval. "
+        "The extra observation variance belongs on the prediction side, not the reverse."
+    ),
+    # --- cs1012-cm-r1-ar-01 ---
+    (
+        "cs1012-cm-r1-ar-01",
+        "b",
+    ): (
+        "That choice makes the p-value the probability that the null is true after seeing the data. "
+        "A p-value is computed under the null; it is not a posterior probability that the null holds."
+    ),
+    (
+        "cs1012-cm-r1-ar-01",
+        "c",
+    ): (
+        "That choice makes the p-value the probability that the alternative is false. "
+        "The p-value is a tail probability for the test statistic under the null, not a probability statement about the alternative."
+    ),
+    (
+        "cs1012-cm-r1-ar-01",
+        "d",
+    ): (
+        "That choice treats the p-value as the chance the same sample result occurs again. "
+        "It measures incompatibility of data at least as extreme as observed under the null, not a replication probability."
+    ),
+    # --- cs1012-cm-r1-cp-01 ---
+    (
+        "cs1012-cm-r1-cp-01",
+        "b",
+    ): (
+        "That choice treats a tiny p-value as proof of the alternative with probability one. "
+        "Significance signals tension with the null under the assumptions; it does not prove the alternative."
+    ),
+    (
+        "cs1012-cm-r1-cp-01",
+        "c",
+    ): (
+        "That choice sets the Type I error probability of the completed test equal to the p-value. "
+        "The Type I rate is a pre-chosen long-run property of the procedure, not the observed p-value."
+    ),
+    (
+        "cs1012-cm-r1-cp-01",
+        "d",
+    ): (
+        "That choice equates a small p-value with a large, practically important effect. "
+        "Statistical significance is not the same as practical importance or effect size."
+    ),
+    # --- cs1009-ci-r1-ar-01 ---
+    (
+        "cs1009-ci-r1-ar-01",
+        "b",
+    ): (
+        "That choice equates the sampling distribution with the single realised sample mean. "
+        "The sampling distribution is the law of that statistic across repeated samples of the same size."
+    ),
+    (
+        "cs1009-ci-r1-ar-01",
+        "c",
+    ): (
+        "That choice treats the empirical distribution of observations in one sample as the sampling distribution of the mean. "
+        "Those are different objects: one describes data in a sample, the other describes the statistic over repeated samples."
+    ),
+    (
+        "cs1009-ci-r1-ar-01",
+        "d",
+    ): (
+        "That choice forces the sampling distribution of the mean to be standard Normal for every population and every n. "
+        "Normality of the mean needs model or large-sample warrant; it is not automatic."
+    ),
+    # --- cs1009-ci-r1-cp-01 ---
+    (
+        "cs1009-ci-r1-cp-01",
+        "b",
+    ): (
+        "That choice divides by S without the root-n factor and claims a standard Normal law. "
+        "With unknown variance the studentised mean uses S/√n and follows t with n−1 degrees of freedom."
+    ),
+    (
+        "cs1009-ci-r1-cp-01",
+        "c",
+    ): (
+        "That choice gives that studentised mean a chi-squared law. "
+        "The mean pivot is t_{n−1}; chi-square is the usual law for scaled sample variance, not for the mean pivot."
+    ),
+    (
+        "cs1009-ci-r1-cp-01",
+        "d",
+    ): (
+        "That choice says the raw sample mean itself is t with n degrees of freedom. "
+        "The t law applies to the studentised mean with n−1 df, not to the unstandardised mean with n df."
+    ),
+    # --- cs1003-4.1.1-ar-01 ---
+    (
+        "cs1003-4.1.1-ar-01",
+        "b",
+    ): (
+        "That choice makes age the response and puts claim frequency on the right-hand side because every column looks like a predictor. "
+        "Y is the outcome you set out to model; here that is claim frequency, with age and territory as explanatory rating factors."
+    ),
+    (
+        "cs1003-4.1.1-ar-01",
+        "c",
+    ): (
+        "That choice treats age and territory as responses and frequency as an explanatory variable just because frequency is numeric. "
+        "Numeric type does not assign roles; the modelling question does."
+    ),
+    (
+        "cs1003-4.1.1-ar-01",
+        "d",
+    ): (
+        "That choice refuses to name Y and X until a multiple regression equation is written. "
+        "Response and explanatory roles can be stated from the modelling question before choosing simple versus multiple form."
+    ),
+    # --- cs1003-4.1.1-cp-01 ---
+    (
+        "cs1003-4.1.1-cp-01",
+        "b",
+    ): (
+        "That choice makes claim count the response and dumps every other numeric column on the right-hand side. "
+        "For a severity question Y is claim amount; warranted X variables need a severity story, not column-soup."
+    ),
+    (
+        "cs1003-4.1.1-cp-01",
+        "c",
+    ): (
+        "That choice forces claim count into the severity X set just because it shares the policy record. "
+        "Claim count is a frequency outcome; it is not automatically an explanatory variable for severity."
+    ),
+    (
+        "cs1003-4.1.1-cp-01",
+        "d",
+    ): (
+        "That choice blocks naming the response until a full multiple regression equation is written. "
+        "Severity modelling still starts by naming Y versus warranted X, not by writing the equation first."
+    ),
+    # --- cs1013-4.1.1-cp-01 ---
+    (
+        "cs1013-4.1.1-cp-01",
+        "b",
+    ): (
+        "That choice makes claim count the response and dumps every other numeric column on the right-hand side. "
+        "For a severity question Y is claim amount; warranted X variables need a severity story, not column-soup."
+    ),
+    (
+        "cs1013-4.1.1-cp-01",
+        "c",
+    ): (
+        "That choice forces claim count into the severity X set just because it shares the policy record. "
+        "Claim count is a frequency outcome; it is not automatically an explanatory variable for severity."
+    ),
+    (
+        "cs1013-4.1.1-cp-01",
+        "d",
+    ): (
+        "That choice blocks naming the response until a full multiple regression equation is written. "
+        "Severity modelling still starts by naming Y versus warranted X, not by writing the equation first."
+    ),
+    # --- cs1013-4.1.1-ar-01 ---
+    (
+        "cs1013-4.1.1-ar-01",
+        "b",
+    ): (
+        "That choice makes every numeric column an automatic X and picks Y by largest variance. "
+        "Roles come from the modelling question, not from variance ranking or column-soup."
+    ),
+    (
+        "cs1013-4.1.1-ar-01",
+        "c",
+    ): (
+        "That choice always puts claim count on the right-hand side when modelling severity because both fields are numeric. "
+        "Sharing a policy record does not make count an explanatory variable for severity."
+    ),
+    (
+        "cs1013-4.1.1-ar-01",
+        "d",
+    ): (
+        "That choice says roles exist only after writing simple versus multiple equations. "
+        "You can name Y and X from the question before choosing model form."
+    ),
+    # --- cs1003-4.1.2-ar-01 ---
+    (
+        "cs1003-4.1.2-ar-01",
+        "b",
+    ): (
+        "That choice swaps the equations: two predictors for simple and one for multiple. "
+        "Simple has one explanatory variable; multiple has more than one entering jointly."
+    ),
+    (
+        "cs1003-4.1.2-ar-01",
+        "c",
+    ): (
+        "That choice replaces model-form statement with estimated beta-hat from least squares. "
+        "Writing the simple versus multiple equations in beta is model form; OLS is estimation of those betas."
+    ),
+    (
+        "cs1003-4.1.2-ar-01",
+        "d",
+    ): (
+        "That choice says simple and multiple differ only in a software menu and that one-predictor notation covers both. "
+        "The forms differ in how many explanatory variables enter the equation."
+    ),
+    # --- cs1003-4.1.2-cp-01 ---
+    (
+        "cs1003-4.1.2-cp-01",
+        "b",
+    ): (
+        "That choice writes the two-predictor equation as simple and the one-predictor equation as multiple. "
+        "Count of explanatory variables defines the forms, not the size of the least-squares criterion."
+    ),
+    (
+        "cs1003-4.1.2-cp-01",
+        "c",
+    ): (
+        "That choice treats clicking Fit / writing beta-hat formulae as stating simple versus multiple form. "
+        "Estimation is not the same as stating which predictors enter the linear model."
+    ),
+    (
+        "cs1003-4.1.2-cp-01",
+        "d",
+    ): (
+        "That choice collapses simple and multiple because age and sum insured are both continuous. "
+        "Continuity of predictors does not erase the one-versus-several explanatory-variable distinction."
+    ),
+    # --- cs1013-4.1.2-cp-01 ---
+    (
+        "cs1013-4.1.2-cp-01",
+        "b",
+    ): (
+        "That choice writes the two-predictor equation as simple and the one-predictor equation as multiple. "
+        "Count of explanatory variables defines the forms, not the size of the least-squares criterion."
+    ),
+    (
+        "cs1013-4.1.2-cp-01",
+        "c",
+    ): (
+        "That choice treats clicking Fit / writing beta-hat formulae as stating simple versus multiple form. "
+        "Estimation is not the same as stating which predictors enter the linear model."
+    ),
+    (
+        "cs1013-4.1.2-cp-01",
+        "d",
+    ): (
+        "That choice collapses simple and multiple because age and sum insured are both continuous. "
+        "Continuity of predictors does not erase the one-versus-several explanatory-variable distinction."
+    ),
+    # --- cs1013-4.1.2-ar-01 ---
+    (
+        "cs1013-4.1.2-ar-01",
+        "b",
+    ): (
+        "That choice says simple and multiple differ only in how least-squares estimates are computed. "
+        "The forms differ in how many explanatory variables enter; OLS is how you estimate whichever form you stated."
+    ),
+    (
+        "cs1013-4.1.2-ar-01",
+        "c",
+    ): (
+        "That choice forces interactions into every multiple model and removes the intercept from every simple model. "
+        "Multiple means several explanatory variables; interactions and intercepts are separate modelling choices."
+    ),
+    (
+        "cs1013-4.1.2-ar-01",
+        "d",
+    ): (
+        "That choice reserves simple regression for frequency and multiple for severity. "
+        "Either outcome can use either form; the distinction is the number of explanatory variables, not frequency versus severity."
+    ),
+    # --- cs1003-4.1.3-ar-01 ---
+    (
+        "cs1003-4.1.3-ar-01",
+        "b",
+    ): (
+        "That choice minimises absolute residuals and equates the slope with Corr(X, Y). "
+        "Ordinary least squares minimises squared residuals; correlation is not the OLS slope by definition."
+    ),
+    (
+        "cs1003-4.1.3-ar-01",
+        "c",
+    ): (
+        "That choice treats clicking Fit as the least-squares criterion. "
+        "Fit may implement OLS, but the criterion is still minimise the sum of squared residuals."
+    ),
+    (
+        "cs1003-4.1.3-ar-01",
+        "d",
+    ): (
+        "That choice sets the slope to SD(Y)/SD(X) and says least squares minimises R-squared. "
+        "The OLS slope is Cov/Var (with intercept through the means); least squares minimises residual sum of squares, not R-squared."
+    ),
+    # --- cs1003-4.1.3-cp-01 ---
+    (
+        "cs1003-4.1.3-cp-01",
+        "b",
+    ): (
+        "That choice makes clicking Fit the criterion and treats the closed-form slope as optional. "
+        "Software Fit implements OLS; the criterion remains minimise sum of squared residuals, with slope Cov/Var."
+    ),
+    (
+        "cs1003-4.1.3-cp-01",
+        "c",
+    ): (
+        "That choice equates the OLS slope with Corr(X, Y) because both measure association. "
+        "Correlation and the OLS slope are related but not the same scale or formula."
+    ),
+    (
+        "cs1003-4.1.3-cp-01",
+        "d",
+    ): (
+        "That choice minimises absolute residuals while still quoting the OLS Cov/Var slope. "
+        "Least squares uses squared residuals; absolute-residual minimisation is a different criterion."
+    ),
+    # --- cs1013-4.1.3-cp-01 ---
+    (
+        "cs1013-4.1.3-cp-01",
+        "b",
+    ): (
+        "That choice makes clicking Fit the criterion and treats the closed-form slope as optional. "
+        "Software Fit implements OLS; the criterion remains minimise sum of squared residuals, with slope Cov/Var."
+    ),
+    (
+        "cs1013-4.1.3-cp-01",
+        "c",
+    ): (
+        "That choice equates the OLS slope with Corr(X, Y) because both measure association. "
+        "Correlation and the OLS slope are related but not the same scale or formula."
+    ),
+    (
+        "cs1013-4.1.3-cp-01",
+        "d",
+    ): (
+        "That choice minimises absolute residuals while still quoting the OLS Cov/Var slope. "
+        "Least squares uses squared residuals; absolute-residual minimisation is a different criterion."
+    ),
+    # --- cs1013-4.1.3-ar-01 ---
+    (
+        "cs1013-4.1.3-ar-01",
+        "b",
+    ): (
+        "That choice treats Fit as an opaque internal criterion with no closed form. "
+        "Least squares still means minimise the sum of squared residuals, whether or not software prints the algebra."
+    ),
+    (
+        "cs1013-4.1.3-ar-01",
+        "c",
+    ): (
+        "That choice sets the OLS slope equal to Corr(X, Y) by definition. "
+        "Correlation is not the slope estimate; OLS uses the Cov/Var (or equivalent) slope with an intercept."
+    ),
+    (
+        "cs1013-4.1.3-ar-01",
+        "d",
+    ): (
+        "That choice minimises absolute residuals and freezes the slope at the sample correlation. "
+        "Ordinary least squares estimates both slope and intercept by minimising squared residuals."
+    ),
+    # --- cs1003-4.1.4-ar-01 ---
+    (
+        "cs1003-4.1.4-ar-01",
+        "b",
+    ): (
+        "That choice runs variable selection after fit and declares validity from R-squared without residual checks. "
+        "Post-fit work still needs slope inference, prediction limits, and residual checks, not selection alone."
+    ),
+    (
+        "cs1003-4.1.4-ar-01",
+        "c",
+    ): (
+        "That choice reads only the slope sign and sends prediction limits and residual checks to GLM-only land. "
+        "Those moves are part of linear-model software fit and interpretation as well."
+    ),
+    (
+        "cs1003-4.1.4-ar-01",
+        "d",
+    ): (
+        "That choice inspects residuals before fitting and skips slope inference as automatic. "
+        "Fit first, then infer, predict with limits, and check residuals against that fit."
+    ),
+    # --- cs1003-4.1.4-cp-01 ---
+    (
+        "cs1003-4.1.4-cp-01",
+        "b",
+    ): (
+        "That choice stops once the model is fitted and treats residuals as optional after a significant slope. "
+        "Fit alone is not enough; slope inference, GOF, prediction limits, and residual checks still matter."
+    ),
+    (
+        "cs1003-4.1.4-cp-01",
+        "c",
+    ): (
+        "That choice calls residual plots optional theatre because the slope is significant. "
+        "Significance does not validate constant variance, linearity, or other modelling assumptions that residuals probe."
+    ),
+    (
+        "cs1003-4.1.4-cp-01",
+        "d",
+    ): (
+        "That choice makes mean-response and prediction intervals the same width because both supposedly estimate only E[Y|x*]. "
+        "The prediction interval adds residual variance and is typically wider."
+    ),
+    # --- cs1013-4.1.4-ar-01 ---
+    (
+        "cs1013-4.1.4-ar-01",
+        "b",
+    ): (
+        "That choice drops residual plots once the slope is significant. "
+        "Significance is not a substitute for checking whether the linear model is suitable."
+    ),
+    (
+        "cs1013-4.1.4-ar-01",
+        "c",
+    ): (
+        "That choice equates mean-response and individual-response intervals because both supposedly target E[Y|x*]. "
+        "An individual prediction interval covers a new observation and typically adds residual variance."
+    ),
+    (
+        "cs1013-4.1.4-ar-01",
+        "d",
+    ): (
+        "That choice reduces goodness-of-fit to adjusted R-squared alone and excludes slope inference and prediction limits from software-fit work. "
+        "Post-fit interpretation still includes those pieces alongside GOF."
+    ),
+    # --- cs1013-4.1.4-cp-01 ---
+    (
+        "cs1013-4.1.4-cp-01",
+        "b",
+    ): (
+        "That choice treats best-subset selection as finishing software fit and inference for this model. "
+        "Selection is separate; after a fit you still need slope inference, GOF, prediction limits, and residual checks."
+    ),
+    (
+        "cs1013-4.1.4-cp-01",
+        "c",
+    ): (
+        "That choice makes residual plots optional because the slope is significant. "
+        "Significance does not clear residual diagnostics."
+    ),
+    (
+        "cs1013-4.1.4-cp-01",
+        "d",
+    ): (
+        "That choice gives mean-response and prediction intervals the same width as estimators of E[Y|x*] only. "
+        "Prediction intervals cover a new observation and are typically wider."
+    ),
+    # --- cs1003-4.1.5-ar-01 ---
+    (
+        "cs1003-4.1.5-ar-01",
+        "b",
+    ): (
+        "That choice finishes selection by keeping every term with p less than 0.05. "
+        "Mechanical p-chopping is not a complete warrant; use fit measures that balance fit against complexity."
+    ),
+    (
+        "cs1003-4.1.5-ar-01",
+        "c",
+    ): (
+        "That choice equates linear explanatory-variable selection with choosing a GLM link, both finished by raw R-squared. "
+        "Those are different tasks; raw R-squared alone is not a selection rule for either."
+    ),
+    (
+        "cs1003-4.1.5-ar-01",
+        "d",
+    ): (
+        "That choice always keeps every numeric column to avoid wasting information. "
+        "Extra variables can overfit and dilute interpretation; more is not automatically better."
+    ),
+    # --- cs1013-4.1.5-ar-01 ---
+    (
+        "cs1013-4.1.5-ar-01",
+        "b",
+    ): (
+        "That choice finishes selection by keeping every term with p less than 0.05. "
+        "Mechanical p-chopping is not a complete warrant; use fit measures that balance fit against complexity."
+    ),
+    (
+        "cs1013-4.1.5-ar-01",
+        "c",
+    ): (
+        "That choice equates linear explanatory-variable selection with choosing a GLM link, both finished by raw R-squared. "
+        "Those are different tasks; raw R-squared alone is not a selection rule for either."
+    ),
+    (
+        "cs1013-4.1.5-ar-01",
+        "d",
+    ): (
+        "That choice always keeps every numeric column to avoid wasting information. "
+        "Extra variables can overfit and dilute interpretation; more is not automatically better."
+    ),
+    # --- cs1003-4.1.5-cp-01 ---
+    (
+        "cs1003-4.1.5-cp-01",
+        "b",
+    ): (
+        "That choice ends selection once every M2 term has p less than 0.05. "
+        "You still need a fit-measure comparison that penalises unnecessary complexity, not p-chopping alone."
+    ),
+    (
+        "cs1003-4.1.5-cp-01",
+        "c",
+    ): (
+        "That choice treats predictor selection as finishing GLM modelling. "
+        "GLM also needs link and exponential-family response choices; linear selection is not that whole task."
+    ),
+    (
+        "cs1003-4.1.5-cp-01",
+        "d",
+    ): (
+        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
+    ),
+    # --- cs1013-4.1.5-cp-01 ---
+    (
+        "cs1013-4.1.5-cp-01",
+        "b",
+    ): (
+        "That choice ends selection once every M2 term has p less than 0.05. "
+        "You still need a fit-measure comparison that penalises unnecessary complexity, not p-chopping alone."
+    ),
+    (
+        "cs1013-4.1.5-cp-01",
+        "c",
+    ): (
+        "That choice treats predictor selection as finishing GLM modelling. "
+        "GLM also needs link and exponential-family response choices; linear selection is not that whole task."
+    ),
+    (
+        "cs1013-4.1.5-cp-01",
+        "d",
+    ): (
+        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
+    ),
+    # --- cs1016-4.1.1-ar-01 ---
+    (
+        "cs1016-4.1.1-ar-01",
+        "b",
+    ): (
+        "That choice makes every numeric column an automatic X and picks Y by largest variance. "
+        "Roles follow the modelling question and a warrant for each predictor, not variance ranking."
+    ),
+    (
+        "cs1016-4.1.1-ar-01",
+        "c",
+    ): (
+        "That choice delays roles until the full multiple regression equation is written. "
+        "You can name Y and X before locking equation form."
+    ),
+    (
+        "cs1016-4.1.1-ar-01",
+        "d",
+    ): (
+        "That choice defines the response as whichever column is entered last in the formula. "
+        "Estimation order in software does not assign the modelling response."
+    ),
+    # --- cs1016-4.1.1-cp-01 ---
+    (
+        "cs1016-4.1.1-cp-01",
+        "b",
+    ): (
+        "That choice makes sum insured the response and dumps premium onto the right-hand side with the other numerics. "
+        "For this question Y is renewal premium; column-soup is not role modelling."
+    ),
+    (
+        "cs1016-4.1.1-cp-01",
+        "c",
+    ): (
+        "That choice keeps premium as Y but also forces premium to be an explanatory variable for bedrooms. "
+        "That answers a different question; do not put the response on both sides."
+    ),
+    (
+        "cs1016-4.1.1-cp-01",
+        "d",
+    ): (
+        "That choice refuses to name Y until a regression equation is fully written. "
+        "Premium modelling still starts with Y versus warranted X."
+    ),
+    # --- cs1003-cd-r1-ar-01 ---
+    (
+        "cs1003-cd-r1-ar-01",
+        "b",
+    ): (
+        "That choice has OLS choosing Y to minimise the sum of squared fitted values. "
+        "OLS chooses beta to minimise the sum of squared residuals for the stated response Y."
+    ),
+    (
+        "cs1003-cd-r1-ar-01",
+        "c",
+    ): (
+        "That choice requires every explanatory variable to be independent of every other. "
+        "Multiple regression allows correlated predictors; independence of the X columns is not an OLS requirement."
+    ),
+    (
+        "cs1003-cd-r1-ar-01",
+        "d",
+    ): (
+        "That choice fits a separate response for each predictor. "
+        "Multiple regression keeps one response Y and several explanatory columns in X."
+    ),
+    # --- cs1003-cd-r1-cp-01 ---
+    (
+        "cs1003-cd-r1-cp-01",
+        "b",
+    ): (
+        "That choice treats increasing residual spread as proof that the fitted mean is exactly correct. "
+        "A funnel pattern casts doubt on constant variance; it does not confirm the mean structure."
+    ),
+    (
+        "cs1003-cd-r1-cp-01",
+        "c",
+    ): (
+        "That choice dismisses the pattern whenever R-squared is high. "
+        "High R-squared does not repair doubtful constant-variance assumptions or unreliable usual standard errors."
+    ),
+    (
+        "cs1003-cd-r1-cp-01",
+        "d",
+    ): (
+        "That choice always deletes the largest residuals. "
+        "Investigate structure and consider a proper remedy; automatic deletion is not the default fix."
+    ),
+    # --- cs1013-cn-r1-ar-01 ---
+    (
+        "cs1013-cn-r1-ar-01",
+        "b",
+    ): (
+        "That choice minimises the sum of fitted responses squared. "
+        "OLS minimises the sum of squared residuals, observed minus fitted."
+    ),
+    (
+        "cs1013-cn-r1-ar-01",
+        "c",
+    ): (
+        "That choice maximises sample correlation as the OLS criterion in every regression. "
+        "Ordinary least squares minimises residual sum of squares, not maximises correlation."
+    ),
+    (
+        "cs1013-cn-r1-ar-01",
+        "d",
+    ): (
+        "That choice requires every residual to be zero regardless of parameter count. "
+        "OLS does not demand perfect interpolation; it minimises squared residuals for the chosen model."
+    ),
+    # --- cs1013-cn-r1-cp-01 ---
+    (
+        "cs1013-cn-r1-cp-01",
+        "b",
+    ): (
+        "That choice treats high R-squared as proof that the linear mean form is adequate. "
+        "Clear residual curvature still signals likely mean misspecification."
+    ),
+    (
+        "cs1013-cn-r1-cp-01",
+        "c",
+    ): (
+        "That choice says variable selection guarantees unbiased coefficients and valid inference. "
+        "Selection does not waive residual structure or deliver those guarantees by itself."
+    ),
+    (
+        "cs1013-cn-r1-cp-01",
+        "d",
+    ): (
+        "That choice deletes observations on one side of the curve until residuals look flat. "
+        "Investigate justified transformations or nonlinear terms instead of carving the scatter to look linear."
+    ),
+    # --- ep001-1.1-ar-01 ---
+    (
+        "ep001-1.1-ar-01",
+        "b",
+    ): (
+        "That choice lists plotting, means, and software as the three aims. "
+        "Aims are descriptive, inferential, and predictive purposes; tools are how you pursue them."
+    ),
+    (
+        "ep001-1.1-ar-01",
+        "c",
+    ): (
+        "That choice collapses all three aims into one vague inspect-the-data example. "
+        "The three aims stay distinct: summarise a sample, make a population claim, and forecast unseen outcomes."
+    ),
+    (
+        "ep001-1.1-ar-01",
+        "d",
+    ): (
+        "That choice swaps the aims: descriptive as forecast, inferential as sample-only summary, predictive as population mean without prediction. "
+        "Keep each aim matched to its actuarial job."
+    ),
+    # --- ep001-1.1-cp-01 ---
+    (
+        "ep001-1.1-cp-01",
+        "b",
+    ): (
+        "That choice drops ordered stages and treats “be careful with data” as enough for trust and reproducibility. "
+        "Name pipeline location, concrete source traits, and a concrete reproducibility element."
+    ),
+    (
+        "ep001-1.1-cp-01",
+        "c",
+    ): (
+        "That choice parks EDA after final communication and treats source traits and reproducibility as irrelevant once a plot is saved. "
+        "EDA sits in clean/explore; source traits affect trust; reproducibility needs a repeatable path."
+    ),
+    (
+        "ep001-1.1-cp-01",
+        "d",
+    ): (
+        "That choice makes software fitting the only stage and swaps a package version for scripted reproducibility. "
+        "Fitting is one stage; source bias still matters, and reproducibility needs versioned data and a scripted path."
+    ),
+    # --- ep001-1.2a-ar-01 ---
+    (
+        "ep001-1.2a-ar-01",
+        "b",
+    ): (
+        "That choice leads with the mean because software defaults to it. "
+        "For right-skewed claim sizes a descriptive brief usually leads with the median and IQR or percentiles."
+    ),
+    (
+        "ep001-1.2a-ar-01",
+        "c",
+    ): (
+        "That choice leads with the sample maximum as the typical claim size. "
+        "The maximum emphasises one extreme; it is not a robust summary of typical size under right skew."
+    ),
+    (
+        "ep001-1.2a-ar-01",
+        "d",
+    ): (
+        "That choice says any single summary is fine because skew does not distort a mean. "
+        "Right skew pulls the mean into the tail and can mislead a typical-size description."
+    ),
+    # --- ep001-1.2a-cp-01 ---
+    (
+        "ep001-1.2a-cp-01",
+        "b",
+    ): (
+        "That choice uses a pie chart to show a continuous tail and refuses histograms. "
+        "Histograms or boxplots reveal skew and extremes; pies hide continuous shape."
+    ),
+    (
+        "ep001-1.2a-cp-01",
+        "c",
+    ): (
+        "That choice names a boxplot without saying what pattern to look for and accepts a mean-only dashboard. "
+        "Pair the plot with the skew/extremes pattern it should reveal."
+    ),
+    (
+        "ep001-1.2a-cp-01",
+        "d",
+    ): (
+        "That choice treats any decorative chart as acceptable exploratory work. "
+        "Visualisation choice can mislead; refuse displays that hide the tail."
+    ),
+    # --- ep001-1.2b-ar-01 ---
+    (
+        "ep001-1.2b-ar-01",
+        "b",
+    ): (
+        "That choice collapses Pearson, Spearman, and Kendall into the same linear raw-value association. "
+        "They answer different association questions: linear raw, rank monotone, and pairwise concordance."
+    ),
+    (
+        "ep001-1.2b-ar-01",
+        "c",
+    ): (
+        "That choice makes Pearson the rank-based robust measure and Spearman/Kendall the linear raw measures. "
+        "That reverses the usual roles."
+    ),
+    (
+        "ep001-1.2b-ar-01",
+        "d",
+    ): (
+        "That choice assigns causation, prediction accuracy, and sample size as the three measures’ targets. "
+        "None of those is what Pearson, Spearman, or Kendall measure."
+    ),
+    # --- ep001-1.2b-cp-01 ---
+    (
+        "ep001-1.2b-cp-01",
+        "b",
+    ): (
+        "That choice defaults to Pearson for every numeric pair and treats large r as proof that changing X causes Y. "
+        "Prefer a rank measure for monotone nonlinear outliers, and never read association as causation."
+    ),
+    (
+        "ep001-1.2b-cp-01",
+        "c",
+    ): (
+        "That choice treats the measures as interchangeable and upgrades a large coefficient into control of Y by changing X. "
+        "Measure choice still matters, and association is not a control warrant."
+    ),
+    (
+        "ep001-1.2b-cp-01",
+        "d",
+    ): (
+        "That choice prefers Spearman only for perfect linear scatters without outliers and refuses ranks under skew. "
+        "Rank measures are especially useful for monotone nonlinear association with outliers."
+    ),
+    # --- cs1002-1.2c-ar-01 ---
+    (
+        "cs1002-1.2c-ar-01",
+        "b",
+    ): (
+        "That choice has PCA invent causal risk factors and treats every PC as equally meaningful. "
+        "PCA summarises shared variation; early components usually dominate, and causation needs external warrant."
+    ),
+    (
+        "cs1002-1.2c-ar-01",
+        "c",
+    ): (
+        "That choice reduces PCA to eigenvector computation with later components dominating shared structure. "
+        "State the dimensionality-reduction purpose; early components typically capture major shared variation."
+    ),
+    (
+        "cs1002-1.2c-ar-01",
+        "d",
+    ): (
+        "That choice lets PCA replace subject-matter judgment and auto-name business drivers. "
+        "Components still need external warrant before they become named drivers."
+    ),
+    # --- cs1002-1.2c-cp-01 ---
+    (
+        "cs1002-1.2c-cp-01",
+        "b",
+    ): (
+        "That choice accepts PC1 as a true business risk factor by construction. "
+        "PC1 may summarise shared variation; it does not by itself prove a causal driver."
+    ),
+    (
+        "cs1002-1.2c-cp-01",
+        "c",
+    ): (
+        "That choice rejects PCA entirely once causation is mentioned. "
+        "Exploratory use as a summary of correlated structure can still be valid without a causal claim."
+    ),
+    (
+        "cs1002-1.2c-cp-01",
+        "d",
+    ): (
+        "That choice treats largest variance share as proof of causation needing no external warrant. "
+        "Explained variance is not a causal certificate."
+    ),
+    # --- ep001-ca-r1-ar-01 ---
+    (
+        "ep001-ca-r1-ar-01",
+        "b",
+    ): (
+        "That choice lists tools as aims and treats saving the final chart as reproducibility. "
+        "Keep descriptive, inferential, and predictive aims, and name a concrete reproducibility element such as versioned data and a scripted path."
+    ),
+    (
+        "ep001-ca-r1-ar-01",
+        "c",
+    ): (
+        "That choice collapses all three aims into one sample summary. "
+        "Description, population inference, and future prediction remain distinct jobs."
+    ),
+    (
+        "ep001-ca-r1-ar-01",
+        "d",
+    ): (
+        "That choice swaps the aims: descriptive as forecast, inferential as sample-only, predictive as a fixed population parameter. "
+        "Match each aim to its proper actuarial role."
+    ),
+    # --- ep001-ca-r1-cp-01 ---
+    (
+        "ep001-ca-r1-cp-01",
+        "b",
+    ): (
+        "That choice reports only the mean as the standard summary. "
+        "For strongly right-skewed claims prefer median and IQR with a histogram or boxplot."
+    ),
+    (
+        "ep001-ca-r1-cp-01",
+        "c",
+    ): (
+        "That choice uses a pie chart to display continuous claim-amount shape. "
+        "A histogram or boxplot shows skew and extremes; a pie does not."
+    ),
+    (
+        "ep001-ca-r1-cp-01",
+        "d",
+    ): (
+        "That choice deletes every claim above the upper quartile before summarising. "
+        "Investigate large claims; do not delete them automatically."
+    ),
+    # --- ep001-ca-r1-cp-02 ---
+    (
+        "ep001-ca-r1-cp-02",
+        "b",
+    ): (
+        "That choice forces Pearson correlation to equal 1 because the relationship is monotone. "
+        "Monotone is not the same as perfectly linear; Pearson can be well below 1."
+    ),
+    (
+        "ep001-ca-r1-cp-02",
+        "c",
+    ): (
+        "That choice treats Kendall’s tau as proof that changing one variable causes the other. "
+        "Rank association is not causation."
+    ),
+    (
+        "ep001-ca-r1-cp-02",
+        "d",
+    ): (
+        "That choice says no correlation measure can describe a nonlinear monotone relationship. "
+        "Spearman and Kendall are built for monotone association without requiring linearity."
     ),
 
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-10T13:04:38Z",
+  "generated_at": "2026-09-10T13:40:40Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
@@ -17245,8 +17245,8 @@
           "package_file": "4.1.2-simple-multiple-cs1003.json",
           "field_path": "knowledge_checks[0].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "Both forms are Y = $\\hat{\\beta}$0 + $\\hat{\\beta}$1 x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
-          "text_hash": "1b49a9772bbdaf0f",
+          "text": "Both forms are Y = $\\hat{\\beta}_{0}$ + $\\hat{\\beta}_{1}$ x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
+          "text_hash": "103ba96e9ec36b82",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -40559,5 +40559,5 @@
       ]
     }
   ],
-  "content_fingerprint": "b68f284e4780c3b537366358a48ce0f6d1101b8f65a9a8263764ecb75e653064"
+  "content_fingerprint": "567773e60d0d37ced28ca59d5ff1f0d75ad45c757a637728eef50c6d73dd281f"
 }

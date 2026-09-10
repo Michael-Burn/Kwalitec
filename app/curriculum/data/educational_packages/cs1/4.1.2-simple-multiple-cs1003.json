@@ -144,7 +144,7 @@
         },
         {
           "id": "c",
-          "label": "Both forms are Y = $\\hat{\\beta}$0 + $\\hat{\\beta}$1 x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
+          "label": "Both forms are Y = $\\hat{\\beta}_{0}$ + $\\hat{\\beta}_{1}$ x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as OLS estimation.",
           "misconception_tag": "least_squares_finishes"
         },
         {
