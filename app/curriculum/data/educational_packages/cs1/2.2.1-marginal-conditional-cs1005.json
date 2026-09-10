@@ -161,44 +161,24 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.1-cp-01",
       "title": "Checkpoint: 2.2.1",
-      "prompt": "Closed-book. Joint PMF: $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Which statement is correct?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. Joint PMF: $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Compute $P(Y=1|X=1)$. Enter the value as a decimal (not a fraction).",
+      "response_type": "numeric",
       "body": "Compute one marginal and one conditional probability.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Sum the X=1 row for the marginal $P(X=1)=0.30+0.40$, then divide the (1,1) cell by that row total.",
+        "Report a decimal such as 0.571, not a fraction such as 4/7."
       ],
-      "accepted_keywords": [],
-      "explanation": "Sum the X=1 row for the marginal, then divide the (1,1) cell by that row total.",
-      "model_answer": "$P(X=1)=0.70$; $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
+      "accepted_keywords": [
+        "0.571"
+      ],
+      "numeric_tolerance": 0.001,
+      "explanation": "Sum the X=1 row for the marginal, then divide the (1,1) cell by that row total. $P(X=1)=0.70$ and $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
+      "model_answer": "0.571",
       "common_mistake": "Using a single joint cell as a marginal or failing to normalise a conditional.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$P(X=1)=0.30+0.40=0.70$, and $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$P(X=1)$=0.40 because the largest cell in the X=1 row is the marginal.",
-          "misconception_tag": "largest_cell_as_marginal"
-        },
-        {
-          "id": "c",
-          "label": "$P(Y=1|X=1)$=0.40 because the joint cell is already conditional.",
-          "misconception_tag": "conditional_without_normalise"
-        },
-        {
-          "id": "d",
-          "label": "$P(X=1)$=0.70 and $P(Y=1|X=1)$=0.60 because $P(Y=1)$ is the conditional numerator.",
-          "misconception_tag": "wrong_conditional_numerator"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.001 of 0.571.",
+        "Forms $P(Y=1|X=1)$ from the normalised $X=1$ slice, not from a raw joint cell."
+      ]
     }
   ],
   "reflection": {

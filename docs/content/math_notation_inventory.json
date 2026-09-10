@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-09T20:02:42Z",
+  "generated_at": "2026-09-10T09:41:14Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2199,
-    "already_compliant": 2070,
+    "mathish_strings": 2190,
+    "already_compliant": 2061,
     "needs_migration": 0,
     "correctly_excluded": 129,
     "needs_manual_review": 0,
-    "confident_automated": 2199,
+    "confident_automated": 2190,
     "remaining_backlog": 0,
-    "migrated": 2051,
+    "migrated": 2043,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2070,
+    "fully_covered_by_current_typesetting": 2061,
     "manual_review_prose_exclusion": 128,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2051,
-    "equationish": 1502,
-    "actuarial_fn": 499,
+    "dollar_delimited": 2043,
+    "equationish": 1493,
+    "actuarial_fn": 491,
     "ascii_approx": 235,
-    "bare_latex": 196,
+    "bare_latex": 195,
     "greek": 115,
     "compound": 26,
     "unicode_ops": 11
@@ -1702,8 +1702,8 @@
       "topic_code": "2.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
-        "mathish_strings": 44,
-        "already_compliant": 44,
+        "mathish_strings": 42,
+        "already_compliant": 42,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -1943,8 +1943,8 @@
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. $P(0,0)$=0.2, $P(0,1)$=0.3, $P(1,0)$=0.1, $P(1,1)$=0.4. Which covariance statement is correct?",
-          "text_hash": "5630b251e7ca8c63",
+          "text": "Closed-book. $P(0,0)$=0.2, $P(0,1)$=0.3, $P(1,0)$=0.1, $P(1,1)$=0.4. Compute $\\operatorname{Cov}(X,Y)$. Enter the numeric value.",
+          "text_hash": "2ba657d0f22f701c",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -1976,10 +1976,28 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].explanation",
-          "field_group": "knowledge_checks[].explanation",
-          "text": "Only cell (1,1) contributes to $E[XY]$. Subtracting the product of the means gives 0.05.",
-          "text_hash": "37b03add73ec7e47",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Only cell (1,1) contributes to $E[XY]$. Then centre: $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$.",
+          "text_hash": "671282764bf511d7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
+          "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Enter the covariance value, not $E[XY]$ alone.",
+          "text_hash": "f08df23099935e65",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -1993,14 +2011,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, Cov=0.05.",
-          "text_hash": "03217090d33f93b4",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Only cell (1,1) contributes to $E[XY]$. Subtracting the product of the means gives 0.05: $E[X]=0.5$, $E[Y]=0.7$, $E[XY]=0.4$, so $\\operatorname{Cov}(X,Y)=0.4-(0.5)(0.7)=0.05$.",
+          "text_hash": "62f40556996d446e",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -2028,68 +2046,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
           "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, so $\\operatorname{Cov}(X,Y)$=0.4-(0.5)(0.7)=0.05.",
-          "text_hash": "80f74f6dddedb328",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$, not the uncentred product alone.",
+          "text_hash": "fab1cae9e4fef19b",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
-          "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[XY]=E[X] E[Y]$=0.35 by definition, so covariance must be zero before checking the joint table.",
-          "text_hash": "1a053a9ed7822c6a",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
-          "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\operatorname{Cov}(X,Y)=E[XY]$=0.4 because covariance is the expected product without centring.",
-          "text_hash": "ac72ee899f66062d",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-COV-CORR-EXPECTATION",
-          "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$E[X]$=0.5 and $E[Y]$=0.7 imply independence, so no $E[XY]$ calculation is needed.",
-          "text_hash": "27f1e6a030aeba9f",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -3360,8 +3324,8 @@
       "topic_code": "2.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
-        "mathish_strings": 24,
-        "already_compliant": 24,
+        "mathish_strings": 22,
+        "already_compliant": 22,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -3375,8 +3339,8 @@
           "package_file": "2.2.1-marginal-conditional-cs1005.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Joint PMF: $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Which statement is correct?",
-          "text_hash": "bd1efdd56c39b0f0",
+          "text": "Closed-book. Joint PMF: $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Compute $P(Y=1|X=1)$. Enter the value as a decimal (not a fraction).",
+          "text_hash": "d6fc5f954f6b33a5",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -3391,14 +3355,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
           "package_file": "2.2.1-marginal-conditional-cs1005.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$P(X=1)=0.70$; $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
-          "text_hash": "a9e0012706ab80ad",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Sum the X=1 row for the marginal $P(X=1)=0.30+0.40$, then divide the (1,1) cell by that row total.",
+          "text_hash": "def54a66a30c315b",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -3409,14 +3373,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
           "package_file": "2.2.1-marginal-conditional-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1)=0.30+0.40=0.70$, and $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
-          "text_hash": "ecc23a4d7a5e3732",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Sum the X=1 row for the marginal, then divide the (1,1) cell by that row total. $P(X=1)=0.70$ and $P(Y=1|X=1)=0.40/0.70\\approx 0.571$.",
+          "text_hash": "0012fe93d989757c",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -3427,50 +3391,14 @@
         {
           "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
           "package_file": "2.2.1-marginal-conditional-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1)$=0.40 because the largest cell in the X=1 row is the marginal.",
-          "text_hash": "b61cbfb4b08711c6",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Forms $P(Y=1|X=1)$ from the normalised $X=1$ slice, not from a raw joint cell.",
+          "text_hash": "84fb437bcaf44e61",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
-          "package_file": "2.2.1-marginal-conditional-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(Y=1|X=1)$=0.40 because the joint cell is already conditional.",
-          "text_hash": "5944f162832b954b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-2.2-MARGINAL-CONDITIONAL",
-          "package_file": "2.2.1-marginal-conditional-cs1005.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1)$=0.70 and $P(Y=1|X=1)$=0.60 because $P(Y=1)$ is the conditional numerator.",
-          "text_hash": "b13fd3144fc2e6fd",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -28342,8 +28270,8 @@
       "topic_code": "2.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-PI",
       "counts": {
-        "mathish_strings": 22,
-        "already_compliant": 22,
+        "mathish_strings": 20,
+        "already_compliant": 20,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -28375,8 +28303,8 @@
           "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Claim sizes are Exponential with mean $\\theta = 1000$. Which statement is correct?",
-          "text_hash": "41bde1dbc1341749",
+          "text": "Closed-book. Claim sizes are Exponential with mean $\\theta = 1000$. Compute $P(X > 2000)$. Enter the probability as a decimal to 3 decimal places.",
+          "text_hash": "2867095d158b1dd1",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -28384,6 +28312,7 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
+            "actuarial_fn",
             "ascii_approx",
             "equationish"
           ]
@@ -28393,8 +28322,8 @@
           "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
           "field_path": "knowledge_checks[1].body",
           "field_group": "knowledge_checks[].body",
-          "text": "Compute $P(X > 2000)$ and the 90th percentile; refuse recognition-as-evaluation.",
-          "text_hash": "7de29cf4d1e3bf3a",
+          "text": "Compute $P(X > 2000)$ for the Exponential survival function; refuse recognition-as-evaluation.",
+          "text_hash": "376e296557862614",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -28403,6 +28332,42 @@
           "signals": [
             "dollar_delimited",
             "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
+          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Survival gives $P(X > x) = e^{-x/\\theta}$ with $x/\\theta = 2000/1000 = 2$.",
+          "text_hash": "9494d827866e567f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
+          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Report a decimal probability to 3 decimal places, not a percentage or the unevaluated $e^{-2}$.",
+          "text_hash": "f3580f86c9ba7696",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
             "equationish"
           ]
         },
@@ -28411,80 +28376,26 @@
           "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
           "field_path": "knowledge_checks[1].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Survival gives e^{-2000/1000}. Quantile inversion gives 1000 ln(10). Halving by mean ratio, scaling the mean by 0.9, or stopping at recognition are all wrong.",
-          "text_hash": "3670bcb90655f2d1",
+          "text": "Survival gives $e^{-2000/1000}=e^{-2}\\approx 0.135$. Halving by mean ratio, or stopping at recognition without evaluating the exponential, are wrong.",
+          "text_hash": "841453fd05649be3",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
-          "migration_status": "pending",
-          "signals": [
-            "bare_latex",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
-          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$P(X > 2000) \\approx 0.135$; 90th percentile $\\approx 2302.6$; refuse recognition-only.",
-          "text_hash": "be9a960ad22553cb",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
-          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X > 2000) = e^{-2} \\approx 0.135$. The 90th percentile solves $1 - e^{-x/1000} = 0.9$, giving $x = 1000 \\ln(10) \\approx 2302.6$. Naming Exponential does not replace these calculations.",
-          "text_hash": "40afc165aacc8da1",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
           "migration_status": "migrated",
           "signals": [
             "bare_latex",
             "dollar_delimited",
-            "actuarial_fn",
             "equationish"
           ]
         },
         {
           "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
           "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X > 2000)$ = 0.5 because the threshold 2000 is twice the mean 1000, so the tail probability is one half.",
-          "text_hash": "ef7a78961569cb7e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
-          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "The 90th percentile is 900 because $0.9 \\times 1000 = 900$ for any Exponential with mean $\\theta$.",
-          "text_hash": "7dae81d5922500f6",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses the Exponential survival $e^{-x/\\theta}$, not a mean-ratio heuristic.",
+          "text_hash": "735ebfabffcd0d86",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -28492,24 +28403,6 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.1-PROB-QUANTILES",
-          "package_file": "cp-2.1.3-prob-quantiles-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Once the model is $\\mathrm{Exponential}(\\theta = 1000)$, probability and quantile questions are answered by naming the family; numeric evaluation is optional decoration.",
-          "text_hash": "e75a812e01b29a00",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "ascii_approx",
             "equationish"
           ]
         },
@@ -28748,8 +28641,8 @@
       "topic_code": "2.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-PI",
       "counts": {
-        "mathish_strings": 29,
-        "already_compliant": 29,
+        "mathish_strings": 26,
+        "already_compliant": 26,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -28817,8 +28710,8 @@
           "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Joint PMF of (X, Y): $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Which statement is correct?",
-          "text_hash": "e3cc7aeff09f6877",
+          "text": "Closed-book. Joint PMF of (X, Y): $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Compute $P(Y=1 | X=1)$. Enter the value as a decimal (not a fraction).",
+          "text_hash": "6651b7dd965226f7",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -28851,14 +28744,14 @@
         {
           "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
           "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$P(X=1)=0.70$; $P(Y=1|X=1)\\approx 0.571$; refuse joint-as-margins-done.",
-          "text_hash": "b154a4af3f252e94",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Marginal sums the X = 1 row: $P(X=1)=0.30+0.40=0.70$. Conditional divides 0.40 by 0.70.",
+          "text_hash": "633b378e6b55830c",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -28887,68 +28780,14 @@
         {
           "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
           "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1) = 0.30 + 0.40 = 0.70$. $P(Y=1 \\mid X=1) = 0.40 / 0.70 \\approx 0.571$. The joint table is not interchangeable with its margins or conditionals without these moves.",
-          "text_hash": "3858c3bc66ae1171",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Forms $P(Y=1|X=1)$ from the normalised $X=1$ slice, not from a raw joint cell.",
+          "text_hash": "84fb437bcaf44e61",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
-          "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1)$ = 0.40 because $P(1,1)$ is the largest cell, so X = 1 is identified with that cell alone.",
-          "text_hash": "4bf2c38041a950b7",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
-          "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(Y=1 | X=1)$ = 0.40 because the conditional equals the joint entry $P(1,1)$ with no further normalisation.",
-          "text_hash": "5c88ee737a37e84b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-2.2-MARGINAL-CONDITIONAL",
-          "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(X=1)$ = 0.70 and $P(Y=1 | X=1)$ = 0.60 because (0.30 + 0.40) and (0.20 + 0.40) are both needed for the conditional numerator.",
-          "text_hash": "566751fd1599f427",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
+          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -39980,5 +39819,5 @@
       ]
     }
   ],
-  "content_fingerprint": "94b08449fd20def5aacb8d59ff4bc58ad12bef704a3e8d6ab862df74d3724032"
+  "content_fingerprint": "8d8fc16386d18d55b563e597287aac7291cac9b2e26063cad458a75b31c2ff94"
 }

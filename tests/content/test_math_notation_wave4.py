@@ -312,7 +312,7 @@ def test_wave4_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2051
+    assert checked["totals"]["migrated"] == 2043
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 

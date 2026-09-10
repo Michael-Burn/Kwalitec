@@ -823,7 +823,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2051
+    assert checked["totals"]["migrated"] == 2043
     assert live["totals"] == checked["totals"]
 
     pending = [

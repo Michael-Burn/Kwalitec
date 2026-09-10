@@ -37,6 +37,11 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1005-2.2.4-cp-01", "17", 0.5),
     ("cs1006-2.3.2-cp-01", "14", 0.5),
     ("cs1006-2.3.1-cp-01", "0.571", 0.001),
+    # NUM Wave 1 conversions
+    ("cs1005-2.2.1-cp-01", "0.571", 0.001),
+    ("cs1016-2.2.1-cp-01", "0.571", 0.001),
+    ("cs1005-2.2.3-cp-01", "0.05", 0.001),
+    ("cs1016-2.1.3-cp-01", "0.135", 0.001),
 )
 
 
@@ -234,12 +239,12 @@ class TestParseNumberRejectsAmbiguousShapes:
 
 
 class TestLiveNumericCheckpointsUnchanged:
-    """All 13 live numeric checkpoints: clean decimals/integers only."""
+    """All 17 live numeric checkpoints: clean decimals/integers only."""
 
     def setup_method(self) -> None:
         reset_educational_package_cache()
 
-    def test_thirteen_live_numeric_checkpoints_exist(self) -> None:
+    def test_seventeen_live_numeric_checkpoints_exist(self) -> None:
         loader = EducationalPackageLoader()
         found: dict[str, tuple[str, float | None]] = {}
         for pack in loader.all_approved():
@@ -249,7 +254,7 @@ class TestLiveNumericCheckpointsUnchanged:
                         check.accepted_keywords[0],
                         check.numeric_tolerance,
                     )
-        assert len(found) == 13
+        assert len(found) == 17
         for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
             assert item_id in found
             assert found[item_id][0] == accepted
@@ -267,7 +272,7 @@ class TestLiveNumericCheckpointsUnchanged:
     ) -> None:
         """Exact / within-tol / outside-tol outcomes for real keys.
 
-        All 13 accepted values are clean decimals or integers with no
+        All 17 accepted values are clean decimals or integers with no
         punctuation this fix changes. Snapshot expectations match the
         pre-fix scorer on these probes.
         """
@@ -325,6 +330,17 @@ ITEM7_NUMERIC_CONVERSIONS = (
     ("cs1005-2.2.4-cp-01", "17", 0.5),
     ("cs1006-2.3.2-cp-01", "14", 0.5),
     ("cs1006-2.3.1-cp-01", "0.571", 0.001),
+)
+
+# ---------------------------------------------------------------------------
+# NUM Wave 1: 4 MCQ → numeric conversions
+# ---------------------------------------------------------------------------
+
+NUM_WAVE1_NUMERIC_CONVERSIONS = (
+    ("cs1005-2.2.1-cp-01", "0.571", 0.001),
+    ("cs1016-2.2.1-cp-01", "0.571", 0.001),
+    ("cs1005-2.2.3-cp-01", "0.05", 0.001),
+    ("cs1016-2.1.3-cp-01", "0.135", 0.001),
 )
 
 
@@ -400,3 +416,61 @@ class TestItem7NumericConversions:
         decimal = score_practice_response(item, "0.571")
         assert decimal.correct is True
         assert decimal.feedback_outcome == "Correct"
+
+
+class TestNumWave1NumericConversions:
+    """NUM Wave 1: 4 converted checkpoints score on the live numeric contract."""
+
+    def setup_method(self) -> None:
+        reset_educational_package_cache()
+
+    @pytest.mark.parametrize(
+        ("item_id", "accepted", "tolerance"),
+        NUM_WAVE1_NUMERIC_CONVERSIONS,
+    )
+    def test_converted_item_scores_exact_within_and_outside_tolerance(
+        self,
+        item_id: str,
+        accepted: str,
+        tolerance: float,
+    ) -> None:
+        item = _scoreable_by_item_id(item_id)
+        assert item.response_type is PracticeResponseType.NUMERIC
+        assert item.answer_key.accepted == (accepted,)
+        assert item.answer_key.numeric_tolerance == pytest.approx(tolerance)
+        assert item.choices == ()
+        assert item.answer_key.correct_choice_id == ""
+
+        expected = float(accepted)
+        exact = score_practice_response(item, accepted)
+        assert exact.scored is True and exact.correct is True
+        assert exact.feedback_outcome == "Correct"
+
+        near = score_practice_response(item, str(expected + tolerance * 0.5))
+        assert near.scored is True and near.correct is True
+
+        far = score_practice_response(item, str(expected + tolerance * 2 + 0.01))
+        assert far.scored is True and far.correct is False
+        assert far.feedback_outcome == "Incorrect"
+
+    def test_fraction_valued_wave1_items_reject_fraction_input(self) -> None:
+        """0.40/0.70 ≈ 4/7, but the scorer does not evaluate fractions."""
+        for item_id in ("cs1005-2.2.1-cp-01", "cs1016-2.2.1-cp-01"):
+            item = _scoreable_by_item_id(item_id)
+            assert _parse_number("4/7") is None
+            fraction = score_practice_response(item, "4/7")
+            assert fraction.scored is True
+            assert fraction.correct is False
+            assert fraction.feedback_outcome == "Incorrect"
+            assert score_practice_response(item, "0.571").correct is True
+
+    def test_exponential_survival_item_rejects_unevaluated_expression(self) -> None:
+        """e^-2 must be entered as the evaluated decimal 0.135."""
+        item = _scoreable_by_item_id("cs1016-2.1.3-cp-01")
+        for bad in ("e^-2", "exp(-2)", "1/e^2"):
+            assert _parse_number(bad) is None
+            result = score_practice_response(item, bad)
+            assert result.scored is True
+            assert result.correct is False
+            assert result.feedback_outcome == "Incorrect"
+        assert score_practice_response(item, "0.135").correct is True

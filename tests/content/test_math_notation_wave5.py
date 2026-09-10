@@ -151,8 +151,8 @@ _MEANING_SAMPLES = (
     ),
     (
         "cp-2.2.1-marginal-conditional-cs1016.json",
-        "knowledge_checks[1].model_answer",
-        (r"P(X=1)", r"P(Y=1|X=1)"),
+        "knowledge_checks[1].hints[0]",
+        (r"P(X=1)",),
         "marginal then conditional",
     ),
     (
@@ -415,7 +415,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2051
+    assert checked["totals"]["migrated"] == 2043
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -438,7 +438,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 371
+    assert migrated == 366
     assert still_pending_review == 0
     assert confident_backlog == 0
 

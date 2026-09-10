@@ -160,44 +160,24 @@
       "kind": "checkpoint",
       "item_id": "cs1016-2.2.1-cp-01",
       "title": "Checkpoint: 2.2.1",
-      "prompt": "Closed-book. Joint PMF of (X, Y): $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Which statement is correct?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. Joint PMF of (X, Y): $P(0,0)$=0.10, $P(0,1)$=0.20, $P(1,0)$=0.30, $P(1,1)$=0.40. Compute $P(Y=1 | X=1)$. Enter the value as a decimal (not a fraction).",
+      "response_type": "numeric",
       "body": "Compute $P(X=1)$ and $P(Y=1 | X=1)$; refuse joint-as-margins-done.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Marginal sums the X = 1 row: $P(X=1)=0.30+0.40=0.70$. Conditional divides 0.40 by 0.70.",
+        "Report a decimal such as 0.571, not a fraction such as 4/7."
       ],
-      "accepted_keywords": [],
+      "accepted_keywords": [
+        "0.571"
+      ],
+      "numeric_tolerance": 0.001,
       "explanation": "Marginal sums the X = 1 row. Conditional divides 0.40 by 0.70. Using one cell as the marginal, skipping division, or wrong numerator are standard joint-table errors.",
-      "model_answer": "$P(X=1)=0.70$; $P(Y=1|X=1)\\approx 0.571$; refuse joint-as-margins-done.",
+      "model_answer": "0.571",
       "common_mistake": "Largest-cell shortcut, conditional without normalising, or wrong numerator for $P(Y=1|X=1)$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$P(X=1) = 0.30 + 0.40 = 0.70$. $P(Y=1 \\mid X=1) = 0.40 / 0.70 \\approx 0.571$. The joint table is not interchangeable with its margins or conditionals without these moves.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$P(X=1)$ = 0.40 because $P(1,1)$ is the largest cell, so X = 1 is identified with that cell alone.",
-          "misconception_tag": "largest_cell_as_marginal"
-        },
-        {
-          "id": "c",
-          "label": "$P(Y=1 | X=1)$ = 0.40 because the conditional equals the joint entry $P(1,1)$ with no further normalisation.",
-          "misconception_tag": "conditional_without_normalise"
-        },
-        {
-          "id": "d",
-          "label": "$P(X=1)$ = 0.70 and $P(Y=1 | X=1)$ = 0.60 because (0.30 + 0.40) and (0.20 + 0.40) are both needed for the conditional numerator.",
-          "misconception_tag": "wrong_conditional_numerator"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.001 of 0.571.",
+        "Forms $P(Y=1|X=1)$ from the normalised $X=1$ slice, not from a raw joint cell."
+      ]
     }
   ],
   "reflection": {

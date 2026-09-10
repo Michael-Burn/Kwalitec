@@ -116,21 +116,18 @@
     {
       "package_file": "2.2.3-cov-corr-expectation-cs1005.json",
       "item_id": "cs1005-2.2.3-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.05"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "0.05",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "0.05"
         },
         {
           "response": "b",
@@ -569,21 +566,18 @@
     {
       "package_file": "cp-2.2.1-marginal-conditional-cs1016.json",
       "item_id": "cs1016-2.2.1-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.571"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "0.571",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "0.571"
         },
         {
           "response": "b",

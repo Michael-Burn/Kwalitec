@@ -110,7 +110,7 @@ _MEANING_SAMPLES = (
     ),
     (
         "2.2.1-marginal-conditional-cs1005.json",
-        "knowledge_checks[1].model_answer",
+        "knowledge_checks[1].explanation",
         (r"P(X=1)", r"P(Y=1|X=1)", r"\approx"),
         "marginal then conditional",
     ),
@@ -140,8 +140,8 @@ _MEANING_SAMPLES = (
     ),
     (
         "cp-2.1.3-prob-quantiles-cs1016.json",
-        "knowledge_checks[1].choices[0].label",
-        (r"P(X > 2000)", r"e^{-2}", r"\ln(10)"),
+        "knowledge_checks[1].explanation",
+        (r"e^{-2000/1000}", r"e^{-2}", r"\approx 0.135"),
         "exponential survival and quantile",
     ),
     (
@@ -323,7 +323,7 @@ def test_wave6_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2051
+    assert checked["totals"]["migrated"] == 2043
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -352,7 +352,7 @@ def test_wave6_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 267
+    assert migrated == 264
     assert still_pending_review == 0
     assert confident_backlog == 0
     assert manual_excluded == 18

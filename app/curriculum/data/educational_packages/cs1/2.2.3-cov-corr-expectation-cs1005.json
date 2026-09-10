@@ -160,44 +160,24 @@
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.3-cp-01",
       "title": "Checkpoint: 2.2.3",
-      "prompt": "Closed-book. $P(0,0)$=0.2, $P(0,1)$=0.3, $P(1,0)$=0.1, $P(1,1)$=0.4. Which covariance statement is correct?",
-      "response_type": "mcq",
+      "prompt": "Closed-book. $P(0,0)$=0.2, $P(0,1)$=0.3, $P(1,0)$=0.1, $P(1,1)$=0.4. Compute $\\operatorname{Cov}(X,Y)$. Enter the numeric value.",
+      "response_type": "numeric",
       "body": "Compute $E[X]$, $E[Y]$, $E[XY]$, and covariance.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Only cell (1,1) contributes to $E[XY]$. Then centre: $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$.",
+        "Enter the covariance value, not $E[XY]$ alone."
       ],
-      "accepted_keywords": [],
-      "explanation": "Only cell (1,1) contributes to $E[XY]$. Subtracting the product of the means gives 0.05.",
-      "model_answer": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, Cov=0.05.",
+      "accepted_keywords": [
+        "0.05"
+      ],
+      "numeric_tolerance": 0.001,
+      "explanation": "Only cell (1,1) contributes to $E[XY]$. Subtracting the product of the means gives 0.05: $E[X]=0.5$, $E[Y]=0.7$, $E[XY]=0.4$, so $\\operatorname{Cov}(X,Y)=0.4-(0.5)(0.7)=0.05$.",
+      "model_answer": "0.05",
       "common_mistake": "Assuming independence from marginals or using $E[XY]$ as covariance without centring.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
-      ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$E[X]$=0.5, $E[Y]$=0.7, $E[XY]$=0.4, so $\\operatorname{Cov}(X,Y)$=0.4-(0.5)(0.7)=0.05.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "$E[XY]=E[X] E[Y]$=0.35 by definition, so covariance must be zero before checking the joint table.",
-          "misconception_tag": "assume_independence"
-        },
-        {
-          "id": "c",
-          "label": "$\\operatorname{Cov}(X,Y)=E[XY]$=0.4 because covariance is the expected product without centring.",
-          "misconception_tag": "uncentred_product_as_covariance"
-        },
-        {
-          "id": "d",
-          "label": "$E[X]$=0.5 and $E[Y]$=0.7 imply independence, so no $E[XY]$ calculation is needed.",
-          "misconception_tag": "marginals_imply_independence"
-        }
-      ],
-      "correct_choice_id": "a"
+        "Enters a value within 0.001 of 0.05.",
+        "Uses $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$, not the uncentred product alone."
+      ]
     }
   ],
   "reflection": {
