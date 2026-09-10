@@ -11,6 +11,11 @@ Do not expand ``PROTOTYPE_ITEM_IDS`` without an explicit editorial review.
 Editorial review record (2026-09-09): ten additional items below were
 reviewed and approved before wiring (Bayes cluster, MSE AR/CP siblings,
 GLM CP sibling). Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-10): ten additional CAF Wave 1 items
+were reviewed and approved before wiring (revision estimators AR,
+continuous waiting AR, prior/posterior AR/CP twins, posterior-simple
+AR/CP twins). Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -23,7 +28,8 @@ from app.application.learning_session.scoreable_practice import (
 
 # Live Knowledge Check item_ids only — Batch 1 estimators (numeric),
 # Batch 2 GLM, Batch 3 Rho conceptual vignette, Batch 6B revision,
-# plus editorially reviewed expansion (Bayes / MSE / GLM siblings).
+# plus editorially reviewed expansions (Bayes / MSE / GLM siblings;
+# CAF Wave 1 prior/posterior / posterior-simple / estimators AR).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -40,6 +46,16 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1010-3.1.4-ar-01",  # Expansion: MSE comparison AR
         "cs1010-3.1.4-cp-01",  # Expansion: MSE comparison CP
         "cs1014-4.2.1-cp-01",  # Expansion: exponential-family GLM CP
+        "cs1010-ck-r1-ar-01",  # CAF Wave 1: revision estimators AR
+        "cs1017-2.1.2-ar-01",  # CAF Wave 1: continuous waiting AR
+        "cs1003-5.1.2-ar-01",  # CAF Wave 1: prior/posterior AR (cs1003)
+        "cs1003-5.1.2-cp-01",  # CAF Wave 1: prior/posterior CP (cs1003)
+        "cs1015-5.1.2-ar-01",  # CAF Wave 1: prior/posterior AR (cs1015)
+        "cs1015-5.1.2-cp-01",  # CAF Wave 1: prior/posterior CP (cs1015)
+        "cs1003-5.1.3-ar-01",  # CAF Wave 1: posterior-simple AR (cs1003)
+        "cs1003-5.1.3-cp-01",  # CAF Wave 1: posterior-simple CP (cs1003)
+        "cs1015-5.1.3-ar-01",  # CAF Wave 1: posterior-simple AR (cs1015)
+        "cs1015-5.1.3-cp-01",  # CAF Wave 1: posterior-simple CP (cs1015)
     }
 )
 
@@ -404,6 +420,269 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "definition. Family membership needs the exponential-family "
         "structure tied to the response, not the mere presence of an "
         "exponential symbol."
+    ),
+    # --- cs1010-ck-r1-ar-01 ---
+    (
+        "cs1010-ck-r1-ar-01",
+        "b",
+    ): (
+        "That choice treats method of moments and maximum likelihood as "
+        "always identical. The methods use different estimating principles "
+        "and need not agree, even when they coincide in some models."
+    ),
+    (
+        "cs1010-ck-r1-ar-01",
+        "c",
+    ): (
+        "That choice assigns maximising the observed-sample probability to "
+        "method of moments. That is the MLE principle; method of moments "
+        "equates sample and model moments."
+    ),
+    (
+        "cs1010-ck-r1-ar-01",
+        "d",
+    ): (
+        "That choice limits maximum likelihood to the first population "
+        "moment. MLE maximises the observed-data likelihood; matching the "
+        "first moment alone is a moments step, not the MLE definition."
+    ),
+    # --- cs1017-2.1.2-ar-01 ---
+    (
+        "cs1017-2.1.2-ar-01",
+        "b",
+    ): (
+        "That choice makes Normal the default for any positive quantity. "
+        "Symmetric all-real support does not match strictly positive "
+        "waiting-time support; family choice follows support and shape "
+        "story."
+    ),
+    (
+        "cs1017-2.1.2-ar-01",
+        "c",
+    ): (
+        "That choice treats Exponential and Normal as interchangeable "
+        "because each has one numeric parameter. Parameter count does not "
+        "equate families; memoryless waiting under constant hazard points "
+        "to exponential, not Normal."
+    ),
+    (
+        "cs1017-2.1.2-ar-01",
+        "d",
+    ): (
+        "That choice requires a z-score transform before any continuous "
+        "family applies. Continuous families model raw support directly; "
+        "positive memoryless waiting under constant hazard selects "
+        "exponential first."
+    ),
+    # --- cs1003-5.1.2-ar-01 ---
+    (
+        "cs1003-5.1.2-ar-01",
+        "b",
+    ): (
+        "That choice treats naming a conjugate pair as finishing the "
+        "numerical posterior. Conjugate closure keeps the posterior in the "
+        "same family; you still obtain posterior parameters from prior "
+        "plus data."
+    ),
+    (
+        "cs1003-5.1.2-ar-01",
+        "c",
+    ): (
+        "That choice collapses prior and posterior into one object and "
+        "equates conjugate with the MLE. Prior is belief before data; "
+        "posterior is after; conjugate means family closure under "
+        "updating, not MLE equality."
+    ),
+    (
+        "cs1003-5.1.2-ar-01",
+        "d",
+    ): (
+        "That choice calls any zero-to-one prior conjugate and treats "
+        "closure as optional. Conjugate means the prior family stays "
+        "closed under updating so the posterior remains in that family."
+    ),
+    # --- cs1003-5.1.2-cp-01 ---
+    (
+        "cs1003-5.1.2-cp-01",
+        "b",
+    ): (
+        "That choice treats the prior as the last observed sample. The "
+        "prior is belief about theta before data; conjugate updating "
+        "combines that prior with the likelihood, not a copied sample."
+    ),
+    (
+        "cs1003-5.1.2-cp-01",
+        "c",
+    ): (
+        "That choice treats naming Beta-Binomial as finishing the "
+        "numerical posterior. Conjugate naming structures the update; you "
+        "still calculate posterior parameters from prior plus data."
+    ),
+    (
+        "cs1003-5.1.2-cp-01",
+        "d",
+    ): (
+        "That choice makes prior and posterior identical once data arrive "
+        "and equates conjugate with the MLE. Posterior updates the prior; "
+        "conjugate means family closure, not MLE equality."
+    ),
+    # --- cs1015-5.1.2-ar-01 (content twin of cs1003-5.1.2-ar-01) ---
+    (
+        "cs1015-5.1.2-ar-01",
+        "b",
+    ): (
+        "That choice treats naming a conjugate pair as finishing the "
+        "numerical posterior. Conjugate closure keeps the posterior in the "
+        "same family; you still obtain posterior parameters from prior "
+        "plus data."
+    ),
+    (
+        "cs1015-5.1.2-ar-01",
+        "c",
+    ): (
+        "That choice collapses prior and posterior into one object and "
+        "equates conjugate with the MLE. Prior is belief before data; "
+        "posterior is after; conjugate means family closure under "
+        "updating, not MLE equality."
+    ),
+    (
+        "cs1015-5.1.2-ar-01",
+        "d",
+    ): (
+        "That choice calls any zero-to-one prior conjugate and treats "
+        "closure as optional. Conjugate means the prior family stays "
+        "closed under updating so the posterior remains in that family."
+    ),
+    # --- cs1015-5.1.2-cp-01 ---
+    (
+        "cs1015-5.1.2-cp-01",
+        "b",
+    ): (
+        "That choice treats naming Beta-Binomial as finishing the "
+        "numerical posterior. Conjugate naming structures the update; you "
+        "still calculate posterior parameters from prior plus data."
+    ),
+    (
+        "cs1015-5.1.2-cp-01",
+        "c",
+    ): (
+        "That choice sets the prior equal to the sample mean and leaves "
+        "the posterior unchanged under conjugate updating. Conjugate "
+        "updating revises parameters with the data; prior and posterior "
+        "are distinct stages."
+    ),
+    (
+        "cs1015-5.1.2-cp-01",
+        "d",
+    ): (
+        "That choice keeps prior and likelihood as objects that never "
+        "combine. Bayes forms the posterior from prior times likelihood, "
+        "then normalises; conjugate pairs still combine."
+    ),
+    # --- cs1003-5.1.3-ar-01 ---
+    (
+        "cs1003-5.1.3-ar-01",
+        "b",
+    ): (
+        "That choice treats having the posterior as finishing the "
+        "squared-error point estimator. The posterior is the updated "
+        "distribution; a loss-based point estimate is a further summary "
+        "under a chosen loss."
+    ),
+    (
+        "cs1003-5.1.3-ar-01",
+        "c",
+    ): (
+        "That choice sets the simple posterior equal to the prior alone. "
+        "Posterior comes from prior and likelihood together; likelihood "
+        "is not reserved for frequentist intervals."
+    ),
+    (
+        "cs1003-5.1.3-ar-01",
+        "d",
+    ): (
+        "That choice replaces the posterior distribution with a credible "
+        "interval as the only output. Intervals are summaries of the "
+        "posterior; the primary object is the full posterior "
+        "distribution."
+    ),
+    # --- cs1003-5.1.3-cp-01 ---
+    (
+        "cs1003-5.1.3-cp-01",
+        "b",
+    ): (
+        "That choice treats Bayesian as a slogan and skips the posterior "
+        "once Beta(2,2) is named. With Binomial n=10 and x=3, the "
+        "conjugate update is Beta(5,9); Bayesian work needs that "
+        "posterior distribution."
+    ),
+    (
+        "cs1003-5.1.3-cp-01",
+        "c",
+    ): (
+        "That choice leaves the posterior at Beta(2,2) as if n=10 were "
+        "too small to update. Successes and failures revise the shapes: "
+        "Beta(2+3, 2+7) = Beta(5,9)."
+    ),
+    (
+        "cs1003-5.1.3-cp-01",
+        "d",
+    ): (
+        "That choice treats having Beta(5,9) as finishing the "
+        "squared-error point estimator. Beta(5,9) is the posterior "
+        "distribution; a loss-based point estimate is a further step."
+    ),
+    # --- cs1015-5.1.3-ar-01 (content twin of cs1003-5.1.3-ar-01) ---
+    (
+        "cs1015-5.1.3-ar-01",
+        "b",
+    ): (
+        "That choice treats having the posterior as finishing the "
+        "squared-error point estimator. The posterior is the updated "
+        "distribution; a loss-based point estimate is a further summary "
+        "under a chosen loss."
+    ),
+    (
+        "cs1015-5.1.3-ar-01",
+        "c",
+    ): (
+        "That choice sets the simple posterior equal to the prior alone. "
+        "Posterior comes from prior and likelihood together; likelihood "
+        "is not reserved for frequentist intervals."
+    ),
+    (
+        "cs1015-5.1.3-ar-01",
+        "d",
+    ): (
+        "That choice replaces the posterior distribution with a credible "
+        "interval as the only output. Intervals are summaries of the "
+        "posterior; the primary object is the full posterior "
+        "distribution."
+    ),
+    # --- cs1015-5.1.3-cp-01 ---
+    (
+        "cs1015-5.1.3-cp-01",
+        "b",
+    ): (
+        "That choice leaves the posterior at Beta(2,2) as if n=10 were "
+        "too small to update. Successes and failures revise the shapes: "
+        "Beta(2+3, 2+7) = Beta(5,9)."
+    ),
+    (
+        "cs1015-5.1.3-cp-01",
+        "c",
+    ): (
+        "That choice treats the sample proportion three-tenths as the "
+        "posterior distribution. The conjugate posterior is Beta(5,9); "
+        "that ratio is a point summary, not the full posterior."
+    ),
+    (
+        "cs1015-5.1.3-cp-01",
+        "d",
+    ): (
+        "That choice treats having Beta(5,9) as finishing the "
+        "squared-error point estimator. Beta(5,9) is the posterior "
+        "distribution; a loss-based point estimate is a further step."
     ),
 }
 
