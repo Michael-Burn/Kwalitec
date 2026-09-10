@@ -163,44 +163,24 @@
       "kind": "checkpoint",
       "item_id": "cs1004-cgr1-cp-01",
       "title": "Revision Checkpoint: univariate generation and placement",
-      "prompt": "Closed-book. To generate an Exponential distribution with rate lambda from U distributed Uniform(0, 1), which formula is valid?",
-      "response_type": "mcq",
-      "body": "Select the valid construction.",
+      "prompt": "Closed-book. $U$ = 0.3 is a Uniform(0,1) draw. Using the inverse-transform formula $X = -\\ln(1-U)/\\lambda$ with rate $\\lambda$ = 2, enter $X$ as a decimal to 4 places.",
+      "response_type": "numeric",
+      "body": "Evaluate the pinned inverse-transform formula at the stated $U$ and $\\lambda$.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Use $X = -\\ln(1-U)/\\lambda$ with the given $U$ and $\\lambda$.",
+        "Substitute $1-U = 0.7$ before taking the logarithm."
       ],
-      "accepted_keywords": [],
-      "explanation": "The exponential quantile is -log(1-u)/lambda, and 1-U is also uniform.",
-      "model_answer": "Use X = -log(1-U)/lambda and verify non-negative support.",
-      "common_mistake": "Multiplying by the rate instead of dividing by it.",
+      "accepted_keywords": [
+        "0.1783"
+      ],
+      "explanation": "With $U = 0.3$ and $\\lambda = 2$, $X = -\\ln(0.7)/2 \\approx 0.1783$. At a fixed $U$, $-\\ln(U)/\\lambda$ is a different number.",
+      "model_answer": "0.1783",
+      "common_mistake": "Using $-\\ln(U)/\\lambda$ at this $U$ (about 0.60), dropping the minus sign, or scaling by $\\lambda$ instead of dividing.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 0.1783.",
+        "Uses $X = -\\ln(1-U)/\\lambda$ at $U = 0.3$, $\\lambda = 2$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "X = -log(1 - U) / lambda, equivalently -log(U) / lambda.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "X = log(U) / lambda.",
-          "misconception_tag": "negative_support_error"
-        },
-        {
-          "id": "c",
-          "label": "X = lambda U.",
-          "misconception_tag": "uniform_scaling_confusion"
-        },
-        {
-          "id": "d",
-          "label": "X = -lambda log(U).",
-          "misconception_tag": "rate_scale_confusion"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

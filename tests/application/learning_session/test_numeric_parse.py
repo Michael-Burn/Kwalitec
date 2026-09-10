@@ -47,6 +47,14 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1015-5.1.7-cp-01", "800", 0.5),
     ("cs1003-5.1.8-cp-01", "1000", 0.5),
     ("cs1015-5.1.8-cp-01", "566.67", 0.5),
+    # NUM Wave 3: remaining Tier B pool
+    ("cs1016-5.1.1-cp-01", "0.0876", 0.001),
+    ("cs1004-cgr1-cp-01", "0.1783", 0.001),
+    ("cs1014-4.2.8-cp-01", "2.5", 0.001),
+    ("cs1010-3.1.6-cp-01", "8.602", 0.001),
+    ("cs1014-4.2.5-cp-01", "7.3891", 0.001),
+    ("cs1003-5.1.4-cp-01", "5.45", 0.001),
+    ("cs1015-5.1.4-cp-01", "2.1", 0.001),
 )
 
 
@@ -244,12 +252,12 @@ class TestParseNumberRejectsAmbiguousShapes:
 
 
 class TestLiveNumericCheckpointsUnchanged:
-    """All 21 live numeric checkpoints: clean decimals/integers only."""
+    """All 28 live numeric checkpoints: clean decimals/integers only."""
 
     def setup_method(self) -> None:
         reset_educational_package_cache()
 
-    def test_twenty_one_live_numeric_checkpoints_exist(self) -> None:
+    def test_twenty_eight_live_numeric_checkpoints_exist(self) -> None:
         loader = EducationalPackageLoader()
         found: dict[str, tuple[str, float | None]] = {}
         for pack in loader.all_approved():
@@ -259,7 +267,7 @@ class TestLiveNumericCheckpointsUnchanged:
                         check.accepted_keywords[0],
                         check.numeric_tolerance,
                     )
-        assert len(found) == 21
+        assert len(found) == 28
         for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
             assert item_id in found
             assert found[item_id][0] == accepted
@@ -277,7 +285,7 @@ class TestLiveNumericCheckpointsUnchanged:
     ) -> None:
         """Exact / within-tol / outside-tol outcomes for real keys.
 
-        All 21 accepted values are clean decimals or integers with no
+        All 28 accepted values are clean decimals or integers with no
         punctuation this fix changes. Snapshot expectations match the
         pre-fix scorer on these probes.
         """
@@ -357,6 +365,20 @@ NUM_WAVE2_NUMERIC_CONVERSIONS = (
     ("cs1015-5.1.7-cp-01", "800", 0.5),
     ("cs1003-5.1.8-cp-01", "1000", 0.5),
     ("cs1015-5.1.8-cp-01", "566.67", 0.5),
+)
+
+# ---------------------------------------------------------------------------
+# NUM Wave 3: remaining Tier B pool (7 MCQ → numeric)
+# ---------------------------------------------------------------------------
+
+NUM_WAVE3_NUMERIC_CONVERSIONS = (
+    ("cs1016-5.1.1-cp-01", "0.0876", 0.001),
+    ("cs1004-cgr1-cp-01", "0.1783", 0.001),
+    ("cs1014-4.2.8-cp-01", "2.5", 0.001),
+    ("cs1010-3.1.6-cp-01", "8.602", 0.001),
+    ("cs1014-4.2.5-cp-01", "7.3891", 0.001),
+    ("cs1003-5.1.4-cp-01", "5.45", 0.001),
+    ("cs1015-5.1.4-cp-01", "2.1", 0.001),
 )
 
 
@@ -551,3 +573,79 @@ class TestNumWave2NumericConversions:
             assert result.scored is True
             assert result.correct is True
             assert result.feedback_outcome == "Correct"
+
+
+class TestNumWave3NumericConversions:
+    """NUM Wave 3: 7 remaining Tier B checkpoints score on the live numeric contract."""
+
+    def setup_method(self) -> None:
+        reset_educational_package_cache()
+
+    @pytest.mark.parametrize(
+        ("item_id", "accepted", "tolerance"),
+        NUM_WAVE3_NUMERIC_CONVERSIONS,
+    )
+    def test_converted_item_scores_exact_within_and_outside_tolerance(
+        self,
+        item_id: str,
+        accepted: str,
+        tolerance: float,
+    ) -> None:
+        item = _scoreable_by_item_id(item_id)
+        assert item.response_type is PracticeResponseType.NUMERIC
+        assert item.answer_key.accepted == (accepted,)
+        assert item.answer_key.numeric_tolerance == pytest.approx(tolerance)
+        assert item.choices == ()
+        assert item.answer_key.correct_choice_id == ""
+
+        expected = float(accepted)
+        exact = score_practice_response(item, accepted)
+        assert exact.scored is True and exact.correct is True
+        assert exact.feedback_outcome == "Correct"
+
+        near = score_practice_response(item, str(expected + tolerance * 0.5))
+        assert near.scored is True and near.correct is True
+
+        far = score_practice_response(item, str(expected + tolerance * 2 + 0.01))
+        assert far.scored is True and far.correct is False
+        assert far.feedback_outcome == "Incorrect"
+
+    def test_loss_estimator_tolerance_rejects_wrong_loss_median(self) -> None:
+        """0.001 must reject the absolute-error median that 0.5 would wrongly accept.
+
+        Squared-error means are 5.45 and 2.1; medians under absolute error are
+        5 and 2. A currency-like 0.5 band would score those medians Correct.
+        """
+        cases = (
+            ("cs1003-5.1.4-cp-01", "5.45", "5"),
+            ("cs1015-5.1.4-cp-01", "2.1", "2"),
+        )
+        for item_id, accepted, median in cases:
+            item = _scoreable_by_item_id(item_id)
+            assert item.answer_key.accepted == (accepted,)
+            assert item.answer_key.numeric_tolerance == pytest.approx(0.001)
+            assert score_practice_response(item, accepted).correct is True
+            wrong = score_practice_response(item, median)
+            assert wrong.scored is True
+            assert wrong.correct is False
+            assert wrong.feedback_outcome == "Incorrect"
+            assert abs(float(accepted) - float(median)) < 0.5
+
+    def test_inverse_transform_prompt_pins_one_minus_u_form(self) -> None:
+        """Prompt must pin X = -ln(1-U)/lambda.
+
+        That keeps -ln(U)/lambda at U=0.3 from being invited.
+        """
+        item = _scoreable_by_item_id("cs1004-cgr1-cp-01")
+        prompt = item.prompt
+        assert "1-U" in prompt.replace(" ", "")
+        assert score_practice_response(item, "0.1783").correct is True
+        assert score_practice_response(item, "0.602").correct is False
+
+    def test_linear_predictor_scores_mean_severity_not_eta(self) -> None:
+        item = _scoreable_by_item_id("cs1014-4.2.5-cp-01")
+        assert item.answer_key.accepted == ("7.3891",)
+        assert score_practice_response(item, "7.3891").correct is True
+        assert score_practice_response(item, "2").correct is False
+        assert score_practice_response(item, "2.0").correct is False
+

@@ -160,44 +160,24 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.8-cp-01",
       "title": "Checkpoint: 4.2.8",
-      "prompt": "Closed-book. Which statement correctly states the idea of a Pearson residual and a deviance residual for a GLM observation?",
-      "response_type": "mcq",
-      "body": "Define residuals; refuse LRT-as-residual.",
+      "prompt": "Closed-book. Observed claim count $y$ = 9 with fitted Poisson mean $\\hat{\\mu}$ = 4. Enter the Pearson residual $r_{P} = (y - \\hat{\\mu})/\\sqrt{V(\\hat{\\mu})}$ with $V(\\mu) = \\mu$.",
+      "response_type": "numeric",
+      "body": "Standardise the raw residual by $\\sqrt{V(\\hat{\\mu})}$ for Poisson.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "For Poisson, $V(\\hat{\\mu}) = \\hat{\\mu}$.",
+        "Divide $y - \\hat{\\mu}$ by $\\sqrt{\\hat{\\mu}}$."
       ],
-      "accepted_keywords": [],
-      "explanation": "Residuals standardise or decompose deviance at observation level. LRT compares models or assesses acceptability, a separate object.",
-      "model_answer": "Pearson standardised discrepancy; deviance signed contribution. LRT is different.",
-      "common_mistake": "Accepting LRT as finishing residual explanation.",
+      "accepted_keywords": [
+        "2.5"
+      ],
+      "explanation": "Pearson residual $r_{P} = (9-4)/\\sqrt{4} = 5/2 = 2.5$. The deviance residual is a different diagnostic.",
+      "model_answer": "2.5",
+      "common_mistake": "Reporting the raw residual 5, the deviance residual about 2.144, or $\\sqrt{4}$ without dividing.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 2.5.",
+        "Uses the Pearson residual formula with $V(\\mu) = \\mu$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Pearson residual: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$, a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Running a likelihood-ratio test finishes explaining Pearson and deviance residuals.",
-          "misconception_tag": "lrt_finishes_residuals"
-        },
-        {
-          "id": "c",
-          "label": "Pearson residual equals y minus $\\hat{\\mu}$; deviance residual equals log(y/$\\hat{\\mu}$) with no further definition.",
-          "misconception_tag": "raw_only_residual"
-        },
-        {
-          "id": "d",
-          "label": "Both residuals are defined only after acceptability tests pass; before that, residuals are undefined.",
-          "misconception_tag": "residuals_after_tests"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

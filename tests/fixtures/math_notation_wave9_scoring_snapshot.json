@@ -182,21 +182,18 @@
     {
       "package_file": "revision-distributions-generation-cs1004.json",
       "item_id": "cs1004-cgr1-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.1783"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "0.1783",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "0.1783"
         },
         {
           "response": "b",

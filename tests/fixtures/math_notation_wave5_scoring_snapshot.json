@@ -305,21 +305,18 @@
     {
       "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
       "item_id": "cs1016-5.1.1-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "0.0876"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "0.0876",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "0.0876"
         },
         {
           "response": "b",

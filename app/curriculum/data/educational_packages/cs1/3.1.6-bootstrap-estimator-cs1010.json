@@ -161,44 +161,24 @@
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.6-cp-01",
       "title": "Checkpoint: 3.1.6",
-      "prompt": "Closed-book. You have an estimator $\\hat{\\theta}$ from a sample of size n. Which statement correctly describes using the bootstrap to estimate the standard error of $\\hat{\\theta}$?",
-      "response_type": "mcq",
-      "body": "Bootstrap SE procedure; refuse asymptotics-as-bootstrap and CI-as-same.",
+      "prompt": "Closed-book. Bootstrap means (£00): 210, 195, 220, 205, 200 ($B$ = 5). Enter the bootstrap SE $\\sqrt{(1/B)\\sum(\\hat{\\theta}^{*}_{b}-\\bar{\\theta}^{*})^{2}}$ as a decimal to 3 places.",
+      "response_type": "numeric",
+      "body": "Average the replicates, then take the stated bootstrap SE with division by $B$.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Centre each replicate on the mean of the five bootstrap means.",
+        "Use $\\sqrt{(1/B)\\sum(\\cdot)^{2}}$ with $B = 5$, not $B-1$."
       ],
-      "accepted_keywords": [],
-      "explanation": "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
-      "model_answer": "With-replacement resamples $\\rightarrow$ $\\hat{\\theta}^{*}$ replicates $\\rightarrow$ empirical SD as SE; distinct from asymptotics and from bootstrap CIs.",
-      "common_mistake": "Calling an asymptotic plug-in or a CI half-width 'the bootstrap SE'.",
+      "accepted_keywords": [
+        "8.602"
+      ],
+      "explanation": "$\\bar{\\theta}^{*} = 206$ and $\\sum(\\hat{\\theta}^{*}_{b}-206)^{2} = 370$, so $\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{370/5} = \\sqrt{74} \\approx 8.602$.",
+      "model_answer": "8.602",
+      "common_mistake": "Using $1/(B-1)$ instead of $1/B$, reporting the mean 206, or $\\sqrt{370}$ without dividing by $B$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 8.602.",
+        "Uses the bootstrap SE formula with division by $B$."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Draw many resamples with replacement from the original sample, recompute $\\hat{\\theta}^{*}$ on each resample, and use the empirical standard deviation of the $\\hat{\\theta}^{*}$ values as the SE estimate. That is not the same as quoting an asymptotic Normal law, and not the same as constructing a bootstrap confidence interval.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Compute the asymptotic variance $1/(n I(\\hat{\\theta}))$ once; that single plug-in is the bootstrap standard error by definition.",
-          "misconception_tag": "asymptotics_as_bootstrap"
-        },
-        {
-          "id": "c",
-          "label": "Form the percentile bootstrap confidence interval and report half its width as the only legitimate bootstrap standard error.",
-          "misconception_tag": "ci_halfwidth_as_se"
-        },
-        {
-          "id": "d",
-          "label": "Resample without replacement until the resample has size $n/2$, compute one $\\hat{\\theta}^{*}$, and take $|\\hat{\\theta}^{*} - \\hat{\\theta}|$ as the standard error.",
-          "misconception_tag": "wrong_resample_rule"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

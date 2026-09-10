@@ -154,7 +154,7 @@ _WAVE11_B3_MIGRATIONS = (
     (
         "4.2.5-linear-predictor-cs1014.json",
         "knowledge_checks[1].explanation",
-        r"Specified eta includes x, x squared, and cover indicator. Link maps $\mu$ to $\eta$; they are distinct objects.",
+        "$\\eta(10) = 1.0 + 0.2\\times 10 - 0.01\\times 100 = 2.0$, so $\\mu = e^{2} \\approx 7.3891$ on the severity scale.",
     ),
     (
         "4.2.5-linear-predictor-cs1014.json",
@@ -494,11 +494,9 @@ _WAVE11_B3_PARTIAL_PROSE = (
         "4.2.5-linear-predictor-cs1014.json",
         "knowledge_checks[1].explanation",
         (
-            "Specified eta includes x, x squared, and cover indicator. Link maps ",
-            " to ",
-            "; they are distinct objects.",
+            " on the severity scale.",
         ),
-        (r"\mu", r"\eta"),
+        (r"\eta(10)", r"\mu", r"e^{2}"),
     ),
     (
         "4.2.5-linear-predictor-cs1014.json",
@@ -746,9 +744,9 @@ def test_wave11_batch3_item22_preserves_english_eta() -> None:
         _load("4.2.5-linear-predictor-cs1014.json"),
         "knowledge_checks[1].explanation",
     )
-    assert "Specified eta includes" in text
+    assert "on the severity scale" in text
     assert r"\mu" in text and r"\eta" in text
-    assert "eta" in text
+    assert r"e^{2}" in text
 
 
 def test_wave11_batch3_item26_preserves_english_chi_square() -> None:
@@ -842,7 +840,7 @@ def test_wave11_batch3_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2063
+    assert checked["totals"]["migrated"] == 2075
     assert live["totals"] == checked["totals"]
 
     pending = [

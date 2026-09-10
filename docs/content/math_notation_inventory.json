@@ -1,32 +1,32 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-10T10:21:20Z",
+  "generated_at": "2026-09-10T11:26:05Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2210,
-    "already_compliant": 2081,
+    "mathish_strings": 2221,
+    "already_compliant": 2093,
     "needs_migration": 0,
-    "correctly_excluded": 129,
+    "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2210,
+    "confident_automated": 2221,
     "remaining_backlog": 0,
-    "migrated": 2063,
+    "migrated": 2075,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2081,
-    "manual_review_prose_exclusion": 128,
+    "fully_covered_by_current_typesetting": 2093,
+    "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2063,
-    "equationish": 1513,
-    "actuarial_fn": 491,
-    "ascii_approx": 235,
-    "bare_latex": 195,
-    "greek": 115,
+    "dollar_delimited": 2075,
+    "equationish": 1523,
+    "actuarial_fn": 488,
+    "ascii_approx": 245,
+    "bare_latex": 194,
+    "greek": 114,
     "compound": 26,
     "unicode_ops": 11
   },
@@ -9936,9 +9936,9 @@
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
         "mathish_strings": 20,
-        "already_compliant": 17,
+        "already_compliant": 18,
         "needs_migration": 0,
-        "correctly_excluded": 3,
+        "correctly_excluded": 2,
         "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
@@ -9950,8 +9950,26 @@
           "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. You have an estimator $\\hat{\\theta}$ from a sample of size n. Which statement correctly describes using the bootstrap to estimate the standard error of $\\hat{\\theta}$?",
-          "text_hash": "042c98e7d115efb9",
+          "text": "Closed-book. Bootstrap means (£00): 210, 195, 220, 205, 200 ($B$ = 5). Enter the bootstrap SE $\\sqrt{(1/B)\\sum(\\hat{\\theta}^{*}_{b}-\\bar{\\theta}^{*})^{2}}$ as a decimal to 3 places.",
+          "text_hash": "7ab4483bb7afe6cf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Average the replicates, then take the stated bootstrap SE with division by $B$.",
+          "text_hash": "5e6a6eacbbb0875b",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -9964,85 +9982,70 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
           "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Use $\\sqrt{(1/B)\\sum(\\cdot)^{2}}$ with $B = 5$, not $B-1$.",
+          "text_hash": "f8939517f6f96b6c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
           "field_path": "knowledge_checks[1].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
-          "text_hash": "8976e55ba7026f52",
-          "category": "correctly_excluded",
+          "text": "$\\bar{\\theta}^{*} = 206$ and $\\sum(\\hat{\\theta}^{*}_{b}-206)^{2} = 370$, so $\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{370/5} = \\sqrt{74} \\approx 8.602$.",
+          "text_hash": "098df871f9165d3b",
+          "category": "already_compliant",
           "needs_manual_review": false,
-          "reason_code": "manual_review_prose_exclusion",
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $1/(B-1)$ instead of $1/B$, reporting the mean 206, or $\\sqrt{370}$ without dividing by $B$.",
+          "text_hash": "22cef514c805d8af",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
+          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses the bootstrap SE formula with division by $B$.",
+          "text_hash": "34d75ee9f6ce9167",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "correctly_excluded",
-          "signals": [
-            "greek"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
-          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "With-replacement resamples $\\rightarrow$ $\\hat{\\theta}^{*}$ replicates $\\rightarrow$ empirical SD as SE; distinct from asymptotics and from bootstrap CIs.",
-          "text_hash": "af48cb959314a4ef",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
-          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Draw many resamples with replacement from the original sample, recompute $\\hat{\\theta}^{*}$ on each resample, and use the empirical standard deviation of the $\\hat{\\theta}^{*}$ values as the SE estimate. That is not the same as quoting an asymptotic Normal law, and not the same as constructing a bootstrap confidence interval.",
-          "text_hash": "85f6d072834ba56e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
-          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Compute the asymptotic variance $1/(n I(\\hat{\\theta}))$ once; that single plug-in is the bootstrap standard error by definition.",
-          "text_hash": "6381eae30334a99d",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-3.1-BOOTSTRAP-ESTIMATOR",
-          "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Resample without replacement until the resample has size $n/2$, compute one $\\hat{\\theta}^{*}$, and take $|\\hat{\\theta}^{*} - \\hat{\\theta}|$ as the standard error.",
-          "text_hash": "4df903426ed94d27",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
+            "dollar_delimited"
           ]
         },
         {
@@ -23699,8 +23702,8 @@
           "package_file": "5.1.4-loss-estimators-cs1003.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
-          "text_hash": "dfdd9e4592c6b915",
+          "text": "Closed-book. Discrete posterior on $\\theta$ (£000): values 4, 5, 7 with probabilities 0.15, 0.55, 0.30. Enter the Bayes estimate under squared-error loss.",
+          "text_hash": "65dc646f4dbf6da4",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -23713,17 +23716,18 @@
         {
           "package_id": "CS1-EP001-PKG-5.1-LOSS-ESTIMATORS",
           "package_file": "5.1.4-loss-estimators-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. Just taking the posterior mode always is not warranted without an explicit loss. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
-          "text_hash": "972c27456e40632c",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Squared-error Bayes estimate is the posterior mean: $4\\times 0.15 + 5\\times 0.55 + 7\\times 0.30 = 5.45$. The absolute-error median is 5, a different loss.",
+          "text_hash": "46e116b2897a06dd",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -27897,8 +27901,8 @@
           "package_file": "5.1.4-loss-estimators-cs1015.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
-          "text_hash": "dfdd9e4592c6b915",
+          "text": "Closed-book. Discrete posterior on $\\theta$ (£000): values 1, 2, 3 with probabilities 0.20, 0.50, 0.30. Enter the Bayes estimate under squared-error loss.",
+          "text_hash": "d3817fd5b940662a",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -27911,17 +27915,18 @@
         {
           "package_id": "CS1-EP001-PKG-CO-5.1-LOSS-ESTIMATORS",
           "package_file": "5.1.4-loss-estimators-cs1015.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
-          "text_hash": "4ccf740a3d5f3733",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Squared-error Bayes estimate is the posterior mean: $1\\times 0.20 + 2\\times 0.50 + 3\\times 0.30 = 2.1$. The absolute-error median is 2, a different loss.",
+          "text_hash": "36c7165c3f676e36",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -30888,8 +30893,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-PI",
       "counts": {
-        "mathish_strings": 35,
-        "already_compliant": 35,
+        "mathish_strings": 32,
+        "already_compliant": 32,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -31351,8 +31356,8 @@
           "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. Screening: $P(D)$ = 0.01, $P(+|D)$ = 0.95, $P(+|not D)$ = 0.10. A case tests positive. Which statement is correct?",
-          "text_hash": "281f1123d4e9c1e2",
+          "text": "Closed-book. Screening: $P(D)$ = 0.01, $P(+|D)$ = 0.95, $P(+|not D)$ = 0.10. A case tests positive. Enter $P(D|+)$ as a decimal (not a fraction).",
+          "text_hash": "720a86b738a5ccab",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -31369,8 +31374,43 @@
           "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
           "field_path": "knowledge_checks[1].body",
           "field_group": "knowledge_checks[].body",
-          "text": "Compute $P(D|+)$ via Bayes; refuse $P(D|+) = P(+|D)$.",
-          "text_hash": "4ef071e625263ce8",
+          "text": "Compute $P(+)$ then the posterior; refuse equating $P(D|+)$ with $P(+|D)$.",
+          "text_hash": "9d525a4390cc82f0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
+          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Form $P(+) = P(+|D)P(D) + P(+|not D)P(not D)$ first.",
+          "text_hash": "14bf11b73e2d89cc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
+          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Then $P(D|+) = P(+|D)P(D)/P(+)$; do not equate with $P(+|D)$.",
+          "text_hash": "0d9cc6368859f186",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -31387,30 +31427,12 @@
           "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
           "field_path": "knowledge_checks[1].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Evidence $P(+) = 0.1085$ and posterior $\\approx 0.0876$. Sensitivity 0.95 is not the posterior. Prior alone or the false-positive rate alone is wrong.",
-          "text_hash": "49d73af074362478",
+          "text": "$P(+) = 0.1085$ and $P(D|+) = 0.0095/0.1085 \\approx 0.0876$. Sensitivity 0.95 is not the posterior.",
+          "text_hash": "3537b818ba9fec68",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
-          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$P(+)=0.1085$; $P(D|+)\\approx 0.0876$; refuse posterior equals likelihood.",
-          "text_hash": "6f7e7e5f738d58b7",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -31423,84 +31445,12 @@
           "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
           "field_path": "knowledge_checks[1].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
-          "text": "Taking $P(D|+)$ = 0.95 or ignoring base-rate normalisation.",
-          "text_hash": "189d2d842a630c20",
+          "text": "Taking $P(D|+)$ = 0.95, leaving 0.01, or using 0.10 as the posterior.",
+          "text_hash": "98b84af0488151f5",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
-          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(+) = 0.95\\times 0.01 + 0.10\\times 0.99 = 0.1085$. $P(D|+) = 0.0095/0.1085 \\approx 0.0876$. Equating $P(D|+)$ with $P(+|D) = 0.95$ ignores the base rate; Bayes multiplies prior by likelihood and normalises.",
-          "text_hash": "1ab70d08be650819",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
-          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(D|+) = P(+|D)$ = 0.95 because the test is accurate when disease is present, so the positive predictive value equals the sensitivity.",
-          "text_hash": "31bfed582ebce767",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
-          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(D|+)$ = 0.01 because the prior prevalence is the answer once a case tests positive.",
-          "text_hash": "c6363bbd4a20b741",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "actuarial_fn",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CP-5.1-BAYES-THEOREM",
-          "package_file": "cp-5.1.1-bayes-theorem-cs1016.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$P(D|+)$ = 0.10 because $P(+|not D)$ = 0.10 dominates the update for any positive screen.",
-          "text_hash": "a01312e06c37e575",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 2,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
@@ -34062,8 +34012,8 @@
       "topic_code": "4.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
-        "mathish_strings": 33,
-        "already_compliant": 29,
+        "mathish_strings": 35,
+        "already_compliant": 31,
         "needs_migration": 0,
         "correctly_excluded": 4,
         "needs_manual_review": 0,
@@ -34239,26 +34189,80 @@
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
           "package_file": "4.2.5-linear-predictor-cs1014.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Severity GLM with log link and $\\eta = \\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$, coefficients $(1.0, 0.2, -0.01)$, at $x$ = 10. Enter the mean severity $\\mu = e^{\\eta}$ as a decimal to 4 places.",
+          "text_hash": "906ef86b55be8c36",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1014.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Evaluate $\\eta$ at $x = 10$, then invert the log link to the mean scale.",
+          "text_hash": "ed7ec2b8ee5f7ac8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1014.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Substitute $x = 10$ into the polynomial linear predictor first.",
+          "text_hash": "82d9f8c3e6f3407f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1014.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Then apply $\\mu = e^{\\eta}$ for the log link.",
+          "text_hash": "b91895c0c3ba8092",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1014.json",
           "field_path": "knowledge_checks[1].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Specified eta includes x, x squared, and cover indicator. Link maps $\\mu$ to $\\eta$; they are distinct objects.",
-          "text_hash": "d2c299cfa100046b",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 4,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
-          "package_file": "4.2.5-linear-predictor-cs1014.json",
-          "field_path": "knowledge_checks[1].model_answer",
-          "field_group": "knowledge_checks[].model_answer",
-          "text": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$. Link maps $\\mu$ to $\\eta$.",
-          "text_hash": "bb1e8cde45184c6f",
+          "text": "$\\eta(10) = 1.0 + 0.2\\times 10 - 0.01\\times 100 = 2.0$, so $\\mu = e^{2} \\approx 7.3891$ on the severity scale.",
+          "text_hash": "efdfbb5e372e34ed",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -34267,34 +34271,17 @@
           "signals": [
             "bare_latex",
             "dollar_delimited",
+            "ascii_approx",
             "equationish"
           ]
         },
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
           "package_file": "4.2.5-linear-predictor-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$ with Standard baseline. $\\eta = X\\beta$ is the linear predictor; the link $g$ maps mean $\\mu$ to $\\eta$ (for example $\\log(\\mu)=\\eta$ for Poisson log link).",
-          "text_hash": "96c2a71fa5f49e9e",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "bare_latex",
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
-          "package_file": "4.2.5-linear-predictor-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\eta = \\log(\\mu) = \\beta_{0} + \\beta_{1} x$ only; quadratic and factor terms belong in $\\mu$, not in $\\eta$.",
-          "text_hash": "5d4f9e831c951418",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Stopping at $\\eta = 2$, using $e^{10}$, or dropping the quadratic term ($\\eta = 3$, $\\mu = e^{3}$).",
+          "text_hash": "98e82d37c6cdb0b1",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -34302,16 +34289,17 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
+            "ascii_approx",
             "equationish"
           ]
         },
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-LINEAR-PREDICTOR",
           "package_file": "4.2.5-linear-predictor-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{Plus}}$ only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
-          "text_hash": "ff59e05fc5aaf5db",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Reports mean severity $\\mu = e^{\\eta}$, not $\\eta$ alone.",
+          "text_hash": "b18ace009f66b22f",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -34319,6 +34307,7 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
+            "ascii_approx",
             "equationish"
           ]
         },
@@ -35849,8 +35838,8 @@
       "topic_code": "4.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-XI",
       "counts": {
-        "mathish_strings": 28,
-        "already_compliant": 23,
+        "mathish_strings": 33,
+        "already_compliant": 28,
         "needs_migration": 0,
         "correctly_excluded": 5,
         "needs_manual_review": 0,
@@ -35995,14 +35984,31 @@
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
           "package_file": "4.2.8-residuals-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Pearson residual: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$, a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
-          "text_hash": "d70155569f8e773b",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Observed claim count $y$ = 9 with fitted Poisson mean $\\hat{\\mu}$ = 4. Enter the Pearson residual $r_{P} = (y - \\hat{\\mu})/\\sqrt{V(\\hat{\\mu})}$ with $V(\\mu) = \\mu$.",
+          "text_hash": "7559c4c48461dd96",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1014.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Standardise the raw residual by $\\sqrt{V(\\hat{\\mu})}$ for Poisson.",
+          "text_hash": "8464b1f63c46391a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited"
@@ -36011,10 +36017,76 @@
         {
           "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
           "package_file": "4.2.8-residuals-cs1014.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Pearson residual equals y minus $\\hat{\\mu}$; deviance residual equals log(y/$\\hat{\\mu}$) with no further definition.",
-          "text_hash": "cb33b2e7db218f1c",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "For Poisson, $V(\\hat{\\mu}) = \\hat{\\mu}$.",
+          "text_hash": "373795d38418ef7b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1014.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Divide $y - \\hat{\\mu}$ by $\\sqrt{\\hat{\\mu}}$.",
+          "text_hash": "57233ffe9ff60e83",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1014.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Pearson residual $r_{P} = (9-4)/\\sqrt{4} = 5/2 = 2.5$. The deviance residual is a different diagnostic.",
+          "text_hash": "70f8d97ba6e1b5c0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1014.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Reporting the raw residual 5, the deviance residual about 2.144, or $\\sqrt{4}$ without dividing.",
+          "text_hash": "3b093d2bc31c0b1b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1014.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses the Pearson residual formula with $V(\\mu) = \\mu$.",
+          "text_hash": "77e78c331bee33a5",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -37396,8 +37468,8 @@
       "topic_code": "CG-R1",
       "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
       "counts": {
-        "mathish_strings": 13,
-        "already_compliant": 12,
+        "mathish_strings": 20,
+        "already_compliant": 19,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -37406,6 +37478,126 @@
       "migration_status": "clear",
       "remaining_backlog": 0,
       "items": [
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. $U$ = 0.3 is a Uniform(0,1) draw. Using the inverse-transform formula $X = -\\ln(1-U)/\\lambda$ with rate $\\lambda$ = 2, enter $X$ as a decimal to 4 places.",
+          "text_hash": "14279d39a284b38c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Evaluate the pinned inverse-transform formula at the stated $U$ and $\\lambda$.",
+          "text_hash": "8278614623ffb445",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Use $X = -\\ln(1-U)/\\lambda$ with the given $U$ and $\\lambda$.",
+          "text_hash": "6c36783ad8b06894",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Substitute $1-U = 0.7$ before taking the logarithm.",
+          "text_hash": "2d50c310e2b41193",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "With $U = 0.3$ and $\\lambda = 2$, $X = -\\ln(0.7)/2 \\approx 0.1783$. At a fixed $U$, $-\\ln(U)/\\lambda$ is a different number.",
+          "text_hash": "bdcfa745dd2a6a80",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $-\\ln(U)/\\lambda$ at this $U$ (about 0.60), dropping the minus sign, or scaling by $\\lambda$ instead of dividing.",
+          "text_hash": "d5a798d8b988cb72",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
+          "package_file": "revision-distributions-generation-cs1004.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses $X = -\\ln(1-U)/\\lambda$ at $U = 0.3$, $\\lambda = 2$.",
+          "text_hash": "ad8b4745bee38333",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
         {
           "package_id": "CS1-EP001-PKG-REV-DISTRIBUTIONS-GENERATION",
           "package_file": "revision-distributions-generation-cs1004.json",
@@ -40159,5 +40351,5 @@
       ]
     }
   ],
-  "content_fingerprint": "c7431cd8abaf64e38206253d2d5582aacce6119a67b98630cb578ae7d815f130"
+  "content_fingerprint": "59342d9aa0a5c2e993c3a396fbc0e680f7d03e11b49f4a56f6efec3701ad5560"
 }

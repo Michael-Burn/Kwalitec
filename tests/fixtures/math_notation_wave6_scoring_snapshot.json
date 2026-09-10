@@ -50,21 +50,18 @@
     {
       "package_file": "4.2.5-linear-predictor-cs1014.json",
       "item_id": "cs1014-4.2.5-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "7.3891"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "7.3891",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "7.3891"
         },
         {
           "response": "b",

@@ -110,6 +110,12 @@ _CONTROL = re.compile(r"\\([A-Za-z]+)")
 # Locked Wave 11 batch 1 migrations (9 full + 30 partial).
 _WAVE11_MIGRATIONS = (
     (
+        "3.1.6-bootstrap-estimator-cs1010.json",
+        "knowledge_checks[1].explanation",
+        "$\\bar{\\theta}^{*} = 206$ and $\\sum(\\hat{\\theta}^{*}_{b}-206)^{2} = 370$, so $\\widehat{\\mathrm{SE}}_{\\mathrm{boot}} = \\sqrt{370/5} = \\sqrt{74} \\approx 8.602$.",
+    ),
+
+    (
         "1.2.2-eda-association-ep001.json",
         "worked_example.steps[1].attempt_cue",
         r"Compare $|r|$ and $|\rho|$ in light of the scatter.",
@@ -407,12 +413,7 @@ _WAVE11_EXCLUSIONS = (
         "mission.concept_focus",
         "Two independent Normal samples → variance ratio → F(df₁, df₂) → refuse using t for that job.",
     ),
-    (
-        "3.1.6-bootstrap-estimator-cs1010.json",
-        "knowledge_checks[1].explanation",
-        "Bootstrap SE uses the spread of many with-replacement replicates of θ̂. Asymptotic variance plug-ins and bootstrap CI construction are different procedures.",
-    ),
-    (
+        (
         "3.1.6-bootstrap-estimator-cs1010.json",
         "worked_example.steps[0].explanation",
         "θ̄* centres the bootstrap deviations used in the SE formula.",
@@ -823,7 +824,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2063
+    assert checked["totals"]["migrated"] == 2075
     assert live["totals"] == checked["totals"]
 
     pending = [
@@ -856,7 +857,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         assert len(matches) == 1
         assert matches[0]["migration_status"] == "correctly_excluded"
         batch1_manual += 1
-    assert batch1_manual == 25
+    assert batch1_manual == 24
 
     for package_file, field_path, expected in _WAVE11_MIGRATIONS:
         text = wave1.get_path(_load(package_file), field_path)
@@ -871,10 +872,10 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         assert len(matches) == 1
         assert matches[0]["migration_status"] == "migrated"
         batch1_migrated_new += 1
-    assert batch1_migrated_new == 39
+    assert batch1_migrated_new == 40
 
 
 def test_wave11_migration_and_exclusion_counts() -> None:
-    assert len(_WAVE11_MIGRATIONS) == 39
-    assert len(_WAVE11_EXCLUSIONS) == 25
+    assert len(_WAVE11_MIGRATIONS) == 40
+    assert len(_WAVE11_EXCLUSIONS) == 24
     assert len(_WAVE11_MIGRATIONS) + len(_WAVE11_EXCLUSIONS) == 64

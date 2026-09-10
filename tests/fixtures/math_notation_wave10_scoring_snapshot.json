@@ -50,21 +50,18 @@
     {
       "package_file": "5.1.4-loss-estimators-cs1003.json",
       "item_id": "cs1003-5.1.4-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "5.45"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "5.45",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "5.45"
         },
         {
           "response": "b",

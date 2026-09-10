@@ -337,7 +337,7 @@ def test_wave9_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2063
+    assert checked["totals"]["migrated"] == 2075
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -366,7 +366,7 @@ def test_wave9_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 110
+    assert migrated == 117
     assert still_pending_review == 0
     assert confident_backlog == 0
     assert manual_excluded == 9

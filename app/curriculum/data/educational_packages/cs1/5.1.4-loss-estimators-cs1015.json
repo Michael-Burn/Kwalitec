@@ -160,44 +160,24 @@
       "kind": "checkpoint",
       "item_id": "cs1015-5.1.4-cp-01",
       "title": "Checkpoint: 5.1.4",
-      "prompt": "Closed-book. Posterior for $\\theta$ is available. Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Name estimators under losses; refuse interval collapse.",
+      "prompt": "Closed-book. Discrete posterior on $\\theta$ (£000): values 1, 2, 3 with probabilities 0.20, 0.50, 0.30. Enter the Bayes estimate under squared-error loss.",
+      "response_type": "numeric",
+      "body": "Compute the posterior mean under squared-error loss.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Under squared-error loss, use the posterior mean.",
+        "Weight each support point by its posterior probability."
       ],
-      "accepted_keywords": [],
-      "explanation": "Mean under squared error, median under absolute error. Interval and point estimator answer different questions.",
-      "model_answer": "Squared-error: mean; absolute-error: median. Refuse interval collapse.",
-      "common_mistake": "Equating point estimator with credible interval or swapping loss pairings.",
+      "accepted_keywords": [
+        "2.1"
+      ],
+      "explanation": "Squared-error Bayes estimate is the posterior mean: $1\\times 0.20 + 2\\times 0.50 + 3\\times 0.30 = 2.1$. The absolute-error median is 2, a different loss.",
+      "model_answer": "2.1",
+      "common_mistake": "Reporting the median 2, or averaging the support values without posterior weights.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 2.1.",
+        "Uses the posterior mean, not the median or mode."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Under squared-error loss, use the posterior mean as the Bayesian point estimator; under absolute-error loss, use the posterior median. A point estimator summarises the posterior under a loss; a credible interval is a posterior probability set for $\\theta$. Different objects.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "The Bayesian point estimator under loss is the same object as a credible interval.",
-          "misconception_tag": "point_estimator_is_interval"
-        },
-        {
-          "id": "c",
-          "label": "Under squared-error loss, use the posterior median; under absolute-error loss, use the posterior mean.",
-          "misconception_tag": "losses_swapped"
-        },
-        {
-          "id": "d",
-          "label": "Both losses justify the posterior mode only; mean and median are frequentist labels.",
-          "misconception_tag": "mode_only"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

@@ -22,6 +22,15 @@ Empirical Bayes active-recall items (cs1003/cs1015 5.1.7 and 5.1.8)
 were reviewed and approved before wiring as the choice-aware half of
 the coordinated NUM Wave 2 / CAF credibility wave. Copy is frozen as
 approved; mechanism unchanged.
+
+Editorial review record (2026-09-10): thirty-one CAF Wave 3 items were
+reviewed and approved before wiring (remaining P1 Bayesian/credibility
+spine ARs and non-conflicting CPs, P2 estimator/MSE adjacency, and P3
+GLM adjacency through 4.2.3). Four conflicting CPs from the same draft
+(cs1016-5.1.1-cp-01, cs1003/cs1015-5.1.4-cp-01, cs1010-3.1.6-cp-01) were
+converted to numeric instead and are intentionally not on this
+allowlist, matching the 5.1.7/5.1.8 AR-only pattern. Copy is frozen as
+approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -36,7 +45,8 @@ from app.application.learning_session.scoreable_practice import (
 # Batch 2 GLM, Batch 3 Rho conceptual vignette, Batch 6B revision,
 # plus editorially reviewed expansions (Bayes / MSE / GLM siblings;
 # CAF Wave 1 prior/posterior / posterior-simple / estimators AR;
-# NUM Wave 2 / CAF credibility AR siblings).
+# NUM Wave 2 / CAF credibility AR siblings;
+# CAF Wave 3 remaining P1 / P2 / P3-through-4.2.3).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -67,6 +77,37 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1015-5.1.7-ar-01",  # NUM/CAF Wave 2: Bayesian credibility AR (cs1015)
         "cs1003-5.1.8-ar-01",  # NUM/CAF Wave 2: Empirical Bayes AR (cs1003)
         "cs1015-5.1.8-ar-01",  # NUM/CAF Wave 2: Empirical Bayes AR (cs1015)
+        "cs1003-5.1.4-ar-01",  # CAF Wave 3: loss estimators AR (cs1003)
+        "cs1015-5.1.4-ar-01",  # CAF Wave 3: loss estimators AR (cs1015)
+        "cs1003-5.1.5-ar-01",  # CAF Wave 3: credible intervals AR (cs1003)
+        "cs1003-5.1.5-cp-01",  # CAF Wave 3: credible intervals CP (cs1003)
+        "cs1015-5.1.5-ar-01",  # CAF Wave 3: credible intervals AR (cs1015)
+        "cs1015-5.1.5-cp-01",  # CAF Wave 3: credible intervals CP (cs1015)
+        "cs1003-5.1.6-ar-01",  # CAF Wave 3: credibility premium AR (cs1003)
+        "cs1015-5.1.6-ar-01",  # CAF Wave 3: credibility premium AR (cs1015)
+        "cs1003-5.1.9-ar-01",  # CAF Wave 3: Bayes vs EB AR (cs1003)
+        "cs1003-5.1.9-cp-01",  # CAF Wave 3: Bayes vs EB CP (cs1003)
+        "cs1015-5.1.9-ar-01",  # CAF Wave 3: Bayes vs EB AR (cs1015)
+        "cs1015-5.1.9-cp-01",  # CAF Wave 3: Bayes vs EB CP (cs1015)
+        "cs1016-5.1.1-ar-01",  # CAF Wave 3: companion Bayes AR
+        "cs1003-cd-r3-ar-01",  # CAF Wave 3: revision midspine AR
+        "cs1003-cd-r3-cp-01",  # CAF Wave 3: revision midspine CP
+        "cs1010-3.1.1-ar-01",  # CAF Wave 3: MoM AR
+        "cs1010-3.1.2-ar-01",  # CAF Wave 3: MLE AR
+        "cs1010-3.1.5-ar-01",  # CAF Wave 3: asymptotic MLE AR
+        "cs1010-3.1.5-cp-01",  # CAF Wave 3: asymptotic MLE CP
+        "cs1010-3.1.6-ar-01",  # CAF Wave 3: bootstrap AR
+        "cs1016-3.1.1-ar-01",  # CAF Wave 3: companion estimators AR
+        "cs1003-4.2.1-ar-01",  # CAF Wave 3: exponential-family AR (cs1003)
+        "cs1003-4.2.1-cp-01",  # CAF Wave 3: exponential-family CP (cs1003)
+        "cs1003-4.2.2-ar-01",  # CAF Wave 3: mean-variance AR (cs1003)
+        "cs1003-4.2.2-cp-01",  # CAF Wave 3: mean-variance CP (cs1003)
+        "cs1014-4.2.2-ar-01",  # CAF Wave 3: mean-variance AR (cs1014)
+        "cs1014-4.2.2-cp-01",  # CAF Wave 3: mean-variance CP (cs1014)
+        "cs1003-4.2.3-ar-01",  # CAF Wave 3: link-canonical AR (cs1003)
+        "cs1003-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1003)
+        "cs1014-4.2.3-ar-01",  # CAF Wave 3: link-canonical AR (cs1014)
+        "cs1014-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1014)
     }
 )
 
@@ -798,6 +839,689 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "forms Z-hat as n over n plus k-hat, and the blend Z-hat times "
         "X-bar plus one minus Z-hat times mu-hat; full credibility is not "
         "automatic."
+    ),
+    # --- CAF Wave 3 (2026-09-10 editorial review) ---
+    # --- cs1003-5.1.4-ar-01 ---
+    (
+        "cs1003-5.1.4-ar-01",
+        "b",
+    ): (
+        "That choice treats the loss-based point estimator as the same object as a credible interval. "
+        "A point estimator is a single posterior summary under a loss; a credible interval is a posterior probability set for theta."
+    ),
+    (
+        "cs1003-5.1.4-ar-01",
+        "c",
+    ): (
+        "That choice swaps the loss pairings. "
+        "Squared-error loss justifies the posterior mean; absolute-error loss justifies the posterior median."
+    ),
+    (
+        "cs1003-5.1.4-ar-01",
+        "d",
+    ): (
+        "That choice forces every loss-based Bayes estimator to equal the MLE. "
+        "The Bayes point estimate is a posterior summary under a chosen loss, not automatically the maximum-likelihood value."
+    ),
+    # --- cs1015-5.1.4-ar-01 ---
+    (
+        "cs1015-5.1.4-ar-01",
+        "b",
+    ): (
+        "That choice treats the loss-based point estimator as the same object as a credible interval. "
+        "A point estimator is a single posterior summary under a loss; a credible interval is a posterior probability set for theta."
+    ),
+    (
+        "cs1015-5.1.4-ar-01",
+        "c",
+    ): (
+        "That choice swaps the loss pairings. "
+        "Squared-error loss justifies the posterior mean; absolute-error loss justifies the posterior median."
+    ),
+    (
+        "cs1015-5.1.4-ar-01",
+        "d",
+    ): (
+        "That choice forces every loss-based Bayes estimator to equal the MLE. "
+        "The Bayes point estimate is a posterior summary under a chosen loss, not automatically the maximum-likelihood value."
+    ),
+    # --- cs1003-5.1.5-ar-01 ---
+    (
+        "cs1003-5.1.5-ar-01",
+        "b",
+    ): (
+        "That choice copies the frequentist repeated-sampling coverage slogan onto the credible interval. "
+        "A credible interval is a posterior probability statement that the parameter lies in the interval."
+    ),
+    (
+        "cs1003-5.1.5-ar-01",
+        "c",
+    ): (
+        "That choice reads the interval as covering 95% of the sample observations. "
+        "The claim is about the parameter under the posterior, not about sample coverage."
+    ),
+    (
+        "cs1003-5.1.5-ar-01",
+        "d",
+    ): (
+        "That choice equates a 95% credible interval with the posterior mean equalling 0.95. "
+        "The 95% is a posterior probability for an interval containing the parameter, not a value of the mean."
+    ),
+    # --- cs1003-5.1.5-cp-01 ---
+    (
+        "cs1003-5.1.5-cp-01",
+        "b",
+    ): (
+        "That choice accepts identical probability readings for credible and confidence intervals. "
+        "Credible intervals are posterior probability statements about the parameter; confidence intervals have a different frequentist coverage reading."
+    ),
+    (
+        "cs1003-5.1.5-cp-01",
+        "c",
+    ): (
+        "That choice refuses credible intervals entirely because only frequentist coverage language is allowed. "
+        "Bayesian posterior probability statements about the parameter are a valid distinct reading."
+    ),
+    (
+        "cs1003-5.1.5-cp-01",
+        "d",
+    ): (
+        "That choice treats the difference as notation only once an interval is computed. "
+        "Posterior probability for the parameter and frequentist coverage over repeated samples remain different claims."
+    ),
+    # --- cs1015-5.1.5-ar-01 ---
+    (
+        "cs1015-5.1.5-ar-01",
+        "b",
+    ): (
+        "That choice gives only the frequentist repeated-sampling coverage reading. "
+        "A credible interval is a posterior probability statement about theta given the observed data."
+    ),
+    (
+        "cs1015-5.1.5-ar-01",
+        "c",
+    ): (
+        "That choice builds credible intervals from the prior alone. "
+        "The interval comes from the posterior, which already combines prior and likelihood."
+    ),
+    (
+        "cs1015-5.1.5-ar-01",
+        "d",
+    ): (
+        "That choice treats credible and confidence as interchangeable adjectives with the same reading. "
+        "The objects answer different probability questions and must not be collapsed."
+    ),
+    # --- cs1015-5.1.5-cp-01 ---
+    (
+        "cs1015-5.1.5-cp-01",
+        "b",
+    ): (
+        "That choice collapses the interval to the single point (0.10, 0.10). "
+        "The posterior is Normal with positive sd 0.02, so an equal-tailed 95% interval has positive width about (0.0608, 0.1392)."
+    ),
+    (
+        "cs1015-5.1.5-cp-01",
+        "c",
+    ): (
+        "That choice uses plus or minus one posterior standard deviation as if that were always the 95% equal-tailed rule. "
+        "For this Normal posterior, 95% equal-tailed uses about 1.96 sd, giving roughly (0.0608, 0.1392), not (0.08, 0.12)."
+    ),
+    (
+        "cs1015-5.1.5-cp-01",
+        "d",
+    ): (
+        "That choice substitutes the frequentist repeated-sampling coverage slogan. "
+        "A credible interval is a posterior probability statement about theta given the data."
+    ),
+    # --- cs1003-5.1.6-ar-01 ---
+    (
+        "cs1003-5.1.6-ar-01",
+        "b",
+    ): (
+        "That choice always forces full credibility Z = 1. "
+        "Z depends on how much individual experience is available relative to collateral information; it need not be 1."
+    ),
+    (
+        "cs1003-5.1.6-ar-01",
+        "c",
+    ): (
+        "That choice puts Z on the collateral mean and (1-Z) on individual experience. "
+        "In the standard blend, Z weights the individual mean X-bar and (1-Z) weights the collateral mean mu."
+    ),
+    (
+        "cs1003-5.1.6-ar-01",
+        "d",
+    ): (
+        "That choice sets the premium to mu alone. "
+        "Credibility blends individual experience with collateral information unless Z is actually 0."
+    ),
+    # --- cs1015-5.1.6-ar-01 ---
+    (
+        "cs1015-5.1.6-ar-01",
+        "b",
+    ): (
+        "That choice always forces full credibility Z = 1. "
+        "Z depends on how much individual experience is available relative to collateral information; it need not be 1."
+    ),
+    (
+        "cs1015-5.1.6-ar-01",
+        "c",
+    ): (
+        "That choice puts Z on the collateral mean and (1-Z) on individual experience. "
+        "In the standard blend, Z weights the individual mean X-bar and (1-Z) weights the collateral mean mu."
+    ),
+    (
+        "cs1015-5.1.6-ar-01",
+        "d",
+    ): (
+        "That choice sets the premium to mu alone. "
+        "Credibility blends individual experience with collateral information unless Z is actually 0."
+    ),
+    # --- cs1003-5.1.9-ar-01 ---
+    (
+        "cs1003-5.1.9-ar-01",
+        "b",
+    ): (
+        "That choice treats fully Bayesian credibility and Empirical Bayes as identical methods that must agree on premiums. "
+        "They differ in how structural parameters enter, and premiums can differ."
+    ),
+    (
+        "cs1003-5.1.9-ar-01",
+        "c",
+    ): (
+        "That choice reverses the roles. "
+        "Fully Bayesian specifies structural or prior parameters in a prior model; Empirical Bayes estimates those structurals from collective data."
+    ),
+    (
+        "cs1003-5.1.9-ar-01",
+        "d",
+    ): (
+        "That choice blames only software rounding for premium differences. "
+        "The methods make different structural assumptions, so premiums need not agree even with identical arithmetic precision."
+    ),
+    # --- cs1003-5.1.9-cp-01 ---
+    (
+        "cs1003-5.1.9-cp-01",
+        "b",
+    ): (
+        "That choice calls the methods identical because both can return a credibility premium. "
+        "Sharing a premium formula shape does not erase the different structural-input assumptions."
+    ),
+    (
+        "cs1003-5.1.9-cp-01",
+        "c",
+    ): (
+        "That choice treats stating the contrast as finishing every posterior, interval, and premium calculation. "
+        "Naming how structurals enter is not a substitute for those later steps."
+    ),
+    (
+        "cs1003-5.1.9-cp-01",
+        "d",
+    ): (
+        "That choice reverses who specifies structure. "
+        "Fully Bayesian specifies structurals in a prior model; Empirical Bayes estimates them from collective data."
+    ),
+    # --- cs1015-5.1.9-ar-01 ---
+    (
+        "cs1015-5.1.9-ar-01",
+        "b",
+    ): (
+        "That choice treats Bayesian and Empirical Bayes as the same method with different names. "
+        "They differ in how structural knowledge enters, so premiums need not always agree."
+    ),
+    (
+        "cs1015-5.1.9-ar-01",
+        "c",
+    ): (
+        "That choice attributes premium differences only to software packages. "
+        "Assumptions about structural parameters differ; that alone can change the premium."
+    ),
+    (
+        "cs1015-5.1.9-ar-01",
+        "d",
+    ): (
+        "That choice reverses the roles. "
+        "Fully Bayesian uses specified prior structure; Empirical Bayes estimates structurals from collective data."
+    ),
+    # --- cs1015-5.1.9-cp-01 ---
+    (
+        "cs1015-5.1.9-cp-01",
+        "b",
+    ): (
+        "That choice collapses Bayesian and Empirical Bayes into one method. "
+        "They differ in whether structurals are specified in a prior or estimated from collective data."
+    ),
+    (
+        "cs1015-5.1.9-cp-01",
+        "c",
+    ): (
+        "That choice treats the contrast as finishing every prior, posterior, loss, and premium calculation. "
+        "Contrasting assumptions does not replace those separate calculations."
+    ),
+    (
+        "cs1015-5.1.9-cp-01",
+        "d",
+    ): (
+        "That choice reverses who specifies structure. "
+        "Bayesian specifies structurals in a prior model; Empirical Bayes estimates them from collective data."
+    ),
+    # --- cs1016-5.1.1-ar-01 ---
+    (
+        "cs1016-5.1.1-ar-01",
+        "b",
+    ): (
+        "That choice treats conditioning as symmetric and sets P(A given B) equal to P(B given A). "
+        "Those conditionals are not equal; Bayes uses prior, likelihood, and evidence together."
+    ),
+    (
+        "cs1016-5.1.1-ar-01",
+        "c",
+    ): (
+        "That choice sets the posterior equal to the likelihood and drops the base rate. "
+        "Bayes needs P(A) and the normalising evidence P(B), not likelihood alone."
+    ),
+    (
+        "cs1016-5.1.1-ar-01",
+        "d",
+    ): (
+        "That choice updates from the prior alone. "
+        "A conditional update needs prior, likelihood, and evidence, not the prior by itself."
+    ),
+    # --- cs1003-cd-r3-ar-01 ---
+    (
+        "cs1003-cd-r3-ar-01",
+        "b",
+    ): (
+        "That choice says Empirical Bayes never uses a prior. "
+        "Empirical Bayes still uses a prior structure; it estimates some hyperparameters from data rather than giving them full hyperpriors."
+    ),
+    (
+        "cs1003-cd-r3-ar-01",
+        "c",
+    ): (
+        "That choice defines fully Bayesian inference as estimating every prior parameter by maximum likelihood from the same data. "
+        "That plug-in pattern is Empirical Bayes; full Bayes puts distributions on the hyperparameters."
+    ),
+    (
+        "cs1003-cd-r3-ar-01",
+        "d",
+    ): (
+        "That choice claims identical posterior uncertainty under both approaches. "
+        "Plugging in estimated hyperparameters typically understates uncertainty relative to a full Bayesian hyperprior treatment."
+    ),
+    # --- cs1003-cd-r3-cp-01 ---
+    (
+        "cs1003-cd-r3-cp-01",
+        "b",
+    ): (
+        "That choice updates to Beta(alpha+n, beta+x). "
+        "Conjugacy adds the success count x to alpha and the failure count n-x to beta, giving Beta(alpha+x, beta+n-x)."
+    ),
+    (
+        "cs1003-cd-r3-cp-01",
+        "c",
+    ): (
+        "That choice keeps a Binomial posterior in n and theta. "
+        "With a Beta prior and binomial likelihood, the posterior stays Beta, not Binomial."
+    ),
+    (
+        "cs1003-cd-r3-cp-01",
+        "d",
+    ): (
+        "That choice adds x to both Beta shapes. "
+        "Failures n-x must update beta; adding successes twice omits the failure contribution."
+    ),
+    # --- cs1010-3.1.1-ar-01 ---
+    (
+        "cs1010-3.1.1-ar-01",
+        "b",
+    ): (
+        "That choice calls any closed-form estimator a method-of-moments estimator. "
+        "MoM specifically equates sample moments to population moments and solves for the parameter."
+    ),
+    (
+        "cs1010-3.1.1-ar-01",
+        "c",
+    ): (
+        "That choice maximises the likelihood and calls that method of moments. "
+        "Maximising the likelihood is MLE; MoM matches moments instead."
+    ),
+    (
+        "cs1010-3.1.1-ar-01",
+        "d",
+    ): (
+        "That choice takes an interval midpoint as the MoM estimator. "
+        "MoM constructs a point estimator by matching moments, not by building an interval."
+    ),
+    # --- cs1010-3.1.2-ar-01 ---
+    (
+        "cs1010-3.1.2-ar-01",
+        "b",
+    ): (
+        "That choice defines maximum likelihood as equating the first sample and population moments. "
+        "That is a moments step; MLE maximises the likelihood (or log-likelihood)."
+    ),
+    (
+        "cs1010-3.1.2-ar-01",
+        "c",
+    ): (
+        "That choice treats existence of a MoM estimator as finishing the MLE by definition. "
+        "The constructions differ even when numerical answers sometimes coincide."
+    ),
+    (
+        "cs1010-3.1.2-ar-01",
+        "d",
+    ): (
+        "That choice defines MLE as minimising MSE among unbiased estimators. "
+        "That is an optimality criterion, not the MLE definition."
+    ),
+    # --- cs1010-3.1.5-ar-01 ---
+    (
+        "cs1010-3.1.5-ar-01",
+        "b",
+    ): (
+        "That choice says large-sample MLEs are exactly MoM estimators, so no distributional result is needed. "
+        "Asymptotic MLE theory gives an approximate Normal law with information-based variance, not MoM identity."
+    ),
+    (
+        "cs1010-3.1.5-ar-01",
+        "c",
+    ): (
+        "That choice gives the MLE a chi-square law with n degrees of freedom. "
+        "Under regularity the large-sample law is Normal about the true parameter with variance tied to Fisher information."
+    ),
+    (
+        "cs1010-3.1.5-ar-01",
+        "d",
+    ): (
+        "That choice equates asymptotic MLE theory with bootstrap resampling. "
+        "Bootstrap redraws the sample to estimate properties; it is a different tool from the information-based Normal limit."
+    ),
+    # --- cs1010-3.1.5-cp-01 ---
+    (
+        "cs1010-3.1.5-cp-01",
+        "b",
+    ): (
+        "That choice reads Var(theta-hat_n) = I(theta) exactly for every finite n. "
+        "The result is a large-sample approximation: variance is about 1/(n I(theta))."
+    ),
+    (
+        "cs1010-3.1.5-cp-01",
+        "c",
+    ): (
+        "That choice discards the asymptotic Normal MLE result whenever bootstrap is available. "
+        "Bootstrap is a different estimation tool; it does not erase the asymptotic claim."
+    ),
+    (
+        "cs1010-3.1.5-cp-01",
+        "d",
+    ): (
+        "That choice drops the sqrt(n) scaling and sends theta-hat_n itself to N(0, 1/I(theta)). "
+        "The limit applies to the sqrt(n)-scaled error, so the variance of theta-hat_n is about 1/(n I(theta))."
+    ),
+    # --- cs1010-3.1.6-ar-01 ---
+    (
+        "cs1010-3.1.6-ar-01",
+        "b",
+    ): (
+        "That choice replaces the estimator by its asymptotic Normal approximation and calls that bootstrap. "
+        "Bootstrap resamples, recomputes the estimator, and summarises replicates."
+    ),
+    (
+        "cs1010-3.1.6-ar-01",
+        "c",
+    ): (
+        "That choice collapses estimating an estimator's standard error into building a percentile confidence interval. "
+        "Both use bootstrap replicates, but SE estimation and CI construction are different learning objectives."
+    ),
+    (
+        "cs1010-3.1.6-ar-01",
+        "d",
+    ): (
+        "That choice draws one replicate and reports it as the property estimate. "
+        "Property estimation needs many replicates and a summary such as an empirical standard deviation."
+    ),
+    # --- cs1016-3.1.1-ar-01 ---
+    (
+        "cs1016-3.1.1-ar-01",
+        "b",
+    ): (
+        "That choice maximises the likelihood and calls the maximiser method of moments. "
+        "MoM matches sample moments to population moments; MLE is a different construction."
+    ),
+    (
+        "cs1016-3.1.1-ar-01",
+        "c",
+    ): (
+        "That choice treats a confidence interval as the MoM estimator. "
+        "MoM builds a point estimator by matching moments, not an interval."
+    ),
+    (
+        "cs1016-3.1.1-ar-01",
+        "d",
+    ): (
+        "That choice treats any convenient closed form as MoM. "
+        "Method of moments means deriving the estimator by equating moments, not merely having a formula."
+    ),
+    # --- cs1003-4.2.1-ar-01 ---
+    (
+        "cs1003-4.2.1-ar-01",
+        "b",
+    ): (
+        "That choice collapses GLM into renamed OLS. "
+        "A GLM needs a named exponential-family response (and a link); package naming alone does not define the model class."
+    ),
+    (
+        "cs1003-4.2.1-ar-01",
+        "c",
+    ): (
+        "That choice treats Normal as the only GLM response. "
+        "Poisson and binomial are standard exponential-family GLM members; Normal with identity link is a special case inside the family list, not the whole definition."
+    ),
+    (
+        "cs1003-4.2.1-ar-01",
+        "d",
+    ): (
+        "That choice treats any exp() in a density as exponential-family membership. "
+        "Family membership is a specific exponential-family structure for named responses, not the mere presence of an exponential symbol."
+    ),
+    # --- cs1003-4.2.1-cp-01 ---
+    (
+        "cs1003-4.2.1-cp-01",
+        "b",
+    ): (
+        "That choice collapses GLM into renamed OLS. "
+        "A GLM needs a named exponential-family response (and a link); package naming alone does not define the model class."
+    ),
+    (
+        "cs1003-4.2.1-cp-01",
+        "c",
+    ): (
+        "That choice treats Normal as the only exponential-family GLM response. "
+        "Poisson and binomial are standard members; Normal is one case inside the family list, not the whole definition."
+    ),
+    (
+        "cs1003-4.2.1-cp-01",
+        "d",
+    ): (
+        "That choice treats any exp() in a Poisson pmf as the family definition. "
+        "Family membership needs the exponential-family structure tied to the response, not the mere presence of an exponential symbol."
+    ),
+    # --- cs1003-4.2.2-ar-01 ---
+    (
+        "cs1003-4.2.2-ar-01",
+        "b",
+    ): (
+        "That choice treats choosing the logit link as finishing mean, variance, variance function, and scale. "
+        "Those quantities come from the response family; the link maps mu to eta and is a separate object."
+    ),
+    (
+        "cs1003-4.2.2-ar-01",
+        "c",
+    ): (
+        "That choice forces Var[Y] = sigma^2 with V(mu) = 1 for every GLM response. "
+        "Poisson has V(mu) = mu; constant variance is the Normal case, not a universal GLM rule."
+    ),
+    (
+        "cs1003-4.2.2-ar-01",
+        "d",
+    ): (
+        "That choice postpones mean and variance until eta is written. "
+        "Family mean-variance structure is primary; the linear predictor comes after the response family is named."
+    ),
+    # --- cs1003-4.2.2-cp-01 ---
+    (
+        "cs1003-4.2.2-cp-01",
+        "b",
+    ): (
+        "That choice treats choosing the logit link as finishing E[Y], Var[Y], V(mu), and scale for Poisson and Normal. "
+        "Link choice does not replace those family facts."
+    ),
+    (
+        "cs1003-4.2.2-cp-01",
+        "c",
+    ): (
+        "That choice swaps the variance stories: Poisson with constant sigma^2 and Normal with Var[Y] = mu. "
+        "Poisson has mean-variance equality; Normal has constant variance with scale sigma^2."
+    ),
+    (
+        "cs1003-4.2.2-cp-01",
+        "d",
+    ): (
+        "That choice sets V(mu) = mu for every exponential-family response. "
+        "Normal uses V(mu) = 1 with scale sigma^2; that is not the Poisson variance function."
+    ),
+    # --- cs1014-4.2.2-ar-01 ---
+    (
+        "cs1014-4.2.2-ar-01",
+        "b",
+    ): (
+        "That choice treats choosing the logit link as finishing mean, variance, variance function, and scale. "
+        "Those quantities come from the response family; the link maps mu to eta and is a separate object."
+    ),
+    (
+        "cs1014-4.2.2-ar-01",
+        "c",
+    ): (
+        "That choice forces Var[Y] = sigma^2 with V(mu) = 1 for every GLM response. "
+        "Poisson has V(mu) = mu; constant variance is the Normal case, not a universal GLM rule."
+    ),
+    (
+        "cs1014-4.2.2-ar-01",
+        "d",
+    ): (
+        "That choice postpones mean and variance until eta is written. "
+        "Family mean-variance structure is primary; the linear predictor comes after the response family is named."
+    ),
+    # --- cs1014-4.2.2-cp-01 ---
+    (
+        "cs1014-4.2.2-cp-01",
+        "b",
+    ): (
+        "That choice treats choosing the logit link as finishing E[Y], Var[Y], V(mu), and scale for Poisson and Normal. "
+        "Link choice does not replace those family facts."
+    ),
+    (
+        "cs1014-4.2.2-cp-01",
+        "c",
+    ): (
+        "That choice swaps the variance stories: Poisson with constant sigma^2 and Normal with Var[Y] = mu. "
+        "Poisson has mean-variance equality; Normal has constant variance with scale sigma^2."
+    ),
+    (
+        "cs1014-4.2.2-cp-01",
+        "d",
+    ): (
+        "That choice sets V(mu) = mu for every exponential-family response. "
+        "Normal uses V(mu) = 1 with scale sigma^2; that is not the Poisson variance function."
+    ),
+    # --- cs1003-4.2.3-ar-01 ---
+    (
+        "cs1003-4.2.3-ar-01",
+        "b",
+    ): (
+        "That choice treats eta and the link as the same object. "
+        "The link g is the map from mu to eta; eta = X beta is the linear predictor, a distinct structural piece."
+    ),
+    (
+        "cs1003-4.2.3-ar-01",
+        "c",
+    ): (
+        "That choice lets the link replace the exponential-family response and discards eta once a family is named. "
+        "A GLM still needs the named family, eta, and g(mu) = eta together."
+    ),
+    (
+        "cs1003-4.2.3-ar-01",
+        "d",
+    ): (
+        "That choice restricts GLMs to Normal with identity and no separate link idea. "
+        "Non-Normal exponential-family responses with nontrivial links are standard GLM members."
+    ),
+    # --- cs1003-4.2.3-cp-01 ---
+    (
+        "cs1003-4.2.3-cp-01",
+        "b",
+    ): (
+        "That choice calls any software default automatically canonical for any family. "
+        "Canonical means the family link that equates eta with the natural parameter, warranted by mean range."
+    ),
+    (
+        "cs1003-4.2.3-cp-01",
+        "c",
+    ): (
+        "That choice assigns logit as Poisson's canonical link because counts look like probabilities. "
+        "Poisson means are positive; the canonical link is log, mapping (0, infinity) to the reals."
+    ),
+    (
+        "cs1003-4.2.3-cp-01",
+        "d",
+    ): (
+        "That choice takes identity as binomial's canonical link. "
+        "Probabilities in (0,1) need a map such as logit onto the real line for eta; identity does not match that mean-range warrant."
+    ),
+    # --- cs1014-4.2.3-ar-01 ---
+    (
+        "cs1014-4.2.3-ar-01",
+        "b",
+    ): (
+        "That choice treats the software default link as automatically canonical. "
+        "Canonical is the family-specific natural-parameter link; a default still needs that warrant."
+    ),
+    (
+        "cs1014-4.2.3-ar-01",
+        "c",
+    ): (
+        "That choice makes identity canonical for every family. "
+        "Binomial's canonical link is logit and Poisson's is log; identity is not universal."
+    ),
+    (
+        "cs1014-4.2.3-ar-01",
+        "d",
+    ): (
+        "That choice equates the link function with the linear predictor eta. "
+        "The link maps mu to eta; eta = X beta is the predictor, not the link itself."
+    ),
+    # --- cs1014-4.2.3-cp-01 ---
+    (
+        "cs1014-4.2.3-cp-01",
+        "b",
+    ): (
+        "That choice takes software defaults (binomial identity, gamma log) as canonical by definition. "
+        "Canonical links are family definitions tied to mean range, not GUI defaults."
+    ),
+    (
+        "cs1014-4.2.3-cp-01",
+        "c",
+    ): (
+        "That choice gives both binomial and gamma the logit link. "
+        "Logit matches binomial means in (0,1); gamma's canonical form is reciprocal for a positive mean."
+    ),
+    (
+        "cs1014-4.2.3-cp-01",
+        "d",
+    ): (
+        "That choice lets in-sample deviance minimisation define the canonical link. "
+        "Canonical is a family property equating eta with the natural parameter, not an empirical fit choice."
     ),
 }
 

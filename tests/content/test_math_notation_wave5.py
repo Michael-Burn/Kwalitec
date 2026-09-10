@@ -127,7 +127,7 @@ _MEANING_SAMPLES = (
     ),
     (
         "cp-5.1.1-bayes-theorem-cs1016.json",
-        "knowledge_checks[1].model_answer",
+        "knowledge_checks[1].explanation",
         (r"P(+)", r"P(D|+)", r"\approx"),
         "Bayes evidence and posterior",
     ),
@@ -415,7 +415,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2063
+    assert checked["totals"]["migrated"] == 2075
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -438,7 +438,7 @@ def test_wave5_ledger_backlog_and_migration_status() -> None:
                 and not item["needs_manual_review"]
             ):
                 confident_backlog += 1
-    assert migrated == 366
+    assert migrated == 363
     assert still_pending_review == 0
     assert confident_backlog == 0
 

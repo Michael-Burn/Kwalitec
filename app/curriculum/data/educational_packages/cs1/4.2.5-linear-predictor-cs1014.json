@@ -161,44 +161,24 @@
       "kind": "checkpoint",
       "item_id": "cs1014-4.2.5-cp-01",
       "title": "Checkpoint: 4.2.5",
-      "prompt": "Closed-book. Poisson claim counts with log link, continuous exposure score x and two-level factor cover (Standard/Plus). Which statement is correct?",
-      "response_type": "mcq",
-      "body": "Write eta; refuse link-as-eta.",
+      "prompt": "Closed-book. Severity GLM with log link and $\\eta = \\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$, coefficients $(1.0, 0.2, -0.01)$, at $x$ = 10. Enter the mean severity $\\mu = e^{\\eta}$ as a decimal to 4 places.",
+      "response_type": "numeric",
+      "body": "Evaluate $\\eta$ at $x = 10$, then invert the log link to the mean scale.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Substitute $x = 10$ into the polynomial linear predictor first.",
+        "Then apply $\\mu = e^{\\eta}$ for the log link."
       ],
-      "accepted_keywords": [],
-      "explanation": "Specified eta includes x, x squared, and cover indicator. Link maps $\\mu$ to $\\eta$; they are distinct objects.",
-      "model_answer": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$. Link maps $\\mu$ to $\\eta$.",
-      "common_mistake": "Treating link as eta or placing polynomial terms only in mu.",
+      "accepted_keywords": [
+        "7.3891"
+      ],
+      "explanation": "$\\eta(10) = 1.0 + 0.2\\times 10 - 0.01\\times 100 = 2.0$, so $\\mu = e^{2} \\approx 7.3891$ on the severity scale.",
+      "model_answer": "7.3891",
+      "common_mistake": "Stopping at $\\eta = 2$, using $e^{10}$, or dropping the quadratic term ($\\eta = 3$, $\\mu = e^{3}$).",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 7.3891.",
+        "Reports mean severity $\\mu = e^{\\eta}$, not $\\eta$ alone."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} x^{2} + \\beta_{3} I_{\\mathrm{Plus}}$ with Standard baseline. $\\eta = X\\beta$ is the linear predictor; the link $g$ maps mean $\\mu$ to $\\eta$ (for example $\\log(\\mu)=\\eta$ for Poisson log link).",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "The link function is the linear predictor, so log(mu) means mu equals eta without further structure.",
-          "misconception_tag": "link_is_eta"
-        },
-        {
-          "id": "c",
-          "label": "$\\eta = \\log(\\mu) = \\beta_{0} + \\beta_{1} x$ only; quadratic and factor terms belong in $\\mu$, not in $\\eta$.",
-          "misconception_tag": "structure_in_mu"
-        },
-        {
-          "id": "d",
-          "label": "$\\eta = \\beta_{0} + \\beta_{1} x + \\beta_{2} I_{\\mathrm{Plus}}$ only because quadratic terms cannot appear in a Poisson GLM linear predictor.",
-          "misconception_tag": "poly_normal_only"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {

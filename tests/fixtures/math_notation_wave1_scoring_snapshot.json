@@ -284,51 +284,30 @@
       "package_id": "CS1-EP001-PKG-CX-4.2-RESIDUALS",
       "item_id": "cs1014-4.2.8-cp-01",
       "response_type": "mcq",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "2.5"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
-          "correct": true,
+          "response": "2.5",
           "scored": true,
-          "matched_key": "a"
+          "correct": true,
+          "matched_key": "2.5"
         },
         {
           "response": "b",
-          "correct": false,
           "scored": true,
+          "correct": false,
           "matched_key": ""
         },
         {
-          "response": "c",
-          "correct": false,
-          "scored": true,
+          "response": "",
+          "scored": false,
+          "correct": null,
           "matched_key": ""
-        },
-        {
-          "response": "d",
-          "correct": false,
-          "scored": true,
-          "matched_key": ""
-        },
-        {
-          "response": "z",
-          "correct": false,
-          "scored": true,
-          "matched_key": ""
-        },
-        {
-          "response": "a ",
-          "correct": true,
-          "scored": true,
-          "matched_key": "a"
         }
       ]
     },

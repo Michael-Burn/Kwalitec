@@ -679,7 +679,7 @@ def test_wave11_batch4_ledger_catalogue_closed() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2063
+    assert checked["totals"]["migrated"] == 2075
     assert live["totals"] == checked["totals"]
 
     pending_nmr = [

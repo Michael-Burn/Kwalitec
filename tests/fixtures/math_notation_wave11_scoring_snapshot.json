@@ -234,21 +234,18 @@
     {
       "package_file": "3.1.6-bootstrap-estimator-cs1010.json",
       "item_id": "cs1010-3.1.6-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "8.602"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "8.602",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "8.602"
         },
         {
           "response": "b",
