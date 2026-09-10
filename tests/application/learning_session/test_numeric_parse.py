@@ -55,6 +55,9 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1014-4.2.5-cp-01", "7.3891", 0.001),
     ("cs1003-5.1.4-cp-01", "5.45", 0.001),
     ("cs1015-5.1.4-cp-01", "2.1", 0.001),
+    # NUM Wave 4: remaining P3 asymmetric twin leftovers
+    ("cs1003-4.2.5-cp-01", "3.9749", 0.001),
+    ("cs1003-4.2.8-cp-01", "-1.2247", 0.001),
 )
 
 
@@ -252,12 +255,12 @@ class TestParseNumberRejectsAmbiguousShapes:
 
 
 class TestLiveNumericCheckpointsUnchanged:
-    """All 28 live numeric checkpoints: clean decimals/integers only."""
+    """All 30 live numeric checkpoints: clean decimals/integers only."""
 
     def setup_method(self) -> None:
         reset_educational_package_cache()
 
-    def test_twenty_eight_live_numeric_checkpoints_exist(self) -> None:
+    def test_thirty_live_numeric_checkpoints_exist(self) -> None:
         loader = EducationalPackageLoader()
         found: dict[str, tuple[str, float | None]] = {}
         for pack in loader.all_approved():
@@ -267,7 +270,7 @@ class TestLiveNumericCheckpointsUnchanged:
                         check.accepted_keywords[0],
                         check.numeric_tolerance,
                     )
-        assert len(found) == 28
+        assert len(found) == 30
         for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
             assert item_id in found
             assert found[item_id][0] == accepted
@@ -285,9 +288,9 @@ class TestLiveNumericCheckpointsUnchanged:
     ) -> None:
         """Exact / within-tol / outside-tol outcomes for real keys.
 
-        All 28 accepted values are clean decimals or integers with no
+        All 30 accepted values are clean decimals or integers with no
         punctuation this fix changes. Snapshot expectations match the
-        pre-fix scorer on these probes.
+        live catalogue for every previously shipped numeric checkpoint.
         """
         loader = EducationalPackageLoader()
         item: ScoreablePracticeItem | None = None
@@ -379,6 +382,15 @@ NUM_WAVE3_NUMERIC_CONVERSIONS = (
     ("cs1014-4.2.5-cp-01", "7.3891", 0.001),
     ("cs1003-5.1.4-cp-01", "5.45", 0.001),
     ("cs1015-5.1.4-cp-01", "2.1", 0.001),
+)
+
+# ---------------------------------------------------------------------------
+# NUM Wave 4: remaining P3 asymmetric twin leftovers (2 MCQ → numeric)
+# ---------------------------------------------------------------------------
+
+NUM_WAVE4_NUMERIC_CONVERSIONS = (
+    ("cs1003-4.2.5-cp-01", "3.9749", 0.001),
+    ("cs1003-4.2.8-cp-01", "-1.2247", 0.001),
 )
 
 
@@ -648,4 +660,59 @@ class TestNumWave3NumericConversions:
         assert score_practice_response(item, "7.3891").correct is True
         assert score_practice_response(item, "2").correct is False
         assert score_practice_response(item, "2.0").correct is False
+
+
+class TestNumWave4NumericConversions:
+    """NUM Wave 4: 2 remaining P3 twin leftovers score on the live numeric contract."""
+
+    def setup_method(self) -> None:
+        reset_educational_package_cache()
+
+    @pytest.mark.parametrize(
+        ("item_id", "accepted", "tolerance"),
+        NUM_WAVE4_NUMERIC_CONVERSIONS,
+    )
+    def test_converted_item_scores_exact_within_and_outside_tolerance(
+        self,
+        item_id: str,
+        accepted: str,
+        tolerance: float,
+    ) -> None:
+        item = _scoreable_by_item_id(item_id)
+        assert item.response_type is PracticeResponseType.NUMERIC
+        assert item.answer_key.accepted == (accepted,)
+        assert item.answer_key.numeric_tolerance == pytest.approx(tolerance)
+        assert item.choices == ()
+        assert item.answer_key.correct_choice_id == ""
+
+        expected = float(accepted)
+        exact = score_practice_response(item, accepted)
+        assert exact.scored is True and exact.correct is True
+        assert exact.feedback_outcome == "Correct"
+
+        near = score_practice_response(item, str(expected + tolerance * 0.5))
+        assert near.scored is True and near.correct is True
+
+        far = score_practice_response(item, str(expected + tolerance * 2 + 0.01))
+        assert far.scored is True and far.correct is False
+        assert far.feedback_outcome == "Incorrect"
+
+    def test_linear_predictor_scores_mean_severity_not_eta(self) -> None:
+        """Prompt pins mu = e^eta; eta = 1.38 alone must score Incorrect."""
+        item = _scoreable_by_item_id("cs1003-4.2.5-cp-01")
+        assert r"\mu = e^{\eta}" in item.prompt
+        assert score_practice_response(item, "3.9749").correct is True
+        assert score_practice_response(item, "1.38").correct is False
+        assert score_practice_response(item, "1.380").correct is False
+
+    def test_pearson_residual_requires_negative_sign(self) -> None:
+        """Positive-only 1.2247 must score Incorrect against true -1.2247."""
+        item = _scoreable_by_item_id("cs1003-4.2.8-cp-01")
+        assert "Pearson" in item.prompt
+        assert score_practice_response(item, "-1.2247").correct is True
+        wrong = score_practice_response(item, "1.2247")
+        assert wrong.scored is True
+        assert wrong.correct is False
+        assert wrong.feedback_outcome == "Incorrect"
+        assert score_practice_response(item, "-1.3569").correct is False
 

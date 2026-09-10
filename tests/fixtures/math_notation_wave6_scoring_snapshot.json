@@ -569,21 +569,18 @@
     {
       "package_file": "4.2.5-linear-predictor-cs1003.json",
       "item_id": "cs1003-4.2.5-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
+      "correct_choice_id": "",
+      "accepted_keywords": [
+        "3.9749"
       ],
+      "numeric_tolerance": 0.001,
+      "choice_ids": [],
       "verdicts": [
         {
-          "response": "a",
+          "response": "3.9749",
           "scored": true,
           "correct": true,
-          "matched_key": "a"
+          "matched_key": "3.9749"
         },
         {
           "response": "b",

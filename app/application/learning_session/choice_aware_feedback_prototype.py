@@ -31,6 +31,14 @@ GLM adjacency through 4.2.3). Four conflicting CPs from the same draft
 converted to numeric instead and are intentionally not on this
 allowlist, matching the 5.1.7/5.1.8 AR-only pattern. Copy is frozen as
 approved; mechanism unchanged.
+
+Editorial review record (2026-09-10): forty-one CAF Wave 4 items were
+reviewed and approved before wiring (remaining P3 GLM/exponential-family
+from 4.2.4 through revision, and entire P4 univariate 2.1 cluster). Two
+conflicting CPs from the same draft (cs1003-4.2.5-cp-01, cs1003-4.2.8-cp-01)
+were converted to numeric instead and are intentionally not on this
+allowlist, matching the established AR-only pattern. Copy is frozen as
+approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -46,7 +54,8 @@ from app.application.learning_session.scoreable_practice import (
 # plus editorially reviewed expansions (Bayes / MSE / GLM siblings;
 # CAF Wave 1 prior/posterior / posterior-simple / estimators AR;
 # NUM Wave 2 / CAF credibility AR siblings;
-# CAF Wave 3 remaining P1 / P2 / P3-through-4.2.3).
+# CAF Wave 3 remaining P1 / P2 / P3-through-4.2.3;
+# CAF Wave 4 remaining P3 from 4.2.4 + entire P4 univariate 2.1).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -108,6 +117,47 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1003-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1003)
         "cs1014-4.2.3-ar-01",  # CAF Wave 3: link-canonical AR (cs1014)
         "cs1014-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1014)
+        "cs1003-4.2.4-ar-01",  # CAF Wave 4: factors/interactions AR (cs1003)
+        "cs1003-4.2.4-cp-01",  # CAF Wave 4: factors/interactions CP (cs1003)
+        "cs1014-4.2.4-cp-01",  # CAF Wave 4: factors/interactions CP (cs1014)
+        "cs1014-4.2.4-ar-01",  # CAF Wave 4: factors/interactions AR (cs1014)
+        "cs1003-4.2.5-ar-01",  # CAF Wave 4: linear predictor AR (cs1003)
+        "cs1014-4.2.5-ar-01",  # CAF Wave 4: linear predictor AR (cs1014)
+        "cs1003-4.2.6-ar-01",  # CAF Wave 4: deviance AR (cs1003)
+        "cs1014-4.2.6-ar-01",  # CAF Wave 4: deviance AR (cs1014)
+        "cs1003-4.2.6-cp-01",  # CAF Wave 4: deviance CP (cs1003)
+        "cs1014-4.2.6-cp-01",  # CAF Wave 4: deviance CP (cs1014)
+        "cs1003-4.2.7-ar-01",  # CAF Wave 4: model choice AR (cs1003)
+        "cs1014-4.2.7-ar-01",  # CAF Wave 4: model choice AR (cs1014)
+        "cs1003-4.2.7-cp-01",  # CAF Wave 4: model choice CP (cs1003)
+        "cs1014-4.2.7-cp-01",  # CAF Wave 4: model choice CP (cs1014)
+        "cs1003-4.2.8-ar-01",  # CAF Wave 4: residuals AR (cs1003)
+        "cs1014-4.2.8-ar-01",  # CAF Wave 4: residuals AR (cs1014)
+        "cs1003-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1003)
+        "cs1014-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1014)
+        "cs1003-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1003)
+        "cs1014-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1014)
+        "cs1003-4.2.10-ar-01",  # CAF Wave 4: fit-interpret AR (cs1003)
+        "cs1014-4.2.10-ar-01",  # CAF Wave 4: fit-interpret AR (cs1014)
+        "cs1014-cx-r1-ar-01",  # CAF Wave 4: revision GLM AR
+        "cs1014-cx-r1-cp-01",  # CAF Wave 4: revision GLM CP
+        "cs1003-cd-r2-ar-01",  # CAF Wave 4: revision regression-GLM AR
+        "cs1003-cd-r2-cp-01",  # CAF Wave 4: revision regression-GLM CP
+        "cs1002-2.1a-ar-01",  # CAF Wave 4: discrete AR (cs1002)
+        "cs1002-2.1a-cp-01",  # CAF Wave 4: discrete CP (cs1002)
+        "cs1002-2.1b-ar-01",  # CAF Wave 4: continuous AR (cs1002)
+        "cs1002-2.1b-cp-01",  # CAF Wave 4: continuous CP (cs1002)
+        "cs1004-2.1c-ar-01",  # CAF Wave 4: prob/quantiles AR
+        "cs1004-2.1d-ar-01",  # CAF Wave 4: Poisson process AR
+        "cs1004-2.1d-cp-01",  # CAF Wave 4: Poisson process CP
+        "cs1004-2.1e-ar-01",  # CAF Wave 4: inverse transform AR
+        "cs1004-2.1e-cp-01",  # CAF Wave 4: inverse transform CP
+        "cs1004-2.1f-ar-01",  # CAF Wave 4: software generation AR
+        "cs1004-2.1f-cp-01",  # CAF Wave 4: software generation CP
+        "cs1016-2.1.3-ar-01",  # CAF Wave 4: companion prob/quantiles AR
+        "cs1017-2.1.1-ar-01",  # CAF Wave 4: discrete AR (cs1017)
+        "cs1017-2.1.1-cp-01",  # CAF Wave 4: discrete CP (cs1017)
+        "cs1004-cgr1-ar-01",  # CAF Wave 4: revision generation AR
     }
 )
 
@@ -1522,6 +1572,909 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice lets in-sample deviance minimisation define the canonical link. "
         "Canonical is a family property equating eta with the natural parameter, not an empirical fit choice."
+    ),
+    # --- CAF Wave 4 (2026-09-10 editorial review) ---
+    # --- cs1003-4.2.4-ar-01 ---
+    (
+        "cs1003-4.2.4-ar-01",
+        "b",
+    ): (
+        "That choice swaps the examples: region North/South is categorical, while age in years is continuous. "
+        "An interaction is still useful when one covariate’s effect depends on the level of another, beyond additive main effects."
+    ),
+    (
+        "cs1003-4.2.4-ar-01",
+        "c",
+    ): (
+        "That choice treats continuous and factor predictors as the same object and reduces an interaction to another main-effect slope. "
+        "A factor uses level coding, and an interaction lets a continuous slope change by level."
+    ),
+    (
+        "cs1003-4.2.4-ar-01",
+        "d",
+    ): (
+        "That choice claims factors apply only outside GLMs and that the linear predictor uses only continuous covariates. "
+        "GLMs routinely include factor indicators alongside continuous terms."
+    ),
+    # --- cs1003-4.2.4-cp-01 ---
+    (
+        "cs1003-4.2.4-cp-01",
+        "b",
+    ): (
+        "That choice stops at eta = beta0 + beta1 x and treats knowing the region as finishing the model. "
+        "You still need a factor indicator so region enters the linear predictor."
+    ),
+    (
+        "cs1003-4.2.4-cp-01",
+        "c",
+    ): (
+        "That choice keeps only a South main-effect shift and treats that constant shift as the interaction. "
+        "An age-by-region interaction changes the age slope by region, not just a level shift."
+    ),
+    (
+        "cs1003-4.2.4-cp-01",
+        "d",
+    ): (
+        "That choice codes region as numeric 1/2 on the same slope as age. "
+        "Region should enter as a factor indicator, with an interaction if the age effect may differ by region."
+    ),
+    # --- cs1014-4.2.4-cp-01 ---
+    (
+        "cs1014-4.2.4-cp-01",
+        "b",
+    ): (
+        "That choice stops at eta = beta0 + beta1 x and treats knowing the region as finishing the model. "
+        "You still need a factor indicator so region enters the linear predictor."
+    ),
+    (
+        "cs1014-4.2.4-cp-01",
+        "c",
+    ): (
+        "That choice keeps only a South main-effect shift and treats that constant shift as the interaction. "
+        "An age-by-region interaction changes the age slope by region, not just a level shift."
+    ),
+    (
+        "cs1014-4.2.4-cp-01",
+        "d",
+    ): (
+        "That choice codes region as numeric 1/2 on the same slope as age. "
+        "Region should enter as a factor indicator, with an interaction if the age effect may differ by region."
+    ),
+    # --- cs1014-4.2.4-ar-01 ---
+    (
+        "cs1014-4.2.4-ar-01",
+        "b",
+    ): (
+        "That choice treats an interaction as just another main-effect slope that never changes slope by level. "
+        "An interaction lets the effect of one covariate depend on the level of another."
+    ),
+    (
+        "cs1014-4.2.4-ar-01",
+        "c",
+    ): (
+        "That choice restricts factors to non-GLM settings and says GLMs use only continuous covariates. "
+        "Factor level coding belongs in the GLM linear predictor whenever categories matter."
+    ),
+    (
+        "cs1014-4.2.4-ar-01",
+        "d",
+    ): (
+        "That choice uses eta = beta0 + beta1 x with no factor indicators and claims that fully explains categorical region. "
+        "Categorical region needs indicator coding in eta."
+    ),
+    # --- cs1003-4.2.5-ar-01 ---
+    (
+        "cs1003-4.2.5-ar-01",
+        "b",
+    ): (
+        "That choice writes every case as eta = beta0 alone and leaves factors and polynomials to the link. "
+        "Simple slope, baseline factor coding, and a quadratic all live in the linear predictor through terms in eta."
+    ),
+    (
+        "cs1003-4.2.5-ar-01",
+        "c",
+    ): (
+        "That choice forces a two-level factor into a multiplicative link term and writes a quadratic without coefficients. "
+        "The factor enters eta via level coding, and a quadratic needs explicit beta terms on the powers of x."
+    ),
+    (
+        "cs1003-4.2.5-ar-01",
+        "d",
+    ): (
+        "That choice bans quadratic terms and claims factor coding removes beta0. "
+        "Polynomials are allowed in eta, and an intercept remains unless you deliberately omit it."
+    ),
+    # --- cs1014-4.2.5-ar-01 ---
+    (
+        "cs1014-4.2.5-ar-01",
+        "b",
+    ): (
+        "That choice equates the link function with the linear predictor because g(mu) = eta. "
+        "The equation relates them: the link is the function g, while eta is the linear predictor X beta."
+    ),
+    (
+        "cs1014-4.2.5-ar-01",
+        "c",
+    ): (
+        "That choice sets eta equal to mu for every GLM and drops the link. "
+        "In general eta = g(mu), and eta = mu only for the identity link."
+    ),
+    (
+        "cs1014-4.2.5-ar-01",
+        "d",
+    ): (
+        "That choice allows polynomial terms only in Normal linear models and forbids x squared in a Poisson eta. "
+        "Polynomials may enter any GLM linear predictor when the mean structure needs them."
+    ),
+    # --- cs1003-4.2.6-ar-01 ---
+    (
+        "cs1003-4.2.6-ar-01",
+        "b",
+    ): (
+        "That choice defines deviance by deleting insignificant terms until p-values look nice. "
+        "Deviance compares log-likelihoods of fitted models; estimation is maximum likelihood, not p-value chopping."
+    ),
+    (
+        "cs1003-4.2.6-ar-01",
+        "c",
+    ): (
+        "That choice equates deviance with the sum of Pearson residuals and treats scaled deviance as unchanged without a scale divisor. "
+        "Deviance comes from a likelihood ratio, and scaled deviance divides by dispersion when that is part of the definition."
+    ),
+    (
+        "cs1003-4.2.6-ar-01",
+        "d",
+    ): (
+        "That choice says GLMs are estimated by moment matching with deviance only as a display label. "
+        "GLM coefficients are estimated by maximum likelihood; deviance is a likelihood-based fit measure."
+    ),
+    # --- cs1014-4.2.6-ar-01 ---
+    (
+        "cs1014-4.2.6-ar-01",
+        "b",
+    ): (
+        "That choice defines deviance by deleting insignificant terms until p-values look nice. "
+        "Deviance compares log-likelihoods of fitted models; estimation is maximum likelihood, not p-value chopping."
+    ),
+    (
+        "cs1014-4.2.6-ar-01",
+        "c",
+    ): (
+        "That choice equates deviance with the sum of Pearson residuals and treats scaled deviance as unchanged without a scale divisor. "
+        "Deviance comes from a likelihood ratio, and scaled deviance divides by dispersion when that is part of the definition."
+    ),
+    (
+        "cs1014-4.2.6-ar-01",
+        "d",
+    ): (
+        "That choice says GLMs are estimated by moment matching with deviance only as a display label. "
+        "GLM coefficients are estimated by maximum likelihood; deviance is a likelihood-based fit measure."
+    ),
+    # --- cs1003-4.2.6-cp-01 ---
+    (
+        "cs1003-4.2.6-cp-01",
+        "b",
+    ): (
+        "That choice defines deviance as an AIC difference, scaled deviance as AIC over n, and estimation as dropping p greater than 0.10. "
+        "Deviance is a likelihood-ratio measure of fit, and GLM estimation is maximum likelihood."
+    ),
+    (
+        "cs1003-4.2.6-cp-01",
+        "c",
+    ): (
+        "That choice sets deviance equal to the sum of squared residuals and claims every GLM is OLS on the link scale. "
+        "Deviance is likelihood-based, and GLM fitting maximises the likelihood for the chosen family and link."
+    ),
+    (
+        "cs1003-4.2.6-cp-01",
+        "d",
+    ): (
+        "That choice says deviance and scaled deviance are identical for Poisson and binomial because scale is always 1, with no further definition. "
+        "Even when the scale is 1, scaled deviance is still deviance divided by that scale."
+    ),
+    # --- cs1014-4.2.6-cp-01 ---
+    (
+        "cs1014-4.2.6-cp-01",
+        "b",
+    ): (
+        "That choice defines deviance as an AIC difference, scaled deviance as AIC over n, and estimation as dropping p greater than 0.10. "
+        "Deviance is a likelihood-ratio measure of fit, and GLM estimation is maximum likelihood."
+    ),
+    (
+        "cs1014-4.2.6-cp-01",
+        "c",
+    ): (
+        "That choice sets deviance equal to the sum of squared residuals and claims every GLM is OLS on the link scale. "
+        "Deviance is likelihood-based, and GLM fitting maximises the likelihood for the chosen family and link."
+    ),
+    (
+        "cs1014-4.2.6-cp-01",
+        "d",
+    ): (
+        "That choice says deviance and scaled deviance are identical for Poisson and binomial because scale is always 1, with no further definition. "
+        "Even when the scale is 1, scaled deviance is still deviance divided by that scale."
+    ),
+    # --- cs1003-4.2.7-ar-01 ---
+    (
+        "cs1003-4.2.7-ar-01",
+        "b",
+    ): (
+        "That choice treats a Pearson residual plot as finishing analysis of deviance, with large residuals crowning the full model. "
+        "For nested models, AoD uses the deviance difference, not residual plots as the model-choice test."
+    ),
+    (
+        "cs1003-4.2.7-ar-01",
+        "c",
+    ): (
+        "That choice compares models by raw R-squared on the link scale and limits deviance differences to Normal identity. "
+        "Nested AoD uses deviance differences for GLMs generally, not raw link-scale R-squared."
+    ),
+    (
+        "cs1003-4.2.7-ar-01",
+        "d",
+    ): (
+        "That choice skips deviance comparison whenever every p in the larger model is below 0.05. "
+        "Nested comparison still uses the deviance contrast between models, not coefficient p-values alone."
+    ),
+    # --- cs1014-4.2.7-ar-01 ---
+    (
+        "cs1014-4.2.7-ar-01",
+        "b",
+    ): (
+        "That choice says plotting Pearson residuals finishes model choice via AoD because large residuals imply the full model wins. "
+        "AoD for nested models compares deviance differences, not residual magnitude as a substitute test."
+    ),
+    (
+        "cs1014-4.2.7-ar-01",
+        "c",
+    ): (
+        "That choice always compares non-nested models by raw R-squared on the link scale and restricts deviance differences to Normal GLMs. "
+        "Nested analysis of deviance uses deviance differences across GLM families."
+    ),
+    (
+        "cs1014-4.2.7-ar-01",
+        "d",
+    ): (
+        "That choice lets parameter significance alone replace deviance comparison. "
+        "Coefficient tests and nested deviance comparison answer related but different questions."
+    ),
+    # --- cs1003-4.2.7-cp-01 ---
+    (
+        "cs1003-4.2.7-cp-01",
+        "b",
+    ): (
+        "That choice finishes nested model choice by plotting Pearson residuals under AoD. "
+        "For nested models, compare through the deviance difference, not residual plots alone."
+    ),
+    (
+        "cs1003-4.2.7-cp-01",
+        "c",
+    ): (
+        "That choice selects the full model whenever any single added coefficient has p below 0.05 and calls the deviance difference redundant. "
+        "Nested comparison still uses the joint deviance contrast for the added terms."
+    ),
+    (
+        "cs1003-4.2.7-cp-01",
+        "d",
+    ): (
+        "That choice limits AoD to Normal identity GLMs and sends Poisson to raw AIC only. "
+        "Analysis of deviance applies to nested GLMs more generally, including Poisson."
+    ),
+    # --- cs1014-4.2.7-cp-01 ---
+    (
+        "cs1014-4.2.7-cp-01",
+        "b",
+    ): (
+        "That choice finishes nested model choice by plotting Pearson residuals under AoD. "
+        "For nested models, compare through the deviance difference, not residual plots alone."
+    ),
+    (
+        "cs1014-4.2.7-cp-01",
+        "c",
+    ): (
+        "That choice selects the full model whenever any single added coefficient has p below 0.05 and calls the deviance difference redundant. "
+        "Nested comparison still uses the joint deviance contrast for the added terms."
+    ),
+    (
+        "cs1014-4.2.7-cp-01",
+        "d",
+    ): (
+        "That choice limits AoD to Normal identity GLMs and sends Poisson to raw AIC only. "
+        "Analysis of deviance applies to nested GLMs more generally, including Poisson."
+    ),
+    # --- cs1003-4.2.8-ar-01 ---
+    (
+        "cs1003-4.2.8-ar-01",
+        "b",
+    ): (
+        "That choice treats an LRT as finishing the explanation of Pearson and deviance residuals because LRT and residuals are the same diagnostic. "
+        "Likelihood-ratio tests compare models; Pearson and deviance residuals are observation-level fit diagnostics."
+    ),
+    (
+        "cs1003-4.2.8-ar-01",
+        "c",
+    ): (
+        "That choice sets both Pearson and deviance residuals equal to y minus mu-hat with no variance scaling. "
+        "Pearson residuals scale the raw residual by a variance factor; deviance residuals come from the signed square root of the observation’s deviance contribution."
+    ),
+    (
+        "cs1003-4.2.8-ar-01",
+        "d",
+    ): (
+        "That choice allows deviance residuals only for Normal GLMs and forces Poisson and binomial to Pearson only. "
+        "Deviance residuals are defined for those families from each observation’s deviance contribution."
+    ),
+    # --- cs1014-4.2.8-ar-01 ---
+    (
+        "cs1014-4.2.8-ar-01",
+        "b",
+    ): (
+        "That choice treats an LRT as finishing the explanation of Pearson and deviance residuals because LRT and residuals are the same diagnostic. "
+        "Likelihood-ratio tests compare models; Pearson and deviance residuals are observation-level fit diagnostics."
+    ),
+    (
+        "cs1014-4.2.8-ar-01",
+        "c",
+    ): (
+        "That choice sets both Pearson and deviance residuals equal to y minus mu-hat with no variance scaling. "
+        "Pearson residuals scale the raw residual by a variance factor; deviance residuals come from the signed square root of the observation’s deviance contribution."
+    ),
+    (
+        "cs1014-4.2.8-ar-01",
+        "d",
+    ): (
+        "That choice allows deviance residuals only for Normal GLMs and forces Poisson and binomial to Pearson only. "
+        "Deviance residuals are defined for those families from each observation’s deviance contribution."
+    ),
+    # --- cs1003-4.2.9-ar-01 ---
+    (
+        "cs1003-4.2.9-ar-01",
+        "b",
+    ): (
+        "That choice treats coefficient reading and R-squared as the Pearson chi-square and LRT. "
+        "Pearson chi-square aggregates squared Pearson residuals against a chi-squared reference, and the LRT compares likelihood or deviance to a nested or saturated alternative."
+    ),
+    (
+        "cs1003-4.2.9-ar-01",
+        "c",
+    ): (
+        "That choice collapses Pearson chi-square and the LRT into one large-sample test with vendor-only names. "
+        "The two tests answer different questions: aggregate residual adequacy versus a likelihood or deviance comparison."
+    ),
+    (
+        "cs1003-4.2.9-ar-01",
+        "d",
+    ): (
+        "That choice confines acceptability checks to the pre-fit stage and treats Fit as the end of formal testing. "
+        "After fitting you still need Pearson chi-square and LRT assessments of the fitted model."
+    ),
+    # --- cs1014-4.2.9-ar-01 ---
+    (
+        "cs1014-4.2.9-ar-01",
+        "b",
+    ): (
+        "That choice treats coefficient reading and R-squared as the Pearson chi-square and LRT. "
+        "Pearson chi-square aggregates squared Pearson residuals against a chi-squared reference, and the LRT compares likelihood or deviance to a nested or saturated alternative."
+    ),
+    (
+        "cs1014-4.2.9-ar-01",
+        "c",
+    ): (
+        "That choice collapses Pearson chi-square and the LRT into one large-sample test with vendor-only names. "
+        "The two tests answer different questions: aggregate residual adequacy versus a likelihood or deviance comparison."
+    ),
+    (
+        "cs1014-4.2.9-ar-01",
+        "d",
+    ): (
+        "That choice confines acceptability checks to the pre-fit stage and treats Fit as the end of formal testing. "
+        "After fitting you still need Pearson chi-square and LRT assessments of the fitted model."
+    ),
+    # --- cs1003-4.2.9-cp-01 ---
+    (
+        "cs1003-4.2.9-cp-01",
+        "b",
+    ): (
+        "That choice treats reading every coefficient as finishing acceptability testing. "
+        "Coefficient interpretation is separate; you still apply Pearson chi-square for aggregate adequacy and the LRT for likelihood or deviance comparison."
+    ),
+    (
+        "cs1003-4.2.9-cp-01",
+        "c",
+    ): (
+        "That choice swaps the test definitions: Pearson chi-square is not the nested deviance difference, and the LRT is not the sum of squared Pearson residuals. "
+        "Pearson chi-square aggregates squared Pearson residuals; the LRT compares likelihood or deviance."
+    ),
+    (
+        "cs1003-4.2.9-cp-01",
+        "d",
+    ): (
+        "That choice treats residual plots as the only acceptability judgment and the named tests as plot labels. "
+        "Plots support inspection, but Pearson chi-square and the LRT remain distinct formal comparisons."
+    ),
+    # --- cs1014-4.2.9-cp-01 ---
+    (
+        "cs1014-4.2.9-cp-01",
+        "b",
+    ): (
+        "That choice treats reading every coefficient as finishing acceptability testing. "
+        "Coefficient interpretation is separate; you still apply Pearson chi-square for aggregate adequacy and the LRT for likelihood or deviance comparison."
+    ),
+    (
+        "cs1014-4.2.9-cp-01",
+        "c",
+    ): (
+        "That choice swaps the test definitions: Pearson chi-square is not the nested deviance difference, and the LRT is not the sum of squared Pearson residuals. "
+        "Pearson chi-square aggregates squared Pearson residuals; the LRT compares likelihood or deviance."
+    ),
+    (
+        "cs1014-4.2.9-cp-01",
+        "d",
+    ): (
+        "That choice treats residual plots as the only acceptability judgment and the named tests as plot labels. "
+        "Plots support inspection, but Pearson chi-square and the LRT remain distinct formal comparisons."
+    ),
+    # --- cs1003-4.2.10-ar-01 ---
+    (
+        "cs1003-4.2.10-ar-01",
+        "b",
+    ): (
+        "That choice treats the Fit command as supplying all actuarial interpretation and validation automatically. "
+        "Beyond fitting you still need to interpret coefficients and run diagnostics on the fitted GLM."
+    ),
+    (
+        "cs1003-4.2.10-ar-01",
+        "c",
+    ): (
+        "That choice limits interpretation to the intercept and denies response-scale meaning for factor coefficients. "
+        "Factor effects still need interpretation on the response scale alongside diagnostics."
+    ),
+    (
+        "cs1003-4.2.10-ar-01",
+        "d",
+    ): (
+        "That choice equates fitting a GLM with completing Bayesian credibility because both can model claim counts. "
+        "GLM fitting does not finish Bayesian credibility work."
+    ),
+    # --- cs1014-4.2.10-ar-01 ---
+    (
+        "cs1014-4.2.10-ar-01",
+        "b",
+    ): (
+        "That choice treats clicking Fit as finishing interpretation and diagnostics because the software shows conclusions automatically. "
+        "Beyond Fit you still interpret coefficients, fit measures, and diagnostics."
+    ),
+    (
+        "cs1014-4.2.10-ar-01",
+        "c",
+    ): (
+        "That choice treats fitting a GLM as finishing Bayesian credibility because both use statistical software output. "
+        "Shared software does not make GLM fitting complete Bayesian credibility work."
+    ),
+    (
+        "cs1014-4.2.10-ar-01",
+        "d",
+    ): (
+        "That choice restricts interpretation to the intercept and treats factor coefficients and diagnostics as optional. "
+        "Factor coefficients and diagnostics remain required beyond the intercept."
+    ),
+    # --- cs1014-cx-r1-ar-01 ---
+    (
+        "cs1014-cx-r1-ar-01",
+        "b",
+    ): (
+        "That choice treats the link as mapping each residual to a probability density. "
+        "The link maps the mean mu to the linear predictor eta = X beta."
+    ),
+    (
+        "cs1014-cx-r1-ar-01",
+        "c",
+    ): (
+        "That choice claims the link forces every response distribution to become Normal. "
+        "The link maps mu to eta; it does not turn the response family into Normal."
+    ),
+    (
+        "cs1014-cx-r1-ar-01",
+        "d",
+    ): (
+        "That choice treats the link as specifying covariance among all observations. "
+        "The link maps mu to eta; dependence is not what the link encodes."
+    ),
+    # --- cs1014-cx-r1-cp-01 ---
+    (
+        "cs1014-cx-r1-cp-01",
+        "b",
+    ): (
+        "That choice always prefers the larger model because deviance cannot increase with more parameters. "
+        "Nested deviance differences are judged against a chi-squared reference under nesting and the same family and scale, not by parameter count alone."
+    ),
+    (
+        "cs1014-cx-r1-cp-01",
+        "c",
+    ): (
+        "That choice always compares a deviance difference with a standard Normal. "
+        "For nested GLMs with the same family and scale, the deviance difference is compared with a chi-squared reference."
+    ),
+    (
+        "cs1014-cx-r1-cp-01",
+        "d",
+    ): (
+        "That choice takes a non-significant deviance difference as proof that every residual assumption holds. "
+        "A non-significant nested comparison does not certify residual or independence assumptions."
+    ),
+    # --- cs1003-cd-r2-ar-01 ---
+    (
+        "cs1003-cd-r2-ar-01",
+        "b",
+    ): (
+        "That choice gives the family the role of determining X and has the link turn predictors into response variance. "
+        "The family sets the mean-variance relationship, eta = X beta, and the link satisfies g(mu) = eta."
+    ),
+    (
+        "cs1003-cd-r2-ar-01",
+        "c",
+    ): (
+        "That choice treats eta as the observed response and the link as its density. "
+        "Eta = X beta is the linear predictor, and the link maps mu via g(mu) = eta."
+    ),
+    (
+        "cs1003-cd-r2-ar-01",
+        "d",
+    ): (
+        "That choice claims the link requires the response itself to be Normal. "
+        "The family sets mean-variance behaviour and g(mu) = eta; Normality of Y is not required."
+    ),
+    # --- cs1003-cd-r2-cp-01 ---
+    (
+        "cs1003-cd-r2-cp-01",
+        "b",
+    ): (
+        "That choice sets the Poisson canonical link as mu squared equals eta and equates deviance with residual sum of squares in every GLM. "
+        "For Poisson the canonical link is log(mu) = eta, and deviance compares fitted and saturated models through likelihoods."
+    ),
+    (
+        "cs1003-cd-r2-cp-01",
+        "c",
+    ): (
+        "That choice allows only the identity link for Poisson because counts stay untransformed. "
+        "The Poisson canonical link is log(mu) = eta; identity is not the only valid link."
+    ),
+    (
+        "cs1003-cd-r2-cp-01",
+        "d",
+    ): (
+        "That choice treats small deviance as proof of every distributional and independence assumption. "
+        "Deviance compares fitted versus saturated likelihoods; it does not certify all assumptions by itself."
+    ),
+    # --- cs1002-2.1a-ar-01 ---
+    (
+        "cs1002-2.1a-ar-01",
+        "b",
+    ): (
+        "That choice shortens the discrete roster and collapses negative binomial into geometric, with hypergeometric optional. "
+        "Syllabus 2.1.1 needs the full six discrete families with their situation cues."
+    ),
+    (
+        "cs1002-2.1a-ar-01",
+        "c",
+    ): (
+        "That choice swaps the situation cues for binomial, hypergeometric, and Poisson. "
+        "Match each family to its cue: fixed independent trials, without-replacement finite sampling, and counts with a rate story."
+    ),
+    (
+        "cs1002-2.1a-ar-01",
+        "d",
+    ): (
+        "That choice lists continuous families while attaching discrete count cues. "
+        "The six Syllabus 2.1.1 discrete families are the discrete roster with discrete situation cues."
+    ),
+    # --- cs1002-2.1a-cp-01 ---
+    (
+        "cs1002-2.1a-cp-01",
+        "b",
+    ): (
+        "That choice applies binomial automatically to any claim count, including without-replacement sampling. "
+        "Sampling without replacement from a finite portfolio is a hypergeometric setting."
+    ),
+    (
+        "cs1002-2.1a-cp-01",
+        "c",
+    ): (
+        "That choice defaults to Poisson for every claim count and ignores without-replacement structure. "
+        "Finite without-replacement sampling of policies points to the hypergeometric."
+    ),
+    (
+        "cs1002-2.1a-cp-01",
+        "d",
+    ): (
+        "That choice uses discrete uniform because policies look equally likely and rejects hypergeometric for insurance. "
+        "Equal likelihood of units does not remove the without-replacement finite-population structure."
+    ),
+    # --- cs1002-2.1b-ar-01 ---
+    (
+        "cs1002-2.1b-ar-01",
+        "b",
+    ): (
+        "That choice keeps only Normal and treats the other continuous names as optional without cues. "
+        "You need Normal, lognormal, exponential, and gamma, each with continuous situation cues."
+    ),
+    (
+        "cs1002-2.1b-ar-01",
+        "c",
+    ): (
+        "That choice reverses the continuous cues for Normal, lognormal, exponential, and gamma. "
+        "Match each family to its correct support and shape story."
+    ),
+    (
+        "cs1002-2.1b-ar-01",
+        "d",
+    ): (
+        "That choice lists discrete count families as the continuous roster. "
+        "Continuous families here include Normal, lognormal, exponential, and gamma with continuous cues."
+    ),
+    # --- cs1002-2.1b-cp-01 ---
+    (
+        "cs1002-2.1b-cp-01",
+        "b",
+    ): (
+        "That choice defaults to Normal for individual claim sizes because the CLT supposedly always Normalises them. "
+        "For strictly positive, right-skewed claim sizes, start with lognormal or gamma rather than Normal by default."
+    ),
+    (
+        "cs1002-2.1b-cp-01",
+        "c",
+    ): (
+        "That choice uses continuous uniform on all reals and treats positive skew as irrelevant. "
+        "Strictly positive right-skewed claim sizes point to lognormal or gamma."
+    ),
+    (
+        "cs1002-2.1b-cp-01",
+        "d",
+    ): (
+        "That choice refuses lognormal and gamma and prefers Normal because negatives supposedly never appear in practice. "
+        "Prefer lognormal or gamma for positive skewed sizes; do not default to Normal."
+    ),
+    # --- cs1004-2.1c-ar-01 ---
+    (
+        "cs1004-2.1c-ar-01",
+        "b",
+    ): (
+        "That choice treats naming the family as already completing both probability and quantile evaluation. "
+        "Naming the distribution is not the calculation; you still distinguish probability, quantile, and method class."
+    ),
+    (
+        "cs1004-2.1c-ar-01",
+        "c",
+    ): (
+        "That choice swaps the tasks: it treats a quantile as P(X less than or equal to a) and a probability question as finding x for a given cumulative probability. "
+        "Probability asks for a probability from a threshold; a quantile asks for x at a stated cumulative probability."
+    ),
+    (
+        "cs1004-2.1c-ar-01",
+        "d",
+    ): (
+        "That choice counts only software menus as method class and rejects hand calculation and tables. "
+        "Method class includes hand calculation and tables as well as software."
+    ),
+    # --- cs1004-2.1d-ar-01 ---
+    (
+        "cs1004-2.1d-ar-01",
+        "b",
+    ): (
+        "That choice treats a Poisson process as only another name for the Poisson PMF with no continuous-time arrival story. "
+        "The Poisson process is the continuous-time arrival model whose interval counts follow a Poisson distribution."
+    ),
+    (
+        "cs1004-2.1d-ar-01",
+        "c",
+    ): (
+        "That choice gives fixed-interval counts a continuous Normal law under a Poisson process and reserves the Poisson distribution for waiting times. "
+        "Under a Poisson process, counts in a fixed interval follow a Poisson distribution."
+    ),
+    (
+        "cs1004-2.1d-ar-01",
+        "d",
+    ): (
+        "That choice swaps roles: distribution for continuous-time arrivals and process for the discrete interval count law. "
+        "The process models continuous-time arrivals; the Poisson distribution is the count law in a fixed interval."
+    ),
+    # --- cs1004-2.1d-cp-01 ---
+    (
+        "cs1004-2.1d-cp-01",
+        "b",
+    ): (
+        "That choice agrees that process language is optional once the discrete Poisson PMF is named. "
+        "Process talk is not decoration; it links continuous-time arrivals to the Poisson count law in an interval."
+    ),
+    (
+        "cs1004-2.1d-cp-01",
+        "c",
+    ): (
+        "That choice refuses only the word process while accepting interval counts with no distributional link to arrivals. "
+        "Interval counts still need that link from the Poisson process to the Poisson distribution."
+    ),
+    (
+        "cs1004-2.1d-cp-01",
+        "d",
+    ): (
+        "That choice claims the discrete Poisson already includes continuous-time arrivals so distinguishing is unnecessary. "
+        "Naming the PMF does not replace the process-to-distribution connection."
+    ),
+    # --- cs1004-2.1e-ar-01 ---
+    (
+        "cs1004-2.1e-ar-01",
+        "b",
+    ): (
+        "That choice draws X directly from F and treats the inverse CDF as optional. "
+        "Inverse transform starts from U ~ Uniform(0,1) and sets X = F inverse(U)."
+    ),
+    (
+        "cs1004-2.1e-ar-01",
+        "c",
+    ): (
+        "That choice draws U ~ Normal(0,1) and sets X = F(U) with the CDF instead of the inverse. "
+        "Use Uniform(0,1) and the inverse CDF: X = F inverse(U)."
+    ),
+    (
+        "cs1004-2.1e-ar-01",
+        "d",
+    ): (
+        "That choice sets X = F(U) with U already equal to X and drops Uniform. "
+        "The method needs a fresh Uniform draw and the inverse map X = F inverse(U)."
+    ),
+    # --- cs1004-2.1e-cp-01 ---
+    (
+        "cs1004-2.1e-cp-01",
+        "b",
+    ): (
+        "That choice skips Uniform and thresholds and treats library calls such as rbinom as replacing the discrete method. "
+        "Discrete inverse transform still uses Uniform draws and cumulative thresholds even when software is available."
+    ),
+    (
+        "cs1004-2.1e-cp-01",
+        "c",
+    ): (
+        "That choice uses Normal draws for discrete inverse transform and treats understanding as optional once a library exists. "
+        "The discrete method uses Uniform draws and cumulative probability thresholds."
+    ),
+    (
+        "cs1004-2.1e-cp-01",
+        "d",
+    ): (
+        "That choice assigns outcomes by sorting probabilities alphabetically with no Uniform threshold. "
+        "Discrete inverse transform compares a Uniform draw to cumulative probabilities."
+    ),
+    # --- cs1004-2.1f-ar-01 ---
+    (
+        "cs1004-2.1f-ar-01",
+        "b",
+    ): (
+        "That choice generates both samples and accepts them without checking support or summaries because the library supposedly cannot fail. "
+        "After generation you still check Poisson and Exponential support and basic summaries."
+    ),
+    (
+        "cs1004-2.1f-ar-01",
+        "c",
+    ): (
+        "That choice checks Poisson as positive reals and Exponential as non-negative integers. "
+        "Poisson draws are non-negative integers; Exponential draws are positive reals."
+    ),
+    (
+        "cs1004-2.1f-ar-01",
+        "d",
+    ): (
+        "That choice treats a matching sample mean as proof even if Poisson values are fractional or Exponential values are negative. "
+        "A mean match does not override support failures."
+    ),
+    # --- cs1004-2.1f-cp-01 ---
+    (
+        "cs1004-2.1f-cp-01",
+        "b",
+    ): (
+        "That choice lets the built-in sampler remove the need to inspect support or means. "
+        "After simulating Poisson(lambda = 3) and Exponential with mean 2, still check support and that sample means are near 3 and 2."
+    ),
+    (
+        "cs1004-2.1f-cp-01",
+        "c",
+    ): (
+        "That choice expects the Poisson sample near 2 and the Exponential near 3 by treating lambda as a waiting-time mean. "
+        "Poisson(lambda = 3) should average near 3 and Exponential with mean 2 near 2."
+    ),
+    (
+        "cs1004-2.1f-cp-01",
+        "d",
+    ): (
+        "That choice accepts both samples as only integers because Exponential waiting times are treated as discrete event counts. "
+        "Exponential waiting times are continuous positive reals, not integer event counts."
+    ),
+    # --- cs1016-2.1.3-ar-01 ---
+    (
+        "cs1016-2.1.3-ar-01",
+        "b",
+    ): (
+        "That choice treats naming the family as completing evaluation with no further calculation. "
+        "For a named univariate distribution you still compute the required probability or quantile."
+    ),
+    (
+        "cs1016-2.1.3-ar-01",
+        "c",
+    ): (
+        "That choice equates every quantile with the sample mean and pulls probabilities from a joint (X, Y) table. "
+        "A univariate quantile is the x at a stated cumulative probability from that distribution alone."
+    ),
+    (
+        "cs1016-2.1.3-ar-01",
+        "d",
+    ): (
+        "That choice requires summing out Y to obtain marginals before any univariate probability. "
+        "Univariate evaluation uses the named distribution of X directly."
+    ),
+    # --- cs1017-2.1.1-ar-01 ---
+    (
+        "cs1017-2.1.1-ar-01",
+        "b",
+    ): (
+        "That choice models all discrete count data as Normal by default for any numeric column. "
+        "Named discrete families are matched to count situations, not replaced by a Normal default."
+    ),
+    (
+        "cs1017-2.1.1-ar-01",
+        "c",
+    ): (
+        "That choice treats hypergeometric and Poisson as interchangeable whenever counts are non-negative integers. "
+        "Non-negative integers alone do not make those families interchangeable."
+    ),
+    (
+        "cs1017-2.1.1-ar-01",
+        "d",
+    ): (
+        "That choice applies discrete families only after continuous models fail and lets integer support alone determine Poisson. "
+        "Integer support is not enough; choose the discrete family from the situation cues."
+    ),
+    # --- cs1017-2.1.1-cp-01 ---
+    (
+        "cs1017-2.1.1-cp-01",
+        "b",
+    ): (
+        "That choice fits Normal(mu, sigma squared) because mean and variance can always be matched. "
+        "For a single policy’s claims in a fixed year with a constant rare-event rate and independent increments, Poisson fits."
+    ),
+    (
+        "cs1017-2.1.1-cp-01",
+        "c",
+    ): (
+        "That choice requires hypergeometric because every insurance count is treated as without-replacement from a finite population. "
+        "This rare-event independent-increments story in a fixed year is Poisson."
+    ),
+    (
+        "cs1017-2.1.1-cp-01",
+        "d",
+    ): (
+        "That choice forces binomial because one policy supposedly means n = 1 always defines annual claims. "
+        "One policy with a rare constant rate and independent increments points to Poisson, not mandatory binomial n = 1."
+    ),
+    # --- cs1004-cgr1-ar-01 ---
+    (
+        "cs1004-cgr1-ar-01",
+        "b",
+    ): (
+        "That choice sets X = F(U) using the CDF rather than its inverse. "
+        "When F is continuous and strictly increasing and U ~ Uniform(0,1), X = F inverse(U) has distribution function F."
+    ),
+    (
+        "cs1004-cgr1-ar-01",
+        "c",
+    ): (
+        "That choice sets X = 1 minus U for every F. "
+        "That map does not produce DF F in general; you need X = F inverse(U)."
+    ),
+    (
+        "cs1004-cgr1-ar-01",
+        "d",
+    ): (
+        "That choice sets X = log(U) regardless of the support of F. "
+        "A fixed log map ignores F; the transform that yields DF F is X = F inverse(U)."
     ),
 }
 

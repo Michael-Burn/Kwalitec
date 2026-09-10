@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-10T11:26:05Z",
+  "generated_at": "2026-09-10T12:12:04Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2221,
-    "already_compliant": 2093,
+    "mathish_strings": 2233,
+    "already_compliant": 2105,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2221,
+    "confident_automated": 2233,
     "remaining_backlog": 0,
-    "migrated": 2075,
+    "migrated": 2087,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2093,
+    "fully_covered_by_current_typesetting": 2105,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2075,
-    "equationish": 1523,
+    "dollar_delimited": 2087,
+    "equationish": 1534,
     "actuarial_fn": 488,
-    "ascii_approx": 245,
-    "bare_latex": 194,
+    "ascii_approx": 249,
+    "bare_latex": 195,
     "greek": 114,
     "compound": 26,
     "unicode_ops": 11
@@ -19813,8 +19813,8 @@
       "topic_code": "4.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 30,
-        "already_compliant": 24,
+        "mathish_strings": 37,
+        "already_compliant": 31,
         "needs_migration": 0,
         "correctly_excluded": 6,
         "needs_manual_review": 0,
@@ -20001,6 +20001,130 @@
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Fleet mileage severity GLM with log link and $\\eta = \\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$, coefficients $(0.5, 0.15, -0.005)$, at $x$ = 8. Enter the mean severity $\\mu = e^{\\eta}$ as a decimal to 4 places.",
+          "text_hash": "88556aebbb16719f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Evaluate $\\eta$ at $x = 8$, then invert the log link to the mean scale.",
+          "text_hash": "d71caf47441be89b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Substitute $x = 8$ into the polynomial linear predictor first.",
+          "text_hash": "c56a4debe427d71c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Then apply $\\mu = e^{\\eta}$ for the log link.",
+          "text_hash": "b91895c0c3ba8092",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\eta(8) = 0.5 + 0.15\\times 8 - 0.005\\times 64 = 1.38$, so $\\mu = e^{1.38} \\approx 3.9749$ on the severity scale.",
+          "text_hash": "648d7030c951e2c7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Stopping at $\\eta = 1.38$, dropping the quadratic term ($\\eta = 1.7$), or reporting $e^{8}$.",
+          "text_hash": "e89163c9f9fb16e6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-LINEAR-PREDICTOR",
+          "package_file": "4.2.5-linear-predictor-cs1003.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Reports mean severity $\\mu = e^{\\eta}$, not $\\eta$ alone.",
+          "text_hash": "b18ace009f66b22f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
             "equationish"
           ]
         },
@@ -21557,8 +21681,8 @@
       "topic_code": "4.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 22,
-        "already_compliant": 21,
+        "mathish_strings": 27,
+        "already_compliant": 26,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -21635,14 +21759,31 @@
         {
           "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
           "package_file": "4.2.8-residuals-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Pearson residual: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$, a standardised discrepancy. Deviance residual: the signed contribution of observation i to the deviance. Both help check fit, outliers, and patterns. An LRT is a formal acceptability or model-comparison test, different from defining and using residual diagnostics.",
-          "text_hash": "d70155569f8e773b",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Observed claim count $y$ = 3 with fitted Poisson mean $\\hat{\\mu}$ = 6. Enter the Pearson residual $r_{P} = (y - \\hat{\\mu})/\\sqrt{V(\\hat{\\mu})}$ with $V(\\mu) = \\mu$, as a decimal to 4 places (include the sign).",
+          "text_hash": "2b6188f3c9fabdf9",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1003.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Standardise the raw residual by $\\sqrt{\\hat{\\mu}}$.",
+          "text_hash": "10eadecd47b69597",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
           "migration_status": "migrated",
           "signals": [
             "dollar_delimited"
@@ -21651,10 +21792,77 @@
         {
           "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
           "package_file": "4.2.8-residuals-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
-          "field_group": "knowledge_checks[].choices[].label",
-          "text": "Pearson residual equals y minus $\\hat{\\mu}$; deviance residual equals log(y/$\\hat{\\mu}$) with no further definition.",
-          "text_hash": "cb33b2e7db218f1c",
+          "field_path": "knowledge_checks[1].hints[0]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "For Poisson, $V(\\hat{\\mu}) = \\hat{\\mu}$.",
+          "text_hash": "373795d38418ef7b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1003.json",
+          "field_path": "knowledge_checks[1].hints[1]",
+          "field_group": "knowledge_checks[].hints[]",
+          "text": "Divide $y - \\hat{\\mu}$ by $\\sqrt{\\hat{\\mu}}$; keep the sign.",
+          "text_hash": "7ffa19daeaaa3132",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Pearson residual $r_{P} = (3-6)/\\sqrt{6} = -3/\\sqrt{6} \\approx -1.2247$. The sign is negative because $y$ is below the fitted mean.",
+          "text_hash": "11bc348caedafefc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Dropping the sign (1.2247), using $\\sqrt{V} = \\mu$ instead of $\\sqrt{\\mu}$, or entering the deviance residual $\\approx -1.3569$.",
+          "text_hash": "b2d48d1370b45785",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.2-RESIDUALS",
+          "package_file": "4.2.8-residuals-cs1003.json",
+          "field_path": "knowledge_checks[1].success_criteria[1]",
+          "field_group": "knowledge_checks[].success_criteria[]",
+          "text": "Uses the Pearson residual formula with $V(\\mu) = \\mu$, including the sign.",
+          "text_hash": "bccb451cf9cdd2e0",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -40351,5 +40559,5 @@
       ]
     }
   ],
-  "content_fingerprint": "59342d9aa0a5c2e993c3a396fbc0e680f7d03e11b49f4a56f6efec3701ad5560"
+  "content_fingerprint": "9a9e50e14faa4c49890d2aad3b04e0979878b3133f0aa318f58d4d7eba4acbab"
 }

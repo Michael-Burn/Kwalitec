@@ -402,6 +402,9 @@ _NUMERIC_CHECKPOINT_PILOT_STEMS = frozenset(
         "4.2.5-linear-predictor-cs1014",
         "5.1.4-loss-estimators-cs1003",
         "5.1.4-loss-estimators-cs1015",
+        # NUM Wave 4: remaining P3 asymmetric twin leftovers
+        "4.2.5-linear-predictor-cs1003",
+        "4.2.8-residuals-cs1003",
     }
 )
 
@@ -484,7 +487,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch6a_seen == 30
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
-    assert numeric_pilot_seen == 28  # one numeric checkpoint per converted package
+    assert numeric_pilot_seen == 30  # one numeric checkpoint per converted package
 
     # Spot-check Batch 6B revision day CA-R1 is now MCQ (Alpha, 1 AR + 2 CPs).
     live = find_educational_package(topic_code="CA-R1", subject_id="CS1")

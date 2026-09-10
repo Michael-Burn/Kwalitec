@@ -158,44 +158,24 @@
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.5-cp-01",
       "title": "Checkpoint: 4.2.5",
-      "prompt": "Closed-book. Which statement correctly refuses treating the link function as the linear predictor and restates both objects?",
-      "response_type": "mcq",
-      "body": "Refuse conflation; restate eta and the link.",
+      "prompt": "Closed-book. Fleet mileage severity GLM with log link and $\\eta = \\beta_{0} + \\beta_{1}x + \\beta_{2}x^{2}$, coefficients $(0.5, 0.15, -0.005)$, at $x$ = 8. Enter the mean severity $\\mu = e^{\\eta}$ as a decimal to 4 places.",
+      "response_type": "numeric",
+      "body": "Evaluate $\\eta$ at $x = 8$, then invert the log link to the mean scale.",
       "hints": [
-        "Select the single best statement.",
-        "Use the concept from this learning objective only."
+        "Substitute $x = 8$ into the polynomial linear predictor first.",
+        "Then apply $\\mu = e^{\\eta}$ for the log link."
       ],
-      "accepted_keywords": [],
-      "explanation": "Eta is X beta; the link maps mean to eta. Conflating them breaks GLM structure.",
-      "model_answer": "Refuse conflation. Eta = X beta; link g maps mu to eta.",
-      "common_mistake": "Accepting that the link function is the linear predictor.",
+      "accepted_keywords": [
+        "3.9749"
+      ],
+      "explanation": "$\\eta(8) = 0.5 + 0.15\\times 8 - 0.005\\times 64 = 1.38$, so $\\mu = e^{1.38} \\approx 3.9749$ on the severity scale.",
+      "model_answer": "3.9749",
+      "common_mistake": "Stopping at $\\eta = 1.38$, dropping the quadratic term ($\\eta = 1.7$), or reporting $e^{8}$.",
       "success_criteria": [
-        "Selects the correct choice.",
-        "Rejects the named misconception distractors."
+        "Enters a value within 0.001 of 3.9749.",
+        "Reports mean severity $\\mu = e^{\\eta}$, not $\\eta$ alone."
       ],
-      "choices": [
-        {
-          "id": "a",
-          "label": "Refuse: the link is not the linear predictor. Eta = X beta is the linear predictor; the link g maps the mean mu to eta.",
-          "misconception_tag": ""
-        },
-        {
-          "id": "b",
-          "label": "Accept: link and linear predictor are two names for the same eta object.",
-          "misconception_tag": "accept_conflation"
-        },
-        {
-          "id": "c",
-          "label": "Refuse the word link, but treat g(mu) as identical to X beta with no mapping role for the mean.",
-          "misconception_tag": "refuse_word_only"
-        },
-        {
-          "id": "d",
-          "label": "The linear predictor maps mu to a restricted range, while the link is only the coefficient vector beta.",
-          "misconception_tag": "roles_reversed"
-        }
-      ],
-      "correct_choice_id": "a"
+      "numeric_tolerance": 0.001
     }
   ],
   "reflection": {
