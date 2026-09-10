@@ -190,7 +190,7 @@
         },
         {
           "id": "c",
-          "label": "The paired CI is formed for $\\mu$_X and $\\mu$_Y separately; no difference parameter is involved.",
+          "label": "The paired CI is formed for $\\mu_{X}$ and $\\mu_{Y}$ separately; no difference parameter is involved.",
           "misconception_tag": "separate_means_only"
         },
         {

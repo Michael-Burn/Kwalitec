@@ -184,9 +184,60 @@ _CAF_WAVE4_PACKAGES: tuple[tuple[str, str], ...] = (
     ("revision-distributions-generation-cs1004", "cs1004-cgr1-ar-01"),
 )
 
-_PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
+_PRIOR_ONE_HUNDRED_PACKAGES: tuple[tuple[str, str], ...] = (
     *_PRIOR_FIFTY_NINE_PACKAGES,
     *_CAF_WAVE4_PACKAGES,
+)
+
+# CAF Wave 5 — editorially reviewed (2026-09-10). No conflicting CPs.
+_CAF_WAVE5_PACKAGES: tuple[tuple[str, str], ...] = (
+    ("2.2.1-marginal-conditional-cs1005", "cs1005-2.2.1-ar-01"),
+    ("2.2.2-independence-cs1005", "cs1005-2.2.2-ar-01"),
+    ("2.2.2-independence-cs1005", "cs1005-2.2.2-cp-01"),
+    ("2.2.3-cov-corr-expectation-cs1005", "cs1005-2.2.3-ar-01"),
+    ("2.2.4-linear-combinations-cs1005", "cs1005-2.2.4-ar-01"),
+    ("2.3.1-conditional-expectation-cs1006", "cs1006-2.3.1-ar-01"),
+    ("2.3.2-mean-variance-conditioning-cs1006", "cs1006-2.3.2-ar-01"),
+    ("cp-2.2.1-marginal-conditional-cs1016", "cs1016-2.2.1-ar-01"),
+    ("revision-joint-distributions-cs1005", "cs1005-ce-r1-ar-01"),
+    ("revision-joint-distributions-cs1005", "cs1005-ce-r1-cp-01"),
+    ("revision-conditional-expectations-cs1006", "cs1006-cz-r1-ar-01"),
+    ("revision-conditional-expectations-cs1006", "cs1006-cz-r1-cp-01"),
+    ("3.2.1-confidence-interval-parameter-cs1011", "cs1011-3.2.1-ar-01"),
+    ("3.2.1-confidence-interval-parameter-cs1011", "cs1011-3.2.1-cp-01"),
+    ("3.2.2-prediction-interval-cs1011", "cs1011-3.2.2-ar-01"),
+    ("3.2.2-prediction-interval-cs1011", "cs1011-3.2.2-cp-01"),
+    ("3.2.3-ci-given-sampling-distribution-cs1011", "cs1011-3.2.3-ar-01"),
+    ("3.2.3-ci-given-sampling-distribution-cs1011", "cs1011-3.2.3-cp-01"),
+    ("3.2.4-ci-normal-mean-variance-cs1011", "cs1011-3.2.4-ar-01"),
+    ("3.2.4-ci-normal-mean-variance-cs1011", "cs1011-3.2.4-cp-01"),
+    ("3.2.5-ci-binomial-poisson-cs1011", "cs1011-3.2.5-ar-01"),
+    ("3.2.5-ci-binomial-poisson-cs1011", "cs1011-3.2.5-cp-01"),
+    ("3.2.6-ci-two-sample-cs1011", "cs1011-3.2.6-ar-01"),
+    ("3.2.6-ci-two-sample-cs1011", "cs1011-3.2.6-cp-01"),
+    ("3.2.7-ci-paired-means-cs1011", "cs1011-3.2.7-ar-01"),
+    ("3.2.7-ci-paired-means-cs1011", "cs1011-3.2.7-cp-01"),
+    ("3.2.8-bootstrap-confidence-interval-cs1011", "cs1011-3.2.8-ar-01"),
+    ("3.2.8-bootstrap-confidence-interval-cs1011", "cs1011-3.2.8-cp-01"),
+    ("3.3.1-hypothesis-concepts-cs1012", "cs1012-3.3.1-ar-01"),
+    ("3.3.1-hypothesis-concepts-cs1012", "cs1012-3.3.1-cp-01"),
+    ("3.3.2-basic-tests-cs1012", "cs1012-3.3.2-ar-01"),
+    ("3.3.2-basic-tests-cs1012", "cs1012-3.3.2-cp-01"),
+    ("3.3.3-permutation-tests-cs1012", "cs1012-3.3.3-ar-01"),
+    ("3.3.3-permutation-tests-cs1012", "cs1012-3.3.3-cp-01"),
+    ("3.3.4-chi-square-gof-cs1012", "cs1012-3.3.4-ar-01"),
+    ("3.3.4-chi-square-gof-cs1012", "cs1012-3.3.4-cp-01"),
+    ("3.3.5-contingency-independence-cs1012", "cs1012-3.3.5-ar-01"),
+    ("3.3.5-contingency-independence-cs1012", "cs1012-3.3.5-cp-01"),
+    ("cp-3.2.1-ci-sample-cs1016", "cs1016-3.2.1-ar-01"),
+    ("cp-3.2.1-ci-sample-cs1016", "cs1016-3.2.1-cp-01"),
+    ("cp-3.3.1-hypothesis-testing-cs1016", "cs1016-3.3.1-ar-01"),
+    ("cp-3.3.1-hypothesis-testing-cs1016", "cs1016-3.3.1-cp-01"),
+)
+
+_PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
+    *_PRIOR_ONE_HUNDRED_PACKAGES,
+    *_CAF_WAVE5_PACKAGES,
 )
 
 _CAF_WAVE3_CONFLICT_NUMERIC_CPS: frozenset[str] = frozenset(
@@ -2454,6 +2505,938 @@ def setup_function() -> None:
     reset_educational_package_cache()
 
 
+_PRIOR_ONE_HUNDRED_FEEDBACK: dict[tuple[str, str], str] = {
+    **_PRIOR_FIFTY_NINE_FEEDBACK,
+    **_CAF_WAVE4_FEEDBACK,
+}
+
+_CAF_WAVE5_FEEDBACK: dict[tuple[str, str], str] = {
+    # --- cs1005-2.2.1-ar-01 ---
+    (
+        "cs1005-2.2.1-ar-01",
+        "b",
+    ): (
+        "That choice treats the joint as already numerically equal to every marginal and conditional. "
+        "You still sum or integrate out partners for a marginal, and divide by the conditioning marginal for a conditional."
+    ),
+    (
+        "cs1005-2.2.1-ar-01",
+        "c",
+    ): (
+        "That choice reverses the operations: dividing for a marginal and summing for a conditional. "
+        "A marginal sums or integrates the joint over the other variable; a conditional divides joint by the conditioning marginal."
+    ),
+    (
+        "cs1005-2.2.1-ar-01",
+        "d",
+    ): (
+        "That choice sets a conditional equal to its joint numerator just because the table totals one. "
+        "A conditional still divides by the marginal of the conditioning value."
+    ),
+    # --- cs1005-2.2.2-ar-01 ---
+    (
+        "cs1005-2.2.2-ar-01",
+        "b",
+    ): (
+        "That choice treats a defined covariance as enough for independence even when the joint does not factor. "
+        "Independence needs joint equals product of marginals (or an equivalent form), not merely that Cov exists."
+    ),
+    (
+        "cs1005-2.2.2-ar-01",
+        "c",
+    ): (
+        "That choice writes independence as joint equals the sum of the marginals. "
+        "The factorisation hinge is a product of marginals, not a sum."
+    ),
+    (
+        "cs1005-2.2.2-ar-01",
+        "d",
+    ): (
+        "That choice stops once each marginal exists and drops the joint-factorisation requirement. "
+        "Independence still needs the joint to equal the product of those marginals on the support."
+    ),
+    # --- cs1005-2.2.2-cp-01 ---
+    (
+        "cs1005-2.2.2-cp-01",
+        "b",
+    ): (
+        "That choice accepts zero correlation as necessary and sufficient for independence in all bivariate settings. "
+        "Uncorrelated is weaker than independence; you still need joint factorisation (or equivalent)."
+    ),
+    (
+        "cs1005-2.2.2-cp-01",
+        "c",
+    ): (
+        "That choice refuses independence language and treats zero correlation as proving the joint cannot factor. "
+        "Zero correlation does not by itself prove or disprove factorisation."
+    ),
+    (
+        "cs1005-2.2.2-cp-01",
+        "d",
+    ): (
+        "That choice treats zero correlation as stronger than independence and drops the factorisation check. "
+        "Factorisation is the independence warrant; zero correlation is not a stronger substitute."
+    ),
+    # --- cs1005-2.2.3-ar-01 ---
+    (
+        "cs1005-2.2.3-ar-01",
+        "b",
+    ): (
+        "That choice computes E[g(X,Y)] from marginal means alone for every g. "
+        "Joint expectation weights g by the joint distribution; marginal means are not enough for arbitrary g."
+    ),
+    (
+        "cs1005-2.2.3-ar-01",
+        "c",
+    ): (
+        "That choice multiplies covariance by both standard deviations and keeps units. "
+        "Correlation divides Cov by SD(X)SD(Y), so it is dimensionless."
+    ),
+    (
+        "cs1005-2.2.3-ar-01",
+        "d",
+    ): (
+        "That choice treats covariance as all dependence and zero Cov as proof of independence. "
+        "Cov captures linear co-movement; zero Cov does not prove independence in general."
+    ),
+    # --- cs1005-2.2.4-ar-01 ---
+    (
+        "cs1005-2.2.4-ar-01",
+        "b",
+    ): (
+        "That choice leaves a and b unsquared inside Var(aX+bY). "
+        "Variance scales with a squared and b squared, then adds the 2ab Cov term."
+    ),
+    (
+        "cs1005-2.2.4-ar-01",
+        "c",
+    ): (
+        "That choice drops the covariance term for every X and Y. "
+        "Without independence (or Cov = 0), Var(aX+bY) keeps 2ab Cov(X,Y)."
+    ),
+    (
+        "cs1005-2.2.4-ar-01",
+        "d",
+    ): (
+        "That choice squares a and b inside the expectation. "
+        "Expectation is linear: E[aX+bY] = a E[X] + b E[Y], without squaring those coefficients."
+    ),
+    # --- cs1006-2.3.1-ar-01 ---
+    (
+        "cs1006-2.3.1-ar-01",
+        "b",
+    ): (
+        "That choice sets E[Y|X=x] equal to the unconditional mean for every x. "
+        "Conditional expectation uses the distribution of Y given X=x, and it need not equal E[Y]."
+    ),
+    (
+        "cs1006-2.3.1-ar-01",
+        "c",
+    ): (
+        "That choice replaces E[Y|X=x] with a joint probability at the largest y. "
+        "Conditional expectation averages Y under the conditional distribution, not a raw joint cell."
+    ),
+    (
+        "cs1006-2.3.1-ar-01",
+        "d",
+    ): (
+        "That choice treats conditional expectation as a fixed constant that cannot depend on x. "
+        "As x varies, E[Y|X=x] is a function of x."
+    ),
+    # --- cs1006-2.3.2-ar-01 ---
+    (
+        "cs1006-2.3.2-ar-01",
+        "b",
+    ): (
+        "That choice sets E[Y] equal to E[Y|X] for every realised X and skips the outer average. "
+        "The tower property recovers E[Y] = E[E[Y|X]]."
+    ),
+    (
+        "cs1006-2.3.2-ar-01",
+        "c",
+    ): (
+        "That choice keeps only Var(E[Y|X]) and drops average within-condition variance. "
+        "Total variance also includes E[Var(Y|X)]."
+    ),
+    (
+        "cs1006-2.3.2-ar-01",
+        "d",
+    ): (
+        "That choice keeps only E[Var(Y|X)] and drops variation of conditional means. "
+        "Total variance also includes Var(E[Y|X])."
+    ),
+    # --- cs1016-2.2.1-ar-01 ---
+    (
+        "cs1016-2.2.1-ar-01",
+        "b",
+    ): (
+        "That choice treats marginals and conditionals as optional once the joint is written. "
+        "You still extract a marginal by summing or integrating, and a conditional by dividing by the conditioning marginal."
+    ),
+    (
+        "cs1016-2.2.1-ar-01",
+        "c",
+    ): (
+        "That choice sets P(Y given X=x) equal to the joint entry with no division by P(X=x). "
+        "Conditioning renormalises by that marginal probability."
+    ),
+    (
+        "cs1016-2.2.1-ar-01",
+        "d",
+    ): (
+        "That choice forms every marginal and conditional by dividing each joint cell by the grand total. "
+        "A marginal sums over partners; a conditional divides by the conditioning event\u2019s probability, not by a single grand-total rescaling rule for both."
+    ),
+    # --- cs1005-ce-r1-ar-01 ---
+    (
+        "cs1005-ce-r1-ar-01",
+        "b",
+    ): (
+        "That choice treats Cov(X,Y) = 0 as independence in every case. "
+        "Independence needs joint factorisation on the support; zero covariance is generally insufficient."
+    ),
+    (
+        "cs1005-ce-r1-ar-01",
+        "c",
+    ): (
+        "That choice writes the joint as the sum of the marginals. "
+        "Independence factorises the joint as a product of marginals."
+    ),
+    (
+        "cs1005-ce-r1-ar-01",
+        "d",
+    ): (
+        "That choice treats E[X] = E[Y] as independence. "
+        "Equal means do not establish joint factorisation."
+    ),
+    # --- cs1005-ce-r1-cp-01 ---
+    (
+        "cs1005-ce-r1-cp-01",
+        "b",
+    ): (
+        "That choice writes Var(aX+bY) as a Var(X) + b Var(Y). "
+        "Variance scales with a squared and b squared, then adds the covariance cross-term."
+    ),
+    (
+        "cs1005-ce-r1-cp-01",
+        "c",
+    ): (
+        "That choice drops the covariance term in all cases. "
+        "Without a warrant for Cov = 0, keep 2ab Cov(X,Y)."
+    ),
+    (
+        "cs1005-ce-r1-cp-01",
+        "d",
+    ): (
+        "That choice uses ab Cov instead of 2ab Cov. "
+        "The cross-product term is 2ab Cov(X,Y)."
+    ),
+    # --- cs1006-cz-r1-ar-01 ---
+    (
+        "cs1006-cz-r1-ar-01",
+        "b",
+    ): (
+        "That choice sets E[Y] equal to E[Y given X] for every realised X. "
+        "The law of total expectation averages the conditional mean over X: E[Y] = E[E[Y given X]]."
+    ),
+    (
+        "cs1006-cz-r1-ar-01",
+        "c",
+    ): (
+        "That choice replaces the tower identity with Var(E[Y given X]). "
+        "Total expectation averages conditional means; that variance object is part of the variance decomposition, not E[Y]."
+    ),
+    (
+        "cs1006-cz-r1-ar-01",
+        "d",
+    ): (
+        "That choice equates E[Y given X] with E[X given Y] in general. "
+        "Those conditional expectations are not the same object."
+    ),
+    # --- cs1006-cz-r1-cp-01 ---
+    (
+        "cs1006-cz-r1-cp-01",
+        "b",
+    ): (
+        "That choice writes Var(Y) as Var(Y given X) + Var(X). "
+        "The lawful split is E[Var(Y given X)] + Var(E[Y given X])."
+    ),
+    (
+        "cs1006-cz-r1-cp-01",
+        "c",
+    ): (
+        "That choice keeps only E[Var(Y given X)]. "
+        "You also need Var(E[Y given X]), the between-condition piece."
+    ),
+    (
+        "cs1006-cz-r1-cp-01",
+        "d",
+    ): (
+        "That choice keeps only Var(E[Y given X]). "
+        "You also need E[Var(Y given X)], the within-condition piece."
+    ),
+    # --- cs1011-3.2.1-ar-01 ---
+    (
+        "cs1011-3.2.1-ar-01",
+        "b",
+    ): (
+        "That choice reads a confidence interval as covering the next future observation with the stated probability. "
+        "A parameter CI targets an unknown parameter; covering a future observation is a prediction interval."
+    ),
+    (
+        "cs1011-3.2.1-ar-01",
+        "c",
+    ): (
+        "That choice treats a realised 95% CI as a 95% posterior probability that the fixed parameter lies in that interval. "
+        "Frequentist coverage is about the procedure under repeated sampling, not that Bayesian post-data reading."
+    ),
+    (
+        "cs1011-3.2.1-ar-01",
+        "d",
+    ): (
+        "That choice calls any interval estimate of a future loss a confidence interval. "
+        "A CI targets an unknown parameter with a stated coverage interpretation, not an arbitrary future-loss band."
+    ),
+    # --- cs1011-3.2.1-cp-01 ---
+    (
+        "cs1011-3.2.1-cp-01",
+        "b",
+    ): (
+        "That choice reads (120, 140) as a 95% probability for the next claim amount. "
+        "Coverage is for the parameter mu under repeated sampling, not for the next observation."
+    ),
+    (
+        "cs1011-3.2.1-cp-01",
+        "c",
+    ): (
+        "That choice treats mu as a random variable equal to 130 with probability 95%. "
+        "In the frequentist reading, mu is fixed; the interval procedure is what has coverage."
+    ),
+    (
+        "cs1011-3.2.1-cp-01",
+        "d",
+    ): (
+        "That choice equates a narrow interval with 100% coverage for this sample. "
+        "Narrowness does not change the procedure\u2019s coverage probability."
+    ),
+    # --- cs1011-3.2.2-ar-01 ---
+    (
+        "cs1011-3.2.2-ar-01",
+        "b",
+    ): (
+        "That choice treats a prediction interval and a parameter CI as covering the same numerical object. "
+        "A prediction interval targets a future observation; a parameter CI targets an unknown parameter."
+    ),
+    (
+        "cs1011-3.2.2-ar-01",
+        "c",
+    ): (
+        "That choice claims a prediction interval is always narrower than the matching parameter CI. "
+        "Prediction intervals are typically wider because they include process or residual variation as well as parameter uncertainty."
+    ),
+    (
+        "cs1011-3.2.2-ar-01",
+        "d",
+    ): (
+        "That choice limits a prediction interval to sampling variance of an estimator and excludes residual variation. "
+        "Prediction must account for process or residual variation, not only estimator SE."
+    ),
+    # --- cs1011-3.2.2-cp-01 ---
+    (
+        "cs1011-3.2.2-cp-01",
+        "b",
+    ): (
+        "That choice treats a CI for mean loss as already covering Y_new with the same coverage. "
+        "A mean CI does not finish the prediction-interval task for the future observation."
+    ),
+    (
+        "cs1011-3.2.2-cp-01",
+        "c",
+    ): (
+        "That choice assigns covering E[Y] to the prediction interval and covering Y_new to a parameter CI. "
+        "Prediction targets Y_new; the parameter CI targets the mean."
+    ),
+    (
+        "cs1011-3.2.2-cp-01",
+        "d",
+    ): (
+        "That choice builds prediction from residual variance alone with parameters treated as known. "
+        "A proper prediction interval also carries parameter uncertainty."
+    ),
+    # --- cs1011-3.2.3-ar-01 ---
+    (
+        "cs1011-3.2.3-ar-01",
+        "b",
+    ): (
+        "That choice always forces the Normal-mean cookbook regardless of the sampling distribution given. "
+        "Invert the distributional relationship you were actually given to isolate the parameter."
+    ),
+    (
+        "cs1011-3.2.3-ar-01",
+        "c",
+    ): (
+        "That choice uses the sampling distribution only to simulate data and picks endpoints by eye. "
+        "The move is to invert the given sampling or pivotal relationship, not to sketch a histogram."
+    ),
+    (
+        "cs1011-3.2.3-ar-01",
+        "d",
+    ): (
+        "That choice takes the support of the sampling distribution as the CI with no inversion. "
+        "You still rearrange the pivotal statement to bound the parameter."
+    ),
+    # --- cs1011-3.2.3-cp-01 ---
+    (
+        "cs1011-3.2.3-cp-01",
+        "b",
+    ): (
+        "That choice ignores the given chi-square pivot and forces a Normal-mean CI for theta. "
+        "Use the stated 2n X-bar / theta ~ chi-square relationship and invert it."
+    ),
+    (
+        "cs1011-3.2.3-cp-01",
+        "c",
+    ): (
+        "That choice reports (chi-square_L, chi-square_U) with no dependence on X-bar. "
+        "Isolating theta from the pivot still involves 2n X-bar over the chi-square critical values."
+    ),
+    (
+        "cs1011-3.2.3-cp-01",
+        "d",
+    ): (
+        "That choice multiplies 2n X-bar by the chi-square critical values instead of dividing. "
+        "From chi-square_L < 2n X-bar / theta < chi-square_U, the bounds for theta use 2n X-bar / chi-square."
+    ),
+    # --- cs1011-3.2.4-ar-01 ---
+    (
+        "cs1011-3.2.4-ar-01",
+        "b",
+    ): (
+        "That choice treats the mean CI as finishing the variance requirement and reuses the t formula with s^2 in place of s. "
+        "Variance intervals use a chi-square pivot on the sample variance, not the mean formula."
+    ),
+    (
+        "cs1011-3.2.4-ar-01",
+        "c",
+    ): (
+        "That choice forces a binomial Normal-approximation interval for both Normal mean and variance. "
+        "Those Normal pivots are t/z and chi-square, not a binomial recipe."
+    ),
+    (
+        "cs1011-3.2.4-ar-01",
+        "d",
+    ): (
+        "That choice centres a CI for sigma^2 at x-bar with the mean SE. "
+        "A variance CI inverts a chi-square structure based on s^2, not the mean interval."
+    ),
+    # --- cs1011-3.2.4-cp-01 ---
+    (
+        "cs1011-3.2.4-cp-01",
+        "b",
+    ): (
+        "That choice uses z with s even though sigma is unknown, and skips the variance CI. "
+        "With sigma unknown, the mean CI uses t_15, and you still need the chi-square interval for sigma^2."
+    ),
+    (
+        "cs1011-3.2.4-cp-01",
+        "c",
+    ): (
+        "That choice reuses the numerical mean interval as the variance interval. "
+        "Mean and variance CIs are different objects with different pivots."
+    ),
+    (
+        "cs1011-3.2.4-cp-01",
+        "d",
+    ): (
+        "That choice centres a Normal interval at s^2 using the mean SE s/sqrt(n). "
+        "For sigma^2, invert the chi-square pivot on (n-1)s^2 / sigma^2."
+    ),
+    # --- cs1011-3.2.5-ar-01 ---
+    (
+        "cs1011-3.2.5-ar-01",
+        "b",
+    ): (
+        "That choice reuses the binomial p formula, including p(1-p) variance, after renaming p as lambda. "
+        "Poisson mean intervals use the Poisson variance function, not Bernoulli variance."
+    ),
+    (
+        "cs1011-3.2.5-ar-01",
+        "c",
+    ): (
+        "That choice bans Normal approximation for all discrete data. "
+        "Normal approximation is allowed for binomial p and Poisson mean when that approximation is justified."
+    ),
+    (
+        "cs1011-3.2.5-ar-01",
+        "d",
+    ): (
+        "That choice replaces single-sample binomial and Poisson intervals with two-sample difference intervals. "
+        "This setting still needs the single-sample forms for p and lambda."
+    ),
+    # --- cs1011-3.2.5-cp-01 ---
+    (
+        "cs1011-3.2.5-cp-01",
+        "b",
+    ): (
+        "That choice keeps variance p-hat(1-p-hat)/n after renaming the centre as lambda-hat. "
+        "Poisson uses variance lambda-hat/n (or a matching total-count form), not Bernoulli variance."
+    ),
+    (
+        "cs1011-3.2.5-cp-01",
+        "c",
+    ): (
+        "That choice gives binomial the Poisson-style variance p-hat/n and Poisson the Bernoulli-style variance. "
+        "Swap those variance functions back: binomial uses p(1-p)/n; Poisson uses lambda/n."
+    ),
+    (
+        "cs1011-3.2.5-cp-01",
+        "d",
+    ): (
+        "That choice drops the Poisson form and forces a continuous Normal mean interval with s^2/n. "
+        "Both single-sample binomial and Poisson Normal-approximation forms are required here."
+    ),
+    # --- cs1011-3.2.6-ar-01 ---
+    (
+        "cs1011-3.2.6-ar-01",
+        "b",
+    ): (
+        "That choice treats equal sample sizes as paired data without matching. "
+        "Equal n does not create pairing; two-sample CIs still need independent groups (or a true paired design)."
+    ),
+    (
+        "cs1011-3.2.6-ar-01",
+        "c",
+    ): (
+        "That choice pools both samples into one and uses a one-sample CI for the grand mean. "
+        "That erases the two-group contrast the interval is meant to cover."
+    ),
+    (
+        "cs1011-3.2.6-ar-01",
+        "d",
+    ): (
+        "That choice requires dependent pairs for any two-sample CI and sends independent groups to prediction intervals. "
+        "Independent two-sample CIs are valid without pairing."
+    ),
+    # --- cs1011-3.2.6-cp-01 ---
+    (
+        "cs1011-3.2.6-cp-01",
+        "b",
+    ): (
+        "That choice analyses A and B as paired differences merely because n_A = n_B. "
+        "Without natural matching, keep an independent two-sample contrast for mu_A - mu_B."
+    ),
+    (
+        "cs1011-3.2.6-cp-01",
+        "c",
+    ): (
+        "That choice treats independence between samples as optional for the mean-difference CI. "
+        "The usual two-sample mean-difference interval assumes independent groups."
+    ),
+    (
+        "cs1011-3.2.6-cp-01",
+        "d",
+    ): (
+        "That choice allows only the ratio mu_A / mu_B as the two-sample target under Normal data. "
+        "A Normal two-sample CI typically targets a difference of means such as mu_A - mu_B."
+    ),
+    # --- cs1011-3.2.7-ar-01 ---
+    (
+        "cs1011-3.2.7-ar-01",
+        "b",
+    ): (
+        "That choice runs an independent two-sample mean-difference CI on before and after columns. "
+        "Pairing needs within-pair differences and a one-sample CI for the mean difference."
+    ),
+    (
+        "cs1011-3.2.7-ar-01",
+        "c",
+    ): (
+        "That choice ignores pairing and compares pooled before vs after under independence. "
+        "That drops the dependence pairing is meant to exploit."
+    ),
+    (
+        "cs1011-3.2.7-ar-01",
+        "d",
+    ): (
+        "That choice equates paired mean-difference CIs with bootstrap CI construction. "
+        "Bootstrap is a different endpoint method; paired analysis still forms differences first."
+    ),
+    # --- cs1011-3.2.7-cp-01 ---
+    (
+        "cs1011-3.2.7-cp-01",
+        "b",
+    ): (
+        "That choice uses a two-sample CI for mu_Y - mu_X that assumes independent samples because the columns have equal length. "
+        "Matched pairs need D_i differences and a one-sample CI for mu_D."
+    ),
+    (
+        "cs1011-3.2.7-cp-01",
+        "c",
+    ): (
+        "That choice forms separate CIs for mu_X and mu_Y and skips a difference parameter. "
+        "The paired target is the mean of within-pair differences."
+    ),
+    (
+        "cs1011-3.2.7-cp-01",
+        "d",
+    ): (
+        "That choice discards half the data at random to force independence. "
+        "Pairing is handled by analysing differences, not by throwing away matched observations."
+    ),
+    # --- cs1011-3.2.8-ar-01 ---
+    (
+        "cs1011-3.2.8-ar-01",
+        "b",
+    ): (
+        "That choice stops at a bootstrap SE and treats that SE as already a confidence interval. "
+        "A bootstrap CI still needs interval endpoints from the replicate distribution (for example percentiles)."
+    ),
+    (
+        "cs1011-3.2.8-ar-01",
+        "c",
+    ): (
+        "That choice equates bootstrap CIs with a hypothesis test\u2019s reject/retain decision. "
+        "Forming CI endpoints from replicates is not the same task as testing a null."
+    ),
+    (
+        "cs1011-3.2.8-ar-01",
+        "d",
+    ): (
+        "That choice replaces s in a Normal-mean cookbook with a single bootstrap draw. "
+        "Percentile-style bootstrap CIs use many replicates\u2019 quantiles, not one plugged-in draw."
+    ),
+    # --- cs1011-3.2.8-cp-01 ---
+    (
+        "cs1011-3.2.8-cp-01",
+        "b",
+    ): (
+        "That choice reports only (theta-hat - SE, theta-hat + SE) from a bootstrap SE and rejects quantile endpoints. "
+        "A percentile bootstrap CI uses the alpha/2 and 1-alpha/2 quantiles of the replicates."
+    ),
+    (
+        "cs1011-3.2.8-cp-01",
+        "c",
+    ): (
+        "That choice finishes a bootstrap CI by rejecting H0 whenever theta-hat misses a fixed null, without endpoints. "
+        "You still form interval endpoints from the replicate distribution."
+    ),
+    (
+        "cs1011-3.2.8-cp-01",
+        "d",
+    ): (
+        "That choice draws one resample and reports the singleton [theta-hat*, theta-hat*]. "
+        "Percentile intervals need many replicates and their quantiles."
+    ),
+    # --- cs1012-3.3.1-ar-01 ---
+    (
+        "cs1012-3.3.1-ar-01",
+        "b",
+    ): (
+        "That choice swaps Type I and Type II and reads the p-value as the probability the alternative is true. "
+        "Type I is rejecting a true null; Type II is failing to reject a false null; a p-value is a tail probability under the null."
+    ),
+    (
+        "cs1012-3.3.1-ar-01",
+        "c",
+    ): (
+        "That choice reads the p-value as P(null true given data) and sets power to one minus the p-value. "
+        "A p-value is P(data as extreme as observed | H0); power is P(reject | H1 true)."
+    ),
+    (
+        "cs1012-3.3.1-ar-01",
+        "d",
+    ): (
+        "That choice treats null and alternative as interchangeable labels. "
+        "Which statement is labelled null frames Type I/II, the p-value, and the decision rule."
+    ),
+    # --- cs1012-3.3.1-cp-01 ---
+    (
+        "cs1012-3.3.1-cp-01",
+        "b",
+    ): (
+        "That choice swaps the screening errors: Type I as missed disease and Type II as false disease call. "
+        "With H0 = healthy, Type I is a false positive and Type II is a false negative."
+    ),
+    (
+        "cs1012-3.3.1-cp-01",
+        "c",
+    ): (
+        "That choice reads the p-value as the probability of disease and power as the probability of no disease. "
+        "Keep p-value as a tail probability under H0 and power as P(reject | H1 true)."
+    ),
+    (
+        "cs1012-3.3.1-cp-01",
+        "d",
+    ): (
+        "That choice treats a software z-test click as replacing Type I/II, p-value, and power. "
+        "Running a test does not by itself supply that vocabulary."
+    ),
+    # --- cs1012-3.3.2-ar-01 ---
+    (
+        "cs1012-3.3.2-ar-01",
+        "b",
+    ): (
+        "That choice sends paired data to the independent two-sample test whenever n1 = n2. "
+        "Paired designs analyse matched differences, not independent two-sample comparisons."
+    ),
+    (
+        "cs1012-3.3.2-ar-01",
+        "c",
+    ): (
+        "That choice treats label permutation as the basic parametric Normal-mean test. "
+        "Permutation is a different approach; basic procedures here include Normal mean and binomial/Poisson tests under CMP conditions."
+    ),
+    (
+        "cs1012-3.3.2-ar-01",
+        "d",
+    ): (
+        "That choice bans basic tests for binomial and Poisson data. "
+        "Basic procedures include binomial/Poisson tests as well as Normal mean tests."
+    ),
+    # --- cs1012-3.3.2-cp-01 ---
+    (
+        "cs1012-3.3.2-cp-01",
+        "b",
+    ): (
+        "That choice mismatches families: chi-square GOF for one Normal mean, paired t on unpaired columns, and independent two-sample z on matched pairs. "
+        "Match one-sample z, two-sample proportions, and paired differences to those three settings."
+    ),
+    (
+        "cs1012-3.3.2-cp-01",
+        "c",
+    ): (
+        "That choice handles all three settings by shuffling labels and treats parametric tests as optional flavour. "
+        "Permutation is separate; these basic parametric tests still follow the sampling model and design."
+    ),
+    (
+        "cs1012-3.3.2-cp-01",
+        "d",
+    ): (
+        "That choice scrambles designs: two-sample z for one mean, one-sample Poisson for two proportions, binomial for paired Normal differences. "
+        "Keep the design and model aligned with each procedure."
+    ),
+    # --- cs1012-3.3.3-ar-01 ---
+    (
+        "cs1012-3.3.3-ar-01",
+        "b",
+    ): (
+        "That choice treats a permutation test as identical to a Normal two-sample z-test. "
+        "Permutation builds a reference distribution by reshuffling under exchangeability; it is not the Normal cookbook by another name."
+    ),
+    (
+        "cs1012-3.3.3-ar-01",
+        "c",
+    ): (
+        "That choice describes permutation as resampling with replacement to form a CI, like bootstrap. "
+        "Permutation tests reassign labels under an exchangeable null to test a hypothesis, not to build a bootstrap CI."
+    ),
+    (
+        "cs1012-3.3.3-ar-01",
+        "d",
+    ): (
+        "That choice equates permutation with chi-square GOF to a named distribution. "
+        "GOF compares frequencies to a stated law; permutation compares an observed statistic to a label-shuffle reference."
+    ),
+    # --- cs1012-3.3.3-cp-01 ---
+    (
+        "cs1012-3.3.3-cp-01",
+        "b",
+    ): (
+        "That choice computes one Normal two-sample z and treats \u201cpermutation\u201d as only a label for that test. "
+        "Under exchangeability you shuffle labels, recompute the statistic many times, and compare the observed value to that reference."
+    ),
+    (
+        "cs1012-3.3.3-cp-01",
+        "c",
+    ): (
+        "That choice finishes the permutation requirement with a Poisson chi-square GOF. "
+        "That is a different procedure from a permutation reference distribution."
+    ),
+    (
+        "cs1012-3.3.3-cp-01",
+        "d",
+    ): (
+        "That choice builds a percentile CI by resampling with replacement and calls rejecting when zero is outside a permutation test. "
+        "That is bootstrap CI logic, not label permutation under H0."
+    ),
+    # --- cs1012-3.3.4-ar-01 ---
+    (
+        "cs1012-3.3.4-ar-01",
+        "b",
+    ): (
+        "That choice equates GOF with a two-way independence test that always uses row and column totals. "
+        "GOF compares one sample to a stated distribution; independence in a contingency table is a different chi-square procedure."
+    ),
+    (
+        "cs1012-3.3.4-ar-01",
+        "c",
+    ): (
+        "That choice increases degrees of freedom when parameters are estimated. "
+        "Estimating parameters from the same sample reduces DF under CMP rules."
+    ),
+    (
+        "cs1012-3.3.4-ar-01",
+        "d",
+    ): (
+        "That choice sets expected frequencies equal to observed frequencies so chi-square is automatically zero. "
+        "Expected counts come from the hypothesised probabilities (and fitted parameters), not from copying the observed table."
+    ),
+    # --- cs1012-3.3.4-cp-01 ---
+    (
+        "cs1012-3.3.4-cp-01",
+        "b",
+    ): (
+        "That choice uses lambda-hat in expected counts but leaves DF at bins - 1. "
+        "Subtract one more for the estimated Poisson mean: DF = bins - 1 - 1."
+    ),
+    (
+        "cs1012-3.3.4-cp-01",
+        "c",
+    ): (
+        "That choice replaces Poisson GOF with a two-way independence test because lambda is estimated. "
+        "Estimating lambda still leaves a one-sample GOF to the fitted Poisson probabilities."
+    ),
+    (
+        "cs1012-3.3.4-cp-01",
+        "d",
+    ): (
+        "That choice sets every expected count to n / lambda-hat, ignoring Poisson probabilities by bin. "
+        "Expected counts are n times the fitted Poisson probability in each bin."
+    ),
+    # --- cs1012-3.3.5-ar-01 ---
+    (
+        "cs1012-3.3.5-ar-01",
+        "b",
+    ): (
+        "That choice treats independence testing as one-sample GOF to a named distribution such as Poisson. "
+        "Independence uses product-of-margins expected counts in a two-way table, not a named one-sample law."
+    ),
+    (
+        "cs1012-3.3.5-ar-01",
+        "c",
+    ): (
+        "That choice sets every expected cell to n divided by the number of cells. "
+        "Under independence, E_ij uses (row total \u00d7 column total) / n from the observed margins."
+    ),
+    (
+        "cs1012-3.3.5-ar-01",
+        "d",
+    ): (
+        "That choice claims a contingency table classifies only one factor. "
+        "A two-way table cross-classifies two criteria under an independence null."
+    ),
+    # --- cs1012-3.3.5-cp-01 ---
+    (
+        "cs1012-3.3.5-cp-01",
+        "b",
+    ): (
+        "That choice puts a fitted Poisson GOF hypothesis in place of independence. "
+        "For rating \u00d7 claim/no-claim, H0 is independence with E_ij = (row total \u00d7 column total) / n."
+    ),
+    (
+        "cs1012-3.3.5-cp-01",
+        "c",
+    ): (
+        "That choice sets expected counts equal to observed counts under an independence null. "
+        "That forces chi-square to zero and is not the independence construction."
+    ),
+    (
+        "cs1012-3.3.5-cp-01",
+        "d",
+    ): (
+        "That choice forms E_ij as row total + column total without dividing by n. "
+        "Independence expected counts are the product of marginal totals divided by n."
+    ),
+    # --- cs1016-3.2.1-ar-01 ---
+    (
+        "cs1016-3.2.1-ar-01",
+        "b",
+    ): (
+        "That choice reads a CI as a probability that the next observation falls inside the interval. "
+        "A CI targets an unknown parameter with frequentist coverage, not the next observation."
+    ),
+    (
+        "cs1016-3.2.1-ar-01",
+        "c",
+    ): (
+        "That choice collapses a CI into the same accept/reject procedure as a hypothesis test. "
+        "Interval estimation and testing are related but not the same object."
+    ),
+    (
+        "cs1016-3.2.1-ar-01",
+        "d",
+    ): (
+        "That choice assigns 95% probability that the parameter equals the interval midpoint after seeing the data. "
+        "Coverage is about the procedure and the parameter interval, not a midpoint probability."
+    ),
+    # --- cs1016-3.2.1-cp-01 ---
+    (
+        "cs1016-3.2.1-cp-01",
+        "b",
+    ): (
+        "That choice reads (80, 100) as a 95% chance the next claim falls there. "
+        "Coverage is for mu under repeated sampling, not for the next claim."
+    ),
+    (
+        "cs1016-3.2.1-cp-01",
+        "c",
+    ): (
+        "That choice treats the interval as a hypothesis test that automatically rejects every null outside (80, 100). "
+        "A CI is not by itself that decision procedure."
+    ),
+    (
+        "cs1016-3.2.1-cp-01",
+        "d",
+    ): (
+        "That choice sets P(mu = 90) = 95% because 90 is the midpoint. "
+        "Frequentist coverage does not put a 95% probability on the midpoint."
+    ),
+    # --- cs1016-3.3.1-ar-01 ---
+    (
+        "cs1016-3.3.1-ar-01",
+        "b",
+    ): (
+        "That choice swaps Type I and Type II. "
+        "Type I is rejecting a true null; Type II is failing to reject a false null."
+    ),
+    (
+        "cs1016-3.3.1-ar-01",
+        "c",
+    ): (
+        "That choice confines null and alternative to linear regression fitting and removes them from hypothesis-testing vocabulary. "
+        "Those labels are foundational HT language, not a regression-only device."
+    ),
+    (
+        "cs1016-3.3.1-ar-01",
+        "d",
+    ): (
+        "That choice treats Type I and Type II as the same event whenever p < 5%. "
+        "They remain distinct error types; a small p-value does not merge them."
+    ),
+    # --- cs1016-3.3.1-cp-01 ---
+    (
+        "cs1016-3.3.1-cp-01",
+        "b",
+    ): (
+        "That choice swaps the fraud errors: Type I as missed fraud and Type II as a false fraud flag. "
+        "With H0 = genuine, Type I is flagging fraud when genuine and Type II is missing fraud when present."
+    ),
+    (
+        "cs1016-3.3.1-cp-01",
+        "c",
+    ): (
+        "That choice treats a software z-test click as making Type I/II, p-value, and power optional. "
+        "Those definitions still frame the test; a click does not replace them."
+    ),
+    (
+        "cs1016-3.3.1-cp-01",
+        "d",
+    ): (
+        "That choice equates HT foundations with fitting a linear regression of loss on covariates. "
+        "Regression fitting is a different topic from Type I/II, p-value, and power."
+    ),
+}
+
 def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
     loader = EducationalPackageLoader(root=LIVE_PACKAGE_ROOT)
     for stem, want_id in _PROTOTYPE_PACKAGES:
@@ -2482,9 +3465,9 @@ def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
     raise AssertionError(f"unknown prototype item_id {item_id}")
 
 
-def test_prototype_allowlist_is_exactly_one_hundred_items() -> None:
+def test_prototype_allowlist_is_exactly_one_hundred_forty_two_items() -> None:
     assert PROTOTYPE_ITEM_IDS == {want for _, want in _PROTOTYPE_PACKAGES}
-    assert len(PROTOTYPE_ITEM_IDS) == 100
+    assert len(PROTOTYPE_ITEM_IDS) == 142
     assert len(_ORIGINAL_PILOT_PACKAGES) == 4
     assert len(_EXPANSION_PACKAGES) == 10
     assert len(_EXISTING_FOURTEEN_PACKAGES) == 14
@@ -2497,6 +3480,8 @@ def test_prototype_allowlist_is_exactly_one_hundred_items() -> None:
     assert len(_PRIOR_FIFTY_NINE_PACKAGES) == 59
     assert len(_CAF_WAVE4_PACKAGES) == 41
     assert len(_CAF_WAVE4_CONFLICT_NUMERIC_CPS) == 2
+    assert len(_PRIOR_ONE_HUNDRED_PACKAGES) == 100
+    assert len(_CAF_WAVE5_PACKAGES) == 42
 
 
 def test_original_four_pilot_items_unaffected() -> None:
@@ -3196,3 +4181,130 @@ def test_caf_wave4_and_numeric_wave4_live_render_in_session_feedback(app) -> Non
         )
         html = _render(app, study)
         assert "Correct" in html or parts["what_happened"] in html
+
+def test_prior_one_hundred_live_items_unaffected() -> None:
+    """CAF Wave 5 must leave the prior 100 choice-aware items byte-identical."""
+    prior_ids = {want for _, want in _PRIOR_ONE_HUNDRED_PACKAGES}
+    assert prior_ids <= PROTOTYPE_ITEM_IDS
+    assert len(prior_ids) == 100
+    assert len(_PRIOR_ONE_HUNDRED_FEEDBACK) == 300
+    for key, frozen in _PRIOR_ONE_HUNDRED_FEEDBACK.items():
+        assert PROTOTYPE_CHOICE_FEEDBACK[key] == frozen
+    for item_id in sorted(prior_ids):
+        item = _scoreable_for(item_id)
+        correct_id = item.answer_key.correct_choice_id
+        for choice in item.choices:
+            cid = choice[0]
+            if cid == correct_id:
+                continue
+            scored = score_practice_response(item, cid)
+            assert scored.correct is False
+            assert scored.common_mistake == _PRIOR_ONE_HUNDRED_FEEDBACK[(item_id, cid)]
+
+
+def test_caf_wave5_items_yield_specific_choice_aware_feedback() -> None:
+    """Each of the 42 Wave 5 items returns approved copy for every wrong choice."""
+    assert len(_CAF_WAVE5_FEEDBACK) == 126
+    for _, item_id in _CAF_WAVE5_PACKAGES:
+        item = _scoreable_for(item_id)
+        assert item.response_type is PracticeResponseType.MCQ
+        correct_id = item.answer_key.correct_choice_id
+        assert correct_id == "a"
+        seen: set[str] = set()
+        for choice in item.choices:
+            cid = choice[0]
+            if cid == correct_id:
+                continue
+            assert cid in {"b", "c", "d"}
+            scored = score_practice_response(item, cid)
+            assert scored.scored is True and scored.correct is False
+            expected = _CAF_WAVE5_FEEDBACK[(item_id, cid)]
+            assert PROTOTYPE_CHOICE_FEEDBACK[(item_id, cid)] == expected
+            assert scored.common_mistake == expected
+            assert scored.common_mistake != item.common_mistake
+            assert "—" not in expected
+            assert expected not in seen
+            seen.add(expected)
+        assert len(seen) == 3
+
+
+def test_thirty_live_numeric_checkpoints_unaffected_by_caf_wave5() -> None:
+    """Wave 5 adds no numeric conversions; the existing 30 numeric CPs stay numeric."""
+    from tests.application.learning_session.test_numeric_parse import (
+        LIVE_NUMERIC_ACCEPTED,
+    )
+
+    assert len(LIVE_NUMERIC_ACCEPTED) == 30
+    reset_educational_package_cache()
+    found: dict[str, tuple[str, float | None]] = {}
+    for pack in EducationalPackageLoader().all_approved():
+        for check in pack.knowledge_checks:
+            if check.kind == "checkpoint" and check.response_type == "numeric":
+                found[check.item_id] = (
+                    check.accepted_keywords[0],
+                    check.numeric_tolerance,
+                )
+    assert len(found) == 30
+    for item_id, accepted, tol in LIVE_NUMERIC_ACCEPTED:
+        assert item_id not in PROTOTYPE_ITEM_IDS
+        assert not any(k[0] == item_id for k in PROTOTYPE_CHOICE_FEEDBACK)
+        assert item_id in found
+        assert found[item_id][0] == accepted
+        assert found[item_id][1] == tol
+
+
+def test_caf_wave5_live_render_in_session_feedback(app) -> None:
+    """Sample newly wired CAF items display correctly, including markup-fixed CPs."""
+    caf_samples = (
+        ("cs1005-2.2.1-ar-01", "b"),
+        ("cs1011-3.2.6-cp-01", "d"),
+        ("cs1011-3.2.7-cp-01", "c"),
+        ("cs1016-3.3.1-cp-01", "d"),
+    )
+    for item_id, choice_id in caf_samples:
+        item = _scoreable_for(item_id)
+        scored = score_practice_response(item, choice_id)
+        assert scored.correct is False
+        expected = PROTOTYPE_CHOICE_FEEDBACK[(item_id, choice_id)]
+        assert scored.common_mistake == expected
+
+        parts = _practice_feedback_parts(
+            outcome=scored.feedback_outcome,
+            explanation=scored.explanation,
+            common_mistake=scored.common_mistake,
+            submitted_response=choice_id,
+            response_type="mcq",
+            scored_correct=False,
+            practice_choices=tuple((c[0], c[1]) for c in item.choices),
+        )
+        assert parts["what_to_understand"] == expected
+
+        study = _base_page(
+            content_stage="practice",
+            stage_position_label="Practice",
+            feedback_what_happened=parts["what_happened"],
+            feedback_what_it_means=parts["what_it_means"],
+            feedback_what_to_understand=parts["what_to_understand"],
+            feedback_locked=True,
+            submitted_response=choice_id,
+            response_type="mcq",
+            show_answer_input=False,
+            common_mistake=scored.common_mistake,
+        )
+        html = _render(app, study)
+        assert 'data-feedback-what-to-understand="true"' in html
+        assert expected in html
+
+    # Markup-fixed choice labels must keep closed mu subscripts through markup prep.
+    from app.presentation.session.math_markup import prepare_math_markup
+
+    for item_id, choice_id, needles in (
+        ("cs1011-3.2.6-cp-01", "d", (r"\mu_{A}", r"\mu_{B}")),
+        ("cs1011-3.2.7-cp-01", "c", (r"\mu_{X}", r"\mu_{Y}")),
+    ):
+        item = _scoreable_for(item_id)
+        label = next(c[1] for c in item.choices if c[0] == choice_id)
+        assert "$_" not in label
+        for needle in needles:
+            assert needle in label
+        assert prepare_math_markup(label) == label

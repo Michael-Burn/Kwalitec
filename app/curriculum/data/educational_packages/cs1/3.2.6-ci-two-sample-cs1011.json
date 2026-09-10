@@ -195,7 +195,7 @@
         },
         {
           "id": "d",
-          "label": "The two-sample CI targets $\\mu$_A / $\\mu$_B only, never a difference, when the model is Normal.",
+          "label": "The two-sample CI targets $\\mu_{A}$ / $\\mu_{B}$ only, never a difference, when the model is Normal.",
           "misconception_tag": "ratio_only"
         }
       ],

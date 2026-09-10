@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-10T12:12:04Z",
+  "generated_at": "2026-09-10T13:04:38Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
@@ -13623,8 +13623,8 @@
           "package_file": "3.2.7-ci-paired-means-cs1011.json",
           "field_path": "knowledge_checks[1].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "The paired CI is formed for $\\mu$_X and $\\mu$_Y separately; no difference parameter is involved.",
-          "text_hash": "b681f6cf6b44f31b",
+          "text": "The paired CI is formed for $\\mu_{X}$ and $\\mu_{Y}$ separately; no difference parameter is involved.",
+          "text_hash": "79c3b9bcdda41a89",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -13932,8 +13932,8 @@
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
           "field_path": "knowledge_checks[1].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "The two-sample CI targets $\\mu$_A / $\\mu$_B only, never a difference, when the model is Normal.",
-          "text_hash": "2902293778f1aa2c",
+          "text": "The two-sample CI targets $\\mu_{A}$ / $\\mu_{B}$ only, never a difference, when the model is Normal.",
+          "text_hash": "7ca7c89c1391b865",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -40559,5 +40559,5 @@
       ]
     }
   ],
-  "content_fingerprint": "9a9e50e14faa4c49890d2aad3b04e0979878b3133f0aa318f58d4d7eba4acbab"
+  "content_fingerprint": "b68f284e4780c3b537366358a48ce0f6d1101b8f65a9a8263764ecb75e653064"
 }
