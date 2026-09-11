@@ -161,7 +161,7 @@
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.5-cp-01",
       "title": "Checkpoint: 2.6.5",
-      "prompt": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for $\\mu$ and correctly refuses 'The t-statistic finished the F variance-ratio LO and Chapter 3'?",
+      "prompt": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for $\\mu$ and correctly refuses the claim that \"forming the t-statistic completes the F variance-ratio comparison\"?",
       "response_type": "mcq",
       "body": "Identify the t pivot and its boundary.",
       "hints": [
@@ -170,7 +170,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "The t pivot uses the estimated standard error and n-1 degrees of freedom. Variance ratios use F, not t.",
-      "model_answer": "Use ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$; refuse The t-statistic finished the F variance-ratio LO.",
+      "model_answer": "Use ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$; refuse the claim that \"forming the t-statistic completes the F variance-ratio comparison\".",
       "common_mistake": "Using a z law with S or treating t as the variance-ratio distribution.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$. This supports inference for $\\mu$, but does not by itself give the F law for comparing variances, so The t-statistic finished the F variance-ratio LO is false.",
+          "label": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$. This supports inference for $\\mu$, but does not by itself give the F law for comparing variances, so the claim that \"forming the t-statistic completes the F variance-ratio comparison\" is false.",
           "misconception_tag": ""
         },
         {

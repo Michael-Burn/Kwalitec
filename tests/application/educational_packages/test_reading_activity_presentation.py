@@ -219,4 +219,9 @@ def test_cs1009_2_6_5_checkpoint_prompt_has_subject() -> None:
         c for c in pack.knowledge_checks if "Checkpoint" in (c.title or "")
     )
     assert "Refuse 't finished" not in checkpoint.prompt
-    assert "The t-statistic finished" in checkpoint.prompt
+    assert (
+        'forming the t-statistic completes the F variance-ratio comparison'
+        in checkpoint.prompt
+    )
+    assert "F variance-ratio LO" not in checkpoint.prompt
+    assert "The t-statistic finished" not in checkpoint.prompt

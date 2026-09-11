@@ -127,7 +127,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "F is a ratio construction with separate numerator and denominator degrees of freedom under independence and Normal-sample conditions.",
-      "model_answer": "Scaled ratio of independent Normal-sample variances; two degrees of freedom.",
+      "model_answer": "Scaled ratio of independent Normal-sample variances; two degrees-of-freedom parameters (numerator and denominator).",
       "common_mistake": "Using t for a variance ratio or ignoring independence and population assumptions.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -136,7 +136,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "An F variable is a ratio of two independent chi-square variables, each divided by its degrees of freedom. It arises from a scaled ratio of independent sample variances from Normal populations and has two degrees of freedom.",
+          "label": "An F variable is a ratio of two independent chi-square variables, each divided by its degrees of freedom. It arises from a scaled ratio of independent sample variances from Normal populations and has two degrees-of-freedom parameters (numerator and denominator).",
           "misconception_tag": ""
         },
         {

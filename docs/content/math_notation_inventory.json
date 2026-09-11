@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-11T17:04:38Z",
+  "generated_at": "2026-09-11T18:20:42Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
@@ -9202,8 +9202,8 @@
           "package_file": "2.6.5-t-statistic-cs1009.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for $\\mu$ and correctly refuses 'The t-statistic finished the F variance-ratio LO and Chapter 3'?",
-          "text_hash": "bf8ee1abb967e431",
+          "text": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for $\\mu$ and correctly refuses the claim that \"forming the t-statistic completes the F variance-ratio comparison\"?",
+          "text_hash": "aaf861e8a8ec87ef",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -9218,8 +9218,8 @@
           "package_file": "2.6.5-t-statistic-cs1009.json",
           "field_path": "knowledge_checks[1].model_answer",
           "field_group": "knowledge_checks[].model_answer",
-          "text": "Use ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$; refuse The t-statistic finished the F variance-ratio LO.",
-          "text_hash": "7f2d5c9538387c10",
+          "text": "Use ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$; refuse the claim that \"forming the t-statistic completes the F variance-ratio comparison\".",
+          "text_hash": "a69a4d11073329b8",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -9235,8 +9235,8 @@
           "package_file": "2.6.5-t-statistic-cs1009.json",
           "field_path": "knowledge_checks[1].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$. This supports inference for $\\mu$, but does not by itself give the F law for comparing variances, so The t-statistic finished the F variance-ratio LO is false.",
-          "text_hash": "d9488bf145ad1562",
+          "text": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$. This supports inference for $\\mu$, but does not by itself give the F law for comparing variances, so the claim that \"forming the t-statistic completes the F variance-ratio comparison\" is false.",
+          "text_hash": "800af3bf60e2bcf4",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -40559,5 +40559,5 @@
       ]
     }
   ],
-  "content_fingerprint": "c2a492fab1853741388aaffaf98c4a9264f73aef3744aa6afbd446df42381b7d"
+  "content_fingerprint": "79f5795d208b5160c99767addcd06e285af0b43db1dadb01d8a4aebd81cf737d"
 }
