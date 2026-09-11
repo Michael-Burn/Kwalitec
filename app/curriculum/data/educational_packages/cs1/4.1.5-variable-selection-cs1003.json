@@ -192,7 +192,7 @@
         },
         {
           "id": "d",
-          "label": "Raw R-squared alone decides between M1 and M2 because it never increases when variables are added.",
+          "label": "Raw R-squared alone decides between M1 and M2 because it never decreases when variables are added.",
           "misconception_tag": "raw_r2_penalty"
         }
       ],

@@ -53,8 +53,9 @@ entire 4.1 linear regression cluster, and purpose/EDA Continuity Front
 through purpose/EDA revision). No conflicting CPs in this draft; Part 3
 found no numeric conversion candidates. Copy is frozen as approved;
 mechanism unchanged. Item 26 twin feedback states the correct fact that
-raw R-squared never decreases when variables are added, correcting the
-source distractor's inverted claim rather than propagating it.
+raw R-squared never decreases when variables are added; the source
+distractor (d) now states the same fact as the premise of the wrong
+selection rule (raw R-squared alone decides).
 
 Editorial review record (2026-09-10): forty-eight CAF Final Wave items were
 reviewed and approved before wiring (CR Publication Front 1.1/1.2 + revision,
@@ -4111,7 +4112,7 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "cs1003-4.1.5-cp-01",
         "d",
     ): (
-        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "That choice lets raw R-squared alone decide because it never decreases when variables are added. "
         "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
     ),
     # --- cs1013-4.1.5-cp-01 ---
@@ -4133,7 +4134,7 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "cs1013-4.1.5-cp-01",
         "d",
     ): (
-        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "That choice lets raw R-squared alone decide because it never decreases when variables are added. "
         "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
     ),
     # --- cs1016-4.1.1-ar-01 ---

@@ -4098,7 +4098,7 @@ _CAF_WAVE6_FEEDBACK: dict[tuple[str, str], str] = {
         "cs1003-4.1.5-cp-01",
         "d",
     ): (
-        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "That choice lets raw R-squared alone decide because it never decreases when variables are added. "
         "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
     ),
     # --- cs1013-4.1.5-cp-01 ---
@@ -4120,7 +4120,7 @@ _CAF_WAVE6_FEEDBACK: dict[tuple[str, str], str] = {
         "cs1013-4.1.5-cp-01",
         "d",
     ): (
-        "That choice lets raw R-squared alone decide because it supposedly never increases when variables are added. "
+        "That choice lets raw R-squared alone decide because it never decreases when variables are added. "
         "Raw R-squared never decreases when you add variables, which is why it is a poor complexity penalty; prefer adjusted R², AIC, or BIC."
     ),
     # --- cs1016-4.1.1-ar-01 ---
@@ -6499,12 +6499,12 @@ def test_caf_wave6_items_yield_specific_choice_aware_feedback() -> None:
             seen.add(expected)
         assert len(seen) == 3
 
-    # Item 26 twin (raw R-squared): wired text states never decreases, not the
-    # source distractor's inverted "never increases" claim as the hinge fact.
+    # Item 26 twin (raw R-squared): option and wired feedback both state the
+    # true fact (never decreases) as the premise of the wrong selection rule.
     for item_id in ("cs1003-4.1.5-cp-01", "cs1013-4.1.5-cp-01"):
         text = PROTOTYPE_CHOICE_FEEDBACK[(item_id, "d")]
         assert "Raw R-squared never decreases" in text
-        assert "Raw R-squared never increases" not in text
+        assert "never increases" not in text
         scored = score_practice_response(_scoreable_for(item_id), "d")
         assert scored.common_mistake == text
 
