@@ -12,7 +12,7 @@ from datetime import datetime
 
 @dataclass(frozen=True)
 class AssessmentEvidenceRecord:
-    """One durable Assessment Evidence observation."""
+    """One Assessment Evidence observation (SQL-backed when durable store is ON)."""
 
     evidence_id: str
     student_id: str

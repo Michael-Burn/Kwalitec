@@ -114,6 +114,25 @@ def build_spacing_state_store(
     return SessionDocumentSpacingStateStore(store=store)
 
 
+def build_objective_assessment_evidence_store(
+    *,
+    flags: Version2FeatureFlags | None = None,
+    document_store: SessionDocumentStore | None = None,
+):
+    """Build the OEA Assessment Evidence store over ``SessionDocumentStore``.
+
+    Same durable gate as Twin/Spacing (``KWALITEC_V2_DURABLE_STORE``). When
+    durable is on, independent wrappers share SQL rows in
+    ``v2_aggregate_documents`` under namespace ``oea.assessment_evidence``.
+    """
+    from app.application.objective_evidence.store import (
+        ObjectiveAssessmentEvidenceStore,
+    )
+
+    store = document_store or build_session_document_store(flags=flags)
+    return ObjectiveAssessmentEvidenceStore(store=store)
+
+
 def _session_repo_factory(experience_store: ExperienceProjectionStore):
     """Route session namespaces through a dedicated LearningSession aggregate."""
 

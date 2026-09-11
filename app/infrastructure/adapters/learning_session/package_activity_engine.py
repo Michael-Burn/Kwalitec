@@ -51,7 +51,16 @@ class PackageActivityEngine:
         objective_evidence_recorder: ObjectiveAssessmentEvidenceRecorder
         | None = None,
     ) -> None:
-        self._store = store or SessionDocumentStore()
+        # Default must share the composition store (durable when flagged).
+        # A bare SessionDocumentStore() here is a separate empty memory map and
+        # silently diverges from session/Twin write paths even when
+        # KWALITEC_V2_DURABLE_STORE=1.
+        if store is not None:
+            self._store = store
+        else:
+            from app.infrastructure.composition import build_session_document_store
+
+            self._store = build_session_document_store()
         self._persistence = persistence or LearningSessionPersistenceAdapter(
             store=self._store
         )
@@ -116,8 +125,10 @@ class PackageActivityEngine:
         topic = str(seq.get("topic_title") or topic_title or "today's topic")
         scoreable = ScoreablePracticeItem.from_opaque(item.get("scoreable"))
         score = score_practice_response(scoreable, response)
-        # OEA Phase 2: durable Assessment Evidence for authored objective tags
-        # only. No Twin / Spacing / Policy V1 / Decision Engine notification.
+        # OEA Phase 2: Assessment Evidence for authored objective tags only.
+        # Durable when KWALITEC_V2_DURABLE_STORE=1 (SessionDocumentStore SQL);
+        # process-local RAM when the flag is off. No Twin / Spacing / Policy V1
+        # / Decision Engine notification.
         package_id = str(
             seq.get("educational_package_id")
             or item.get("package_id")

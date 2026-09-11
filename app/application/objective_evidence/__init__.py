@@ -14,6 +14,7 @@ from app.application.objective_evidence.recorder import (
 from app.application.objective_evidence.records import AssessmentEvidenceRecord
 from app.application.objective_evidence.store import (
     ObjectiveAssessmentEvidenceStore,
+    discard_objective_assessment_evidence_store_for_tests,
     get_objective_assessment_evidence_store,
     reset_objective_assessment_evidence_store,
 )
@@ -23,6 +24,7 @@ __all__ = (
     "CanonicalObjectiveId",
     "ObjectiveAssessmentEvidenceRecorder",
     "ObjectiveAssessmentEvidenceStore",
+    "discard_objective_assessment_evidence_store_for_tests",
     "get_objective_assessment_evidence_store",
     "reset_objective_assessment_evidence_store",
 )

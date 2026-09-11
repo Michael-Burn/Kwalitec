@@ -68,7 +68,16 @@ class LearningSessionPersistenceAdapter:
         qualifying_study_day_index: Any | None = None,
         enable_qualifying_study_day_index: bool = True,
     ) -> None:
-        self._store = store or SessionDocumentStore()
+        # Default must share the composition store (durable when flagged).
+        # A bare SessionDocumentStore() here is a separate empty memory map and
+        # silently diverges from session/Twin write paths even when
+        # KWALITEC_V2_DURABLE_STORE=1.
+        if store is not None:
+            self._store = store
+        else:
+            from app.infrastructure.composition import build_session_document_store
+
+            self._store = build_session_document_store()
         if qualifying_study_day_index is not None:
             self._qualifying_index = qualifying_study_day_index
         elif enable_qualifying_study_day_index:
