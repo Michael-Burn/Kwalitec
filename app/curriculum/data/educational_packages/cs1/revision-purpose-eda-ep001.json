@@ -104,17 +104,17 @@
       "kind": "active_recall",
       "item_id": "ep001-ca-r1-ar-01",
       "title": "Revision Recall: purpose map",
-      "prompt": "Closed-book. Which statement correctly names the three primary aims of CS1 data analysis with distinct actuarial examples and one reproducibility element?",
+      "prompt": "Closed-book. Which statement correctly names the three primary aims of CS1 data analysis with distinct actuarial examples?",
       "response_type": "mcq",
-      "body": "Select the complete aims-and-examples statement.",
+      "body": "Select the aims-and-examples statement.",
       "hints": [
         "Select the single best statement.",
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "CS1 distinguishes descriptive, inferential, and predictive aims. Reproducibility requires a concrete repeatable analysis path.",
-      "model_answer": "Describe the observed portfolio, infer a population quantity, and predict a future outcome, with versioned data and scripted analysis.",
-      "common_mistake": "Listing tools instead of aims, collapsing the aims, or swapping their roles.",
+      "explanation": "CS1 frames data analysis around descriptive, inferential, and predictive aims. Tools are not aims, and the three aims must stay distinct. In practice, reproducibility still needs a concrete repeatable path such as versioned data and scripted analysis, but this check scores the three aims with examples only.",
+      "model_answer": "Descriptive summarise sample; inferential population estimate; predictive forecast unseen outcomes, each with a distinct actuarial example. (Separately: protect a concrete reproducibility element in your notes.)",
+      "common_mistake": "Listing tools instead of aims, or collapsing all three into 'look at data.'",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -122,22 +122,22 @@
       "choices": [
         {
           "id": "a",
-          "label": "Descriptive: summarise claim sizes in a portfolio year. Inferential: estimate mean claim severity for a population of similar risks. Predictive: forecast next year's claim count for pricing. Reproducibility needs something concrete such as versioned data and a scripted analysis path.",
+          "label": "Descriptive: summarise claim sizes in a portfolio year. Inferential: estimate mean claim severity for a population of similar risks. Predictive: forecast next year's claim count for pricing.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "The three aims are plotting, computing means, and using software. Reproducibility means saving the final chart.",
+          "label": "The three aims are plotting, computing means, and using software, illustrated by making a histogram, a sample mean, and an R call.",
           "misconception_tag": "tools_as_aims"
         },
         {
           "id": "c",
-          "label": "All three aims mean inspecting observed claims, so one sample summary covers description, population inference, and future prediction.",
+          "label": "All three aims collapse into looking at data carefully, so one example such as 'inspect claims' covers descriptive, inferential, and predictive work.",
           "misconception_tag": "aims_collapsed"
         },
         {
           "id": "d",
-          "label": "Descriptive analysis forecasts future claims, inferential analysis reports only the observed sample, and predictive analysis estimates a fixed population parameter.",
+          "label": "Descriptive forecasts next year's claims, inferential summarises the sample only, and predictive estimates a population mean without prediction.",
           "misconception_tag": "aims_swapped"
         }
       ],

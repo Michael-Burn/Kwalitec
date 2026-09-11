@@ -4285,22 +4285,22 @@ _CAF_WAVE6_FEEDBACK: dict[tuple[str, str], str] = {
         "ep001-1.1-cp-01",
         "b",
     ): (
-        "That choice drops ordered stages and treats “be careful with data” as enough for trust and reproducibility. "
-        "Name pipeline location, concrete source traits, and a concrete reproducibility element."
+        "That choice treats stages as unordered so exploratory work can sit anywhere. "
+        "Keep a sensible order and place EDA in clean/explore."
     ),
     (
         "ep001-1.1-cp-01",
         "c",
     ): (
-        "That choice parks EDA after final communication and treats source traits and reproducibility as irrelevant once a plot is saved. "
-        "EDA sits in clean/explore; source traits affect trust; reproducibility needs a repeatable path."
+        "That choice parks EDA after final communication and treats earlier stages as optional. "
+        "EDA sits in clean/explore, before analysis and communication."
     ),
     (
         "ep001-1.1-cp-01",
         "d",
     ): (
-        "That choice makes software fitting the only stage and swaps a package version for scripted reproducibility. "
-        "Fitting is one stage; source bias still matters, and reproducibility needs versioned data and a scripted path."
+        "That choice makes software fitting the only required stage and skips communication. "
+        "Fitting is one stage; the path still runs through to communicating results."
     ),
     # --- ep001-1.2a-ar-01 ---
     (
@@ -4439,22 +4439,22 @@ _CAF_WAVE6_FEEDBACK: dict[tuple[str, str], str] = {
         "ep001-ca-r1-ar-01",
         "b",
     ): (
-        "That choice lists tools as aims and treats saving the final chart as reproducibility. "
-        "Keep descriptive, inferential, and predictive aims, and name a concrete reproducibility element such as versioned data and a scripted path."
+        "That choice lists plotting, means, and software as the three aims. "
+        "Aims are descriptive, inferential, and predictive purposes; tools are how you pursue them."
     ),
     (
         "ep001-ca-r1-ar-01",
         "c",
     ): (
-        "That choice collapses all three aims into one sample summary. "
-        "Description, population inference, and future prediction remain distinct jobs."
+        "That choice collapses all three aims into one vague inspect-the-data example. "
+        "The three aims stay distinct: summarise a sample, make a population claim, and forecast unseen outcomes."
     ),
     (
         "ep001-ca-r1-ar-01",
         "d",
     ): (
-        "That choice swaps the aims: descriptive as forecast, inferential as sample-only, predictive as a fixed population parameter. "
-        "Match each aim to its proper actuarial role."
+        "That choice swaps the aims: descriptive as forecast, inferential as sample-only summary, predictive as population mean without prediction. "
+        "Keep each aim matched to its actuarial job."
     ),
     # --- ep001-ca-r1-cp-01 ---
     (

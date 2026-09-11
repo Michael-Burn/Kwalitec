@@ -153,18 +153,18 @@
       "episode_id": "lep-ep001-1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "ep001-1.1-cp-01",
-      "title": "Checkpoint: stages, sources, reproducibility",
-      "prompt": "Closed-book. Which statement correctly links analysis stages, data-source trust cues, and a reproducibility element?",
+      "title": "Checkpoint: analysis stages and EDA",
+      "prompt": "Closed-book. Which statement correctly orders the main stages of data analysis and places EDA in that path?",
       "response_type": "mcq",
-      "body": "Choose the pipeline, source, and reproducibility warrant.",
+      "body": "Select the staged path with EDA placement.",
       "hints": [
         "Select the single best statement.",
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Purpose and function includes pipeline location, what the data can support, and how another analyst could repeat the work.",
-      "model_answer": "Ordered stages with EDA in explore/clean; name concrete source traits; name a concrete reproducibility element.",
-      "common_mistake": "Saying 'be careful with data' without naming source traits or a concrete reproducibility element.",
+      "explanation": "Purpose and function starts with an ordered pipeline and EDA placed in clean/explore. In practice, source trust also depends on traits such as sampling bias or granularity, and reproducibility needs a concrete element such as versioned data and a scripted path, but this check scores stage order and EDA placement only.",
+      "model_answer": "Ordered stages with EDA in clean/explore: define aim, obtain data, clean/explore, analyse or predict, then communicate. (Separately: name concrete source traits and a concrete reproducibility element in your notes.)",
+      "common_mistake": "Wrong sequencing, parking EDA after communication, or collapsing stages to software fitting while skipping communication.",
       "success_criteria": [
         "Selects the correct choice.",
         "Rejects the named misconception distractors."
@@ -172,23 +172,23 @@
       "choices": [
         {
           "id": "a",
-          "label": "A sensible order is define aim, obtain data, clean/explore, analyse or predict, then communicate, with EDA in clean/explore. Source trust changes with traits such as sampling bias or coarse granularity. Reproducibility needs something concrete such as versioned data and a scripted code path.",
+          "label": "A sensible order is define aim, obtain data, clean/explore, analyse or predict, then communicate, with EDA in clean/explore.",
           "misconception_tag": ""
         },
         {
           "id": "b",
-          "label": "Stages need not be ordered because exploratory work can sit anywhere, and saying 'be careful with data' is enough for source trust and reproducibility.",
-          "misconception_tag": "vague_care_only"
+          "label": "Stages need not be ordered because exploratory work can sit anywhere in the analysis path.",
+          "misconception_tag": "stages_unordered"
         },
         {
           "id": "c",
-          "label": "EDA belongs only after final communication, source characteristics never affect trust, and reproducibility is automatic once a plot is saved.",
-          "misconception_tag": "eda_and_repro_wrong"
+          "label": "EDA belongs only after final communication; earlier stages are optional once results are written up.",
+          "misconception_tag": "eda_after_communicate"
         },
         {
           "id": "d",
-          "label": "The only required stage is software fitting; source bias is irrelevant if the model converges, and naming a package version replaces scripted reproducibility.",
-          "misconception_tag": "software_stage_only"
+          "label": "The only required stage is software fitting; communication can be skipped once the model converges.",
+          "misconception_tag": "skip_communicate"
         }
       ],
       "correct_choice_id": "a"

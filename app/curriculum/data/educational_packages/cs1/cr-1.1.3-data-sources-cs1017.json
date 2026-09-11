@@ -178,7 +178,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Examples: selection or response bias (survey versus administrative coverage), completeness or granularity of fields, measurement error. Large scale may still require sampling or distributed tooling and does not fix representativeness by itself. Volume alone is not automatically better data.",
+          "label": "Compare the sources on traits such as selection or response bias (survey versus administrative coverage), completeness or granularity of fields, and measurement error. Large scale may still require sampling or distributed tooling and does not fix representativeness by itself. Volume alone is not automatically better data.",
           "misconception_tag": ""
         },
         {
