@@ -124,8 +124,8 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Marginals sum/integrate out partners; conditionals divide the joint by the conditioning event's probability. Skipping extraction or omitting normalisation confuses joint with margin or conditional.",
-      "model_answer": "Marginal: sum/integrate joint; conditional: joint divided by $P(condition)$.",
+      "explanation": "Marginals sum/integrate out partners; conditionals divide the relevant joint probability or density by the marginal of the conditioning value. Skipping extraction or omitting normalisation confuses joint with margin or conditional.",
+      "model_answer": "Marginal: sum/integrate joint; conditional: joint probability or density divided by the conditioning marginal.",
       "common_mistake": "Treating the joint as sufficient without marginals/conditionals, or forgetting to divide by $P(X = x)$.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "A marginal sums or integrates the joint over the other variable(s). A conditional renormalises the joint on the given condition, dividing by the marginal probability of that condition.",
+          "label": "A marginal sums or integrates the joint over the other variable(s). A conditional renormalises the joint on the given condition, dividing the relevant joint probability or density by the marginal of the conditioning value.",
           "misconception_tag": ""
         },
         {

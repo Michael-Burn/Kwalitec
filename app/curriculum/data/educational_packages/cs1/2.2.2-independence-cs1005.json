@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Independence is joint factorisation into marginals, or an equivalent CMP form.",
-      "model_answer": "Joint equals product of marginals on the support (or equivalent conditional-equals-marginal form).",
+      "model_answer": "Joint equals product of marginals for all (x, y) (or equivalent conditional-equals-marginal form).",
       "common_mistake": "Skipping the factorisation hinge or confusing independence with weaker association summaries.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "X and Y are independent if the joint equals the product of the marginals for all (x, y) in the support (or an equivalent form such as conditional equals marginal).",
+          "label": "X and Y are independent if the joint equals the product of the marginals for all (x, y) (or an equivalent form such as conditional equals marginal).",
           "misconception_tag": ""
         },
         {

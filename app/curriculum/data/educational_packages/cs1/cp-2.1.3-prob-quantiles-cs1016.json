@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Univariate probability and quantile work uses the one-dimensional CDF or survival function. Recognition alone is not evaluation, and joint machinery is not the primary move for a single named univariate family.",
-      "model_answer": "Use CDF/survival for probabilities; invert CDF for quantiles on a named univariate family.",
+      "model_answer": "Use CDF/survival for probabilities; quantile is the smallest x with F(x) at least p (generalized inverse) on a named univariate family.",
       "common_mistake": "Treating family recognition as finished evaluation, or pulling joint steps into a univariate task.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "For a placed univariate family, evaluate a probability such as $P(X > x)$ from the CDF or survival function, and evaluate a quantile by inverting the CDF to solve F(x) = p for x.",
+          "label": "For a placed univariate family, evaluate a probability such as $P(X > x)$ from the CDF or survival function, and evaluate a quantile as the smallest x such that F(x) is at least p (which reduces to solving F(x) = p when the CDF is continuous).",
           "misconception_tag": ""
         },
         {

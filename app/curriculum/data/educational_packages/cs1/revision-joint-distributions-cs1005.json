@@ -137,7 +137,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "pX,Y(x, y) = pX(x)pY(y) for every pair in the joint support.",
+          "label": "pX,Y(x, y) = pX(x)pY(y) for all possible pairs.",
           "misconception_tag": ""
         },
         {

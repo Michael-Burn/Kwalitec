@@ -2664,7 +2664,7 @@ _CAF_WAVE5_FEEDBACK: dict[tuple[str, str], str] = {
         "d",
     ): (
         "That choice stops once each marginal exists and drops the joint-factorisation requirement. "
-        "Independence still needs the joint to equal the product of those marginals on the support."
+        "Independence still needs the joint to equal the product of those marginals for all (x, y)."
     ),
     # --- cs1005-2.2.2-cp-01 ---
     (
@@ -2796,7 +2796,7 @@ _CAF_WAVE5_FEEDBACK: dict[tuple[str, str], str] = {
         "d",
     ): (
         "That choice forms every marginal and conditional by dividing each joint cell by the grand total. "
-        "A marginal sums over partners; a conditional divides by the conditioning event\u2019s probability, not by a single grand-total rescaling rule for both."
+        "A marginal sums over partners; a conditional divides by the marginal of the conditioning value, not by a single grand-total rescaling rule for both."
     ),
     # --- cs1005-ce-r1-ar-01 ---
     (
@@ -2804,7 +2804,7 @@ _CAF_WAVE5_FEEDBACK: dict[tuple[str, str], str] = {
         "b",
     ): (
         "That choice treats Cov(X,Y) = 0 as independence in every case. "
-        "Independence needs joint factorisation on the support; zero covariance is generally insufficient."
+        "Independence needs joint factorisation everywhere; zero covariance is generally insufficient."
     ),
     (
         "cs1005-ce-r1-ar-01",

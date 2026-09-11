@@ -177,7 +177,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Draw U ~ Uniform(0,1) and assign the discrete value whose CDF first exceeds U (inverse CDF or threshold rule). Software sampling can implement the draw, but the learning objective requires understanding inverse transform, not only calling a black box.",
+          "label": "Draw U ~ Uniform(0,1) and assign the discrete value whose CDF is first at least U (inverse CDF or threshold rule). Software sampling can implement the draw, but the learning objective requires understanding inverse transform, not only calling a black box.",
           "misconception_tag": ""
         },
         {
