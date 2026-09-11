@@ -129,82 +129,215 @@ def _subject_and_version_from_mission(
     return identity or None, None
 
 
-def resolve_sql_topic_id_for_practice(
+def _educational_package_id_for_sitting(
+    store: SessionDocumentStore,
+    *,
+    student_id: str,
+    session_id: str,
+) -> str:
+    """Best-effort educational package id from the LSR session handle."""
+    try:
+        from app.infrastructure.adapters.learning_session.persistence import (
+            LearningSessionPersistenceAdapter,
+        )
+
+        handle = LearningSessionPersistenceAdapter(store=store).load(
+            session_id=session_id
+        ) or {}
+        return str(handle.get("educational_package_id") or "").strip()
+    except Exception:  # noqa: BLE001 — fail-open
+        logger.debug(
+            "sql_topic_resolve package_id load failed session=%s student=%s",
+            session_id,
+            student_id,
+            exc_info=True,
+        )
+        return ""
+
+
+def _sql_topic_id_for_official_code(
+    *,
+    user_id: int,
+    row: RuntimeMissionInstance,
+    official_code: str,
+    raw_topic_id: Any = None,
+) -> int | None:
+    """Resolve one syllabus official code to SQL Topic.id (Phase 3 chain)."""
+    code = (official_code or "").strip()
+    if not code:
+        return optional_sql_topic_id(raw_topic_id)
+
+    subject_code, version_label = _subject_and_version_from_mission(
+        user_id=user_id,
+        row=row,
+    )
+    mapped = map_runtime_syllabus_to_engine(subject_code, version_label)
+    if mapped is None:
+        logger.info(
+            "sql_topic_resolve_unmapped subject=%s version_label=%s "
+            "topic_code=%s mid=%s",
+            subject_code,
+            version_label,
+            code,
+            row.mission_instance_id,
+        )
+        return optional_sql_topic_id(raw_topic_id)
+
+    curriculum = CurriculumService.ensure_curriculum_rows(
+        mapped.exam_name,
+        mapped.version,
+    )
+    if curriculum is None:
+        logger.info(
+            "sql_topic_resolve_ensure_failed exam=%s version=%s "
+            "topic_code=%s mid=%s",
+            mapped.exam_name,
+            mapped.version,
+            code,
+            row.mission_instance_id,
+        )
+        return None
+
+    topic_id = CurriculumService.resolve_topic_id_for_official_code(
+        curriculum,
+        code,
+    )
+    if topic_id is None:
+        logger.info(
+            "sql_topic_resolve_code_unresolved exam=%s version=%s "
+            "topic_code=%s mid=%s",
+            mapped.exam_name,
+            mapped.version,
+            code,
+            row.mission_instance_id,
+        )
+        return None
+
+    CurriculumService.get_or_create_topic_progress(user_id, topic_id)
+    return topic_id
+
+
+def resolve_sql_topic_ids_for_practice(
     *,
     user_id: int,
     row: RuntimeMissionInstance,
     raw_topic_id: Any = None,
-) -> int | None:
-    """Resolve SQL Topic.id for scored-practice write-through (Phase 3).
+    educational_package_id: str | None = None,
+) -> tuple[list[int], str]:
+    """Resolve SQL Topic.id values for scored-practice write-through.
 
-    Prefers ``row.topic_code`` (human syllabus code) over opaque Runtime
-    ``topic_id``. Chain: syllabus map → ``ensure_curriculum_rows`` →
-    ``resolve_topic_id_for_official_code`` → ``get_or_create_topic_progress``
-    for **that topic only**.
+    When the sitting package names real ``return_targets``, those are mapped
+    through Policy V1's Twin-key resolver to unique parent topics, then to SQL
+    Topic ids. Tip-surrogate ``row.topic_code`` is never used in that case.
 
-    On any failure returns ``None`` (caller writes attempt without mastery).
-    Never raises.
+    Returns ``(topic_ids, disposition)`` where disposition is one of:
+    ``return_targets``, ``return_targets_unresolved``, ``mission_topic_code``.
     """
     try:
+        from app.application.student_twin.practiced_identity import (
+            resolve_practiced_twin_keys,
+            subject_code_from_curriculum_identity,
+            syllabus_code_for_twin_key,
+        )
+
+        pack_id = (educational_package_id or "").strip()
+        subject = subject_code_from_curriculum_identity(
+            row.curriculum_identity or ""
+        )
+        plan_subject, _version = _subject_and_version_from_mission(
+            user_id=user_id, row=row
+        )
+        if plan_subject:
+            subject = plan_subject
+
+        resolution = resolve_practiced_twin_keys(
+            educational_package_id=pack_id,
+            subject_code=subject,
+        )
+        if resolution.has_return_targets:
+            if resolution.unresolved or not resolution.twin_keys:
+                logger.info(
+                    "sql_topic_resolve tip_surrogate_blocked mid=%s package=%s",
+                    row.mission_instance_id,
+                    pack_id,
+                )
+                return [], "return_targets_unresolved"
+
+            ids: list[int] = []
+            seen: set[int] = set()
+            for twin_key in resolution.twin_keys:
+                official = syllabus_code_for_twin_key(
+                    twin_key, subject_code=subject
+                )
+                if not official:
+                    continue
+                sql_id = _sql_topic_id_for_official_code(
+                    user_id=user_id,
+                    row=row,
+                    official_code=official,
+                    raw_topic_id=None,
+                )
+                if sql_id is not None and sql_id not in seen:
+                    seen.add(sql_id)
+                    ids.append(sql_id)
+            if not ids:
+                logger.info(
+                    "sql_topic_resolve tip_surrogate_blocked mid=%s package=%s "
+                    "reason=twin_keys_unmapped_to_sql",
+                    row.mission_instance_id,
+                    pack_id,
+                )
+                return [], "return_targets_unresolved"
+            return ids, "return_targets"
+
+        # Ordinary packages: prefer mission topic_code (human syllabus code).
         official_code = (row.topic_code or "").strip()
         if not official_code:
-            return optional_sql_topic_id(raw_topic_id)
-
-        subject_code, version_label = _subject_and_version_from_mission(
+            coerced = optional_sql_topic_id(raw_topic_id)
+            return ([coerced] if coerced is not None else []), "mission_topic_code"
+        sql_id = _sql_topic_id_for_official_code(
             user_id=user_id,
             row=row,
+            official_code=official_code,
+            raw_topic_id=raw_topic_id,
         )
-        mapped = map_runtime_syllabus_to_engine(subject_code, version_label)
-        if mapped is None:
-            logger.info(
-                "sql_topic_resolve_unmapped subject=%s version_label=%s "
-                "topic_code=%s mid=%s",
-                subject_code,
-                version_label,
-                official_code,
-                row.mission_instance_id,
-            )
-            return optional_sql_topic_id(raw_topic_id)
-
-        curriculum = CurriculumService.ensure_curriculum_rows(
-            mapped.exam_name,
-            mapped.version,
-        )
-        if curriculum is None:
-            logger.info(
-                "sql_topic_resolve_ensure_failed exam=%s version=%s "
-                "topic_code=%s mid=%s",
-                mapped.exam_name,
-                mapped.version,
-                official_code,
-                row.mission_instance_id,
-            )
-            return None
-
-        topic_id = CurriculumService.resolve_topic_id_for_official_code(
-            curriculum,
-            official_code,
-        )
-        if topic_id is None:
-            logger.info(
-                "sql_topic_resolve_code_unresolved exam=%s version=%s "
-                "topic_code=%s mid=%s",
-                mapped.exam_name,
-                mapped.version,
-                official_code,
-                row.mission_instance_id,
-            )
-            return None
-
-        CurriculumService.get_or_create_topic_progress(user_id, topic_id)
-        return topic_id
+        return ([sql_id] if sql_id is not None else []), "mission_topic_code"
     except Exception:
         logger.exception(
             "sql_topic_resolve_failed mid=%s user=%s",
             getattr(row, "mission_instance_id", None),
             user_id,
         )
+        return [], "return_targets_unresolved"
+
+
+def resolve_sql_topic_id_for_practice(
+    *,
+    user_id: int,
+    row: RuntimeMissionInstance,
+    raw_topic_id: Any = None,
+    educational_package_id: str | None = None,
+) -> int | None:
+    """Resolve a single SQL Topic.id for scored-practice write-through.
+
+    Prefer ``return_targets`` when present. When multiple distinct parent
+    topics resolve, returns ``None`` so callers fan-out via
+    ``resolve_sql_topic_ids_for_practice`` rather than collapsing arbitrarily.
+    On tip-surrogate block, returns ``None`` (never the tip topic).
+    """
+    ids, disposition = resolve_sql_topic_ids_for_practice(
+        user_id=user_id,
+        row=row,
+        raw_topic_id=raw_topic_id,
+        educational_package_id=educational_package_id,
+    )
+    if disposition == "return_targets_unresolved":
         return None
+    if len(ids) == 1:
+        return ids[0]
+    if len(ids) > 1:
+        return None
+    return None
 
 
 def maybe_write_sql_evidence_from_sitting(
@@ -316,11 +449,22 @@ def _write_sql_evidence_from_sitting(
         return None
 
     # Phase 3 resolution only when scored practice exists (Session complete).
-    resolved_topic = resolve_sql_topic_id_for_practice(
+    pack_id = _educational_package_id_for_sitting(
+        store,
+        student_id=str(user_id),
+        session_id=session_id,
+    )
+    topic_ids, disposition = resolve_sql_topic_ids_for_practice(
         user_id=user_id,
         row=row,
         raw_topic_id=topic_id,
+        educational_package_id=pack_id,
     )
+    # Single parent topic: existing StudyAttempt.topic_id path.
+    # Multiple return_target parents: write the attempt without collapsing to
+    # one arbitrary topic, then fan-out TopicProgress / mastery for each.
+    # Unresolved return_targets: never attribute to tip-surrogate topic_code.
+    primary_topic = topic_ids[0] if len(topic_ids) == 1 else None
     result = StudySessionService.record_practice_outcome(
         mission_id=int(companion.id),
         user_id=user_id,
@@ -328,17 +472,27 @@ def _write_sql_evidence_from_sitting(
         questions_correct=counts.questions_correct,
         duration_minutes=duration_minutes,
         notes=None,
-        topic_id=resolved_topic,
+        topic_id=primary_topic,
     )
+    if len(topic_ids) > 1:
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        for sql_topic in topic_ids:
+            CurriculumService.get_or_create_topic_progress(user_id, sql_topic)
+            AdaptiveLearningService.update_mastery_after_attempt(
+                user_id=user_id,
+                topic_id=sql_topic,
+            )
     db.session.flush()
     logger.info(
         "sql_evidence_write_through session=%s mid=%s sql_mission_id=%s "
-        "attempted=%s correct=%s topic_id=%s",
+        "attempted=%s correct=%s topic_ids=%s disposition=%s",
         session_id,
         mid,
         companion.id,
         counts.questions_attempted,
         counts.questions_correct,
-        resolved_topic,
+        topic_ids,
+        disposition,
     )
     return result.study_attempt

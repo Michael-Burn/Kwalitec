@@ -36,6 +36,11 @@ from app.application.student_twin.dto.twin_consumption_result import (
     TwinConsumptionResult,
 )
 from app.application.student_twin.exceptions import DuplicateEvidence, EvidenceRejected
+from app.application.student_twin.practiced_identity import (
+    educational_package_id_from_session_metadata,
+    resolve_practiced_twin_keys,
+    subject_code_from_curriculum_identity,
+)
 from app.application.student_twin.twin_engine import StudentTwinEngine
 from app.domain.student_twin.digital_twin import DigitalTwin
 from app.domain.student_twin.evidence_event import EvidenceEvent
@@ -116,6 +121,14 @@ class SessionTwinEvidenceConsumer:
                 learner_id=resolved.student_id,
             )
 
+        practiced = self._practiced_twin_keys(resolved)
+        if practiced is not None and practiced.unresolved:
+            return TwinConsumptionResult.ignored(
+                "return_targets_unresolved_tip_surrogate_blocked",
+                package_id=resolved.package_id,
+                learner_id=resolved.student_id,
+            )
+
         events = self.extract_authorised_events(resolved)
         if not events:
             return TwinConsumptionResult.ignored(
@@ -177,14 +190,53 @@ class SessionTwinEvidenceConsumer:
         """Map Educational+ candidates to Twin EvidenceEvents.
 
         Behavioural / Informational observations in the same package are ignored.
+
+        When the sitting's educational package names real ``return_targets``,
+        Twin keys come from those targets (Policy V1 resolver), never from the
+        tip-surrogate ``package.topic_id`` used only for mission generation.
+        Multiple distinct Twin keys receive one event each (honest fan-out).
+        Unresolvable return_targets skip Twin write rather than fabricating tip
+        attribution.
         """
-        events: list[EvidenceEvent] = []
+        practiced = self._practiced_twin_keys(package)
+        if practiced is not None and practiced.unresolved:
+            return []
+        if practiced is not None and practiced.twin_keys:
+            events: list[EvidenceEvent] = []
+            for obs in package.observations:
+                for twin_key in practiced.twin_keys:
+                    event = self._observation_to_event(
+                        obs,
+                        topic_fallback=twin_key,
+                        force_topic_id=twin_key,
+                        event_id_suffix=twin_key,
+                    )
+                    if event is not None:
+                        events.append(event)
+            return events
+
+        events = []
         topic_fallback = (package.topic_id or "").strip() or None
         for obs in package.observations:
             event = self._observation_to_event(obs, topic_fallback=topic_fallback)
             if event is not None:
                 events.append(event)
         return events
+
+    @staticmethod
+    def _practiced_twin_keys(package: SessionEvidencePackage):
+        pack_id = educational_package_id_from_session_metadata(
+            package.session_metadata
+        )
+        if not pack_id:
+            return None
+        subject = subject_code_from_curriculum_identity(
+            package.curriculum_identity
+        )
+        return resolve_practiced_twin_keys(
+            educational_package_id=pack_id,
+            subject_code=subject,
+        )
 
     def mark_package_consumed(
         self, package: SessionEvidencePackage
@@ -202,6 +254,8 @@ class SessionTwinEvidenceConsumer:
         obs: CandidateObservation,
         *,
         topic_fallback: str | None,
+        force_topic_id: str | None = None,
+        event_id_suffix: str | None = None,
     ) -> EvidenceEvent | None:
         grade = TYPE_CEILING_GRADE.get(obs.type_id, "informational")
         if grade not in _TWIN_GRADES:
@@ -210,7 +264,10 @@ class SessionTwinEvidenceConsumer:
         if twin_type is None:
             return None
 
-        topic_id = (obs.topic_id or "").strip() or topic_fallback
+        if force_topic_id is not None:
+            topic_id = (force_topic_id or "").strip() or None
+        else:
+            topic_id = (obs.topic_id or "").strip() or topic_fallback
         outcome, score = self._outcome_and_score(obs)
         payload = obs.payload or {}
         metadata = [
@@ -218,6 +275,8 @@ class SessionTwinEvidenceConsumer:
             ("session_id", obs.session_id),
             ("package_provenance", "learning_session_runtime"),
         ]
+        if force_topic_id is not None:
+            metadata.append(("practiced_identity_source", "return_targets"))
         if obs.activity_id:
             metadata.append(("activity_id", obs.activity_id))
         if obs.mission_instance_id:
@@ -226,8 +285,12 @@ class SessionTwinEvidenceConsumer:
             payload.get("source_ref")
             or f"ev:{obs.session_id}:{obs.observation_id}"
         )
+        event_id = f"twin-{obs.observation_id}"
+        suffix = (event_id_suffix or "").strip()
+        if suffix:
+            event_id = f"{event_id}-{suffix}"
         return EvidenceEvent.create(
-            event_id=f"twin-{obs.observation_id}",
+            event_id=event_id,
             evidence_type=twin_type,
             occurred_at=obs.recorded_at,
             topic_id=topic_id,

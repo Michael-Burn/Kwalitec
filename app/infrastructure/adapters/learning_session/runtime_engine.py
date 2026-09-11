@@ -1435,6 +1435,11 @@ class LearningSessionRuntimeEngine:
                 "estimated_minutes": record.get("estimated_minutes"),
                 "phase": record.get("phase"),
                 "session_origin": str(record.get("session_origin") or ""),
+                # Practiced-identity for Twin/VP/SQL: educational package id
+                # (return_targets), not tip-surrogate mission topic_id.
+                "educational_package_id": str(
+                    record.get("educational_package_id") or ""
+                ).strip(),
             },
         )
         package = self._evidence_gate.assert_session_may_complete(package)

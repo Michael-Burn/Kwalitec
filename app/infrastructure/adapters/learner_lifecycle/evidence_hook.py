@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 # Distinguishable attribution provenance written into evidence metadata.
 ATTRIBUTION_SESSION_PRACTICED = "session_practiced"
+ATTRIBUTION_RETURN_TARGETS = "return_targets"
 ATTRIBUTION_DECISION_TARGET = "decision_target"
 ATTRIBUTION_SCI_FIRST_NODE = "sci_first_node"
 
@@ -172,7 +173,12 @@ def _resolve_from_syllabus_code(
 
 
 def _syllabus_codes_from_package(package_id: str) -> list[str]:
-    """Return preferred syllabus codes from a certified package (LO then topic)."""
+    """Return preferred syllabus codes from a certified package.
+
+    When the package names real ``return_targets`` (campaign revision), those
+    are the practiced identity — not tip-surrogate ``topic_code`` / focus LO
+    remapped for mission generation (PX-B-005).
+    """
     pid = (package_id or "").strip()
     if not pid:
         return []
@@ -190,6 +196,12 @@ def _syllabus_codes_from_package(package_id: str) -> list[str]:
     if pack is None:
         return []
     codes: list[str] = []
+    for raw in getattr(pack, "return_targets", ()) or ():
+        token = str(raw or "").strip()
+        if token and token not in codes:
+            codes.append(token)
+    if codes:
+        return codes
     focus = str(getattr(pack, "topic_focus_lo", "") or "").strip()
     topic_code = str(getattr(pack, "topic_code", "") or "").strip()
     if focus:
@@ -197,6 +209,21 @@ def _syllabus_codes_from_package(package_id: str) -> list[str]:
     if topic_code and topic_code not in codes:
         codes.append(topic_code)
     return codes
+
+
+def _package_has_return_targets(package_id: str) -> bool:
+    pid = (package_id or "").strip()
+    if not pid:
+        return False
+    try:
+        from app.application.educational_packages.loader import find_package_by_id
+
+        pack = find_package_by_id(pid)
+    except Exception:  # noqa: BLE001
+        return False
+    if pack is None:
+        return False
+    return any(str(t or "").strip() for t in (pack.return_targets or ()))
 
 
 def _syllabus_code_from_published_topic(
@@ -249,10 +276,64 @@ def _resolve_practiced_node_stable_id(
     identity: dict[str, Any],
 ) -> str | None:
     """Resolve the SCI node the student practiced from session identity."""
+    nodes = _resolve_practiced_node_stable_ids(
+        instance_id,
+        subject_code=subject_code,
+        identity=identity,
+    )
+    return nodes[0] if nodes else None
+
+
+def _resolve_practiced_node_stable_ids(
+    instance_id: str,
+    *,
+    subject_code: str,
+    identity: dict[str, Any],
+) -> list[str]:
+    """Resolve SCI node(s) for practiced identity (return_targets fan-out).
+
+    When the educational package names real ``return_targets``, those are
+    resolved through the same Policy V1 Twin-key mapper used for weakness
+    scoring, then mapped onto SCI-resident nodes. Tip-surrogate mission
+    ``topic_id`` / ``topic_code`` are never consulted in that case.
+    """
+    pack_id = str(identity.get("educational_package_id") or "").strip()
+    if pack_id and _package_has_return_targets(pack_id):
+        from app.application.student_twin.practiced_identity import (
+            resolve_practiced_twin_keys,
+        )
+
+        resolution = resolve_practiced_twin_keys(
+            educational_package_id=pack_id,
+            subject_code=subject_code,
+        )
+        if resolution.unresolved or not resolution.twin_keys:
+            # Honest skip: do not fall through to tip-surrogate topic.
+            identity["return_targets_unresolved"] = True
+            return []
+        nodes: list[str] = []
+        seen: set[str] = set()
+        for twin_key in resolution.twin_keys:
+            published_code = _syllabus_code_from_published_topic(
+                twin_key, subject_code=subject_code
+            )
+            if not published_code:
+                continue
+            resolved = _resolve_from_syllabus_code(
+                instance_id,
+                subject_code=subject_code,
+                syllabus_code=published_code,
+            )
+            if resolved and resolved not in seen:
+                seen.add(resolved)
+                nodes.append(resolved)
+        if not nodes:
+            identity["return_targets_unresolved"] = True
+        return nodes
+
     candidates: list[str] = []
 
     topic_id = str(identity.get("topic_id") or "").strip()
-    pack_id = str(identity.get("educational_package_id") or "").strip()
     topic_code = str(identity.get("topic_code") or "").strip()
     objective_ids = identity.get("objective_ids") or []
 
@@ -260,7 +341,7 @@ def _resolve_practiced_node_stable_id(
     for raw in (topic_id, *list(objective_ids)):
         stable = _try_stable_curriculum_id(str(raw))
         if stable and _sci_has_node(instance_id, stable):
-            return stable
+            return [stable]
 
     # 2. Package focus LO / topic_code (Spacing's identity unit → CKG code).
     for code in _syllabus_codes_from_package(pack_id):
@@ -291,8 +372,8 @@ def _resolve_practiced_node_stable_id(
             syllabus_code=code,
         )
         if resolved:
-            return resolved
-    return None
+            return [resolved]
+    return []
 
 
 def _resolve_fallback_node_stable_id(
@@ -345,32 +426,55 @@ def _has_practiced_identity(identity: dict[str, Any]) -> bool:
     return any(str(item or "").strip() for item in objectives)
 
 
+def _resolve_nodes_for_evidence(
+    instance_id: str,
+    *,
+    subject_code: str,
+    session_id: str,
+) -> tuple[list[str], str | None, dict[str, Any]]:
+    """Choose evidence node(s) and provenance for a session event.
+
+    Prefer session-practiced identity. When a practiced hint exists but cannot
+    be mapped onto the SCI, skip (return empty) rather than fabricating a node.
+    Packages with ``return_targets`` attribute to every resolved Twin parent
+    topic (Policy V1 key space), never the tip-surrogate mission topic.
+    """
+    identity = _load_session_practiced_identity(session_id)
+    if _has_practiced_identity(identity):
+        nodes = _resolve_practiced_node_stable_ids(
+            instance_id,
+            subject_code=subject_code,
+            identity=identity,
+        )
+        if nodes:
+            pack_id = str(identity.get("educational_package_id") or "").strip()
+            source = (
+                ATTRIBUTION_RETURN_TARGETS
+                if pack_id and _package_has_return_targets(pack_id)
+                else ATTRIBUTION_SESSION_PRACTICED
+            )
+            return nodes, source, identity
+        return [], None, identity
+
+    node, source = _resolve_fallback_node_stable_id(instance_id)
+    if node:
+        return [node], source, identity
+    return [], source, identity
+
+
 def _resolve_node_for_evidence(
     instance_id: str,
     *,
     subject_code: str,
     session_id: str,
 ) -> tuple[str | None, str | None, dict[str, Any]]:
-    """Choose the evidence node and provenance for a session event.
-
-    Prefer session-practiced identity. When a practiced hint exists but cannot
-    be mapped onto the SCI, skip (return None) rather than fabricating a node.
-    Only when no practiced identity is available do we keep the legacy
-    decision-target / lowest-id fallbacks, marked as untrusted sources.
-    """
-    identity = _load_session_practiced_identity(session_id)
-    if _has_practiced_identity(identity):
-        node = _resolve_practiced_node_stable_id(
-            instance_id,
-            subject_code=subject_code,
-            identity=identity,
-        )
-        if node:
-            return node, ATTRIBUTION_SESSION_PRACTICED, identity
-        return None, None, identity
-
-    node, source = _resolve_fallback_node_stable_id(instance_id)
-    return node, source, identity
+    """Back-compat single-node wrapper around ``_resolve_nodes_for_evidence``."""
+    nodes, source, identity = _resolve_nodes_for_evidence(
+        instance_id,
+        subject_code=subject_code,
+        session_id=session_id,
+    )
+    return (nodes[0] if nodes else None), source, identity
 
 
 def record_session_evidence(
@@ -443,13 +547,23 @@ def record_session_evidence(
         ).first()
         sci_subject = str(getattr(row, "subject_code", "") or "").strip()
 
-    node_id, attribution_source, identity = _resolve_node_for_evidence(
+    node_ids, attribution_source, identity = _resolve_nodes_for_evidence(
         instance.instance_id,
         subject_code=sci_subject,
         session_id=session_id,
     )
-    if not node_id:
-        if _has_practiced_identity(identity):
+    if not node_ids:
+        if identity.get("return_targets_unresolved"):
+            logger.info(
+                "VP-001 evidence skipped student=%s instance=%s "
+                "reason=return_targets_unresolved_tip_surrogate_blocked "
+                "topic=%s package=%s",
+                sid,
+                instance.instance_id,
+                identity.get("topic_id") or "",
+                identity.get("educational_package_id") or "",
+            )
+        elif _has_practiced_identity(identity):
             logger.info(
                 "VP-001 evidence skipped student=%s instance=%s "
                 "reason=unresolved_practiced_identity topic=%s package=%s",
@@ -472,27 +586,8 @@ def record_session_evidence(
     else:
         evidence_type = EvidenceType.PRACTICE_ATTEMPT.value
 
-    payload: dict[str, Any] = {
-        "session_id": session_id,
-        "source_surface": "session",
-        "attribution_source": attribution_source or ATTRIBUTION_SCI_FIRST_NODE,
-    }
     practiced_topic = str(identity.get("topic_id") or "").strip()
     practiced_pack = str(identity.get("educational_package_id") or "").strip()
-    if practiced_topic:
-        payload["practiced_topic_id"] = practiced_topic
-    if practiced_pack:
-        payload["practiced_educational_package_id"] = practiced_pack
-    if activity_id:
-        payload["activity_id"] = activity_id
-        payload["item_id"] = activity_id
-    if metadata:
-        payload.update(metadata)
-        # Session-derived provenance must win over caller metadata.
-        payload["attribution_source"] = (
-            attribution_source or ATTRIBUTION_SCI_FIRST_NODE
-        )
-
     correlation = f"vp001-session-{session_id}"
     try:
         from app.application.founder_validation.telemetry import (
@@ -502,42 +597,69 @@ def record_session_evidence(
         )
         from app.application.learner_lifecycle import LearnerLifecycleOrchestrator
 
-        result = LearnerLifecycleOrchestrator().process_evidence(
-            instance_id=instance.instance_id,
-            node_stable_id=node_id,
-            evidence_type=evidence_type,
-            source=EvidenceSource.SESSION_RUNTIME.value,
-            metadata=payload,
-            correlation_id=correlation,
-        )
-        DEFAULT_FV_TELEMETRY.record_lifecycle_outcome(
-            kind="evidence",
-            succeeded=bool(result.succeeded),
-            student_id=sid,
-            operation_type="evidence_refresh",
-            duration_ms=total_duration_ms_from_result(result),
-            decision_refresh_ms=decision_refresh_ms_from_result(result),
-            failure_cause=result.failure_cause,
-            correlation_id=correlation,
-        )
-        if result.succeeded:
-            logger.info(
-                "VP-001 evidence recorded student=%s instance=%s type=%s "
-                "node=%s attribution=%s",
-                sid,
-                instance.instance_id,
-                evidence_type,
-                node_id,
-                attribution_source,
+        orchestrator = LearnerLifecycleOrchestrator()
+        last_result: Any | None = None
+        for index, node_id in enumerate(node_ids):
+            payload: dict[str, Any] = {
+                "session_id": session_id,
+                "source_surface": "session",
+                "attribution_source": (
+                    attribution_source or ATTRIBUTION_SCI_FIRST_NODE
+                ),
+                "practiced_node_ids": list(node_ids),
+            }
+            if practiced_topic:
+                payload["practiced_topic_id"] = practiced_topic
+            if practiced_pack:
+                payload["practiced_educational_package_id"] = practiced_pack
+            if activity_id:
+                payload["activity_id"] = activity_id
+                payload["item_id"] = activity_id
+            if metadata:
+                payload.update(metadata)
+                payload["attribution_source"] = (
+                    attribution_source or ATTRIBUTION_SCI_FIRST_NODE
+                )
+            node_correlation = (
+                correlation if index == 0 else f"{correlation}-rt{index}"
             )
-        else:
-            logger.warning(
-                "VP-001 evidence incomplete student=%s instance=%s status=%s",
-                sid,
-                instance.instance_id,
-                result.status,
+            result = orchestrator.process_evidence(
+                instance_id=instance.instance_id,
+                node_stable_id=node_id,
+                evidence_type=evidence_type,
+                source=EvidenceSource.SESSION_RUNTIME.value,
+                metadata=payload,
+                correlation_id=node_correlation,
             )
-        return result
+            last_result = result
+            DEFAULT_FV_TELEMETRY.record_lifecycle_outcome(
+                kind="evidence",
+                succeeded=bool(result.succeeded),
+                student_id=sid,
+                operation_type="evidence_refresh",
+                duration_ms=total_duration_ms_from_result(result),
+                decision_refresh_ms=decision_refresh_ms_from_result(result),
+                failure_cause=result.failure_cause,
+                correlation_id=node_correlation,
+            )
+            if result.succeeded:
+                logger.info(
+                    "VP-001 evidence recorded student=%s instance=%s type=%s "
+                    "node=%s attribution=%s",
+                    sid,
+                    instance.instance_id,
+                    evidence_type,
+                    node_id,
+                    attribution_source,
+                )
+            else:
+                logger.warning(
+                    "VP-001 evidence incomplete student=%s instance=%s status=%s",
+                    sid,
+                    instance.instance_id,
+                    result.status,
+                )
+        return last_result
     except Exception as exc:  # noqa: BLE001 — session UX must not fail open
         try:
             from app.application.founder_validation.telemetry import (
