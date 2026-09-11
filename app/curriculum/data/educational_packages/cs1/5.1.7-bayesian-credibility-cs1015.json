@@ -124,7 +124,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Bayesian approach treats structural parameters as known from prior structure. Empirical Bayes estimates them from data, a different approach.",
-      "model_answer": "Explicit prior structure supplies $\\mu$ and $Z$; premium $Z\\bar{X} + (1 - Z)\\mu$.",
+      "model_answer": "Prior structure supplies $\\mu$ and $k$; $Z = n/(n+k)$ with individual experience; premium $Z\\bar{X} + (1 - Z)\\mu$.",
       "common_mistake": "Collapsing Bayesian credibility into Empirical Bayes.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -133,7 +133,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Bayesian credibility uses an explicit prior or structural distribution for risk parameters. The premium object is Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with Z and mu determined theoretically from the prior structure in simple cases.",
+          "label": "Bayesian credibility uses an explicit prior or structural distribution for risk parameters. The premium object is Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with mu and k from the prior structure; Z = n/(n+k) from that structure together with the amount of individual experience in simple cases.",
           "misconception_tag": ""
         },
         {

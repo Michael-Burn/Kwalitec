@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-11T18:20:42Z",
+  "generated_at": "2026-09-11T19:03:34Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
@@ -22,7 +22,7 @@
   },
   "by_signal": {
     "dollar_delimited": 2087,
-    "equationish": 1534,
+    "equationish": 1538,
     "actuarial_fn": 488,
     "ascii_approx": 249,
     "bare_latex": 195,
@@ -22745,15 +22745,16 @@
           "package_file": "5.1.7-bayesian-credibility-cs1003.json",
           "field_path": "knowledge_checks[0].model_answer",
           "field_group": "knowledge_checks[].model_answer",
-          "text": "Prior, update to posterior, credibility premium Z $\\bar{X}$ + (1-Z) $\\mu$ from structure.",
-          "text_hash": "29515da9aed4b801",
+          "text": "Prior, update to posterior, credibility premium Z $\\bar{X}$ + (1-Z) $\\mu$ with $\\mu$ and $k$ from structure; $Z = n/(n+k)$.",
+          "text_hash": "f91d9e21ec0845a3",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -22761,15 +22762,16 @@
           "package_file": "5.1.7-bayesian-credibility-cs1003.json",
           "field_path": "knowledge_checks[0].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with Z and $\\mu$ determined from the prior structure.",
-          "text_hash": "389a60df920ba01c",
+          "text": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with $\\mu$ and $k$ from the prior structure; $Z = n/(n+k)$ from that structure together with the amount of individual experience.",
+          "text_hash": "97be35bf9caf6c86",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -26724,15 +26726,16 @@
           "package_file": "5.1.7-bayesian-credibility-cs1015.json",
           "field_path": "knowledge_checks[0].model_answer",
           "field_group": "knowledge_checks[].model_answer",
-          "text": "Explicit prior structure supplies $\\mu$ and $Z$; premium $Z\\bar{X} + (1 - Z)\\mu$.",
-          "text_hash": "b9f1d01d191ada01",
+          "text": "Prior structure supplies $\\mu$ and $k$; $Z = n/(n+k)$ with individual experience; premium $Z\\bar{X} + (1 - Z)\\mu$.",
+          "text_hash": "bd5160901616e8c6",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -26740,15 +26743,16 @@
           "package_file": "5.1.7-bayesian-credibility-cs1015.json",
           "field_path": "knowledge_checks[0].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
-          "text": "Bayesian credibility uses an explicit prior or structural distribution for risk parameters. The premium object is Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with Z and mu determined theoretically from the prior structure in simple cases.",
-          "text_hash": "a0bc6147b908f4b1",
+          "text": "Bayesian credibility uses an explicit prior or structural distribution for risk parameters. The premium object is Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with mu and k from the prior structure; Z = n/(n+k) from that structure together with the amount of individual experience in simple cases.",
+          "text_hash": "1b748123e8edcea8",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 3,
           "migration_status": "migrated",
           "signals": [
-            "dollar_delimited"
+            "dollar_delimited",
+            "equationish"
           ]
         },
         {
@@ -40559,5 +40563,5 @@
       ]
     }
   ],
-  "content_fingerprint": "79f5795d208b5160c99767addcd06e285af0b43db1dadb01d8a4aebd81cf737d"
+  "content_fingerprint": "942ce8b6052bf6698fe7fbf577fceaaaef28195e1b34b99126882e35780502a8"
 }

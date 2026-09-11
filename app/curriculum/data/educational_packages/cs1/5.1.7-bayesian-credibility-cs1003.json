@@ -123,7 +123,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Bayesian credibility requires prior-to-posterior structure that justifies μ and Z. Empty formula or EB conflation are wrong.",
-      "model_answer": "Prior, update to posterior, credibility premium Z $\\bar{X}$ + (1-Z) $\\mu$ from structure.",
+      "model_answer": "Prior, update to posterior, credibility premium Z $\\bar{X}$ + (1-Z) $\\mu$ with $\\mu$ and $k$ from structure; $Z = n/(n+k)$.",
       "common_mistake": "Writing the blend formula without a Bayesian warrant or collapsing into Empirical Bayes.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -132,7 +132,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with Z and $\\mu$ determined from the prior structure.",
+          "label": "Specify a prior or structural distribution for risk parameters; update with data to a posterior; in a simple case the credibility premium takes the form Z times $\\bar{X}$ + (1 minus Z) times $\\mu$ with $\\mu$ and $k$ from the prior structure; $Z = n/(n+k)$ from that structure together with the amount of individual experience.",
           "misconception_tag": ""
         },
         {

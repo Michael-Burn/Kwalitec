@@ -974,7 +974,8 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice forces full credibility and parks the prior in "
         "Empirical Bayes alone. In simple Bayesian credibility the prior "
-        "structure supplies mu and Z; Z need not be 1."
+        "structure supplies mu and k; Z = n/(n+k) with individual "
+        "experience, and need not be 1."
     ),
     # --- cs1015-5.1.7-ar-01 ---
     (
@@ -992,7 +993,8 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice reserves mu and Z for Empirical Bayes alone. In "
         "simple Bayesian credibility the prior or structural distribution "
-        "supplies mu and Z theoretically."
+        "supplies mu and k; Z = n/(n+k) also uses the amount of "
+        "individual experience."
     ),
     (
         "cs1015-5.1.7-ar-01",
@@ -1000,7 +1002,8 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice drops the credibility premium form. In simple cases "
         "the premium object is Z times X-bar plus one minus Z times mu, "
-        "with Z and mu from the prior structure."
+        "with mu and k from the prior structure and Z = n/(n+k) from "
+        "that structure together with individual experience."
     ),
     # --- cs1003-5.1.8-ar-01 ---
     (
