@@ -17,6 +17,7 @@ P6 / SR-003: Progress Engine authorises coverage advancement when
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
@@ -55,6 +56,55 @@ from app.infrastructure.adapters.student_twin.daily_loop_persistence import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Benign / success statuses for evidence-gate mission completion.
+_MISSION_COMPLETE_OK = frozenset({"completed", "already_completed"})
+
+
+@dataclass(frozen=True)
+class MissionCompleteResult:
+    """Outcome of an evidence-gate mission-complete attempt.
+
+    Distinguishes genuine write failures from benign skips / idempotent
+    already-completed outcomes. Fail-open UX is unchanged: callers still
+    complete the student session when status is ``failed_open``.
+    """
+
+    status: str
+    """One of: completed, skipped_no_mission, skipped_student_selected,
+    skipped_completer_unavailable, skipped_invalid_student_id,
+    already_completed, failed_open.
+    """
+
+    @property
+    def mission_completed(self) -> bool:
+        return self.status in _MISSION_COMPLETE_OK
+
+    @property
+    def failed_open(self) -> bool:
+        return self.status == "failed_open"
+
+    def to_opaque(self) -> dict[str, Any]:
+        return {
+            "status": self.status,
+            "mission_completed": self.mission_completed,
+            "failed_open": self.failed_open,
+        }
+
+
+def _record_fail_open_signal(*, kind: str, cause: str | None = None) -> None:
+    """Emit a distinct FV telemetry signal for an unexpected fail-open write."""
+    try:
+        from app.application.founder_validation.telemetry import (
+            DEFAULT_FV_TELEMETRY,
+        )
+
+        DEFAULT_FV_TELEMETRY.record_system_failure(
+            kind=kind,
+            cause=cause,
+        )
+    except Exception:  # noqa: BLE001 - telemetry must never raise
+        pass
 
 
 class LearningSessionRuntimeEngine:
@@ -740,6 +790,7 @@ class LearningSessionRuntimeEngine:
             review = record.get("finish_review")
 
         mission_completed = False
+        mission_complete_status: str | None = None
         progress_advanced = False
         twin_updated = False
         twin_result_opaque = None
@@ -783,8 +834,14 @@ class LearningSessionRuntimeEngine:
                 student_selected = is_student_selected_origin(
                     str(record.get("session_origin") or "")
                 )
-                if validation.may_complete_mission and not student_selected:
-                    mission_completed = self._complete_mission_if_authorised(
+                if validation.may_complete_mission and student_selected:
+                    mission_result = MissionCompleteResult(
+                        status="skipped_student_selected"
+                    )
+                    mission_complete_status = mission_result.status
+                    mission_completed = mission_result.mission_completed
+                elif validation.may_complete_mission:
+                    mission_result = self._complete_mission_if_authorised(
                         student_id=student_id,
                         mission_instance_id=str(
                             record.get("mission_instance_id") or ""
@@ -800,12 +857,25 @@ class LearningSessionRuntimeEngine:
                         evidence_disposition=disposition,
                         may_complete_mission=True,
                     )
+                    mission_complete_status = mission_result.status
+                    mission_completed = mission_result.mission_completed
+                    # Only a fresh completion this sitting advances Progress.
                     progress_advanced = bool(
-                        mission_completed and decision.may_advance
+                        mission_result.status == "completed"
+                        and decision.may_advance
                     )
                 twin_result = self._consume_twin_evidence(evidence_package)
                 twin_updated = bool(twin_result.get("twin_updated"))
                 twin_result_opaque = twin_result
+                if isinstance(package_opaque, dict):
+                    package_opaque = {
+                        **package_opaque,
+                        "twin_updated": twin_updated,
+                        "twin_consumption": twin_result_opaque,
+                        "twin_consume_reason": str(
+                            (twin_result_opaque or {}).get("reason") or ""
+                        ),
+                    }
                 if twin_updated and hasattr(evidence_package, "with_lifecycle"):
                     from app.application.learning_session.dto.evidence_package import (
                         EvidenceLifecycleState,
@@ -814,8 +884,15 @@ class LearningSessionRuntimeEngine:
                     consumed = evidence_package.with_lifecycle(
                         EvidenceLifecycleState.CONSUMED
                     )
-                    package_opaque = consumed.to_opaque()
-                    package_opaque["twin_updated"] = True
+                    package_opaque = {
+                        **consumed.to_opaque(),
+                        "twin_updated": True,
+                        "twin_consumption": twin_result_opaque,
+                        "twin_consume_reason": str(
+                            (twin_result_opaque or {}).get("reason") or ""
+                        ),
+                    }
+                if isinstance(package_opaque, dict):
                     self._persistence.save_evidence_package(
                         session_id=session_id, package=package_opaque
                     )
@@ -840,6 +917,9 @@ class LearningSessionRuntimeEngine:
             )
 
         # KWP-005: persist sitting outcome flags for Sitting Report GET.
+        twin_consume_reason = None
+        if isinstance(twin_result_opaque, dict):
+            twin_consume_reason = str(twin_result_opaque.get("reason") or "") or None
         self._persistence.save_sitting_outcome(
             session_id=session_id,
             progress_advanced=progress_advanced,
@@ -847,6 +927,13 @@ class LearningSessionRuntimeEngine:
             twin_updated=twin_updated,
             evidence_disposition=disposition,
             finish_review=review if isinstance(review, dict) else None,
+            twin_consume_reason=twin_consume_reason,
+            twin_consumption=(
+                twin_result_opaque
+                if isinstance(twin_result_opaque, dict)
+                else None
+            ),
+            mission_complete_status=mission_complete_status,
         )
 
         # KWP-011: freeze educational intelligence onto the Evidence Package.
@@ -860,6 +947,8 @@ class LearningSessionRuntimeEngine:
                 "mission_completed": mission_completed,
                 "evidence_disposition": disposition or "",
                 "twin_updated": twin_updated,
+                "mission_complete_status": mission_complete_status or "",
+                "twin_consume_reason": twin_consume_reason or "",
             },
         )
         if memory_snapshot is not None and isinstance(package_opaque, dict):
@@ -883,8 +972,10 @@ class LearningSessionRuntimeEngine:
             "authority": "learning_session_runtime",
             "progress_advanced": progress_advanced,
             "mission_completed": mission_completed,
+            "mission_complete_status": mission_complete_status,
             "twin_updated": twin_updated,
             "twin_consumption": twin_result_opaque,
+            "twin_consume_reason": twin_consume_reason,
             "study_progress": study_progress_opaque,
             "progress_authority": (
                 "progress_engine"
@@ -1018,6 +1109,14 @@ class LearningSessionRuntimeEngine:
 
         progress_advanced = bool(record.get("progress_advanced"))
         mission_completed = bool(record.get("mission_completed"))
+        mission_complete_status = str(
+            record.get("mission_complete_status") or ""
+        ).strip() or None
+        twin_updated = bool(record.get("twin_updated"))
+        twin_consume_reason = str(
+            record.get("twin_consume_reason") or ""
+        ).strip() or None
+        twin_consumption = record.get("twin_consumption")
         disposition = (
             record.get("evidence_disposition")
             or (package.get("validation") or {}).get("disposition")
@@ -1053,6 +1152,10 @@ class LearningSessionRuntimeEngine:
             "authority": "learning_session_runtime",
             "progress_advanced": progress_advanced,
             "mission_completed": mission_completed,
+            "mission_complete_status": mission_complete_status,
+            "twin_updated": twin_updated,
+            "twin_consume_reason": twin_consume_reason,
+            "twin_consumption": twin_consumption,
             "finish_review": review,
             "substance": "package" if substance_on else "incomplete",
             "checklist": progress.get("checklist"),
@@ -1354,6 +1457,11 @@ class LearningSessionRuntimeEngine:
             logger.warning(
                 "sdt004_twin_consume_failed_open err=%s",
                 exc,
+                exc_info=True,
+            )
+            _record_fail_open_signal(
+                kind="twin_consume_failed_open",
+                cause=exc.__class__.__name__,
             )
             return {
                 "twin_updated": False,
@@ -1371,15 +1479,18 @@ class LearningSessionRuntimeEngine:
         package_id: str,
         evidence_disposition: str | None = None,
         may_complete_mission: bool | None = None,
-    ) -> bool:
+    ) -> MissionCompleteResult:
         """Complete Runtime C mission when Authority authorises it.
 
         SR-003: Progress Engine authorises coverage when singularity is ON.
         Progress advancement is independent of Twin consumption (SDT-004).
+
+        Returns a structured result so callers can distinguish completed,
+        benign already-completed, skips, and genuine fail-open errors.
         """
         mid = (mission_instance_id or "").strip()
         if not mid:
-            return False
+            return MissionCompleteResult(status="skipped_no_mission")
         completer = self._mission_completer
         if completer is None:
             try:
@@ -1392,8 +1503,11 @@ class LearningSessionRuntimeEngine:
                 logger.warning(
                     "evidence_gate_mission_completer_unavailable package=%s",
                     package_id,
+                    exc_info=True,
                 )
-                return False
+                return MissionCompleteResult(
+                    status="skipped_completer_unavailable"
+                )
         try:
             user_id = int(student_id)
         except (TypeError, ValueError):
@@ -1402,7 +1516,7 @@ class LearningSessionRuntimeEngine:
                 student_id,
                 package_id,
             )
-            return False
+            return MissionCompleteResult(status="skipped_invalid_student_id")
         try:
             if hasattr(completer, "complete_mission"):
                 kwargs: dict[str, Any] = {
@@ -1416,15 +1530,28 @@ class LearningSessionRuntimeEngine:
                     kwargs["may_complete_mission"] = may_complete_mission
                 completer.complete_mission(**kwargs)
             else:
-                return False
+                return MissionCompleteResult(
+                    status="skipped_completer_unavailable"
+                )
         except Exception as exc:  # noqa: BLE001
+            if _is_mission_already_completed(exc):
+                logger.info(
+                    "evidence_gate_mission_already_completed mission=%s",
+                    mid,
+                )
+                return MissionCompleteResult(status="already_completed")
             logger.warning(
                 "evidence_gate_mission_complete_failed mission=%s err=%s",
                 mid,
                 exc,
+                exc_info=True,
             )
-            return False
-        return True
+            _record_fail_open_signal(
+                kind="evidence_gate_mission_complete_failed",
+                cause=exc.__class__.__name__,
+            )
+            return MissionCompleteResult(status="failed_open")
+        return MissionCompleteResult(status="completed")
 
     def _study_progress_opaque(
         self,
@@ -1484,6 +1611,32 @@ class LearningSessionRuntimeEngine:
                 "current_topic_id": topic_id,
                 "reason": "study_progress_projection_failed_open",
             }
+
+
+def _is_mission_already_completed(exc: BaseException) -> bool:
+    """True when a mission-complete raise is benign idempotent completion."""
+    name = exc.__class__.__name__
+    if name == "MissionAlreadyCompleted":
+        return True
+    try:
+        from app.application.educational_runtime_engine.exceptions import (
+            MissionAlreadyCompleted as RuntimeMissionAlreadyCompleted,
+        )
+
+        if isinstance(exc, RuntimeMissionAlreadyCompleted):
+            return True
+    except Exception:  # noqa: BLE001 - import must not break fail-open path
+        pass
+    try:
+        from app.application.mission_engine.exceptions import (
+            MissionAlreadyCompleted as EngineMissionAlreadyCompleted,
+        )
+
+        if isinstance(exc, EngineMissionAlreadyCompleted):
+            return True
+    except Exception:  # noqa: BLE001
+        pass
+    return False
 
 
 def _educational_package_id_from_sequence(seq: dict[str, Any] | None) -> str:

@@ -215,6 +215,7 @@ class TestFounderSittingMetrics:
         packages = [
             {
                 "validation": {"disposition": "accepted", "may_update_twin": True},
+                "twin_updated": True,
                 "finish_review_verdict": "yes",
                 "observations": [
                     {"type_id": RuntimeEvidenceType.PRACTICE_CORRECT.value},

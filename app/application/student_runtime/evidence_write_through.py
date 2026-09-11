@@ -239,13 +239,25 @@ def maybe_write_sql_evidence_from_sitting(
             topic_id=topic_id,
             duration_minutes=duration_minutes,
         )
-    except Exception:
+    except Exception as exc:
         logger.exception(
             "sql_evidence_write_through_failed session=%s mid=%s user=%s",
             session_id,
             mission_instance_id,
             user_id,
         )
+        try:
+            from app.application.founder_validation.telemetry import (
+                DEFAULT_FV_TELEMETRY,
+            )
+
+            DEFAULT_FV_TELEMETRY.record_system_failure(
+                kind="sql_evidence_write_through_failed",
+                student_id=int(user_id) if user_id is not None else None,
+                cause=exc.__class__.__name__,
+            )
+        except Exception:  # noqa: BLE001 - telemetry must never raise
+            pass
         return None
 
 

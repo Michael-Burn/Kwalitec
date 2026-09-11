@@ -318,81 +318,33 @@ class TestCreateTestUserCommand:
         assert "already exists" in result.output
 
 
-class TestCb2Curriculum:
-    def test_cb2_loads_and_validates(self):
-        from app.curriculum.loader import load_curriculum_v2
-        from app.curriculum.validator import validate_curriculum_v2
+class TestRemovedCm1Cb2Syllabi:
+    """CM1 and CB2 syllabi are no longer shipped; CS1 remains."""
 
-        curriculum = load_curriculum_v2("ifoa", "cb2", "2026")
-        validate_curriculum_v2(curriculum)
-        assert curriculum.exam_code == "CB2"
-        assert curriculum.exam_name == "Business Economics"
-        assert len(curriculum.sections) == 3
-        assert sum(s.exam_weight for s in curriculum.sections) == 100.0
-        assert sum(len(s.topics) for s in curriculum.sections) == 21
+    def test_cb2_and_cm1_are_not_discoverable(self):
+        from app.services.curriculum_engine_service import CurriculumEngineService
 
-    def test_cb2_imports_and_supports_study_plan(self, db, user):
-        CurriculumService.import_curricula()
+        engine = CurriculumEngineService()
+        supported = {(o.upper(), p.upper()) for o, p, _v in engine.list_supported_exams()}
+        assert ("IFOA", "CS1") in supported
+        assert ("IFOA", "CB2") not in supported
+        assert ("IFOA", "CM1") not in supported
+
+    def test_import_does_not_create_cb2_or_cm1(self, ctx, db):
         from app.models.curriculum import Curriculum
-        from app.models.study_plan import WeekPlan
-        from app.services.examination_catalogue import parse_exam_name
-        from app.services.planning_service import PlanningService
-        from app.services.study_plan_service import StudyPlanService
 
-        curriculum = Curriculum.query.filter_by(exam_name="IFoA CB2").first()
-        assert curriculum is not None
-        sections = CurriculumService.get_sections(curriculum)
-        assert len(sections) == 3
-        topics = CurriculumService.get_all_topics_ordered(curriculum)
-        assert len(topics) == 21
+        CurriculumService.import_curricula()
+        assert Curriculum.query.filter_by(exam_name="IFoA CS1").first() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2").first() is None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1").first() is None
 
-        org, paper = parse_exam_name("IFoA CB2")
-        assert org == "IFoA"
-        assert paper == "CB2"
 
-        plan = StudyPlanService.create_study_plan(
-            user_id=user.id,
-            exam_name="IFoA CB2",
-            exam_sitting="Apr 2027",
-            exam_date=date.today() + timedelta(days=180),
-            target_grade="Pass",
-            weekday_study_minutes=90,
-            weekend_study_minutes=120,
-            current_stage="Learning",
-            study_preference="Reading First",
-            preferred_session_minutes=60,
-            curriculum_version="2026",
-            curriculum_topic_code="1.1",
-        )
-        assert plan.curriculum_id == curriculum.id
+class TestCs1UnboundPlanRepair:
+    """Regression: unbound plans must bind, select a topic, and never
+    emit generic Core Reading missions.
+    """
 
-        wp = WeekPlan(
-            study_plan_id=plan.id,
-            week_number=1,
-            start_date=date.today() - timedelta(days=2),
-            end_date=date.today() + timedelta(days=4),
-        )
-        db.session.add(wp)
-        db.session.commit()
-
-        next_topic = CurriculumService.get_next_incomplete_topic(user.id, curriculum)
-        assert next_topic is not None
-        assert "economics and business" in next_topic.name.lower()
-
-        mission = PlanningService.generate_today_mission(user.id)
-        assert mission is not None
-        assert "economics and business" in mission.title.lower()
-        assert mission.title.lower() != "study learning"
-
-    def test_cb2_unbound_plan_topic_selection_and_mission(self, db, user):
-        """Regression: unbound CB2 plans must bind, select a topic, and never
-        emit generic Core Reading missions.
-
-        Simulates Internal Alpha plans created when curriculum_version was
-        omitted. ``selected_topic`` became ``None`` at curriculum lookup in
-        ``PlanningService._select_topic_for_today`` because ``curriculum_id``
-        was unset.
-        """
+    def test_cs1_unbound_plan_topic_selection_and_mission(self, db, user):
         from unittest.mock import patch
 
         from app.models.curriculum import Curriculum
@@ -404,18 +356,15 @@ class TestCb2Curriculum:
 
         CurriculumService.import_curricula()
         curriculum = Curriculum.query.filter_by(
-            exam_name="IFoA CB2", version="2026"
+            exam_name="IFoA CS1", version="2026"
         ).one()
-        sections = CurriculumService.get_sections(curriculum)
         topics = CurriculumService.get_all_topics_ordered(curriculum)
-        assert len(sections) == 3
-        assert len(topics) == 21
+        assert len(topics) == 14
         first_topic = topics[0]
 
-        # Pre-fix / orphan shape: exam name known, no curriculum binding.
         plan = StudyPlanService.create_study_plan(
             user_id=user.id,
-            exam_name="IFoA CB2",
+            exam_name="IFoA CS1",
             exam_sitting="Apr 2027",
             exam_date=date.today() + timedelta(days=180),
             target_grade="Pass",
@@ -439,7 +388,6 @@ class TestCb2Curriculum:
         db.session.add(wp)
         db.session.commit()
 
-        # Exact None point: curriculum lookup fails while the plan is unbound.
         with patch.object(
             StudyPlanService, "ensure_curriculum_binding", return_value=False
         ):
@@ -451,7 +399,6 @@ class TestCb2Curriculum:
         assert selected_none is None
         assert plan.curriculum_id is None
 
-        # Repair binds curriculum + TopicProgress (paper-agnostic).
         assert StudyPlanService.ensure_curriculum_binding(plan) is True
         assert plan.curriculum_id == curriculum.id
         assert plan.curriculum_version == "2026"
@@ -476,22 +423,19 @@ class TestCb2Curriculum:
         assert mission.tasks
         lead = mission.tasks[0].description.lower()
         assert not lead.startswith("read the core reading for today's section")
-        assert code in lead or "economics and business" in lead
+        assert code in lead or "data analysis" in lead
 
         recs = RecommendationService.generate_recommendations(user.id, limit=5)
         assert any(
             code in (r.get("title") or "")
-            or "economics and business" in (r.get("title") or "").lower()
-            or "economics and business" in (r.get("reason") or "").lower()
+            or "data analysis" in (r.get("title") or "").lower()
+            or "data analysis" in (r.get("reason") or "").lower()
             for r in recs
         )
 
     def test_generate_mission_repairs_unbound_plan_and_replaces_generic(
         self, db, user
     ):
-        """generate_today_mission must bind orphans and replace unfinished
-        generic Core Reading missions once a syllabus is available.
-        """
         from app.models.curriculum import Curriculum
         from app.models.study_plan import WeekPlan
         from app.services.planning_service import PlanningService
@@ -499,12 +443,12 @@ class TestCb2Curriculum:
 
         CurriculumService.import_curricula()
         curriculum = Curriculum.query.filter_by(
-            exam_name="IFoA CB2", version="2026"
+            exam_name="IFoA CS1", version="2026"
         ).one()
 
         plan = StudyPlanService.create_study_plan(
             user_id=user.id,
-            exam_name="IFoA CB2",
+            exam_name="IFoA CS1",
             exam_sitting="Apr 2027",
             exam_date=date.today() + timedelta(days=180),
             target_grade="Pass",
@@ -525,7 +469,6 @@ class TestCb2Curriculum:
         db.session.add(wp)
         db.session.commit()
 
-        # Seed a generic mission as if generated while unbound.
         from app.models.mission import Mission, MissionTask
         from app.models.subject import Subject
 
@@ -558,75 +501,8 @@ class TestCb2Curriculum:
         assert plan.curriculum_id == curriculum.id
         assert (
             "1.1" in mission.title
-            or "economics and business" in mission.title.lower()
+            or "data analysis" in mission.title.lower()
         )
         assert not mission.title.lower().startswith("daily study")
         lead = mission.tasks[0].description.lower()
         assert not lead.startswith("read the core reading for today's section")
-
-
-class TestCm1Curriculum:
-    def test_cm1_loads_and_validates(self):
-        from app.curriculum.loader import load_curriculum_v2
-        from app.curriculum.validator import validate_curriculum_v2
-
-        curriculum = load_curriculum_v2("ifoa", "cm1", "2026")
-        validate_curriculum_v2(curriculum)
-        assert curriculum.exam_code == "CM1"
-        assert curriculum.exam_name == "Actuarial Mathematics for Modelling"
-        assert len(curriculum.sections) == 4
-        assert sum(s.exam_weight for s in curriculum.sections) == 100.0
-        assert sum(len(s.topics) for s in curriculum.sections) == 21
-
-    def test_cm1_imports_and_supports_study_plan(self, db, user):
-        CurriculumService.import_curricula()
-        from app.models.curriculum import Curriculum
-        from app.models.study_plan import WeekPlan
-        from app.services.examination_catalogue import parse_exam_name
-        from app.services.planning_service import PlanningService
-        from app.services.study_plan_service import StudyPlanService
-
-        curriculum = Curriculum.query.filter_by(exam_name="IFoA CM1").first()
-        assert curriculum is not None
-        sections = CurriculumService.get_sections(curriculum)
-        assert len(sections) == 4
-        topics = CurriculumService.get_all_topics_ordered(curriculum)
-        assert len(topics) == 21
-
-        org, paper = parse_exam_name("IFoA CM1")
-        assert org == "IFoA"
-        assert paper == "CM1"
-
-        plan = StudyPlanService.create_study_plan(
-            user_id=user.id,
-            exam_name="IFoA CM1",
-            exam_sitting="Apr 2027",
-            exam_date=date.today() + timedelta(days=180),
-            target_grade="Pass",
-            weekday_study_minutes=90,
-            weekend_study_minutes=120,
-            current_stage="Learning",
-            study_preference="Reading First",
-            preferred_session_minutes=60,
-            curriculum_version="2026",
-            curriculum_topic_code="1.1",
-        )
-        assert plan.curriculum_id == curriculum.id
-
-        wp = WeekPlan(
-            study_plan_id=plan.id,
-            week_number=1,
-            start_date=date.today() - timedelta(days=2),
-            end_date=date.today() + timedelta(days=4),
-        )
-        db.session.add(wp)
-        db.session.commit()
-
-        next_topic = CurriculumService.get_next_incomplete_topic(user.id, curriculum)
-        assert next_topic is not None
-        assert "interest rates" in next_topic.name.lower()
-
-        mission = PlanningService.generate_today_mission(user.id)
-        assert mission is not None
-        assert "interest rates" in mission.title.lower()
-        assert mission.title.lower() != "study learning"

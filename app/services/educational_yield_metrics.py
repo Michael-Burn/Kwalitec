@@ -47,6 +47,7 @@ class EducationalYieldSnapshot:
     learning_yield: float = 0.0
     first_twin_activation_sittings: int = 0
     twin_updated_sittings: int = 0
+    twin_consume_failed_open: int = 0
     # KWP-005 — sitting product signals (presentation analytics only).
     finish_review_yes: int = 0
     finish_review_partial: int = 0
@@ -71,6 +72,7 @@ class EducationalYieldSnapshot:
             "learning_yield": round(self.learning_yield, 4),
             "first_twin_activation_sittings": self.first_twin_activation_sittings,
             "twin_updated_sittings": self.twin_updated_sittings,
+            "twin_consume_failed_open": self.twin_consume_failed_open,
             "finish_review_yes": self.finish_review_yes,
             "finish_review_partial": self.finish_review_partial,
             "finish_review_no": self.finish_review_no,
@@ -97,6 +99,7 @@ class EducationalYieldMetrics:
         edu_obs = 0
         behavioural_obs = 0
         twin_updated = 0
+        twin_failed_open = 0
         twin_first = 0
         finish_yes = 0
         finish_partial = 0
@@ -119,14 +122,27 @@ class EducationalYieldMetrics:
             behavioural_obs += beh_count
             observation_total += len(type_ids)
 
-            may_update_twin = bool(validation.get("may_update_twin"))
+            twin_consumption = raw.get("twin_consumption") or {}
+            if not isinstance(twin_consumption, dict):
+                twin_consumption = {}
+            # Count only genuine Twin writes for this sitting, never mere
+            # Authority authorisation (may_update_twin) or prior twin_status.
+            if bool(raw.get("twin_updated")) or bool(
+                twin_consumption.get("twin_updated")
+            ):
+                twin_updated += 1
+            twin_reason = str(
+                twin_consumption.get("reason")
+                or raw.get("twin_consume_reason")
+                or ""
+            ).strip()
+            if twin_reason == "twin_consume_failed_open":
+                twin_failed_open += 1
             twin_status = str(
-                (raw.get("twin_consumption") or {}).get("twin_status")
+                twin_consumption.get("twin_status")
                 or raw.get("twin_status")
                 or ""
             ).strip().lower()
-            if may_update_twin or twin_status == "active":
-                twin_updated += 1
             if twin_status in {"active", "activated"} and edu_count:
                 twin_first += 1
 
@@ -187,6 +203,7 @@ class EducationalYieldMetrics:
             learning_yield=yield_per,
             first_twin_activation_sittings=twin_first,
             twin_updated_sittings=twin_updated,
+            twin_consume_failed_open=twin_failed_open,
             finish_review_yes=finish_yes,
             finish_review_partial=finish_partial,
             finish_review_no=finish_no,

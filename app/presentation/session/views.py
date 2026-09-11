@@ -328,7 +328,12 @@ def _vp001_record_evidence(
     event: str = "practice_attempt",
     metadata: dict | None = None,
 ) -> None:
-    """Fail-open LP-001 evidence refresh after session activity."""
+    """Fail-open LP-001 evidence refresh after session activity.
+
+    Safety net only: the inner ``record_session_evidence`` hook already
+    fail-opens with ERROR + FV ``record_system_failure``. This wrapper must
+    not downgrade escaped failures to debug.
+    """
     try:
         from app.infrastructure.adapters.learner_lifecycle import (
             record_session_evidence,
@@ -341,11 +346,23 @@ def _vp001_record_evidence(
             event=event,
             metadata=metadata,
         )
-    except Exception:  # noqa: BLE001 — never break session UX
-        logger.debug(
-            "VP-001 session evidence hook failed session=%s",
+    except Exception as exc:  # noqa: BLE001 - never break session UX
+        try:
+            from app.application.founder_validation.telemetry import (
+                DEFAULT_FV_TELEMETRY,
+            )
+
+            DEFAULT_FV_TELEMETRY.record_system_failure(
+                kind="evidence",
+                student_id=int(current_user.id),
+                cause=exc.__class__.__name__,
+                correlation_id=f"vp001-outer:{session_id}",
+            )
+        except Exception:  # noqa: BLE001 - telemetry must never raise
+            pass
+        logger.exception(
+            "VP-001 session evidence hook failed open session=%s",
             session_id,
-            exc_info=True,
         )
 
 

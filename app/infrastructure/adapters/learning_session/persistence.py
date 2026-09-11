@@ -334,6 +334,9 @@ class LearningSessionPersistenceAdapter:
         twin_updated: bool = False,
         evidence_disposition: str | None = None,
         finish_review: dict[str, Any] | None = None,
+        twin_consume_reason: str | None = None,
+        twin_consumption: dict[str, Any] | None = None,
+        mission_complete_status: str | None = None,
     ) -> dict[str, Any] | None:
         """Persist student-safe sitting outcome flags for Sitting Report (KWP-005)."""
         doc = self.load(session_id=session_id)
@@ -349,6 +352,12 @@ class LearningSessionPersistenceAdapter:
             updated["evidence_disposition"] = evidence_disposition
         if finish_review is not None:
             updated["finish_review"] = finish_review
+        if twin_consume_reason is not None:
+            updated["twin_consume_reason"] = twin_consume_reason
+        if twin_consumption is not None:
+            updated["twin_consumption"] = twin_consumption
+        if mission_complete_status is not None:
+            updated["mission_complete_status"] = mission_complete_status
         self._store.save(NS_HANDLE, session_id.strip(), updated)
         return deepcopy(updated)
 

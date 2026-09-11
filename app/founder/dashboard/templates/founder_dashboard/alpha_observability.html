@@ -52,7 +52,7 @@
                 <li>Behavioural-only sittings — {{ y.behavioural_only }} ({{ '%.0f'|format(y.behavioural_rate * 100) }}%)</li>
                 <li>Learning Yield — {{ '%.2f'|format(y.learning_yield) }} Educational+ observations per Session</li>
                 <li>Educational vs Behavioural practice observations — {{ y.educational_observations }} / {{ y.behavioural_practice_observations }}</li>
-                <li>Twin-updated sittings — {{ y.twin_updated_sittings }} · first Twin activation signals — {{ y.first_twin_activation_sittings }}</li>
+                <li>Twin-updated sittings — {{ y.twin_updated_sittings }} · Twin consume failed-open — {{ y.twin_consume_failed_open }} · first Twin activation signals — {{ y.first_twin_activation_sittings }}</li>
                 <li>Restricted / Rejected — {{ y.restricted }} / {{ y.rejected }}</li>
                 <li>Finish Review Yes / Partially / No — {{ y.finish_review_yes }} / {{ y.finish_review_partial }} / {{ y.finish_review_no }}</li>
                 <li>Reflection completion — {{ '%.0f'|format(y.reflection_rate * 100) }}% ({{ y.reflection_submitted }} sittings)</li>

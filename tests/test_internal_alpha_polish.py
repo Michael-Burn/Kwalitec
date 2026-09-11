@@ -93,7 +93,7 @@ class TestMultiUserIsolation:
         other = self._second_user()
         other_plan = StudyPlanService.create_study_plan(
             user_id=other.id,
-            exam_name="IFoA CB2",
+            exam_name="IFoA CS1",
             exam_sitting="Sep 2027",
             exam_date=date.today() + timedelta(days=200),
             target_grade="Pass",

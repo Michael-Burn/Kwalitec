@@ -145,6 +145,11 @@ def build_sitting_report(
     mission_completed = _truthy(meta.get("mission_completed")) or bool(
         opaque.get("mission_completed")
     )
+    mission_complete_status = str(
+        meta.get("mission_complete_status")
+        or opaque.get("mission_complete_status")
+        or ""
+    ).strip().lower()
     disposition = str(
         meta.get("evidence_disposition") or opaque.get("evidence_disposition") or ""
     ).strip().lower()
@@ -157,6 +162,7 @@ def build_sitting_report(
         disposition=disposition,
         correct=counts["correct"],
         incorrect=counts["incorrect"],
+        mission_complete_status=mission_complete_status,
     )
     insights = _learning_insights(
         topic=topic,
@@ -666,7 +672,14 @@ def _progress_explanation(
     disposition: str,
     correct: int,
     incorrect: int,
+    mission_complete_status: str = "",
 ) -> str:
+    status = (mission_complete_status or "").strip().lower()
+    if status == "failed_open":
+        return (
+            f"Today's Session on {topic} is closed. Your Journey could not be "
+            "updated for this sitting because the update could not be recorded."
+        )
     if progress_advanced and mission_completed:
         if correct and not incorrect:
             return (

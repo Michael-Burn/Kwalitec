@@ -496,6 +496,11 @@ def _sitting_opaque_from_metadata_pairs(
         "syllabus_refs": tuple(v for k, v in pairs if k == "syllabus_ref" and v),
         "progress_advanced": meta.get("progress_advanced") == "true",
         "mission_completed": meta.get("mission_completed") == "true",
+        "mission_complete_status": str(
+            meta.get("mission_complete_status") or ""
+        ).strip(),
+        "twin_updated": meta.get("twin_updated") == "true",
+        "twin_consume_reason": str(meta.get("twin_consume_reason") or "").strip(),
         "evidence_disposition": meta.get("evidence_disposition") or "",
         "educational_package_id": meta.get("educational_package_id") or "",
         "subject_id": meta.get("subject_id") or "",

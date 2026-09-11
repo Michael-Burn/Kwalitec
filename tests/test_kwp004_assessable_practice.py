@@ -347,6 +347,7 @@ class TestFounderEducationalYield:
                     {"type_id": RuntimeEvidenceType.PRACTICE_CORRECT.value},
                     {"type_id": RuntimeEvidenceType.STRUCTURED_QUESTION_RESULTS.value},
                 ],
+                "twin_updated": True,
                 "twin_status": "active",
             },
             {

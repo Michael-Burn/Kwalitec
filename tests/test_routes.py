@@ -599,19 +599,19 @@ class TestCurriculumVersionResolution:
         result = _resolve_curriculum_version("IFoA", "CS1")
         assert result == "2026"
 
-    def test_ifoa_cb2_resolves_to_2026(self):
-        """IFoA + CB2 should resolve to curriculum version '2026' from disk."""
-        from app.study_plan.routes import _resolve_curriculum_version
-
-        result = _resolve_curriculum_version("IFoA", "CB2")
-        assert result == "2026"
-
-    def test_ifoa_cm1_resolves_to_2026(self):
-        """IFoA + CM1 should resolve to curriculum version '2026'."""
+    def test_ifoa_cm1_returns_none(self):
+        """IFoA + CM1 has no on-disk syllabus — returns None."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("IFoA", "CM1")
-        assert result == "2026"
+        assert result is None
+
+    def test_ifoa_cb2_returns_none(self):
+        """IFoA + CB2 has no on-disk syllabus — returns None."""
+        from app.study_plan.routes import _resolve_curriculum_version
+
+        result = _resolve_curriculum_version("IFoA", "CB2")
+        assert result is None
 
     def test_ifoa_cm2_returns_none(self):
         """IFoA + CM2 has no on-disk syllabus — returns None."""
@@ -641,6 +641,6 @@ class TestCurriculumVersionResolution:
             _resolve_curriculum_version,
         )
 
-        for paper in ("CS1", "CB2", "CM1"):
+        for paper in ("CS1",):
             assert _discover_curriculum_version("IFoA", paper) == "2026"
             assert _resolve_curriculum_version("IFoA", paper) == "2026"

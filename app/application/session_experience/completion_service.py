@@ -225,8 +225,30 @@ class CompletionService:
             ("progress_advanced", "true" if progress_done else "false")
         )
         twin_updated = bool(opaque.get("twin_updated"))
+        mission_complete_status = str(
+            opaque.get("mission_complete_status") or ""
+        ).strip()
         if isinstance(runtime_result, dict):
             twin_updated = bool(runtime_result.get("twin_updated"))
+            if runtime_result.get("mission_complete_status"):
+                mission_complete_status = str(
+                    runtime_result.get("mission_complete_status") or ""
+                ).strip()
+            if runtime_result.get("twin_consume_reason"):
+                metadata.append(
+                    (
+                        "twin_consume_reason",
+                        str(runtime_result.get("twin_consume_reason")),
+                    )
+                )
+        elif opaque.get("twin_consume_reason"):
+            metadata.append(
+                ("twin_consume_reason", str(opaque.get("twin_consume_reason")))
+            )
+        if mission_complete_status:
+            metadata.append(
+                ("mission_complete_status", mission_complete_status)
+            )
         metadata.append(("twin_updated", "true" if twin_updated else "false"))
         # KWP-005 — carry opaque sitting facts for presentation Sitting Report.
         if opaque.get("topic_title"):
