@@ -170,7 +170,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Deviance difference with chi-squared reference compares nested GLMs. Residual plotting and p-only rules do not replace analysis of deviance.",
+      "explanation": "For appropriate nested GLMs with the same family and scale treatment, deviance difference is a likelihood-ratio statistic, often asymptotically chi-squared. Residual plotting and p-only rules do not replace analysis of deviance.",
       "model_answer": "Deviance difference plus parameter warrants. Residual plots are diagnostics, not model choice here.",
       "common_mistake": "Accepting residual plots as finishing analysis of deviance.",
       "success_criteria": [
@@ -180,7 +180,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Compare deviance (or $-2\\Delta\\ell$) between nested models against a chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
+          "label": "Under suitable regularity conditions (same response family and scale treatment), compare deviance (or $-2\\Delta\\ell$) between nested models against an asymptotic chi-squared reference on the degrees-of-freedom difference; also inspect whether added parameters are statistically and scientifically warranted. Residual plots are diagnostics, not nested model comparison. Model choice here uses analysis of deviance and parameter significance.",
           "misconception_tag": ""
         },
         {

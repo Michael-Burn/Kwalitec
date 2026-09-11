@@ -125,7 +125,7 @@
       ],
       "accepted_keywords": [],
       "explanation": "Pearson scales by fitted variance; deviance residual comes from deviance contributions. LRT is a formal test, not the residual definition.",
-      "model_answer": "Pearson: standardised $\\frac{y-\\hat{\\mu}}{\\sqrt{\\operatorname{Var}}}$; deviance: signed deviance contribution.",
+      "model_answer": "Pearson: standardised $\\frac{y-\\hat{\\mu}}{\\sqrt{\\operatorname{Var}}}$; deviance: $\\operatorname{sign}(y-\\hat{\\mu})\\sqrt{d}$.",
       "common_mistake": "Collapsing residuals into LRT or omitting variance scaling.",
       "success_criteria": [
         "Selects the correct choice.",
@@ -134,7 +134,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$. Deviance residual comes from the signed contribution of observation i to deviance. Both help check fit, outliers, and patterns.",
+          "label": "Pearson residual uses observed minus fitted scaled by the variance structure: $(y - \\hat{\\mu})$ over $\\sqrt{\\widehat{\\operatorname{Var}}(Y)}$. Deviance residual is $\\operatorname{sign}(y - \\hat{\\mu})$ times the square root of observation i's contribution to deviance. Both help check fit, outliers, and patterns.",
           "misconception_tag": ""
         },
         {

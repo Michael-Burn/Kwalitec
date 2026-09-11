@@ -179,7 +179,7 @@
       "choices": [
         {
           "id": "a",
-          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times $\\ell$_sat minus $\\ell$_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
+          "label": "Deviance compares the fitted model's log-likelihood to a saturated model (2 times the quantity $\\ell$_sat minus $\\ell$_model). Scaled deviance divides by dispersion or scale when relevant. Parameters are typically estimated by maximum likelihood (often via IWLS). Mechanical p-value chopping is model-choice behaviour, not deviance definition.",
           "misconception_tag": ""
         },
         {
