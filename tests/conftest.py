@@ -33,6 +33,9 @@ for _key in _SR_BUNDLE_FLAGS:
 # Local ``.env`` may set ``KWALITEC_V2_DURABLE_STORE=1`` for real Flask runs.
 # Keep the pytest baseline OFF unless a test opts in explicitly.
 os.environ["KWALITEC_V2_DURABLE_STORE"] = "0"
+# Local ``.env`` may set ``SR_NUMERIC_ASSESSMENT_FRAMEWORK=1`` for dogfood.
+# Keep the pytest baseline OFF unless a test opts in explicitly.
+os.environ["SR_NUMERIC_ASSESSMENT_FRAMEWORK"] = "0"
 
 from app import create_app  # noqa: E402
 from app.extensions import db as _db  # noqa: E402
