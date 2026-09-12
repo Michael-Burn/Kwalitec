@@ -217,10 +217,10 @@ TRUST FRONT (Wave 2 LIVE Verified — RO-002):
 | **Opening Continuity Front (student LIVE)** | Closed through Topic **5.1** / CO-R1 | LIVE Verified | RO-013 |
 | **Opening Continuity Front (catalogue)** | **5.1 LIVE** (Omicron CF-join) | LIVE | RO-013 |
 | **Memory Front (LIVE)** | Pi **LIVE** (CP-D1…CP-R1) | LIVE Verified | RO-014 / PB-016 |
-| **Publication Front (catalogue)** | Rho Under Authoring (CR-D1…CR-R1) | Under Authoring | EP-015 |
-| **Next after Approver + LIVE (provisional)** | Publication Front Approver seals (required) · Wave 16 not started | Approver residual open | Continuity Front law |
+| **Publication Front (catalogue)** | Rho **LIVE** (CR-D1…CR-R1) | LIVE Verified | RO-015 / PB-017 |
+| **Next after Approver + LIVE (provisional)** | PX-001 (authorised · not executed) · Wave 16 not started · Educational Content Freeze | Publication Front Approver residual closed for LO numerator (RO-015) | EP-015 / PB-017 |
 | **Trust Remediation Front** | **4.1 → 4.2 → 5.1** | LIVE Verified | RO-002 / PB-004 — Omicron does not absorb whole-Delta |
-| **Publication Front (Wave 0)** | CS1-001 / CS1-002 Approver + Rho catalogue | Open (honesty gap) — Rho Under Authoring; Approver unsigned | Not cleared by Wave 15 catalogue |
+| **Publication Front (Wave 0)** | CS1-001 / CS1-002 Approver + Rho catalogue | Open (Alpha/Beta honesty gap unmodified): Rho **LIVE Verified** (RO-015 / PB-017 PASS); Publication Front Approver residual closed for LO numerator | EP-015 |
 
 ### Student Reliance Coverage Register (operational metric)
 
