@@ -307,13 +307,20 @@ class AdaptiveLearningService:
     def get_mastered_topics(user_id: int, threshold: float = 90.0) -> list[TopicProgress]:
         """Get topics that have been mastered.
 
+        Uses the same gated EK standard as ``is_ek_mastered`` (evidence floor
+        plus mastery bar). High EK alone without enough authorised evidence
+        does not qualify.
+
         Args:
             user_id: The ID of the user.
             threshold: Mastery score threshold for mastery (default 90).
+                Applied after the evidence floor; values above the product
+                mastery bar further restrict the set.
 
         Returns:
             list[TopicProgress]: Mastered topics ordered by mastery (highest first).
         """
+        from app.application.learner_progress.milestones import is_ek_mastered
         from app.application.student_twin.cutover import ek_display_0_100
         from app.services.twin_cutover_service import (
             topic_ek_by_orm_id,
@@ -331,7 +338,10 @@ class AdaptiveLearningService:
         )
         mastered: list[tuple[float, TopicProgress]] = []
         for row in rows:
-            score = ek_display_0_100(ek_map.get(row.topic_id))
+            fact = ek_map.get(row.topic_id)
+            if not is_ek_mastered(fact):
+                continue
+            score = ek_display_0_100(fact)
             if score is None or score < threshold:
                 continue
             setattr(row, "mastery_score", score)

@@ -46,7 +46,7 @@ LIVE_NUMERIC_ACCEPTED = (
     ("cs1003-5.1.7-cp-01", "900", 0.5),
     ("cs1015-5.1.7-cp-01", "800", 0.5),
     ("cs1003-5.1.8-cp-01", "1000", 0.5),
-    ("cs1015-5.1.8-cp-01", "566.67", 0.5),
+    ("cs1015-5.1.8-cp-01", "566.67", 0.005),
     # NUM Wave 3: remaining Tier B pool
     ("cs1016-5.1.1-cp-01", "0.0876", 0.001),
     ("cs1004-cgr1-cp-01", "0.1783", 0.001),
@@ -367,7 +367,7 @@ NUM_WAVE2_NUMERIC_CONVERSIONS = (
     ("cs1003-5.1.7-cp-01", "900", 0.5),
     ("cs1015-5.1.7-cp-01", "800", 0.5),
     ("cs1003-5.1.8-cp-01", "1000", 0.5),
-    ("cs1015-5.1.8-cp-01", "566.67", 0.5),
+    ("cs1015-5.1.8-cp-01", "566.67", 0.005),
 )
 
 # ---------------------------------------------------------------------------
@@ -570,21 +570,29 @@ class TestNumWave2NumericConversions:
         assert fraction.correct is False
         assert fraction.feedback_outcome == "Incorrect"
 
-    def test_eb_premium_currency_tolerance_accepts_reasonable_rounding(self) -> None:
-        """1700/3 and common roundings must score Correct under currency-like 0.5 tol.
+    def test_eb_premium_two_decimal_tolerance_matches_stated_precision(self) -> None:
+        """2dp prompt pairs with 0.005; true 1700/3 still passes, coarse answers fail.
 
-        Accepted key stays 566.67. With the old 0.001 tolerance, the true value
-        1700/3 ≈ 566.666… and roundings such as 566.667 / 566.7 fell outside
-        the band. Currency-like 0.5 matches the three sibling premiums.
+        True value is 1700/3 ≈ 566.666…; correct 2dp rounding is 566.67.
+        Tolerance 0.005 keeps the exact value and near-true decimals inside the
+        band while rejecting answers that only matched the old 0.5 currency
+        band (566.2, 567, 566.7).
         """
         item = _scoreable_by_item_id("cs1015-5.1.8-cp-01")
         assert item.answer_key.accepted == ("566.67",)
-        assert item.answer_key.numeric_tolerance == pytest.approx(0.5)
-        for response in (str(1700 / 3), "566.67", "566.667", "566.7"):
+        assert item.answer_key.numeric_tolerance == pytest.approx(0.005)
+
+        for response in (str(1700 / 3), "566.67", "566.667"):
             result = score_practice_response(item, response)
             assert result.scored is True
             assert result.correct is True
             assert result.feedback_outcome == "Correct"
+
+        for response in ("566.2", "567", "566.7"):
+            result = score_practice_response(item, response)
+            assert result.scored is True
+            assert result.correct is False
+            assert result.feedback_outcome == "Incorrect"
 
 
 class TestNumWave3NumericConversions:

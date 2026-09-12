@@ -7,7 +7,9 @@ from datetime import date, timedelta
 import pytest
 
 
-def _stub_topic_ek(monkeypatch, progress, score: float) -> None:
+def _stub_topic_ek(
+    monkeypatch, progress, score: float, *, evidence_count: int = 2
+) -> None:
     from app.application.student_twin.query import TopicKnowledgeFact
 
     fact = TopicKnowledgeFact(
@@ -15,7 +17,7 @@ def _stub_topic_ek(monkeypatch, progress, score: float) -> None:
         has_estimated_knowledge=True,
         estimated_knowledge=score,
         estimated_mastery=score,
-        evidence_count=2,
+        evidence_count=evidence_count,
         last_practised_at=None,
     )
     monkeypatch.setattr(
@@ -228,12 +230,57 @@ class TestAdaptiveLearningService:
     def test_get_mastered_topics(self, db, user, topic_progress, monkeypatch):
         from app.services.adaptive_learning_service import AdaptiveLearningService
 
-        _stub_topic_ek(monkeypatch, topic_progress, 0.95)
+        _stub_topic_ek(monkeypatch, topic_progress, 0.95, evidence_count=3)
         topic_progress.current_stage = "Mastered"
         db.session.commit()
 
         mastered = AdaptiveLearningService.get_mastered_topics(user.id)
         assert len(mastered) >= 1
+
+    def test_get_mastered_topics_requires_evidence_floor(
+        self, db, user, topic_progress, monkeypatch
+    ):
+        """High EK alone must not feed 'You have strengthened' / mastered lists.
+
+        ``is_ek_mastered`` requires evidence_count >= 3. The ungated path used
+        to treat EK >= 90 as mastered; that must stay fixed to the gated bar.
+        """
+        from app.application.learner_progress.milestones import is_ek_mastered
+        from app.application.student_twin.query import TopicKnowledgeFact
+        from app.services.adaptive_learning_service import AdaptiveLearningService
+
+        thin = TopicKnowledgeFact(
+            topic_id=f"TEST-{topic_progress.topic_id}",
+            has_estimated_knowledge=True,
+            estimated_knowledge=0.95,
+            estimated_mastery=0.95,
+            evidence_count=2,
+            last_practised_at=None,
+        )
+        earned = TopicKnowledgeFact(
+            topic_id=f"TEST-{topic_progress.topic_id}",
+            has_estimated_knowledge=True,
+            estimated_knowledge=0.95,
+            estimated_mastery=0.95,
+            evidence_count=3,
+            last_practised_at=None,
+        )
+        assert is_ek_mastered(thin) is False
+        assert is_ek_mastered(earned) is True
+
+        monkeypatch.setattr(
+            "app.services.twin_cutover_service.topic_ek_by_orm_id",
+            lambda **kwargs: {topic_progress.topic_id: thin},
+        )
+        assert AdaptiveLearningService.get_mastered_topics(user.id) == []
+
+        monkeypatch.setattr(
+            "app.services.twin_cutover_service.topic_ek_by_orm_id",
+            lambda **kwargs: {topic_progress.topic_id: earned},
+        )
+        mastered = AdaptiveLearningService.get_mastered_topics(user.id)
+        assert len(mastered) == 1
+        assert mastered[0].topic_id == topic_progress.topic_id
 
     def test_get_topics_due_for_review(self, db, user, topic_progress):
         from app.services.adaptive_learning_service import AdaptiveLearningService

@@ -173,10 +173,10 @@
       "model_answer": "566.67",
       "common_mistake": "Using $\\hat{Z} = \\hat{k}/(n+\\hat{k}) = 2/3$ (swapping weights) to get about 633.33, taking full credibility $P = 700$, or substituting a Bayesian $k$ from a different exercise for $\\hat{k} = 10$.",
       "success_criteria": [
-        "Enters a value within 0.5 of 566.67.",
+        "Enters a value within 0.005 of 566.67.",
         "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$."
       ],
-      "numeric_tolerance": 0.5
+      "numeric_tolerance": 0.005
     }
   ],
   "reflection": {

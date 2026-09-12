@@ -312,7 +312,7 @@
       "accepted_keywords": [
         "566.67"
       ],
-      "numeric_tolerance": 0.5,
+      "numeric_tolerance": 0.005,
       "choice_ids": [],
       "verdicts": [
         {
