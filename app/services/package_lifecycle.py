@@ -614,6 +614,21 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/progression_readiness",
+        layer="application",
+        responsibility=(
+            "Progression Readiness evaluator + six authored objective contracts "
+            "(demonstrated competence for progression)"
+        ),
+        owner="Progression Readiness",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Standalone read-only OEA consumer; unwired from live student "
+            "surfaces. Does not write evidence."
+        ),
+    ),
+    PackageEntry(
         path="app/application/educational_quality",
         layer="application",
         responsibility="Educational quality certification",

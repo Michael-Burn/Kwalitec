@@ -54,6 +54,7 @@ Active
 | [`ep009_version1_operational_hardening/`](ep009_version1_operational_hardening/) | EP-009 — Version 1 Operational Hardening (OP-004 triage; Critical/High pre-Stage 1; **HOLD**; ΔKSI **0**; no app/Runtime A change) |
 | [`gp001_founder_governance_model/`](gp001_founder_governance_model/) | GP-001 — Founder Governance Model (founder-operated approval; evidence unchanged; DR-054; PR-027) |
 | [`KNOWN_UNKNOWNS_REGISTER.md`](KNOWN_UNKNOWNS_REGISTER.md) | Known-Unknowns Register — standing record of what the product can genuinely show today, and what remains unproven |
+| [`progression_readiness/`](progression_readiness/) | Progression Readiness — locked design for demonstrated competence for progression (standalone evaluator; unwired) |
 | [`prd/`](../prd/) | Feature PRD template and future PRDs |
 | [`analytics/`](analytics/) | Product analytics architecture (design only) |
 | [`ep001_product_validation/`](ep001_product_validation/) | EP-001 educational validation framework |
