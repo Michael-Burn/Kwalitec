@@ -912,15 +912,15 @@ class RecommendationService:
             })
 
         recs.append({
-            "title": "Complete a mixed-topic practice set",
+            "title": "Complete a revision practice session",
             "category": CATEGORY_REVISION,
             "priority": PRIORITY_HIGH,
             "reason": (
-                "Syllabus coverage is complete. Mixed practice consolidates "
-                "knowledge across topics rather than advancing unread material."
+                "Syllabus coverage is complete. Revision practice consolidates "
+                "completed topics rather than advancing unread material."
             ),
             "expected_benefit": (
-                "Build exam fluency across the full syllabus."
+                "Maintain fluency on material you have already covered."
             ),
             "generated_at": now,
         })
