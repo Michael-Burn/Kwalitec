@@ -221,11 +221,13 @@ class EducationalRuntimeEngineService:
     ) -> ProgressSnapshot | None:
         """Apply Baseline continue-from position onto Runtime C progress.
 
-        Emits ``TOPIC_COMPLETED`` events (source=baseline_self_declared) for
-        prior leaf topics, advances ``current_topic_id``, and optionally
-        replaces today's mission when it still points at a pre-baseline topic.
+        Emits ``PRIOR_KNOWLEDGE_CLAIM`` events (source=baseline_self_declared)
+        for prior leaf topics. Claims influence journey position (continue-from)
+        but are never Kwalitec-verified ``TOPIC_COMPLETED`` coverage. Advances
+        ``current_topic_id`` and optionally replaces today's mission when it
+        still points at a pre-baseline topic.
 
-        Idempotent: already-completed topics are skipped.
+        Idempotent: already-progressed topics are skipped.
         """
         from app.application.educational_runtime_engine.baseline_position import (
             resolve_baseline_position_seed,
@@ -247,15 +249,15 @@ class EducationalRuntimeEngineService:
 
         plan = self._require_active_plan(enrolment)
         progress_before = self._derive_progress_for(enrolment, artefacts)
-        already = set(progress_before.completed_topic_ids)
-        to_complete = [
+        already = set(progress_before.progressed_topic_ids)
+        to_claim = [
             tid for tid in seed.completed_topic_ids if tid not in already
         ]
 
         # Also treat "current" as not completed; if caller already completed
         # past it via Confirm-mission, keep those events (honest history) and
         # advance from derive_progress after seeding priors.
-        if not to_complete and seed.current_topic_id:
+        if not to_claim and seed.current_topic_id:
             # Priors already present — still realign mission / pointer if needed.
             if (
                 progress_before.current_topic_id == seed.current_topic_id
@@ -264,9 +266,9 @@ class EducationalRuntimeEngineService:
                 return self._progress_snapshot(progress_before)
 
         now = _utc_now()
-        for topic_id in to_complete:
+        for topic_id in to_claim:
             self._append_event(
-                event_type=EducationalEventType.TOPIC_COMPLETED,
+                event_type=EducationalEventType.PRIOR_KNOWLEDGE_CLAIM,
                 user_id=user_id,
                 curriculum_identity=enrolment.curriculum_identity,
                 enrolment_id=enrolment.enrolment_id,
@@ -293,7 +295,7 @@ class EducationalRuntimeEngineService:
         else:
             plan.current_topic_id = progress.current_topic_id
 
-        if to_complete or plan.current_topic_id != progress_before.current_topic_id:
+        if to_claim or plan.current_topic_id != progress_before.current_topic_id:
             self._append_event(
                 event_type=EducationalEventType.JOURNEY_ADVANCED,
                 user_id=user_id,
@@ -306,7 +308,7 @@ class EducationalRuntimeEngineService:
                     "from_topic_id": progress_before.current_topic_id,
                     "to_topic_id": plan.current_topic_id,
                     "baseline_continue_code": seed.continue_code,
-                    "seeded_topic_count": len(to_complete),
+                    "seeded_topic_count": len(to_claim),
                     "coverage_ratio": progress.coverage_ratio,
                 },
                 occurred_at=now,
@@ -2614,6 +2616,19 @@ class EducationalRuntimeEngineService:
             coverage_ratio=derived.coverage_ratio,
             journey_stage=derived.journey_stage.value,
             syllabus_complete=derived.syllabus_complete,
+            verified_completed_topic_ids=tuple(
+                getattr(derived, "verified_completed_topic_ids", ()) or ()
+            ),
+            prior_knowledge_claimed_topic_ids=tuple(
+                getattr(derived, "prior_knowledge_claimed_topic_ids", ()) or ()
+            ),
+            progressed_topic_ids=tuple(
+                getattr(derived, "progressed_topic_ids", None)
+                or derived.completed_topic_ids
+            ),
+            verified_coverage_ratio=float(
+                getattr(derived, "verified_coverage_ratio", 0.0) or 0.0
+            ),
         )
 
     @staticmethod

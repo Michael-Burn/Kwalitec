@@ -64,6 +64,14 @@ class MissionInstanceSnapshot:
 
 @dataclass(frozen=True)
 class ProgressSnapshot:
+    """Runtime C Study Progress projection.
+
+    ``completed_topic_ids`` is progressed-past (verified union prior-knowledge
+    claims) for back-compat. Prefer ``verified_completed_topic_ids`` when the
+    distinction between Kwalitec-verified coverage and self-declared claims
+    matters. Coverage fields are historical loop facts, not mastery.
+    """
+
     curriculum_identity: str
     topic_ids: tuple[str, ...]
     completed_topic_ids: tuple[str, ...]
@@ -72,6 +80,10 @@ class ProgressSnapshot:
     coverage_ratio: float
     journey_stage: str
     syllabus_complete: bool
+    verified_completed_topic_ids: tuple[str, ...] = ()
+    prior_knowledge_claimed_topic_ids: tuple[str, ...] = ()
+    progressed_topic_ids: tuple[str, ...] = ()
+    verified_coverage_ratio: float = 0.0
 
 
 @dataclass(frozen=True)

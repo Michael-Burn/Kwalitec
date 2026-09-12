@@ -268,6 +268,10 @@ class ProgressEngine:
         )
         position = _position_from_derived(derived)
         projection = self._build_projection(derived.incomplete_topic_ids, twin)
+        progressed = tuple(
+            getattr(derived, "progressed_topic_ids", None)
+            or derived.completed_topic_ids
+        )
         return StudyProgress(
             curriculum_identity=derived.curriculum_identity,
             topic_ids=derived.topic_ids,
@@ -283,6 +287,16 @@ class ProgressEngine:
             projection=projection,
             twin_estimates_applied=twin.is_present(),
             authority=self.AUTHORITY_ID,
+            verified_completed_topic_ids=tuple(
+                getattr(derived, "verified_completed_topic_ids", ()) or ()
+            ),
+            prior_knowledge_claimed_topic_ids=tuple(
+                getattr(derived, "prior_knowledge_claimed_topic_ids", ()) or ()
+            ),
+            progressed_topic_ids=progressed,
+            verified_coverage_ratio=float(
+                getattr(derived, "verified_coverage_ratio", 0.0) or 0.0
+            ),
         )
 
     def _build_projection(

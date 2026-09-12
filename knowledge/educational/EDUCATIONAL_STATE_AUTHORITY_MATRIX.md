@@ -47,16 +47,16 @@ Owner and Authority are different. Ownership answers meaning; Authority answers 
 
 | Aspect | Value |
 |--------|-------|
-| **Educational State** | Study Progress (`TopicProgress.completed` / coverage lifecycle) |
+| **Educational State** | Study Progress (canonical: Runtime C event stream; Stage A `TopicProgress.completed` is historical/legacy only) |
 | **Owner** | Learner (User) — educational history asset; Study Plan is context for declarations only |
-| **Authority** | Mission Completion; Manual Topic Completion |
-| **Permitted Writers** | Mission completion coverage path; Study Plan Wizard / edit manual topic completion; CurriculumService progress APIs used for those purposes |
+| **Authority** | Progress Engine / Educational Runtime Engine derivation (`derive_progress`) |
+| **Permitted Writers** | Runtime C mission completion → `TOPIC_COMPLETED`; Baseline continue-from → `PRIOR_KNOWLEDGE_CLAIM` (positioning only, not verified coverage); Stage A wizard/edit/remap may still write `TopicProgress` as historical input but must not OR into live Runtime C authority |
 | **Forbidden Writers** | Estimated Mastery; Educational Evidence; Confidence; Recommendation Engine; Digital Twin; Adaptive mastery formulae; Study Plan delete / archive lifecycle |
-| **Primary Readers** | Learning Mode; Planning Service; Dashboard; Analytics (coverage); Readiness (as coverage input only) |
+| **Primary Readers** | Learning Mode; Home / Journey / Stats (Runtime C); Twin Query Study Progress port (Runtime C when enrolled); Planning Service; Analytics / Readiness (legacy Stage A coverage input only where still used) |
 | **Related Constitution Articles** | II §1.8; III §5; IV.1; IV.2; IV.14; VIII.15–16; IX §4 |
 | **Related Logic IDs** | EL-001; EL-004 (coverage side only); EL-011 |
 | **Governance Categories** | A, B, E (supports D, G) |
-| **Required invariants** | Completing studying never mints Estimated Mastery. Mastery ≥ threshold never sets `completed=True`. Confidence never sets coverage. Study Plan deletion must not erase Study Progress (EIP-005). |
+| **Required invariants** | Completing studying never mints Estimated Mastery. Mastery ≥ threshold never sets verified coverage. Confidence never sets coverage. Study Plan deletion must not erase Study Progress (EIP-005). **Coverage is a historical learning-loop fact, not mastery or evidence density.** Self-declared prior knowledge is `PRIOR_KNOWLEDGE_CLAIM` (or legacy baseline-shaped `TOPIC_COMPLETED` reclassified on read) and must never be indistinguishable from Kwalitec-verified `TOPIC_COMPLETED`. |
 
 ---
 

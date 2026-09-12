@@ -162,7 +162,14 @@ class MissionCompositionInputs:
 
 @dataclass(frozen=True)
 class StudyProgress:
-    """Singular Study Progress — One Educational State for curriculum coverage."""
+    """Singular Study Progress — One Educational State for curriculum coverage.
+
+    Canonical owner: Runtime C event stream via Progress Engine derivation.
+    Coverage is a historical learning-loop fact, not Estimated Knowledge or
+    mastery. ``completed_topic_ids`` aliases progressed-past (verified union
+    prior-knowledge claims) for back-compat; use ``verified_completed_topic_ids``
+    for Kwalitec-verified coverage only.
+    """
 
     curriculum_identity: str
     topic_ids: tuple[str, ...]
@@ -178,6 +185,10 @@ class StudyProgress:
     projection: ProgressProjection
     twin_estimates_applied: bool = False
     authority: str = "progress_engine"
+    verified_completed_topic_ids: tuple[str, ...] = ()
+    prior_knowledge_claimed_topic_ids: tuple[str, ...] = ()
+    progressed_topic_ids: tuple[str, ...] = ()
+    verified_coverage_ratio: float = 0.0
 
     def to_opaque(self) -> dict[str, Any]:
         return {
@@ -195,6 +206,16 @@ class StudyProgress:
             "projection": self.projection.to_opaque(),
             "twin_estimates_applied": self.twin_estimates_applied,
             "authority": self.authority,
+            "verified_completed_topic_ids": list(
+                self.verified_completed_topic_ids
+            ),
+            "prior_knowledge_claimed_topic_ids": list(
+                self.prior_knowledge_claimed_topic_ids
+            ),
+            "progressed_topic_ids": list(
+                self.progressed_topic_ids or self.completed_topic_ids
+            ),
+            "verified_coverage_ratio": self.verified_coverage_ratio,
         }
 
 

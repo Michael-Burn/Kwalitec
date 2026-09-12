@@ -23,6 +23,8 @@ class EducationalEventType(StrEnum):
     MISSION_DEFERRED = "mission_deferred"  # SR-002a: ILE-004 deferral
     MISSION_COMPLETED = "mission_completed"
     TOPIC_COMPLETED = "topic_completed"
+    # Self-declared prior knowledge (baseline continue-from). Never verified coverage.
+    PRIOR_KNOWLEDGE_CLAIM = "prior_knowledge_claim"
     JOURNEY_ADVANCED = "journey_advanced"
     SYLLABUS_COMPLETED = "syllabus_completed"
     # ADR-027 M0: Adaptive Decision Engine audit (additive; observational)

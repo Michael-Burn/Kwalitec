@@ -29,13 +29,16 @@ from app.models.topic_progress import TopicProgress
 RuntimeCompletedLoader = Callable[[int, str], frozenset[str] | set[str] | Sequence[str]]
 OrmTopicsLoader = Callable[[str], Sequence[Topic]]
 CurriculumIdentityLoader = Callable[[int, str], str | None]
+RuntimeEnrolmentChecker = Callable[[int, str], bool]
 
 
 class CompositeStudyProgressReader:
-    """Union of Runtime C completed_topic_ids and TopicProgress.completed.
+    """Canonical Study Progress reader for Twin Query ``topic_covered``.
 
-    Covered if either source says complete. Neither path mints Estimated
-    Knowledge.
+    Ownership: Runtime C event-derived progressed topics are the sole authority
+    when a Runtime C enrolment exists. Stage A ``TopicProgress.completed`` is a
+    historical/legacy input used only when there is no Runtime C enrolment
+    (never OR-ed with Runtime C). Neither path mints Estimated Knowledge.
     """
 
     def __init__(
@@ -44,10 +47,12 @@ class CompositeStudyProgressReader:
         canonical: CanonicalTopicId | None = None,
         runtime_completed: RuntimeCompletedLoader | None = None,
         orm_topics_loader: OrmTopicsLoader | None = None,
+        runtime_enrolled: RuntimeEnrolmentChecker | None = None,
     ) -> None:
         self._canonical = canonical or CanonicalTopicId()
         self._runtime_completed = runtime_completed
         self._orm_topics_loader = orm_topics_loader
+        self._runtime_enrolled = runtime_enrolled
 
     def topic_covered(
         self, *, user_id: int, subject_code: str, topic_id: str
@@ -56,22 +61,27 @@ class CompositeStudyProgressReader:
         if not tid:
             return False
 
-        if self._runtime_completed is not None:
-            completed = self._runtime_completed(user_id, subject_code) or ()
-            if tid in completed:
-                return True
+        enrolled = self._is_runtime_c_enrolled(user_id, subject_code)
+        if enrolled:
+            completed = self._load_runtime_completed(user_id, subject_code)
+            return tid in completed
 
-        if self._topic_progress_completed(
+        # Legacy Runtime A / no Runtime C enrolment: Stage A historical only.
+        return self._topic_progress_completed(
             user_id=user_id, subject_code=subject_code, topic_id=tid
-        ):
-            return True
+        )
 
-        if self._runtime_completed is None:
-            completed = _default_runtime_completed(user_id, subject_code)
-            if tid in completed:
-                return True
+    def _is_runtime_c_enrolled(self, user_id: int, subject_code: str) -> bool:
+        if self._runtime_enrolled is not None:
+            return bool(self._runtime_enrolled(user_id, subject_code))
+        return _default_runtime_c_enrolled(user_id, subject_code)
 
-        return False
+    def _load_runtime_completed(
+        self, user_id: int, subject_code: str
+    ) -> frozenset[str]:
+        if self._runtime_completed is not None:
+            return frozenset(self._runtime_completed(user_id, subject_code) or ())
+        return _default_runtime_completed(user_id, subject_code)
 
     def _topic_progress_completed(
         self, *, user_id: int, subject_code: str, topic_id: str
@@ -93,8 +103,26 @@ class CompositeStudyProgressReader:
         return bool(row is not None and row.completed)
 
 
+def _default_runtime_c_enrolled(user_id: int, subject_code: str) -> bool:
+    """True when a Runtime C enrolment exists for user/subject."""
+    try:
+        from app.models.educational_runtime_engine import RuntimeEnrolment
+
+        code = (subject_code or "").strip().upper()
+        if not code:
+            return False
+        return (
+            RuntimeEnrolment.query.filter_by(
+                user_id=user_id, subject_code=code
+            ).first()
+            is not None
+        )
+    except Exception:
+        return False
+
+
 def _default_runtime_completed(user_id: int, subject_code: str) -> frozenset[str]:
-    """Best-effort Runtime C completed_topic_ids; empty on any failure."""
+    """Best-effort Runtime C progressed topic ids; empty on any failure."""
     try:
         from app.application.educational_runtime_engine.service import (
             EducationalRuntimeEngineService,
