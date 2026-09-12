@@ -88,6 +88,17 @@ def test_help_reflection_faq_aligns_with_glossary_no_rerank():
     )
 
 
+def test_help_revision_glossary_is_spacing_not_mission_support():
+    """A5-7: Revision is the spacing board, not Mission support."""
+    assert "supports today's Mission" not in HELP
+    assert "supports today’s Mission" not in HELP
+    assert (
+        "Follow-up practice on previously completed material when the "
+        "schedule says it is due for review. Distinct from today's Mission, "
+        "never a second Mission or competing daily focus."
+    ) in HELP
+
+
 def test_brand_descriptor_and_manifest_match_without_exam_ready():
     assert PRODUCT_DESCRIPTOR == "Study guidance for your exam plan"
     assert "Exam-ready" not in PRODUCT_DESCRIPTOR
