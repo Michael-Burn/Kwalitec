@@ -398,6 +398,45 @@ class LearningSessionPersistenceAdapter:
         self._store.save(NS_HANDLE, session_id.strip(), updated)
         return deepcopy(updated)
 
+    def find_mission_complete_desyncs(
+        self, *, student_id: str
+    ) -> list[dict[str, Any]]:
+        """Return completed sittings with accepted evidence but failed_open mission.
+
+        Durable signal (post fail-open observability): ``mission_complete_status``
+        is ``failed_open``, ``mission_completed`` is false, and evidence was
+        accepted. Distinguishes reverse desync from sittings that never passed
+        the evidence gate. Does not mutate documents.
+        """
+        sid = (student_id or "").strip()
+        if not sid:
+            return []
+
+        accepted = frozenset({"accepted", "accepted_with_restrictions"})
+        out: list[dict[str, Any]] = []
+        for doc in self._store.list_documents(NS_HANDLE):
+            if not isinstance(doc, dict):
+                continue
+            if str(doc.get("student_id") or "").strip() != sid:
+                continue
+            status = str(doc.get("mission_complete_status") or "").strip()
+            if status != "failed_open":
+                continue
+            if bool(doc.get("mission_completed")):
+                continue
+            phase = str(doc.get("phase") or "").strip().lower()
+            status_field = str(doc.get("status") or "").strip().lower()
+            if phase != RuntimePhase.COMPLETED.value and status_field != "completed":
+                continue
+            disposition = str(doc.get("evidence_disposition") or "").strip().lower()
+            if disposition not in accepted:
+                continue
+            session_key = str(doc.get("session_id") or "").strip()
+            if not session_key:
+                continue
+            out.append(deepcopy(doc))
+        return out
+
     def find_prior_reflection_note(
         self,
         *,

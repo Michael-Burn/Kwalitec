@@ -59,6 +59,15 @@ logger = logging.getLogger(__name__)
 
 # Benign / success statuses for evidence-gate mission completion.
 _MISSION_COMPLETE_OK = frozenset({"completed", "already_completed"})
+# Permanent failures: honest terminal states (no infinite retry).
+_MISSION_COMPLETE_PERMANENT = frozenset(
+    {
+        "failed_permanent_mission_missing",
+        "failed_permanent_plan_missing",
+        "failed_permanent_enrolment_missing",
+        "failed_permanent_illegal_state",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -67,13 +76,14 @@ class MissionCompleteResult:
 
     Distinguishes genuine write failures from benign skips / idempotent
     already-completed outcomes. Fail-open UX is unchanged: callers still
-    complete the student session when status is ``failed_open``.
+    complete the student session when status is ``failed_open`` or a
+    permanent-failure status.
     """
 
     status: str
     """One of: completed, skipped_no_mission, skipped_student_selected,
     skipped_completer_unavailable, skipped_invalid_student_id,
-    already_completed, failed_open.
+    already_completed, failed_open, failed_permanent_*.
     """
 
     @property
@@ -84,11 +94,16 @@ class MissionCompleteResult:
     def failed_open(self) -> bool:
         return self.status == "failed_open"
 
+    @property
+    def failed_permanent(self) -> bool:
+        return self.status in _MISSION_COMPLETE_PERMANENT
+
     def to_opaque(self) -> dict[str, Any]:
         return {
             "status": self.status,
             "mission_completed": self.mission_completed,
             "failed_open": self.failed_open,
+            "failed_permanent": self.failed_permanent,
         }
 
 
@@ -103,6 +118,42 @@ def _record_fail_open_signal(*, kind: str, cause: str | None = None) -> None:
             kind=kind,
             cause=cause,
         )
+    except Exception:  # noqa: BLE001 - telemetry must never raise
+        pass
+
+
+def _record_reconcile_signal(
+    *,
+    kind: str,
+    succeeded: bool,
+    cause: str | None = None,
+    student_id: str | None = None,
+) -> None:
+    """Emit FV telemetry for mission-complete desync reconciliation."""
+    try:
+        from app.application.founder_validation.telemetry import (
+            DEFAULT_FV_TELEMETRY,
+        )
+
+        sid: int | None = None
+        if student_id is not None:
+            try:
+                sid = int(str(student_id).strip())
+            except (TypeError, ValueError):
+                sid = None
+        if succeeded:
+            DEFAULT_FV_TELEMETRY.record_lifecycle_outcome(
+                kind=kind,
+                succeeded=True,
+                student_id=sid,
+                operation_type="mission_complete_desync_reconcile",
+            )
+        else:
+            DEFAULT_FV_TELEMETRY.record_system_failure(
+                kind=kind,
+                student_id=sid,
+                cause=cause,
+            )
     except Exception:  # noqa: BLE001 - telemetry must never raise
         pass
 
@@ -1545,6 +1596,21 @@ class LearningSessionRuntimeEngine:
                     mid,
                 )
                 return MissionCompleteResult(status="already_completed")
+            permanent = _permanent_mission_complete_status(exc)
+            if permanent is not None:
+                logger.warning(
+                    "evidence_gate_mission_complete_permanent mission=%s "
+                    "status=%s err=%s",
+                    mid,
+                    permanent,
+                    exc,
+                    exc_info=True,
+                )
+                _record_fail_open_signal(
+                    kind="evidence_gate_mission_complete_failed",
+                    cause=exc.__class__.__name__,
+                )
+                return MissionCompleteResult(status=permanent)
             logger.warning(
                 "evidence_gate_mission_complete_failed mission=%s err=%s",
                 mid,
@@ -1557,6 +1623,186 @@ class LearningSessionRuntimeEngine:
             )
             return MissionCompleteResult(status="failed_open")
         return MissionCompleteResult(status="completed")
+
+    def reconcile_mission_complete_desyncs(
+        self, *, student_id: str
+    ) -> list[dict[str, Any]]:
+        """Retry mission completion for sittings left in failed_open desync.
+
+        Curriculum self-heal precedent: transparent repair on a real student
+        touchpoint (Home). Reuses the durable ``mission_complete_status=
+        failed_open`` signal with accepted evidence. Does not re-run evidence
+        acceptance. Permanent failures become honest terminal statuses so
+        reconciliation does not retry forever.
+        """
+        sid = (student_id or "").strip()
+        if not sid:
+            return []
+        desyncs = self._persistence.find_mission_complete_desyncs(student_id=sid)
+        results: list[dict[str, Any]] = []
+        for record in desyncs:
+            session_id = str(record.get("session_id") or "").strip()
+            if not session_id:
+                continue
+            outcome = self._reconcile_one_mission_complete_desync(
+                student_id=sid,
+                session_id=session_id,
+                record=record,
+            )
+            results.append(outcome)
+        return results
+
+    def _reconcile_one_mission_complete_desync(
+        self,
+        *,
+        student_id: str,
+        session_id: str,
+        record: dict[str, Any],
+    ) -> dict[str, Any]:
+        """Heal one failed_open sitting or mark an honest permanent terminal."""
+        package = self._persistence.load_evidence_package(session_id=session_id)
+        validation = None
+        package_id = str(record.get("evidence_package_id") or "").strip()
+        may_advance = False
+        disposition = str(record.get("evidence_disposition") or "").strip() or None
+        if isinstance(package, dict):
+            package_id = package_id or str(package.get("package_id") or "").strip()
+            from app.application.learning_session.dto.evidence_package import (
+                EvidenceValidationResult,
+            )
+
+            validation = EvidenceValidationResult.from_opaque(
+                package.get("validation")
+            )
+            if validation is not None:
+                may_advance = bool(validation.may_advance_progress)
+                if not disposition:
+                    disposition = validation.disposition.value
+                if not validation.may_complete_mission:
+                    # Evidence no longer authorises completion; stop retrying.
+                    terminal = "failed_permanent_illegal_state"
+                    self._persistence.save_sitting_outcome(
+                        session_id=session_id,
+                        progress_advanced=bool(record.get("progress_advanced")),
+                        mission_completed=False,
+                        twin_updated=bool(record.get("twin_updated")),
+                        evidence_disposition=disposition,
+                        twin_consume_reason=(
+                            str(record.get("twin_consume_reason") or "") or None
+                        ),
+                        twin_consumption=(
+                            record.get("twin_consumption")
+                            if isinstance(record.get("twin_consumption"), dict)
+                            else None
+                        ),
+                        mission_complete_status=terminal,
+                    )
+                    logger.warning(
+                        "mission_complete_desync_reconcile_abandoned "
+                        "session=%s status=%s reason=may_complete_mission_false",
+                        session_id,
+                        terminal,
+                    )
+                    _record_reconcile_signal(
+                        kind="mission_complete_desync_reconcile_abandoned",
+                        succeeded=False,
+                        cause="may_complete_mission_false",
+                        student_id=student_id,
+                    )
+                    return {
+                        "session_id": session_id,
+                        "status": terminal,
+                        "mission_completed": False,
+                        "healed": False,
+                    }
+
+        mission_result = self._complete_mission_if_authorised(
+            student_id=student_id,
+            mission_instance_id=str(record.get("mission_instance_id") or ""),
+            advance_progress=may_advance,
+            package_id=package_id,
+            evidence_disposition=disposition,
+            may_complete_mission=True,
+        )
+        progress_advanced = bool(
+            mission_result.status == "completed" and may_advance
+        )
+        # Preserve prior progress_advanced if already true from another path.
+        if bool(record.get("progress_advanced")):
+            progress_advanced = True
+
+        self._persistence.save_sitting_outcome(
+            session_id=session_id,
+            progress_advanced=progress_advanced,
+            mission_completed=mission_result.mission_completed,
+            twin_updated=bool(record.get("twin_updated")),
+            evidence_disposition=disposition,
+            twin_consume_reason=(
+                str(record.get("twin_consume_reason") or "") or None
+            ),
+            twin_consumption=(
+                record.get("twin_consumption")
+                if isinstance(record.get("twin_consumption"), dict)
+                else None
+            ),
+            mission_complete_status=mission_result.status,
+        )
+
+        if mission_result.mission_completed:
+            logger.info(
+                "mission_complete_desync_reconciled session=%s status=%s "
+                "mission=%s",
+                session_id,
+                mission_result.status,
+                str(record.get("mission_instance_id") or ""),
+            )
+            _record_reconcile_signal(
+                kind="mission_complete_desync_reconciled",
+                succeeded=True,
+                student_id=student_id,
+            )
+            return {
+                "session_id": session_id,
+                "status": mission_result.status,
+                "mission_completed": True,
+                "healed": True,
+            }
+
+        if mission_result.failed_permanent:
+            logger.warning(
+                "mission_complete_desync_reconcile_abandoned session=%s "
+                "status=%s mission=%s",
+                session_id,
+                mission_result.status,
+                str(record.get("mission_instance_id") or ""),
+            )
+            _record_reconcile_signal(
+                kind="mission_complete_desync_reconcile_abandoned",
+                succeeded=False,
+                cause=mission_result.status,
+                student_id=student_id,
+            )
+            return {
+                "session_id": session_id,
+                "status": mission_result.status,
+                "mission_completed": False,
+                "healed": False,
+            }
+
+        # Transient failed_open: leave signal for a later touchpoint retry.
+        logger.warning(
+            "mission_complete_desync_reconcile_still_open session=%s "
+            "status=%s mission=%s",
+            session_id,
+            mission_result.status,
+            str(record.get("mission_instance_id") or ""),
+        )
+        return {
+            "session_id": session_id,
+            "status": mission_result.status,
+            "mission_completed": False,
+            "healed": False,
+        }
 
     def _study_progress_opaque(
         self,
@@ -1642,6 +1888,36 @@ def _is_mission_already_completed(exc: BaseException) -> bool:
     except Exception:  # noqa: BLE001
         pass
     return False
+
+
+def _permanent_mission_complete_status(exc: BaseException) -> str | None:
+    """Map known non-retryable mission-complete errors to terminal statuses.
+
+    Returns None for transient / unknown failures (stay ``failed_open``).
+    """
+    name = exc.__class__.__name__
+    mapping = {
+        "MissionInstanceNotFound": "failed_permanent_mission_missing",
+        "StudyPlanInstanceNotFound": "failed_permanent_plan_missing",
+        "EnrolmentNotFound": "failed_permanent_enrolment_missing",
+        "IllegalRuntimeState": "failed_permanent_illegal_state",
+    }
+    if name in mapping:
+        return mapping[name]
+    try:
+        from app.application.educational_runtime_engine import exceptions as excs
+
+        if isinstance(exc, excs.MissionInstanceNotFound):
+            return "failed_permanent_mission_missing"
+        if isinstance(exc, excs.StudyPlanInstanceNotFound):
+            return "failed_permanent_plan_missing"
+        if isinstance(exc, excs.EnrolmentNotFound):
+            return "failed_permanent_enrolment_missing"
+        if isinstance(exc, excs.IllegalRuntimeState):
+            return "failed_permanent_illegal_state"
+    except Exception:  # noqa: BLE001
+        pass
+    return None
 
 
 def _educational_package_id_from_sequence(seq: dict[str, Any] | None) -> str:

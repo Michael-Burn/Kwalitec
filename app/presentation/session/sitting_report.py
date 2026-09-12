@@ -675,7 +675,7 @@ def _progress_explanation(
     mission_complete_status: str = "",
 ) -> str:
     status = (mission_complete_status or "").strip().lower()
-    if status == "failed_open":
+    if status == "failed_open" or status.startswith("failed_permanent"):
         return (
             f"Today's Session on {topic} is closed. Your Journey could not be "
             "updated for this sitting because the update could not be recorded."

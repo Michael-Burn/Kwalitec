@@ -62,6 +62,27 @@ def _baseline_gate_redirect():
     )
 
 
+def _reconcile_mission_complete_desyncs() -> None:
+    """Self-heal accepted-evidence / failed_open mission desync on Home load.
+
+    Same transparent-repair discipline as curriculum_id self-heal on active
+    plan read: fail-open, idempotent, never blocks the student surface.
+    """
+    try:
+        from app.infrastructure.adapters.learning_session.runtime_engine import (
+            LearningSessionRuntimeEngine,
+        )
+
+        LearningSessionRuntimeEngine().reconcile_mission_complete_desyncs(
+            student_id=str(current_user.id)
+        )
+    except Exception:  # noqa: BLE001 — touchpoint must never break Home
+        logger.warning(
+            "mission_complete_desync_reconcile_touchpoint_failed",
+            exc_info=True,
+        )
+
+
 def _current_tip_payload() -> dict:
     """Read today's tip projection for commitment recording (pass-through)."""
     from app.presentation.student.factory import get_experience_service
@@ -130,6 +151,10 @@ def home():
     baseline_gate = _baseline_gate_redirect()
     if baseline_gate is not None:
         return baseline_gate
+
+    # Close the loop on evidence-accepted / mission-complete fail-open desync
+    # (curriculum self-heal precedent: transparent repair on Home load).
+    _reconcile_mission_complete_desyncs()
 
     page = load_page(ExperienceSurface.HOME)
     PresentationTelemetryService.record(
