@@ -49,7 +49,8 @@ from app.services.curriculum_engine_service import CurriculumEngineService
 
 LIVE_ROOT = Path("app/curriculum/data/educational_packages")
 
-# Brief enumerated 13 packages / 26 item ids (said "24" / "12"; list wins).
+# Enumerated tagged sample: 17 packages / 34 item ids
+# (26 foundation + 8 topic 1.1 completion).
 TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("2.1.4-poisson-process-cs1004.json", "cs1004-2.1d-ar-01", "CS1-B-T01-LO04"),
     ("2.1.4-poisson-process-cs1004.json", "cs1004-2.1d-cp-01", "CS1-B-T01-LO04"),
@@ -77,6 +78,31 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("cp-3.1.1-estimators-cs1016.json", "cs1016-3.1.1-cp-01", "CS1-C-T01-LO01"),
     ("cr-1.1.1-aims-analysis-cs1017.json", "cs1017-1.1.1-ar-01", "CS1-A-T01-LO01"),
     ("cr-1.1.1-aims-analysis-cs1017.json", "cs1017-1.1.1-cp-01", "CS1-A-T01-LO01"),
+    ("cr-1.1.2-stages-tools-cs1017.json", "cs1017-1.1.2-ar-01", "CS1-A-T01-LO02"),
+    ("cr-1.1.2-stages-tools-cs1017.json", "cs1017-1.1.2-cp-01", "CS1-A-T01-LO02"),
+    ("cr-1.1.3-data-sources-cs1017.json", "cs1017-1.1.3-ar-01", "CS1-A-T01-LO03"),
+    ("cr-1.1.3-data-sources-cs1017.json", "cs1017-1.1.3-cp-01", "CS1-A-T01-LO03"),
+    ("cr-1.1.4-reproducible-cs1017.json", "cs1017-1.1.4-ar-01", "CS1-A-T01-LO04"),
+    ("cr-1.1.4-reproducible-cs1017.json", "cs1017-1.1.4-cp-01", "CS1-A-T01-LO04"),
+    ("1.1-purpose-function-ep001.json", "ep001-1.1-ar-01", "CS1-A-T01-LO01"),
+    ("1.1-purpose-function-ep001.json", "ep001-1.1-cp-01", "CS1-A-T01-LO02"),
+)
+
+# Frozen 26-item foundation before topic 1.1 completion (must remain unchanged).
+FOUNDATION_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = TAGGED_ITEMS[:26]
+
+# Topic 1.1 (CS1-A-T01) complete slice: all 10 live knowledge checks.
+TOPIC_1_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
+    ("cr-1.1.1-aims-analysis-cs1017.json", "cs1017-1.1.1-ar-01", "CS1-A-T01-LO01"),
+    ("cr-1.1.1-aims-analysis-cs1017.json", "cs1017-1.1.1-cp-01", "CS1-A-T01-LO01"),
+    ("cr-1.1.2-stages-tools-cs1017.json", "cs1017-1.1.2-ar-01", "CS1-A-T01-LO02"),
+    ("cr-1.1.2-stages-tools-cs1017.json", "cs1017-1.1.2-cp-01", "CS1-A-T01-LO02"),
+    ("cr-1.1.3-data-sources-cs1017.json", "cs1017-1.1.3-ar-01", "CS1-A-T01-LO03"),
+    ("cr-1.1.3-data-sources-cs1017.json", "cs1017-1.1.3-cp-01", "CS1-A-T01-LO03"),
+    ("cr-1.1.4-reproducible-cs1017.json", "cs1017-1.1.4-ar-01", "CS1-A-T01-LO04"),
+    ("cr-1.1.4-reproducible-cs1017.json", "cs1017-1.1.4-cp-01", "CS1-A-T01-LO04"),
+    ("1.1-purpose-function-ep001.json", "ep001-1.1-ar-01", "CS1-A-T01-LO01"),
+    ("1.1-purpose-function-ep001.json", "ep001-1.1-cp-01", "CS1-A-T01-LO02"),
 )
 
 SAMPLE_OBJECTIVES: tuple[tuple[str, str], ...] = (
@@ -87,6 +113,9 @@ SAMPLE_OBJECTIVES: tuple[tuple[str, str], ...] = (
     ("CS1-D-T02-LO07", "4.2.7"),
     ("CS1-C-T01-LO01", "3.1.1"),
     ("CS1-A-T01-LO01", "1.1.1"),
+    ("CS1-A-T01-LO02", "1.1.2"),
+    ("CS1-A-T01-LO03", "1.1.3"),
+    ("CS1-A-T01-LO04", "1.1.4"),
 )
 
 # One AR item per diversity axis (package family / campaign / LO).
@@ -182,7 +211,7 @@ def _reset_package_and_evidence_caches() -> None:
     reset_objective_assessment_evidence_store()
 
 
-def test_seven_sample_objectives_resolve_including_topic_focus_lo(
+def test_ten_sample_objectives_resolve_including_topic_focus_lo(
     cs1_objective_resolver: CanonicalObjectiveId,
 ) -> None:
     """Each sample LO resolves by id, by code, and via package topic_focus_lo."""
@@ -304,6 +333,81 @@ def test_catalogue_has_no_objective_id_outside_tagged_sample() -> None:
             if check.item_id not in allowed:
                 offenders.append(f"{pack.package_id}:{check.item_id}:{oid}")
     assert offenders == []
+
+
+def test_topic_1_1_all_items_carry_correct_objective_id() -> None:
+    """Topic 1.1 has 10 tagged items; each of its 4 LOs has at least one."""
+    loader = EducationalPackageLoader(root=LIVE_ROOT)
+    packs = {Path(p.source_path).name: p for p in loader.all_approved()}
+    expected = {item_id: oid for _, item_id, oid in TOPIC_1_1_TAGGED_ITEMS}
+    assert len(expected) == 10
+
+    seen_oids: set[str] = set()
+    for fname, item_id, expected_oid in TOPIC_1_1_TAGGED_ITEMS:
+        pack = packs[fname]
+        assert pack.topic_code == "1.1"
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing {item_id} in {fname}"
+        assert (match.objective_id or "").strip() == expected_oid
+        seen_oids.add(expected_oid)
+
+    assert seen_oids == {
+        "CS1-A-T01-LO01",
+        "CS1-A-T01-LO02",
+        "CS1-A-T01-LO03",
+        "CS1-A-T01-LO04",
+    }
+
+    # Every knowledge check on every live topic 1.1 package is tagged.
+    topic_1_1_packs = [p for p in loader.all_approved() if p.topic_code == "1.1"]
+    assert topic_1_1_packs
+    for pack in topic_1_1_packs:
+        assert pack.knowledge_checks, f"{pack.package_id} has no knowledge checks"
+        for check in pack.knowledge_checks:
+            oid = (check.objective_id or "").strip()
+            assert oid, f"untagged {pack.package_id}:{check.item_id}"
+            assert check.item_id in expected
+            assert oid == expected[check.item_id]
+
+
+def test_foundation_tagged_sample_unaffected_by_topic_1_1_completion() -> None:
+    """The original 26-item foundation mappings are unchanged after the addition."""
+    assert len(FOUNDATION_TAGGED_ITEMS) == 26
+    foundation_ids = {item_id for _, item_id, _ in FOUNDATION_TAGGED_ITEMS}
+    assert len(foundation_ids) == 26
+
+    loader = EducationalPackageLoader(root=LIVE_ROOT)
+    packs = {Path(p.source_path).name: p for p in loader.all_approved()}
+    for fname, item_id, expected_oid in FOUNDATION_TAGGED_ITEMS:
+        pack = packs[fname]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing foundation item {item_id} in {fname}"
+        assert (match.objective_id or "").strip() == expected_oid
+
+    # New topic 1.1 completion items are outside the frozen foundation set.
+    new_ids = {
+        item_id
+        for _, item_id, _ in TOPIC_1_1_TAGGED_ITEMS
+        if item_id not in foundation_ids
+    }
+    assert new_ids == {
+        "cs1017-1.1.2-ar-01",
+        "cs1017-1.1.2-cp-01",
+        "cs1017-1.1.3-ar-01",
+        "cs1017-1.1.3-cp-01",
+        "cs1017-1.1.4-ar-01",
+        "cs1017-1.1.4-cp-01",
+        "ep001-1.1-ar-01",
+        "ep001-1.1-cp-01",
+    }
+    assert len(TAGGED_ITEMS) == 34
+    assert set(FOUNDATION_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 
 def _advance_to_item(

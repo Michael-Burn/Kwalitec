@@ -153,7 +153,8 @@
           "misconception_tag": "papers_only"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO04"
     },
     {
       "episode_id": "lep-cs1017-1.1.4-cp-01",
@@ -197,7 +198,8 @@
           "misconception_tag": "filename_as_version"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO04"
     }
   ],
   "reflection": {

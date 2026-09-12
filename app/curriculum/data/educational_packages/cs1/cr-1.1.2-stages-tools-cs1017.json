@@ -153,7 +153,8 @@
           "misconception_tag": "eda_equals_inference"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO02"
     },
     {
       "episode_id": "lep-cs1017-1.1.2-cp-01",
@@ -197,7 +198,8 @@
           "misconception_tag": "stages_reversed"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO02"
     }
   ],
   "reflection": {
