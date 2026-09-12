@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-11T20:29:23Z",
+  "generated_at": "2026-09-12T20:38:03Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2232,
-    "already_compliant": 2104,
+    "mathish_strings": 2246,
+    "already_compliant": 2118,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2232,
+    "confident_automated": 2246,
     "remaining_backlog": 0,
-    "migrated": 2086,
+    "migrated": 2100,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2104,
+    "fully_covered_by_current_typesetting": 2118,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2086,
-    "equationish": 1537,
+    "dollar_delimited": 2100,
+    "equationish": 1551,
     "actuarial_fn": 487,
     "ascii_approx": 249,
     "bare_latex": 195,
@@ -16688,8 +16688,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 24,
-        "already_compliant": 24,
+        "mathish_strings": 31,
+        "already_compliant": 31,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -17007,25 +17007,8 @@
           "package_file": "4.1.3-least-squares-cs1003.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$, $\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$, residual $= y - (\\hat{\\beta}_{0} + \\hat{\\beta}_{1} x)$.",
-          "text_hash": "e1c3cf0fe1bed14a",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
-          "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression.",
-          "text_hash": "064c98e2c638b0fa",
+          "text": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$.",
+          "text_hash": "c9f4267633ca7b77",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -17041,8 +17024,8 @@
           "package_file": "4.1.3-least-squares-cs1003.json",
           "field_path": "worked_example.steps[2].calculation",
           "field_group": "worked_example.steps[].calculation",
-          "text": "$\\hat{\\beta}_{1} = \\frac{8}{5} = 1.6$; $\\hat{\\beta}_{0} = 6.5 - 1.6 \\times 3.5 = 6.5 - 5.6 = 0.9$; $\\hat{y}(4) = 0.9 + 1.6 \\times 4 = 7.3$; residual $= 7 - 7.3 = -0.3$",
-          "text_hash": "2d0662c2e7d4cfdc",
+          "text": "$\\hat{\\beta}_{1} = \\frac{8}{5} = 1.6$",
+          "text_hash": "3a65f8d16aadb0b2",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -17058,8 +17041,144 @@
           "package_file": "4.1.3-least-squares-cs1003.json",
           "field_path": "worked_example.steps[2].result",
           "field_group": "worked_example.steps[].result",
-          "text": "$\\hat{\\beta}_{1} = 1.6$; $\\hat{\\beta}_{0} = 0.9$; $e(4) = -0.3$",
-          "text_hash": "9b08b02971568d50",
+          "text": "$\\hat{\\beta}_{1} = 1.6$",
+          "text_hash": "a792be3e78e6293d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[3].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "$\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$.",
+          "text_hash": "716f40addde8b8b1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[3].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression, and the fitted line passes through $(\\bar{x}, \\bar{y})$.",
+          "text_hash": "718ca1f9db420bfe",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[3].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{\\beta}_{0} = 6.5 - 1.6 \\times 3.5 = 6.5 - 5.6 = 0.9$",
+          "text_hash": "b4d5be5d51ba0315",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[3].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$\\hat{\\beta}_{0} = 0.9$",
+          "text_hash": "a46878a7e12dcfa5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[4].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Compute $\\hat{y}(4) = \\hat{\\beta}_{0} + \\hat{\\beta}_{1} \\times 4$, then residual $= y - \\hat{y}$.",
+          "text_hash": "9bc0a8058acea871",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[4].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "The residual uses the convention $e = y - \\hat{y}$, not $\\hat{y} - y$.",
+          "text_hash": "7c6aab25b75da592",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[4].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{y}(4) = 0.9 + 1.6 \\times 4 = 7.3$; residual $= 7 - 7.3 = -0.3$",
+          "text_hash": "a7416b936ebeae9d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "worked_example.steps[4].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$e(4) = -0.3$",
+          "text_hash": "8b1619bf8e92454a",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -24432,8 +24551,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-NU",
       "counts": {
-        "mathish_strings": 23,
-        "already_compliant": 23,
+        "mathish_strings": 30,
+        "already_compliant": 30,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -24735,25 +24854,8 @@
           "package_file": "4.1.3-least-squares-cs1013.json",
           "field_path": "worked_example.steps[2].attempt_cue",
           "field_group": "worked_example.steps[].attempt_cue",
-          "text": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$, $\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$, residual $= y - (\\hat{\\beta}_{0} + \\hat{\\beta}_{1} x)$.",
-          "text_hash": "e1c3cf0fe1bed14a",
-          "category": "already_compliant",
-          "needs_manual_review": false,
-          "reason_code": "fully_covered_by_current_typesetting",
-          "risk_tier": 3,
-          "migration_status": "migrated",
-          "signals": [
-            "dollar_delimited",
-            "equationish"
-          ]
-        },
-        {
-          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
-          "package_file": "4.1.3-least-squares-cs1013.json",
-          "field_path": "worked_example.steps[2].explanation",
-          "field_group": "worked_example.steps[].explanation",
-          "text": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression.",
-          "text_hash": "064c98e2c638b0fa",
+          "text": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$.",
+          "text_hash": "c9f4267633ca7b77",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -24769,8 +24871,8 @@
           "package_file": "4.1.3-least-squares-cs1013.json",
           "field_path": "worked_example.steps[2].calculation",
           "field_group": "worked_example.steps[].calculation",
-          "text": "$\\hat{\\beta}_{1} = \\frac{7}{5} = 1.4$; $\\hat{\\beta}_{0} = 4 - 1.4 \\times 2.5 = 4 - 3.5 = 0.5$; $\\hat{y}(3) = 0.5 + 1.4 \\times 3 = 4.7$; residual $= 5 - 4.7 = 0.3$",
-          "text_hash": "c5606f7d8b4aba64",
+          "text": "$\\hat{\\beta}_{1} = \\frac{7}{5} = 1.4$",
+          "text_hash": "29bac72e36eb9b7b",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -24786,8 +24888,144 @@
           "package_file": "4.1.3-least-squares-cs1013.json",
           "field_path": "worked_example.steps[2].result",
           "field_group": "worked_example.steps[].result",
-          "text": "$\\hat{\\beta}_{1} = 1.4$; $\\hat{\\beta}_{0} = 0.5$; $e(3) = 0.3$",
-          "text_hash": "114b2db39d42c23d",
+          "text": "$\\hat{\\beta}_{1} = 1.4$",
+          "text_hash": "de78b1d1a89b50ad",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[3].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "$\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$.",
+          "text_hash": "716f40addde8b8b1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[3].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression, and the fitted line passes through $(\\bar{x}, \\bar{y})$.",
+          "text_hash": "718ca1f9db420bfe",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[3].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{\\beta}_{0} = 4 - 1.4 \\times 2.5 = 4 - 3.5 = 0.5$",
+          "text_hash": "17aaa5420acc8e43",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[3].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$\\hat{\\beta}_{0} = 0.5$",
+          "text_hash": "a07e8254c5757b52",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[4].attempt_cue",
+          "field_group": "worked_example.steps[].attempt_cue",
+          "text": "Compute $\\hat{y}(3) = \\hat{\\beta}_{0} + \\hat{\\beta}_{1} \\times 3$, then residual $= y - \\hat{y}$.",
+          "text_hash": "bdf805886a4f3786",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[4].explanation",
+          "field_group": "worked_example.steps[].explanation",
+          "text": "The residual uses the convention $e = y - \\hat{y}$, not $\\hat{y} - y$.",
+          "text_hash": "7c6aab25b75da592",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[4].calculation",
+          "field_group": "worked_example.steps[].calculation",
+          "text": "$\\hat{y}(3) = 0.5 + 1.4 \\times 3 = 4.7$; residual $= 5 - 4.7 = 0.3$",
+          "text_hash": "85c178a0846d0777",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-CN-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1013.json",
+          "field_path": "worked_example.steps[4].result",
+          "field_group": "worked_example.steps[].result",
+          "text": "$e(3) = 0.3$",
+          "text_hash": "4da9eaeba3813f8c",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -40545,5 +40783,5 @@
       ]
     }
   ],
-  "content_fingerprint": "49d64aca290d8c23ff6d185cac18639928131a444de21f260621d11d1205b540"
+  "content_fingerprint": "6b6c1bbbdbadcc549337262f144abb281f031585a645c6ccb2de5b164dc9522a"
 }

@@ -253,11 +253,27 @@
       },
       {
         "id": "S3",
-        "label": "Slope, intercept, and residual at x = 3",
-        "attempt_cue": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$, $\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$, residual $= y - (\\hat{\\beta}_{0} + \\hat{\\beta}_{1} x)$.",
-        "explanation": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression.",
-        "calculation": "$\\hat{\\beta}_{1} = \\frac{7}{5} = 1.4$; $\\hat{\\beta}_{0} = 4 - 1.4 \\times 2.5 = 4 - 3.5 = 0.5$; $\\hat{y}(3) = 0.5 + 1.4 \\times 3 = 4.7$; residual $= 5 - 4.7 = 0.3$",
-        "result": "$\\hat{\\beta}_{1} = 1.4$; $\\hat{\\beta}_{0} = 0.5$; $e(3) = 0.3$"
+        "label": "OLS slope",
+        "attempt_cue": "$\\hat{\\beta}_{1} = \\frac{S_{xy}}{S_{xx}}$.",
+        "explanation": "The ordinary least-squares slope is the corrected sum of products over the corrected sum of squares in X.",
+        "calculation": "$\\hat{\\beta}_{1} = \\frac{7}{5} = 1.4$",
+        "result": "$\\hat{\\beta}_{1} = 1.4$"
+      },
+      {
+        "id": "S4",
+        "label": "OLS intercept",
+        "attempt_cue": "$\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$.",
+        "explanation": "Least squares minimises $\\sum \\mathrm{residual}^{2}$; the closed forms give the unique minimisers for simple linear regression, and the fitted line passes through $(\\bar{x}, \\bar{y})$.",
+        "calculation": "$\\hat{\\beta}_{0} = 4 - 1.4 \\times 2.5 = 4 - 3.5 = 0.5$",
+        "result": "$\\hat{\\beta}_{0} = 0.5$"
+      },
+      {
+        "id": "S5",
+        "label": "Fitted value and residual at x = 3",
+        "attempt_cue": "Compute $\\hat{y}(3) = \\hat{\\beta}_{0} + \\hat{\\beta}_{1} \\times 3$, then residual $= y - \\hat{y}$.",
+        "explanation": "The residual uses the convention $e = y - \\hat{y}$, not $\\hat{y} - y$.",
+        "calculation": "$\\hat{y}(3) = 0.5 + 1.4 \\times 3 = 4.7$; residual $= 5 - 4.7 = 0.3$",
+        "result": "$e(3) = 0.3$"
       }
     ],
     "final_answer": "$\\hat{\\beta}_{1} = 1.4$, $\\hat{\\beta}_{0} = 0.5$; fitted line $\\hat{y} = 0.5 + 1.4x$; residual at $x = 3$ equals $0.3$ (£000).",

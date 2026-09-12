@@ -102,7 +102,7 @@ _MEANING_SAMPLES = (
     ),
     (
         "4.1.3-least-squares-cs1003.json",
-        "worked_example.steps[2].result",
+        "worked_example.final_answer",
         (r"\hat{\beta}_{1}", r"\hat{\beta}_{0}", "-0.3"),
         "subscripted OLS estimates",
     ),
@@ -298,7 +298,7 @@ def test_wave1_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2086
+    assert checked["totals"]["migrated"] == 2100
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -321,7 +321,7 @@ def test_wave1_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 331
+    assert migrated == 345
     assert still_pending_review == 0
     assert manual_excluded == 21
 
