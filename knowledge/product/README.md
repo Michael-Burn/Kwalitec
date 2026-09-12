@@ -55,6 +55,7 @@ Active
 | [`gp001_founder_governance_model/`](gp001_founder_governance_model/) | GP-001 — Founder Governance Model (founder-operated approval; evidence unchanged; DR-054; PR-027) |
 | [`KNOWN_UNKNOWNS_REGISTER.md`](KNOWN_UNKNOWNS_REGISTER.md) | Known-Unknowns Register — standing record of what the product can genuinely show today, and what remains unproven |
 | [`progression_readiness/`](progression_readiness/) | Progression Readiness — locked design for demonstrated competence for progression (standalone evaluator; unwired) |
+| [`numeric_assessment/`](numeric_assessment/) | Numeric Assessment Framework: locked design for authored Answer Specifications, evaluation policies, and three-tier numeric feedback (standalone; unwired) |
 | [`prd/`](../prd/) | Feature PRD template and future PRDs |
 | [`analytics/`](analytics/) | Product analytics architecture (design only) |
 | [`ep001_product_validation/`](ep001_product_validation/) | EP-001 educational validation framework |

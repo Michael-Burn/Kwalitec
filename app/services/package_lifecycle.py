@@ -629,6 +629,21 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/numeric_assessment",
+        layer="application",
+        responsibility=(
+            "Numeric Assessment Framework: authored Answer Specifications, "
+            "evaluation policies, and three-tier numeric feedback"
+        ),
+        owner="Numeric Assessment",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Standalone Numeric Assessment Framework; unwired from live "
+            "student surfaces. Does not change live grading yet."
+        ),
+    ),
+    PackageEntry(
         path="app/application/educational_quality",
         layer="application",
         responsibility="Educational quality certification",
