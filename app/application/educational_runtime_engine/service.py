@@ -581,31 +581,30 @@ class EducationalRuntimeEngineService:
             return None
 
         # PX-B-005 / PX-B-006: retire wrong-package or completed-learning blocking
-        # revision, then allow regeneration. Due review (Spacing Scheduler)
-        # outranks sequential when something is genuinely due; tip-front still
-        # outranks both.
+        # revision, then allow regeneration. Locked sitting precedence:
+        # overdue/due spaced review outranks post-tip Memory/Publication fronts
+        # and sequential package resolution (same law as arbitration).
         owed = None
-        if memory_pack is not None:
+        due_pack, _due_expl, _due_status = self._due_review_package_for_day(
+            user_id=user_id,
+            subject_code=enrolment.subject_code,
+            as_of=day,
+        )
+        if due_pack is not None:
+            owed = due_pack
+        elif memory_pack is not None:
             owed = memory_pack
         else:
-            due_pack, _due_expl, _due_status = self._due_review_package_for_day(
-                user_id=user_id,
-                subject_code=enrolment.subject_code,
-                as_of=day,
+            from app.application.educational_packages.selection import (
+                resolve_active_educational_package,
             )
-            if due_pack is not None:
-                owed = due_pack
-            else:
-                from app.application.educational_packages.selection import (
-                    resolve_active_educational_package,
-                )
 
-                owed = resolve_active_educational_package(
-                    subject_id=enrolment.subject_code,
-                    syllabus_topic_code=progress.current_topic_id or "",
-                    completed_package_ids=completed_packs,
-                    last_completed_package_id=last_pack_id,
-                )
+            owed = resolve_active_educational_package(
+                subject_id=enrolment.subject_code,
+                syllabus_topic_code=progress.current_topic_id or "",
+                completed_package_ids=completed_packs,
+                last_completed_package_id=last_pack_id,
+            )
         existing_pack = self._educational_package_id_for_mission(
             existing.mission_instance_id
         )
@@ -719,28 +718,28 @@ class EducationalRuntimeEngineService:
         else:
             plan = self._require_active_plan(enrolment)
 
-        due_pack, due_explanation, due_spacing_status = (None, "", "")
-        if memory_pack is None:
-            due_pack, due_explanation, due_spacing_status = (
-                self._due_review_package_for_day(
-                    user_id=user_id,
-                    subject_code=enrolment.subject_code,
-                    as_of=day,
-                )
+        # Always consult Spacing Scheduler first. A pending post-tip front must
+        # not suppress a genuinely overdue or due review (locked precedence).
+        due_pack, due_explanation, due_spacing_status = (
+            self._due_review_package_for_day(
+                user_id=user_id,
+                subject_code=enrolment.subject_code,
+                as_of=day,
             )
+        )
 
         package = self._authority.get_active(enrolment.subject_code)
         package_dict = package.package if package is not None else {}
         preferred_topic = progress.current_topic_id
-        if memory_pack is not None and (
+        if due_pack is not None:
+            preferred_topic = self._topic_id_for_package_code(
+                artefacts, due_pack.topic_code
+            ) or preferred_topic
+        elif memory_pack is not None and (
             progress.syllabus_complete or progress.current_topic_id is None
         ):
             preferred_topic = self._topic_id_for_package_code(
                 artefacts, memory_pack.topic_code
-            ) or preferred_topic
-        elif due_pack is not None:
-            preferred_topic = self._topic_id_for_package_code(
-                artefacts, due_pack.topic_code
             ) or preferred_topic
         certified_spec = self._select_certified_mission(
             package_dict,
@@ -824,14 +823,16 @@ class EducationalRuntimeEngineService:
             resolve_active_educational_package,
         )
 
-        pack = memory_pack
+        pack = None
         composer_selection_reason = SELECTION_REASON_SEQUENTIAL
         selection_explanation = ""
-        if pack is None and due_pack is not None:
+        if due_pack is not None:
             pack = due_pack
             composer_selection_reason = SELECTION_REASON_SPACED_REVIEW
             selection_explanation = due_explanation
-        elif pack is None and certified_guidance_enforced(enrolment.subject_code):
+        elif memory_pack is not None:
+            pack = memory_pack
+        elif certified_guidance_enforced(enrolment.subject_code):
             pack = resolve_active_educational_package(
                 subject_id=enrolment.subject_code,
                 syllabus_topic_code=human_code or template.topic_code,

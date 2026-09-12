@@ -290,3 +290,119 @@ def test_home_sequential_why_unchanged_when_nothing_due() -> None:
     )
     home = HomePageViewModel(educational=edu)
     assert StudentHomeService._why_now(home) == "Next in your study plan."
+
+
+def test_due_package_beats_pending_memory_pack(ctx, monkeypatch) -> None:
+    """Protected due review must win over an owed post-tip memory pack."""
+    user = make_user("due-beats-memory@example.com")
+    subject = publish_subject("DUEMEM")
+    runtime = EducationalRuntimeEngineService()
+    runtime.enrol_student(user_id=user.id, subject_code=subject)
+
+    memory = _Pack(
+        package_id="FAKE-MEMORY-PACK",
+        subject_id=subject,
+        topic_code="1.1",
+        display_title="Memory Front",
+    )
+    due = _Pack(
+        package_id=PACKAGE_DUE,
+        subject_id=subject,
+        topic_code="1.1",
+        display_title="Due review pack",
+    )
+    sequential = _Pack(
+        package_id=PACKAGE_SEQ,
+        subject_id=subject,
+        topic_code="2.1",
+        display_title="Sequential next",
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.guard.certified_guidance_enforced",
+        lambda subject_id: True,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.selection.pending_post_tip_front_package",
+        lambda **kwargs: memory,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.selection.resolve_active_educational_package",
+        lambda **kwargs: sequential,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.loader.find_package_by_id",
+        lambda pid: {
+            memory.package_id: memory,
+            due.package_id: due,
+            sequential.package_id: sequential,
+        }.get(pid),
+    )
+
+    completed_on = date(2026, 9, 1)
+    as_of = completed_on + timedelta(days=1)
+    get_spacing_scheduler().record_completed_exposure(
+        learner_id=str(user.id),
+        package_id=PACKAGE_DUE,
+        completed_on=completed_on,
+    )
+
+    spec = runtime.compute_daily_sitting_selection(
+        user_id=user.id,
+        subject_code=subject,
+        mission_date=as_of,
+    )
+    assert spec.educational_package_id == PACKAGE_DUE
+    assert spec.composer_selection_reason == SELECTION_REASON_SPACED_REVIEW
+
+
+def test_memory_pack_presented_when_nothing_due(ctx, monkeypatch) -> None:
+    """Pending memory pack remains available when Spacing has nothing due."""
+    user = make_user("memory-when-clear@example.com")
+    subject = publish_subject("MEMCLR")
+    runtime = EducationalRuntimeEngineService()
+    runtime.enrol_student(user_id=user.id, subject_code=subject)
+
+    memory = _Pack(
+        package_id="FAKE-MEMORY-CLEAR",
+        subject_id=subject,
+        topic_code="1.1",
+        display_title="Memory Front clear day",
+    )
+    sequential = _Pack(
+        package_id=PACKAGE_SEQ,
+        subject_id=subject,
+        topic_code="2.1",
+        display_title="Sequential next",
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.guard.certified_guidance_enforced",
+        lambda subject_id: True,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.selection.pending_post_tip_front_package",
+        lambda **kwargs: memory,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.selection.resolve_active_educational_package",
+        lambda **kwargs: sequential,
+    )
+    monkeypatch.setattr(
+        "app.application.educational_packages.loader.find_package_by_id",
+        lambda pid: {
+            memory.package_id: memory,
+            sequential.package_id: sequential,
+        }.get(pid),
+    )
+
+    day = date(2026, 9, 5)
+    spec = runtime.compute_daily_sitting_selection(
+        user_id=user.id,
+        subject_code=subject,
+        mission_date=day,
+    )
+    assert spec.educational_package_id == memory.package_id
+    assert spec.composer_selection_reason == SELECTION_REASON_SEQUENTIAL
+
+    mission = runtime.materialise_daily_mission_from_spec(spec)
+    assert mission.educational_package_id == memory.package_id
+    assert mission.composer_selection_reason == SELECTION_REASON_SEQUENTIAL
