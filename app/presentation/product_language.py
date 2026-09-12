@@ -120,7 +120,7 @@ EDUCATIONAL_MEMORY_MODEL_SENTENCE: str = (
 HISTORY_EPISTEMOLOGY_BRIDGE: str = (
     "History shows what you practiced (completed Sessions, study time, and "
     "readiness trends). Those numbers orient you; they are not Study Sensei’s "
-    "mentor narrative. What happened educationally, why it mattered, what was "
+    "learning story. What happened educationally, why it mattered, what was "
     "learned, and how that shapes future guidance live in the Decision Journal "
     "and Educational Timeline."
 )

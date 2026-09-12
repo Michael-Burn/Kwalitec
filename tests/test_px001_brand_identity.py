@@ -20,7 +20,7 @@ class TestBrandPositioningConstants:
     def test_product_descriptor_is_student_grade(self) -> None:
         assert PRODUCT_NAME == "Kwalitec"
         # PX-005 / D-EOS: retire "Education Operating System" on student paths.
-        assert PRODUCT_DESCRIPTOR == "Exam-ready study guidance"
+        assert PRODUCT_DESCRIPTOR == "Study guidance for your exam plan"
         assert "Education Operating System" not in PRODUCT_DESCRIPTOR
         assert PRODUCT_VALUE_PROPOSITION == "Know exactly what to study next."
         assert PRODUCT_TAGLINE == PRODUCT_DESCRIPTOR

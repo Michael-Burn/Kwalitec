@@ -73,7 +73,8 @@ def test_overview_vm_honest_general_when_no_readiness_estimate():
             ),
         )
     )
-    assert "strengthen readiness" in vm.expected_improvement_label.lower()
+    assert "advances coverage" in vm.expected_improvement_label.lower()
+    assert "strengthen readiness" not in vm.expected_improvement_label.lower()
     assert "%" not in vm.expected_improvement_label
     assert "3%" not in vm.expected_improvement_label
 

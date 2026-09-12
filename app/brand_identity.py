@@ -27,7 +27,7 @@ STUDENT_DASHBOARD_LABEL = "Student Dashboard"
 # Brand positioning (PX-001 / PX-005 D-EOS provisional).
 # "Education Operating System" retired on student paths — calm student descriptor.
 PRODUCT_NAME = "Kwalitec"
-PRODUCT_DESCRIPTOR = "Exam-ready study guidance"
+PRODUCT_DESCRIPTOR = "Study guidance for your exam plan"
 PRODUCT_VALUE_PROPOSITION = "Know exactly what to study next."
 
 # Single source of truth for the displayed Kwalitec logo.

@@ -116,12 +116,14 @@ def test_pc003_onboarding_header_count_matches_steps(app, ctx):
     assert "Step 1 of 6" not in html
 
 
-def test_pc004_learning_check_attributes_support_to_study_sensei():
-    """PC-004 / RP002-NCR-004 — Learning Check support speech is Sensei."""
+def test_pc004_learning_check_does_not_claim_sensei_support_from_answers():
+    """QG-7 — Learning Check entry stays honest about practice support."""
     entry = (ROOT / "app/templates/student/assessment/entry.html").read_text(
         encoding="utf-8"
     )
-    assert "help Study Sensei" in entry
-    assert "understand how to support you" in entry
+    assert "help Study Sensei" not in entry
+    assert "understand how to support you" not in entry
+    assert "Practice on this topic to support" in entry
+    assert "today’s Session." in entry
     assert "help Kwalitec" not in entry
     assert "Learning Check" in entry

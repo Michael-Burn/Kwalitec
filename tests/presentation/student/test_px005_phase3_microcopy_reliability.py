@@ -27,13 +27,14 @@ ROOT = Path(__file__).resolve().parents[3]
 
 class TestPx005IdentityMicrocopy:
     def test_eos_descriptor_retired(self) -> None:
-        assert PRODUCT_DESCRIPTOR == "Exam-ready study guidance"
+        assert PRODUCT_DESCRIPTOR == "Study guidance for your exam plan"
         assert PRODUCT_TAGLINE == PRODUCT_DESCRIPTOR
         assert "Education Operating System" not in PRODUCT_DESCRIPTOR
         manifest = (
             ROOT / "app/static/branding/manifest.webmanifest"
         ).read_text(encoding="utf-8")
-        assert "Exam-ready study guidance" in manifest
+        assert "Study guidance for your exam plan" in manifest
+        assert "Exam-ready" not in manifest
         assert "Education Operating System" not in manifest
 
     def test_student_release_identity(self) -> None:

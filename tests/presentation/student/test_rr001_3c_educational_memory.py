@@ -34,7 +34,8 @@ def test_educational_memory_model_sentence_distinguishes_surfaces():
 
 
 def test_history_bridge_sentence_is_context_not_mentor():
-    assert "not Study Sensei’s mentor narrative" in HISTORY_EPISTEMOLOGY_BRIDGE
+    assert "not Study Sensei’s learning story" in HISTORY_EPISTEMOLOGY_BRIDGE
+    assert "mentor" not in HISTORY_EPISTEMOLOGY_BRIDGE.lower()
     assert "Decision Journal" in HISTORY_EPISTEMOLOGY_BRIDGE
     assert "Educational Timeline" in HISTORY_EPISTEMOLOGY_BRIDGE
 

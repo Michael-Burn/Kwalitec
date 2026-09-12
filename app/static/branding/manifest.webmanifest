@@ -1,7 +1,7 @@
 {
   "name": "Kwalitec",
   "short_name": "Kwalitec",
-  "description": "Kwalitec — Exam-ready study guidance. Know exactly what to study next.",
+  "description": "Kwalitec — Study guidance for your exam plan. Know exactly what to study next.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

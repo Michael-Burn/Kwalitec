@@ -60,7 +60,7 @@ class TestPx007PremiumContracts:
     """Spot-check that Phase 1–4 premium contracts remain intact at certification."""
 
     def test_student_descriptor_not_eos(self) -> None:
-        assert PRODUCT_DESCRIPTOR == "Exam-ready study guidance"
+        assert PRODUCT_DESCRIPTOR == "Study guidance for your exam plan"
         assert "Education Operating System" not in PRODUCT_DESCRIPTOR
 
     def test_house_motion_tokens_present(self) -> None:

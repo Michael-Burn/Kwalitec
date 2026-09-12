@@ -62,12 +62,12 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     ),
     AdaptiveAssessmentCopy(
         key="session.quick_check.frame",
-        default="Quick check. Helps keep today's plan accurate.",
+        default="Quick check. Short practice on today's topic.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
         key="session.deep_check.frame",
-        default="Careful check on this topic. No grades, clearer next steps.",
+        default="Careful check on this topic. No grades.",
         description="Entry frame before first item",
     ),
     AdaptiveAssessmentCopy(
@@ -91,7 +91,7 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="session.readiness_check.frame",
         default=(
-            "Readiness check. Guides what to study next; it does not "
+            "Readiness check. Practice for today's topic; it does not "
             "predict your result."
         ),
         description="Entry frame before first item",
@@ -129,8 +129,9 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="explain.why_body",
         default=(
-            "This check helps keep today's plan accurate. "
-            "Your answers inform what to study next, they are not a grade."
+            "This check is short practice inside today's Session. "
+            "Your answers are practice evidence, not a grade, and they do not "
+            "rewrite today's plan."
         ),
         description="Default why-framing body",
     ),
@@ -146,13 +147,13 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     ),
     AdaptiveAssessmentCopy(
         key="feedback.use_to_guide",
-        default="We'll use this to guide practice.",
+        default="This stays as practice evidence from today's check.",
         description="Post-check evidence use line",
     ),
     AdaptiveAssessmentCopy(
         key="readiness.non_guarantee",
         default=(
-            "This guides what to study next. It does not predict your result."
+            "This is practice for today's focus. It does not predict your result."
         ),
         description="Mandatory non-guarantee for Readiness Check",
     ),
@@ -290,15 +291,16 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="quick_check.completion.uncertain",
         default=(
-            "Some parts may still feel uncertain, that is expected and "
-            "helps guide practice."
+            "Some parts may still feel uncertain, that is expected after a "
+            "short check."
         ),
         description="What remains uncertain",
     ),
     AdaptiveAssessmentCopy(
         key="quick_check.completion.mission_benefit",
         default=(
-            "Today's Mission can use this to stay accurate and supportive."
+            "Today's Mission continues as planned. This check was practice "
+            "on the same focus."
         ),
         description="How today's Mission may benefit",
     ),
@@ -432,15 +434,15 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.context.purpose",
         default=(
-            "This Quick Check gathers a little signal so today's Mission "
-            "can stay accurate for {focus}."
+            "This Quick Check is short practice on {focus} inside today's "
+            "Mission."
         ),
         description="Context Card purpose",
     ),
     AdaptiveAssessmentCopy(
         key="framing.context.benefit",
         default=(
-            "A clearer signal means more supportive next steps, not a grade."
+            "This is practice evidence, not a grade."
         ),
         description="Context Card expected benefit",
     ),
@@ -453,8 +455,9 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
         key="framing.context.why_expanded",
         default=(
             "You are seeing this check because today's Mission focus on "
-            "{focus} benefits from a short formative signal. Answers guide "
-            "practice. They are not a grade."
+            "{focus} includes a short practice check. Answers are practice "
+            "on this topic. They are not a grade, and they do not change "
+            "today's Mission choice."
         ),
         description="Expanded why-am-I-seeing-this on Context Card",
     ),
@@ -481,8 +484,8 @@ _COPY: tuple[AdaptiveAssessmentCopy, ...] = (
     AdaptiveAssessmentCopy(
         key="framing.summary.meaning",
         default=(
-            "That helps today's Mission stay aligned with how the ideas "
-            "are landing for you."
+            "That was practice on how the ideas are landing for you. "
+            "Today's Mission continues from your plan."
         ),
         description="What this means educationally",
     ),

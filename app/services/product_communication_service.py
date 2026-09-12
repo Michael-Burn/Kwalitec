@@ -89,7 +89,7 @@ class ProductCommunicationService:
     LEARNING_OUTCOMES_UNAVAILABLE = "Not available yet"
 
     # Marketing / soft claims
-    LOGIN_ANALYTICS_FEATURE = "Estimated readiness insights"
+    LOGIN_ANALYTICS_FEATURE = "Estimated readiness shown"
 
     @staticmethod
     def estimated_knowledge() -> ClaimSpeech:

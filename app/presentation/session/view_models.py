@@ -247,16 +247,16 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
         pct = abs(int(round(snap.expected_readiness_improvement * 100)))
         if snap.expected_readiness_improvement >= 0 and pct > 0:
             improvement = (
-                f"Possible readiness movement · about {pct}% "
-                "(estimate, not a guarantee)"
+                f"Possible coverage movement · about {pct}% "
+                "(display estimate only)"
             )
         else:
             improvement = "Possible readiness change noted (estimate only)"
     else:
         # Honest general purpose — do not invent a decorative percentage.
         improvement = (
-            "This Session is meant to strengthen readiness on today's topic. "
-            "how much depends on your practice."
+            "This Session advances coverage on today's topic. "
+            "Progress depends on the practice you complete."
         )
     begin = snap.begin_action
     return OverviewViewModel(
