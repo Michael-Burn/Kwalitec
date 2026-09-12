@@ -289,10 +289,18 @@ class PracticeScoreResult:
 def score_practice_response(
     item: ScoreablePracticeItem | None,
     response: str,
+    *,
+    flags: Any | None = None,
 ) -> PracticeScoreResult:
     """Score ``response`` against an authorised item.
 
     Unscoreable when the item or answer key is missing — never invents correctness.
+
+    When ``SR_NUMERIC_ASSESSMENT_FRAMEWORK`` is ON and the item is numeric with
+    a live authored ``answer_specification``, correctness uses the Numeric
+    Assessment Framework ``value_correct`` verdict and student-facing mistake
+    copy uses three-tier ``feedback_message``. Otherwise the legacy
+    numeric_tolerance / bundled ``common_mistake`` path is unchanged.
     """
     text = (response or "").strip()
     if item is None or not text:
@@ -317,6 +325,12 @@ def score_practice_response(
                 item.response_type.value if item is not None else ""
             ),
         )
+
+    framework = _score_via_numeric_assessment_framework(
+        item, text, flags=flags
+    )
+    if framework is not None:
+        return framework
 
     correct, matched = _matches_key(item, text)
     marks = float(item.mark_scheme.max_marks)
@@ -352,6 +366,81 @@ def score_practice_response(
         item_id=item.item_id,
         response_type=item.response_type.value,
         selected_misconception_tag=selected_tag,
+    )
+
+
+def _numeric_assessment_framework_enabled(*, flags: Any | None) -> bool:
+    if flags is None:
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+
+        flags = resolve_v2_feature_flags()
+    return bool(getattr(flags, "SR_NUMERIC_ASSESSMENT_FRAMEWORK", False))
+
+
+def _score_via_numeric_assessment_framework(
+    item: ScoreablePracticeItem,
+    text: str,
+    *,
+    flags: Any | None,
+) -> PracticeScoreResult | None:
+    """Flag-gated Numeric Assessment Framework path, or None to use legacy.
+
+    Falls back to legacy when the flag is OFF, the item is non-numeric, or no
+    live ``answer_specification`` exists for the item_id.
+    """
+    if item.response_type is not PracticeResponseType.NUMERIC:
+        return None
+    if not _numeric_assessment_framework_enabled(flags=flags):
+        return None
+
+    from app.application.numeric_assessment import (
+        evaluate,
+        get_live_answer_specification,
+    )
+
+    spec = get_live_answer_specification(item.item_id)
+    if spec is None:
+        return None
+
+    result = evaluate(spec, text)
+    correct = bool(result.value_correct)
+    matched = ""
+    if correct:
+        if item.answer_key.accepted:
+            matched = str(item.answer_key.accepted[0])
+        else:
+            matched = str(spec.canonical_value)
+
+    marks = float(item.mark_scheme.max_marks)
+    awarded = marks if correct else 0.0
+    outcome = "Correct" if correct else "Incorrect"
+    next_action = item.next_action
+    if not next_action:
+        next_action = (
+            "Continue to the next practice step."
+            if correct
+            else "Review the model answer, then try the next question."
+        )
+
+    # Three-tier feedback replaces bundled common_mistake for these items.
+    # Keep selected_misconception_tag empty for numeric (same as legacy), so
+    # OEA / Twin / Spacing evidence fields stay structurally unchanged.
+    common_mistake = "" if correct else result.feedback_message
+    return PracticeScoreResult(
+        scored=True,
+        correct=correct,
+        marks_awarded=awarded,
+        marks_available=marks,
+        matched_key=matched,
+        feedback_outcome=outcome,
+        explanation=item.explanation,
+        model_answer=item.model_answer,
+        common_mistake=common_mistake,
+        next_action=next_action,
+        emit_structured=item.is_structured,
+        item_id=item.item_id,
+        response_type=item.response_type.value,
+        selected_misconception_tag="",
     )
 
 

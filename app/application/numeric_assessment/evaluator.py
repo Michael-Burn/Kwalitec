@@ -1,7 +1,7 @@
 """Public evaluate() entry point for the Numeric Assessment Framework.
 
-Standalone: no live scoring wiring. Pure function of AnswerSpecification + raw
-response.
+Pure function of AnswerSpecification + raw response. Live cutover is owned by
+``score_practice_response`` behind ``SR_NUMERIC_ASSESSMENT_FRAMEWORK``.
 """
 
 from __future__ import annotations

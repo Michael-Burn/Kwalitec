@@ -1,9 +1,11 @@
-"""Numeric Assessment Framework (standalone; unwired from live scoring).
+"""Numeric Assessment Framework.
 
 Authored Answer Specifications drive parsing, evaluation-policy comparison,
-precision/representation checks, and three-tier feedback. Does not wire into
-scoreable_practice, routes, Twin, Policy V1, OEA, Spacing, VP-001, or
-Progression Readiness.
+precision/representation checks, and three-tier feedback.
+
+Live scoring cutover is flag-gated via ``SR_NUMERIC_ASSESSMENT_FRAMEWORK``
+(default OFF) inside ``score_practice_response``. Twin, Policy V1, OEA write
+mechanics, Spacing, VP-001, and Progression Readiness are not modified here.
 """
 
 from app.application.numeric_assessment.catalogue import (

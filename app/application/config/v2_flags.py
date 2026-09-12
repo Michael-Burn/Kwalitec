@@ -257,6 +257,12 @@ class Version2FeatureFlags:
     # Absent from render.yaml (ship dark). Requires M0 boundary ON to reach
     # the orchestrator; when ON, orchestrator uses Policy V1 instead of V0.
     ADR027_POLICY_V1: bool = False
+    # Numeric Assessment Framework live scoring cutover for migrated numeric
+    # checkpoints that carry an authored answer_specification.
+    # Default OFF; never inherited from Commercial Loop. Explicit env only.
+    # Absent from render.yaml (ship dark). When OFF, score_practice_response
+    # keeps the legacy numeric_tolerance / bundled common_mistake path.
+    SR_NUMERIC_ASSESSMENT_FRAMEWORK: bool = False
 
 
 _FALSY = frozenset({"0", "false", "no", "off"})
@@ -566,6 +572,9 @@ def resolve_v2_feature_flags(
         ),
         ADR027_POLICY_V1=_env_truthy(
             "KWALITEC_ADR027_POLICY_V1", environ=environ
+        ),
+        SR_NUMERIC_ASSESSMENT_FRAMEWORK=_env_truthy(
+            "SR_NUMERIC_ASSESSMENT_FRAMEWORK", environ=environ
         ),
     )
 

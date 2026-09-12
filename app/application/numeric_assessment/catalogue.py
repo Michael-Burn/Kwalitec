@@ -1,9 +1,9 @@
 """Load migrated Answer Specifications from live educational package JSON.
 
 Canonical store: each numeric checkpoint's ``answer_specification`` field in
-``app/curriculum/data/educational_packages/``. Live scoring still uses
-``numeric_tolerance`` / ``accepted_keywords`` via ``scoreable_practice`` until
-a separate wiring brief cuts over.
+``app/curriculum/data/educational_packages/``. Live ``score_practice_response``
+uses these specs only when ``SR_NUMERIC_ASSESSMENT_FRAMEWORK`` is ON; otherwise
+the legacy ``numeric_tolerance`` / ``accepted_keywords`` path remains.
 
 This module does not import the educational package ORM models beyond the
 shared package-root path helper, and it never calls ``score_practice_response``.
