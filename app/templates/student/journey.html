@@ -44,21 +44,30 @@
     <p class="ds-os-progress__label">
       {{ journey.progress_label or ((journey.progress_percent ~ '% through your syllabus') if journey.progress_percent is not none else 'Your syllabus path is taking shape') }}
     </p>
+    {% if journey.prior_knowledge_claim_label %}
+    <p class="ds-list__meta" data-journey-prior-knowledge="true">{{ journey.prior_knowledge_claim_label }}</p>
+    {% endif %}
     <div
       class="ds-os-progress__track"
       role="progressbar"
       aria-valuenow="{{ journey.progress_percent or 0 }}"
       aria-valuemin="0"
       aria-valuemax="100"
-      aria-label="{{ journey.progress_label or (journey.progress_percent ~ '% of syllabus covered') }}"
+      aria-label="{{ journey.progress_label or (journey.progress_percent ~ '% of syllabus completed') }}"
     >
       <div class="ds-os-progress__fill" style="width: {{ journey.progress_percent or 0 }}%"></div>
     </div>
     <ul class="ds-os-mastery__stats" aria-label="Syllabus covered summary">
       <li>
-        <span class="ds-list__meta">Topics complete</span>
-        <span class="ds-os-signals__value">{{ journey.completed_count or (journey.completed|length if journey.completed else 0) }}</span>
+        <span class="ds-list__meta">Topics completed</span>
+        <span class="ds-os-signals__value">{{ journey.completed_count or 0 }}</span>
       </li>
+      {% if journey.prior_knowledge_claimed_count %}
+      <li>
+        <span class="ds-list__meta">Already knew coming in</span>
+        <span class="ds-os-signals__value">{{ journey.prior_knowledge_claimed_count }}</span>
+      </li>
+      {% endif %}
       <li>
         <span class="ds-list__meta">Topics remaining</span>
         <span class="ds-os-signals__value">{{ journey.upcoming_count or (journey.upcoming|length if journey.upcoming else 0) }}</span>

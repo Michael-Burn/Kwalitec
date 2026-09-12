@@ -19,6 +19,9 @@ from app.application.study_curriculum.types import (
     CurriculumLearningSnapshot,
     TopicCurriculumState,
 )
+from app.presentation.student.coverage_honesty import (
+    verified_coverage_from_progress,
+)
 from app.presentation.student.dto.study_curriculum import (
     StudentStudyCurriculumPage,
     StudySectionView,
@@ -93,14 +96,14 @@ class StudentStudyCurriculumPresentationService:
             return empty
 
         snapshot = self._assemble(user_id=user_id, subject_code=code)
-        covered, total, ratio = self._coverage(
+        covered, total, ratio, claim_count, claim_label = self._coverage(
             user_id=user_id, subject_code=code
         )
         why_by_topic = self._why_for_subject(code)
         sections = _group_sections(snapshot.topics, why_by_topic=why_by_topic)
         has_topics = bool(snapshot.topics)
         coverage_label = (
-            f"{covered} of {total} topics covered" if total else ""
+            f"{covered} of {total} topics completed" if total else ""
         )
         return StudentStudyCurriculumPage(
             page_title=_PAGE_TITLE,
@@ -112,6 +115,8 @@ class StudentStudyCurriculumPresentationService:
             covered_count=covered,
             topic_count=total,
             coverage_ratio=ratio,
+            prior_knowledge_claimed_count=claim_count,
+            prior_knowledge_claim_label=claim_label,
             sections=sections,
             continue_href=(continue_href or "").strip(),
             continue_label=(continue_label or "Continue").strip() or "Continue",
@@ -143,8 +148,8 @@ class StudentStudyCurriculumPresentationService:
 
     def _coverage(
         self, *, user_id: int, subject_code: str
-    ) -> tuple[int, int, float]:
-        """Reuse Runtime C ``get_study_progress`` coverage, not four-state counts."""
+    ) -> tuple[int, int, float, int, str]:
+        """Verified Runtime C coverage, not four-state counts or claim union."""
         try:
             progress = self._study_progress
             if progress is None:
@@ -157,13 +162,17 @@ class StudentStudyCurriculumPresentationService:
                 user_id=user_id,
                 subject_code=subject_code,
             )
-            total = len(snap.topic_ids or ())
-            covered = len(snap.completed_topic_ids or ())
-            ratio = float(snap.coverage_ratio or 0.0)
-            return covered, total, ratio
+            parts = verified_coverage_from_progress(snap)
+            return (
+                parts.verified_count,
+                parts.topic_count,
+                parts.verified_ratio,
+                parts.claimed_count,
+                parts.claim_label,
+            )
         except Exception:  # noqa: BLE001 — presentation soft-fail
             logger.warning("study_curriculum_coverage_failed", exc_info=True)
-            return 0, 0, 0.0
+            return 0, 0, 0.0, 0, ""
 
     def _why_for_subject(self, subject_code: str) -> Mapping[str, str]:
         if self._why_lookup is not None:

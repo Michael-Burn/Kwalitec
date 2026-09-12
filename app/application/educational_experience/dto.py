@@ -70,6 +70,7 @@ class JourneyEducationSnapshot:
     current_topic_title: str
     completed_topics: tuple[tuple[str, str], ...] = field(default_factory=tuple)
     upcoming_topics: tuple[tuple[str, str], ...] = field(default_factory=tuple)
+    prior_knowledge_claimed_topic_ids: tuple[str, ...] = field(default_factory=tuple)
 
 
 @dataclass(frozen=True)

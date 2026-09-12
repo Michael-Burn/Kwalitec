@@ -42,3 +42,5 @@ class HonestProgressPage:
     milestones: tuple[ProgressMilestoneRow, ...]
     empty_milestones_message: str
     progress_href: str = ""
+    prior_knowledge_claimed_count: int = 0
+    prior_knowledge_claim_label: str = ""

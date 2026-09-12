@@ -416,8 +416,24 @@ class EducationalExperienceService:
             number=str(current.get("number") or ""),
         )
         section_title = section_by_topic.get(current_id, "")
-        coverage_percent = int(round(float(progress.coverage_ratio) * 100))
-        completed_count = len(progress.completed_topic_ids)
+        verified_ids = tuple(
+            getattr(progress, "verified_completed_topic_ids", ()) or ()
+        )
+        claimed_ids = tuple(
+            getattr(progress, "prior_knowledge_claimed_topic_ids", ()) or ()
+        )
+        if not verified_ids and not claimed_ids:
+            # Legacy undifferentiated progress: treat progressed as verified.
+            verified_ids = tuple(progress.completed_topic_ids or ())
+            verified_ratio = float(progress.coverage_ratio or 0.0)
+        else:
+            verified_ratio = float(
+                getattr(progress, "verified_coverage_ratio", 0.0) or 0.0
+            )
+            if topic_ids and verified_ids and verified_ratio <= 0.0:
+                verified_ratio = len(verified_ids) / len(topic_ids)
+        coverage_percent = int(round(max(0.0, min(1.0, verified_ratio)) * 100))
+        completed_count = len(verified_ids)
 
         position = CurriculumPositionSnapshot(
             subject_code=enrolment.subject_code,
@@ -433,7 +449,7 @@ class EducationalExperienceService:
                 f"Topic {min(position_index, topic_count)} of {topic_count}"
                 f" · {completed_count} complete"
             ),
-            coverage_ratio=float(progress.coverage_ratio),
+            coverage_ratio=verified_ratio,
             coverage_percent=coverage_percent,
             journey_stage=str(progress.journey_stage or ""),
         )
@@ -708,6 +724,9 @@ class EducationalExperienceService:
             current_topic_title=current_title,
             completed_topics=completed,
             upcoming_topics=upcoming,
+            prior_knowledge_claimed_topic_ids=tuple(
+                getattr(progress, "prior_knowledge_claimed_topic_ids", ()) or ()
+            ),
         )
 
     def _pacing_education(

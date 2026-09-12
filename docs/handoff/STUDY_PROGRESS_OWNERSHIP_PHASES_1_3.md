@@ -29,6 +29,6 @@ Stage A `TopicProgress.completed` remains a historical/legacy write path (wizard
 
 Claims may influence where the product positions the student. They must never be written or classified as Kwalitec-verified coverage.
 
-## Finding for a later pass
+## Presentation honesty (follow-on)
 
-Honest Progress / Stats still surface a single `coverage_ratio` (progressed) without a student-visible “claimed vs verified” label. The data model now exposes the split; presentation honesty is out of scope for this increment.
+Student-facing Home / Journey / Study / Stats now show **verified completion** as the primary coverage number, with prior-knowledge claims as a separate quiet line when present (`N already knew coming in`). Continue-from / journey position still use progressed-past under the hood.

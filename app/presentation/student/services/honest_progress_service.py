@@ -29,6 +29,9 @@ from app.infrastructure.adapters.learner_progress.query_adapter import (
 from app.infrastructure.adapters.learner_progress.shown_milestones_persistence import (
     MilestonesShownPersistence,
 )
+from app.presentation.student.coverage_honesty import (
+    verified_coverage_from_progress,
+)
 from app.presentation.student.dto.honest_progress import (
     HonestProgressPage,
     LearningStateCountRow,
@@ -169,9 +172,14 @@ class HonestProgressService:
         """Assemble the dedicated Stats page from read-only ports."""
         day = as_of or date.today()
         streak = self.streak_stats(user_id=user_id, as_of=day)
-        covered, total, coverage_percent, coverage_label = self._syllabus_coverage(
-            user_id
-        )
+        (
+            covered,
+            total,
+            coverage_percent,
+            coverage_label,
+            claimed_count,
+            claim_label,
+        ) = self._syllabus_coverage(user_id)
         learning_counts = self._learning_state_counts(user_id)
         mastered = next(
             (
@@ -203,6 +211,8 @@ class HonestProgressService:
             syllabus_coverage_label=coverage_label,
             covered_count=covered,
             topic_count=total,
+            prior_knowledge_claimed_count=claimed_count,
+            prior_knowledge_claim_label=claim_label,
             learning_state_counts=learning_counts,
             topics_mastered_count=mastered,
             milestones=rows,
@@ -318,25 +328,28 @@ class HonestProgressService:
 
     def _syllabus_coverage(
         self, user_id: int
-    ) -> tuple[int, int, int | None, str]:
-        """Reuse Runtime C ``get_study_progress`` coverage (same as Study/Home)."""
+    ) -> tuple[int, int, int | None, str, int, str]:
+        """Verified Study Progress coverage (same honesty rule as Study/Home)."""
         subject_code = self._resolve_subject_code(user_id)
         if not subject_code:
-            return 0, 0, None, ""
+            return 0, 0, None, "", 0, ""
         try:
             snap = self._study_progress_service().get_study_progress(
                 user_id=user_id,
                 subject_code=subject_code,
             )
-            total = len(snap.topic_ids or ())
-            covered = len(snap.completed_topic_ids or ())
-            ratio = float(snap.coverage_ratio or 0.0)
-            percent = int(round(max(0.0, min(1.0, ratio)) * 100))
-            label = f"{covered} of {total} topics covered" if total else ""
-            return covered, total, percent if total else None, label
+            parts = verified_coverage_from_progress(snap)
+            return (
+                parts.verified_count,
+                parts.topic_count,
+                parts.verified_percent if parts.topic_count else None,
+                parts.coverage_label,
+                parts.claimed_count,
+                parts.claim_label,
+            )
         except Exception:  # noqa: BLE001
             logger.warning("honest_progress_coverage_failed", exc_info=True)
-            return 0, 0, None, ""
+            return 0, 0, None, "", 0, ""
 
     def _learning_state_counts(
         self, user_id: int

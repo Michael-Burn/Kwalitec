@@ -6,6 +6,7 @@ import ast
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pytest
 from flask import render_template
 
 from app.application.progress_engine.dto import (
@@ -54,11 +55,22 @@ def _progress(
     completed: tuple[str, ...] = (),
     current_topic_id: str | None = None,
     curriculum_identity: str = "CS1:test",
+    verified: tuple[str, ...] | None = None,
+    claimed: tuple[str, ...] = (),
 ) -> StudyProgress:
-    completed_set = frozenset(completed)
+    verified_ids = completed if verified is None else verified
+    claimed_ids = tuple(claimed)
+    progressed = tuple(
+        tid for tid in topic_ids if tid in set(verified_ids) | set(claimed_ids)
+    )
+    if verified is None and not claimed_ids:
+        progressed = tuple(completed)
+        verified_ids = tuple(completed)
+    completed_set = frozenset(progressed)
     incomplete = tuple(tid for tid in topic_ids if tid not in completed_set)
     remaining = incomplete
-    ratio = (len(completed) / len(topic_ids)) if topic_ids else 0.0
+    progressed_ratio = (len(progressed) / len(topic_ids)) if topic_ids else 0.0
+    verified_ratio = (len(verified_ids) / len(topic_ids)) if topic_ids else 0.0
     position = CurriculumPosition(
         curriculum_identity=curriculum_identity,
         current_topic_id=current_topic_id,
@@ -68,19 +80,19 @@ def _progress(
             else None
         ),
         topic_count=len(topic_ids),
-        completed_count=len(completed),
+        completed_count=len(progressed),
         remaining_count=len(remaining),
-        coverage_ratio=ratio,
+        coverage_ratio=progressed_ratio,
         journey_stage="in_progress",
         syllabus_complete=not remaining,
     )
     return StudyProgress(
         curriculum_identity=curriculum_identity,
         topic_ids=topic_ids,
-        completed_topic_ids=completed,
+        completed_topic_ids=progressed,
         incomplete_topic_ids=incomplete,
         current_topic_id=current_topic_id,
-        coverage_ratio=ratio,
+        coverage_ratio=progressed_ratio,
         journey_stage=position.journey_stage,
         syllabus_complete=position.syllabus_complete,
         completed_objective_ids=(),
@@ -92,6 +104,10 @@ def _progress(
             estimated_topics_remaining=len(incomplete),
             twin_present=False,
         ),
+        verified_completed_topic_ids=tuple(verified_ids),
+        prior_knowledge_claimed_topic_ids=claimed_ids,
+        progressed_topic_ids=progressed,
+        verified_coverage_ratio=verified_ratio,
     )
 
 
@@ -210,12 +226,15 @@ def test_study_page_projects_all_four_learning_states():
 def test_coverage_uses_study_progress_not_four_state_counts():
     page = _build_mixed_page()
     progress = _mixed_progress()
-    assert page.covered_count == len(progress.completed_topic_ids) == 2
+    assert page.covered_count == len(progress.verified_completed_topic_ids) == 2
     assert page.topic_count == len(progress.topic_ids) == 5
-    assert page.coverage_ratio == progress.coverage_ratio
-    assert page.coverage_label == "2 of 5 topics covered"
+    assert page.coverage_ratio == progress.verified_coverage_ratio
+    assert page.coverage_label == "2 of 5 topics completed"
     honest_percent = int(
-        round(max(0.0, min(1.0, float(progress.coverage_ratio or 0.0))) * 100)
+        round(
+            max(0.0, min(1.0, float(progress.verified_coverage_ratio or 0.0)))
+            * 100
+        )
     )
     assert honest_percent == 40
     mastered = sum(
@@ -234,6 +253,37 @@ def test_coverage_uses_study_progress_not_four_state_counts():
     assert page.covered_count != started
 
 
+def test_study_coverage_excludes_prior_knowledge_claims_from_verified_ratio(app):
+    topic_ids = (
+        TOPIC_MASTERED,
+        TOPIC_COMPLETE_DEVELOPING,
+        TOPIC_DEVELOPING,
+        TOPIC_NOT_YET_ASSESSED,
+        TOPIC_NOT_STARTED,
+    )
+    progress = _progress(
+        topic_ids=topic_ids,
+        verified=(TOPIC_MASTERED,),
+        claimed=(TOPIC_COMPLETE_DEVELOPING,),
+        current_topic_id=TOPIC_DEVELOPING,
+    )
+    page = StudentStudyCurriculumPresentationService(
+        assembler=_FakeAssembler(_mixed_snapshot()),
+        study_progress=_FakeProgress(progress),
+        why_lookup=lambda _code: {},
+    ).build(user_id=1, subject_code="CS1", subject_label="CS1")
+    html = _render_study(app, page)
+    assert page.covered_count == 1
+    assert page.coverage_ratio == pytest.approx(0.2)
+    assert page.coverage_label == "1 of 5 topics completed"
+    assert page.prior_knowledge_claim_label == "1 already knew coming in"
+    assert "1 of 5 topics completed" in html
+    assert "1 already knew coming in" in html
+    assert 'data-study-prior-knowledge="true"' in html
+    assert progress.coverage_ratio == pytest.approx(0.4)
+    assert page.coverage_ratio != progress.coverage_ratio
+
+
 def test_study_template_renders_four_states_and_coverage(app, ctx):
     page = _build_mixed_page()
     html = _render_study(app, page)
@@ -241,7 +291,7 @@ def test_study_template_renders_four_states_and_coverage(app, ctx):
     assert "Not yet assessed" in html
     assert "Developing" in html
     assert "Mastered" in html
-    assert "2 of 5 topics covered" in html
+    assert "2 of 5 topics completed" in html
     assert 'data-learning-state="mastered"' in html
     assert 'data-learning-state="developing"' in html
     assert 'data-learning-state="not_yet_assessed"' in html
@@ -370,7 +420,7 @@ def test_study_route_renders_mixed_states(student_client, monkeypatch):
     assert "Not yet assessed" in html
     assert "Developing" in html
     assert "Mastered" in html
-    assert "2 of 5 topics covered" in html
+    assert "2 of 5 topics completed" in html
     assert 'data-study-curriculum="page"' in html
     assert "/session/live-sess/overview" in html
     assert 'data-session-resume="true"' in html

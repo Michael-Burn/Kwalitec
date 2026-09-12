@@ -208,6 +208,8 @@ class JourneyPageViewModel:
     prerequisite_notes: tuple[str, ...] = ()
     completed_count: int = 0
     upcoming_count: int = 0
+    prior_knowledge_claimed_count: int = 0
+    prior_knowledge_claim_label: str = ""
     primary_cta_label: str = "Continue Journey"
     primary_cta_enabled: bool = False
     # PX-001 — Runtime C educational enrichment (optional).

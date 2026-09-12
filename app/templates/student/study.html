@@ -52,6 +52,9 @@
   <section class="ds-section" aria-labelledby="study-coverage-title">
     <h2 id="study-coverage-title" class="ds-section__title">Syllabus covered</h2>
     <p class="ds-os-study__coverage" data-study-coverage="true">{{ study.coverage_label }}</p>
+    {% if study.prior_knowledge_claim_label %}
+    <p class="ds-list__meta" data-study-prior-knowledge="true">{{ study.prior_knowledge_claim_label }}</p>
+    {% endif %}
   </section>
   {% endif %}
 

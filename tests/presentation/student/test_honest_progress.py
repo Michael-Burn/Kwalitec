@@ -8,6 +8,7 @@ from datetime import date
 from pathlib import Path
 from unittest.mock import MagicMock
 
+import pytest
 from flask import get_flashed_messages, render_template
 
 from app.application.learner_progress.index_document import merge_qualifying_date
@@ -112,10 +113,21 @@ def _study_progress(
     *,
     topic_ids: tuple[str, ...],
     completed: tuple[str, ...] = (),
+    verified: tuple[str, ...] | None = None,
+    claimed: tuple[str, ...] = (),
 ) -> StudyProgress:
-    completed_set = frozenset(completed)
+    verified_ids = completed if verified is None else verified
+    claimed_ids = tuple(claimed)
+    progressed = tuple(
+        tid for tid in topic_ids if tid in set(verified_ids) | set(claimed_ids)
+    )
+    if verified is None and not claimed_ids:
+        progressed = tuple(completed)
+        verified_ids = tuple(completed)
+    completed_set = frozenset(progressed)
     incomplete = tuple(tid for tid in topic_ids if tid not in completed_set)
-    ratio = (len(completed) / len(topic_ids)) if topic_ids else 0.0
+    progressed_ratio = (len(progressed) / len(topic_ids)) if topic_ids else 0.0
+    verified_ratio = (len(verified_ids) / len(topic_ids)) if topic_ids else 0.0
     current = incomplete[0] if incomplete else None
     position = CurriculumPosition(
         curriculum_identity="CS1:test",
@@ -124,19 +136,19 @@ def _study_progress(
             topic_ids.index(current) if current in topic_ids else None
         ),
         topic_count=len(topic_ids),
-        completed_count=len(completed),
+        completed_count=len(progressed),
         remaining_count=len(incomplete),
-        coverage_ratio=ratio,
+        coverage_ratio=progressed_ratio,
         journey_stage="in_progress",
         syllabus_complete=not incomplete,
     )
     return StudyProgress(
         curriculum_identity="CS1:test",
         topic_ids=topic_ids,
-        completed_topic_ids=completed,
+        completed_topic_ids=progressed,
         incomplete_topic_ids=incomplete,
         current_topic_id=current,
-        coverage_ratio=ratio,
+        coverage_ratio=progressed_ratio,
         journey_stage=position.journey_stage,
         syllabus_complete=position.syllabus_complete,
         completed_objective_ids=(),
@@ -148,6 +160,10 @@ def _study_progress(
             estimated_topics_remaining=len(incomplete),
             twin_present=False,
         ),
+        verified_completed_topic_ids=tuple(verified_ids),
+        prior_knowledge_claimed_topic_ids=claimed_ids,
+        progressed_topic_ids=progressed,
+        verified_coverage_ratio=verified_ratio,
     )
 
 
@@ -525,11 +541,57 @@ def test_coverage_matches_existing_study_progress_formula(app, ctx):
     assert stats_page.covered_count == study_page.covered_count == 2
     assert stats_page.topic_count == study_page.topic_count == 5
     assert stats_page.syllabus_coverage_label == study_page.coverage_label
-    assert stats_page.syllabus_coverage_label == "2 of 5 topics covered"
+    assert stats_page.syllabus_coverage_label == "2 of 5 topics completed"
     expected_percent = int(
-        round(max(0.0, min(1.0, float(progress.coverage_ratio or 0.0))) * 100)
+        round(max(0.0, min(1.0, float(progress.verified_coverage_ratio or 0.0))) * 100)
     )
     assert stats_page.syllabus_coverage_percent == expected_percent == 40
+
+
+def test_stats_distinguishes_verified_completion_from_prior_knowledge_claims(app, ctx):
+    snapshot = _snapshot_with_states()
+    topic_ids = tuple(t.topic_id for t in snapshot.topics)
+    progress = _study_progress(
+        topic_ids=topic_ids,
+        verified=(TOPIC_MASTERED,),
+        claimed=(TOPIC_EXTRA_MASTERED,),
+    )
+    fake_progress = _FakeProgress(progress)
+    svc = HonestProgressService(
+        study_day_query=MagicMock(
+            streak_stats=MagicMock(
+                return_value=StreakStats(
+                    current_streak_days=0,
+                    longest_streak_days=0,
+                    qualifying_dates=(),
+                )
+            )
+        ),
+        shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
+        assembler=_FakeAssembler(snapshot),
+        study_progress=fake_progress,
+    )
+    svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
+    with app.test_request_context("/student/progress"):
+        page = svc.build_progress_page(user_id=11, as_of=AS_OF)
+        html = render_template(
+            "student/progress.html",
+            progress=page,
+            page=None,
+            title=page.page_title,
+        )
+    assert page.covered_count == 1
+    assert page.topic_count == 5
+    assert page.syllabus_coverage_percent == 20
+    assert page.syllabus_coverage_label == "1 of 5 topics completed"
+    assert page.prior_knowledge_claimed_count == 1
+    assert page.prior_knowledge_claim_label == "1 already knew coming in"
+    assert "1 of 5 topics completed" in html
+    assert "1 already knew coming in" in html
+    assert 'data-honest-progress="prior-knowledge"' in html
+    # Progressed union must not inflate the verified ratio shown to students.
+    assert progress.coverage_ratio == pytest.approx(0.4)
+    assert page.syllabus_coverage_percent != int(round(progress.coverage_ratio * 100))
 
 
 def test_honest_progress_modules_do_not_import_content_authoring_paths():

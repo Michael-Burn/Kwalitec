@@ -83,6 +83,9 @@
     <h2 id="progress-curriculum-title" class="ds-section__title">Curriculum</h2>
     {% if progress.syllabus_coverage_label %}
     <p class="ds-os-stats__coverage" data-honest-progress="coverage">{{ progress.syllabus_coverage_label }}</p>
+    {% if progress.prior_knowledge_claim_label %}
+    <p class="ds-list__meta" data-honest-progress="prior-knowledge">{{ progress.prior_knowledge_claim_label }}</p>
+    {% endif %}
     {% if progress.syllabus_coverage_percent is not none %}
     <div
       class="ds-os-progress__track"

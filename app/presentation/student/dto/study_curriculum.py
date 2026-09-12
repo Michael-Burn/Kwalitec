@@ -50,3 +50,5 @@ class StudentStudyCurriculumPage:
     empty_reason: str
     empty_action_label: str
     empty_action_href: str
+    prior_knowledge_claimed_count: int = 0
+    prior_knowledge_claim_label: str = ""

@@ -7,6 +7,9 @@ from datetime import date
 from app.application.educational_experience.dto import (
     EducationalExperienceSnapshot,
 )
+from app.presentation.student.coverage_honesty import (
+    prior_knowledge_claim_label,
+)
 from app.presentation.student.navigation import build_navigation
 from app.presentation.student.view_models import (
     CountdownCardViewModel,
@@ -43,7 +46,7 @@ def educational_vm(
         section_title=pos.section_title,
         position_label=pos.position_label,
         coverage_percent=pos.coverage_percent,
-        coverage_label=f"{pos.coverage_percent}% of syllabus topics complete",
+        coverage_label=f"{pos.coverage_percent}% of syllabus topics completed",
         mission_title=(mission.title if mission else pos.topic_title),
         mission_rationale=(
             (mission.educational_rationale if mission else "") or journey.why_today
@@ -67,7 +70,7 @@ def educational_vm(
         unlocks_next=journey.unlocks_next,
         journey_evidence=journey.supporting_evidence,
         progress_percent=pos.coverage_percent,
-        progress_label=f"{pos.coverage_percent}% of syllabus covered",
+        progress_label=f"{pos.coverage_percent}% of syllabus completed",
         pacing_summary=pacing.pacing_summary,
         feasibility_label=pacing.feasibility_label,
         exam_date_label=pacing.exam_date_label,
@@ -369,6 +372,11 @@ def _journey_from_educational(
     edu: EducationalExperienceViewModel,
 ) -> JourneyPageViewModel:
     journey = snap.journey
+    claimed = {
+        str(tid).strip()
+        for tid in (journey.prior_knowledge_claimed_topic_ids or ())
+        if str(tid).strip()
+    }
     current = None
     if snap.curriculum_position.topic_id:
         current = JourneyTopicViewModel(
@@ -381,7 +389,9 @@ def _journey_from_educational(
         JourneyTopicViewModel(
             topic_id=tid,
             title=title,
-            status_label="Completed",
+            status_label=(
+                "Already knew coming in" if tid in claimed else "Completed"
+            ),
         )
         for tid, title in journey.completed_topics
     )
@@ -394,6 +404,9 @@ def _journey_from_educational(
         )
         for i, (tid, title) in enumerate(journey.upcoming_topics)
     )
+    verified_completed = tuple(t for t in completed if t.topic_id not in claimed)
+    claim_count = len(claimed)
+    claim_label = prior_knowledge_claim_label(claim_count)
     return JourneyPageViewModel(
         examination_label=edu.examination_label,
         current=current,
@@ -411,8 +424,10 @@ def _journey_from_educational(
             )
             if note
         ),
-        completed_count=len(completed),
+        completed_count=len(verified_completed),
         upcoming_count=len(upcoming),
+        prior_knowledge_claimed_count=claim_count,
+        prior_knowledge_claim_label=claim_label,
         primary_cta_label="Return Home",
         primary_cta_enabled=True,
         educational=edu,
