@@ -442,7 +442,7 @@ class RuntimeAPresentationAdapter:
         elif is_consolidation:
             mode_sentence = (
                 "In Learning Mode, today's mission is a disclosed consolidation "
-                "checkpoint on a weak covered topic — not continued forward "
+                "checkpoint on a covered topic, not continued forward "
                 "syllabus progress, and not Revision Mode."
             )
         else:

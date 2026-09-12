@@ -136,6 +136,7 @@ class EducationalExplainabilityService:
         total_topics: int | None = None,
         syllabus_coverage_pct: float | None = None,
         is_revision: bool = False,
+        estimated_knowledge: float | None = None,
     ) -> MissionNarrative | None:
         """Assemble Today's Mission educational narrative.
 
@@ -147,6 +148,8 @@ class EducationalExplainabilityService:
             total_topics: Syllabus topic count when known.
             syllabus_coverage_pct: Weighted syllabus coverage 0–100 when known.
             is_revision: True when Learning Lifecycle is Revision (V1SP-001A).
+            estimated_knowledge: Twin EK 0–100 when assessed; None when not
+                yet assessed or unknown (presentation honesty only).
 
         Returns:
             MissionNarrative, or None when there is no mission to narrate.
@@ -175,6 +178,7 @@ class EducationalExplainabilityService:
                 completed_topics=completed_topics,
                 total_topics=total_topics,
                 syllabus_coverage_pct=syllabus_coverage_pct,
+                estimated_knowledge=estimated_knowledge,
             )
 
         observed: list[str] = [
@@ -268,6 +272,7 @@ class EducationalExplainabilityService:
         completed_topics: int | None,
         total_topics: int | None,
         syllabus_coverage_pct: float | None,
+        estimated_knowledge: float | None = None,
     ) -> MissionNarrative:
         """Narrate a Learning Mode consolidation checkpoint (not Revision Mode)."""
         observed: list[str] = [
@@ -291,10 +296,18 @@ class EducationalExplainabilityService:
                 f"Syllabus coverage (derived from Study Progress): "
                 f"{int(round(syllabus_coverage_pct))}% of official syllabus weighting."
             )
-            estimates.append(
-                "Estimated Knowledge on this covered topic is still weak — "
-                "this checkpoint rebuilds fluency before more new syllabus work."
-            )
+            if estimated_knowledge is None:
+                estimates.append(
+                    "Estimated Knowledge on this covered topic is not yet "
+                    "assessed. This checkpoint builds fluency before more "
+                    "new syllabus work."
+                )
+            else:
+                estimates.append(
+                    "Estimated Knowledge from practice on this covered topic "
+                    "is still developing. This checkpoint rebuilds fluency "
+                    "before more new syllabus work."
+                )
         else:
             estimates.append(
                 "Estimated Knowledge cannot yet be summarised here. "
@@ -319,22 +332,23 @@ class EducationalExplainabilityService:
             )
 
         position = (
-            "You are on a Learning Mode consolidation checkpoint — a disclosed "
-            "pause to reinforce a weak covered topic — not continued forward "
-            "syllabus progress, and not Revision Mode."
+            "You are on a Learning Mode consolidation checkpoint: a disclosed "
+            "pause on a covered topic selected for this consolidation "
+            "checkpoint, not continued forward syllabus progress, and not "
+            "Revision Mode."
         )
 
         return MissionNarrative(
             topic_title=mission_title,
             educational_purpose=(
-                "Reinforce a weak covered topic at a Learning Mode consolidation "
+                "Revisit a covered topic at a Learning Mode consolidation "
                 "checkpoint before returning to Current Learning Topic sequencing."
             ),
             reason_for_selection=(
                 "In Learning Mode, today's mission is a disclosed consolidation "
                 "checkpoint: after several new syllabus topics, the plan pauses "
-                "forward progress to reinforce the weakest covered topic by "
-                "Estimated Knowledge — not silent interruption, and not "
+                "forward progress to revisit a covered topic selected for this "
+                "consolidation checkpoint, not silent interruption, and not "
                 "Revision Mode."
             ),
             educational_position=position,

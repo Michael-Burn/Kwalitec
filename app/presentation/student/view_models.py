@@ -1461,7 +1461,7 @@ def _needs_attention_topics(
                 JourneyTopicViewModel(
                     topic_id=option.option_id,
                     title=title,
-                    status_label=option.priority_label or "Strengthen",
+                    status_label=option.priority_label or "Due for review",
                     prerequisite_note=note,
                 )
             )
@@ -1476,7 +1476,7 @@ def _needs_attention_topics(
                     topic_id=f"hist-{len(items)}",
                     title=title,
                     status_label="Recent practice",
-                    prerequisite_note="From your recent Sessions: worth reinforcing.",
+                    prerequisite_note="From your recent Sessions.",
                 )
             )
     return tuple(items[:5])
@@ -1498,7 +1498,7 @@ def _journey_learning_insights(
     if revision and revision.primary:
         title = (revision.primary.topic_title or "").strip()
         if title:
-            lines.append(f"Revision suggests reinforcing {title} next.")
+            lines.append(f"Revision has {title} due for review.")
     if history and len(history.readiness_progression) >= 2:
         trend = _readiness_trend_label(history.readiness_progression)
         if trend:

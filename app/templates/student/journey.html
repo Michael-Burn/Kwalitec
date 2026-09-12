@@ -97,7 +97,7 @@
     {% endif %}
   </section>
 
-  {# ——— Up Next / Needs Attention / Remaining ——— #}
+  {# ——— Up Next / Due for review / Remaining ——— #}
   <section class="ds-os-mastery-insight" aria-label="Journey focus">
     {% set up_next = journey.up_next or (journey.upcoming[0] if journey.upcoming and journey.upcoming|length > 0 else none) %}
     {% if up_next %}
@@ -127,9 +127,9 @@
     {% endif %}
 
     {% if journey.needs_attention and journey.needs_attention|length > 0 %}
-    <article class="ds-panel" aria-labelledby="needs-attention-title" data-weak-topic-centre="true">
-      <h2 class="ds-section__title" id="needs-attention-title">Needs Attention</h2>
-      <p class="ds-list__meta">Topics to strengthen. Based on recent practice and Revision guidance.</p>
+    <article class="ds-panel" aria-labelledby="due-for-review-title" data-weak-topic-centre="true">
+      <h2 class="ds-section__title" id="due-for-review-title">Due for review</h2>
+      <p class="ds-list__meta">Topics whose scheduled review is due.</p>
       <ul class="ds-list">
         {% for topic in journey.needs_attention[:5] %}
         <li class="ds-list__row">
@@ -141,13 +141,13 @@
       </ul>
       <p class="ds-list__meta">
         <a href="{{ url_for('student.revision') }}">Open Revision</a>
-        for guided reinforcement.
+        when you are ready.
       </p>
     </article>
     {% elif journey.learning_insights_status == 'building' %}
-    <article class="ds-panel" aria-labelledby="needs-attention-building-title" data-weak-topic-centre="true">
-      <h2 class="ds-section__title" id="needs-attention-building-title">Needs Attention</h2>
-      <p class="ds-list__meta">Topics that need strengthening will appear here after more practice.</p>
+    <article class="ds-panel" aria-labelledby="due-for-review-building-title" data-weak-topic-centre="true">
+      <h2 class="ds-section__title" id="due-for-review-building-title">Due for review</h2>
+      <p class="ds-list__meta">Scheduled reviews will appear here when they are due.</p>
     </article>
     {% endif %}
 

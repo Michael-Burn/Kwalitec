@@ -206,7 +206,8 @@ class TestPresentationSurfaces:
     def test_journey_weak_topic_centre_markers(self):
         text = JOURNEY.read_text(encoding="utf-8")
         assert 'data-weak-topic-centre="true"' in text
-        assert "Needs Attention" in text
+        assert "Due for review" in text
+        assert "Needs Attention" not in text
         assert "Open Revision" in text
 
 

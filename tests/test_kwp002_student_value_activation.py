@@ -206,7 +206,8 @@ class TestJourneyActivation:
         journey = (STUDENT_TEMPLATES / "journey.html").read_text(encoding="utf-8")
         assert "Learning Insights" in journey
         assert "Up Next" in journey
-        assert "Needs Attention" in journey
+        assert "Due for review" in journey
+        assert "Needs Attention" not in journey
         assert "Remaining Topics" in journey
         assert "Overall mastery" not in journey
 
