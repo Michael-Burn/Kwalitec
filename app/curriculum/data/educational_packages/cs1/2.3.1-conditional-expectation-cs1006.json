@@ -154,7 +154,8 @@
           "misconception_tag": "not_a_function_of_x"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T03-LO01"
     },
     {
       "episode_id": "lep-cs1006-2.3.1-cp-01",
@@ -178,7 +179,8 @@
       "success_criteria": [
         "Enters a decimal within 0.001 of 0.571.",
         "Forms $E[Y|X=1]$ from the normalised $X=1$ slice, not from $E[Y]$ or a raw joint cell."
-      ]
+      ],
+      "objective_id": "CS1-B-T03-LO01"
     }
   ],
   "reflection": {

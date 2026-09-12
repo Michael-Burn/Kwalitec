@@ -155,7 +155,8 @@
           "misconception_tag": "between_group_variance_dropped"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T03-LO02"
     },
     {
       "episode_id": "lep-cs1006-2.3.2-cp-01",
@@ -179,7 +180,8 @@
       "success_criteria": [
         "Enters a value within 0.5 of 14.",
         "Applies the tower property with probability weights, not an unweighted average of conditional means."
-      ]
+      ],
+      "objective_id": "CS1-B-T03-LO02"
     }
   ],
   "reflection": {
