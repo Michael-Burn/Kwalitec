@@ -176,7 +176,27 @@
         "Enters a value within 0.005 of 566.67.",
         "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$."
       ],
-      "numeric_tolerance": 0.005
+      "numeric_tolerance": 0.005,
+      "answer_specification": {
+        "item_id": "cs1015-5.1.8-cp-01",
+        "canonical_value": 566.67,
+        "quantity_type": "currency_like",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 2
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 2
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

@@ -181,7 +181,27 @@
         "Enters a value within 0.5 of 14.",
         "Applies the tower property with probability weights, not an unweighted average of conditional means."
       ],
-      "objective_id": "CS1-B-T03-LO02"
+      "objective_id": "CS1-B-T03-LO02",
+      "answer_specification": {
+        "item_id": "cs1006-2.3.2-cp-01",
+        "canonical_value": 14,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.5
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

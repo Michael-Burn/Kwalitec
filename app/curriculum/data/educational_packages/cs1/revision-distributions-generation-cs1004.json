@@ -180,7 +180,27 @@
         "Enters a value within 0.001 of 0.1783.",
         "Uses $X = -\\ln(1-U)/\\lambda$ at $U = 0.3$, $\\lambda = 2$."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1004-cgr1-cp-01",
+        "canonical_value": 0.1783,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 4
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 4
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

@@ -180,7 +180,26 @@
         "Enters a decimal within 0.001 of 0.571.",
         "Forms $E[Y|X=1]$ from the normalised $X=1$ slice, not from $E[Y]$ or a raw joint cell."
       ],
-      "objective_id": "CS1-B-T03-LO01"
+      "objective_id": "CS1-B-T03-LO01",
+      "answer_specification": {
+        "item_id": "cs1006-2.3.1-cp-01",
+        "canonical_value": 0.571,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

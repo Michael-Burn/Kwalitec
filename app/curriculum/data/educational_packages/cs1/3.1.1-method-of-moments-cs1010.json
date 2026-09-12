@@ -182,7 +182,27 @@
         "Uses the sample mean as MoM for the Exponential mean parameter."
       ],
       "numeric_tolerance": 0.5,
-      "objective_id": "CS1-C-T01-LO01"
+      "objective_id": "CS1-C-T01-LO01",
+      "answer_specification": {
+        "item_id": "cs1010-3.1.1-cp-01",
+        "canonical_value": 2200,
+        "quantity_type": "currency_like",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.5
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

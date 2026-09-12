@@ -174,7 +174,35 @@
         "Enters a value within 0.5 of 1000.",
         "Uses $\\hat{Z} = n/(n+\\hat{k})$ on $\\bar{X}$ and $(1 - \\hat{Z})$ on $\\hat{\\mu}$."
       ],
-      "numeric_tolerance": 0.5
+      "numeric_tolerance": 0.5,
+      "answer_specification": {
+        "item_id": "cs1003-5.1.8-cp-01",
+        "canonical_value": 1000,
+        "quantity_type": "currency_like",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.5
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "swapped-weights",
+            "match_value": 1100,
+            "match_absolute_tolerance": 0.5,
+            "consistent_with": "swapping the credibility weights",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

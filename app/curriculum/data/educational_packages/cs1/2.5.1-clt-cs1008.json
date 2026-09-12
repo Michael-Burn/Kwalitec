@@ -180,7 +180,26 @@
         "Enters a value within 0.001 of 0.159.",
         "Uses $\\frac{\\sigma}{\\sqrt{n}}$ when standardising, and converts $\\Phi(1)$ to the lower tail."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1008-2.5.1-cp-01",
+        "canonical_value": 0.159,
+        "quantity_type": "probability",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

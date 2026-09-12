@@ -177,7 +177,26 @@
       "success_criteria": [
         "Enters a value within 0.001 of 0.05.",
         "Uses $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$, not the uncentred product alone."
-      ]
+      ],
+      "answer_specification": {
+        "item_id": "cs1005-2.2.3-cp-01",
+        "canonical_value": 0.05,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

@@ -179,7 +179,27 @@
         "Enters a value within 0.001 of 0.135.",
         "Uses the Exponential survival $e^{-x/\\theta}$, not a mean-ratio heuristic."
       ],
-      "objective_id": "CS1-B-T01-LO03"
+      "objective_id": "CS1-B-T01-LO03",
+      "answer_specification": {
+        "item_id": "cs1016-2.1.3-cp-01",
+        "canonical_value": 0.135,
+        "quantity_type": "probability",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 3
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 3
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

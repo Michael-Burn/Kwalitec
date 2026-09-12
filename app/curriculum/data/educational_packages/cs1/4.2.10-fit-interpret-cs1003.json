@@ -176,7 +176,34 @@
         "Enters a value within 0.001 of 0.8607.",
         "Uses e^{β̂} with the correct sign, not the raw coefficient as a percent change."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1003-4.2.10-cp-01",
+        "canonical_value": 0.8607,
+        "quantity_type": "factor",
+        "assessment_intent": "interpret_result",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "dropped-sign-on-coef",
+            "match_value": 1.1618,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "dropping the sign before exponentiating the log-link coefficient",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

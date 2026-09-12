@@ -179,7 +179,26 @@
         "Uses the sample mean as MoM for the Poisson mean λ."
       ],
       "numeric_tolerance": 0.001,
-      "objective_id": "CS1-C-T01-LO01"
+      "objective_id": "CS1-C-T01-LO01",
+      "answer_specification": {
+        "item_id": "cs1016-3.1.1-cp-01",
+        "canonical_value": 2,
+        "quantity_type": "rate",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "exact"
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

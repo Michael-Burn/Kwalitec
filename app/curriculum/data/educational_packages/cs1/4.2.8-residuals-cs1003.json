@@ -175,7 +175,35 @@
         "Enters a value within 0.001 of -1.2247.",
         "Uses the Pearson residual formula with $V(\\mu) = \\mu$, including the sign."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1003-4.2.8-cp-01",
+        "canonical_value": -1.2247,
+        "quantity_type": "residual",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 4
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 4
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "dropped-sign",
+            "match_value": 1.2247,
+            "match_absolute_tolerance": 5e-05,
+            "consistent_with": "dropping the sign on the residual",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

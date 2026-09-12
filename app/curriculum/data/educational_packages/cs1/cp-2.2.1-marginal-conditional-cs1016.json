@@ -177,7 +177,26 @@
       "success_criteria": [
         "Enters a value within 0.001 of 0.571.",
         "Forms $P(Y=1|X=1)$ from the normalised $X=1$ slice, not from a raw joint cell."
-      ]
+      ],
+      "answer_specification": {
+        "item_id": "cs1016-2.2.1-cp-01",
+        "canonical_value": 0.571,
+        "quantity_type": "probability",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

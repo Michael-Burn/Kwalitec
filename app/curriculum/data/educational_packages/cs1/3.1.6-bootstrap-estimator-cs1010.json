@@ -178,7 +178,27 @@
         "Enters a value within 0.001 of 8.602.",
         "Uses the bootstrap SE formula with division by $B$."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1010-3.1.6-cp-01",
+        "canonical_value": 8.602,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 3
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 3
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

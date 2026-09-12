@@ -176,7 +176,27 @@
         "Enters a value within 0.5 of 800.",
         "Uses $Z = n/(n+k)$ on $\\bar{X}$ and $(1 - Z)$ on $\\mu$."
       ],
-      "numeric_tolerance": 0.5
+      "numeric_tolerance": 0.5,
+      "answer_specification": {
+        "item_id": "cs1015-5.1.7-cp-01",
+        "canonical_value": 800,
+        "quantity_type": "currency_like",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.5
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

@@ -178,7 +178,35 @@
         "Enters a value within 0.001 of 7.3891.",
         "Reports mean severity $\\mu = e^{\\eta}$, not $\\eta$ alone."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1014-4.2.5-cp-01",
+        "canonical_value": 7.3891,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "decimal_precision",
+          "decimal_places": 4
+        },
+        "precision_policy": {
+          "requirement": "exact_decimal_places",
+          "decimal_places": 4
+        },
+        "rounding_policy": "half_up",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "stopped-at-eta",
+            "match_value": 2.0,
+            "match_absolute_tolerance": 0.01,
+            "consistent_with": "reporting the linear predictor instead of the mean severity",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

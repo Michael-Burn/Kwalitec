@@ -179,7 +179,26 @@
         "Enters a value within 0.001 of 1.2214.",
         "Uses e^{β̂}, not the raw coefficient as an additive count change."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1014-4.2.10-cp-01",
+        "canonical_value": 1.2214,
+        "quantity_type": "factor",
+        "assessment_intent": "interpret_result",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {

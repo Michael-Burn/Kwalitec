@@ -175,7 +175,34 @@
         "Enters a value within 0.001 of 5.45.",
         "Uses the posterior mean, not the median or mode."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1003-5.1.4-cp-01",
+        "canonical_value": 5.45,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "median-instead-of-mean",
+            "match_value": 5.0,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the posterior median or mode instead of the mean",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

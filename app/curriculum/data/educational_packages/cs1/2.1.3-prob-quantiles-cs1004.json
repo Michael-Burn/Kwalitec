@@ -179,7 +179,34 @@
         "Enters a value within 0.001 of 0.3297.",
         "Uses the Exponential CDF with mean θ, not the survival function alone."
       ],
-      "objective_id": "CS1-B-T01-LO03"
+      "objective_id": "CS1-B-T01-LO03",
+      "answer_specification": {
+        "item_id": "cs1004-2.1c-cp-01",
+        "canonical_value": 0.3297,
+        "quantity_type": "probability",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "survival-instead-of-cdf",
+            "match_value": 0.6703,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the survival probability instead of the CDF",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

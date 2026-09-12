@@ -306,29 +306,28 @@ This replaces the current pattern of presenting a generic bundled list of unveri
    - Cross-question invariant: shared evaluation policy ⇒ identical boundary behaviour
 9. Standalone package under `app/application/numeric_assessment/`, unwired from live scoring.
 
-### Explicitly out of scope (this pass)
+### Explicitly out of scope (framework build pass; migration now done separately)
 
 - Wiring into `score_practice_response`, routes, templates, or any student-facing surface
-- Migrating the 30 live numeric package JSON files onto Answer Specifications
 - Symbolic mathematics platform
 - Structured multi-step intermediate-work capture
 - Twin, Policy V1, OEA, Spacing, VP-001, arbitration, or Progression Readiness changes
 - Building a general diagnostic solver
 
-Migration of the 30 live questions is the **next** step after this standalone framework is proven correct in isolation.
+The 30 live questions now carry authored `answer_specification` blocks. Live scoring cutover remains a separate step.
 
 ---
 
-## Migration posture (next pass, not this one)
+## Migration posture
 
-When migration is authorized:
+**Migration status (2026-09-12):** All 30 live numeric checkpoints carry an authored `answer_specification` object on the checkpoint entry in `app/curriculum/data/educational_packages/cs1/`. Specs are loaded by `app/application/numeric_assessment/catalogue.py`. Live scoring still uses legacy `numeric_tolerance` / `accepted_keywords` until a separate wiring brief.
 
-1. Each of the 30 items receives an Answer Specification whose `comparison_policy` and `precision_policy` match its stem instruction (fixing the stem-vs-tolerance drift class).
-2. Existing `numeric_tolerance` values become explicit `absolute_tolerance` (or another chosen policy), never a hidden default.
-3. Existing `common_mistake` prose is either:
-   - converted into one or more defensible Tier 2 `diagnostic_rules` where the wrong value is unambiguous, or
-   - retired from pretending to be diagnosis and replaced by Tier 3 for that item.
-4. Live scoring cutover happens only after the standalone harness is green and a separate wiring brief exists.
+Completed in the migration pass:
+
+1. Each of the 30 items has an Answer Specification whose `comparison_policy` and `precision_policy` match its stem instruction (fixing the stem-vs-tolerance drift class, including the four banked 4dp / 0.001 cases).
+2. Legacy `numeric_tolerance` values remain on the packages for the unwired live path; the new specs express the chosen policy explicitly (`decimal_precision`, `absolute_tolerance`, or `exact`) rather than wrapping tolerance unexamined.
+3. Existing `common_mistake` prose remains on packages for the live path. Where a wrong value was unambiguous, a Tier 2 `diagnostic_rules` entry was also authored on the specification; otherwise Tier 3 applies under the new framework.
+4. Live scoring cutover remains a deliberate later step.
 
 ---
 

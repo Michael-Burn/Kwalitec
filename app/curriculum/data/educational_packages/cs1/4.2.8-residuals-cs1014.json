@@ -177,7 +177,34 @@
         "Enters a value within 0.001 of 2.5.",
         "Uses the Pearson residual formula with $V(\\mu) = \\mu$."
       ],
-      "numeric_tolerance": 0.001
+      "numeric_tolerance": 0.001,
+      "answer_specification": {
+        "item_id": "cs1014-4.2.8-cp-01",
+        "canonical_value": 2.5,
+        "quantity_type": "residual",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.001
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal"
+        ],
+        "diagnostic_rules": [
+          {
+            "rule_id": "raw-residual",
+            "match_value": 5.0,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the raw residual instead of the Pearson residual",
+            "rationale": ""
+          }
+        ]
+      }
     }
   ],
   "reflection": {

@@ -178,7 +178,27 @@
       "success_criteria": [
         "Enters a value within 0.5 of 17.",
         "Retains the signed covariance cross-term in $\\operatorname{Var}(2X-Y)$."
-      ]
+      ],
+      "answer_specification": {
+        "item_id": "cs1005-2.2.4-cp-01",
+        "canonical_value": 17,
+        "quantity_type": "scalar",
+        "assessment_intent": "calculate_value",
+        "unit": "",
+        "comparison_policy": {
+          "policy": "absolute_tolerance",
+          "absolute_tolerance": 0.5
+        },
+        "precision_policy": {
+          "requirement": "none"
+        },
+        "rounding_policy": "none",
+        "accepted_forms": [
+          "decimal",
+          "integer"
+        ],
+        "diagnostic_rules": []
+      }
     }
   ],
   "reflection": {
