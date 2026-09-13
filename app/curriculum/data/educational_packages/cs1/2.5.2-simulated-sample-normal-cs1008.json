@@ -155,7 +155,8 @@
           "misconception_tag": "skewness_never_averages"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T05-LO02"
     },
     {
       "episode_id": "lep-cs1008-2.5.2-cp-01",
@@ -199,7 +200,8 @@
           "misconception_tag": "clt_direction_reversed"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T05-LO02"
     }
   ],
   "reflection": {

@@ -270,6 +270,29 @@ CS1_B_T04_LO02 = ProgressionReadinessContract(
     critical_misconception_tags=frozenset(),
 )
 
+# Topic 2.5: cs1016-2.5.1-* are OEA-tagged for CS1-B-T05-LO01 but are not
+# listed here, so this contract's evaluation never consumes them.
+CS1_B_T05_LO01 = ProgressionReadinessContract(
+    objective_id="CS1-B-T05-LO01",
+    kind=ContractKind.MIXED_MODALITY,
+    evidence_items=(
+        EvidenceItemSpec("cs1008-2.5.1-ar-01", EvidenceModality.MCQ),
+        EvidenceItemSpec("cs1008-2.5.1-cp-01", EvidenceModality.NUMERIC),
+    ),
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_B_T05_LO02 = ProgressionReadinessContract(
+    objective_id="CS1-B-T05-LO02",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1008-2.5.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1008-2.5.2-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
 PROGRESSION_READINESS_CONTRACTS: dict[str, ProgressionReadinessContract] = {
     CS1_A_T01_LO01.objective_id: CS1_A_T01_LO01,
     CS1_A_T01_LO02.objective_id: CS1_A_T01_LO02,
@@ -292,6 +315,8 @@ PROGRESSION_READINESS_CONTRACTS: dict[str, ProgressionReadinessContract] = {
     CS1_B_T03_LO02.objective_id: CS1_B_T03_LO02,
     CS1_B_T04_LO01.objective_id: CS1_B_T04_LO01,
     CS1_B_T04_LO02.objective_id: CS1_B_T04_LO02,
+    CS1_B_T05_LO01.objective_id: CS1_B_T05_LO01,
+    CS1_B_T05_LO02.objective_id: CS1_B_T05_LO02,
 }
 
 

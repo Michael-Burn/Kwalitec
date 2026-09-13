@@ -153,7 +153,8 @@
           "misconception_tag": "population_must_be_normal"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T05-LO01"
     },
     {
       "episode_id": "lep-cs1016-2.5.1-cp-01",
@@ -177,6 +178,7 @@
         "Enters a value within 0.001 of 0.159.",
         "Uses $\\frac{\\sigma}{\\sqrt{n}}$ when standardising, and converts $\\Phi(1)$ to the lower tail."
       ],
+      "objective_id": "CS1-B-T05-LO01",
       "numeric_tolerance": 0.001,
       "answer_specification": {
         "item_id": "cs1016-2.5.1-cp-01",

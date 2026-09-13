@@ -100,11 +100,16 @@ def test_founder_detail_shows_complete_internal_evaluation(ctx):
     )
     assert page.student_id == 42
     assert len(page.contracts) == len(PROGRESSION_READINESS_CONTRACTS)
-    assert "21 authored contracts" in page.page_support
+    assert (
+        f"{len(PROGRESSION_READINESS_CONTRACTS)} authored contracts"
+        in page.page_support
+    )
 
     by_id = {c.objective_id: c for c in page.contracts}
     assert "CS1-B-T02-LO01" in by_id
     assert "CS1-B-T02-LO04" in by_id
+    assert "CS1-B-T05-LO01" in by_id
+    assert "CS1-B-T05-LO02" in by_id
     lo01 = by_id["CS1-A-T01-LO01"]
     assert lo01.readiness == "READY"
     assert lo01.reason_code == ""
