@@ -105,6 +105,18 @@ def _requirement_summary(contract: ProgressionReadinessContract) -> str:
             f"Conceptual: at least {contract.ready_min_correct} of "
             f"{contract.item_count} contracted items scored correct"
         )
+    if contract.kind is ContractKind.MIXED_MODALITY_DUAL_DEMONSTRATION:
+        pair_bits = []
+        for i, pair in enumerate(contract.demonstration_pairs, start=1):
+            pair_bits.append(
+                f"Pair {i}: {pair.mcq_item_id} (mcq) + "
+                f"{pair.numeric_item_id} (numeric)"
+            )
+        return (
+            "Mixed modality dual demonstration: evaluate each pair with the "
+            "four-outcome matrix, then combine with the locked 9-cell matrix. "
+            + "; ".join(pair_bits)
+        )
     parts = [
         f"{spec.item_id} ({spec.modality.value})"
         for spec in contract.evidence_items
@@ -172,7 +184,7 @@ def build_contract_detail(
 
 
 class ProgressionReadinessDetailService:
-    """Build the founder richer view for the six authored contracts."""
+    """Build the founder richer view for all authored contracts."""
 
     def __init__(
         self,
@@ -190,6 +202,7 @@ class ProgressionReadinessDetailService:
         sid = str(user_id)
         store = self._store or get_objective_assessment_evidence_store()
         evidence = store.list_for_student(sid)
+        n = len(PROGRESSION_READINESS_CONTRACTS)
         contracts = tuple(
             build_contract_detail(contract, student_id=sid, evidence=evidence)
             for contract in PROGRESSION_READINESS_CONTRACTS.values()
@@ -197,7 +210,7 @@ class ProgressionReadinessDetailService:
         return ProgressionReadinessDetailPage(
             page_title="Progression Readiness",
             page_support=(
-                "Complete internal evaluation for the six authored contracts. "
+                f"Complete internal evaluation for the {n} authored contracts. "
                 "Informational only: does not change what the student can do."
             ),
             student_id=user_id,

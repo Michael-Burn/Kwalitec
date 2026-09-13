@@ -98,7 +98,7 @@ def test_founder_detail_shows_complete_internal_evaluation(ctx):
         student_email="learner@example.com",
     )
     assert page.student_id == 42
-    assert len(page.contracts) == 9
+    assert len(page.contracts) == 15
 
     by_id = {c.objective_id: c for c in page.contracts}
     lo01 = by_id["CS1-A-T01-LO01"]

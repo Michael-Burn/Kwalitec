@@ -154,7 +154,8 @@
           "misconception_tag": "continuous_roster"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO01"
     },
     {
       "episode_id": "lep-cs1002-2.1a-cp-01",
@@ -198,7 +199,8 @@
           "misconception_tag": "uniform_mismatch"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO01"
     }
   ],
   "reflection": {

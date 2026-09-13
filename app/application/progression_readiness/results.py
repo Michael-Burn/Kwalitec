@@ -19,12 +19,21 @@ class ProgressionReadiness(str, Enum):
 
 
 class InsufficientReason(str, Enum):
-    """Machine-readable reason when result is INSUFFICIENT_EVIDENCE."""
+    """Machine-readable reason accompanying an evaluation outcome.
+
+    Historically required only for INSUFFICIENT_EVIDENCE. Dual-demonstration
+    contracts also attach combination reasons to READY and NOT_READY.
+    """
 
     INSUFFICIENT_SAMPLE = "INSUFFICIENT_SAMPLE"
     REQUIRED_PREREQUISITE_UNVERIFIED = "REQUIRED_PREREQUISITE_UNVERIFIED"
     REQUIRED_MODALITY_NOT_OBSERVED = "REQUIRED_MODALITY_NOT_OBSERVED"
     CONFLICTING_EVIDENCE = "CONFLICTING_EVIDENCE"
+    # Dual-demonstration combination codes (objective-level).
+    ALL_REQUIRED_MODALITIES_DEMONSTRATED = "ALL_REQUIRED_MODALITIES_DEMONSTRATED"
+    SECOND_DEMONSTRATION_INCOMPLETE = "SECOND_DEMONSTRATION_INCOMPLETE"
+    CONFLICTING_DEMONSTRATIONS = "CONFLICTING_DEMONSTRATIONS"
+    NEGATIVE_DEMONSTRATION = "NEGATIVE_DEMONSTRATION"
 
 
 @dataclass(frozen=True)
@@ -42,7 +51,3 @@ class ProgressionReadinessResult:
                 raise ValueError(
                     "INSUFFICIENT_EVIDENCE requires a specific InsufficientReason"
                 )
-        elif self.reason is not None:
-            raise ValueError(
-                f"{self.readiness.value} must not carry an InsufficientReason"
-            )

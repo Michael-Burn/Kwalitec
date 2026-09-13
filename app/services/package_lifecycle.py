@@ -617,7 +617,7 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         path="app/application/progression_readiness",
         layer="application",
         responsibility=(
-            "Progression Readiness evaluator + six authored objective contracts "
+            "Progression Readiness evaluator + authored objective contracts "
             "(demonstrated competence for progression)"
         ),
         owner="Progression Readiness",

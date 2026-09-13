@@ -152,7 +152,8 @@
           "misconception_tag": "mean_check_only"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO06"
     },
     {
       "episode_id": "lep-cs1004-2.1f-cp-01",
@@ -196,7 +197,8 @@
           "misconception_tag": "exponential_as_discrete"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO06"
     }
   ],
   "reflection": {

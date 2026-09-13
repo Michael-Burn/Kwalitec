@@ -24,6 +24,7 @@ class ContractKind(str, Enum):
 
     CONCEPTUAL = "conceptual"
     MIXED_MODALITY = "mixed_modality"
+    MIXED_MODALITY_DUAL_DEMONSTRATION = "mixed_modality_dual_demonstration"
 
 
 @dataclass(frozen=True)
@@ -35,20 +36,39 @@ class EvidenceItemSpec:
 
 
 @dataclass(frozen=True)
+class DemonstrationPair:
+    """One mixed-modality demonstration pair (MCQ + numeric).
+
+    Used by MIXED_MODALITY_DUAL_DEMONSTRATION contracts to group which MCQ
+    belongs with which numeric before the objective-level combination matrix.
+    """
+
+    mcq_item_id: str
+    numeric_item_id: str
+
+    @property
+    def item_ids(self) -> frozenset[str]:
+        return frozenset({self.mcq_item_id, self.numeric_item_id})
+
+
+@dataclass(frozen=True)
 class ProgressionReadinessContract:
     """Per-objective authored readiness contract.
 
     Attributes:
         objective_id: Curriculum learning-objective id this contract governs.
-        kind: Conceptual n-item rules, or mixed-modality MCQ+numeric rules.
+        kind: Conceptual n-item rules, single mixed-modality, or dual-pair
+            mixed-modality demonstration rules.
         evidence_items: Ordered list of items that provide evidence.
         ready_min_correct: For conceptual contracts, minimum correct items for
-            READY (e.g. 2 of 3). Ignored for mixed_modality.
+            READY (e.g. 2 of 3). Ignored for mixed_modality kinds.
         critical_misconception_tags: Tags that force NOT_READY if selected on
             a scored-incorrect attempt. Empty when none are flagged.
         required_prerequisite_objective_id: If set, at least one scored-correct
             evidence row for that objective must exist before own evidence is
             interpreted as READY.
+        demonstration_pairs: Explicit pair grouping for dual-demonstration
+            contracts. Empty for other kinds. Each pair is (MCQ, numeric).
     """
 
     objective_id: str
@@ -57,6 +77,7 @@ class ProgressionReadinessContract:
     ready_min_correct: int = 0
     critical_misconception_tags: frozenset[str] = frozenset()
     required_prerequisite_objective_id: str | None = None
+    demonstration_pairs: tuple[DemonstrationPair, ...] = ()
 
     @property
     def item_ids(self) -> frozenset[str]:

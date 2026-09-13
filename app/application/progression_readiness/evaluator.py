@@ -11,6 +11,7 @@ from app.application.objective_evidence.records import AssessmentEvidenceRecord
 from app.application.objective_evidence.store import ObjectiveAssessmentEvidenceStore
 from app.application.progression_readiness.contracts import (
     ContractKind,
+    DemonstrationPair,
     EvidenceModality,
     ProgressionReadinessContract,
 )
@@ -133,6 +134,61 @@ def _modality_outcome(
     return None
 
 
+def _pair_four_outcome(
+    *,
+    latest_by_item: dict[str, AssessmentEvidenceRecord],
+    pair: DemonstrationPair,
+) -> tuple[ProgressionReadiness, InsufficientReason | None]:
+    """Apply the locked single-pair four-outcome matrix to one demonstration pair.
+
+    Returns the pair-stage readiness and, when insufficient, the per-pair
+    intermediate reason REQUIRED_MODALITY_NOT_OBSERVED.
+    """
+    mcq_record = latest_by_item.get(pair.mcq_item_id)
+    numeric_record = latest_by_item.get(pair.numeric_item_id)
+    if mcq_record is None or numeric_record is None:
+        return (
+            ProgressionReadiness.INSUFFICIENT_EVIDENCE,
+            InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED,
+        )
+
+    mcq = bool(mcq_record.scored_correct)
+    numeric = bool(numeric_record.scored_correct)
+
+    if mcq and numeric:
+        return ProgressionReadiness.READY, None
+    if mcq and not numeric:
+        return ProgressionReadiness.NOT_READY, None
+    if not mcq and numeric:
+        return (
+            ProgressionReadiness.INSUFFICIENT_EVIDENCE,
+            InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED,
+        )
+    return ProgressionReadiness.NOT_READY, None
+
+
+def _combine_dual_demonstration(
+    pair_a: ProgressionReadiness,
+    pair_b: ProgressionReadiness,
+) -> tuple[ProgressionReadiness, InsufficientReason]:
+    """Apply the locked 9-cell objective-level combination matrix."""
+    a, b = pair_a, pair_b
+    ready = ProgressionReadiness.READY
+    not_ready = ProgressionReadiness.NOT_READY
+    insuff = ProgressionReadiness.INSUFFICIENT_EVIDENCE
+
+    if a is ready and b is ready:
+        return ready, InsufficientReason.ALL_REQUIRED_MODALITIES_DEMONSTRATED
+    if (a is ready and b is insuff) or (a is insuff and b is ready):
+        return ready, InsufficientReason.SECOND_DEMONSTRATION_INCOMPLETE
+    if (a is ready and b is not_ready) or (a is not_ready and b is ready):
+        return insuff, InsufficientReason.CONFLICTING_DEMONSTRATIONS
+    if a is insuff and b is insuff:
+        return insuff, InsufficientReason.INSUFFICIENT_SAMPLE
+    # Remaining cells: NOT_READY with INSUFFICIENT, or both NOT_READY.
+    return not_ready, InsufficientReason.NEGATIVE_DEMONSTRATION
+
+
 def _evaluate_mixed_modality(
     *,
     objective_id: str,
@@ -176,6 +232,37 @@ def _evaluate_mixed_modality(
         objective_id=objective_id,
         student_id=student_id,
         readiness=ProgressionReadiness.NOT_READY,
+    )
+
+
+def _evaluate_mixed_modality_dual_demonstration(
+    *,
+    objective_id: str,
+    student_id: str,
+    contract: ProgressionReadinessContract,
+    latest_by_item: dict[str, AssessmentEvidenceRecord],
+) -> ProgressionReadinessResult:
+    """Two-stage dual-pair evaluation: per-pair matrix, then 9-cell combine."""
+    pairs = contract.demonstration_pairs
+    if len(pairs) != 2:
+        raise ValueError(
+            f"MIXED_MODALITY_DUAL_DEMONSTRATION contract "
+            f"{contract.objective_id!r} requires exactly 2 demonstration "
+            f"pairs, got {len(pairs)}"
+        )
+
+    pair_a_outcome, _ = _pair_four_outcome(
+        latest_by_item=latest_by_item, pair=pairs[0]
+    )
+    pair_b_outcome, _ = _pair_four_outcome(
+        latest_by_item=latest_by_item, pair=pairs[1]
+    )
+    readiness, reason = _combine_dual_demonstration(pair_a_outcome, pair_b_outcome)
+    return _result(
+        objective_id=objective_id,
+        student_id=student_id,
+        readiness=readiness,
+        reason=reason,
     )
 
 
@@ -236,6 +323,13 @@ def evaluate(
         )
     if contract.kind is ContractKind.MIXED_MODALITY:
         return _evaluate_mixed_modality(
+            objective_id=oid,
+            student_id=sid,
+            contract=contract,
+            latest_by_item=latest,
+        )
+    if contract.kind is ContractKind.MIXED_MODALITY_DUAL_DEMONSTRATION:
+        return _evaluate_mixed_modality_dual_demonstration(
             objective_id=oid,
             student_id=sid,
             contract=contract,

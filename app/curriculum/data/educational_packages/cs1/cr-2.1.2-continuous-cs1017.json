@@ -157,7 +157,8 @@
           "misconception_tag": "zscore_first"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO02"
     },
     {
       "episode_id": "lep-cs1017-2.1.2-cp-01",
@@ -201,7 +202,8 @@
           "misconception_tag": "lognormal_ruled_out"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO02"
     }
   ],
   "reflection": {
