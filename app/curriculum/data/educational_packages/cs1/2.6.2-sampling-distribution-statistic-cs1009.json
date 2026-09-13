@@ -154,7 +154,8 @@
           "misconception_tag": "n30_collapse"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO02"
     },
     {
       "episode_id": "lep-cs1009-2.6.2-cp-01",
@@ -198,7 +199,8 @@
           "misconception_tag": "parameter_collapse"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO02"
     }
   ],
   "reflection": {
