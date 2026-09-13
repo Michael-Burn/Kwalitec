@@ -151,7 +151,8 @@
           "misconception_tag": "mle_not_posterior"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-E-T01-LO04"
     },
     {
       "episode_id": "lep-cs1003-5.1.4-cp-01",
@@ -202,7 +203,8 @@
             "rationale": ""
           }
         ]
-      }
+      },
+      "objective_id": "CS1-E-T01-LO04"
     }
   ],
   "reflection": {
