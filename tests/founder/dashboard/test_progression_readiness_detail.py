@@ -98,7 +98,7 @@ def test_founder_detail_shows_complete_internal_evaluation(ctx):
         student_email="learner@example.com",
     )
     assert page.student_id == 42
-    assert len(page.contracts) == 6
+    assert len(page.contracts) == 9
 
     by_id = {c.objective_id: c for c in page.contracts}
     lo01 = by_id["CS1-A-T01-LO01"]
@@ -112,6 +112,13 @@ def test_founder_detail_shows_complete_internal_evaluation(ctx):
         "correct",
         "incorrect",
     ]
+
+    topic_12 = by_id["CS1-A-T02-LO01"]
+    assert topic_12.readiness == "INSUFFICIENT_EVIDENCE"
+    assert topic_12.reason_code == "INSUFFICIENT_SAMPLE"
+    assert "at least 3 of 4" in topic_12.requirement_summary
+    assert not topic_12.prerequisite_objective_id
+    assert all(i.correctness == "unobserved" for i in topic_12.items)
 
     mixed = by_id["CS1-B-T03-LO01"]
     assert mixed.readiness == "INSUFFICIENT_EVIDENCE"

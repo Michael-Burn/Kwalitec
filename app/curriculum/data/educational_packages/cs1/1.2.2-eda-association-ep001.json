@@ -152,7 +152,8 @@
           "misconception_tag": "wrong_targets"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T02-LO02"
     },
     {
       "episode_id": "lep-ep001-1.2b-cp-01",
@@ -196,7 +197,8 @@
           "misconception_tag": "rank_when_linear"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T02-LO02"
     }
   ],
   "reflection": {

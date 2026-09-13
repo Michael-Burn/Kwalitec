@@ -151,7 +151,8 @@
           "misconception_tag": "replaces_judgment"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T02-LO03"
     },
     {
       "episode_id": "lep-cs1002-1.2c-cp-01",
@@ -195,7 +196,8 @@
           "misconception_tag": "variance_proves_cause"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T02-LO03"
     }
   ],
   "reflection": {

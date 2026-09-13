@@ -2,7 +2,7 @@
 
 **Status:** Locked evaluator design; learner activation panel authorized for Study (informational only)  
 **Date:** 2026-09-12 (evaluator); 2026-09-13 (learner activation)  
-**Scope:** Demonstrated competence for progression on six fully evidenced CS1 objectives  
+**Scope:** Demonstrated competence for progression on nine fully evidenced CS1 objectives (topics 1.1, 1.2, and 2.3)  
 **Related:** Objective Evidence Architecture (OEA); Study Progress ownership Phases 1–3; Phase 6 grounding inventory
 
 ---
@@ -37,7 +37,7 @@ Correct framing: **demonstrated competence for progression**, not permanent mast
 
 ### Contract-based, not score-based
 
-Each objective has its own authored contract. No single universal rule spans all objectives. The six locked objectives do not share an equivalent evidentiary structure. Forcing one rule through all of them would be mathematically tidy but educationally arbitrary.
+Each objective has its own authored contract. No single universal rule spans all objectives. The locked objectives do not share an equivalent evidentiary structure. Forcing one rule through all of them would be mathematically tidy but educationally arbitrary.
 
 ### No arbitrary numerical weighting
 
@@ -82,9 +82,9 @@ Every real tagged item remains evidence for its objective. Do not drop the third
 
 ---
 
-## Six locked contracts
+## Nine locked contracts
 
-Critical misconception tags are **empty** for all six today: no real distractor on these objectives is flagged as critical. The override capability remains present in the contract structure.
+Critical misconception tags are **empty** for all nine today: no real distractor on these objectives is flagged as critical. The override capability remains present in the contract structure.
 
 ### CS1-A-T01-LO01 (1.1.1 aims) — conceptual, 3 items
 
@@ -122,6 +122,33 @@ Critical-misconception override: available; unused today.
 Evidence items: `cs1017-1.1.4-ar-01`, `cs1017-1.1.4-cp-01`
 
 Same rule as LO03.
+
+### CS1-A-T02-LO01 (1.2.1 EDA summaries) — conceptual, 4 items
+
+Evidence items: `ep001-1.2a-ar-01`, `ep001-1.2a-cp-01`, `cs1017-1.2.1-ar-01`, `cs1017-1.2.1-cp-01`
+
+Live scored evidence is aim-linked summary and visualisation judgment (MCQ). Worked examples compute means/medians, but those are not OEA-scored items. No numeric knowledge checks exist for this objective, so the contract is conceptual, not mixed modality.
+
+| Outcome among the 4 items | Result |
+|---------------------------|--------|
+| 4/4 correct | READY |
+| 3/4 correct | READY |
+| 1–2/4 correct | INSUFFICIENT_EVIDENCE (`INSUFFICIENT_SAMPLE`) |
+| 0/4 correct | NOT_READY |
+
+Critical-misconception override: available; unused today. No prerequisite (stems supply the analysis aim; soft teaching bridge from topic 1.1 is not a hard evidentiary gate).
+
+### CS1-A-T02-LO02 (1.2.2 correlation) — conceptual, 4 items
+
+Evidence items: `ep001-1.2b-ar-01`, `ep001-1.2b-cp-01`, `cs1017-1.2.2-ar-01`, `cs1017-1.2.2-cp-01`
+
+Same 4-item conceptual rule as LO01. Items test Pearson/Spearman/Kendall discrimination and measure choice with refuse-causation limits. No prerequisite on LO01 (stems are self-contained).
+
+### CS1-A-T02-LO03 (1.2.3 PCA) — conceptual, 4 items
+
+Evidence items: `cs1002-1.2c-ar-01`, `cs1002-1.2c-cp-01`, `cs1017-1.2.3-ar-01`, `cs1017-1.2.3-cp-01`
+
+Same 4-item conceptual rule as LO01. Items test PCA purpose / capture order and refuse PC-as-causal-driver. Soft bridge from correlation is not a hard prerequisite (unlike 2.3.1 → 2.2.1).
 
 ### CS1-B-T03-LO01 (2.3.1 conditional expectation) — mixed modality + prerequisite
 
@@ -162,9 +189,10 @@ Same four-cell mixed-modality matrix as LO01 Step 2. No prerequisite. Critical o
 ## Non-goals (evaluator package)
 
 - Twin, Policy V1, OEA write path, Spacing, VP-001, or arbitration changes
-- Expanding objective tagging beyond the six already tagged
+- Expanding Study observation activation beyond topics `CS1-A-T01` and `CS1-B-T03` in this pass (topic 1.2 contracts are catalogue-live; learner panel activation for `CS1-A-T02` needs a separate brief)
 - General prerequisite graphs or evidence-diversity scoring
 - Influencing Decision Engine, sequential curriculum progression, arbitration, or recommendations
+- Elevating authored misconception tags to critical override for topic 1.2 (capability present; tags remain empty on contracts)
 
 ---
 

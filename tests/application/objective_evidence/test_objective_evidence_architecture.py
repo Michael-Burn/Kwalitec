@@ -49,8 +49,8 @@ from app.services.curriculum_engine_service import CurriculumEngineService
 
 LIVE_ROOT = Path("app/curriculum/data/educational_packages")
 
-# Enumerated tagged sample: 19 packages / 38 item ids
-# (26 original foundation + 8 topic 1.1 + 4 topic 2.3).
+# Enumerated tagged sample: 25 packages / 50 item ids
+# (26 original foundation + 8 topic 1.1 + 4 topic 2.3 + 12 topic 1.2).
 TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("2.1.4-poisson-process-cs1004.json", "cs1004-2.1d-ar-01", "CS1-B-T01-LO04"),
     ("2.1.4-poisson-process-cs1004.json", "cs1004-2.1d-cp-01", "CS1-B-T01-LO04"),
@@ -106,6 +106,18 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
         "cs1006-2.3.2-cp-01",
         "CS1-B-T03-LO02",
     ),
+    ("1.2.1-eda-summaries-ep001.json", "ep001-1.2a-ar-01", "CS1-A-T02-LO01"),
+    ("1.2.1-eda-summaries-ep001.json", "ep001-1.2a-cp-01", "CS1-A-T02-LO01"),
+    ("cr-1.2.1-eda-summaries-cs1017.json", "cs1017-1.2.1-ar-01", "CS1-A-T02-LO01"),
+    ("cr-1.2.1-eda-summaries-cs1017.json", "cs1017-1.2.1-cp-01", "CS1-A-T02-LO01"),
+    ("1.2.2-eda-association-ep001.json", "ep001-1.2b-ar-01", "CS1-A-T02-LO02"),
+    ("1.2.2-eda-association-ep001.json", "ep001-1.2b-cp-01", "CS1-A-T02-LO02"),
+    ("cr-1.2.2-correlation-cs1017.json", "cs1017-1.2.2-ar-01", "CS1-A-T02-LO02"),
+    ("cr-1.2.2-correlation-cs1017.json", "cs1017-1.2.2-cp-01", "CS1-A-T02-LO02"),
+    ("1.2.3-pca-cs1002.json", "cs1002-1.2c-ar-01", "CS1-A-T02-LO03"),
+    ("1.2.3-pca-cs1002.json", "cs1002-1.2c-cp-01", "CS1-A-T02-LO03"),
+    ("cr-1.2.3-pca-cs1017.json", "cs1017-1.2.3-ar-01", "CS1-A-T02-LO03"),
+    ("cr-1.2.3-pca-cs1017.json", "cs1017-1.2.3-cp-01", "CS1-A-T02-LO03"),
 )
 
 # Frozen 26-item foundation before topic 1.1 completion (must remain unchanged).
@@ -114,6 +126,12 @@ FOUNDATION_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = TAGGED_ITEMS[:26]
 # Frozen 34-item foundation before topic 2.3 completion (26 original + topic 1.1).
 FOUNDATION_THROUGH_TOPIC_1_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     TAGGED_ITEMS[:34]
+)
+
+# Frozen 38-item foundation before topic 1.2 completion
+# (26 original + topic 1.1 + topic 2.3).
+FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
+    TAGGED_ITEMS[:38]
 )
 
 # Topic 1.1 (CS1-A-T01) complete slice: all 10 live knowledge checks.
@@ -154,6 +172,22 @@ TOPIC_2_3_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
+# Topic 1.2 (CS1-A-T02) complete slice: all 12 live knowledge checks.
+TOPIC_1_2_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
+    ("1.2.1-eda-summaries-ep001.json", "ep001-1.2a-ar-01", "CS1-A-T02-LO01"),
+    ("1.2.1-eda-summaries-ep001.json", "ep001-1.2a-cp-01", "CS1-A-T02-LO01"),
+    ("cr-1.2.1-eda-summaries-cs1017.json", "cs1017-1.2.1-ar-01", "CS1-A-T02-LO01"),
+    ("cr-1.2.1-eda-summaries-cs1017.json", "cs1017-1.2.1-cp-01", "CS1-A-T02-LO01"),
+    ("1.2.2-eda-association-ep001.json", "ep001-1.2b-ar-01", "CS1-A-T02-LO02"),
+    ("1.2.2-eda-association-ep001.json", "ep001-1.2b-cp-01", "CS1-A-T02-LO02"),
+    ("cr-1.2.2-correlation-cs1017.json", "cs1017-1.2.2-ar-01", "CS1-A-T02-LO02"),
+    ("cr-1.2.2-correlation-cs1017.json", "cs1017-1.2.2-cp-01", "CS1-A-T02-LO02"),
+    ("1.2.3-pca-cs1002.json", "cs1002-1.2c-ar-01", "CS1-A-T02-LO03"),
+    ("1.2.3-pca-cs1002.json", "cs1002-1.2c-cp-01", "CS1-A-T02-LO03"),
+    ("cr-1.2.3-pca-cs1017.json", "cs1017-1.2.3-ar-01", "CS1-A-T02-LO03"),
+    ("cr-1.2.3-pca-cs1017.json", "cs1017-1.2.3-cp-01", "CS1-A-T02-LO03"),
+)
+
 SAMPLE_OBJECTIVES: tuple[tuple[str, str], ...] = (
     ("CS1-B-T01-LO04", "2.1.4"),
     ("CS1-B-T01-LO03", "2.1.3"),
@@ -167,6 +201,9 @@ SAMPLE_OBJECTIVES: tuple[tuple[str, str], ...] = (
     ("CS1-A-T01-LO04", "1.1.4"),
     ("CS1-B-T03-LO01", "2.3.1"),
     ("CS1-B-T03-LO02", "2.3.2"),
+    ("CS1-A-T02-LO01", "1.2.1"),
+    ("CS1-A-T02-LO02", "1.2.2"),
+    ("CS1-A-T02-LO03", "1.2.3"),
 )
 
 # One AR item per diversity axis (package family / campaign / LO).
@@ -536,9 +573,94 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_3_completion() -> None:
         "cs1006-2.3.2-ar-01",
         "cs1006-2.3.2-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 38
-    assert set(FOUNDATION_THROUGH_TOPIC_1_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
-    assert set(TOPIC_2_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
+    assert len(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS) == 38
+    assert set(FOUNDATION_THROUGH_TOPIC_1_1_TAGGED_ITEMS).issubset(
+        set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS)
+    )
+    assert set(TOPIC_2_3_TAGGED_ITEMS).issubset(
+        set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS)
+    )
+    assert set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
+
+
+def test_topic_1_2_all_items_carry_correct_objective_id() -> None:
+    """Topic 1.2 has 12 tagged items; each of its 3 LOs has at least one."""
+    loader = EducationalPackageLoader(root=LIVE_ROOT)
+    packs = {Path(p.source_path).name: p for p in loader.all_approved()}
+    expected = {item_id: oid for _, item_id, oid in TOPIC_1_2_TAGGED_ITEMS}
+    assert len(expected) == 12
+
+    seen_oids: set[str] = set()
+    for fname, item_id, expected_oid in TOPIC_1_2_TAGGED_ITEMS:
+        pack = packs[fname]
+        assert pack.topic_code == "1.2"
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing {item_id} in {fname}"
+        assert (match.objective_id or "").strip() == expected_oid
+        seen_oids.add(expected_oid)
+
+    assert seen_oids == {
+        "CS1-A-T02-LO01",
+        "CS1-A-T02-LO02",
+        "CS1-A-T02-LO03",
+    }
+
+    # Every knowledge check on every live topic 1.2 package is tagged.
+    topic_1_2_packs = [p for p in loader.all_approved() if p.topic_code == "1.2"]
+    assert topic_1_2_packs
+    for pack in topic_1_2_packs:
+        assert pack.knowledge_checks, f"{pack.package_id} has no knowledge checks"
+        for check in pack.knowledge_checks:
+            oid = (check.objective_id or "").strip()
+            assert oid, f"untagged {pack.package_id}:{check.item_id}"
+            assert check.item_id in expected
+            assert oid == expected[check.item_id]
+
+
+def test_foundation_tagged_sample_unaffected_by_topic_1_2_completion() -> None:
+    """The prior 38-item foundation mappings are unchanged after topic 1.2."""
+    assert len(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS) == 38
+    prior_ids = {
+        item_id for _, item_id, _ in FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS
+    }
+    assert len(prior_ids) == 38
+
+    loader = EducationalPackageLoader(root=LIVE_ROOT)
+    packs = {Path(p.source_path).name: p for p in loader.all_approved()}
+    for fname, item_id, expected_oid in FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS:
+        pack = packs[fname]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing prior foundation item {item_id} in {fname}"
+        assert (match.objective_id or "").strip() == expected_oid
+
+    new_ids = {
+        item_id
+        for _, item_id, _ in TOPIC_1_2_TAGGED_ITEMS
+        if item_id not in prior_ids
+    }
+    assert new_ids == {
+        "ep001-1.2a-ar-01",
+        "ep001-1.2a-cp-01",
+        "cs1017-1.2.1-ar-01",
+        "cs1017-1.2.1-cp-01",
+        "ep001-1.2b-ar-01",
+        "ep001-1.2b-cp-01",
+        "cs1017-1.2.2-ar-01",
+        "cs1017-1.2.2-cp-01",
+        "cs1002-1.2c-ar-01",
+        "cs1002-1.2c-cp-01",
+        "cs1017-1.2.3-ar-01",
+        "cs1017-1.2.3-cp-01",
+    }
+    assert len(TAGGED_ITEMS) == 50
+    assert set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
+    assert set(TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 
 def _advance_to_item(
