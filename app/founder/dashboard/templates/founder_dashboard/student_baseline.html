@@ -9,7 +9,11 @@
     </p>
   </header>
 
-  <p><a href="{{ url_for('founder_dashboard.participants') }}">← Students</a></p>
+  <p>
+    <a href="{{ url_for('founder_dashboard.participants') }}">← Students</a>
+    ·
+    <a href="{{ url_for('founder_dashboard.student_progression_readiness', user_id=student.id) }}">Progression Readiness</a>
+  </p>
 
   {% if baselines %}
   <div class="table-responsive founder-table-wrap">

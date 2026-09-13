@@ -30,6 +30,8 @@
               <a class="console-btn console-btn--secondary"
                  href="{{ url_for('founder_dashboard.student_baseline', user_id=row.user_id) }}">Baseline</a>
               <a class="console-btn console-btn--secondary"
+                 href="{{ url_for('founder_dashboard.student_progression_readiness', user_id=row.user_id) }}">Progression</a>
+              <a class="console-btn console-btn--secondary"
                  href="{{ url_for('founder_dashboard.feedback', student=row.email) }}">Feedback</a>
               <form method="post"
                     action="{{ url_for('founder_dashboard.award_founders_circle', user_id=row.user_id) }}"

@@ -6,6 +6,25 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
+class StudyObservationPanelView:
+    """Informational 'What Kwalitec has observed' panel for one objective.
+
+    Never carries raw readiness enum names; copy is already translated.
+    Purely additive: does not gate Study actions.
+    """
+
+    objective_id: str
+    objective_label: str
+    brand_heading: str
+    scenario_heading: str
+    evidence_lines: tuple[str, ...]
+    body_paragraphs: tuple[str, ...]
+    meaning_paragraphs: tuple[str, ...]
+    next_step: str
+    keep_in_mind: str
+
+
+@dataclass(frozen=True)
 class StudyTopicView:
     """One syllabus topic row on Study's Curriculum view."""
 
@@ -20,6 +39,7 @@ class StudyTopicView:
     can_study: bool = False
     unavailable_reason: str = ""
     study_action_label: str = ""
+    observations: tuple[StudyObservationPanelView, ...] = ()
 
 
 @dataclass(frozen=True)

@@ -1,0 +1,88 @@
+{% extends "founder_dashboard/base.html" %}
+
+{% block console_content %}
+<article class="ds-page ds-container ds-container--content" aria-labelledby="pr-detail-title">
+  <header class="ds-page-header">
+    <h1 id="pr-detail-title" class="ds-page-header__title">{{ page.page_title }} — {{ page.student_email }}</h1>
+    <p class="ds-page-header__support">{{ page.page_support }}</p>
+  </header>
+
+  <p>
+    <a href="{{ url_for('founder_dashboard.participants') }}">← Students</a>
+    ·
+    <a href="{{ url_for('founder_dashboard.student_baseline', user_id=page.student_id) }}">Baseline</a>
+  </p>
+
+  {% for contract in page.contracts %}
+  <section class="ds-section" aria-labelledby="pr-{{ contract.objective_id }}" data-pr-objective="{{ contract.objective_id }}">
+    <h2 id="pr-{{ contract.objective_id }}" class="ds-section__title">{{ contract.objective_id }}</h2>
+    <div class="table-responsive founder-table-wrap">
+      <table class="table table-sm align-middle founder-table">
+        <tbody>
+          <tr>
+            <th scope="row">Internal status</th>
+            <td data-pr-status="{{ contract.objective_id }}">{{ contract.readiness }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Reason code</th>
+            <td data-pr-reason="{{ contract.objective_id }}">{% if contract.reason_code %}{{ contract.reason_code }}{% else %}—{% endif %}</td>
+          </tr>
+          <tr>
+            <th scope="row">Contract kind</th>
+            <td>{{ contract.kind }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Authored requirement</th>
+            <td data-pr-requirement="{{ contract.objective_id }}">{{ contract.requirement_summary }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Prerequisite</th>
+            <td data-pr-prerequisite="{{ contract.objective_id }}">
+              {% if contract.prerequisite_objective_id %}
+                {{ contract.prerequisite_objective_id }}
+                · {% if contract.prerequisite_verified %}verified{% else %}unverified{% endif %}
+              {% else %}
+                none
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Critical misconception tags</th>
+            <td data-pr-critical="{{ contract.objective_id }}">
+              {% if contract.critical_misconception_tags %}
+                {{ contract.critical_misconception_tags | join(', ') }}
+                · hit={% if contract.critical_misconception_hit %}yes{% else %}no{% endif %}
+              {% else %}
+                none flagged
+                · hit={% if contract.critical_misconception_hit %}yes{% else %}no{% endif %}
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-responsive founder-table-wrap">
+      <table class="table table-sm align-middle founder-table" data-pr-items="{{ contract.objective_id }}">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Modality</th>
+            <th>Correctness</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in contract.items %}
+          <tr data-pr-item="{{ item.item_id }}">
+            <td><code>{{ item.item_id }}</code></td>
+            <td>{{ item.modality }}</td>
+            <td>{{ item.correctness }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {% endfor %}
+</article>
+{% endblock %}

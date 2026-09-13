@@ -100,7 +100,14 @@ class StudentStudyCurriculumPresentationService:
             user_id=user_id, subject_code=code
         )
         why_by_topic = self._why_for_subject(code)
-        sections = _group_sections(snapshot.topics, why_by_topic=why_by_topic)
+        observations_by_topic = _observations_for_snapshot(
+            user_id=user_id, topics=snapshot.topics
+        )
+        sections = _group_sections(
+            snapshot.topics,
+            why_by_topic=why_by_topic,
+            observations_by_topic=observations_by_topic,
+        )
         has_topics = bool(snapshot.topics)
         coverage_label = (
             f"{covered} of {total} topics completed" if total else ""
@@ -191,11 +198,41 @@ def _choose_exam_href() -> str:
         return "/study-plan"
 
 
+def _observations_for_snapshot(
+    *,
+    user_id: int,
+    topics: tuple[TopicCurriculumState, ...],
+) -> Mapping[str, tuple]:
+    """Attach informational observation panels; soft-fail to empty."""
+    try:
+        from app.presentation.student.services import (
+            progression_observation_presenter as observation_presenter,
+        )
+
+        topic_ids = tuple(
+            row.topic_id
+            for row in topics
+            if (row.topic_id or "").strip()
+            in observation_presenter.OBSERVATION_TOPIC_OBJECTIVES
+        )
+        if not topic_ids:
+            return {}
+        return observation_presenter.panels_by_topic_for_student(
+            student_id=str(user_id),
+            topic_ids=topic_ids,
+        )
+    except Exception:  # noqa: BLE001 — presentation soft-fail
+        logger.warning("study_curriculum_observations_failed", exc_info=True)
+        return {}
+
+
 def _group_sections(
     topics: tuple[TopicCurriculumState, ...],
     *,
     why_by_topic: Mapping[str, str],
+    observations_by_topic: Mapping[str, tuple] | None = None,
 ) -> tuple[StudySectionView, ...]:
+    observations_by_topic = observations_by_topic or {}
     sections: list[StudySectionView] = []
     current_id = None
     current_title = ""
@@ -217,7 +254,13 @@ def _group_sections(
             current_id = key
             current_title = title
             current_rows = []
-        current_rows.append(_topic_view(row, why_by_topic))
+        current_rows.append(
+            _topic_view(
+                row,
+                why_by_topic,
+                observations=observations_by_topic.get(row.topic_id, ()),
+            )
+        )
     if current_rows:
         sections.append(
             StudySectionView(
@@ -232,6 +275,8 @@ def _group_sections(
 def _topic_view(
     row: TopicCurriculumState,
     why_by_topic: Mapping[str, str],
+    *,
+    observations: tuple = (),
 ) -> StudyTopicView:
     state = row.state
     reached = bool(row.reached)
@@ -247,6 +292,7 @@ def _topic_view(
         can_study=reached,
         unavailable_reason="" if reached else UNREACHED_TOPIC_COPY,
         study_action_label="Study this topic" if reached else "",
+        observations=tuple(observations),
     )
 
 

@@ -143,6 +143,14 @@ def active_section_id(endpoint: str | None) -> str:
         return "settings"
     if endpoint == "founder_dashboard.participants":
         return "students"
+    if endpoint in {
+        "founder_dashboard.student_baseline",
+        "founder_dashboard.student_baseline_reset",
+        "founder_dashboard.student_baseline_restart",
+        "founder_dashboard.student_progression_readiness",
+        "founder_dashboard.award_founders_circle",
+    }:
+        return "students"
     if endpoint == "founder_dashboard.settings":
         return "settings"
     if endpoint == "curriculum_studio.subjects_hub":

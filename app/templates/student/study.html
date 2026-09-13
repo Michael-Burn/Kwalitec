@@ -92,6 +92,51 @@
             <p class="ds-list__meta">Part of your published syllabus.</p>
           </div>
           {% endif %}
+          {% if topic.observations %}
+          <div class="ds-os-study__observations" data-study-observations="{{ topic.topic_id }}">
+            {% for panel in topic.observations %}
+            <section
+              class="ds-os-study__observation"
+              data-study-observation="{{ panel.objective_id }}"
+              aria-labelledby="study-obs-{{ panel.objective_id }}"
+            >
+              <p class="ds-os-study__observation-brand">{{ panel.brand_heading }}</p>
+              <h3 id="study-obs-{{ panel.objective_id }}" class="ds-os-study__observation-heading">
+                {{ panel.scenario_heading }}
+                <span class="ds-os-study__observation-objective">{{ panel.objective_label }}</span>
+              </h3>
+              {% if panel.evidence_lines %}
+              <ul class="ds-os-study__observation-evidence" data-study-observation-evidence="{{ panel.objective_id }}">
+                {% for line in panel.evidence_lines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              {% for para in panel.body_paragraphs %}
+              <p class="ds-os-study__observation-body">{{ para }}</p>
+              {% endfor %}
+              {% for para in panel.meaning_paragraphs %}
+              <p class="ds-os-study__observation-meaning">
+                <span class="ds-os-study__observation-label">What this means</span>
+                {{ para }}
+              </p>
+              {% endfor %}
+              {% if panel.next_step %}
+              <p class="ds-os-study__observation-next">
+                <span class="ds-os-study__observation-label">What you can do</span>
+                {{ panel.next_step }}
+              </p>
+              {% endif %}
+              {% if panel.keep_in_mind %}
+              <p class="ds-os-study__observation-keep">
+                <span class="ds-os-study__observation-label">Keep in mind</span>
+                {{ panel.keep_in_mind }}
+              </p>
+              {% endif %}
+            </section>
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if topic.can_study %}
           <form
             class="ds-os-study__action"

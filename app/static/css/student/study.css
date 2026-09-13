@@ -121,6 +121,74 @@
   line-height: 1.5;
 }
 
+.ds-os-study__observations {
+  margin: 0 0 var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-os-study__observation {
+  margin: 0;
+  padding: var(--space-3) 0 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ds-os-study__observation-brand {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+.ds-os-study__observation-heading {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-support);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.ds-os-study__observation-objective {
+  display: inline-block;
+  margin-left: var(--space-1);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-muted);
+}
+
+.ds-os-study__observation-evidence {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  font-size: var(--font-support);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ds-os-study__observation-evidence li {
+  margin: 0;
+}
+
+.ds-os-study__observation-body,
+.ds-os-study__observation-meaning,
+.ds-os-study__observation-next,
+.ds-os-study__observation-keep {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-support);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ds-os-study__observation-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: var(--font-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
 .ds-os-study__action {
   margin: 0 0 var(--space-3);
 }

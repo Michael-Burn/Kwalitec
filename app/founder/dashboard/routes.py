@@ -6,7 +6,7 @@ and ``/founder`` paths redirect here for compatibility.
 
 from __future__ import annotations
 
-from flask import render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user
 
 from app.founder.dashboard import founder_dashboard_bp
@@ -672,6 +672,30 @@ def student_baseline(user_id: int):
         title="Student Baseline",
         student=user,
         baselines=list(zip(rows, views, strict=True)),
+    )
+
+
+@founder_dashboard_bp.get("/participants/<int:user_id>/progression-readiness")
+@founder_required
+def student_progression_readiness(user_id: int):
+    """Founder richer view of Progression Readiness for one student."""
+    from app.founder.dashboard.services.progression_readiness_detail_service import (
+        ProgressionReadinessDetailService,
+    )
+    from app.models.user import User
+
+    user = User.query.get(user_id)
+    if user is None:
+        flash("Student not found.", "warning")
+        return redirect(url_for("founder_dashboard.participants"))
+    page = ProgressionReadinessDetailService().build(
+        user_id=user_id,
+        student_email=(user.email or "").strip() or f"user-{user_id}",
+    )
+    return render_template(
+        "founder_dashboard/progression_readiness_detail.html",
+        title="Progression Readiness",
+        page=page,
     )
 
 

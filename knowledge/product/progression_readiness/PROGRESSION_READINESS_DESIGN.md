@@ -1,7 +1,7 @@
 # Progression Readiness Design
 
-**Status:** Locked design for the Progression Readiness evaluator (standalone; unwired)  
-**Date:** 2026-09-12  
+**Status:** Locked evaluator design; learner activation panel authorized for Study (informational only)  
+**Date:** 2026-09-12 (evaluator); 2026-09-13 (learner activation)  
 **Scope:** Demonstrated competence for progression on six fully evidenced CS1 objectives  
 **Related:** Objective Evidence Architecture (OEA); Study Progress ownership Phases 1–3; Phase 6 grounding inventory
 
@@ -56,7 +56,7 @@ Only Assessment Evidence with `scored_correct is True` or `scored_correct is Fal
 3. **No general prerequisite graph** in this pass (deferred).
 4. **No evidence-independence / diversity scoring** in this pass (deferred).
 5. **Critical-misconception override.** If a wrong choice is authored and flagged as representing a critical misconception, selecting it forces `NOT_READY` regardless of aggregate correct counts (or numeric outcome on mixed contracts), once any prerequisite gate (if present) is past.
-6. **Standalone until proven.** This evaluator must not be wired into live student-facing decisions, pages, or flows until a separate scoped brief authorizes consumers.
+6. **Informational consumers only until a decision brief.** Live student surfaces may show a read-only observation panel when a scoped activation brief authorizes it. The evaluator must not feed Decision Engine, progression gating, arbitration, or recommendations without a separate decision-wiring brief.
 
 ---
 
@@ -159,17 +159,86 @@ Same four-cell mixed-modality matrix as LO01 Step 2. No prerequisite. Critical o
 
 ---
 
-## Non-goals (this implementation)
+## Non-goals (evaluator package)
 
-- Wiring into any live route, template, Home / Study / Journey surface, or student-facing decision
 - Twin, Policy V1, OEA write path, Spacing, VP-001, or arbitration changes
 - Expanding objective tagging beyond the six already tagged
 - General prerequisite graphs or evidence-diversity scoring
+- Influencing Decision Engine, sequential curriculum progression, arbitration, or recommendations
+
+---
+
+## Learner activation (What Kwalitec has observed)
+
+**Status:** Locked activation design for the first informational consumer  
+**Brand:** Always “What Kwalitec has observed”. Never surface the product name “Progression Readiness” to the student.  
+**Surface:** Study Curriculum, inside the existing topic disclosure, for topics `CS1-A-T01` (1.1) and `CS1-B-T03` (2.3) only.  
+**Posture:** Purely additive and non-blocking. The panel must not be called from, referenced by, or able to influence the Decision Engine, sequential curriculum progression, arbitration, or any recommendation path.
+
+### Noise discipline
+
+Do not render a panel for an objective when the student has not yet attempted any tagged contracted item for that objective. Cold objectives keep the normal Study state. Do not invent a “more evidence needed” panel from empty evidence.
+
+### Render order
+
+1. Brand: What Kwalitec has observed  
+2. Scenario heading  
+3. Factual evidence list (Correct / Incorrect per attempted scored item), uninterpreted  
+4. Interpretive body / what this means / why  
+5. What you can do, or Keep in mind  
+
+Never emit raw enum names (`READY`, `NOT_READY`, `INSUFFICIENT_EVIDENCE`) to the student. Mixed-modality copy names the conceptual question and the independent calculation; never “MCQ” or “numeric” jargon. Tone is calm, factual, and forward-looking.
+
+### Scenario 1: sufficient evidence (`READY`)
+
+Heading: Sufficient evidence to move forward  
+
+Body: You've answered [N] of the [M] independent questions assessing this objective correctly.  
+
+What this means: Your current evidence meets Kwalitec's progression requirement for this objective. This is an assessment of the evidence available so far, not a permanent measure of mastery.  
+
+Evidence: a simple correct/incorrect list per item.  
+
+Keep in mind: This result can change as you encounter new assessment evidence.
+
+### Scenario 2: insufficient sample (`INSUFFICIENT_EVIDENCE` / `INSUFFICIENT_SAMPLE`)
+
+Heading: More evidence needed  
+
+Body: Kwalitec has seen some evidence for this objective, but not enough to make a reliable progression judgment yet.  
+
+What you can do: Continue studying and complete another independent assessment when one is presented.
+
+(Also use this tone for other insufficient-family reason codes that are not prerequisite-blocked: `REQUIRED_MODALITY_NOT_OBSERVED`, `CONFLICTING_EVIDENCE`.)
+
+### Scenario 3: prerequisite unverified (`INSUFFICIENT_EVIDENCE` / `REQUIRED_PREREQUISITE_UNVERIFIED`)
+
+Heading: More evidence needed  
+
+Body: Your performance on this objective provides positive evidence, but Kwalitec has not yet established the prerequisite concept this objective depends on.  
+
+Because that prerequisite has not been assessed, Kwalitec is not treating this result as confirmation of full progression readiness.
+
+### Scenario 4: genuine not ready (`NOT_READY`)
+
+Heading: More work recommended  
+
+Body: The available evidence indicates that a required part of this objective has not yet been demonstrated.  
+
+Your recent assessment included an incorrect response on the [conceptual / calculation] component required by this objective.  
+
+What you can do: Review the explanation, then look for another opportunity to demonstrate the concept independently.
+
+### Founder / admin richer view
+
+Separate Console surface, student-scoped under participants: full internal status, authored contract requirement, per-item evidence with correctness, critical misconception flag state, and reason code when insufficient. Raw enums are allowed on the founder surface only.
 
 ---
 
 ## Implementation location
 
 - Design: this file under `knowledge/product/progression_readiness/`
-- Code: `app/application/progression_readiness/` (standalone application package; OEA read consumer only)
-- Tests: `tests/application/progression_readiness/`
+- Evaluator code: `app/application/progression_readiness/` (standalone application package; OEA read consumer only)
+- Learner presentation: `app/presentation/student/` (Study observation panel only)
+- Founder detail: `app/founder/dashboard/` (student-scoped Console view)
+- Tests: `tests/application/progression_readiness/`, `tests/presentation/student/`, `tests/founder/dashboard/`

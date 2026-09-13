@@ -1,7 +1,8 @@
-"""Progression Readiness evaluator (standalone; unwired from live product).
+"""Progression Readiness evaluator (OEA read consumer).
 
-Reads Assessment Evidence via OEA. Does not write evidence. Does not claim
-permanent mastery. Does not notify Twin, Spacing, Policy V1, or Decision Engine.
+Does not write evidence. Does not claim permanent mastery. Does not notify
+Twin, Spacing, Policy V1, or Decision Engine. Informational Study / founder
+presentation may read evaluate_from_store; decision paths must not.
 """
 
 from app.application.progression_readiness.catalogue import (
