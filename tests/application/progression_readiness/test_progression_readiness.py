@@ -1,4 +1,4 @@
-"""Golden scenarios for Progression Readiness (nineteen real contracts).
+"""Golden scenarios for Progression Readiness (twenty-one real contracts).
 
 Standalone: no live student-facing wiring. Proves locked outcome matrices,
 prerequisite both states, unscored filtering, critical override capability,
@@ -36,6 +36,8 @@ from app.application.progression_readiness import (
     CS1_B_T02_LO04,
     CS1_B_T03_LO01,
     CS1_B_T03_LO02,
+    CS1_B_T04_LO01,
+    CS1_B_T04_LO02,
     PREREQUISITE_JOINT_DISTRIBUTION_LO,
     PROGRESSION_READINESS_CONTRACTS,
     ContractKind,
@@ -124,7 +126,7 @@ def _eval(contract: ProgressionReadinessContract, evidence, student_id="s1"):
 
 
 class TestCatalogue:
-    def test_nineteen_real_contracts_present(self):
+    def test_twenty_one_real_contracts_present(self):
         assert set(PROGRESSION_READINESS_CONTRACTS) == {
             "CS1-A-T01-LO01",
             "CS1-A-T01-LO02",
@@ -145,6 +147,8 @@ class TestCatalogue:
             "CS1-B-T02-LO04",
             "CS1-B-T03-LO01",
             "CS1-B-T03-LO02",
+            "CS1-B-T04-LO01",
+            "CS1-B-T04-LO02",
         }
 
     def test_topic_1_1_item_counts_match_live_freeze(self):
@@ -289,12 +293,31 @@ class TestCatalogue:
         )
         assert CS1_B_T02_LO04.required_prerequisite_objective_id is None
 
+    def test_topic_2_4_contracts_match_approved_shapes(self):
+        assert CS1_B_T04_LO01.kind is ContractKind.CONCEPTUAL
+        assert CS1_B_T04_LO01.item_count == 2
+        assert CS1_B_T04_LO01.ready_min_correct == 2
+        assert CS1_B_T04_LO01.item_ids == frozenset(
+            {"cs1007-2.4.1-ar-01", "cs1007-2.4.1-cp-01"}
+        )
+        assert CS1_B_T04_LO01.required_prerequisite_objective_id is None
+
+        assert CS1_B_T04_LO02.kind is ContractKind.CONCEPTUAL
+        assert CS1_B_T04_LO02.item_count == 2
+        assert CS1_B_T04_LO02.ready_min_correct == 2
+        assert CS1_B_T04_LO02.item_ids == frozenset(
+            {"cs1007-2.4.2-ar-01", "cs1007-2.4.2-cp-01"}
+        )
+        assert CS1_B_T04_LO02.required_prerequisite_objective_id is None
+
     def test_get_contract(self):
         assert get_contract("CS1-A-T01-LO01") is CS1_A_T01_LO01
         assert get_contract("CS1-A-T02-LO01") is CS1_A_T02_LO01
         assert get_contract("CS1-B-T01-LO03") is CS1_B_T01_LO03
         assert get_contract("CS1-B-T02-LO01") is CS1_B_T02_LO01
         assert get_contract("CS1-B-T02-LO04") is CS1_B_T02_LO04
+        assert get_contract("CS1-B-T04-LO01") is CS1_B_T04_LO01
+        assert get_contract("CS1-B-T04-LO02") is CS1_B_T04_LO02
         assert get_contract("missing") is None
 
 
@@ -1306,6 +1329,46 @@ class TestTopic22LO02ConceptualTwoItem:
             "s1", self.contract.objective_id, [(i, False) for i in items]
         )
         result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.NOT_READY
+        assert result.reason is None
+
+
+# ---------------------------------------------------------------------------
+# Topic 2.4 LO01 / LO02: 2-item conceptual ready_min_correct=2
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("contract", [CS1_B_T04_LO01, CS1_B_T04_LO02])
+class TestTopic24ConceptualTwoItem:
+    def _items(self, contract):
+        return [spec.item_id for spec in contract.evidence_items]
+
+    def test_two_of_two_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, True) for i in items]
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
+
+    def test_one_of_two_insufficient_sample(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1",
+            contract.objective_id,
+            [(items[0], True), (items[1], False)],
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_zero_of_two_not_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, False) for i in items]
+        )
+        result = _eval(contract, evidence)
         assert result.readiness is ProgressionReadiness.NOT_READY
         assert result.reason is None
 
