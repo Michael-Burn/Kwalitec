@@ -1,6 +1,6 @@
 """Real Progression Readiness contracts for evidenced CS1 objectives.
 
-Item ids match the live OEA tagged freeze (topics 1.1, 1.2, 2.1, and 2.3).
+Item ids match the live OEA tagged freeze (topics 1.1, 1.2, 2.1, 2.2, and 2.3).
 Critical misconception tags are empty today; the override path remains present.
 """
 
@@ -15,7 +15,7 @@ from app.application.progression_readiness.contracts import (
 )
 
 # Prerequisite for CS1-B-T03-LO01 (joint-distribution / 2.2.1). Real syllabus
-# id; no OEA-tagged items yet. Check is genuine, not hard-coded to fail.
+# id with OEA-tagged topic 2.2 items. Check is genuine, not hard-coded to fail.
 PREREQUISITE_JOINT_DISTRIBUTION_LO = "CS1-B-T02-LO01"
 
 CS1_A_T01_LO01 = ProgressionReadinessContract(
@@ -184,6 +184,49 @@ CS1_B_T01_LO06 = ProgressionReadinessContract(
     critical_misconception_tags=frozenset(),
 )
 
+# Topic 2.2: cs1016-2.2.1-* are OEA-tagged for CS1-B-T02-LO01 but are not
+# listed here, so this contract's evaluation never consumes them.
+CS1_B_T02_LO01 = ProgressionReadinessContract(
+    objective_id="CS1-B-T02-LO01",
+    kind=ContractKind.MIXED_MODALITY,
+    evidence_items=(
+        EvidenceItemSpec("cs1005-2.2.1-ar-01", EvidenceModality.MCQ),
+        EvidenceItemSpec("cs1005-2.2.1-cp-01", EvidenceModality.NUMERIC),
+    ),
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_B_T02_LO02 = ProgressionReadinessContract(
+    objective_id="CS1-B-T02-LO02",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1005-2.2.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1005-2.2.2-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_B_T02_LO03 = ProgressionReadinessContract(
+    objective_id="CS1-B-T02-LO03",
+    kind=ContractKind.MIXED_MODALITY,
+    evidence_items=(
+        EvidenceItemSpec("cs1005-2.2.3-ar-01", EvidenceModality.MCQ),
+        EvidenceItemSpec("cs1005-2.2.3-cp-01", EvidenceModality.NUMERIC),
+    ),
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_B_T02_LO04 = ProgressionReadinessContract(
+    objective_id="CS1-B-T02-LO04",
+    kind=ContractKind.MIXED_MODALITY,
+    evidence_items=(
+        EvidenceItemSpec("cs1005-2.2.4-ar-01", EvidenceModality.MCQ),
+        EvidenceItemSpec("cs1005-2.2.4-cp-01", EvidenceModality.NUMERIC),
+    ),
+    critical_misconception_tags=frozenset(),
+)
+
 CS1_B_T03_LO01 = ProgressionReadinessContract(
     objective_id="CS1-B-T03-LO01",
     kind=ContractKind.MIXED_MODALITY,
@@ -219,6 +262,10 @@ PROGRESSION_READINESS_CONTRACTS: dict[str, ProgressionReadinessContract] = {
     CS1_B_T01_LO04.objective_id: CS1_B_T01_LO04,
     CS1_B_T01_LO05.objective_id: CS1_B_T01_LO05,
     CS1_B_T01_LO06.objective_id: CS1_B_T01_LO06,
+    CS1_B_T02_LO01.objective_id: CS1_B_T02_LO01,
+    CS1_B_T02_LO02.objective_id: CS1_B_T02_LO02,
+    CS1_B_T02_LO03.objective_id: CS1_B_T02_LO03,
+    CS1_B_T02_LO04.objective_id: CS1_B_T02_LO04,
     CS1_B_T03_LO01.objective_id: CS1_B_T03_LO01,
     CS1_B_T03_LO02.objective_id: CS1_B_T03_LO02,
 }

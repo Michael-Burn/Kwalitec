@@ -153,7 +153,8 @@
           "misconception_tag": "zero_cov_implies_independence"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T02-LO03"
     },
     {
       "episode_id": "lep-cs1005-2.2.3-cp-01",
@@ -178,6 +179,7 @@
         "Enters a value within 0.001 of 0.05.",
         "Uses $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$, not the uncentred product alone."
       ],
+      "objective_id": "CS1-B-T02-LO03",
       "answer_specification": {
         "item_id": "cs1005-2.2.3-cp-01",
         "canonical_value": 0.05,

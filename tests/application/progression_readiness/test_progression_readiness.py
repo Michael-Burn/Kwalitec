@@ -1,4 +1,4 @@
-"""Golden scenarios for Progression Readiness (fifteen real contracts).
+"""Golden scenarios for Progression Readiness (nineteen real contracts).
 
 Standalone: no live student-facing wiring. Proves locked outcome matrices,
 prerequisite both states, unscored filtering, critical override capability,
@@ -30,6 +30,10 @@ from app.application.progression_readiness import (
     CS1_B_T01_LO04,
     CS1_B_T01_LO05,
     CS1_B_T01_LO06,
+    CS1_B_T02_LO01,
+    CS1_B_T02_LO02,
+    CS1_B_T02_LO03,
+    CS1_B_T02_LO04,
     CS1_B_T03_LO01,
     CS1_B_T03_LO02,
     PREREQUISITE_JOINT_DISTRIBUTION_LO,
@@ -120,7 +124,7 @@ def _eval(contract: ProgressionReadinessContract, evidence, student_id="s1"):
 
 
 class TestCatalogue:
-    def test_fifteen_real_contracts_present(self):
+    def test_nineteen_real_contracts_present(self):
         assert set(PROGRESSION_READINESS_CONTRACTS) == {
             "CS1-A-T01-LO01",
             "CS1-A-T01-LO02",
@@ -135,6 +139,10 @@ class TestCatalogue:
             "CS1-B-T01-LO04",
             "CS1-B-T01-LO05",
             "CS1-B-T01-LO06",
+            "CS1-B-T02-LO01",
+            "CS1-B-T02-LO02",
+            "CS1-B-T02-LO03",
+            "CS1-B-T02-LO04",
             "CS1-B-T03-LO01",
             "CS1-B-T03-LO02",
         }
@@ -252,10 +260,41 @@ class TestCatalogue:
             {"cs1004-2.1f-ar-01", "cs1004-2.1f-cp-01"}
         )
 
+    def test_topic_2_2_contracts_match_approved_shapes(self):
+        assert CS1_B_T02_LO01.kind is ContractKind.MIXED_MODALITY
+        assert CS1_B_T02_LO01.item_ids == frozenset(
+            {"cs1005-2.2.1-ar-01", "cs1005-2.2.1-cp-01"}
+        )
+        assert "cs1016-2.2.1-ar-01" not in CS1_B_T02_LO01.item_ids
+        assert "cs1016-2.2.1-cp-01" not in CS1_B_T02_LO01.item_ids
+        assert CS1_B_T02_LO01.required_prerequisite_objective_id is None
+
+        assert CS1_B_T02_LO02.kind is ContractKind.CONCEPTUAL
+        assert CS1_B_T02_LO02.item_count == 2
+        assert CS1_B_T02_LO02.ready_min_correct == 2
+        assert CS1_B_T02_LO02.item_ids == frozenset(
+            {"cs1005-2.2.2-ar-01", "cs1005-2.2.2-cp-01"}
+        )
+        assert CS1_B_T02_LO02.required_prerequisite_objective_id is None
+
+        assert CS1_B_T02_LO03.kind is ContractKind.MIXED_MODALITY
+        assert CS1_B_T02_LO03.item_ids == frozenset(
+            {"cs1005-2.2.3-ar-01", "cs1005-2.2.3-cp-01"}
+        )
+        assert CS1_B_T02_LO03.required_prerequisite_objective_id is None
+
+        assert CS1_B_T02_LO04.kind is ContractKind.MIXED_MODALITY
+        assert CS1_B_T02_LO04.item_ids == frozenset(
+            {"cs1005-2.2.4-ar-01", "cs1005-2.2.4-cp-01"}
+        )
+        assert CS1_B_T02_LO04.required_prerequisite_objective_id is None
+
     def test_get_contract(self):
         assert get_contract("CS1-A-T01-LO01") is CS1_A_T01_LO01
         assert get_contract("CS1-A-T02-LO01") is CS1_A_T02_LO01
         assert get_contract("CS1-B-T01-LO03") is CS1_B_T01_LO03
+        assert get_contract("CS1-B-T02-LO01") is CS1_B_T02_LO01
+        assert get_contract("CS1-B-T02-LO04") is CS1_B_T02_LO04
         assert get_contract("missing") is None
 
 
@@ -556,7 +595,7 @@ class TestMixedModalityLO01Prerequisite:
         return _record(
             student_id="s1",
             objective_id=PREREQUISITE_JOINT_DISTRIBUTION_LO,
-            item_id="seeded-2.2.1-item",
+            item_id="cs1005-2.2.1-ar-01",
             scored_correct=scored_correct,
             offset=10,
             response_type="mcq",
@@ -1078,3 +1117,340 @@ class TestTopic21ConceptualTwoItem:
         result = _eval(contract, evidence)
         assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
         assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+
+# ---------------------------------------------------------------------------
+# Topic 2.2 LO01: single-pair mixed; cs1016 tagged but excluded from contract
+# ---------------------------------------------------------------------------
+
+
+class TestTopic22LO01Cs1005OnlyExcludesCs1016:
+    contract = CS1_B_T02_LO01
+    mcq = "cs1005-2.2.1-ar-01"
+    numeric = "cs1005-2.2.1-cp-01"
+    cs1016_mcq = "cs1016-2.2.1-ar-01"
+    cs1016_numeric = "cs1016-2.2.1-cp-01"
+
+    def test_contract_item_ids_exclude_cs1016(self):
+        assert self.contract.item_ids == frozenset({self.mcq, self.numeric})
+        assert self.cs1016_mcq not in self.contract.item_ids
+        assert self.cs1016_numeric not in self.contract.item_ids
+
+    def test_cs1005_both_correct_ready_even_with_cs1016_incorrect(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.numeric,
+                scored_correct=True,
+                offset=1,
+                response_type="numeric",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=False,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=False,
+                offset=3,
+                response_type="numeric",
+            ),
+        ]
+        assert _eval(self.contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_cs1016_both_correct_does_not_make_ready_without_cs1005(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=True,
+                offset=1,
+                response_type="numeric",
+            ),
+        ]
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED
+
+    def test_cs1005_mcq_ok_numeric_fail_not_ready_despite_cs1016_correct(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.numeric,
+                scored_correct=False,
+                offset=1,
+                response_type="numeric",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=True,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=True,
+                offset=3,
+                response_type="numeric",
+            ),
+        ]
+        assert (
+            _eval(self.contract, evidence).readiness is ProgressionReadiness.NOT_READY
+        )
+        cases = [
+            (True, True, ProgressionReadiness.READY, None),
+            (True, False, ProgressionReadiness.NOT_READY, None),
+            (
+                False,
+                True,
+                ProgressionReadiness.INSUFFICIENT_EVIDENCE,
+                InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED,
+            ),
+            (False, False, ProgressionReadiness.NOT_READY, None),
+        ]
+        for mcq_ok, num_ok, readiness, reason in cases:
+            evidence = [
+                _record(
+                    student_id="s1",
+                    objective_id=self.contract.objective_id,
+                    item_id=self.mcq,
+                    scored_correct=mcq_ok,
+                    offset=0,
+                    response_type="mcq",
+                ),
+                _record(
+                    student_id="s1",
+                    objective_id=self.contract.objective_id,
+                    item_id=self.numeric,
+                    scored_correct=num_ok,
+                    offset=1,
+                    response_type="numeric",
+                ),
+            ]
+            result = _eval(self.contract, evidence)
+            assert result.readiness is readiness
+            assert result.reason is reason
+
+
+# ---------------------------------------------------------------------------
+# Topic 2.2 LO02: 2-item conceptual ready_min_correct=2
+# ---------------------------------------------------------------------------
+
+
+class TestTopic22LO02ConceptualTwoItem:
+    contract = CS1_B_T02_LO02
+
+    def _items(self):
+        return [spec.item_id for spec in self.contract.evidence_items]
+
+    def test_two_of_two_ready(self):
+        items = self._items()
+        evidence = _evidence_for_items(
+            "s1", self.contract.objective_id, [(i, True) for i in items]
+        )
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
+
+    def test_one_of_two_insufficient_sample(self):
+        items = self._items()
+        evidence = _evidence_for_items(
+            "s1",
+            self.contract.objective_id,
+            [(items[0], True), (items[1], False)],
+        )
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_zero_of_two_not_ready(self):
+        items = self._items()
+        evidence = _evidence_for_items(
+            "s1", self.contract.objective_id, [(i, False) for i in items]
+        )
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.NOT_READY
+        assert result.reason is None
+
+
+# ---------------------------------------------------------------------------
+# Topic 2.2 LO03 / LO04: single-pair mixed modality (no prerequisite)
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("contract", [CS1_B_T02_LO03, CS1_B_T02_LO04])
+class TestTopic22MixedModalityLO03LO04:
+    def _pair(self, contract, mcq_ok: bool | None, numeric_ok: bool | None):
+        mcq = contract.evidence_items[0].item_id
+        numeric = contract.evidence_items[1].item_id
+        rows = []
+        if mcq_ok is not Ellipsis:
+            rows.append(
+                _record(
+                    student_id="s1",
+                    objective_id=contract.objective_id,
+                    item_id=mcq,
+                    scored_correct=mcq_ok,
+                    offset=0,
+                    response_type="mcq",
+                )
+            )
+        if numeric_ok is not Ellipsis:
+            rows.append(
+                _record(
+                    student_id="s1",
+                    objective_id=contract.objective_id,
+                    item_id=numeric,
+                    scored_correct=numeric_ok,
+                    offset=1,
+                    response_type="numeric",
+                )
+            )
+        return rows
+
+    def test_both_correct_ready(self, contract):
+        evidence = self._pair(contract, True, True)
+        assert _eval(contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_mcq_correct_numeric_incorrect_not_ready(self, contract):
+        result = _eval(contract, self._pair(contract, True, False))
+        assert result.readiness is ProgressionReadiness.NOT_READY
+
+    def test_mcq_incorrect_numeric_correct_modality_not_observed(self, contract):
+        result = _eval(contract, self._pair(contract, False, True))
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED
+
+    def test_both_incorrect_not_ready(self, contract):
+        result = _eval(contract, self._pair(contract, False, False))
+        assert result.readiness is ProgressionReadiness.NOT_READY
+
+
+# ---------------------------------------------------------------------------
+# Cross-topic: CS1-B-T03-LO01 prerequisite now verified by live T02-LO01 items
+# ---------------------------------------------------------------------------
+
+
+class TestCrossTopicPrerequisiteT03DependsOnT02:
+    """End-to-end proof: T03-LO01 gate uses real CS1-B-T02-LO01 evidence both ways."""
+
+    t03 = CS1_B_T03_LO01
+    t02 = CS1_B_T02_LO01
+
+    def _t03_own(self, mcq_ok: bool, numeric_ok: bool):
+        return [
+            _record(
+                student_id="s1",
+                objective_id=self.t03.objective_id,
+                item_id=self.t03.evidence_items[0].item_id,
+                scored_correct=mcq_ok,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.t03.objective_id,
+                item_id=self.t03.evidence_items[1].item_id,
+                scored_correct=numeric_ok,
+                offset=1,
+                response_type="numeric",
+            ),
+        ]
+
+    def _t02_scored_correct(self):
+        return [
+            _record(
+                student_id="s1",
+                objective_id=self.t02.objective_id,
+                item_id="cs1005-2.2.1-ar-01",
+                scored_correct=True,
+                offset=10,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.t02.objective_id,
+                item_id="cs1005-2.2.1-cp-01",
+                scored_correct=True,
+                offset=11,
+                response_type="numeric",
+            ),
+        ]
+
+    def test_no_t02_evidence_still_prerequisite_unverified(self):
+        result = _eval(self.t03, self._t03_own(True, True))
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_PREREQUISITE_UNVERIFIED
+
+    def test_t02_incorrect_only_still_prerequisite_unverified(self):
+        t02_fail = [
+            _record(
+                student_id="s1",
+                objective_id=self.t02.objective_id,
+                item_id="cs1005-2.2.1-ar-01",
+                scored_correct=False,
+                offset=10,
+                response_type="mcq",
+            ),
+        ]
+        result = _eval(self.t03, self._t03_own(True, True) + t02_fail)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_PREREQUISITE_UNVERIFIED
+
+    def test_genuine_t02_scored_correct_unlocks_t03_ready(self):
+        evidence = self._t03_own(True, True) + self._t02_scored_correct()
+        result = _eval(self.t03, evidence)
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
+
+    def test_cs1016_only_scored_correct_also_verifies_prerequisite(self):
+        """Prerequisite check is objective-scoped (any scored-correct T02-LO01)."""
+        t02_cs1016 = [
+            _record(
+                student_id="s1",
+                objective_id=self.t02.objective_id,
+                item_id="cs1016-2.2.1-ar-01",
+                scored_correct=True,
+                offset=10,
+                response_type="mcq",
+            ),
+        ]
+        result = _eval(self.t03, self._t03_own(True, True) + t02_cs1016)
+        assert result.readiness is ProgressionReadiness.READY

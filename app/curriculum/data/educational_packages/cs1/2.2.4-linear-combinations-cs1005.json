@@ -154,7 +154,8 @@
           "misconception_tag": "expectation_coefficients_squared"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T02-LO04"
     },
     {
       "episode_id": "lep-cs1005-2.2.4-cp-01",
@@ -179,6 +180,7 @@
         "Enters a value within 0.5 of 17.",
         "Retains the signed covariance cross-term in $\\operatorname{Var}(2X-Y)$."
       ],
+      "objective_id": "CS1-B-T02-LO04",
       "answer_specification": {
         "item_id": "cs1005-2.2.4-cp-01",
         "canonical_value": 17,

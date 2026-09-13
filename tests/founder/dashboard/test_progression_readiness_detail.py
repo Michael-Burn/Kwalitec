@@ -11,6 +11,7 @@ from app.application.progression_readiness import (
     CS1_A_T01_LO01,
     CS1_B_T03_LO01,
     PREREQUISITE_JOINT_DISTRIBUTION_LO,
+    PROGRESSION_READINESS_CONTRACTS,
 )
 from app.extensions import db
 from app.founder.dashboard.services.progression_readiness_detail_service import (
@@ -98,9 +99,12 @@ def test_founder_detail_shows_complete_internal_evaluation(ctx):
         student_email="learner@example.com",
     )
     assert page.student_id == 42
-    assert len(page.contracts) == 15
+    assert len(page.contracts) == len(PROGRESSION_READINESS_CONTRACTS)
+    assert "19 authored contracts" in page.page_support
 
     by_id = {c.objective_id: c for c in page.contracts}
+    assert "CS1-B-T02-LO01" in by_id
+    assert "CS1-B-T02-LO04" in by_id
     lo01 = by_id["CS1-A-T01-LO01"]
     assert lo01.readiness == "READY"
     assert lo01.reason_code == ""

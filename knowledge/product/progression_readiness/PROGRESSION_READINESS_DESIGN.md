@@ -173,7 +173,42 @@ Evaluate in order:
 
 Missing scored observation for a required modality → `REQUIRED_MODALITY_NOT_OBSERVED`. Critical misconception on the MCQ incorrect choice forces NOT_READY (capability present; unused today).
 
-**Catalogue honesty:** `CS1-B-T02-LO01` is a real syllabus objective id. No OEA-tagged items exist for it yet. Until topic 2.2 is tagged, the genuine check correctly returns unverified for every live student. That is intended behaviour: refuse a false READY rather than skip an unenforceable check. The mechanism must not be hard-coded to always fail; it starts working when 2.2 evidence appears.
+**Catalogue honesty:** `CS1-B-T02-LO01` is a real syllabus objective id with
+OEA-tagged topic 2.2 items and an authored Progression Readiness contract.
+Scored-correct evidence on that objective verifies this prerequisite for live
+students. Incorrect or unscored attempts do not.
+
+### CS1-B-T02 contracts (topic 2.2)
+
+#### CS1-B-T02-LO01 (2.2.1 marginal / conditional) — mixed modality
+
+Evidence items (Opening Front cs1005 pair only):
+
+- MCQ: `cs1005-2.2.1-ar-01`
+- Numeric: `cs1005-2.2.1-cp-01`
+
+`cs1016-2.2.1-ar-01` and `cs1016-2.2.1-cp-01` are OEA-tagged for the same
+objective (real evidence write path) but are **not** listed on this contract.
+Evaluation filters by `contract.item_ids`, so cs1016 rows never affect LO01
+readiness. They can still verify the CS1-B-T03-LO01 prerequisite (objective-
+scoped scored-correct check).
+
+Same four-cell mixed-modality matrix as CS1-B-T03-LO02. No prerequisite.
+
+#### CS1-B-T02-LO02 (2.2.2 independence) — conceptual 2-of-2
+
+- `cs1005-2.2.2-ar-01`, `cs1005-2.2.2-cp-01`
+- `ready_min_correct=2`
+
+#### CS1-B-T02-LO03 (2.2.3 cov / corr / E[g]) — mixed modality
+
+- MCQ: `cs1005-2.2.3-ar-01`
+- Numeric: `cs1005-2.2.3-cp-01`
+
+#### CS1-B-T02-LO04 (2.2.4 linear combinations) — mixed modality
+
+- MCQ: `cs1005-2.2.4-ar-01`
+- Numeric: `cs1005-2.2.4-cp-01`
 
 ### CS1-B-T03-LO02 (2.3.2 tower / total variance) — mixed modality, no prerequisite
 
