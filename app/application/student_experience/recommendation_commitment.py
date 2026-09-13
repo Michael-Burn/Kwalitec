@@ -66,8 +66,9 @@ CONTINUITY_REFLECTION = (
 CONTINUITY_HISTORY_HEADER = "Choices you've made inside one study plan."
 
 # Humble static frame — never personal-model theatre (Design §6.4).
-# Do not claim scored practice currently writes mastery/readiness while
-# SR_SESSION_SQL_EVIDENCE_COMPANION is OFF in production.
+# Do not claim scored practice currently writes mastery/readiness even
+# though SR_SESSION_SQL_EVIDENCE_COMPANION is ON in production via
+# render.yaml (companion writes StudyAttempt; Stack A EK stays retired).
 WHAT_WAS_LEARNED_HUMBLE = (
     "Tonight's Session stays part of the same study plan that shapes "
     "tomorrow's Mission."

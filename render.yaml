@@ -74,6 +74,14 @@ services:
       - key: SR_NUMERIC_ASSESSMENT_FRAMEWORK
         value: "1"
 
+      # Session SQL evidence companion — scored Session practice writes a
+      # Runtime A StudyAttempt (and TopicProgress) via the companion Mission.
+      # Explicit ON (not inherited from Commercial Loop). Founder-authorised
+      # activation for real exam preparation. Rollback: set
+      # SR_SESSION_SQL_EVIDENCE_COMPANION=0 (or unset).
+      - key: SR_SESSION_SQL_EVIDENCE_COMPANION
+        value: "1"
+
 databases:
   - name: kwalitec-db
     plan: free

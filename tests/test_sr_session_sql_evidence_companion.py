@@ -170,6 +170,98 @@ class TestEvidenceCompanionFlag:
         )
         assert explicit.SR_SESSION_SQL_EVIDENCE_COMPANION is True
 
+    def test_enabled_in_render_yaml(self):
+        from tests.operational.helpers import render_env_map
+
+        env = render_env_map()
+        assert env.get("SR_SESSION_SQL_EVIDENCE_COMPANION") == "1"
+
+
+@pytest.mark.usefixtures("ctx")
+class TestActivationSqlCompanionRecord:
+    """Activation proof: flag ON must persist a real companion StudyAttempt."""
+
+    def test_cs1_scored_sitting_persists_structured_study_attempt(
+        self, monkeypatch
+    ):
+        """Mirrors founder dogfood verification: StudyAttempt is real SQL."""
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject(
+            "CS1", title="Activation Proof CS1", version_label="2026.1"
+        )
+        user = make_user("sql-companion-activation@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+        assert companion_id is not None
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, False],
+        )
+        before = StudyAttempt.query.filter_by(
+            user_id=user.id, mission_id=companion_id
+        ).count()
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="partially",
+        )
+        assert result is not None
+        attempt_id = result.get("sql_evidence_attempt_id")
+        assert attempt_id is not None
+
+        attempt = StudyAttempt.query.get(attempt_id)
+        assert attempt is not None
+        assert int(attempt.user_id) == int(user.id)
+        assert int(attempt.mission_id) == int(companion_id)
+        assert attempt.questions_attempted == 2
+        assert attempt.questions_correct == 1
+        from app.services.educational_evidence_authority import (
+            EducationalEvidenceAuthority,
+        )
+
+        assert (
+            EducationalEvidenceAuthority.study_attempt_has_structured_question_results(
+                attempt
+            )
+        )
+        assert attempt.topic_id is not None
+        assert (
+            TopicProgress.query.filter_by(
+                user_id=user.id, topic_id=attempt.topic_id
+            ).count()
+            == 1
+        )
+        assert (
+            StudyAttempt.query.filter_by(
+                user_id=user.id, mission_id=companion_id
+            ).count()
+            == before + 1
+        )
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "Completed"
+
 
 class TestPracticeAggregationHelper:
     def test_counts_only_scored_practice(self):
