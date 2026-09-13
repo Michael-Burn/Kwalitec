@@ -1,4 +1,4 @@
-"""Golden scenarios for Progression Readiness (forty-eight real contracts).
+"""Golden scenarios for Progression Readiness (fifty-three real contracts).
 
 Standalone: no live student-facing wiring. Proves locked outcome matrices,
 prerequisite both states, unscored filtering, critical override capability,
@@ -65,6 +65,11 @@ from app.application.progression_readiness import (
     CS1_C_T03_LO03,
     CS1_C_T03_LO04,
     CS1_C_T03_LO05,
+    CS1_D_T01_LO01,
+    CS1_D_T01_LO02,
+    CS1_D_T01_LO03,
+    CS1_D_T01_LO04,
+    CS1_D_T01_LO05,
     PREREQUISITE_JOINT_DISTRIBUTION_LO,
     PROGRESSION_READINESS_CONTRACTS,
     ContractKind,
@@ -153,7 +158,7 @@ def _eval(contract: ProgressionReadinessContract, evidence, student_id="s1"):
 
 
 class TestCatalogue:
-    def test_forty_eight_real_contracts_present(self):
+    def test_fifty_three_real_contracts_present(self):
         assert set(PROGRESSION_READINESS_CONTRACTS) == {
             "CS1-A-T01-LO01",
             "CS1-A-T01-LO02",
@@ -203,6 +208,11 @@ class TestCatalogue:
             "CS1-C-T03-LO03",
             "CS1-C-T03-LO04",
             "CS1-C-T03-LO05",
+            "CS1-D-T01-LO01",
+            "CS1-D-T01-LO02",
+            "CS1-D-T01-LO03",
+            "CS1-D-T01-LO04",
+            "CS1-D-T01-LO05",
         }
 
     def test_topic_1_1_item_counts_match_live_freeze(self):
@@ -472,6 +482,26 @@ class TestCatalogue:
             assert contract.item_ids == frozenset({ar, cp})
             assert contract.required_prerequisite_objective_id is None
 
+    def test_topic_4_1_contracts_match_approved_shapes(self):
+        assert "cs1013-4.1.1-ar-01" not in CS1_D_T01_LO01.item_ids
+        assert "cs1013-4.1.1-cp-01" not in CS1_D_T01_LO01.item_ids
+        assert "cs1016-4.1.1-ar-01" not in CS1_D_T01_LO01.item_ids
+        assert "cs1016-4.1.1-cp-01" not in CS1_D_T01_LO01.item_ids
+        assert "cs1013-4.1.4-ar-01" not in CS1_D_T01_LO04.item_ids
+        assert "cs1013-4.1.4-cp-01" not in CS1_D_T01_LO04.item_ids
+        for contract, ar, cp in (
+            (CS1_D_T01_LO01, "cs1003-4.1.1-ar-01", "cs1003-4.1.1-cp-01"),
+            (CS1_D_T01_LO02, "cs1003-4.1.2-ar-01", "cs1003-4.1.2-cp-01"),
+            (CS1_D_T01_LO03, "cs1003-4.1.3-ar-01", "cs1003-4.1.3-cp-01"),
+            (CS1_D_T01_LO04, "cs1003-4.1.4-ar-01", "cs1003-4.1.4-cp-01"),
+            (CS1_D_T01_LO05, "cs1003-4.1.5-ar-01", "cs1003-4.1.5-cp-01"),
+        ):
+            assert contract.kind is ContractKind.CONCEPTUAL
+            assert contract.item_count == 2
+            assert contract.ready_min_correct == 2
+            assert contract.item_ids == frozenset({ar, cp})
+            assert contract.required_prerequisite_objective_id is None
+
     def test_get_contract(self):
         assert get_contract("CS1-A-T01-LO01") is CS1_A_T01_LO01
         assert get_contract("CS1-A-T02-LO01") is CS1_A_T02_LO01
@@ -490,6 +520,8 @@ class TestCatalogue:
         assert get_contract("CS1-C-T02-LO08") is CS1_C_T02_LO08
         assert get_contract("CS1-C-T03-LO01") is CS1_C_T03_LO01
         assert get_contract("CS1-C-T03-LO05") is CS1_C_T03_LO05
+        assert get_contract("CS1-D-T01-LO01") is CS1_D_T01_LO01
+        assert get_contract("CS1-D-T01-LO05") is CS1_D_T01_LO05
         assert get_contract("missing") is None
 
 
@@ -2554,6 +2586,280 @@ class TestTopic33LO01Cs1012OnlyExcludesCs1016:
     ],
 )
 class TestTopic33ConceptualTwoItem:
+    def _items(self, contract):
+        return [spec.item_id for spec in contract.evidence_items]
+
+    def test_two_of_two_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, True) for i in items]
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
+
+    def test_one_of_two_insufficient_sample(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1",
+            contract.objective_id,
+            [(items[0], True), (items[1], False)],
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_zero_of_two_not_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, False) for i in items]
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.NOT_READY
+        assert result.reason is None
+
+
+# ---------------------------------------------------------------------------
+# Topic 4.1 LO01: cs1003 only; Continuity + Memory twins OEA-tagged but excluded
+# ---------------------------------------------------------------------------
+
+
+class TestTopic41LO01Cs1003OnlyExcludesTwins:
+    contract = CS1_D_T01_LO01
+    primary_ar = "cs1003-4.1.1-ar-01"
+    primary_cp = "cs1003-4.1.1-cp-01"
+    twin_ids = (
+        "cs1013-4.1.1-ar-01",
+        "cs1013-4.1.1-cp-01",
+        "cs1016-4.1.1-ar-01",
+        "cs1016-4.1.1-cp-01",
+    )
+
+    def test_contract_item_ids_exclude_twins(self):
+        assert self.contract.item_ids == frozenset(
+            {self.primary_ar, self.primary_cp}
+        )
+        for twin_id in self.twin_ids:
+            assert twin_id not in self.contract.item_ids
+
+    def test_cs1003_both_correct_ready_even_with_twins_incorrect(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_cp,
+                scored_correct=True,
+                offset=1,
+                response_type="mcq",
+            ),
+        ]
+        for i, twin_id in enumerate(self.twin_ids, start=2):
+            evidence.append(
+                _record(
+                    student_id="s1",
+                    objective_id=self.contract.objective_id,
+                    item_id=twin_id,
+                    scored_correct=False,
+                    offset=i,
+                    response_type="mcq",
+                )
+            )
+        assert _eval(self.contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_twins_both_correct_do_not_make_ready_without_cs1003(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=twin_id,
+                scored_correct=True,
+                offset=i,
+                response_type="mcq",
+            )
+            for i, twin_id in enumerate(self.twin_ids)
+        ]
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_cs1003_one_of_two_insufficient_despite_twins_correct(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_cp,
+                scored_correct=False,
+                offset=1,
+                response_type="mcq",
+            ),
+        ]
+        for i, twin_id in enumerate(self.twin_ids, start=2):
+            evidence.append(
+                _record(
+                    student_id="s1",
+                    objective_id=self.contract.objective_id,
+                    item_id=twin_id,
+                    scored_correct=True,
+                    offset=i,
+                    response_type="mcq",
+                )
+            )
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+
+# ---------------------------------------------------------------------------
+# Topic 4.1 LO04: cs1003 only; Continuity twin OEA-tagged but excluded
+# ---------------------------------------------------------------------------
+
+
+class TestTopic41LO04Cs1003OnlyExcludesCs1013:
+    contract = CS1_D_T01_LO04
+    primary_ar = "cs1003-4.1.4-ar-01"
+    primary_cp = "cs1003-4.1.4-cp-01"
+    twin_ar = "cs1013-4.1.4-ar-01"
+    twin_cp = "cs1013-4.1.4-cp-01"
+
+    def test_contract_item_ids_exclude_cs1013(self):
+        assert self.contract.item_ids == frozenset(
+            {self.primary_ar, self.primary_cp}
+        )
+        assert self.twin_ar not in self.contract.item_ids
+        assert self.twin_cp not in self.contract.item_ids
+
+    def test_cs1003_both_correct_ready_even_with_cs1013_incorrect(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_cp,
+                scored_correct=True,
+                offset=1,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_ar,
+                scored_correct=False,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_cp,
+                scored_correct=False,
+                offset=3,
+                response_type="mcq",
+            ),
+        ]
+        assert _eval(self.contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_cs1013_both_correct_does_not_make_ready_without_cs1003(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_cp,
+                scored_correct=True,
+                offset=1,
+                response_type="mcq",
+            ),
+        ]
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_cs1003_one_of_two_insufficient_despite_cs1013_correct(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.primary_cp,
+                scored_correct=False,
+                offset=1,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_ar,
+                scored_correct=True,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.twin_cp,
+                scored_correct=True,
+                offset=3,
+                response_type="mcq",
+            ),
+        ]
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+
+# ---------------------------------------------------------------------------
+# Topic 4.1 LO01-LO05: 2-item conceptual ready_min_correct=2
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "contract",
+    [
+        CS1_D_T01_LO01,
+        CS1_D_T01_LO02,
+        CS1_D_T01_LO03,
+        CS1_D_T01_LO04,
+        CS1_D_T01_LO05,
+    ],
+)
+class TestTopic41ConceptualTwoItem:
     def _items(self, contract):
         return [spec.item_id for spec in contract.evidence_items]
 

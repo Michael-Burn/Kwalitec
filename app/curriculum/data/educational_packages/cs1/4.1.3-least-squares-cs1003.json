@@ -152,7 +152,8 @@
           "misconception_tag": "corr_as_slope"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO03"
     },
     {
       "episode_id": "lep-cs1003-4.1.3-cp-01",
@@ -196,7 +197,8 @@
           "misconception_tag": "lad_as_ols"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO03"
     }
   ],
   "reflection": {

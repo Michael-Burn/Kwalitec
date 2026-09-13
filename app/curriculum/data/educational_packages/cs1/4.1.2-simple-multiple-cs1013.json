@@ -155,7 +155,8 @@
           "misconception_tag": "frequency_severity_swap"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO02"
     },
     {
       "episode_id": "lep-cs1013-4.1.2-cp-01",
@@ -199,7 +200,8 @@
           "misconception_tag": "continuous_collapse"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO02"
     }
   ],
   "reflection": {
