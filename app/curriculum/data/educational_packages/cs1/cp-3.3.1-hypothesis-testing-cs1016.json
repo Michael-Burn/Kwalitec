@@ -153,7 +153,8 @@
           "misconception_tag": "errors_collapsed"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO01"
     },
     {
       "episode_id": "lep-cs1016-3.3.1-cp-01",
@@ -197,7 +198,8 @@
           "misconception_tag": "regression_as_ht"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO01"
     }
   ],
   "reflection": {

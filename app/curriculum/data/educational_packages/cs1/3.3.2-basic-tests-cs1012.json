@@ -156,7 +156,8 @@
           "misconception_tag": "discrete_excluded"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO02"
     },
     {
       "episode_id": "lep-cs1012-3.3.2-cp-01",
@@ -200,7 +201,8 @@
           "misconception_tag": "designs_scrambled"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO02"
     }
   ],
   "reflection": {

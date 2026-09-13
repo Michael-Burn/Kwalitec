@@ -154,7 +154,8 @@
           "misconception_tag": "gof_as_permutation"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO03"
     },
     {
       "episode_id": "lep-cs1012-3.3.3-cp-01",
@@ -198,7 +199,8 @@
           "misconception_tag": "bootstrap_ci_as_permutation"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO03"
     }
   ],
   "reflection": {
