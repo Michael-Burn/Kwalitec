@@ -155,7 +155,8 @@
           "misconception_tag": "one_draw_plug_in"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO08"
     },
     {
       "episode_id": "lep-cs1011-3.2.8-cp-01",
@@ -199,7 +200,8 @@
           "misconception_tag": "singleton_interval"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO08"
     }
   ],
   "reflection": {

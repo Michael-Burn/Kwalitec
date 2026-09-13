@@ -153,7 +153,8 @@
           "misconception_tag": "midpoint_probability"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO01"
     },
     {
       "episode_id": "lep-cs1016-3.2.1-cp-01",
@@ -197,7 +198,8 @@
           "misconception_tag": "midpoint_probability"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO01"
     }
   ],
   "reflection": {

@@ -1,7 +1,7 @@
 """Real Progression Readiness contracts for evidenced CS1 objectives.
 
 Item ids match the live OEA tagged freeze (topics 1.1, 1.2, 2.1, 2.2, 2.3,
-2.4, 2.5, 2.6, and 3.1). Critical misconception tags are empty today; the
+2.4, 2.5, 2.6, 3.1, and 3.2). Critical misconception tags are empty today; the
 override path remains present.
 """
 
@@ -427,6 +427,96 @@ CS1_C_T01_LO06 = ProgressionReadinessContract(
     critical_misconception_tags=frozenset(),
 )
 
+# Topic 3.2: cs1016-3.2.1-* are OEA-tagged for CS1-C-T02-LO01 but are not
+# listed here, so this contract's evaluation never consumes them.
+CS1_C_T02_LO01 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO01",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.1-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.1-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO02 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO02",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.2-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO03 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO03",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.3-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.3-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO04 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO04",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.4-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.4-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO05 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO05",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.5-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.5-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO06 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO06",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.6-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.6-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO07 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO07",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.7-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.7-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
+CS1_C_T02_LO08 = ProgressionReadinessContract(
+    objective_id="CS1-C-T02-LO08",
+    kind=ContractKind.CONCEPTUAL,
+    evidence_items=(
+        EvidenceItemSpec("cs1011-3.2.8-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1011-3.2.8-cp-01", EvidenceModality.CONCEPTUAL),
+    ),
+    ready_min_correct=2,
+    critical_misconception_tags=frozenset(),
+)
+
 PROGRESSION_READINESS_CONTRACTS: dict[str, ProgressionReadinessContract] = {
     CS1_A_T01_LO01.objective_id: CS1_A_T01_LO01,
     CS1_A_T01_LO02.objective_id: CS1_A_T01_LO02,
@@ -463,6 +553,14 @@ PROGRESSION_READINESS_CONTRACTS: dict[str, ProgressionReadinessContract] = {
     CS1_C_T01_LO04.objective_id: CS1_C_T01_LO04,
     CS1_C_T01_LO05.objective_id: CS1_C_T01_LO05,
     CS1_C_T01_LO06.objective_id: CS1_C_T01_LO06,
+    CS1_C_T02_LO01.objective_id: CS1_C_T02_LO01,
+    CS1_C_T02_LO02.objective_id: CS1_C_T02_LO02,
+    CS1_C_T02_LO03.objective_id: CS1_C_T02_LO03,
+    CS1_C_T02_LO04.objective_id: CS1_C_T02_LO04,
+    CS1_C_T02_LO05.objective_id: CS1_C_T02_LO05,
+    CS1_C_T02_LO06.objective_id: CS1_C_T02_LO06,
+    CS1_C_T02_LO07.objective_id: CS1_C_T02_LO07,
+    CS1_C_T02_LO08.objective_id: CS1_C_T02_LO08,
 }
 
 

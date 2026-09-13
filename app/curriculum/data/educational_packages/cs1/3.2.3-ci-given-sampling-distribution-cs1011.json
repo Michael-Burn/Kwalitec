@@ -156,7 +156,8 @@
           "misconception_tag": "support_as_ci"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO03"
     },
     {
       "episode_id": "lep-cs1011-3.2.3-cp-01",
@@ -200,7 +201,8 @@
           "misconception_tag": "invert_algebra_error"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO03"
     }
   ],
   "reflection": {
