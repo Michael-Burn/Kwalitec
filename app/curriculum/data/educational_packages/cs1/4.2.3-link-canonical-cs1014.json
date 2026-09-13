@@ -155,7 +155,8 @@
           "misconception_tag": "link_is_eta"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO03"
     },
     {
       "episode_id": "lep-cs1014-4.2.3-cp-01",
@@ -199,7 +200,8 @@
           "misconception_tag": "deviance_picks_link"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO03"
     }
   ],
   "reflection": {

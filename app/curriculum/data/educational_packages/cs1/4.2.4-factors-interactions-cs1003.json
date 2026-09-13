@@ -151,7 +151,8 @@
           "misconception_tag": "factors_not_glm"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO04"
     },
     {
       "episode_id": "lep-cs1003-4.2.4-cp-01",
@@ -195,7 +196,8 @@
           "misconception_tag": "numeric_levels"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO04"
     }
   ],
   "reflection": {

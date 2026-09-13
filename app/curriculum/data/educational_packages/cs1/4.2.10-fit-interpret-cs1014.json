@@ -155,7 +155,8 @@
           "misconception_tag": "intercept_only"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO10"
     },
     {
       "episode_id": "lep-cs1014-4.2.10-cp-01",
@@ -206,7 +207,8 @@
             "rationale": ""
           }
         ]
-      }
+      },
+      "objective_id": "CS1-D-T02-LO10"
     }
   ],
   "reflection": {

@@ -156,7 +156,8 @@
           "misconception_tag": "exp_anywhere"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO01"
     },
     {
       "episode_id": "lep-cs1003-4.2.1-cp-01",
@@ -200,7 +201,8 @@
           "misconception_tag": "exp_anywhere"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO01"
     }
   ],
   "reflection": {

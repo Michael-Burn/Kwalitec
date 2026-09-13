@@ -151,7 +151,8 @@
           "misconception_tag": "mom_not_mle"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO06"
     },
     {
       "episode_id": "lep-cs1003-4.2.6-cp-01",
@@ -195,7 +196,8 @@
           "misconception_tag": "no_scaled_definition"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO06"
     }
   ],
   "reflection": {
