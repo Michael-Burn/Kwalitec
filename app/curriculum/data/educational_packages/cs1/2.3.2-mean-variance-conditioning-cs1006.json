@@ -200,7 +200,15 @@
           "decimal",
           "integer"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "unweighted-conditional-means",
+            "match_value": 15,
+            "match_absolute_tolerance": 0.5,
+            "consistent_with": "averaging the conditional means without probability weights",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

@@ -253,7 +253,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "sensitivity-as-posterior",
+            "match_value": 0.95,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "equating the posterior with the sensitivity P(positive given D)",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

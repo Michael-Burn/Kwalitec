@@ -199,7 +199,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "used-u-not-one-minus-u",
+            "match_value": 0.6020,
+            "match_absolute_tolerance": 0.0001,
+            "consistent_with": "using -ln(U)/lambda instead of -ln(1-U)/lambda at this U",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

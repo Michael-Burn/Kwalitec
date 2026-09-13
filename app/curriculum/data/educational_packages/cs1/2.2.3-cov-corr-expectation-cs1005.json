@@ -195,7 +195,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "exy-without-centring",
+            "match_value": 0.4,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting E[XY] without subtracting E[X]E[Y]",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

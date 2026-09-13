@@ -197,7 +197,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "reported-mean-not-rate",
+            "match_value": 2.5,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the sample mean instead of the rate lambda-hat equals n divided by the sum of x",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

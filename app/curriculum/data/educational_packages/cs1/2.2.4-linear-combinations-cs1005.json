@@ -197,7 +197,15 @@
           "decimal",
           "integer"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "dropped-covariance",
+            "match_value": 25,
+            "match_absolute_tolerance": 0.5,
+            "consistent_with": "dropping the covariance cross-term",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

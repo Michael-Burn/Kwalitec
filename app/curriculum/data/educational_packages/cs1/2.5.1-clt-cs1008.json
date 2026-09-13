@@ -198,7 +198,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "reported-phi-of-plus-one",
+            "match_value": 0.841,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting Phi(1) approximately 0.841 instead of the lower-tail value 1 minus Phi(1)",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

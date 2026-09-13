@@ -195,7 +195,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "swapped-weights",
+            "match_value": 633.33,
+            "match_absolute_tolerance": 0.01,
+            "consistent_with": "swapping the credibility weights",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

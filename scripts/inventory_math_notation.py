@@ -111,6 +111,15 @@ _SKIP_SUFFIXES = (
     ".accepted_keywords",
 )
 
+# Numeric Assessment Tier-2 diagnostic metadata (rule ids / consistent_with
+# clauses). These are feedback-classification prose, not typesetting migration
+# targets. Leaving them in scope falsely reopens needs_migration when clauses
+# mention P(...), E[...], or similar actuarial tokens.
+_SKIP_PATH_MARKERS = (
+    ".diagnostic_rules[",
+    ".diagnostic_rules.",
+)
+
 _MATH_OBJECT_PATH = re.compile(
     r"(?:"
     r"problem_statement|final_answer|calculation|result|"
@@ -870,6 +879,8 @@ def _in_scope(path: str) -> bool:
     ):
         return False
     if p.endswith(_SKIP_SUFFIXES):
+        return False
+    if any(marker in p for marker in _SKIP_PATH_MARKERS):
         return False
     return True
 

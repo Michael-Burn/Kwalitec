@@ -197,7 +197,15 @@
           "decimal",
           "integer"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "reported-sum-not-mean",
+            "match_value": 12,
+            "match_absolute_tolerance": 0,
+            "consistent_with": "reporting the sum of counts instead of the sample mean",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

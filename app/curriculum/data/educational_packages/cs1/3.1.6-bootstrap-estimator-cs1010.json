@@ -197,7 +197,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "used-bessel-correction",
+            "match_value": 9.618,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "using 1 divided by (B minus 1) instead of 1 divided by B in the bootstrap standard error",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

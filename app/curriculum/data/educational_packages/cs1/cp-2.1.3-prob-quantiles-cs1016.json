@@ -198,7 +198,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "cdf-instead-of-survival",
+            "match_value": 0.865,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the CDF instead of the survival probability",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

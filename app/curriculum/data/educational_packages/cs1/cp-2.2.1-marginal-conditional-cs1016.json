@@ -195,7 +195,15 @@
         "accepted_forms": [
           "decimal"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "joint-without-normalising",
+            "match_value": 0.4,
+            "match_absolute_tolerance": 0.001,
+            "consistent_with": "reporting the joint cell P(1,1) without dividing by P(X=1)",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],

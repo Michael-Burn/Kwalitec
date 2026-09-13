@@ -195,7 +195,15 @@
           "decimal",
           "integer"
         ],
-        "diagnostic_rules": []
+        "diagnostic_rules": [
+          {
+            "rule_id": "swapped-weights",
+            "match_value": 750,
+            "match_absolute_tolerance": 0.5,
+            "consistent_with": "swapping the credibility weights",
+            "rationale": ""
+          }
+        ]
       }
     }
   ],
