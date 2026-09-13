@@ -154,7 +154,8 @@
           "misconception_tag": "single_replicate"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO06"
     },
     {
       "episode_id": "lep-cs1010-3.1.6-cp-01",
@@ -179,6 +180,7 @@
         "Uses the bootstrap SE formula with division by $B$."
       ],
       "numeric_tolerance": 0.001,
+      "objective_id": "CS1-C-T01-LO06",
       "answer_specification": {
         "item_id": "cs1010-3.1.6-cp-01",
         "canonical_value": 8.602,

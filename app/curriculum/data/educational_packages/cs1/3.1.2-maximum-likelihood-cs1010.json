@@ -155,7 +155,8 @@
           "misconception_tag": "mse_as_mle"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO02"
     },
     {
       "episode_id": "lep-cs1010-3.1.2-cp-01",
@@ -180,6 +181,7 @@
         "Enters a value within 0.001 of 0.4.",
         "Uses $\\frac{n}{\\sum x_{i}}$ for the rate, not the sample mean."
       ],
+      "objective_id": "CS1-C-T01-LO02",
       "answer_specification": {
         "item_id": "cs1010-3.1.2-cp-01",
         "canonical_value": 0.4,

@@ -1,4 +1,4 @@
-"""Golden scenarios for Progression Readiness (twenty-nine real contracts).
+"""Golden scenarios for Progression Readiness (thirty-five real contracts).
 
 Standalone: no live student-facing wiring. Proves locked outcome matrices,
 prerequisite both states, unscored filtering, critical override capability,
@@ -46,6 +46,12 @@ from app.application.progression_readiness import (
     CS1_B_T06_LO04,
     CS1_B_T06_LO05,
     CS1_B_T06_LO06,
+    CS1_C_T01_LO01,
+    CS1_C_T01_LO02,
+    CS1_C_T01_LO03,
+    CS1_C_T01_LO04,
+    CS1_C_T01_LO05,
+    CS1_C_T01_LO06,
     PREREQUISITE_JOINT_DISTRIBUTION_LO,
     PROGRESSION_READINESS_CONTRACTS,
     ContractKind,
@@ -134,7 +140,7 @@ def _eval(contract: ProgressionReadinessContract, evidence, student_id="s1"):
 
 
 class TestCatalogue:
-    def test_twenty_nine_real_contracts_present(self):
+    def test_thirty_five_real_contracts_present(self):
         assert set(PROGRESSION_READINESS_CONTRACTS) == {
             "CS1-A-T01-LO01",
             "CS1-A-T01-LO02",
@@ -165,6 +171,12 @@ class TestCatalogue:
             "CS1-B-T06-LO04",
             "CS1-B-T06-LO05",
             "CS1-B-T06-LO06",
+            "CS1-C-T01-LO01",
+            "CS1-C-T01-LO02",
+            "CS1-C-T01-LO03",
+            "CS1-C-T01-LO04",
+            "CS1-C-T01-LO05",
+            "CS1-C-T01-LO06",
         }
 
     def test_topic_1_1_item_counts_match_live_freeze(self):
@@ -367,6 +379,38 @@ class TestCatalogue:
             assert contract.item_ids == frozenset({ar, cp})
             assert contract.required_prerequisite_objective_id is None
 
+    def test_topic_3_1_contracts_match_approved_shapes(self):
+        assert CS1_C_T01_LO01.kind is ContractKind.MIXED_MODALITY
+        assert CS1_C_T01_LO01.item_ids == frozenset(
+            {"cs1010-3.1.1-ar-01", "cs1010-3.1.1-cp-01"}
+        )
+        assert "cs1016-3.1.1-ar-01" not in CS1_C_T01_LO01.item_ids
+        assert "cs1016-3.1.1-cp-01" not in CS1_C_T01_LO01.item_ids
+        assert CS1_C_T01_LO01.required_prerequisite_objective_id is None
+
+        assert CS1_C_T01_LO02.kind is ContractKind.MIXED_MODALITY
+        assert CS1_C_T01_LO02.item_ids == frozenset(
+            {"cs1010-3.1.2-ar-01", "cs1010-3.1.2-cp-01"}
+        )
+        assert CS1_C_T01_LO02.required_prerequisite_objective_id is None
+
+        for contract, ar, cp in (
+            (CS1_C_T01_LO03, "cs1010-3.1.3-ar-01", "cs1010-3.1.3-cp-01"),
+            (CS1_C_T01_LO04, "cs1010-3.1.4-ar-01", "cs1010-3.1.4-cp-01"),
+            (CS1_C_T01_LO05, "cs1010-3.1.5-ar-01", "cs1010-3.1.5-cp-01"),
+        ):
+            assert contract.kind is ContractKind.CONCEPTUAL
+            assert contract.item_count == 2
+            assert contract.ready_min_correct == 2
+            assert contract.item_ids == frozenset({ar, cp})
+            assert contract.required_prerequisite_objective_id is None
+
+        assert CS1_C_T01_LO06.kind is ContractKind.MIXED_MODALITY
+        assert CS1_C_T01_LO06.item_ids == frozenset(
+            {"cs1010-3.1.6-ar-01", "cs1010-3.1.6-cp-01"}
+        )
+        assert CS1_C_T01_LO06.required_prerequisite_objective_id is None
+
     def test_get_contract(self):
         assert get_contract("CS1-A-T01-LO01") is CS1_A_T01_LO01
         assert get_contract("CS1-A-T02-LO01") is CS1_A_T02_LO01
@@ -379,6 +423,8 @@ class TestCatalogue:
         assert get_contract("CS1-B-T05-LO02") is CS1_B_T05_LO02
         assert get_contract("CS1-B-T06-LO01") is CS1_B_T06_LO01
         assert get_contract("CS1-B-T06-LO06") is CS1_B_T06_LO06
+        assert get_contract("CS1-C-T01-LO01") is CS1_C_T01_LO01
+        assert get_contract("CS1-C-T01-LO06") is CS1_C_T01_LO06
         assert get_contract("missing") is None
 
 
@@ -1874,6 +1920,236 @@ class TestTopic26LO01Cs1009OnlyExcludesCs1016:
     ],
 )
 class TestTopic26ConceptualTwoItem:
+    def _items(self, contract):
+        return [spec.item_id for spec in contract.evidence_items]
+
+    def test_two_of_two_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, True) for i in items]
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
+
+    def test_one_of_two_insufficient_sample(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1",
+            contract.objective_id,
+            [(items[0], True), (items[1], False)],
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_zero_of_two_not_ready(self, contract):
+        items = self._items(contract)
+        evidence = _evidence_for_items(
+            "s1", contract.objective_id, [(i, False) for i in items]
+        )
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.NOT_READY
+        assert result.reason is None
+
+
+# ---------------------------------------------------------------------------
+# Topic 3.1 LO01: single-pair mixed; cs1016 tagged but excluded from contract
+# ---------------------------------------------------------------------------
+
+
+class TestTopic31LO01Cs1010OnlyExcludesCs1016:
+    contract = CS1_C_T01_LO01
+    mcq = "cs1010-3.1.1-ar-01"
+    numeric = "cs1010-3.1.1-cp-01"
+    cs1016_mcq = "cs1016-3.1.1-ar-01"
+    cs1016_numeric = "cs1016-3.1.1-cp-01"
+
+    def test_contract_item_ids_exclude_cs1016(self):
+        assert self.contract.item_ids == frozenset({self.mcq, self.numeric})
+        assert self.cs1016_mcq not in self.contract.item_ids
+        assert self.cs1016_numeric not in self.contract.item_ids
+
+    def test_cs1010_both_correct_ready_even_with_cs1016_incorrect(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.numeric,
+                scored_correct=True,
+                offset=1,
+                response_type="numeric",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=False,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=False,
+                offset=3,
+                response_type="numeric",
+            ),
+        ]
+        assert _eval(self.contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_cs1016_both_correct_does_not_make_ready_without_cs1010(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=True,
+                offset=1,
+                response_type="numeric",
+            ),
+        ]
+        result = _eval(self.contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED
+
+    def test_cs1010_mcq_ok_numeric_fail_not_ready_despite_cs1016_correct(self):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.mcq,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.numeric,
+                scored_correct=False,
+                offset=1,
+                response_type="numeric",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_mcq,
+                scored_correct=True,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=self.contract.objective_id,
+                item_id=self.cs1016_numeric,
+                scored_correct=True,
+                offset=3,
+                response_type="numeric",
+            ),
+        ]
+        assert (
+            _eval(self.contract, evidence).readiness is ProgressionReadiness.NOT_READY
+        )
+
+
+# ---------------------------------------------------------------------------
+# Topic 3.1 LO02 / LO06: single-pair mixed-modality four-cell matrix
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "contract,mcq,numeric",
+    [
+        (CS1_C_T01_LO02, "cs1010-3.1.2-ar-01", "cs1010-3.1.2-cp-01"),
+        (CS1_C_T01_LO06, "cs1010-3.1.6-ar-01", "cs1010-3.1.6-cp-01"),
+    ],
+)
+class TestTopic31MixedModalityLO02LO06:
+    def _pair(
+        self,
+        contract,
+        mcq,
+        numeric,
+        mcq_ok: bool | None,
+        numeric_ok: bool | None,
+    ):
+        rows = []
+        if mcq_ok is not Ellipsis:
+            rows.append(
+                _record(
+                    student_id="s1",
+                    objective_id=contract.objective_id,
+                    item_id=mcq,
+                    scored_correct=mcq_ok,
+                    offset=0,
+                    response_type="mcq",
+                )
+            )
+        if numeric_ok is not Ellipsis:
+            rows.append(
+                _record(
+                    student_id="s1",
+                    objective_id=contract.objective_id,
+                    item_id=numeric,
+                    scored_correct=numeric_ok,
+                    offset=1,
+                    response_type="numeric",
+                )
+            )
+        return rows
+
+    def test_both_correct_ready(self, contract, mcq, numeric):
+        evidence = self._pair(contract, mcq, numeric, True, True)
+        assert _eval(contract, evidence).readiness is ProgressionReadiness.READY
+
+    def test_mcq_correct_numeric_incorrect_not_ready(self, contract, mcq, numeric):
+        result = _eval(contract, self._pair(contract, mcq, numeric, True, False))
+        assert result.readiness is ProgressionReadiness.NOT_READY
+
+    def test_mcq_incorrect_numeric_correct_modality_not_observed(
+        self, contract, mcq, numeric
+    ):
+        result = _eval(contract, self._pair(contract, mcq, numeric, False, True))
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.REQUIRED_MODALITY_NOT_OBSERVED
+
+    def test_both_incorrect_not_ready(self, contract, mcq, numeric):
+        result = _eval(contract, self._pair(contract, mcq, numeric, False, False))
+        assert result.readiness is ProgressionReadiness.NOT_READY
+
+
+# ---------------------------------------------------------------------------
+# Topic 3.1 LO03-LO05: 2-item conceptual ready_min_correct=2
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "contract",
+    [
+        CS1_C_T01_LO03,
+        CS1_C_T01_LO04,
+        CS1_C_T01_LO05,
+    ],
+)
+class TestTopic31ConceptualTwoItem:
     def _items(self, contract):
         return [spec.item_id for spec in contract.evidence_items]
 

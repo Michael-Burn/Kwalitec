@@ -155,7 +155,8 @@
           "misconception_tag": "asymptotics_as_comparison"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO04"
     },
     {
       "episode_id": "lep-cs1010-3.1.4-cp-01",
@@ -199,7 +200,8 @@
           "misconception_tag": "bias_square_error"
         }
       ],
-      "correct_choice_id": "a"
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO04"
     }
   ],
   "reflection": {
