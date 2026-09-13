@@ -260,8 +260,8 @@ class Version2FeatureFlags:
     # Numeric Assessment Framework live scoring cutover for migrated numeric
     # checkpoints that carry an authored answer_specification.
     # Default OFF; never inherited from Commercial Loop. Explicit env only.
-    # Absent from render.yaml (ship dark). When OFF, score_practice_response
-    # keeps the legacy numeric_tolerance / bundled common_mistake path.
+    # Production: ON via render.yaml. When OFF, score_practice_response keeps
+    # the legacy numeric_tolerance / bundled common_mistake path.
     SR_NUMERIC_ASSESSMENT_FRAMEWORK: bool = False
 
 

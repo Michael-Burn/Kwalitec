@@ -68,6 +68,12 @@ services:
       - key: KWALITEC_COMMERCIAL_LOOP
         value: "1"
 
+      # Numeric Assessment Framework — honest numeric grading for migrated
+      # checkpoints. Explicit ON (not inherited from Commercial Loop).
+      # Rollback: set SR_NUMERIC_ASSESSMENT_FRAMEWORK=0 (or unset).
+      - key: SR_NUMERIC_ASSESSMENT_FRAMEWORK
+        value: "1"
+
 databases:
   - name: kwalitec-db
     plan: free

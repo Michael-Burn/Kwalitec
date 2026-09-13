@@ -13,7 +13,6 @@ from __future__ import annotations
 
 from dataclasses import replace
 from datetime import UTC, datetime
-from pathlib import Path
 
 import pytest
 
@@ -45,8 +44,6 @@ from app.application.objective_evidence.recorder import (
 from app.application.objective_evidence.store import (
     ObjectiveAssessmentEvidenceStore,
 )
-
-RENDER_YAML = Path("render.yaml")
 
 
 @pytest.fixture(autouse=True)
@@ -150,10 +147,11 @@ class TestNumericAssessmentFrameworkFlag:
         )
         assert explicit.SR_NUMERIC_ASSESSMENT_FRAMEWORK is True
 
-    def test_absent_from_render_yaml(self):
-        text = RENDER_YAML.read_text(encoding="utf-8")
-        assert "SR_NUMERIC_ASSESSMENT_FRAMEWORK" not in text
-        assert "NUMERIC_ASSESSMENT_FRAMEWORK" not in text
+    def test_enabled_in_render_yaml(self):
+        from tests.operational.helpers import render_env_map
+
+        env = render_env_map()
+        assert env.get("SR_NUMERIC_ASSESSMENT_FRAMEWORK") == "1"
 
 
 @pytest.mark.parametrize("item_id", _all_item_ids())
