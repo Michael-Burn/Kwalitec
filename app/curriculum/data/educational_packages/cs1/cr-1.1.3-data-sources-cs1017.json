@@ -157,6 +157,51 @@
       "objective_id": "CS1-A-T01-LO03"
     },
     {
+      "episode_id": "lep-cs1017-1.1.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1017-1.1.3-ar-02",
+      "title": "Active Recall: 1.1.3 large-set constraints",
+      "prompt": "Closed-book. A motor book streams millions of telematics pings each day. The pricing question needs a usable severity-related feature. Which statement correctly treats this as an extremely large data source?",
+      "response_type": "mcq",
+      "body": "Scale constraints remain; volume does not imply fitness.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Extreme volume can still impose storage, compute, refresh, and sampling constraints. A complete stream is not automatically representative or analysis-ready.",
+      "model_answer": "Large streams can still need sampling or aggregation; volume does not fix quality or coverage.",
+      "common_mistake": "Must-use-every-row, volume-implies-ready, or ignoring refresh.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Extreme scale can still impose storage, compute, refresh, and sampling constraints. Volume does not by itself make the stream representative or analysis-ready; you may still sample, aggregate, or engineer features, and you must still judge coverage and measurement quality.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Because the stream is complete, every ping must enter the model. Sampling an extremely large source is always wrong.",
+          "misconception_tag": "must_use_every_row"
+        },
+        {
+          "id": "c",
+          "label": "The file is large, so it is already analysis-ready and unbiased; source-quality checks are for small survey files only.",
+          "misconception_tag": "volume_implies_ready"
+        },
+        {
+          "id": "d",
+          "label": "Streaming refresh does not affect analysis design. Only the latest static snapshot's row count matters, and a larger snapshot is automatically better.",
+          "misconception_tag": "velocity_irrelevant_rowcount_wins"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO03"
+    },
+    {
       "episode_id": "lep-cs1017-1.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.3-cp-01",

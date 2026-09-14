@@ -256,10 +256,11 @@ class TestCatalogue:
     def test_topic_1_1_item_counts_match_live_freeze(self):
         assert CS1_A_T01_LO01.item_count == 3
         assert CS1_A_T01_LO02.item_count == 3
-        assert CS1_A_T01_LO03.item_count == 2
-        assert CS1_A_T01_LO04.item_count == 2
+        assert CS1_A_T01_LO03.item_count == 3
+        assert CS1_A_T01_LO04.item_count == 3
         assert CS1_A_T01_LO01.ready_min_correct == 2
         assert CS1_A_T01_LO03.ready_min_correct == 2
+        assert CS1_A_T01_LO04.ready_min_correct == 2
 
     def test_topic_1_2_item_counts_match_live_freeze(self):
         assert CS1_A_T02_LO01.item_count == 4
@@ -278,6 +279,20 @@ class TestCatalogue:
                 "cs1017-1.1.1-ar-01",
                 "cs1017-1.1.1-cp-01",
                 "ep001-1.1-ar-01",
+            }
+        )
+        assert CS1_A_T01_LO03.item_ids == frozenset(
+            {
+                "cs1017-1.1.3-ar-01",
+                "cs1017-1.1.3-ar-02",
+                "cs1017-1.1.3-cp-01",
+            }
+        )
+        assert CS1_A_T01_LO04.item_ids == frozenset(
+            {
+                "cs1017-1.1.4-ar-01",
+                "cs1017-1.1.4-ar-02",
+                "cs1017-1.1.4-cp-01",
             }
         )
         assert CS1_A_T02_LO01.item_ids == frozenset(
@@ -682,7 +697,10 @@ class TestCatalogue:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("contract", [CS1_A_T01_LO01, CS1_A_T01_LO02])
+@pytest.mark.parametrize(
+    "contract",
+    [CS1_A_T01_LO01, CS1_A_T01_LO02, CS1_A_T01_LO03, CS1_A_T01_LO04],
+)
 class TestConceptualThreeItem:
     def _items(self, contract):
         return [spec.item_id for spec in contract.evidence_items]
@@ -741,48 +759,52 @@ class TestConceptualThreeItem:
 
 
 # ---------------------------------------------------------------------------
-# Conceptual 2-item (LO03 / LO04)
+# Fresh-second-attempt gap: miss original ar-01, still READY via ar-02 + cp-01
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("contract", [CS1_A_T01_LO03, CS1_A_T01_LO04])
-class TestConceptualTwoItem:
-    def _items(self, contract):
-        return [spec.item_id for spec in contract.evidence_items]
-
-    def test_all_correct_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, True) for i in items]
-        )
-        assert _eval(contract, evidence).readiness is ProgressionReadiness.READY
-
-    def test_one_of_two_insufficient_sample(self, contract):
-        items = self._items(contract)
+@pytest.mark.parametrize(
+    "contract, missed_item, fresh_item, numeric_item",
+    [
+        (
+            CS1_A_T01_LO03,
+            "cs1017-1.1.3-ar-01",
+            "cs1017-1.1.3-ar-02",
+            "cs1017-1.1.3-cp-01",
+        ),
+        (
+            CS1_A_T01_LO04,
+            "cs1017-1.1.4-ar-01",
+            "cs1017-1.1.4-ar-02",
+            "cs1017-1.1.4-cp-01",
+        ),
+    ],
+)
+class TestFreshSecondAttemptGapClosed:
+    def test_ready_via_fresh_item_without_reattempting_missed_ar01(
+        self, contract, missed_item, fresh_item, numeric_item
+    ):
         evidence = _evidence_for_items(
             "s1",
             contract.objective_id,
-            [(items[0], True), (items[1], False)],
+            [
+                (missed_item, False),
+                (fresh_item, True),
+                (numeric_item, True),
+            ],
         )
         result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+        assert result.readiness is ProgressionReadiness.READY
+        assert result.reason is None
 
-    def test_zero_of_two_not_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, False) for i in items]
-        )
-        assert _eval(contract, evidence).readiness is ProgressionReadiness.NOT_READY
-
-    def test_sparse_one_correct_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(items[0], True)]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+        missed_rows = [row for row in evidence if row.item_id == missed_item]
+        assert len(missed_rows) == 1
+        assert missed_rows[0].scored_correct is False
+        assert all(row.scored_correct is not True for row in missed_rows)
+        attempted_ids = {row.item_id for row in evidence}
+        assert missed_item in attempted_ids
+        assert fresh_item in attempted_ids
+        assert numeric_item in attempted_ids
 
 
 # ---------------------------------------------------------------------------

@@ -66,6 +66,12 @@ ea005-4.2-cp-01) remain intentionally unwired, matching the session policy
 of excluding superseded package content from live CAF counts. No conflicting
 CPs in this draft; Part 3 found no numeric conversion candidates. Copy is
 frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-14): two CS1-017 syllabus-gap active-recall
+items (cs1017-1.1.3-ar-02 telematics/scale; cs1017-1.1.4-ar-02 value of
+reproducibility) were reviewed and approved before wiring so every live MCQ
+remains on the choice-aware allowlist. Copy is frozen as approved; mechanism
+unchanged.
 """
 
 from __future__ import annotations
@@ -86,7 +92,8 @@ from app.application.learning_session.scoreable_practice import (
 # CAF Wave 5 remaining P5 joint/conditional + P6 CI/HT through companions;
 # CAF Wave 6 P6 revisions + 4.1 linear regression + purpose/EDA Continuity Front;
 # CAF Final Wave CR Publication Front + sampling 2.6 + CLT/MGF + misc
-# revisions/companions; superseded ea005-4.2 leftovers intentionally excluded).
+# revisions/companions; CS1-017 syllabus-gap AR items 1.1.3-ar-02 / 1.1.4-ar-02;
+# superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
         "cs1010-3.1.3-cp-01",  # Batch 1 — efficiency / MSE comparison
@@ -322,6 +329,8 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1002-cb-r1-cp-01",  # CAF Final Wave: revision-pca-distributions-cs1002
         "cs1002-cb-r1-cp-02",  # CAF Final Wave: revision-pca-distributions-cs1002
         "cs1002-cb-r1-cp-03",  # CAF Final Wave: revision-pca-distributions-cs1002
+        "cs1017-1.1.3-ar-02",  # CS1-017 syllabus gap: cr-1.1.3-data-sources-cs1017
+        "cs1017-1.1.4-ar-02",  # CS1-017 syllabus gap: cr-1.1.4-reproducible-cs1017
     }
 )
 
@@ -5568,6 +5577,51 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice forces correlation to zero whenever the relationship is nonlinear. "
         "Nonlinear monotone association can still be strong on a rank scale."
+    ),
+    # --- cs1017-1.1.3-ar-02 ---
+    (
+        "cs1017-1.1.3-ar-02",
+        "b",
+    ): (
+        "That choice treats a complete stream as requiring every ping in the model. "
+        "Extreme scale can still need sampling, aggregation, or feature engineering."
+    ),
+    (
+        "cs1017-1.1.3-ar-02",
+        "c",
+    ): (
+        "That choice treats a large file as already analysis-ready and unbiased. "
+        "Volume does not by itself make a stream representative or tidy."
+    ),
+    (
+        "cs1017-1.1.3-ar-02",
+        "d",
+    ): (
+        "That choice ignores streaming refresh and crowns the largest static snapshot. "
+        "Refresh and scale constraints still shape how the source can be used."
+    ),
+    # --- cs1017-1.1.4-ar-02 ---
+    (
+        "cs1017-1.1.4-ar-02",
+        "b",
+    ): (
+        "That choice treats reproducibility as academic bureaucracy with no internal value. "
+        "Reconstruction still supports checking, handover, and challenge on internal pricing."
+    ),
+    (
+        "cs1017-1.1.4-ar-02",
+        "c",
+    ): (
+        "That choice treats a verbal walkthrough as enough. "
+        "Shared data identity, scripts, and environment notes are what "
+        "make reconstruction possible."
+    ),
+    (
+        "cs1017-1.1.4-ar-02",
+        "d",
+    ): (
+        "That choice treats artefacts as a speed tax to skip. "
+        "The value is reconstructability, not finishing faster by dropping shared evidence."
     ),
 
 }

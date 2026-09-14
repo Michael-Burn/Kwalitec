@@ -418,7 +418,7 @@ def test_wave10_scoring_matches_pre_migration_snapshot() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 24
+    assert len(seen) == 25
 
 
 def test_wave10_ledger_backlog_and_migration_status() -> None:

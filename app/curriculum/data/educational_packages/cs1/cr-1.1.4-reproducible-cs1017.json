@@ -157,6 +157,51 @@
       "objective_id": "CS1-A-T01-LO04"
     },
     {
+      "episode_id": "lep-cs1017-1.1.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1017-1.1.4-ar-02",
+      "title": "Active Recall: 1.1.4 value of reproducibility",
+      "prompt": "Closed-book. Why does CS1 treat reproducible research as valuable for an internal pricing analysis, not only for published papers?",
+      "response_type": "mcq",
+      "body": "State the value; refuse bureaucracy-only and verbal-handover substitutes.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "The value is that others can reconstruct the same results and therefore check, hand over, or challenge the work. That still requires shared artefacts. Internal work is not exempt, and speed is not the point.",
+      "model_answer": "Value is reconstructability for checking, handover, and challenge; artefacts still required internally.",
+      "common_mistake": "Treating reproducibility as academic bureaucracy, a verbal walkthrough, or a speed tax.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Reproducibility lets a future you, a colleague, or an auditor reconstruct the same results from stated inputs and steps, which supports checking, handover, and challenge. That value still requires shared artefacts (identified data, a scripted path, and documented environment or decisions). Internal pricing is not exempt.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Reproducibility is academic bureaucracy. Internal pricing does not need it because the work will not be published.",
+          "misconception_tag": "bureaucracy_only"
+        },
+        {
+          "id": "c",
+          "label": "The value is professional care, so a verbal walkthrough at handover is enough; shared data identity, scripts, and environment notes add no further value internally.",
+          "misconception_tag": "verbal_handover_enough"
+        },
+        {
+          "id": "d",
+          "label": "The value is finishing faster. Artefacts slow the team down, so they should be skipped on internal pricing work.",
+          "misconception_tag": "speed_over_artefacts"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-A-T01-LO04"
+    },
+    {
       "episode_id": "lep-cs1017-1.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1017-1.1.4-cp-01",

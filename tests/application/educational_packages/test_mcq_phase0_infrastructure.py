@@ -478,7 +478,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
             assert check.accepted_keywords  # existing keyword scoring still present
     assert batch1_seen == 44  # 22 packages × AR + CP
     assert batch2_seen == 48  # 24 packages × AR + CP
-    assert batch3_seen == 30  # 15 packages × AR + CP
+    assert batch3_seen == 32  # 13 packages × AR+CP, plus 2 packages with 3 MCQs
     assert batch4_seen == 36  # 18 packages × AR + CP
     assert batch5_seen == 34  # 17 packages × AR + CP
     # 15 publication_approved Batch 6A packages × AR + CP. Catalogue twin

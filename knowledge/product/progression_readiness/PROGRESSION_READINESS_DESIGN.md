@@ -65,7 +65,7 @@ Only Assessment Evidence with `scored_correct is True` or `scored_correct is Fal
 During implementation, a later restatement of this design transposed the two conceptual rule classes for topic 1.1:
 
 - Restatement error assigned the **2-item** rule to LO01/LO02 and the **3-item** rule to LO03/LO04.
-- The **live tagged catalogue** (and the original Phase 6 grounding investigation) show the opposite: LO01 and LO02 each have **three** tagged items; LO03 and LO04 each have **two**.
+- The **live tagged catalogue** (and the original Phase 6 grounding investigation) showed the opposite: LO01 and LO02 each had **three** tagged items; LO03 and LO04 each had **two**.
 
 **This document records the corrected assignment.** The original grounding investigation and the original design decision were always correct. Only the later restatement transposed the two rule classes. The mismatch was catchable only by checking the real live catalogue against the restated text — exactly the verification discipline this project values.
 
@@ -75,10 +75,12 @@ Corrected assignment (binding):
 |-----------|------------------------|------------|
 | `CS1-A-T01-LO01` | 3 | 3-item conceptual |
 | `CS1-A-T01-LO02` | 3 | 3-item conceptual |
-| `CS1-A-T01-LO03` | 2 | 2-item conceptual |
-| `CS1-A-T01-LO04` | 2 | 2-item conceptual |
+| `CS1-A-T01-LO03` | 3 | 3-item conceptual |
+| `CS1-A-T01-LO04` | 3 | 3-item conceptual |
 
-Every real tagged item remains evidence for its objective. Do not drop the third LO01/LO02 item. Do not invent a third item for LO03/LO04.
+Every real tagged item remains evidence for its objective. Do not drop the third LO01/LO02 item.
+
+Later syllabus-gap work added two real items (`cs1017-1.1.3-ar-02`, `cs1017-1.1.4-ar-02`). Both LO03 and LO04 now consume all three live items under the same 3-item conceptual rule already used for LO01/LO02 (`ready_min_correct=2`). That is not a new rule class.
 
 ---
 
@@ -105,23 +107,17 @@ Evidence items: `cs1017-1.1.2-ar-01`, `cs1017-1.1.2-cp-01`, `ep001-1.1-cp-01`
 
 Same rule as LO01.
 
-### CS1-A-T01-LO03 (1.1.3 data sources) — conceptual, 2 items
+### CS1-A-T01-LO03 (1.1.3 data sources): conceptual, 3 items
 
-Evidence items: `cs1017-1.1.3-ar-01`, `cs1017-1.1.3-cp-01`
+Evidence items: `cs1017-1.1.3-ar-01`, `cs1017-1.1.3-ar-02`, `cs1017-1.1.3-cp-01`
 
-| Outcome among the 2 items | Result |
-|---------------------------|--------|
-| 2/2 correct | READY |
-| 1/2 correct | INSUFFICIENT_EVIDENCE (`INSUFFICIENT_SAMPLE`) |
-| 0/2 correct | NOT_READY |
+Same rule as LO01.
 
-Critical-misconception override: available; unused today.
+### CS1-A-T01-LO04 (1.1.4 reproducibility): conceptual, 3 items
 
-### CS1-A-T01-LO04 (1.1.4 reproducibility) — conceptual, 2 items
+Evidence items: `cs1017-1.1.4-ar-01`, `cs1017-1.1.4-ar-02`, `cs1017-1.1.4-cp-01`
 
-Evidence items: `cs1017-1.1.4-ar-01`, `cs1017-1.1.4-cp-01`
-
-Same rule as LO03.
+Same rule as LO01.
 
 ### CS1-A-T02-LO01 (1.2.1 EDA summaries) — conceptual, 4 items
 

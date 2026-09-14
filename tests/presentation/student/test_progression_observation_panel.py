@@ -226,7 +226,7 @@ class TestLockedScenarioCopy:
         assert "Review the explanation" in panel.next_step
 
     def test_not_ready_conceptual_uses_conceptual_component(self):
-        evidence = _outcomes(CS1_A_T01_LO03, "s1", [False, False])
+        evidence = _outcomes(CS1_A_T01_LO03, "s1", [False, False, False])
         result = evaluate(
             CS1_A_T01_LO03.objective_id, "s1", CS1_A_T01_LO03, evidence
         )
