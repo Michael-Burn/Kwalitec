@@ -159,6 +159,51 @@
       "objective_id": "CS1-B-T04-LO01"
     },
     {
+      "episode_id": "lep-cs1007-2.4.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1007-2.4.1-ar-02",
+      "title": "Active Recall: 2.4.1 apply MGF and CGF",
+      "prompt": "Closed-book. $X$ is Bernoulli with $P(X=1)=0.4$. Which statement correctly gives the moment generating function and the cumulant generating function?",
+      "response_type": "mcq",
+      "body": "Form $M_X(t)=E[e^{tX}]$ and $K_X(t)=\\log M_X(t)$; refuse treating the mean 0.4 as the MGF.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Bernoulli($0.4$) gives $M_X(t)=0.6+0.4e^{t}$ from $E[e^{tX}]$. The CGF is the log of that MGF. The mean $0.4$ is $M_X'(0)$, not the function of $t$.",
+      "model_answer": "$M_X(t)=0.6+0.4e^{t}$ and $K_X(t)=\\log(0.6+0.4e^{t})$. The mean 0.4 is not the MGF.",
+      "common_mistake": "Writing $M_X(t)=0.4$ because the mean is 0.4, swapping MGF and CGF, or using only the mean inside an exponential.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$M_{X}(t)=0.6+0.4e^{t}$ and $K_{X}(t)=\\log(0.6+0.4e^{t})$. The mean $0.4$ is $M_{X}'(0)$, not the MGF itself.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$M_{X}(t)=0.4$ and $K_{X}(t)=\\log 0.4$, because a Bernoulli mean and an MGF are the same object.",
+          "misconception_tag": "moments_as_mgf"
+        },
+        {
+          "id": "c",
+          "label": "$M_{X}(t)=\\log(0.6+0.4e^{t})$ and $K_{X}(t)=0.6+0.4e^{t}$, so the MGF and CGF are reversed.",
+          "misconception_tag": "mgf_cgf_reversed"
+        },
+        {
+          "id": "d",
+          "label": "$M_{X}(t)=\\exp(0.4 t)$ and $K_{X}(t)=0.4 t$, because the mean alone determines the full Bernoulli MGF.",
+          "misconception_tag": "mean_only_mgf"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T04-LO01"
+    },
+    {
       "episode_id": "lep-cs1007-2.4.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.1-cp-01",

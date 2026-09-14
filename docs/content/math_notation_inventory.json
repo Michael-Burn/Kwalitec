@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-14T19:03:50Z",
+  "generated_at": "2026-09-14T20:00:09Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2257,
-    "already_compliant": 2129,
+    "mathish_strings": 2274,
+    "already_compliant": 2146,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2257,
+    "confident_automated": 2274,
     "remaining_backlog": 0,
-    "migrated": 2110,
+    "migrated": 2127,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2129,
+    "fully_covered_by_current_typesetting": 2146,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2110,
-    "equationish": 1562,
-    "actuarial_fn": 492,
-    "ascii_approx": 249,
-    "bare_latex": 198,
+    "dollar_delimited": 2127,
+    "equationish": 1579,
+    "actuarial_fn": 501,
+    "ascii_approx": 257,
+    "bare_latex": 205,
     "greek": 114,
     "compound": 26,
     "unicode_ops": 11
@@ -5238,8 +5238,8 @@
       "topic_code": "2.4",
       "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
       "counts": {
-        "mathish_strings": 31,
-        "already_compliant": 31,
+        "mathish_strings": 40,
+        "already_compliant": 40,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -5380,6 +5380,172 @@
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. $X$ is Bernoulli with $P(X=1)=0.4$. Which statement correctly gives the moment generating function and the cumulant generating function?",
+          "text_hash": "309e65cb825380a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Form $M_X(t)=E[e^{tX}]$ and $K_X(t)=\\log M_X(t)$; refuse treating the mean 0.4 as the MGF.",
+          "text_hash": "40e194896a678b0f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Bernoulli($0.4$) gives $M_X(t)=0.6+0.4e^{t}$ from $E[e^{tX}]$. The CGF is the log of that MGF. The mean $0.4$ is $M_X'(0)$, not the function of $t$.",
+          "text_hash": "e6b31332fc6d60f7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$M_X(t)=0.6+0.4e^{t}$ and $K_X(t)=\\log(0.6+0.4e^{t})$. The mean 0.4 is not the MGF.",
+          "text_hash": "f386458e7891c2b2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Writing $M_X(t)=0.4$ because the mean is 0.4, swapping MGF and CGF, or using only the mean inside an exponential.",
+          "text_hash": "7d2492d0173a1e6e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=0.6+0.4e^{t}$ and $K_{X}(t)=\\log(0.6+0.4e^{t})$. The mean $0.4$ is $M_{X}'(0)$, not the MGF itself.",
+          "text_hash": "7ef430fd2c71de1e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=0.4$ and $K_{X}(t)=\\log 0.4$, because a Bernoulli mean and an MGF are the same object.",
+          "text_hash": "ac3967f668776e42",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\log(0.6+0.4e^{t})$ and $K_{X}(t)=0.6+0.4e^{t}$, so the MGF and CGF are reversed.",
+          "text_hash": "98cab928361a1f1e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(t)=\\exp(0.4 t)$ and $K_{X}(t)=0.4 t$, because the mean alone determines the full Bernoulli MGF.",
+          "text_hash": "1b5ee81c1c5fde8f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
+          "package_file": "2.4.1-mgf-cgf-cs1007.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. If X is Poisson with parameter $\\lambda$, which MGF and CGF pair is correct?",
           "text_hash": "de9f38ad9c8fdd96",
           "category": "already_compliant",
@@ -5394,7 +5560,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "Summing $E[e^{tX}]$ under the Poisson PMF gives $\\exp(\\lambda(e^{t}-1))$; taking its logarithm gives the CGF.",
           "text_hash": "e3d908dafb73ea9b",
@@ -5414,7 +5580,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$M(t)=\\exp(\\lambda(e^{t}-1))$; $K(t)=\\lambda(e^{t}-1)$.",
           "text_hash": "6d1e794641fae06c",
@@ -5433,7 +5599,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}(t)=\\exp(\\lambda(e^{t}-1))$ and $K_{X}(t)=\\lambda(e^{t}-1)$.",
           "text_hash": "c70ed2747654c6eb",
@@ -5452,7 +5618,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}(t)=\\exp(\\lambda t)$ and $K_{X}(t)=\\lambda t$ because the mean alone determines the full Poisson MGF.",
           "text_hash": "4568343cd9c27862",
@@ -5470,7 +5636,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}(t)=\\lambda(e^{t}-1)$ and $K_{X}(t)=\\exp(\\lambda(e^{t}-1))$, so the MGF and CGF are reversed.",
           "text_hash": "8fc86ad1499a9adc",
@@ -5489,7 +5655,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MGF-CGF",
           "package_file": "2.4.1-mgf-cgf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}(t)=\\lambda$ and $K_{X}(t)=\\log\\lambda$ because Poisson mean and variance both equal $\\lambda$.",
           "text_hash": "4c5aa132b20f6396",
@@ -5824,8 +5990,8 @@
       "topic_code": "2.4",
       "campaign_id": "CS1-EP001-CAMPAIGN-ETA",
       "counts": {
-        "mathish_strings": 23,
-        "already_compliant": 23,
+        "mathish_strings": 31,
+        "already_compliant": 31,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -5932,8 +6098,26 @@
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
-          "text": "Closed-book. For Poisson $X$, $M_{X}(t)=\\exp(\\lambda(e^{t}-1))$. Which statement correctly obtains $E[X]$?",
-          "text_hash": "98309a8be9de01c0",
+          "text": "Closed-book. $X$ is Bernoulli with $P(X=1)=0.4$, so $M_{X}(t)=0.6+0.4e^{t}$. Which statement correctly obtains $E[X]$ and $\\operatorname{Var}(X)$ from this generating function?",
+          "text_hash": "27b46c77b3fe075a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$M_{X}'(t)=0.4e^{t}$, so $M_{X}'(0)=0.4=E[X]$. That is also the coefficient of $t$ in the Taylor expansion. $M_{X}''(0)=0.4=E[X^{2}]$, so $\\operatorname{Var}(X)=0.4-0.4^{2}=0.24$. $M_{X}(0)=1$ is normalisation, not the mean. Writing the MGF down does not extract the moments.",
+          "text_hash": "13c3a60381e060a9",
           "category": "already_compliant",
           "needs_manual_review": false,
           "reason_code": "fully_covered_by_current_typesetting",
@@ -5952,6 +6136,135 @@
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
           "field_path": "knowledge_checks[1].model_answer",
           "field_group": "knowledge_checks[].model_answer",
+          "text": "$E[X]=M'(0)=0.4$; $\\operatorname{Var}(X)=M''(0)-(M'(0))^{2}=0.24$. Definition without differentiation (or coefficient matching) is not extraction.",
+          "text_hash": "3b5495dcb027bfc5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Calling $M(0)=1$ the mean, or treating the written MGF as already giving the moments.",
+          "text_hash": "38781698ec03b126",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}'(t)=0.4e^{t}$, so $M_{X}'(0)=0.4=E[X]$ (equivalently the coefficient of $t$ in the Taylor expansion). Then $M_{X}''(0)=0.4$ and $\\operatorname{Var}(X)=0.4-0.4^{2}=0.24$. Writing $M_{X}(t)=0.6+0.4e^{t}$ without differentiating or matching coefficients does not extract the moments.",
+          "text_hash": "9659b1578d45a1a1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}(0)=1$, so $E[X]=1$ and $\\operatorname{Var}(X)=0$ for this Bernoulli distribution.",
+          "text_hash": "5fb234c41d354c22",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The formula $M_{X}(t)=E[e^{tX}]$ already states the mean and variance, so no derivative and no Taylor coefficient is needed.",
+          "text_hash": "6d033a61930d63ff",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$M_{X}'(1)=0.4e$ is the mean, because moments from an MGF are evaluated at $t=1$ rather than at $t=0$.",
+          "text_hash": "783d6a345d83fc03",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. For Poisson $X$, $M_{X}(t)=\\exp(\\lambda(e^{t}-1))$. Which statement correctly obtains $E[X]$?",
+          "text_hash": "98309a8be9de01c0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
+          "package_file": "2.4.2-moment-via-gf-cs1007.json",
+          "field_path": "knowledge_checks[2].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
           "text": "M'(0)=$\\lambda$.",
           "text_hash": "51cde6bc2650f2d1",
           "category": "already_compliant",
@@ -5967,7 +6280,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}'(t)=\\lambda e^{t}\\exp(\\lambda(e^{t}-1))$, so $M_{X}'(0)=\\lambda=E[X]$.",
           "text_hash": "db5f647a73939e15",
@@ -5987,7 +6300,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}(0)=1$, so $E[X]=1$ for every Poisson distribution.",
           "text_hash": "2e4132e1c6c80733",
@@ -6005,7 +6318,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$M_{X}'(0)=e^{\\lambda}$ because differentiating removes the inner $e^{t}-1$ term.",
           "text_hash": "adc60b71217ca15c",
@@ -6022,7 +6335,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.4-MOMENT-VIA-GF",
           "package_file": "2.4.2-moment-via-gf-cs1007.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The formula $M_{X}(t)=E[e^{tX}]$ already states the mean, so no derivative is needed.",
           "text_hash": "09e651f1745b63c3",
@@ -40977,5 +41290,5 @@
       ]
     }
   ],
-  "content_fingerprint": "c22efc973aa213ed0db0a9d3feb78f1cc34a314807b0ffb298f10e5668f62b56"
+  "content_fingerprint": "8e488b323fddbc5cdf615f4a0be49fb22e412365c9b0a42faef6a625ce823765"
 }

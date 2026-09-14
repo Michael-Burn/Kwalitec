@@ -428,18 +428,26 @@ class TestCatalogue:
 
     def test_topic_2_4_contracts_match_approved_shapes(self):
         assert CS1_B_T04_LO01.kind is ContractKind.CONCEPTUAL
-        assert CS1_B_T04_LO01.item_count == 2
+        assert CS1_B_T04_LO01.item_count == 3
         assert CS1_B_T04_LO01.ready_min_correct == 2
         assert CS1_B_T04_LO01.item_ids == frozenset(
-            {"cs1007-2.4.1-ar-01", "cs1007-2.4.1-cp-01"}
+            {
+                "cs1007-2.4.1-ar-01",
+                "cs1007-2.4.1-ar-02",
+                "cs1007-2.4.1-cp-01",
+            }
         )
         assert CS1_B_T04_LO01.required_prerequisite_objective_id is None
 
         assert CS1_B_T04_LO02.kind is ContractKind.CONCEPTUAL
-        assert CS1_B_T04_LO02.item_count == 2
+        assert CS1_B_T04_LO02.item_count == 3
         assert CS1_B_T04_LO02.ready_min_correct == 2
         assert CS1_B_T04_LO02.item_ids == frozenset(
-            {"cs1007-2.4.2-ar-01", "cs1007-2.4.2-cp-01"}
+            {
+                "cs1007-2.4.2-ar-01",
+                "cs1007-2.4.2-ar-02",
+                "cs1007-2.4.2-cp-01",
+            }
         )
         assert CS1_B_T04_LO02.required_prerequisite_objective_id is None
 
@@ -724,6 +732,8 @@ class TestCatalogue:
         CS1_B_T01_LO05,
         CS1_B_T01_LO06,
         CS1_B_T02_LO02,
+        CS1_B_T04_LO01,
+        CS1_B_T04_LO02,
     ],
 )
 class TestConceptualThreeItem:
@@ -820,6 +830,18 @@ class TestConceptualThreeItem:
             "cs1005-2.2.2-ar-01",
             "cs1005-2.2.2-ar-02",
             "cs1005-2.2.2-cp-01",
+        ),
+        (
+            CS1_B_T04_LO01,
+            "cs1007-2.4.1-ar-01",
+            "cs1007-2.4.1-ar-02",
+            "cs1007-2.4.1-cp-01",
+        ),
+        (
+            CS1_B_T04_LO02,
+            "cs1007-2.4.2-ar-01",
+            "cs1007-2.4.2-ar-02",
+            "cs1007-2.4.2-cp-01",
         ),
     ],
 )
@@ -1838,43 +1860,199 @@ class TestTopic22LO01Cs1005OnlyExcludesCs1016:
 
 
 # ---------------------------------------------------------------------------
-# Topic 2.4 LO01 / LO02: 2-item conceptual ready_min_correct=2
+# Topic 2.4 LO01: every 2-of-3 pair still covers definition and named-family
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("contract", [CS1_B_T04_LO01, CS1_B_T04_LO02])
-class TestTopic24ConceptualTwoItem:
-    def _items(self, contract):
-        return [spec.item_id for spec in contract.evidence_items]
+class TestTopic24LO01BothHalvesCoverage:
+    """The combined ar-02 item exists so 2-of-3 cannot skip a half.
 
-    def test_two_of_two_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, True) for i in items]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
+    Halves: (1) MGF/CGF as functions of t, not raw moments; (2) named-family
+    forms. ar-01 states the definitions. cp-01 identifies the Poisson pair.
+    ar-02 forms Bernoulli MGF/CGF and keeps the mean-as-MGF refuse.
+    """
 
-    def test_one_of_two_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1",
-            contract.objective_id,
-            [(items[0], True), (items[1], False)],
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+    ar01 = "cs1007-2.4.1-ar-01"
+    ar02 = "cs1007-2.4.1-ar-02"
+    cp01 = "cs1007-2.4.1-cp-01"
+    package_name = "2.4.1-mgf-cgf-cs1007.json"
 
-    def test_zero_of_two_not_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, False) for i in items]
+    def _check(self, item_id: str):
+        from app.application.educational_packages.loader import (
+            EducationalPackageLoader,
         )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
+
+        root = Path("app/curriculum/data/educational_packages")
+        loader = EducationalPackageLoader(root=root)
+        packs = {
+            Path(p.source_path).name: p for p in loader.all_approved()
+        }
+        pack = packs[self.package_name]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing {item_id}"
+        return match
+
+    @staticmethod
+    def _blob(check) -> str:
+        parts = [
+            check.prompt or "",
+            check.body or "",
+            check.explanation or "",
+            check.model_answer or "",
+        ]
+        parts.extend(choice.label for choice in check.choices)
+        return " ".join(parts)
+
+    def _covers_definitions(self, check) -> bool:
+        text = self._blob(check)
+        return r"E[e^{tX}]" in text or r"E[e^{tX}]" in text.replace(" ", "")
+
+    def _applies_named_family(self, check) -> bool:
+        text = self._blob(check)
+        return "Bernoulli" in text or "Poisson" in text or r"\lambda" in text
+
+    def _refuses_mean_as_mgf(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "mean 0.4" in lower
+            or "mean and variance" in lower
+            or "mean alone" in lower
+            or "not the mgf" in lower
+        )
+
+    def test_live_items_have_the_intended_halves(self):
+        ar01 = self._check(self.ar01)
+        ar02 = self._check(self.ar02)
+        cp01 = self._check(self.cp01)
+        assert self._covers_definitions(ar01)
+        assert not self._applies_named_family(ar01) or "Bernoulli" not in self._blob(
+            ar01
+        )
+        assert self._applies_named_family(ar02)
+        assert "Bernoulli" in self._blob(ar02)
+        assert self._refuses_mean_as_mgf(ar02)
+        assert self._applies_named_family(cp01)
+        assert "Bernoulli" not in self._blob(cp01)
+
+    @pytest.mark.parametrize(
+        "item_ids",
+        [
+            ("cs1007-2.4.1-ar-01", "cs1007-2.4.1-cp-01"),
+            ("cs1007-2.4.1-ar-01", "cs1007-2.4.1-ar-02"),
+            ("cs1007-2.4.1-cp-01", "cs1007-2.4.1-ar-02"),
+        ],
+    )
+    def test_every_two_of_three_pair_covers_both_halves(self, item_ids):
+        checks = [self._check(item_id) for item_id in item_ids]
+        assert any(
+            self._covers_definitions(check) or self._applies_named_family(check)
+            for check in checks
+        )
+        assert any(
+            self._refuses_mean_as_mgf(check) or self._applies_named_family(check)
+            for check in checks
+        )
+
+
+# ---------------------------------------------------------------------------
+# Topic 2.4 LO02: every 2-of-3 pair still covers the rule and extraction
+# ---------------------------------------------------------------------------
+
+
+class TestTopic24LO02BothHalvesCoverage:
+    """The combined ar-02 item exists so 2-of-3 cannot skip a half.
+
+    Halves: (1) Taylor / derivative-at-zero rule; (2) applied extraction.
+    ar-01 states the rule. cp-01 differentiates a Poisson MGF for E[X].
+    ar-02 extracts Bernoulli mean and variance and keeps the refuse.
+    """
+
+    ar01 = "cs1007-2.4.2-ar-01"
+    ar02 = "cs1007-2.4.2-ar-02"
+    cp01 = "cs1007-2.4.2-cp-01"
+    package_name = "2.4.2-moment-via-gf-cs1007.json"
+
+    def _check(self, item_id: str):
+        from app.application.educational_packages.loader import (
+            EducationalPackageLoader,
+        )
+
+        root = Path("app/curriculum/data/educational_packages")
+        loader = EducationalPackageLoader(root=root)
+        packs = {
+            Path(p.source_path).name: p for p in loader.all_approved()
+        }
+        pack = packs[self.package_name]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing {item_id}"
+        return match
+
+    @staticmethod
+    def _blob(check) -> str:
+        parts = [
+            check.prompt or "",
+            check.body or "",
+            check.explanation or "",
+            check.model_answer or "",
+        ]
+        parts.extend(choice.label for choice in check.choices)
+        return " ".join(parts)
+
+    def _covers_extraction_rule(self, check) -> bool:
+        text = self._blob(check)
+        return (
+            "Taylor" in text
+            or r"M_{X}^{(r)}(0)" in text
+            or "coefficient of $t$" in text
+        )
+
+    def _applies_extraction(self, check) -> bool:
+        text = self._blob(check)
+        return r"M_{X}'(0)" in text or r"M_{X}'(t)" in text
+
+    def _refuses_definition_as_extraction(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "without differentiating" in lower
+            or "already states the mean" in lower
+            or "completes moment extraction" in lower
+        )
+
+    def test_live_items_have_the_intended_halves(self):
+        ar01 = self._check(self.ar01)
+        ar02 = self._check(self.ar02)
+        cp01 = self._check(self.cp01)
+        assert self._covers_extraction_rule(ar01)
+        assert self._covers_extraction_rule(ar02)
+        assert self._applies_extraction(ar02)
+        assert self._refuses_definition_as_extraction(ar02)
+        assert self._applies_extraction(cp01)
+        assert "Bernoulli" not in self._blob(cp01)
+
+    @pytest.mark.parametrize(
+        "item_ids",
+        [
+            ("cs1007-2.4.2-ar-01", "cs1007-2.4.2-cp-01"),
+            ("cs1007-2.4.2-ar-01", "cs1007-2.4.2-ar-02"),
+            ("cs1007-2.4.2-cp-01", "cs1007-2.4.2-ar-02"),
+        ],
+    )
+    def test_every_two_of_three_pair_covers_both_halves(self, item_ids):
+        checks = [self._check(item_id) for item_id in item_ids]
+        assert any(self._covers_extraction_rule(check) for check in checks)
+        assert any(
+            self._applies_extraction(check)
+            or self._refuses_definition_as_extraction(check)
+            for check in checks
+        )
 
 
 # ---------------------------------------------------------------------------

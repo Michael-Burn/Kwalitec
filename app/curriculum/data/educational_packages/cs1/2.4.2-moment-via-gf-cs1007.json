@@ -159,6 +159,51 @@
       "objective_id": "CS1-B-T04-LO02"
     },
     {
+      "episode_id": "lep-cs1007-2.4.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1007-2.4.2-ar-02",
+      "title": "Active Recall: 2.4.2 apply series or differentiation",
+      "prompt": "Closed-book. $X$ is Bernoulli with $P(X=1)=0.4$, so $M_{X}(t)=0.6+0.4e^{t}$. Which statement correctly obtains $E[X]$ and $\\operatorname{Var}(X)$ from this generating function?",
+      "response_type": "mcq",
+      "body": "Differentiate at zero (or read the Taylor coefficient); refuse treating the written MGF as finished extraction.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$M_{X}'(t)=0.4e^{t}$, so $M_{X}'(0)=0.4=E[X]$. That is also the coefficient of $t$ in the Taylor expansion. $M_{X}''(0)=0.4=E[X^{2}]$, so $\\operatorname{Var}(X)=0.4-0.4^{2}=0.24$. $M_{X}(0)=1$ is normalisation, not the mean. Writing the MGF down does not extract the moments.",
+      "model_answer": "$E[X]=M'(0)=0.4$; $\\operatorname{Var}(X)=M''(0)-(M'(0))^{2}=0.24$. Definition without differentiation (or coefficient matching) is not extraction.",
+      "common_mistake": "Calling $M(0)=1$ the mean, or treating the written MGF as already giving the moments.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$M_{X}'(t)=0.4e^{t}$, so $M_{X}'(0)=0.4=E[X]$ (equivalently the coefficient of $t$ in the Taylor expansion). Then $M_{X}''(0)=0.4$ and $\\operatorname{Var}(X)=0.4-0.4^{2}=0.24$. Writing $M_{X}(t)=0.6+0.4e^{t}$ without differentiating or matching coefficients does not extract the moments.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$M_{X}(0)=1$, so $E[X]=1$ and $\\operatorname{Var}(X)=0$ for this Bernoulli distribution.",
+          "misconception_tag": "mgf_value_as_mean"
+        },
+        {
+          "id": "c",
+          "label": "The formula $M_{X}(t)=E[e^{tX}]$ already states the mean and variance, so no derivative and no Taylor coefficient is needed.",
+          "misconception_tag": "definition_finishes_extraction"
+        },
+        {
+          "id": "d",
+          "label": "$M_{X}'(1)=0.4e$ is the mean, because moments from an MGF are evaluated at $t=1$ rather than at $t=0$.",
+          "misconception_tag": "derivative_at_one"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T04-LO02"
+    },
+    {
       "episode_id": "lep-cs1007-2.4.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1007-2.4.2-cp-01",

@@ -83,6 +83,12 @@ Editorial review record (2026-09-14): one topic 2.2 LO02 retry active-recall
 item (cs1005-2.2.2-ar-02 apply factorisation and refuse) was reviewed and
 approved before wiring so every live MCQ remains on the choice-aware
 allowlist. Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-14): two topic 2.4 retry active-recall
+items (cs1007-2.4.1-ar-02 Bernoulli MGF/CGF; cs1007-2.4.2-ar-02 Bernoulli
+mean/variance extraction) were reviewed and approved before wiring so every
+live MCQ remains on the choice-aware allowlist. Copy is frozen as approved;
+mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -106,6 +112,7 @@ from app.application.learning_session.scoreable_practice import (
 # revisions/companions; CS1-017 syllabus-gap AR items 1.1.3-ar-02 / 1.1.4-ar-02;
 # topic 2.1 retry AR items 2.1d-ar-02 / 2.1e-ar-02 / 2.1f-ar-02;
 # topic 2.2 LO02 retry AR item 2.2.2-ar-02;
+# topic 2.4 retry AR items 2.4.1-ar-02 / 2.4.2-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -348,6 +355,8 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1004-2.1e-ar-02",  # topic 2.1 retry: 2.1.5-inverse-transform-cs1004
         "cs1004-2.1f-ar-02",  # topic 2.1 retry: 2.1.6-software-generation-cs1004
         "cs1005-2.2.2-ar-02",  # topic 2.2 retry: 2.2.2-independence-cs1005
+        "cs1007-2.4.1-ar-02",  # topic 2.4 retry: 2.4.1-mgf-cgf-cs1007
+        "cs1007-2.4.2-ar-02",  # topic 2.4 retry: 2.4.2-moment-via-gf-cs1007
     }
 )
 
@@ -5736,6 +5745,50 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice replaces joint factorisation with a correlation verdict. "
         "Zero or nonzero correlation is not the independence condition; the "
         "joint must equal the product of the marginals."
+    ),
+    # --- cs1007-2.4.1-ar-02 ---
+    (
+        "cs1007-2.4.1-ar-02",
+        "b",
+    ): (
+        "That choice sets the Bernoulli MGF equal to the mean 0.4. "
+        "The mean is \\(M_X'(0)\\), not the function of t."
+    ),
+    (
+        "cs1007-2.4.1-ar-02",
+        "c",
+    ): (
+        "That choice swaps MGF and CGF for the Bernoulli forms. "
+        "The CGF is the log of the MGF, not the reverse."
+    ),
+    (
+        "cs1007-2.4.1-ar-02",
+        "d",
+    ): (
+        "That choice builds an exponential from the mean alone. "
+        "The Bernoulli MGF is \\(0.6+0.4e^{t}\\), not \\(\\exp(0.4 t)\\)."
+    ),
+    # --- cs1007-2.4.2-ar-02 ---
+    (
+        "cs1007-2.4.2-ar-02",
+        "b",
+    ): (
+        "That choice reads \\(M_X(0)=1\\) as the mean. "
+        "\\(M_X(0)\\) is normalisation; the mean is \\(M_X'(0)\\)."
+    ),
+    (
+        "cs1007-2.4.2-ar-02",
+        "c",
+    ): (
+        "That choice treats writing \\(M_X(t)=E[e^{tX}]\\) as finished extraction. "
+        "Moments still need differentiation at 0 or Taylor coefficient matching."
+    ),
+    (
+        "cs1007-2.4.2-ar-02",
+        "d",
+    ): (
+        "That choice evaluates the derivative at \\(t=1\\). "
+        "Raw moments from an MGF are the derivatives at \\(t=0\\)."
     ),
 
 }
