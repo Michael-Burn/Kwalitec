@@ -157,6 +157,51 @@
       "objective_id": "CS1-B-T02-LO02"
     },
     {
+      "episode_id": "lep-cs1005-2.2.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1005-2.2.2-ar-02",
+      "title": "Active Recall: 2.2.2 apply independence",
+      "prompt": "Closed-book. Joint PMF $P(0,0)$=0.45, $P(0,1)$=0.15, $P(1,0)$=0.15, $P(1,1)$=0.25. Which statement correctly decides whether X and Y are independent?",
+      "response_type": "mcq",
+      "body": "Compare a joint cell with the product of marginals; refuse zero-correlation as a substitute.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Independence requires $P(x,y)=P(X=x)P(Y=y)$ for every cell. Here $P(X=0)=0.60$ and $P(Y=0)=0.60$, so the product is 0.36, but $P(0,0)=0.45$. The variables are not independent. A later claim that correlation is zero would still not prove independence in general.",
+      "model_answer": "Not independent: $0.60 \\times 0.60 = 0.36$, which is not $P(0,0)=0.45$. Zero correlation is not a substitute warrant.",
+      "common_mistake": "Declaring independence from the existence of marginals, or treating zero correlation as finishing the check.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "X and Y are not independent. $P(X=0)=0.60$ and $P(Y=0)=0.60$, so $P(X=0)P(Y=0)=0.36$, which is not equal to $P(0,0)=0.45$. Zero correlation, if it were shown later, would still not prove independence in general.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "X and Y are independent because both marginals exist and the four joint cells sum to 1, so the joint must equal the product of those marginals.",
+          "misconception_tag": "marginals_only"
+        },
+        {
+          "id": "c",
+          "label": "X and Y are independent because $P(0,1)=0.15$ equals $P(1,0)$, which is a sufficient symmetry condition and replaces checking products cell by cell.",
+          "misconception_tag": "symmetry_as_factorisation"
+        },
+        {
+          "id": "d",
+          "label": "Do not use joint factorisation. Once a covariance could be computed from this table, zero or nonzero correlation is the independence verdict.",
+          "misconception_tag": "accept_zero_corr"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T02-LO02"
+    },
+    {
       "episode_id": "lep-cs1005-2.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1005-2.2.2-cp-01",

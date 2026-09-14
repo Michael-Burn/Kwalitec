@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-14T18:13:54Z",
+  "generated_at": "2026-09-14T19:03:50Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2252,
-    "already_compliant": 2124,
+    "mathish_strings": 2257,
+    "already_compliant": 2129,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2252,
+    "confident_automated": 2257,
     "remaining_backlog": 0,
-    "migrated": 2105,
+    "migrated": 2110,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2124,
+    "fully_covered_by_current_typesetting": 2129,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2105,
-    "equationish": 1557,
-    "actuarial_fn": 487,
+    "dollar_delimited": 2110,
+    "equationish": 1562,
+    "actuarial_fn": 492,
     "ascii_approx": 249,
     "bare_latex": 198,
     "greek": 114,
@@ -2559,8 +2559,8 @@
       "topic_code": "2.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-EPSILON",
       "counts": {
-        "mathish_strings": 13,
-        "already_compliant": 13,
+        "mathish_strings": 18,
+        "already_compliant": 18,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -2569,6 +2569,96 @@
       "migration_status": "clear",
       "remaining_backlog": 0,
       "items": [
+        {
+          "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+          "package_file": "2.2.2-independence-cs1005.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Joint PMF $P(0,0)$=0.45, $P(0,1)$=0.15, $P(1,0)$=0.15, $P(1,1)$=0.25. Which statement correctly decides whether X and Y are independent?",
+          "text_hash": "cd8792c51174feed",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+          "package_file": "2.2.2-independence-cs1005.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Independence requires $P(x,y)=P(X=x)P(Y=y)$ for every cell. Here $P(X=0)=0.60$ and $P(Y=0)=0.60$, so the product is 0.36, but $P(0,0)=0.45$. The variables are not independent. A later claim that correlation is zero would still not prove independence in general.",
+          "text_hash": "6f51477f0b1afdde",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+          "package_file": "2.2.2-independence-cs1005.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Not independent: $0.60 \\times 0.60 = 0.36$, which is not $P(0,0)=0.45$. Zero correlation is not a substitute warrant.",
+          "text_hash": "0c7e8cc938f77227",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+          "package_file": "2.2.2-independence-cs1005.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "X and Y are not independent. $P(X=0)=0.60$ and $P(Y=0)=0.60$, so $P(X=0)P(Y=0)=0.36$, which is not equal to $P(0,0)=0.45$. Zero correlation, if it were shown later, would still not prove independence in general.",
+          "text_hash": "4cf18652d69d4423",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
+          "package_file": "2.2.2-independence-cs1005.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "X and Y are independent because $P(0,1)=0.15$ equals $P(1,0)$, which is a sufficient symmetry condition and replaces checking products cell by cell.",
+          "text_hash": "26c5382fa28fc0e8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
         {
           "package_id": "CS1-EP001-PKG-2.2-INDEPENDENCE",
           "package_file": "2.2.2-independence-cs1005.json",
@@ -40887,5 +40977,5 @@
       ]
     }
   ],
-  "content_fingerprint": "b11004a35649f20e172b957377f0d26de9b0fcf8586e573f89b04cf111ca215e"
+  "content_fingerprint": "c22efc973aa213ed0db0a9d3feb78f1cc34a314807b0ffb298f10e5668f62b56"
 }

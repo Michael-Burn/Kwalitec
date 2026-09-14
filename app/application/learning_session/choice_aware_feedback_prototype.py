@@ -78,6 +78,11 @@ items (cs1004-2.1d-ar-02 interval count; cs1004-2.1e-ar-02 continuous and
 discrete inverse; cs1004-2.1f-ar-02 binomial software generation) were
 reviewed and approved before wiring so every live MCQ remains on the
 choice-aware allowlist. Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-14): one topic 2.2 LO02 retry active-recall
+item (cs1005-2.2.2-ar-02 apply factorisation and refuse) was reviewed and
+approved before wiring so every live MCQ remains on the choice-aware
+allowlist. Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -100,6 +105,7 @@ from app.application.learning_session.scoreable_practice import (
 # CAF Final Wave CR Publication Front + sampling 2.6 + CLT/MGF + misc
 # revisions/companions; CS1-017 syllabus-gap AR items 1.1.3-ar-02 / 1.1.4-ar-02;
 # topic 2.1 retry AR items 2.1d-ar-02 / 2.1e-ar-02 / 2.1f-ar-02;
+# topic 2.2 LO02 retry AR item 2.2.2-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -341,6 +347,7 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1004-2.1d-ar-02",  # topic 2.1 retry: 2.1.4-poisson-process-cs1004
         "cs1004-2.1e-ar-02",  # topic 2.1 retry: 2.1.5-inverse-transform-cs1004
         "cs1004-2.1f-ar-02",  # topic 2.1 retry: 2.1.6-software-generation-cs1004
+        "cs1005-2.2.2-ar-02",  # topic 2.2 retry: 2.2.2-independence-cs1005
     }
 )
 
@@ -5704,6 +5711,31 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice requires hand-inverting the binomial CDF instead of using "
         "a built-in generator. Hand inverse transform is 2.1.5, not this "
         "software-generation objective."
+    ),
+    # --- cs1005-2.2.2-ar-02 ---
+    (
+        "cs1005-2.2.2-ar-02",
+        "b",
+    ): (
+        "That choice treats existing marginals and a table that sums to 1 as "
+        "independence. Independence still needs each joint cell to equal the "
+        "product of the matching marginals."
+    ),
+    (
+        "cs1005-2.2.2-ar-02",
+        "c",
+    ): (
+        "That choice treats P(0,1)=P(1,0) as a sufficient independence test. "
+        "Symmetry of two off-diagonal cells does not replace checking the "
+        "product of marginals in every cell."
+    ),
+    (
+        "cs1005-2.2.2-ar-02",
+        "d",
+    ): (
+        "That choice replaces joint factorisation with a correlation verdict. "
+        "Zero or nonzero correlation is not the independence condition; the "
+        "joint must equal the product of the marginals."
     ),
 
 }

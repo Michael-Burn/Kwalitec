@@ -481,10 +481,10 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch3_seen == 32  # 13 packages × AR+CP, plus 2 packages with 3 MCQs
     assert batch4_seen == 36  # 18 packages × AR + CP
     assert batch5_seen == 35  # 16 packages × AR + CP, plus one package with 3 MCQs
-    # 15 publication_approved Batch 6A packages × AR + CP, plus two packages
+    # 15 publication_approved Batch 6A packages × AR + CP, plus three packages
     # with 3 MCQs. Catalogue twin 4.2-glm-structure-ea006 is also converted
     # but status is superseded_by_campaign_delta, so it is outside all_approved().
-    assert batch6a_seen == 32
+    assert batch6a_seen == 33
     # 19 revision packages: Alpha 3 + Beta 4 + 17×2 = 41 AR+CP items.
     assert batch6b_seen == 41
     assert numeric_pilot_seen == 30  # one numeric checkpoint per converted package

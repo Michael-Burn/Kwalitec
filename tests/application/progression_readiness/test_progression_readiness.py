@@ -403,10 +403,14 @@ class TestCatalogue:
         assert CS1_B_T02_LO01.required_prerequisite_objective_id is None
 
         assert CS1_B_T02_LO02.kind is ContractKind.CONCEPTUAL
-        assert CS1_B_T02_LO02.item_count == 2
+        assert CS1_B_T02_LO02.item_count == 3
         assert CS1_B_T02_LO02.ready_min_correct == 2
         assert CS1_B_T02_LO02.item_ids == frozenset(
-            {"cs1005-2.2.2-ar-01", "cs1005-2.2.2-cp-01"}
+            {
+                "cs1005-2.2.2-ar-01",
+                "cs1005-2.2.2-ar-02",
+                "cs1005-2.2.2-cp-01",
+            }
         )
         assert CS1_B_T02_LO02.required_prerequisite_objective_id is None
 
@@ -719,6 +723,7 @@ class TestCatalogue:
         CS1_B_T01_LO04,
         CS1_B_T01_LO05,
         CS1_B_T01_LO06,
+        CS1_B_T02_LO02,
     ],
 )
 class TestConceptualThreeItem:
@@ -809,6 +814,12 @@ class TestConceptualThreeItem:
             "cs1004-2.1f-ar-01",
             "cs1004-2.1f-ar-02",
             "cs1004-2.1f-cp-01",
+        ),
+        (
+            CS1_B_T02_LO02,
+            "cs1005-2.2.2-ar-01",
+            "cs1005-2.2.2-ar-02",
+            "cs1005-2.2.2-cp-01",
         ),
     ],
 )
@@ -1578,6 +1589,105 @@ class TestTopic21LO05BothHalvesCoverage:
 
 
 # ---------------------------------------------------------------------------
+# Topic 2.2 LO02: every 2-of-3 pair still covers factorisation and refuse
+# ---------------------------------------------------------------------------
+
+
+class TestTopic22LO02BothHalvesCoverage:
+    """The combined ar-02 item exists so 2-of-3 cannot skip a half.
+
+    Halves: (1) factorisation, including applying the product check to a
+    joint table; (2) refuse zero-correlation as independence. ar-01 states
+    the product condition. cp-01 refuses the zero-correlation claim.
+    ar-02 applies the check to an actual table and keeps the refuse.
+    """
+
+    ar01 = "cs1005-2.2.2-ar-01"
+    ar02 = "cs1005-2.2.2-ar-02"
+    cp01 = "cs1005-2.2.2-cp-01"
+    package_name = "2.2.2-independence-cs1005.json"
+
+    def _check(self, item_id: str):
+        from app.application.educational_packages.loader import (
+            EducationalPackageLoader,
+        )
+
+        root = Path("app/curriculum/data/educational_packages")
+        loader = EducationalPackageLoader(root=root)
+        packs = {
+            Path(p.source_path).name: p for p in loader.all_approved()
+        }
+        pack = packs[self.package_name]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
+        )
+        assert match is not None, f"missing {item_id}"
+        return match
+
+    @staticmethod
+    def _blob(check) -> str:
+        parts = [
+            check.prompt or "",
+            check.body or "",
+            check.explanation or "",
+            check.model_answer or "",
+        ]
+        parts.extend(choice.label for choice in check.choices)
+        return " ".join(parts)
+
+    def _applies_factorisation_to_table(self, check) -> bool:
+        text = self._blob(check)
+        return "P(0,0)" in text and "0.45" in text and "0.36" in text
+
+    def _covers_factorisation(self, check) -> bool:
+        if self._applies_factorisation_to_table(check):
+            return True
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "product of the marginals" in lower
+            or "joint factorisation" in lower
+            or "joint equals the product" in lower
+        )
+
+    def _refuses_zero_correlation(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "zero correlation" in lower
+            or "correlation is zero" in lower
+            or "uncorrelated" in lower
+        )
+
+    def test_live_items_have_the_intended_halves(self):
+        ar01 = self._check(self.ar01)
+        ar02 = self._check(self.ar02)
+        cp01 = self._check(self.cp01)
+        assert self._covers_factorisation(ar01)
+        assert not self._applies_factorisation_to_table(ar01)
+        assert not self._refuses_zero_correlation(ar01)
+        assert self._covers_factorisation(ar02)
+        assert self._applies_factorisation_to_table(ar02)
+        assert self._refuses_zero_correlation(ar02)
+        assert self._refuses_zero_correlation(cp01)
+        assert not self._applies_factorisation_to_table(cp01)
+
+    @pytest.mark.parametrize(
+        "item_ids",
+        [
+            ("cs1005-2.2.2-ar-01", "cs1005-2.2.2-cp-01"),
+            ("cs1005-2.2.2-ar-01", "cs1005-2.2.2-ar-02"),
+            ("cs1005-2.2.2-cp-01", "cs1005-2.2.2-ar-02"),
+        ],
+    )
+    def test_every_two_of_three_pair_covers_both_halves(self, item_ids):
+        checks = [self._check(item_id) for item_id in item_ids]
+        assert any(self._covers_factorisation(check) for check in checks)
+        assert any(self._refuses_zero_correlation(check) for check in checks)
+
+
+# ---------------------------------------------------------------------------
 # Topic 2.2 LO01: single-pair mixed; cs1016 tagged but excluded from contract
 # ---------------------------------------------------------------------------
 
@@ -1725,47 +1835,6 @@ class TestTopic22LO01Cs1005OnlyExcludesCs1016:
             result = _eval(self.contract, evidence)
             assert result.readiness is readiness
             assert result.reason is reason
-
-
-# ---------------------------------------------------------------------------
-# Topic 2.2 LO02: 2-item conceptual ready_min_correct=2
-# ---------------------------------------------------------------------------
-
-
-class TestTopic22LO02ConceptualTwoItem:
-    contract = CS1_B_T02_LO02
-
-    def _items(self):
-        return [spec.item_id for spec in self.contract.evidence_items]
-
-    def test_two_of_two_ready(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1", self.contract.objective_id, [(i, True) for i in items]
-        )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
-
-    def test_one_of_two_insufficient_sample(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1",
-            self.contract.objective_id,
-            [(items[0], True), (items[1], False)],
-        )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
-
-    def test_zero_of_two_not_ready(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1", self.contract.objective_id, [(i, False) for i in items]
-        )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
 
 
 # ---------------------------------------------------------------------------
