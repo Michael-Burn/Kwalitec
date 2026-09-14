@@ -108,6 +108,131 @@ def test_recommendation_output_unchanged_when_observation_evidence_present(ctx):
     assert with_evidence == baseline
 
 
+def test_recommendation_and_study_action_unchanged_at_full_catalogue_scale(ctx):
+    """Noise-gating + non-blocking still hold when all contracted topics activate."""
+    from app.application.progression_readiness import (
+        CS1_A_T02_LO01,
+        CS1_B_T01_LO03,
+        CS1_C_T02_LO01,
+        CS1_E_T01_LO01,
+        PROGRESSION_READINESS_CONTRACTS,
+    )
+    from app.presentation.student.services.progression_observation_presenter import (
+        OBSERVATION_TOPIC_OBJECTIVES,
+        panels_by_topic_for_student,
+    )
+
+    user = _make_user()
+    store = ObjectiveAssessmentEvidenceStore(store=SessionDocumentStore())
+    sid = str(user.id)
+
+    assert len(OBSERVATION_TOPIC_OBJECTIVES) == 14
+    assert len(PROGRESSION_READINESS_CONTRACTS) == 72
+
+    baseline = RecommendationService.generate_recommendations(user.id, limit=5)
+
+    # Empty evidence → no panels across the full activated catalogue.
+    assert panels_by_topic_for_student(student_id=sid, store=store) == {}
+
+    samples = (
+        (CS1_A_T01_LO01, [True, True, True]),
+        (CS1_A_T02_LO01, [True, True, True, True]),
+        (CS1_C_T02_LO01, [True, True]),
+        (CS1_E_T01_LO01, [True, True]),
+    )
+    offset = 0
+    for contract, scores in samples:
+        for i, (spec, scored) in enumerate(
+            zip(contract.evidence_items, scores, strict=True)
+        ):
+            store.append(
+                AssessmentEvidenceRecord(
+                    evidence_id=str(uuid4()),
+                    student_id=sid,
+                    objective_id=contract.objective_id,
+                    item_id=spec.item_id,
+                    package_id="test-package",
+                    session_id="test-session",
+                    response_type="mcq",
+                    scored_correct=scored,
+                    occurred_at=_when(offset + i),
+                    source="test",
+                )
+            )
+        offset += 10
+
+    # Dual-pair conflicting case on a newly scoped topic.
+    dual = CS1_B_T01_LO03
+    pair_a, pair_b = dual.demonstration_pairs
+    for i, (item_id, scored) in enumerate(
+        (
+            (pair_a.mcq_item_id, True),
+            (pair_a.numeric_item_id, True),
+            (pair_b.mcq_item_id, True),
+            (pair_b.numeric_item_id, False),
+        )
+    ):
+        store.append(
+            AssessmentEvidenceRecord(
+                evidence_id=str(uuid4()),
+                student_id=sid,
+                objective_id=dual.objective_id,
+                item_id=item_id,
+                package_id="test-package",
+                session_id="test-session",
+                response_type="mcq",
+                scored_correct=scored,
+                occurred_at=_when(offset + i),
+                source="test",
+            )
+        )
+
+    by_topic = panels_by_topic_for_student(student_id=sid, store=store)
+    assert set(by_topic) >= {
+        "CS1-A-T01",
+        "CS1-A-T02",
+        "CS1-B-T01",
+        "CS1-C-T02",
+        "CS1-E-T01",
+    }
+    assert any(
+        p.scenario_heading == "Sufficient evidence to move forward"
+        for panels in by_topic.values()
+        for p in panels
+    )
+    assert any(
+        p.objective_id == dual.objective_id
+        and p.scenario_heading == "More evidence needed"
+        for panels in by_topic.values()
+        for p in panels
+    )
+
+    with_evidence = RecommendationService.generate_recommendations(
+        user.id, limit=5
+    )
+    assert with_evidence == baseline
+
+    row = TopicCurriculumState(
+        topic_id="CS1-A-T02",
+        topic_code="1.2",
+        title="Exploratory data analysis",
+        section_id="CS1-A",
+        section_title="Section A",
+        state=TopicLearningState.DEVELOPING,
+        last_practised_at=None,
+        reached=True,
+    )
+    without = _topic_view(row, why_by_topic={}, observations=())
+    with_obs = _topic_view(
+        row, why_by_topic={}, observations=by_topic["CS1-A-T02"]
+    )
+    assert without.can_study == with_obs.can_study
+    assert without.study_action_label == with_obs.study_action_label
+    assert without.state == with_obs.state
+    assert with_obs.observations
+    assert without.observations == ()
+
+
 def test_adaptive_decision_engine_unchanged_by_observation_evidence():
     from tests.application.adaptive_learning.helpers import make_curriculum
 

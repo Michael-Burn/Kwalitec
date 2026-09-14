@@ -6,6 +6,7 @@ Decision Engine, arbitration, curriculum progression, or recommendations.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Sequence
 
 from app.application.objective_evidence.records import AssessmentEvidenceRecord
@@ -27,27 +28,50 @@ from app.presentation.student.dto.study_curriculum import StudyObservationPanelV
 
 BRAND_HEADING = "What Kwalitec has observed"
 
-# Topics authorized for observation panels (locked activation scope).
-OBSERVATION_TOPIC_OBJECTIVES: dict[str, tuple[str, ...]] = {
-    "CS1-A-T01": (
-        "CS1-A-T01-LO01",
-        "CS1-A-T01-LO02",
-        "CS1-A-T01-LO03",
-        "CS1-A-T01-LO04",
-    ),
-    "CS1-B-T03": (
-        "CS1-B-T03-LO01",
-        "CS1-B-T03-LO02",
-    ),
-}
+_CS1_OBJECTIVE_LABEL_RE = re.compile(r"^CS1-([A-E])-T0*(\d+)-LO0*(\d+)$")
 
+
+def _topic_id_for_objective(objective_id: str) -> str | None:
+    """CS1-A-T01-LO01 → CS1-A-T01; None if the id is not LO-shaped."""
+    topic_id, sep, _ = (objective_id or "").partition("-LO")
+    if not sep or not topic_id:
+        return None
+    return topic_id
+
+
+def _syllabus_code_label(objective_id: str) -> str:
+    """Map CS1-{section}-T{topic}-LO{n} to syllabus code ``section.topic.n``."""
+    match = _CS1_OBJECTIVE_LABEL_RE.fullmatch((objective_id or "").strip())
+    if match is None:
+        return objective_id
+    section_num = ord(match.group(1)) - ord("A") + 1
+    return f"{section_num}.{match.group(2)}.{match.group(3)}"
+
+
+def _observation_topic_objectives_from_catalogue() -> dict[str, tuple[str, ...]]:
+    """Activate Study panels for every topic that has authored contracts.
+
+    Built from ``PROGRESSION_READINESS_CONTRACTS`` (catalogue insertion order)
+    so the student surface stays aligned with real authored coverage without a
+    hand-maintained topic allowlist.
+    """
+    by_topic: dict[str, list[str]] = {}
+    for objective_id in PROGRESSION_READINESS_CONTRACTS:
+        topic_id = _topic_id_for_objective(objective_id)
+        if topic_id is None:
+            continue
+        by_topic.setdefault(topic_id, []).append(objective_id)
+    return {topic_id: tuple(oids) for topic_id, oids in by_topic.items()}
+
+
+# Topics authorized for observation panels: every contracted catalogue topic.
+OBSERVATION_TOPIC_OBJECTIVES: dict[str, tuple[str, ...]] = (
+    _observation_topic_objectives_from_catalogue()
+)
+
+# Syllabus display labels for contracted objectives (derived, not hand-typed).
 _OBJECTIVE_LABELS: dict[str, str] = {
-    "CS1-A-T01-LO01": "1.1.1",
-    "CS1-A-T01-LO02": "1.1.2",
-    "CS1-A-T01-LO03": "1.1.3",
-    "CS1-A-T01-LO04": "1.1.4",
-    "CS1-B-T03-LO01": "2.3.1",
-    "CS1-B-T03-LO02": "2.3.2",
+    oid: _syllabus_code_label(oid) for oid in PROGRESSION_READINESS_CONTRACTS
 }
 
 

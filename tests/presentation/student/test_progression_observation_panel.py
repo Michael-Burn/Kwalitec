@@ -9,15 +9,28 @@ from app.application.objective_evidence.records import AssessmentEvidenceRecord
 from app.application.progression_readiness import (
     CS1_A_T01_LO01,
     CS1_A_T01_LO03,
+    CS1_A_T02_LO01,
+    CS1_B_T01_LO03,
+    CS1_B_T01_LO04,
     CS1_B_T03_LO01,
     CS1_B_T03_LO02,
+    CS1_C_T01_LO03,
+    CS1_C_T02_LO01,
+    CS1_D_T01_LO01,
+    CS1_E_T01_LO01,
+    PROGRESSION_READINESS_CONTRACTS,
     InsufficientReason,
     ProgressionReadiness,
     evaluate,
+    get_contract,
 )
 from app.presentation.student.services.progression_observation_presenter import (
+    _OBJECTIVE_LABELS,
     BRAND_HEADING,
+    OBSERVATION_TOPIC_OBJECTIVES,
+    _syllabus_code_label,
     has_meaningful_evidence,
+    panels_by_topic_for_student,
     panels_for_topic,
     translate_result,
 )
@@ -236,3 +249,196 @@ class TestLockedScenarioCopy:
         assert panels[0].brand_heading == BRAND_HEADING
         # Other LOs on the topic have no evidence → no panels for them
         assert all(p.objective_id == "CS1-A-T01-LO01" for p in panels)
+
+
+# Catalogue-derived activation: every contracted topic, not the original 2 only.
+_EXPECTED_CATALOGUE_TOPICS = (
+    "CS1-A-T01",
+    "CS1-A-T02",
+    "CS1-B-T01",
+    "CS1-B-T02",
+    "CS1-B-T03",
+    "CS1-B-T04",
+    "CS1-B-T05",
+    "CS1-B-T06",
+    "CS1-C-T01",
+    "CS1-C-T02",
+    "CS1-C-T03",
+    "CS1-D-T01",
+    "CS1-D-T02",
+    "CS1-E-T01",
+)
+
+
+class TestFullCatalogueObservationScope:
+    def test_observation_scope_matches_all_catalogue_topics_and_objectives(self):
+        catalogue_topics = {
+            oid.rsplit("-LO", 1)[0] for oid in PROGRESSION_READINESS_CONTRACTS
+        }
+        assert set(OBSERVATION_TOPIC_OBJECTIVES) == catalogue_topics
+        assert tuple(OBSERVATION_TOPIC_OBJECTIVES) == _EXPECTED_CATALOGUE_TOPICS
+        assert len(PROGRESSION_READINESS_CONTRACTS) == 72
+        activated = {
+            oid
+            for oids in OBSERVATION_TOPIC_OBJECTIVES.values()
+            for oid in oids
+        }
+        assert activated == set(PROGRESSION_READINESS_CONTRACTS)
+        for topic_id, oids in OBSERVATION_TOPIC_OBJECTIVES.items():
+            assert oids == tuple(
+                oid
+                for oid in PROGRESSION_READINESS_CONTRACTS
+                if oid.startswith(f"{topic_id}-LO")
+            )
+
+    def test_syllabus_labels_cover_all_contracts(self):
+        assert set(_OBJECTIVE_LABELS) == set(PROGRESSION_READINESS_CONTRACTS)
+        assert _OBJECTIVE_LABELS["CS1-A-T01-LO01"] == "1.1.1"
+        assert _OBJECTIVE_LABELS["CS1-B-T03-LO02"] == "2.3.2"
+        assert _OBJECTIVE_LABELS["CS1-A-T02-LO01"] == "1.2.1"
+        assert _OBJECTIVE_LABELS["CS1-B-T01-LO03"] == "2.1.3"
+        assert _OBJECTIVE_LABELS["CS1-D-T02-LO10"] == "4.2.10"
+        assert _OBJECTIVE_LABELS["CS1-E-T01-LO09"] == "5.1.9"
+        assert _syllabus_code_label("CS1-C-T02-LO08") == "3.2.8"
+
+    def test_panels_render_across_previously_excluded_topics(self):
+        """Seed one objective on each newly activated section/topic shape."""
+        samples = (
+            (CS1_A_T02_LO01, [True, True, True, False]),  # 4-item conceptual
+            (CS1_B_T01_LO04, [True, True]),  # ordinary 2-item conceptual
+            (CS1_C_T01_LO03, [True, True]),
+            (CS1_C_T02_LO01, [True, True]),
+            (CS1_D_T01_LO01, [True, True]),
+            (CS1_E_T01_LO01, [True, True]),  # single-pair mixed
+        )
+        evidence = []
+        for contract, scores in samples:
+            evidence.extend(_outcomes(contract, "full-scope", scores))
+
+        # Dual-pair conflicting demonstrations (pair A READY, pair B NOT_READY)
+        dual = CS1_B_T01_LO03
+        pair_a, pair_b = dual.demonstration_pairs
+        evidence.extend(
+            [
+                _record(
+                    student_id="full-scope",
+                    objective_id=dual.objective_id,
+                    item_id=pair_a.mcq_item_id,
+                    scored_correct=True,
+                    offset=100,
+                ),
+                _record(
+                    student_id="full-scope",
+                    objective_id=dual.objective_id,
+                    item_id=pair_a.numeric_item_id,
+                    scored_correct=True,
+                    offset=101,
+                ),
+                _record(
+                    student_id="full-scope",
+                    objective_id=dual.objective_id,
+                    item_id=pair_b.mcq_item_id,
+                    scored_correct=True,
+                    offset=102,
+                ),
+                _record(
+                    student_id="full-scope",
+                    objective_id=dual.objective_id,
+                    item_id=pair_b.numeric_item_id,
+                    scored_correct=False,
+                    offset=103,
+                ),
+            ]
+        )
+
+        by_topic = {}
+        for topic_id in (
+            "CS1-A-T02",
+            "CS1-B-T01",
+            "CS1-C-T01",
+            "CS1-C-T02",
+            "CS1-D-T01",
+            "CS1-E-T01",
+        ):
+            panels = panels_for_topic(
+                topic_id=topic_id, student_id="full-scope", evidence=evidence
+            )
+            assert panels, f"expected panels for newly scoped topic {topic_id}"
+            by_topic[topic_id] = panels
+            for panel in panels:
+                assert panel.brand_heading == BRAND_HEADING
+                assert panel.scenario_heading in {
+                    "Sufficient evidence to move forward",
+                    "More evidence needed",
+                    "More work recommended",
+                }
+                assert panel.objective_label == _OBJECTIVE_LABELS[panel.objective_id]
+                assert panel.evidence_lines
+                # Locked 4-part structure fields always present on the view
+                assert isinstance(panel.body_paragraphs, tuple)
+                assert isinstance(panel.meaning_paragraphs, tuple)
+                assert isinstance(panel.next_step, str)
+                assert isinstance(panel.keep_in_mind, str)
+
+        four_item = next(
+            p
+            for p in by_topic["CS1-A-T02"]
+            if p.objective_id == "CS1-A-T02-LO01"
+        )
+        assert four_item.scenario_heading == "Sufficient evidence to move forward"
+        assert "3 of the 4 independent questions" in four_item.body_paragraphs[0]
+        assert four_item.objective_label == "1.2.1"
+
+        dual_panel = next(
+            p
+            for p in by_topic["CS1-B-T01"]
+            if p.objective_id == "CS1-B-T01-LO03"
+        )
+        assert dual_panel.scenario_heading == "More evidence needed"
+        assert "not enough to make a reliable progression judgment" in (
+            dual_panel.body_paragraphs[0]
+        )
+        assert dual_panel.objective_label == "2.1.3"
+
+        mixed = next(
+            p
+            for p in by_topic["CS1-E-T01"]
+            if p.objective_id == "CS1-E-T01-LO01"
+        )
+        assert mixed.scenario_heading == "Sufficient evidence to move forward"
+        assert mixed.objective_label == "5.1.1"
+
+    def test_noise_gating_holds_across_full_catalogue_with_empty_evidence(self):
+        for topic_id in OBSERVATION_TOPIC_OBJECTIVES:
+            assert (
+                panels_for_topic(
+                    topic_id=topic_id, student_id="quiet", evidence=[]
+                )
+                == ()
+            )
+        assert panels_by_topic_for_student(student_id="quiet") == {}
+
+    def test_noise_gating_ignores_unrelated_items_on_new_topics(self):
+        evidence = [
+            _record(
+                student_id="s-noise",
+                objective_id="CS1-A-T02-LO01",
+                item_id="unrelated-item",
+                scored_correct=True,
+            ),
+            _record(
+                student_id="s-noise",
+                objective_id="CS1-B-T01-LO03",
+                item_id="another-unrelated",
+                scored_correct=False,
+            ),
+        ]
+        assert panels_for_topic(
+            topic_id="CS1-A-T02", student_id="s-noise", evidence=evidence
+        ) == ()
+        assert panels_for_topic(
+            topic_id="CS1-B-T01", student_id="s-noise", evidence=evidence
+        ) == ()
+        # Contract lookup still succeeds; gating is evidence-based only.
+        assert get_contract("CS1-A-T02-LO01") is CS1_A_T02_LO01
+        assert get_contract("CS1-B-T01-LO03") is CS1_B_T01_LO03
