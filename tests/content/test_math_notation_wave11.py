@@ -814,7 +814,7 @@ def test_wave11_scoring_unaffected_for_touched_knowledge_checks() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 15
+    assert len(seen) == 16
 
 
 def test_wave11_ledger_totals_and_remainder() -> None:
@@ -824,7 +824,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2134
+    assert checked["totals"]["migrated"] == 2173
     assert live["totals"] == checked["totals"]
 
     pending = [

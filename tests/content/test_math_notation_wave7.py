@@ -114,7 +114,7 @@ _MEANING_SAMPLES = (
     ),
     (
         "2.6.6-f-distribution-cs1009.json",
-        "knowledge_checks[1].model_answer",
+        "knowledge_checks[2].model_answer",
         (r"S_{1}^{2}/S_{2}^{2}", r"F_{n_{1}-1,n_{2}-1}"),
         "F variance ratio null distribution",
     ),
@@ -319,7 +319,7 @@ def test_wave7_scoring_matches_pre_migration_snapshot() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 25
+    assert len(seen) == 26
 
 
 def test_wave7_ledger_backlog_and_migration_status() -> None:
@@ -327,7 +327,7 @@ def test_wave7_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2134
+    assert checked["totals"]["migrated"] == 2173
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -356,7 +356,7 @@ def test_wave7_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 197
+    assert migrated == 205
     assert still_pending_review == 0
     assert confident_backlog == 0
     assert manual_excluded == 21
@@ -422,7 +422,7 @@ _WAVE7_LEFTOVER_MIGRATIONS = (
     ),
     (
         "2.6.6-f-distribution-cs1009.json",
-        "knowledge_checks[1].explanation",
+        "knowledge_checks[2].explanation",
         r"Each sample variance contributes a chi-square component with $n_{i}-1$ degrees of freedom, producing the stated F ratio.",
     ),
     (
@@ -670,7 +670,7 @@ def test_wave7_leftover_partial_migrations_preserve_surrounding_prose() -> None:
         ),
         (
             "2.6.6-f-distribution-cs1009.json",
-            "knowledge_checks[1].explanation",
+            "knowledge_checks[2].explanation",
             (
                 "Each sample variance contributes a chi-square component with ",
                 " degrees of freedom, producing the stated F ratio.",

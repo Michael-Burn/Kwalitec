@@ -49,6 +49,39 @@
     },
     {
       "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+      "item_id": "cs1009-2.6.2-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
       "item_id": "cs1009-2.6.2-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],

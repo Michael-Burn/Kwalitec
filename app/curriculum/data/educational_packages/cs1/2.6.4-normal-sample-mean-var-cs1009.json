@@ -159,6 +159,51 @@
       "objective_id": "CS1-B-T06-LO04"
     },
     {
+      "episode_id": "lep-cs1009-2.6.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.4-ar-02",
+      "title": "Active Recall: 2.6.4 apply Normal sampling laws",
+      "prompt": "Closed-book. A random sample of size $n=9$ is drawn from $N(\\mu=40,\\sigma^{2}=36)$. Which statement correctly names the exact sampling laws for $\\bar{X}$ and for $\\frac{(n-1)S^{2}}{\\sigma^{2}}$, and correctly keeps the t-statistic as a further object?",
+      "response_type": "mcq",
+      "body": "Evaluate the Normal mean and chi-square variance laws; refuse treating them as already t.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "For iid Normal observations, $\\bar{X}$ is exactly $N(40, 36/9)=N(40,4)$. Independently, $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$. The t-statistic is the further ratio that replaces $\\sigma$ by $S$ in the studentised mean. Stating these two laws is not yet writing that t statistic.",
+      "model_answer": "$\\bar{X}\\sim N(40,4)$ and $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$, independently. That is not yet the t-statistic.",
+      "common_mistake": "Leaving the mean variance unscaled, dropping the $n-1$ chi-square scale, or calling the unstandardised mean t distributed.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\bar{X}\\sim N(40,4)$ and $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$, independently. A t law follows only after combining these when $\\sigma$ is unknown; these two laws are not themselves the t-statistic.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\bar{X}\\sim N(40,36)$ because taking a mean does not change variance.",
+          "misconception_tag": "mean_variance_not_scaled"
+        },
+        {
+          "id": "c",
+          "label": "$\\frac{S^{2}}{36}\\sim\\chi^{2}_{9}$ because no scaling by $n-1$ is required.",
+          "misconception_tag": "chi_square_scaling_missing"
+        },
+        {
+          "id": "d",
+          "label": "$\\bar{X}\\sim t_{8}$ before standardisation because every Normal sample mean has a t distribution.",
+          "misconception_tag": "t_too_early"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO04"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.4-cp-01",

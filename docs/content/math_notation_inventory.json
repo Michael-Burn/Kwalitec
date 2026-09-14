@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-14T20:37:55Z",
+  "generated_at": "2026-09-14T21:17:11Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2281,
-    "already_compliant": 2153,
+    "mathish_strings": 2320,
+    "already_compliant": 2192,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2281,
+    "confident_automated": 2320,
     "remaining_backlog": 0,
-    "migrated": 2134,
+    "migrated": 2173,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2153,
+    "fully_covered_by_current_typesetting": 2192,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2134,
-    "equationish": 1582,
-    "actuarial_fn": 501,
-    "ascii_approx": 257,
-    "bare_latex": 205,
+    "dollar_delimited": 2173,
+    "equationish": 1612,
+    "actuarial_fn": 507,
+    "ascii_approx": 261,
+    "bare_latex": 214,
     "greek": 114,
-    "compound": 26,
+    "compound": 27,
     "unicode_ops": 11
   },
   "by_risk_tier_needs_migration": {
@@ -7565,8 +7565,8 @@
       "topic_code": "2.6",
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
-        "mathish_strings": 17,
-        "already_compliant": 16,
+        "mathish_strings": 25,
+        "already_compliant": 24,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -7594,6 +7594,142 @@
           "package_file": "2.6.6-f-distribution-cs1009.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Two independent random samples are drawn from Normal populations with equal variances. Sample 1 has $n_{1}=16$ and $S_{1}^{2}=12$; sample 2 has $n_{2}=11$ and $S_{2}^{2}=4$. Which statement correctly forms $F=S_{1}^{2}/S_{2}^{2}$, names its null distribution, and correctly refuses using a t pivot for this comparison?",
+          "text_hash": "15938bef9c41d4fc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Form the variance ratio; attach $F(n_{1}-1,n_{2}-1)$; refuse t-for-variance-ratio.",
+          "text_hash": "64479d1a8ddd3e54",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "The ratio of unbiased sample variances is $F=12/4=3$. Under equal population variances this is $F(n_{1}-1,n_{2}-1)=F(15,10)$, the scaled ratio of two independent chi-square pieces. A t-statistic studentises a mean. It is the wrong tool for comparing two variances.",
+          "text_hash": "f8e95e1174573ba9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$F=3\\sim F(15,10)$ under equal variances. Use F, not t.",
+          "text_hash": "07cb73b4e6d88d75",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using t for a variance ratio, assigning F degrees of freedom as $n_{1}$ and $n_{2}$, or treating the ratio as two-sample t.",
+          "text_hash": "36ed759d65d09ffe",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$F=12/4=3\\sim F(15,10)$ under the equal-variance null. That is a scaled ratio of independent chi-square pieces, each divided by its degrees of freedom. A t-statistic for a mean is the wrong tool for this two-sample variance comparison.",
+          "text_hash": "fe36e7d21c0959a1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$S_{1}^{2}/S_{2}^{2}\\sim t_{16+11-2}$ because both t and F use sample variances.",
+          "text_hash": "4469af3d014ed4a7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$F=3\\sim F(16,11)$ because estimating sample means does not consume degrees of freedom.",
+          "text_hash": "2109affa6e886757",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
+          "package_file": "2.6.6-f-distribution-cs1009.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Independent Normal samples of sizes $n_{1}$ and $n_{2}$ have equal population variances. Which statement is correct?",
           "text_hash": "d828b3364755949a",
           "category": "already_compliant",
@@ -7609,7 +7745,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "Each sample variance contributes a chi-square component with $n_{i}-1$ degrees of freedom, producing the stated F ratio.",
           "text_hash": "50750010a6373b8b",
@@ -7626,7 +7762,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$S_{1}^{2}/S_{2}^{2}\\sim F_{n_{1}-1,n_{2}-1}$ under equal variances.",
           "text_hash": "74ff1541b938828d",
@@ -7643,7 +7779,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$F=S_{1}^{2}/S_{2}^{2}\\sim F_{n_{1}-1,n_{2}-1}$ under the equal-variance null, with the numerator and denominator degrees of freedom kept in that order.",
           "text_hash": "5faecfd21c81acf9",
@@ -7660,7 +7796,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$S_{1}^{2}/S_{2}^{2}\\sim t_{n_{1}+n_{2}-2}$ because both $t$ and $F$ use sample variances.",
           "text_hash": "d8c22a6f9fbcfb9f",
@@ -7677,7 +7813,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$S_{1}^{2}/S_{2}^{2}\\sim F_{n_{1},n_{2}}$ because estimating sample means does not consume degrees of freedom.",
           "text_hash": "dba16b0551be2f11",
@@ -7694,7 +7830,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-F-DISTRIBUTION",
           "package_file": "2.6.6-f-distribution-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$S_{1}^{2}/S_{2}^{2}$ is standard Normal under equal variances because its expected value is near one.",
           "text_hash": "059ccf588523e853",
@@ -7869,8 +8005,8 @@
       "topic_code": "2.6",
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
-        "mathish_strings": 41,
-        "already_compliant": 39,
+        "mathish_strings": 49,
+        "already_compliant": 47,
         "needs_migration": 0,
         "correctly_excluded": 2,
         "needs_manual_review": 0,
@@ -8175,6 +8311,154 @@
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. A population has mean $\\mu=50$ and variance $\\sigma^{2}=100$. A random sample of size $n=25$ is drawn. Which statement correctly evaluates $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ for the usual unbiased sample variance, and correctly refuses treating those results as exact Normal or t laws?",
+          "text_hash": "8424b15ac8a14558",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "For a random sample with finite mean and variance, $E[\\bar{X}]=\\mu=50$ and $\\operatorname{Var}(\\bar{X})=\\sigma^{2}/n=4$. For the usual $n-1$ sample variance, $E[S^{2}]=\\sigma^{2}=100$. Those moment identities do not by themselves give exact Normal, chi-square, or t laws.",
+          "text_hash": "5689745ad63be7ca",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "ascii_approx",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$E[\\bar{X}]=50$, $\\operatorname{Var}(\\bar{X})=4$, $E[S^{2}]=100$. Moments alone do not establish exact Normal or t laws.",
+          "text_hash": "b8a5947b12b4bf17",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Dividing the mean by n, leaving $\\operatorname{Var}(\\bar{X})$ unscaled, or treating unbiasedness as an exact distributional law.",
+          "text_hash": "36acaf62abec53d2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[\\bar{X}]=50$, $\\operatorname{Var}(\\bar{X})=4$, and $E[S^{2}]=100$. These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
+          "text_hash": "fb891f461f22fc91",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[\\bar{X}]=50/25=2$ because averaging divides the expected value by n.",
+          "text_hash": "3b31174bd6ba5dc7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{Var}(\\bar{X})=100$ because averaging independent observations does not reduce variance.",
+          "text_hash": "6ae2362ed432372d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E[\\bar{X}]=50$ and $\\operatorname{Var}(\\bar{X})=4$ prove $\\bar{X}$ is exactly Normal for every parent population and every n.",
+          "text_hash": "45c75f0f3b397abb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
+          "package_file": "2.6.3-mean-var-sample-cs1009.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Which statement correctly summarises the distribution-free moment results for $\\bar{X}$ and unbiased $S^{2}$?",
           "text_hash": "56773334363519ff",
           "category": "already_compliant",
@@ -8190,7 +8474,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$E[\\bar{X}]=\\mu$, $\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$, and $E[S^{2}]=\\sigma^{2}$. These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
           "text_hash": "bf13c3231c6767d2",
@@ -8209,7 +8493,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\operatorname{Var}(\\bar{X})=\\frac{\\sigma^{2}}{n}$ proves $\\bar{X}$ is exactly Normal for every parent population and every n.",
           "text_hash": "a97a82ce34fb2a1b",
@@ -8227,7 +8511,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$E[S^{2}]=\\sigma^{2}$ proves ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$) is t distributed without any population assumptions.",
           "text_hash": "9b3bb17592ec389f",
@@ -8246,7 +8530,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-MEAN-VAR-SAMPLE",
           "package_file": "2.6.3-mean-var-sample-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$E[\\bar{X}]=\\mu$ means $\\bar{X}$ equals $\\mu$ in every sample, so sampling variability is zero.",
           "text_hash": "5c0d4d84f6254609",
@@ -8626,8 +8910,8 @@
       "topic_code": "2.6",
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
-        "mathish_strings": 37,
-        "already_compliant": 31,
+        "mathish_strings": 45,
+        "already_compliant": 39,
         "needs_migration": 0,
         "correctly_excluded": 6,
         "needs_manual_review": 0,
@@ -8896,6 +9180,146 @@
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. A random sample of size $n=9$ is drawn from $N(\\mu=40,\\sigma^{2}=36)$. Which statement correctly names the exact sampling laws for $\\bar{X}$ and for $\\frac{(n-1)S^{2}}{\\sigma^{2}}$, and correctly keeps the t-statistic as a further object?",
+          "text_hash": "4dceed1e2ea047e2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "For iid Normal observations, $\\bar{X}$ is exactly $N(40, 36/9)=N(40,4)$. Independently, $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$. The t-statistic is the further ratio that replaces $\\sigma$ by $S$ in the studentised mean. Stating these two laws is not yet writing that t statistic.",
+          "text_hash": "d077e1e126ef304b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$\\bar{X}\\sim N(40,4)$ and $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$, independently. That is not yet the t-statistic.",
+          "text_hash": "51186555424821e6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Leaving the mean variance unscaled, dropping the $n-1$ chi-square scale, or calling the unstandardised mean t distributed.",
+          "text_hash": "db7bb22b63d50d6f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\bar{X}\\sim N(40,4)$ and $\\frac{8S^{2}}{36}\\sim\\chi^{2}_{8}$, independently. A t law follows only after combining these when $\\sigma$ is unknown; these two laws are not themselves the t-statistic.",
+          "text_hash": "5983950b98e4dbb7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\bar{X}\\sim N(40,36)$ because taking a mean does not change variance.",
+          "text_hash": "363b853267e3ae82",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\frac{S^{2}}{36}\\sim\\chi^{2}_{9}$ because no scaling by $n-1$ is required.",
+          "text_hash": "0a1b53e43b597259",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\bar{X}\\sim t_{8}$ before standardisation because every Normal sample mean has a t distribution.",
+          "text_hash": "488688c05f3cb87e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
+          "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. An iid sample of size n comes from $N(\\mu,\\sigma^{2})$. Which statement correctly identifies the exact laws without prematurely using t?",
           "text_hash": "6e74e7b54dcdf4a7",
           "category": "already_compliant",
@@ -8912,7 +9336,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\bar{X}\\sim N(\\mu,\\frac{\\sigma^{2}}{n})$ and $\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim \\chi^{2}_{n-1}$, independently. A t law follows only after combining these when $\\sigma$ is unknown.",
           "text_hash": "3222354847c36f1c",
@@ -8930,7 +9354,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\bar{X}\\sim t_{n-1}$ before standardisation because every Normal sample mean has a t distribution.",
           "text_hash": "0ccbeda292245e9a",
@@ -8947,7 +9371,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim N(0,1)$ because sample variance is an average.",
           "text_hash": "40e1f693c48ff4a2",
@@ -8965,7 +9389,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-NORMAL-SAMPLE-MEAN-VAR",
           "package_file": "2.6.4-normal-sample-mean-var-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The two exact laws finish all t-statistic work even when S has not replaced $\\sigma$ in a standardised mean.",
           "text_hash": "8ca69bb80d493f06",
@@ -9301,8 +9725,8 @@
       "topic_code": "2.6",
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
-        "mathish_strings": 15,
-        "already_compliant": 14,
+        "mathish_strings": 21,
+        "already_compliant": 20,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -9328,6 +9752,103 @@
             "dollar_delimited",
             "compound",
             "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. From one random sample of 50 policies an analyst computes the sample proportion of claims-free policies $\\hat{p}=0.22$ and says the sampling distribution of $\\hat{p}$ is 0.22. Which statement correctly distinguishes the statistic, its sampling distribution, and that realised value?",
+          "text_hash": "151d96ff47d4fa71",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "A statistic is a function of the sample. $\\hat{p}$ is such a statistic. Its sampling distribution is the distribution of $\\hat{p}$ over repeated random samples of size 50, not the single number 0.22. That 0.22 is one realised draw from that distribution.",
+          "text_hash": "4ffd14498c559c8d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Refuse: 0.22 is one realised value of $\\hat{p}$. The sampling distribution is the repeated-sample law of that statistic.",
+          "text_hash": "a9f599d1e1ed3839",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Refuse: $\\hat{p}$ is a statistic (a function of the sample). Its sampling distribution is the distribution of that statistic over repeated random samples of size 50. The observed 0.22 is one realised value from that distribution, not the distribution itself.",
+          "text_hash": "5fcc13710027e93f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Accept: the sampling distribution of $\\hat{p}$ equals 0.22 because that is the number computed from the data set you hold.",
+          "text_hash": "888a9dd749c5e91e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-SAMPLING-DISTRIBUTION-STATISTIC",
+          "package_file": "2.6.2-sampling-distribution-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{p}$ is a fixed population parameter, and its sampling distribution is that same constant 0.22.",
+          "text_hash": "12fd83263cc704a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
           ]
         },
         {
@@ -9580,8 +10101,8 @@
       "topic_code": "2.6",
       "campaign_id": "CS1-EP001-CAMPAIGN-IOTA",
       "counts": {
-        "mathish_strings": 35,
-        "already_compliant": 28,
+        "mathish_strings": 44,
+        "already_compliant": 37,
         "needs_migration": 0,
         "correctly_excluded": 7,
         "needs_manual_review": 0,
@@ -9824,6 +10345,159 @@
           "package_file": "2.6.5-t-statistic-cs1009.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. A random sample of size $n=25$ from a Normal population yields $\\bar{X}=82$ and $S=10$. Under $H_{0}\\colon\\mu=80$, which statement correctly evaluates the t-statistic and its degrees of freedom, and correctly refuses treating that pivot as a z law with $S$ or as an F variance-ratio comparison?",
+          "text_hash": "6bbc5ecfabed58f5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Form $t=(\\bar{X}-\\mu_{0})/(S/\\sqrt{n})$; name df $=n-1$; refuse z-with-S and F swallow.",
+          "text_hash": "2d082a9540ce4add",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "With $\\sigma$ unknown, $S/\\sqrt{n}=10/5=2$, so $t=(82-80)/2=1$ on $n-1=24$ degrees of freedom. Using $S$ inside a Normal z formula pretends $\\sigma$ is known. An F comparison of two sample variances is a different sampling problem from this one-sample mean pivot.",
+          "text_hash": "58bc341114b32747",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$t=1$ on 24 degrees of freedom. Use t, not z-with-S and not F.",
+          "text_hash": "0260d0f0381f5d20",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Omitting $\\sqrt{n}$ in the standard error, treating S as known $\\sigma$ in a z law, or using t for a variance ratio.",
+          "text_hash": "cc56575af89ad83f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$t=(82-80)/(10/\\sqrt{25})=1$ on 24 degrees of freedom. That is the correct pivot for $\\mu$ when $\\sigma$ is unknown. It is not a $z$ that plugs in $S$, and it does not give the F law for comparing two sample variances.",
+          "text_hash": "f396d0bdaf8bacc1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$(82-80)/(10/\\sqrt{25})$ is exactly $N(0,1)$ because $S$ and $\\sigma$ are interchangeable.",
+          "text_hash": "003142ab4fd89807",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$t=(82-80)/10=0.2$ on 24 degrees of freedom, because $S$ is already a standard error.",
+          "text_hash": "26f7f655504a736d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The correct comparison here is $S_{1}^{2}/S_{2}^{2}\\sim t_{24}$, because $t$ is the standard law for variance ratios.",
+          "text_hash": "20ab98d7b183da76",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
+          "package_file": "2.6.5-t-statistic-cs1009.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. A Normal sample has unknown population standard deviation. Which statement gives the correct pivot for $\\mu$ and correctly refuses the claim that \"forming the t-statistic completes the F variance-ratio comparison\"?",
           "text_hash": "aaf861e8a8ec87ef",
           "category": "already_compliant",
@@ -9838,7 +10512,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
           "package_file": "2.6.5-t-statistic-cs1009.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Use ($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$; refuse the claim that \"forming the t-statistic completes the F variance-ratio comparison\".",
           "text_hash": "a69a4d11073329b8",
@@ -9855,7 +10529,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
           "package_file": "2.6.5-t-statistic-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$t_{n-1}$. This supports inference for $\\mu$, but does not by itself give the F law for comparing variances, so the claim that \"forming the t-statistic completes the F variance-ratio comparison\" is false.",
           "text_hash": "800af3bf60e2bcf4",
@@ -9872,7 +10546,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
           "package_file": "2.6.5-t-statistic-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "($\\bar{X}-\\mu$)/($\\frac{S}{\\sqrt{n}}$)~$N(0,1)$ exactly because S and $\\sigma$ are interchangeable.",
           "text_hash": "f5014b7c89552ae2",
@@ -9889,7 +10563,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
           "package_file": "2.6.5-t-statistic-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "($\\bar{X}-\\mu$)/S~$t_{n-1}$ because S is already a standard error.",
           "text_hash": "01c027ef897454cd",
@@ -9906,7 +10580,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.6-T-STATISTIC",
           "package_file": "2.6.5-t-statistic-cs1009.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$S_{1}^{2}/S_{2}^{2} \\sim t_{n-1}$ because $t$ is the standard law for variance ratios.",
           "text_hash": "2efb04a2cbc4814e",
@@ -41405,5 +42079,5 @@
       ]
     }
   ],
-  "content_fingerprint": "87789721bc7b2e386cd9ed812012a8e3153bcfa8d7ae07aeb702df17d5e8fdd9"
+  "content_fingerprint": "11770b9a592ca3b16cf37e2eef59a3cd9355ca13caafbaf85ebe6e65e21b1953"
 }

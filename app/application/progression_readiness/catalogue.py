@@ -310,6 +310,7 @@ CS1_B_T06_LO01 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.1-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.1-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.1-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -321,6 +322,7 @@ CS1_B_T06_LO02 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.2-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.2-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -332,6 +334,7 @@ CS1_B_T06_LO03 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.3-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.3-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.3-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -343,6 +346,7 @@ CS1_B_T06_LO04 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.4-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.4-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.4-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -354,6 +358,7 @@ CS1_B_T06_LO05 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.5-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.5-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.5-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -365,6 +370,7 @@ CS1_B_T06_LO06 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1009-2.6.6-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1009-2.6.6-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1009-2.6.6-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,

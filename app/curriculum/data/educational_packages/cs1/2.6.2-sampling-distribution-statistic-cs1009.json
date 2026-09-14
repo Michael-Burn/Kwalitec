@@ -158,6 +158,51 @@
       "objective_id": "CS1-B-T06-LO02"
     },
     {
+      "episode_id": "lep-cs1009-2.6.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.2-ar-02",
+      "title": "Active Recall: 2.6.2 apply sampling-distribution split",
+      "prompt": "Closed-book. From one random sample of 50 policies an analyst computes the sample proportion of claims-free policies $\\hat{p}=0.22$ and says the sampling distribution of $\\hat{p}$ is 0.22. Which statement correctly distinguishes the statistic, its sampling distribution, and that realised value?",
+      "response_type": "mcq",
+      "body": "Apply the three-way split to a sample proportion; refuse equating 0.22 with the sampling distribution.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "A statistic is a function of the sample. $\\hat{p}$ is such a statistic. Its sampling distribution is the distribution of $\\hat{p}$ over repeated random samples of size 50, not the single number 0.22. That 0.22 is one realised draw from that distribution.",
+      "model_answer": "Refuse: 0.22 is one realised value of $\\hat{p}$. The sampling distribution is the repeated-sample law of that statistic.",
+      "common_mistake": "Equating a realised statistic with its sampling distribution, or treating the statistic as a fixed parameter.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Refuse: $\\hat{p}$ is a statistic (a function of the sample). Its sampling distribution is the distribution of that statistic over repeated random samples of size 50. The observed 0.22 is one realised value from that distribution, not the distribution itself.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Accept: the sampling distribution of $\\hat{p}$ equals 0.22 because that is the number computed from the data set you hold.",
+          "misconception_tag": "realised_is_distribution"
+        },
+        {
+          "id": "c",
+          "label": "A realised statistic equals its sampling distribution whenever the sample size is larger than 30, so n = 50 makes 0.22 the sampling distribution.",
+          "misconception_tag": "n30_collapse"
+        },
+        {
+          "id": "d",
+          "label": "$\\hat{p}$ is a fixed population parameter, and its sampling distribution is that same constant 0.22.",
+          "misconception_tag": "statistic_is_parameter"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO02"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.2-cp-01",

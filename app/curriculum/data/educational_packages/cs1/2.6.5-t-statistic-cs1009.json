@@ -158,6 +158,51 @@
       "objective_id": "CS1-B-T06-LO05"
     },
     {
+      "episode_id": "lep-cs1009-2.6.5-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.5-ar-02",
+      "title": "Active Recall: 2.6.5 apply the t-statistic",
+      "prompt": "Closed-book. A random sample of size $n=25$ from a Normal population yields $\\bar{X}=82$ and $S=10$. Under $H_{0}\\colon\\mu=80$, which statement correctly evaluates the t-statistic and its degrees of freedom, and correctly refuses treating that pivot as a z law with $S$ or as an F variance-ratio comparison?",
+      "response_type": "mcq",
+      "body": "Form $t=(\\bar{X}-\\mu_{0})/(S/\\sqrt{n})$; name df $=n-1$; refuse z-with-S and F swallow.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "With $\\sigma$ unknown, $S/\\sqrt{n}=10/5=2$, so $t=(82-80)/2=1$ on $n-1=24$ degrees of freedom. Using $S$ inside a Normal z formula pretends $\\sigma$ is known. An F comparison of two sample variances is a different sampling problem from this one-sample mean pivot.",
+      "model_answer": "$t=1$ on 24 degrees of freedom. Use t, not z-with-S and not F.",
+      "common_mistake": "Omitting $\\sqrt{n}$ in the standard error, treating S as known $\\sigma$ in a z law, or using t for a variance ratio.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$t=(82-80)/(10/\\sqrt{25})=1$ on 24 degrees of freedom. That is the correct pivot for $\\mu$ when $\\sigma$ is unknown. It is not a $z$ that plugs in $S$, and it does not give the F law for comparing two sample variances.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$(82-80)/(10/\\sqrt{25})$ is exactly $N(0,1)$ because $S$ and $\\sigma$ are interchangeable.",
+          "misconception_tag": "z_with_sample_sd"
+        },
+        {
+          "id": "c",
+          "label": "$t=(82-80)/10=0.2$ on 24 degrees of freedom, because $S$ is already a standard error.",
+          "misconception_tag": "sd_as_standard_error"
+        },
+        {
+          "id": "d",
+          "label": "The correct comparison here is $S_{1}^{2}/S_{2}^{2}\\sim t_{24}$, because $t$ is the standard law for variance ratios.",
+          "misconception_tag": "t_for_variance_ratio"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO05"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.5-cp-01",

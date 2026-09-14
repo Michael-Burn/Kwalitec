@@ -159,6 +159,51 @@
       "objective_id": "CS1-B-T06-LO01"
     },
     {
+      "episode_id": "lep-cs1009-2.6.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.1-ar-02",
+      "title": "Active Recall: 2.6.1 apply sampling warrant",
+      "prompt": "Closed-book. An analyst keeps the first 30 household claims that settled within 7 days and treats that list as a random sample from all household claims, in order to estimate portfolio mean severity. Which statement correctly classifies the extract and restates what a random sample requires?",
+      "response_type": "mcq",
+      "body": "Classify settlement-speed selection; restate the sampling-model warrant; refuse n as a repair.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "A random sample must be drawn so observations follow the stated population under a sampling model (for example iid draws). Keeping only claims that settled within 7 days selects on duration. Fast-settling claims are not an iid draw from all household claims, so the extract lacks the warrant needed to estimate portfolio mean severity. Having 30 observations does not create that warrant.",
+      "model_answer": "Not a random sample of all household claims: settlement within 7 days is selection on duration. n = 30 does not repair it.",
+      "common_mistake": "Treating any extract of size 30 as random, or treating a matching mean as proof that the selection mechanism was lawful.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The extract is not a random sample of all household claims. A random sample requires a stated sampling model linking observations to that population (commonly iid draws). Keeping only claims that settled within 7 days selects on duration. Having 30 observations does not repair the mechanism.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Any 30 observations form a random sample once their sample mean and variance can be calculated, so settlement-speed selection is irrelevant.",
+          "misconception_tag": "n_observations_as_sample"
+        },
+        {
+          "id": "c",
+          "label": "The extract becomes a random sample if its mean severity happens to be close to the whole-book mean.",
+          "misconception_tag": "mean_match_proves_randomness"
+        },
+        {
+          "id": "d",
+          "label": "Choosing an estimator or t-statistic later will correct any settlement-speed selection, so the list may be treated as a random sample now.",
+          "misconception_tag": "estimator_repairs_sampling"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO01"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.1-cp-01",

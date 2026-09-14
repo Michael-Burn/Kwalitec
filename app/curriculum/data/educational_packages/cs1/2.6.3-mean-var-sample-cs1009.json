@@ -157,6 +157,51 @@
       "objective_id": "CS1-B-T06-LO03"
     },
     {
+      "episode_id": "lep-cs1009-2.6.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.3-ar-02",
+      "title": "Active Recall: 2.6.3 apply sample-moment identities",
+      "prompt": "Closed-book. A population has mean $\\mu=50$ and variance $\\sigma^{2}=100$. A random sample of size $n=25$ is drawn. Which statement correctly evaluates $E[\\bar{X}]$, $\\operatorname{Var}(\\bar{X})$, and $E[S^{2}]$ for the usual unbiased sample variance, and correctly refuses treating those results as exact Normal or t laws?",
+      "response_type": "mcq",
+      "body": "Evaluate the three identities; refuse inferring exact sampling laws from moments alone.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "For a random sample with finite mean and variance, $E[\\bar{X}]=\\mu=50$ and $\\operatorname{Var}(\\bar{X})=\\sigma^{2}/n=4$. For the usual $n-1$ sample variance, $E[S^{2}]=\\sigma^{2}=100$. Those moment identities do not by themselves give exact Normal, chi-square, or t laws.",
+      "model_answer": "$E[\\bar{X}]=50$, $\\operatorname{Var}(\\bar{X})=4$, $E[S^{2}]=100$. Moments alone do not establish exact Normal or t laws.",
+      "common_mistake": "Dividing the mean by n, leaving $\\operatorname{Var}(\\bar{X})$ unscaled, or treating unbiasedness as an exact distributional law.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$E[\\bar{X}]=50$, $\\operatorname{Var}(\\bar{X})=4$, and $E[S^{2}]=100$. These moment results alone do not establish exact Normal, chi-square, or t distribution laws.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$E[\\bar{X}]=50/25=2$ because averaging divides the expected value by n.",
+          "misconception_tag": "mean_divided_by_n"
+        },
+        {
+          "id": "c",
+          "label": "$\\operatorname{Var}(\\bar{X})=100$ because averaging independent observations does not reduce variance.",
+          "misconception_tag": "variance_not_divided_by_n"
+        },
+        {
+          "id": "d",
+          "label": "$E[\\bar{X}]=50$ and $\\operatorname{Var}(\\bar{X})=4$ prove $\\bar{X}$ is exactly Normal for every parent population and every n.",
+          "misconception_tag": "moments_imply_normality"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO03"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.3-cp-01",

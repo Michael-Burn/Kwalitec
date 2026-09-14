@@ -94,6 +94,11 @@ Editorial review record (2026-09-14): one topic 2.5 LO02 retry active-recall
 item (cs1008-2.5.2-ar-02 Poisson overlay vs sampling distribution of means)
 was reviewed and approved before wiring so every live MCQ remains on the
 choice-aware allowlist. Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-14): six topic 2.6 retry active-recall items
+(cs1009-2.6.1-ar-02 through cs1009-2.6.6-ar-02) were reviewed and approved
+before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -119,6 +124,7 @@ from app.application.learning_session.scoreable_practice import (
 # topic 2.2 LO02 retry AR item 2.2.2-ar-02;
 # topic 2.4 retry AR items 2.4.1-ar-02 / 2.4.2-ar-02;
 # topic 2.5 LO02 retry AR item 2.5.2-ar-02;
+# topic 2.6 retry AR items 2.6.1-ar-02 through 2.6.6-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -364,6 +370,12 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1007-2.4.1-ar-02",  # topic 2.4 retry: 2.4.1-mgf-cgf-cs1007
         "cs1007-2.4.2-ar-02",  # topic 2.4 retry: 2.4.2-moment-via-gf-cs1007
         "cs1008-2.5.2-ar-02",  # topic 2.5 retry: 2.5.2-simulated-sample-normal-cs1008
+        "cs1009-2.6.1-ar-02",  # topic 2.6 retry: 2.6.1-random-samples-cs1009
+        "cs1009-2.6.2-ar-02",  # topic 2.6 retry: 2.6.2-sampling-distribution-statistic-cs1009
+        "cs1009-2.6.3-ar-02",  # topic 2.6 retry: 2.6.3-mean-var-sample-cs1009
+        "cs1009-2.6.4-ar-02",  # topic 2.6 retry: 2.6.4-normal-sample-mean-var-cs1009
+        "cs1009-2.6.5-ar-02",  # topic 2.6 retry: 2.6.5-t-statistic-cs1009
+        "cs1009-2.6.6-ar-02",  # topic 2.6 retry: 2.6.6-f-distribution-cs1009
     }
 )
 
@@ -5822,6 +5834,150 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice keeps \\(\\bar{X}\\) Poisson at every n because averaging "
         "preserves the parent family. Averaging changes the sampling "
         "distribution; it does not preserve Poisson."
+    ),
+    # --- cs1009-2.6.1-ar-02 ---
+    (
+        "cs1009-2.6.1-ar-02",
+        "b",
+    ): (
+        "That choice calls any 30 observations a random sample once mean and "
+        "variance can be computed. Calculable summaries do not create a "
+        "sampling model or population warrant."
+    ),
+    (
+        "cs1009-2.6.1-ar-02",
+        "c",
+    ): (
+        "That choice treats a matching mean severity as proof the extract is "
+        "random. A lucky mean match does not certify settlement-speed "
+        "selection."
+    ),
+    (
+        "cs1009-2.6.1-ar-02",
+        "d",
+    ): (
+        "That choice says a later estimator or t-statistic will repair "
+        "settlement-speed selection. Estimators presuppose a sampling story; "
+        "they do not create one."
+    ),
+    # --- cs1009-2.6.2-ar-02 ---
+    (
+        "cs1009-2.6.2-ar-02",
+        "b",
+    ): (
+        "That choice equates the sampling distribution of \\(\\hat{p}\\) with "
+        "the single realised 0.22. A realised statistic is one draw from the "
+        "repeated-sample law, not the law itself."
+    ),
+    (
+        "cs1009-2.6.2-ar-02",
+        "c",
+    ): (
+        "That choice says n larger than 30 makes the realised value the "
+        "sampling distribution. Sample size does not collapse a realised "
+        "statistic into its repeated-sample law."
+    ),
+    (
+        "cs1009-2.6.2-ar-02",
+        "d",
+    ): (
+        "That choice treats \\(\\hat{p}\\) as a fixed population parameter "
+        "equal to 0.22. A sample proportion is a statistic, not a constant "
+        "parameter."
+    ),
+    # --- cs1009-2.6.3-ar-02 ---
+    (
+        "cs1009-2.6.3-ar-02",
+        "b",
+    ): (
+        "That choice divides the population mean by n. Averaging does not "
+        "divide \\(E[\\bar{X}]\\) by n; \\(E[\\bar{X}]=\\mu\\)."
+    ),
+    (
+        "cs1009-2.6.3-ar-02",
+        "c",
+    ): (
+        "That choice leaves \\(\\operatorname{Var}(\\bar{X})\\) equal to "
+        "\\(\\sigma^{2}\\). Independent averaging reduces variance by the "
+        "factor \\(1/n\\)."
+    ),
+    (
+        "cs1009-2.6.3-ar-02",
+        "d",
+    ): (
+        "That choice treats moment identities as proof of exact Normality. "
+        "Mean and variance alone do not establish exact Normal or t laws."
+    ),
+    # --- cs1009-2.6.4-ar-02 ---
+    (
+        "cs1009-2.6.4-ar-02",
+        "b",
+    ): (
+        "That choice leaves the sample-mean variance equal to "
+        "\\(\\sigma^{2}\\). For a Normal sample, "
+        "\\(\\bar{X}\\sim N(\\mu,\\sigma^{2}/n)\\)."
+    ),
+    (
+        "cs1009-2.6.4-ar-02",
+        "c",
+    ): (
+        "That choice drops the \\(n-1\\) scale and uses \\(\\chi^{2}_{n}\\). "
+        "The exact law is \\(\\frac{(n-1)S^{2}}{\\sigma^{2}}\\sim"
+        "\\chi^{2}_{n-1}\\)."
+    ),
+    (
+        "cs1009-2.6.4-ar-02",
+        "d",
+    ): (
+        "That choice calls the unstandardised sample mean t distributed. "
+        "\\(\\bar{X}\\) is Normal; t arises only after replacing "
+        "\\(\\sigma\\) by \\(S\\) in the studentised mean."
+    ),
+    # --- cs1009-2.6.5-ar-02 ---
+    (
+        "cs1009-2.6.5-ar-02",
+        "b",
+    ): (
+        "That choice treats plugging \\(S\\) into a z formula as exact "
+        "\\(N(0,1)\\). Estimating \\(\\sigma\\) with \\(S\\) produces a "
+        "t law, not a z law."
+    ),
+    (
+        "cs1009-2.6.5-ar-02",
+        "c",
+    ): (
+        "That choice divides by \\(S\\) without \\(\\sqrt{n}\\). The "
+        "standard error is \\(S/\\sqrt{n}\\), not \\(S\\) alone."
+    ),
+    (
+        "cs1009-2.6.5-ar-02",
+        "d",
+    ): (
+        "That choice uses t for a variance-ratio comparison. Comparing two "
+        "sample variances uses F, not a one-sample t pivot."
+    ),
+    # --- cs1009-2.6.6-ar-02 ---
+    (
+        "cs1009-2.6.6-ar-02",
+        "b",
+    ): (
+        "That choice assigns a t law to the variance ratio. Under equal "
+        "variances the ratio of sample variances follows F, not t."
+    ),
+    (
+        "cs1009-2.6.6-ar-02",
+        "c",
+    ): (
+        "That choice uses degrees of freedom \\(n_{1}\\) and \\(n_{2}\\). "
+        "Each sample variance consumes one degree of freedom for its mean, "
+        "so the null law is \\(F(n_{1}-1,n_{2}-1)\\)."
+    ),
+    (
+        "cs1009-2.6.6-ar-02",
+        "d",
+    ): (
+        "That choice treats the comparison as a two-sample mean difference "
+        "with pooled SE. An F variable compares sample variances, not means."
     ),
 
 }

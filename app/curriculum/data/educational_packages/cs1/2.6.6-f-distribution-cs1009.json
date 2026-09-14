@@ -159,6 +159,51 @@
       "objective_id": "CS1-B-T06-LO06"
     },
     {
+      "episode_id": "lep-cs1009-2.6.6-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1009-2.6.6-ar-02",
+      "title": "Active Recall: 2.6.6 apply the variance-ratio F",
+      "prompt": "Closed-book. Two independent random samples are drawn from Normal populations with equal variances. Sample 1 has $n_{1}=16$ and $S_{1}^{2}=12$; sample 2 has $n_{2}=11$ and $S_{2}^{2}=4$. Which statement correctly forms $F=S_{1}^{2}/S_{2}^{2}$, names its null distribution, and correctly refuses using a t pivot for this comparison?",
+      "response_type": "mcq",
+      "body": "Form the variance ratio; attach $F(n_{1}-1,n_{2}-1)$; refuse t-for-variance-ratio.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "The ratio of unbiased sample variances is $F=12/4=3$. Under equal population variances this is $F(n_{1}-1,n_{2}-1)=F(15,10)$, the scaled ratio of two independent chi-square pieces. A t-statistic studentises a mean. It is the wrong tool for comparing two variances.",
+      "model_answer": "$F=3\\sim F(15,10)$ under equal variances. Use F, not t.",
+      "common_mistake": "Using t for a variance ratio, assigning F degrees of freedom as $n_{1}$ and $n_{2}$, or treating the ratio as two-sample t.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$F=12/4=3\\sim F(15,10)$ under the equal-variance null. That is a scaled ratio of independent chi-square pieces, each divided by its degrees of freedom. A t-statistic for a mean is the wrong tool for this two-sample variance comparison.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$S_{1}^{2}/S_{2}^{2}\\sim t_{16+11-2}$ because both t and F use sample variances.",
+          "misconception_tag": "t_for_variance_ratio"
+        },
+        {
+          "id": "c",
+          "label": "$F=3\\sim F(16,11)$ because estimating sample means does not consume degrees of freedom.",
+          "misconception_tag": "degrees_of_freedom_not_reduced"
+        },
+        {
+          "id": "d",
+          "label": "The comparison is the difference of two sample means divided by one pooled standard error, which is an F variable.",
+          "misconception_tag": "f_as_two_sample_t"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T06-LO06"
+    },
+    {
       "episode_id": "lep-cs1009-2.6.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1009-2.6.6-cp-01",
