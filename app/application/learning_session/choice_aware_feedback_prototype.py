@@ -89,6 +89,11 @@ items (cs1007-2.4.1-ar-02 Bernoulli MGF/CGF; cs1007-2.4.2-ar-02 Bernoulli
 mean/variance extraction) were reviewed and approved before wiring so every
 live MCQ remains on the choice-aware allowlist. Copy is frozen as approved;
 mechanism unchanged.
+
+Editorial review record (2026-09-14): one topic 2.5 LO02 retry active-recall
+item (cs1008-2.5.2-ar-02 Poisson overlay vs sampling distribution of means)
+was reviewed and approved before wiring so every live MCQ remains on the
+choice-aware allowlist. Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -113,6 +118,7 @@ from app.application.learning_session.scoreable_practice import (
 # topic 2.1 retry AR items 2.1d-ar-02 / 2.1e-ar-02 / 2.1f-ar-02;
 # topic 2.2 LO02 retry AR item 2.2.2-ar-02;
 # topic 2.4 retry AR items 2.4.1-ar-02 / 2.4.2-ar-02;
+# topic 2.5 LO02 retry AR item 2.5.2-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -357,6 +363,7 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1005-2.2.2-ar-02",  # topic 2.2 retry: 2.2.2-independence-cs1005
         "cs1007-2.4.1-ar-02",  # topic 2.4 retry: 2.4.1-mgf-cgf-cs1007
         "cs1007-2.4.2-ar-02",  # topic 2.4 retry: 2.4.2-moment-via-gf-cs1007
+        "cs1008-2.5.2-ar-02",  # topic 2.5 retry: 2.5.2-simulated-sample-normal-cs1008
     }
 )
 
@@ -5789,6 +5796,32 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice evaluates the derivative at \\(t=1\\). "
         "Raw moments from an MGF are the derivatives at \\(t=0\\)."
+    ),
+    # --- cs1008-2.5.2-ar-02 ---
+    (
+        "cs1008-2.5.2-ar-02",
+        "b",
+    ): (
+        "That choice treats a matched Normal overlay on individual Poisson "
+        "counts as the CLT check. The comparison this objective asks for is "
+        "the distribution of \\(\\bar{X}\\) from repeated samples, not the "
+        "histogram of draws."
+    ),
+    (
+        "cs1008-2.5.2-ar-02",
+        "c",
+    ): (
+        "That choice says a skewed Poisson parent forever blocks approximately "
+        "Normal means. Finite-variance parents can still yield approximately "
+        "Normal means as n grows."
+    ),
+    (
+        "cs1008-2.5.2-ar-02",
+        "d",
+    ): (
+        "That choice keeps \\(\\bar{X}\\) Poisson at every n because averaging "
+        "preserves the parent family. Averaging changes the sampling "
+        "distribution; it does not preserve Poisson."
     ),
 
 }

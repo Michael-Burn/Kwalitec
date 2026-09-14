@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-14T20:00:09Z",
+  "generated_at": "2026-09-14T20:37:55Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2274,
-    "already_compliant": 2146,
+    "mathish_strings": 2281,
+    "already_compliant": 2153,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2274,
+    "confident_automated": 2281,
     "remaining_backlog": 0,
-    "migrated": 2127,
+    "migrated": 2134,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2146,
+    "fully_covered_by_current_typesetting": 2153,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2127,
-    "equationish": 1579,
+    "dollar_delimited": 2134,
+    "equationish": 1582,
     "actuarial_fn": 501,
     "ascii_approx": 257,
     "bare_latex": 205,
@@ -7135,8 +7135,8 @@
       "topic_code": "2.5",
       "campaign_id": "CS1-EP001-CAMPAIGN-THETA",
       "counts": {
-        "mathish_strings": 18,
-        "already_compliant": 14,
+        "mathish_strings": 25,
+        "already_compliant": 21,
         "needs_migration": 0,
         "correctly_excluded": 4,
         "needs_manual_review": 0,
@@ -7164,6 +7164,121 @@
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Claim counts follow Poisson with mean 2. An analyst simulates samples of size $n=12$ and overlays a $N(2, 2)$ density on the histogram of individual counts. Which statement correctly judges that overlay and states what the simulation comparison with the Normal should use?",
+          "text_hash": "fb26674e64d9666a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Poisson(2) counts are discrete, right-skewed, and supported on the non-negative integers. A matched $N(2, 2)$ overlay puts mass on negative values and is a poor description of individual draws at $n=12$. The comparison this objective asks for is the empirical distribution of sample means from many replications, which can look closer to Normal at large n even when the parent is Poisson.",
+          "text_hash": "0508010d53d7c8ae",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "The $N(2, 2)$ overlay is a poor description of individual Poisson(2) counts. Compare the distribution of $\\bar{X}$ from repeated samples, not the histogram of draws.",
+          "text_hash": "bd15428e7f13717b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The $N(2, 2)$ overlay is a poor description of individual Poisson(2) counts at $n=12$ (skew, discrete support, Normal mass on negatives). The honest comparison repeatedly simulates samples, records each sample mean, and compares the distribution of $\\bar{X}$ with the relevant Normal approximation; that approximation can improve at large n.",
+          "text_hash": "26227654b3dc50d7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The overlay is the CLT check: comparing individual Poisson counts with $N(2, 2)$ tests the Normal approximation for sample means, so there is no need to record $\\bar{X}$ from repeated samples.",
+          "text_hash": "9eb7d89f796f49c7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Because Poisson(2) is skewed, sample means remain as skewed as individual counts at every n, so a Normal comparison of $\\bar{X}$ is never informative.",
+          "text_hash": "bcbb54ce50e7ba16",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Averaging preserves the parent family, so the distribution of $\\bar{X}$ stays Poisson with mean 2 at every n and should be compared with Poisson, not Normal.",
+          "text_hash": "ac44a79ad5b7931d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
+          "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Samples come from an Exponential distribution with mean 1. What should repeated simulations show for $\\bar{X}$ at n=5 versus n=100?",
           "text_hash": "ca22e692d6a6d9db",
           "category": "already_compliant",
@@ -7179,7 +7294,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "The CLT approximation improves as n grows, while the mean stays near 1 and its standard deviation shrinks as 1/$\\sqrt{n}$.",
           "text_hash": "66a7d89e8e8c563c",
@@ -7196,7 +7311,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "n=5 may remain skewed; n=100 is closer to $N(1,0.1^{2})$.",
           "text_hash": "bbde75b551e3f66a",
@@ -7214,7 +7329,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "At $n=5$ the distribution of $\\bar{X}$ can remain noticeably right-skewed. At $n=100$ it should be much closer to Normal, centred near 1 with standard deviation about $1/\\sqrt{100}=0.1$.",
           "text_hash": "a2297c08b724e70b",
@@ -7231,7 +7346,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.5-SIMULATED-SAMPLE-NORMAL",
           "package_file": "2.5.2-simulated-sample-normal-cs1008.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Both distributions of $\\bar{X}$ must be exactly Exponential with mean 1 because averaging preserves the parent family.",
           "text_hash": "b80927b7c97c54e5",
@@ -41290,5 +41405,5 @@
       ]
     }
   ],
-  "content_fingerprint": "8e488b323fddbc5cdf615f4a0be49fb22e412365c9b0a42faef6a625ce823765"
+  "content_fingerprint": "87789721bc7b2e386cd9ed812012a8e3153bcfa8d7ae07aeb702df17d5e8fdd9"
 }

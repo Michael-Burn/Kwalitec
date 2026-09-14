@@ -296,6 +296,7 @@ CS1_B_T05_LO02 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1008-2.5.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1008-2.5.2-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1008-2.5.2-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,

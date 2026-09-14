@@ -461,10 +461,14 @@ class TestCatalogue:
         assert CS1_B_T05_LO01.required_prerequisite_objective_id is None
 
         assert CS1_B_T05_LO02.kind is ContractKind.CONCEPTUAL
-        assert CS1_B_T05_LO02.item_count == 2
+        assert CS1_B_T05_LO02.item_count == 3
         assert CS1_B_T05_LO02.ready_min_correct == 2
         assert CS1_B_T05_LO02.item_ids == frozenset(
-            {"cs1008-2.5.2-ar-01", "cs1008-2.5.2-cp-01"}
+            {
+                "cs1008-2.5.2-ar-01",
+                "cs1008-2.5.2-ar-02",
+                "cs1008-2.5.2-cp-01",
+            }
         )
         assert CS1_B_T05_LO02.required_prerequisite_objective_id is None
 
@@ -734,6 +738,7 @@ class TestCatalogue:
         CS1_B_T02_LO02,
         CS1_B_T04_LO01,
         CS1_B_T04_LO02,
+        CS1_B_T05_LO02,
     ],
 )
 class TestConceptualThreeItem:
@@ -842,6 +847,12 @@ class TestConceptualThreeItem:
             "cs1007-2.4.2-ar-01",
             "cs1007-2.4.2-ar-02",
             "cs1007-2.4.2-cp-01",
+        ),
+        (
+            CS1_B_T05_LO02,
+            "cs1008-2.5.2-ar-01",
+            "cs1008-2.5.2-ar-02",
+            "cs1008-2.5.2-cp-01",
         ),
     ],
 )
@@ -2173,44 +2184,110 @@ class TestTopic25LO01Cs1008OnlyExcludesCs1016:
 
 
 # ---------------------------------------------------------------------------
-# Topic 2.5 LO02: 2-item conceptual ready_min_correct=2
+# Topic 2.5 LO02: every 2-of-3 pair still covers design and the
+# individual-versus-sampling-distribution distinction
 # ---------------------------------------------------------------------------
 
 
-class TestTopic25LO02ConceptualTwoItem:
-    contract = CS1_B_T05_LO02
+class TestTopic25LO02BothHalvesCoverage:
+    """The combined ar-02 item exists so 2-of-3 cannot skip a half.
 
-    def _items(self):
-        return [spec.item_id for spec in self.contract.evidence_items]
+    Halves: (1) simulation-of-means design; (2) judging individual draws
+    versus the sampling distribution of means. ar-01 states the design.
+    cp-01 applies Exponential means at two n. ar-02 judges a Poisson
+    overlay on individual counts and keeps the means-as-object refuse.
+    """
 
-    def test_two_of_two_ready(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1", self.contract.objective_id, [(i, True) for i in items]
+    ar01 = "cs1008-2.5.2-ar-01"
+    ar02 = "cs1008-2.5.2-ar-02"
+    cp01 = "cs1008-2.5.2-cp-01"
+    package_name = "2.5.2-simulated-sample-normal-cs1008.json"
+
+    def _check(self, item_id: str):
+        from app.application.educational_packages.loader import (
+            EducationalPackageLoader,
         )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
 
-    def test_one_of_two_insufficient_sample(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1",
-            self.contract.objective_id,
-            [(items[0], True), (items[1], False)],
+        root = Path("app/curriculum/data/educational_packages")
+        loader = EducationalPackageLoader(root=root)
+        packs = {
+            Path(p.source_path).name: p for p in loader.all_approved()
+        }
+        pack = packs[self.package_name]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
         )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+        assert match is not None, f"missing {item_id}"
+        return match
 
-    def test_zero_of_two_not_ready(self):
-        items = self._items()
-        evidence = _evidence_for_items(
-            "s1", self.contract.objective_id, [(i, False) for i in items]
+    @staticmethod
+    def _blob(check) -> str:
+        parts = [
+            check.prompt or "",
+            check.body or "",
+            check.explanation or "",
+            check.model_answer or "",
+        ]
+        parts.extend(choice.label for choice in check.choices)
+        return " ".join(parts)
+
+    def _covers_design(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "repeatedly simulate" in lower
+            or "record each sample mean" in lower
+            or "empirical distribution of means" in lower
         )
-        result = _eval(self.contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
+
+    def _judges_individual_vs_sampling(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return (
+            "individual poisson" in lower
+            or "individual counts" in lower
+            or ("overlay" in lower and "individual" in lower)
+            or "one observation" in lower
+            or "individual exponential" in lower
+        )
+
+    def _applies_named_parent(self, check) -> bool:
+        text = self._blob(check)
+        return "Poisson" in text or "Exponential" in text
+
+    def test_live_items_have_the_intended_halves(self):
+        ar01 = self._check(self.ar01)
+        ar02 = self._check(self.ar02)
+        cp01 = self._check(self.cp01)
+        assert self._covers_design(ar01)
+        assert not self._applies_named_parent(ar01) or "Poisson" not in self._blob(
+            ar01
+        )
+        assert self._judges_individual_vs_sampling(ar02)
+        assert "Poisson" in self._blob(ar02)
+        assert self._covers_design(ar02)
+        assert self._applies_named_parent(cp01)
+        assert "Poisson" not in self._blob(cp01)
+        assert self._judges_individual_vs_sampling(cp01)
+
+    @pytest.mark.parametrize(
+        "item_ids",
+        [
+            ("cs1008-2.5.2-ar-01", "cs1008-2.5.2-cp-01"),
+            ("cs1008-2.5.2-ar-01", "cs1008-2.5.2-ar-02"),
+            ("cs1008-2.5.2-cp-01", "cs1008-2.5.2-ar-02"),
+        ],
+    )
+    def test_every_two_of_three_pair_covers_both_halves(self, item_ids):
+        checks = [self._check(item_id) for item_id in item_ids]
+        assert any(self._covers_design(check) for check in checks)
+        assert any(self._judges_individual_vs_sampling(check) for check in checks)
+        assert any(
+            self._applies_named_parent(check)
+            or self._judges_individual_vs_sampling(check)
+            for check in checks
+        )
 
 
 # ---------------------------------------------------------------------------
