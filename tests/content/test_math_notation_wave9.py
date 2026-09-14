@@ -329,7 +329,7 @@ def test_wave9_scoring_matches_pre_migration_snapshot() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 24
+    assert len(seen) == 26
 
 
 def test_wave9_ledger_backlog_and_migration_status() -> None:
@@ -337,7 +337,7 @@ def test_wave9_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2100
+    assert checked["totals"]["migrated"] == 2105
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 

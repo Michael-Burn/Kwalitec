@@ -156,6 +156,51 @@
       "objective_id": "CS1-B-T01-LO06"
     },
     {
+      "episode_id": "lep-cs1004-2.1f-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1f-ar-02",
+      "title": "Active Recall: 2.1.6 binomial software generation",
+      "prompt": "Closed-book. You need 10,000 software draws of a claim-count random variable that is Binomial(n = 12, p = 0.3). Which statement correctly describes generation and a basic check for this learning objective?",
+      "response_type": "mcq",
+      "body": "Use a binomial generator; check support and mean; refuse ITM-hand-code as a substitute for software generation.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Syllabus 2.1.6 is generation using statistical software. A binomial generator with n = 12 and p = 0.3 is the matching call. Draws should be integers in 0 to 12 with sample mean near np = 3.6. Writing inverse-transform steps by hand is 2.1.5, not a substitute for this software-generation objective, and a Normal generator mismatches the support.",
+      "model_answer": "Binomial generator; integers 0 to 12; mean near 3.6; hand ITM is not this LO.",
+      "common_mistake": "Normal sampler, skipping support checks, or treating hand inverse transform as the software LO.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Call a binomial generator with n = 12 and p = 0.3. Check that draws are integers in 0 to 12 and that the sample mean is near np = 3.6. This objective is software generation with a sanity check, not a requirement to hand-code inverse transform instead of using the library.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Call a Normal generator matched to mean 3.6, because any count model can be sampled as Normal once np is known.",
+          "misconception_tag": "normal_for_binomial_counts"
+        },
+        {
+          "id": "c",
+          "label": "Any library output can be accepted without inspecting support or the sample mean, because a named binomial sampler cannot produce impossible values.",
+          "misconception_tag": "software_without_check"
+        },
+        {
+          "id": "d",
+          "label": "You must invert the binomial CDF by hand for each draw. Using a built-in binomial generator does not satisfy software generation.",
+          "misconception_tag": "hand_itm_required_for_software_lo"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO06"
+    },
+    {
       "episode_id": "lep-cs1004-2.1f-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-2.1f-cp-01",

@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-13T10:16:57Z",
+  "generated_at": "2026-09-14T18:13:54Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2246,
-    "already_compliant": 2118,
+    "mathish_strings": 2252,
+    "already_compliant": 2124,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2246,
+    "confident_automated": 2252,
     "remaining_backlog": 0,
-    "migrated": 2100,
+    "migrated": 2105,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2118,
+    "fully_covered_by_current_typesetting": 2124,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2100,
-    "equationish": 1551,
+    "dollar_delimited": 2105,
+    "equationish": 1557,
     "actuarial_fn": 487,
     "ascii_approx": 249,
-    "bare_latex": 195,
+    "bare_latex": 198,
     "greek": 114,
     "compound": 26,
     "unicode_ops": 11
@@ -609,8 +609,8 @@
       "topic_code": "2.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-GAMMA",
       "counts": {
-        "mathish_strings": 17,
-        "already_compliant": 17,
+        "mathish_strings": 23,
+        "already_compliant": 23,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -684,6 +684,110 @@
           "migration_status": "pending",
           "signals": [
             "bare_latex",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. You have U ~ Uniform(0,1). For (i) Exponential with rate $\\lambda$, and (ii) a discrete variable with CDF values F(0)=0.2, F(1)=0.7, F(2)=1, which statement correctly describes inverse-transform generation of both?",
+          "text_hash": "791064394351742b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Continuous inverse transform sets X = F^{-1}(U). For Exponential rate $\\lambda$ that is $X = -\\ln(1-U)/\\lambda$ (or the equivalent $-\\ln(U)/\\lambda$). Discrete inverse transform assigns the smallest support point whose CDF is at least U. A sampler call is not a substitute for those steps.",
+          "text_hash": "1e9f688dcfb95558",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Exponential $X = -\\ln(1-U)/\\lambda$; discrete smallest y with F(y) >= U; software does not replace the method.",
+          "text_hash": "da199461583b5d1f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using F(U) instead of F^{-1}(U), skipping the discrete threshold, or treating a library draw as the method.",
+          "text_hash": "5f4772c1a3bae8f4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "bare_latex",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For the Exponential, set $X = -\\ln(1-U)/\\lambda$, which is F^{-1}(U) for that CDF. For the discrete variable, assign the smallest y in {0,1,2} with F(y) at least U. Software may implement those steps; it does not replace understanding inverse transform.",
+          "text_hash": "e0071405bb509b39",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-2.1-INVERSE-TRANSFORM",
+          "package_file": "2.1.5-inverse-transform-cs1004.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For the Exponential, set X = F(U) = $1 - e^{-\\lambda U}$, using the CDF rather than the inverse CDF, and skip any Uniform threshold for the discrete variable.",
+          "text_hash": "3ac2226f00c23ba3",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
             "equationish"
           ]
         },
@@ -1543,7 +1647,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
           "package_file": "2.1.6-software-generation-cs1004.json",
-          "field_path": "knowledge_checks[1].prompt",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. You simulate $\\mathrm{Poisson}(\\lambda=3)$ counts and Exponential waiting times with mean 2. Which statement is correct?",
           "text_hash": "e65823b0f675e23e",
@@ -1561,7 +1665,7 @@
         {
           "package_id": "CS1-EP001-PKG-2.1-SOFTWARE-GENERATION",
           "package_file": "2.1.6-software-generation-cs1004.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Poisson draws should average near 2 and Exponential draws near 3 because $\\lambda$ is a waiting-time mean.",
           "text_hash": "84390e756800dbcc",
@@ -40783,5 +40887,5 @@
       ]
     }
   ],
-  "content_fingerprint": "6b6c1bbbdbadcc549337262f144abb281f031585a645c6ccb2de5b164dc9522a"
+  "content_fingerprint": "b11004a35649f20e172b957377f0d26de9b0fcf8586e573f89b04cf111ca215e"
 }

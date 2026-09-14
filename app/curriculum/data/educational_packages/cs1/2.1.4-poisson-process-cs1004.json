@@ -157,6 +157,51 @@
       "objective_id": "CS1-B-T01-LO04"
     },
     {
+      "episode_id": "lep-cs1004-2.1d-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1d-ar-02",
+      "title": "Active Recall: 2.1.4 interval count law",
+      "prompt": "Closed-book. Claims arrive as a homogeneous Poisson process at rate 8 per year. You observe a 3-month window. Which statement correctly names the distribution of the claim count in that window?",
+      "response_type": "mcq",
+      "body": "Apply rate times length; refuse raw-rate and waiting-time collapse.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Under a homogeneous Poisson process the count in a fixed interval is Poisson with mean equal to rate times length. Three months is one quarter of a year, so the mean is 2, not 8. The count law is not Exponential.",
+      "model_answer": "Poisson with mean 2 from rate times length; refuse raw-rate Poisson and Exponential count.",
+      "common_mistake": "Using the annual rate as the Poisson mean, or treating the interval count as Exponential.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "The count is Poisson with mean 2, because mean equals rate times length (8 per year times 0.25 years). The Poisson process is the continuous-time arrival model; the Poisson distribution is the interval count law.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The count is Poisson with mean 8, because the process rate is 8 and interval length does not change the Poisson mean.",
+          "misconception_tag": "raw_rate_as_mean"
+        },
+        {
+          "id": "c",
+          "label": "The count is Exponential with mean 8, because a Poisson process always produces Exponential counts in a window.",
+          "misconception_tag": "count_as_exponential"
+        },
+        {
+          "id": "d",
+          "label": "Once the process is named Poisson, the window count needs no distribution: process language already is the count law.",
+          "misconception_tag": "process_is_count_law"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO04"
+    },
+    {
       "episode_id": "lep-cs1004-2.1d-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-2.1d-cp-01",

@@ -181,6 +181,39 @@
     },
     {
       "package_file": "2.1.5-inverse-transform-cs1004.json",
+      "item_id": "cs1004-2.1e-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "2.1.5-inverse-transform-cs1004.json",
       "item_id": "cs1004-2.1e-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],

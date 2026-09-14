@@ -159,6 +159,7 @@ CS1_B_T01_LO04 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1004-2.1d-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1004-2.1d-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1004-2.1d-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -170,6 +171,7 @@ CS1_B_T01_LO05 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1004-2.1e-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1004-2.1e-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1004-2.1e-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -181,6 +183,7 @@ CS1_B_T01_LO06 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1004-2.1f-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1004-2.1f-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1004-2.1f-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,

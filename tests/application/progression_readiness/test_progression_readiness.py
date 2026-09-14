@@ -367,18 +367,30 @@ class TestCatalogue:
 
         for contract in (CS1_B_T01_LO04, CS1_B_T01_LO05, CS1_B_T01_LO06):
             assert contract.kind is ContractKind.CONCEPTUAL
-            assert contract.item_count == 2
+            assert contract.item_count == 3
             assert contract.ready_min_correct == 2
             assert contract.required_prerequisite_objective_id is None
 
         assert CS1_B_T01_LO04.item_ids == frozenset(
-            {"cs1004-2.1d-ar-01", "cs1004-2.1d-cp-01"}
+            {
+                "cs1004-2.1d-ar-01",
+                "cs1004-2.1d-ar-02",
+                "cs1004-2.1d-cp-01",
+            }
         )
         assert CS1_B_T01_LO05.item_ids == frozenset(
-            {"cs1004-2.1e-ar-01", "cs1004-2.1e-cp-01"}
+            {
+                "cs1004-2.1e-ar-01",
+                "cs1004-2.1e-ar-02",
+                "cs1004-2.1e-cp-01",
+            }
         )
         assert CS1_B_T01_LO06.item_ids == frozenset(
-            {"cs1004-2.1f-ar-01", "cs1004-2.1f-cp-01"}
+            {
+                "cs1004-2.1f-ar-01",
+                "cs1004-2.1f-ar-02",
+                "cs1004-2.1f-cp-01",
+            }
         )
 
     def test_topic_2_2_contracts_match_approved_shapes(self):
@@ -699,7 +711,15 @@ class TestCatalogue:
 
 @pytest.mark.parametrize(
     "contract",
-    [CS1_A_T01_LO01, CS1_A_T01_LO02, CS1_A_T01_LO03, CS1_A_T01_LO04],
+    [
+        CS1_A_T01_LO01,
+        CS1_A_T01_LO02,
+        CS1_A_T01_LO03,
+        CS1_A_T01_LO04,
+        CS1_B_T01_LO04,
+        CS1_B_T01_LO05,
+        CS1_B_T01_LO06,
+    ],
 )
 class TestConceptualThreeItem:
     def _items(self, contract):
@@ -777,6 +797,18 @@ class TestConceptualThreeItem:
             "cs1017-1.1.4-ar-01",
             "cs1017-1.1.4-ar-02",
             "cs1017-1.1.4-cp-01",
+        ),
+        (
+            CS1_B_T01_LO04,
+            "cs1004-2.1d-ar-01",
+            "cs1004-2.1d-ar-02",
+            "cs1004-2.1d-cp-01",
+        ),
+        (
+            CS1_B_T01_LO06,
+            "cs1004-2.1f-ar-01",
+            "cs1004-2.1f-ar-02",
+            "cs1004-2.1f-cp-01",
         ),
     ],
 )
@@ -1470,54 +1502,79 @@ class TestTopic21DualDemonstrationLO03:
 
 
 # ---------------------------------------------------------------------------
-# Topic 2.1 LO04 / LO05 / LO06: 2-item conceptual ready_min_correct=2
+# Topic 2.1 LO05: every 2-of-3 pair still covers continuous and discrete halves
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize(
-    "contract", [CS1_B_T01_LO04, CS1_B_T01_LO05, CS1_B_T01_LO06]
-)
-class TestTopic21ConceptualTwoItem:
-    def _items(self, contract):
-        return [spec.item_id for spec in contract.evidence_items]
+class TestTopic21LO05BothHalvesCoverage:
+    """The combined ar-02 item exists so 2-of-3 cannot skip a half."""
 
-    def test_two_of_two_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, True) for i in items]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
+    ar01 = "cs1004-2.1e-ar-01"
+    ar02 = "cs1004-2.1e-ar-02"
+    cp01 = "cs1004-2.1e-cp-01"
+    package_name = "2.1.5-inverse-transform-cs1004.json"
 
-    def test_one_of_two_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1",
-            contract.objective_id,
-            [(items[0], True), (items[1], False)],
+    def _check(self, item_id: str):
+        from app.application.educational_packages.loader import (
+            EducationalPackageLoader,
         )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
 
-    def test_zero_of_two_not_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, False) for i in items]
+        root = Path("app/curriculum/data/educational_packages")
+        loader = EducationalPackageLoader(root=root)
+        packs = {
+            Path(p.source_path).name: p for p in loader.all_approved()
+        }
+        pack = packs[self.package_name]
+        match = next(
+            (c for c in pack.knowledge_checks if c.item_id == item_id),
+            None,
         )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
+        assert match is not None, f"missing {item_id}"
+        return match
 
-    def test_sparse_one_correct_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(items[0], True)]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+    @staticmethod
+    def _blob(check) -> str:
+        parts = [
+            check.prompt or "",
+            check.body or "",
+            check.explanation or "",
+            check.model_answer or "",
+        ]
+        parts.extend(choice.label for choice in check.choices)
+        return " ".join(parts)
+
+    def _tests_continuous(self, check) -> bool:
+        text = self._blob(check)
+        return "Exponential" in text or "F^{-1}" in text
+
+    def _tests_discrete(self, check) -> bool:
+        text = self._blob(check)
+        lower = text.lower()
+        return "discrete" in lower or "F(0)" in text or "F(1)" in text
+
+    def test_live_items_have_the_intended_halves(self):
+        ar01 = self._check(self.ar01)
+        ar02 = self._check(self.ar02)
+        cp01 = self._check(self.cp01)
+        assert self._tests_continuous(ar01)
+        assert not self._tests_discrete(ar01)
+        assert self._tests_continuous(ar02)
+        assert self._tests_discrete(ar02)
+        assert self._tests_discrete(cp01)
+        assert not self._tests_continuous(cp01)
+
+    @pytest.mark.parametrize(
+        "item_ids",
+        [
+            ("cs1004-2.1e-ar-01", "cs1004-2.1e-cp-01"),
+            ("cs1004-2.1e-ar-01", "cs1004-2.1e-ar-02"),
+            ("cs1004-2.1e-cp-01", "cs1004-2.1e-ar-02"),
+        ],
+    )
+    def test_every_two_of_three_pair_covers_both_halves(self, item_ids):
+        checks = [self._check(item_id) for item_id in item_ids]
+        assert any(self._tests_continuous(check) for check in checks)
+        assert any(self._tests_discrete(check) for check in checks)
 
 
 # ---------------------------------------------------------------------------

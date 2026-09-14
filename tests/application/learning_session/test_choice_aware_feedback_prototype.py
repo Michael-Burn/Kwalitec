@@ -347,11 +347,18 @@ _CS1017_SYLLABUS_GAP_PACKAGES: tuple[tuple[str, str], ...] = (
     ("cr-1.1.4-reproducible-cs1017", "cs1017-1.1.4-ar-02"),
 )
 
+_CS1004_TOPIC21_RETRY_PACKAGES: tuple[tuple[str, str], ...] = (
+    ("2.1.4-poisson-process-cs1004", "cs1004-2.1d-ar-02"),
+    ("2.1.5-inverse-transform-cs1004", "cs1004-2.1e-ar-02"),
+    ("2.1.6-software-generation-cs1004", "cs1004-2.1f-ar-02"),
+)
+
 
 _PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
     *_PRIOR_ONE_HUNDRED_EIGHTY_FIVE_PACKAGES,
     *_CAF_FINAL_WAVE_PACKAGES,
     *_CS1017_SYLLABUS_GAP_PACKAGES,
+    *_CS1004_TOPIC21_RETRY_PACKAGES,
 )
 
 _CAF_WAVE3_CONFLICT_NUMERIC_CPS: frozenset[str] = frozenset(
@@ -5600,9 +5607,9 @@ def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
     raise AssertionError(f"unknown prototype item_id {item_id}")
 
 
-def test_prototype_allowlist_is_exactly_two_hundred_thirty_five_items() -> None:
+def test_prototype_allowlist_is_exactly_two_hundred_thirty_eight_items() -> None:
     assert PROTOTYPE_ITEM_IDS == {want for _, want in _PROTOTYPE_PACKAGES}
-    assert len(PROTOTYPE_ITEM_IDS) == 235
+    assert len(PROTOTYPE_ITEM_IDS) == 238
     assert len(_ORIGINAL_PILOT_PACKAGES) == 4
     assert len(_EXPANSION_PACKAGES) == 10
     assert len(_EXISTING_FOURTEEN_PACKAGES) == 14
@@ -5622,6 +5629,7 @@ def test_prototype_allowlist_is_exactly_two_hundred_thirty_five_items() -> None:
     assert len(_PRIOR_ONE_HUNDRED_EIGHTY_FIVE_PACKAGES) == 185
     assert len(_CAF_FINAL_WAVE_PACKAGES) == 48
     assert len(_CS1017_SYLLABUS_GAP_PACKAGES) == 2
+    assert len(_CS1004_TOPIC21_RETRY_PACKAGES) == 3
 
 
 def test_original_four_pilot_items_unaffected() -> None:
@@ -6782,4 +6790,4 @@ def test_remaining_mcq_without_choice_aware_are_only_superseded_ea005() -> None:
             all_mcq.add(iid)
     unwired = {iid for iid in all_mcq if iid not in PROTOTYPE_ITEM_IDS}
     assert unwired == _SUPERSEDED_EA005_ITEMS
-    assert len(PROTOTYPE_ITEM_IDS) == 235
+    assert len(PROTOTYPE_ITEM_IDS) == 238

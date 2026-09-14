@@ -156,6 +156,51 @@
       "objective_id": "CS1-B-T01-LO05"
     },
     {
+      "episode_id": "lep-cs1004-2.1e-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1004-2.1e-ar-02",
+      "title": "Active Recall: 2.1.5 continuous and discrete inverse",
+      "prompt": "Closed-book. You have U ~ Uniform(0,1). For (i) Exponential with rate $\\lambda$, and (ii) a discrete variable with CDF values F(0)=0.2, F(1)=0.7, F(2)=1, which statement correctly describes inverse-transform generation of both?",
+      "response_type": "mcq",
+      "body": "Invert the Exponential CDF and apply the discrete threshold; refuse black-box as the method.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Continuous inverse transform sets X = F^{-1}(U). For Exponential rate $\\lambda$ that is $X = -\\ln(1-U)/\\lambda$ (or the equivalent $-\\ln(U)/\\lambda$). Discrete inverse transform assigns the smallest support point whose CDF is at least U. A sampler call is not a substitute for those steps.",
+      "model_answer": "Exponential $X = -\\ln(1-U)/\\lambda$; discrete smallest y with F(y) >= U; software does not replace the method.",
+      "common_mistake": "Using F(U) instead of F^{-1}(U), skipping the discrete threshold, or treating a library draw as the method.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For the Exponential, set $X = -\\ln(1-U)/\\lambda$, which is F^{-1}(U) for that CDF. For the discrete variable, assign the smallest y in {0,1,2} with F(y) at least U. Software may implement those steps; it does not replace understanding inverse transform.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "For the Exponential, set X = F(U) = $1 - e^{-\\lambda U}$, using the CDF rather than the inverse CDF, and skip any Uniform threshold for the discrete variable.",
+          "misconception_tag": "cdf_not_inverse"
+        },
+        {
+          "id": "c",
+          "label": "Both generations are finished by calling a built-in sampler. Inverse-transform steps are optional once software can draw Exponential and discrete values.",
+          "misconception_tag": "software_replaces_method"
+        },
+        {
+          "id": "d",
+          "label": "Draw the Exponential from Normal(0,1) and assign discrete values by listing probabilities in alphabetical order of labels, with no Uniform threshold.",
+          "misconception_tag": "wrong_source_and_alpha_rule"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-B-T01-LO05"
+    },
+    {
       "episode_id": "lep-cs1004-2.1e-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1004-2.1e-cp-01",

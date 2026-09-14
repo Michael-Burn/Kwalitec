@@ -72,6 +72,12 @@ items (cs1017-1.1.3-ar-02 telematics/scale; cs1017-1.1.4-ar-02 value of
 reproducibility) were reviewed and approved before wiring so every live MCQ
 remains on the choice-aware allowlist. Copy is frozen as approved; mechanism
 unchanged.
+
+Editorial review record (2026-09-14): three topic 2.1 retry active-recall
+items (cs1004-2.1d-ar-02 interval count; cs1004-2.1e-ar-02 continuous and
+discrete inverse; cs1004-2.1f-ar-02 binomial software generation) were
+reviewed and approved before wiring so every live MCQ remains on the
+choice-aware allowlist. Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -93,6 +99,7 @@ from app.application.learning_session.scoreable_practice import (
 # CAF Wave 6 P6 revisions + 4.1 linear regression + purpose/EDA Continuity Front;
 # CAF Final Wave CR Publication Front + sampling 2.6 + CLT/MGF + misc
 # revisions/companions; CS1-017 syllabus-gap AR items 1.1.3-ar-02 / 1.1.4-ar-02;
+# topic 2.1 retry AR items 2.1d-ar-02 / 2.1e-ar-02 / 2.1f-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -331,6 +338,9 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1002-cb-r1-cp-03",  # CAF Final Wave: revision-pca-distributions-cs1002
         "cs1017-1.1.3-ar-02",  # CS1-017 syllabus gap: cr-1.1.3-data-sources-cs1017
         "cs1017-1.1.4-ar-02",  # CS1-017 syllabus gap: cr-1.1.4-reproducible-cs1017
+        "cs1004-2.1d-ar-02",  # topic 2.1 retry: 2.1.4-poisson-process-cs1004
+        "cs1004-2.1e-ar-02",  # topic 2.1 retry: 2.1.5-inverse-transform-cs1004
+        "cs1004-2.1f-ar-02",  # topic 2.1 retry: 2.1.6-software-generation-cs1004
     }
 )
 
@@ -5622,6 +5632,78 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice treats artefacts as a speed tax to skip. "
         "The value is reconstructability, not finishing faster by dropping shared evidence."
+    ),
+    # --- cs1004-2.1d-ar-02 ---
+    (
+        "cs1004-2.1d-ar-02",
+        "b",
+    ): (
+        "That choice uses the annual rate 8 as the Poisson mean and ignores "
+        "interval length. Mean equals rate times length, so a 3-month window "
+        "has mean 2."
+    ),
+    (
+        "cs1004-2.1d-ar-02",
+        "c",
+    ): (
+        "That choice treats the window count as Exponential. Under a Poisson "
+        "process the count in a fixed interval is Poisson, not Exponential."
+    ),
+    (
+        "cs1004-2.1d-ar-02",
+        "d",
+    ): (
+        "That choice treats process language as already being the count law. "
+        "The process is the arrival model; the Poisson distribution is the "
+        "interval count law."
+    ),
+    # --- cs1004-2.1e-ar-02 ---
+    (
+        "cs1004-2.1e-ar-02",
+        "b",
+    ): (
+        "That choice applies the CDF F(U) instead of the inverse CDF and skips "
+        "the discrete Uniform threshold. Inverse transform uses F inverse(U) "
+        "and the smallest y with F(y) at least U."
+    ),
+    (
+        "cs1004-2.1e-ar-02",
+        "c",
+    ): (
+        "That choice treats a built-in sampler as finishing inverse transform. "
+        "Software may implement the steps; it does not replace understanding "
+        "the method."
+    ),
+    (
+        "cs1004-2.1e-ar-02",
+        "d",
+    ): (
+        "That choice draws Exponential from Normal(0,1) and assigns discrete "
+        "values alphabetically. Inverse transform uses Uniform(0,1) and a "
+        "CDF threshold."
+    ),
+    # --- cs1004-2.1f-ar-02 ---
+    (
+        "cs1004-2.1f-ar-02",
+        "b",
+    ): (
+        "That choice samples binomial counts with a Normal generator. "
+        "A binomial generator with n = 12 and p = 0.3 matches the support."
+    ),
+    (
+        "cs1004-2.1f-ar-02",
+        "c",
+    ): (
+        "That choice accepts library output without checking support or the "
+        "sample mean. Software generation still needs a sanity check."
+    ),
+    (
+        "cs1004-2.1f-ar-02",
+        "d",
+    ): (
+        "That choice requires hand-inverting the binomial CDF instead of using "
+        "a built-in generator. Hand inverse transform is 2.1.5, not this "
+        "software-generation objective."
     ),
 
 }
