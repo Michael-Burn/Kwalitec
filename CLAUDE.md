@@ -138,7 +138,7 @@ Core recommendations are **explainable and reproducible**. Same inputs → same 
 | Study Plan Wizard | Exam-date-driven plans across available days |
 | Learning Mode progression | Syllabus-order topic selection (first incomplete leaf); Consolidation Mission checkpoints at exam-proximity cadence (not spaced-repetition scheduling; Policy V1 adaptivity remains flag-gated OFF) |
 | Daily Mission / Session | Study session for the Learning Mode (or Revision) topic |
-| Mastery scoring | Estimated Knowledge from authorised attempts when session evidence write-through is on (production companion often OFF) |
+| Mastery scoring | Estimated Knowledge from authorised attempts when session evidence write-through is on (`SR_SESSION_SQL_EVIDENCE_COMPANION`; ON in local `.env` and production via `render.yaml`) |
 | Exam Readiness | Coverage, pace, risk signals (deterministic) |
 | Recommendations | Explainable “study next” (Decision Journal audits accept/dismiss); Adaptive Engine Authority defaults OFF |
 | Coach (supporting) | Presentation / trust surface — **not** ranking authority |

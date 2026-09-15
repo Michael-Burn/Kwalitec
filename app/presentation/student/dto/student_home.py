@@ -148,7 +148,6 @@ class StudentHomePage:
     mission_section_title: str = "Today's Mission"
     signals: HomeStudySignals | None = None
     tutor_available: bool = False
-    tutor_href: str = ""
     # KWP-006 — Exam Week Briefing + Home Insights (presentation only).
     briefing: HomeBriefingSection | None = None
     insights: tuple[HomeInsightRow, ...] = ()

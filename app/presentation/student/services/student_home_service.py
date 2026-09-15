@@ -357,9 +357,6 @@ class StudentHomeService:
         elif state != "empty":
             study_href = url_for("student.study")
         tutor_available = bool(home.tutor_available)
-        tutor_href = ""
-        if tutor_available or state == "mission":
-            tutor_href = url_for("student.tutor")
         greeting = (home.greeting or "").strip() or _DEFAULT_GREETING
         density = self._density_presentation(
             state=state,
@@ -459,7 +456,6 @@ class StudentHomeService:
             mission_section_title=section_title,
             signals=signals,
             tutor_available=tutor_available,
-            tutor_href=tutor_href,
             briefing=briefing if state != "empty" else None,
             insights=insights if state != "empty" else (),
             syllabus_position=syllabus_position if state != "empty" else "",
