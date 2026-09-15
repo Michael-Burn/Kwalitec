@@ -119,6 +119,12 @@ Editorial review record (2026-09-15): five topic 4.1 retry active-recall items
 (cs1003-4.1.1-ar-02 through cs1003-4.1.5-ar-02) were reviewed and approved
 before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): seven topic 4.2 retry active-recall items
+(cs1003-4.2.1-ar-02, cs1003-4.2.2-ar-02, cs1003-4.2.3-ar-02, cs1003-4.2.4-ar-02,
+cs1003-4.2.6-ar-02, cs1003-4.2.7-ar-02, cs1003-4.2.9-ar-02) were reviewed and
+approved before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -199,32 +205,39 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1010-3.1.6-ar-01",  # CAF Wave 3: bootstrap AR
         "cs1016-3.1.1-ar-01",  # CAF Wave 3: companion estimators AR
         "cs1003-4.2.1-ar-01",  # CAF Wave 3: exponential-family AR (cs1003)
+        "cs1003-4.2.1-ar-02",  # topic 4.2 retry: exponential-family AR (cs1003)
         "cs1003-4.2.1-cp-01",  # CAF Wave 3: exponential-family CP (cs1003)
         "cs1003-4.2.2-ar-01",  # CAF Wave 3: mean-variance AR (cs1003)
+        "cs1003-4.2.2-ar-02",  # topic 4.2 retry: mean-variance AR (cs1003)
         "cs1003-4.2.2-cp-01",  # CAF Wave 3: mean-variance CP (cs1003)
         "cs1014-4.2.2-ar-01",  # CAF Wave 3: mean-variance AR (cs1014)
         "cs1014-4.2.2-cp-01",  # CAF Wave 3: mean-variance CP (cs1014)
         "cs1003-4.2.3-ar-01",  # CAF Wave 3: link-canonical AR (cs1003)
+        "cs1003-4.2.3-ar-02",  # topic 4.2 retry: link-canonical AR (cs1003)
         "cs1003-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1003)
         "cs1014-4.2.3-ar-01",  # CAF Wave 3: link-canonical AR (cs1014)
         "cs1014-4.2.3-cp-01",  # CAF Wave 3: link-canonical CP (cs1014)
         "cs1003-4.2.4-ar-01",  # CAF Wave 4: factors/interactions AR (cs1003)
+        "cs1003-4.2.4-ar-02",  # topic 4.2 retry: factors/interactions AR (cs1003)
         "cs1003-4.2.4-cp-01",  # CAF Wave 4: factors/interactions CP (cs1003)
         "cs1014-4.2.4-cp-01",  # CAF Wave 4: factors/interactions CP (cs1014)
         "cs1014-4.2.4-ar-01",  # CAF Wave 4: factors/interactions AR (cs1014)
         "cs1003-4.2.5-ar-01",  # CAF Wave 4: linear predictor AR (cs1003)
         "cs1014-4.2.5-ar-01",  # CAF Wave 4: linear predictor AR (cs1014)
         "cs1003-4.2.6-ar-01",  # CAF Wave 4: deviance AR (cs1003)
+        "cs1003-4.2.6-ar-02",  # topic 4.2 retry: deviance AR (cs1003)
         "cs1014-4.2.6-ar-01",  # CAF Wave 4: deviance AR (cs1014)
         "cs1003-4.2.6-cp-01",  # CAF Wave 4: deviance CP (cs1003)
         "cs1014-4.2.6-cp-01",  # CAF Wave 4: deviance CP (cs1014)
         "cs1003-4.2.7-ar-01",  # CAF Wave 4: model choice AR (cs1003)
+        "cs1003-4.2.7-ar-02",  # topic 4.2 retry: model choice AR (cs1003)
         "cs1014-4.2.7-ar-01",  # CAF Wave 4: model choice AR (cs1014)
         "cs1003-4.2.7-cp-01",  # CAF Wave 4: model choice CP (cs1003)
         "cs1014-4.2.7-cp-01",  # CAF Wave 4: model choice CP (cs1014)
         "cs1003-4.2.8-ar-01",  # CAF Wave 4: residuals AR (cs1003)
         "cs1014-4.2.8-ar-01",  # CAF Wave 4: residuals AR (cs1014)
         "cs1003-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1003)
+        "cs1003-4.2.9-ar-02",  # topic 4.2 retry: goodness tests AR (cs1003)
         "cs1014-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1014)
         "cs1003-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1003)
         "cs1014-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1014)
@@ -1638,6 +1651,29 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice treats any exp() in a density as exponential-family membership. "
         "Family membership is a specific exponential-family structure for named responses, not the mere presence of an exponential symbol."
     ),
+    # --- cs1003-4.2.1-ar-02 ---
+    (
+        "cs1003-4.2.1-ar-02",
+        "b",
+    ): (
+        "That choice sets the natural parameter equal to the success probability. "
+        "For Bernoulli/binomial the natural parameter is logit(p), not p itself."
+    ),
+    (
+        "cs1003-4.2.1-ar-02",
+        "c",
+    ): (
+        "That choice sets theta = ln p and treats Normal as the definition of every GLM. "
+        "The Bernoulli natural parameter is logit(p), and Normal is one family member, not the universal GLM definition."
+    ),
+    (
+        "cs1003-4.2.1-ar-02",
+        "d",
+    ): (
+        "That choice skips evaluating the natural parameter once software names binomial, "
+        "and excludes Normal from the 4.2.1 family list. Exponential-family form still identifies "
+        "theta, and Normal belongs inside the family."
+    ),
     # --- cs1003-4.2.1-cp-01 ---
     (
         "cs1003-4.2.1-cp-01",
@@ -1681,6 +1717,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice postpones mean and variance until eta is written. "
         "Family mean-variance structure is primary; the linear predictor comes after the response family is named."
+    ),
+    # --- cs1003-4.2.2-ar-02 ---
+    (
+        "cs1003-4.2.2-ar-02",
+        "b",
+    ): (
+        "That choice forces mean-variance equality onto binomial and copies Poisson V(mu)=mu onto Gamma. "
+        "Binomial variance is np(1-p), and Gamma uses V(mu)=mu^2."
+    ),
+    (
+        "cs1003-4.2.2-ar-02",
+        "c",
+    ): (
+        "That choice treats link selection as finishing mean, variance, V(mu), and scale. "
+        "Those quantities come from the response family; the link maps mu to eta separately."
+    ),
+    (
+        "cs1003-4.2.2-ar-02",
+        "d",
+    ): (
+        "That choice gives Gamma the Normal variance function V(mu)=1. "
+        "Gamma has V(mu)=mu^2; binomial still has an explicit variance function of the mean."
     ),
     # --- cs1003-4.2.2-cp-01 ---
     (
@@ -1770,6 +1828,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice restricts GLMs to Normal with identity and no separate link idea. "
         "Non-Normal exponential-family responses with nontrivial links are standard GLM members."
     ),
+    # --- cs1003-4.2.3-ar-02 ---
+    (
+        "cs1003-4.2.3-ar-02",
+        "b",
+    ): (
+        "That choice treats identity as canonical for both binomial and Poisson. "
+        "Canonical links are logit for binomial and log for Poisson."
+    ),
+    (
+        "cs1003-4.2.3-ar-02",
+        "c",
+    ): (
+        "That choice assigns logit as Poisson's canonical link because both are GLMs. "
+        "Poisson's canonical link is log; logit is canonical for binomial."
+    ),
+    (
+        "cs1003-4.2.3-ar-02",
+        "d",
+    ): (
+        "That choice treats the software default as automatically canonical. "
+        "Canonical status is a family definition, and the numeric logit / e^eta checks still matter."
+    ),
     # --- cs1003-4.2.3-cp-01 ---
     (
         "cs1003-4.2.3-cp-01",
@@ -1858,6 +1938,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice claims factors apply only outside GLMs and that the linear predictor uses only continuous covariates. "
         "GLMs routinely include factor indicators alongside continuous terms."
+    ),
+    # --- cs1003-4.2.4-ar-02 ---
+    (
+        "cs1003-4.2.4-ar-02",
+        "b",
+    ): (
+        "That choice applies the interaction whenever either factor is 1 and drops the interaction term "
+        "from coastal high-rise. The C times H term contributes only when both indicators equal 1."
+    ),
+    (
+        "cs1003-4.2.4-ar-02",
+        "c",
+    ): (
+        "That choice forbids factors in a GLM linear predictor. "
+        "Categorical factors enter eta through indicators or contrasts, including interactions."
+    ),
+    (
+        "cs1003-4.2.4-ar-02",
+        "d",
+    ): (
+        "That choice reports eta as the mean frequency under a log link. "
+        "Under log link the mean is e^eta, not eta itself."
     ),
     # --- cs1003-4.2.4-cp-01 ---
     (
@@ -2013,6 +2115,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice says GLMs are estimated by moment matching with deviance only as a display label. "
         "GLM coefficients are estimated by maximum likelihood; deviance is a likelihood-based fit measure."
     ),
+    # --- cs1003-4.2.6-ar-02 ---
+    (
+        "cs1003-4.2.6-ar-02",
+        "b",
+    ): (
+        "That choice confuses the deviance contribution with a Pearson residual and treats estimation "
+        "as p-value chopping. Deviance uses the likelihood comparison to saturated; estimation is MLE/IWLS."
+    ),
+    (
+        "cs1003-4.2.6-ar-02",
+        "c",
+    ): (
+        "That choice omits the factor of 2 in the Poisson deviance contribution. "
+        "The contribution is 2[y ln(y/mu_hat) - (y - mu_hat)]."
+    ),
+    (
+        "cs1003-4.2.6-ar-02",
+        "d",
+    ): (
+        "That choice claims scaled deviance is undefined for Poisson when phi=1. "
+        "Scaled deviance is D/phi, which equals D when phi=1."
+    ),
     # --- cs1003-4.2.6-cp-01 ---
     (
         "cs1003-4.2.6-cp-01",
@@ -2100,6 +2224,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice lets parameter significance alone replace deviance comparison. "
         "Coefficient tests and nested deviance comparison answer related but different questions."
+    ),
+    # --- cs1003-4.2.7-ar-02 ---
+    (
+        "cs1003-4.2.7-ar-02",
+        "b",
+    ): (
+        "That choice compares the fuller deviance alone to the critical value. "
+        "Analysis of deviance uses the nested difference Delta D = D_R - D_F."
+    ),
+    (
+        "cs1003-4.2.7-ar-02",
+        "c",
+    ): (
+        "That choice reverses the deviance subtraction. "
+        "The likelihood-ratio style statistic is D_reduced minus D_fuller, which is positive when the fuller model improves fit."
+    ),
+    (
+        "cs1003-4.2.7-ar-02",
+        "d",
+    ): (
+        "That choice lets individual p-values replace the nested deviance comparison. "
+        "Parameter significance supports inclusion; it does not make Delta D unnecessary."
     ),
     # --- cs1003-4.2.7-cp-01 ---
     (
@@ -2232,6 +2378,28 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice confines acceptability checks to the pre-fit stage and treats Fit as the end of formal testing. "
         "After fitting you still need Pearson chi-square and LRT assessments of the fitted model."
+    ),
+    # --- cs1003-4.2.9-ar-02 ---
+    (
+        "cs1003-4.2.9-ar-02",
+        "b",
+    ): (
+        "That choice sums absolute deviations instead of squared Pearson terms and equates X^2 with LRT. "
+        "Pearson X^2 uses (O-E)^2/E; LRT/deviance addresses nested model comparison."
+    ),
+    (
+        "cs1003-4.2.9-ar-02",
+        "c",
+    ): (
+        "That choice treats coefficient interpretation as finishing acceptability tests. "
+        "Pearson chi-square and LRT are formal aggregate / nested comparisons, not coefficient reading."
+    ),
+    (
+        "cs1003-4.2.9-ar-02",
+        "d",
+    ): (
+        "That choice treats a non-significant aggregate X^2 as proof every observation fits. "
+        "Aggregate adequacy does not replace residual diagnostics for individual points."
     ),
     # --- cs1003-4.2.9-cp-01 ---
     (

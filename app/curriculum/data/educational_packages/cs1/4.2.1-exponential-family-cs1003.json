@@ -160,6 +160,51 @@
       "objective_id": "CS1-D-T02-LO01"
     },
     {
+      "episode_id": "lep-cs1003-4.2.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.1-ar-02",
+      "title": "Active Recall: 4.2.1 Bernoulli natural parameter",
+      "prompt": "Closed-book. A lapse indicator is $\\mathrm{Bernoulli}(p=0.25)$. Which statement correctly identifies the natural parameter $\\theta$, its numeric value, and the place of the Normal distribution in the GLM exponential family?",
+      "response_type": "mcq",
+      "body": "Score the worked-example exponential-family rewrite.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Rewrite $p^{y}(1-p)^{1-y}$ as $\\exp\\{y\\operatorname{logit}(p)+\\ln(1-p)\\}$. Then $\\theta=\\operatorname{logit}(0.25)=\\ln(1/3)\\approx -1.0986$. Normal is a member of the same exponential family, not a rival outside GLM theory.",
+      "model_answer": "$\\theta=\\operatorname{logit}(0.25)\\approx -1.0986$; Normal is inside the family.",
+      "common_mistake": "Taking $\\theta=p$ or $\\theta=\\ln p$, or placing Normal outside the exponential family.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Rewrite $p^{y}(1-p)^{1-y}$ as $\\exp\\{y\\operatorname{logit}(p)+\\ln(1-p)\\}$. Then $\\theta=\\operatorname{logit}(0.25)=\\ln(1/3)\\approx -1.0986$. Normal is inside the same exponential family (special case with identity canonical link), not a rival outside GLM theory.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\theta=p=0.25$; the natural parameter is the success probability itself. Normal sits outside the exponential family used by GLMs.",
+          "misconception_tag": "theta_equals_p"
+        },
+        {
+          "id": "c",
+          "label": "$\\theta=\\ln p=\\ln 0.25$; logit is only a software link default. Normal is the definition of every GLM.",
+          "misconception_tag": "theta_equals_ln_p"
+        },
+        {
+          "id": "d",
+          "label": "Exponential-family form is optional once software names \"binomial\"; $\\theta$ need not be evaluated. Normal is excluded from the family list in 4.2.1.",
+          "misconception_tag": "software_skips_natural_parameter"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO01"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.1-cp-01",
@@ -172,7 +217,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Family membership needs the exponential-family form tied to the response structure, not software branding or exp() alone.",
+      "explanation": "Family membership needs the exponential-family form tied to the response structure, not software branding or $\\exp()$ alone.",
       "model_answer": "Poisson, binomial, Normal with one-line warrants. Refuse package-name GLM.",
       "common_mistake": "Accepting package-name GLM or Normal-only family membership.",
       "success_criteria": [

@@ -158,6 +158,51 @@
       "objective_id": "CS1-D-T02-LO02"
     },
     {
+      "episode_id": "lep-cs1003-4.2.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.2-ar-02",
+      "title": "Active Recall: 4.2.2 binomial and gamma evaluation",
+      "prompt": "Closed-book. Evaluate mean, variance, and variance function for (i) Binomial($n=20$, $p=0.4$) as a GLM count response and (ii) Gamma with mean $\\mu=8$ and shape $\\alpha=2$. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Score the worked-example mean-variance evaluation for binomial and gamma.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Binomial: $E=np=8$, $\\operatorname{Var}=np(1-p)=4.8$, $V(\\mu)=\\mu(1-\\mu/n)$. Gamma: $E=8$, $\\operatorname{Var}=\\mu^{2}/\\alpha=32$, $V(\\mu)=\\mu^{2}$. Do not copy Poisson $V(\\mu)=\\mu$ onto Gamma.",
+      "model_answer": "Binomial $E=8$, $\\operatorname{Var}=4.8$, $V(\\mu)=\\mu(1-\\mu/n)$; Gamma $E=8$, $\\operatorname{Var}=32$, $V(\\mu)=\\mu^{2}$.",
+      "common_mistake": "Using $V(\\mu)=\\mu$ for Gamma, or forgetting the $(1-p)$ factor in the binomial variance.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Binomial: $E=8$, $\\operatorname{Var}=4.8$, $V(\\mu)=\\mu(1-\\mu/n)$. Gamma: $E=8$, $\\operatorname{Var}=32$, $V(\\mu)=\\mu^{2}$. (Poisson $V(\\mu)=\\mu$ must not be copied onto Gamma.)",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Binomial: $E=8$, $\\operatorname{Var}=8$ because GLM counts always have mean-variance equality. Gamma: $V(\\mu)=\\mu$ like Poisson.",
+          "misconception_tag": "poisson_variance_copied"
+        },
+        {
+          "id": "c",
+          "label": "Choosing the logit or log link finishes stating $E$, $\\operatorname{Var}$, $V(\\mu)$, and scale for both families.",
+          "misconception_tag": "link_finishes_mean_variance"
+        },
+        {
+          "id": "d",
+          "label": "Gamma: $E=8$, $\\operatorname{Var}=32$, but $V(\\mu)=1$ with scale $\\sigma^{2}$ as for Normal; Binomial needs no variance function once $n$ is known.",
+          "misconception_tag": "gamma_as_normal_vmu"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO02"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.2-cp-01",

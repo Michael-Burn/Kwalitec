@@ -28,7 +28,7 @@ def test_golden_package_loads_and_is_approved() -> None:
     assert pack.campaign_day == "CD-D6"
     assert pack.display_title == "Place GLM responses in the exponential family"
     assert pack.reading.exit_line
-    assert len(pack.knowledge_checks) == 2
+    assert len(pack.knowledge_checks) == 3
     assert pack.tomorrow.next_topic_code == "4.2"
     assert "Today's topic" not in pack.reading.lead_line
     assert "placeholder" not in pack.mission_narrative.lower()
@@ -164,7 +164,7 @@ def test_substance_from_package_is_complete_arc() -> None:
     assert EducationalStage.PRACTICE in stages
     assert any("CMP" in a.body or "GLM" in a.body for a in substance.activities)
     practice = [a for a in substance.activities if a.stage is EducationalStage.PRACTICE]
-    assert len(practice) == 2
+    assert len(practice) == 3
     assert all(a.scoreable is not None for a in practice)
     assert "exponential" in practice[0].prompt.lower() or "GLM" in practice[0].prompt
 

@@ -253,7 +253,7 @@ _WAVE11_B2_MIGRATIONS = (
     ),
     (
         "4.2.2-mean-variance-cs1003.json",
-        "knowledge_checks[1].explanation",
+        "knowledge_checks[2].explanation",
         r"Poisson has mean-variance equality; Normal has constant variance with scale $\sigma^{2}$. Link choice does not replace these family facts.",
     ),
     (
@@ -580,7 +580,7 @@ _WAVE11_B2_PARTIAL_PROSE = (
     ),
     (
         "4.2.2-mean-variance-cs1003.json",
-        "knowledge_checks[1].explanation",
+        "knowledge_checks[2].explanation",
         (
             "Poisson has mean-variance equality; Normal has constant variance with scale ",
             ". Link choice does not replace these family facts.",
@@ -928,7 +928,7 @@ def test_wave11_batch2_scoring_unaffected_for_touched_knowledge_checks() -> None
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 6
+    assert len(seen) == 7
 
 
 def test_wave11_batch2_ledger_totals_and_remainder() -> None:
@@ -938,7 +938,7 @@ def test_wave11_batch2_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2316
+    assert checked["totals"]["migrated"] == 2371
     assert live["totals"] == checked["totals"]
 
     pending = [

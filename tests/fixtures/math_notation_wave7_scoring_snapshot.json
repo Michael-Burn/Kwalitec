@@ -281,72 +281,6 @@
       ]
     },
     {
-      "package_file": "4.2.1-exponential-family-cs1003.json",
-      "item_id": "cs1003-4.2.1-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.1-exponential-family-cs1003.json",
-      "item_id": "cs1003-4.2.1-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
       "package_file": "4.2.7-model-choice-cs1014.json",
       "item_id": "cs1014-4.2.7-ar-01",
       "correct_choice_id": "a",
@@ -514,204 +448,6 @@
     {
       "package_file": "4.1.5-variable-selection-cs1013.json",
       "item_id": "cs1013-4.1.5-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.3-link-canonical-cs1003.json",
-      "item_id": "cs1003-4.2.3-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.3-link-canonical-cs1003.json",
-      "item_id": "cs1003-4.2.3-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.4-factors-interactions-cs1003.json",
-      "item_id": "cs1003-4.2.4-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.4-factors-interactions-cs1003.json",
-      "item_id": "cs1003-4.2.4-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.7-model-choice-cs1003.json",
-      "item_id": "cs1003-4.2.7-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.7-model-choice-cs1003.json",
-      "item_id": "cs1003-4.2.7-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],
       "numeric_tolerance": null,
@@ -951,6 +687,474 @@
           "response": "",
           "scored": false,
           "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.1-exponential-family-cs1003.json",
+      "item_id": "cs1003-4.2.1-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.1-exponential-family-cs1003.json",
+      "item_id": "cs1003-4.2.1-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.1-exponential-family-cs1003.json",
+      "item_id": "cs1003-4.2.1-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.3-link-canonical-cs1003.json",
+      "item_id": "cs1003-4.2.3-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.3-link-canonical-cs1003.json",
+      "item_id": "cs1003-4.2.3-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.3-link-canonical-cs1003.json",
+      "item_id": "cs1003-4.2.3-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.4-factors-interactions-cs1003.json",
+      "item_id": "cs1003-4.2.4-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.4-factors-interactions-cs1003.json",
+      "item_id": "cs1003-4.2.4-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.4-factors-interactions-cs1003.json",
+      "item_id": "cs1003-4.2.4-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.7-model-choice-cs1003.json",
+      "item_id": "cs1003-4.2.7-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.7-model-choice-cs1003.json",
+      "item_id": "cs1003-4.2.7-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.7-model-choice-cs1003.json",
+      "item_id": "cs1003-4.2.7-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
           "matched_key": ""
         }
       ]

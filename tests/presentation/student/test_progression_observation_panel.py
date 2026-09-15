@@ -17,6 +17,7 @@ from app.application.progression_readiness import (
     CS1_C_T01_LO03,
     CS1_C_T02_LO01,
     CS1_D_T01_LO01,
+    CS1_D_T02_LO01,
     CS1_E_T01_LO01,
     PROGRESSION_READINESS_CONTRACTS,
     InsufficientReason,
@@ -309,6 +310,7 @@ class TestFullCatalogueObservationScope:
             (CS1_C_T01_LO03, [True, True, False]),  # 3-item conceptual 2-of-3
             (CS1_C_T02_LO01, [True, True, False]),  # 3-item conceptual 2-of-3
             (CS1_D_T01_LO01, [True, True, False]),  # 3-item conceptual 2-of-3
+            (CS1_D_T02_LO01, [True, True, False]),  # 3-item conceptual 2-of-3
             (CS1_E_T01_LO01, [True, True]),  # single-pair mixed
         )
         evidence = []

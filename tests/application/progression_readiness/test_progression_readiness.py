@@ -724,24 +724,60 @@ class TestCatalogue:
             assert contract.required_prerequisite_objective_id is None
 
     def test_topic_4_2_contracts_match_approved_shapes(self):
-        for contract, ar, cp in (
-            (CS1_D_T02_LO01, "cs1003-4.2.1-ar-01", "cs1003-4.2.1-cp-01"),
-            (CS1_D_T02_LO02, "cs1003-4.2.2-ar-01", "cs1003-4.2.2-cp-01"),
-            (CS1_D_T02_LO03, "cs1003-4.2.3-ar-01", "cs1003-4.2.3-cp-01"),
-            (CS1_D_T02_LO04, "cs1003-4.2.4-ar-01", "cs1003-4.2.4-cp-01"),
-            (CS1_D_T02_LO06, "cs1003-4.2.6-ar-01", "cs1003-4.2.6-cp-01"),
-            (CS1_D_T02_LO07, "cs1003-4.2.7-ar-01", "cs1003-4.2.7-cp-01"),
-            (CS1_D_T02_LO09, "cs1003-4.2.9-ar-01", "cs1003-4.2.9-cp-01"),
+        for contract, ar, ar02, cp in (
+            (
+                CS1_D_T02_LO01,
+                "cs1003-4.2.1-ar-01",
+                "cs1003-4.2.1-ar-02",
+                "cs1003-4.2.1-cp-01",
+            ),
+            (
+                CS1_D_T02_LO02,
+                "cs1003-4.2.2-ar-01",
+                "cs1003-4.2.2-ar-02",
+                "cs1003-4.2.2-cp-01",
+            ),
+            (
+                CS1_D_T02_LO03,
+                "cs1003-4.2.3-ar-01",
+                "cs1003-4.2.3-ar-02",
+                "cs1003-4.2.3-cp-01",
+            ),
+            (
+                CS1_D_T02_LO04,
+                "cs1003-4.2.4-ar-01",
+                "cs1003-4.2.4-ar-02",
+                "cs1003-4.2.4-cp-01",
+            ),
+            (
+                CS1_D_T02_LO06,
+                "cs1003-4.2.6-ar-01",
+                "cs1003-4.2.6-ar-02",
+                "cs1003-4.2.6-cp-01",
+            ),
+            (
+                CS1_D_T02_LO07,
+                "cs1003-4.2.7-ar-01",
+                "cs1003-4.2.7-ar-02",
+                "cs1003-4.2.7-cp-01",
+            ),
+            (
+                CS1_D_T02_LO09,
+                "cs1003-4.2.9-ar-01",
+                "cs1003-4.2.9-ar-02",
+                "cs1003-4.2.9-cp-01",
+            ),
         ):
             assert contract.kind is ContractKind.CONCEPTUAL
-            assert contract.item_count == 2
+            assert contract.item_count == 3
             assert contract.ready_min_correct == 2
-            assert contract.item_ids == frozenset({ar, cp})
+            assert contract.item_ids == frozenset({ar, ar02, cp})
             assert contract.required_prerequisite_objective_id is None
             twin_prefix = ar.replace("cs1003-", "cs1014-")
             twin_cp = cp.replace("cs1003-", "cs1014-")
             assert twin_prefix not in contract.item_ids
             assert twin_cp not in contract.item_ids
+            assert ar02.replace("cs1003-", "cs1014-") not in contract.item_ids
 
         assert CS1_D_T02_LO05.kind is ContractKind.MIXED_MODALITY_DUAL_DEMONSTRATION
         assert len(CS1_D_T02_LO05.demonstration_pairs) == 2
@@ -906,6 +942,13 @@ class TestCatalogue:
         CS1_D_T01_LO03,
         CS1_D_T01_LO04,
         CS1_D_T01_LO05,
+        CS1_D_T02_LO01,
+        CS1_D_T02_LO02,
+        CS1_D_T02_LO03,
+        CS1_D_T02_LO04,
+        CS1_D_T02_LO06,
+        CS1_D_T02_LO07,
+        CS1_D_T02_LO09,
     ],
 )
 class TestConceptualThreeItem:
@@ -1182,6 +1225,48 @@ class TestConceptualThreeItem:
             "cs1003-4.1.5-ar-01",
             "cs1003-4.1.5-ar-02",
             "cs1003-4.1.5-cp-01",
+        ),
+        (
+            CS1_D_T02_LO01,
+            "cs1003-4.2.1-ar-01",
+            "cs1003-4.2.1-ar-02",
+            "cs1003-4.2.1-cp-01",
+        ),
+        (
+            CS1_D_T02_LO02,
+            "cs1003-4.2.2-ar-01",
+            "cs1003-4.2.2-ar-02",
+            "cs1003-4.2.2-cp-01",
+        ),
+        (
+            CS1_D_T02_LO03,
+            "cs1003-4.2.3-ar-01",
+            "cs1003-4.2.3-ar-02",
+            "cs1003-4.2.3-cp-01",
+        ),
+        (
+            CS1_D_T02_LO04,
+            "cs1003-4.2.4-ar-01",
+            "cs1003-4.2.4-ar-02",
+            "cs1003-4.2.4-cp-01",
+        ),
+        (
+            CS1_D_T02_LO06,
+            "cs1003-4.2.6-ar-01",
+            "cs1003-4.2.6-ar-02",
+            "cs1003-4.2.6-cp-01",
+        ),
+        (
+            CS1_D_T02_LO07,
+            "cs1003-4.2.7-ar-01",
+            "cs1003-4.2.7-ar-02",
+            "cs1003-4.2.7-cp-01",
+        ),
+        (
+            CS1_D_T02_LO09,
+            "cs1003-4.2.9-ar-01",
+            "cs1003-4.2.9-ar-02",
+            "cs1003-4.2.9-cp-01",
         ),
     ],
 )
@@ -3638,132 +3723,197 @@ class TestTopic41LO02ToLO05Cs1003OnlyExcludesCs1013:
 
 
 # ---------------------------------------------------------------------------
-# Topic 4.2 LO01/LO02/LO03/LO04/LO06/LO07/LO09: 2-item conceptual
+# Topic 4.2 LO01/LO02/LO03/LO04/LO06/LO07/LO09: 3-item conceptual ready_min_correct=2
+# (covered by TestConceptualThreeItem and TestFreshSecondAttemptGapClosed)
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# Topic 4.2 conceptual LOs: cs1003 only; Continuity twins OEA-tagged but excluded
 # ---------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
-    "contract",
+    "contract, primary_ar, primary_ar02, primary_cp, twin_ar, twin_cp",
     [
-        CS1_D_T02_LO01,
-        CS1_D_T02_LO02,
-        CS1_D_T02_LO03,
-        CS1_D_T02_LO04,
-        CS1_D_T02_LO06,
-        CS1_D_T02_LO07,
-        CS1_D_T02_LO09,
+        (
+            CS1_D_T02_LO01,
+            "cs1003-4.2.1-ar-01",
+            "cs1003-4.2.1-ar-02",
+            "cs1003-4.2.1-cp-01",
+            "cs1014-4.2.1-ar-01",
+            "cs1014-4.2.1-cp-01",
+        ),
+        (
+            CS1_D_T02_LO02,
+            "cs1003-4.2.2-ar-01",
+            "cs1003-4.2.2-ar-02",
+            "cs1003-4.2.2-cp-01",
+            "cs1014-4.2.2-ar-01",
+            "cs1014-4.2.2-cp-01",
+        ),
+        (
+            CS1_D_T02_LO03,
+            "cs1003-4.2.3-ar-01",
+            "cs1003-4.2.3-ar-02",
+            "cs1003-4.2.3-cp-01",
+            "cs1014-4.2.3-ar-01",
+            "cs1014-4.2.3-cp-01",
+        ),
+        (
+            CS1_D_T02_LO04,
+            "cs1003-4.2.4-ar-01",
+            "cs1003-4.2.4-ar-02",
+            "cs1003-4.2.4-cp-01",
+            "cs1014-4.2.4-ar-01",
+            "cs1014-4.2.4-cp-01",
+        ),
+        (
+            CS1_D_T02_LO06,
+            "cs1003-4.2.6-ar-01",
+            "cs1003-4.2.6-ar-02",
+            "cs1003-4.2.6-cp-01",
+            "cs1014-4.2.6-ar-01",
+            "cs1014-4.2.6-cp-01",
+        ),
+        (
+            CS1_D_T02_LO07,
+            "cs1003-4.2.7-ar-01",
+            "cs1003-4.2.7-ar-02",
+            "cs1003-4.2.7-cp-01",
+            "cs1014-4.2.7-ar-01",
+            "cs1014-4.2.7-cp-01",
+        ),
+        (
+            CS1_D_T02_LO09,
+            "cs1003-4.2.9-ar-01",
+            "cs1003-4.2.9-ar-02",
+            "cs1003-4.2.9-cp-01",
+            "cs1014-4.2.9-ar-01",
+            "cs1014-4.2.9-cp-01",
+        ),
     ],
 )
-class TestTopic42ConceptualTwoItem:
-    def _items(self, contract):
-        return [spec.item_id for spec in contract.evidence_items]
-
-    def test_two_of_two_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, True) for i in items]
+class TestTopic42ConceptualCs1003OnlyExcludesCs1014:
+    def test_contract_item_ids_exclude_cs1014(
+        self, contract, primary_ar, primary_ar02, primary_cp, twin_ar, twin_cp
+    ):
+        assert contract.item_ids == frozenset(
+            {primary_ar, primary_ar02, primary_cp}
         )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
+        assert twin_ar not in contract.item_ids
+        assert twin_cp not in contract.item_ids
 
-    def test_one_of_two_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1",
-            contract.objective_id,
-            [(items[0], True), (items[1], False)],
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
-
-    def test_zero_of_two_not_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, False) for i in items]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
-
-
-# ---------------------------------------------------------------------------
-# Topic 4.2 LO01: cs1003 only; Continuity twins OEA-tagged but excluded
-# ---------------------------------------------------------------------------
-
-
-class TestTopic42LO01Cs1003OnlyExcludesCs1014:
-    contract = CS1_D_T02_LO01
-    primary_ar = "cs1003-4.2.1-ar-01"
-    primary_cp = "cs1003-4.2.1-cp-01"
-    twin_ar = "cs1014-4.2.1-ar-01"
-    twin_cp = "cs1014-4.2.1-cp-01"
-
-    def test_contract_item_ids_exclude_cs1014(self):
-        assert self.contract.item_ids == frozenset(
-            {self.primary_ar, self.primary_cp}
-        )
-        assert self.twin_ar not in self.contract.item_ids
-        assert self.twin_cp not in self.contract.item_ids
-
-    def test_cs1003_both_correct_ready_even_with_cs1014_incorrect(self):
+    def test_cs1003_two_of_three_ready_even_with_cs1014_incorrect(
+        self, contract, primary_ar, primary_ar02, primary_cp, twin_ar, twin_cp
+    ):
         evidence = [
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.primary_ar,
+                objective_id=contract.objective_id,
+                item_id=primary_ar,
                 scored_correct=True,
                 offset=0,
                 response_type="mcq",
             ),
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.primary_cp,
+                objective_id=contract.objective_id,
+                item_id=primary_cp,
                 scored_correct=True,
                 offset=1,
                 response_type="mcq",
             ),
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.twin_ar,
+                objective_id=contract.objective_id,
+                item_id=twin_ar,
                 scored_correct=False,
                 offset=2,
                 response_type="mcq",
             ),
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.twin_cp,
+                objective_id=contract.objective_id,
+                item_id=twin_cp,
                 scored_correct=False,
                 offset=3,
                 response_type="mcq",
             ),
         ]
-        assert _eval(self.contract, evidence).readiness is ProgressionReadiness.READY
+        assert _eval(contract, evidence).readiness is ProgressionReadiness.READY
 
-    def test_cs1014_both_correct_do_not_make_ready_without_cs1003(self):
+    def test_cs1014_both_correct_do_not_make_ready_without_cs1003(
+        self, contract, primary_ar, primary_ar02, primary_cp, twin_ar, twin_cp
+    ):
         evidence = [
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.twin_ar,
+                objective_id=contract.objective_id,
+                item_id=twin_ar,
                 scored_correct=True,
                 offset=0,
                 response_type="mcq",
             ),
             _record(
                 student_id="s1",
-                objective_id=self.contract.objective_id,
-                item_id=self.twin_cp,
+                objective_id=contract.objective_id,
+                item_id=twin_cp,
                 scored_correct=True,
                 offset=1,
                 response_type="mcq",
             ),
         ]
-        result = _eval(self.contract, evidence)
+        result = _eval(contract, evidence)
+        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
+        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
+
+    def test_cs1003_one_of_three_insufficient_despite_twins_correct(
+        self, contract, primary_ar, primary_ar02, primary_cp, twin_ar, twin_cp
+    ):
+        evidence = [
+            _record(
+                student_id="s1",
+                objective_id=contract.objective_id,
+                item_id=primary_ar,
+                scored_correct=True,
+                offset=0,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=contract.objective_id,
+                item_id=primary_ar02,
+                scored_correct=False,
+                offset=1,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=contract.objective_id,
+                item_id=primary_cp,
+                scored_correct=False,
+                offset=2,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=contract.objective_id,
+                item_id=twin_ar,
+                scored_correct=True,
+                offset=3,
+                response_type="mcq",
+            ),
+            _record(
+                student_id="s1",
+                objective_id=contract.objective_id,
+                item_id=twin_cp,
+                scored_correct=True,
+                offset=4,
+                response_type="mcq",
+            ),
+        ]
+        result = _eval(contract, evidence)
         assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
         assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
 

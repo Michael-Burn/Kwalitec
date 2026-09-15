@@ -678,6 +678,7 @@ CS1_D_T02_LO01 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.1-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.1-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.1-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -689,6 +690,7 @@ CS1_D_T02_LO02 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.2-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.2-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.2-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -700,6 +702,7 @@ CS1_D_T02_LO03 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.3-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.3-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.3-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -711,6 +714,7 @@ CS1_D_T02_LO04 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.4-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.4-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.4-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -744,6 +748,7 @@ CS1_D_T02_LO06 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.6-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.6-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.6-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -755,6 +760,7 @@ CS1_D_T02_LO07 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.7-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.7-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.7-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,
@@ -776,6 +782,7 @@ CS1_D_T02_LO09 = ProgressionReadinessContract(
     kind=ContractKind.CONCEPTUAL,
     evidence_items=(
         EvidenceItemSpec("cs1003-4.2.9-ar-01", EvidenceModality.CONCEPTUAL),
+        EvidenceItemSpec("cs1003-4.2.9-ar-02", EvidenceModality.CONCEPTUAL),
         EvidenceItemSpec("cs1003-4.2.9-cp-01", EvidenceModality.CONCEPTUAL),
     ),
     ready_min_correct=2,

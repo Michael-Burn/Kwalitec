@@ -155,6 +155,51 @@
       "objective_id": "CS1-D-T02-LO09"
     },
     {
+      "episode_id": "lep-cs1003-4.2.9-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.9-ar-02",
+      "title": "Active Recall: 4.2.9 Pearson chi-square GOF",
+      "prompt": "Closed-book. Observed counts $O=15,9,12$ with fitted $E=12,12,12$. Critical value $\\chi^{2}_{2,0.95}=5.991$. Which statement correctly computes Pearson's $X^{2}$, the GOF decision, and the contrast with the likelihood-ratio test?",
+      "response_type": "mcq",
+      "body": "Score the worked-example Pearson chi-square acceptability check.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$X^{2}=(15-12)^{2}/12+(9-12)^{2}/12+(12-12)^{2}/12=1.5$. Since $1.5<5.991$, do not reject aggregate adequacy at $\\alpha=0.05$. LRT/deviance compares nested models; that is a different question.",
+      "model_answer": "$X^{2}=1.5$; do not reject aggregate adequacy; LRT is nested comparison.",
+      "common_mistake": "Using absolute deviations without squaring, or equating Pearson $X^{2}$ with LRT.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$X^{2}=1.5<5.991$, so do not reject aggregate adequacy at $\\alpha=0.05$. Pearson $\\chi^{2}$ here checks aggregate fit to fitted expectations; the likelihood-ratio / deviance test compares nested models (a different question).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$X^{2}=|15-12|+|9-12|+|12-12|=6>5.991$, so reject; LRT is the same statistic under another name.",
+          "misconception_tag": "abs_dev_and_lrt_same"
+        },
+        {
+          "id": "c",
+          "label": "Interpreting every coefficient finishes both Pearson $\\chi^{2}$ and LRT acceptability testing.",
+          "misconception_tag": "coefficients_as_acceptability"
+        },
+        {
+          "id": "d",
+          "label": "$X^{2}=1.5$, but a non-significant result proves every individual observation fits well, so residual checks are unnecessary.",
+          "misconception_tag": "nonsig_proves_all_fit"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO09"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.9-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.9-cp-01",

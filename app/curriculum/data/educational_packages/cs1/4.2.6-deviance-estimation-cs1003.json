@@ -155,6 +155,51 @@
       "objective_id": "CS1-D-T02-LO06"
     },
     {
+      "episode_id": "lep-cs1003-4.2.6-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.6-ar-02",
+      "title": "Active Recall: 4.2.6 deviance contribution and scaled deviance",
+      "prompt": "Closed-book. Poisson observation $y=8$, $\\hat{\\mu}=5$. Total deviance $D=22.0$ with $\\varphi=1$. Which statement correctly reports the observation deviance contribution, the scaled deviance, and the usual estimation principle?",
+      "response_type": "mcq",
+      "body": "Score the worked-example deviance and estimation statement.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$d=2[8\\ln(8/5)-(8-5)]\\approx 1.5201$. Scaled deviance $D/\\varphi=22.0$. Parameters are estimated by maximum likelihood (typically IWLS), not by p-value chopping.",
+      "model_answer": "$d\\approx 1.5201$; scaled deviance $22.0$; MLE/IWLS.",
+      "common_mistake": "Omitting the factor of 2, or treating estimation as p-value deletion.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$d=2[8\\ln(8/5)-(8-5)]\\approx 1.5201$; scaled deviance $D/\\varphi=22.0$; estimate parameters by maximum likelihood (typically IWLS).",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Deviance contribution equals the Pearson residual $(8-5)/\\sqrt{5}$; scaled deviance is AIC$/n$. Estimation means dropping terms with $p>0.10$.",
+          "misconception_tag": "pearson_as_deviance_and_pchop"
+        },
+        {
+          "id": "c",
+          "label": "Omit the factor 2: $d=8\\ln(1.6)-3\\approx 0.76$, and call that scaled deviance.",
+          "misconception_tag": "omit_factor_two"
+        },
+        {
+          "id": "d",
+          "label": "With $\\varphi=1$, deviance and scaled deviance are undefined for Poisson; only Normal GLMs have scaled deviance.",
+          "misconception_tag": "scaled_deviance_normal_only"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO06"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.6-cp-01",

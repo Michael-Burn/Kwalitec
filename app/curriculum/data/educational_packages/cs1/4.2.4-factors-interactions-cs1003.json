@@ -155,6 +155,51 @@
       "objective_id": "CS1-D-T02-LO04"
     },
     {
+      "episode_id": "lep-cs1003-4.2.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.4-ar-02",
+      "title": "Active Recall: 4.2.4 factor and interaction predictor",
+      "prompt": "Closed-book. Poisson log-link flood frequency with $\\eta=-1.5+0.4\\,C+0.25\\,H+0.15\\,C\\times H$. Which statement correctly reports $\\eta$ and $\\mu$ for coastal high-rise and for inland low-rise, and when the interaction contributes?",
+      "response_type": "mcq",
+      "body": "Score the worked-example factor and interaction evaluation.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Coastal high-rise ($C=H=1$): $\\eta=-1.5+0.4+0.25+0.15=-0.7$, $\\mu=e^{-0.7}\\approx 0.4966$. Inland low-rise: $\\eta=-1.5$, $\\mu=e^{-1.5}\\approx 0.2231$. Interaction applies only when both indicators equal 1.",
+      "model_answer": "$\\eta=-0.7$, $\\mu\\approx 0.4966$; $\\eta=-1.5$, $\\mu\\approx 0.2231$; interaction only if $C=H=1$.",
+      "common_mistake": "Applying the interaction whenever either factor is 1, or reporting $\\eta$ as the mean.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Coastal high-rise ($C=H=1$): $\\eta=-0.7$, $\\mu\\approx 0.4966$. Inland low-rise ($C=H=0$): $\\eta=-1.5$, $\\mu\\approx 0.2231$. The $0.15$ interaction contributes only when both factors equal 1.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Interaction always adds $0.15$ whenever either factor is 1; coastal high-rise $\\eta=-1.5+0.4+0.25=-0.85$.",
+          "misconception_tag": "interaction_when_either"
+        },
+        {
+          "id": "c",
+          "label": "Factors cannot appear in a GLM linear predictor; only continuous covariates are allowed, so drop $C$, $H$, and $C\\times H$.",
+          "misconception_tag": "factors_forbidden_in_glm"
+        },
+        {
+          "id": "d",
+          "label": "Report $\\eta$ as the mean frequency; under log link $\\mu$ equals $\\eta$.",
+          "misconception_tag": "eta_as_mean"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO04"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.4-cp-01",

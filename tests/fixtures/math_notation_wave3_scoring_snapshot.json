@@ -182,72 +182,6 @@
       ]
     },
     {
-      "package_file": "4.2.6-deviance-estimation-cs1003.json",
-      "item_id": "cs1003-4.2.6-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.6-deviance-estimation-cs1003.json",
-      "item_id": "cs1003-4.2.6-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
       "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
       "item_id": "cs1011-3.2.3-ar-01",
       "correct_choice_id": "a",
@@ -745,72 +679,6 @@
       ]
     },
     {
-      "package_file": "4.2.2-mean-variance-cs1003.json",
-      "item_id": "cs1003-4.2.2-ar-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
-      "package_file": "4.2.2-mean-variance-cs1003.json",
-      "item_id": "cs1003-4.2.2-cp-01",
-      "correct_choice_id": "a",
-      "accepted_keywords": [],
-      "numeric_tolerance": null,
-      "choice_ids": [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      "verdicts": [
-        {
-          "response": "a",
-          "scored": true,
-          "correct": true,
-          "matched_key": "a"
-        },
-        {
-          "response": "b",
-          "scored": true,
-          "correct": false,
-          "matched_key": ""
-        },
-        {
-          "response": "",
-          "scored": false,
-          "correct": null,
-          "matched_key": ""
-        }
-      ]
-    },
-    {
       "package_file": "3.2.6-ci-two-sample-cs1011.json",
       "item_id": "cs1011-3.2.6-ar-01",
       "correct_choice_id": "a",
@@ -907,6 +775,240 @@
           "response": "",
           "scored": false,
           "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1003.json",
+      "item_id": "cs1003-4.2.2-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1003.json",
+      "item_id": "cs1003-4.2.2-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.2-mean-variance-cs1003.json",
+      "item_id": "cs1003-4.2.2-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.6-deviance-estimation-cs1003.json",
+      "item_id": "cs1003-4.2.6-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.6-deviance-estimation-cs1003.json",
+      "item_id": "cs1003-4.2.6-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "4.2.6-deviance-estimation-cs1003.json",
+      "item_id": "cs1003-4.2.6-cp-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
           "matched_key": ""
         }
       ]

@@ -154,6 +154,51 @@
       "objective_id": "CS1-D-T02-LO07"
     },
     {
+      "episode_id": "lep-cs1003-4.2.7-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.2.7-ar-02",
+      "title": "Active Recall: 4.2.7 nested deviance comparison",
+      "prompt": "Closed-book. Nested Poisson GLMs: reduced deviance $D_{R}=50.0$, fuller (with region, 2 df) $D_{F}=40.0$. Critical value $\\chi^{2}_{2,0.95}=5.991$. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Score the worked-example analysis of deviance decision.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\Delta D=D_{R}-D_{F}=10.0$ on 2 df. Since $10.0>5.991$, reject the reduced model at $\\alpha=0.05$ and retain region when the science warrants it. Residual plots do not replace analysis of deviance.",
+      "model_answer": "$\\Delta D=10.0>5.991$; retain region (with warrant).",
+      "common_mistake": "Comparing $D_{F}$ alone to the critical value, or reversing the subtraction.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\Delta D=10.0>5.991$, so reject the reduced model at $\\alpha=0.05$ and retain the region factor when the science warrants it. Analysis of deviance is this nested comparison, not a residual plot alone.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compare $D_{F}=40$ alone to 5.991; because 40 is large, reject the fuller model.",
+          "misconception_tag": "compare_full_deviance_alone"
+        },
+        {
+          "id": "c",
+          "label": "$\\Delta D=D_{F}-D_{R}=-10$; a negative difference always supports the reduced model.",
+          "misconception_tag": "reversed_delta_d"
+        },
+        {
+          "id": "d",
+          "label": "If every region coefficient has $p<0.05$, deviance difference is unnecessary.",
+          "misconception_tag": "p_only_model_choice"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T02-LO07"
+    },
+    {
       "episode_id": "lep-cs1003-4.2.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.2.7-cp-01",
