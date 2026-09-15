@@ -23,7 +23,7 @@ class TestHomeComposition:
         assert 'data-home="decision-surface"' in home
         assert 'data-home-secondary="study"' in home
         assert 'data-home-action="study"' in home
-        assert "ds-btn--ghost" in home
+        assert "Syllabus map" in home
         assert 'data-px004="secondary-progress"' not in home
         assert "Quick Actions" not in home
         assert "<details" not in home

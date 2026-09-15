@@ -219,15 +219,14 @@
   </div>
   {% endif %}
 
-  {# ——— Quiet secondary: Study (syllabus map). Tied to mission composition. ——— #}
+  {# Quiet secondary: syllabus map. Topbar Study already goes to the same route. #}
   {% if home.study_href and not home.show_continuation_invite %}
   <div class="ds-os-home__secondary" data-home-secondary="study">
-    <p class="ds-os-home__secondary-label">Syllabus map</p>
     <a
-      class="ds-btn ds-btn--ghost"
+      class="ds-os-home__secondary-label"
       href="{{ home.study_href }}"
       data-home-action="study"
-    >{{ home.study_link_label or 'Study' }}</a>
+    >Syllabus map</a>
   </div>
   {% endif %}
 

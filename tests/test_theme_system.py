@@ -157,7 +157,7 @@ class TestProgressTrackContrast:
     """Syllabus progress trough must be a visible UI boundary (WCAG 1.4.11)."""
 
     # Token hex from tokens.css / brand.css, both themes.
-    LIGHT_SURFACE = (255, 252, 248)  # --surface #FFFCF8
+    LIGHT_SURFACE = (247, 242, 234)  # --surface #F7F2EA
     LIGHT_MUTED = (122, 115, 106)  # --text-muted #7A736A
     DARK_SURFACE = (36, 33, 32)  # --surface #242120
     DARK_MUTED = (154, 146, 136)  # --text-muted #9A9288

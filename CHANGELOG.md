@@ -6,6 +6,34 @@ The format follows the principles of Keep a Changelog and Semantic Versioning.
 
 ---
 
+# [2.0.0-beta.2] - 2026-09-15 - Private Beta product continuation
+
+## Fingerprint
+
+| Field | Value |
+|---|---|
+| Product version | `2.0.0-beta.2` |
+| Prior product version | `2.0.0-beta.1` (Early Access / REL-001 baseline) |
+
+## Summary
+
+Honest product-version continuation after substantial work shipped on the `2.0.0-beta.1` string. Still Private Beta. Not a Version 1 production-ready declaration.
+
+## Included
+
+- Numeric assessment framework for scored practice
+- Full Progression Readiness catalogue across the CS1 syllabus
+- SQL evidence companion so authorised session evidence writes through to mastery
+- Founder live-use product fixes: topbar chrome alignment, Choose Exam control sizing, History link styling, warmer light-mode surfaces, Home syllabus-map link, and removal of the student footer strip
+
+## Explicit non-goals
+
+- No Version 1 production-ready claim
+- No Educational Framework unfreeze
+- No public registration or marketing launch
+
+---
+
 # [2.0.0-beta.1-rc2] - 2026-08-01 — VERSION1-RC2 Sprint B (Educational Trust)
 
 ## Summary

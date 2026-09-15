@@ -13,9 +13,9 @@
   color-scheme: light;
 
   /* NEUTRAL — page canvas, surfaces, text, borders */
-  --background: var(--surface-alt, #FAF8F4);
-  --surface: #FFFCF8;
-  --surface-elevated: #FFFFFF;
+  --background: var(--surface-alt, #F1EBE3);
+  --surface: #F7F2EA;
+  --surface-elevated: #FFFCF8;
   --surface-primary: var(--surface);
   --surface-secondary: var(--background);
   --surface-overlay: rgba(33, 29, 25, 0.48);

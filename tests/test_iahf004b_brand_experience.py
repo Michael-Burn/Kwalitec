@@ -56,7 +56,7 @@ class TestShellTemplateWiring:
         eos = (ROOT / "app/templates/layouts/eos_student.html").read_text(
             encoding="utf-8"
         )
-        assert "student-footer" in eos
+        assert "student-footer" not in eos
         auth = (ROOT / "app/templates/layouts/auth_base.html").read_text(
             encoding="utf-8"
         )
@@ -123,9 +123,6 @@ class TestBrandExperienceHttp:
         resp = logged_in_client.get("/dashboard/")
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
-        # Sole-runtime student shell (UX-001 / RC-001): Private Beta chrome.
-        assert "Private Beta" in html
-        assert f"Kwalitec v{APP_VERSION}" in html
         assert STUDENT_DASHBOARD_LABEL in html or "Home" in html
         assert APPROVED_LOGO_STATIC_PATH in html
 
@@ -134,8 +131,7 @@ class TestBrandExperienceHttp:
             resp = logged_in_client.get(path)
             assert resp.status_code == 200, path
             html = resp.get_data(as_text=True)
-            assert f"Kwalitec v{APP_VERSION}" in html
-            assert INTERNAL_ALPHA_LABEL in html or "Private Beta" in html
+            assert APPROVED_LOGO_STATIC_PATH in html
     def test_study_plan_uses_section_header_pattern(self, logged_in_client) -> None:
         resp = logged_in_client.get("/study-plan/plans/all")
         assert resp.status_code == 200

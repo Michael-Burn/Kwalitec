@@ -66,19 +66,6 @@
         </main>
 
         <div class="student-visually-hidden" aria-live="polite" id="student-live-region"></div>
-
-        <footer class="student-footer" role="contentinfo">
-            <p class="student-footer-text">{% block footer_text %}Study with focus.{% endblock %}</p>
-            <div class="student-footer-meta" role="group" aria-label="Private beta">
-                <span class="student-footer-brand">Kwalitec v{{ app_version }}</span>
-                <span class="student-beta-badge" title="Private Beta · v{{ app_version }}">Private Beta</span>
-                <a class="student-footer-link" href="{{ url_for('alpha.help_centre') }}">Release notes</a>
-                <a class="student-footer-link" href="{{ url_for('alpha.feedback_beta') }}">Report issue</a>
-                {% if can_switch_experience %}
-                <a class="student-footer-link" href="{{ url_for('founder_dashboard.curriculum_health') }}">Curriculum Health</a>
-                {% endif %}
-            </div>
-        </footer>
     </div>
 
     {% block eos_modals %}

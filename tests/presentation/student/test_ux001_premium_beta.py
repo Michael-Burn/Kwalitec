@@ -92,13 +92,12 @@ def test_design_system_includes_ux001_surfaces():
     assert "body.ds-focus-mode" in css
 
 
-def test_eos_footer_has_beta_affordance():
-    html = (
-        ROOT / "app/templates/layouts/eos_student.html"
-    ).read_text(encoding="utf-8")
-    assert "Private Beta" in html
-    assert "Report issue" in html
-    assert "Release notes" in html
+def test_beta_feedback_and_curriculum_health_remain_reachable():
+    help_html = (ROOT / "app/templates/alpha/help.html").read_text(encoding="utf-8")
+    assert "alpha.feedback_beta" in help_html
+    nav = (ROOT / "app/founder/dashboard/nav.py").read_text(encoding="utf-8")
+    assert "founder_dashboard.curriculum_health" in nav
+    assert "Curriculum Health" in nav
 
 
 def test_tutor_and_knowledge_graph_routes_registered(app):

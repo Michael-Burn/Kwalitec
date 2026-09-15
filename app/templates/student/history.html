@@ -127,17 +127,20 @@
   </section>
   {% endif %}
 
-  {% if history.learning_journey_teaser %}
-  <p class="ds-list__meta">
-    <a href="{{ history.learning_journey_href or url_for('student.learning_journey') }}">
-      {{ history.learning_journey_teaser }}
-    </a>
-  </p>
-  {% endif %}
-
-  <p class="ds-list__meta">
-    <a href="{{ url_for('student.decision_journal') }}">Decision Journal</a>
-  </p>
+  <div class="ds-stack">
+    {% if history.learning_journey_teaser %}
+    {{ ds_button(
+      history.learning_journey_teaser,
+      href=history.learning_journey_href or url_for('student.learning_journey'),
+      variant='text'
+    ) }}
+    {% endif %}
+    {{ ds_button(
+      'Decision Journal',
+      href=url_for('student.decision_journal'),
+      variant='ghost'
+    ) }}
+  </div>
 
   <div class="ds-primary-strip">
     {{ ds_button(history.primary_cta_label or 'Return Home', href=url_for('student.home'), variant='ghost') }}

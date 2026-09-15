@@ -9,7 +9,7 @@ from pathlib import Path
 from app.brand_identity import PRODUCT_DESCRIPTOR
 
 # Canonical student-facing product version — keep in sync with VERSION / pyproject.toml.
-_FALLBACK_VERSION = "2.0.0-beta.1"
+_FALLBACK_VERSION = "2.0.0-beta.2"
 _VERSION_FILE = Path(__file__).resolve().parents[1] / "VERSION"
 
 
@@ -37,7 +37,7 @@ PRODUCT_TAGLINE = PRODUCT_DESCRIPTOR
 # Bump when shipping changes under app/static/ (or blueprint static folders)
 # so browsers refetch branding, CSS, JS, and icons after deploy.
 # Override with STATIC_ASSET_VERSION env var when needed.
-_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-g21"
+_DEFAULT_STATIC_ASSET_VERSION = f"{APP_VERSION}-g24"
 STATIC_ASSET_VERSION = os.getenv(
     "STATIC_ASSET_VERSION", _DEFAULT_STATIC_ASSET_VERSION
 ).strip() or _DEFAULT_STATIC_ASSET_VERSION

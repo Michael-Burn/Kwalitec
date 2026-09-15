@@ -20,11 +20,13 @@ class TestVersionIdentity:
         body = response.get_data(as_text=True)
         assert f"Kwalitec v{APP_VERSION}" in body
 
-    def test_authenticated_footer_matches_app_version(self, logged_in_client):
-        response = logged_in_client.get("/dashboard/")
+    def test_authenticated_pages_keep_app_version_where_it_still_lives(
+        self, logged_in_client
+    ):
+        response = logged_in_client.get("/settings/")
         assert response.status_code == 200
         body = response.get_data(as_text=True)
-        assert f"Kwalitec v{APP_VERSION}" in body
+        assert APP_VERSION in body
 
     def test_health_check_version(self, client):
         response = client.get("/health")
