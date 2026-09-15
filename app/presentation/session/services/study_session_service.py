@@ -27,6 +27,7 @@ from app.presentation.session.dto.study_session import (
     StudySessionPage,
 )
 from app.presentation.session.math_markup import apply_math_markup
+from app.presentation.session.mcq_display_order import shuffle_mcq_display_order
 from app.presentation.session.view_models import SessionPageViewModel
 
 _PAGE_TITLE = "Session"
@@ -806,7 +807,9 @@ class StudySessionService:
                 ),
                 "practice_prompt": practice_prompt,
                 "response_type": (act.response_type or "").strip().lower(),
-                "practice_choices": tuple(act.choices or ()),
+                "practice_choices": shuffle_mcq_display_order(
+                    tuple(act.choices or ())
+                ),
                 "submitted_response": (
                     (act.submitted_response or "").strip()
                     if act.has_explanation
