@@ -375,6 +375,12 @@ _CS1009_TOPIC26_RETRY_PACKAGES: tuple[tuple[str, str], ...] = (
     ("2.6.6-f-distribution-cs1009", "cs1009-2.6.6-ar-02"),
 )
 
+_CS1010_TOPIC31_RETRY_PACKAGES: tuple[tuple[str, str], ...] = (
+    ("3.1.3-efficiency-bias-consistency-mse-cs1010", "cs1010-3.1.3-ar-02"),
+    ("3.1.4-comparison-mse-cs1010", "cs1010-3.1.4-ar-02"),
+    ("3.1.5-asymptotic-mle-cs1010", "cs1010-3.1.5-ar-02"),
+)
+
 
 _PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
     *_PRIOR_ONE_HUNDRED_EIGHTY_FIVE_PACKAGES,
@@ -385,6 +391,7 @@ _PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
     *_CS1007_TOPIC24_RETRY_PACKAGES,
     *_CS1008_TOPIC25_RETRY_PACKAGES,
     *_CS1009_TOPIC26_RETRY_PACKAGES,
+    *_CS1010_TOPIC31_RETRY_PACKAGES,
 )
 
 _CAF_WAVE3_CONFLICT_NUMERIC_CPS: frozenset[str] = frozenset(
@@ -5635,7 +5642,7 @@ def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
 
 def test_prototype_allowlist_is_exactly_two_hundred_thirty_eight_items() -> None:
     assert PROTOTYPE_ITEM_IDS == {want for _, want in _PROTOTYPE_PACKAGES}
-    assert len(PROTOTYPE_ITEM_IDS) == 248
+    assert len(PROTOTYPE_ITEM_IDS) == 251
     assert len(_ORIGINAL_PILOT_PACKAGES) == 4
     assert len(_EXPANSION_PACKAGES) == 10
     assert len(_EXISTING_FOURTEEN_PACKAGES) == 14
@@ -6820,4 +6827,4 @@ def test_remaining_mcq_without_choice_aware_are_only_superseded_ea005() -> None:
             all_mcq.add(iid)
     unwired = {iid for iid in all_mcq if iid not in PROTOTYPE_ITEM_IDS}
     assert unwired == _SUPERSEDED_EA005_ITEMS
-    assert len(PROTOTYPE_ITEM_IDS) == 248
+    assert len(PROTOTYPE_ITEM_IDS) == 251

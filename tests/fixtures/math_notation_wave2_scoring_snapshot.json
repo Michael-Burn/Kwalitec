@@ -190,13 +190,13 @@
       "choice_ids": [],
       "verdicts": [
         {
-          "response": "2",
+          "response": "a",
           "scored": true,
-          "correct": true,
-          "matched_key": "2"
+          "correct": false,
+          "matched_key": ""
         },
         {
-          "response": "999999",
+          "response": "b",
           "scored": true,
           "correct": false,
           "matched_key": ""
@@ -253,10 +253,10 @@
       "choice_ids": [],
       "verdicts": [
         {
-          "response": "8.602",
+          "response": "a",
           "scored": true,
-          "correct": true,
-          "matched_key": "8.602"
+          "correct": false,
+          "matched_key": ""
         },
         {
           "response": "b",
@@ -316,10 +316,10 @@
       "choice_ids": [],
       "verdicts": [
         {
-          "response": "566.67",
+          "response": "a",
           "scored": true,
-          "correct": true,
-          "matched_key": "566.67"
+          "correct": false,
+          "matched_key": ""
         },
         {
           "response": "b",
@@ -379,10 +379,10 @@
       "choice_ids": [],
       "verdicts": [
         {
-          "response": "1000",
+          "response": "a",
           "scored": true,
-          "correct": true,
-          "matched_key": "1000"
+          "correct": false,
+          "matched_key": ""
         },
         {
           "response": "b",
@@ -442,13 +442,13 @@
       "choice_ids": [],
       "verdicts": [
         {
-          "response": "0.159",
+          "response": "a",
           "scored": true,
-          "correct": true,
-          "matched_key": "0.159"
+          "correct": false,
+          "matched_key": ""
         },
         {
-          "response": "999999",
+          "response": "b",
           "scored": true,
           "correct": false,
           "matched_key": ""
@@ -464,6 +464,39 @@
     {
       "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
       "item_id": "cs1010-3.1.3-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+      "item_id": "cs1010-3.1.3-ar-02",
       "correct_choice_id": "a",
       "accepted_keywords": [],
       "numeric_tolerance": null,
@@ -530,6 +563,39 @@
     {
       "package_file": "3.1.5-asymptotic-mle-cs1010.json",
       "item_id": "cs1010-3.1.5-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+      "item_id": "cs1010-3.1.5-ar-02",
       "correct_choice_id": "a",
       "accepted_keywords": [],
       "numeric_tolerance": null,

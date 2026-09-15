@@ -159,6 +159,51 @@
       "objective_id": "CS1-C-T01-LO04"
     },
     {
+      "episode_id": "lep-cs1010-3.1.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1010-3.1.4-ar-02",
+      "title": "Active Recall: 3.1.4 apply MSE comparison",
+      "prompt": "Closed-book. Two estimators of $\\theta$: $T_{1}$ is unbiased with $\\operatorname{Var}(T_{1})=12$; $T_{2}$ has $\\operatorname{Bias}(T_{2})=2$ and $\\operatorname{Var}(T_{2})=5$. Which statement correctly compares them using mean square error?",
+      "response_type": "mcq",
+      "body": "Compute both MSEs on new numbers; prefer the smaller MSE; refuse stopping at unbiasedness.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "MSE(T1)=12. MSE(T2)=5+4=9. Prefer T2 on MSE. A biased estimator can win when variance reduction outweighs squared bias. Knowing T1 is unbiased does not make the MSE comparison optional, and asymptotic Normality is a different criterion.",
+      "model_answer": "MSE(T1)=12; MSE(T2)=9; prefer T2 on MSE.",
+      "common_mistake": "Dropping Bias^{2}, preferring the unbiased estimator automatically, or replacing MSE comparison with an asymptotics check.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=5+2^{2}=9$. Prefer $T_{2}$ on MSE. Unbiasedness of $T_{1}$ does not override a worse MSE, and naming definitions alone is not itself this comparison.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=5$ (ignore squared bias). Prefer $T_{2}$, and because $T_{1}$ is unbiased the comparison is optional.",
+          "misconception_tag": "drop_bias_term"
+        },
+        {
+          "id": "c",
+          "label": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=9$, but prefer $T_{1}$ because any unbiased estimator beats any biased one on MSE.",
+          "misconception_tag": "unbiased_always_wins"
+        },
+        {
+          "id": "d",
+          "label": "Compare the estimators by checking whether either is asymptotically Normal; that check replaces computing MSE for these two estimators.",
+          "misconception_tag": "asymptotics_as_comparison"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO04"
+    },
+    {
       "episode_id": "lep-cs1010-3.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.4-cp-01",

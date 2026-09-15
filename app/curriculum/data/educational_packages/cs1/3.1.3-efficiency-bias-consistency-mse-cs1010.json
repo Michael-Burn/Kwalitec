@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T01-LO03"
     },
     {
+      "episode_id": "lep-cs1010-3.1.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1010-3.1.3-ar-02",
+      "title": "Active Recall: 3.1.3 apply bias and MSE",
+      "prompt": "Closed-book. Estimator A is unbiased with $\\operatorname{Var}(A)=49$. Estimator B has $\\operatorname{Bias}(B)=3$ and $\\operatorname{Var}(B)=25$. Which statement correctly computes both MSEs, prefers the smaller MSE, and correctly refuses treating consistency as finite-sample unbiasedness?",
+      "response_type": "mcq",
+      "body": "Evaluate Bias/MSE on new numbers; prefer smaller MSE; refuse consistency-as-unbiasedness.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Bias(A)=0 so MSE(A)=49. Bias(B)=3 so MSE(B)=25+9=34. Prefer B on MSE even though it is biased. Consistency means concentration on the truth as sample size grows; it is not the same as Bias=0 for every finite n. Efficiency is a comparative variance/MSE idea, not a synonym for unbiasedness.",
+      "model_answer": "MSE(A)=49; MSE(B)=34; prefer B on MSE; consistency is not finite-sample unbiasedness.",
+      "common_mistake": "Choosing A solely because it is unbiased, dropping the Bias^{2} term for B, or equating consistency with unbiasedness.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=25+3^{2}=34$. Prefer B on MSE. Consistency is convergence in probability to the true value as $n$ grows; it is not the same as Bias $=0$ for every finite $n$.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=25$. Because A is unbiased it always has smaller MSE than B, so prefer A.",
+          "misconception_tag": "unbiased_always_wins"
+        },
+        {
+          "id": "c",
+          "label": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=3^{2}=9$ only (variance is ignored when bias is present), so B is preferred for a different reason than the MSE decomposition.",
+          "misconception_tag": "drop_variance"
+        },
+        {
+          "id": "d",
+          "label": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=34$, but B cannot be consistent because $\\operatorname{Bias}(B)\\neq 0$ for this finite sample, so A must be preferred.",
+          "misconception_tag": "consistency_as_unbiased"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO03"
+    },
+    {
       "episode_id": "lep-cs1010-3.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.3-cp-01",

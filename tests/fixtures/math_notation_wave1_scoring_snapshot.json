@@ -1175,6 +1175,41 @@
     {
       "package_file": "3.1.4-comparison-mse-cs1010.json",
       "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+      "item_id": "cs1010-3.1.4-ar-02",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.1.4-comparison-mse-cs1010.json",
+      "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
       "item_id": "cs1010-3.1.4-cp-01",
       "response_type": "mcq",
       "correct_choice_id": "a",

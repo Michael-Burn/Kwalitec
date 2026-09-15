@@ -540,15 +540,30 @@ class TestCatalogue:
         )
         assert CS1_C_T01_LO02.required_prerequisite_objective_id is None
 
-        for contract, ar, cp in (
-            (CS1_C_T01_LO03, "cs1010-3.1.3-ar-01", "cs1010-3.1.3-cp-01"),
-            (CS1_C_T01_LO04, "cs1010-3.1.4-ar-01", "cs1010-3.1.4-cp-01"),
-            (CS1_C_T01_LO05, "cs1010-3.1.5-ar-01", "cs1010-3.1.5-cp-01"),
+        for contract, ar, ar02, cp in (
+            (
+                CS1_C_T01_LO03,
+                "cs1010-3.1.3-ar-01",
+                "cs1010-3.1.3-ar-02",
+                "cs1010-3.1.3-cp-01",
+            ),
+            (
+                CS1_C_T01_LO04,
+                "cs1010-3.1.4-ar-01",
+                "cs1010-3.1.4-ar-02",
+                "cs1010-3.1.4-cp-01",
+            ),
+            (
+                CS1_C_T01_LO05,
+                "cs1010-3.1.5-ar-01",
+                "cs1010-3.1.5-ar-02",
+                "cs1010-3.1.5-cp-01",
+            ),
         ):
             assert contract.kind is ContractKind.CONCEPTUAL
-            assert contract.item_count == 2
+            assert contract.item_count == 3
             assert contract.ready_min_correct == 2
-            assert contract.item_ids == frozenset({ar, cp})
+            assert contract.item_ids == frozenset({ar, ar02, cp})
             assert contract.required_prerequisite_objective_id is None
 
         assert CS1_C_T01_LO06.kind is ContractKind.MIXED_MODALITY
@@ -774,6 +789,9 @@ class TestCatalogue:
         CS1_B_T06_LO04,
         CS1_B_T06_LO05,
         CS1_B_T06_LO06,
+        CS1_C_T01_LO03,
+        CS1_C_T01_LO04,
+        CS1_C_T01_LO05,
     ],
 )
 class TestConceptualThreeItem:
@@ -924,6 +942,24 @@ class TestConceptualThreeItem:
             "cs1009-2.6.6-ar-01",
             "cs1009-2.6.6-ar-02",
             "cs1009-2.6.6-cp-01",
+        ),
+        (
+            CS1_C_T01_LO03,
+            "cs1010-3.1.3-ar-01",
+            "cs1010-3.1.3-ar-02",
+            "cs1010-3.1.3-cp-01",
+        ),
+        (
+            CS1_C_T01_LO04,
+            "cs1010-3.1.4-ar-01",
+            "cs1010-3.1.4-ar-02",
+            "cs1010-3.1.4-cp-01",
+        ),
+        (
+            CS1_C_T01_LO05,
+            "cs1010-3.1.5-ar-01",
+            "cs1010-3.1.5-ar-02",
+            "cs1010-3.1.5-cp-01",
         ),
     ],
 )
@@ -2819,50 +2855,9 @@ class TestTopic31MixedModalityLO02LO06:
 
 
 # ---------------------------------------------------------------------------
-# Topic 3.1 LO03-LO05: 2-item conceptual ready_min_correct=2
+# Topic 3.1 LO03-LO05: 3-item conceptual ready_min_correct=2
+# (covered by TestConceptualThreeItem and TestFreshSecondAttemptGapClosed)
 # ---------------------------------------------------------------------------
-
-
-@pytest.mark.parametrize(
-    "contract",
-    [
-        CS1_C_T01_LO03,
-        CS1_C_T01_LO04,
-        CS1_C_T01_LO05,
-    ],
-)
-class TestTopic31ConceptualTwoItem:
-    def _items(self, contract):
-        return [spec.item_id for spec in contract.evidence_items]
-
-    def test_two_of_two_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, True) for i in items]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.READY
-        assert result.reason is None
-
-    def test_one_of_two_insufficient_sample(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1",
-            contract.objective_id,
-            [(items[0], True), (items[1], False)],
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.INSUFFICIENT_EVIDENCE
-        assert result.reason is InsufficientReason.INSUFFICIENT_SAMPLE
-
-    def test_zero_of_two_not_ready(self, contract):
-        items = self._items(contract)
-        evidence = _evidence_for_items(
-            "s1", contract.objective_id, [(i, False) for i in items]
-        )
-        result = _eval(contract, evidence)
-        assert result.readiness is ProgressionReadiness.NOT_READY
-        assert result.reason is None
 
 
 # ---------------------------------------------------------------------------

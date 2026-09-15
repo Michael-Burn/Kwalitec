@@ -65,6 +65,7 @@ LIVE_ROOT = Path("app/curriculum/data/educational_packages")
 #  + 2 topic 2.4 retry AR items (2.4.1-ar-02, 2.4.2-ar-02);
 #  + 1 topic 2.5 LO02 retry AR item (2.5.2-ar-02);
 #  + 6 topic 2.6 retry AR items (2.6.1-ar-02 through 2.6.6-ar-02);
+#  + 3 topic 3.1 retry AR items (3.1.3-ar-02, 3.1.4-ar-02, 3.1.5-ar-02);
 #  topic 3.1 LO01 quartet already in foundation).
 TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("2.1.4-poisson-process-cs1004.json", "cs1004-2.1d-ar-01", "CS1-B-T01-LO04"),
@@ -348,6 +349,11 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+        "cs1010-3.1.3-ar-02",
+        "CS1-C-T01-LO03",
+    ),
+    (
+        "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
         "cs1010-3.1.3-cp-01",
         "CS1-C-T01-LO03",
     ),
@@ -358,12 +364,22 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "3.1.4-comparison-mse-cs1010.json",
+        "cs1010-3.1.4-ar-02",
+        "CS1-C-T01-LO04",
+    ),
+    (
+        "3.1.4-comparison-mse-cs1010.json",
         "cs1010-3.1.4-cp-01",
         "CS1-C-T01-LO04",
     ),
     (
         "3.1.5-asymptotic-mle-cs1010.json",
         "cs1010-3.1.5-ar-01",
+        "CS1-C-T01-LO05",
+    ),
+    (
+        "3.1.5-asymptotic-mle-cs1010.json",
+        "cs1010-3.1.5-ar-02",
         "CS1-C-T01-LO05",
     ),
     (
@@ -1170,9 +1186,9 @@ FOUNDATION_THROUGH_TOPIC_2_6_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     TAGGED_ITEMS[:96]
 )
 
-# Topic 3.1 (CS1-C-T01) complete slice: all 14 live knowledge checks
-# (cs1010 primary for LO01-LO06 + cs1016 Memory Front twin for LO01;
-# revision left untagged).
+# Topic 3.1 (CS1-C-T01) complete slice: all 17 live knowledge checks
+# (cs1010 primary for LO01-LO06 including three retry AR items + cs1016 Memory
+# Front twin for LO01; revision left untagged).
 TOPIC_3_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     (
         "3.1.1-method-of-moments-cs1010.json",
@@ -1211,6 +1227,11 @@ TOPIC_3_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+        "cs1010-3.1.3-ar-02",
+        "CS1-C-T01-LO03",
+    ),
+    (
+        "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
         "cs1010-3.1.3-cp-01",
         "CS1-C-T01-LO03",
     ),
@@ -1221,12 +1242,22 @@ TOPIC_3_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "3.1.4-comparison-mse-cs1010.json",
+        "cs1010-3.1.4-ar-02",
+        "CS1-C-T01-LO04",
+    ),
+    (
+        "3.1.4-comparison-mse-cs1010.json",
         "cs1010-3.1.4-cp-01",
         "CS1-C-T01-LO04",
     ),
     (
         "3.1.5-asymptotic-mle-cs1010.json",
         "cs1010-3.1.5-ar-01",
+        "CS1-C-T01-LO05",
+    ),
+    (
+        "3.1.5-asymptotic-mle-cs1010.json",
+        "cs1010-3.1.5-ar-02",
         "CS1-C-T01-LO05",
     ),
     (
@@ -1246,10 +1277,10 @@ TOPIC_3_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
-# Frozen 106-item foundation before topic 3.2 completion
-# (96 through topic 2.6 + topic 3.1).
+# Frozen 109-item foundation before topic 3.2 completion
+# (96 through topic 2.6 + topic 3.1 including three retry AR items).
 FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
-    TAGGED_ITEMS[:106]
+    TAGGED_ITEMS[:109]
 )
 
 # Topic 3.2 (CS1-C-T02) complete slice: all 18 live knowledge checks
@@ -1348,10 +1379,10 @@ TOPIC_3_2_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
-# Frozen 124-item foundation before topic 3.3 completion
-# (106 through topic 3.1 + topic 3.2).
+# Frozen 127-item foundation before topic 3.3 completion
+# (109 through topic 3.1 + topic 3.2).
 FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
-    TAGGED_ITEMS[:124]
+    TAGGED_ITEMS[:127]
 )
 
 # Topic 3.3 (CS1-C-T03) complete slice: all 12 live knowledge checks
@@ -2102,7 +2133,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_1_2_completion() -> None:
         "cs1017-1.2.3-ar-01",
         "cs1017-1.2.3-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2189,7 +2220,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_1_completion() -> None:
         "cs1004-2.1f-cp-01",
         "cs1004-2.1d-ar-02",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2269,7 +2300,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_2_completion() -> None:
         "cs1005-2.2.4-ar-01",
         "cs1005-2.2.4-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2343,7 +2374,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_4_completion() -> None:
         "cs1007-2.4.2-ar-02",
         "cs1007-2.4.2-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2418,7 +2449,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_5_completion() -> None:
         "cs1008-2.5.2-ar-02",
         "cs1008-2.5.2-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_5_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2509,17 +2540,17 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_6_completion() -> None:
         "cs1009-2.6.6-ar-02",
         "cs1009-2.6.6-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_5_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_6_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 
 def test_topic_3_1_all_items_carry_correct_objective_id() -> None:
-    """Topic 3.1 has 14 tagged items; each of its 6 LOs has at least one."""
+    """Topic 3.1 has 17 tagged items; each of its 6 LOs has at least one."""
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
     expected = {item_id: oid for _, item_id, oid in TOPIC_3_1_TAGGED_ITEMS}
-    assert len(expected) == 14
+    assert len(expected) == 17
 
     seen_oids: set[str] = set()
     for fname, item_id, expected_oid in TOPIC_3_1_TAGGED_ITEMS:
@@ -2582,15 +2613,18 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_1_completion() -> None:
         "cs1010-3.1.2-ar-01",
         "cs1010-3.1.2-cp-01",
         "cs1010-3.1.3-ar-01",
+        "cs1010-3.1.3-ar-02",
         "cs1010-3.1.3-cp-01",
         "cs1010-3.1.4-ar-01",
+        "cs1010-3.1.4-ar-02",
         "cs1010-3.1.4-cp-01",
         "cs1010-3.1.5-ar-01",
+        "cs1010-3.1.5-ar-02",
         "cs1010-3.1.5-cp-01",
         "cs1010-3.1.6-ar-01",
         "cs1010-3.1.6-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_2_6_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2639,12 +2673,12 @@ def test_topic_3_2_all_items_carry_correct_objective_id() -> None:
 
 
 def test_foundation_tagged_sample_unaffected_by_topic_3_2_completion() -> None:
-    """The prior 106-item foundation mappings are unchanged after topic 3.2."""
-    assert len(FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS) == 106
+    """The prior 109-item foundation mappings are unchanged after topic 3.2."""
+    assert len(FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS) == 109
     prior_ids = {
         item_id for _, item_id, _ in FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS
     }
-    assert len(prior_ids) == 106
+    assert len(prior_ids) == 109
 
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
@@ -2682,7 +2716,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_2_completion() -> None:
         "cs1011-3.2.8-ar-01",
         "cs1011-3.2.8-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2729,12 +2763,12 @@ def test_topic_3_3_all_items_carry_correct_objective_id() -> None:
 
 
 def test_foundation_tagged_sample_unaffected_by_topic_3_3_completion() -> None:
-    """The prior 124-item foundation mappings are unchanged after topic 3.3."""
-    assert len(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS) == 124
+    """The prior 127-item foundation mappings are unchanged after topic 3.3."""
+    assert len(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS) == 127
     prior_ids = {
         item_id for _, item_id, _ in FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS
     }
-    assert len(prior_ids) == 124
+    assert len(prior_ids) == 127
 
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
@@ -2766,7 +2800,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_3_completion() -> None:
         "cs1012-3.3.5-ar-01",
         "cs1012-3.3.5-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2815,11 +2849,11 @@ def test_topic_4_2_all_items_carry_correct_objective_id() -> None:
 
 
 def test_foundation_tagged_sample_unaffected_by_topic_4_2_completion() -> None:
-    """The prior 148-item freeze mappings are unchanged after topic 4.2."""
-    prior = TAGGED_ITEMS[:148]
-    assert len(prior) == 148
+    """The prior 151-item freeze mappings are unchanged after topic 4.2."""
+    prior = TAGGED_ITEMS[:151]
+    assert len(prior) == 151
     prior_ids = {item_id for _, item_id, _ in prior}
-    assert len(prior_ids) == 148
+    assert len(prior_ids) == 151
 
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
@@ -2875,7 +2909,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_4_2_completion() -> None:
         "cs1014-4.2.10-ar-01",
         "cs1014-4.2.10-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(TOPIC_4_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 
@@ -2924,11 +2958,11 @@ def test_topic_5_1_all_items_carry_correct_objective_id() -> None:
 
 
 def test_foundation_tagged_sample_unaffected_by_topic_5_1_completion() -> None:
-    """The prior 184-item freeze mappings are unchanged after topic 5.1."""
-    prior = TAGGED_ITEMS[:184]
-    assert len(prior) == 184
+    """The prior 187-item freeze mappings are unchanged after topic 5.1."""
+    prior = TAGGED_ITEMS[:187]
+    assert len(prior) == 187
     prior_ids = {item_id for _, item_id, _ in prior}
-    assert len(prior_ids) == 184
+    assert len(prior_ids) == 187
 
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
@@ -2986,7 +3020,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_5_1_completion() -> None:
         "cs1015-5.1.9-ar-01",
         "cs1015-5.1.9-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 237
+    assert len(TAGGED_ITEMS) == 240
     assert set(TOPIC_5_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 

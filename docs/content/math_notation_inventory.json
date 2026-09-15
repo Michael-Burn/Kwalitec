@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-14T21:17:11Z",
+  "generated_at": "2026-09-15T05:29:31Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2320,
-    "already_compliant": 2192,
+    "mathish_strings": 2339,
+    "already_compliant": 2211,
     "needs_migration": 0,
     "correctly_excluded": 128,
     "needs_manual_review": 0,
-    "confident_automated": 2320,
+    "confident_automated": 2339,
     "remaining_backlog": 0,
-    "migrated": 2173,
+    "migrated": 2190,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2192,
+    "fully_covered_by_current_typesetting": 2211,
     "manual_review_prose_exclusion": 127,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2173,
-    "equationish": 1612,
+    "dollar_delimited": 2190,
+    "equationish": 1629,
     "actuarial_fn": 507,
-    "ascii_approx": 261,
-    "bare_latex": 214,
+    "ascii_approx": 264,
+    "bare_latex": 221,
     "greek": 114,
-    "compound": 27,
+    "compound": 31,
     "unicode_ops": 11
   },
   "by_risk_tier_needs_migration": {
@@ -10854,8 +10854,8 @@
       "topic_code": "3.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
-        "mathish_strings": 21,
-        "already_compliant": 21,
+        "mathish_strings": 29,
+        "already_compliant": 29,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -10868,6 +10868,149 @@
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. From $n=100$ independent Exponential claim delays with rate $\\lambda$, the MLE is $\\hat{\\lambda}=0.5$. Under regularity the asymptotic approximation is $\\hat{\\lambda}\\approx N(\\lambda,\\lambda^{2}/n)$. Which statement correctly states the estimated asymptotic standard error and correctly refuses treating bootstrap as a substitute for this asymptotic law?",
+          "text_hash": "4e5ac457458d3109",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Plug in at the MLE: $\\widehat{\\mathrm{SE}}\\approx 0.5/\\sqrt{100}=0.05$. Equivalently, $\\sqrt{n}(\\hat{\\lambda}-\\lambda)$ is asymptotically $N(0,\\lambda^{2})$, so $\\operatorname{Var}(\\hat{\\lambda})\\approx\\lambda^{2}/n$. Bootstrap estimates properties by redrawing the sample; it does not replace stating this asymptotic Normal result. The information variance is a large-sample approximation, not an exact finite-n identity.",
+          "text_hash": "2133e149ae530a06",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Estimated asymptotic SE $\\approx 0.05$; bootstrap does not replace the asymptotic Normal MLE law.",
+          "text_hash": "b55a61caf6200682",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using the mean-parameter SE form, treating the information variance as exact for finite n, dropping $\\sqrt{n}$, or replacing asymptotics with bootstrap.",
+          "text_hash": "c5e0c094bbf5c226",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For large $n$, $\\hat{\\lambda}$ is approximately Normal about $\\lambda$ with variance $\\approx\\lambda^{2}/n$, so $\\widehat{\\mathrm{SE}}\\approx 0.5/\\sqrt{100}=0.05$. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
+          "text_hash": "4960f01699feff5f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 1,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The result says $\\operatorname{Var}(\\hat{\\lambda})=1/\\lambda^{2}$ exactly for every finite $n$, so $\\widehat{\\mathrm{SE}}=1/0.5=2$ with no large-sample approximation.",
+          "text_hash": "52b82fd3254c98f6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Because bootstrap can estimate a sampling distribution, the asymptotic Normal MLE result is unnecessary whenever bootstrap is available, so no SE from $\\lambda^{2}/n$ is required.",
+          "text_hash": "e6b1f3a3c3e02aef",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 1,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The result implies $\\hat{\\lambda}\\xrightarrow{d} N(0,\\lambda^{2})$ without the $\\sqrt{n}$ scaling, so the variance of $\\hat{\\lambda}$ itself tends to $\\lambda^{2}$ and $\\widehat{\\mathrm{SE}}\\approx 0.5$.",
+          "text_hash": "6a6ec80f78b78a9f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
+          "package_file": "3.1.5-asymptotic-mle-cs1010.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Under regularity, an MLE $\\hat{\\theta}_{n}$ satisfies $\\sqrt{n} (\\hat{\\theta}_{n} - \\theta) \\xrightarrow{d} N(0, 1/I(\\theta))$. Which statement is correct?",
           "text_hash": "bce215d25b364638",
@@ -10884,7 +11027,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "The $\\sqrt{n}$-scaled error is asymptotically $N(0, 1/I(\\theta))$, so $\\hat{\\theta}_{n}$ is approx Normal with variance $1/(n I(\\theta))$. Bootstrap is a different tool and does not erase the asymptotic claim. Dropping $\\sqrt{n}$ misstates the limit.",
           "text_hash": "7da8d65100efe46b",
@@ -10901,7 +11044,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Large-sample Normal law with variance $\\approx 1/(n I(\\theta))$; bootstrap $\\neq$ asymptotic MLE theory.",
           "text_hash": "fbaac7de4b49d420",
@@ -10918,7 +11061,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Treating the information variance as exact for finite n, dropping $\\sqrt{n}$, or replacing asymptotics with bootstrap.",
           "text_hash": "cbe2b090a4e90c53",
@@ -10934,7 +11077,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "For large n, $\\hat{\\theta}_{n}$ is approximately Normal about $\\theta$ with variance $\\approx 1/(n I(\\theta))$, which supports large-sample standard errors and Wald-type intervals or tests. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
           "text_hash": "5804714d2ddafe3d",
@@ -10951,7 +11094,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The result says $\\operatorname{Var}(\\hat{\\theta}_{n})$ = $I(\\theta)$ exactly for every finite n, so no large-sample approximation is involved.",
           "text_hash": "d7942f67941730fe",
@@ -10968,7 +11111,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-ASYMPTOTIC-MLE",
           "package_file": "3.1.5-asymptotic-mle-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The result implies $\\hat{\\theta}_{n} \\xrightarrow{d} N(0, 1/I(\\theta))$ without the $\\sqrt{n}$ scaling, so the variance of $\\hat{\\theta}_{n}$ itself tends to $1/I(\\theta)$.",
           "text_hash": "1cd5015ac0f7a9a3",
@@ -11592,8 +11735,8 @@
       "topic_code": "3.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
-        "mathish_strings": 32,
-        "already_compliant": 32,
+        "mathish_strings": 37,
+        "already_compliant": 37,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -11606,6 +11749,92 @@
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Two estimators of $\\theta$: $T_{1}$ is unbiased with $\\operatorname{Var}(T_{1})=12$; $T_{2}$ has $\\operatorname{Bias}(T_{2})=2$ and $\\operatorname{Var}(T_{2})=5$. Which statement correctly compares them using mean square error?",
+          "text_hash": "535746ebbf806656",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+          "package_file": "3.1.4-comparison-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Dropping Bias^{2}, preferring the unbiased estimator automatically, or replacing MSE comparison with an asymptotics check.",
+          "text_hash": "05c6da44e9a2549b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "bare_latex",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+          "package_file": "3.1.4-comparison-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=5+2^{2}=9$. Prefer $T_{2}$ on MSE. Unbiasedness of $T_{1}$ does not override a worse MSE, and naming definitions alone is not itself this comparison.",
+          "text_hash": "00c611bcffa813c3",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+          "package_file": "3.1.4-comparison-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=5$ (ignore squared bias). Prefer $T_{2}$, and because $T_{1}$ is unbiased the comparison is optional.",
+          "text_hash": "d46c7fd57af77289",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+          "package_file": "3.1.4-comparison-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(T_{1})=12$ and $\\operatorname{MSE}(T_{2})=9$, but prefer $T_{1}$ because any unbiased estimator beats any biased one on MSE.",
+          "text_hash": "3f59b405e32da19a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
+          "package_file": "3.1.4-comparison-mse-cs1010.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Two estimators of $\\theta$: $\\hat{\\theta}_{1}$ is unbiased with $\\operatorname{Var}=\\frac{2}{n}$; $\\hat{\\theta}_{2}$ has $\\operatorname{Bias}=\\frac{0.5}{\\sqrt{n}}$ and $\\operatorname{Var}=\\frac{0.5}{n}$. Which statement is correct?",
           "text_hash": "3d70529564bc3c82",
@@ -11622,7 +11851,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "$\\mathrm{MSE}_{1}=\\frac{2}{n}$. $\\mathrm{Bias}^{2}$ for $\\hat{\\theta}_{2}$ is $(\\frac{0.5}{\\sqrt{n}})^{2}=\\frac{0.25}{n}$, so $\\mathrm{MSE}_{2}=\\frac{0.75}{n} < \\frac{2}{n}$. Prefer $\\hat{\\theta}_{2}$. Squaring $\\frac{0.5}{\\sqrt{n}}$ incorrectly as $\\frac{0.25}{\\sqrt{n}}$ is algebraically wrong. Unbiasedness does not override a worse MSE.",
           "text_hash": "714a7b743f9f4b81",
@@ -11640,7 +11869,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$MSE_{1}=\\frac{2}{n}$; $MSE_{2}=\\frac{0.75}{n}$; prefer $\\hat{\\theta}_{2}$. Definitions alone are not a comparison.",
           "text_hash": "5e9f9a9d9d8ee0f9",
@@ -11657,7 +11886,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Dropping the $\\mathrm{bias}^{2}$ term, preferring unbiasedness over MSE, or mishandling $(\\frac{0.5}{\\sqrt{n}})^{2}$.",
           "text_hash": "8dde378643fe04d7",
@@ -11675,7 +11904,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=(\\frac{0.5}{\\sqrt{n}})^{2}$ + $\\frac{0.5}{n} = \\frac{0.75}{n}$. Prefer $\\hat{\\theta}_{2}$ on MSE. Naming the definitions of bias and MSE is not itself a comparison of these two estimators.",
           "text_hash": "b285c6ad5af6f8fc",
@@ -11693,7 +11922,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=\\frac{0.5}{n}$ (ignore squared bias). Prefer $\\hat{\\theta}_{2}$, and because $\\hat{\\theta}_{1}$ is unbiased the comparison is optional.",
           "text_hash": "952d6effa83523fc",
@@ -11710,7 +11939,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$MSE_{1}=\\frac{2}{n}$ and $MSE_{2}=\\frac{0.25}{n}$ + $\\frac{0.5}{n} = \\frac{0.75}{n}$, but prefer $\\hat{\\theta}_{1}$ because any unbiased estimator beats any biased one on MSE.",
           "text_hash": "098632b871751867",
@@ -11727,7 +11956,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-COMPARISON-MSE",
           "package_file": "3.1.4-comparison-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$MSE_{2}=(\\frac{0.5}{\\sqrt{n}})^{2}$ + $\\frac{0.5}{n} = \\frac{0.25}{\\sqrt{n}}$ + $\\frac{0.5}{n}$. Prefer $\\hat{\\theta}_{1}$ because $\\frac{0.25}{\\sqrt{n}}$ dominates $\\frac{2}{n}$ for large n.",
           "text_hash": "9cd60b87a57a0f95",
@@ -12160,8 +12389,8 @@
       "topic_code": "3.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-KAPPA",
       "counts": {
-        "mathish_strings": 23,
-        "already_compliant": 23,
+        "mathish_strings": 29,
+        "already_compliant": 29,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -12265,6 +12494,110 @@
           "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Estimator A is unbiased with $\\operatorname{Var}(A)=49$. Estimator B has $\\operatorname{Bias}(B)=3$ and $\\operatorname{Var}(B)=25$. Which statement correctly computes both MSEs, prefers the smaller MSE, and correctly refuses treating consistency as finite-sample unbiasedness?",
+          "text_hash": "5d9f5978bc41fd85",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Choosing A solely because it is unbiased, dropping the Bias^{2} term for B, or equating consistency with unbiasedness.",
+          "text_hash": "3655e16e605aaff6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "pending",
+          "signals": [
+            "bare_latex",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=25+3^{2}=34$. Prefer B on MSE. Consistency is convergence in probability to the true value as $n$ grows; it is not the same as Bias $=0$ for every finite $n$.",
+          "text_hash": "e20ca028e104586d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=25$. Because A is unbiased it always has smaller MSE than B, so prefer A.",
+          "text_hash": "29a53dd0e643ecfe",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=3^{2}=9$ only (variance is ignored when bias is present), so B is preferred for a different reason than the MSE decomposition.",
+          "text_hash": "63ca21909e784373",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\operatorname{MSE}(A)=49$ and $\\operatorname{MSE}(B)=34$, but B cannot be consistent because $\\operatorname{Bias}(B)\\neq 0$ for this finite sample, so A must be preferred.",
+          "text_hash": "f755950baba0971c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
+          "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Estimator A is unbiased with $\\operatorname{Var}(A)$=4/n. Estimator B has $\\operatorname{Bias}(B)$=1/n and $\\operatorname{Var}(B)$=1/n. Which statement is correct?",
           "text_hash": "5e5fc69175a28131",
           "category": "already_compliant",
@@ -12281,7 +12614,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
           "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "$\\operatorname{MSE}(A)=\\frac{4}{n}$. $\\operatorname{MSE}(B)=(\\mathrm{bias})^{2} + \\mathrm{var} = \\frac{1}{n^{2}} + \\frac{1}{n}$, which is about $\\frac{1}{n}$ for large $n$ and beats $\\frac{4}{n}$. A biased estimator can win on MSE. Consistency is large-sample concentration, not finite-sample unbiasedness.",
           "text_hash": "b36db305bc3807c7",
@@ -12300,7 +12633,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
           "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$\\operatorname{MSE}(A)$=$\\frac{4}{n}$; $\\operatorname{MSE}(B)$=$\\frac{1}{n^{2}}$+$\\frac{1}{n}$; prefer B for large n on MSE; refuse unbiased-always-best and consistency=unbiasedness.",
           "text_hash": "e4af5825e4992b7c",
@@ -12318,7 +12651,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
           "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\operatorname{MSE}(A)$=$\\frac{4}{n}$ and $\\operatorname{MSE}(B)$=$\\frac{1}{n^{2}}$ + $\\frac{1}{n}$. For large n, $\\operatorname{MSE}(B) \\approx \\frac{1}{n}$ < $\\frac{4}{n}$, so B has smaller MSE. Unbiasedness is not MSE optimality, and consistency is not the same as unbiasedness.",
           "text_hash": "029f493139eae9bf",
@@ -12336,7 +12669,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.1-EFFICIENCY-BIAS-CONSISTENCY-MSE",
           "package_file": "3.1.3-efficiency-bias-consistency-mse-cs1010.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\operatorname{MSE}(A)=\\frac{4}{n}$ and $\\operatorname{MSE}(B)=(\\frac{1}{n})^{2} = \\frac{1}{n^{2}}$ only (variance is ignored when bias is present), so B is preferred for all $n$.",
           "text_hash": "504634bad8867c83",
@@ -42079,5 +42412,5 @@
       ]
     }
   ],
-  "content_fingerprint": "11770b9a592ca3b16cf37e2eef59a3cd9355ca13caafbaf85ebe6e65e21b1953"
+  "content_fingerprint": "30ff76cc754320b69f830dca115659dc23cadb1b8a3ff7fdac9641e5f4c61037"
 }

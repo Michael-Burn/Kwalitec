@@ -99,6 +99,11 @@ Editorial review record (2026-09-14): six topic 2.6 retry active-recall items
 (cs1009-2.6.1-ar-02 through cs1009-2.6.6-ar-02) were reviewed and approved
 before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): three topic 3.1 retry active-recall items
+(cs1010-3.1.3-ar-02, cs1010-3.1.4-ar-02, cs1010-3.1.5-ar-02) were reviewed and
+approved before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -125,6 +130,7 @@ from app.application.learning_session.scoreable_practice import (
 # topic 2.4 retry AR items 2.4.1-ar-02 / 2.4.2-ar-02;
 # topic 2.5 LO02 retry AR item 2.5.2-ar-02;
 # topic 2.6 retry AR items 2.6.1-ar-02 through 2.6.6-ar-02;
+# topic 3.1 retry AR items 3.1.3-ar-02 / 3.1.4-ar-02 / 3.1.5-ar-02;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -376,6 +382,9 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1009-2.6.4-ar-02",  # topic 2.6 retry: 2.6.4-normal-sample-mean-var-cs1009
         "cs1009-2.6.5-ar-02",  # topic 2.6 retry: 2.6.5-t-statistic-cs1009
         "cs1009-2.6.6-ar-02",  # topic 2.6 retry: 2.6.6-f-distribution-cs1009
+        "cs1010-3.1.3-ar-02",  # topic 3.1 retry: 3.1.3-efficiency-bias-consistency-mse-cs1010
+        "cs1010-3.1.4-ar-02",  # topic 3.1 retry: 3.1.4-comparison-mse-cs1010
+        "cs1010-3.1.5-ar-02",  # topic 3.1 retry: 3.1.5-asymptotic-mle-cs1010
     }
 )
 
@@ -5979,7 +5988,76 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice treats the comparison as a two-sample mean difference "
         "with pooled SE. An F variable compares sample variances, not means."
     ),
-
+    # --- cs1010-3.1.3-ar-02 ---
+    (
+        "cs1010-3.1.3-ar-02",
+        "b",
+    ): (
+        "That choice treats unbiasedness as an MSE guarantee and drops "
+        "Bias(B)^2. MSE(A)=49 while MSE(B)=25+9=34, so the biased estimator "
+        "wins on MSE."
+    ),
+    (
+        "cs1010-3.1.3-ar-02",
+        "c",
+    ): (
+        "That choice drops Var(B) and keeps only Bias(B)^2. MSE is variance "
+        "plus squared bias, so MSE(B)=25+9=34, not 9 alone."
+    ),
+    (
+        "cs1010-3.1.3-ar-02",
+        "d",
+    ): (
+        "That choice equates consistency with Bias=0 on this finite sample. "
+        "Consistency is large-sample concentration; a biased estimator can "
+        "still be consistent and can still beat an unbiased one on MSE."
+    ),
+    # --- cs1010-3.1.4-ar-02 ---
+    (
+        "cs1010-3.1.4-ar-02",
+        "b",
+    ): (
+        "That choice drops Bias(T2)^2 from MSE and treats unbiasedness as "
+        "making comparison optional. MSE(T2)=5+4=9; the comparison is required."
+    ),
+    (
+        "cs1010-3.1.4-ar-02",
+        "c",
+    ): (
+        "That choice prefers the unbiased estimator automatically despite "
+        "MSE(T1)=12 > MSE(T2)=9. Smaller MSE wins the comparison."
+    ),
+    (
+        "cs1010-3.1.4-ar-02",
+        "d",
+    ): (
+        "That choice replaces MSE comparison with an asymptotic Normality "
+        "check. This objective compares estimators by MSE and bias."
+    ),
+    # --- cs1010-3.1.5-ar-02 ---
+    (
+        "cs1010-3.1.5-ar-02",
+        "b",
+    ): (
+        "That choice treats the information variance as exact for every "
+        "finite n. The Normal/info result is a large-sample approximation; "
+        "SE ≈ 0.5/√100 = 0.05."
+    ),
+    (
+        "cs1010-3.1.5-ar-02",
+        "c",
+    ): (
+        "That choice treats bootstrap as a substitute for stating the "
+        "asymptotic Normal MLE law. Bootstrap is a different tool; it does "
+        "not erase the asymptotic claim."
+    ),
+    (
+        "cs1010-3.1.5-ar-02",
+        "d",
+    ): (
+        "That choice drops the √n scaling and leaves Var(λ̂) tending to "
+        "λ². The limit law is for √n(λ̂-λ), so Var(λ̂)≈λ²/n."
+    ),
 }
 
 

@@ -158,6 +158,51 @@
       "objective_id": "CS1-C-T01-LO05"
     },
     {
+      "episode_id": "lep-cs1010-3.1.5-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1010-3.1.5-ar-02",
+      "title": "Active Recall: 3.1.5 apply asymptotic MLE law",
+      "prompt": "Closed-book. From $n=100$ independent Exponential claim delays with rate $\\lambda$, the MLE is $\\hat{\\lambda}=0.5$. Under regularity the asymptotic approximation is $\\hat{\\lambda}\\approx N(\\lambda,\\lambda^{2}/n)$. Which statement correctly states the estimated asymptotic standard error and correctly refuses treating bootstrap as a substitute for this asymptotic law?",
+      "response_type": "mcq",
+      "body": "Evaluate asymptotic SE on new numbers; keep the Normal/info law; refuse bootstrap-replaces-asymptotics.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+  "explanation": "Plug in at the MLE: $\\widehat{\\mathrm{SE}}\\approx 0.5/\\sqrt{100}=0.05$. Equivalently, $\\sqrt{n}(\\hat{\\lambda}-\\lambda)$ is asymptotically $N(0,\\lambda^{2})$, so $\\operatorname{Var}(\\hat{\\lambda})\\approx\\lambda^{2}/n$. Bootstrap estimates properties by redrawing the sample; it does not replace stating this asymptotic Normal result. The information variance is a large-sample approximation, not an exact finite-n identity.",
+  "model_answer": "Estimated asymptotic SE $\\approx 0.05$; bootstrap does not replace the asymptotic Normal MLE law.",
+  "common_mistake": "Using the mean-parameter SE form, treating the information variance as exact for finite n, dropping $\\sqrt{n}$, or replacing asymptotics with bootstrap.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For large $n$, $\\hat{\\lambda}$ is approximately Normal about $\\lambda$ with variance $\\approx\\lambda^{2}/n$, so $\\widehat{\\mathrm{SE}}\\approx 0.5/\\sqrt{100}=0.05$. Bootstrap resampling estimates properties by redrawing the sample; it does not replace stating this asymptotic distribution.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The result says $\\operatorname{Var}(\\hat{\\lambda})=1/\\lambda^{2}$ exactly for every finite $n$, so $\\widehat{\\mathrm{SE}}=1/0.5=2$ with no large-sample approximation.",
+          "misconception_tag": "finite_exact_info"
+        },
+        {
+          "id": "c",
+          "label": "Because bootstrap can estimate a sampling distribution, the asymptotic Normal MLE result is unnecessary whenever bootstrap is available, so no SE from $\\lambda^{2}/n$ is required.",
+          "misconception_tag": "bootstrap_replaces_asymptotics"
+        },
+        {
+          "id": "d",
+          "label": "The result implies $\\hat{\\lambda}\\xrightarrow{d} N(0,\\lambda^{2})$ without the $\\sqrt{n}$ scaling, so the variance of $\\hat{\\lambda}$ itself tends to $\\lambda^{2}$ and $\\widehat{\\mathrm{SE}}\\approx 0.5$.",
+          "misconception_tag": "drop_sqrt_n"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T01-LO05"
+    },
+    {
       "episode_id": "lep-cs1010-3.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1010-3.1.5-cp-01",
