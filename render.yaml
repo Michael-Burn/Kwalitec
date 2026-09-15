@@ -82,6 +82,14 @@ services:
       - key: SR_SESSION_SQL_EVIDENCE_COMPANION
         value: "1"
 
+      # ADR-027 M0 Decision Boundary — PREPARED ONLY (not live).
+      # Local soak: KWALITEC_ADR027_M0_DECISION_BOUNDARY=1 with Policy V1 OFF.
+      # Production remains OFF until a deliberate soak decision updates
+      # VERSION_1_FLAG_MATRIX. To activate later, uncomment the key/value:
+      # - key: KWALITEC_ADR027_M0_DECISION_BOUNDARY
+      #   value: "1"
+      # Rollback: leave unset / commented (or set to "0").
+
 databases:
   - name: kwalitec-db
     plan: free

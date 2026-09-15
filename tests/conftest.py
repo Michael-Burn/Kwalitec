@@ -39,6 +39,12 @@ os.environ["SR_NUMERIC_ASSESSMENT_FRAMEWORK"] = "0"
 # Local ``.env`` may set ``SR_SESSION_SQL_EVIDENCE_COMPANION=1`` for dogfood.
 # Keep the pytest baseline OFF unless a test opts in explicitly.
 os.environ["SR_SESSION_SQL_EVIDENCE_COMPANION"] = "0"
+# Local ``.env`` may set ``KWALITEC_ADR027_M0_DECISION_BOUNDARY=1`` for soak.
+# Keep the pytest baseline OFF unless a test opts in explicitly.
+os.environ["KWALITEC_ADR027_M0_DECISION_BOUNDARY"] = "0"
+# Local ``.env`` may set ``KWALITEC_ADR027_POLICY_V1=1`` for soak experiments.
+# Keep the pytest baseline OFF (M0 soak uses Policy V0 only).
+os.environ["KWALITEC_ADR027_POLICY_V1"] = "0"
 
 from app import create_app  # noqa: E402
 from app.extensions import db as _db  # noqa: E402
