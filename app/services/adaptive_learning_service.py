@@ -3,8 +3,12 @@
 from __future__ import annotations
 
 import logging
-from datetime import date, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 
+from app.application.learner_progress.local_calendar import (
+    local_calendar_date,
+    timezone_for_learner,
+)
 from app.extensions import db
 from app.models.learning import StudyAttempt
 from app.models.topic_progress import TopicProgress
@@ -462,8 +466,6 @@ class AdaptiveLearningService:
         Returns:
             int: Number of consecutive days (including today) with a study attempt.
         """
-        from sqlalchemy import func
-
         # Get distinct study dates ordered descending
         rows = (
             db.session.query(StudyAttempt.study_date)
@@ -476,7 +478,9 @@ class AdaptiveLearningService:
         if not rows:
             return 0
 
-        today = date.today()
+        today = local_calendar_date(
+            datetime.now(tz=UTC), timezone_for_learner(user_id)
+        )
         dates = [row[0] for row in rows]
 
         streak = 0

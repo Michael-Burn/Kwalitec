@@ -16,6 +16,9 @@ from app.services.recovery_injection import (
     RuntimeARecoveryInjection,
 )
 from tests.conftest import _make_user
+from tests.services.recommendation_equality import (
+    assert_recommendations_content_equal,
+)
 
 
 def _context(*, student_id: str) -> RecoveryContext:
@@ -87,7 +90,7 @@ def test_recommendation_output_unchanged_with_recovery_injection(ctx):
     with_injection = RecommendationService.generate_recommendations(
         user.id, limit=5, recovery_injection=injection
     )
-    assert without == with_injection
+    assert_recommendations_content_equal(without, with_injection)
     assert injection.last_consideration is not None
     assert injection.last_consideration.ignored_for_decisions is True
     assert injection.last_consideration.reason == REASON_CONTEXT_NOT_SUPPLIED
@@ -109,7 +112,7 @@ def test_recommendation_unchanged_when_context_supplied(ctx):
     with_candidate = RecommendationService.generate_recommendations(
         user.id, limit=5, recovery_injection=injection
     )
-    assert without == with_candidate
+    assert_recommendations_content_equal(without, with_candidate)
 
 
 def test_provenance_preserved_through_injection():

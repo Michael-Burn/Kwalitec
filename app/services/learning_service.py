@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import UTC, date, datetime
 
+from app.application.learner_progress.local_calendar import (
+    local_calendar_date,
+    timezone_for_learner,
+)
 from app.extensions import db
 from app.models.learning import LearningObjective, Mistake, StudyAttempt
 from app.models.mission import Mission
@@ -53,7 +57,9 @@ class LearningService:
             ValueError: If mission_id is invalid or user_id is invalid.
         """
         if study_date is None:
-            study_date = date.today()
+            study_date = local_calendar_date(
+                datetime.now(tz=UTC), timezone_for_learner(user_id)
+            )
 
         # Verify mission exists and belongs to user
         mission = Mission.query.get(mission_id)

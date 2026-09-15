@@ -7,6 +7,9 @@ from app.infrastructure.adapters.decision_simulation import (
 )
 from app.services.recommendation_service import RecommendationService
 from tests.conftest import _make_user
+from tests.services.recommendation_equality import (
+    assert_recommendations_content_equal,
+)
 
 
 def test_recommendation_output_unchanged_with_simulation(ctx):
@@ -17,7 +20,7 @@ def test_recommendation_output_unchanged_with_simulation(ctx):
     with_sim = RecommendationService.generate_recommendations(
         user.id, limit=5, simulation_service=service
     )
-    assert without == with_sim
+    assert_recommendations_content_equal(without, with_sim)
     # Simulation may produce zero comparisons when no recommendations exist,
     # but when recommendations exist they must remain identical.
     if with_sim:

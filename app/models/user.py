@@ -46,6 +46,15 @@ class User(UserMixin, db.Model):
         server_default="2",
         comment="Preferred daily study goal in hours (persisted preference only)",
     )
+    # IANA timezone for learner-local calendar days (streak study-day derivation).
+    # Explicit profile setting only; not device detection or travel history.
+    timezone: str = db.Column(
+        db.String(64),
+        nullable=False,
+        default="Africa/Harare",
+        server_default="Africa/Harare",
+        comment="IANA timezone identifier for learner-local study days",
+    )
 
     # Relationships — explicit back_populates matching child-side declarations
     subjects = db.relationship("Subject", back_populates="user", lazy=True)

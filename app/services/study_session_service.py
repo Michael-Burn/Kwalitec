@@ -17,7 +17,6 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import date
 from typing import TYPE_CHECKING
 
 from app.extensions import db
@@ -350,7 +349,6 @@ class StudySessionService:
             user_id=user_id,
             mission_id=mission.id,
             topic_id=topic_id,
-            study_date=date.today(),
             notes=StudySessionService._format_session_notes(
                 completion_status, notes
             ),
@@ -507,7 +505,6 @@ class StudySessionService:
                 user_id=user_id,
                 mission_id=mission.id,
                 topic_id=topic_id,
-                study_date=date.today(),
                 duration_minutes=duration_minutes,
                 questions_attempted=questions_attempted,
                 questions_correct=questions_correct,

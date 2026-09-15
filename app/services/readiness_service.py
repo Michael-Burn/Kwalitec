@@ -17,12 +17,16 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
 from sqlalchemy.orm import joinedload
 
 from app.application.adaptive_decision.types import POLICY_V1_MIN_EVIDENCE
+from app.application.learner_progress.local_calendar import (
+    local_calendar_date,
+    timezone_for_learner,
+)
 from app.application.student_twin.query import TopicKnowledgeFact
 from app.extensions import db
 from app.models.curriculum import Topic
@@ -640,7 +644,9 @@ class ReadinessService:
         if not rows:
             return 0
 
-        today = date.today()
+        today = local_calendar_date(
+            datetime.now(tz=UTC), timezone_for_learner(user_id)
+        )
         dates = [row[0] for row in rows]
 
         # The most recent date must be today or yesterday for the streak to continue

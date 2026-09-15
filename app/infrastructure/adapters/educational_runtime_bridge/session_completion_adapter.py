@@ -368,7 +368,6 @@ class SessionCompletionAdapter:
                 user_id=user_id,
                 mission_id=int(mission.id),
                 topic_id=practice.get("topic_id"),
-                study_date=date.today(),
                 duration_minutes=practice.get("duration_minutes"),
                 questions_attempted=int(practice["questions_attempted"]),
                 questions_correct=int(practice["questions_correct"]),

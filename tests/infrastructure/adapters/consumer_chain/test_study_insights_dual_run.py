@@ -7,6 +7,7 @@ feature-flag matrix, and rollback validation.
 from __future__ import annotations
 
 from copy import deepcopy
+from time import sleep
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -28,6 +29,9 @@ from app.infrastructure.diagnostics.logging import StructuredLogger
 from app.infrastructure.events.registry import EventRegistry
 from app.infrastructure.events.types import CONSUMER_CHAIN_DUAL_RUN
 from app.services.recommendation_service import RecommendationService
+from tests.services.recommendation_equality import (
+    assert_recommendations_content_equal,
+)
 
 
 @pytest.fixture
@@ -211,8 +215,17 @@ def test_generate_recommendations_unchanged_when_dual_run_on(
     )
 
     baseline = RecommendationService.generate_recommendations(user.id, limit=5)
+    # Force the documented second-boundary flake mechanism; content equality
+    # must still hold even when generated_at can differ.
+    sleep(1.1)
     again = RecommendationService.generate_recommendations(user.id, limit=5)
-    assert again == baseline
+    if baseline and again:
+        baseline_stamps = [row.get("generated_at") for row in baseline]
+        again_stamps = [row.get("generated_at") for row in again]
+        if baseline_stamps != again_stamps:
+            # Original flake: full-list equality fails on timestamp alone.
+            assert again != baseline
+    assert_recommendations_content_equal(again, baseline)
     assert isinstance(again, list)
     assert twin_calls["n"] >= 1
 

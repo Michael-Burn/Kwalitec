@@ -8,10 +8,14 @@ not write Twin state, Study Progress, or ADR-027 decision artefacts.
 from __future__ import annotations
 
 import logging
-from datetime import date
+from datetime import UTC, date, datetime
 
 from flask import flash, url_for
 
+from app.application.learner_progress.local_calendar import (
+    local_calendar_date,
+    timezone_for_learner,
+)
 from app.application.learner_progress.milestone_detector import (
     LearnerProgressMilestoneDetector,
 )
@@ -84,7 +88,9 @@ class HonestProgressService:
 
     def streak_stats(self, *, user_id: int, as_of: date | None = None) -> StreakStats:
         """Current and longest streak from the qualifying study day port."""
-        day = as_of or date.today()
+        day = as_of or local_calendar_date(
+            datetime.now(tz=UTC), timezone_for_learner(user_id)
+        )
         try:
             return self._study_day_query.streak_stats(user_id=user_id, as_of=day)
         except Exception:  # noqa: BLE001 - fail-open for presentation
@@ -106,7 +112,9 @@ class HonestProgressService:
 
         Used by Home (with flash) and Session complete (inline, no flash).
         """
-        day = as_of or date.today()
+        day = as_of or local_calendar_date(
+            datetime.now(tz=UTC), timezone_for_learner(user_id)
+        )
         announced: list[str] = []
         try:
             subject_code = self._resolve_subject_code(user_id)
@@ -170,7 +178,9 @@ class HonestProgressService:
         as_of: date | None = None,
     ) -> HonestProgressPage:
         """Assemble the dedicated Stats page from read-only ports."""
-        day = as_of or date.today()
+        day = as_of or local_calendar_date(
+            datetime.now(tz=UTC), timezone_for_learner(user_id)
+        )
         streak = self.streak_stats(user_id=user_id, as_of=day)
         (
             covered,

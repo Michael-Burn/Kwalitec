@@ -17,6 +17,12 @@ from app.application.learning_session.dto.candidate_observation import (
     CandidateObservation,
     RuntimeEvidenceType,
 )
+from app.application.learning_session.evidence_gate import (
+    EvidenceBeforeCompletionGate,
+)
+from app.application.learning_session.evidence_package_builder import (
+    EvidencePackageBuilder,
+)
 from app.application.learning_session.runtime import LearningSessionRuntime
 from app.application.learning_session.session_origin import (
     SESSION_ORIGIN_STUDENT_SELECTED,
@@ -138,6 +144,9 @@ def _complete_with_educational_evidence(
         persistence=persistence,
         mission_completer=EducationalRuntimeEngineService(),
         twin_consumer=consumer,
+        evidence_gate=EvidenceBeforeCompletionGate(
+            builder=EvidencePackageBuilder(clock=lambda: FIXED)
+        ),
     )
     obs = CandidateObservation.create(
         observation_id="obs-sel-correct",
@@ -398,12 +407,18 @@ def test_qualifying_student_selected_session_counts_toward_streak(
     assert result["status"] == "completed"
     assert result["twin_updated"] is True
 
+    study_day = FIXED.date()
     query = QualifyingStudyDayQueryAdapter(
         index=persistence.qualifying_study_day_index
     )
-    stats = query.streak_stats(user_id=user.id, as_of=date.today())
+    stats = query.streak_stats(user_id=user.id, as_of=study_day)
     assert stats.current_streak_days >= 1
-    assert date.today() in stats.qualifying_dates
+    assert study_day in stats.qualifying_dates
+
+    # Prove a different local calendar day is not in the indexed dates
+    # (the old local-vs-UTC membership assert would fail under mismatch).
+    local_today_mismatch = study_day + timedelta(days=1)
+    assert local_today_mismatch not in stats.qualifying_dates
 
 
 def test_flask_post_rejects_unreached_topic(ctx, app, monkeypatch):
