@@ -247,6 +247,11 @@ _WAVE11_MIGRATIONS = (
     ),
     (
         "3.2.1-confidence-interval-parameter-cs1011.json",
+        "knowledge_checks[2].explanation",
+        r"Frequentist coverage is about the procedure and the parameter $\mu$, not about the next observation. Treating $\mu$ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
+    ),
+    (
+        "3.2.1-confidence-interval-parameter-cs1011.json",
         "worked_example.steps[2].attempt_cue",
         r"Compute $12000 \pm 588$.",
     ),
@@ -262,7 +267,7 @@ _WAVE11_MIGRATIONS = (
     ),
     (
         "3.2.3-ci-given-sampling-distribution-cs1011.json",
-        "knowledge_checks[1].common_mistake",
+        "knowledge_checks[2].common_mistake",
         r"Ignoring the given $\chi^{2}$ pivot or inverting the inequality incorrectly.",
     ),
     (
@@ -292,7 +297,7 @@ _WAVE11_MIGRATIONS = (
     ),
     (
         "3.2.4-ci-normal-mean-variance-cs1011.json",
-        "knowledge_checks[1].common_mistake",
+        "knowledge_checks[2].common_mistake",
         r"Using $z$ with unknown $\sigma$, skipping the variance CI, or forcing a Normal-mean SE onto $\sigma^{2}$.",
     ),
     (
@@ -422,11 +427,6 @@ _WAVE11_EXCLUSIONS = (
         "3.1.6-bootstrap-estimator-cs1010.json",
         "worked_example.steps[1].explanation",
         "Each replicate's squared distance from θ̄* enters the bootstrap variance.",
-    ),
-    (
-        "3.2.1-confidence-interval-parameter-cs1011.json",
-        "knowledge_checks[1].explanation",
-        "Frequentist coverage is about the procedure and the parameter μ, not about the next observation. Treating μ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
     ),
     (
         "3.2.4-ci-normal-mean-variance-cs1011.json",
@@ -612,7 +612,7 @@ _WAVE11_PARTIAL_PROSE = (
     ),
     (
         "3.2.3-ci-given-sampling-distribution-cs1011.json",
-        "knowledge_checks[1].common_mistake",
+        "knowledge_checks[2].common_mistake",
         (
             "Ignoring the given ",
             " pivot or inverting the inequality incorrectly.",
@@ -636,7 +636,7 @@ _WAVE11_PARTIAL_PROSE = (
     ),
     (
         "3.2.4-ci-normal-mean-variance-cs1011.json",
-        "knowledge_checks[1].common_mistake",
+        "knowledge_checks[2].common_mistake",
         (
             "Using ",
             " with unknown ",
@@ -814,7 +814,7 @@ def test_wave11_scoring_unaffected_for_touched_knowledge_checks() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 16
+    assert len(seen) == 19
 
 
 def test_wave11_ledger_totals_and_remainder() -> None:
@@ -824,7 +824,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["remaining_backlog"] == 0
     assert checked["totals"]["needs_manual_review"] == 0
-    assert checked["totals"]["migrated"] == 2190
+    assert checked["totals"]["migrated"] == 2254
     assert live["totals"] == checked["totals"]
 
     pending = [
@@ -857,7 +857,7 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         assert len(matches) == 1
         assert matches[0]["migration_status"] == "correctly_excluded"
         batch1_manual += 1
-    assert batch1_manual == 24
+    assert batch1_manual == 23
 
     for package_file, field_path, expected in _WAVE11_MIGRATIONS:
         text = wave1.get_path(_load(package_file), field_path)
@@ -872,10 +872,10 @@ def test_wave11_ledger_totals_and_remainder() -> None:
         assert len(matches) == 1
         assert matches[0]["migration_status"] == "migrated"
         batch1_migrated_new += 1
-    assert batch1_migrated_new == 40
+    assert batch1_migrated_new == 41
 
 
 def test_wave11_migration_and_exclusion_counts() -> None:
-    assert len(_WAVE11_MIGRATIONS) == 40
-    assert len(_WAVE11_EXCLUSIONS) == 24
+    assert len(_WAVE11_MIGRATIONS) == 41
+    assert len(_WAVE11_EXCLUSIONS) == 23
     assert len(_WAVE11_MIGRATIONS) + len(_WAVE11_EXCLUSIONS) == 64

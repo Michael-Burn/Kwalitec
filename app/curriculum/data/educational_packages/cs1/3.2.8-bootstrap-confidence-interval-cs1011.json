@@ -159,6 +159,51 @@
       "objective_id": "CS1-C-T02-LO08"
     },
     {
+      "episode_id": "lep-cs1011-3.2.8-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.8-ar-02",
+      "title": "Active Recall: 3.2.8 apply percentile bootstrap CI",
+      "prompt": "Closed-book. A nonparametric bootstrap produced $B=10$ already-sorted replicate means: $80, 85, 88, 90, 92, 94, 96, 98, 100, 105$. For an approximate 80% percentile interval take order statistics at indices $\\lfloor\\alpha(B+1)\\rfloor$ and $\\lceil(1-\\alpha)(B+1)\\rceil$ with $\\alpha=0.2$. Which statement correctly reads those endpoints and correctly refuses treating a bootstrap SE alone as the CI?",
+      "response_type": "mcq",
+      "body": "Read percentile order statistics; refuse se_only_as_ci / ht_as_ci.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\lfloor 0.2\\times 11\\rfloor=2$ and $\\lceil 0.8\\times 11\\rceil=9$, so the endpoints are the 2nd and 9th order statistics: $85$ and $100$. Estimating a bootstrap SE and writing $(\\hat{\\theta}-\\mathrm{SE},\\hat{\\theta}+\\mathrm{SE})$ is not this percentile construction, and forming the CI is not a hypothesis test.",
+      "model_answer": "Percentile CI $(85, 100)$; refuse SE-only and HT conflation.",
+      "common_mistake": "Building a Wald interval from a bootstrap SE instead of reading replicate quantiles.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Lower index $2$ and upper index $9$ give the percentile CI $(85, 100)$. Estimating a bootstrap SE alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute a bootstrap SE from the ten replicates and report $(\\hat{\\theta}-\\mathrm{SE},\\, \\hat{\\theta}+\\mathrm{SE})$ only; quantile endpoints from replicates are never used.",
+          "misconception_tag": "se_only_as_ci"
+        },
+        {
+          "id": "c",
+          "label": "A bootstrap CI is completed by rejecting $H_0$ whenever $\\hat{\\theta}$ falls outside a fixed null value, without forming interval endpoints.",
+          "misconception_tag": "ht_as_ci"
+        },
+        {
+          "id": "d",
+          "label": "Take the 1st and 10th order statistics $(80, 105)$ for every $\\alpha$, because percentile intervals always use the full range of replicates.",
+          "misconception_tag": "always_full_range"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO08"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.8-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.8-cp-01",

@@ -90,7 +90,7 @@ _CONTROL = re.compile(r"\\([A-Za-z]+)")
 _MEANING_SAMPLES = (
     (
         "3.2.4-ci-normal-mean-variance-cs1011.json",
-        "knowledge_checks[1].choices[0].label",
+        "knowledge_checks[2].choices[0].label",
         (r"\bar{x}", r"t_{15, 1-\alpha/2}", r"s/\sqrt{n}", r"\chi^{2}"),
         "t / chi-square dual CI formula",
     ),
@@ -305,7 +305,7 @@ def test_wave2_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2190
+    assert checked["totals"]["migrated"] == 2254
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -322,7 +322,7 @@ def test_wave2_ledger_backlog_and_migration_status() -> None:
                 assert "dollar_delimited" in item["signals"]
             if item["category"] == "needs_migration" and item["needs_manual_review"]:
                 still_pending_review += 1
-    assert migrated == 261
+    assert migrated == 270
     assert still_pending_review == 0
 
 
@@ -336,7 +336,7 @@ def test_wave2_packages_disjoint_from_wave1() -> None:
 _WAVE2_LEFTOVER_MIGRATIONS = (
     (
         "3.2.4-ci-normal-mean-variance-cs1011.json",
-        "knowledge_checks[1].explanation",
+        "knowledge_checks[2].explanation",
         r"With $\sigma$ unknown, the mean CI uses $t_{n-1}$. The variance CI "
         r"inverts the chi-square pivot for $\frac{(n-1)s^{2}}{\sigma^{2}}$. "
         "Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",

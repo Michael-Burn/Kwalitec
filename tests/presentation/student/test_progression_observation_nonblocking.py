@@ -137,7 +137,7 @@ def test_recommendation_and_study_action_unchanged_at_full_catalogue_scale(ctx):
     samples = (
         (CS1_A_T01_LO01, [True, True, True]),
         (CS1_A_T02_LO01, [True, True, True, True]),
-        (CS1_C_T02_LO01, [True, True]),
+        (CS1_C_T02_LO01, [True, True, False]),
         (CS1_E_T01_LO01, [True, True]),
     )
     offset = 0

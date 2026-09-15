@@ -307,7 +307,7 @@ class TestFullCatalogueObservationScope:
             (CS1_A_T02_LO01, [True, True, True, False]),  # 4-item conceptual
             (CS1_B_T01_LO04, [True, True, False]),  # 3-item conceptual 2-of-3
             (CS1_C_T01_LO03, [True, True, False]),  # 3-item conceptual 2-of-3
-            (CS1_C_T02_LO01, [True, True]),
+            (CS1_C_T02_LO01, [True, True, False]),  # 3-item conceptual 2-of-3
             (CS1_D_T01_LO01, [True, True]),
             (CS1_E_T01_LO01, [True, True]),  # single-pair mixed
         )

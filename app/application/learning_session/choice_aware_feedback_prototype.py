@@ -104,6 +104,11 @@ Editorial review record (2026-09-15): three topic 3.1 retry active-recall items
 (cs1010-3.1.3-ar-02, cs1010-3.1.4-ar-02, cs1010-3.1.5-ar-02) were reviewed and
 approved before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): eight topic 3.2 retry active-recall items
+(cs1011-3.2.1-ar-02 through cs1011-3.2.8-ar-02) were reviewed and approved
+before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -385,6 +390,14 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1010-3.1.3-ar-02",  # topic 3.1 retry: 3.1.3-efficiency-bias-consistency-mse-cs1010
         "cs1010-3.1.4-ar-02",  # topic 3.1 retry: 3.1.4-comparison-mse-cs1010
         "cs1010-3.1.5-ar-02",  # topic 3.1 retry: 3.1.5-asymptotic-mle-cs1010
+        "cs1011-3.2.1-ar-02",  # topic 3.2 retry: 3.2.1-confidence-interval-parameter-cs1011
+        "cs1011-3.2.2-ar-02",  # topic 3.2 retry: 3.2.2-prediction-interval-cs1011
+        "cs1011-3.2.3-ar-02",  # topic 3.2 retry: 3.2.3-ci-given-sampling-distribution-cs1011
+        "cs1011-3.2.4-ar-02",  # topic 3.2 retry: 3.2.4-ci-normal-mean-variance-cs1011
+        "cs1011-3.2.5-ar-02",  # topic 3.2 retry: 3.2.5-ci-binomial-poisson-cs1011
+        "cs1011-3.2.6-ar-02",  # topic 3.2 retry: 3.2.6-ci-two-sample-cs1011
+        "cs1011-3.2.7-ar-02",  # topic 3.2 retry: 3.2.7-ci-paired-means-cs1011
+        "cs1011-3.2.8-ar-02",  # topic 3.2 retry: 3.2.8-bootstrap-confidence-interval-cs1011
     }
 )
 
@@ -6057,6 +6070,185 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice drops the √n scaling and leaves Var(λ̂) tending to "
         "λ². The limit law is for √n(λ̂-λ), so Var(λ̂)≈λ²/n."
+    ),
+    # --- cs1011-3.2.1-ar-02 ---
+    (
+        "cs1011-3.2.1-ar-02",
+        "b",
+    ): (
+        "That choice uses SE=σ instead of σ/√n. With n=25 and σ=20, "
+        "SE=4 and the 95% CI is (192.16, 207.84), not (160.8, 239.2)."
+    ),
+    (
+        "cs1011-3.2.1-ar-02",
+        "c",
+    ): (
+        "That choice reads the parameter CI as a 95% probability for the "
+        "next observation. Coverage is for μ under repeated sampling, not "
+        "for the next claim."
+    ),
+    (
+        "cs1011-3.2.1-ar-02",
+        "d",
+    ): (
+        "That choice treats a realised 95% CI as a 95% Bayesian posterior "
+        "probability for fixed μ. Frequentist coverage is about the "
+        "procedure under repeated sampling."
+    ),
+    # --- cs1011-3.2.2-ar-02 ---
+    (
+        "cs1011-3.2.2-ar-02",
+        "b",
+    ): (
+        "That choice reuses the mean CI half-width 1.96 as a prediction "
+        "interval. Prediction uses σ√(1+1/n), so the PI is about "
+        "(41.92, 58.08), not (48.04, 51.96)."
+    ),
+    (
+        "cs1011-3.2.2-ar-02",
+        "c",
+    ): (
+        "That choice drops process variance and uses σ/√n for a future "
+        "observation. Prediction SE is σ√(1+1/n)≈4.123, not 1."
+    ),
+    (
+        "cs1011-3.2.2-ar-02",
+        "d",
+    ): (
+        "That choice swaps the targets: a prediction interval covers Y, "
+        "while a parameter CI covers E[Y] (or another parameter)."
+    ),
+    # --- cs1011-3.2.3-ar-02 ---
+    (
+        "cs1011-3.2.3-ar-02",
+        "b",
+    ): (
+        "That choice ignores the given sampling law and jumps to a "
+        "Normal-mean cookbook. Invert the supplied N(θ, 0.025²) law."
+    ),
+    (
+        "cs1011-3.2.3-ar-02",
+        "c",
+    ): (
+        "That choice invents an extra /√n on a sampling SD that was "
+        "already given as 0.025. Half-width is 1.96×0.025=0.049."
+    ),
+    (
+        "cs1011-3.2.3-ar-02",
+        "d",
+    ): (
+        "That choice drops the observed estimate and centres at zero. "
+        "The interval must be centred at θ̂=0.30."
+    ),
+    # --- cs1011-3.2.4-ar-02 ---
+    (
+        "cs1011-3.2.4-ar-02",
+        "b",
+    ): (
+        "That choice uses z with unknown σ and skips the variance CI. "
+        "Use t₂₄ for μ and a chi-square form for σ²; both are required."
+    ),
+    (
+        "cs1011-3.2.4-ar-02",
+        "c",
+    ): (
+        "That choice reuses the mean endpoints as a CI for σ². Variance "
+        "intervals invert (n-1)s²/σ² ~ χ², not the mean numerical band."
+    ),
+    (
+        "cs1011-3.2.4-ar-02",
+        "d",
+    ): (
+        "That choice centres a Normal-mean SE at s². The variance CI uses "
+        "chi-square critical values on (n-1)s², not ±t·s/√n."
+    ),
+    # --- cs1011-3.2.5-ar-02 ---
+    (
+        "cs1011-3.2.5-ar-02",
+        "b",
+    ): (
+        "That choice reuses the Bernoulli half-width for Poisson. Poisson "
+        "SE is √(λ̂/n)=0.15 here, not the binomial SE 0.02."
+    ),
+    (
+        "cs1011-3.2.5-ar-02",
+        "c",
+    ): (
+        "That choice swaps the variance functions. Binomial uses "
+        "p̂(1-p̂)/n; Poisson uses λ̂/n in this sample-mean form."
+    ),
+    (
+        "cs1011-3.2.5-ar-02",
+        "d",
+    ): (
+        "That choice drops the Poisson CI. Both binomial-p and Poisson-λ "
+        "Normal-approx forms are required in this objective."
+    ),
+    # --- cs1011-3.2.6-ar-02 ---
+    (
+        "cs1011-3.2.6-ar-02",
+        "b",
+    ): (
+        "That choice treats equal sample sizes as pairing. Unmatched "
+        "independent groups stay a two-sample problem even when n_A=n_B."
+    ),
+    (
+        "cs1011-3.2.6-ar-02",
+        "c",
+    ): (
+        "That choice pools both groups into one sample and loses the "
+        "contrast. The CI targets μ_A-μ_B under independent samples."
+    ),
+    (
+        "cs1011-3.2.6-ar-02",
+        "d",
+    ): (
+        "That choice treats independence as optional. The two-sample SE "
+        "√(σ_A²/n_A+σ_B²/n_B) requires independent groups."
+    ),
+    # --- cs1011-3.2.7-ar-02 ---
+    (
+        "cs1011-3.2.7-ar-02",
+        "b",
+    ): (
+        "That choice runs an independent two-sample CI on paired columns. "
+        "Form differences first and use a one-sample CI for μ_d."
+    ),
+    (
+        "cs1011-3.2.7-ar-02",
+        "c",
+    ): (
+        "That choice targets μ_X and μ_Y separately. The paired parameter "
+        "is the mean difference μ_d."
+    ),
+    (
+        "cs1011-3.2.7-ar-02",
+        "d",
+    ): (
+        "That choice drops /√n from the SE. With s_d≈2.828 and n=6, "
+        "SE≈1.155, then multiply by t_5,0.975."
+    ),
+    # --- cs1011-3.2.8-ar-02 ---
+    (
+        "cs1011-3.2.8-ar-02",
+        "b",
+    ): (
+        "That choice reports a bootstrap-SE Wald band instead of percentile "
+        "endpoints. The percentile CI here is (85, 100)."
+    ),
+    (
+        "cs1011-3.2.8-ar-02",
+        "c",
+    ): (
+        "That choice turns the bootstrap CI into a hypothesis-test reject "
+        "rule. Percentile intervals form endpoints from replicate quantiles."
+    ),
+    (
+        "cs1011-3.2.8-ar-02",
+        "d",
+    ): (
+        "That choice always takes the full range of replicates. For α=0.2 "
+        "the indices are 2 and 9, giving (85, 100), not (80, 105)."
     ),
 }
 

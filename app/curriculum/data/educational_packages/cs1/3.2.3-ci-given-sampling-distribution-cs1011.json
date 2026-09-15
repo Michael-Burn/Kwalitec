@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T02-LO03"
     },
     {
+      "episode_id": "lep-cs1011-3.2.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.3-ar-02",
+      "title": "Active Recall: 3.2.3 apply given sampling distribution",
+      "prompt": "Closed-book. An estimator satisfies $\\hat{\\theta}\\sim N(\\theta, 0.025^{2})$ exactly (sampling distribution given). Observing $\\hat{\\theta}=0.30$ and using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\theta$ by inverting that given law, and correctly refuses inserting an extra $/\\sqrt{n}$ that is not part of the given sampling distribution?",
+      "response_type": "mcq",
+      "body": "Invert the given Normal sampling SD; refuse Normal-mean cookbook $/\\sqrt{n}$.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "The given sampling SD is already $0.025$. Half-width $=1.96\\times 0.025=0.049$, so the CI is $(0.251, 0.349)$. Dividing $0.025$ by an invented $\\sqrt{n}$ ignores the sampling distribution you were given.",
+      "model_answer": "CI $(0.251, 0.349)$; refuse extra $/\\sqrt{n}$ on the given SD.",
+      "common_mistake": "Treating the given sampling SD as a raw $\\sigma$ that still needs $/\\sqrt{n}$.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Invert $\\hat{\\theta}\\sim N(\\theta, 0.025^{2})$ to get $0.30\\pm 1.96\\times 0.025$, so the 95% CI is $(0.251, 0.349)$. Do not divide the given sampling SD by an extra $\\sqrt{n}$.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Always replace the given law by $\\bar{x}\\pm z\\, s/\\sqrt{n}$, even though the sampling distribution of $\\hat{\\theta}$ was already supplied.",
+          "misconception_tag": "normal_cookbook_always"
+        },
+        {
+          "id": "c",
+          "label": "Use half-width $1.96\\times 0.025/\\sqrt{n}$ for some $n$ not stated in the given sampling distribution, because every CI must include $/\\sqrt{n}$.",
+          "misconception_tag": "invent_sqrt_n"
+        },
+        {
+          "id": "d",
+          "label": "The interval for $\\theta$ is $(0.025\\times(-1.96),\\, 0.025\\times 1.96)$ with no dependence on the observed $\\hat{\\theta}=0.30$.",
+          "misconception_tag": "drop_estimate"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO03"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.3-cp-01",

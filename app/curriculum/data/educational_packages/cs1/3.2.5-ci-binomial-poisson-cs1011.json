@@ -161,6 +161,51 @@
       "objective_id": "CS1-C-T02-LO05"
     },
     {
+      "episode_id": "lep-cs1011-3.2.5-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.5-ar-02",
+      "title": "Active Recall: 3.2.5 apply binomial and Poisson CIs",
+      "prompt": "Closed-book. (i) In $n=400$ Bernoulli trials, $x=80$ successes, so $\\hat{p}=0.2$. (ii) A Poisson sample of size $n=100$ has sample mean $\\hat{\\lambda}=2.25$. Using $z_{0.975}=1.96$, which statement correctly gives both approximate 95% CIs and correctly refuses reusing the Bernoulli variance for the Poisson mean?",
+      "response_type": "mcq",
+      "body": "Evaluate both Normal-approx forms; refuse reuse_bern_variance / one-as-both.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Binomial SE $=\\sqrt{0.2\\times 0.8/400}=0.02$, CI $(0.1608, 0.2392)$. Poisson SE $=\\sqrt{2.25/100}=0.15$, CI $(1.956, 2.544)$. Poisson variance is $\\lambda/n$ (in this sample-mean form), not $\\hat{p}(1-\\hat{p})/n$.",
+      "model_answer": "Binomial $(0.1608, 0.2392)$; Poisson $(1.956, 2.544)$; distinct variance functions.",
+      "common_mistake": "Reusing Bernoulli variance for Poisson, or treating one discrete CI as enough.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Binomial: SE $=0.02$ and CI $(0.1608, 0.2392)$ for $p$. Poisson: SE $=0.15$ and CI $(1.956, 2.544)$ for $\\lambda$. Both are required; Poisson does not keep the $\\hat{p}(1-\\hat{p})$ variance.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Binomial CI $(0.1608, 0.2392)$ is enough; for Poisson reuse the same half-width $0.0392$ after renaming $\\hat{p}$ as $\\hat{\\lambda}$.",
+          "misconception_tag": "reuse_bern_variance"
+        },
+        {
+          "id": "c",
+          "label": "Binomial: $\\hat{p}\\pm z\\sqrt{\\hat{p}/n}$. Poisson: $\\hat{\\lambda}\\pm z\\sqrt{\\hat{\\lambda}(1-\\hat{\\lambda})/n}$ (variances swapped).",
+          "misconception_tag": "variances_swapped"
+        },
+        {
+          "id": "d",
+          "label": "Only the binomial form is required; Poisson means are handled by a continuous Normal-mean interval with variance $s^{2}/n$ from continuous data.",
+          "misconception_tag": "binomial_only"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO05"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.5-cp-01",

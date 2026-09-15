@@ -839,6 +839,41 @@
     {
       "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
       "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+      "item_id": "cs1011-3.2.5-ar-02",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
       "item_id": "cs1011-3.2.5-cp-01",
       "response_type": "mcq",
       "correct_choice_id": "a",

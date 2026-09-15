@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T02-LO01"
     },
     {
+      "episode_id": "lep-cs1011-3.2.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.1-ar-02",
+      "title": "Active Recall: 3.2.1 apply parameter CI",
+      "prompt": "Closed-book. A random sample of size $n=25$ has $\\bar{x}=200$. Model the data as Normal with known $\\sigma=20$. Using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\mu$ and correctly refuses reading that interval as a prediction claim for the next observation?",
+      "response_type": "mcq",
+      "body": "Evaluate the z-interval; refuse prediction-as-CI.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "SE $=\\sigma/\\sqrt{n}=20/5=4$. Half-width $=1.96\\times 4=7.84$, so the CI is $(192.16, 207.84)$. That interval targets the parameter $\\mu$ under repeated-sampling coverage. It is not a 95% probability statement that the next observation falls inside those endpoints.",
+      "model_answer": "95% CI $(192.16, 207.84)$ for $\\mu$; refuse prediction reading.",
+      "common_mistake": "Forgetting $/\\sqrt{n}$, or reading the parameter CI as a prediction interval.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "SE $=4$ and the 95% CI is $(192.16, 207.84)$ for $\\mu$. That is a parameter CI with frequentist coverage; it is not a 95% probability that the next observation falls in $(192.16, 207.84)$.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "The 95% CI is $(200-1.96\\times 20,\\, 200+1.96\\times 20)=(160.8, 239.2)$ because the SE is $\\sigma$, not $\\sigma/\\sqrt{n}$.",
+          "misconception_tag": "forget_sqrt_n"
+        },
+        {
+          "id": "c",
+          "label": "The interval is $(192.16, 207.84)$, and there is a 95% probability that the next observation falls between those endpoints.",
+          "misconception_tag": "prediction_as_ci"
+        },
+        {
+          "id": "d",
+          "label": "The interval is $(192.16, 207.84)$, and after seeing the data there is a 95% Bayesian posterior probability that the fixed $\\mu$ lies in that specific interval.",
+          "misconception_tag": "bayesian_reading"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO01"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.1-cp-01",
@@ -172,7 +217,7 @@
         "Use the concept from this learning objective only."
       ],
       "accepted_keywords": [],
-      "explanation": "Frequentist coverage is about the procedure and the parameter μ, not about the next observation. Treating μ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
+      "explanation": "Frequentist coverage is about the procedure and the parameter $\\mu$, not about the next observation. Treating $\\mu$ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
       "model_answer": "95% coverage for $\\mu$ under repeated sampling; not a prediction interval for the next claim.",
       "common_mistake": "Reading the CI as a 95% probability for the next observation.",
       "success_criteria": [

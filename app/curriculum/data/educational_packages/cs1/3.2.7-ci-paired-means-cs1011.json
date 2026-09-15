@@ -159,6 +159,51 @@
       "objective_id": "CS1-C-T02-LO07"
     },
     {
+      "episode_id": "lep-cs1011-3.2.7-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.7-ar-02",
+      "title": "Active Recall: 3.2.7 apply paired mean-difference CI",
+      "prompt": "Closed-book. Six matched before/after pairs give differences $d$ (before $-$ after): $2, 4, 6, 8, 0, 4$. Using $t_{5,0.975}=2.571$, which statement correctly forms the 95% CI for $\\mu_d$ from those differences and correctly refuses applying an independent two-sample formula to the before and after columns?",
+      "response_type": "mcq",
+      "body": "Evaluate the paired t-interval; refuse two_sample_on_paired.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\bar{d}=4$, $s_d=\\sqrt{8}\\approx 2.828$, SE $\\approx 1.155$, half-width $\\approx 2.969$, so the CI is about $(1.03, 6.97)$. Paired analysis uses the difference SD; an independent two-sample formula on the raw columns ignores pairing.",
+      "model_answer": "CI $\\approx(1.03, 6.97)$ for $\\mu_d$; refuse independent two-sample on paired columns.",
+      "common_mistake": "Running an independent two-sample CI on paired before/after columns because column lengths match.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\bar{d}=4$, $s_d\\approx 2.828$, SE $\\approx 1.155$, and the 95% CI is approximately $(1.03, 6.97)$ for $\\mu_d$. Applying an independent two-sample formula to the before and after columns ignores pairing.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Compute $\\bar{x}$ and $\\bar{y}$ separately and use a two-sample CI for $\\mu_Y-\\mu_X$ that assumes independent samples, because each column has length 6.",
+          "misconception_tag": "two_sample_on_paired"
+        },
+        {
+          "id": "c",
+          "label": "The paired CI is formed for $\\mu_X$ and $\\mu_Y$ separately; no difference parameter is involved.",
+          "misconception_tag": "separate_means_only"
+        },
+        {
+          "id": "d",
+          "label": "Use $z=1.96$ with SE $=s_d$ (no $/\\sqrt{n}$) because pairing already removes all sampling variability.",
+          "misconception_tag": "drop_se_scaling"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO07"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.7-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.7-cp-01",

@@ -159,6 +159,51 @@
       "objective_id": "CS1-C-T02-LO06"
     },
     {
+      "episode_id": "lep-cs1011-3.2.6-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.6-ar-02",
+      "title": "Active Recall: 3.2.6 apply two-sample CI",
+      "prompt": "Closed-book. Independent Normal samples with known variances: $n_A=n_B=100$, $\\bar{x}_A=50$, $\\sigma_A=10$, $\\bar{x}_B=45$, $\\sigma_B=10$. Using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\mu_A-\\mu_B$ and correctly refuses treating equal sample sizes as paired data?",
+      "response_type": "mcq",
+      "body": "Evaluate the independent two-sample z-interval; refuse equal_n_as_paired.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Difference of means $=5$. SE $=\\sqrt{10^{2}/100+10^{2}/100}=\\sqrt{2}\\approx 1.414$, half-width $\\approx 2.772$, so the CI is about $(2.23, 7.77)$. Equal $n$ does not create pairing when observations are not matched.",
+      "model_answer": "CI $\\approx(2.23, 7.77)$ for $\\mu_A-\\mu_B$; equal $n$ is not pairing.",
+      "common_mistake": "Analysing equal-$n$ independent samples as paired differences, or pooling into one sample.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Point estimate $5$, SE $\\approx 1.414$, and 95% CI approximately $(2.23, 7.77)$ for $\\mu_A-\\mu_B$ under independent samples. Equal sample sizes do not turn unmatched units into paired data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Because $n_A=n_B$, analyse the data as paired differences even though there is no natural matching between A and B units.",
+          "misconception_tag": "equal_n_as_paired"
+        },
+        {
+          "id": "c",
+          "label": "Pool all $200$ observations into one sample and form a one-sample CI for the grand mean, erasing the two-group contrast.",
+          "misconception_tag": "pool_to_one_sample"
+        },
+        {
+          "id": "d",
+          "label": "Independence between samples is optional; the same SE formula is valid for any dependence structure between the two groups.",
+          "misconception_tag": "ignore_independence"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO06"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.6-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.6-cp-01",

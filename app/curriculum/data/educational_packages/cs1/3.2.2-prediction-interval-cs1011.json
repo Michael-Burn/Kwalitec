@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T02-LO02"
     },
     {
+      "episode_id": "lep-cs1011-3.2.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.2-ar-02",
+      "title": "Active Recall: 3.2.2 apply prediction interval",
+      "prompt": "Closed-book. From $n=16$ independent Normal observations with known $\\sigma=4$, the sample mean is $\\bar{x}=50$. Using $z_{0.975}=1.96$, which statement correctly forms an approximate 95% prediction interval for one future independent observation $Y$, and correctly refuses treating the mean CI half-width as enough?",
+      "response_type": "mcq",
+      "body": "Evaluate $\\sigma\\sqrt{1+1/n}$ prediction form; refuse mean-CI-as-prediction.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Prediction SE $=\\sigma\\sqrt{1+1/n}=4\\sqrt{17/16}\\approx 4.123$, half-width $\\approx 8.081$, so the PI is about $(41.92, 58.08)$. The mean CI uses SE $=\\sigma/\\sqrt{n}=1$ and half-width $1.96$; that narrower interval covers $\\mu$, not $Y$.",
+      "model_answer": "PI $\\approx(41.92, 58.08)$; mean CI half-width $1.96$ does not finish prediction.",
+      "common_mistake": "Using $\\sigma/\\sqrt{n}$ instead of $\\sigma\\sqrt{1+1/n}$ for a future observation.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Prediction SE $\\approx 4.123$ and the 95% PI is approximately $(41.92, 58.08)$ for $Y$. The mean CI half-width $1.96\\times 4/\\sqrt{16}=1.96$ covers $\\mu$ only and does not finish the prediction-interval task.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Use the mean CI $(50-1.96,\\, 50+1.96)=(48.04, 51.96)$ as the prediction interval for $Y$, because both procedures use the same $z$ critical value.",
+          "misconception_tag": "mean_ci_as_prediction"
+        },
+        {
+          "id": "c",
+          "label": "Prediction SE $=4\\sqrt{1/16}=1$, so the PI is $(48.04, 51.96)$, matching the mean CI exactly.",
+          "misconception_tag": "drop_process_variance"
+        },
+        {
+          "id": "d",
+          "label": "A prediction interval always targets $E[Y]$ only; covering $Y$ itself would require a parameter confidence interval instead.",
+          "misconception_tag": "targets_swapped"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO02"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.2-cp-01",

@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T02-LO04"
     },
     {
+      "episode_id": "lep-cs1011-3.2.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1011-3.2.4-ar-02",
+      "title": "Active Recall: 3.2.4 apply Normal mean and variance CIs",
+      "prompt": "Closed-book. IID Normal sample, $n=25$, $\\bar{x}=40$, $s=10$ ($\\sigma$ unknown). Using $t_{24,0.975}=2.064$, which statement correctly evaluates the 95% CI for $\\mu$, correctly keeps the chi-square form for $\\sigma^{2}$ with $s^{2}=100$, and correctly refuses treating the mean interval as enough for both parameters?",
+      "response_type": "mcq",
+      "body": "Evaluate the t-interval for $\\mu$; keep $\\chi^{2}$ variance form; refuse mean-only / same-interval.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "SE $=10/5=2$, half-width $=2.064\\times 2=4.128$, so the mean CI is $(35.872, 44.128)$. The variance CI inverts $(n-1)s^{2}/\\sigma^{2}\\sim\\chi^{2}_{24}$, giving endpoints $2400/\\chi^{2}$ critical values. The mean numerical interval is not a CI for $\\sigma^{2}$.",
+      "model_answer": "Mean CI $(35.872, 44.128)$; variance uses $2400/\\chi^{2}_{24,\\cdot}$; both required.",
+      "common_mistake": "Using $z$ with unknown $\\sigma$, skipping the variance CI, or reusing the mean endpoints for $\\sigma^{2}$.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "For $\\mu$: SE $=2$ and the 95% CI is $(35.872, 44.128)$. For $\\sigma^{2}$: use $(2400/\\chi^{2}_{24,1-\\alpha/2},\\, 2400/\\chi^{2}_{24,\\alpha/2})$. Both forms are required; the mean endpoints are not a variance CI.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "For $\\mu$ use $\\bar{x}\\pm 1.96\\cdot s/\\sqrt{n}$ even though $\\sigma$ is unknown, and skip the variance CI once the mean CI is written.",
+          "misconception_tag": "z_not_t_and_skip_var"
+        },
+        {
+          "id": "c",
+          "label": "For $\\mu$ the CI is $(35.872, 44.128)$, and that same numerical interval is also the CI for $\\sigma^{2}$.",
+          "misconception_tag": "same_interval"
+        },
+        {
+          "id": "d",
+          "label": "For $\\sigma^{2}$ use $(100-2.064\\cdot 10/\\sqrt{25},\\, 100+2.064\\cdot 10/\\sqrt{25})$, centred at $s^{2}$ with the mean SE.",
+          "misconception_tag": "normal_se_for_variance"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T02-LO04"
+    },
+    {
       "episode_id": "lep-cs1011-3.2.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1011-3.2.4-cp-01",

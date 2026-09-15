@@ -362,6 +362,41 @@
     },
     {
       "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+      "item_id": "cs1011-3.2.1-ar-02",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
       "item_id": "cs1011-3.2.1-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],
@@ -428,6 +463,41 @@
     },
     {
       "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+      "item_id": "cs1011-3.2.3-ar-02",
+      "response_type": "mcq",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
       "item_id": "cs1011-3.2.3-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],
@@ -462,6 +532,41 @@
     {
       "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
       "item_id": "cs1011-3.2.4-ar-01",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+      "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+      "item_id": "cs1011-3.2.4-ar-02",
+      "response_type": "mcq",
       "correct_choice_id": "a",
       "accepted_keywords": [],
       "numeric_tolerance": null,

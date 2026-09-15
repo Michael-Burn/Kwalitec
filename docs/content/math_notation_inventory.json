@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-15T05:29:31Z",
+  "generated_at": "2026-09-15T06:24:14Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2339,
-    "already_compliant": 2211,
+    "mathish_strings": 2402,
+    "already_compliant": 2275,
     "needs_migration": 0,
-    "correctly_excluded": 128,
+    "correctly_excluded": 127,
     "needs_manual_review": 0,
-    "confident_automated": 2339,
+    "confident_automated": 2402,
     "remaining_backlog": 0,
-    "migrated": 2190,
+    "migrated": 2254,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2211,
-    "manual_review_prose_exclusion": 127,
+    "fully_covered_by_current_typesetting": 2275,
+    "manual_review_prose_exclusion": 126,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2190,
-    "equationish": 1629,
-    "actuarial_fn": 507,
-    "ascii_approx": 264,
-    "bare_latex": 221,
-    "greek": 114,
-    "compound": 31,
+    "dollar_delimited": 2254,
+    "equationish": 1679,
+    "actuarial_fn": 508,
+    "ascii_approx": 275,
+    "bare_latex": 224,
+    "greek": 113,
+    "compound": 37,
     "unicode_ops": 11
   },
   "by_risk_tier_needs_migration": {
@@ -13751,8 +13751,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 15,
-        "already_compliant": 14,
+        "mathish_strings": 22,
+        "already_compliant": 21,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -13764,7 +13764,123 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
           "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. A nonparametric bootstrap produced $B=10$ already-sorted replicate means: $80, 85, 88, 90, 92, 94, 96, 98, 100, 105$. For an approximate 80% percentile interval take order statistics at indices $\\lfloor\\alpha(B+1)\\rfloor$ and $\\lceil(1-\\alpha)(B+1)\\rceil$ with $\\alpha=0.2$. Which statement correctly reads those endpoints and correctly refuses treating a bootstrap SE alone as the CI?",
+          "text_hash": "35289c872f595d96",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\lfloor 0.2\\times 11\\rfloor=2$ and $\\lceil 0.8\\times 11\\rceil=9$, so the endpoints are the 2nd and 9th order statistics: $85$ and $100$. Estimating a bootstrap SE and writing $(\\hat{\\theta}-\\mathrm{SE},\\hat{\\theta}+\\mathrm{SE})$ is not this percentile construction, and forming the CI is not a hypothesis test.",
+          "text_hash": "67f51661f38b3057",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Percentile CI $(85, 100)$; refuse SE-only and HT conflation.",
+          "text_hash": "4a140022f9a4b929",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
           "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Lower index $2$ and upper index $9$ give the percentile CI $(85, 100)$. Estimating a bootstrap SE alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
+          "text_hash": "f04fbba24cb57fa1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Compute a bootstrap SE from the ten replicates and report $(\\hat{\\theta}-\\mathrm{SE},\\, \\hat{\\theta}+\\mathrm{SE})$ only; quantile endpoints from replicates are never used.",
+          "text_hash": "fe3978c2ea89c442",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "A bootstrap CI is completed by rejecting $H_0$ whenever $\\hat{\\theta}$ falls outside a fixed null value, without forming interval endpoints.",
+          "text_hash": "e85bb82f2621379a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Take the 1st and 10th order statistics $(80, 105)$ for every $\\alpha$, because percentile intervals always use the full range of replicates.",
+          "text_hash": "e27f65f983915bdd",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
+          "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Resample with replacement, recompute the statistic on each resample, then take the $\\alpha/2$ and $1-\\alpha/2$ quantiles of those replicates as interval endpoints. Estimating a bootstrap standard error alone is not the same as constructing that CI, and forming the CI is not a hypothesis test.",
           "text_hash": "08caff2d42232df0",
@@ -13781,7 +13897,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
           "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Compute a bootstrap SE and report ($\\hat{\\theta} - \\mathrm{SE}$, $\\hat{\\theta} + \\mathrm{SE}$) only; quantile endpoints from replicates are never used.",
           "text_hash": "28329ab19f658f29",
@@ -13797,7 +13913,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
           "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A bootstrap CI is completed by rejecting $H_{0}$ whenever $\\hat{\\theta}$ falls outside a fixed null value, without forming interval endpoints.",
           "text_hash": "8ac99cdffe096cb6",
@@ -13814,7 +13930,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-BOOTSTRAP-CONFIDENCE-INTERVAL",
           "package_file": "3.2.8-bootstrap-confidence-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Draw one bootstrap resample, compute $\\hat{\\theta}^{*}$, and report the singleton interval [$\\hat{\\theta}^{*}$, $\\hat{\\theta}^{*}$].",
           "text_hash": "fea37690c78a0486",
@@ -14018,8 +14134,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 21,
-        "already_compliant": 21,
+        "mathish_strings": 28,
+        "already_compliant": 28,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -14063,7 +14179,127 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. (i) In $n=400$ Bernoulli trials, $x=80$ successes, so $\\hat{p}=0.2$. (ii) A Poisson sample of size $n=100$ has sample mean $\\hat{\\lambda}=2.25$. Using $z_{0.975}=1.96$, which statement correctly gives both approximate 95% CIs and correctly refuses reusing the Bernoulli variance for the Poisson mean?",
+          "text_hash": "5c44993995233df1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
           "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Binomial SE $=\\sqrt{0.2\\times 0.8/400}=0.02$, CI $(0.1608, 0.2392)$. Poisson SE $=\\sqrt{2.25/100}=0.15$, CI $(1.956, 2.544)$. Poisson variance is $\\lambda/n$ (in this sample-mean form), not $\\hat{p}(1-\\hat{p})/n$.",
+          "text_hash": "e262089ac648de09",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Binomial $(0.1608, 0.2392)$; Poisson $(1.956, 2.544)$; distinct variance functions.",
+          "text_hash": "499c2257e6ca8968",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Binomial: SE $=0.02$ and CI $(0.1608, 0.2392)$ for $p$. Poisson: SE $=0.15$ and CI $(1.956, 2.544)$ for $\\lambda$. Both are required; Poisson does not keep the $\\hat{p}(1-\\hat{p})$ variance.",
+          "text_hash": "bf10b7512a74bcac",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Binomial CI $(0.1608, 0.2392)$ is enough; for Poisson reuse the same half-width $0.0392$ after renaming $\\hat{p}$ as $\\hat{\\lambda}$.",
+          "text_hash": "ed6736524583b764",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Binomial: $\\hat{p}\\pm z\\sqrt{\\hat{p}/n}$. Poisson: $\\hat{\\lambda}\\pm z\\sqrt{\\hat{\\lambda}(1-\\hat{\\lambda})/n}$ (variances swapped).",
+          "text_hash": "fb38add8016596ab",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 1,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Only the binomial form is required; Poisson means are handled by a continuous Normal-mean interval with variance $s^{2}/n$ from continuous data.",
+          "text_hash": "52c5fac0b4392e86",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 1,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
+          "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "Bernoulli variance is $\\frac{p(1-p)}{n}$; Poisson mean variance is $\\frac{\\lambda}{n}$ (per observation in the usual sample-mean form). Swapping those variance functions, or dropping Poisson entirely, is wrong.",
           "text_hash": "8fc59b3591c16d2b",
@@ -14079,7 +14315,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$\\hat{p} \\pm z\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$ and $\\hat{\\lambda} \\pm z\\sqrt{\\frac{\\hat{\\lambda}}{n}}$; both required.",
           "text_hash": "188fc9140efbd6dc",
@@ -14095,7 +14331,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$. Poisson: $\\hat{\\lambda} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{\\lambda}}{n}}$ (or an equivalent total-count form with matching variance). Both are required; one does not replace the other.",
           "text_hash": "82a3febc87e18db2",
@@ -14112,7 +14348,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$. The Poisson interval is the same expression with $\\hat{\\lambda}$ written in place of $\\hat{p}$ and with variance $\\frac{\\hat{p}(1-\\hat{p})}{n}$ kept unchanged.",
           "text_hash": "17aba0d1ba8cbd31",
@@ -14129,7 +14365,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Binomial: $\\hat{p} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{p}}{n}}$. Poisson: $\\hat{\\lambda} \\pm z_{1-\\alpha/2} \\sqrt{\\frac{\\hat{\\lambda}(1-\\hat{\\lambda})}{n}}$.",
           "text_hash": "4552bf5c1d565dd4",
@@ -14146,7 +14382,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-BINOMIAL-POISSON",
           "package_file": "3.2.5-ci-binomial-poisson-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Only the binomial form is required; Poisson means are handled by transforming to a Normal mean interval for $\\bar{x}$ with variance $\\frac{s^{2}}{n}$ from continuous data.",
           "text_hash": "68ff5fb3a2097d60",
@@ -14385,8 +14621,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 20,
-        "already_compliant": 20,
+        "mathish_strings": 29,
+        "already_compliant": 29,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -14417,6 +14653,161 @@
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. An estimator satisfies $\\hat{\\theta}\\sim N(\\theta, 0.025^{2})$ exactly (sampling distribution given). Observing $\\hat{\\theta}=0.30$ and using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\theta$ by inverting that given law, and correctly refuses inserting an extra $/\\sqrt{n}$ that is not part of the given sampling distribution?",
+          "text_hash": "ff01a88daa2067a9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Invert the given Normal sampling SD; refuse Normal-mean cookbook $/\\sqrt{n}$.",
+          "text_hash": "e2a5b074243b8826",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "The given sampling SD is already $0.025$. Half-width $=1.96\\times 0.025=0.049$, so the CI is $(0.251, 0.349)$. Dividing $0.025$ by an invented $\\sqrt{n}$ ignores the sampling distribution you were given.",
+          "text_hash": "19acb5dd110282fa",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "CI $(0.251, 0.349)$; refuse extra $/\\sqrt{n}$ on the given SD.",
+          "text_hash": "a4075724b3274734",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Treating the given sampling SD as a raw $\\sigma$ that still needs $/\\sqrt{n}$.",
+          "text_hash": "58de9d2b4e9f0967",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Invert $\\hat{\\theta}\\sim N(\\theta, 0.025^{2})$ to get $0.30\\pm 1.96\\times 0.025$, so the 95% CI is $(0.251, 0.349)$. Do not divide the given sampling SD by an extra $\\sqrt{n}$.",
+          "text_hash": "79f9bd865364aa71",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Always replace the given law by $\\bar{x}\\pm z\\, s/\\sqrt{n}$, even though the sampling distribution of $\\hat{\\theta}$ was already supplied.",
+          "text_hash": "e5e6abad7ba1c969",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Use half-width $1.96\\times 0.025/\\sqrt{n}$ for some $n$ not stated in the given sampling distribution, because every CI must include $/\\sqrt{n}$.",
+          "text_hash": "46bf15bdfcda0fe6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The interval for $\\theta$ is $(0.025\\times(-1.96),\\, 0.025\\times 1.96)$ with no dependence on the observed $\\hat{\\theta}=0.30$.",
+          "text_hash": "60d259acafc370e6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
+          "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. For an Exponential mean-$\\theta$ model you are told that $2n \\bar{X} / \\theta \\sim \\chi^{2}_{2n}$. Which statement is correct?",
           "text_hash": "6e20f17d6aa2b4d2",
           "category": "already_compliant",
@@ -14433,7 +14824,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "From $\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U}$, taking reciprocals (and reversing inequalities) yields bounds $2n \\bar{X} / \\chi^{2}_{U}$ and $2n \\bar{X} / \\chi^{2}_{L}$. The given pivot must be used; Normal-mean cookbooks are not a substitute.",
           "text_hash": "311cd43abdcfe0f7",
@@ -14451,7 +14842,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Invert $P(\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U})=1-\\alpha$ to bounds in $2n \\bar{X} / \\chi^{2}$; refuse Normal-mean template.",
           "text_hash": "27d468af483b9264",
@@ -14470,7 +14861,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Ignoring the given $\\chi^{2}$ pivot or inverting the inequality incorrectly.",
           "text_hash": "94a78e43cd075ff8",
@@ -14487,7 +14878,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Choose $\\chi^{2}$ critical values so $P(\\chi^{2}_{L} < 2n \\bar{X} / \\theta < \\chi^{2}_{U}) = 1-\\alpha$, then rearrange to isolate $\\theta$ (bounds involve $2n \\bar{X} / \\chi^{2}$). A memorised Normal-mean CI formula does not replace that inversion for this model.",
           "text_hash": "fb26baceca9ef168",
@@ -14506,7 +14897,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Because $\\bar{X}$ is approximately Normal for large $n$, ignore the given $\\chi^{2}$ relationship and always use $\\bar{x} \\pm z\\, s/\\sqrt{n}$ for $\\theta$.",
           "text_hash": "eb6d615e6152ec36",
@@ -14523,7 +14914,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The interval for $\\theta$ is $(\\chi^{2}_{L}, \\chi^{2}_{U})$ with no dependence on $\\bar{X}$, because the pivot already contains all information.",
           "text_hash": "a1e281d00f890258",
@@ -14541,7 +14932,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-GIVEN-SAMPLING-DISTRIBUTION",
           "package_file": "3.2.3-ci-given-sampling-distribution-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Rearrange to $\\theta \\in (2n \\bar{X} \\cdot \\chi^{2}_{L}, 2n \\bar{X} \\cdot \\chi^{2}_{U})$, multiplying by the critical values instead of dividing.",
           "text_hash": "3ad222bf799dfd72",
@@ -14748,8 +15139,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 25,
-        "already_compliant": 24,
+        "mathish_strings": 34,
+        "already_compliant": 33,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -14847,6 +15238,162 @@
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. IID Normal sample, $n=25$, $\\bar{x}=40$, $s=10$ ($\\sigma$ unknown). Using $t_{24,0.975}=2.064$, which statement correctly evaluates the 95% CI for $\\mu$, correctly keeps the chi-square form for $\\sigma^{2}$ with $s^{2}=100$, and correctly refuses treating the mean interval as enough for both parameters?",
+          "text_hash": "203bb859bfef499f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Evaluate the t-interval for $\\mu$; keep $\\chi^{2}$ variance form; refuse mean-only / same-interval.",
+          "text_hash": "ba500b3ba247771a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "SE $=10/5=2$, half-width $=2.064\\times 2=4.128$, so the mean CI is $(35.872, 44.128)$. The variance CI inverts $(n-1)s^{2}/\\sigma^{2}\\sim\\chi^{2}_{24}$, giving endpoints $2400/\\chi^{2}$ critical values. The mean numerical interval is not a CI for $\\sigma^{2}$.",
+          "text_hash": "81e45ff8519c61ee",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Mean CI $(35.872, 44.128)$; variance uses $2400/\\chi^{2}_{24,\\cdot}$; both required.",
+          "text_hash": "8f1a2c8df101dc3e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $z$ with unknown $\\sigma$, skipping the variance CI, or reusing the mean endpoints for $\\sigma^{2}$.",
+          "text_hash": "e4d88e7faea567a0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For $\\mu$: SE $=2$ and the 95% CI is $(35.872, 44.128)$. For $\\sigma^{2}$: use $(2400/\\chi^{2}_{24,1-\\alpha/2},\\, 2400/\\chi^{2}_{24,\\alpha/2})$. Both forms are required; the mean endpoints are not a variance CI.",
+          "text_hash": "ea8a5fc6d5542da8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For $\\mu$ use $\\bar{x}\\pm 1.96\\cdot s/\\sqrt{n}$ even though $\\sigma$ is unknown, and skip the variance CI once the mean CI is written.",
+          "text_hash": "7028d9b159a66870",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For $\\mu$ the CI is $(35.872, 44.128)$, and that same numerical interval is also the CI for $\\sigma^{2}$.",
+          "text_hash": "a9d761071160d578",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "For $\\sigma^{2}$ use $(100-2.064\\cdot 10/\\sqrt{25},\\, 100+2.064\\cdot 10/\\sqrt{25})$, centred at $s^{2}$ with the mean SE.",
+          "text_hash": "7490f83600aab2e0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
+          "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. IID Normal sample, n=16, $\\bar{x}$=10, $s^{2}$=4 ($\\sigma$ unknown). Which statement is correct?",
           "text_hash": "0d489fd496c92ec6",
           "category": "already_compliant",
@@ -14862,7 +15409,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "With $\\sigma$ unknown, the mean CI uses $t_{n-1}$. The variance CI inverts the chi-square pivot for $\\frac{(n-1)s^{2}}{\\sigma^{2}}$. Mean-only or Normal-SE-for-variance shortcuts fail the dual requirement.",
           "text_hash": "664c1d27bedaf822",
@@ -14880,7 +15427,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "t interval for $\\mu$; chi-square interval for $\\sigma^{2}$; both required.",
           "text_hash": "9a17a2adefbe23c5",
@@ -14897,7 +15444,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Using $z$ with unknown $\\sigma$, skipping the variance CI, or forcing a Normal-mean SE onto $\\sigma^{2}$.",
           "text_hash": "f4d076822f97d5f0",
@@ -14914,7 +15461,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "For $\\mu$ use $\\bar{x} \\pm t_{15, 1-\\alpha/2} \\cdot s/\\sqrt{n}$. For $\\sigma^{2}$ use $((n-1)s^{2} / \\chi^{2}_{15, 1-\\alpha/2}, (n-1)s^{2} / \\chi^{2}_{15, \\alpha/2})$. Both forms are required; a binomial interval is a different setting.",
           "text_hash": "7ceeaaf1158dc45d",
@@ -14932,7 +15479,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "For $\\mu$ use $\\bar{x} \\pm z_{1-\\alpha/2} \\cdot s/\\sqrt{n}$ with z even though $\\sigma$ is unknown; the variance CI can be skipped once the mean CI is written.",
           "text_hash": "8b954407c4c3be2e",
@@ -14949,7 +15496,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "For $\\mu$ use $\\bar{x} \\pm t_{15, 1-\\alpha/2} \\cdot s/\\sqrt{n}$, and for $\\sigma^{2}$ reuse that same numerical interval because variance intervals share the mean endpoints.",
           "text_hash": "7d1bdf451a461f78",
@@ -14966,7 +15513,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-NORMAL-MEAN-VARIANCE",
           "package_file": "3.2.4-ci-normal-mean-variance-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "For $\\sigma^{2}$ use ($s^{2} - z \\; s/\\sqrt{n}$, $s^{2} + z \\; s/\\sqrt{n}$), centred at $s^{2}$ with Normal mean SE.",
           "text_hash": "8221000947273bf9",
@@ -15186,8 +15733,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 16,
-        "already_compliant": 16,
+        "mathish_strings": 23,
+        "already_compliant": 23,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -15199,7 +15746,129 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
           "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Six matched before/after pairs give differences $d$ (before $-$ after): $2, 4, 6, 8, 0, 4$. Using $t_{5,0.975}=2.571$, which statement correctly forms the 95% CI for $\\mu_d$ from those differences and correctly refuses applying an independent two-sample formula to the before and after columns?",
+          "text_hash": "f93387d0f4011497",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\bar{d}=4$, $s_d=\\sqrt{8}\\approx 2.828$, SE $\\approx 1.155$, half-width $\\approx 2.969$, so the CI is about $(1.03, 6.97)$. Paired analysis uses the difference SD; an independent two-sample formula on the raw columns ignores pairing.",
+          "text_hash": "f401a9c70f89df28",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
           "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "CI $\\approx(1.03, 6.97)$ for $\\mu_d$; refuse independent two-sample on paired columns.",
+          "text_hash": "5ce988dc9b050cd2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\bar{d}=4$, $s_d\\approx 2.828$, SE $\\approx 1.155$, and the 95% CI is approximately $(1.03, 6.97)$ for $\\mu_d$. Applying an independent two-sample formula to the before and after columns ignores pairing.",
+          "text_hash": "0a03306c83166c25",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Compute $\\bar{x}$ and $\\bar{y}$ separately and use a two-sample CI for $\\mu_Y-\\mu_X$ that assumes independent samples, because each column has length 6.",
+          "text_hash": "ed942ff239568e13",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The paired CI is formed for $\\mu_X$ and $\\mu_Y$ separately; no difference parameter is involved.",
+          "text_hash": "d4889cf76ed047d4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Use $z=1.96$ with SE $=s_d$ (no $/\\sqrt{n}$) because pairing already removes all sampling variability.",
+          "text_hash": "e230771645f8f695",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
+          "package_file": "3.2.7-ci-paired-means-cs1011.json",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Analyse $D_{i} = Y_{i} - X_{i}$ with a one-sample CI for $\\mu_{D}$; refuse independent two-sample on paired columns.",
           "text_hash": "604756cfcb680e83",
@@ -15216,7 +15885,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
           "package_file": "3.2.7-ci-paired-means-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Form $D_{i} = Y_{i} - X_{i}$ (or $X_{i} - Y_{i}$) and build a one-sample CI for $\\mu_{D}$. Applying the independent two-sample formula to the before and after columns ignores pairing and uses the wrong variance structure.",
           "text_hash": "3381d675dc18b0a9",
@@ -15233,7 +15902,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
           "package_file": "3.2.7-ci-paired-means-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Compute $\\bar{x}$ and $\\bar{y}$ separately and use a two-sample CI for $\\mu_{Y} - \\mu_{X}$ that assumes independent samples, because each column has the same length.",
           "text_hash": "98b26918fef13c58",
@@ -15250,7 +15919,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-PAIRED-MEANS",
           "package_file": "3.2.7-ci-paired-means-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The paired CI is formed for $\\mu_{X}$ and $\\mu_{Y}$ separately; no difference parameter is involved.",
           "text_hash": "79c3b9bcdda41a89",
@@ -15478,8 +16147,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 20,
-        "already_compliant": 20,
+        "mathish_strings": 27,
+        "already_compliant": 27,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -15491,7 +16160,127 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Independent Normal samples with known variances: $n_A=n_B=100$, $\\bar{x}_A=50$, $\\sigma_A=10$, $\\bar{x}_B=45$, $\\sigma_B=10$. Using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\mu_A-\\mu_B$ and correctly refuses treating equal sample sizes as paired data?",
+          "text_hash": "d339442c2322b7f6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Difference of means $=5$. SE $=\\sqrt{10^{2}/100+10^{2}/100}=\\sqrt{2}\\approx 1.414$, half-width $\\approx 2.772$, so the CI is about $(2.23, 7.77)$. Equal $n$ does not create pairing when observations are not matched.",
+          "text_hash": "fbfb0efd0cf38593",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
           "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "CI $\\approx(2.23, 7.77)$ for $\\mu_A-\\mu_B$; equal $n$ is not pairing.",
+          "text_hash": "392312ddddd8d5a7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Analysing equal-$n$ independent samples as paired differences, or pooling into one sample.",
+          "text_hash": "a11b5f14f97c0e56",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Point estimate $5$, SE $\\approx 1.414$, and 95% CI approximately $(2.23, 7.77)$ for $\\mu_A-\\mu_B$ under independent samples. Equal sample sizes do not turn unmatched units into paired data.",
+          "text_hash": "f40455f2acae97b3",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Because $n_A=n_B$, analyse the data as paired differences even though there is no natural matching between A and B units.",
+          "text_hash": "9327edf8afd7cb21",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Pool all $200$ observations into one sample and form a one-sample CI for the grand mean, erasing the two-group contrast.",
+          "text_hash": "7ff1a3d2ca8f36f2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
+          "package_file": "3.2.6-ci-two-sample-cs1011.json",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Target $\\mu_{A} - \\mu_{B}$ under independent samples; refuse paired-as-equal-n.",
           "text_hash": "4bae491d87b95b5d",
@@ -15508,7 +16297,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Applying independent two-sample formulas to paired rows (or the reverse) because $n_{1} = n_{2}$.",
           "text_hash": "307188e5c63f882d",
@@ -15525,7 +16314,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A two-sample CI typically targets $\\mu_{A} - \\mu_{B}$ under independent samples from the two groups. Paired before/after rows are not the same design: equal sample sizes do not turn matched pairs into an independent two-sample problem.",
           "text_hash": "68f66ce019048ad2",
@@ -15542,7 +16331,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "If $n_{A} = n_{B}$, analyse the data as paired differences even when there is no natural matching between A and B units.",
           "text_hash": "c93f3c7a966d6604",
@@ -15559,7 +16348,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CI-TWO-SAMPLE",
           "package_file": "3.2.6-ci-two-sample-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The two-sample CI targets $\\mu_{A}$ / $\\mu_{B}$ only, never a difference, when the model is Normal.",
           "text_hash": "7ca7c89c1391b865",
@@ -15838,10 +16627,10 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 17,
-        "already_compliant": 16,
+        "mathish_strings": 25,
+        "already_compliant": 25,
         "needs_migration": 0,
-        "correctly_excluded": 1,
+        "correctly_excluded": 0,
         "needs_manual_review": 0,
         "risk_tier_1_needs_migration": 0
       },
@@ -15852,6 +16641,140 @@
           "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. A random sample of size $n=25$ has $\\bar{x}=200$. Model the data as Normal with known $\\sigma=20$. Using $z_{0.975}=1.96$, which statement correctly forms the 95% CI for $\\mu$ and correctly refuses reading that interval as a prediction claim for the next observation?",
+          "text_hash": "f121690b82923c14",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "SE $=\\sigma/\\sqrt{n}=20/5=4$. Half-width $=1.96\\times 4=7.84$, so the CI is $(192.16, 207.84)$. That interval targets the parameter $\\mu$ under repeated-sampling coverage. It is not a 95% probability statement that the next observation falls inside those endpoints.",
+          "text_hash": "bdc009f47837752f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "95% CI $(192.16, 207.84)$ for $\\mu$; refuse prediction reading.",
+          "text_hash": "aa1a06248a0c1965",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Forgetting $/\\sqrt{n}$, or reading the parameter CI as a prediction interval.",
+          "text_hash": "07f1f25b91190c17",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "SE $=4$ and the 95% CI is $(192.16, 207.84)$ for $\\mu$. That is a parameter CI with frequentist coverage; it is not a 95% probability that the next observation falls in $(192.16, 207.84)$.",
+          "text_hash": "0bfcaffe079434a6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The 95% CI is $(200-1.96\\times 20,\\, 200+1.96\\times 20)=(160.8, 239.2)$ because the SE is $\\sigma$, not $\\sigma/\\sqrt{n}$.",
+          "text_hash": "68a48f4068ca3437",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The interval is $(192.16, 207.84)$, and there is a 95% probability that the next observation falls between those endpoints.",
+          "text_hash": "2572b5926344f538",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The interval is $(192.16, 207.84)$, and after seeing the data there is a 95% Bayesian posterior probability that the fixed $\\mu$ lies in that specific interval.",
+          "text_hash": "66c14a0b8413a26a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
+          "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. From a large sample you obtain a 95% CI for mean claim size $\\mu$ as $(120, 140)$. Which statement is correct?",
           "text_hash": "72a312e280f4edce",
@@ -15867,23 +16790,23 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
-          "text": "Frequentist coverage is about the procedure and the parameter μ, not about the next observation. Treating μ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
-          "text_hash": "796bfc2174a996bf",
-          "category": "correctly_excluded",
+          "text": "Frequentist coverage is about the procedure and the parameter $\\mu$, not about the next observation. Treating $\\mu$ as a random draw inside the interval, or equating narrowness with certainty, misstates coverage.",
+          "text_hash": "ad7cde642584e3f0",
+          "category": "already_compliant",
           "needs_manual_review": false,
-          "reason_code": "manual_review_prose_exclusion",
+          "reason_code": "fully_covered_by_current_typesetting",
           "risk_tier": 4,
-          "migration_status": "correctly_excluded",
+          "migration_status": "migrated",
           "signals": [
-            "greek"
+            "dollar_delimited"
           ]
         },
         {
           "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "95% coverage for $\\mu$ under repeated sampling; not a prediction interval for the next claim.",
           "text_hash": "c727f50278c86e44",
@@ -15899,7 +16822,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The interval comes from a procedure that covers the unknown parameter $\\mu$ in 95% of repeated samples. It is not a claim that the next claim amount falls between 120 and 140 with probability 95%.",
           "text_hash": "dfe29b696980d07f",
@@ -15915,7 +16838,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-CONFIDENCE-INTERVAL-PARAMETER",
           "package_file": "3.2.1-confidence-interval-parameter-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$\\mu$ is a random variable that equals 130 with probability 95%, and the interval endpoints are fixed constants only.",
           "text_hash": "4458ba6e984b2b2b",
@@ -16136,8 +17059,8 @@
       "topic_code": "3.2",
       "campaign_id": "CS1-EP001-CAMPAIGN-LAMBDA",
       "counts": {
-        "mathish_strings": 20,
-        "already_compliant": 20,
+        "mathish_strings": 29,
+        "already_compliant": 29,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -16150,6 +17073,162 @@
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. From $n=16$ independent Normal observations with known $\\sigma=4$, the sample mean is $\\bar{x}=50$. Using $z_{0.975}=1.96$, which statement correctly forms an approximate 95% prediction interval for one future independent observation $Y$, and correctly refuses treating the mean CI half-width as enough?",
+          "text_hash": "72f3c305f25df38f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].body",
+          "field_group": "knowledge_checks[].body",
+          "text": "Evaluate $\\sigma\\sqrt{1+1/n}$ prediction form; refuse mean-CI-as-prediction.",
+          "text_hash": "4a71142b4d18f57a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Prediction SE $=\\sigma\\sqrt{1+1/n}=4\\sqrt{17/16}\\approx 4.123$, half-width $\\approx 8.081$, so the PI is about $(41.92, 58.08)$. The mean CI uses SE $=\\sigma/\\sqrt{n}=1$ and half-width $1.96$; that narrower interval covers $\\mu$, not $Y$.",
+          "text_hash": "5b2dbdd8c95156bf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "PI $\\approx(41.92, 58.08)$; mean CI half-width $1.96$ does not finish prediction.",
+          "text_hash": "d2ee1600a7fb3564",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $\\sigma/\\sqrt{n}$ instead of $\\sigma\\sqrt{1+1/n}$ for a future observation.",
+          "text_hash": "46f3c2f2bb7825e4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Prediction SE $\\approx 4.123$ and the 95% PI is approximately $(41.92, 58.08)$ for $Y$. The mean CI half-width $1.96\\times 4/\\sqrt{16}=1.96$ covers $\\mu$ only and does not finish the prediction-interval task.",
+          "text_hash": "d1383576e9709b80",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Use the mean CI $(50-1.96,\\, 50+1.96)=(48.04, 51.96)$ as the prediction interval for $Y$, because both procedures use the same $z$ critical value.",
+          "text_hash": "558c0b4b93390a4d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Prediction SE $=4\\sqrt{1/16}=1$, so the PI is $(48.04, 51.96)$, matching the mean CI exactly.",
+          "text_hash": "2f3f00f683e65a57",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "A prediction interval always targets $E[Y]$ only; covering $Y$ itself would require a parameter confidence interval instead.",
+          "text_hash": "fb31e643c787cb1b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
+          "package_file": "3.2.2-prediction-interval-cs1011.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. You fit a model to historical annual losses and need an interval for next year's loss $Y_{\\mathrm{new}}$. Which statement is correct?",
           "text_hash": "45d7f8fa58bbb9ed",
@@ -16166,7 +17245,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "Prediction targets $Y_{\\mathrm{new}}$; a CI for $E[Y]$ targets the mean. Proper prediction intervals account for both parameter uncertainty and process variation.",
           "text_hash": "20c2e42420c8db1d",
@@ -16184,7 +17263,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Prediction interval covers $Y_{\\mathrm{new}}$; a CI for $E[Y]$ does not substitute.",
           "text_hash": "a6dac96f422c6d8e",
@@ -16202,7 +17281,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A prediction interval aims to cover the future observation $Y_{\\mathrm{new}}$ (parameter uncertainty plus process/residual variation). A confidence interval for $E[Y]$ covers only that mean parameter and does not finish the prediction-interval task.",
           "text_hash": "e937bca03925a9ac",
@@ -16220,7 +17299,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A confidence interval for mean loss already covers $Y_{\\mathrm{new}}$ with the same coverage probability, so no separate prediction interval is needed.",
           "text_hash": "c954e966465571d1",
@@ -16237,7 +17316,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.2-PREDICTION-INTERVAL",
           "package_file": "3.2.2-prediction-interval-cs1011.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A prediction interval covers $E[Y]$ only; covering $Y_{\\mathrm{new}}$ would require a parameter confidence interval instead.",
           "text_hash": "691f464c0a9d0cdd",
@@ -42412,5 +43491,5 @@
       ]
     }
   ],
-  "content_fingerprint": "30ff76cc754320b69f830dca115659dc23cadb1b8a3ff7fdac9641e5f4c61037"
+  "content_fingerprint": "a5616fcbbd6b325079a0b2395b04f87c1f22016b830747da4603cad3d1d6df3b"
 }

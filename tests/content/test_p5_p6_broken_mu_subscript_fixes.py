@@ -26,12 +26,12 @@ _KNOWN_COMMANDS = frozenset({"mu", "bar"})
 _FIXED_FIELDS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     (
         "3.2.6-ci-two-sample-cs1011.json",
-        "knowledge_checks[1].choices[3].label",
+        "knowledge_checks[2].choices[3].label",
         (r"\mu_{A}", r"\mu_{B}"),
     ),
     (
         "3.2.7-ci-paired-means-cs1011.json",
-        "knowledge_checks[1].choices[2].label",
+        "knowledge_checks[2].choices[2].label",
         (r"\mu_{X}", r"\mu_{Y}"),
     ),
 )
@@ -137,7 +137,7 @@ def test_p5_p6_scope_has_only_these_two_broken_mu_subscript_fixes() -> None:
 def test_choice_ids_and_tags_unchanged_on_fixed_fields() -> None:
     """Fixes are markup-only: choice id, tag, and correct key stay put."""
     two_sample = _load("3.2.6-ci-two-sample-cs1011.json")
-    cp = two_sample["knowledge_checks"][1]
+    cp = two_sample["knowledge_checks"][2]
     assert cp["item_id"] == "cs1011-3.2.6-cp-01"
     d = cp["choices"][3]
     assert d["id"] == "d"
@@ -145,7 +145,7 @@ def test_choice_ids_and_tags_unchanged_on_fixed_fields() -> None:
     assert cp["correct_choice_id"] == "a"
 
     paired = _load("3.2.7-ci-paired-means-cs1011.json")
-    cp = paired["knowledge_checks"][1]
+    cp = paired["knowledge_checks"][2]
     assert cp["item_id"] == "cs1011-3.2.7-cp-01"
     c = cp["choices"][2]
     assert c["id"] == "c"

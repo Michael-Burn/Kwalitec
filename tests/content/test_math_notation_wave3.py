@@ -311,7 +311,7 @@ def test_wave3_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2190
+    assert checked["totals"]["migrated"] == 2254
     assert checked["totals"]["needs_migration"] == 0
     assert live["totals"] == checked["totals"]
 
@@ -340,7 +340,7 @@ def test_wave3_ledger_backlog_and_migration_status() -> None:
                 assert item["category"] == "correctly_excluded"
                 assert item["needs_manual_review"] is False
                 assert item["reason_code"] == "manual_review_prose_exclusion"
-    assert migrated == 184
+    assert migrated == 207
     assert still_pending_review == 0
     assert confident_backlog == 0
     assert manual_excluded == 11
@@ -404,7 +404,7 @@ _WAVE3_LEFTOVER_MIGRATIONS = (
     ),
     (
         "3.2.6-ci-two-sample-cs1011.json",
-        "knowledge_checks[1].common_mistake",
+        "knowledge_checks[2].common_mistake",
         r"Applying independent two-sample formulas to paired rows (or the "
         r"reverse) because $n_{1} = n_{2}$.",
     ),
@@ -454,7 +454,7 @@ _WAVE3_LEFTOVER_MIGRATIONS = (
     ),
     (
         "3.2.3-ci-given-sampling-distribution-cs1011.json",
-        "knowledge_checks[1].explanation",
+        "knowledge_checks[2].explanation",
         r"From $\chi^{2}_{L} < 2n \bar{X} / \theta < \chi^{2}_{U}$, taking "
         r"reciprocals (and reversing inequalities) yields bounds "
         r"$2n \bar{X} / \chi^{2}_{U}$ and $2n \bar{X} / \chi^{2}_{L}$. The "
