@@ -10,9 +10,10 @@ Finding notes (do not encode broken behaviour as golden success):
   due-review selection. Locked precedence is overdue > due > adaptive >
   sequential. Scenario 7 asserts due wins over an owed Memory /
   Publication Front pack (composer now matches arbitration law).
-- Finding C (KNOWN_UNKNOWNS §2.6): version-mismatch soft fallback in
-  ``map_runtime_syllabus_to_engine``. Scenario 9 asserts historical evidence
-  retention and the honest fallback flag; it does not claim remapping is safe.
+- Finding C (KNOWN_UNKNOWNS §2.6): unmatched Studio labels among a single
+  on-disk year still set ``version_mismatch_fallback``. Scenario 9 asserts
+  historical evidence retention and the honest flag. Multi-year unmatched
+  labels now refuse rather than picking lexicographic latest.
 """
 
 from __future__ import annotations
@@ -817,9 +818,9 @@ def test_golden_09_prior_evidence_retained_version_mismatch_fallback_honest(ctx)
     """Prior Twin evidence keeps write-time topic identity; version fallback flagged.
 
     There is no automatic invalidation of historical practice when curriculum
-    version labels drift. ``map_runtime_syllabus_to_engine`` soft-falls back to
-    the latest engine version and sets ``version_mismatch_fallback`` (Finding C
-    class risk). Golden assertion: retention + honest flag, not safe remapping.
+    version labels drift. With a single on-disk year, unmatched Studio labels
+    still map to that year and set ``version_mismatch_fallback``. Golden
+    assertion: retention + honest flag, not safe remapping.
     """
     engine = make_engine(fixed_time=FIXED)
     twin = engine.create_twin("golden-ver", twin_id="twin-g9", subject_code="CS1")

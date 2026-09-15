@@ -214,14 +214,17 @@ class CurriculumService:
         """Resolve an official syllabus topic code to a SQL ``Topic.id``.
 
         Loads the engine curriculum for ``curriculum.exam_name`` /
-        ``curriculum.version``, matches an engine topic by **exact** code
-        (stripped), then finds the SQL Topic by
-        ``(curriculum_id, name=engine_topic.title)`` — the same convention
-        StudyPlanService uses. Lookup-only: does not create Topic rows.
+        ``curriculum.version`` and matches an engine topic by **exact** code
+        (stripped). SQL identity prefers persisted learning-objective codes
+        (``[code]`` prefix written on import). Title match is used only when
+        that code join is unique. Duplicate titles are never silently
+        conflated: ambiguous last-mile matches return ``None``.
+
+        Lookup-only: does not create Topic rows.
 
         Honest ``None`` when the code is empty, the curriculum is missing,
-        the engine cannot be loaded, the code is unknown, or no SQL Topic
-        row exists. No fuzzy title matching.
+        the engine cannot be loaded, the code is unknown, no SQL Topic row
+        exists, or more than one SQL topic shares the resolved identity.
 
         Args:
             curriculum: DB Curriculum row (must already exist).
@@ -272,18 +275,78 @@ class CurriculumService:
         if engine_topic is None:
             return None
 
+        by_lo = CurriculumService._topic_id_via_persisted_lo_code(
+            curriculum.id, code
+        )
+        if by_lo is not None:
+            return by_lo
+
         title = (getattr(engine_topic, "title", None) or "").strip()
         if not title:
             return None
 
-        db_topic = Topic.query.filter_by(
+        matches = Topic.query.filter_by(
             curriculum_id=curriculum.id,
             name=title,
-        ).first()
-        if db_topic is None:
-            return None
+        ).all()
+        if len(matches) == 1:
+            return int(matches[0].id)
+        if len(matches) > 1:
+            logger.warning(
+                "resolve_topic_id_for_official_code ambiguous title "
+                "exam=%s version=%s code=%s title=%r count=%s",
+                curriculum.exam_name,
+                curriculum.version,
+                code,
+                title,
+                len(matches),
+            )
+        return None
 
-        return int(db_topic.id)
+    @staticmethod
+    def _topic_id_via_persisted_lo_code(
+        curriculum_id: int, official_code: str
+    ) -> int | None:
+        """Resolve SQL Topic.id from imported ``[official_code]`` LO prefixes.
+
+        Import stores engine LO codes as ``[code] `` at the start of
+        ``LearningObjective.description``. Topic 1.1 is identified by LOs
+        whose bracketed code is ``1.1`` or a child (``1.1.1``), not by title.
+        ``1.10`` does not match a ``1.1`` prefix.
+        """
+        code = (official_code or "").strip()
+        if not code or curriculum_id is None:
+            return None
+        child_prefix = f"[{code}."
+        exact_prefix = f"[{code}]"
+        rows = (
+            db.session.query(
+                LearningObjective.topic_id, LearningObjective.description
+            )
+            .join(Topic, Topic.id == LearningObjective.topic_id)
+            .filter(
+                Topic.curriculum_id == curriculum_id,
+                Topic.active.is_(True),
+                LearningObjective.active.is_(True),
+            )
+            .all()
+        )
+        hits: set[int] = set()
+        for topic_id, description in rows:
+            text = (description or "").lstrip()
+            if text.startswith(child_prefix) or text.startswith(exact_prefix):
+                hits.add(int(topic_id))
+        if len(hits) == 1:
+            return next(iter(hits))
+        if len(hits) > 1:
+            logger.warning(
+                "resolve_topic_id_for_official_code ambiguous LO code "
+                "curriculum_id=%s code=%s count=%s",
+                curriculum_id,
+                code,
+                len(hits),
+            )
+        return None
 
     @staticmethod
     def _load_curriculum_auto(

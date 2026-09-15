@@ -43,9 +43,11 @@ def map_runtime_syllabus_to_engine(
 
     Matching:
     - Paper equals ``subject_code`` (case-insensitive) via ``list_exams()``.
-    - Version: prefer exact match to ``version_label`` among discoverable
-      versions; otherwise fall back to the latest discoverable version for
-      that org/paper and set ``version_mismatch_fallback`` (logged distinctly).
+    - Version: prefer exact match to ``version_label``, then a leading-year
+      stem match (Studio ``2027.1`` to engine ``2027``). If the catalogue
+      has exactly one version and neither matched, use that version and set
+      ``version_mismatch_fallback`` (logged distinctly). Never pick
+      lexicographic latest among multiple unmatched years.
 
     Args:
         subject_code: Runtime C / Studio subject (e.g. ``"CS1"``).
@@ -76,13 +78,16 @@ def map_runtime_syllabus_to_engine(
         return None
 
     label = (version_label or "").strip()
-    sorted_versions = sorted(versions)
-    if label and label in versions:
-        engine_version = label
-        used_fallback = False
-    else:
-        engine_version = sorted_versions[-1]
-        used_fallback = True
+    engine_version, used_fallback = _select_engine_version(label, versions)
+    if engine_version is None:
+        logger.warning(
+            "syllabus_engine_map unmatched version subject_code=%s "
+            "version_label=%r available=%s",
+            paper_key,
+            version_label,
+            sorted(versions),
+        )
+        return None
 
     try:
         engine_curriculum = catalogue.load_auto(
@@ -129,3 +134,34 @@ def map_runtime_syllabus_to_engine(
         )
 
     return identity
+
+
+def _year_stem(version_label: str) -> str:
+    """Leading four-digit year from a Studio-style version label, else empty."""
+    text = (version_label or "").strip()
+    if len(text) >= 4 and text[:4].isdigit():
+        return text[:4]
+    return ""
+
+
+def _select_engine_version(
+    label: str, versions: list[str]
+) -> tuple[str | None, bool]:
+    """Choose an on-disk engine year without silent latest-among-many fallback.
+
+    Returns ``(version, used_fallback)``. ``used_fallback`` is True only when
+    the catalogue has a single unambiguous year and the requested label did
+    not exact-match or stem-match it.
+    """
+    available = [str(v).strip() for v in versions if str(v).strip()]
+    if not available:
+        return None, False
+    if label and label in available:
+        return label, False
+    stem = _year_stem(label)
+    if stem and stem in available:
+        return stem, False
+    unique = sorted(set(available))
+    if len(unique) == 1:
+        return unique[0], True
+    return None, False

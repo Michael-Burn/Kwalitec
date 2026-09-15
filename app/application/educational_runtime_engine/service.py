@@ -8,6 +8,7 @@ subject-specific educational content.
 from __future__ import annotations
 
 import json
+import logging
 import uuid
 from datetime import UTC, date, datetime
 from typing import Any
@@ -94,6 +95,8 @@ from app.models.educational_runtime_engine import (
     RuntimeMissionInstance,
     RuntimeStudyPlanInstance,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def _utc_now() -> datetime:
@@ -1919,12 +1922,22 @@ class EducationalRuntimeEngineService:
             user_id=user_id,
             mission_instance_id=mission_instance_id,
         )
-        get_spacing_scheduler().record_completed_exposure(
-            learner_id=str(user_id),
-            package_id=pid,
-            completed_on=completed_on,
-            ladder_step_delta=delta,
-        )
+        try:
+            get_spacing_scheduler().record_completed_exposure(
+                learner_id=str(user_id),
+                package_id=pid,
+                completed_on=completed_on,
+                ladder_step_delta=delta,
+            )
+        except Exception:  # noqa: BLE001
+            logger.exception(
+                "spacing_exposure_write_failed user=%s package=%s "
+                "mission=%s completed_on=%s",
+                user_id,
+                pid,
+                mission_instance_id,
+                completed_on,
+            )
 
     def _completed_educational_package_ids(
         self, *, user_id: int, curriculum_identity: str

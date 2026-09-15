@@ -1,8 +1,10 @@
 """Canonical published topic id resolution (ADR-027 Phase 2 Stage 1).
 
-Joins ORM topic titles to Runtime C artefact topic titles from published
-curriculum package DB rows via EducationalEngineFoundationService.
-Does not add topics.official_id and does not read package authoring trees.
+Joins ORM topics to Runtime C published artefact ids via official
+syllabus ``code`` when the ORM-shaped row exposes one, otherwise a
+unique title match. Duplicate titles are refused rather than silently
+returning the first id. Does not add topics.official_id and does not
+read package authoring trees.
 
 ORM rows are duck-typed (``name`` / ``id``) so this application module stays
 free of ``app.models`` imports.
@@ -89,29 +91,41 @@ class CanonicalTopicId:
         *,
         subject_code: str,
     ) -> str | None:
-        """Map an ORM Topic-like row to published id via artefact title join.
+        """Map an ORM Topic-like row to published id.
 
-        Matches ``topic.name`` exactly to artefact ``topics[].title``.
-        Returns None when the active published package is missing or no
-        title match exists.
+        Prefers artefact ``code`` when the row exposes ``code``. Otherwise
+        matches ``topic.name`` exactly to artefact ``topics[].title`` only
+        when that title is unique. Returns None when the active published
+        package is missing, no match exists, or the title is ambiguous.
         """
         if topic is None:
-            return None
-        name = (getattr(topic, "name", None) or "").strip()
-        if not name:
             return None
 
         artefacts = self._load_artefacts(subject_code)
         if artefacts is None:
             return None
 
+        row_code = str(getattr(topic, "code", None) or "").strip()
+        if row_code:
+            mapped = self._topic_id_by_code(artefacts).get(row_code)
+            if mapped is not None:
+                return mapped
+
+        name = (getattr(topic, "name", None) or "").strip()
+        if not name:
+            return None
+
+        published_ids: list[str] = []
         for raw in artefacts.topics:
             if not isinstance(raw, dict):
                 continue
             title = str(raw.get("title") or "").strip()
             published = str(raw.get("topic_id") or "").strip()
             if title == name and published:
-                return published
+                published_ids.append(published)
+        unique = list(dict.fromkeys(published_ids))
+        if len(unique) == 1:
+            return unique[0]
         return None
 
     def orm_topic_id_for_published(
@@ -121,10 +135,12 @@ class CanonicalTopicId:
         subject_code: str,
         topics: list[Any] | tuple[Any, ...] | None = None,
     ) -> int | None:
-        """Reverse join: published id -> ORM topics.id via title.
+        """Reverse join: published id -> ORM topics.id.
 
-        When ``topics`` is omitted, callers must supply the candidate ORM
-        rows (Stage 1 does not invent a global curriculum scan).
+        Prefers artefact ``code`` when candidate rows expose ``code``.
+        Title is last-mile and must be unique among ``topics``. When
+        ``topics`` is omitted, callers must supply the candidate ORM rows
+        (Stage 1 does not invent a global curriculum scan).
         """
         token = (published_topic_id or "").strip()
         if not token or topics is None:
@@ -132,13 +148,34 @@ class CanonicalTopicId:
         artefacts = self._load_artefacts(subject_code)
         if artefacts is None:
             return None
+        artefact_code = self._code_for_topic_id(artefacts, token)
+        if artefact_code:
+            code_hits: list[int] = []
+            for row in topics:
+                row_code = str(getattr(row, "code", None) or "").strip()
+                if row_code != artefact_code:
+                    continue
+                oid = getattr(row, "id", None)
+                if oid is not None:
+                    code_hits.append(int(oid))
+            unique_codes = list(dict.fromkeys(code_hits))
+            if len(unique_codes) == 1:
+                return unique_codes[0]
+            if len(unique_codes) > 1:
+                return None
         title = self._title_for_topic_id(artefacts, token)
         if not title:
             return None
+        title_hits: list[int] = []
         for row in topics:
-            if (getattr(row, "name", None) or "").strip() == title:
-                oid = getattr(row, "id", None)
-                return int(oid) if oid is not None else None
+            if (getattr(row, "name", None) or "").strip() != title:
+                continue
+            oid = getattr(row, "id", None)
+            if oid is not None:
+                title_hits.append(int(oid))
+        unique_titles = list(dict.fromkeys(title_hits))
+        if len(unique_titles) == 1:
+            return unique_titles[0]
         return None
 
     @staticmethod
@@ -232,6 +269,20 @@ class CanonicalTopicId:
                 continue
             title = str(raw.get("title") or "").strip()
             return title or None
+        return None
+
+    @staticmethod
+    def _code_for_topic_id(
+        artefacts: EducationalArtefactSnapshot,
+        topic_id: str,
+    ) -> str | None:
+        for raw in artefacts.topics:
+            if not isinstance(raw, dict):
+                continue
+            if str(raw.get("topic_id") or "").strip() != topic_id:
+                continue
+            code = str(raw.get("code") or "").strip()
+            return code or None
         return None
 
 

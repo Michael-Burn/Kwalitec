@@ -150,3 +150,60 @@ def test_orm_topic_id_for_published_reverse_join():
         )
         == 1
     )
+
+
+def test_duplicate_orm_title_does_not_silently_pick_first():
+    """Finding B: two ORM rows sharing a title must not be conflated."""
+    helper = CanonicalTopicId(foundation=_FakeFoundation(_cs1_artefacts()))
+    topics = (
+        SimpleNamespace(name="Statistical distributions", id=11, code="9.9"),
+        SimpleNamespace(name="Statistical distributions", id=99, code="8.8"),
+    )
+    assert (
+        helper.orm_topic_id_for_published(
+            "CS1-A-T01", subject_code="CS1", topics=topics
+        )
+        is None
+    )
+
+
+def test_official_code_disambiguates_duplicate_titles():
+    helper = CanonicalTopicId(foundation=_FakeFoundation(_cs1_artefacts()))
+    topics = (
+        SimpleNamespace(name="Statistical distributions", id=11, code="9.9"),
+        SimpleNamespace(name="Statistical distributions", id=1, code="1.1"),
+    )
+    assert (
+        helper.orm_topic_id_for_published(
+            "CS1-A-T01", subject_code="CS1", topics=topics
+        )
+        == 1
+    )
+
+
+def test_resolve_from_orm_topic_prefers_code_over_colliding_title():
+    artefacts = _cs1_artefacts()
+    collided = EducationalArtefactSnapshot(
+        curriculum_identity=artefacts.curriculum_identity,
+        subject_code=artefacts.subject_code,
+        version_label=artefacts.version_label,
+        topics=(
+            {
+                "topic_id": "CS1-A-T01",
+                "code": "1.1",
+                "title": "Shared title",
+            },
+            {
+                "topic_id": "CS1-A-T02",
+                "code": "1.2",
+                "title": "Shared title",
+            },
+        ),
+        objectives=artefacts.objectives,
+        progress_model=artefacts.progress_model,
+    )
+    helper = CanonicalTopicId(foundation=_FakeFoundation(collided))
+    topic = SimpleNamespace(name="Shared title", id=7, code="1.2")
+    assert helper.resolve_from_orm_topic(topic, subject_code="CS1") == "CS1-A-T02"
+    ambiguous = SimpleNamespace(name="Shared title", id=8)
+    assert helper.resolve_from_orm_topic(ambiguous, subject_code="CS1") is None
