@@ -160,6 +160,51 @@
       "objective_id": "CS1-C-T03-LO02"
     },
     {
+      "episode_id": "lep-cs1012-3.3.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.2-ar-02",
+      "title": "Active Recall: 3.3.2 apply one-sample Normal z-test",
+      "prompt": "Closed-book. Test $H_{0}\\colon \\mu = 500$ vs $H_{1}\\colon \\mu \\neq 500$ with $n=36$, $\\bar{x}=520$, known $\\sigma=60$ (Normal). Using $\\Phi(2.0)=0.9772$, which statement correctly computes the one-sample $z$ statistic and two-sided $p$-value, decides at $\\alpha=0.05$, and correctly refuses dropping $/\\sqrt{n}$ from the SE?",
+      "response_type": "mcq",
+      "body": "Evaluate the basic one-sample Normal mean test from the worked example.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "SE $=\\sigma/\\sqrt{n}=60/6=10$, so $z=(520-500)/10=2$. Two-sided $p=2(1-0.9772)=0.0456<0.05$, so reject $H_{0}$. Using $\\sigma$ without $/\\sqrt{n}$ collapses $z$ toward zero and is not the basic one-sample Normal test.",
+      "model_answer": "$z=2$, $p=0.0456$, reject at $\\alpha=0.05$; SE uses $\\sigma/\\sqrt{n}$.",
+      "common_mistake": "Using $(\\bar{x}-\\mu_{0})/\\sigma$ without $/\\sqrt{n}$.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "SE $=10$ and $z=2$. Two-sided $p=0.0456$, so reject $H_{0}$ at $\\alpha=0.05$. The SE is $\\sigma/\\sqrt{n}$, not $\\sigma$. This is a basic one-sample Normal mean test, not a permutation procedure.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$z=(520-500)/60\\approx 0.333$, so $p$ is large and we fail to reject at 5%, because the SE is $\\sigma$ rather than $\\sigma/\\sqrt{n}$.",
+          "misconception_tag": "drop_sqrt_n_in_z"
+        },
+        {
+          "id": "c",
+          "label": "$z=2$ and $p=0.0456$, but because $n_{1}$ is never stated as a second sample, replace the Normal z-test by shuffling treatment labels under a permutation null.",
+          "misconception_tag": "permutation_as_basic_onesample"
+        },
+        {
+          "id": "d",
+          "label": "$z=2$ and one-sided tail $0.0228$ is already the two-sided p-value, so compare $0.0228$ with $0.05$ and stop.",
+          "misconception_tag": "onesided_tail_as_twosided_p"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO02"
+    },
+    {
       "episode_id": "lep-cs1012-3.3.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.2-cp-01",

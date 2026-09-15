@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-15T06:24:14Z",
+  "generated_at": "2026-09-15T07:11:40Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2402,
-    "already_compliant": 2275,
+    "mathish_strings": 2436,
+    "already_compliant": 2309,
     "needs_migration": 0,
     "correctly_excluded": 127,
     "needs_manual_review": 0,
-    "confident_automated": 2402,
+    "confident_automated": 2436,
     "remaining_backlog": 0,
-    "migrated": 2254,
+    "migrated": 2288,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2275,
+    "fully_covered_by_current_typesetting": 2309,
     "manual_review_prose_exclusion": 126,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2254,
-    "equationish": 1679,
-    "actuarial_fn": 508,
-    "ascii_approx": 275,
-    "bare_latex": 224,
+    "dollar_delimited": 2288,
+    "equationish": 1712,
+    "actuarial_fn": 510,
+    "ascii_approx": 278,
+    "bare_latex": 234,
     "greek": 113,
-    "compound": 37,
+    "compound": 39,
     "unicode_ops": 11
   },
   "by_risk_tier_needs_migration": {
@@ -17573,8 +17573,8 @@
       "topic_code": "3.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-MU",
       "counts": {
-        "mathish_strings": 19,
-        "already_compliant": 19,
+        "mathish_strings": 27,
+        "already_compliant": 27,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -17603,7 +17603,144 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
           "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Test $H_{0}\\colon \\mu = 500$ vs $H_{1}\\colon \\mu \\neq 500$ with $n=36$, $\\bar{x}=520$, known $\\sigma=60$ (Normal). Using $\\Phi(2.0)=0.9772$, which statement correctly computes the one-sample $z$ statistic and two-sided $p$-value, decides at $\\alpha=0.05$, and correctly refuses dropping $/\\sqrt{n}$ from the SE?",
+          "text_hash": "07305021ed96b244",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "SE $=\\sigma/\\sqrt{n}=60/6=10$, so $z=(520-500)/10=2$. Two-sided $p=2(1-0.9772)=0.0456<0.05$, so reject $H_{0}$. Using $\\sigma$ without $/\\sqrt{n}$ collapses $z$ toward zero and is not the basic one-sample Normal test.",
+          "text_hash": "140ccfffa4196923",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
           "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$z=2$, $p=0.0456$, reject at $\\alpha=0.05$; SE uses $\\sigma/\\sqrt{n}$.",
+          "text_hash": "a9f20077e4ecb977",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $(\\bar{x}-\\mu_{0})/\\sigma$ without $/\\sqrt{n}$.",
+          "text_hash": "db9f32567c8035b9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "SE $=10$ and $z=2$. Two-sided $p=0.0456$, so reject $H_{0}$ at $\\alpha=0.05$. The SE is $\\sigma/\\sqrt{n}$, not $\\sigma$. This is a basic one-sample Normal mean test, not a permutation procedure.",
+          "text_hash": "b444f86d58dba9e0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$z=(520-500)/60\\approx 0.333$, so $p$ is large and we fail to reject at 5%, because the SE is $\\sigma$ rather than $\\sigma/\\sqrt{n}$.",
+          "text_hash": "5786c988d71feade",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$z=2$ and $p=0.0456$, but because $n_{1}$ is never stated as a second sample, replace the Normal z-test by shuffling treatment labels under a permutation null.",
+          "text_hash": "502fdd16a3cfc537",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$z=2$ and one-sided tail $0.0228$ is already the two-sided p-value, so compare $0.0228$ with $0.05$ and stop.",
+          "text_hash": "068cd8e184ea31a7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
+          "package_file": "3.3.2-basic-tests-cs1012.json",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "z-test for one Normal mean ($\\sigma$ known); two-sample proportion test; paired test on differences; permutation $\\neq$ basic parametric.",
           "text_hash": "37ffa47a88e56a2f",
@@ -17619,7 +17756,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-BASIC-TESTS",
           "package_file": "3.3.2-basic-tests-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "(a) one Normal mean with $\\sigma$ known → one-sample Normal/z-test; (b) two independent binomial proportions → two-sample proportion test with Normal approximation; (c) paired Normal differences → paired test on differences. Permutation tests are a different approach, not a substitute for these basic parametric tests.",
           "text_hash": "ca4083a162d94a0d",
@@ -17910,8 +18047,8 @@
       "topic_code": "3.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-MU",
       "counts": {
-        "mathish_strings": 22,
-        "already_compliant": 21,
+        "mathish_strings": 29,
+        "already_compliant": 28,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -17924,6 +18061,133 @@
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. $n=100$ claims in five types; under $H_{0}$ each type has probability $1/5$ so $E_i=20$. Observed: 18, 22, 20, 15, 25. Using $\\chi^{2}_{4,0.95}=9.488$, which statement correctly computes Pearson's $\\chi^{2}$, keeps $\\mathrm{df}=5-1=4$, decides at $\\alpha=0.05$, and correctly refuses treating this as a two-way independence test?",
+          "text_hash": "763371c349c224e1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\chi^{2}=\\sum(O-E)^{2}/E=2.9$ on 4 df. Since $2.9<9.488$, do not reject equal shares. Independence in a contingency table uses margin-product expected counts and is a different test.",
+          "text_hash": "8e3bb910f9c864ba",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$\\chi^{2}=2.9$ on 4 df; do not reject; not an independence test.",
+          "text_hash": "a3f86be40e4f8fad",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\chi^{2}=2.9$ on $\\mathrm{df}=4$. Because $2.9<9.488$, do not reject equal type shares at $\\alpha=0.05$. This is one-sample GOF to a stated distribution, not a two-way test of independence.",
+          "text_hash": "eae9e2cd17630bcf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\chi^{2}=2.9$ but $\\mathrm{df}=5$ (one per category, no multinomial $-1$), so compare with a 5-df critical value instead.",
+          "text_hash": "bc9c5ecd35cd3dee",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Rebuild expected counts from fictional row/column totals as in a contingency independence test, then claim the same $\\chi^{2}$ finishes GOF.",
+          "text_hash": "f453ec7967becbcd",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\chi^{2}=2.9$ exceeds any Normal $z_{0.975}=1.96$ rule of thumb, so reject $H_{0}$ without using the chi-square critical value.",
+          "text_hash": "86b029ede426628d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
+          "package_file": "3.3.4-chi-square-gof-cs1012.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. You test whether claim counts follow a Poisson distribution; $\\lambda$ is estimated from the same sample. Which statement is correct?",
           "text_hash": "88f3700665fbca63",
@@ -17939,7 +18203,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].explanation",
+          "field_path": "knowledge_checks[2].explanation",
           "field_group": "knowledge_checks[].explanation",
           "text": "Fit Poisson probabilities with $\\hat{\\lambda}$, form expected counts, and reduce DF by one for $\\hat{\\lambda}$. Independence testing is not GOF to a named distribution.",
           "text_hash": "ffc333862c695bce",
@@ -17955,7 +18219,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "$E = n \\times$ Poisson probabilities at $\\hat{\\lambda}$; DF = bins - 1 - 1; independence $\\neq$ GOF.",
           "text_hash": "81dbd82a67587ad9",
@@ -17972,7 +18236,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Forgetting the DF reduction for $\\hat{\\lambda}$, or treating independence as GOF.",
           "text_hash": "53b0814de658d85e",
@@ -17988,7 +18252,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Expected frequencies are $n$ times fitted Poisson probabilities using $\\hat{\\lambda}$. Degrees of freedom are (number of bins - 1 - number of estimated parameters), so subtract 1 for $\\hat{\\lambda}$. A chi-square test of independence in a two-way table is a different procedure.",
           "text_hash": "494e79cd78530e87",
@@ -18004,7 +18268,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Expected frequencies use $\\hat{\\lambda}$, but degrees of freedom stay at (bins - 1) with no reduction for estimating $\\lambda$.",
           "text_hash": "3708479e58da3749",
@@ -18020,7 +18284,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Because $\\lambda$ is estimated, replace GOF by a two-way independence test on a contingency table of counts.",
           "text_hash": "7cc3c7a3694b6d18",
@@ -18036,7 +18300,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CHI-SQUARE-GOF",
           "package_file": "3.3.4-chi-square-gof-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Expected frequencies are n/$\\hat{\\lambda}$ in every bin, regardless of the Poisson probabilities for those bins.",
           "text_hash": "21dab2733aa82a9f",
@@ -18300,8 +18564,8 @@
       "topic_code": "3.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-MU",
       "counts": {
-        "mathish_strings": 21,
-        "already_compliant": 21,
+        "mathish_strings": 29,
+        "already_compliant": 29,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -18351,6 +18615,147 @@
           "package_file": "3.3.5-contingency-independence-cs1012.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. $2\\times 2$ table: Online/Fraud 20, Online/Clean 30, Broker/Fraud 10, Broker/Clean 40 (rows 50,50; cols 30,70; $n=100$). Using $\\chi^{2}_{1,0.95}=3.841$, which statement correctly forms independence expected counts, computes Pearson's $\\chi^{2}$, decides at $\\alpha=0.05$, and correctly refuses equal-cell $n/4$ expectations and GOF-to-Poisson substitution?",
+          "text_hash": "2bffd8ed909f7a21",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$E_{ij}=(\\mathrm{row}\\times\\mathrm{col})/n$ gives 15, 35 / 15, 35. $\\chi^{2}=100/21\\approx 4.762>3.841$, so reject independence. Equal $n/4$ ignores margins; Poisson GOF is a different hypothesis.",
+          "text_hash": "6fab922c560f537e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$E=15,35/15,35$; $\\chi^{2}\\approx 4.762$; reject independence.",
+          "text_hash": "592444ce9e4e9863",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $E_{ij}=n/4=25$, or treating the table as Poisson GOF.",
+          "text_hash": "f751e971ebf199cf",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E_{ij}=(\\mathrm{row}\\times\\mathrm{col})/n$ gives 15, 35 / 15, 35. $\\chi^{2}=100/21\\approx 4.762>3.841$, so reject independence of channel and fraud flag at $\\alpha=0.05$. This is not one-sample GOF to a named distribution such as Poisson.",
+          "text_hash": "a3366fef17dffec1",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 1,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "compound",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Expected counts are $n/4=25$ in every cell because there are four cells, so ignore the unequal margins.",
+          "text_hash": "c04c70dc16819516",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Treat the four counts as a Poisson GOF problem with $\\lambda$ estimated from the table total, and skip the independence null.",
+          "text_hash": "0a0cd1a5f8eb65d8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$E_{ij}=\\mathrm{row}+\\mathrm{col}$ without dividing by $n$, which inflates every expected count and cannot produce a valid Pearson $\\chi^{2}$.",
+          "text_hash": "f4912fdb092b4d80",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
+          "package_file": "3.3.5-contingency-independence-cs1012.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Two-way table: rating class $\\times$ claim/no-claim. Which statement is correct?",
           "text_hash": "b5b7e703467af954",
           "category": "already_compliant",
@@ -18366,7 +18771,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
           "package_file": "3.3.5-contingency-independence-cs1012.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Independence null; $E_{ij}=(\\text{row total}\\times\\text{column total})/n$; refuse GOF conflation.",
           "text_hash": "ee9d8b39ffe1c977",
@@ -18384,7 +18789,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
           "package_file": "3.3.5-contingency-independence-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$H_{0}$: row and column classifications are independent; $E_{ij} = (\\text{row i total} \\times \\text{column j total}) / n$. This is not the same as a chi-square GOF testing whether one sample follows a named distribution.",
           "text_hash": "425b7c8945172bbe",
@@ -18402,7 +18807,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
           "package_file": "3.3.5-contingency-independence-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$H_{0}$: the counts follow a Poisson distribution with mean estimated from the table total; expected counts are that fitted Poisson pmf times n.",
           "text_hash": "71ee5f8b86c2ba82",
@@ -18419,7 +18824,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
           "package_file": "3.3.5-contingency-independence-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$H_{0}$: independence; expected counts equal the observed counts in every cell.",
           "text_hash": "b60a8a258bdd8ee4",
@@ -18436,7 +18841,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-CONTINGENCY-INDEPENDENCE",
           "package_file": "3.3.5-contingency-independence-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "$H_{0}$: independence; $E_{ij}$ = row i total + column j total, without dividing by n.",
           "text_hash": "15ec16e6c311d3ab",
@@ -18686,8 +19091,8 @@
       "topic_code": "3.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-MU",
       "counts": {
-        "mathish_strings": 24,
-        "already_compliant": 24,
+        "mathish_strings": 30,
+        "already_compliant": 30,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -18753,7 +19158,111 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
           "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
-          "field_path": "knowledge_checks[1].prompt",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "A simple hypothesis fully specifies the distribution; a composite leaves free parameters. Sensitivity is the true-positive rate; specificity is the true-negative rate (not synonyms for Type I/II). The test statistic is the data summary compared with its null reference; a likelihood ratio compares likelihoods under competing hypotheses. The critical region is the rejection set sized by the significance level $\\alpha = P(\\text{Type I error})$ under $H_{0}$.",
+          "text_hash": "3ecaea79f148d6d7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Simple vs composite; sensitivity/specificity; test statistic and LR; critical region sized by $\\alpha$.",
+          "text_hash": "eb288e893864c5f7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Equating sensitivity/specificity with Type I/II, or treating $\\alpha$ as a post-data probability that $H_{0}$ is true.",
+          "text_hash": "8d3a186eda48f0bd",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "A simple hypothesis fully specifies the distribution (no free parameters); a composite leaves at least one free. Sensitivity is $P(\\text{flag positive} \\mid \\text{condition present})$; specificity is $P(\\text{flag negative} \\mid \\text{condition absent})$. The test statistic is the summary compared with its null reference; a likelihood ratio compares likelihoods under competing hypotheses. The critical region is the rejection set of statistic values, sized so that the significance level $\\alpha$ equals the Type I error probability under $H_{0}$.",
+          "text_hash": "2edcaaadcb873284",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Every alternative $H_{1}\\colon \\mu \\neq \\mu_{0}$ is a simple hypothesis because it is written with a single Greek letter, and the critical region is whatever software prints after the p-value.",
+          "text_hash": "323b76966450f064",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "The significance level $\\alpha$ is the probability that $H_{0}$ is true after seeing the data, and a likelihood ratio is just another name for the p-value.",
+          "text_hash": "d80743f896fb98ca",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
+          "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Disease screening: $H_{0}$ = no disease, $H_{1}$ = disease present. Which statement is correct?",
           "text_hash": "dfc24e6c6ee3fd0e",
@@ -18770,7 +19279,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
           "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Type I = false positive; Type II = false negative; p-value under $H_{0}$; power = $1-\\beta$; concepts $\\neq$ cookbook click.",
           "text_hash": "4fda8ad49c9605e2",
@@ -18787,7 +19296,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-HYPOTHESIS-CONCEPTS",
           "package_file": "3.3.1-hypothesis-concepts-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Type I error is a false positive (declare disease when healthy). Type II error is a false negative (miss disease when present). A p-value is the probability under $H_{0}$ of a result at least as extreme as observed; power is $P(\\text{reject }H_{0} \\mid H_{1}\\text{ true})$. Running a software z-test does not by itself replace this vocabulary.",
           "text_hash": "a988ffdd5369ae9e",
@@ -19111,8 +19620,8 @@
       "topic_code": "3.3",
       "campaign_id": "CS1-EP001-CAMPAIGN-MU",
       "counts": {
-        "mathish_strings": 16,
-        "already_compliant": 15,
+        "mathish_strings": 21,
+        "already_compliant": 20,
         "needs_migration": 0,
         "correctly_excluded": 1,
         "needs_manual_review": 0,
@@ -19140,6 +19649,91 @@
           "package_file": "3.3.3-permutation-tests-cs1012.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Groups A = {10, 12, 14} and B = {8, 9, 11}. Under an exchangeability null, use the two-sided permutation statistic $|\\bar{x}_A-\\bar{x}_B|$. There are $C(6,3)=20$ assignments of three labels to A; exactly 4 have $|\\mathrm{diff}|\\ge$ the observed value $8/3$. Which statement correctly reports the exact permutation p-value and correctly refuses treating a Normal two-sample z-test as the same procedure?",
+          "text_hash": "0474c8cc9aa36999",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+          "package_file": "3.3.3-permutation-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Observed $|12-28/3|=8/3$. Exact permutation $p=4/20=0.2$. That is a reshuffle reference under exchangeability, not a Normal two-sample z-test and not a bootstrap percentile CI.",
+          "text_hash": "a777f3ecad1d8adb",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+          "package_file": "3.3.3-permutation-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Exact permutation $p=0.2$; not a Normal z-test by another name.",
+          "text_hash": "015a1b9016cbf6c2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+          "package_file": "3.3.3-permutation-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Observed $|\\bar{x}_A-\\bar{x}_B|=8/3$ and exact permutation $p=4/20=0.2$. Under $H_{0}$ every 3-vs-3 label assignment is equally likely. This is not a Normal two-sample z-test by another name, and not a bootstrap-with-replacement CI.",
+          "text_hash": "5df660072d22b3b7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+          "package_file": "3.3.3-permutation-tests-cs1012.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Exact $p=4/15$, because three labels on A and three on B somehow cancel three of the twenty combinations.",
+          "text_hash": "cab99f68d4a310e0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
+          "package_file": "3.3.3-permutation-tests-cs1012.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Under $H_{0}$ of no treatment effect, treatment labels are exchangeable across units. Which statement is correct?",
           "text_hash": "ec7b7672cfe75307",
           "category": "already_compliant",
@@ -19155,7 +19749,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
           "package_file": "3.3.3-permutation-tests-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Shuffle or reassign labels under $H_{0}$, recompute the test statistic many times, and compare the observed statistic to that permutation reference distribution. That is not a Normal two-sample z-test by another name, and not a chi-square GOF to a named distribution.",
           "text_hash": "5cd2e67ccdd00415",
@@ -19172,7 +19766,7 @@
         {
           "package_id": "CS1-EP001-PKG-3.3-PERMUTATION-TESTS",
           "package_file": "3.3.3-permutation-tests-cs1012.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Resample with replacement to form a percentile confidence interval; reject $H_{0}$ if zero is outside that interval, and call the procedure a permutation test.",
           "text_hash": "a4b61871a6e523a5",
@@ -43491,5 +44085,5 @@
       ]
     }
   ],
-  "content_fingerprint": "a5616fcbbd6b325079a0b2395b04f87c1f22016b830747da4603cad3d1d6df3b"
+  "content_fingerprint": "dc1cf93c0686a21e920af51085c495fce8bc37ca0141272251eddba5fc73c8cd"
 }

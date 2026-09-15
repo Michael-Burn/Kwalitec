@@ -162,6 +162,51 @@
       "objective_id": "CS1-C-T03-LO01"
     },
     {
+      "episode_id": "lep-cs1012-3.3.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.1-ar-02",
+      "title": "Active Recall: 3.3.1 remaining HT concepts",
+      "prompt": "Closed-book. Which statement correctly defines simple vs composite hypotheses, sensitivity vs specificity, the test statistic and likelihood ratio, and the critical region with its significance level?",
+      "response_type": "mcq",
+      "body": "Close the named syllabus parts not scored by ar-01/cp-01.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "A simple hypothesis fully specifies the distribution; a composite leaves free parameters. Sensitivity is the true-positive rate; specificity is the true-negative rate (not synonyms for Type I/II). The test statistic is the data summary compared with its null reference; a likelihood ratio compares likelihoods under competing hypotheses. The critical region is the rejection set sized by the significance level $\\alpha = P(\\text{Type I error})$ under $H_{0}$.",
+      "model_answer": "Simple vs composite; sensitivity/specificity; test statistic and LR; critical region sized by $\\alpha$.",
+      "common_mistake": "Equating sensitivity/specificity with Type I/II, or treating $\\alpha$ as a post-data probability that $H_{0}$ is true.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "A simple hypothesis fully specifies the distribution (no free parameters); a composite leaves at least one free. Sensitivity is $P(\\text{flag positive} \\mid \\text{condition present})$; specificity is $P(\\text{flag negative} \\mid \\text{condition absent})$. The test statistic is the summary compared with its null reference; a likelihood ratio compares likelihoods under competing hypotheses. The critical region is the rejection set of statistic values, sized so that the significance level $\\alpha$ equals the Type I error probability under $H_{0}$.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Sensitivity is the Type I error rate and specificity is the Type II error rate, so naming sensitivity/specificity adds nothing beyond Type I/II.",
+          "misconception_tag": "sens_spec_as_type_errors"
+        },
+        {
+          "id": "c",
+          "label": "Every alternative $H_{1}\\colon \\mu \\neq \\mu_{0}$ is a simple hypothesis because it is written with a single Greek letter, and the critical region is whatever software prints after the p-value.",
+          "misconception_tag": "composite_as_simple_and_software_region"
+        },
+        {
+          "id": "d",
+          "label": "The significance level $\\alpha$ is the probability that $H_{0}$ is true after seeing the data, and a likelihood ratio is just another name for the p-value.",
+          "misconception_tag": "alpha_as_posterior_and_lr_as_pvalue"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO01"
+    },
+    {
       "episode_id": "lep-cs1012-3.3.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.1-cp-01",

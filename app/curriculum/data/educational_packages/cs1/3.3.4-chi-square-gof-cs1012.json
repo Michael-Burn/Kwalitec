@@ -157,6 +157,51 @@
       "objective_id": "CS1-C-T03-LO04"
     },
     {
+      "episode_id": "lep-cs1012-3.3.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.4-ar-02",
+      "title": "Active Recall: 3.3.4 apply chi-square GOF",
+      "prompt": "Closed-book. $n=100$ claims in five types; under $H_{0}$ each type has probability $1/5$ so $E_i=20$. Observed: 18, 22, 20, 15, 25. Using $\\chi^{2}_{4,0.95}=9.488$, which statement correctly computes Pearson's $\\chi^{2}$, keeps $\\mathrm{df}=5-1=4$, decides at $\\alpha=0.05$, and correctly refuses treating this as a two-way independence test?",
+      "response_type": "mcq",
+      "body": "Evaluate the GOF worked example; refuse independence swap.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\chi^{2}=\\sum(O-E)^{2}/E=2.9$ on 4 df. Since $2.9<9.488$, do not reject equal shares. Independence in a contingency table uses margin-product expected counts and is a different test.",
+      "model_answer": "$\\chi^{2}=2.9$ on 4 df; do not reject; not an independence test.",
+      "common_mistake": "Using df = 5, or swapping in independence expected counts.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\chi^{2}=2.9$ on $\\mathrm{df}=4$. Because $2.9<9.488$, do not reject equal type shares at $\\alpha=0.05$. This is one-sample GOF to a stated distribution, not a two-way test of independence.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\chi^{2}=2.9$ but $\\mathrm{df}=5$ (one per category, no multinomial $-1$), so compare with a 5-df critical value instead.",
+          "misconception_tag": "gof_df_forget_minus_one"
+        },
+        {
+          "id": "c",
+          "label": "Rebuild expected counts from fictional row/column totals as in a contingency independence test, then claim the same $\\chi^{2}$ finishes GOF.",
+          "misconception_tag": "independence_as_gof"
+        },
+        {
+          "id": "d",
+          "label": "$\\chi^{2}=2.9$ exceeds any Normal $z_{0.975}=1.96$ rule of thumb, so reject $H_{0}$ without using the chi-square critical value.",
+          "misconception_tag": "normal_z_as_chisquare_critical"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO04"
+    },
+    {
       "episode_id": "lep-cs1012-3.3.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.4-cp-01",

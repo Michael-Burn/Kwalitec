@@ -150,6 +150,51 @@
     },
     {
       "package_file": "3.3.4-chi-square-gof-cs1012.json",
+      "item_id": "cs1012-3.3.4-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "zzz",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.3.4-chi-square-gof-cs1012.json",
       "item_id": "cs1012-3.3.4-cp-01",
       "correct_choice_id": "a",
       "accepted_keywords": [],
@@ -789,6 +834,51 @@
           "response": "",
           "scored": false,
           "correct": null,
+          "matched_key": ""
+        }
+      ]
+    },
+    {
+      "package_file": "3.3.5-contingency-independence-cs1012.json",
+      "item_id": "cs1012-3.3.5-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "zzz",
+          "scored": true,
+          "correct": false,
           "matched_key": ""
         }
       ]

@@ -109,6 +109,11 @@ Editorial review record (2026-09-15): eight topic 3.2 retry active-recall items
 (cs1011-3.2.1-ar-02 through cs1011-3.2.8-ar-02) were reviewed and approved
 before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): five topic 3.3 retry active-recall items
+(cs1012-3.3.1-ar-02 through cs1012-3.3.5-ar-02) were reviewed and approved
+before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -268,14 +273,19 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1011-3.2.8-ar-01",  # CAF Wave 5: 3.2.8-bootstrap-confidence-interval-cs1011
         "cs1011-3.2.8-cp-01",  # CAF Wave 5: 3.2.8-bootstrap-confidence-interval-cs1011
         "cs1012-3.3.1-ar-01",  # CAF Wave 5: 3.3.1-hypothesis-concepts-cs1012
+        "cs1012-3.3.1-ar-02",  # topic 3.3 retry: 3.3.1-hypothesis-concepts-cs1012
         "cs1012-3.3.1-cp-01",  # CAF Wave 5: 3.3.1-hypothesis-concepts-cs1012
         "cs1012-3.3.2-ar-01",  # CAF Wave 5: 3.3.2-basic-tests-cs1012
+        "cs1012-3.3.2-ar-02",  # topic 3.3 retry: 3.3.2-basic-tests-cs1012
         "cs1012-3.3.2-cp-01",  # CAF Wave 5: 3.3.2-basic-tests-cs1012
         "cs1012-3.3.3-ar-01",  # CAF Wave 5: 3.3.3-permutation-tests-cs1012
+        "cs1012-3.3.3-ar-02",  # topic 3.3 retry: 3.3.3-permutation-tests-cs1012
         "cs1012-3.3.3-cp-01",  # CAF Wave 5: 3.3.3-permutation-tests-cs1012
         "cs1012-3.3.4-ar-01",  # CAF Wave 5: 3.3.4-chi-square-gof-cs1012
+        "cs1012-3.3.4-ar-02",  # topic 3.3 retry: 3.3.4-chi-square-gof-cs1012
         "cs1012-3.3.4-cp-01",  # CAF Wave 5: 3.3.4-chi-square-gof-cs1012
         "cs1012-3.3.5-ar-01",  # CAF Wave 5: 3.3.5-contingency-independence-cs1012
+        "cs1012-3.3.5-ar-02",  # topic 3.3 retry: 3.3.5-contingency-independence-cs1012
         "cs1012-3.3.5-cp-01",  # CAF Wave 5: 3.3.5-contingency-independence-cs1012
         "cs1016-3.2.1-ar-01",  # CAF Wave 5: cp-3.2.1-ci-sample-cs1016
         "cs1016-3.2.1-cp-01",  # CAF Wave 5: cp-3.2.1-ci-sample-cs1016
@@ -3379,6 +3389,33 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice treats a software z-test click as replacing Type I/II, p-value, and power. "
         "Running a test does not by itself supply that vocabulary."
     ),
+    # --- cs1012-3.3.1-ar-02 ---
+    (
+        "cs1012-3.3.1-ar-02",
+        "b",
+    ): (
+        "That choice equates sensitivity with the Type I error rate and "
+        "specificity with the Type II error rate. Sensitivity is the "
+        "true-positive rate; specificity is the true-negative rate."
+    ),
+    (
+        "cs1012-3.3.1-ar-02",
+        "c",
+    ): (
+        "That choice treats every two-sided alternative as a simple "
+        "hypothesis and lets software define the critical region. "
+        "H1: μ ≠ μ0 is composite, and the critical region is the "
+        "rejection set sized by α under H0."
+    ),
+    (
+        "cs1012-3.3.1-ar-02",
+        "d",
+    ): (
+        "That choice reads α as a post-data probability that H0 is true "
+        "and treats a likelihood ratio as another name for the p-value. "
+        "α is the Type I error probability under H0; a likelihood ratio "
+        "compares likelihoods under competing hypotheses."
+    ),
     # --- cs1012-3.3.2-ar-01 ---
     (
         "cs1012-3.3.2-ar-01",
@@ -3422,6 +3459,30 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice scrambles designs: two-sample z for one mean, one-sample Poisson for two proportions, binomial for paired Normal differences. "
         "Keep the design and model aligned with each procedure."
+    ),
+    # --- cs1012-3.3.2-ar-02 ---
+    (
+        "cs1012-3.3.2-ar-02",
+        "b",
+    ): (
+        "That choice uses SE=σ instead of σ/√n. With n=36 and σ=60, "
+        "SE=10 and z=2, not z≈0.333."
+    ),
+    (
+        "cs1012-3.3.2-ar-02",
+        "c",
+    ): (
+        "That choice replaces the basic one-sample Normal z-test with a "
+        "permutation shuffle. Permutation is a different approach; this "
+        "setting is a parametric one-sample Normal mean test."
+    ),
+    (
+        "cs1012-3.3.2-ar-02",
+        "d",
+    ): (
+        "That choice reports the one-sided tail 0.0228 as the two-sided "
+        "p-value. For a two-sided alternative, double the one-sided tail "
+        "to get p=0.0456."
     ),
     # --- cs1012-3.3.3-ar-01 ---
     (
@@ -3467,6 +3528,30 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice builds a percentile CI by resampling with replacement and calls rejecting when zero is outside a permutation test. "
         "That is bootstrap CI logic, not label permutation under H0."
     ),
+    # --- cs1012-3.3.3-ar-02 ---
+    (
+        "cs1012-3.3.3-ar-02",
+        "b",
+    ): (
+        "That choice uses denominator 15 instead of 20. With C(6,3)=20 "
+        "equally likely assignments, exact p=4/20=0.2."
+    ),
+    (
+        "cs1012-3.3.3-ar-02",
+        "c",
+    ): (
+        "That choice substitutes a Normal two-sample z or t p-value for "
+        "the permutation reference. Permutation compares the observed "
+        "statistic to the label-shuffle distribution."
+    ),
+    (
+        "cs1012-3.3.3-ar-02",
+        "d",
+    ): (
+        "That choice builds a bootstrap percentile CI and calls it a "
+        "permutation test. Permutation reassigns labels under "
+        "exchangeability; it does not resample with replacement."
+    ),
     # --- cs1012-3.3.4-ar-01 ---
     (
         "cs1012-3.3.4-ar-01",
@@ -3511,6 +3596,29 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice sets every expected count to n / lambda-hat, ignoring Poisson probabilities by bin. "
         "Expected counts are n times the fitted Poisson probability in each bin."
     ),
+    # --- cs1012-3.3.4-ar-02 ---
+    (
+        "cs1012-3.3.4-ar-02",
+        "b",
+    ): (
+        "That choice uses df=5 with no multinomial minus-one. "
+        "For five stated-probability categories, df=5-1=4."
+    ),
+    (
+        "cs1012-3.3.4-ar-02",
+        "c",
+    ): (
+        "That choice rebuilds expected counts as if this were a contingency "
+        "independence test. One-sample GOF uses the stated distribution "
+        "probabilities, not row/column margin products."
+    ),
+    (
+        "cs1012-3.3.4-ar-02",
+        "d",
+    ): (
+        "That choice compares chi-square to a Normal z critical value. "
+        "Use the chi-square critical value on the correct degrees of freedom."
+    ),
     # --- cs1012-3.3.5-ar-01 ---
     (
         "cs1012-3.3.5-ar-01",
@@ -3554,6 +3662,31 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice forms E_ij as row total + column total without dividing by n. "
         "Independence expected counts are the product of marginal totals divided by n."
+    ),
+    # --- cs1012-3.3.5-ar-02 ---
+    (
+        "cs1012-3.3.5-ar-02",
+        "b",
+    ): (
+        "That choice sets every expected count to n/4=25. Under "
+        "independence, E_ij uses (row total × column total)/n from the "
+        "observed margins."
+    ),
+    (
+        "cs1012-3.3.5-ar-02",
+        "c",
+    ): (
+        "That choice replaces the independence null with a Poisson GOF "
+        "fit to the table total. A two-way independence test uses "
+        "margin-product expected counts."
+    ),
+    (
+        "cs1012-3.3.5-ar-02",
+        "d",
+    ): (
+        "That choice forms E_ij as row + column without dividing by n. "
+        "Independence expected counts are the product of marginal totals "
+        "divided by n."
     ),
     # --- cs1016-3.2.1-ar-01 ---
     (

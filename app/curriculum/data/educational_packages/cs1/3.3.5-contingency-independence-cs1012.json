@@ -158,6 +158,51 @@
       "objective_id": "CS1-C-T03-LO05"
     },
     {
+      "episode_id": "lep-cs1012-3.3.5-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.5-ar-02",
+      "title": "Active Recall: 3.3.5 apply contingency independence",
+      "prompt": "Closed-book. $2\\times 2$ table: Online/Fraud 20, Online/Clean 30, Broker/Fraud 10, Broker/Clean 40 (rows 50,50; cols 30,70; $n=100$). Using $\\chi^{2}_{1,0.95}=3.841$, which statement correctly forms independence expected counts, computes Pearson's $\\chi^{2}$, decides at $\\alpha=0.05$, and correctly refuses equal-cell $n/4$ expectations and GOF-to-Poisson substitution?",
+      "response_type": "mcq",
+      "body": "Evaluate the independence worked example; refuse GOF swap.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$E_{ij}=(\\mathrm{row}\\times\\mathrm{col})/n$ gives 15, 35 / 15, 35. $\\chi^{2}=100/21\\approx 4.762>3.841$, so reject independence. Equal $n/4$ ignores margins; Poisson GOF is a different hypothesis.",
+      "model_answer": "$E=15,35/15,35$; $\\chi^{2}\\approx 4.762$; reject independence.",
+      "common_mistake": "Using $E_{ij}=n/4=25$, or treating the table as Poisson GOF.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$E_{ij}=(\\mathrm{row}\\times\\mathrm{col})/n$ gives 15, 35 / 15, 35. $\\chi^{2}=100/21\\approx 4.762>3.841$, so reject independence of channel and fraud flag at $\\alpha=0.05$. This is not one-sample GOF to a named distribution such as Poisson.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Expected counts are $n/4=25$ in every cell because there are four cells, so ignore the unequal margins.",
+          "misconception_tag": "equal_cell_expectations"
+        },
+        {
+          "id": "c",
+          "label": "Treat the four counts as a Poisson GOF problem with $\\lambda$ estimated from the table total, and skip the independence null.",
+          "misconception_tag": "gof_as_independence"
+        },
+        {
+          "id": "d",
+          "label": "$E_{ij}=\\mathrm{row}+\\mathrm{col}$ without dividing by $n$, which inflates every expected count and cannot produce a valid Pearson $\\chi^{2}$.",
+          "misconception_tag": "sum_margins_without_n"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO05"
+    },
+    {
       "episode_id": "lep-cs1012-3.3.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.5-cp-01",

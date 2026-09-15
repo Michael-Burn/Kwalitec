@@ -476,7 +476,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
             assert check.choices == ()
             assert check.correct_choice_id == ""
             assert check.accepted_keywords  # existing keyword scoring still present
-    assert batch1_seen == 55  # 22 packages × AR + CP, plus eleven packages with 3 MCQs
+    assert batch1_seen == 60  # 22 packages × AR + CP, plus sixteen packages with 3 MCQs
     assert batch2_seen == 48  # 24 packages × AR + CP
     assert batch3_seen == 32  # 13 packages × AR+CP, plus 2 packages with 3 MCQs
     assert batch4_seen == 36  # 18 packages × AR + CP

@@ -1,21 +1,21 @@
 # Mathematical Notation Inventory Summary
 
-**Generated:** 2026-09-15T06:24:14Z
+**Generated:** 2026-09-15T07:11:40Z
 **Standard:** `docs/content/MATHEMATICAL_NOTATION_STANDARD.md`
-**Content fingerprint:** `a5616fcbbd6b325079a0b2395b04f87c1f22016b830747da4603cad3d1d6df3b`
+**Content fingerprint:** `dc1cf93c0686a21e920af51085c495fce8bc37ca0141272251eddba5fc73c8cd`
 **Live packages scanned:** 130
 
 ## Totals
 
 | Category | Count |
 |---|---:|
-| Mathish strings inventoried | 2402 |
-| Already compliant | 2275 |
+| Mathish strings inventoried | 2436 |
+| Already compliant | 2309 |
 | Needs migration | 0 |
-| Migrated (dollar-delimited) | 2254 |
+| Migrated (dollar-delimited) | 2288 |
 | Correctly excluded | 127 |
 | Needs manual review (flag) | 0 |
-| Confident automated (no flag) | 2402 |
+| Confident automated (no flag) | 2436 |
 | Packages with migration backlog | 0 |
 
 ## Limits of automation

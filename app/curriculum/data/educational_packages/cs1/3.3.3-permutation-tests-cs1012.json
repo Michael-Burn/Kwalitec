@@ -158,6 +158,51 @@
       "objective_id": "CS1-C-T03-LO03"
     },
     {
+      "episode_id": "lep-cs1012-3.3.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1012-3.3.3-ar-02",
+      "title": "Active Recall: 3.3.3 apply exact permutation p-value",
+      "prompt": "Closed-book. Groups A = {10, 12, 14} and B = {8, 9, 11}. Under an exchangeability null, use the two-sided permutation statistic $|\\bar{x}_A-\\bar{x}_B|$. There are $C(6,3)=20$ assignments of three labels to A; exactly 4 have $|\\mathrm{diff}|\\ge$ the observed value $8/3$. Which statement correctly reports the exact permutation p-value and correctly refuses treating a Normal two-sample z-test as the same procedure?",
+      "response_type": "mcq",
+      "body": "Evaluate the exact permutation reference from the worked example.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Observed $|12-28/3|=8/3$. Exact permutation $p=4/20=0.2$. That is a reshuffle reference under exchangeability, not a Normal two-sample z-test and not a bootstrap percentile CI.",
+      "model_answer": "Exact permutation $p=0.2$; not a Normal z-test by another name.",
+      "common_mistake": "Reporting 4/15, or substituting a parametric z/t p-value.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Observed $|\\bar{x}_A-\\bar{x}_B|=8/3$ and exact permutation $p=4/20=0.2$. Under $H_{0}$ every 3-vs-3 label assignment is equally likely. This is not a Normal two-sample z-test by another name, and not a bootstrap-with-replacement CI.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Exact $p=4/15$, because three labels on A and three on B somehow cancel three of the twenty combinations.",
+          "misconception_tag": "wrong_permutation_denominator"
+        },
+        {
+          "id": "c",
+          "label": "Compute a Normal two-sample z (or t) p-value on these six points and call that the permutation p-value, because both compare two groups.",
+          "misconception_tag": "parametric_as_permutation"
+        },
+        {
+          "id": "d",
+          "label": "Resample the six values with replacement to form a percentile CI for the mean difference; reject if zero is outside, and call that a permutation test.",
+          "misconception_tag": "bootstrap_ci_as_permutation"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-C-T03-LO03"
+    },
+    {
       "episode_id": "lep-cs1012-3.3.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1012-3.3.3-cp-01",
