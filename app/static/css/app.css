@@ -583,7 +583,7 @@ color var(--transition-fast);}
 [data-theme="dark"] .bg-info-subtle{background-color:var(--surface-elevated) !important;color:var(--text-primary);}
 [data-theme="dark"] .text-bg-secondary{background-color:var(--surface-elevated) !important;border:1px solid var(--border);color:var(--text-secondary) !important;}
 [data-theme="dark"] .text-bg-success,
-[data-theme="dark"] .badge.text-bg-success{background-color:var(--success-bg) !important;color:var(--success) !important;}
+[data-theme="dark"] .badge.text-bg-success{background-color:var(--learning-mastered) !important;color:var(--on-success) !important;}
 [data-theme="dark"] .text-bg-warning,
 [data-theme="dark"] .badge.text-bg-warning{background-color:var(--warning-bg) !important;color:var(--warning) !important;}
 [data-theme="dark"] .text-bg-danger,

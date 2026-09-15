@@ -124,3 +124,83 @@ class TestThemeSurface:
         assert response.status_code == 200
         body = response.get_data(as_text=True)
         assert "js/theme.js" in body
+
+
+DESIGN_SYSTEM_CSS = ROOT / "app" / "static" / "css" / "design_system.css"
+APP_CSS = ROOT / "app" / "static" / "css" / "app.css"
+BRAND_CSS = ROOT / "app" / "static" / "css" / "brand.css"
+
+
+def _rel_lum(rgb: tuple[int, int, int]) -> float:
+    def chan(c: int) -> float:
+        x = c / 255
+        return x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4
+
+    r, g, b = (chan(c) for c in rgb)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def _contrast(a: tuple[int, int, int], b: tuple[int, int, int]) -> float:
+    l1, l2 = _rel_lum(a), _rel_lum(b)
+    hi, lo = max(l1, l2), min(l1, l2)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+def _rule_block(css: str, selector: str) -> str:
+    needle = selector + " {"
+    start = css.index(needle)
+    end = css.index("}", start)
+    return css[start:end]
+
+
+class TestProgressTrackContrast:
+    """Syllabus progress trough must be a visible UI boundary (WCAG 1.4.11)."""
+
+    # Token hex from tokens.css / brand.css, both themes.
+    LIGHT_SURFACE = (255, 252, 248)  # --surface #FFFCF8
+    LIGHT_MUTED = (122, 115, 106)  # --text-muted #7A736A
+    DARK_SURFACE = (36, 33, 32)  # --surface #242120
+    DARK_MUTED = (154, 146, 136)  # --text-muted #9A9288
+
+    def test_track_uses_muted_outline_not_card_fill(self) -> None:
+        block = _rule_block(
+            DESIGN_SYSTEM_CSS.read_text(encoding="utf-8"),
+            ".ds-os-progress__track",
+        )
+        assert "border: 1px solid var(--text-muted)" in block
+        assert "background: transparent" in block
+        assert "background: var(--surface-secondary" not in block
+
+    def test_muted_outline_meets_ui_component_contrast(self) -> None:
+        light = _contrast(self.LIGHT_MUTED, self.LIGHT_SURFACE)
+        dark = _contrast(self.DARK_MUTED, self.DARK_SURFACE)
+        assert light >= 3.0, f"light track outline only {light:.2f}:1"
+        assert dark >= 3.0, f"dark track outline only {dark:.2f}:1"
+
+
+class TestSessionBriefingClosedChrome:
+    def test_closed_briefing_has_no_card_chrome(self) -> None:
+        css = DESIGN_SYSTEM_CSS.read_text(encoding="utf-8")
+        closed = _rule_block(css, ".ds-session-briefing")
+        assert "padding:" not in closed
+        assert "background:" not in closed
+        assert "border:" not in closed
+        opened = _rule_block(css, ".ds-session-briefing[open]")
+        assert "padding: var(--space-4)" in opened
+        assert "background: var(--surface)" in opened
+        assert "border: 1px solid var(--border-subtle)" in opened
+
+
+class TestDarkSuccessBadgeTone:
+    def test_dark_active_badge_uses_warm_mastered_tokens(self) -> None:
+        css = APP_CSS.read_text(encoding="utf-8")
+        assert (
+            ".badge.text-bg-success{background-color:var(--learning-mastered)"
+            " !important;color:var(--on-success) !important;}"
+        ) in css
+        brand_dark = BRAND_CSS.read_text(encoding="utf-8")
+        dark_start = brand_dark.index('[data-theme="dark"]')
+        dark_block = brand_dark[dark_start : dark_start + 1600]
+        assert "--learning-state-mastered: #6B8F7E" in dark_block
+        assert "--status-success: #4ade80" in dark_block
+
