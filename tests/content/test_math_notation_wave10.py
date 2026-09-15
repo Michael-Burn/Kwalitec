@@ -418,7 +418,7 @@ def test_wave10_scoring_matches_pre_migration_snapshot() -> None:
                 assert result.correct is probe["correct"]
                 assert result.matched_key == probe["matched_key"]
     assert seen == set(by_id)
-    assert len(seen) == 25
+    assert len(seen) == 26
 
 
 def test_wave10_ledger_backlog_and_migration_status() -> None:
@@ -426,7 +426,7 @@ def test_wave10_ledger_backlog_and_migration_status() -> None:
     live = inventory.build_inventory(PACKAGES)
     assert checked["content_fingerprint"] == live["content_fingerprint"]
     assert checked["totals"]["remaining_backlog"] == 0
-    assert checked["totals"]["migrated"] == 2288
+    assert checked["totals"]["migrated"] == 2316
     assert checked["totals"]["needs_migration"] == 0
     assert checked["totals"]["packages_with_migration_backlog"] == 0
     assert live["totals"] == checked["totals"]
@@ -476,7 +476,7 @@ def test_wave10_catalogue_needs_migration_is_zero() -> None:
     assert live["totals"]["remaining_backlog"] == 0
     assert live["totals"]["packages_with_migration_backlog"] == 0
     assert live["totals"]["needs_manual_review"] == 0
-    assert live["totals"]["migrated"] == 2288
+    assert live["totals"]["migrated"] == 2316
 
 
 def test_wave10_packages_disjoint_from_prior_waves() -> None:

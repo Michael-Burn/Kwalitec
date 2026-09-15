@@ -156,6 +156,51 @@
       "objective_id": "CS1-D-T01-LO05"
     },
     {
+      "episode_id": "lep-cs1003-4.1.5-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.5-ar-02",
+      "title": "Active Recall: 4.1.5 apply adjusted R-squared selection",
+      "prompt": "Closed-book. Two nested severity regressions on the same $n=60$ risks. Model A: $p=3$, $R^{2}=0.55$. Model B: $p=6$, $R^{2}=0.58$. Using $R^{2}_{\\mathrm{adj}}=1-(1-R^{2})(n-1)/(n-p-1)$, which statement correctly computes both adjusted values, selects by adjusted $R^{2}$, and correctly refuses selecting on raw $R^{2}$ alone or by mechanical p-value chopping?",
+      "response_type": "mcq",
+      "body": "Score the worked-example adjusted R-squared comparison.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$R^{2}_{\\mathrm{adj},A}\\approx 0.5259$ and $R^{2}_{\\mathrm{adj},B}\\approx 0.5325$, so prefer Model B after the complexity penalty. Raw $R^{2}$ alone always favours adding variables; p-value chopping is not a complete selection warrant.",
+      "model_answer": "Prefer Model B: $R^{2}_{\\mathrm{adj}}\\approx 0.5325>0.5259$.",
+      "common_mistake": "Selecting A because it has fewer variables, or selecting on raw $R^{2}$ / p-chopping only.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$R^{2}_{\\mathrm{adj},A}\\approx 0.5259$ and $R^{2}_{\\mathrm{adj},B}\\approx 0.5325$, so prefer Model B on adjusted $R^{2}$. Raw $R^{2}$ alone is not the selection rule, and keeping every term with $p<0.05$ is not a complete warrant.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Prefer Model A because raw $R^{2}=0.55$ is already high enough and fewer variables always win after any penalty.",
+          "misconception_tag": "fewer_always_wins"
+        },
+        {
+          "id": "c",
+          "label": "Prefer Model B solely because raw $R^{2}=0.58>0.55$; adjusted $R^{2}$ is optional theatre.",
+          "misconception_tag": "raw_r2_penalty"
+        },
+        {
+          "id": "d",
+          "label": "Skip adjusted $R^{2}$; keep every term in Model B with $p<0.05$ and selection is finished.",
+          "misconception_tag": "p_value_chopping"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO05"
+    },
+    {
       "episode_id": "lep-cs1003-4.1.5-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.5-cp-01",

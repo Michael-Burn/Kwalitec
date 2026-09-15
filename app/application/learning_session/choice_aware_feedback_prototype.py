@@ -114,6 +114,11 @@ Editorial review record (2026-09-15): five topic 3.3 retry active-recall items
 (cs1012-3.3.1-ar-02 through cs1012-3.3.5-ar-02) were reviewed and approved
 before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): five topic 4.1 retry active-recall items
+(cs1003-4.1.1-ar-02 through cs1003-4.1.5-ar-02) were reviewed and approved
+before wiring so every live MCQ remains on the choice-aware allowlist.
+Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -298,22 +303,27 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1009-ci-r1-ar-01",  # CAF Wave 6: revision-sampling-distributions-cs1009
         "cs1009-ci-r1-cp-01",  # CAF Wave 6: revision-sampling-distributions-cs1009
         "cs1003-4.1.1-ar-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1003
+        "cs1003-4.1.1-ar-02",  # topic 4.1 retry: 4.1.1-response-explanatory-cs1003
         "cs1003-4.1.1-cp-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1003
         "cs1013-4.1.1-cp-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1013
         "cs1013-4.1.1-ar-01",  # CAF Wave 6: 4.1.1-response-explanatory-cs1013
         "cs1003-4.1.2-ar-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1003
+        "cs1003-4.1.2-ar-02",  # topic 4.1 retry: 4.1.2-simple-multiple-cs1003
         "cs1003-4.1.2-cp-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1003
         "cs1013-4.1.2-cp-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1013
         "cs1013-4.1.2-ar-01",  # CAF Wave 6: 4.1.2-simple-multiple-cs1013
         "cs1003-4.1.3-ar-01",  # CAF Wave 6: 4.1.3-least-squares-cs1003
+        "cs1003-4.1.3-ar-02",  # topic 4.1 retry: 4.1.3-least-squares-cs1003
         "cs1003-4.1.3-cp-01",  # CAF Wave 6: 4.1.3-least-squares-cs1003
         "cs1013-4.1.3-cp-01",  # CAF Wave 6: 4.1.3-least-squares-cs1013
         "cs1013-4.1.3-ar-01",  # CAF Wave 6: 4.1.3-least-squares-cs1013
         "cs1003-4.1.4-ar-01",  # CAF Wave 6: 4.1.4-software-inference-cs1003
+        "cs1003-4.1.4-ar-02",  # topic 4.1 retry: 4.1.4-software-inference-cs1003
         "cs1003-4.1.4-cp-01",  # CAF Wave 6: 4.1.4-software-inference-cs1003
         "cs1013-4.1.4-ar-01",  # CAF Wave 6: 4.1.4-software-fit-cs1013
         "cs1013-4.1.4-cp-01",  # CAF Wave 6: 4.1.4-software-fit-cs1013
         "cs1003-4.1.5-ar-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1003
+        "cs1003-4.1.5-ar-02",  # topic 4.1 retry: 4.1.5-variable-selection-cs1003
         "cs1013-4.1.5-ar-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1013
         "cs1003-4.1.5-cp-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1003
         "cs1013-4.1.5-cp-01",  # CAF Wave 6: 4.1.5-variable-selection-cs1013
@@ -3931,7 +3941,32 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice refuses to name Y and X until a multiple regression equation is written. "
         "Response and explanatory roles can be stated from the modelling question before choosing simple versus multiple form."
     ),
-    # --- cs1003-4.1.1-cp-01 ---
+        # --- cs1003-4.1.1-ar-02 ---
+    (
+        "cs1003-4.1.1-ar-02",
+        "b",
+    ): (
+        "That choice makes hazardous-class years the response and dumps "
+        "severity and written premium on the right-hand side. Y is the "
+        "outcome you set out to model; here that is EL claim severity."
+    ),
+    (
+        "cs1003-4.1.1-ar-02",
+        "c",
+    ): (
+        "That choice forces written premium into the severity X set just "
+        "because it is numeric and shares the policy record. Column presence "
+        "alone does not make written premium an explanatory variable for severity."
+    ),
+    (
+        "cs1003-4.1.1-ar-02",
+        "d",
+    ): (
+        "That choice refuses to name Y and X until a multiple regression "
+        "equation is written. Response and explanatory roles can be stated "
+        "from the modelling question before choosing model form."
+    ),
+# --- cs1003-4.1.1-cp-01 ---
     (
         "cs1003-4.1.1-cp-01",
         "b",
@@ -4019,7 +4054,30 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice says simple and multiple differ only in a software menu and that one-predictor notation covers both. "
         "The forms differ in how many explanatory variables enter the equation."
     ),
-    # --- cs1003-4.1.2-cp-01 ---
+        # --- cs1003-4.1.2-ar-02 ---
+    (
+        "cs1003-4.1.2-ar-02",
+        "b",
+    ): (
+        "That choice swaps the simple and multiple labels. Simple uses one "
+        "explanatory variable; multiple uses several explanatory variables jointly."
+    ),
+    (
+        "cs1003-4.1.2-ar-02",
+        "c",
+    ): (
+        "That choice drops x2 from the multiple fit once x1 is known. The "
+        "multiple model evaluates both explanatory variables together."
+    ),
+    (
+        "cs1003-4.1.2-ar-02",
+        "d",
+    ): (
+        "That choice treats evaluating fitted values as finishing least-squares "
+        "estimation. Naming and evaluating simple versus multiple forms is "
+        "separate from the OLS criterion for beta."
+    ),
+# --- cs1003-4.1.2-cp-01 ---
     (
         "cs1003-4.1.2-cp-01",
         "b",
@@ -4107,7 +4165,30 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice sets the slope to SD(Y)/SD(X) and says least squares minimises R-squared. "
         "The OLS slope is Cov/Var (with intercept through the means); least squares minimises residual sum of squares, not R-squared."
     ),
-    # --- cs1003-4.1.3-cp-01 ---
+        # --- cs1003-4.1.3-ar-02 ---
+    (
+        "cs1003-4.1.3-ar-02",
+        "b",
+    ): (
+        "That choice treats Corr(X, Y) as the OLS slope. The OLS slope is "
+        "Sxy/Sxx (covariance over variance), not the bare correlation."
+    ),
+    (
+        "cs1003-4.1.3-ar-02",
+        "c",
+    ): (
+        "That choice flips the residual sign by taking fitted minus observed. "
+        "The residual is observed minus fitted, so at x=4 it is 7-7.3=-0.3."
+    ),
+    (
+        "cs1003-4.1.3-ar-02",
+        "d",
+    ): (
+        "That choice replaces ordinary least squares with least absolute "
+        "deviations while keeping the OLS slope formula. LAD minimises the "
+        "sum of absolute residuals, not the sum of squares."
+    ),
+# --- cs1003-4.1.3-cp-01 ---
     (
         "cs1003-4.1.3-cp-01",
         "b",
@@ -4195,7 +4276,31 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice inspects residuals before fitting and skips slope inference as automatic. "
         "Fit first, then infer, predict with limits, and check residuals against that fit."
     ),
-    # --- cs1003-4.1.4-cp-01 ---
+        # --- cs1003-4.1.4-ar-02 ---
+    (
+        "cs1003-4.1.4-ar-02",
+        "b",
+    ): (
+        "That choice equates mean and individual interval widths. The "
+        "prediction interval adds residual variance, so SE_pred exceeds "
+        "SE_mean and the individual interval is wider."
+    ),
+    (
+        "cs1003-4.1.4-ar-02",
+        "c",
+    ): (
+        "That choice treats a clearly nonzero slope as finishing post-fit "
+        "work. Slope inference, prediction limits, and residual checks remain "
+        "required after Fit."
+    ),
+    (
+        "cs1003-4.1.4-ar-02",
+        "d",
+    ): (
+        "That choice multiplies the estimate by its SE instead of dividing. "
+        "The Wald z for H0: beta1=0 is estimate divided by SE(estimate)."
+    ),
+# --- cs1003-4.1.4-cp-01 ---
     (
         "cs1003-4.1.4-cp-01",
         "b",
@@ -4305,7 +4410,32 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
         "That choice always keeps every numeric column to avoid wasting information. "
         "Extra variables can overfit and dilute interpretation; more is not automatically better."
     ),
-    # --- cs1003-4.1.5-cp-01 ---
+        # --- cs1003-4.1.5-ar-02 ---
+    (
+        "cs1003-4.1.5-ar-02",
+        "b",
+    ): (
+        "That choice prefers the smaller model because raw R-squared looks "
+        "high enough. Compare adjusted R-squared; here Model B wins after "
+        "the complexity penalty."
+    ),
+    (
+        "cs1003-4.1.5-ar-02",
+        "c",
+    ): (
+        "That choice selects on raw R-squared alone. Raw R-squared never "
+        "decreases when variables are added; adjusted R-squared is the "
+        "selection measure here."
+    ),
+    (
+        "cs1003-4.1.5-ar-02",
+        "d",
+    ): (
+        "That choice finishes selection by keeping every term with p less "
+        "than 0.05. Mechanical p-value chopping is not a complete warrant; "
+        "compare fit measures that penalise complexity."
+    ),
+# --- cs1003-4.1.5-cp-01 ---
     (
         "cs1003-4.1.5-cp-01",
         "b",

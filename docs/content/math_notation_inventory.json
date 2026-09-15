@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-15T07:11:40Z",
+  "generated_at": "2026-09-15T08:10:53Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2436,
-    "already_compliant": 2309,
+    "mathish_strings": 2464,
+    "already_compliant": 2337,
     "needs_migration": 0,
     "correctly_excluded": 127,
     "needs_manual_review": 0,
-    "confident_automated": 2436,
+    "confident_automated": 2464,
     "remaining_backlog": 0,
-    "migrated": 2288,
+    "migrated": 2316,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2309,
+    "fully_covered_by_current_typesetting": 2337,
     "manual_review_prose_exclusion": 126,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2288,
-    "equationish": 1712,
-    "actuarial_fn": 510,
-    "ascii_approx": 278,
-    "bare_latex": 234,
+    "dollar_delimited": 2316,
+    "equationish": 1739,
+    "actuarial_fn": 511,
+    "ascii_approx": 280,
+    "bare_latex": 235,
     "greek": 113,
     "compound": 39,
     "unicode_ops": 11
@@ -19990,8 +19990,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 31,
-        "already_compliant": 31,
+        "mathish_strings": 38,
+        "already_compliant": 38,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -20037,6 +20037,126 @@
           "package_file": "4.1.3-least-squares-cs1003.json",
           "field_path": "knowledge_checks[1].prompt",
           "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Four pairs $(x,y)$: $(2,4)$, $(3,6)$, $(4,7)$, $(5,9)$. Fit $y=\\beta_{0}+\\beta_{1}x$ by ordinary least squares. Which statement correctly reports $\\hat{\\beta}_{1}$, $\\hat{\\beta}_{0}$, and the residual at $x=4$, and correctly refuses treating $\\operatorname{Corr}(X,Y)$ as the OLS slope?",
+          "text_hash": "192a4495768fa28c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\bar{x}=3.5$, $\\bar{y}=6.5$, $S_{xx}=5$, $S_{xy}=8$, so $\\hat{\\beta}_{1}=1.6$ and $\\hat{\\beta}_{0}=0.9$. At $x=4$, fitted value $7.3$ and residual $-0.3$. Correlation is not the OLS slope (missing the SD scaling in $\\widehat{\\operatorname{Cov}}/\\widehat{\\operatorname{Var}}$).",
+          "text_hash": "a80926228707692d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$\\hat{\\beta}_{1}=1.6$, $\\hat{\\beta}_{0}=0.9$, residual at $x=4$ equals $-0.3$.",
+          "text_hash": "806c90c17178ecb9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{\\beta}_{1}=S_{xy}/S_{xx}=8/5=1.6$ and $\\hat{\\beta}_{0}=\\bar{y}-\\hat{\\beta}_{1}\\bar{x}=0.9$. Fitted value at $x=4$ is $7.3$, so the residual is $7-7.3=-0.3$. $\\operatorname{Corr}(X,Y)$ is not the OLS slope.",
+          "text_hash": "88da01ca6331ea86",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{\\beta}_{1}=\\operatorname{Corr}(X,Y)$ by definition, so report the sample correlation as the slope and skip $S_{xy}/S_{xx}$.",
+          "text_hash": "4aa1bd08d8bd636b",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{\\beta}_{1}=1.6$ and $\\hat{\\beta}_{0}=0.9$, but the residual at $x=4$ is $+0.3$ because residual means fitted minus observed.",
+          "text_hash": "01d400018428c74e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Minimise $\\sum|y_i-\\beta_0-\\beta_1 x_i|$ instead; the resulting slope is still $S_{xy}/S_{xx}=1.6$.",
+          "text_hash": "763cc45ed3903dd7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+          "package_file": "4.1.3-least-squares-cs1003.json",
+          "field_path": "knowledge_checks[2].prompt",
+          "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. Simple linear model $Y = \\beta_{0} + \\beta_{1} x + \\varepsilon$ with data pairs (xi, yi). Which statement is correct?",
           "text_hash": "acb0f52cb758e526",
           "category": "already_compliant",
@@ -20052,7 +20172,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Minimise sum squared residuals; $\\hat{\\beta}_{1} = \\frac{\\widehat{\\operatorname{Cov}}}{\\widehat{\\operatorname{Var}}}$; refuse Fit-as-criterion and Corr-as-slope.",
           "text_hash": "9cd2f50016531c47",
@@ -20069,7 +20189,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].common_mistake",
+          "field_path": "knowledge_checks[2].common_mistake",
           "field_group": "knowledge_checks[].common_mistake",
           "text": "Accepting Fit as the criterion or $\\operatorname{Corr}(X, Y)$ as the OLS slope.",
           "text_hash": "44ebecbff16594db",
@@ -20085,7 +20205,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Choose $\\beta_{0}$, $\\beta_{1}$ to minimise $\\sum (y_{i} - \\beta_{0} - \\beta_{1} x_{i})^{2}$. Slope $\\hat{\\beta}_{1} = \\frac{\\sum (x_{i} - \\bar{x})(y_{i} - \\bar{y})}{\\sum (x_{i} - \\bar{x})^{2}} = \\frac{\\widehat{\\operatorname{Cov}}(X, Y)}{\\widehat{\\operatorname{Var}}(X)}$; intercept $\\hat{\\beta}_{0} = \\bar{y} - \\hat{\\beta}_{1} \\bar{x}$. Fit implements OLS but is not the criterion; $\\operatorname{Corr}(X, Y)$ is not the OLS slope.",
           "text_hash": "ddf1332e63ade938",
@@ -20103,7 +20223,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Least squares is clicking Fit; the closed-form slope formula is optional once software returns $\\hat{\\beta}$.",
           "text_hash": "46135e3af01b6998",
@@ -20119,7 +20239,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The OLS slope equals $\\operatorname{Corr}(X, Y)$ because both measure linear association on the same scale.",
           "text_hash": "c1bcf78782361369",
@@ -20135,7 +20255,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
           "package_file": "4.1.3-least-squares-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Minimise $\\sum |y_{i} - \\beta_{0} - \\beta_{1} x_{i}|$; the resulting slope is $\\frac{\\widehat{\\operatorname{Cov}}(X, Y)}{\\widehat{\\operatorname{Var}}(X)}$ for simple linear regression.",
           "text_hash": "c2c7c05236e95ab2",
@@ -20568,8 +20688,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 22,
-        "already_compliant": 20,
+        "mathish_strings": 29,
+        "already_compliant": 27,
         "needs_migration": 0,
         "correctly_excluded": 2,
         "needs_manual_review": 0,
@@ -20698,7 +20818,126 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
           "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Travel medical cost Y (£00). Simple fit $\\hat{Y}_{s}=3.5+0.8x_{1}$ (trip weeks). Multiple fit $\\hat{Y}_{m}=2.0+0.6x_{1}+0.4x_{2}$ (adds destination risk score). At $(x_{1},x_{2})=(5,3)$, which statement correctly evaluates both fitted values and correctly names each model form?",
+          "text_hash": "5d932362a0bc4af8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$\\hat{Y}_{s}=3.5+0.8\\times 5=7.5$ uses one explanatory variable (simple). $\\hat{Y}_{m}=2.0+0.6\\times 5+0.4\\times 3=6.2$ uses two explanatory variables jointly (multiple). Least-squares estimation is a separate step from naming the model form.",
+          "text_hash": "d2ab5606a91b1e58",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
           "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$\\hat{Y}_{s}=7.5$ simple; $\\hat{Y}_{m}=6.2$ multiple.",
+          "text_hash": "ebad42c7794fe7a5",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{Y}_{s}=7.5$ (£00) is the simple fit (one explanatory variable). $\\hat{Y}_{m}=6.2$ (£00) is the multiple fit (two explanatory variables). Writing least-squares formulae for $\\hat{\\beta}$ is estimation, not the simple-versus-multiple form distinction.",
+          "text_hash": "0ccd534965d0c38d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$\\hat{Y}_{s}=7.5$ is multiple because it uses a slope and intercept; $\\hat{Y}_{m}=6.2$ is simple because destination risk is optional.",
+          "text_hash": "1aeac310227f0d69",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Both fitted values equal $7.5$, because the multiple model must ignore $x_{2}$ once $x_{1}$ is known.",
+          "text_hash": "6688642511e56a6e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Evaluating $\\hat{Y}_{s}$ and $\\hat{Y}_{m}$ finishes least-squares estimation of $\\beta$, so no separate OLS criterion remains.",
+          "text_hash": "03b292c0bf9e718a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
+          "package_file": "4.1.2-simple-multiple-cs1003.json",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple adds $\\beta_{2}\\,\\mathrm{sum\\_insured}$. Refuse OLS-as-form.",
           "text_hash": "b4278e9bf99fcee7",
@@ -20715,7 +20954,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
           "package_file": "4.1.2-simple-multiple-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Writing least-squares formulae for $\\hat{\\beta}$ is estimation, not stating the simple versus multiple linear model forms.",
           "text_hash": "53b908d57d5453cb",
@@ -20732,7 +20971,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
           "package_file": "4.1.2-simple-multiple-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_path": "knowledge_checks[2].choices[1].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Simple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\beta_{2}\\,\\mathrm{sum\\_insured} + \\varepsilon$. Multiple: $Y = \\beta_{0} + \\beta_{1}\\,\\mathrm{age} + \\varepsilon$, because multiple means more parameters in the criterion.",
           "text_hash": "4d238543406413d1",
@@ -20749,7 +20988,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SIMPLE-MULTIPLE",
           "package_file": "4.1.2-simple-multiple-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_path": "knowledge_checks[2].choices[2].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Both forms are Y = $\\hat{\\beta}_{0} + \\hat{\\beta}_{1}$ x + $\\varepsilon$ where $\\hat{\\beta}$ comes from minimising sum of squared residuals; stating the model is the same as clicking Fit.",
           "text_hash": "0fe9c05c911cbf52",
@@ -20955,8 +21194,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 19,
-        "already_compliant": 19,
+        "mathish_strings": 25,
+        "already_compliant": 25,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -20969,6 +21208,109 @@
           "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
           "package_file": "4.1.4-software-inference-cs1003.json",
           "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Software returns $\\hat{\\beta}_{1}=-8$ with $\\mathrm{SE}(\\hat{\\beta}_{1})=2.5$. Use $z_{0.975}=1.96$. At a fixed $x$, $\\hat{y}=320$ with $\\mathrm{SE}_{\\mathrm{mean}}=15$ and $\\mathrm{SE}_{\\mathrm{pred}}=40$. Which statement correctly computes the Wald $z$ for $H_0\\colon\\beta_1=0$, the approximate 95% CI for $\\beta_1$, and the comparison of mean versus individual 95% intervals?",
+          "text_hash": "4c161bb0949aca91",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$z=-8/2.5=-3.2$. Approximate 95% CI is $(-12.9,-3.1)$. Mean interval $(290.6,349.4)$ is narrower than individual prediction interval $(241.6,398.4)$ because $\\mathrm{SE}_{\\mathrm{pred}}$ includes residual variance. Fit alone does not finish inference.",
+          "text_hash": "16258f828f8b4f0e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "$z=-3.2$; CI $\\approx(-12.9,-3.1)$; individual interval wider than mean interval.",
+          "text_hash": "a1c0b000c9744c5a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$z=-8/2.5=-3.2$. Approximate 95% CI for $\\beta_1$ is $(-12.9,-3.1)$. Mean interval $(290.6,349.4)$ is narrower than individual prediction interval $(241.6,398.4)$. Slope inference and prediction limits are required after the fit; residual checks remain part of post-fit interpretation.",
+          "text_hash": "51ce1271ae7b96f2",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Mean and individual intervals have the same width because both target $E[Y | x]$ only.",
+          "text_hash": "3697401c4eb54541",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 2,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "actuarial_fn"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$z=-8\\times 2.5=-20$, so form the CI as $-8\\pm 1.96$ without using the standard error as a divisor.",
+          "text_hash": "eefd0c1e0241a731",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
+          "package_file": "4.1.4-software-inference-cs1003.json",
+          "field_path": "knowledge_checks[2].prompt",
           "field_group": "knowledge_checks[].prompt",
           "text": "Closed-book. After fitting Y = $\\beta_{0} + \\beta_{1}$ x in software you see $\\hat{\\beta}_{1}$, SE($\\hat{\\beta}_{1}$), R-squared, and residual plots. For a new x-star, which statement is correct?",
           "text_hash": "6b4518b03277e715",
@@ -20985,7 +21327,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
           "package_file": "4.1.4-software-inference-cs1003.json",
-          "field_path": "knowledge_checks[1].model_answer",
+          "field_path": "knowledge_checks[2].model_answer",
           "field_group": "knowledge_checks[].model_answer",
           "text": "Mean interval for $E[Y | x*]$; prediction wider; refuse fit-only and optional residuals.",
           "text_hash": "5beb10eb7d285999",
@@ -21002,7 +21344,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
           "package_file": "4.1.4-software-inference-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "A mean-response interval covers $E[Y | x*]$; a prediction interval covers a new observation and is typically wider (adds residual variance). Fit alone is not enough: slope inference, goodness-of-fit, prediction limits, and residual checks are all required before trusting the fit.",
           "text_hash": "3705ff095ec23a55",
@@ -21019,7 +21361,7 @@
         {
           "package_id": "CS1-EP001-PKG-4.1-SOFTWARE-INFERENCE",
           "package_file": "4.1.4-software-inference-cs1003.json",
-          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_path": "knowledge_checks[2].choices[3].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "The mean-response interval and prediction interval for x-star are the same width because both estimate $E[Y | x-star]$ only.",
           "text_hash": "3ba0028d49b202d2",
@@ -21295,8 +21637,8 @@
       "topic_code": "4.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 21,
-        "already_compliant": 17,
+        "mathish_strings": 29,
+        "already_compliant": 25,
         "needs_migration": 0,
         "correctly_excluded": 4,
         "needs_manual_review": 0,
@@ -21318,6 +21660,143 @@
           "risk_tier": 3,
           "migration_status": "correctly_excluded",
           "signals": [
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Two nested severity regressions on the same $n=60$ risks. Model A: $p=3$, $R^{2}=0.55$. Model B: $p=6$, $R^{2}=0.58$. Using $R^{2}_{\\mathrm{adj}}=1-(1-R^{2})(n-1)/(n-p-1)$, which statement correctly computes both adjusted values, selects by adjusted $R^{2}$, and correctly refuses selecting on raw $R^{2}$ alone or by mechanical p-value chopping?",
+          "text_hash": "f70dbe29dd9e4aab",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "bare_latex",
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "$R^{2}_{\\mathrm{adj},A}\\approx 0.5259$ and $R^{2}_{\\mathrm{adj},B}\\approx 0.5325$, so prefer Model B after the complexity penalty. Raw $R^{2}$ alone always favours adding variables; p-value chopping is not a complete selection warrant.",
+          "text_hash": "65e62581482701a9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Prefer Model B: $R^{2}_{\\mathrm{adj}}\\approx 0.5325>0.5259$.",
+          "text_hash": "beab2e262dc584fc",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Selecting A because it has fewer variables, or selecting on raw $R^{2}$ / p-chopping only.",
+          "text_hash": "7ad99d34b049da4a",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "$R^{2}_{\\mathrm{adj},A}\\approx 0.5259$ and $R^{2}_{\\mathrm{adj},B}\\approx 0.5325$, so prefer Model B on adjusted $R^{2}$. Raw $R^{2}$ alone is not the selection rule, and keeping every term with $p<0.05$ is not a complete warrant.",
+          "text_hash": "901eea07b54bd76f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Prefer Model A because raw $R^{2}=0.55$ is already high enough and fewer variables always win after any penalty.",
+          "text_hash": "105162d1c12ee34e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Prefer Model B solely because raw $R^{2}=0.58>0.55$; adjusted $R^{2}$ is optional theatre.",
+          "text_hash": "d082a7a2674c52f7",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-4.1-VARIABLE-SELECTION",
+          "package_file": "4.1.5-variable-selection-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Skip adjusted $R^{2}$; keep every term in Model B with $p<0.05$ and selection is finished.",
+          "text_hash": "5c2425b37185203c",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
             "equationish"
           ]
         },
@@ -44085,5 +44564,5 @@
       ]
     }
   ],
-  "content_fingerprint": "dc1cf93c0686a21e920af51085c495fce8bc37ca0141272251eddba5fc73c8cd"
+  "content_fingerprint": "8e83926d56d1a838edd77c34c8ada41ee20521fe54dac0395ede5f66dd04cff6"
 }

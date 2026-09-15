@@ -156,6 +156,51 @@
       "objective_id": "CS1-D-T01-LO03"
     },
     {
+      "episode_id": "lep-cs1003-4.1.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.3-ar-02",
+      "title": "Active Recall: 4.1.3 apply OLS slope, intercept, residual",
+      "prompt": "Closed-book. Four pairs $(x,y)$: $(2,4)$, $(3,6)$, $(4,7)$, $(5,9)$. Fit $y=\\beta_{0}+\\beta_{1}x$ by ordinary least squares. Which statement correctly reports $\\hat{\\beta}_{1}$, $\\hat{\\beta}_{0}$, and the residual at $x=4$, and correctly refuses treating $\\operatorname{Corr}(X,Y)$ as the OLS slope?",
+      "response_type": "mcq",
+      "body": "Score the worked-example OLS computation.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\bar{x}=3.5$, $\\bar{y}=6.5$, $S_{xx}=5$, $S_{xy}=8$, so $\\hat{\\beta}_{1}=1.6$ and $\\hat{\\beta}_{0}=0.9$. At $x=4$, fitted value $7.3$ and residual $-0.3$. Correlation is not the OLS slope (missing the SD scaling in $\\widehat{\\operatorname{Cov}}/\\widehat{\\operatorname{Var}}$).",
+      "model_answer": "$\\hat{\\beta}_{1}=1.6$, $\\hat{\\beta}_{0}=0.9$, residual at $x=4$ equals $-0.3$.",
+      "common_mistake": "Using correlation as the slope, or flipping the residual sign.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\hat{\\beta}_{1}=S_{xy}/S_{xx}=8/5=1.6$ and $\\hat{\\beta}_{0}=\\bar{y}-\\hat{\\beta}_{1}\\bar{x}=0.9$. Fitted value at $x=4$ is $7.3$, so the residual is $7-7.3=-0.3$. $\\operatorname{Corr}(X,Y)$ is not the OLS slope.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\hat{\\beta}_{1}=\\operatorname{Corr}(X,Y)$ by definition, so report the sample correlation as the slope and skip $S_{xy}/S_{xx}$.",
+          "misconception_tag": "corr_as_slope"
+        },
+        {
+          "id": "c",
+          "label": "$\\hat{\\beta}_{1}=1.6$ and $\\hat{\\beta}_{0}=0.9$, but the residual at $x=4$ is $+0.3$ because residual means fitted minus observed.",
+          "misconception_tag": "residual_sign_flipped"
+        },
+        {
+          "id": "d",
+          "label": "Minimise $\\sum|y_i-\\beta_0-\\beta_1 x_i|$ instead; the resulting slope is still $S_{xy}/S_{xx}=1.6$.",
+          "misconception_tag": "lad_as_ols"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO03"
+    },
+    {
       "episode_id": "lep-cs1003-4.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.3-cp-01",

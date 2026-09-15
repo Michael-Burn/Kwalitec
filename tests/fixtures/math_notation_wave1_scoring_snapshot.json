@@ -1385,6 +1385,59 @@
           "matched_key": ""
         }
       ]
+    },
+    {
+      "package_file": "4.1.3-least-squares-cs1003.json",
+      "item_id": "cs1003-4.1.3-ar-02",
+      "correct_choice_id": "a",
+      "accepted_keywords": [],
+      "numeric_tolerance": null,
+      "choice_ids": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "verdicts": [
+        {
+          "response": "a",
+          "scored": true,
+          "correct": true,
+          "matched_key": "a"
+        },
+        {
+          "response": "b",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "c",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "d",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "__no_match__",
+          "scored": true,
+          "correct": false,
+          "matched_key": ""
+        },
+        {
+          "response": "",
+          "scored": false,
+          "correct": null,
+          "matched_key": ""
+        }
+      ],
+      "package_id": "CS1-EP001-PKG-4.1-LEAST-SQUARES",
+      "response_type": "mcq"
     }
   ]
 }

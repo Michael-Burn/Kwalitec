@@ -157,6 +157,51 @@
       "objective_id": "CS1-D-T01-LO02"
     },
     {
+      "episode_id": "lep-cs1003-4.1.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.2-ar-02",
+      "title": "Active Recall: 4.1.2 evaluate simple vs multiple fits",
+      "prompt": "Closed-book. Travel medical cost Y (£00). Simple fit $\\hat{Y}_{s}=3.5+0.8x_{1}$ (trip weeks). Multiple fit $\\hat{Y}_{m}=2.0+0.6x_{1}+0.4x_{2}$ (adds destination risk score). At $(x_{1},x_{2})=(5,3)$, which statement correctly evaluates both fitted values and correctly names each model form?",
+      "response_type": "mcq",
+      "body": "Score the worked-example simple vs multiple evaluation.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$\\hat{Y}_{s}=3.5+0.8\\times 5=7.5$ uses one explanatory variable (simple). $\\hat{Y}_{m}=2.0+0.6\\times 5+0.4\\times 3=6.2$ uses two explanatory variables jointly (multiple). Least-squares estimation is a separate step from naming the model form.",
+      "model_answer": "$\\hat{Y}_{s}=7.5$ simple; $\\hat{Y}_{m}=6.2$ multiple.",
+      "common_mistake": "Swapping simple/multiple labels, or treating evaluating the fits as finishing OLS estimation.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$\\hat{Y}_{s}=7.5$ (£00) is the simple fit (one explanatory variable). $\\hat{Y}_{m}=6.2$ (£00) is the multiple fit (two explanatory variables). Writing least-squares formulae for $\\hat{\\beta}$ is estimation, not the simple-versus-multiple form distinction.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "$\\hat{Y}_{s}=7.5$ is multiple because it uses a slope and intercept; $\\hat{Y}_{m}=6.2$ is simple because destination risk is optional.",
+          "misconception_tag": "forms_swapped"
+        },
+        {
+          "id": "c",
+          "label": "Both fitted values equal $7.5$, because the multiple model must ignore $x_{2}$ once $x_{1}$ is known.",
+          "misconception_tag": "drop_second_x"
+        },
+        {
+          "id": "d",
+          "label": "Evaluating $\\hat{Y}_{s}$ and $\\hat{Y}_{m}$ finishes least-squares estimation of $\\beta$, so no separate OLS criterion remains.",
+          "misconception_tag": "least_squares_finishes"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO02"
+    },
+    {
       "episode_id": "lep-cs1003-4.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.2-cp-01",

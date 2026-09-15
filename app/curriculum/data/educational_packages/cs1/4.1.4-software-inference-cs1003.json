@@ -157,6 +157,51 @@
       "objective_id": "CS1-D-T01-LO04"
     },
     {
+      "episode_id": "lep-cs1003-4.1.4-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.4-ar-02",
+      "title": "Active Recall: 4.1.4 apply slope inference and prediction limits",
+      "prompt": "Closed-book. Software returns $\\hat{\\beta}_{1}=-8$ with $\\mathrm{SE}(\\hat{\\beta}_{1})=2.5$. Use $z_{0.975}=1.96$. At a fixed $x$, $\\hat{y}=320$ with $\\mathrm{SE}_{\\mathrm{mean}}=15$ and $\\mathrm{SE}_{\\mathrm{pred}}=40$. Which statement correctly computes the Wald $z$ for $H_0\\colon\\beta_1=0$, the approximate 95% CI for $\\beta_1$, and the comparison of mean versus individual 95% intervals?",
+      "response_type": "mcq",
+      "body": "Score the worked-example post-fit inference and prediction limits.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "$z=-8/2.5=-3.2$. Approximate 95% CI is $(-12.9,-3.1)$. Mean interval $(290.6,349.4)$ is narrower than individual prediction interval $(241.6,398.4)$ because $\\mathrm{SE}_{\\mathrm{pred}}$ includes residual variance. Fit alone does not finish inference.",
+      "model_answer": "$z=-3.2$; CI $\\approx(-12.9,-3.1)$; individual interval wider than mean interval.",
+      "common_mistake": "Equating mean and prediction interval widths, or treating Fit as finishing inference.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "$z=-8/2.5=-3.2$. Approximate 95% CI for $\\beta_1$ is $(-12.9,-3.1)$. Mean interval $(290.6,349.4)$ is narrower than individual prediction interval $(241.6,398.4)$. Slope inference and prediction limits are required after the fit; residual checks remain part of post-fit interpretation.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Mean and individual intervals have the same width because both target $E[Y | x]$ only.",
+          "misconception_tag": "intervals_identical"
+        },
+        {
+          "id": "c",
+          "label": "Because the slope is clearly nonzero, residual plots and interval construction are optional after Fit.",
+          "misconception_tag": "fit_finishes_inference"
+        },
+        {
+          "id": "d",
+          "label": "$z=-8\\times 2.5=-20$, so form the CI as $-8\\pm 1.96$ without using the standard error as a divisor.",
+          "misconception_tag": "wald_multiply_se"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO04"
+    },
+    {
       "episode_id": "lep-cs1003-4.1.4-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.4-cp-01",

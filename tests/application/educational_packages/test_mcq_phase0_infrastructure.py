@@ -479,7 +479,7 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     assert batch1_seen == 60  # 22 packages × AR + CP, plus sixteen packages with 3 MCQs
     assert batch2_seen == 48  # 24 packages × AR + CP
     assert batch3_seen == 32  # 13 packages × AR+CP, plus 2 packages with 3 MCQs
-    assert batch4_seen == 36  # 18 packages × AR + CP
+    assert batch4_seen == 41  # 18 packages × AR + CP, plus five packages with 3 MCQs
     assert batch5_seen == 43  # 16 packages × AR + CP, plus eleven extra MCQs
     # 15 publication_approved Batch 6A packages × AR + CP, plus four packages
     # with 3 MCQs. Catalogue twin 4.2-glm-structure-ea006 is also converted

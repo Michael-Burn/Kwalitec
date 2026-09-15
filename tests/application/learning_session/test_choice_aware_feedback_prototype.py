@@ -400,6 +400,14 @@ _CS1012_TOPIC33_RETRY_PACKAGES: tuple[tuple[str, str], ...] = (
     ("3.3.5-contingency-independence-cs1012", "cs1012-3.3.5-ar-02"),
 )
 
+_CS1003_TOPIC41_RETRY_PACKAGES: tuple[tuple[str, str], ...] = (
+    ("4.1.1-response-explanatory-cs1003", "cs1003-4.1.1-ar-02"),
+    ("4.1.2-simple-multiple-cs1003", "cs1003-4.1.2-ar-02"),
+    ("4.1.3-least-squares-cs1003", "cs1003-4.1.3-ar-02"),
+    ("4.1.4-software-inference-cs1003", "cs1003-4.1.4-ar-02"),
+    ("4.1.5-variable-selection-cs1003", "cs1003-4.1.5-ar-02"),
+)
+
 
 _PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
     *_PRIOR_ONE_HUNDRED_EIGHTY_FIVE_PACKAGES,
@@ -413,6 +421,7 @@ _PROTOTYPE_PACKAGES: tuple[tuple[str, str], ...] = (
     *_CS1010_TOPIC31_RETRY_PACKAGES,
     *_CS1011_TOPIC32_RETRY_PACKAGES,
     *_CS1012_TOPIC33_RETRY_PACKAGES,
+    *_CS1003_TOPIC41_RETRY_PACKAGES,
 )
 
 _CAF_WAVE3_CONFLICT_NUMERIC_CPS: frozenset[str] = frozenset(
@@ -5663,7 +5672,7 @@ def _scoreable_for(item_id: str) -> ScoreablePracticeItem:
 
 def test_prototype_allowlist_is_exactly_two_hundred_thirty_eight_items() -> None:
     assert PROTOTYPE_ITEM_IDS == {want for _, want in _PROTOTYPE_PACKAGES}
-    assert len(PROTOTYPE_ITEM_IDS) == 264
+    assert len(PROTOTYPE_ITEM_IDS) == 269
     assert len(_ORIGINAL_PILOT_PACKAGES) == 4
     assert len(_EXPANSION_PACKAGES) == 10
     assert len(_EXISTING_FOURTEEN_PACKAGES) == 14
@@ -5691,6 +5700,7 @@ def test_prototype_allowlist_is_exactly_two_hundred_thirty_eight_items() -> None
     assert len(_CS1010_TOPIC31_RETRY_PACKAGES) == 3
     assert len(_CS1011_TOPIC32_RETRY_PACKAGES) == 8
     assert len(_CS1012_TOPIC33_RETRY_PACKAGES) == 5
+    assert len(_CS1003_TOPIC41_RETRY_PACKAGES) == 5
 
 
 def test_original_four_pilot_items_unaffected() -> None:
@@ -6851,4 +6861,4 @@ def test_remaining_mcq_without_choice_aware_are_only_superseded_ea005() -> None:
             all_mcq.add(iid)
     unwired = {iid for iid in all_mcq if iid not in PROTOTYPE_ITEM_IDS}
     assert unwired == _SUPERSEDED_EA005_ITEMS
-    assert len(PROTOTYPE_ITEM_IDS) == 264
+    assert len(PROTOTYPE_ITEM_IDS) == 269

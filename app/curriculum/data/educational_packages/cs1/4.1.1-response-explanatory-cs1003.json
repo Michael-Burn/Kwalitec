@@ -157,6 +157,51 @@
       "objective_id": "CS1-D-T01-LO01"
     },
     {
+      "episode_id": "lep-cs1003-4.1.1-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-4.1.1-ar-02",
+      "title": "Active Recall: 4.1.1 assign Y and X on EL severity",
+      "prompt": "Closed-book. An employers' liability analyst models claim severity (£). A pilot sketch uses years in a hazardous occupation class as the predictor, and the policy record also shows written premium. Which statement correctly assigns response and explanatory roles and correctly refuses treating every numeric policy field as an automatic explanatory variable?",
+      "response_type": "mcq",
+      "body": "Score the worked-example role assignment; refuse column-soup.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "The modelling question is claim severity, so severity is the response Y. Hazardous-class years are the predictor used to explain severity, so that tenure measure is the explanatory variable X. Written premium shares the policy record but is not automatically an X for severity by column presence alone.",
+      "model_answer": "Y = EL claim severity; X = hazardous-class years; written premium is not auto-X.",
+      "common_mistake": "Putting written premium (or every numeric field) on the right-hand side because it appears in the same record.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Response Y = EL claim severity (£). Explanatory variable X = years in the hazardous occupation class. Written premium is not automatically an explanatory variable for severity just because it appears in the same policy record.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Response Y = years in the hazardous class; explanatory variables are claim severity and written premium, because every numeric column belongs on the right-hand side.",
+          "misconception_tag": "roles_reversed_column_soup"
+        },
+        {
+          "id": "c",
+          "label": "Response Y = claim severity; written premium must also be an explanatory variable because it is numeric and shares the policy record with severity.",
+          "misconception_tag": "written_premium_as_auto_x"
+        },
+        {
+          "id": "d",
+          "label": "No response or explanatory role can be named until a multiple regression equation is fully written; the severity modelling question alone is insufficient.",
+          "misconception_tag": "model_form_first"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-D-T01-LO01"
+    },
+    {
       "episode_id": "lep-cs1003-4.1.1-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-4.1.1-cp-01",
