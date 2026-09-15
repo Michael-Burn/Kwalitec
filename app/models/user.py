@@ -55,6 +55,14 @@ class User(UserMixin, db.Model):
         server_default="Africa/Harare",
         comment="IANA timezone identifier for learner-local study days",
     )
+    # Student-facing display name. Persistence only; not derived from email.
+    display_name: str = db.Column(
+        db.String(80),
+        nullable=False,
+        default="",
+        server_default="",
+        comment="Student-facing display name (persisted account preference)",
+    )
 
     # Relationships — explicit back_populates matching child-side declarations
     subjects = db.relationship("Subject", back_populates="user", lazy=True)
@@ -75,6 +83,23 @@ class User(UserMixin, db.Model):
         lazy="selectin",
         cascade="all, delete-orphan",
     )
+
+    DISPLAY_NAME_MIN_LENGTH = 2
+    DISPLAY_NAME_MAX_LENGTH = 80
+
+    @staticmethod
+    def normalized_display_name(raw: str | None) -> str | None:
+        """Return a trimmed display name, or None when validation fails.
+
+        Empty or whitespace-only values are rejected. Length must be between
+        ``DISPLAY_NAME_MIN_LENGTH`` and ``DISPLAY_NAME_MAX_LENGTH``.
+        """
+        name = (raw or "").strip()
+        if len(name) < User.DISPLAY_NAME_MIN_LENGTH:
+            return None
+        if len(name) > User.DISPLAY_NAME_MAX_LENGTH:
+            return None
+        return name
 
     def set_password(self, password: str) -> None:
         """Hash and store a plaintext password."""

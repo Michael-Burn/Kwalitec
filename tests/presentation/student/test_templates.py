@@ -117,6 +117,7 @@ def test_settings_hub_groups_present(student_client):
     assert "Study Time" not in html
     assert "Topics Mastered" not in html
     assert 'id="daily_goal_hours"' in html
+    assert 'id="display_name"' in html
     assert "appearance-switcher" in html or "data-appearance-option" in html
     assert "Open account settings" not in html  # replaced by compact card actions
     assert "Save Profile" not in html

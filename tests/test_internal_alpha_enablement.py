@@ -300,6 +300,7 @@ class TestCreateTestUserCommand:
         assert "Test user created successfully" in result.output
         created = User.query.filter_by(email="friend@kwalitec.example").first()
         assert created is not None
+        assert created.display_name == "Alpha Friend"
         assert created.check_password("securepassword123") is True
 
     def test_rejects_duplicate_email(self, runner, user, ctx):

@@ -24,6 +24,7 @@ from app.models.learning import StudyAttempt
 from app.models.mission import Mission, MissionTask
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.topic_progress import TopicProgress
+from app.models.user import User
 
 settings_bp = Blueprint("settings", __name__, url_prefix="/settings")
 
@@ -199,9 +200,29 @@ def _safe_local_redirect(candidate: str | None, fallback_endpoint: str):
 def update_preferences():
     """Persist study preferences on the User model.
 
-    Currently persists ``daily_goal_hours`` only. Persistence is intentional
-    and complete for this field — it is not wired into progress-tracking math.
+    Currently persists ``daily_goal_hours`` and ``display_name``. Each field
+    is updated only when present on the submitted form, so the Profile
+    inline forms can save independently. Persistence is intentional and
+    complete for these fields; they are not wired into progress-tracking math.
     """
+    if "display_name" in request.form:
+        name = User.normalized_display_name(request.form.get("display_name"))
+        if name is None:
+            flash(
+                "Enter a display name between "
+                f"{User.DISPLAY_NAME_MIN_LENGTH} and "
+                f"{User.DISPLAY_NAME_MAX_LENGTH} characters.",
+                "danger",
+            )
+        else:
+            current_user.display_name = name
+            db.session.commit()
+            flash("Display name updated.", "success")
+        return _safe_local_redirect(
+            request.form.get("next"),
+            "settings.preferences",
+        )
+
     daily_goal_hours = request.form.get("daily_goal_hours", "").strip()
     if daily_goal_hours:
         try:

@@ -40,16 +40,31 @@
 
             <section class="ds-os-settings-hub__group" aria-labelledby="settings-profile-title">
                 <h2 id="settings-profile-title" class="ds-os-settings-hub__group-title">Profile</h2>
-                <div class="ds-os-settings-hub__card-list">
-                    <article class="ds-panel ds-os-settings-hub__card">
-                        <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('profile', size=18) }}</div>
-                        <div class="ds-os-settings-hub__card-body">
-                            <h3 class="ds-os-settings-hub__card-title">Display name</h3>
-                            <p class="ds-os-settings-hub__card-value">{{ profile.display_name or 'Student' }}</p>
-                            <p class="ds-os-settings-hub__card-desc">How you appear across the Student Experience.</p>
+                <div class="ds-panel ds-os-settings-hub__panel">
+                    <div class="ds-os-settings-hub__row">
+                        <div class="ds-os-settings-hub__row-copy">
+                            <label class="ds-os-settings-hub__row-label" for="display_name">Display name</label>
+                            <p class="ds-os-settings-hub__row-desc">How you appear across the Student Experience.</p>
                         </div>
-                        <a class="ds-os-settings-hub__card-action" href="{{ url_for('settings.profile') }}">View</a>
-                    </article>
+                        <form method="post" action="{{ url_for('settings.update_preferences') }}" class="ds-os-settings-hub__inline-form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="next" value="{{ url_for('student.profile') }}">
+                            <input
+                                type="text"
+                                id="display_name"
+                                name="display_name"
+                                class="ds-input"
+                                value="{{ current_user.display_name or '' }}"
+                                maxlength="{{ current_user.DISPLAY_NAME_MAX_LENGTH }}"
+                                autocomplete="name"
+                                aria-label="Display name"
+                                required
+                            >
+                            {{ ds_button('Save', type='submit', variant='secondary') }}
+                        </form>
+                    </div>
+                </div>
+                <div class="ds-os-settings-hub__card-list">
                     <article class="ds-panel ds-os-settings-hub__card">
                         <div class="ds-os-settings-hub__card-icon" aria-hidden="true">{{ icon('exam', size=18) }}</div>
                         <div class="ds-os-settings-hub__card-body">

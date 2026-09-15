@@ -207,8 +207,8 @@ def create_test_user_command(name: str, email: str, password: str) -> None:
     is not exposed through the public web UI.
 
     Prompts interactively for name, email, and password when options are
-    omitted. Name is confirmed in the success message; authentication uses
-    email and password only (User model has no separate name column).
+    omitted. Name is stored as the student display name; authentication
+    still uses email and password.
     """
     logger.info("Starting create-test-user command")
 
@@ -220,10 +220,15 @@ def create_test_user_command(name: str, email: str, password: str) -> None:
         logger.error("create-test-user: users table missing; aborting.")
         sys.exit(1)
 
-    display_name = (name or "").strip()
+    display_name = User.normalized_display_name(name)
     normalized_email = (email or "").strip().lower()
     if not display_name:
-        click.echo("Error: Name is required.", err=True)
+        click.echo(
+            "Error: Name must be between "
+            f"{User.DISPLAY_NAME_MIN_LENGTH} and "
+            f"{User.DISPLAY_NAME_MAX_LENGTH} characters.",
+            err=True,
+        )
         sys.exit(1)
     if not normalized_email or "@" not in normalized_email:
         click.echo("Error: A valid email is required.", err=True)
@@ -240,7 +245,11 @@ def create_test_user_command(name: str, email: str, password: str) -> None:
         )
         sys.exit(1)
 
-    user = User(email=normalized_email, is_active_user=True)
+    user = User(
+        email=normalized_email,
+        is_active_user=True,
+        display_name=display_name,
+    )
     user.set_password(password)
     db.session.add(user)
     db.session.flush()

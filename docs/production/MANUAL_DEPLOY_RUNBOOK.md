@@ -14,8 +14,8 @@ This runbook covers a **manual deploy** of the current `main` tip that includes:
 
 | Change | Detail |
 |--------|--------|
-| Alembic migrations | Head is **`202609150001`**. From `202608300001` this deploy applies `202609150001` (`users.timezone`, IANA id, default `Africa/Harare`). If production is still behind `202608300001`, upgrade also walks `202608240001` → `202608240002` → `202608270001` → `202608300001` first. |
-| Additive migration | `202609150001` adds `users.timezone`. Non-destructive. Existing rows receive `Africa/Harare`. |
+| Alembic migrations | Head is **`202609150002`**. From `202608300001` this deploy applies `202609150001` (`users.timezone`) then `202609150002` (`users.display_name`). If production is still behind `202608300001`, upgrade also walks `202608240001` → `202608240002` → `202608270001` → `202608300001` first. |
+| Additive migration | `202609150001` adds `users.timezone`. `202609150002` adds `users.display_name`. Both non-destructive. Existing rows receive `Africa/Harare` and an empty display name. |
 | Destructive migration (already in chain) | `202608300001` **drops** `topic_progress.mastery_score` and `topic_progress.average_accuracy` if that revision has not yet run. Downgrade can recreate empty columns but **cannot restore dropped values**. Columns are confirmed unused (ADR-027 Phase 2 Stage 4; Estimated Knowledge authority moved to the Learner Twin Query Port). |
 | Twin daily loop | `SR_TWIN_DAILY_LOOP` hold ended 2026-08-31. `render.yaml` no longer sets `SR_TWIN_DAILY_LOOP=0`; the flag inherits **ON** from `KWALITEC_COMMERCIAL_LOOP=1`. New Twin writes resume after deploy. |
 | Readiness honesty | Fresh accounts must show **not yet assessed** (or equivalent honest absence) for Estimated Knowledge / readiness figures, not fabricated `0%` values. |
@@ -48,8 +48,8 @@ curl -fsS "$BASE_URL/health" | python3 -m json.tool
 | Process up | `/health/live` → `status: ok` | 200 | Stop. Fix live service before migrating. |
 | Readiness | `/health/ready` → `ready: true` | 200 | Stop if `ready: false`. Investigate DB / migrations. |
 | Database | `/health` or `/health/ready` → `components.database.status: ok` | `ok` | Stop if `error`. |
-| **Alembic current** | `components.migrations.meta.current` | **`202608300001`** if the previous head deploy completed; otherwise note the live value | If already at `202609150001`, this timezone migration may already have run; confirm commit matches intended release. |
-| **Alembic head (live code)** | `components.migrations.meta.head` | Will still show the pre-deploy head until new code deploys | Expected pre-deploy. After deploy, both must equal **`202609150001`**. |
+| **Alembic current** | `components.migrations.meta.current` | **`202608300001`** if the previous head deploy completed; otherwise note the live value | If already at `202609150002`, these user-column migrations may already have run; confirm commit matches intended release. |
+| **Alembic head (live code)** | `components.migrations.meta.head` | Will still show the pre-deploy head until new code deploys | Expected pre-deploy. After deploy, both must equal **`202609150002`**. |
 | Commit fingerprint | `commit` (from `/health/live` or `/health`) | Note current SHA (e.g. `4ff8c95…` from Aug-2026 RO/PB evidence) | After deploy, must match intended tip. |
 | Version | `version` | `2.0.0-beta.1` | Informational unless you intentionally bumped `VERSION`. |
 | Environment | `environment` | `production` | Must not be `development`. |
@@ -99,14 +99,14 @@ Optional but useful: `APP_URL`, `PREFERRED_URL_SCHEME=https`, `TRUSTED_PROXY_HOP
 Before triggering Render:
 
 - [ ] Intended commit is on `origin/main` (push if needed)
-- [ ] `flask db heads` shows single head **`202609150001`**
+- [ ] `flask db heads` shows single head **`202609150002`**
 - [ ] pytest + ruff green on the deploy commit (per `DEPLOYMENT_CHECKLIST.md` A7)
 
 ---
 
 ## 2. Backup step (required before this deploy)
 
-This deploy runs migration `202609150001` (adds `users.timezone`). Treat backup as mandatory. If the database is still before `202608300001`, that older revision still **drops columns**.
+This deploy runs migrations `202609150001` (adds `users.timezone`) and `202609150002` (adds `users.display_name`). Treat backup as mandatory. If the database is still before `202608300001`, that older revision still **drops columns**.
 
 ### What this repo documents
 
@@ -156,7 +156,7 @@ The repository **does not** record whether Render automated backups, point-in-ti
 2. Select commit **`16cf075e…`** (or your verified tip SHA).
 3. Start deploy. Render runs in order:
    - **Build:** `pip install -r requirements.txt`
-   - **Release:** `flask db upgrade` (applies pending migrations through `202609150001`)
+   - **Release:** `flask db upgrade` (applies pending migrations through `202609150002`)
    - **Start:** `waitress-serve --port=$PORT wsgi:app`
 
 ### 3.2 What to expect in logs
@@ -170,15 +170,15 @@ The repository **does not** record whether Render automated backups, point-in-ti
 Expected migration sequence on a DB already at `202608300001`:
 
 ```text
-202608300001 → 202609150001
+202608300001 → 202609150001 → 202609150002
 ```
 
-`202609150001` adds `users.timezone` (default `Africa/Harare`). It does not drop columns.
+`202609150001` adds `users.timezone` (default `Africa/Harare`). `202609150002` adds `users.display_name` (empty until the student sets one). Neither drops columns.
 
 If the database is still at `202607310002`, the longer chain is:
 
 ```text
-202607310002 → 202608240001 → 202608240002 → 202608270001 → 202608300001 → 202609150001
+202607310002 → 202608240001 → 202608240002 → 202608270001 → 202608300001 → 202609150001 → 202609150002
 ```
 
 In that case `202608300001` still drops `topic_progress.mastery_score` and `topic_progress.average_accuracy`.
@@ -206,7 +206,7 @@ curl -fsS "$BASE_URL/health/ready" | python3 -m json.tool
 |-------|---------------|
 | `/health/live` | 200, `status: ok` |
 | `/health/ready` | 200, `ready: true` |
-| Migrations | `components.migrations.meta.current` = `head` = **`202609150001`**, `status: ok` |
+| Migrations | `components.migrations.meta.current` = `head` = **`202609150002`**, `status: ok` |
 | Commit | `commit` matches deployed SHA |
 | Version | `version` = `2.0.0-beta.1` (unless intentionally bumped) |
 | Database | `components.database.status: ok` |
@@ -300,7 +300,8 @@ No database restore required.
 | Flag matrix (Twin hold resume) | `docs/production/VERSION_1_FLAG_MATRIX.md` §2.1 |
 | General checklist | `DEPLOYMENT_CHECKLIST.md` |
 | Founder deploy guide | `FOUNDER_DEPLOYMENT_GUIDE.md` |
-| Timezone migration (current head) | `migrations/versions/202609150001_add_timezone_to_users.py` |
+| Timezone migration | `migrations/versions/202609150001_add_timezone_to_users.py` |
+| Display name migration (current head) | `migrations/versions/202609150002_add_display_name_to_users.py` |
 | Destructive migration (earlier in chain) | `migrations/versions/202608300001_drop_topic_progress_ek_columns.py` |
 
 ---

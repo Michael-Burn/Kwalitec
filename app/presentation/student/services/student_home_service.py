@@ -52,6 +52,18 @@ _CONTINUATION_CTA_LABEL = "Choose a topic"
 _QUIET_REASON = "A session will be ready when today's focus is available."
 _PAGE_QUESTION = "What should I do now?"
 _DEFAULT_GREETING = "Welcome back."
+
+
+def _account_display_name() -> str:
+    """Student-facing name from the User account field, never Twin."""
+    try:
+        from flask_login import current_user
+
+        if not getattr(current_user, "is_authenticated", False):
+            return ""
+        return (getattr(current_user, "display_name", None) or "").strip()
+    except Exception:
+        return ""
 # Runtime C Learning Mode is sequential unless Spacing Scheduler marks a
 # package due (composer_selection_reason=spaced_review).
 _SEQUENTIAL_WHY_NOW = "Next in your study plan."
@@ -95,6 +107,10 @@ class StudentHomeService:
         choose_exam_href = url_for("study_plan.index")
         streak_days = max(0, int(current_streak_days or 0))
         if page is None or page.home is None:
+            name = _account_display_name()
+            empty_greeting = (
+                f"Welcome back, {name}." if name else _DEFAULT_GREETING
+            )
             return StudentHomePage(
                 mission=None,
                 learning_queue=(),
@@ -108,7 +124,7 @@ class StudentHomeService:
                 empty_action_label=_EMPTY_ACTION_LABEL,
                 empty_action_href=choose_exam_href,
                 page_question=_PAGE_QUESTION,
-                greeting=_DEFAULT_GREETING,
+                greeting=empty_greeting,
                 current_streak_days=streak_days,
                 progress_href=progress_href,
                 study_href="",
@@ -357,7 +373,13 @@ class StudentHomeService:
         elif state != "empty":
             study_href = url_for("student.study")
         tutor_available = bool(home.tutor_available)
+        name = _account_display_name()
         greeting = (home.greeting or "").strip() or _DEFAULT_GREETING
+        # Account display_name is the only student-visible identity. Do not
+        # keep Twin-sourced "Welcome back, Name." greetings when the account
+        # field is empty.
+        if not name and greeting.startswith("Welcome back, "):
+            greeting = _DEFAULT_GREETING
         density = self._density_presentation(
             state=state,
             mission=mission,
@@ -374,12 +396,14 @@ class StudentHomeService:
 
             gap_copy = return_after_gap_copy(
                 days_since_last=days_gap,
-                display_name=None,
+                display_name=name or None,
                 in_progress=bool(
                     mission is not None and mission.primary_kind == "link"
                 ),
             )
-            if gap_copy.greeting and (
+            if name and gap_copy.greeting:
+                greeting = gap_copy.greeting
+            elif gap_copy.greeting and (
                 not (home.greeting or "").strip()
                 or greeting == _DEFAULT_GREETING
             ):
@@ -387,7 +411,8 @@ class StudentHomeService:
             if gap_copy.support_line and not density["continuity_line"]:
                 density = {**density, "continuity_line": gap_copy.support_line}
         except Exception:
-            pass
+            if name:
+                greeting = f"Welcome back, {name}."
 
         exam_horizon_line = ""
         try:
@@ -559,6 +584,11 @@ class StudentHomeService:
                 workspace.morning_brief,
                 fallback=home.continuity_line,
             )
+        name = _account_display_name()
+        if name:
+            greeting = f"Welcome back, {name}."
+        elif greeting.startswith("Welcome back, "):
+            greeting = _DEFAULT_GREETING
         return replace(
             home,
             workspace=workspace,
