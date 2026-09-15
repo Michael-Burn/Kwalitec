@@ -53,8 +53,6 @@ def _create_unbound_plan(user_id: int, exam_name: str):
     "exam_name,topic_fragment",
     [
         ("IFoA CS1", "data analysis"),
-        ("IFoA CB2", "economics and business"),
-        ("IFoA CM1", "interest rates"),
     ],
 )
 class TestStudyPlanCurriculumSelfHealing:
@@ -175,7 +173,7 @@ def test_non_curriculum_exam_stays_unbound(db, user):
 def test_planning_service_does_not_call_ensure_directly(db, user, monkeypatch):
     """Curriculum repair must live only in StudyPlanService accessors."""
     CurriculumService.import_curricula()
-    plan = _create_unbound_plan(user.id, "IFoA CB2")
+    plan = _create_unbound_plan(user.id, "IFoA CS1")
 
     calls: list[int] = []
     original = StudyPlanService.ensure_curriculum_binding

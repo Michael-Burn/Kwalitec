@@ -743,15 +743,15 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count = CurriculumService.import_curricula()
-        assert count == 3, "Expected CS1, CB2, and CM1 curricula to be imported"
+        assert count == 1, "Expected CS1 curriculum to be imported"
 
-        assert Curriculum.query.count() == 3
+        assert Curriculum.query.count() == 1
         c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c.exam_name == "IFoA CS1"
         assert c.version == "2026"
         assert c.active is True
-        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").one() is not None
-        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").one() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").first() is None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").first() is None
 
         assert Topic.query.filter_by(curriculum_id=c.id).count() == 14
         topics = Topic.query.filter_by(curriculum_id=c.id).order_by(Topic.order).all()
@@ -786,16 +786,16 @@ class TestCurriculumDatabaseImport:
         from app.models.learning import LearningObjective
 
         count1 = CurriculumService.import_curricula()
-        assert count1 == 3
+        assert count1 == 1
 
         count2 = CurriculumService.import_curricula()
         assert count2 == 0, "Second import should return 0 (no new curricula)"
 
-        assert Curriculum.query.count() == 3
+        assert Curriculum.query.count() == 1
         cs1 = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert Topic.query.filter_by(curriculum_id=cs1.id).count() == 14
         assert LearningObjective.query.count() > 0
-        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").one() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").first() is None
 
     def test_imported_curriculum_available_for_study_plan(self, ctx, db, user):
         """A study plan created after import must link to the existing
@@ -919,7 +919,7 @@ class TestCurriculumDatabaseImport:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Multi-paper consistency (CS1 / CB2 / CM1)
+# Supported-paper consistency (CS1)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 
@@ -954,18 +954,15 @@ def _create_curriculum_plan(user_id: int, exam_name: str, topic_code: str = "1.1
 
 
 class TestMultiPaperCurriculumConsistency:
-    """Every supported syllabus must drive topic-based missions and recommendations.
+    """Supported syllabus must drive topic-based missions and recommendations.
 
-    Guards against paper-specific hardcoding regressions (e.g. CB2 omitted from
-    a version map while CS1/CM1 remained wired).
+    Guards against paper-specific hardcoding regressions.
     """
 
     @pytest.mark.parametrize(
         "exam_name,topic_fragment,topic_count",
         [
             ("IFoA CS1", "data analysis", 14),
-            ("IFoA CB2", "economics and business", 21),
-            ("IFoA CM1", "interest rates", 21),
         ],
     )
     def test_study_plan_links_curriculum_and_topics(
@@ -984,8 +981,6 @@ class TestMultiPaperCurriculumConsistency:
         "exam_name,topic_fragment",
         [
             ("IFoA CS1", "data analysis"),
-            ("IFoA CB2", "economics and business"),
-            ("IFoA CM1", "interest rates"),
         ],
     )
     def test_mission_title_includes_syllabus_topic(
@@ -1004,8 +999,6 @@ class TestMultiPaperCurriculumConsistency:
         "exam_name,topic_fragment",
         [
             ("IFoA CS1", "data analysis"),
-            ("IFoA CB2", "economics and business"),
-            ("IFoA CM1", "interest rates"),
         ],
     )
     def test_topic_selection_returns_first_incomplete(
@@ -1022,7 +1015,7 @@ class TestMultiPaperCurriculumConsistency:
         assert selected is not None
         assert topic_fragment in selected.name.lower()
 
-    @pytest.mark.parametrize("exam_name", ["IFoA CS1", "IFoA CB2", "IFoA CM1"])
+    @pytest.mark.parametrize("exam_name", ["IFoA CS1"])
     def test_recommendation_uses_curriculum_coverage(self, db, user, exam_name):
         from app.services.recommendation_service import RecommendationService
 
@@ -1040,7 +1033,7 @@ class TestMultiPaperCurriculumConsistency:
             or "progress" in titles
         )
 
-    @pytest.mark.parametrize("exam_name", ["IFoA CS1", "IFoA CB2", "IFoA CM1"])
+    @pytest.mark.parametrize("exam_name", ["IFoA CS1"])
     def test_dashboard_renders_with_curriculum_plan(
         self, logged_in_client, db, user, exam_name
     ):

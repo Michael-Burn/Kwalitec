@@ -33,6 +33,8 @@ _NON_SYLLABUS_DATA_DIRS = frozenset(
     {
         "educational_packages",
         "educational_campaigns",
+        # Official syllabi retained for future volume work but not Ready.
+        "syllabus_archive",
     }
 )
 

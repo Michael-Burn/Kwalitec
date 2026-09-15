@@ -510,12 +510,12 @@ class TestFormatDetection:
         count = CurriculumService.import_curricula()
         assert count >= 1
 
-        # Bundled curricula use product naming (CS1 + CB2 + CM1)
+        # Bundled curricula use product naming (CS1 only)
         c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c is not None
         assert c.exam_name == "IFoA CS1"
-        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").one() is not None
-        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").one() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").first() is None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").first() is None
 
     def test_format_detection_logs_correctly(self, ctx, db, caplog):
         """Format detection should be logged."""
@@ -661,12 +661,10 @@ class TestStartupImport:
             assert isinstance(count, int)
             assert count >= 0
 
-        # Should still have exactly the bundled curricula (CS1 + CB2 + CM1)
-        assert Curriculum.query.count() == 3
+        # Should still have exactly the bundled curriculum (CS1)
+        assert Curriculum.query.count() == 1
         assert {c.exam_name for c in Curriculum.query.all()} == {
             "IFoA CS1",
-            "IFoA CB2",
-            "IFoA CM1",
         }
 
 

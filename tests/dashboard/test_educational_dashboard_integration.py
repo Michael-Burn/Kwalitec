@@ -114,7 +114,13 @@ class TestDashboardFeatureFlagOn:
     def test_unbound_healable_plan_self_heals_on_dashboard(
         self, logged_in_client, study_plan, user
     ) -> None:
-        """Capability 4.6: missing curriculum_id is repaired on dashboard load."""
+        """Capability 4.6: missing curriculum_id is repaired on dashboard load.
+
+        Uses a Ready subject (CS1). CM1/CB2 are Coming Soon with no discoverable
+        syllabus, so they cannot exercise a successful heal; unbound fallback for
+        non-discoverable exams is covered by the sibling test below.
+        """
+        study_plan.exam_name = "IFoA CS1"
         study_plan.curriculum_id = None
         study_plan.curriculum_version = None
         db.session.commit()
@@ -143,6 +149,7 @@ class TestDashboardFeatureFlagOn:
         db.session.refresh(study_plan)
         assert study_plan.curriculum_id is not None
         assert study_plan.curriculum_version is not None
+        assert study_plan.exam_name == "IFoA CS1"
 
     def test_unhealable_missing_curriculum_falls_back(
         self, logged_in_client, study_plan, user

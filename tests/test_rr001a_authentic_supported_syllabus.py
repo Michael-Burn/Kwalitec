@@ -10,9 +10,9 @@ study-plan / wizard version discovery selects ``max(versions)`` and
 resolved to a placeholder "future" version.
 
 These tests fail-closed against re-pollution of the Supported syllabus: only
-the three Version 1 papers (CS1, CM1, CB2) may be discoverable, every
-Supported paper must expose recognisable official titles, and no student-facing
-syllabus title may be a generic placeholder.
+CS1 may be discoverable, every Supported paper must expose recognisable
+official titles, and no student-facing syllabus title may be a generic
+placeholder.
 
 Scope guard: this is product-trust data hygiene only. It asserts nothing about
 ordering, weightings, relationships, or learning logic.
@@ -40,8 +40,8 @@ _PLACEHOLDER_TITLE_FRAGMENTS = (
     "beta topic",
 )
 
-# The only examinations that may be Supported in Version 1.
-_EXPECTED_SUPPORTED = {("IFOA", "CS1"), ("IFOA", "CM1"), ("IFOA", "CB2")}
+# The only examinations that may be Supported (CS1 syllabus inventory).
+_EXPECTED_SUPPORTED = {("IFOA", "CS1")}
 
 
 def _latest_version(org: str, paper: str) -> str:
@@ -70,7 +70,7 @@ class TestSupportedSyllabusIsClean:
         supported = SubjectSupportService.list_supported_examinations()
         found = {(o.upper(), p.upper()) for o, p in supported}
         assert found == _EXPECTED_SUPPORTED, (
-            "Supported syllabus set drifted from CS1/CM1/CB2 — a placeholder or "
+            "Supported syllabus set drifted from CS1 — a placeholder or "
             f"non-official curriculum may have been added. Found: {sorted(found)}"
         )
 
@@ -85,7 +85,7 @@ class TestSupportedSyllabusIsClean:
 
 class TestSupportedTitlesAreOfficial:
     def test_no_placeholder_titles_in_supported_papers(self):
-        for org, paper in (("IFoA", "CS1"), ("IFoA", "CM1"), ("IFoA", "CB2")):
+        for org, paper in (("IFoA", "CS1"),):
             for title in _all_titles(org, paper):
                 lowered = title.lower()
                 for fragment in _PLACEHOLDER_TITLE_FRAGMENTS:
@@ -100,11 +100,3 @@ class TestSupportedTitlesAreOfficial:
         assert "data analysis" in titles
         assert "bayesian statistics" in titles
         assert "regression" in titles
-
-    def test_cm1_shows_recognisable_official_topics(self):
-        titles = " ".join(_all_titles("IFoA", "CM1")).lower()
-        assert "interest rate" in titles
-
-    def test_cb2_shows_recognisable_official_topics(self):
-        titles = " ".join(_all_titles("IFoA", "CB2")).lower()
-        assert "economic" in titles

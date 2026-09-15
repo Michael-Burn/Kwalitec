@@ -1,7 +1,6 @@
 """Regression: Learning Objective description must store full official text.
 
-Internal Alpha hotfix — CM1 LO storage. VARCHAR(500) blocked CM1 import;
-description is unbounded TEXT so any IFoA paper with long LOs imports intact.
+Description is unbounded TEXT so IFoA papers with long LOs import intact.
 """
 
 from __future__ import annotations
@@ -67,47 +66,71 @@ def _create_plan(user_id: int, exam_name: str, version: str, topic_code: str = "
 class TestLearningObjectiveDescriptionStorage:
     """Official syllabus LO text must persist without length truncation."""
 
-    def test_cm1_longest_lo_exceeds_legacy_varchar_500(self, ctx) -> None:
-        """Guard: CM1 still has LO text that would break VARCHAR(500)."""
-        _, longest = _longest_prefixed_lo("ifoa", "cm1", "2026")
-        assert len(longest) > 500
-
-    def test_import_preserves_full_cm1_lo_and_cs1_cb2(
+    def test_model_accepts_descriptions_longer_than_legacy_varchar_500(
         self, ctx, db
     ) -> None:
-        code, expected = _longest_prefixed_lo("ifoa", "cm1", "2026")
-        assert len(expected) > 500
+        """Guard: LearningObjective.description remains unbounded TEXT."""
+        curriculum = Curriculum(
+            exam_name="IFoA CS1", version="2099-lo-storage", active=True
+        )
+        db.session.add(curriculum)
+        db.session.flush()
+        topic = Topic(
+            curriculum_id=curriculum.id,
+            name="LO storage probe",
+            order=1,
+            recommended_minutes=30,
+            syllabus_weight=0.0,
+        )
+        db.session.add(topic)
+        db.session.flush()
+        long_text = "[" + ("x" * 40) + "] " + ("y" * 500)
+        assert len(long_text) > 500
+        lo = LearningObjective(
+            topic_id=topic.id,
+            description=long_text,
+            order=1,
+        )
+        db.session.add(lo)
+        db.session.commit()
+
+        stored = LearningObjective.query.filter_by(description=long_text).one()
+        assert stored.description == long_text
+        assert len(stored.description) > 500
+
+    def test_import_preserves_full_cs1_lo(self, ctx, db) -> None:
+        code, expected = _longest_prefixed_lo("ifoa", "cs1", "2026")
 
         imported = CurriculumService.import_curricula()
         assert imported >= 1
 
-        for exam_name in ("IFoA CS1", "IFoA CB2", "IFoA CM1"):
-            row = Curriculum.query.filter_by(
-                exam_name=exam_name, version="2026"
-            ).one()
-            assert row.active is True
-            assert Topic.query.filter_by(curriculum_id=row.id).count() >= 1
-            assert (
-                LearningObjective.query.join(Topic)
-                .filter(Topic.curriculum_id == row.id)
-                .count()
-                >= 1
-            )
+        row = Curriculum.query.filter_by(
+            exam_name="IFoA CS1", version="2026"
+        ).one()
+        assert row.active is True
+        assert Topic.query.filter_by(curriculum_id=row.id).count() >= 1
+        assert (
+            LearningObjective.query.join(Topic)
+            .filter(Topic.curriculum_id == row.id)
+            .count()
+            >= 1
+        )
+        assert Curriculum.query.filter_by(exam_name="IFoA CB2").first() is None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM1").first() is None
 
         stored = LearningObjective.query.filter_by(description=expected).one()
         assert stored.description == expected
         assert len(stored.description) == len(expected)
-        assert len(stored.description) > 500
         assert stored.description.startswith(f"[{code}]")
 
-    def test_cm1_study_plan_progress_recommendation_and_mission(
+    def test_cs1_study_plan_progress_recommendation_and_mission(
         self, ctx, db, user
     ) -> None:
         CurriculumService.import_curricula()
-        plan = _create_plan(user.id, "IFoA CM1", "2026", topic_code="1.1")
+        plan = _create_plan(user.id, "IFoA CS1", "2026", topic_code="1.1")
 
         assert plan.curriculum_id is not None
-        assert plan.curriculum.exam_name == "IFoA CM1"
+        assert plan.curriculum.exam_name == "IFoA CS1"
         topic_count = Topic.query.filter_by(
             curriculum_id=plan.curriculum_id
         ).count()
