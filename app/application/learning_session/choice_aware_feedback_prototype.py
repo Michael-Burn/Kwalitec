@@ -125,6 +125,11 @@ Editorial review record (2026-09-15): seven topic 4.2 retry active-recall items
 cs1003-4.2.6-ar-02, cs1003-4.2.7-ar-02, cs1003-4.2.9-ar-02) were reviewed and
 approved before wiring so every live MCQ remains on the choice-aware allowlist.
 Copy is frozen as approved; mechanism unchanged.
+
+Editorial review record (2026-09-15): four topic 5.1 retry active-recall items
+(cs1003-5.1.2-ar-02, cs1003-5.1.3-ar-02, cs1003-5.1.5-ar-02, cs1003-5.1.9-ar-02)
+were reviewed and approved before wiring so every live MCQ remains on the
+choice-aware allowlist. Copy is frozen as approved; mechanism unchanged.
 """
 
 from __future__ import annotations
@@ -152,6 +157,8 @@ from app.application.learning_session.scoreable_practice import (
 # topic 2.5 LO02 retry AR item 2.5.2-ar-02;
 # topic 2.6 retry AR items 2.6.1-ar-02 through 2.6.6-ar-02;
 # topic 3.1 retry AR items 3.1.3-ar-02 / 3.1.4-ar-02 / 3.1.5-ar-02;
+# topic 3.2 retry AR items 3.2.1-ar-02 through 3.2.8-ar-02;
+# topic 3.3 / 4.1 / 4.2 / 5.1 retry AR items;
 # superseded ea005-4.2 leftovers intentionally excluded).
 PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
     {
@@ -238,6 +245,10 @@ PROTOTYPE_ITEM_IDS: frozenset[str] = frozenset(
         "cs1014-4.2.8-ar-01",  # CAF Wave 4: residuals AR (cs1014)
         "cs1003-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1003)
         "cs1003-4.2.9-ar-02",  # topic 4.2 retry: goodness tests AR (cs1003)
+        "cs1003-5.1.2-ar-02",  # topic 5.1 retry: prior/posterior AR (cs1003)
+        "cs1003-5.1.3-ar-02",  # topic 5.1 retry: posterior-simple AR (cs1003)
+        "cs1003-5.1.5-ar-02",  # topic 5.1 retry: credible intervals AR (cs1003)
+        "cs1003-5.1.9-ar-02",  # topic 5.1 retry: Bayes vs EB AR (cs1003)
         "cs1014-4.2.9-ar-01",  # CAF Wave 4: goodness tests AR (cs1014)
         "cs1003-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1003)
         "cs1014-4.2.9-cp-01",  # CAF Wave 4: goodness tests CP (cs1014)
@@ -1430,6 +1441,94 @@ PROTOTYPE_CHOICE_FEEDBACK: dict[tuple[str, str], str] = {
     ): (
         "That choice reverses who specifies structure. "
         "Bayesian specifies structurals in a prior model; Empirical Bayes estimates them from collective data."
+    ),
+    # --- cs1003-5.1.2-ar-02 ---
+    (
+        "cs1003-5.1.2-ar-02",
+        "b",
+    ): (
+        "That choice treats naming Beta-Binomial as finishing the numerical posterior. "
+        "Conjugacy keeps the family, but you still update alpha and beta from the data."
+    ),
+    (
+        "cs1003-5.1.2-ar-02",
+        "c",
+    ): (
+        "That choice swaps the conjugate counts: sample size onto alpha and successes onto beta. "
+        "Beta-Binomial adds successes to alpha and failures n-s to beta, giving Beta(7,13) here."
+    ),
+    (
+        "cs1003-5.1.2-ar-02",
+        "d",
+    ): (
+        "That choice collapses prior and posterior once conjugacy is named, or equates the prior with the MLE. "
+        "Prior and posterior are distinct stages; conjugacy structures the update but does not erase it."
+    ),
+    # --- cs1003-5.1.3-ar-02 ---
+    (
+        "cs1003-5.1.3-ar-02",
+        "b",
+    ): (
+        "That choice swaps the Gamma updates: years onto shape and counts onto rate. "
+        "For Poisson with a shape-rate Gamma prior, add total counts to shape and years to rate."
+    ),
+    (
+        "cs1003-5.1.3-ar-02",
+        "c",
+    ): (
+        "That choice leaves the prior unchanged because n=4 looks small. "
+        "The conjugate update still moves to Gamma(12,7); sample size does not freeze the prior."
+    ),
+    (
+        "cs1003-5.1.3-ar-02",
+        "d",
+    ): (
+        "That choice treats any Gamma posterior as finishing the squared-error Bayes estimate, "
+        "or replaces the posterior with the MLE. The posterior is the full distribution; a loss-based point estimate is a further step."
+    ),
+    # --- cs1003-5.1.5-ar-02 ---
+    (
+        "cs1003-5.1.5-ar-02",
+        "b",
+    ): (
+        "That choice uses plus or minus one posterior standard deviation as a 95% rule. "
+        "A central Normal 95% credible interval uses z_0.975 ≈ 1.96, not one SD."
+    ),
+    (
+        "cs1003-5.1.5-ar-02",
+        "c",
+    ): (
+        "That choice pastes a frequentist repeated-sampling coverage slogan onto a credible interval. "
+        "A credible interval is a posterior probability statement about the parameter given the data."
+    ),
+    (
+        "cs1003-5.1.5-ar-02",
+        "d",
+    ): (
+        "That choice collapses the interval to the posterior mean alone. "
+        "A 95% credible interval has positive width under a non-degenerate posterior."
+    ),
+    # --- cs1003-5.1.9-ar-02 ---
+    (
+        "cs1003-5.1.9-ar-02",
+        "b",
+    ): (
+        "That choice sets every premium equal to the sample mean once n=5. "
+        "Credibility still blends experience with structural mu or mu-hat using Z."
+    ),
+    (
+        "cs1003-5.1.9-ar-02",
+        "c",
+    ): (
+        "That choice reuses one Z for both structural pairs to force agreement, blaming any gap on rounding. "
+        "Different (mu, k) pairs produce different Z and different premiums."
+    ),
+    (
+        "cs1003-5.1.9-ar-02",
+        "d",
+    ): (
+        "That choice reverses who specifies structure and forces both premiums to 987.5. "
+        "Fully Bayesian specifies structurals in a prior model; Empirical Bayes estimates them from collective data."
     ),
     # --- cs1016-5.1.1-ar-01 ---
     (

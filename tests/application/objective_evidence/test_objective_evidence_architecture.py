@@ -711,7 +711,7 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("4.2.10-fit-interpret-cs1003.json", "cs1003-4.2.10-cp-01", "CS1-D-T02-LO10"),
     ("4.2.10-fit-interpret-cs1014.json", "cs1014-4.2.10-ar-01", "CS1-D-T02-LO10"),
     ("4.2.10-fit-interpret-cs1014.json", "cs1014-4.2.10-cp-01", "CS1-D-T02-LO10"),
-    # Topic 5.1 (CS1-E-T01): 38 newly tagged items.
+    # Topic 5.1 (CS1-E-T01): 42 tagged items (includes four Trust ar-02 retries).
     ("5.1.1-bayes-theorem-cs1003.json", "cs1003-5.1.1-ar-01", "CS1-E-T01-LO01"),
     ("5.1.1-bayes-theorem-cs1003.json", "cs1003-5.1.1-cp-01", "CS1-E-T01-LO01"),
     ("5.1.1-bayes-theorem-cs1015.json", "cs1015-5.1.1-ar-01", "CS1-E-T01-LO01"),
@@ -719,10 +719,12 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("cp-5.1.1-bayes-theorem-cs1016.json", "cs1016-5.1.1-ar-01", "CS1-E-T01-LO01"),
     ("cp-5.1.1-bayes-theorem-cs1016.json", "cs1016-5.1.1-cp-01", "CS1-E-T01-LO01"),
     ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-ar-01", "CS1-E-T01-LO02"),
+    ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-ar-02", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-cp-01", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1015.json", "cs1015-5.1.2-ar-01", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1015.json", "cs1015-5.1.2-cp-01", "CS1-E-T01-LO02"),
     ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-ar-01", "CS1-E-T01-LO03"),
+    ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-ar-02", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-cp-01", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1015.json", "cs1015-5.1.3-ar-01", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1015.json", "cs1015-5.1.3-cp-01", "CS1-E-T01-LO03"),
@@ -731,6 +733,7 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("5.1.4-loss-estimators-cs1015.json", "cs1015-5.1.4-ar-01", "CS1-E-T01-LO04"),
     ("5.1.4-loss-estimators-cs1015.json", "cs1015-5.1.4-cp-01", "CS1-E-T01-LO04"),
     ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-ar-01", "CS1-E-T01-LO05"),
+    ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-ar-02", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-cp-01", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1015.json", "cs1015-5.1.5-ar-01", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1015.json", "cs1015-5.1.5-cp-01", "CS1-E-T01-LO05"),
@@ -779,6 +782,7 @@ TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("5.1.8-empirical-bayes-cs1015.json", "cs1015-5.1.8-ar-01", "CS1-E-T01-LO08"),
     ("5.1.8-empirical-bayes-cs1015.json", "cs1015-5.1.8-cp-01", "CS1-E-T01-LO08"),
     ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-ar-01", "CS1-E-T01-LO09"),
+    ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-ar-02", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-cp-01", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1015.json", "cs1015-5.1.9-ar-01", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1015.json", "cs1015-5.1.9-cp-01", "CS1-E-T01-LO09"),
@@ -1737,7 +1741,7 @@ TOPIC_4_2_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("4.2.10-fit-interpret-cs1014.json", "cs1014-4.2.10-cp-01", "CS1-D-T02-LO10"),
 )
 
-# Topic 5.1 (CS1-E-T01) complete slice: all 38 live knowledge checks
+# Topic 5.1 (CS1-E-T01) complete slice: all 42 live knowledge checks
 # (cs1003 primary for LO01-LO09 + cs1015 Continuity twins + cs1016 Memory
 # Front for LO01; revision left untagged).
 TOPIC_5_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
@@ -1748,10 +1752,12 @@ TOPIC_5_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("cp-5.1.1-bayes-theorem-cs1016.json", "cs1016-5.1.1-ar-01", "CS1-E-T01-LO01"),
     ("cp-5.1.1-bayes-theorem-cs1016.json", "cs1016-5.1.1-cp-01", "CS1-E-T01-LO01"),
     ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-ar-01", "CS1-E-T01-LO02"),
+    ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-ar-02", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1003.json", "cs1003-5.1.2-cp-01", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1015.json", "cs1015-5.1.2-ar-01", "CS1-E-T01-LO02"),
     ("5.1.2-prior-posterior-cs1015.json", "cs1015-5.1.2-cp-01", "CS1-E-T01-LO02"),
     ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-ar-01", "CS1-E-T01-LO03"),
+    ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-ar-02", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1003.json", "cs1003-5.1.3-cp-01", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1015.json", "cs1015-5.1.3-ar-01", "CS1-E-T01-LO03"),
     ("5.1.3-posterior-simple-cs1015.json", "cs1015-5.1.3-cp-01", "CS1-E-T01-LO03"),
@@ -1760,6 +1766,7 @@ TOPIC_5_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("5.1.4-loss-estimators-cs1015.json", "cs1015-5.1.4-ar-01", "CS1-E-T01-LO04"),
     ("5.1.4-loss-estimators-cs1015.json", "cs1015-5.1.4-cp-01", "CS1-E-T01-LO04"),
     ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-ar-01", "CS1-E-T01-LO05"),
+    ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-ar-02", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1003.json", "cs1003-5.1.5-cp-01", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1015.json", "cs1015-5.1.5-ar-01", "CS1-E-T01-LO05"),
     ("5.1.5-credible-intervals-cs1015.json", "cs1015-5.1.5-cp-01", "CS1-E-T01-LO05"),
@@ -1808,6 +1815,7 @@ TOPIC_5_1_TAGGED_ITEMS: tuple[tuple[str, str, str], ...] = (
     ("5.1.8-empirical-bayes-cs1015.json", "cs1015-5.1.8-ar-01", "CS1-E-T01-LO08"),
     ("5.1.8-empirical-bayes-cs1015.json", "cs1015-5.1.8-cp-01", "CS1-E-T01-LO08"),
     ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-ar-01", "CS1-E-T01-LO09"),
+    ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-ar-02", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1003.json", "cs1003-5.1.9-cp-01", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1015.json", "cs1015-5.1.9-ar-01", "CS1-E-T01-LO09"),
     ("5.1.9-bayes-vs-eb-cs1015.json", "cs1015-5.1.9-cp-01", "CS1-E-T01-LO09"),
@@ -2342,7 +2350,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_1_2_completion() -> None:
         "cs1017-1.2.3-ar-01",
         "cs1017-1.2.3-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2429,7 +2437,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_1_completion() -> None:
         "cs1004-2.1f-cp-01",
         "cs1004-2.1d-ar-02",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_1_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2509,7 +2517,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_2_completion() -> None:
         "cs1005-2.2.4-ar-01",
         "cs1005-2.2.4-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2583,7 +2591,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_4_completion() -> None:
         "cs1007-2.4.2-ar-02",
         "cs1007-2.4.2-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -2658,7 +2666,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_5_completion() -> None:
         "cs1008-2.5.2-ar-02",
         "cs1008-2.5.2-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_4_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_5_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2749,7 +2757,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_2_6_completion() -> None:
         "cs1009-2.6.6-ar-02",
         "cs1009-2.6.6-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_5_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_2_6_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2833,7 +2841,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_1_completion() -> None:
         "cs1010-3.1.6-ar-01",
         "cs1010-3.1.6-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_2_6_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -2933,7 +2941,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_2_completion() -> None:
         "cs1011-3.2.8-ar-02",
         "cs1011-3.2.8-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_3_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
@@ -3022,7 +3030,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_3_3_completion() -> None:
         "cs1012-3.3.5-ar-02",
         "cs1012-3.3.5-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(FOUNDATION_THROUGH_TOPIC_3_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
     assert set(TOPIC_3_3_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
@@ -3138,16 +3146,16 @@ def test_foundation_tagged_sample_unaffected_by_topic_4_2_completion() -> None:
         "cs1014-4.2.10-cp-01",
         "cs1003-4.2.7-ar-02",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(TOPIC_4_2_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 
 def test_topic_5_1_all_items_carry_correct_objective_id() -> None:
-    """Topic 5.1 has 38 tagged items across all 9 LOs (cs1003 + cs1015 + cs1016)."""
+    """Topic 5.1 has 42 tagged items across all 9 LOs (cs1003 + cs1015 + cs1016)."""
     loader = EducationalPackageLoader(root=LIVE_ROOT)
     packs = {Path(p.source_path).name: p for p in loader.all_approved()}
     expected = {item_id: oid for _, item_id, oid in TOPIC_5_1_TAGGED_ITEMS}
-    assert len(expected) == 38
+    assert len(expected) == 42
 
     seen_oids: set[str] = set()
     for fname, item_id, expected_oid in TOPIC_5_1_TAGGED_ITEMS:
@@ -3217,10 +3225,12 @@ def test_foundation_tagged_sample_unaffected_by_topic_5_1_completion() -> None:
         "cs1016-5.1.1-ar-01",
         "cs1016-5.1.1-cp-01",
         "cs1003-5.1.2-ar-01",
+        "cs1003-5.1.2-ar-02",
         "cs1003-5.1.2-cp-01",
         "cs1015-5.1.2-ar-01",
         "cs1015-5.1.2-cp-01",
         "cs1003-5.1.3-ar-01",
+        "cs1003-5.1.3-ar-02",
         "cs1003-5.1.3-cp-01",
         "cs1015-5.1.3-ar-01",
         "cs1015-5.1.3-cp-01",
@@ -3229,6 +3239,7 @@ def test_foundation_tagged_sample_unaffected_by_topic_5_1_completion() -> None:
         "cs1015-5.1.4-ar-01",
         "cs1015-5.1.4-cp-01",
         "cs1003-5.1.5-ar-01",
+        "cs1003-5.1.5-ar-02",
         "cs1003-5.1.5-cp-01",
         "cs1015-5.1.5-ar-01",
         "cs1015-5.1.5-cp-01",
@@ -3245,11 +3256,12 @@ def test_foundation_tagged_sample_unaffected_by_topic_5_1_completion() -> None:
         "cs1015-5.1.8-ar-01",
         "cs1015-5.1.8-cp-01",
         "cs1003-5.1.9-ar-01",
+        "cs1003-5.1.9-ar-02",
         "cs1003-5.1.9-cp-01",
         "cs1015-5.1.9-ar-01",
         "cs1015-5.1.9-cp-01",
     }
-    assert len(TAGGED_ITEMS) == 265
+    assert len(TAGGED_ITEMS) == 269
     assert set(TOPIC_5_1_TAGGED_ITEMS).issubset(set(TAGGED_ITEMS))
 
 

@@ -156,6 +156,51 @@
       "objective_id": "CS1-E-T01-LO09"
     },
     {
+      "episode_id": "lep-cs1003-5.1.9-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.9-ar-02",
+      "title": "Active Recall: 5.1.9 Bayes versus Empirical Bayes premiums",
+      "prompt": "Closed-book. Same risk: $n=5$, $\\bar{X}=1100$. Fully Bayesian structurals $\\mu=900$, $k=5$. Empirical Bayes structurals $\\hat{\\mu}=950$, $\\hat{k}=15$. Which statement is correct?",
+      "response_type": "mcq",
+      "body": "Score the worked-example Bayes versus EB premium contrast.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Bayes: $Z=5/(5+5)=0.5$, $P=0.5\\times 1100+0.5\\times 900=1000$. EB: $\\hat{Z}=5/(5+15)=0.25$, $P=0.25\\times 1100+0.75\\times 950=987.5$. Premiums differ because structurals are specified versus estimated from collective data.",
+      "model_answer": "Bayesian premium 1000; EB premium 987.5; difference is structural source.",
+      "common_mistake": "Forcing premiums to agree, using experience alone, or reversing Bayes versus EB assumptions.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Bayesian premium $1000$; EB premium $987.5$. They differ because Bayes uses specified prior structurals while EB estimates structurals from collective data. Stating the contrast does not replace separate calculations.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Both premiums must equal $1100$ because the sample mean alone determines any credibility premium once $n=5$.",
+          "misconception_tag": "experience_only_premium"
+        },
+        {
+          "id": "c",
+          "label": "Reuse one $Z=0.5$ for both structural pairs so the premiums are forced to agree; any gap is only software rounding.",
+          "misconception_tag": "forced_agreement_rounding"
+        },
+        {
+          "id": "d",
+          "label": "Empirical Bayes specifies all structurals before data, while fully Bayesian analysis estimates them only from the collective, so the labels in the stem are reversed and both premiums equal $987.5$.",
+          "misconception_tag": "assumptions_reversed"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-E-T01-LO09"
+    },
+    {
       "episode_id": "lep-cs1003-5.1.9-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.9-cp-01",

@@ -1,30 +1,30 @@
 {
   "schema_version": 1,
   "standard_ref": "docs/content/MATHEMATICAL_NOTATION_STANDARD.md",
-  "generated_at": "2026-09-15T08:55:11Z",
+  "generated_at": "2026-09-15T10:14:17Z",
   "catalogue_dir": "app/curriculum/data/educational_packages/cs1",
   "live_package_count": 130,
   "totals": {
-    "mathish_strings": 2518,
-    "already_compliant": 2392,
+    "mathish_strings": 2545,
+    "already_compliant": 2419,
     "needs_migration": 0,
     "correctly_excluded": 126,
     "needs_manual_review": 0,
-    "confident_automated": 2518,
+    "confident_automated": 2545,
     "remaining_backlog": 0,
-    "migrated": 2371,
+    "migrated": 2398,
     "packages_with_migration_backlog": 0
   },
   "by_reason_code": {
-    "fully_covered_by_current_typesetting": 2392,
+    "fully_covered_by_current_typesetting": 2419,
     "manual_review_prose_exclusion": 125,
     "prose_mention_cue": 1
   },
   "by_signal": {
-    "dollar_delimited": 2371,
-    "equationish": 1786,
+    "dollar_delimited": 2398,
+    "equationish": 1803,
     "actuarial_fn": 511,
-    "ascii_approx": 293,
+    "ascii_approx": 295,
     "bare_latex": 241,
     "greek": 113,
     "compound": 43,
@@ -27348,8 +27348,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 10,
-        "already_compliant": 10,
+        "mathish_strings": 16,
+        "already_compliant": 16,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -27358,6 +27358,107 @@
       "migration_status": "clear",
       "remaining_backlog": 0,
       "items": [
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Same risk: $n=5$, $\\bar{X}=1100$. Fully Bayesian structurals $\\mu=900$, $k=5$. Empirical Bayes structurals $\\hat{\\mu}=950$, $\\hat{k}=15$. Which statement is correct?",
+          "text_hash": "f3a8520b65661721",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Bayes: $Z=5/(5+5)=0.5$, $P=0.5\\times 1100+0.5\\times 900=1000$. EB: $\\hat{Z}=5/(5+15)=0.25$, $P=0.25\\times 1100+0.75\\times 950=987.5$. Premiums differ because structurals are specified versus estimated from collective data.",
+          "text_hash": "022932fed37c7384",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Bayesian premium $1000$; EB premium $987.5$. They differ because Bayes uses specified prior structurals while EB estimates structurals from collective data. Stating the contrast does not replace separate calculations.",
+          "text_hash": "e59046e33e0b3da6",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Both premiums must equal $1100$ because the sample mean alone determines any credibility premium once $n=5$.",
+          "text_hash": "49d7d18542a54d90",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Reuse one $Z=0.5$ for both structural pairs so the premiums are forced to agree; any gap is only software rounding.",
+          "text_hash": "8bddbcba1b2c30a4",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
+          "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Empirical Bayes specifies all structurals before data, while fully Bayesian analysis estimates them only from the collective, so the labels in the stem are reversed and both premiums equal $987.5$.",
+          "text_hash": "53803accc04e9107",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
         {
           "package_id": "CS1-EP001-PKG-5.1-BAYES-VS-EB",
           "package_file": "5.1.9-bayes-vs-eb-cs1003.json",
@@ -28182,8 +28283,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 11,
-        "already_compliant": 9,
+        "mathish_strings": 18,
+        "already_compliant": 16,
         "needs_migration": 0,
         "correctly_excluded": 2,
         "needs_manual_review": 0,
@@ -28192,6 +28293,121 @@
       "migration_status": "clear",
       "remaining_backlog": 0,
       "items": [
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Posterior for mean ultimate cost $\\theta$ (£000) is $N(250,8^{2})$. Using $z_{0.975}=1.96$, which statement correctly gives the central 95% credible interval and its reading?",
+          "text_hash": "38fe548c65059278",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "ascii_approx",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Central 95% endpoints: $250\\pm 1.96\\times 8 = 250\\pm 15.68\\Rightarrow (234.32,\\ 265.68)$. Under the posterior, $\\theta$ lies in the interval with probability $0.95$; that is not frequentist coverage.",
+          "text_hash": "2ef95842f7ca276d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].common_mistake",
+          "field_group": "knowledge_checks[].common_mistake",
+          "text": "Using $\\pm 1$ SD as 95%, pasting a frequentist coverage slogan, or collapsing to the posterior mean alone.",
+          "text_hash": "5e065629fd8c1a27",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 4,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Interval $(234.32,\\ 265.68)$. Under the posterior, $\\theta$ lies in that interval with probability $0.95$. That is not the frequentist repeated-sampling coverage slogan.",
+          "text_hash": "a3a41c0bc0bc23e0",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Interval $(242,\\ 258)$ using $\\pm 1$ posterior SD only, which is always the 95% equal-tailed rule.",
+          "text_hash": "e86c59bd32f67c22",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Interval $(234.32,\\ 265.68)$, read as: in repeated samples, 95% of such random intervals cover the fixed parameter (confidence-interval reading pasted onto a credible interval).",
+          "text_hash": "c73fbba6e62c75ef",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
+          "package_file": "5.1.5-credible-intervals-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Degenerate interval $(250,\\ 250)$ because $\\theta$ equals the posterior mean with probability 1.",
+          "text_hash": "d8404f7e7e7d5635",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
         {
           "package_id": "CS1-EP001-PKG-5.1-CREDIBLE-INTERVALS",
           "package_file": "5.1.5-credible-intervals-cs1003.json",
@@ -28849,8 +29065,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 11,
-        "already_compliant": 11,
+        "mathish_strings": 18,
+        "already_compliant": 18,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -28859,6 +29075,125 @@
       "migration_status": "clear",
       "remaining_backlog": 0,
       "items": [
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Annual flood counts $\\mathrm{Poisson}(\\lambda)$ with shape-rate prior $\\mathrm{Gamma}(2,3)$. Over $n=4$ years, $\\sum y_{i}=10$. Which statement correctly gives the posterior and its mean?",
+          "text_hash": "f824d4bfd3826d95",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Shape-rate Poisson-Gamma update: posterior $\\mathrm{Gamma}(2+10,\\ 3+4)=\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$. A loss-based point estimate is a further step beyond obtaining the posterior.",
+          "text_hash": "121c1a0a953105be",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Posterior $\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$.",
+          "text_hash": "5214ce8fc1af477e",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Posterior $\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$. Prior plus likelihood yield the posterior distribution; a squared-error point estimate is a further summary step.",
+          "text_hash": "bcdf95912ee43423",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Posterior $\\mathrm{Gamma}(2+4,\\ 3+10)=\\mathrm{Gamma}(6,13)$ (swap: add years to shape and counts to rate).",
+          "text_hash": "e8c76149ee51c988",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Posterior remains $\\mathrm{Gamma}(2,3)$ because $n=4$ is too small for the data to update the prior.",
+          "text_hash": "bec704ffce41e620",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
+          "package_file": "5.1.3-posterior-simple-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Having any Gamma posterior finishes the squared-error Bayes estimate automatically; no further loss step exists, and the MLE $10/4=2.5$ is the posterior object.",
+          "text_hash": "1121b9d86065d3e8",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
         {
           "package_id": "CS1-EP001-PKG-5.1-POSTERIOR-SIMPLE",
           "package_file": "5.1.3-posterior-simple-cs1003.json",
@@ -29052,8 +29387,8 @@
       "topic_code": "5.1",
       "campaign_id": "CS1-EP001-CAMPAIGN-DELTA",
       "counts": {
-        "mathish_strings": 12,
-        "already_compliant": 12,
+        "mathish_strings": 19,
+        "already_compliant": 19,
         "needs_migration": 0,
         "correctly_excluded": 0,
         "needs_manual_review": 0,
@@ -29081,7 +29416,123 @@
         {
           "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
           "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].prompt",
+          "field_group": "knowledge_checks[].prompt",
+          "text": "Closed-book. Claim probability $\\theta$ has prior $\\mathrm{Beta}(3,5)$. In $n=12$ independent risks, $s=4$ claims are observed (Binomial). Which statement correctly states the conjugate posterior and the prior and posterior means?",
+          "text_hash": "2199f7b07e41d9f9",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].explanation",
+          "field_group": "knowledge_checks[].explanation",
+          "text": "Conjugacy keeps the Beta family: posterior $\\mathrm{Beta}(3+4,\\ 5+12-4)=\\mathrm{Beta}(7,13)$. Prior mean $3/8=0.375$; posterior mean $7/20=0.35$. Naming conjugacy does not finish the parameter update.",
+          "text_hash": "fafdaf5a46f1a200",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].model_answer",
+          "field_group": "knowledge_checks[].model_answer",
+          "text": "Posterior $\\mathrm{Beta}(7,13)$; prior mean $0.375$; posterior mean $0.35$.",
+          "text_hash": "2c78d57436a4151f",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
           "field_path": "knowledge_checks[1].choices[0].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Posterior $\\mathrm{Beta}(7,13)$. Prior mean $0.375$; posterior mean $0.35$. Conjugacy keeps the Beta family, but you still obtain the posterior parameters from prior plus data.",
+          "text_hash": "9261429e9a7d4319",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[1].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Naming Beta-Binomial finishes the numerical posterior; no update of $\\alpha$ and $\\beta$ is required, so report prior mean $0.375$ as the posterior mean.",
+          "text_hash": "16f6b62c48dfc5de",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[2].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Posterior $\\mathrm{Beta}(3+12,\\ 5+4)=\\mathrm{Beta}(15,9)$; failures are added to $\\alpha$ and sample size to $\\beta$.",
+          "text_hash": "be189c80b4d324ac",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[1].choices[3].label",
+          "field_group": "knowledge_checks[].choices[].label",
+          "text": "Prior and posterior are the same object once conjugacy is named; conjugate means the prior equals the MLE $4/12$.",
+          "text_hash": "c45d55de8f69e03d",
+          "category": "already_compliant",
+          "needs_manual_review": false,
+          "reason_code": "fully_covered_by_current_typesetting",
+          "risk_tier": 3,
+          "migration_status": "migrated",
+          "signals": [
+            "dollar_delimited",
+            "equationish"
+          ]
+        },
+        {
+          "package_id": "CS1-EP001-PKG-5.1-PRIOR-POSTERIOR",
+          "package_file": "5.1.2-prior-posterior-cs1003.json",
+          "field_path": "knowledge_checks[2].choices[0].label",
           "field_group": "knowledge_checks[].choices[].label",
           "text": "Prior: belief about $\\theta$ before data. Posterior: updated belief after data. Conjugate: prior family closed under updating so posterior stays in the same family. Example: Beta-Binomial or Gamma-Poisson. The prior is not the last sample; conjugate language structures the update but you still obtain the posterior from prior plus data.",
           "text_hash": "4e4e02b0d2ee6cb7",
@@ -45499,5 +45950,5 @@
       ]
     }
   ],
-  "content_fingerprint": "6c1492e017e2bc0c4651caac1f17d40002a781bf2a7bef39556c714200018883"
+  "content_fingerprint": "19743f90c02c8cad62f94e3c0786f2d18e90a70fffba49c99eec35b9cea0b697"
 }

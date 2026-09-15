@@ -154,6 +154,51 @@
       "objective_id": "CS1-E-T01-LO02"
     },
     {
+      "episode_id": "lep-cs1003-5.1.2-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.2-ar-02",
+      "title": "Active Recall: 5.1.2 Beta-Binomial conjugate update",
+      "prompt": "Closed-book. Claim probability $\\theta$ has prior $\\mathrm{Beta}(3,5)$. In $n=12$ independent risks, $s=4$ claims are observed (Binomial). Which statement correctly states the conjugate posterior and the prior and posterior means?",
+      "response_type": "mcq",
+      "body": "Score the worked-example Beta-Binomial update.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Conjugacy keeps the Beta family: posterior $\\mathrm{Beta}(3+4,\\ 5+12-4)=\\mathrm{Beta}(7,13)$. Prior mean $3/8=0.375$; posterior mean $7/20=0.35$. Naming conjugacy does not finish the parameter update.",
+      "model_answer": "Posterior $\\mathrm{Beta}(7,13)$; prior mean $0.375$; posterior mean $0.35$.",
+      "common_mistake": "Treating naming Beta-Binomial as finishing the numerical posterior, or swapping success/failure updates.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Posterior $\\mathrm{Beta}(7,13)$. Prior mean $0.375$; posterior mean $0.35$. Conjugacy keeps the Beta family, but you still obtain the posterior parameters from prior plus data.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Naming Beta-Binomial finishes the numerical posterior; no update of $\\alpha$ and $\\beta$ is required, so report prior mean $0.375$ as the posterior mean.",
+          "misconception_tag": "conjugate_finishes_posterior"
+        },
+        {
+          "id": "c",
+          "label": "Posterior $\\mathrm{Beta}(3+12,\\ 5+4)=\\mathrm{Beta}(15,9)$; failures are added to $\\alpha$ and sample size to $\\beta$.",
+          "misconception_tag": "swapped_conjugate_counts"
+        },
+        {
+          "id": "d",
+          "label": "Prior and posterior are the same object once conjugacy is named; conjugate means the prior equals the MLE $4/12$.",
+          "misconception_tag": "prior_equals_posterior"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-E-T01-LO02"
+    },
+    {
       "episode_id": "lep-cs1003-5.1.2-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.2-cp-01",

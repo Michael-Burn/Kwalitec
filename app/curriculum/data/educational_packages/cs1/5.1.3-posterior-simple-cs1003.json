@@ -155,6 +155,51 @@
       "objective_id": "CS1-E-T01-LO03"
     },
     {
+      "episode_id": "lep-cs1003-5.1.3-ar-02",
+      "kind": "active_recall",
+      "item_id": "cs1003-5.1.3-ar-02",
+      "title": "Active Recall: 5.1.3 Gamma-Poisson posterior",
+      "prompt": "Closed-book. Annual flood counts $\\mathrm{Poisson}(\\lambda)$ with shape-rate prior $\\mathrm{Gamma}(2,3)$. Over $n=4$ years, $\\sum y_{i}=10$. Which statement correctly gives the posterior and its mean?",
+      "response_type": "mcq",
+      "body": "Score the worked-example Poisson-Gamma posterior.",
+      "hints": [
+        "Select the single best statement.",
+        "Use the concept from this learning objective only."
+      ],
+      "accepted_keywords": [],
+      "explanation": "Shape-rate Poisson-Gamma update: posterior $\\mathrm{Gamma}(2+10,\\ 3+4)=\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$. A loss-based point estimate is a further step beyond obtaining the posterior.",
+      "model_answer": "Posterior $\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$.",
+      "common_mistake": "Swapping the shape/rate updates, leaving the prior unchanged, or treating the posterior as an automatic squared-error estimate.",
+      "success_criteria": [
+        "Selects the correct choice.",
+        "Rejects the named misconception distractors."
+      ],
+      "choices": [
+        {
+          "id": "a",
+          "label": "Posterior $\\mathrm{Gamma}(12,7)$ with mean $12/7\\approx 1.7143$. Prior plus likelihood yield the posterior distribution; a squared-error point estimate is a further summary step.",
+          "misconception_tag": ""
+        },
+        {
+          "id": "b",
+          "label": "Posterior $\\mathrm{Gamma}(2+4,\\ 3+10)=\\mathrm{Gamma}(6,13)$ (swap: add years to shape and counts to rate).",
+          "misconception_tag": "swapped_gamma_update"
+        },
+        {
+          "id": "c",
+          "label": "Posterior remains $\\mathrm{Gamma}(2,3)$ because $n=4$ is too small for the data to update the prior.",
+          "misconception_tag": "prior_unchanged"
+        },
+        {
+          "id": "d",
+          "label": "Having any Gamma posterior finishes the squared-error Bayes estimate automatically; no further loss step exists, and the MLE $10/4=2.5$ is the posterior object.",
+          "misconception_tag": "posterior_finishes_loss_estimator"
+        }
+      ],
+      "correct_choice_id": "a",
+      "objective_id": "CS1-E-T01-LO03"
+    },
+    {
       "episode_id": "lep-cs1003-5.1.3-cp-01",
       "kind": "checkpoint",
       "item_id": "cs1003-5.1.3-cp-01",
