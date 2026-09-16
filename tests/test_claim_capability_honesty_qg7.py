@@ -167,9 +167,10 @@ def test_session_briefing_uses_coverage_and_display_estimate():
             ),
         )
     )
-    assert "coverage movement" in with_estimate.expected_improvement_label
+    assert "Possible readiness change" in with_estimate.expected_improvement_label
     assert "display estimate only" in with_estimate.expected_improvement_label
-    assert "readiness movement" not in with_estimate.expected_improvement_label
+    assert "not reconciled" in with_estimate.expected_improvement_label
+    assert "coverage movement" not in with_estimate.expected_improvement_label
 
     without_estimate = overview_vm(
         OverviewSnapshot(
@@ -191,7 +192,7 @@ def test_session_briefing_uses_coverage_and_display_estimate():
         in without_estimate.expected_improvement_label
     )
     assert "strengthen readiness" not in without_estimate.expected_improvement_label
-    assert "readiness movement" not in without_estimate.expected_improvement_label
+    assert "coverage movement" not in without_estimate.expected_improvement_label
 
 
 def test_login_readiness_pairing_uses_shown_not_insights():

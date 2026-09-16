@@ -841,7 +841,9 @@ def learning_journey():
         shell=shell_vm(
             active_surface=ExperienceSurface.HISTORY.value,
             page_title="My Learning Journey",
-            page_description="Your learning story and readiness outlook.",
+            page_description=(
+                "Your learning story and an indicative readiness outlook."
+            ),
         ),
         history=None,
     )

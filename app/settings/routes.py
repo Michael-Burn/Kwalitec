@@ -294,14 +294,25 @@ def export_weekly_pdf():
     lines.append(f"Generated:   {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
     lines.append("")
     lines.append("─── Overview ─────────────────────────────────")
-    lines.append(f"Overall Readiness:      {readiness['score']:.0f}%")
-    lines.append(f"Curriculum Coverage:    {curriculum_coverage['coverage_percentage']:.0f}%")
+    lines.append(
+        f"Overall Readiness (one estimate; not reconciled): "
+        f"{readiness['score']:.0f}%"
+    )
+    lines.append(
+        f"Curriculum Coverage (plan leaf completed %; not reconciled "
+        f"with Stats verified topic counts): "
+        f"{curriculum_coverage['coverage_percentage']:.0f}%"
+    )
     avg_mastery = readiness.get("avg_mastery")
     if avg_mastery is not None:
         lines.append(f"Average Estimated Knowledge: {avg_mastery:.0f}%")
     else:
         lines.append("Average Estimated Knowledge: not yet assessed")
-    lines.append(f"Current Streak:         {weekly_report.get('current_streak', 0)} days")
+    lines.append(
+        f"Current Streak (attempt calendar days; not reconciled with "
+        f"Home/Stats qualifying study days): "
+        f"{weekly_report.get('current_streak', 0)} days"
+    )
     lines.append("")
     lines.append("─── This Week ────────────────────────────────")
     lines.append(f"Study Hours:            {weekly_report.get('study_hours', 0)}h")

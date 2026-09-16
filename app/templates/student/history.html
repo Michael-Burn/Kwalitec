@@ -39,13 +39,16 @@
 
   <section class="ds-section" aria-labelledby="readiness-trend-title" data-sop-section="readiness-trends">
     <h2 id="readiness-trend-title" class="ds-section__title">Readiness Trends</h2>
+    <p class="ds-list__meta">
+      Indicative estimates from available readings. Not a single reconciled readiness score.
+    </p>
     <p class="ds-os-stat__value ds-os-stat__value--sm">{{ history.readiness_trend_label or 'Trends appear as you practice' }}</p>
     {% if history.readiness_points %}
     <ul class="ds-list">
       {% for recorded_at, label in history.readiness_points %}
       <li class="ds-list__row">
         <span>{{ recorded_at }}</span>
-        <span class="ds-list__meta">{{ label }}</span>
+        <span class="ds-list__meta">{{ label }} (estimate)</span>
       </li>
       {% endfor %}
     </ul>

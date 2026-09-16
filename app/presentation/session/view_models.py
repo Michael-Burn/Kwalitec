@@ -246,12 +246,18 @@ def overview_vm(snap: OverviewSnapshot) -> OverviewViewModel:
     if snap.expected_readiness_improvement is not None:
         pct = abs(int(round(snap.expected_readiness_improvement * 100)))
         if snap.expected_readiness_improvement >= 0 and pct > 0:
+            # Field is readiness-delta sourced; do not mislabel as coverage.
+            # Competing readiness formulas are not yet reconciled.
             improvement = (
-                f"Possible coverage movement · about {pct}% "
-                "(display estimate only)"
+                f"Possible readiness change · about {pct}% "
+                "(display estimate only; not reconciled with other "
+                "readiness measures)"
             )
         else:
-            improvement = "Possible readiness change noted (estimate only)"
+            improvement = (
+                "Possible readiness change noted (estimate only; "
+                "not reconciled with other readiness measures)"
+            )
     else:
         # Honest general purpose — do not invent a decorative percentage.
         improvement = (

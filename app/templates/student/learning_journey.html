@@ -42,7 +42,7 @@
       Readiness Forecast
     </h2>
     <p class="ds-list__meta">
-      Where practice is taking you.
+      Indicative outlook from one forecasting path. Not a single reconciled readiness score.
     </p>
     {% if journey.forecast_title %}
     <p class="ds-list__meta"><strong>{{ journey.forecast_title }}</strong></p>
@@ -61,7 +61,7 @@
       {% endif %}
       {% if journey.forecast_projected_stage %}
       <div class="ds-list__row">
-        <dt>Projected readiness</dt>
+        <dt>Projected stage (indicative)</dt>
         <dd class="ds-list__meta">{{ journey.forecast_projected_stage }}</dd>
       </div>
       {% endif %}

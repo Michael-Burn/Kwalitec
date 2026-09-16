@@ -1418,7 +1418,12 @@ def journey_vm(
         completed=tuple(_topic_vm(t) for t in snap.completed_topics),
         upcoming=upcoming,
         progress_percent=snap.progress_percent,
-        progress_label=f"{snap.progress_percent}% through your syllabus",
+        # Legacy Experience path may surface weighted readiness as syllabus %.
+        # Soften until reconciled with Runtime C verified topic coverage.
+        progress_label=(
+            f"{snap.progress_percent}% through your syllabus "
+            "(unreconciled progress estimate)"
+        ),
         estimated_completion_label=snap.estimated_completion_label,
         prerequisite_notes=snap.prerequisite_visibility,
         completed_count=snap.completed_count,
@@ -2104,14 +2109,14 @@ def _readiness_trend_label(
     points: tuple[ReadinessPointSnapshot, ...],
 ) -> str:
     if len(points) < 2:
-        return "Not enough history for a trend yet"
+        return "Not enough history for an estimated readiness trend yet"
     first = points[0].exam_readiness
     last = points[-1].exam_readiness
     if last > first:
-        return "Readiness is improving"
+        return "Estimated readiness is improving"
     if last < first:
-        return "Readiness needs attention"
-    return "Readiness is steady"
+        return "Estimated readiness needs attention"
+    return "Estimated readiness is steady"
 
 
 def _compose_journey_story(
