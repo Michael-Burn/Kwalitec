@@ -440,6 +440,43 @@ class StudentRuntimeCoordinator:
                     topic_id=str(open_now.topic_id or ""),
                 )
 
+        # Evidence companion needs a RuntimeMissionInstance to bind
+        # sql_mission_id. Student-selected sittings have no daily mission, so
+        # create a substrate row (template_id=sql_evidence_companion) that
+        # daily / open-mission lookups explicitly exclude. Completing this
+        # sitting still skips mission completion via session_origin.
+        companion_mid = ""
+        if self._sql_evidence_companion_enabled():
+            try:
+                from app.application.student_runtime.evidence_companion import (
+                    ensure_sql_evidence_companion,
+                    ensure_student_selected_sql_evidence_substrate,
+                )
+
+                substrate = ensure_student_selected_sql_evidence_substrate(
+                    user_id=user_id,
+                    curriculum_identity=curriculum_identity,
+                    topic_id=tid,
+                    topic_code=topic_code,
+                    title=title,
+                    mission_date=date.today(),
+                )
+                if substrate is not None:
+                    ensure_sql_evidence_companion(
+                        user_id=user_id,
+                        runtime_mission=substrate,
+                    )
+                    companion_mid = (
+                        substrate.mission_instance_id or ""
+                    ).strip()
+            except Exception:  # noqa: BLE001 — session start must remain available
+                logger.exception(
+                    "evidence_companion_student_selected_failed user=%s topic=%s",
+                    user_id,
+                    tid,
+                )
+                companion_mid = ""
+
         session_id = f"lsr-{self._id_factory()}"
         journey = self._journey_for_selected_topic(
             sid,
@@ -460,7 +497,7 @@ class StudentRuntimeCoordinator:
 
         store.save_binding(
             student_id=sid,
-            mission_instance_id="",
+            mission_instance_id=companion_mid,
             handle=handle,
             topic_title=title,
             topic_id=tid,
@@ -483,7 +520,7 @@ class StudentRuntimeCoordinator:
             if pack_id:
                 store.save_binding(
                     student_id=sid,
-                    mission_instance_id="",
+                    mission_instance_id=companion_mid,
                     handle=handle,
                     topic_title=title,
                     topic_id=tid,
@@ -505,7 +542,7 @@ class StudentRuntimeCoordinator:
         )
         return SessionBindingResult(
             session_id=session_id,
-            mission_instance_id="",
+            mission_instance_id=companion_mid,
             student_id=sid,
             topic_title=title,
             topic_id=tid,

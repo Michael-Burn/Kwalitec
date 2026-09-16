@@ -45,6 +45,19 @@ os.environ["KWALITEC_ADR027_M0_DECISION_BOUNDARY"] = "0"
 # Local ``.env`` may set ``KWALITEC_ADR027_POLICY_V1=1`` for soak experiments.
 # Keep the pytest baseline OFF (M0 soak uses Policy V0 only).
 os.environ["KWALITEC_ADR027_POLICY_V1"] = "0"
+# Local ``.env`` locks sole-runtime Education OS ON (matches production chrome)
+# together with ``KWALITEC_RUNTIME_C_ENROLMENT=1`` (founder deliberate daily
+# study path; production still keeps Runtime C enrolment OFF). Keep the pytest
+# baseline OFF unless a test opts in explicitly (many dual-run / alpha
+# protection tests assert the OFF default; enrolment tests assert Runtime A
+# unless they enable the bridge flags themselves).
+os.environ["KWALITEC_V2_SOLE_RUNTIME"] = "0"
+os.environ["KWALITEC_V2_STUDENT_EXPERIENCE"] = "0"
+# Neutralize local Runtime C enrolment so the suite does not silently inherit
+# wizard-level published-curriculum routing from the founder's dogfood .env.
+os.environ["KWALITEC_RUNTIME_C_ENROLMENT"] = "0"
+os.environ.pop("KWALITEC_FOUNDER_STUDENT_BRIDGE", None)
+os.environ.pop("KWALITEC_PUBLISHED_SUBJECT_DISCOVERY", None)
 
 from app import create_app  # noqa: E402
 from app.extensions import db as _db  # noqa: E402

@@ -784,3 +784,92 @@ class TestEvidenceCompanionPhase3TopicResolution:
         companion = Mission.query.get(companion_id)
         assert companion is not None
         assert companion.status == "Completed"
+
+
+@pytest.mark.usefixtures("ctx")
+class TestStudentSelectedSqlCompanion:
+    """Student-selected Study sittings must bind a real SQL evidence companion."""
+
+    def test_student_selected_sitting_creates_genuine_sql_companion(
+        self, monkeypatch
+    ):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+
+        subject = publish_subject(
+            "SELCMP", title="Selected Companion", version_label="2026.1"
+        )
+        user = make_user("sql-companion-selected@example.com")
+        _enrol_runtime_c(user, subject)
+        EducationalExperienceService().load_for_user(user.id)
+
+        from app.application.educational_runtime_engine.service import (
+            EducationalRuntimeEngineService,
+        )
+        from app.application.learning_session.session_origin import (
+            SESSION_ORIGIN_STUDENT_SELECTED,
+        )
+        from app.application.student_runtime.evidence_companion import (
+            SQL_EVIDENCE_COMPANION_TEMPLATE_ID,
+            is_sql_evidence_companion_mission,
+        )
+
+        progress = EducationalRuntimeEngineService().get_study_progress(
+            user_id=user.id, subject_code=subject
+        )
+        current = progress.current_topic_id
+        assert current
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.start_student_selected_session(
+            user_id=user.id,
+            topic_id=current,
+            subject_code=subject,
+        )
+        assert binding.session_origin == SESSION_ORIGIN_STUDENT_SELECTED
+        assert str(binding.mission_instance_id or "").strip()
+
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=binding.mission_instance_id,
+            user_id=user.id,
+        ).one()
+        assert row.template_id == SQL_EVIDENCE_COMPANION_TEMPLATE_ID
+        assert row.sql_mission_id is not None
+        companion = Mission.query.get(row.sql_mission_id)
+        assert companion is not None
+        assert int(companion.user_id) == int(user.id)
+        assert is_sql_evidence_companion_mission(companion.id)
+
+        todays = MissionService.get_today_mission(user.id)
+        assert todays is None or todays.id != companion.id
+
+        record = persistence.load(session_id=binding.session_id) or {}
+        assert str(record.get("mission_instance_id") or "").strip() == (
+            binding.mission_instance_id
+        )
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, True],
+        )
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="partially",
+        )
+        assert result is not None
+        assert result.get("sql_evidence_attempt_id") is not None
+        assert result.get("mission_completed") is False
+
+        attempt = StudyAttempt.query.get(result["sql_evidence_attempt_id"])
+        assert attempt is not None
+        assert int(attempt.mission_id) == int(companion.id)
+        assert attempt.questions_attempted == 2
+        assert attempt.questions_correct == 2

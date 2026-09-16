@@ -88,6 +88,18 @@ M0 activation is not expected to produce any visible change in student experienc
 | **Retention (resolution #3)** | Retain labelled sandbox through Phase 2 implementation **plus one subsequent review cycle**, then remove unless a separate initiative explicitly claims it. |
 | **Authority** | `docs/architecture/ADR027_PHASE2_CANONICAL_TWIN_DESIGN.md` §6 + accepted resolution #3 |
 
+### 3.2 Founder local Runtime C direction (local `.env` only; not production)
+
+| Field | Record |
+|-------|--------|
+| **What** | Founder's ordinary local student path uses Education OS sole runtime **and** Runtime C enrolment together |
+| **Local flags** | `KWALITEC_V2_SOLE_RUNTIME=1`, `KWALITEC_V2_STUDENT_EXPERIENCE=1`, `KWALITEC_RUNTIME_C_ENROLMENT=1` |
+| **Why** | Runtime C is the founder's deliberate daily study path and the declared long-term direction for future accounts. Sole runtime closes accidental dual-run legacy Contained shells locally, matching production's chrome closure, without flipping production Runtime C |
+| **Orthogonality** | Sole runtime owns presentation chrome / home authority (`/student`). Runtime C enrolment owns curriculum / enrolment routing (`published_curriculum` when ON). Confirmed safe to combine: no resolver conflict |
+| **Production** | Unchanged. `render.yaml` keeps Runtime C / founder-student bridge family **OFF**. Production ordinary students remain Education OS + Runtime A (`json_bundled`) until a later, separate Runtime C rollout |
+| **Accepted gaps while on Runtime C** | Runtime A's remaining real capabilities are known and accepted for now, not silently ignored: calendar `WeekPlan` planning, `PlanningService` revision richness, and full `ReadinessService` exam-readiness surfaces |
+| **Pytest isolation** | `tests/conftest.py` continues to force sole runtime, student experience, and Runtime C enrolment **OFF** for the suite baseline (same pattern as numeric framework / SQL companion / M0), so dogfood `.env` does not leak into tests |
+
 Full inventory (including Alpha posture notes): `knowledge/release/RP-001/FEATURE_FLAG_REGISTER.md`.
 
 ---

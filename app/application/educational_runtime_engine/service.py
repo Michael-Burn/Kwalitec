@@ -354,10 +354,21 @@ class EducationalRuntimeEngineService:
         expected_topic_id: str,
     ) -> None:
         day = date.today()
-        mission = RuntimeMissionInstance.query.filter_by(
-            plan_instance_id=plan.plan_instance_id,
-            mission_date=day,
-        ).first()
+        from app.application.student_runtime.evidence_companion import (
+            SQL_EVIDENCE_COMPANION_TEMPLATE_ID,
+        )
+
+        mission = (
+            RuntimeMissionInstance.query.filter_by(
+                plan_instance_id=plan.plan_instance_id,
+                mission_date=day,
+            )
+            .filter(
+                RuntimeMissionInstance.template_id
+                != SQL_EVIDENCE_COMPANION_TEMPLATE_ID
+            )
+            .first()
+        )
         if mission is None:
             return
         if mission.topic_id == expected_topic_id:
@@ -578,10 +589,21 @@ class EducationalRuntimeEngineService:
             if plan is None:
                 return None
 
-        existing = RuntimeMissionInstance.query.filter_by(
-            plan_instance_id=plan.plan_instance_id,
-            mission_date=day,
-        ).first()
+        from app.application.student_runtime.evidence_companion import (
+            SQL_EVIDENCE_COMPANION_TEMPLATE_ID,
+        )
+
+        existing = (
+            RuntimeMissionInstance.query.filter_by(
+                plan_instance_id=plan.plan_instance_id,
+                mission_date=day,
+            )
+            .filter(
+                RuntimeMissionInstance.template_id
+                != SQL_EVIDENCE_COMPANION_TEMPLATE_ID
+            )
+            .first()
+        )
         if existing is None:
             return None
 
@@ -1678,6 +1700,10 @@ class EducationalRuntimeEngineService:
                 f"no study plan for enrolment {enrolment.enrolment_id}"
             )
         derived = self._derive_progress_for(enrolment, artefacts)
+        from app.application.student_runtime.evidence_companion import (
+            SQL_EVIDENCE_COMPANION_TEMPLATE_ID,
+        )
+
         open_mission = (
             RuntimeMissionInstance.query.filter(
                 RuntimeMissionInstance.plan_instance_id == plan.plan_instance_id,
@@ -1688,6 +1714,8 @@ class EducationalRuntimeEngineService:
                         MissionStatus.DEFERRED.value,
                     )
                 ),
+                RuntimeMissionInstance.template_id
+                != SQL_EVIDENCE_COMPANION_TEMPLATE_ID,
             )
             .order_by(RuntimeMissionInstance.mission_date.desc())
             .first()
