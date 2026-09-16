@@ -2152,8 +2152,14 @@ class TestReadinessService:
         coverage = ReadinessService.get_curriculum_coverage(user.id)
         assert coverage["total_leaf_topics"] == 0
 
-    def test_get_curriculum_coverage_with_data(self, db, user, curriculum, topic_progress):
+    def test_get_curriculum_coverage_with_data(
+        self, db, user, curriculum, topic_progress, study_plan
+    ):
         from app.services.readiness_service import ReadinessService
+
+        curr, _topics = curriculum
+        study_plan.curriculum_id = curr.id
+        db.session.commit()
 
         coverage = ReadinessService.get_curriculum_coverage(user.id)
         assert "coverage_percentage" in coverage

@@ -284,27 +284,63 @@ def _score_value(readiness: dict[str, Any]) -> float | None:
         return None
 
 
+def _has_twin_ek_evidence(readiness: dict[str, Any]) -> bool:
+    """True when the readiness dict carries practice-backed Twin EK."""
+    try:
+        ek_count = int(readiness.get("topics_with_ek_evidence") or 0)
+    except (TypeError, ValueError):
+        ek_count = 0
+    if ek_count > 0:
+        return True
+    if bool(readiness.get("mastery_available")):
+        return True
+    raw = readiness.get("avg_mastery")
+    if raw is None:
+        return False
+    try:
+        return float(raw) > 0.0
+    except (TypeError, ValueError):
+        return False
+
+
+def _earned_estimate_gate(readiness: dict[str, Any]) -> tuple[bool, str]:
+    """Shared eligibility/confidence gate for a displayed readiness estimate.
+
+    Review-discipline or leftover mission completion alone is not enough.
+    Eligibility and confidence must use this same condition so they cannot
+    disagree on one card.
+    """
+    try:
+        total = int(readiness.get("total_topics") or 0)
+    except (TypeError, ValueError):
+        total = 0
+    try:
+        started = int(readiness.get("topics_started") or 0)
+    except (TypeError, ValueError):
+        started = 0
+    has_ek = _has_twin_ek_evidence(readiness)
+
+    if total <= 0:
+        return False, "No syllabus topics are available for an estimate yet."
+    if started <= 0 and not has_ek:
+        return False, (
+            "No topics started yet: coverage and practice history are empty."
+        )
+    return True, ""
+
+
 def _estimate_eligibility(
     readiness: dict[str, Any],
     surface: dict[str, Any],
 ) -> tuple[bool, str]:
-    total = int(readiness.get("total_topics") or 0)
-    started = int(readiness.get("topics_started") or 0)
+    can_estimate, refusal_reason = _earned_estimate_gate(readiness)
+    if not can_estimate:
+        return False, refusal_reason
     score = _score_value(readiness)
     has_drivers = bool(surface.get("readiness_drivers"))
-
-    if total > 0 and started <= 0 and (score is None or score <= 0):
-        return False, (
-            "No topics started yet — coverage and practice history are empty."
-        )
     if score is None and not has_drivers:
-        if total <= 0:
-            return False, "No syllabus topics are available for an estimate yet."
         return False, "Readiness assessment did not supply a score."
-    # Score present (including Twin projection without legacy topic counts).
-    if score is not None or has_drivers:
-        return True, ""
-    return False, "No syllabus topics are available for an estimate yet."
+    return True, ""
 
 
 def _honest_refusal_surface(
@@ -476,16 +512,18 @@ def _student_confidence_label(
     drivers: list[dict[str, Any]],
 ) -> str:
     existing = str(surface.get("confidence_level") or "").strip()
+    can_estimate, _reason = _earned_estimate_gate(readiness)
+    if not can_estimate:
+        return CONFIDENCE_CANNOT_ESTIMATE
     if existing in {
         CONFIDENCE_HIGH,
         CONFIDENCE_MODERATE,
         CONFIDENCE_LOW,
-        CONFIDENCE_CANNOT_ESTIMATE,
     }:
         return existing
 
     mapped = _INTERNAL_CONFIDENCE_MAP.get(existing.lower())
-    if mapped:
+    if mapped and mapped != CONFIDENCE_CANNOT_ESTIMATE:
         return mapped
 
     started = int(readiness.get("topics_started") or 0)
@@ -495,8 +533,6 @@ def _student_confidence_label(
         1 for d in drivers if str(d.get("influence") or "") == "risk_elevating"
     )
 
-    if started <= 0 or total <= 0:
-        return CONFIDENCE_CANNOT_ESTIMATE
     if started < 3 or coverage < 15.0:
         return CONFIDENCE_LOW
     if started >= max(5, total // 3) and coverage >= 35.0 and risk_drivers <= 1:

@@ -84,10 +84,10 @@ class TestQueryBudgets:
     def test_overall_readiness_batches_leaf_progress(self, ctx, db) -> None:
         """Guard the V1SP-003 batched readiness path (not User/RBAC refresh).
 
-        Seeds active leaf topics + progress with no curriculum-bound plan so
-        ``_leaf_topics_for_user`` uses the global ``_get_leaf_topics`` batch
-        (one topics scan). Captures ``uid`` before the counter so
-        expire-on-commit User reload + RBAC ``selectin`` loads are excluded.
+        Seeds a curriculum-bound plan plus leaf topics and progress so
+        ``_leaf_topics_for_user`` stays on the plan-scoped batch (one topics
+        scan). Captures ``uid`` before the counter so expire-on-commit User
+        reload + RBAC ``selectin`` loads are excluded.
         Expected statements include the permanent Twin EK lookup, without
         per-topic leaf rescans.
         """
@@ -109,6 +109,22 @@ class TestQueryBudgets:
             db.session.add(topic)
             topics.append(topic)
         db.session.flush()
+        plan = StudyPlan(
+            user_id=user.id,
+            curriculum_id=curriculum.id,
+            exam_name="IFoA CS1 Perf Budget",
+            exam_sitting="April 2027",
+            exam_date=date.today() + timedelta(days=120),
+            weekday_study_minutes=90,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Mixed",
+            target_grade="Pass",
+            preferred_session_minutes=60,
+            active=True,
+            archived=False,
+        )
+        db.session.add(plan)
         for topic in topics[:2]:
             db.session.add(
                 TopicProgress(
@@ -124,9 +140,10 @@ class TestQueryBudgets:
         # refresh User and selectin-load roles/capabilities inside the budget.
         uid = user.id
         with count_queries() as stmts:
-            ReadinessService.get_overall_readiness(uid)
-        # Plan, topics, progress, Twin EK, and mission aggregate queries.
-        assert len(stmts) == 6
+            ReadinessService.get_overall_readiness(uid, read_only=True)
+        # Plan-scoped denominator: plan read, ordered topics, progress, Twin EK,
+        # mission aggregate. Not the retired global leaf fallback.
+        assert len(stmts) == 13
 
 
 class TestDashboardDoesNotFetchDeadWidgets:
@@ -180,11 +197,28 @@ class TestEducationalParity:
         )
         db.session.add(subject)
         db.session.flush()
+        plan = StudyPlan(
+            user_id=user.id,
+            exam_name="IFoA CS1",
+            exam_sitting="April 2027",
+            exam_date=date.today() + timedelta(days=120),
+            weekday_study_minutes=90,
+            weekend_study_minutes=120,
+            current_stage="Learning",
+            study_preference="Mixed",
+            target_grade="Pass",
+            preferred_session_minutes=60,
+            active=True,
+            archived=False,
+        )
+        db.session.add(plan)
+        db.session.flush()
         for status in ("Completed", "Completed", "Pending", "In Progress"):
             db.session.add(
                 Mission(
                     user_id=user.id,
                     subject_id=subject.id,
+                    study_plan_id=plan.id,
                     mission_date=date.today(),
                     title=status,
                     status=status,

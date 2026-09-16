@@ -523,6 +523,9 @@ class ReadinessService:
         """Calculate the review completion rate: percentage of missions
         marked as 'Completed'.
 
+        Missions with a null ``study_plan_id`` (orphaned after a plan was
+        deleted) are ignored. They no longer belong to a current study plan.
+
         Args:
             user_id: The ID of the user.
 
@@ -534,7 +537,10 @@ class ReadinessService:
 
         rows = (
             db.session.query(Mission.status, func.count(Mission.id))
-            .filter_by(user_id=user_id)
+            .filter(
+                Mission.user_id == user_id,
+                Mission.study_plan_id.is_not(None),
+            )
             .group_by(Mission.status)
             .all()
         )
@@ -957,8 +963,8 @@ class ReadinessService:
     ) -> list[Topic]:
         """Leaf topics for the student's active plan curriculum when available.
 
-        Falls back to all active leaf topics so Analytics/readiness still
-        resolve when no plan is bound (tests / edge onboarding states).
+        No active plan means no syllabus denominator. Do not substitute every
+        active leaf topic in the database.
 
         When ``read_only`` is False (default Runtime A / dashboard path),
         uses ``get_user_active_plan`` so unbound plans may self-heal.
@@ -981,13 +987,14 @@ class ReadinessService:
                     leaves = [t for t in ordered if t.active and t.is_leaf_topic()]
                     if leaves:
                         return leaves
-        except Exception:  # noqa: BLE001 — fail open to global leaf set
+        except Exception:  # noqa: BLE001 — empty denominator, never global fallback
             logger.debug(
-                "Plan-scoped leaf topics unavailable for user %s; using global set",
+                "Plan-scoped leaf topics unavailable for user %s; "
+                "no syllabus denominator",
                 user_id,
                 exc_info=True,
             )
-        return ReadinessService._get_leaf_topics()
+        return []
 
     @staticmethod
     def _get_leaf_topics() -> list[Topic]:
@@ -1119,18 +1126,24 @@ class ReadinessService:
     ) -> tuple[float, bool]:
         """Weighted composite with re-normalisation when mastery is unavailable.
 
+        Review discipline may inform the score only once coverage or Twin
+        Estimated Knowledge exists. It must never be the sole signal that
+        mints a displayed percentage from an empty study record.
+
         Returns:
             tuple of (score 0-100, mastery_available).
         """
         mastery_available = avg_mastery is not None
         components: list[tuple[str, float, float]] = [
             ("coverage", coverage_pct, _COMPOSITE_WEIGHT_COVERAGE),
-            ("review", review_discipline, _COMPOSITE_WEIGHT_REVIEW),
         ]
         if mastery_available:
-            components.insert(
-                1,
+            components.append(
                 ("mastery", float(avg_mastery), _COMPOSITE_WEIGHT_MASTERY),
+            )
+        if mastery_available or coverage_pct > 0:
+            components.append(
+                ("review", review_discipline, _COMPOSITE_WEIGHT_REVIEW),
             )
         total_weight = sum(weight for _name, _value, weight in components)
         if total_weight <= 0:
