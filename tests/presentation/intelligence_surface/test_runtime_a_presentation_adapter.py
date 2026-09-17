@@ -125,24 +125,21 @@ class TestReadinessNarrative:
             _legacy_readiness_surface()
         )
         assert isinstance(narrative, ReadinessNarrative)
-        assert narrative.can_estimate is True
-        assert narrative.percentage == 60.0
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
         assert narrative.label == ProductCommunicationService.ESTIMATED_READINESS_LABEL
-        assert "syllabus coverage" in narrative.evidence_basis.lower()
+        assert "not yet assessable" in narrative.explanation.lower()
 
     def test_twin_maps_drivers_and_confidence(self):
         narrative = RuntimeAPresentationAdapter.readiness_narrative(
             _twin_readiness_surface()
         )
         assert isinstance(narrative, ReadinessNarrative)
-        assert narrative.percentage == 72.0
-        assert narrative.can_estimate is True
+        assert narrative.percentage is None
+        assert narrative.can_estimate is False
         assert narrative.is_estimate is True
-        assert "curriculum coverage" in narrative.evidence_basis.lower()
-        assert "Confidence level: medium" in narrative.evidence_basis
-        assert "Practise Geometry proofs" in narrative.explanation
-        # Must not invent a second evaluation — score is projected.
-        assert "readiness intelligence" in narrative.explanation.lower()
+        assert "not yet assessable" in narrative.explanation.lower()
+        assert "reconciled" in narrative.evidence_basis.lower()
 
     def test_twin_missing_score_is_honest(self):
         surface = _twin_readiness_surface()
@@ -150,8 +147,7 @@ class TestReadinessNarrative:
         narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
         assert narrative.can_estimate is False
         assert narrative.percentage is None
-        unavailable = ProductCommunicationService.READINESS_UNAVAILABLE
-        assert unavailable in narrative.explanation
+        assert "not yet assessable" in narrative.explanation.lower()
 
     def test_empty_surface_falls_back_to_legacy_unavailable(self):
         narrative = RuntimeAPresentationAdapter.readiness_narrative(None)

@@ -91,7 +91,7 @@ PATTERN_TITLES: dict[PatternKind, str] = {
 MILESTONE_TITLES: dict[MilestoneKind, str] = {
     MilestoneKind.FIRST_SUCCESSFUL_RECOVERY: "First successful recovery",
     MilestoneKind.FIRST_SUSTAINED_MASTERY: "First sustained mastery",
-    MilestoneKind.LONGEST_CONSISTENCY_STREAK: "Longest consistency streak",
+    MilestoneKind.LONGEST_CONSISTENCY_STREAK: "Longest consistency",
     MilestoneKind.RECOVERED_FORGOTTEN_KNOWLEDGE: (
         "Recovered forgotten knowledge"
     ),

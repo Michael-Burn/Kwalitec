@@ -1189,8 +1189,8 @@ class StudentHomeService:
             return HomeStudyHealth(
                 status_label="Getting started",
                 detail=(
-                    "Complete today's Session to strengthen your "
-                    "Exam Readiness signal."
+                    "Complete today's Session. Exam Readiness is not yet "
+                    "assessable from the evidence Kwalitec can trust today."
                 ),
                 tone="neutral",
             )

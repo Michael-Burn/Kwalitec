@@ -22,10 +22,10 @@
             <div class="stat-value text-primary">{{ readiness_narrative.percentage|int }}%</div>
             <div class="stat-label">{{ readiness_narrative.label }}</div>
             {% elif readiness_narrative %}
-            <div class="stat-value text-muted">. </div>
+            <div class="stat-value text-muted" style="font-size: 1rem; line-height: 1.3;">{{ readiness_narrative.explanation }}</div>
             <div class="stat-label">{{ readiness_narrative.label }}</div>
             {% else %}
-            <div class="stat-value text-primary">{{ readiness.score|int }}%</div>
+            <div class="stat-value text-muted" style="font-size: 1rem; line-height: 1.3;">Not yet assessable: Kwalitec does not yet have enough reliable evidence for this estimate.</div>
             <div class="stat-label">Estimated readiness</div>
             {% endif %}
         </div>

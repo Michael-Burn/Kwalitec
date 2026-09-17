@@ -229,7 +229,7 @@
                     Across {{ ek_topic_count }} topic{{ 's' if ek_topic_count != 1 else '' }} with recorded practice.
                 </p>
             </div>
-            {% elif readiness_narrative and readiness_narrative.can_estimate %}
+            {% elif readiness_narrative and readiness_narrative.can_estimate and readiness_narrative.percentage is not none %}
             <div class="command-card-body">
                 <div class="d-flex align-items-end gap-3 mb-3">
                     <span class="command-hero-value" style="color: var(--color-brand);" data-ptp004-metric="estimated-readiness">{{ readiness_narrative.percentage|int }}%</span>
@@ -246,7 +246,7 @@
             {% else %}
             <div class="command-card-body">
                 <div class="empty-state py-3">
-                    <p class="text-muted small mb-1">{{ pcs.READINESS_UNAVAILABLE }}</p>
+                    <p class="text-muted small mb-1">{% if readiness_narrative and readiness_narrative.explanation %}{{ readiness_narrative.explanation }}{% else %}{{ pcs.READINESS_UNAVAILABLE }}{% endif %}</p>
                     <p class="text-muted small mb-0">{{ pcs.ESTIMATED_KNOWLEDGE_EMPTY }}</p>
                 </div>
             </div>

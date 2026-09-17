@@ -103,6 +103,12 @@ Each concept is defined with the same fields:
 
 **Correct framing:** Demonstrated competence for progression under an authored contract. Local educational gate. Not sitting preparedness.
 
+#### Proven semantic island (do not disturb)
+
+Progression Readiness is a **proven, working semantic island**. Its evaluator, ternary contracts, reason codes, and learner-facing observation posture are owned by [`../progression_readiness/PROGRESSION_READINESS_DESIGN.md`](../progression_readiness/PROGRESSION_READINESS_DESIGN.md).
+
+**Hard protection:** Exam Readiness reconciliation work must **not** touch, reinterpret, rewrite, or merge Progression Readiness into Exam Readiness, regardless of both concepts sharing the word “readiness.” Shared vocabulary is not shared meaning (§6). Do not alter Progression Readiness evaluator behaviour, contracts, or activation posture under an Exam Readiness brief.
+
 ---
 
 ### 5.3 Exam Readiness
@@ -121,6 +127,17 @@ Each concept is defined with the same fields:
 **Correct framing (stable, abstract):** Exam Readiness is a **whole-syllabus synthesis judgement** of sitting preparedness based on **relevant available evidence**.  
 
 **Not frozen here:** The exact weights, engines, or closed-form combination of today’s candidate dimensions. Those remain reconciliation work. Naming coverage, pace, and demonstrated evidence as **current candidates** records today’s best-grounded dimensions without pretending the formula is complete.
+
+#### Current operational status (Phase 3 decision: live)
+
+| Field | Status |
+|-------|--------|
+| **Semantic definition** | **Valid**: §5.3 and LO-07 remain authoritative meaning. |
+| **Evidence architecture** | **Incomplete**: still being reconciled across competing engines; no live formula is frozen as canonical. |
+| **Learner-facing numerical claim** | **Withheld**: student surfaces must show an honest “not yet assessable” state (enough reliable evidence is not yet available for this estimate). Must never be read as “you are unprepared.” Coverage alone must never mint a confident Exam Readiness percentage. |
+| **Current decision authority** | **None**: no live engine (`get_overall_readiness`, revoked `calculate_readiness`, Twin estimator display, forecast, or coverage-renamed readiness) may authorise a student-facing Exam Readiness number or sitting-preparedness decision until reconciliation lands. |
+
+This status preserves the concept while stating where implementation honestly stands. It does **not** choose a canonical coverage implementation.
 
 ---
 
@@ -270,6 +287,8 @@ This locked contract deliberately does **not**:
 Later phases reconcile implementations **toward** this contract. They do not redefine these meanings casually in code comments.
 
 ---
+
+**Phase 3 operational follow-through (separate from the original lock of this document):** Learner-facing Exam Readiness percentages are withheld; `calculate_readiness` is revoked as Exam Readiness authority; Progression Readiness remains an untouched semantic island. Coverage engine choice remains deferred.
 
 ## 11. Quick reference
 

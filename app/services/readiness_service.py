@@ -1056,12 +1056,18 @@ class ReadinessService:
     def calculate_readiness(
         student_curriculum: object,
     ) -> ReadinessSummary | None:
-        """Calculate exam readiness from a StudentCurriculumSummary.
+        """Historical Study Progress weight helper (NOT Exam Readiness authority).
 
-        readiness_percentage is derived directly from
-        ``student_curriculum.weighted_completed_percentage``.  No
-        mastery, confidence, revision history, question performance,
-        AI, or heuristics are used.
+        Phase 3 decision: this function is **revoked** as Exam Readiness
+        authority. It must not feed student-facing Exam Readiness claims,
+        Journey exam-readiness speech, or live educational decisions framed as
+        sitting preparedness. Prefer CurriculumService coverage helpers for
+        Study Progress narration. Left in place for tests and historical
+        reference only.
+
+        ``readiness_percentage`` historically mirrored
+        ``weighted_completed_percentage`` (coverage renamed). That naming is
+        why authority was revoked under the semantic contract.
 
         Args:
             student_curriculum: A ``StudentCurriculumSummary`` instance,

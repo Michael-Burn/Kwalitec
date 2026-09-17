@@ -262,19 +262,17 @@ class TestPresentationPassThrough:
             surface = apply_readiness_quality_contract(1, _legacy_surface())
 
         narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
-        assert narrative.can_estimate is True
-        assert narrative.percentage == 62.0
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
         assert narrative.is_estimate is True
-        assert surface["confidence_level"] in narrative.evidence_basis
-        assert "Suggested focus" in narrative.explanation or surface[
-            "suggested_next_action"
-        ] in narrative.explanation
+        assert "not yet assessable" in narrative.explanation.lower()
 
     def test_incomplete_legacy_surface_still_uses_eip003(self):
         surface = _legacy_surface()
         narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
-        assert narrative.can_estimate is True
-        assert "syllabus coverage" in narrative.evidence_basis.lower()
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
+        assert "not yet assessable" in narrative.explanation.lower()
 
 
 class TestConstitutionalOwnership:

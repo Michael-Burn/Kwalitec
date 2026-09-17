@@ -69,17 +69,17 @@ def _schema_complete_readiness_surface(**overrides):
 
 
 def test_readiness_driver_delivery_from_schema_surface():
+    from app.presentation.student.exam_readiness_withheld import (
+        EXAM_READINESS_NOT_YET_ASSESSABLE,
+    )
+
     surface = _schema_complete_readiness_surface()
     narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
     snap = readiness_explanation_from_narrative(narrative, schema_complete=True)
-    assert snap.is_complete is True
-    assert len(snap.readiness_drivers) >= 3
-    assert any("Curriculum coverage" in d for d in snap.readiness_drivers)
-    assert snap.why_this_estimate.startswith("Coverage and practice")
-    assert snap.suggested_next_action.startswith("Practise Geometry")
-    assert snap.review_point.startswith("Reassess")
-    assert snap.confidence_label == "Suggested"
-    assert "coverage" in snap.confidence_basis.lower()
+    # Phase 3: schema-complete Twin/overall speech is withheld on learner surfaces.
+    assert snap.can_estimate is False
+    assert snap.why_this_estimate == EXAM_READINESS_NOT_YET_ASSESSABLE
+    assert narrative.percentage is None
 
 
 def test_explanation_completeness_requires_drivers_why_confidence_next():
@@ -166,13 +166,11 @@ def test_home_vm_binds_authored_readiness_mes():
         has_recommendation=True,
     )
     page = home_vm(snap, unified_journey=False)
-    assert page.readiness.why_this_estimate.startswith("Coverage and practice")
-    # CQ-002 / CR1: hero owns primary Next — readiness next is suppressed.
+    # Phase 3: authored Twin/overall MES must not surface as a confident %.
+    assert "not yet assessable" in page.readiness.why_this_estimate.lower()
+    assert page.readiness.readiness_percent_label == ""
+    assert page.readiness.readiness_label == "Not yet assessable"
     assert page.readiness.suggested_next_action == ""
-    assert page.readiness.review_point.startswith("Reassess")
-    assert len(page.readiness.readiness_drivers) >= 3
-    assert page.readiness.confidence_label == "Suggested"
-    assert "coverage" in page.readiness.confidence_basis.lower()
     assert page.readiness.has_disclosure is True
     assert page.explanation is not None
     assert "cash flow" in page.explanation.suggested_next_action.lower()
@@ -238,13 +236,12 @@ def test_fallback_when_readiness_explanation_absent():
         has_recommendation=True,
     )
     page = home_vm(snap, unified_journey=False)
-    assert page.readiness.readiness_drivers == ()
-    # CQ-002 / CR1: do not duplicate hero Next into the Readiness panel.
+    # Phase 3: readiness panel stays withheld even when recommendation MES exists.
+    assert page.readiness.readiness_label == "Not yet assessable"
+    assert page.readiness.readiness_percent_label == ""
     assert page.readiness.suggested_next_action == ""
     assert page.explanation is not None
     assert page.explanation.suggested_next_action.startswith("Complete one tax")
-    assert page.readiness.review_point.startswith("Review after")
-    assert page.readiness.confidence_basis.startswith("Based on recent")
     assert page.readiness.has_disclosure is True
 
 
@@ -270,7 +267,5 @@ def test_load_home_readiness_explanation_pass_through():
     ):
         snap = load_home_readiness_explanation("42")
     assert snap is not None
-    assert snap.is_complete is True
-    assert len(snap.readiness_drivers) >= 3
-    assert snap.suggested_next_action.startswith("Practise Geometry")
-    assert snap.review_point.startswith("Reassess")
+    assert "not yet assessable" in snap.why_this_estimate.lower()
+    assert snap.can_estimate is False

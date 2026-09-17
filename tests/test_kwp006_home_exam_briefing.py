@@ -94,8 +94,8 @@ class TestReadinessStageLanguage:
 
     def test_home_vm_prefers_stage_over_generic_label(self):
         vm = _start_home(exam_readiness=0.45, exam_readiness_label="Exam Readiness")
-        assert vm.readiness.readiness_label == "Strengthening"
-        assert vm.readiness.readiness_percent_label == "45%"
+        assert vm.readiness.readiness_label == "Not yet assessable"
+        assert vm.readiness.readiness_percent_label == ""
 
 
 # --- Exam Week Briefing ------------------------------------------------------
@@ -343,4 +343,4 @@ def test_study_health_uses_stage_not_percent(app, ctx):
         page = StudentHomeService().build_home(_page(home))
     assert page.study_health is not None
     assert "%" not in page.study_health.status_label
-    assert page.study_health.status_label == "Ready for Revision"
+    assert page.study_health.status_label == "Not yet assessable"

@@ -121,7 +121,30 @@ class RuntimeAPresentationAdapter:
 
         EP-003.2: when ``ReadinessService`` already attached the mandatory
         explanation schema, presentation must not re-evaluate or invent drivers.
+
+        Phase 3 decision: learner-facing numerical Exam Readiness is withheld
+        regardless of engine (overall, schema, Twin). Twin internals untouched.
         """
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+            EXAM_READINESS_WITHHELD_BASIS,
+            exam_readiness_numeric_claims_withheld,
+        )
+        from app.services.product_communication_service import (
+            ProductCommunicationService,
+        )
+
+        if exam_readiness_numeric_claims_withheld():
+            return ReadinessNarrative(
+                label=ProductCommunicationService.ESTIMATED_READINESS_LABEL,
+                percentage=None,
+                explanation=EXAM_READINESS_NOT_YET_ASSESSABLE,
+                evidence_basis=EXAM_READINESS_WITHHELD_BASIS,
+                can_estimate=False,
+                is_estimate=True,
+                why_this_estimate=EXAM_READINESS_NOT_YET_ASSESSABLE,
+            )
+
         surface = surface if isinstance(surface, dict) else {}
         from app.services.readiness_quality import (
             has_complete_readiness_explanation_schema,

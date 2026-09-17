@@ -292,7 +292,21 @@ def index():
             active_study_plan,
         )
         if curriculum_summary is not None:
-            readiness_summary = ReadinessService.calculate_readiness(curriculum_summary)
+            # Phase 3: calculate_readiness revoked as Exam Readiness authority.
+            # Dashboard "Syllabus coverage" uses Study Progress weights directly.
+            from types import SimpleNamespace
+            readiness_summary = SimpleNamespace(
+                readiness_percentage=float(
+                    curriculum_summary.weighted_completed_percentage or 0.0
+                ),
+                explanation=(
+                    "Syllabus coverage is Study Progress (weighted completed "
+                    "topics), not Exam Readiness."
+                ),
+                weighted_completed_percentage=float(
+                    curriculum_summary.weighted_completed_percentage or 0.0
+                ),
+            )
 
     # Time status via TimeEngineService (single source for hours balance)
     time_summary = None

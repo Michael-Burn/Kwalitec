@@ -188,6 +188,10 @@ class TestNegativeEngineeringTerminology:
 @pytest.mark.usefixtures("ctx")
 class TestNegativeEstimateAsFact:
     def test_composite_readiness_is_labelled_estimate(self) -> None:
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+        )
+
         narrative = EducationalExplainabilityService.explain_composite_readiness(
             {
                 "score": 55.0,
@@ -200,11 +204,16 @@ class TestNegativeEstimateAsFact:
         )
         assert narrative.is_estimate is True
         assert "estimated" in narrative.label.lower()
-        assert "estimated" in narrative.explanation.lower()
-        assert narrative.can_estimate is True
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
         assert narrative.evidence_basis
 
     def test_empty_history_cannot_estimate_readiness(self) -> None:
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+        )
+
         narrative = EducationalExplainabilityService.explain_composite_readiness(
             {
                 "score": 0.0,
@@ -216,12 +225,8 @@ class TestNegativeEstimateAsFact:
             }
         )
         assert narrative.can_estimate is False
-        explanation = narrative.explanation.lower()
-        assert (
-            "cannot yet be estimated" in explanation
-            or "more recorded practice before this estimate becomes available"
-            in explanation
-        )
+        assert narrative.percentage is None
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
 
 
 @pytest.mark.usefixtures("ctx")

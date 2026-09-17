@@ -108,13 +108,9 @@ def test_schema_readiness_narrative_exposes_drivers_and_review_point():
         "readiness": {"score": 62.0},
     }
     narrative = RuntimeAPresentationAdapter.readiness_narrative(surface)
-    assert narrative.can_estimate is True
-    assert "Coverage and practice" in narrative.explanation
-    assert len(narrative.readiness_drivers) >= 3
-    assert any("Curriculum coverage" in d for d in narrative.readiness_drivers)
-    assert narrative.review_point.startswith("Reassess")
-    assert narrative.suggested_next_action.startswith("Practise")
-    assert len(narrative.supporting_evidence) >= 2
+    assert narrative.can_estimate is False
+    assert narrative.percentage is None
+    assert "not yet assessable" in narrative.explanation.lower()
 
 
 def test_schema_mission_narrative_exposes_plan_drivers_and_review_point():

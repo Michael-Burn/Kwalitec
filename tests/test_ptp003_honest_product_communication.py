@@ -91,15 +91,21 @@ class TestProductCommunicationPhrases:
 
 class TestReadinessCommunication:
     def test_unavailable_readiness_uses_canonical_phrase(self):
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+        )
+
         narrative = EducationalExplainabilityService.explain_composite_readiness(None)
         assert narrative.can_estimate is False
         assert narrative.is_estimate is True
-        assert narrative.explanation == (
-            ProductCommunicationService.READINESS_UNAVAILABLE
-        )
-        assert "practice" in narrative.evidence_basis.lower()
+        assert narrative.percentage is None
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
 
     def test_empty_started_topics_uses_canonical_unavailable(self):
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+        )
+
         narrative = EducationalExplainabilityService.explain_composite_readiness(
             {
                 "total_topics": 10,
@@ -111,11 +117,16 @@ class TestReadinessCommunication:
             }
         )
         assert narrative.can_estimate is False
-        assert narrative.explanation == (
-            ProductCommunicationService.READINESS_UNAVAILABLE
-        )
+        assert narrative.percentage is None
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
 
     def test_available_readiness_states_self_report_limit(self):
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+            EXAM_READINESS_WITHHELD_BASIS,
+        )
+
+        # Phase 3: even rich overall scores must not mint a student-facing %.
         narrative = EducationalExplainabilityService.explain_composite_readiness(
             {
                 "total_topics": 10,
@@ -126,11 +137,11 @@ class TestReadinessCommunication:
                 "review_discipline": 40.0,
             }
         )
-        assert narrative.can_estimate is True
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
         assert narrative.label == "Estimated readiness"
-        assert "Estimated" in narrative.explanation
-        assert "recorded" in narrative.evidence_basis.lower()
-        assert "not independently verified" in narrative.evidence_basis.lower()
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
+        assert narrative.evidence_basis == EXAM_READINESS_WITHHELD_BASIS
 
     def test_practice_feedback_states_recorded_results(self):
         narrative = EducationalExplainabilityService._feedback_practice_recorded(

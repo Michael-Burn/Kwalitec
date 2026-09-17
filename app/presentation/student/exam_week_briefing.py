@@ -137,6 +137,9 @@ def build_exam_week_briefing(
             raw_pct = home.readiness.readiness_percent_label or ""
             numeric = _parse_percent(raw_pct)
             stage = readiness_stage_label(numeric, existing_label="")
+        # Phase 3 withhold is not itself a weekly briefing signal.
+        if "not yet assessable" in stage.lower():
+            stage = ""
 
     has_signal = bool(
         strengthened or needs or consistency or focus or stage

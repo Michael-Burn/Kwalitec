@@ -280,8 +280,11 @@ def export_weekly_pdf():
     user_id = current_user.id
 
     weekly_report = AnalyticsService.generate_weekly_report(user_id)
-    readiness = ReadinessService.get_overall_readiness(user_id)
     curriculum_coverage = ReadinessService.get_curriculum_coverage(user_id)
+    from app.presentation.student.exam_readiness_withheld import (
+        EXAM_READINESS_WITHHELD_BASIS,
+        student_facing_exam_readiness_claim,
+    )
 
     # Build a structured plain-text report
     lines = []
@@ -294,20 +297,16 @@ def export_weekly_pdf():
     lines.append(f"Generated:   {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
     lines.append("")
     lines.append("─── Overview ─────────────────────────────────")
-    lines.append(
-        f"Overall Readiness (one estimate; not reconciled): "
-        f"{readiness['score']:.0f}%"
-    )
+    # Phase 3 decision: withhold numerical Exam Readiness; do not substitute
+    # get_overall_readiness / calculate_readiness / Twin scores.
+    lines.append(f"Exam Readiness: {student_facing_exam_readiness_claim()}")
+    lines.append(f"  ({EXAM_READINESS_WITHHELD_BASIS})")
     lines.append(
         f"Curriculum Coverage (plan leaf completed %; not reconciled "
-        f"with Stats verified topic counts): "
+        f"with Stats verified topic counts; not Exam Readiness): "
         f"{curriculum_coverage['coverage_percentage']:.0f}%"
     )
-    avg_mastery = readiness.get("avg_mastery")
-    if avg_mastery is not None:
-        lines.append(f"Average Estimated Knowledge: {avg_mastery:.0f}%")
-    else:
-        lines.append("Average Estimated Knowledge: not yet assessed")
+    lines.append("Average Estimated Knowledge: see Stats when practice evidence exists")
     lines.append(
         f"Current Streak (attempt calendar days; not reconciled with "
         f"Home/Stats qualifying study days): "

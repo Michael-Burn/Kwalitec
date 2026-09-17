@@ -144,6 +144,11 @@ class TestCoverageAuthorityParity:
 @pytest.mark.usefixtures("ctx")
 class TestReadinessExplainability:
     def test_composite_narrative_cites_study_progress_components(self) -> None:
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+            EXAM_READINESS_WITHHELD_BASIS,
+        )
+
         narrative = EducationalExplainabilityService.explain_composite_readiness(
             {
                 "score": 48.0,
@@ -155,11 +160,10 @@ class TestReadinessExplainability:
                 "topics_completed": 4,
             }
         )
-        assert narrative.can_estimate is True
-        basis = narrative.evidence_basis.lower()
-        assert "study progress" in basis or "completed" in basis
-        assert "estimated knowledge" in basis
-        assert "review" in basis
+        assert narrative.can_estimate is False
+        assert narrative.percentage is None
+        assert narrative.explanation == EXAM_READINESS_NOT_YET_ASSESSABLE
+        assert narrative.evidence_basis == EXAM_READINESS_WITHHELD_BASIS
 
 
 @pytest.mark.usefixtures("ctx")

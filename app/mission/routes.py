@@ -294,8 +294,19 @@ def missions():
                 active_study_plan
             )
             if curriculum_summary is not None:
-                readiness_summary = ReadinessService.calculate_readiness(
-                    curriculum_summary
+                # Phase 3: calculate_readiness revoked as Exam Readiness authority.
+                from types import SimpleNamespace
+                readiness_summary = SimpleNamespace(
+                    readiness_percentage=float(
+                        curriculum_summary.weighted_completed_percentage or 0.0
+                    ),
+                    explanation=(
+                        "Syllabus coverage is Study Progress (weighted completed "
+                        "topics), not Exam Readiness."
+                    ),
+                    weighted_completed_percentage=float(
+                        curriculum_summary.weighted_completed_percentage or 0.0
+                    ),
                 )
                 if readiness_summary is not None:
                     coverage_narrative = (

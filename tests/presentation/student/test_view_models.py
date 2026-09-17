@@ -155,11 +155,11 @@ def test_home_vm_primary_cta():
     assert vm.primary_cta_enabled is True
     assert vm.recommendation.has_recommendation is True
     assert vm.countdown.has_countdown is True
-    assert vm.readiness.readiness_percent_label == "62%"
-    assert vm.readiness.readiness_label == "Ready for Revision"
+    assert vm.readiness.readiness_percent_label == ""
+    assert vm.readiness.readiness_label == "Not yet assessable"
     assert "25" in vm.estimated_study_label
     assert "Revision session" in vm.journey_story
-    assert "improving" in vm.readiness.trend_label.lower()
+    assert vm.readiness.trend_label == ""
     assert "High educational return" in vm.coach_insight
     assert any(m.title == "Checkpoint" for m in vm.milestones)
     assert any(a.label == "Open Journey" for a in vm.quick_actions)
@@ -224,7 +224,7 @@ def test_history_vm_trend():
         session_count=1,
     )
     vm = history_vm(snap)
-    assert "improving" in vm.readiness_trend_label.lower()
+    assert "not yet assessable" in vm.readiness_trend_label.lower()
     assert vm.sessions[0].duration_label == "30 minutes"
 
 

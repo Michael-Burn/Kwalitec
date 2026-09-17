@@ -545,6 +545,31 @@ class StudentPageViewModel:
 format_minutes = _format_minutes
 
 
+
+def _exam_readiness_withheld_claim() -> str:
+    from app.presentation.student.exam_readiness_withheld import (
+        student_facing_exam_readiness_claim,
+    )
+
+    return student_facing_exam_readiness_claim()
+
+
+def _exam_readiness_withheld_short() -> str:
+    from app.presentation.student.exam_readiness_withheld import (
+        EXAM_READINESS_NOT_YET_ASSESSABLE_SHORT,
+    )
+
+    return EXAM_READINESS_NOT_YET_ASSESSABLE_SHORT
+
+
+def _exam_readiness_withheld_basis() -> str:
+    from app.presentation.student.exam_readiness_withheld import (
+        EXAM_READINESS_WITHHELD_BASIS,
+    )
+
+    return EXAM_READINESS_WITHHELD_BASIS
+
+
 def format_readiness_percent(value: float | None) -> str:
     """Format a readiness ratio (0–1 or 0–100) as a percent label."""
     if value is None:
@@ -802,27 +827,20 @@ def home_vm(
             has_countdown=snap.exam_countdown_days is not None,
         ),
         readiness=ReadinessCardViewModel(
-            readiness_label=format_readiness_stage(
-                snap.exam_readiness,
-                existing_label=snap.exam_readiness_label or "",
-            )
-            or "Building",
-            readiness_percent_label=format_readiness_percent(snap.exam_readiness),
-            trend_label=trend,
-            confidence_label=_home_readiness_confidence(snap),
-            confidence_basis=_home_readiness_confidence_basis(snap),
-            why_this_estimate=_home_readiness_why(snap),
-            suggested_next_action=_home_readiness_next_action(snap),
-            review_point=_home_readiness_review_point(snap),
-            readiness_drivers=_home_readiness_drivers(snap),
-            supporting_evidence=_home_readiness_evidence(snap),
-            expected_benefit=_home_readiness_expected_benefit(snap),
-            has_readiness=snap.exam_readiness is not None
-            or bool(
-                snap.readiness_explanation
-                and snap.readiness_explanation.why_this_estimate
-            ),
-            has_disclosure=_home_readiness_has_disclosure(snap),
+            # Phase 3: Exam Readiness number withheld; never stage from Twin score.
+            readiness_label=_exam_readiness_withheld_short(),
+            readiness_percent_label="",
+            trend_label="",
+            confidence_label="",
+            confidence_basis=_exam_readiness_withheld_basis(),
+            why_this_estimate=_exam_readiness_withheld_claim(),
+            suggested_next_action="",
+            review_point="",
+            readiness_drivers=(),
+            supporting_evidence=(_exam_readiness_withheld_basis(),),
+            expected_benefit="",
+            has_readiness=True,
+            has_disclosure=True,
         ),
         recommendation=RecommendationCardViewModel(
             title=snap.recommendation_title,
@@ -1550,11 +1568,12 @@ def revision_vm(snap: RevisionSnapshot) -> RevisionPageViewModel:
 
 
 def history_vm(snap: HistorySnapshot) -> HistoryPageViewModel:
+    # Phase 3: never mint Exam Readiness % points on History.
     points = tuple(
-        (p.recorded_at, format_readiness_percent(p.exam_readiness) or p.label)
+        (p.recorded_at, _exam_readiness_withheld_short())
         for p in snap.readiness_progression
     )
-    trend = _readiness_trend_label(snap.readiness_progression)
+    trend = _exam_readiness_withheld_short()
     narrative = tuple(
         RecommendationNarrativeEntryViewModel(
             kind=entry.kind,
@@ -1851,9 +1870,7 @@ def profile_vm(snap: ProfileSnapshot) -> ProfilePageViewModel:
         goals=snap.goals,
         account=snap.account,
         preferences_days_label=days,
-        readiness_percent_label=format_readiness_percent(
-            snap.statistics.current_exam_readiness
-        ),
+        readiness_percent_label="",  # Phase 3: Exam Readiness % withheld
         total_study_label=format_minutes(snap.statistics.total_study_minutes),
         streak_label=_streak_days_label(snap.statistics.study_streak_days),
         average_daily_label=_average_daily_study_label(snap.statistics),

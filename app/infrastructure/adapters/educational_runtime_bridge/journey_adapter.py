@@ -292,30 +292,15 @@ class JourneyAdapter:
     def _progress_ratio(
         self, user_id: int, plan: Any
     ) -> tuple[float, str, bool]:
-        """Project progress ratio from Runtime A Readiness / curriculum coverage.
+        """Project Journey syllabus-progress ratio from Study Progress coverage.
 
         Never invents a formula in the adapter — delegates to Runtime A services.
-        """
-        # Prefer weighted readiness from curriculum summary when available.
-        try:
-            engine = self._resolve_curriculum_engine_service()
-            summary = engine.build_student_curriculum(plan)
-            readiness_svc = self._resolve_readiness_service()
-            readiness = readiness_svc.calculate_readiness(summary)
-            if readiness is not None:
-                return (
-                    float(readiness.readiness_percentage),
-                    str(getattr(readiness, "explanation", "") or ""),
-                    False,
-                )
-        except Exception:  # noqa: BLE001
-            logger.debug(
-                "weighted readiness unavailable for user_id=%s",
-                user_id,
-                exc_info=True,
-            )
 
-        # Fallback: CurriculumService plan coverage (still Runtime A).
+        Phase 3 decision: ``ReadinessService.calculate_readiness`` is revoked as
+        Exam Readiness authority and must not feed this Journey ratio. Coverage
+        reconciliation (F1 vs leaf vs weighted) remains a later brief; this path
+        uses CurriculumService plan coverage only.
+        """
         try:
             curriculum_id = getattr(plan, "curriculum_id", None)
             if curriculum_id:

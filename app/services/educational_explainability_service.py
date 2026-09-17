@@ -491,70 +491,29 @@ class EducationalExplainabilityService:
     ) -> ReadinessNarrative:
         """Narrate composite readiness as an estimate with supporting basis.
 
-        Does not recalculate the score — only explains an existing readiness dict
-        from ReadinessService.get_overall_readiness.
+        Phase 3 decision: student-facing numerical Exam Readiness is withheld.
+        Competing engines (including get_overall_readiness) must not mint a
+        confident percentage on learner surfaces until evidence architecture
+        is reconciled. ``readiness`` is accepted for call-site compatibility
+        and ignored.
         """
+        del readiness  # call-site compatibility; inputs do not restore authority
+        from app.presentation.student.exam_readiness_withheld import (
+            EXAM_READINESS_NOT_YET_ASSESSABLE,
+            EXAM_READINESS_WITHHELD_BASIS,
+        )
         from app.services.product_communication_service import (
             ProductCommunicationService,
         )
 
-        if not readiness or readiness.get("total_topics", 0) <= 0:
-            return ReadinessNarrative(
-                label=ProductCommunicationService.ESTIMATED_READINESS_LABEL,
-                percentage=None,
-                explanation=ProductCommunicationService.READINESS_UNAVAILABLE,
-                evidence_basis=(
-                    "No syllabus topics available for this student yet. "
-                    + ProductCommunicationService.READINESS_UNAVAILABLE_BASIS
-                ),
-                can_estimate=False,
-                is_estimate=True,
-            )
-
-        topics_completed = int(
-            readiness.get("topics_completed")
-            if readiness.get("topics_completed") is not None
-            else readiness.get("topics_started")
-            or 0
-        )
-        score = float(readiness.get("score") or 0.0)
-        avg_mastery = float(readiness.get("avg_mastery") or 0.0)
-
-        if topics_completed <= 0 and avg_mastery <= 0 and score <= 0:
-            return ReadinessNarrative(
-                label=ProductCommunicationService.ESTIMATED_READINESS_LABEL,
-                percentage=None,
-                explanation=ProductCommunicationService.READINESS_UNAVAILABLE,
-                evidence_basis=(
-                    "No completed Study Progress or practice-backed Estimated "
-                    "Knowledge yet — coverage and practice history are empty. "
-                    + ProductCommunicationService.READINESS_UNAVAILABLE_BASIS
-                ),
-                can_estimate=False,
-                is_estimate=True,
-            )
-
-        coverage = float(readiness.get("coverage_pct") or 0.0)
-        review = float(readiness.get("review_discipline") or 0.0)
-
         return ReadinessNarrative(
             label=ProductCommunicationService.ESTIMATED_READINESS_LABEL,
-            percentage=float(int(round(score))),
-            explanation=(
-                f"Estimated readiness is about {int(round(score))}%. "
-                "This is a provisional study-preparation judgement — not proof "
-                "that the syllabus is fully understood."
-            ),
-            evidence_basis=(
-                f"Based on Study Progress / syllabus coverage "
-                f"(~{int(round(coverage))}% completed topics), "
-                f"average Estimated Knowledge from recorded practice "
-                f"(~{int(round(avg_mastery))}%), and recent review habits "
-                f"(~{int(round(review))}%). "
-                f"{ProductCommunicationService.ESTIMATED_READINESS_SELF_REPORT}"
-            ),
-            can_estimate=True,
+            percentage=None,
+            explanation=EXAM_READINESS_NOT_YET_ASSESSABLE,
+            evidence_basis=EXAM_READINESS_WITHHELD_BASIS,
+            can_estimate=False,
             is_estimate=True,
+            why_this_estimate=EXAM_READINESS_NOT_YET_ASSESSABLE,
         )
 
     @staticmethod
