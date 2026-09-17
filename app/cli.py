@@ -548,3 +548,107 @@ def internal_alpha_reset_command(assume_yes: bool) -> None:
         "internal-alpha-reset: completed total_deleted=%d",
         result.total_deleted,
     )
+
+
+@click.command("shadow-coverage-reconciliation")
+@click.option(
+    "--email",
+    "emails",
+    multiple=True,
+    help=(
+        "Learner email to reconcile (repeatable). Defaults to the founder "
+        "account plus other local accounts that have Stage A or Runtime C "
+        "history."
+    ),
+)
+@click.option(
+    "--output",
+    type=click.Path(dir_okay=False, writable=True, path_type=str),
+    default=None,
+    help="Optional path to write the shadow report text.",
+)
+def shadow_coverage_reconciliation_command(
+    emails: tuple[str, ...],
+    output: str | None,
+) -> None:
+    """Run coverage reconciliation in shadow mode (read-only).
+
+    Interprets Stage A TopicProgress.completed and Runtime C verified
+    TOPIC_COMPLETED through the canonical identity layer. Does not change
+    live coverage display or calculation.
+    """
+    from pathlib import Path
+
+    from app.application.coverage_reconciliation import (
+        CoverageReconciliationService,
+    )
+    from app.application.curriculum_identity.constants import (
+        ACTIVE_CS1_CURRICULUM_VERSION,
+    )
+    from app.founder.dashboard.access import founder_emails
+    from app.models.educational_runtime_engine import RuntimeEducationalEvent
+    from app.models.topic_progress import TopicProgress
+
+    selected = [e.strip() for e in emails if e and e.strip()]
+    if not selected:
+        selected = sorted({e.lower() for e in founder_emails() if e})
+        # Always include known local investigation accounts when present.
+        selected.extend(
+            [
+                "ctshumba01@gmail.com",
+                "ready@ex.com",
+                "demo-phase3@example.com",
+                "shadow-phase3-runtime-c-verified@local.test",
+            ]
+        )
+        # Plus any account with relevant history.
+        history_ids = {
+            row.user_id
+            for row in TopicProgress.query.with_entities(
+                TopicProgress.user_id
+            ).distinct()
+        } | {
+            row.user_id
+            for row in RuntimeEducationalEvent.query.with_entities(
+                RuntimeEducationalEvent.user_id
+            ).distinct()
+        }
+        for user in User.query.filter(User.id.in_(history_ids)).all():
+            if user.email:
+                selected.append(user.email)
+
+        # De-dupe preserving order.
+        seen: set[str] = set()
+        ordered: list[str] = []
+        for email in selected:
+            key = email.strip().lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            ordered.append(email.strip())
+        selected = ordered
+
+    results = CoverageReconciliationService.reconcile_accounts(
+        selected,
+        curriculum_version=ACTIVE_CS1_CURRICULUM_VERSION,
+    )
+    # Include named emails even when the user row is empty / missing history.
+    present = {(r.user_email or "").lower() for r in results}
+    for email in selected:
+        if email.lower() in present:
+            continue
+        user = User.query.filter_by(email=email).first()
+        if user is None:
+            click.echo(f"(skip) no local user for {email}")
+            continue
+        results.append(
+            CoverageReconciliationService.reconcile_learner(user.id)
+        )
+
+    report = CoverageReconciliationService.format_report(results)
+    click.echo(report)
+    if output:
+        path = Path(output)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(report, encoding="utf-8")
+        click.echo(f"Wrote shadow report to {path}")

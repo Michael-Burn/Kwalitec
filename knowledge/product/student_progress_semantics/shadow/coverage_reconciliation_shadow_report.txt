@@ -1,0 +1,494 @@
+Coverage reconciliation shadow report
+========================================================================
+Interpretive only. Does not change live coverage display or calculation.
+
+------------------------------------------------------------------------
+Account: ready@ex.com (user_id=1)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 0, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 14, 'unmapped_historical_activity': 2}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+
+Unmapped / orphan historical activity:
+  - kind=stage_a_completed_orphan source=stage_a_database:1 map=obsolete_no_equivalent -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed maps as orphan / obsolete_no_equivalent; preserved as ambiguous historical activity, not coverage.
+    details: {'topic_progress_id': 1, 'mapping_notes': "Orphan historical topic 'T0' (ORM id=1) has no equivalent on the active CS1:2026.1 syllabus. Left unmapped to current coverage pending separate deliberate review."}
+  - kind=stage_a_completed_orphan source=stage_a_database:2 map=obsolete_no_equivalent -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed maps as orphan / obsolete_no_equivalent; preserved as ambiguous historical activity, not coverage.
+    details: {'topic_progress_id': 2, 'mapping_notes': "Orphan historical topic 'T1' (ORM id=2) has no equivalent on the active CS1:2026.1 syllabus. Left unmapped to current coverage pending separate deliberate review."}
+
+------------------------------------------------------------------------
+Account: demo-phase3@example.com (user_id=2)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 0, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 14, 'unmapped_historical_activity': 0}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+
+------------------------------------------------------------------------
+Account: ctshumba01@gmail.com (user_id=4)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 0, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 14, 'unmapped_historical_activity': 0}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+
+------------------------------------------------------------------------
+Account: shadow-phase3-broad-shallow@local.test (user_id=6)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 0, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 14, 'unmapped_historical_activity': 28}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+
+Unmapped / orphan historical activity:
+  - kind=stage_a_completed source=stage_a_database:4 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 3, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:5 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 4, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:6 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 5, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:7 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 6, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:8 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 7, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:9 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 8, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:10 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 9, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:11 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 10, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:12 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 11, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:13 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 12, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:14 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 13, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:15 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 14, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:16 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 15, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:17 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 16, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:18 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 17, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:19 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 18, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:20 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 19, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:21 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 20, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:22 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 21, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:23 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 22, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:24 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 23, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:25 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 24, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:26 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 25, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:27 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 26, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:28 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 27, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:29 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 28, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:30 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 29, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:31 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 30, 'current_stage': 'Completed'}
+
+------------------------------------------------------------------------
+Account: shadow-phase3-high-cov-thin-demo@local.test (user_id=10)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 5, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 9, 'unmapped_historical_activity': 42}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 47, 'topic_progress_id': 80, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 46, 'topic_progress_id': 79, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+Determine the characteristics of jointly distributed ra... Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 49, 'topic_progress_id': 82, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 50, 'topic_progress_id': 83, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 48, 'topic_progress_id': 81, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+
+Unmapped / orphan historical activity:
+  - kind=stage_a_completed source=stage_a_database:4 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 37, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:5 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 38, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:6 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 39, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:7 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 40, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:8 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 41, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:9 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 42, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:10 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 43, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:11 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 44, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:12 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 45, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:13 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 46, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:14 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 47, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:15 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 48, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:16 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 49, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:17 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 50, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:18 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 51, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:19 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 52, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:20 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 53, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:21 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 54, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:22 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 55, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:23 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 56, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:24 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 57, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:25 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 58, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:26 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 59, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:27 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 60, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:28 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 61, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:29 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 62, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:30 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 63, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:31 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 64, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:32 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 65, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:33 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 66, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:34 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 67, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:35 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 68, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:36 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 69, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:37 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 70, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:38 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 71, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:39 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 72, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:40 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 73, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:41 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 74, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:42 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 75, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:43 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 76, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:44 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 77, 'current_stage': 'Completed'}
+  - kind=stage_a_completed source=stage_a_database:45 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Stage A TopicProgress.completed has no identity-map row; never silently promoted to coverage.
+    details: {'topic_progress_id': 78, 'current_stage': 'Completed'}
+
+------------------------------------------------------------------------
+Account: shadow-phase3-runtime-c-verified@local.test (user_id=11)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 0, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 14, 'unmapped_historical_activity': 1}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+
+Unmapped / orphan historical activity:
+  - kind=topic_completed source=study_event:topic-t1 map=None -> AMBIGUOUS_HISTORICAL_ACTIVITY
+    reasoning: Runtime event topic_id did not resolve through the canonical identity map.
+    details: {'event_id': 'evt_99851402a3dd42b3b788ba7913977348'}
+
+------------------------------------------------------------------------
+Account: shadow-id-fw-8bd3157f@local.test (user_id=12)
+Curriculum version: CS1:2026.1
+Summary: {'CONFIRMED_COVERED': 0, 'HISTORICALLY_COMPLETED': 1, 'AMBIGUOUS_HISTORICAL_ACTIVITY': 0, 'NOT_COVERED': 13, 'unmapped_historical_activity': 0}
+
+Title                                                      Legacy   Verified Map          Eligibility
+------------------------------------------------------------------------------------------------------------------------
+Apply the concepts of hypothesis testing and goodness o... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Calculate confidence intervals and prediction intervals    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Complete exploratory data analysis                         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Construct estimators and discuss their properties          N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe random sampling and the sampling distributions... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Describe the purpose and function of data analysis         Y/acc    N        exact        HISTORICALLY_COMPLETED
+  reasoning: Accepted Stage A LEGACY_COMPLETION establishes historical coverage. Absence of verified Runtime C evidence must not be read as proof that legitimate historical exposure did not occur.
+  evidence_sources: LEGACY_COMPLETION
+  provenance[LEGACY_COMPLETION]: accepted=True reason=stage_a_completed_historical_study_progress details={'stage_a_topic_id': 46, 'topic_progress_id': 84, 'last_reviewed': None, 'revision_count': 0, 'current_stage': 'Completed', 'prior_knowledge_claim_present': False}
+Determine the characteristics of jointly distributed ra... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate and apply generating functions                    N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Evaluate expectations and conditional expectations         N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Explain fundamental concepts of Bayesian statistics and... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+State and apply the central limit theorem                  N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use generalised linear models               N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand and use linear regression models                N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.
+Understand the characteristics of basic univariate dist... N        N        exact        NOT_COVERED
+  reasoning: No Stage A completion and no verified Runtime C TOPIC_COMPLETED for this canonical topic.

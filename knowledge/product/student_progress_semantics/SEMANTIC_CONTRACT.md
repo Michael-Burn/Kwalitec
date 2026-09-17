@@ -1,10 +1,10 @@
 # Student Progress Semantics: Phase 2 Semantic Contract
 
-**Status:** Locked Phase 2 semantic contract (documentation target for later reconciliation)  
-**Date:** 2026-09-16  
+**Status:** Locked Phase 2 semantic contract; Coverage definition amended 2026-09-17 for dual-source reconciliation (shadow interpretive layer; live display cutover deferred)  
+**Date:** 2026-09-16 (Coverage §5.1 amended 2026-09-17)  
 **Scope:** Authoritative meanings of Coverage, Progression Readiness, Exam Readiness, and Streak as student-progress concepts  
 **Authority class:** Product semantic contract under `knowledge/product/` (same convention as locked evaluator and framework designs)  
-**Does not authorize:** Code changes, formula merges, display rewrites, Decision Engine wiring, or Educational Framework redesign
+**Does not authorize:** Live coverage display cutover, formula merges beyond the locked meanings, Decision Engine wiring, or Educational Framework redesign
 
 ---
 
@@ -73,18 +73,24 @@ Each concept is defined with the same fields:
 
 ### 5.1 Coverage
 
+**Definition (locked):** Curriculum coverage represents legitimate historical exposure to a canonical curriculum topic through an accepted learning pathway. Coverage does not imply competence, mastery, progression readiness, or exam readiness. Multiple evidence sources may establish coverage where their semantics satisfy the coverage contract; stronger evidence may provide greater provenance or confidence but does not automatically redefine the coverage threshold. Historical activity is preserved independently, and only activity that can be defensibly mapped to the applicable canonical curriculum entity contributes to current coverage.
+
+**Invariant:** Absence of stronger evidence must not be interpreted as evidence that weaker but valid historical exposure did not occur.
+
 | Field | Contract |
 |-------|----------|
 | **Question answered** | What portion of the authorised syllabus has the student honestly studied (exposed / completed as Study Progress), without claiming competence? |
-| **Authoritative source** | This contract §5.1; Educational Constitution Article IV §1 Study Progress; product honesty path for verified Study Progress completion. |
-| **Permitted inputs** | Lawful Study Progress completion for syllabus units; verified completion under the product’s Study Progress honesty rules; syllabus structure used only to define the denominator (what “the syllabus” is). |
-| **Forbidden inputs** | Assessment scores as coverage truth; Estimated Knowledge / Estimated Mastery as coverage; streak length; Progression Readiness READY as coverage; Exam Readiness percentage as coverage; self-reported “I understand this” as coverage of a unit not studied under Study Progress rules. |
-| **Output / state shape** | Counts and/or percentages of completed Study Progress units over an explicit syllabus denominator; completed / not-completed per unit; journey-style “how far through” derived only from Study Progress. Labels must narrate coverage or study progress, not mastery. |
-| **Uncertainty behaviour** | If verification rules cannot confirm completion, do not count the unit as covered. If denominator scope is ambiguous (wrong plan / wrong curriculum context), refuse a precise percentage and disclose scope uncertainty rather than inventing a figure. |
+| **Authoritative source** | This contract §5.1; Educational Constitution Article IV §1 Study Progress; product honesty path for verified Study Progress completion; canonical coverage reconciliation (shadow interpretive layer). |
+| **Permitted inputs** | Lawful Study Progress completion for syllabus units that resolve to a canonical curriculum topic; verified Runtime C ``TOPIC_COMPLETED`` (non-baseline) under Study Progress honesty rules; accepted Stage A ``TopicProgress.completed`` (LEGACY_COMPLETION) when the legacy acceptance contract is met; syllabus structure used only to define the denominator (what “the syllabus” is). |
+| **Forbidden inputs** | Assessment scores as coverage truth; Estimated Knowledge / Estimated Mastery as coverage; streak length; Progression Readiness READY as coverage; Exam Readiness percentage as coverage; self-reported “I understand this” / prior-knowledge claims alone as coverage of a unit not studied under Study Progress rules; orphaned or unmapped historical topic rows silently promoted to covered. |
+| **Output / state shape** | Counts and/or percentages of completed Study Progress units over an explicit syllabus denominator; completed / not-completed per unit; journey-style “how far through” derived only from Study Progress. Labels must narrate coverage or study progress, not mastery. Shadow reconciliation may also emit eligibility categories (CONFIRMED_COVERED, HISTORICALLY_COMPLETED, AMBIGUOUS_HISTORICAL_ACTIVITY, NOT_COVERED) with evidence provenance; those categories are interpretive until a separate cutover brief wires them into live display. |
+| **Uncertainty behaviour** | If verification rules cannot confirm completion and legacy acceptance also fails, do not count the unit as covered. Preserve ambiguous historical activity separately rather than deleting it or inventing coverage. If denominator scope is ambiguous (wrong plan / wrong curriculum context), refuse a precise percentage and disclose scope uncertainty rather than inventing a figure. Absence of verified Runtime C evidence alone must not erase accepted legacy historical exposure. |
 | **May inform** | Coverage narration; Current Learning Topic advancement; pace-relative signals that consume coverage as one input among others; Exam Readiness only as one candidate evidence dimension among others (never as sole warrant). |
 | **Must never control or become** | Must never become Mastery, Estimated Knowledge, Progression Readiness, Exam Readiness, or a pass prophecy. Must never alone mint “you’re ready” speech. Must never gate assessment competence claims. |
 
-**Correct framing:** Coverage = honest Study Progress / syllabus exposure. Coverage ≠ understanding.
+**Correct framing:** Coverage = legitimate historical syllabus exposure through an accepted learning pathway. Coverage ≠ understanding, mastery, progression readiness, or exam readiness.
+
+**Evidence sources (non-exclusive):** LEGACY_COMPLETION (accepted Stage A Study Progress completion) and VERIFIED_COMPLETION (Runtime C verified ``TOPIC_COMPLETED``) may each establish coverage when they satisfy the coverage contract. Stronger provenance does not redefine the coverage threshold; it improves auditability.
 
 ---
 
@@ -270,6 +276,7 @@ These invariants are semantic acceptance tests for later implementation reconcil
 | **INV-08** | Streak must not rewrite Coverage, Progression Readiness, or Exam Readiness. | Changing streak count alone, with other evidence held fixed, must not change Coverage totals, Progression results, or Exam Readiness judgements. |
 | **INV-09** | Thin evidence prefers refusal over confident invention. | For Progression Readiness, thin evidence → `INSUFFICIENT_EVIDENCE` + reason. For Exam Readiness, thin warrant → not-yet-claimable / softened speech. For Coverage and Streak, missing verification → do not invent completed units or streak days. |
 | **INV-10** | One weak signal must not alone mint a confident claim. | Holding all other inputs empty/thin, none of: coverage-only, streak-only, calendar-proximity-only, or single soft behavioural signal may produce high Exam Readiness or Progression `READY`. |
+| **INV-11** | Absence of stronger coverage evidence must not erase weaker but valid historical exposure. | A learner with accepted LEGACY_COMPLETION and no VERIFIED_COMPLETION remains HISTORICALLY_COMPLETED for that canonical topic; missing verified Runtime C evidence alone must not force NOT_COVERED when legacy acceptance is met. |
 
 ---
 

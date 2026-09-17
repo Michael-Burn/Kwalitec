@@ -868,6 +868,7 @@ def _register_cli_commands(app: Flask) -> None:
         create_admin_command,
         create_test_user_command,
         internal_alpha_reset_command,
+        shadow_coverage_reconciliation_command,
         sync_admin_command,
     )
     from app.infrastructure.analytics.cli import (
@@ -886,6 +887,7 @@ def _register_cli_commands(app: Flask) -> None:
     app.cli.add_command(create_test_user_command)
     app.cli.add_command(backfill_sections_command)
     app.cli.add_command(internal_alpha_reset_command)
+    app.cli.add_command(shadow_coverage_reconciliation_command)
     app.cli.add_command(analytics_worker_once_command)
     app.cli.add_command(analytics_replay_command)
     app.cli.add_command(analytics_retention_command)

@@ -458,6 +458,21 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/coverage_reconciliation",
+        layer="application",
+        responsibility=(
+            "Shadow-safe dual-source coverage reconciliation per canonical topic"
+        ),
+        owner="Coverage Reconciliation",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Interprets Stage A LEGACY_COMPLETION and Runtime C "
+            "VERIFIED_COMPLETION through curriculum_identity. Shadow mode "
+            "only; does not change live coverage display."
+        ),
+    ),
+    PackageEntry(
         path="app/application/curriculum_intelligence",
         layer="application",
         responsibility="Certified packages + CertifiedMissionEngine",
