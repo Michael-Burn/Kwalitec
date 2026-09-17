@@ -2472,6 +2472,15 @@ class EducationalRuntimeEngineService:
         payload: dict[str, Any] | None = None,
         occurred_at: datetime | None = None,
     ) -> RuntimeEducationalEvent:
+        from app.application.curriculum_identity import CurriculumIdentityService
+
+        safe_topic_id, safe_payload = (
+            CurriculumIdentityService.apply_event_topic_firewall(
+                topic_id,
+                curriculum_identity,
+                payload=payload,
+            )
+        )
         row = RuntimeEducationalEvent(
             event_id=_new_id("evt"),
             event_type=event_type.value,
@@ -2479,9 +2488,9 @@ class EducationalRuntimeEngineService:
             enrolment_id=enrolment_id,
             plan_instance_id=plan_instance_id,
             curriculum_identity=curriculum_identity,
-            topic_id=topic_id,
+            topic_id=safe_topic_id,
             mission_instance_id=mission_instance_id,
-            payload_json=json.dumps(payload or {}),
+            payload_json=json.dumps(safe_payload),
             occurred_at=occurred_at or _utc_now(),
         )
         db.session.add(row)

@@ -32,7 +32,10 @@ def record_decision_recorded(
     plan_instance_id: str | None = None,
 ) -> RuntimeEducationalEvent:
     """Append one DECISION_RECORDED event for this engine invocation."""
+    from app.application.curriculum_identity import CurriculumIdentityService
+
     occurred_at = datetime.now(UTC)
+    identity = curriculum_identity or decision.curriculum_identity or ""
     payload: dict[str, Any] = {
         "decision_id": decision.decision_id,
         "occurred_at": occurred_at.isoformat(),
@@ -59,18 +62,21 @@ def record_decision_recorded(
         "selection_explanation": decision.selection_explanation,
         "decision_explanation": decision.decision_explanation,
     }
+    safe_topic_id, safe_payload = CurriculumIdentityService.apply_event_topic_firewall(
+        decision.topic_id,
+        identity,
+        payload=payload,
+    )
     row = RuntimeEducationalEvent(
         event_id=_new_id("evt"),
         event_type=EducationalEventType.DECISION_RECORDED.value,
         user_id=user_id,
         enrolment_id=enrolment_id or decision.enrolment_id,
         plan_instance_id=plan_instance_id or decision.plan_instance_id,
-        curriculum_identity=curriculum_identity
-        or decision.curriculum_identity
-        or "",
-        topic_id=decision.topic_id,
+        curriculum_identity=identity,
+        topic_id=safe_topic_id,
         mission_instance_id=mission_instance_id,
-        payload_json=json.dumps(payload),
+        payload_json=json.dumps(safe_payload),
         occurred_at=occurred_at,
     )
     db.session.add(row)

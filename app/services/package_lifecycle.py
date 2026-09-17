@@ -446,6 +446,18 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/curriculum_identity",
+        layer="application",
+        responsibility="Canonical curriculum topic identity registry and alias map",
+        owner="Curriculum Identity",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Opaque UUID registry + three-scheme maps. Identity resolution "
+            "and new-evidence firewall only; does not compute coverage."
+        ),
+    ),
+    PackageEntry(
         path="app/application/curriculum_intelligence",
         layer="application",
         responsibility="Certified packages + CertifiedMissionEngine",

@@ -37,6 +37,10 @@ from app.models.curriculum_generation import (
     EiLineageOperation,
     EiRegressionReport,
 )
+from app.models.curriculum_identity import (
+    CanonicalCurriculumTopic,
+    CurriculumTopicIdentityMap,
+)
 from app.models.curriculum_intelligence import (
     CipAuditEvent,
     CipConfidenceFactor,
@@ -152,6 +156,7 @@ from app.models.research_feedback import (
     ResearchProductFindingLink,
     ResearchProductFindingStatusTransition,
 )
+from app.models.student_baseline import StudentBaseline
 from app.models.student_curriculum_binding import (
     SciCurriculumNodeState,
     SciStudentCurriculumInstance,
@@ -166,7 +171,6 @@ from app.models.student_digital_twin import (
     SdtRecommendation,
     SdtStudentDigitalTwin,
 )
-from app.models.student_baseline import StudentBaseline
 from app.models.study_plan import StudyPlan, WeekPlan
 from app.models.subject import Subject
 from app.models.topic_progress import TopicProgress
@@ -201,6 +205,8 @@ __all__ = [
     "Curriculum",
     "Section",
     "Topic",
+    "CanonicalCurriculumTopic",
+    "CurriculumTopicIdentityMap",
     "CkgGraphEdition",
     "CkgSubject",
     "CkgTopic",

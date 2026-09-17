@@ -1,0 +1,94 @@
+{
+  "curriculum_version": "CS1:2026.1",
+  "stage_a_source_version": "IFoA CS1:2026",
+  "exam_name": "IFoA CS1",
+  "stage_a_version": "2026",
+  "notes": "Opaque UUID4 canonical ids for the active CS1 published package 2026.1. Ids are not derived from title, position, ORM id, or engine CS1-*-T** codes. Published and study-event source_ids match live package structure.topics[].topic_id values.",
+  "topics": [
+    {
+      "canonical_id": "bb56dd3f-fad5-4f24-af57-3f726657be9b",
+      "syllabus_code": "1.1",
+      "title": "Describe the purpose and function of data analysis",
+      "published_source_id": "topic-t1-1"
+    },
+    {
+      "canonical_id": "6f1dc875-a5e4-4362-8d3c-8c1fbb229852",
+      "syllabus_code": "1.2",
+      "title": "Complete exploratory data analysis",
+      "published_source_id": "topic-t1-2"
+    },
+    {
+      "canonical_id": "cff62ee0-d3a1-4026-894a-008086b2a0cd",
+      "syllabus_code": "2.1",
+      "title": "Understand the characteristics of basic univariate distributions and how to generate samples from them",
+      "published_source_id": "topic-t2-1"
+    },
+    {
+      "canonical_id": "fbd65886-9078-411a-bb2e-6b3062c9b3bf",
+      "syllabus_code": "2.2",
+      "title": "Determine the characteristics of jointly distributed random variables",
+      "published_source_id": "topic-t2-2"
+    },
+    {
+      "canonical_id": "1e7df530-bf92-41db-8b9a-54e3b0564e83",
+      "syllabus_code": "2.3",
+      "title": "Evaluate expectations and conditional expectations",
+      "published_source_id": "topic-t2-3"
+    },
+    {
+      "canonical_id": "789df660-e839-486e-93ca-818120d36a2a",
+      "syllabus_code": "2.4",
+      "title": "Evaluate and apply generating functions",
+      "published_source_id": "topic-t2-4"
+    },
+    {
+      "canonical_id": "f98ccfc5-7031-4daf-b63f-ae5e523d79f0",
+      "syllabus_code": "2.5",
+      "title": "State and apply the central limit theorem",
+      "published_source_id": "topic-t2-5"
+    },
+    {
+      "canonical_id": "9f957ed8-3f7e-40cc-b41c-4ec860defa64",
+      "syllabus_code": "2.6",
+      "title": "Describe random sampling and the sampling distributions of statistics commonly used in statistical inference",
+      "published_source_id": "topic-t2-6"
+    },
+    {
+      "canonical_id": "5d56419e-e8a5-45bf-ba6b-802a4f34e1e6",
+      "syllabus_code": "3.1",
+      "title": "Construct estimators and discuss their properties",
+      "published_source_id": "topic-t3-1"
+    },
+    {
+      "canonical_id": "986a6278-5250-435b-a2da-b50083b23fca",
+      "syllabus_code": "3.2",
+      "title": "Calculate confidence intervals and prediction intervals",
+      "published_source_id": "topic-t3-2"
+    },
+    {
+      "canonical_id": "d8ce345e-c765-47c4-9a2f-fcabf5f8b118",
+      "syllabus_code": "3.3",
+      "title": "Apply the concepts of hypothesis testing and goodness of fit",
+      "published_source_id": "topic-t3-3"
+    },
+    {
+      "canonical_id": "3a54fe27-e81c-4e60-99bb-9bdb9aa3e826",
+      "syllabus_code": "4.1",
+      "title": "Understand and use linear regression models",
+      "published_source_id": "topic-t4-1"
+    },
+    {
+      "canonical_id": "e88e3774-8735-425e-ad6a-e36c3a81dd7d",
+      "syllabus_code": "4.2",
+      "title": "Understand and use generalised linear models",
+      "published_source_id": "topic-t4-2"
+    },
+    {
+      "canonical_id": "5bdf4c60-15e1-4f8f-9ce1-e4ece3c7378a",
+      "syllabus_code": "5.1",
+      "title": "Explain fundamental concepts of Bayesian statistics and use these concepts to calculate Bayesian estimators",
+      "published_source_id": "topic-t5-1"
+    }
+  ],
+  "orphan_topic_names": ["T0", "T1", "T2"]
+}
