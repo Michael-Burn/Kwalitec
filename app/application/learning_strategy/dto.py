@@ -58,16 +58,16 @@ class ConfidenceCalibration(StrEnum):
 
 # Student-safe titles for StrategyAction (product language).
 STRATEGY_TITLES: dict[StrategyAction, str] = {
-    StrategyAction.ADVANCE_TOPIC: "Advance Topic",
-    StrategyAction.CONSOLIDATE_UNDERSTANDING: "Consolidate Understanding",
-    StrategyAction.IMMEDIATE_REINFORCEMENT: "Immediate Reinforcement",
-    StrategyAction.SCHEDULED_REVISION: "Scheduled Revision",
-    StrategyAction.INCREASE_CHALLENGE: "Increase Challenge",
-    StrategyAction.RECOVER_PRIOR_KNOWLEDGE: "Recover Prior Knowledge",
-    StrategyAction.MAINTAIN_CURRENT_PACE: "Maintain Current Pace",
-    StrategyAction.SLOW_PROGRESSION: "Slow Progression",
-    StrategyAction.REPEAT_PRACTICE: "Repeat Practice",
-    StrategyAction.PRACTICE_FOR_CERTAINTY: "Practice to Build Certainty",
+    StrategyAction.ADVANCE_TOPIC: "Move to the next topic",
+    StrategyAction.CONSOLIDATE_UNDERSTANDING: "Consolidate your understanding",
+    StrategyAction.IMMEDIATE_REINFORCEMENT: "Reinforce this topic soon",
+    StrategyAction.SCHEDULED_REVISION: "Schedule a revision sitting",
+    StrategyAction.INCREASE_CHALLENGE: "Increase the challenge",
+    StrategyAction.RECOVER_PRIOR_KNOWLEDGE: "Recover prior knowledge",
+    StrategyAction.MAINTAIN_CURRENT_PACE: "Continue at your current pace",
+    StrategyAction.SLOW_PROGRESSION: "Slow the pace",
+    StrategyAction.REPEAT_PRACTICE: "Repeat practice",
+    StrategyAction.PRACTICE_FOR_CERTAINTY: "Practice to build certainty",
 }
 
 

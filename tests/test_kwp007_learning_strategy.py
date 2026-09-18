@@ -242,7 +242,7 @@ class TestSittingReportStrategyProjection:
             },
             next_recommendation="Discount factors",
         )
-        assert report.strategy_title == "Advance Topic"
+        assert report.strategy_title == "Move to the next topic"
         assert "Discount factors" in report.strategy_body
         assert report.strategy_explanation
 

@@ -241,11 +241,11 @@ class StudySessionService:
         if surface is SessionSurface.COMPLETE:
             topic_name = topic_display or "today's topic"
             completion_what_happened = (
-                f"Session completed on {topic_name}."
+                f"You completed today's {topic_name} study session."
             )
             what_changed_label = (
                 (progress_explanation or journey_update or "").strip()
-                or "Your practice on this topic was recorded."
+                or "Your session has been saved to History."
             )
 
         return apply_math_markup(
@@ -341,7 +341,11 @@ class StudySessionService:
             feedback_what_happened=feedback_parts["what_happened"],
             feedback_what_it_means=feedback_parts["what_it_means"],
             feedback_what_to_understand=feedback_parts["what_to_understand"],
-            feedback_locked=bool(feedback_parts["what_it_means"]),
+            feedback_locked=bool(
+                feedback_parts["what_happened"]
+                or feedback_parts["what_it_means"]
+                or feedback_parts["what_to_understand"]
+            ),
             learning_state_key=learning_state_key,
             learning_state_label=learning_state_label,
             what_changed_label=what_changed_label,
@@ -533,7 +537,7 @@ class StudySessionService:
                 elif stage == "practice":
                     objective = "Answer today's practice question"
                 else:
-                    objective = "Complete the current practice step"
+                    objective = "Continue today's activity"
 
         if not chapter:
             chapter = subject
@@ -558,7 +562,7 @@ class StudySessionService:
         duration = ""
         next_milestone = ""
         expected = ""
-        instruction = "Complete the current practice step."
+        instruction = "Continue today's activity."
         activity = "Practice"
 
         if surface is SessionSurface.OVERVIEW and page.overview:
@@ -600,7 +604,8 @@ class StudySessionService:
                 activity = "Reading"
                 expected = "Complete today's reading guidance"
                 instruction = (
-                    "Work through the CMP guidance, then continue to the worked example."
+                    "Work through the CMP guidance, then continue "
+                    "to the worked example."
                 )
                 next_milestone = "Worked example"
             elif stage == "worked_example":
@@ -641,22 +646,25 @@ class StudySessionService:
 
         elif surface in {SessionSurface.SUMMARY, SessionSurface.COMPLETE}:
             if product and surface is SessionSurface.SUMMARY:
-                activity = "Finish review"
-                expected = "Record Yes, Partially, or No for today's planned study"
-                # Question lives on the finish-review form legend — keep task lean.
+                activity = "Finish session"
+                expected = (
+                    "Say whether the study planned for today happened"
+                )
                 instruction = (
-                    "Completing a session means today's planned learning "
-                    "activity occurred. It does not mean mastery increased."
+                    "This asks about the study planned for today, not "
+                    "whether this Kwalitec session finished, and not "
+                    "whether your knowledge was estimated."
                 )
                 next_milestone = "Home"
             else:
-                activity = "Complete session"
-                expected = "Close practice and return to Home"
-                instruction = "Practice for this session is finished."
+                activity = "Session complete"
+                expected = "Return to Home"
+                instruction = "This session is finished."
                 next_milestone = "Home"
                 if page.completion and page.completion.primary_topic:
                     instruction = (
-                        f"Practice on {page.completion.primary_topic} is finished."
+                        f"Your {page.completion.primary_topic} session "
+                        "is finished."
                     )
                 if page.completion and page.completion.time_studied_label:
                     duration = page.completion.time_studied_label
@@ -760,7 +768,7 @@ class StudySessionService:
             objective = (page.overview.objective or "").strip()
             return {
                 **empty,
-                "title": "Today's Session",
+                "title": "",
                 "body": objective,
                 "support": "",
             }
@@ -773,7 +781,7 @@ class StudySessionService:
             common_mistake = act.common_mistake or ""
             feedback_next_action = act.next_action or ""
             if act.has_explanation:
-                feedback_outcome = act.feedback_outcome or "Reviewed"
+                feedback_outcome = (act.feedback_outcome or "").strip()
                 feedback_explanation = act.explanation or ""
             title = _activity_content_title(act)
             stage = _activity_stage_key(act)
@@ -836,10 +844,9 @@ class StudySessionService:
 
         if surface is SessionSurface.SUMMARY and product:
             # Form legend owns the Yes/Partially/No question — do not repeat it.
-            # Task instruction already carries the mastery disclaimer.
             return {
                 **empty,
-                "title": "Finish review",
+                "title": "",
                 "body": "",
                 "support": "",
             }
@@ -1111,12 +1118,15 @@ def _stage_step_label(
     surface: SessionSurface,
     page: SessionPageViewModel,
 ) -> str:
-    """Honest position within the session activity sequence (not a mastery measure)."""
+    """Honest position within the session activity sequence (not a mastery measure).
+
+    Omit for single-step sequences: "Step 1 of 1" adds workflow noise.
+    """
     if surface is SessionSurface.ACTIVITY and page.activity:
         index = int(page.activity.activity_index or 0)
         total = int(page.activity.activities_total or 0)
-        if index >= 1 and total >= 1:
-            return f"Step {index} of {total}"
+        if index >= 1 and total > 1:
+            return f"Question {index} of {total}"
     return ""
 
 
@@ -1130,8 +1140,17 @@ def _practice_feedback_parts(
     scored_correct: object,
     practice_choices: tuple[tuple[str, str], ...] = (),
 ) -> dict[str, str]:
-    """Build the three-part honest practice feedback structure."""
-    if not (outcome or explanation or common_mistake):
+    """Build the three-part honest practice feedback structure.
+
+    Never render a semantic field whose content is merely a system status.
+    If meaningful interpretation is unavailable, omit that field.
+    """
+    explanation_text = (explanation or "").strip()
+    mistake_text = (common_mistake or "").strip()
+    outcome_text = (outcome or "").strip()
+    hollow_outcomes = {"reviewed", "ok", "done", "recorded", "submitted"}
+
+    if not (outcome_text or explanation_text or mistake_text):
         return {
             "what_happened": "",
             "what_it_means": "",
@@ -1152,7 +1171,10 @@ def _practice_feedback_parts(
     correct = scored_correct is True
     incorrect = scored_correct is False
     if correct:
-        what_it_means = "Correct"
+        what_it_means = (
+            explanation_text
+            or "Your response matches the expected concept."
+        )
     elif incorrect and rt in {"short_structured", "short", "text", "written"}:
         what_it_means = (
             "Insufficient evidence to judge this answer confidently "
@@ -1160,14 +1182,20 @@ def _practice_feedback_parts(
         )
     elif incorrect:
         what_it_means = "Incorrect"
+    elif outcome_text and outcome_text.casefold() not in hollow_outcomes:
+        what_it_means = outcome_text
+    elif explanation_text:
+        # Prefer authored explanation over a hollow status token.
+        what_it_means = explanation_text
     else:
-        what_it_means = (outcome or "Reviewed").strip() or "Reviewed"
+        what_it_means = ""
 
-    # Choice-aware pilot lands in common_mistake for mapped distractors.
-    if incorrect and common_mistake.strip():
-        what_to_understand = common_mistake.strip()
+    if incorrect and mistake_text:
+        what_to_understand = mistake_text
+    elif explanation_text and what_it_means != explanation_text:
+        what_to_understand = explanation_text
     else:
-        what_to_understand = (explanation or "").strip()
+        what_to_understand = ""
 
     return {
         "what_happened": what_happened,

@@ -193,40 +193,49 @@ def project_study_insights_to_recommendations(
     if focus is not None or next_action is not None:
         title = _field_text(focus, key="title") or _field_text(
             next_action, key="title"
-        ) or "Today's study focus"
-        reason = _field_text(focus) or _field_text(next_action) or educational_advice
-        next_step = _field_text(next_action) or _field_text(next_action, key="title")
-        topic_id = None
-        if focus and focus.get("topic_id"):
-            topic_id = str(focus.get("topic_id"))
-        elif next_action and next_action.get("topic_id"):
-            topic_id = str(next_action.get("topic_id"))
-        rows.append(
-            {
-                "title": title,
-                "category": "Study Focus",
-                "priority": "High",
-                "reason": reason or title,
-                "expected_benefit": (
-                    "Follow Twin-grounded study guidance for today's focus."
-                ),
-                "next_action": next_step or None,
-                "topic_id": topic_id,
-                "observed_facts": tuple(
-                    fact
-                    for fact in (_field_text(focus), _field_text(next_action))
-                    if fact
-                ),
-                "estimates": (),
-                "educational_advice": educational_advice or reason or title,
-                "limitations_codes": list(codes),
-                "source_authority": "study_insights",
-                "confidence_level": str(
-                    twin_payload.get("confidence_level") or ""
-                ).strip(),
-                "generated_at": generated_at,
-            }
         )
+        # Authoritative focus only: never invent a focus label.
+        if title:
+            reason = (
+                _field_text(focus)
+                or _field_text(next_action)
+                or educational_advice
+            )
+            next_step = (
+                _field_text(next_action)
+                or _field_text(next_action, key="title")
+            )
+            topic_id = None
+            if focus and focus.get("topic_id"):
+                topic_id = str(focus.get("topic_id"))
+            elif next_action and next_action.get("topic_id"):
+                topic_id = str(next_action.get("topic_id"))
+            rows.append(
+                {
+                    "title": title,
+                    "category": "Study Focus",
+                    "priority": "High",
+                    "reason": reason or title,
+                    "expected_benefit": (
+                        "Follow Twin-grounded study guidance for today's focus."
+                    ),
+                    "next_action": next_step or None,
+                    "topic_id": topic_id,
+                    "observed_facts": tuple(
+                        fact
+                        for fact in (_field_text(focus), _field_text(next_action))
+                        if fact
+                    ),
+                    "estimates": (),
+                    "educational_advice": educational_advice or reason or title,
+                    "limitations_codes": list(codes),
+                    "source_authority": "study_insights",
+                    "confidence_level": str(
+                        twin_payload.get("confidence_level") or ""
+                    ).strip(),
+                    "generated_at": generated_at,
+                }
+            )
 
     if risk is not None:
         rows.append(

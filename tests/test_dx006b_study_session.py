@@ -125,8 +125,10 @@ def test_activity_feedback_continue_primary(app):
     assert study.primary_kind == "advance_form"
     assert study.primary_label == "Continue"
     assert study.show_answer_input is False
-    assert study.feedback_outcome == "Reviewed"
+    assert study.feedback_outcome == ""
     assert "Bayes" in study.feedback_explanation
+    assert "Bayes" in study.feedback_what_it_means
+    assert study.feedback_what_to_understand == ""
 
 
 def test_reading_activity_sticky_objective_not_full_body(app):

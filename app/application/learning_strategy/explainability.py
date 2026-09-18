@@ -195,7 +195,7 @@ def explanation_for(
 
 
 def title_for(action: StrategyAction) -> str:
-    return STRATEGY_TITLES.get(action, "Maintain Current Pace")
+    return STRATEGY_TITLES.get(action, "Continue at your current pace")
 
 
 def _scrub(text: str) -> str:

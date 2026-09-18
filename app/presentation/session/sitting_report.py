@@ -674,50 +674,40 @@ def _progress_explanation(
     incorrect: int,
     mission_complete_status: str = "",
 ) -> str:
+    """Learner-visible consequence only, never internal state transitions."""
     status = (mission_complete_status or "").strip().lower()
     if status == "failed_open" or status.startswith("failed_permanent"):
         return (
-            f"Today's Session on {topic} is closed. Your Journey could not be "
-            "updated for this sitting because the update could not be recorded."
+            f"Your {topic} session is saved. Study history could not be "
+            "updated for this sitting; you can continue when ready."
         )
     if progress_advanced and mission_completed:
         if correct and not incorrect:
             return (
-                f"Your Journey moved forward on {topic} because you finished "
-                "honestly and answered practice correctly."
+                f"Your session on {topic} is saved. You finished honestly and "
+                "answered practice correctly."
             )
-        return (
-            f"Your Journey moved forward on {topic} because today's Session "
-            "was accepted as complete study."
-        )
+        return f"Your session on {topic} is saved to your study history."
     if progress_advanced:
-        return (
-            f"Coverage for {topic} advanced from today's accepted practice."
-        )
+        return f"Your practice on {topic} is saved to your study history."
     if "partial" in finish_label.lower() or disposition == "accepted_with_restrictions":
         return (
-            "Progress stayed where it was. Honest finish reviews that are "
-            "partial do not claim Journey movement."
+            "Your session is saved. Because you marked planned study as "
+            "partial, topic progress was left unchanged."
         )
     if finish_label and "not complete" in finish_label.lower():
         return (
-            "Progress stayed where it was. You recorded that planned study "
-            "was not complete, so no Journey advance was claimed."
+            "Your session is saved. Because you recorded that planned study "
+            "was not complete, topic progress was left unchanged."
         )
     if disposition == "rejected":
         return (
-            "Progress did not change: today's Session did not meet the bar "
-            "for Journey movement. You can continue when ready."
+            "Your session is saved. Topic progress was left unchanged for "
+            "this sitting. You can continue when ready."
         )
     if correct or incorrect:
-        return (
-            f"You answered practice on {topic} today. Journey movement "
-            "depends on an honest finish and accepted study for the day."
-        )
-    return (
-        f"Today's Session on {topic} is closed. Journey updates appear when "
-        "study is accepted as complete."
-    )
+        return f"Your practice answers on {topic} are saved."
+    return f"Your session on {topic} has been saved to History."
 
 
 def _learning_insights(
@@ -879,32 +869,23 @@ def _tomorrow_preview(
                 return text
     except Exception:  # noqa: BLE001 — sitting report must stay resilient
         pass
-    if strategy is not None and strategy.recommendation_title:
-        if next_recommendation and strategy.action.value == "advance_topic":
-            return (
-                f"{strategy.recommendation_title} · "
-                f"Tomorrow's Session · {next_recommendation}"
-            )
-        if strategy.spacing_guidance:
-            return (
-                f"{strategy.recommendation_title} · {strategy.spacing_guidance}"
-            )
-        return (
-            f"{strategy.recommendation_title} · {strategy.recommendation_body}"
-        )
-    if strategy_title:
-        if next_recommendation:
-            return f"{strategy_title} · Tomorrow's Session · {next_recommendation}"
-        return f"{strategy_title} · continue {topic}."
+    # Prefer learner-visible consequence: what happens next, not strategy enums.
     if next_recommendation:
-        return f"Tomorrow's Session · {next_recommendation}"
+        return f"Your next session will continue from {next_recommendation}."
+    if strategy is not None and strategy.spacing_guidance:
+        guidance = strategy.spacing_guidance.strip()
+        if guidance:
+            return guidance
+    if strategy is not None and strategy.recommendation_body:
+        body = strategy.recommendation_body.strip()
+        if body and "pace" not in body.casefold():
+            return body
     if needs:
-        return (
-            f"Tomorrow's Session will make space to reinforce {needs[0]}."
-        )
+        return f"Your next session will make space to reinforce {needs[0]}."
     if progress_advanced:
-        return "Tomorrow's Session continues to the next topic on your Journey."
-    return f"Return tomorrow to continue {topic}."
+        return "Your next session continues to the next topic in your plan."
+    topic_name = (topic or "").strip() or "your current topic"
+    return f"Your next session will continue from {topic_name}."
 
 
 def _frozen_intelligence(

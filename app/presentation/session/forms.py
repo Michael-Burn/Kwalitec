@@ -118,11 +118,14 @@ class ContinueReflectionForm(FlaskForm):
 
 
 class FinishReviewForm(FlaskForm):
-    """Explicit Finish Review — Yes / Partially / No (LXP-003)."""
+    """Planned-study adherence: Yes / Partially / No (LXP-003).
+
+    Distinct from session completion and from knowledge evidence.
+    """
 
     session_id = HiddenField(validators=[DataRequired(), Length(max=128)])
     completion_status = RadioField(
-        "Did you complete today's planned study?",
+        "Did you complete the study planned for today?",
         choices=[
             ("yes", "Yes"),
             ("partially", "Partially"),

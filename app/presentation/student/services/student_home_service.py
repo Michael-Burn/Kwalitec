@@ -818,7 +818,7 @@ class StudentHomeService:
             ).strip()
             return HomeMission(
                 subject_name=subject or "Current subject",
-                objective=objective or "Today's study focus",
+                objective=objective,
                 status_label=self._status_line(
                     home.completion_status_label or home.session_status or "Ready",
                     duration,
@@ -833,7 +833,7 @@ class StudentHomeService:
                 recommendation_key=rec_key,
                 title=title or objective or "Today's Session",
                 difficulty_label=difficulty,
-                learning_objective=objective or "Today's study focus",
+                learning_objective=objective,
             )
 
         # 2–3. Mission ready → Start Session (POST preserves commitment path).
@@ -875,7 +875,7 @@ class StudentHomeService:
                 return None
             return HomeMission(
                 subject_name=subject or "Current subject",
-                objective=objective or "Today's study focus",
+                objective=objective,
                 status_label=self._status_line(
                     home.completion_status_label or home.session_status or "Ready",
                     duration,
@@ -890,7 +890,7 @@ class StudentHomeService:
                 recommendation_key=rec_key,
                 title=title or objective or "Today's Session",
                 difficulty_label=difficulty,
-                learning_objective=objective or "Today's study focus",
+                learning_objective=objective,
             )
 
         # 4. Experience / Runtime C chrome has a real title but CTA not yet
@@ -908,7 +908,7 @@ class StudentHomeService:
         ):
             return HomeMission(
                 subject_name=subject or "Current subject",
-                objective=objective or "Today's study focus",
+                objective=objective,
                 status_label=self._status_line(
                     home.completion_status_label or home.session_status or "Ready",
                     duration,
@@ -923,7 +923,7 @@ class StudentHomeService:
                 recommendation_key=rec_key,
                 title=display_title,
                 difficulty_label=difficulty,
-                learning_objective=objective or "Today's study focus",
+                learning_objective=objective,
             )
 
         return None
@@ -1312,20 +1312,32 @@ class StudentHomeService:
 
     @staticmethod
     def _objective(home: HomePageViewModel) -> str:
-        return (
-            (home.session_learning_objective or "").strip()
-            or (
-                home.recommendation.title
-                if home.recommendation and home.recommendation.title
-                else ""
-            )
-            or (home.primary_mission_title or "").strip()
-            or (
+        """Authoritative study focus only: never invent specificity from topic title.
+
+        Session learning objective and recommendation title are focus claims.
+        Mission/topic titles belong in the hero title, not manufactured as focus.
+        """
+        lo = (home.session_learning_objective or "").strip()
+        if lo:
+            return lo
+        if home.recommendation and (home.recommendation.title or "").strip():
+            rec = home.recommendation.title.strip()
+            topic = (home.primary_mission_title or "").strip()
+            start_topic = (
                 (home.start_session.topic_title or "").strip()
                 if home.start_session
                 else ""
             )
-        )
+            # Recommendation title that merely repeats the topic is not a focus.
+            if rec.casefold() not in {
+                topic.casefold(),
+                start_topic.casefold(),
+                "today's mission",
+                "today's session",
+                "today's study focus",
+            }:
+                return rec
+        return ""
 
     @staticmethod
     def _why_now(home: HomePageViewModel) -> str:

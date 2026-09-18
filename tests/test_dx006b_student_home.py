@@ -103,7 +103,9 @@ def test_start_mission_uses_start_form(app, ctx):
     assert page.mission.primary_kind == "start_form"
     assert page.mission.primary_label == "Start Today's Session"
     assert page.mission.subject_name == "CS1 FR"
-    assert "Lease liability" in page.mission.objective
+    assert page.mission.title == "Lease liability"
+    # Topic alone is not manufactured as a study focus.
+    assert page.mission.objective == ""
 
 
 def test_day_complete_offers_continuation_invite(app, ctx):
