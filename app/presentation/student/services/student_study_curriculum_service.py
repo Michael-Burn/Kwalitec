@@ -1,15 +1,16 @@
 """Study Curriculum presentation: syllabus map with four honest states.
 
 Calls the Study Curriculum assembler once per page load and projects its
-flat topic rows into a sectioned view. Coverage uses Runtime C
-``get_study_progress`` (the same call Journey, Home, and Honest Progress
-use). Continue is a Home resume deep-link, never a new recommendation.
+flat topic rows into a sectioned view. Coverage uses dual-source
+reconciliation (CONFIRMED_COVERED + HISTORICALLY_COMPLETED). Continue is a
+Home resume deep-link, never a new recommendation.
 """
 
 from __future__ import annotations
 
 import logging
 from collections.abc import Callable, Mapping
+from typing import Any
 
 from flask import url_for
 
@@ -20,6 +21,8 @@ from app.application.study_curriculum.types import (
     TopicCurriculumState,
 )
 from app.presentation.student.coverage_honesty import (
+    reconciled_coverage_for_learner,
+    uses_reconciled_coverage,
     verified_coverage_from_progress,
 )
 from app.presentation.student.dto.study_curriculum import (
@@ -57,10 +60,12 @@ class StudentStudyCurriculumPresentationService:
         *,
         assembler=None,
         study_progress=None,
+        coverage_display: Callable[[int], Any] | None = None,
         why_lookup: Callable[[str], Mapping[str, str]] | None = None,
     ) -> None:
         self._assembler = assembler
         self._study_progress = study_progress
+        self._coverage_display = coverage_display
         self._why_lookup = why_lookup
 
     def build(
@@ -156,8 +161,21 @@ class StudentStudyCurriculumPresentationService:
     def _coverage(
         self, *, user_id: int, subject_code: str
     ) -> tuple[int, int, float, int, str]:
-        """Verified Runtime C coverage, not four-state counts or claim union."""
+        """CS1: reconciled dual-source coverage; else verified-only Study Progress."""
         try:
+            claim_count, claim_label = self._prior_knowledge_claims(
+                user_id=user_id, subject_code=subject_code
+            )
+            if uses_reconciled_coverage(subject_code=subject_code):
+                display_fn = self._coverage_display or reconciled_coverage_for_learner
+                display = display_fn(user_id)
+                return (
+                    display.covered_count,
+                    display.topic_count,
+                    display.coverage_ratio,
+                    claim_count,
+                    claim_label,
+                )
             progress = self._study_progress
             if progress is None:
                 from app.application.educational_runtime_engine.service import (
@@ -180,6 +198,27 @@ class StudentStudyCurriculumPresentationService:
         except Exception:  # noqa: BLE001 — presentation soft-fail
             logger.warning("study_curriculum_coverage_failed", exc_info=True)
             return 0, 0, 0.0, 0, ""
+
+    def _prior_knowledge_claims(
+        self, *, user_id: int, subject_code: str
+    ) -> tuple[int, str]:
+        """Quiet claim line from Runtime C Study Progress (not coverage)."""
+        try:
+            progress = self._study_progress
+            if progress is None:
+                from app.application.educational_runtime_engine.service import (
+                    EducationalRuntimeEngineService,
+                )
+
+                progress = EducationalRuntimeEngineService()
+            snap = progress.get_study_progress(
+                user_id=user_id,
+                subject_code=subject_code,
+            )
+            parts = verified_coverage_from_progress(snap)
+            return parts.claimed_count, parts.claim_label
+        except Exception:  # noqa: BLE001
+            return 0, ""
 
     def _why_for_subject(self, subject_code: str) -> Mapping[str, str]:
         if self._why_lookup is not None:

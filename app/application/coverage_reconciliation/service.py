@@ -1,12 +1,13 @@
-"""Canonical coverage reconciliation (shadow-safe interpretive layer).
+"""Canonical coverage reconciliation (dual-source eligibility).
 
 Reads Stage A ``TopicProgress.completed`` and Runtime C verified
 ``TOPIC_COMPLETED`` events, resolves both through the existing
 ``canonical_curriculum_topic`` / ``curriculum_topic_identity_map`` layer, and
 classifies each canonical topic into one of four eligibility categories.
 
-Does not write Study Progress, does not change live coverage displays, and does
-not touch Twin, Progression Readiness, Policy V1, assessment, or arbitration.
+Student-facing coverage displays may consume ``display_coverage`` /
+``coverage_for_learner``. Does not write Study Progress. Does not touch Twin,
+Progression Readiness, Policy V1, assessment, arbitration, or Exam Readiness.
 """
 
 from __future__ import annotations
@@ -26,11 +27,13 @@ from app.application.coverage_reconciliation.constants import (
     CATEGORY_CONFIRMED_COVERED,
     CATEGORY_HISTORICALLY_COMPLETED,
     CATEGORY_NOT_COVERED,
+    COVERED_FOR_DISPLAY,
     EVIDENCE_LEGACY_COMPLETION,
     EVIDENCE_VERIFIED_COMPLETION,
 )
 from app.application.coverage_reconciliation.types import (
     CanonicalCoverageVerdict,
+    CoverageDisplay,
     EvidenceProvenance,
     LearnerCoverageReconciliation,
     UnmappedHistoricalActivity,
@@ -132,11 +135,52 @@ def _classify_eligibility(
 
 
 class CoverageReconciliationService:
-    """Derive dual-source coverage eligibility per canonical topic.
+    """Derive dual-source coverage eligibility per canonical topic."""
 
-    Shadow-safe: callers must not wire results into live coverage displays
-    until a separate cutover brief authorises that step.
-    """
+    @staticmethod
+    def display_coverage(
+        result: LearnerCoverageReconciliation,
+    ) -> CoverageDisplay:
+        """Project reconciled eligibility into student-facing coverage numbers."""
+        confirmed = 0
+        historical = 0
+        for verdict in result.canonical_verdicts:
+            if verdict.eligibility not in COVERED_FOR_DISPLAY:
+                continue
+            if verdict.eligibility == CATEGORY_CONFIRMED_COVERED:
+                confirmed += 1
+            else:
+                historical += 1
+        covered = confirmed + historical
+        total = len(result.canonical_verdicts)
+        ratio = (covered / total) if total else 0.0
+        ratio = max(0.0, min(1.0, float(ratio)))
+        percent = int(round(ratio * 100)) if total else 0
+        label = f"{covered} of {total} topics completed" if total else ""
+        return CoverageDisplay(
+            covered_count=covered,
+            topic_count=total,
+            coverage_ratio=ratio,
+            coverage_percent=percent,
+            coverage_label=label,
+            confirmed_covered_count=confirmed,
+            historically_completed_count=historical,
+        )
+
+    @staticmethod
+    def coverage_for_learner(
+        user_id: int,
+        *,
+        curriculum_version: str = ACTIVE_CS1_CURRICULUM_VERSION,
+        stage_a_source_version: str = ACTIVE_CS1_STAGE_A_SOURCE_VERSION,
+    ) -> CoverageDisplay:
+        """Reconcile then project coverage numbers for one learner."""
+        result = CoverageReconciliationService.reconcile_learner(
+            user_id,
+            curriculum_version=curriculum_version,
+            stage_a_source_version=stage_a_source_version,
+        )
+        return CoverageReconciliationService.display_coverage(result)
 
     @staticmethod
     def reconcile_learner(
@@ -528,8 +572,9 @@ class CoverageReconciliationService:
         lines.append("Coverage reconciliation shadow report")
         lines.append("=" * 72)
         lines.append(
-            "Interpretive only. Does not change live coverage display or "
-            "calculation."
+            "Interpretive eligibility report. Live Study / Stats / Journey / "
+            "Settings coverage displays consume the same dual-source rules via "
+            "display_coverage / coverage_for_learner."
         )
         lines.append("")
 

@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 from flask import render_template
 
+from app.application.coverage_reconciliation import CoverageDisplay
 from app.application.progress_engine.dto import (
     CurriculumPosition,
     ProgressProjection,
@@ -187,6 +188,24 @@ class _FakeProgress:
         return self._progress
 
 
+def _coverage_display_from_progress(progress: StudyProgress) -> CoverageDisplay:
+    """Fixture helper: mirror verified-only counts as a CoverageDisplay."""
+    covered = len(progress.verified_completed_topic_ids or ())
+    total = len(progress.topic_ids or ())
+    ratio = (covered / total) if total else 0.0
+    return CoverageDisplay(
+        covered_count=covered,
+        topic_count=total,
+        coverage_ratio=ratio,
+        coverage_percent=int(round(ratio * 100)) if total else 0,
+        coverage_label=(
+            f"{covered} of {total} topics completed" if total else ""
+        ),
+        confirmed_covered_count=covered,
+        historically_completed_count=0,
+    )
+
+
 def _build_mixed_page(**kwargs):
     snapshot = _mixed_snapshot()
     progress = _mixed_progress()
@@ -196,6 +215,7 @@ def _build_mixed_page(**kwargs):
     svc = StudentStudyCurriculumPresentationService(
         assembler=_FakeAssembler(snapshot),
         study_progress=_FakeProgress(progress),
+        coverage_display=lambda _uid: _coverage_display_from_progress(progress),
         why_lookup=lambda _code: why,
     )
     return svc.build(user_id=1, subject_code="CS1", subject_label="CS1", **kwargs)
@@ -270,6 +290,7 @@ def test_study_coverage_excludes_prior_knowledge_claims_from_verified_ratio(app)
     page = StudentStudyCurriculumPresentationService(
         assembler=_FakeAssembler(_mixed_snapshot()),
         study_progress=_FakeProgress(progress),
+        coverage_display=lambda _uid: _coverage_display_from_progress(progress),
         why_lookup=lambda _code: {},
     ).build(user_id=1, subject_code="CS1", subject_label="CS1")
     html = _render_study(app, page)
@@ -402,6 +423,11 @@ def test_study_route_renders_mixed_states(student_client, monkeypatch):
         "app.presentation.student.services.student_study_curriculum_service."
         "_why_from_knowledge_architecture",
         lambda _code: {TOPIC_MASTERED: "Graph rationale for mastered topic."},
+    )
+    monkeypatch.setattr(
+        "app.presentation.student.services.student_study_curriculum_service."
+        "reconciled_coverage_for_learner",
+        lambda _user_id: _coverage_display_from_progress(progress),
     )
     monkeypatch.setattr(
         "app.services.twin_cutover_service.subject_code_for_user",

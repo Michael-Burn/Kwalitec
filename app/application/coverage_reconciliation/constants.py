@@ -28,5 +28,13 @@ ELIGIBILITY_CATEGORIES = frozenset(
     }
 )
 
+# Categories that lawfully count as covered for student-facing display.
+COVERED_FOR_DISPLAY = frozenset(
+    {
+        CATEGORY_CONFIRMED_COVERED,
+        CATEGORY_HISTORICALLY_COMPLETED,
+    }
+)
+
 # Mapping statuses that may contribute a defensible canonical link.
 ACCEPTABLE_MAPPING_STATUSES = frozenset({"exact", "defensible_but_changed"})

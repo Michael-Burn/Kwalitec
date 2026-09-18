@@ -1436,11 +1436,8 @@ def journey_vm(
         completed=tuple(_topic_vm(t) for t in snap.completed_topics),
         upcoming=upcoming,
         progress_percent=snap.progress_percent,
-        # Legacy Experience path may surface weighted readiness as syllabus %.
-        # Soften until reconciled with Runtime C verified topic coverage.
         progress_label=(
-            f"{snap.progress_percent}% through your syllabus "
-            "(unreconciled progress estimate)"
+            f"{snap.progress_percent}% of syllabus completed"
         ),
         estimated_completion_label=snap.estimated_completion_label,
         prerequisite_notes=snap.prerequisite_visibility,

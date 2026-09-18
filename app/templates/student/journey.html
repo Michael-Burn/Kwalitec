@@ -42,7 +42,7 @@
   <section class="ds-os-progress ds-os-mastery" aria-labelledby="journey-progress-title" data-sop-section="progress">
     <h2 class="ds-section__title" id="journey-progress-title">Syllabus covered</h2>
     <p class="ds-os-progress__label">
-      {{ journey.progress_label or ((journey.progress_percent ~ '% through your syllabus (unreconciled progress estimate)') if journey.progress_percent is not none else 'Your syllabus path is taking shape') }}
+      {{ journey.progress_label or ((journey.progress_percent ~ '% of syllabus completed') if journey.progress_percent is not none else 'Your syllabus path is taking shape') }}
     </p>
     {% if journey.prior_knowledge_claim_label %}
     <p class="ds-list__meta" data-journey-prior-knowledge="true">{{ journey.prior_knowledge_claim_label }}</p>

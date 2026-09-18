@@ -34,6 +34,8 @@ from app.infrastructure.adapters.learner_progress.shown_milestones_persistence i
     MilestonesShownPersistence,
 )
 from app.presentation.student.coverage_honesty import (
+    reconciled_coverage_for_learner,
+    uses_reconciled_coverage,
     verified_coverage_from_progress,
 )
 from app.presentation.student.dto.honest_progress import (
@@ -78,6 +80,7 @@ class HonestProgressService:
         detector: LearnerProgressMilestoneDetector | None = None,
         assembler=None,
         study_progress=None,
+        coverage_display=None,
     ) -> None:
         self._study_day_query = study_day_query or qualifying_study_day_query()
         self._shown = shown_store or MilestonesShownPersistence()
@@ -85,6 +88,7 @@ class HonestProgressService:
         self._detector = detector
         self._assembler = assembler
         self._study_progress = study_progress
+        self._coverage_display = coverage_display
 
     def streak_stats(self, *, user_id: int, as_of: date | None = None) -> StreakStats:
         """Current and longest streak from the qualifying study day port."""
@@ -339,16 +343,44 @@ class HonestProgressService:
     def _syllabus_coverage(
         self, user_id: int
     ) -> tuple[int, int, int | None, str, int, str]:
-        """Verified Study Progress coverage (same honesty rule as Study/Home)."""
+        """CS1: reconciled coverage; else verified Study Progress (same as Study)."""
         subject_code = self._resolve_subject_code(user_id)
         if not subject_code:
             return 0, 0, None, "", 0, ""
         try:
-            snap = self._study_progress_service().get_study_progress(
-                user_id=user_id,
-                subject_code=subject_code,
-            )
-            parts = verified_coverage_from_progress(snap)
+            claim_count, claim_label = 0, ""
+            try:
+                snap = self._study_progress_service().get_study_progress(
+                    user_id=user_id,
+                    subject_code=subject_code,
+                )
+                parts = verified_coverage_from_progress(snap)
+                claim_count = parts.claimed_count
+                claim_label = parts.claim_label
+            except Exception:  # noqa: BLE001
+                logger.debug(
+                    "honest_progress_claim_line_unavailable",
+                    exc_info=True,
+                )
+                parts = None
+
+            if uses_reconciled_coverage(subject_code=subject_code):
+                display_fn = self._coverage_display or reconciled_coverage_for_learner
+                display = display_fn(user_id)
+                return (
+                    display.covered_count,
+                    display.topic_count,
+                    display.coverage_percent if display.topic_count else None,
+                    display.coverage_label,
+                    claim_count,
+                    claim_label,
+                )
+            if parts is None:
+                snap = self._study_progress_service().get_study_progress(
+                    user_id=user_id,
+                    subject_code=subject_code,
+                )
+                parts = verified_coverage_from_progress(snap)
             return (
                 parts.verified_count,
                 parts.topic_count,

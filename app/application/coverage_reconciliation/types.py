@@ -1,9 +1,26 @@
-"""Result types for coverage reconciliation (interpretive, shadow-safe)."""
+"""Result types for coverage reconciliation (dual-source eligibility)."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any
+
+
+@dataclass(frozen=True)
+class CoverageDisplay:
+    """Student-facing coverage numbers derived from reconciled eligibility.
+
+    Covered units are CONFIRMED_COVERED plus HISTORICALLY_COMPLETED only.
+    Ambiguous historical activity and NOT_COVERED never inflate the count.
+    """
+
+    covered_count: int
+    topic_count: int
+    coverage_ratio: float
+    coverage_percent: int
+    coverage_label: str
+    confirmed_covered_count: int
+    historically_completed_count: int
 
 
 @dataclass(frozen=True)

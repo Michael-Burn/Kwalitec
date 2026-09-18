@@ -275,16 +275,36 @@ def export_weekly_pdf():
     library such as WeasyPrint or ReportLab.
     """
     from app.services.analytics_service import AnalyticsService
-    from app.services.readiness_service import ReadinessService
 
     user_id = current_user.id
 
     weekly_report = AnalyticsService.generate_weekly_report(user_id)
-    curriculum_coverage = ReadinessService.get_curriculum_coverage(user_id)
+    from app.presentation.student.coverage_honesty import (
+        reconciled_coverage_for_learner,
+        uses_reconciled_coverage,
+    )
     from app.presentation.student.exam_readiness_withheld import (
         EXAM_READINESS_WITHHELD_BASIS,
         student_facing_exam_readiness_claim,
     )
+    from app.services.twin_cutover_service import subject_code_for_user
+
+    subject_code = (subject_code_for_user(user_id) or "").strip().upper()
+    if uses_reconciled_coverage(subject_code=subject_code):
+        reconciled = reconciled_coverage_for_learner(user_id)
+        coverage_line = (
+            f"Curriculum Coverage (reconciled dual-source Study Progress; "
+            f"not Exam Readiness): "
+            f"{reconciled.coverage_percent}%"
+        )
+    else:
+        from app.services.readiness_service import ReadinessService
+
+        curriculum_coverage = ReadinessService.get_curriculum_coverage(user_id)
+        coverage_line = (
+            f"Curriculum Coverage (plan leaf completed %; not Exam Readiness): "
+            f"{curriculum_coverage['coverage_percentage']:.0f}%"
+        )
 
     # Build a structured plain-text report
     lines = []
@@ -301,11 +321,7 @@ def export_weekly_pdf():
     # get_overall_readiness / calculate_readiness / Twin scores.
     lines.append(f"Exam Readiness: {student_facing_exam_readiness_claim()}")
     lines.append(f"  ({EXAM_READINESS_WITHHELD_BASIS})")
-    lines.append(
-        f"Curriculum Coverage (plan leaf completed %; not reconciled "
-        f"with Stats verified topic counts; not Exam Readiness): "
-        f"{curriculum_coverage['coverage_percentage']:.0f}%"
-    )
+    lines.append(coverage_line)
     lines.append("Average Estimated Knowledge: see Stats when practice evidence exists")
     lines.append(
         f"Current Streak (attempt calendar days; not reconciled with "

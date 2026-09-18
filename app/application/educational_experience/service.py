@@ -416,24 +416,74 @@ class EducationalExperienceService:
             number=str(current.get("number") or ""),
         )
         section_title = section_by_topic.get(current_id, "")
-        verified_ids = tuple(
-            getattr(progress, "verified_completed_topic_ids", ()) or ()
-        )
-        claimed_ids = tuple(
-            getattr(progress, "prior_knowledge_claimed_topic_ids", ()) or ()
-        )
-        if not verified_ids and not claimed_ids:
-            # Legacy undifferentiated progress: treat progressed as verified.
-            verified_ids = tuple(progress.completed_topic_ids or ())
-            verified_ratio = float(progress.coverage_ratio or 0.0)
+        # CS1 live coverage uses dual-source reconciliation. Other subjects keep
+        # verified-only Study Progress until identity reconciliation exists.
+        from app.presentation.student.coverage_honesty import uses_reconciled_coverage
+
+        if uses_reconciled_coverage(
+            subject_code=enrolment.subject_code,
+            curriculum_identity=str(
+                getattr(enrolment, "curriculum_identity", "") or ""
+            ),
+        ):
+            try:
+                from app.application.coverage_reconciliation import (
+                    CoverageReconciliationService,
+                )
+
+                display = CoverageReconciliationService.coverage_for_learner(
+                    user_id
+                )
+                coverage_percent = display.coverage_percent
+                completed_count = display.covered_count
+                verified_ratio = display.coverage_ratio
+                if display.topic_count > 0:
+                    topic_count = display.topic_count
+            except Exception:  # noqa: BLE001
+                logger.warning(
+                    "educational_experience_reconciled_coverage_failed",
+                    exc_info=True,
+                )
+                verified_ids = tuple(
+                    getattr(progress, "verified_completed_topic_ids", ()) or ()
+                )
+                claimed_ids = tuple(
+                    getattr(progress, "prior_knowledge_claimed_topic_ids", ())
+                    or ()
+                )
+                if not verified_ids and not claimed_ids:
+                    verified_ids = tuple(progress.completed_topic_ids or ())
+                    verified_ratio = float(progress.coverage_ratio or 0.0)
+                else:
+                    verified_ratio = float(
+                        getattr(progress, "verified_coverage_ratio", 0.0) or 0.0
+                    )
+                    if topic_ids and verified_ids and verified_ratio <= 0.0:
+                        verified_ratio = len(verified_ids) / len(topic_ids)
+                coverage_percent = int(
+                    round(max(0.0, min(1.0, verified_ratio)) * 100)
+                )
+                completed_count = len(verified_ids)
         else:
-            verified_ratio = float(
-                getattr(progress, "verified_coverage_ratio", 0.0) or 0.0
+            verified_ids = tuple(
+                getattr(progress, "verified_completed_topic_ids", ()) or ()
             )
-            if topic_ids and verified_ids and verified_ratio <= 0.0:
-                verified_ratio = len(verified_ids) / len(topic_ids)
-        coverage_percent = int(round(max(0.0, min(1.0, verified_ratio)) * 100))
-        completed_count = len(verified_ids)
+            claimed_ids = tuple(
+                getattr(progress, "prior_knowledge_claimed_topic_ids", ()) or ()
+            )
+            if not verified_ids and not claimed_ids:
+                verified_ids = tuple(progress.completed_topic_ids or ())
+                verified_ratio = float(progress.coverage_ratio or 0.0)
+            else:
+                verified_ratio = float(
+                    getattr(progress, "verified_coverage_ratio", 0.0) or 0.0
+                )
+                if topic_ids and verified_ids and verified_ratio <= 0.0:
+                    verified_ratio = len(verified_ids) / len(topic_ids)
+            coverage_percent = int(
+                round(max(0.0, min(1.0, verified_ratio)) * 100)
+            )
+            completed_count = len(verified_ids)
 
         position = CurriculumPositionSnapshot(
             subject_code=enrolment.subject_code,

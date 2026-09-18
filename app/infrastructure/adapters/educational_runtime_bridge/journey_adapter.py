@@ -292,21 +292,66 @@ class JourneyAdapter:
     def _progress_ratio(
         self, user_id: int, plan: Any
     ) -> tuple[float, str, bool]:
-        """Project Journey syllabus-progress ratio from Study Progress coverage.
+        """Project Journey syllabus-progress ratio.
 
-        Never invents a formula in the adapter — delegates to Runtime A services.
-
-        Phase 3 decision: ``ReadinessService.calculate_readiness`` is revoked as
-        Exam Readiness authority and must not feed this Journey ratio. Coverage
-        reconciliation (F1 vs leaf vs weighted) remains a later brief; this path
-        uses CurriculumService plan coverage only.
+        CS1 uses dual-source reconciliation. Other curricula keep Stage A
+        ``get_curriculum_progress``. Phase 3 revoked ``calculate_readiness`` as
+        Exam Readiness authority; this path must not feed Exam Readiness.
         """
+        from app.presentation.student.coverage_honesty import uses_reconciled_coverage
+
+        exam_name = str(getattr(plan, "exam_name", "") or "")
+        subject_guess = ""
+        if "CS1" in exam_name.upper():
+            subject_guess = "CS1"
+        if uses_reconciled_coverage(subject_code=subject_guess):
+            try:
+                from app.application.coverage_reconciliation import (
+                    CoverageReconciliationService,
+                )
+
+                display = CoverageReconciliationService.coverage_for_learner(
+                    user_id
+                )
+                if display.topic_count > 0:
+                    return display.coverage_ratio, "", True
+            except Exception:  # noqa: BLE001
+                logger.debug(
+                    "reconciled coverage unavailable for user_id=%s",
+                    user_id,
+                    exc_info=True,
+                )
         try:
             curriculum_id = getattr(plan, "curriculum_id", None)
             if curriculum_id:
                 curriculum_svc = self._resolve_curriculum_service()
                 curriculum = curriculum_svc.get_curriculum_by_id(curriculum_id)
                 if curriculum is not None:
+                    # Prefer CS1 reconciliation when the bound curriculum is CS1.
+                    cur_code = str(
+                        getattr(curriculum, "exam_code", "")
+                        or getattr(curriculum, "code", "")
+                        or ""
+                    ).upper()
+                    if uses_reconciled_coverage(subject_code=cur_code):
+                        try:
+                            from app.application.coverage_reconciliation import (
+                                CoverageReconciliationService,
+                            )
+
+                            display = (
+                                CoverageReconciliationService.coverage_for_learner(
+                                    user_id
+                                )
+                            )
+                            if display.topic_count > 0:
+                                return display.coverage_ratio, "", True
+                        except Exception:  # noqa: BLE001
+                            logger.debug(
+                                "reconciled coverage unavailable for user_id=%s",
+                                user_id,
+                                exc_info=True,
+                            )
                     progress = curriculum_svc.get_curriculum_progress(
                         user_id, curriculum
                     )

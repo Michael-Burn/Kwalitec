@@ -1,13 +1,23 @@
 """Student-facing Study Progress coverage presentation (read-only).
 
-Verified completion and prior-knowledge claims are different facts. Primary
-coverage numbers use Kwalitec-verified completion only. Claims appear as a
-separate quiet line when present, never folded into the verified ratio.
+Primary coverage numbers for active CS1 use the dual-source reconciliation
+layer (CONFIRMED_COVERED + HISTORICALLY_COMPLETED). Other subjects keep the
+verified-only Study Progress path until identity reconciliation exists for
+them. Prior-knowledge claims appear as a separate quiet line when present,
+never folded into coverage.
 """
 
 from __future__ import annotations
 
 from typing import Any, NamedTuple
+
+from app.application.coverage_reconciliation import (
+    CoverageDisplay,
+    CoverageReconciliationService,
+)
+from app.application.curriculum_identity.constants import (
+    ACTIVE_CS1_CURRICULUM_VERSION,
+)
 
 
 class VerifiedCoveragePresentation(NamedTuple):
@@ -30,8 +40,36 @@ def prior_knowledge_claim_label(claimed_count: int) -> str:
     return f"{n} already knew coming in"
 
 
+def uses_reconciled_coverage(
+    *,
+    subject_code: str = "",
+    curriculum_identity: str = "",
+) -> bool:
+    """True when dual-source reconciliation is the live coverage authority.
+
+    Reconciliation today is seeded for active CS1 only. Non-CS1 subjects keep
+    their prior verified / Stage A engines until a matching identity map exists.
+    """
+    code = (subject_code or "").strip().upper()
+    identity = (curriculum_identity or "").strip()
+    if code == "CS1":
+        return True
+    if identity == ACTIVE_CS1_CURRICULUM_VERSION or identity.startswith("CS1:"):
+        return True
+    return False
+
+
+def reconciled_coverage_for_learner(user_id: int) -> CoverageDisplay:
+    """Live student coverage numbers from dual-source reconciliation."""
+    return CoverageReconciliationService.coverage_for_learner(user_id)
+
+
 def verified_coverage_from_progress(snap: Any) -> VerifiedCoveragePresentation:
-    """Project Study Progress into honest student coverage numbers."""
+    """Project Study Progress into verified-only coverage numbers.
+
+    Used for non-CS1 subjects and for prior-knowledge claim counts. Live CS1
+    syllabus coverage displays use ``reconciled_coverage_for_learner`` instead.
+    """
     topic_ids = tuple(getattr(snap, "topic_ids", ()) or ())
     total = len(topic_ids)
     verified = tuple(getattr(snap, "verified_completed_topic_ids", ()) or ())

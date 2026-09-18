@@ -11,6 +11,7 @@ from unittest.mock import MagicMock
 import pytest
 from flask import get_flashed_messages, render_template
 
+from app.application.coverage_reconciliation import CoverageDisplay
 from app.application.learner_progress.index_document import merge_qualifying_date
 from app.application.learner_progress.milestones import EarnedMilestone, MilestoneKind
 from app.application.learner_progress.query import StreakStats
@@ -189,6 +190,23 @@ class _FakeProgress:
     def get_study_progress(self, *, user_id: int, subject_code: str) -> StudyProgress:
         self.calls += 1
         return self._progress
+
+
+def _coverage_display_from_progress(progress: StudyProgress) -> CoverageDisplay:
+    covered = len(progress.verified_completed_topic_ids or ())
+    total = len(progress.topic_ids or ())
+    ratio = (covered / total) if total else 0.0
+    return CoverageDisplay(
+        covered_count=covered,
+        topic_count=total,
+        coverage_ratio=ratio,
+        coverage_percent=int(round(ratio * 100)) if total else 0,
+        coverage_label=(
+            f"{covered} of {total} topics completed" if total else ""
+        ),
+        confirmed_covered_count=covered,
+        historically_completed_count=0,
+    )
 
 
 def test_home_header_renders_zero_streak_without_error(app, ctx):
@@ -527,11 +545,13 @@ def test_coverage_matches_existing_study_progress_formula(app, ctx):
         shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
         assembler=_FakeAssembler(snapshot),
         study_progress=fake_progress,
+        coverage_display=lambda _uid: _coverage_display_from_progress(progress),
     )
     svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
     study_svc = StudentStudyCurriculumPresentationService(
         assembler=_FakeAssembler(snapshot),
         study_progress=_FakeProgress(progress),
+        coverage_display=lambda _uid: _coverage_display_from_progress(progress),
         why_lookup=lambda _code: {},
     )
     with app.test_request_context("/student/progress"):
@@ -570,6 +590,7 @@ def test_stats_distinguishes_verified_completion_from_prior_knowledge_claims(app
         shown_store=MilestonesShownPersistence(store=SessionDocumentStore()),
         assembler=_FakeAssembler(snapshot),
         study_progress=fake_progress,
+        coverage_display=lambda _uid: _coverage_display_from_progress(progress),
     )
     svc._resolve_subject_code = lambda _uid: "CS1"  # type: ignore[method-assign]
     with app.test_request_context("/student/progress"):
