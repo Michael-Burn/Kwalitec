@@ -81,10 +81,10 @@ def test_home_template_is_decision_only():
 def test_session_overview_hosts_briefing():
     text = SESSION_BODY.read_text(encoding="utf-8")
     assert 'data-ux="session-briefing"' in text
-    assert "Why today's topic" in text
+    assert "Why this topic" in text
     assert "Learning objectives" in text
     assert "Concept focus" in text
-    assert "Session stages" in text
+    assert "In this session" in text
     assert "Expected outcome" in text
     assert "Checkpoint" in text
     assert "Reflection" in text
@@ -215,7 +215,7 @@ def test_overview_briefing_fields_render(app, ctx):
             advance_form=None,
         )
     assert 'data-ux="session-briefing"' in html
-    assert "Why today's topic" in html
+    assert "Why this topic" in html
     assert "Builds on recent weak recall" in html
     assert "Apply discount factors correctly." in html
     assert "Present value" in html

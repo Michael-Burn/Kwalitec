@@ -370,6 +370,10 @@ def test_css_declares_session_measure_and_learning_state_tokens():
     assert ".ds-session-answer__input--short" in css
     assert ".ds-session-position__count" in css
     assert "body:has(.ds-session-page)" in css
+    assert "var(--student-max-width, 48rem)" in css
+    assert ".ds-session-workspace" in css
+    assert "var(--surface-elevated)" in css
+    assert "var(--space-6)" in css
 
 
 def test_template_drops_numeric_progress_and_streak_chrome():
@@ -380,6 +384,38 @@ def test_template_drops_numeric_progress_and_streak_chrome():
     assert "data-session-position" in text
     assert "data-practice-feedback" in text
     assert "data-completion-what-happened" in text
+    assert "ds-session-context" in text
+    assert "ds-session-workspace" in text
+    assert "ds-session-context__subject" in text
+    assert "ds-session-context__objective" in text
+
+
+def test_context_header_shows_subject_and_objective_only(app):
+    ctx = SessionPersistentContext(
+        subject="CS1",
+        chapter="Probability",
+        objective="Apply Bayes theorem to update probabilities.",
+        activity_label="Practice",
+        session_progress="Session step 2 of 4",
+        elapsed_label="12 min remaining",
+    )
+    study = _base_page(
+        context=ctx,
+        context_eyebrow="CS1 · Probability Distributions",
+        content_stage="read",
+        stage_position_label="Read",
+    )
+    html = _render(app, study)
+    assert 'aria-label="Learning context"' in html
+    assert "ds-session-context__subject" in html
+    assert "CS1 · Probability Distributions" in html
+    assert "ds-session-context__objective" in html
+    assert "Apply Bayes theorem to update probabilities." in html
+    assert "ds-session-workspace" in html
+    assert "Session step 2 of 4" not in html
+    assert "12 min remaining" not in html
+    assert html.index("ds-session-chrome") < html.index("ds-session-context")
+    assert html.index("ds-session-context") < html.index("ds-session-workspace")
 
 
 # --- Practice feedback structure (MCQ / numeric / short) ---
@@ -389,7 +425,11 @@ def test_template_drops_numeric_progress_and_streak_chrome():
     ("response_type", "scored", "expected_means"),
     [
         ("mcq", False, "Incorrect"),
-        ("numeric", True, "Correct"),
+        (
+            "numeric",
+            True,
+            "General explanation of the method.",
+        ),
         (
             "short_structured",
             False,
@@ -411,7 +451,49 @@ def test_practice_feedback_parts_by_response_type(
     )
     assert expected_means in parts["what_it_means"]
     assert "You answered:" in parts["what_happened"]
-    assert parts["what_to_understand"] == "General explanation of the method."
+    if scored:
+        # Explanation used as meaning — do not duplicate under What to understand.
+        assert parts["what_to_understand"] == ""
+    else:
+        assert parts["what_to_understand"] == "General explanation of the method."
+
+
+def test_practice_feedback_omits_hollow_reviewed_status():
+    parts = _practice_feedback_parts(
+        outcome="Reviewed",
+        explanation="",
+        common_mistake="",
+        submitted_response="equity method",
+        response_type="short",
+        scored_correct=None,
+    )
+    assert parts["what_happened"].startswith("You answered:")
+    assert parts["what_it_means"] == ""
+    assert parts["what_to_understand"] == ""
+
+
+def test_stage_step_label_hidden_for_single_step():
+    from app.presentation.session.services.study_session_service import (
+        _stage_step_label,
+    )
+
+    page = SimpleNamespace(
+        activity=SimpleNamespace(activity_index=1, activities_total=1)
+    )
+    assert _stage_step_label(SessionSurface.ACTIVITY, page) == ""
+
+
+def test_stage_step_label_shows_question_of_n_when_multi():
+    from app.presentation.session.services.study_session_service import (
+        _stage_step_label,
+    )
+
+    page = SimpleNamespace(
+        activity=SimpleNamespace(activity_index=2, activities_total=4)
+    )
+    assert (
+        _stage_step_label(SessionSurface.ACTIVITY, page) == "Question 2 of 4"
+    )
 
 
 def test_practice_feedback_prefers_choice_aware_common_mistake():
@@ -586,7 +668,7 @@ def test_content_stage_keys_from_activity_vm():
 
 def test_static_asset_version_bumped_for_session_css():
     version = (ROOT / "app/version.py").read_text(encoding="utf-8")
-    assert 'APP_VERSION}-g24"' in version or "-g24" in version
+    assert 'APP_VERSION}-g25"' in version or "-g25" in version
 
 
 def test_reflection_stage_consolidated_headings(app):

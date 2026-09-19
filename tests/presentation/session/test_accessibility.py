@@ -59,6 +59,8 @@ def test_session_context_labelled():
     text = BODY.read_text(encoding="utf-8")
     assert "ds-session-chrome" in text or "ds-session-position" in text
     assert "ds-session-position__stage" in text
+    assert 'aria-label="Learning context"' in text
+    assert "ds-session-context__subject" in text
 
 
 def test_disclosures_use_details():

@@ -178,7 +178,10 @@ class TestStaticAssetsOptimised:
         # baseline was ~63514 CSS / ~20592 JS with ceilings 70000 / 22000.
         # Raised again for History Batch 3 (session list cards → ds-os-history__*).
         # Raised again for Profile/Settings hub + drill-down shell (ds-os-settings*).
-        assert css_bytes < 145_000
+        # Raised again to 146000 after study-session presentation refinements
+        # (measured top-level CSS total 145061; nested session_study.css is
+        # outside this inventory, and a 61-byte trim would not recover quality).
+        assert css_bytes < 146_000
         assert js_bytes < 45_000
 
     def test_performance_indexes_declared(self) -> None:

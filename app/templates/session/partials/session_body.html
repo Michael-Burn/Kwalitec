@@ -46,14 +46,29 @@
     </div>
   </header>
 
-  {# ——— Overview: sparse objective ——— #}
+  {% set context_subject = s.context_eyebrow or s.context.subject %}
+  {% if s.surface != 'overview' and (context_subject or s.context.objective) %}
+  <header class="ds-session-context" aria-label="Learning context">
+    {% if context_subject %}
+    <p class="ds-session-context__subject">{{ context_subject }}</p>
+    {% endif %}
+    {% if s.context.objective %}
+    <p class="ds-session-context__objective">{{ s.context.objective }}</p>
+    {% endif %}
+  </header>
+  {% endif %}
+
+  <div class="ds-session-workspace">
+  {# ——— Overview: What / Why / How long ——— #}
   {% if s.surface == 'overview' %}
   <section class="ds-session-stage ds-session-stage--overview ds-session-prose" aria-label="Session overview">
     <div class="ds-session-card ds-session-card--overview">
-      {% if s.context_eyebrow %}
-      <p class="ds-session-card__eyebrow">{{ s.context_eyebrow }}</p>
-      {% endif %}
       <p class="ds-session-card__title">{{ s.topic_display or s.page_title }}</p>
+      {% if s.context.objective %}
+      <p class="ds-session-card__objective">{{ s.context.objective }}</p>
+      {% elif s.content_body %}
+      <p class="ds-session-card__objective">{{ s.content_body }}</p>
+      {% endif %}
       {% if s.meta_duration or s.meta_mode %}
       <p class="ds-session-card__meta">
         {% if s.meta_duration %}
@@ -90,10 +105,10 @@
       or s.checkpoint_preview or s.reflection_preview or s.prior_reflection_excerpt %}
     {% if has_briefing %}
     <details class="ds-session-briefing" data-ux="session-briefing">
-      <summary id="session-briefing-title" class="ds-section__title">Session details</summary>
+      <summary id="session-briefing-title" class="ds-section__title">What you'll work on</summary>
       {% if s.why_today %}
       <div class="ds-session-briefing__block" data-briefing="why-today">
-        <p class="ds-session-briefing__label">Why today's topic</p>
+        <p class="ds-session-briefing__label">Why this topic</p>
         <p class="ds-session-briefing__body">{{ s.why_today }}</p>
       </div>
       {% endif %}
@@ -125,7 +140,7 @@
       {% endif %}
       {% if s.session_stages or s.educational_flow_label %}
       <div class="ds-session-briefing__block" data-briefing="session-stages">
-        <p class="ds-session-briefing__label">Session stages</p>
+        <p class="ds-session-briefing__label">In this session</p>
         {% if s.session_stages %}
         <p class="ds-session-briefing__body">{{ s.session_stages|join(' · ') }}</p>
         {% else %}
@@ -207,15 +222,18 @@
     <p class="ds-session-milestone" data-session-milestone="true" role="status">{{ s.session_milestone_label }}</p>
     {% endif %}
     {% if s.tomorrow_preview or s.next_recommendation %}
-    <p class="ds-list__meta" data-up-next="true"{% if s.tomorrow_preview %} data-tomorrow-preview="true"{% endif %}>
-      {% if s.tomorrow_preview %}{{ s.tomorrow_preview }}{% else %}Up next · {{ s.next_recommendation }}{% endif %}
-    </p>
+    <div class="ds-session-honest" data-up-next="true"{% if s.tomorrow_preview %} data-tomorrow-preview="true"{% endif %}>
+      <p class="ds-session-honest__label">What's next</p>
+      <p class="ds-session-honest__body">
+        {% if s.tomorrow_preview %}{{ s.tomorrow_preview }}{% else %}Your next session will continue from {{ s.next_recommendation }}{% endif %}
+      </p>
+    </div>
     {% endif %}
     <p class="ds-list__meta">
       <a href="{{ url_for('student.history') }}">{{ px_microcopy.SESSION_COMPLETE_HISTORY_LINK if px_microcopy else 'Your session is saved in History' }}</a>
     </p>
 
-    {% elif stage == 'practice' and not s.feedback_what_it_means %}
+    {% elif stage == 'practice' and not (s.feedback_what_happened or s.feedback_what_it_means or s.feedback_what_to_understand) %}
     <h2 id="session-content-title" class="visually-hidden">{{ s.content_title or 'Practice' }}</h2>
     {% if s.content_intro_line %}
     <p class="ds-session-practice__prompt" data-content-intro="true">{{ s.content_intro_line }}</p>
@@ -234,16 +252,20 @@
     <h2 id="session-content-title" class="visually-hidden">Learning content</h2>
     {% endif %}
 
-    {% if s.feedback_what_it_means %}
+    {% if s.feedback_what_happened or s.feedback_what_it_means or s.feedback_what_to_understand %}
     <div class="ds-session-feedback" role="status" data-practice-feedback="true">
+      {% if s.feedback_what_happened %}
       <div class="ds-session-honest" data-feedback-what-happened="true">
         <p class="ds-session-honest__label">What happened</p>
         <p class="ds-session-honest__body">{{ s.feedback_what_happened }}</p>
       </div>
+      {% endif %}
+      {% if s.feedback_what_it_means %}
       <div class="ds-session-honest" data-feedback-what-it-means="true">
         <p class="ds-session-honest__label">What it means</p>
         <p class="ds-session-honest__body">{{ s.feedback_what_it_means }}</p>
       </div>
+      {% endif %}
       {% if s.feedback_what_to_understand %}
       <div class="ds-session-honest" data-feedback-what-to-understand="true">
         <p class="ds-session-honest__label">What to understand</p>
@@ -493,7 +515,7 @@
         data-session-cta="primary"
         data-confirm-trigger
         data-confirm-title="Finish today's study session?"
-        data-confirm-body="You will move to a short finish review, then Home. You can continue later from Home if anything remains."
+        data-confirm-body="You will confirm whether the study planned for today happened, then return Home. You can continue later from Home if anything remains."
         data-confirm-label="Finish session"
       >
         {{ s.primary_label }}
@@ -502,12 +524,13 @@
   </div>
 
   {% elif s.primary_kind == 'finish_review_form' and form %}
-  <div class="ds-primary-strip ds-session-finish-review" role="group" aria-label="Finish review">
+  <div class="ds-primary-strip ds-session-finish-review" role="group" aria-label="Planned study">
     <form method="post" action="{{ url_for('session.finish', session_id=s.session_id) }}">
       {{ form.hidden_tag() }}
       {{ form.session_id() }}
       <fieldset class="ds-session-finish-review__choices">
-        <legend class="ds-session-content__title">Did you complete today's planned study?</legend>
+        <legend class="ds-session-content__title">{{ form.completion_status.label.text }}</legend>
+        <p class="ds-list__meta">This is about the study planned for today, not whether this session finished.</p>
         {% for value, label in form.completion_status.choices %}
         <label class="ds-session-finish-review__option">
           <input
@@ -529,7 +552,7 @@
         data-session-cta="primary"
         data-confirm-trigger
         data-confirm-title="Confirm finish and return Home?"
-        data-confirm-body="Your finish review will be saved. Tomorrow's Mission appears on Home when it is ready."
+        data-confirm-body="Your answers will be saved. Tomorrow's Mission appears on Home when it is ready."
         data-confirm-label="Confirm finish"
       >
         {{ s.primary_label }}
@@ -566,4 +589,5 @@
   {% for item in s.disclosures %}
     {{ ds_disclosure(item.title, body=item.body, open=item.open) }}
   {% endfor %}
+  </div>
 </article>

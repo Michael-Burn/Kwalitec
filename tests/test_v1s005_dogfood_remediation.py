@@ -176,7 +176,7 @@ def test_home_template_has_remediation_markers():
     # UX-001: episode / quiet / stages live on Session Overview; Home is decision-only.
     assert "015-tomorrow-preview" not in home
     assert 'data-ux="session-briefing"' in session_body
-    assert "Session stages" in session_body
+    assert "In this session" in session_body
     assert "015-learning-episode" not in home
 
 

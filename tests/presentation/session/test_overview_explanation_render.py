@@ -110,15 +110,17 @@ def test_overview_html_renders_explanation_mes_fields(app, ctx):
 
 
 def test_overview_html_omits_empty_explanation_disclosure(app, ctx):
+    # Briefing may still show "Why this topic" as its why-today label; the
+    # disclosure summary is the MES explanation gate.
     html = _render_overview(app, _overview_study(explanation=None))
     assert 'data-ux="session-explanation"' not in html
-    assert "Why this topic" not in html
+    assert "<summary>Why this topic</summary>" not in html
     assert "data-mes-field" not in html
 
     empty = ExplanationViewModel(has_content=False)
     html_empty = _render_overview(app, _overview_study(explanation=empty))
     assert 'data-ux="session-explanation"' not in html_empty
-    assert "Why this topic" not in html_empty
+    assert "<summary>Why this topic</summary>" not in html_empty
     assert "data-mes-field" not in html_empty
 
 

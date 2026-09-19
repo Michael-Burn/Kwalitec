@@ -176,7 +176,7 @@ def test_session_overview_why_uses_dedicated_label(app, ctx):
         )
     assert "Soft recall needs deliberate practice." in html
     assert "ds-session-card--overview" in html
-    assert "Why today's topic" in html
+    assert "Why this topic" in html
     assert "Why this Session" not in html
     assert "session-why-label" not in html
     assert "Study Sensei" not in html
