@@ -117,6 +117,16 @@ def test_history_bridge_flag_disables_demo_seed():
     assert flags.SEED_DEMO_LEARNERS is False
 
 
+def test_sql_evidence_companion_enables_history_bridge():
+    """Companion write-through needs History Bridge to list Completed sittings."""
+    flags = resolve_v2_feature_flags(
+        environ={"SR_SESSION_SQL_EVIDENCE_COMPANION": "1"}
+    )
+    assert flags.SR_SESSION_SQL_EVIDENCE_COMPANION is True
+    assert flags.ENABLE_HISTORY_BRIDGE is True
+    assert flags.SEED_DEMO_LEARNERS is False
+
+
 def test_educational_continuity_bridge_enables_journey():
     flags = resolve_v2_feature_flags(
         environ={"KWALITEC_EDUCATIONAL_CONTINUITY_BRIDGE": "1"}

@@ -33,6 +33,8 @@ class Version2FeatureFlags:
         ENABLE_RECOMMENDATION_BRIDGE: Experience recommendation read → Runtime A.
         ENABLE_JOURNEY_BRIDGE: Experience Journey read → Runtime A SQL.
         ENABLE_HISTORY_BRIDGE: Experience History read → Runtime A SQL.
+            Also ON when ``SR_SESSION_SQL_EVIDENCE_COMPANION`` is ON so
+            Completed companion Missions appear on History.
         ENABLE_ADAPTIVE_ENGINE: Construct Adaptive Engine Adapter (MS-003 A0+).
         ENABLE_ADAPTIVE_ENGINE_SHADOW: Shadow Adaptive Engine compute (A2).
         ENABLE_ADAPTIVE_AUTHORITY: Experience may serve eligible adaptive
@@ -310,10 +312,17 @@ def resolve_v2_feature_flags(
         or continuity
         or umbrella
     )
+    # Companion write-through stores Completed SQL Missions for History.
+    # Without History Bridge, History falls back to Twin insights and never
+    # lists those sittings even though status and StudyAttempt are correct.
+    sql_evidence_companion = _env_truthy(
+        "SR_SESSION_SQL_EVIDENCE_COMPANION", environ=environ
+    )
     history = (
         _env_truthy("KWALITEC_HISTORY_BRIDGE", environ=environ)
         or continuity
         or umbrella
+        or sql_evidence_companion
     )
     adaptive_umbrella = _env_truthy(
         "KWALITEC_ADAPTIVE_INTELLIGENCE", environ=environ
@@ -564,9 +573,7 @@ def resolve_v2_feature_flags(
         SR_PROGRESS_SINGULARITY=_sr_bundle_flag(
             "SR_PROGRESS_SINGULARITY", environ=environ
         ),
-        SR_SESSION_SQL_EVIDENCE_COMPANION=_env_truthy(
-            "SR_SESSION_SQL_EVIDENCE_COMPANION", environ=environ
-        ),
+        SR_SESSION_SQL_EVIDENCE_COMPANION=sql_evidence_companion,
         ADR027_M0_DECISION_BOUNDARY=_env_truthy(
             "KWALITEC_ADR027_M0_DECISION_BOUNDARY", environ=environ
         ),

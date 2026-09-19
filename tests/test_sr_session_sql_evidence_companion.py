@@ -169,6 +169,9 @@ class TestEvidenceCompanionFlag:
             environ={"SR_SESSION_SQL_EVIDENCE_COMPANION": "1"}
         )
         assert explicit.SR_SESSION_SQL_EVIDENCE_COMPANION is True
+        # Companion write-through is only useful on History when the History
+        # Bridge reads Completed SQL Missions (not Twin demo insights).
+        assert explicit.ENABLE_HISTORY_BRIDGE is True
 
     def test_enabled_in_render_yaml(self):
         from tests.operational.helpers import render_env_map
@@ -873,3 +876,117 @@ class TestStudentSelectedSqlCompanion:
         assert int(attempt.mission_id) == int(companion.id)
         assert attempt.questions_attempted == 2
         assert attempt.questions_correct == 2
+
+
+@pytest.mark.usefixtures("ctx")
+class TestCompanionHistoryListing:
+    """History must list Completed companion sittings; not open ones."""
+
+    def test_completed_runtime_c_sitting_appears_in_history(self, monkeypatch):
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+
+        subject = publish_subject("ECMPH1", title="History Completed Sitting")
+        user = make_user("ecmp-history-done@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, persistence = _coordinator(companion=True, store=store)
+        binding = coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+        assert companion_id is not None
+
+        _seed_scored_practice(
+            store,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            outcomes=[True, False],
+        )
+        result = _complete_sitting(
+            persistence,
+            student_id=str(user.id),
+            session_id=binding.session_id,
+            finish_verdict="yes",
+        )
+        assert result is not None
+        assert result.get("sql_evidence_attempt_id") is not None
+
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "Completed"
+
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+        from app.infrastructure.adapters.student_experience.composition import (
+            build_production_experience,
+        )
+
+        flags = resolve_v2_feature_flags(
+            environ={
+                "SR_SESSION_SQL_EVIDENCE_COMPANION": "1",
+                "KWALITEC_COMMERCIAL_LOOP": "0",
+            }
+        )
+        assert flags.ENABLE_HISTORY_BRIDGE is True
+        _composition, service = build_production_experience(flags=flags)
+        history = service.get_history(str(user.id))
+        assert history.session_count >= 1
+        mission_ids = {s.session_id for s in history.completed_sessions}
+        assert str(companion_id) in mission_ids
+
+    def test_in_progress_companion_does_not_appear_in_history(self, monkeypatch):
+        """Paused / abandoned: companion stays In Progress; History excludes it."""
+        monkeypatch.setenv("SR_SESSION_SQL_EVIDENCE_COMPANION", "1")
+        monkeypatch.setenv("KWALITEC_COMMERCIAL_LOOP", "0")
+        monkeypatch.setenv("SR_EVIDENCE_GATE", "0")
+        monkeypatch.setenv("SR_SESSION_COMPLETION_PRODUCT", "0")
+        monkeypatch.setenv("SR_TWIN_DAILY_LOOP", "0")
+
+        subject = publish_subject("ECMPH2", title="History Open Sitting")
+        user = make_user("ecmp-history-open@example.com")
+        _enrol_runtime_c(user, subject)
+        snap = EducationalExperienceService().load_for_user(user.id)
+        assert snap is not None and snap.mission is not None
+
+        store = SessionDocumentStore()
+        coordinator, _persistence = _coordinator(companion=True, store=store)
+        coordinator.accept_and_start_session(
+            user_id=user.id,
+            mission_instance_id=snap.mission.mission_instance_id,
+        )
+        row = RuntimeMissionInstance.query.filter_by(
+            mission_instance_id=snap.mission.mission_instance_id
+        ).one()
+        companion_id = row.sql_mission_id
+        assert companion_id is not None
+
+        companion = Mission.query.get(companion_id)
+        assert companion is not None
+        assert companion.status == "In Progress"
+        assert StudyAttempt.query.filter_by(mission_id=companion_id).count() == 0
+
+        from app.application.config.v2_flags import resolve_v2_feature_flags
+        from app.infrastructure.adapters.student_experience.composition import (
+            build_production_experience,
+        )
+
+        flags = resolve_v2_feature_flags(
+            environ={
+                "SR_SESSION_SQL_EVIDENCE_COMPANION": "1",
+                "KWALITEC_COMMERCIAL_LOOP": "0",
+            }
+        )
+        _composition, service = build_production_experience(flags=flags)
+        history = service.get_history(str(user.id))
+        mission_ids = {s.session_id for s in history.completed_sessions}
+        assert str(companion_id) not in mission_ids

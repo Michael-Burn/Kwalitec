@@ -39,6 +39,7 @@ from app.models.learning import StudyAttempt
 from app.models.mission import Mission
 from app.services.curriculum_service import CurriculumService
 from app.services.educational_evidence_authority import EducationalEvidenceAuthority
+from app.services.mission_service import MissionService
 from app.services.study_session_service import StudySessionService
 
 logger = logging.getLogger(__name__)
@@ -435,6 +436,13 @@ def _write_sql_evidence_from_sitting(
             existing
         )
     ):
+        # History lists Completed Missions only. record_practice_outcome
+        # normally completes the companion; repair if an earlier path left
+        # structured evidence without that status.
+        if companion.status != "Completed":
+            MissionService.update_mission_status(
+                int(companion.id), user_id, "Completed"
+            )
         return existing
     if companion.status == "Completed":
         return existing
