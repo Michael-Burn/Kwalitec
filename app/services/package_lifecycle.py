@@ -458,6 +458,22 @@ APPLICATION_PACKAGES: tuple[PackageEntry, ...] = (
         ),
     ),
     PackageEntry(
+        path="app/application/content_lifecycle",
+        layer="application",
+        responsibility=(
+            "Founder Console content draft persistence and "
+            "structural/mechanical validation"
+        ),
+        owner="Content Lifecycle",
+        lifecycle=LIFECYCLE_ACTIVE,
+        recommendation="retain",
+        notes=(
+            "Draft ORM write API + structural/mechanical validator only. "
+            "Never on the student package resolution path. "
+            "No UI, AI, or publish mechanism."
+        ),
+    ),
+    PackageEntry(
         path="app/application/coverage_reconciliation",
         layer="application",
         responsibility=(

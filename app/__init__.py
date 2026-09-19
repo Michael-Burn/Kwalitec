@@ -607,6 +607,7 @@ def _init_extensions(app: Flask) -> None:
         CkgValidationReport,
         CkgWorkedExample,
         CanonicalCurriculumTopic,
+        ContentDraft,
         Curriculum,
         CurriculumTopicIdentityMap,
         Decision,

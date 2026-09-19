@@ -25,6 +25,7 @@ from app.models.assessment_pipeline import (
     ApMissionAssessmentLink,
     ApPerformanceSummary,
 )
+from app.models.content_draft import ContentDraft
 from app.models.curriculum import Curriculum, Section, Topic
 from app.models.curriculum_generation import (
     EiCalibrationProfile,
@@ -206,6 +207,7 @@ __all__ = [
     "Section",
     "Topic",
     "CanonicalCurriculumTopic",
+    "ContentDraft",
     "CurriculumTopicIdentityMap",
     "CkgGraphEdition",
     "CkgSubject",

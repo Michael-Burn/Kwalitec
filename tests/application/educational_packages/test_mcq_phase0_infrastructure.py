@@ -13,6 +13,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from app.application.content_lifecycle.structural_mechanical_validator import (
+    validate_mcq_check_structure,
+)
 from app.application.educational_packages.loader import (
     EducationalPackageLoader,
     find_educational_package,
@@ -469,8 +472,14 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
                     assert check.numeric_tolerance is not None
                     continue
                 assert check.response_type == "mcq"
-                assert len(check.choices) == 4
-                assert check.correct_choice_id in {c.id for c in check.choices}
+                mcq_findings = validate_mcq_check_structure(
+                    choices=check.choices,
+                    correct_choice_id=check.correct_choice_id,
+                    field_prefix=f"{pack.package_id}:{check.item_id}",
+                )
+                assert not mcq_findings, (
+                    f"{pack.package_id} {check.item_id}: {mcq_findings}"
+                )
                 continue
             assert check.response_type == "short_structured"
             assert check.choices == ()
@@ -503,7 +512,9 @@ def test_live_packages_outside_mcq_batches_remain_short_structured() -> None:
     for act in practice:
         assert act.scoreable is not None
         assert act.scoreable.response_type is PracticeResponseType.MCQ
-        assert len(act.scoreable.choices) == 4
-        assert act.scoreable.answer_key.correct_choice_id in {
-            choice[0] for choice in act.scoreable.choices
-        }
+        mcq_findings = validate_mcq_check_structure(
+            choices=act.scoreable.choices,
+            correct_choice_id=act.scoreable.answer_key.correct_choice_id or "",
+            field_prefix=f"CA-R1:{act.scoreable.item_id}",
+        )
+        assert not mcq_findings, f"CA-R1 spot-check: {mcq_findings}"
