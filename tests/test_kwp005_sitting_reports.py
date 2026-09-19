@@ -75,7 +75,10 @@ class TestSittingReportProjection:
         assert any("correctly" in i.lower() for i in report.learning_insights)
         assert report.progress_explanation
         explanation = report.progress_explanation.lower()
-        assert "journey" in explanation or "forward" in explanation
+        # Learner-visible consequence (session saved + honest finish), not Journey jargon.
+        assert "saved" in explanation
+        assert "finished honestly" in explanation
+        assert "answered practice correctly" in explanation
         assert "Discount factors" in report.tomorrow_preview
         assert (
             "CS1 · Q2.3" in report.syllabus_refs
@@ -133,7 +136,10 @@ class TestSittingReportProjection:
                 "evidence_disposition": "accepted_with_restrictions",
             },
         )
-        assert "Progress stayed" in report.progress_explanation
+        # Learner-visible consequence: session saved; no topic progress claimed.
+        assert "Your session is saved" in report.progress_explanation
+        assert "partial" in report.progress_explanation.lower()
+        assert "unchanged" in report.progress_explanation.lower()
         assert "partial" in report.finish_outcome_label.lower()
 
 
