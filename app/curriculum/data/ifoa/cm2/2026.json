@@ -1,0 +1,1397 @@
+{
+  "exam_code": "CM2",
+  "exam_name": "Economic Modelling",
+  "provider": "IFoA",
+  "version": "2026",
+  "effective_date": "2026-01-01",
+  "superseded_date": null,
+  "description": "Economic Modelling provides a grounding in the theories and modelling techniques used to explore rational economic decision making, investment risk, asset and liability valuation, and option pricing. Canonical representation of the official IFoA CM2 Syllabus for the 2026 Examinations (April 2025).",
+  "metadata": {
+    "source": "IFoA CM2 Syllabus for the 2026 Examinations",
+    "source_document": "cm2_syllabus-2026-_final-proof.pdf",
+    "qualification_level": "Core Principles",
+    "associateship_qualification": "Associateship Qualification",
+    "published": "April 2025",
+    "language": "en",
+    "assessment": "Assessment arrangements as stated in the official IFoA CM2 syllabus for the 2026 examinations"
+  },
+  "sections": [
+    {
+      "id": "CM2-A",
+      "code": "1",
+      "title": "Rational economic theory",
+      "description": "Theories and modelling techniques used to explore, understand and evaluate rational economic decision making and asset pricing. In particular, the application of utility functions to financial and economic problems.",
+      "exam_weight": 10.0,
+      "estimated_hours": 20.0,
+      "difficulty": "foundational",
+      "display_order": 1,
+      "topics": [
+        {
+          "id": "CM2-A-T01",
+          "section_id": "CM2-A",
+          "code": "1.1",
+          "title": "Understand the principles of rational expectations theory",
+          "description": "Understand the principles of rational expectations theory",
+          "estimated_minutes": 266,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM2-A-T01-LO01",
+              "topic_id": "CM2-A-T01",
+              "code": "1.1.1",
+              "description": "Three forms of the Efficient Markets Hypothesis and their consequences for investment management",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.1.1",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T01-LO02",
+              "topic_id": "CM2-A-T01",
+              "code": "1.1.2",
+              "description": "Evidence for or against each form of the Efficient Markets Hypothesis",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 133,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.1.2",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-A-T02",
+          "section_id": "CM2-A",
+          "code": "1.2",
+          "title": "Understand the principles of rational choice theory",
+          "description": "Understand the principles of rational choice theory",
+          "estimated_minutes": 934,
+          "difficulty": "foundational",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM2-A-T02-LO01",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.1",
+              "description": "Meaning of 'utility function'",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "1.2.1",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO02",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.2",
+              "description": "Concept of utility theory and the expected utility theorem",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "1.2.2",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO03",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.3",
+              "description": "Understand properties of utility functions that express these economic characteristics of investors: Non-satiation; Risk aversion, risk neutrality and risk seeking; Declining or increasing absolute and relative risk aversion",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "1.2.3",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO04",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.4",
+              "description": "Economic properties of commonly used utility functions",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "1.2.4",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO05",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.5",
+              "description": "Identify how a utility function may depend on current wealth and discuss state-dependent utility functions",
+              "cognitive_level": "understand",
+              "estimated_minutes": 133,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "1.2.5",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO06",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.6",
+              "description": "Perform calculations using common utility functions that compare investment opportunities",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 133,
+              "learning_type": "analysis",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "1.2.6",
+                "estimated_hours": "2.22",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-A-T02-LO07",
+              "topic_id": "CM2-A-T02",
+              "code": "1.2.7",
+              "description": "Use utility theory to analyse simple insurance problems",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 136,
+              "learning_type": "analysis",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "1.2.7",
+                "estimated_hours": "2.27",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM2-B",
+      "code": "2",
+      "title": "Measures of investment risk",
+      "description": "Apply a range of financial risk measurement tools to evaluate investment opportunities in the context of utility functions. Understand how mitigating actions can reduce risk faced by insurance companies.",
+      "exam_weight": 10.0,
+      "estimated_hours": 20.0,
+      "difficulty": "foundational",
+      "display_order": 2,
+      "topics": [
+        {
+          "id": "CM2-B-T01",
+          "section_id": "CM2-B",
+          "code": "2.1",
+          "title": "Identify the properties of risk measures and use these risk measures to compare and analyse investment opportunities",
+          "description": "Identify the properties of risk measures and use these risk measures to compare and analyse investment opportunities",
+          "estimated_minutes": 800,
+          "difficulty": "foundational",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM2-B-T01-LO01",
+              "topic_id": "CM2-B-T01",
+              "code": "2.1.1",
+              "description": "Measures of investment risk: Variance of return; Downside semi-variance of return; Shortfall probabilities; Value at Risk (VaR); Tail VaR (also referred to as Expected Shortfall)",
+              "cognitive_level": "apply",
+              "estimated_minutes": 200,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.1.1",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-B-T01-LO02",
+              "topic_id": "CM2-B-T01",
+              "code": "2.1.2",
+              "description": "How the risk measures listed in 2.1.1 are related to the form of an investor's utility function",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 200,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.1.2",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-B-T01-LO03",
+              "topic_id": "CM2-B-T01",
+              "code": "2.1.3",
+              "description": "Compare investment opportunities via calculations using the risk measures listed in 2.1.1",
+              "cognitive_level": "apply",
+              "estimated_minutes": 200,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "2.1.3",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-B-T01-LO04",
+              "topic_id": "CM2-B-T01",
+              "code": "2.1.4",
+              "description": "How the distribution of returns and the thickness of tails will influence the assessment of risk",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 200,
+              "learning_type": "analysis",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "2.1.4",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-B-T02",
+          "section_id": "CM2-B",
+          "code": "2.2",
+          "title": "The role of insurance companies in reducing or removing risk",
+          "description": "The role of insurance companies in reducing or removing risk",
+          "estimated_minutes": 400,
+          "difficulty": "foundational",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM2-B-T02-LO01",
+              "topic_id": "CM2-B-T02",
+              "code": "2.2.1",
+              "description": "How insurance companies help to reduce or remove risk",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "2.2.1",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            },
+            {
+              "id": "CM2-B-T02-LO02",
+              "topic_id": "CM2-B-T02",
+              "code": "2.2.2",
+              "description": "The meaning of 'moral hazard' and 'adverse selection'",
+              "cognitive_level": "understand",
+              "estimated_minutes": 200,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "2.2.2",
+                "estimated_hours": "3.33",
+                "difficulty": "foundational"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM2-C",
+      "code": "3",
+      "title": "Asset valuations",
+      "description": "The use of models in portfolio selection and asset pricing, including the term structure of interest rates and credit risk.",
+      "exam_weight": 30.0,
+      "estimated_hours": 60.0,
+      "difficulty": "intermediate",
+      "display_order": 3,
+      "topics": [
+        {
+          "id": "CM2-C-T01",
+          "section_id": "CM2-C",
+          "code": "3.1",
+          "title": "Understand mean-variance portfolio theory and its application",
+          "description": "Understand mean-variance portfolio theory and its application",
+          "estimated_minutes": 512,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T01-LO01",
+              "topic_id": "CM2-C-T01",
+              "code": "3.1.1",
+              "description": "The assumptions of mean-variance portfolio theory",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.1.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T01-LO02",
+              "topic_id": "CM2-C-T01",
+              "code": "3.1.2",
+              "description": "When does the application of mean-variance portfolio theory lead to the selection of an optimum portfolio",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.1.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T01-LO03",
+              "topic_id": "CM2-C-T01",
+              "code": "3.1.3",
+              "description": "Use mean-variance portfolio theory to calculate the expected return and risk of a portfolio of many risky assets, given the expected return, variance and covariance of returns of the individual assets",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.1.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T01-LO04",
+              "topic_id": "CM2-C-T01",
+              "code": "3.1.4",
+              "description": "Benefits of diversification using mean-variance portfolio theory",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.1.4",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-C-T02",
+          "section_id": "CM2-C",
+          "code": "3.2",
+          "title": "Understand and use the Capital Asset Pricing Model (CAPM)",
+          "description": "Understand and use the Capital Asset Pricing Model (CAPM)",
+          "estimated_minutes": 512,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T02-LO01",
+              "topic_id": "CM2-C-T02",
+              "code": "3.2.1",
+              "description": "The assumptions, principal results and uses of the Sharpe-Lintner-Mossin Capital Asset Pricing Model (CAPM)",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.2.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T02-LO02",
+              "topic_id": "CM2-C-T02",
+              "code": "3.2.2",
+              "description": "The limitations of the basic CAPM and some of the attempts that have been made to develop the theory to overcome these limitations",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 128,
+              "learning_type": "analysis",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.2.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T02-LO03",
+              "topic_id": "CM2-C-T02",
+              "code": "3.2.3",
+              "description": "Perform calculations using the CAPM",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.2.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T02-LO04",
+              "topic_id": "CM2-C-T02",
+              "code": "3.2.4",
+              "description": "Main issues of estimating parameters for asset pricing models",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.2.4",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-C-T03",
+          "section_id": "CM2-C",
+          "code": "3.3",
+          "title": "Understand and use single and multifactor models for investment returns",
+          "description": "Understand and use single and multifactor models for investment returns",
+          "estimated_minutes": 640,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T03-LO01",
+              "topic_id": "CM2-C-T03",
+              "code": "3.3.1",
+              "description": "Three types of multifactor models of asset returns: Macroeconomic models; Fundamental factor models; Statistical factor models",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.3.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T03-LO02",
+              "topic_id": "CM2-C-T03",
+              "code": "3.3.2",
+              "description": "Single-index model of asset returns",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.3.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T03-LO03",
+              "topic_id": "CM2-C-T03",
+              "code": "3.3.3",
+              "description": "Concepts of diversifiable and non-diversifiable risk",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.3.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T03-LO04",
+              "topic_id": "CM2-C-T03",
+              "code": "3.3.4",
+              "description": "Construction of the different types of multifactor models",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.3.4",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T03-LO05",
+              "topic_id": "CM2-C-T03",
+              "code": "3.3.5",
+              "description": "Perform calculations using both single and multifactor models for investment returns",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.3.5",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-C-T04",
+          "section_id": "CM2-C",
+          "code": "3.4",
+          "title": "Appreciate different stochastic models for security prices and how and when they can be applied",
+          "description": "Appreciate different stochastic models for security prices and how and when they can be applied",
+          "estimated_minutes": 768,
+          "difficulty": "intermediate",
+          "display_order": 4,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T04-LO01",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.1",
+              "description": "Continuous time log-normal model of security prices and the empirical evidence for and against the model",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.4.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T04-LO02",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.2",
+              "description": "Basic properties of standard Brownian motion or Wiener process",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.4.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T04-LO03",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.3",
+              "description": "Principles of stochastic differential equations, the Ito integral, diffusion and mean-reverting processes",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.4.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T04-LO04",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.4",
+              "description": "Understand Ito's Lemma and apply it to simple problems",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.4.4",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T04-LO05",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.5",
+              "description": "Describe the stochastic differential equation for geometric Brownian motion",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.4.5",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T04-LO06",
+              "topic_id": "CM2-C-T04",
+              "code": "3.4.6",
+              "description": "Describe the stochastic differential equation for the Ornstein-Uhlenbeck process",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "3.4.6",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-C-T05",
+          "section_id": "CM2-C",
+          "code": "3.5",
+          "title": "Understand the principles and characteristics of models of the term structures of interest rates and their application",
+          "description": "Understand the principles and characteristics of models of the term structures of interest rates and their application",
+          "estimated_minutes": 640,
+          "difficulty": "intermediate",
+          "display_order": 5,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T05-LO01",
+              "topic_id": "CM2-C-T05",
+              "code": "3.5.1",
+              "description": "Principal concepts and terms underlying the theory of a term structure of interest rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.5.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T05-LO02",
+              "topic_id": "CM2-C-T05",
+              "code": "3.5.2",
+              "description": "Desirable characteristics of models for the term structure of interest rates",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.5.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T05-LO03",
+              "topic_id": "CM2-C-T05",
+              "code": "3.5.3",
+              "description": "Apply the term structure of interest rates to modelling various cashflows",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.5.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T05-LO04",
+              "topic_id": "CM2-C-T05",
+              "code": "3.5.4",
+              "description": "Risk-neutral approach to the pricing of zero-coupon bonds and interest-rate derivatives for a general one-factor diffusion model for the risk-free rate of interest, as a computational tool",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.5.4",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T05-LO05",
+              "topic_id": "CM2-C-T05",
+              "code": "3.5.5",
+              "description": "The Vasicek, Cox-Ingersoll-Ross and Hull-White models for the term structure of interest rates and their limitations",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 128,
+              "learning_type": "analysis",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "3.5.5",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-C-T06",
+          "section_id": "CM2-C",
+          "code": "3.6",
+          "title": "Understand the principles and application of simple models for credit risk",
+          "description": "Understand the principles and application of simple models for credit risk",
+          "estimated_minutes": 528,
+          "difficulty": "intermediate",
+          "display_order": 6,
+          "learning_objectives": [
+            {
+              "id": "CM2-C-T06-LO01",
+              "topic_id": "CM2-C-T06",
+              "code": "3.6.1",
+              "description": "What is a 'credit event' and 'recovery rate'",
+              "cognitive_level": "understand",
+              "estimated_minutes": 128,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "3.6.1",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T06-LO02",
+              "topic_id": "CM2-C-T06",
+              "code": "3.6.2",
+              "description": "Identify the different approaches to modelling credit risk: structural models, reduced form models, intensity-based models",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "3.6.2",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T06-LO03",
+              "topic_id": "CM2-C-T06",
+              "code": "3.6.3",
+              "description": "Understand and apply the Merton model",
+              "cognitive_level": "apply",
+              "estimated_minutes": 128,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "3.6.3",
+                "estimated_hours": "2.13",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-C-T06-LO04",
+              "topic_id": "CM2-C-T06",
+              "code": "3.6.4",
+              "description": "Understand and apply the two-state model for credit rating with a constant transition intensity",
+              "cognitive_level": "apply",
+              "estimated_minutes": 144,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "3.6.4",
+                "estimated_hours": "2.40",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM2-D",
+      "code": "4",
+      "title": "Liability Valuations",
+      "description": "The use of models in insurance to calculate the probability of ruin and estimate claims.",
+      "exam_weight": 20.0,
+      "estimated_hours": 40.0,
+      "difficulty": "intermediate",
+      "display_order": 4,
+      "topics": [
+        {
+          "id": "CM2-D-T01",
+          "section_id": "CM2-D",
+          "code": "4.1",
+          "title": "Understand the principles and application of ruin theory",
+          "description": "Understand the principles and application of ruin theory",
+          "estimated_minutes": 1200,
+          "difficulty": "intermediate",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM2-D-T01-LO01",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.1",
+              "description": "The aggregate claim process and the cashflow process for a risk",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.1.1",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO02",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.2",
+              "description": "Use the Poisson process and the distribution of inter-event times to calculate probabilities of the number of events in a given time interval and waiting times",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.1.2",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO03",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.3",
+              "description": "Understand the compound Poisson process and calculate probabilities using simulation",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.1.3",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO04",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.4",
+              "description": "The probability of ruin in infinite/finite and continuous/discrete time and state, and the relationships between the different probabilities of ruin",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "4.1.4",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO05",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.5",
+              "description": "The adjustment coefficient and Lundberg's inequality",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "4.1.5",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO06",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.6",
+              "description": "Understand the effect on the probability of ruin, in both finite and infinite time, of changing parameter values by reasoning or simulation",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 150,
+              "learning_type": "analysis",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "4.1.6",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO07",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.7",
+              "description": "Maximisation of the adjustment coefficient under proportional reinsurance and excess of loss reinsurance",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "4.1.7",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T01-LO08",
+              "topic_id": "CM2-D-T01",
+              "code": "4.1.8",
+              "description": "Calculate probabilities of ruin by simulation",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 8,
+              "metadata": {
+                "syllabus_code": "4.1.8",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-D-T02",
+          "section_id": "CM2-D",
+          "code": "4.2",
+          "title": "Understand and use run-off triangles to estimate claims",
+          "description": "Understand and use run-off triangles to estimate claims",
+          "estimated_minutes": 1050,
+          "difficulty": "intermediate",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM2-D-T02-LO01",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.1",
+              "description": "Understand what a development factor is and show how a set of assumed development factors can be used to project the future development of a delay triangle",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.2.1",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO02",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.2",
+              "description": "Understand and apply a basic chain ladder method for completing the delay triangle using development factors",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "4.2.2",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO03",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.3",
+              "description": "Basic chain ladder method and how this can be adjusted to make explicit allowance for inflation",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "4.2.3",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO04",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.4",
+              "description": "Understand and apply the average cost per claim method for estimating outstanding claim amounts",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "4.2.4",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO05",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.5",
+              "description": "Understand and apply the Bornhuetter-Ferguson method for estimating outstanding claim amounts",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "4.2.5",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO06",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.6",
+              "description": "Understand how a statistical model can be used to underpin a run-off triangles approach",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "4.2.6",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            },
+            {
+              "id": "CM2-D-T02-LO07",
+              "topic_id": "CM2-D-T02",
+              "code": "4.2.7",
+              "description": "Understand the assumptions underlying the application of the methods in 4.2.1 to 4.2.6 above",
+              "cognitive_level": "understand",
+              "estimated_minutes": 150,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "4.2.7",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-D-T03",
+          "section_id": "CM2-D",
+          "code": "4.3",
+          "title": "Value basic benefit guarantees using simulation techniques",
+          "description": "Value basic benefit guarantees using simulation techniques",
+          "estimated_minutes": 150,
+          "difficulty": "intermediate",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM2-D-T03-LO01",
+              "topic_id": "CM2-D-T03",
+              "code": "4.3.1",
+              "description": "Value basic benefit guarantees using simulation techniques",
+              "cognitive_level": "apply",
+              "estimated_minutes": 150,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "4.3.1",
+                "estimated_hours": "2.50",
+                "difficulty": "intermediate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM2-E",
+      "code": "5",
+      "title": "Option theory",
+      "description": "The construction and evaluation of common forward and option contracts as well as theoretical models for derivatives and option pricing, in particular the theory and application of binomial and Black-Scholes models.",
+      "exam_weight": 30.0,
+      "estimated_hours": 60.0,
+      "difficulty": "advanced",
+      "display_order": 5,
+      "topics": [
+        {
+          "id": "CM2-E-T01",
+          "section_id": "CM2-E",
+          "code": "5.1",
+          "title": "Understand the principles of option pricing and valuations",
+          "description": "Understand the principles of option pricing and valuations",
+          "estimated_minutes": 900,
+          "difficulty": "advanced",
+          "display_order": 1,
+          "learning_objectives": [
+            {
+              "id": "CM2-E-T01-LO01",
+              "topic_id": "CM2-E-T01",
+              "code": "5.1.1",
+              "description": "What is meant by arbitrage and a complete market",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "5.1.1",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T01-LO02",
+              "topic_id": "CM2-E-T01",
+              "code": "5.1.2",
+              "description": "Factors that affect option prices",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "5.1.2",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T01-LO03",
+              "topic_id": "CM2-E-T01",
+              "code": "5.1.3",
+              "description": "Determine specific results for options that are not model dependent: Show how to value a forward contract; Develop upper and lower bounds for European and American call and put options",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "5.1.3",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T01-LO04",
+              "topic_id": "CM2-E-T01",
+              "code": "5.1.4",
+              "description": "The meaning of put-call parity",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "5.1.4",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-E-T02",
+          "section_id": "CM2-E",
+          "code": "5.2",
+          "title": "Understand the principles of the binomial option-pricing model and its application",
+          "description": "Understand the principles of the binomial option-pricing model and its application",
+          "estimated_minutes": 1125,
+          "difficulty": "advanced",
+          "display_order": 2,
+          "learning_objectives": [
+            {
+              "id": "CM2-E-T02-LO01",
+              "topic_id": "CM2-E-T02",
+              "code": "5.2.1",
+              "description": "Use binomial trees and lattices to value options and solve simple examples",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "5.2.1",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T02-LO02",
+              "topic_id": "CM2-E-T02",
+              "code": "5.2.2",
+              "description": "Determine the risk-neutral pricing measure for a binomial lattice and describe the risk-neutral pricing approach to the pricing of equity options",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "5.2.2",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T02-LO03",
+              "topic_id": "CM2-E-T02",
+              "code": "5.2.3",
+              "description": "Difference between the real-world measure and the risk-neutral measure and why the risk-neutral pricing approach is seen as a computational tool (rather than a realistic representation of price dynamics in the real world)",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 225,
+              "learning_type": "analysis",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "5.2.3",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T02-LO04",
+              "topic_id": "CM2-E-T02",
+              "code": "5.2.4",
+              "description": "The alternative names for the risk-neutral and state-price deflator approaches to pricing",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "5.2.4",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T02-LO05",
+              "topic_id": "CM2-E-T02",
+              "code": "5.2.5",
+              "description": "Apply the state-price deflator approach to the binomial model and understand its equivalence to the risk-neutral pricing approach",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "5.2.5",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CM2-E-T03",
+          "section_id": "CM2-E",
+          "code": "5.3",
+          "title": "Understand the principles of the Black-Scholes derivative-pricing model and its application",
+          "description": "Understand the principles of the Black-Scholes derivative-pricing model and its application",
+          "estimated_minutes": 1575,
+          "difficulty": "advanced",
+          "display_order": 3,
+          "learning_objectives": [
+            {
+              "id": "CM2-E-T03-LO01",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.1",
+              "description": "The martingale representation theorem",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 1,
+              "metadata": {
+                "syllabus_code": "5.3.1",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO02",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.2",
+              "description": "Underlying principles of the Black-Scholes partial differential equation both in its basic and Garman-Kohlhagen forms",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 2,
+              "metadata": {
+                "syllabus_code": "5.3.2",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO03",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.3",
+              "description": "Use the Black-Scholes model to price and hedge a simple derivative contract using the martingale approach",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 3,
+              "metadata": {
+                "syllabus_code": "5.3.3",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO04",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.4",
+              "description": "Value options and solve simple examples using the Black-Scholes model",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 4,
+              "metadata": {
+                "syllabus_code": "5.3.4",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO05",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.5",
+              "description": "Apply the state-price deflator approach to the Black-Scholes model and understand its equivalence to the risk-neutral pricing approach",
+              "cognitive_level": "apply",
+              "estimated_minutes": 225,
+              "learning_type": "procedure",
+              "display_order": 5,
+              "metadata": {
+                "syllabus_code": "5.3.5",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO06",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.6",
+              "description": "Validity of the assumptions underlying the Black-Scholes model",
+              "cognitive_level": "analyze",
+              "estimated_minutes": 225,
+              "learning_type": "analysis",
+              "display_order": 6,
+              "metadata": {
+                "syllabus_code": "5.3.6",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            },
+            {
+              "id": "CM2-E-T03-LO07",
+              "topic_id": "CM2-E-T03",
+              "code": "5.3.7",
+              "description": "Commonly used terminology for the first and, where appropriate, second partial derivatives (the Greeks) of an option price",
+              "cognitive_level": "understand",
+              "estimated_minutes": 225,
+              "learning_type": "concept",
+              "display_order": 7,
+              "metadata": {
+                "syllabus_code": "5.3.7",
+                "estimated_hours": "3.75",
+                "difficulty": "advanced"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

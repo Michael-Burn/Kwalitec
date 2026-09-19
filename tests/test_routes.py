@@ -264,7 +264,7 @@ class TestStudyPlanWizardPx002:
         with logged_in_client.session_transaction() as sess:
             sess["wizard_data"] = {
                 "exam_category": "IFoA",
-                "exam_paper": "CM2",
+                "exam_paper": "CS2",
                 "exam_sitting": "April 2027",
                 "exam_date": "2027-04-15",
                 "weekday_study_minutes": 60,
@@ -613,12 +613,12 @@ class TestCurriculumVersionResolution:
         result = _resolve_curriculum_version("IFoA", "CB2")
         assert result is None
 
-    def test_ifoa_cm2_returns_none(self):
-        """IFoA + CM2 has no on-disk syllabus — returns None."""
+    def test_ifoa_cm2_returns_2026(self):
+        """IFoA + CM2 resolves to the bundled 2026 syllabus version."""
         from app.study_plan.routes import _resolve_curriculum_version
 
         result = _resolve_curriculum_version("IFoA", "CM2")
-        assert result is None
+        assert result == "2026"
 
     def test_cfa_returns_none(self):
         """CFA has no on-disk syllabus — returns None."""

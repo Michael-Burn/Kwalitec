@@ -9,9 +9,11 @@ study-plan / wizard version discovery selects ``max(versions)`` and
 ``import_curricula`` imports every discovered version, a student selecting CS1
 resolved to a placeholder "future" version.
 
-These tests fail-closed against re-pollution of the Supported syllabus: only
-CS1 may be discoverable, every Supported paper must expose recognisable
-official titles, and no student-facing syllabus title may be a generic
+These tests fail-closed against re-pollution of the student-Supported set:
+only official Ready papers may be Supported. Bundled Coming Soon syllabi
+(such as CM2, held for authoring) may remain discoverable on disk without
+becoming student-enrolable. Every discoverable official paper must expose
+recognisable titles, and no student-facing syllabus title may be a generic
 placeholder.
 
 Scope guard: this is product-trust data hygiene only. It asserts nothing about
@@ -40,8 +42,12 @@ _PLACEHOLDER_TITLE_FRAGMENTS = (
     "beta topic",
 )
 
-# The only examinations that may be Supported (CS1 syllabus inventory).
+# Examinations that may be student-Supported (Ready / enrolable).
 _EXPECTED_SUPPORTED = {("IFOA", "CS1")}
+
+# Official bundled syllabi that must remain discoverable for authoring even
+# when student enrolment is held (Coming Soon despite curriculum).
+_EXPECTED_DISCOVERABLE = {("IFOA", "CS1"), ("IFOA", "CM2")}
 
 
 def _latest_version(org: str, paper: str) -> str:
@@ -74,6 +80,23 @@ class TestSupportedSyllabusIsClean:
             f"non-official curriculum may have been added. Found: {sorted(found)}"
         )
 
+    def test_cm2_is_discoverable_but_not_student_supported(self):
+        engine = CurriculumEngineService()
+        discovered = {
+            (o.upper(), p.upper()) for o, p, _v in engine.list_supported_exams()
+        }
+        assert discovered == _EXPECTED_DISCOVERABLE
+        assert SubjectSupportService.has_curriculum("IFoA", "CM2") is True
+        assert (
+            SubjectSupportService.is_coming_soon_despite_curriculum("IFoA", "CM2")
+            is True
+        )
+        supported = {
+            (o.upper(), p.upper())
+            for o, p in SubjectSupportService.list_supported_examinations()
+        }
+        assert ("IFOA", "CM2") not in supported
+
     def test_no_phantom_exam_appears(self):
         supported = SubjectSupportService.list_supported_examinations()
         papers = {p.upper() for _o, p in supported}
@@ -82,10 +105,13 @@ class TestSupportedSyllabusIsClean:
     def test_cs1_resolves_to_official_version(self):
         assert _latest_version("IFoA", "CS1") == "2026"
 
+    def test_cm2_resolves_to_official_version(self):
+        assert _latest_version("IFoA", "CM2") == "2026"
+
 
 class TestSupportedTitlesAreOfficial:
-    def test_no_placeholder_titles_in_supported_papers(self):
-        for org, paper in (("IFoA", "CS1"),):
+    def test_no_placeholder_titles_in_official_bundled_papers(self):
+        for org, paper in (("IFoA", "CS1"), ("IFoA", "CM2")):
             for title in _all_titles(org, paper):
                 lowered = title.lower()
                 for fragment in _PLACEHOLDER_TITLE_FRAGMENTS:
@@ -100,3 +126,9 @@ class TestSupportedTitlesAreOfficial:
         assert "data analysis" in titles
         assert "bayesian statistics" in titles
         assert "regression" in titles
+
+    def test_cm2_shows_recognisable_official_topics(self):
+        titles = " ".join(_all_titles("IFoA", "CM2")).lower()
+        assert "rational economic theory" in titles
+        assert "option theory" in titles
+        assert "asset valuations" in titles

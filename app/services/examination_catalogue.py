@@ -51,7 +51,7 @@ _IFOA_PAPERS = [
     Paper("CS1", "CS1", "Actuarial Statistics 1"),
     Paper("CS2", "CS2", "Risk Modelling and Survival Analysis"),
     Paper("CM1", "CM1", "Actuarial Mathematics 1"),
-    Paper("CM2", "CM2", "Loss Reserving and Financial Engineering"),
+    Paper("CM2", "CM2", "Economic Modelling"),
     Paper("CB1", "CB1", "Business Finance"),
     Paper("CB2", "CB2", "Business Economics"),
     Paper("CB3", "CB3", "Business Management"),

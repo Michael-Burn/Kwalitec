@@ -228,6 +228,7 @@ class TestStudentFacingCommunicationSurfaces:
         assert info.label == "Coming Soon"
         assert info.allows_plan_creation is False
         assert info.explanation
+        assert SubjectSupportService.has_curriculum("IFoA", "CM2") is True
 
     def test_student_facing_copy_does_not_claim_live_adaptive_or_spaced(self):
         """Identity honesty: Learning Mode is syllabus-order; no live SR/adaptive sell.

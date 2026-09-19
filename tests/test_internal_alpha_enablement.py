@@ -320,7 +320,7 @@ class TestCreateTestUserCommand:
 
 
 class TestRemovedCm1Cb2Syllabi:
-    """CM1 and CB2 syllabi are no longer shipped; CS1 remains."""
+    """CM1 and CB2 syllabi are no longer shipped; CS1 and CM2 remain."""
 
     def test_cb2_and_cm1_are_not_discoverable(self):
         from app.services.curriculum_engine_service import CurriculumEngineService
@@ -328,6 +328,7 @@ class TestRemovedCm1Cb2Syllabi:
         engine = CurriculumEngineService()
         supported = {(o.upper(), p.upper()) for o, p, _v in engine.list_supported_exams()}
         assert ("IFOA", "CS1") in supported
+        assert ("IFOA", "CM2") in supported
         assert ("IFOA", "CB2") not in supported
         assert ("IFOA", "CM1") not in supported
 
@@ -336,6 +337,7 @@ class TestRemovedCm1Cb2Syllabi:
 
         CurriculumService.import_curricula()
         assert Curriculum.query.filter_by(exam_name="IFoA CS1").first() is not None
+        assert Curriculum.query.filter_by(exam_name="IFoA CM2").first() is not None
         assert Curriculum.query.filter_by(exam_name="IFoA CB2").first() is None
         assert Curriculum.query.filter_by(exam_name="IFoA CM1").first() is None
 

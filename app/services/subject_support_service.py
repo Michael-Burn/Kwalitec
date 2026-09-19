@@ -9,9 +9,12 @@ availability labels (PX-001 / PX-002) are Ready / Coming Soon:
 - Coming Soon — under preparation; explain and stop.
 - Not Supported — omit from Subject Catalogue or treat as unavailable.
 
-Curriculum discovery (on-disk syllabus JSON) is the source of truth for
-*Supported*. Product announcement lists distinguish Coming Soon from Not
+Curriculum discovery (on-disk syllabus JSON) is normally the source of truth
+for *Supported*. Product announcement lists distinguish Coming Soon from Not
 Supported without exposing loader internals to students.
+
+An explicit hold list may keep a paper Coming Soon even when a valid syllabus
+exists on disk, so authoring/import can proceed without student enrolment.
 
 Governing refs:
 - PRODUCT_TRUST_PROGRAMME.md PTP-001
@@ -43,7 +46,8 @@ class SupportStatus(str, Enum):
 
 
 # IFoA papers announced for expansion but without a Version 1 syllabus yet.
-# Presence of on-disk curriculum overrides this list (see resolve).
+# Presence of on-disk curriculum normally overrides this list (see resolve),
+# unless the paper is also listed in ``_COMING_SOON_DESPITE_CURRICULUM``.
 _COMING_SOON_PAPERS: dict[str, frozenset[str]] = {
     "IFoA": frozenset(
         {
@@ -60,6 +64,14 @@ _COMING_SOON_PAPERS: dict[str, frozenset[str]] = {
             "SA",
         }
     ),
+}
+
+# Papers that remain Coming Soon for students even when a loadable syllabus
+# exists on disk. Curriculum discovery, validation, and import stay available
+# for authoring; only student Ready status and plan creation are held.
+# Remove a paper from this set when enrolment is deliberately released.
+_COMING_SOON_DESPITE_CURRICULUM: dict[str, frozenset[str]] = {
+    "IFoA": frozenset({"CM2"}),
 }
 
 # PX-001 student-facing availability labels (internal enum values unchanged).
@@ -109,16 +121,33 @@ class SubjectSupportService:
     """Resolve examination support status for the study-plan wizard."""
 
     @staticmethod
-    def list_supported_examinations() -> list[tuple[str, str]]:
+    def is_coming_soon_despite_curriculum(organisation: str, paper: str) -> bool:
+        """Return True when student enrolment is held despite an on-disk syllabus."""
+        org = (organisation or "").strip()
+        paper_code = (paper or "").strip()
+        if not org or not paper_code:
+            return False
+        org_upper = org.upper()
+        paper_upper = paper_code.upper()
+        for key, papers in _COMING_SOON_DESPITE_CURRICULUM.items():
+            if key.upper() == org_upper:
+                return paper_upper in {p.upper() for p in papers}
+        return False
+
+    @classmethod
+    def list_supported_examinations(cls) -> list[tuple[str, str]]:
         """Return Version 1 supported (organisation, paper) pairs.
 
-        Discovery is curriculum-driven: any on-disk syllabus counts as
-        Supported. Ordered by organisation then paper for stable display.
+        Discovery is curriculum-driven: an on-disk syllabus normally counts as
+        Supported, except papers explicitly held in
+        ``_COMING_SOON_DESPITE_CURRICULUM``. Ordered by organisation then paper
+        for stable display.
         """
         engine = CurriculumEngineService()
         found = {
             (org.upper(), paper.upper()): (org, paper)
             for org, paper, _versions in engine.list_supported_exams()
+            if not cls.is_coming_soon_despite_curriculum(org, paper)
         }
         return sorted(
             found.values(),
@@ -179,6 +208,21 @@ class SubjectSupportService:
         published = cls._resolve_published(org, paper_code, alternatives)
         if published is not None:
             return published
+
+        # Explicit student hold: syllabus may exist for authoring, but the
+        # subject stays Coming Soon until deliberately released.
+        if cls.is_coming_soon_despite_curriculum(org, paper_code):
+            display = catalogue.format_exam_name(org, paper_code)
+            return SubjectSupportInfo(
+                status=SupportStatus.COMING_SOON,
+                organisation=org,
+                paper=paper_code,
+                label=_STATUS_LABELS[SupportStatus.COMING_SOON],
+                title=f"{display} is Coming Soon",
+                explanation=_COMING_SOON_EXPLANATION,
+                allows_plan_creation=False,
+                alternatives=alternatives,
+            )
 
         if cls.has_curriculum(org, paper_code):
             display = catalogue.format_exam_name(org, paper_code)

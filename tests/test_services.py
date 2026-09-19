@@ -1272,7 +1272,7 @@ class TestStudyPlanService:
 
         sp = StudyPlanService.create_study_plan(
             user_id=user.id,
-            exam_name="IFoA CM2",  # no on-disk syllabus for CM2
+            exam_name="IFoA CS2",  # no on-disk syllabus for CS2
             exam_sitting="April 2027",
             exam_date=date.today() + timedelta(days=180),
             weekday_study_minutes=120,

@@ -510,10 +510,12 @@ class TestFormatDetection:
         count = CurriculumService.import_curricula()
         assert count >= 1
 
-        # Bundled curricula use product naming (CS1 only)
+        # Bundled curricula use product naming (CS1 and CM2)
         c = Curriculum.query.filter_by(exam_name="IFoA CS1", version="2026").one()
         assert c is not None
         assert c.exam_name == "IFoA CS1"
+        cm2 = Curriculum.query.filter_by(exam_name="IFoA CM2", version="2026").one()
+        assert cm2 is not None
         assert Curriculum.query.filter_by(exam_name="IFoA CB2", version="2026").first() is None
         assert Curriculum.query.filter_by(exam_name="IFoA CM1", version="2026").first() is None
 
@@ -661,10 +663,11 @@ class TestStartupImport:
             assert isinstance(count, int)
             assert count >= 0
 
-        # Should still have exactly the bundled curriculum (CS1)
-        assert Curriculum.query.count() == 1
+        # Should still have exactly the bundled curricula (CS1 and CM2)
+        assert Curriculum.query.count() == 2
         assert {c.exam_name for c in Curriculum.query.all()} == {
             "IFoA CS1",
+            "IFoA CM2",
         }
 
 
