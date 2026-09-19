@@ -187,12 +187,22 @@ class HistoryAdapter:
                 minutes = self._sum_minutes(attempts)
                 total_minutes += minutes
                 mid = str(mission.id)
+                # Prefer the Learning Session Runtime id when the companion
+                # sitting exists. Using the SQL mission id as session_id makes
+                # Sitting Report links open a phantom /session/<mission_id>/
+                # workspace after completion.
+                session_key = (
+                    self._learning_session_id_for_mission(
+                        user_id=user_id, sql_mission_id=int(mission.id)
+                    )
+                    or mid
+                )
                 title = str(mission.title or "") or "Session"
                 completed_at = iso_date(getattr(mission, "mission_date", None)) or ""
                 attempt_ids = [str(a.id) for a in attempts]
                 sessions.append(
                     map_completed_session(
-                        session_id=mid,
+                        session_id=session_key,
                         mission_id=mid,
                         topic_title=title,
                         completed_at=completed_at,
@@ -562,6 +572,46 @@ class HistoryAdapter:
                 exc_info=True,
             )
             return []
+
+    @staticmethod
+    def _learning_session_id_for_mission(
+        *, user_id: int, sql_mission_id: int
+    ) -> str:
+        """Resolve LSR session id from the companion RuntimeMissionInstance."""
+        try:
+            from app.infrastructure.adapters.learning_session.persistence import (
+                NS_MISSION,
+            )
+            from app.infrastructure.composition import build_session_document_store
+            from app.models.educational_runtime_engine import (
+                RuntimeMissionInstance,
+            )
+
+            row = (
+                RuntimeMissionInstance.query.filter_by(
+                    user_id=int(user_id),
+                    sql_mission_id=int(sql_mission_id),
+                )
+                .order_by(RuntimeMissionInstance.id.desc())
+                .first()
+            )
+            if row is None:
+                return ""
+            mid = str(row.mission_instance_id or "").strip()
+            if not mid:
+                return ""
+            store = build_session_document_store()
+            ptr = store.get(NS_MISSION, f"{int(user_id)}::{mid}")
+            if not isinstance(ptr, dict):
+                return ""
+            return str(ptr.get("session_id") or "").strip()
+        except Exception:  # noqa: BLE001 — History must stay resilient
+            logger.debug(
+                "lsr session resolve failed for sql_mission_id=%s",
+                sql_mission_id,
+                exc_info=True,
+            )
+            return ""
 
     def _attempts_for_mission(self, user_id: int, mission_id: Any) -> list[Any]:
         try:

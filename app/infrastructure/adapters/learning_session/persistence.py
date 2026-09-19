@@ -11,7 +11,7 @@ progress survives browser refresh and navigation.
 from __future__ import annotations
 
 from copy import deepcopy
-from datetime import date
+from datetime import UTC, date, datetime
 from typing import Any
 
 from app.application.learning_session.dto.finish_review import FinishReview
@@ -167,6 +167,17 @@ class LearningSessionPersistenceAdapter:
             ),
             "handle": _serialize_handle(handle),
         }
+        # Stamp accept time once so completion can record honest wall-clock
+        # duration. Do not overwrite on resume/rebinding.
+        accepted_at = str(existing.get("accepted_at") or "").strip()
+        if not accepted_at and document["status"] == "open":
+            accepted_at = datetime.now(tz=UTC).isoformat()
+        if accepted_at:
+            document["accepted_at"] = accepted_at
+        if existing.get("actual_duration_minutes") is not None:
+            document["actual_duration_minutes"] = existing.get(
+                "actual_duration_minutes"
+            )
         self._store.save(NS_HANDLE, session_id, document)
         self.save_progress(
             session_id=session_id,
@@ -324,6 +335,18 @@ class LearningSessionPersistenceAdapter:
                 paused=False,
                 elapsed_active_seconds=progress.get("elapsed_active_seconds"),
             )
+
+    def record_actual_duration_minutes(
+        self, *, session_id: str, duration_minutes: int
+    ) -> dict[str, Any] | None:
+        """Persist measured sitting duration on the handle (never the estimate)."""
+        doc = self.load(session_id=session_id)
+        if doc is None:
+            return None
+        minutes = max(0, int(duration_minutes))
+        updated = {**doc, "actual_duration_minutes": minutes}
+        self._store.save(NS_HANDLE, session_id.strip(), updated)
+        return deepcopy(updated)
 
     def save_sitting_outcome(
         self,

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from typing import Any
 
 from app.application.config.v2_flags import resolve_v2_feature_flags
@@ -212,15 +213,7 @@ class LearningSessionRuntimeEngine:
             user_id = int(str(student_id).strip())
         except (TypeError, ValueError):
             return None
-        duration = None
-        try:
-            raw_minutes = record.get("estimated_minutes")
-            if raw_minutes is not None and str(raw_minutes).strip() != "":
-                duration = int(raw_minutes)
-                if duration <= 0:
-                    duration = None
-        except (TypeError, ValueError):
-            duration = None
+        duration = _honest_duration_minutes(record)
         from app.application.student_runtime.evidence_write_through import (
             maybe_write_sql_evidence_from_sitting,
         )
@@ -233,6 +226,25 @@ class LearningSessionRuntimeEngine:
             topic_id=record.get("topic_id"),
             duration_minutes=duration,
         )
+
+    def _record_honest_duration(
+        self, *, session_id: str, record: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Measure accept→complete wall-clock minutes; never use the estimate.
+
+        ``elapsed_active_seconds`` is stored on progress but is not populated
+        by any active tracker yet. Until that tracker is wired, wall-clock
+        from ``accepted_at`` is the honest measured duration.
+        """
+        minutes = _honest_duration_minutes(record)
+        if minutes is None:
+            return record
+        updated = self._persistence.record_actual_duration_minutes(
+            session_id=session_id, duration_minutes=minutes
+        )
+        if updated is not None:
+            return updated
+        return {**record, "actual_duration_minutes": minutes}
 
     def _persist_educational_memory(
         self,
@@ -1010,6 +1022,10 @@ class LearningSessionRuntimeEngine:
 
         # Phase 2 — additive Runtime A StudyAttempt write-through via companion
         # Mission. Does not alter Runtime C gate / Twin / mission-complete flags.
+        # Duration must be measured wall-clock, never the pre-set estimate.
+        record = self._record_honest_duration(
+            session_id=session_id, record=record
+        )
         sql_attempt = self._maybe_write_sql_evidence_companion(
             student_id=student_id,
             session_id=session_id,
@@ -1193,7 +1209,7 @@ class LearningSessionRuntimeEngine:
 
         return {
             "topics_completed": (topic,) if substance_on else (),
-            "time_studied_minutes": record.get("estimated_minutes") or 0,
+            "time_studied_minutes": _honest_duration_minutes(record) or 0,
             "activities_completed": activities_completed,
             "learning_insights": tuple(insights),
             "exam_readiness_change": 0.0,
@@ -1943,3 +1959,59 @@ def _educational_package_id_from_sequence(seq: dict[str, Any] | None) -> str:
         if ":sc-" in oid:
             return oid.split(":sc-", 1)[0].strip()
     return ""
+
+
+def _parse_iso_timestamp(raw: Any) -> datetime | None:
+    text = str(raw or "").strip()
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=UTC)
+    return parsed
+
+
+def _honest_duration_minutes(record: dict[str, Any] | None) -> int | None:
+    """Return measured sitting minutes, never the pre-set estimate.
+
+    Preference order:
+    1. Already recorded ``actual_duration_minutes``
+    2. Populated ``elapsed_active_seconds`` (intended tracker; currently unused)
+    3. Accept→complete wall-clock from ``accepted_at`` / ``started_at``
+
+    Returns None when no honest measurement is available (do not invent or
+    fall back to ``estimated_minutes``).
+    """
+    if not isinstance(record, dict):
+        return None
+    raw_actual = record.get("actual_duration_minutes")
+    if raw_actual is not None and str(raw_actual).strip() != "":
+        try:
+            minutes = int(raw_actual)
+        except (TypeError, ValueError):
+            minutes = -1
+        if minutes >= 0:
+            return minutes
+    raw_active = record.get("elapsed_active_seconds")
+    if raw_active is not None and str(raw_active).strip() not in {"", "0"}:
+        try:
+            seconds = int(raw_active)
+        except (TypeError, ValueError):
+            seconds = 0
+        if seconds > 0:
+            return max(0, int(round(seconds / 60.0)))
+    start = _parse_iso_timestamp(
+        record.get("accepted_at") or record.get("started_at")
+    )
+    if start is None:
+        return None
+    end = datetime.now(tz=UTC)
+    seconds = (end - start).total_seconds()
+    if seconds < 0:
+        return None
+    # Sub-minute sittings still happened; round up to 1 so History/SQL do not
+    # invent the estimate and do not reject a completed sitting as invalid.
+    return max(1, int(round(seconds / 60.0)))

@@ -174,6 +174,9 @@ def select_strategy(evidence: StrategyEvidenceInput) -> StrategyDecision:
         )
 
     # 8. Strong sustained performance → advance or increase challenge
+    # ADVANCE_TOPIC / INCREASE_CHALLENGE require genuine coverage advance.
+    # Mission completion alone (authorised sitting without topic coverage
+    # advance) must not imply "Move to the next topic".
     if (
         correct > 0
         and incorrect == 0
@@ -191,7 +194,7 @@ def select_strategy(evidence: StrategyEvidenceInput) -> StrategyDecision:
     if (
         correct > 0
         and incorrect == 0
-        and (evidence.progress_advanced or evidence.mission_completed)
+        and evidence.progress_advanced
         and evidence.finish_verdict in {"yes", ""}
     ):
         return StrategyDecision(
@@ -200,11 +203,22 @@ def select_strategy(evidence: StrategyEvidenceInput) -> StrategyDecision:
             reason_codes=("strong_performance", "accepted_study", "advance"),
             calibration=calibration,
         )
-    if correct > 0 and incorrect == 0 and evidence.finish_verdict == "yes":
+    if (
+        correct > 0
+        and incorrect == 0
+        and evidence.mission_completed
+        and evidence.finish_verdict in {"yes", ""}
+        and not evidence.progress_advanced
+    ):
         return StrategyDecision(
-            action=StrategyAction.ADVANCE_TOPIC,
-            rule_id="advance_strong_finish",
-            reason_codes=("strong_performance", "honest_finish", "advance"),
+            action=StrategyAction.MAINTAIN_CURRENT_PACE,
+            rule_id="maintain_strong_sitting_without_coverage_advance",
+            reason_codes=(
+                "strong_performance",
+                "accepted_study",
+                "coverage_not_advanced",
+                "maintain_pace",
+            ),
             calibration=calibration,
         )
 

@@ -25,7 +25,16 @@ class QualifyingStudyDayIndexPersistence:
     """Persist qualifying study day index documents per learner."""
 
     def __init__(self, *, store: SessionDocumentStore | None = None) -> None:
-        self._store = store or SessionDocumentStore()
+        # Default must share the composition store (durable when flagged).
+        # A bare SessionDocumentStore() here is a separate empty memory map and
+        # silently diverges from the Learning Session write path even when
+        # KWALITEC_V2_DURABLE_STORE=1 (Home/Stats streak readers saw 0).
+        if store is not None:
+            self._store = store
+        else:
+            from app.infrastructure.composition import build_session_document_store
+
+            self._store = build_session_document_store()
 
     @property
     def store(self) -> SessionDocumentStore:

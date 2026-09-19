@@ -17,7 +17,10 @@ from app.application.session_experience.dto.overview_snapshot import OverviewSna
 from app.application.session_experience.dto.reflection_snapshot import (
     ReflectionSnapshot,
 )
-from app.application.session_experience.exceptions import SessionOwnershipError
+from app.application.session_experience.exceptions import (
+    SessionNotFound,
+    SessionOwnershipError,
+)
 from app.application.session_experience.facade import SessionExperienceService
 from app.domain.session_experience.session_workspace import (
     SessionSurface,
@@ -62,7 +65,14 @@ def resume_redirect_if_needed(
     assert_session_owned(session_id)
     svc = service()
     workspace = svc.registry.get_workspace_for_session(session_id)
+    target = SessionSurface(str(requested).strip().lower())
     if workspace is None:
+        if _is_archive_surface(target) and not _session_has_durable_identity(
+            session_id
+        ):
+            raise SessionNotFound(
+                f"session {session_id.strip()} has no durable sitting record"
+            )
         svc.open_session(student_id(), session_id=session_id)
         workspace = svc.registry.get_workspace_for_session(session_id)
     if workspace is None:
@@ -71,7 +81,6 @@ def resume_redirect_if_needed(
         raise SessionOwnershipError(
             f"session {session_id} is not owned by student {student_id()}"
         )
-    target = SessionSurface(str(requested).strip().lower())
     active = workspace.active_surface
     if surface_index(target) != surface_index(active):
         endpoint = SURFACE_ENDPOINTS[active]
@@ -88,11 +97,19 @@ def load_page(
     ``resume_redirect_if_needed`` first so interrupt/resume restores the
     active surface correctly.
     """
-    _ = surface  # Enforced by resume_redirect_if_needed before render.
+    target = SessionSurface(str(surface).strip().lower())
     assert_session_owned(session_id)
     svc = service()
     workspace = svc.registry.get_workspace_for_session(session_id)
     if workspace is None:
+        # Archive/complete links must not invent a fresh open sitting for an
+        # unknown id (SQL mission id used as History Sitting Report target).
+        if _is_archive_surface(target) and not _session_has_durable_identity(
+            session_id
+        ):
+            raise SessionNotFound(
+                f"session {session_id.strip()} has no durable sitting record"
+            )
         svc.open_session(student_id(), session_id=session_id)
         workspace = svc.registry.get_workspace_for_session(session_id)
     if workspace is not None and workspace.student_id != student_id():
@@ -102,6 +119,41 @@ def load_page(
     flow = svc.get_flow(student_id(), session_id=session_id)
     page = page_from_flow(flow)
     return _apply_ri001_session_briefing(page)
+
+
+def _is_archive_surface(surface: SessionSurface) -> bool:
+    return surface in {SessionSurface.COMPLETE, SessionSurface.SUMMARY}
+
+
+def _session_has_durable_identity(session_id: str) -> bool:
+    """True when a real LSR/runtime completion record exists for this id.
+
+    Overview/status alone are not enough: History used to link SQL mission
+    ids, and visiting those URLs auto-provisioned phantom overview/status
+    documents without an LSR handle.
+    """
+    sess = (session_id or "").strip()
+    if not sess:
+        return False
+    try:
+        from app.infrastructure.adapters.learning_session.persistence import (
+            NS_HANDLE,
+        )
+        from app.infrastructure.composition import build_session_document_store
+        from app.infrastructure.session.runtime_adapter import (
+            SessionRuntimeAdapter,
+        )
+
+        store = build_session_document_store()
+        if store.get(NS_HANDLE, sess) is not None:
+            return True
+        sid = student_id()
+        key = f"{sid}::{sess}"
+        if store.get(SessionRuntimeAdapter.NS_COMPLETION, key) is not None:
+            return True
+    except Exception:  # noqa: BLE001 — presentation must fail closed
+        return False
+    return False
 
 
 def open_overview(

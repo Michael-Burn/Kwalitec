@@ -25,7 +25,16 @@ class MilestonesShownPersistence:
     """Persist which milestones have already been announced to a learner."""
 
     def __init__(self, *, store: SessionDocumentStore | None = None) -> None:
-        self._store = store or SessionDocumentStore()
+        # Default must share the composition store (durable when flagged).
+        # A bare SessionDocumentStore() here is a separate empty memory map and
+        # silently diverges from any writer that already used the real store
+        # (milestone announcements would re-fire as if never shown).
+        if store is not None:
+            self._store = store
+        else:
+            from app.infrastructure.composition import build_session_document_store
+
+            self._store = build_session_document_store()
 
     @property
     def store(self) -> SessionDocumentStore:

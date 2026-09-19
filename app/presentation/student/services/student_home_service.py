@@ -70,6 +70,21 @@ _SEQUENTIAL_WHY_NOW = "Next in your study plan."
 _STUDY_LINK_LABEL = "Study"
 
 
+def _mission_is_open_sitting_resume(
+    mission: HomeMission | None, *, state: str
+) -> bool:
+    """True only when Home is resuming a real open sitting.
+
+    Day-complete also uses ``primary_kind="link"`` for the Study continuation
+    CTA, but that is not an open sitting and must not trigger "left open" copy.
+    """
+    if mission is None or state == "day_complete":
+        return False
+    if mission.primary_kind != "link":
+        return False
+    return bool((mission.session_id or "").strip())
+
+
 def home_resume_continue_href(home: HomePageViewModel | None) -> str | None:
     """Deep-link Continue used by Home. Never starts or recommends a session.
 
@@ -397,8 +412,11 @@ class StudentHomeService:
             gap_copy = return_after_gap_copy(
                 days_since_last=days_gap,
                 display_name=name or None,
-                in_progress=bool(
-                    mission is not None and mission.primary_kind == "link"
+                # Day-complete "Continue studying" is also primary_kind=link,
+                # but it is not an open sitting. Only resume/finish with a
+                # real session_id means a sitting was left open.
+                in_progress=_mission_is_open_sitting_resume(
+                    mission, state=state
                 ),
             )
             if name and gap_copy.greeting:
@@ -636,7 +654,7 @@ class StudentHomeService:
             # keeps the primary CTA and folds secondary chrome.
             show_progress = False
             show_actions = state in {"empty", "quiet"}
-        elif mission is not None and mission.primary_kind == "link":
+        elif _mission_is_open_sitting_resume(mission, state=state):
             mode = "returning"
             topic = (mission.title or mission.objective or "").strip()
             continuity = (
